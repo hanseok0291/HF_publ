@@ -6,16 +6,14 @@
 @import "variables";
 
 * { box-sizing: border-box; }
-img { width: 100%; height: auto; }
+body { font-family: 'pretendard', 'Malgun Gothic', dotumm, gulim, sans-serif; font-size: 14px; line-height: 1; letter-spacing: -0.03em; word-break: keep-all;}
+img { height: auto; }
+a { text-decoration: none; }
 .container { position: relative; margin: auto; padding-left: 25px; padding-right: 25px; max-width: 480px; }
 .img-container { max-width: 325px; }
 
 .referral-content {
-	font-family: 'pretendard', 'Malgun Gothic', dotumm, gulim, sans-serif;
-	font-size: 14px;
-	line-height: 1.4;
-	letter-spacing: -0.03em;
-	word-break: keep-all;
+	width: 100%;
 	color: #575757;
 	text-align: center;
 }
@@ -134,6 +132,9 @@ img { width: 100%; height: auto; }
 			border-radius: 10px;
 			background-color: #fff;
 			box-shadow: 2px 3px 5px rgba(117, 117, 117, .4);
+			img {
+				width: 100%;
+			}
 		}
 		.text {
 			margin-top: 6px;
@@ -154,27 +155,6 @@ img { width: 100%; height: auto; }
 		}
 	}
 }
-.hidden { display: none; }
-.sr-only { font-size: 0; text-indent: -100000px; }
-.italic { font-style: italic; }
-
-@media only screen and (max-width: 359px) {
-	.container { padding-left: 20px; padding-right: 20px; }
-	.section.benefit .benefit-list {
-		font-size: 13px;
-		li {
-			padding: 34px 0 32px 25px;
-			.number { top: 34px; }
-		}
-	}
-	.fixed-bottom .banner {
-		font-size: 16px;
-		.download {
-			padding: 0 10px;
-			font-size: 14px;
-		}
-	}
-}
 
 /* modal */
 .modal {
@@ -185,8 +165,8 @@ img { width: 100%; height: auto; }
 	&::before {
 		content: ''; display: block;
 		position: absolute; top: 0; left: 0;
-		background-color: rgba(0,0,0,.6);
 		width: 100%; height: 100%;
+		background-color: rgba(0,0,0,.6);
 	}
 	.modal-dialog {
 		position: fixed; top: 50%; left: 50%;
@@ -202,7 +182,7 @@ img { width: 100%; height: auto; }
 				position: absolute;
 				display: inline-block;
 				top: -52px; right: 0;
-				background: url(../images/hotdeal/icon/icon-close.svg) no-repeat 10px 10px / 17px 17px;
+				background: url(../images/referral/icon/icon-close.svg) no-repeat 10px 10px / 17px 17px;
 				width: 40px; height: 40px;
 				font-size: 0; line-height: 0; text-indent: -100000px;
 				border: 2px solid $white; border-radius: 50%;
@@ -222,6 +202,9 @@ img { width: 100%; height: auto; }
 						background: url(../images/hotdeal/popup/logo-popup.png) no-repeat center / 135px 31px;
 						width: 135px; height: 31px;
 					}
+					strong, i {
+						font-weight: 700;
+					}
 				}
 				.modal-title-sub {
 					margin-bottom: 10px;
@@ -236,13 +219,17 @@ img { width: 100%; height: auto; }
 				.qr-list li {
 					float: left;
 					background-color: $white;
-					width: 170px; height: 180px;
+					width: 170px; 
 					margin-right: 14px;
-					padding-top: 27px;
 					border-radius: 8px;
 					text-align: center;
 					&:last-child { margin-right: 0; }
 					&::after { content:""; clear: both; }
+					a {
+						display: block;
+						height: 180px;
+						padding-top: 27px;
+					}
 					h3 {
 						height: 30px;
 						margin-top: 7px;
@@ -269,6 +256,28 @@ img { width: 100%; height: auto; }
 					}
 				}
 			}
+		}
+	}
+}
+
+.hidden { display: none; }
+.sr-only { font-size: 0; text-indent: -100000px; }
+.italic { font-style: italic; }
+
+@media only screen and (max-width: 359px) {
+	.container { padding-left: 20px; padding-right: 20px; }
+	.section.benefit .benefit-list {
+		font-size: 13px;
+		li {
+			padding: 34px 0 32px 25px;
+			.number { top: 34px; }
+		}
+	}
+	.fixed-bottom .banner {
+		font-size: 16px;
+		.download {
+			padding: 0 10px;
+			font-size: 14px;
 		}
 	}
 }

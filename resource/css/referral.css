@@ -65,9 +65,20 @@ table {
           box-sizing: border-box;
 }
 
+body {
+  font-family: 'pretendard', 'Malgun Gothic', dotumm, gulim, sans-serif;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  word-break: keep-all;
+}
+
 img {
-  width: 100%;
   height: auto;
+}
+
+a {
+  text-decoration: none;
 }
 
 .container {
@@ -83,11 +94,7 @@ img {
 }
 
 .referral-content {
-  font-family: 'pretendard', 'Malgun Gothic', dotumm, gulim, sans-serif;
-  font-size: 14px;
-  line-height: 1.4;
-  letter-spacing: -0.03em;
-  word-break: keep-all;
+  width: 100%;
   color: #575757;
   text-align: center;
 }
@@ -236,6 +243,10 @@ img {
           box-shadow: 2px 3px 5px rgba(117, 117, 117, 0.4);
 }
 
+.fixed-bottom .banner .logo img {
+  width: 100%;
+}
+
 .fixed-bottom .banner .text {
   margin-top: 6px;
 }
@@ -254,6 +265,163 @@ img {
   font-weight: 700;
   line-height: 36px;
   color: #2378fe;
+}
+
+/* modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999999;
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.modal.active {
+  display: block;
+}
+
+.modal::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal .modal-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background: #f2f2f2 url(../images/referral/bg-popup.png) no-repeat right 37px top 28px/195px 162px;
+  width: 622px;
+  height: 420px;
+  border-radius: 20px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.modal .modal-dialog .modal-content {
+  position: relative;
+  padding: 52px 42px;
+}
+
+.modal .modal-dialog .modal-content .modal-close {
+  position: absolute;
+  display: inline-block;
+  top: -52px;
+  right: 0;
+  background: url(../images/referral/icon/icon-close.svg) no-repeat 10px 10px/17px 17px;
+  width: 40px;
+  height: 40px;
+  font-size: 0;
+  line-height: 0;
+  text-indent: -100000px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.modal .modal-dialog .modal-content .modal-body {
+  color: #151515;
+}
+
+.modal .modal-dialog .modal-content .modal-body .modal-title {
+  margin-bottom: 28px;
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+}
+
+.modal .modal-dialog .modal-content .modal-body .modal-title .icon-logo-pop {
+  display: inline-block;
+  vertical-align: top;
+  background: url(../images/hotdeal/popup/logo-popup.png) no-repeat center/135px 31px;
+  width: 135px;
+  height: 31px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .modal-title strong, .modal .modal-dialog .modal-content .modal-body .modal-title i {
+  font-weight: 700;
+}
+
+.modal .modal-dialog .modal-content .modal-body .modal-title-sub {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.modal .modal-dialog .modal-content .modal-body .modal-title-sub .icon-arrow-pop {
+  display: inline-block;
+  background: url(../images/hotdeal/popup/popup-icon-arrow.png) no-repeat center/11px 9px;
+  width: 11px;
+  height: 1em;
+  vertical-align: top;
+}
+
+.modal .modal-dialog .modal-content .modal-body .qr-list li {
+  float: left;
+  background-color: #ffffff;
+  width: 170px;
+  margin-right: 14px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.modal .modal-dialog .modal-content .modal-body .qr-list li:last-child {
+  margin-right: 0;
+}
+
+.modal .modal-dialog .modal-content .modal-body .qr-list li::after {
+  content: "";
+  clear: both;
+}
+
+.modal .modal-dialog .modal-content .modal-body .qr-list li a {
+  display: block;
+  height: 180px;
+  padding-top: 27px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .qr-list li h3 {
+  height: 30px;
+  margin-top: 7px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #222222;
+  line-height: 30px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .qr-list li h3 [class^="icon"] {
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: top;
+}
+
+.modal .modal-dialog .modal-content .modal-body .qr-list li h3 [class^="icon"].icon-qr-google {
+  background: url(../images/hotdeal/icon/icon-qr-google.png) no-repeat center/18px 19px;
+  width: 18px;
+  height: 30px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .qr-list li h3 [class^="icon"].icon-qr-one {
+  background: url(../images/hotdeal/icon/icon-qr-one.png) no-repeat center/19px 19px;
+  width: 19px;
+  height: 30px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .qr-list li h3 [class^="icon"].icon-qr-app {
+  background: url(../images/hotdeal/icon/icon-qr-app.png) no-repeat center 0.4px/20px 23px;
+  width: 20px;
+  height: 30px;
 }
 
 .hidden {
@@ -290,154 +458,5 @@ img {
     padding: 0 10px;
     font-size: 14px;
   }
-}
-
-/* modal */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999999;
-  display: none;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.modal.active {
-  display: block;
-}
-
-.modal::before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  width: 100%;
-  height: 100%;
-}
-
-.modal .modal-dialog {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  background: #f2f2f2 url(../images/referral/bg-popup.png) no-repeat right 37px top 28px/195px 162px;
-  width: 622px;
-  height: 420px;
-  border-radius: 20px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-.modal .modal-dialog .modal-content {
-  position: relative;
-  padding: 52px 42px;
-}
-
-.modal .modal-dialog .modal-content .modal-close {
-  position: absolute;
-  display: inline-block;
-  top: -52px;
-  right: 0;
-  background: url(../images/hotdeal/icon/icon-close.svg) no-repeat 10px 10px/17px 17px;
-  width: 40px;
-  height: 40px;
-  font-size: 0;
-  line-height: 0;
-  text-indent: -100000px;
-  border: 2px solid #ffffff;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.modal .modal-dialog .modal-content .modal-body {
-  color: #151515;
-}
-
-.modal .modal-dialog .modal-content .modal-body .modal-title {
-  margin-bottom: 28px;
-  font-size: 32px;
-  font-weight: 400;
-  letter-spacing: -0.04em;
-  line-height: 1.2;
-}
-
-.modal .modal-dialog .modal-content .modal-body .modal-title .icon-logo-pop {
-  display: inline-block;
-  vertical-align: top;
-  background: url(../images/hotdeal/popup/logo-popup.png) no-repeat center/135px 31px;
-  width: 135px;
-  height: 31px;
-}
-
-.modal .modal-dialog .modal-content .modal-body .modal-title-sub {
-  margin-bottom: 10px;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.modal .modal-dialog .modal-content .modal-body .modal-title-sub .icon-arrow-pop {
-  display: inline-block;
-  background: url(../images/hotdeal/popup/popup-icon-arrow.png) no-repeat center/11px 9px;
-  width: 11px;
-  height: 1em;
-  vertical-align: top;
-}
-
-.modal .modal-dialog .modal-content .modal-body .qr-list li {
-  float: left;
-  background-color: #ffffff;
-  width: 170px;
-  height: 180px;
-  margin-right: 14px;
-  padding-top: 27px;
-  border-radius: 8px;
-  text-align: center;
-}
-
-.modal .modal-dialog .modal-content .modal-body .qr-list li:last-child {
-  margin-right: 0;
-}
-
-.modal .modal-dialog .modal-content .modal-body .qr-list li::after {
-  content: "";
-  clear: both;
-}
-
-.modal .modal-dialog .modal-content .modal-body .qr-list li h3 {
-  height: 30px;
-  margin-top: 7px;
-  font-size: 18px;
-  font-weight: 700;
-  color: #222222;
-  line-height: 30px;
-}
-
-.modal .modal-dialog .modal-content .modal-body .qr-list li h3 [class^="icon"] {
-  display: inline-block;
-  margin-right: 5px;
-  vertical-align: top;
-}
-
-.modal .modal-dialog .modal-content .modal-body .qr-list li h3 [class^="icon"].icon-qr-google {
-  background: url(../images/hotdeal/icon/icon-qr-google.png) no-repeat center/18px 19px;
-  width: 18px;
-  height: 30px;
-}
-
-.modal .modal-dialog .modal-content .modal-body .qr-list li h3 [class^="icon"].icon-qr-one {
-  background: url(../images/hotdeal/icon/icon-qr-one.png) no-repeat center/19px 19px;
-  width: 19px;
-  height: 30px;
-}
-
-.modal .modal-dialog .modal-content .modal-body .qr-list li h3 [class^="icon"].icon-qr-app {
-  background: url(../images/hotdeal/icon/icon-qr-app.png) no-repeat center 0.4px/20px 23px;
-  width: 20px;
-  height: 30px;
 }
 /*# sourceMappingURL=referral.css.map */

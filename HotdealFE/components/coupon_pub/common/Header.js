@@ -1,0 +1,41 @@
+import styleDefaultLayout from "../../../styles/coupon_pub/DefaultLayout.module.css";
+import styleCommon from "../../../styles/coupon_pub/Common.module.css";
+
+export default function Header({
+  isShowBackBtn,
+  isShowSearchBtn,
+  isShowMypageBtn,
+  pageTitle,
+}) {
+  return (
+    <div
+      className={`${styleDefaultLayout.pageHeader} ${styleDefaultLayout.defaultHeader}`}
+    >
+      <div className={`${styleDefaultLayout.container}`}>
+        {isShowBackBtn && (
+          <button
+            type="button"
+            className={`${styleDefaultLayout.btnIcon} ${styleDefaultLayout.btnBack}`}
+          >
+            뒤로가기
+          </button>
+        )}
+        <h1 className={styleDefaultLayout.pageTitle}>{pageTitle}</h1>
+        {isShowSearchBtn && (
+          <button
+            type="button"
+            className={`${styleCommon.icon} ${styleCommon.iconSearch}`}
+          ></button>
+        )}
+        {isShowMypageBtn && (
+          <button
+            type="button"
+            className={`${styleCommon.icon} ${styleCommon.iconMy}`}
+          >
+            <span className={`${styleCommon.labelRound}`}>32</span>
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}

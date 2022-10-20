@@ -1,0 +1,138 @@
+@charset "UTF-8";
+
+/**
+* ============================================================
+* MainSlide : 메인 상단, 상품 슬라이드
+* ============================================================
+*/
+
+
+/* animation */
+/* cardNav 애니메이션 효과 - 진행 중 상단 텍스트 깜빡 */
+@keyframes blink {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+/* main content */
+.mainSectionTop { background: #232323; margin: 0 auto; padding: 63px 0 40px; border-bottom-right-radius: 44px; }
+
+/* ready */
+.mainReady { margin: 25px auto 20px; max-width: 360px; overflow: hidden; border: 1px solid #fff; border-radius: 20px; }
+
+/* slide nav */
+.cardNav { position: relative; margin-top: 10px; margin-bottom: 15px; padding: 0 30px; color: #fff; text-align: center; }
+.cardNav .now { display: block; position: absolute; top: 0; left: 0; width: 100%; font-size: 10px; font-weight: 700; line-height: 1; color: #ff4a4a; animation: blink infinite 1s; text-align: center; }
+
+.cardNav .slick-slide { float: none; display: inline-block; width: 28% !important; outline: none; }
+.cardNav .slick-track { transform: none !important; width: 100% !important; }
+.cardNav .slick-slide button { position: relative; display: inline-block; padding: 10px 0 0; font-size: 16px; line-height: 30px; font-weight: 700; color: #3d3d3d; }
+.cardNav .slick-slide.slick-current button { width: auto !important; color: #fff; -webkit-transition: all .2s; transition: all .2s; }
+.cardNav .slick-slide.slick-current button:after { content:''; display: block; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background-color: #fff; }
+
+.cardNav :global .slick-slide { float: none; display: inline-block; width: 28% !important; outline: none; }
+.cardNav :global .slick-track { transform: none !important; width: 100% !important; }
+.cardNav :global .slick-slide button { position: relative; display: inline-block; padding: 10px 0 0; width: auto !important; font-size: 16px; line-height: 30px; font-weight: 700; color: #3d3d3d; }
+.cardNav :global .slick-slide.slick-current button { color: #fff; -webkit-transition: all .2s; transition: all .2s; }
+.cardNav :global .slick-slide.slick-current button:after { content:''; display: block; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background-color: #fff; }
+
+/* slide */
+.cardSlide { position: relative; margin-top: 10px; height: 455px; font-size: 10px; line-height: 1.2; }
+.cardSlide .slider { width: 50%; margin: 100px auto; }
+
+.cardSlide .slick-track { -webkit-transition: .2s; transition: .2s; }
+.cardSlide .slick-slide { padding: 0 0 20px; opacity: .2; }
+.cardSlide .slick-active { opacity: .5; }
+.cardSlide .slick-current { opacity: 1; }
+.cardSlide .slick-slide .cardBox { transform: scale(0.9); -webkit-transition: .5s ease-in; transition: .5s ease-in; }
+.cardSlide .slick-slide.slick-current .cardBox { transform: scale(1); }
+
+.cardSlide :global .slick-track { -webkit-transition: .2s; transition: .2s; }
+.cardSlide :global .slick-slide { padding: 0 0 20px; padding-bottom: 20px; opacity: .2; }
+.cardSlide :global .slick-active { opacity: .5; }
+.cardSlide :global .slick-current { opacity: 1; }
+.cardSlide :global .slick-slide :local(.cardBox) { transform: scale(0.9); -webkit-transition: .5s ease-in; transition: .5s ease-in; }
+.cardSlide :global .slick-slide.slick-current :local(.cardBox) { transform: scale(1); }
+
+.cardSlide .cardBox { position: relative; height: 435px; vertical-align: top; }
+.cardSlide .cardStyle { position: relative; width: auto; height: 100%; background-color: #fff; }
+.cardSlide .btnBox { position: absolute; left: 17px; bottom: 17px; right: 17px; z-index: 2; }
+.cardSlide .btnBox button { height: 50px; }
+.cardSlide .cardStyle,
+.cardSlide .dim { overflow: hidden; border: 2px solid #fff; border-radius: 20px; }
+.cardSlide .cardBox.soldout { overflow: hidden; border-radius: 20px; }
+.cardSlide .cardBox.soldout .dim { border: 0; }
+
+.cardSlide .productImg { position: relative; width: auto; height: 255px; }
+.cardSlide .productImg a { width: 100%; height: 100%; }
+.cardSlide .productImg .imgBox { position: absolute; top: 0; bottom: 0; width: 100%; height: 100%; overflow: hidden; background-color: #f9f9f9; }
+.cardSlide .productImg .imgBox img { width: 100%; height:100%; object-fit: cover; }
+.cardSlide .productImg .remainTimeBox { position: absolute; bottom: 0; width: 100%; padding: 2px 0 3px; background-color: #ff4a4a; font-size: 1.7em; color: #fff; line-height: 20px; text-align: center; }
+.cardSlide .productImg .remainTime { font-weight: 700; }
+.cardSlide .productTxt { position: relative; width: 100%; height: 176px; padding: 10px 17px 17px; }
+
+.cardSlide .productTxt .productSummary { display:block; font-size: 1.6em; font-weight: 400; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+.cardSlide .productTxt .productName { display:block; font-size: 2.2em; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+
+.cardSlide .productTxt .productPrice { clear: both; margin-top: 10px; }
+.cardSlide .productTxt .productPrice:after { content: ''; clear: both; display: block; }
+.cardSlide .productTxt .productPrice .sortition { float: left; display: block; padding-top: .8em; font-size: 1.4em; color: #ff4a4a; line-height: 20px; }
+.cardSlide .productTxt .productPrice .price { float: right; display: block; line-height: 1.1; }
+.cardSlide .productTxt .productPrice .priceOrigin { display: inline-block; font-size: 1.6em; text-decoration: line-through; color: #a2a2a2; }
+.cardSlide .productTxt .productPrice .priceHotdeal { display: inline-block; margin-left: -4px; font-size: 3em; color: #151515; }
+
+.cardSlide .result { position: relative; }
+.cardSlide .result .dimBg { background-image: none; }
+.cardSlide .result .dimTxt { top: 0; padding: 30px 17px 0; }
+.cardSlide .result .titleTop { clear: both; padding-bottom: 6px; border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
+.cardSlide .result .titleTop:after { content: ''; clear: both; display: block; }
+.cardSlide .result .titleTop .productName { float: left; width: calc(100% - 5.5em); font-size: 1.6em; font-weight: 400; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+.cardSlide .result .titleTop .cardTitle { float: right; width: 5.5em; font-size: 1.6em; text-align: right; }
+.cardSlide .result .titleBottom { font-weight: 700; }
+.cardSlide .result .titleBottom .customerWrap { margin-top: 25px; font-size: 3em; }
+.cardSlide .result .titleBottom .customerName { display: inline-block; max-width: calc(100% - 1.2em); text-overflow: ellipsis; white-space: nowrap; overflow: hidden; vertical-align: top; }
+.cardSlide .result .titleBottom .message { margin-top: 15px; font-size: 1.6em; }
+.cardSlide .result .iconEmotion { position: absolute; z-index: 5; right: -10px; bottom: -15px; background-repeat: no-repeat; background-position: right bottom; background-size: cover; display: block; width: 140px; height: 220px; }
+.cardSlide .result .iconEmotion.happy { background-image: url(../../public/images/hotdeal/emotion/happy-big.png); }
+.cardSlide .result .iconEmotion.bad { background-image: url(../../public/images/hotdeal/emotion/bad-big.png); }
+.cardSlide .expect { position: relative; overflow: hidden; }
+.cardSlide .expect .productImg { width: auto; height: 315px; }
+.cardSlide .expect .productTxt { height: calc(100% - 315px); }
+.cardSlide .expect.default { text-align: center; font-size: 1.6em; }
+.cardSlide .expect.default .defaultTxt:before { content: ''; position: relative; display: block; background: url(../../public/images/hotdeal/bg-card-default.png) no-repeat bottom center / auto 100%; width: 100%; height: 223px; }
+.cardSlide .expect.default .defaultTxt { position: absolute; top: 50%; width: 100%; transform: translateY(-50%); }
+.cardSlide .expect.default .defaultTxt strong { font-size: 187.5%; }
+
+.slideBtn { z-index: 2; }
+
+/* sold out */
+.cardSlide .dim { position: absolute; width: 100%; height: 100%; }
+.cardSlide .dim ~ .cardStyle { border-radius: 24px; }
+.cardSlide .dim .btnBox { margin-top: 25px; }
+.cardSlide .dimBg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2;
+	background: rgba(0, 0, 0, 0.5) url(../../public/images/hotdeal/dim/bg-soldout.png) no-repeat center / cover; font-size: 0; text-indent: -100000px; }
+.cardSlide .dimImg { position: absolute; z-index: 1; width: 100%; height: 100%; background-color: #f9f9f9; }
+.cardSlide .dimImg > img { width: 100%; height: 100%; object-fit: cover; }
+.cardSlide .dimTxt { position: absolute; left: 0; bottom: 0; z-index: 3; padding: 19px; width: 100%; height: auto; color: #fff; }
+.cardSlide .dimTxt a { color: #fff; }
+.cardSlide .dimTxt .btnBox { position: relative; left: 0; right: 0; bottom: 0; }
+
+/* bubble */
+.slideCardBox .bubble { /*display: none;*/ position: absolute; left: 50%; bottom: 43px; z-index: 5; margin-left: -177px; width: 262px; height: 63px; padding: 15px 20px 0;
+	background: url(../../public/images/hotdeal/bg-bubble.png) no-repeat center / contain; text-align: center; font-size: 11px; line-height: 18px; vertical-align: middle; }
+.slideCardBox .bubble .textLg { font-size: 15px; color: #ff2b00; vertical-align: middle; animation: blink infinite 1s; }
+
+/* 하단 목록 영역 */
+.mainSectionBottom { padding: 45px 0 0; }
+
+@media screen and (max-width: 359px) {
+	.cardSlide { font-size: 9px; }
+	.slideCardBox .bubble { margin-left: -160px; }
+}
+
+@media screen and (max-width: 319px) {
+	.cardNav .slick-slide { width: 30% !important; }
+	.cardNav :global .slick-slide { width: 30% !important; }
+	.slideCardBox .bubble { bottom: 45px; margin-left: -140px; }
+	.slideCardBox .bubble .textLg { font-size: 14px; }
+}

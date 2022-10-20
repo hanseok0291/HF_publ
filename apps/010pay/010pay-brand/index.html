@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>010PAY 브랜드 사이트 퍼블리싱 안내</title>
+<link rel="stylesheet" href="resource/fonts/roboto/roboto.min.css">
+<link rel="stylesheet" href="resource/fonts/notosanskr-v13/notosanskr.min.css">
+<script src="resource/library/jquery-1.8.3.min.js"></script>
+
+<style>
+	html, body { width: 100%; height: 100%; }
+	p { margin: .25em 0; }
+	body { margin: 0; padding: 0; background-color: #fff; line-height: 1.4; letter-spacing: -0.03em; color: #151515; }
+	body, table { font-family: 'Pretendard', 'Malgun Gothic', 'Dotum', 'Apple SD Gothic Neo', sans-serif; font-size: 12px; }
+	header { margin: 0; padding: 20px 20px; border-bottom: 1px solid #e3e3e3; }
+	header h1 { margin: 0 0 10px; font-size: 24px; color: #ff7e00; }
+	header p { line-height: 1.4; }
+	.main { position: relative; padding: 0 20px 20px; }
+	h2 { margin: 30px 0 10px; font-size: 18px; }
+	small { font-size: 90% !important; color: #777; }
+	ul { margin: 0; padding-left: 1.667em; list-style: disc; }
+	ul ul { margin-top: .333em; list-style: circle; }
+	li { margin-top: .333em; }
+	ul li:first-child { margin-top: 0; }
+	a { color: #5e8cc0; }
+	a, a:hover, a:active, a:focus { text-decoration: underline; }
+	.strong { font-weight: 700; }
+	.table-responsive { width: 100%; overflow-x: auto; border: 1px solid #ddd; }
+	.table { margin: 0; min-width: 1000px; border-collapse: collapse; width: 100%; border: 0; }
+	.table th, .table td { padding: 5px 10px; height: auto; border: 1px solid #ddd; }
+	.table th { background: #f1f2f4; color: #151515; font-weight: 400; text-align: center; }
+	.table .date, .table .status { text-align: center; }
+	.well { padding: 20px; border: 2px solid #ddd; }
+	.bg-info { background: #dbf5ff; }
+	.bg-success { background: #e7fbe2; }
+	.bg-success2 { background: #dff5d8; }
+	.bg-warning { background: #ff9; }
+	.bg-danger { background: #ffe5e8; }
+	.bg-wait { background: #eee; color: #888; }
+	.del { text-decoration: line-through; }
+	code { padding: 2px 4px; background-color: #f9f2f4; font-size: 96%; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; color: #c7254e; }
+	.text-primary { color: #ff7e00; }
+	.text-info { color: #1275d6; }
+	.text-danger { color: #dc3545; }
+	.text-success { color: #28a745; }
+	.text-minwise { color: #b920f5; }
+	.btn { display: inline-block; padding: .25em .5em; border: 1px solid #5e8cc0; border-radius: .5em; background-color: transparent; font-family: 'Noto Sans KR'; font-size: 11px; color: #5e8cc0; line-height: 1.2; cursor: pointer; }
+	.flip { position: relative; }
+	.flip .flip-body { display: none; }
+	.flip.open .flip-body { display: block; }
+	.btn-flip-all:not(.open) .open { display: inline; }
+	.flip.open .btn-flip .open,
+	.btn-flip-all .open { display: none; }
+	.flip:not(.open) .btn-flip .close,
+	.btn-flip-all:not(.open) .close { display: none; }
+	.pull-left { float: left; }
+	.pull-right { float: right; }
+</style>
+
+<script>
+	$(document).ready(function(){
+		// 설명 영역 축약 (flip)
+		$(".btn-flip").click(function(){
+			$(this).parents(".flip").toggleClass("open");
+		});
+		$(".btn-flip-all").click(function(){
+			if(!$(this).hasClass("open")){
+				$(this).addClass("open");
+				$(this).parents("h2").next().find(".flip").addClass("open");
+			} else {
+				$(this).removeClass("open");
+				$(this).parents("h2").next().find(".flip").removeClass("open");
+			}
+		});
+
+		// 진행 상태별 셀 컬러
+		$("li.text-success").parents("tr").addClass("bg-success");
+		$("li.text-danger").parents("tr").addClass("bg-success2");
+		$(".status:contains('작업 중'), .status:contains('수정 중'), .status:contains('작업 예정')").parents("tr").removeClass("bg-success2").addClass("bg-danger");
+		$(".status:contains('검토 요청')").parents("tr").removeClass("bg-success2").addClass("bg-warning");
+		$(".status:contains('-'), .status:empty").parents("tr").addClass("bg-wait");
+
+		// 모바일 링크 타겟 변경
+		var filter = "win16|win32|win64|mac|macintel"; if ( navigator.platform ) {
+			if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
+				// mobile
+				$("a").attr("target", "_self");
+				// alert("[010PAY 퍼블리싱 안내]\n모바일 접속! 링크는 페이지 이동으로 적용됩니다.");
+			} else {
+				// pc
+				$("a").attr("target", "_blank");
+			}
+		}
+	});
+</script>
+</head>
+
+<body>
+<header>
+	<h1>010PAY 브랜드 사이트 퍼블리싱 안내</h1>
+	<p>최종 수정일 : 2022-10-17</p>
+</header>
+
+<div class="main">
+	<h2>PAGE <span class="pull-right"><button type="button" class="btn btn-flip-all"><span class="open">비고 내용 모두 보기</span><span class="close">비고 지난 내용 숨기기</span></button></span></h2>
+	<div class="table-responsive">
+		<table class="table">
+			<colgroup>
+				<col style="width: 100px">
+				<col style="width: 12%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>구분</th>
+					<th>화면명</th>
+					<th>퍼블리싱</th>
+					<th>개발(테스트)</th>
+					<th>개발(운영)</th>
+					<th>날짜</th>
+					<th>상태</th>
+					<th>비고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="3">서비스 소개<br>(service)</td>
+					<td>010내통장결제</td>
+					<td><a href="html/service/mytongjang.html" target="_blank">mytongjang</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/010mytongjang" target="_blank">010mytongjang</a></td>
+					<td><a href="https://010pay.kr/010mytongjang" target="_blank">010mytongjang</a></td>
+					<td class="date">2022-09-28</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-01-03 : [공통] 전체 폰트 변경(Roboto + Noto Sans KR → Pretendard)</li>
+								<li>2022-01-03 : [공통] 메뉴 최소값 지정(폰트 수정 후 hover 시 옆 메뉴에 영향을 주는 현상 개선)</li>
+								<li>2022-01-12 : [공통] 핫딜 메뉴 추가,  우측 하단 스크롤 버튼 태그 수정</li>
+								<li>2022-02-10 : [공통] 메뉴명 변경(서비스 소개)</li>
+								<li>2022-04-29 : [공통] 이메일, 전화번호 링크 오류 수정</li>
+								<li>2022-07-06 : [공통] 푸터 정보, 약관 링크, 관련 사이트 링크 변경</li>
+								<li>2022-09-28 : 메타 태그 추가</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>010가상계좌</td>
+					<td><a href="html/service/010vbank.html" target="_blank">010vbank</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/010vbank" target="_blank">010vbank</a></td>
+					<td><a href="https://010pay.kr/010vbank" target="_blank">010vbank</a></td>
+					<td class="date">2022-09-28</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-07-07 : 사명 삭제</li>
+								<li>2022-09-28 : 메타 태그 추가</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>PASS페이</td>
+					<td><a href="html/service/passpay.html" target="_blank">passpay</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/passpay" target="_blank">passpay</a></td>
+					<td><a href="https://010pay.kr/passpay" target="_blank">passpay</a></td>
+					<td class="date">2022-09-28</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-09-28 : 메타 태그 추가</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="2">카드<br>(card)</td>
+					<td>010PAY 체크카드</td>
+					<td><a href="html/card/check_card.html" target="_blank">check_card</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/card" target="_blank">card</a></td>
+					<td><a href="https://010pay.kr/card" target="_blank">card</a></td>
+					<td class="date">2022-06-24</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-01-04 : 비주얼 로고/카드 이미지 수정, 혜택 말풍선 정렬 수정</li>
+								<li>2022-06-24 : meta keywords 추가</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>010PAY 체크카드 시즌2</td>
+					<td><a href="html/card/check_card_v2.html" target="_blank">check_card_v2</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/card" target="_blank">card</a></td>
+					<td><a href="https://010pay.kr/card" target="_blank">card</a></td>
+					<td class="date">2022-09-28</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-06-23 : 화면 추가</li>
+								<li>2022-06-24 : meta keywords 추가</li>
+								<li>2022-07-26 : 버튼 URL 수정(NEW 카드 바로 신청, 카드 신청하기)</li>
+								<li>2022-09-28 : 메타 태그 추가</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="2">핫딜<br>(hotdeal)</td>
+					<td>핫딜</td>
+					<td><a href="html/hotdeal/hotdeal.html" target="_blank">hotdeal</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/hotdeal" target="_blank">hotdeal</a></td>
+					<td><a href="https://010pay.kr/hotdeal" target="_blank">hotdeal</a></td>
+					<td class="date">2022-10-17</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-01-12 : 핫딜 페이지 추가</li>
+								<li>2022-02-04 : 공유 이미지, 콘텐츠 변경(참여 안내 외)</li>
+								<li>2022-02-07 : UI 개선(핫딜 라인업)</li>
+								<li>2022-02-10 : 콘텐츠 변경(당첨자 발표, FAQ)</li>
+								<li>~ 2022-02-21 : UI 개선(슬라이드 외)</li>
+								<li>2022-04-11 : 블로그 영역 숨김, 자주 묻는 질문 디자인 변경</li>
+								<li>2022-05-23 : 문구 변경(카카오톡 알림 영역)</li>
+								<li>2022-06-02 : 상단 레이아웃 영역 수정</li>
+								<li>2022-07-06 : 사명 변경(자주 묻는 질문)</li>
+								<li>2022-08-03 : 정책 변경(슬라이드 이미지, 자주 묻는 질문)</li>
+								<li>2022-09-15 : 문구 변경</li>
+								<li>2022-09-28 : 메타 태그 추가</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+							<ul>
+								<li class="text-danger">2022-10-17 : 응모하기 버튼명 변경, 하단 버튼 삭제</li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+				<tr class="bg-wait">
+					<td>핫딜 - coming soon</td>
+					<td><a href="html/hotdeal/hotdeal_soon.html" target="_blank">hotdeal_soon</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/hotdeal" target="_blank">hotdeal</a></td>
+					<td><a href="https://010pay.kr/hotdeal" target="_blank">hotdeal</a></td>
+					<td class="date">2022-04-29</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>미사용(핫딜 오픈 전까지만 사용)</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>기프티몰<br>(giftimall)</td>
+					<td>기프티몰</td>
+					<td><a href="html/giftimall/giftimall.html" target="_blank">giftimall</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/giftimall" target="_blank">giftimall</a></td>
+					<td><a href="https://010pay.kr/giftimall" target="_blank">giftimall</a></td>
+					<td class="date">2022-10-05</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip">
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+							<ul>
+								<li class="text-danger">2022-10-02 : 모바일 완료</li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>브릿지 페이지</td>
+					<td>브릿지 페이지</td>
+					<td><a href="html/coupon/landing.html" target="_blank">landing</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/landing" target="_blank">landing</a></td>
+					<td><a href="https://010pay.kr/landing" target="_blank">landing</a></td>
+					<td class="date">2022-10-13</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+							<ul>
+								<li class="text-success">2022-10-12 : 화면 추가</li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="6">소식<br>(news)</td>
+					<td>이벤트</td>
+					<td><a href="html/news/event.html" target="_blank">event</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/news" target="_blank">news</a></td>
+					<td><a href="https://010pay.kr/news" target="_blank">news</a></td>
+					<td class="date">2022-09-28</td>
+					<td class="status">완료</td>
+					<td>
+						<p class="text-info">[참고] 백오피스 등록 관리(게시물 퍼블리싱 현행화 X)</p>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2021-10-01 : 응카데이 이벤트 추가, 오타 수정(coming)</li>
+								<li>2021-10-06 : 010PAY 체크카드 웰컴 이벤트 기간 변경</li>
+								<li>2021-10-18 : UI 개선(배너 위치 오류 해결), 응카데이 이벤트 문구 변경</li>
+								<li>2021-12-13 : 응카데이 이벤트 기간 변경</li>
+								<li>2022-01-05 : 010PAY 체크카드 웰컴 이벤트 이미지, 기간 변경</li>
+								<li>2022-06-02 : 상단 레이아웃 영역 수정</li>
+								<li>2022-09-28 : 메타 태그 추가</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>이벤트 상세 - 더블 체크 로또 이벤트</td>
+					<td><a href="html/news/detail_01.html" target="_blank">detail_01</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/news/events/3" target="_blank">events/3</a></td>
+					<td><a href="https://010pay.kr/news/events/3" target="_blank">events/3</a></td>
+					<td class="date">2022-04-29</td>
+					<td class="status">완료</td>
+					<td>
+						<p class="text-info">[참고] 백오피스 등록 관리(게시물 퍼블리싱 현행화 X)</p>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2021-10-01 : 리소스 변경</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>이벤트 상세 - 010PAY 체크카드 웰컴 이벤트</td>
+					<td><a href="html/news/detail_02.html" target="_blank">detail_02</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/news/events/1" target="_blank">events/1</a></td>
+					<td><a href="https://010pay.kr/news/events/1" target="_blank">events/1</a></td>
+					<td class="date">2022-04-29</td>
+					<td class="status">완료</td>
+					<td>
+						<p class="text-info">[참고] 백오피스 등록 관리(게시물 퍼블리싱 현행화 X)</p>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2021-10-01 : 리소스 변경</li>
+								<li>2021-10-06 : 문구 변경(기간, 유의사항 등), [공통] UI 개선(여백, 줄간격 등 CSS)</li>
+								<li>2021-10-18 : 숫자 서체 변경</li>
+								<li>2022-01-05 : 비주얼 이미지, 기간 변경</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>이벤트 상세 - 응카데이 이벤트</td>
+					<td><a href="html/news/detail_04.html" target="_blank">detail_04</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/https://010pay.kr/news/events/4" target="_blank">events/4</a></td>
+					<td><a href="https://010pay.kr/news/events/4" target="_blank">events/4</a></td>
+					<td class="date">2022-04-29</td>
+					<td class="status">완료</td>
+					<td>
+						<p class="text-info">[참고] 백오피스 등록 관리(게시물 퍼블리싱 현행화 X)</p>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2021-10-01 : 응카데이 이벤트 추가</li>
+								<li>2021-12-13 : 응카데이 이벤트 기간 변경</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>공지사항</td>
+					<td><a href="html/news/notices.html" target="_blank">notices</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/news" target="_blank">news</a></td>
+					<td><a href="https://010pay.kr/news" target="_blank">news</a></td>
+					<td class="date">2022-06-02</td>
+					<td class="status">완료</td>
+					<td>
+						<p class="text-info">[참고] 백오피스 등록 관리(게시물 퍼블리싱 현행화 X)</p>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2021-10-01 : 오타 수정(coming)</li>
+								<li>2021-10-18 : UI 개선(배너 위치 오류 해결)</li>
+								<li>2022-06-02 : 상단 레이아웃 영역 수정</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>공지사항 상세 - 010PAY GRAND OPEN</td>
+					<td><a href="html/news/detail_03.html" target="_blank">detail_03</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/notices/2" target="_blank">notice/2</a></td>
+					<td><a href="https://010pay.kr/news/notices/2" target="_blank">notice/2</a></td>
+					<td class="date">2022-04-29</td>
+					<td class="status">완료</td>
+					<td>
+						<p class="text-info">[참고] 백오피스 등록 관리(게시물 퍼블리싱 현행화 X)</p>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2021-10-01 : 리소스 변경</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>고객 문의<br>(support)</td>
+					<td>고객 문의</td>
+					<td><a href="html/support/support.html" target="_blank">support</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/support" target="_blank">support</a></td>
+					<td><a href="https://010pay.kr/support" target="_blank">support</a></td>
+					<td class="date">2022-09-28</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-06-02 : 상단 레이아웃 영역 수정</li>
+								<li>2022-07-15 : 문구 변경(자주 묻는 질문)</li>
+								<li>2022-09-28 : 메타 태그 추가</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>약관<br>(terms)</td>
+					<td>서비스 이용약관(브랜드 사이트)</td>
+					<td><a href="html/terms/service.html" target="_blank">service</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/terms/service" target="_blank">service</a></td>
+					<td><a href="https://010pay.kr/terms/service" target="_blank">service</a></td>
+					<td class="date">2022-09-22</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td rowspan="9">약관<br>(provision)</td>
+					<td>서비스 이용약관</td>
+					<td><a href="html/provision/service.html" target="_blank">service</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/provision/service" target="_blank">service</a></td>
+					<td><a href="https://010pay.kr/provision/service" target="_blank">service</a></td>
+					<td class="date">2022-09-22</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>전자금융거래 이용약관</td>
+					<td><a href="html/provision/financial.html" target="_blank">financial</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/provision/service" target="_blank">service</a></td>
+					<td><a href="https://010pay.kr/provision/service" target="_blank">service</a></td>
+					<td class="date">2022-09-22</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>개인정보 수집 이용</td>
+					<td><a href="html/provision/privacy1.html" target="_blank">privacy1</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/provision/service" target="_blank">service</a></td>
+					<td><a href="https://010pay.kr/provision/service" target="_blank">service</a></td>
+					<td class="date">2022-09-22</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>개인정보 제 3자 제공 및 위탁</td>
+					<td><a href="html/provision/privacy2.html" target="_blank">privacy2</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/provision/service" target="_blank">service</a></td>
+					<td><a href="https://010pay.kr/provision/service" target="_blank">service</a></td>
+					<td class="date">2022-09-22</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>오픈뱅킹 출금 및 조회 약관</td>
+					<td><a href="html/provision/openbanking.html" target="_blank">openbanking</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/provision/service" target="_blank">service</a></td>
+					<td><a href="https://010pay.kr/provision/service" target="_blank">service</a></td>
+					<td class="date">2022-09-22</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>마케팅 정보 수신</td>
+					<td><a href="html/provision/marketing.html" target="_blank">marketing</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/provision/service" target="_blank">service</a></td>
+					<td><a href="https://010pay.kr/provision/service" target="_blank">service</a></td>
+					<td class="date">2022-09-22</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>SKT 개인정보 제3자 제공 동의</td>
+					<td><a href="html/provision/privacy_skt.html" target="_blank">privacy_skt</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/provision/service" target="_blank">service</a></td>
+					<td><a href="https://010pay.kr/provision/service" target="_blank">service</a></td>
+					<td class="date">2022-09-22</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>KT 개인정보 제 3자 제공 동의</td>
+					<td><a href="html/provision/privacy_kt.html" target="_blank">privacy_kt</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/provision/service" target="_blank">service</a></td>
+					<td><a href="https://010pay.kr/provision/service" target="_blank">service</a></td>
+					<td class="date">2022-09-22</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>내통장결제 서비스 권한위임 동의</td>
+					<td><a href="html/provision/delegation.html" target="_blank">delegation</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/provision/service" target="_blank">service</a></td>
+					<td><a href="https://010pay.kr/provision/service" target="_blank">service</a></td>
+					<td class="date">2022-09-22</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>리퍼럴<br>(referral)</td>
+					<td>리퍼럴</td>
+					<td><a href="html/referral/referral.html" target="_blank">referral</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/referral" target="_blank">referral</a></td>
+					<td><a href="https://010pay.kr/referral" target="_blank">referral</a></td>
+					<td class="date">2022-06-23</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-04-14 : 화면 추가</li>
+								<li>2022-04-26 : 스토어 팝업, 파비콘, 사이트 공유정보 추가</li>
+								<li>2022-05-16 : 문구, 디자인 변경(포인트 단위, 앱 설치 및 회원 가입 관련)</li>
+								<li>2022-06-07 : 유의사항 문구 변경</li>
+								<li>2022-06-23 : 체크카드 이미지, 혜택 문구 수정</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>제로페이<br>(zeropay)</td>
+					<td>제로페이</td>
+					<td><a href="html/zeropay/zeropay.html" target="_blank">zeropay</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/zeropay" target="_blank">zeropay</a></td>
+					<td><a href="https://010pay.kr/zeropay" target="_blank">zeropay</a></td>
+					<td class="date">2022-02-04</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2021-07-22 : 화면 추가</li>
+								<li>2021-10-27 : 스타벅스 이벤트 팝업 추가</li>
+								<li>2021-10-28 : 스타벅스 이벤트 팝업 수정</li>
+								<li>2021-11-08 : 혜택 5(추가 기능 소개) 섹션 숨김</li>
+								<li>2021-11-30 : 스타벅스 이벤트 팝업 변경(11월 → 12월)</li>
+								<li>2021-12-30 : 스타벅스 이벤트 팝업 변경(2021년 12월 → 2022년 1월)</li>
+								<li>2022-02-04 : 스타벅스 이벤트 팝업 미노출</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="16">프로모션<br>(promotion)</td>
+					<td>[SKT PASS] 컬쳐랜드(충전 캐시백)</td>
+					<td><a href="html/promotion/cultureland/passevent.html" target="_blank">cultureland/passevent</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/cultureland/passevent" target="_blank">cultureland/passevent</a></td>
+					<td><a href="https://010pay.kr/cultureland/passevent" target="_blank">cultureland/passevent</a></td>
+					<td class="date">2022-01-03</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2021-10-13 : 화면 추가</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>[SKT PASS] 컬쳐랜드(새해맞이 캐쉬업)</td>
+					<td><a href="html/promotion/cultureland/passevent_20220215.html" target="_blank">cultureland/passevent_20220215</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/cultureland/passevent" target="_blank">cultureland/passevent</a></td>
+					<td><a href="https://010pay.kr/cultureland/passevent" target="_blank">cultureland/passevent</a></td>
+					<td class="date">2022-02-15</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-02-09 : 화면 추가</li>
+								<li>2022-02-14 : 문구 변경</li>
+								<li>2022-02-15 : 문구 추가</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>[SKT PASS] 바이오일레븐 (공식몰 할인)</td>
+					<td><a href="html/promotion/bio11/passevent.html" target="_blank">bio11/passevent</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/bio11/passevent" target="_blank">bio11/passevent</a></td>
+					<td><a href="https://010pay.kr/bio11/passevent" target="_blank">bio11/passevent</a></td>
+					<td class="date">2022-01-03</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2021-12-10 : 화면 추가</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>[SKT PASS] 바이오일레븐 (TEN + TEN)</td>
+					<td><a href="html/promotion/bio11/passevent_20220331.html" target="_blank">bio11/passevent_20220331</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/bio11/skt/passevent" target="_blank">bio11/skt/passevent</a></td>
+					<td><a href="https://010pay.kr/bio11/skt/passevent" target="_blank">bio11/skt/passevent</a></td>
+					<td class="date">2022-03-22</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-03-17 : 화면 추가</li>
+								<li>2022-03-18 : 이미지 수정, kt일 경우 CSS 추가</li>
+								<li>2022-03-21 : kt일 경우 #header 비노출 CSS 추가</li>
+								<li>2022-03-22 : header 소스 관리</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>[KT PASS] 바이오일레븐 (TEN + TEN)</td>
+					<td><a href="html/promotion/bio11/passevent_20220331_kt.html" target="_blank">bio11/passevent_20220331_kt</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/bio11/kt/passevent" target="_blank">bio11/kt/passevent</a></td>
+					<td><a href="https://010pay.kr/bio11/kt/passevent" target="_blank">bio11/kt/passevent</a></td>
+					<td class="date">2022-03-22</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-03-17 : 화면 추가</li>
+								<li>2022-03-18 : 이미지 수정, kt일 경우 CSS 추가</li>
+								<li>2022-03-21 : kt일 경우 #header 비노출 CSS 추가</li>
+								<li>2022-03-22 : header 소스 관리</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>[SKT PASS] 모바일캐시비</td>
+					<td><a href="html/promotion/cashbee/passevent_20220506.html" target="_blank">cashbee/passevent_20220506</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/cashbee/skt/passevent" target="_blank">cashbee/skt/passevent</a></td>
+					<td><a href="https://010pay.kr/cashbee/skt/passevent" target="_blank">cashbee/skt/passevent</a></td>
+					<td class="date">2022-05-06</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-05-06 : 화면 추가</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>[SKT PASS] 휴대폰충전 &gt; 010PAY 체크카드 소개</td>
+					<td><a href="html/promotion/phonebill/phonebill_20220808.html" target="_blank">phonebill/phonebill_20220808</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/phonebill/skt/passevent" target="_blank">010phonebill</a></td>
+					<td><a href="https://010pay.kr/010phonebill" target="_blank">010phonebill</a></td>
+					<td class="date">2022-09-13</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-08-11 : 화면 추가</li>
+								<li>2022-08-18 : 자주묻는질문, 헤더 변경</li>
+								<li>2022-09-13 : 자주묻는질문, 헤더 변경, 하단 버튼 추가</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+							<ul>
+							</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>[KT PASS] 모바일캐시비</td>
+					<td><a href="html/promotion/cashbee/passevent_20220506_kt.html" target="_blank">cashbee/passevent_20220506_kt</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/cashbee/kt/passevent" target="_blank">cashbee/kt/passevent</a></td>
+					<td><a href="https://010pay.kr/cashbee/kt/passevent" target="_blank">cashbee/kt/passevent</a></td>
+					<td class="date">2022-05-06</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-05-06 : 화면 추가</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>시럽 대출 서비스</td>
+					<td><a href="html/promotion/syrup/event_20220705.html" target="_blank">syrup/event_20220705</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/syrup/event" target="_blank">syrup/event</a></td>
+					<td><a href="https://010pay.kr/syrup/event" target="_blank">syrup/event</a></td>
+					<td class="date">2022-10-04</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-07-05 : 화면 추가</li>
+								<li>2022-08-12 : 기간 변경</li>
+								<li>2022-10-04 : 소재 변경</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>머니 충전</td>
+					<td><a href="html/promotion/app/event_20220810.html" target="_blank">app/event_20220810</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/app/event" target="_blank">app/event</a></td>
+					<td><a href="https://010pay.kr/app/event" target="_blank">app/event</a></td>
+					<td class="date">2022-08-11</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-08-10 : 화면 추가</li>
+								<li>2022-08-11 : 오타 수정, 소스 정리</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>머니 충전(9월)</td>
+					<td><a href="html/promotion/app/event_20220922.html" target="_blank">app/event_20220922</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/app/event" target="_blank">app/event</a></td>
+					<td><a href="https://010pay.kr/app/event" target="_blank">app/event</a></td>
+					<td class="date">2022-09-22</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-09-22 : 화면 추가</li>
+								<li>2022-10-14 : 유의사항 문구 변경</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>포인트 사용안내</td>
+					<td><a href="html/promotion/app/event_20220928.html" target="_blank">app/event_20220928</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/app/event" target="_blank">app/event</a></td>
+					<td><a href="https://010pay.kr/app/event" target="_blank">app/event</a></td>
+					<td class="date">2022-09-28</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-09-28 : 화면 추가</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>휴대폰 후불충전</td>
+					<td><a href="html/promotion/app/event_20221004.html" target="_blank">app/event_20221004</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/app/event" target="_blank">app/event</a></td>
+					<td><a href="https://010pay.kr/app/event" target="_blank">app/event</a></td>
+					<td class="date">2022-10-05</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-10-05 : 화면 추가</li>
+								<li>2022-10-14 : 유의사항 문구 변경</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>핫딜 응모 미션</td>
+					<td><a href="html/promotion/app/mission.html" target="_blank">app/mission</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/app/event" target="_blank">app/event</a></td>
+					<td><a href="https://010pay.kr/app/event" target="_blank">app/event</a></td>
+					<td class="date">2022-10-06</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+						<ul>
+							<li class="text-success">2022-10-06 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>핫딜 미당첨 위로 미션</td>
+					<td><a href="html/promotion/app/mission_fail.html" target="_blank">app/mission_fail</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/010pay/app/event" target="_blank">app/event</a></td>
+					<td><a href="https://010pay.kr/app/event" target="_blank">app/event</a></td>
+					<td class="date">2022-10-06</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+						<ul>
+							<li class="text-success">2022-10-06 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<h2>MEMO</h2>
+	<div class="well">
+		<h3>010PAY 브랜드 사이트</h3>
+		<ul>
+			<li>반응형(PC/모바일 단일 소스)</li>
+			<li>브라우저 지원 : 크롬, 파이어폭스, IE11(부분 지원), ...</li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

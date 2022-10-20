@@ -1,0 +1,294 @@
+@charset "utf-8";
+
+/* 기본설정 */
+@import "reset";
+@import "fonts";
+@import "variables";
+
+* { box-sizing: border-box; }
+body { font-family: 'pretendard', 'Malgun Gothic', dotumm, gulim, sans-serif; font-size: 14px; line-height: 1; letter-spacing: -0.03em; word-break: keep-all; }
+img { height: auto; }
+a { text-decoration: none; }
+.container { position: relative; margin: auto; padding-left: 25px; padding-right: 25px; min-width: 320px; max-width: 480px; }
+.img-container { width: 100%; max-width: 325px; }
+
+.referral-content {
+	width: 100%;
+	color: #575757;
+	text-align: center;
+}
+.section {
+	padding: 60px 0;
+	&.visual {
+		background-color: #e8f4ff;
+		color: #151515;
+	}
+	&.benefit {
+		padding-bottom: 24px;
+		background-color: #fbfbfb;
+		.benefit-list {
+			margin-top: 24px;
+			margin-right: -10px;
+			padding-right: 10px;
+			font-weight: 300;
+			line-height: 19px;
+			text-align: left;
+			background: url('../images/referral/benefit-img.png') no-repeat right center / contain;
+		&.benefit-list-v2 {
+			background: url('../images/referral/benefit-img2.png') no-repeat right center / contain;
+		}
+			li {
+				position: relative;
+				padding: 43px 0 42px 25px;
+				border-bottom: 2px dotted  #bfbfbf;
+				.number {
+					display: block;
+					position: absolute;
+					top: 43px;
+					left: 0;
+					z-index: 2;
+					width: 19px;
+					height: 19px;
+					border-radius: 50%;
+					background: #2378fe url('../images/referral/benefit-number.png') no-repeat 0 0 / 20px auto;
+					font-size: 0;
+				}
+				&:nth-child(2) {
+					.number { background-position: 0 -20px; }
+				}
+				&:nth-child(3) {
+					border: 0;
+					.number { background-position: 0 -40px; }
+				}
+				strong {
+					font-size: 1.143em;
+					font-weight: 700;
+					color: #151515;
+					letter-spacing: -0.05em;
+					vertical-align: top;
+				}
+			}
+		}
+	}
+	&.notice {
+		padding-bottom: 120px;
+		background-color: #3d414c;
+		font-size: 12px;
+		color: #c0c0c0;
+		text-align: left;
+		.section-title {
+			font-size: 15px;
+			font-weight: 700;
+			color: #fff;
+		}
+		.notice-list {
+			margin-top: 10px;
+			li {
+				margin-top: 6px;
+				padding-left: 9px;
+				text-indent: -9px;
+				line-height: 1.4;
+			}
+		}
+	}
+}
+.fixed-bottom {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	z-index: 100;
+	width: 100%;
+	min-width: 320px;
+	background-color: #2378fe;
+	// box-shadow: 0 0 30px 12px #becbd8;
+	box-shadow: 0 0 30px 12px rgba(49, 52, 60, .3);
+	transition: box-shadow .3s;
+	&.bottom {
+		// box-shadow: 0 0 30px 12px #31343c;
+		box-shadow: 0 0 30px 12px rgba(49, 52, 60, 1);
+	}
+	.banner {
+		clear: both;
+		display: block;
+		padding-top: 19px;
+		padding-bottom: 19px;
+		border: 0;
+		background-color: transparent;
+		font-size: 18px;
+		font-weight: 700;
+		text-decoration: none;
+		line-height: 20px;
+		color: #fff;
+		text-align: left;
+		&:after {
+			content: '';
+			clear: both;
+			display: block;
+		}
+		span {
+			display: block;
+			float: left;
+		}
+		.logo {
+			margin-right: 10px;
+			width: 52px;
+			height: 52px;
+			overflow: hidden;
+			border-radius: 10px;
+			background-color: #fff;
+			box-shadow: 2px 3px 5px rgba(117, 117, 117, .4);
+			img {
+				width: 100%;
+			}
+		}
+		.text {
+			margin-top: 6px;
+			strong {
+				color: #fbfa47;
+			}
+		}
+		.download {
+			float: right;
+			margin-top: 8px;
+			padding: 0 15px;
+			border-radius: 7px;
+			background-color: #fff;
+			font-size: 15px;
+			font-weight: 700;
+			line-height: 36px;
+			color: #2378fe;
+		}
+	}
+}
+
+/* modal */
+.modal {
+	position: fixed; top: 0; left: 0; z-index: 9999999;
+	display: none;
+	width: 100%; height: 100%; overflow: hidden;
+	&.active { display: block; }
+	&::before {
+		content: ''; display: block;
+		position: absolute; top: 0; left: 0;
+		width: 100%; height: 100%;
+		background-color: rgba(0,0,0,.6);
+	}
+	.modal-dialog {
+		position: fixed; top: 50%; left: 50%;
+		transform: translate(-50%, -50%);
+		background: #f2f2f2 url(../images/referral/qr-visual.png) no-repeat right 0;
+		width: 622px; height: 420px;
+		border-radius: 20px;
+		box-sizing: border-box;
+		.modal-content {
+			position: relative;
+			padding: 52px 42px;
+			.modal-close {
+				position: absolute;
+				display: inline-block;
+				top: -52px; right: 0;
+				background: url(../images/referral/icon/icon-close.svg) no-repeat 10px 10px / 17px 17px;
+				width: 40px; height: 40px;
+				font-size: 0; line-height: 0; text-indent: -100000px;
+				border: 2px solid $white; border-radius: 50%;
+				cursor: pointer;
+			}
+			.modal-body {
+				color: $darken;
+				.modal-title {
+					margin-bottom: 28px;
+					font-size: 30px;
+					font-weight: $font-weight-normal;
+					letter-spacing: -0.04em;
+					line-height: 1.2;
+					.icon-logo-pop {
+						display: inline-block;
+						vertical-align: top;
+						background: url(../images/hotdeal/popup/logo-popup.png) no-repeat center / 135px 31px;
+						width: 135px; height: 31px;
+					}
+					strong, i {
+						font-weight: 700;
+					}
+				}
+				.modal-title-sub {
+					margin-bottom: 10px;
+					font-size: 20px; font-weight: $font-weight-bold;
+					.icon-arrow-pop {
+						display: inline-block;
+						background: url(../images/hotdeal/popup/popup-icon-arrow.png) no-repeat center / 11px 9px;
+						width: 11px; height: 1em;
+						vertical-align: top;
+					}
+				}
+				.qr-list li {
+					float: left;
+					background-color: $white;
+					width: 170px;
+					margin-right: 14px;
+					border-radius: 8px;
+					text-align: center;
+					&:last-child { margin-right: 0; }
+					&::after { content:""; clear: both; }
+					a {
+						display: block;
+						height: 180px;
+						padding-top: 27px;
+					}
+					h3 {
+						height: 30px;
+						margin-top: 7px;
+						font-size: 18px; font-weight: $font-weight-bold;
+						color: $dark;
+						line-height: 30px;
+						[class^="icon"] {
+							display: inline-block;
+							margin-right: 5px;
+							vertical-align: top;
+							&.icon-qr-google {
+								background: url(../images/hotdeal/icon/icon-qr-google.png) no-repeat center / 18px 19px;
+								width: 18px; height: 30px;
+							}
+							&.icon-qr-one {
+								background: url(../images/hotdeal/icon/icon-qr-one.png) no-repeat center / 19px 19px;
+								width: 19px; height: 30px;
+							}
+							&.icon-qr-app {
+								background: url(../images/hotdeal/icon/icon-qr-app.png) no-repeat center 0.4px / 20px 23px;
+								width: 20px; height: 30px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.hidden { display: none; }
+.hidden-br { display: none; }
+.sr-only { font-size: 0; text-indent: -100000px; }
+.italic { font-style: italic; }
+
+@media only screen and (max-width: 360px) {
+	.benefit-list-v2 .hidden-br {
+		display: block;
+	}
+}
+@media only screen and (max-width: 359px) {
+	.container { padding-left: 20px; padding-right: 20px; }
+	.section.benefit .benefit-list {
+		font-size: 13px;
+		li {
+			padding: 34px 0 32px 25px;
+			.number { top: 34px; }
+		}
+	}
+	.fixed-bottom .banner {
+		font-size: 15px;
+		.download {
+			padding: 0 10px;
+			font-size: 14px;
+		}
+	}
+}

@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<title>내통장결제</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link rel="stylesheet" href="../../css/jquery-ui.css">
+<link rel="stylesheet" href="../../css/owl.carousel.min.css">
+<link rel="stylesheet" href="../../css/common.css?ezauthver=5.0">
+<!--[if lt IE 9]>
+<script type="text/javascript" src="../../js/html5shiv.js"></script>
+<script type="text/javascript" src="../../js/respond.min.js"></script>
+<![endif]-->
+<script src="../../js/jquery-1.8.3.min.js"></script>
+<script src="../../js/jquery.placeholder.min.js"></script>
+<script src="../../js/jquery-ui.js"></script>
+<script src="../../js/jquery.ui.touch-punch.min.js"></script>
+<script src="../../js/owl.carousel.min.js"></script>
+<script src="../../js/design.js?ezauthver=5.0" defer="defer"></script>
+<script src="../../js/commonmsg.js?ezauthver=5.0"></script>
+<script src="../../js/commonutil.js?ezauthver=5.0"></script>
+</head>
+
+<body>
+<!-- wrap -->
+<div id="wrap">
+	<!-- header -->
+	<div id="header">
+		<div class="container">
+			<button type="button" id="btnBack" class="btn-back"><i class="icon-angle-left">뒤로가기</i></button>
+			<h1 class="brand-name hidden"><a href="#"><span class="my-logo"><img src="../../images/logo-myaccount.png" class="logo" alt="내통장결제"></span></a></h1>
+			<h2 class="page-title">충전 머니 관리</h2>
+			<button type="button" id="closeWindow" class="btn-close"><i class="icon-times">창닫기</i></button>
+		</div>
+	</div>
+	<!-- //header -->
+
+	<!-- content -->
+	<div id="content">
+		<!-- charge wrap -->
+		<div class="charge-wrap">
+			<!-- 환급 가능 머니 -->
+			<div class="charge-sec current bg-gray">
+				<div class="container">
+					<dl>
+						<dt>환급 가능 머니</dt>
+						<dd><span class="price"><strong>1,890,000</strong>원</span></dd>
+					</dl>
+				</div>
+			</div>
+			<!-- //환급 가능 머니 -->
+
+			<!-- container -->
+			<div class="container">
+				<div class="pay-sec pay-sec-type2">
+					<dl class="">
+						<dt>일반 머니</dt>
+						<dd><span>1,890,000</span>원</dd>
+					</dl>
+				</div>
+
+				<div class="charge-sec else">
+					<div class="note">
+						<h3>머니 유의사항</h3>
+						<ul>
+							<li class="info text-light">일반 머니만 환급 가능하며, 환급 머니는 등록된 계좌로 입금됩니다.</li>
+							<li class="info text-light">휴대폰 결제로 충전된 머니는 010PAY App에서 관리할 수 있습니다.</li>
+							<li class="info text-light">은행 점검시간에는 환급 서비스를 이용할 수 없습니다.</li>
+							<li class="info text-light">머니 환급은 월 5회 무료로 제공되며, 이후 건 당 500원의 수수료가 부과됩니다.</li>
+							<li class="info text-light">출금 수수료 발생 시, 보유 머니가 수수료보다 많은 경우에만 출금할 수 있습니다.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- //container -->
+		</div>
+		<!-- //charge wrap -->
+
+		<!-- bottom area -->
+		<div class="bottom-area">
+			<!-- container -->
+			<div class="container">
+				<button type="button" id="refund" class="btn btn-outline info-chg"><i class="icon icon-refund"></i><span>환급하기</span></button>
+			</div>
+			<!-- //container -->
+		</div>
+		<!-- //bottom area -->
+	</div>
+	<!-- //content -->
+</div>
+<!-- //wrap -->
+
+<!-- 충전 머니 환급 -->
+<div id="modal-refund" class="modal modal-slide modal-info">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body my-info">
+				<button type="button" class="btn btn-close">취소</button>
+				<div class="refund-info">
+					<p>보유하신 머니를<br> 주계좌로 환급 받으실 수 있습니다.</p>
+					<div class="pay-sec">
+						<dl>
+							<dt>환급 가능 머니</dt>
+							<dd><span>1,890,000</span>원</dd>
+						</dl>
+						<dl class="sub">
+							<dt>이벤트 적립 포인트 사용금액 차감</dt>
+							<dd><span>-1,000,000</span>원</dd>
+						</dl>
+						<div class="bg-gray">
+							<ul class="form-type">
+								<li class="with-input">
+									<label class="label">환급 신청</label>
+									<div class="form-desc">
+										<div class="position-relative">
+											<input type="tel" class="input-text-lg input-box text-primary" placeholder="환급할 금액 입력">
+											<span class="form-control-clear hidden"><i class="icon-times-circle sr-only">삭제</i></span>
+										</div>
+									</div>
+								</li>
+								<li>
+									<dl>
+										<dt>수수료 <small>(월 5회 무료)
+											(수수료를 차감 후 환급)</small></dt>
+										<dd>무료 <i>500</i>원</dd>
+									</dl>
+								</li>
+								<li>
+									<dl>
+										<dt>환급 계좌</dt>
+										<dd>
+											<!-- 등록된 계좌 있는 경우 -->
+											<span class="account-number"><img src="../../images/bank/logo_090.png" alt="카카오뱅크"> 카카오뱅크 <em class="number"><i>****</i>123</em></span>
+											<!-- //등록된 계좌 있는 경우 -->
+
+											<!-- 등록된 계좌 없는 경우 -->
+											<button type="button" class="account-submit"><i></i>계좌등록</button>
+											<!-- //등록된 계좌 없는 경우 -->
+										</dd>
+									</dl>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn" onclick="modalOpen('alert-refund');">환급하기</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //충전 머니 환급 -->
+
+<!-- 환급 완료 -->
+<div id="alert-refund" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3>환급 완료</h3>
+				<p>주계좌로 입금 완료되었습니다.</p>
+				<div class="refund-result">
+					<ul>
+						<li>
+							<dl>
+								<dt>환급 금액</dt>
+								<dd class="text-primary"><i>1,000,000</i>원</dd>
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dt>수수료</dt>
+								<dd>무료</dd>
+							</dl>
+						</li>
+					</ul>
+					<dl>
+						<dt>보유 머니 잔액</dt>
+						<dd><i>890,000</i>원</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" onclick="modalClose();" class="btn btn-confirm">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //환급 완료 -->
+
+<!-- loading -->
+<div class="modal modal-loading">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="loading">
+					<div class="loading-bar"></div>
+					<div class="loading-bar"></div>
+					<div class="loading-bar"></div>
+					<div class="loading-bar"></div>
+				</div>
+				<span class="text">로딩 중</span>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //loading -->
+
+<!-- common alert -->
+<div id="commonAlert" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3 id="alertTitle"></h3>
+				<p id="alertContents"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" onclick="modalClose();" class="btn btn-confirm">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //common alert -->
+
+<!-- common prompt -->
+<div id="commonPrompt" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3 id="promptTitle"></h3>
+				<p id="promptContents"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" onclick="modalClose();" class="btn btn-cancel">취소</button>
+				<button type="button" id="promptOk" class="btn btn-confirm">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //common prompt -->
+</body>
+</html>

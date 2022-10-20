@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>010PAY 리액트 프로젝트 퍼블리싱 안내</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<script src="public/js/common/jquery-1.8.3.min.js"></script>
+
+<style>
+	html, body { width: 100%; height: 100%; }
+	p { margin: .25em 0; }
+	body { margin: 0; padding: 0; background-color: #fff; line-height: 1.4; letter-spacing: -0.03em; color: #151515; }
+	body, table { font-family: 'Malgun Gothic', 'Dotum', 'Apple SD Gothic Neo', sans-serif; font-size: 12px; }
+	header { margin: 0; padding: 20px 20px; border-bottom: 1px solid #e3e3e3; }
+	header h1 { margin: 0 0 10px; font-size: 24px; color: #ff7e00; }
+	header p { line-height: 1.4; }
+	.main { position: relative; padding: 0 20px 20px; }
+	h2 { margin: 30px 0 10px; font-size: 18px; }
+	small { font-size: 90% !important; color: #777; }
+	ul { margin: 0; padding-left: 1.667em; list-style: disc; }
+	ul ul { margin-top: .333em; list-style: circle; }
+	li { margin-top: .333em; }
+	ul li:first-child { margin-top: 0; }
+	a { color: #5e8cc0; }
+	a, a:hover, a:active, a:focus { text-decoration: underline; }
+	.strong { font-weight: 700; }
+	.table-responsive { width: 100%; overflow-x: auto; border: 1px solid #ddd; }
+	.table { margin: 0; min-width: 800px; border-collapse: collapse; width: 100%; border: 0; }
+	.table th, .table td { padding: 5px 10px; height: auto; border: 1px solid #ddd; }
+	.table th { background: #f1f2f4; color: #151515; font-weight: 400; text-align: center; }
+	.table .date, .table .status { text-align: center; }
+	.well { padding: 20px; border: 2px solid #ddd; }
+	.bg-info { background: #dbf5ff; }
+	.bg-success { background: #e7fbe2; }
+	.bg-success2 { background: #dff5d8; }
+	.bg-warning { background: #ff9; }
+	.bg-danger { background: #ffe5e8; }
+	.bg-wait { background: #eee; color: #888; }
+	.del { text-decoration: line-through; }
+	code { padding: 2px 4px; background-color: #f9f2f4; font-size: 96%; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; color: #c7254e; }
+	.text-primary { color: #ff7e00; }
+	.text-info { color: #1275d6; }
+	.text-danger { color: #dc3545; }
+	.text-success { color: #28a745; }
+	.text-minwise { color: #b920f5; }
+	.btn { display: inline-block; padding: .25em .5em; border: 1px solid #5e8cc0; border-radius: .5em; background-color: transparent; font-family: 'Noto Sans KR'; font-size: 11px; color: #5e8cc0; line-height: 1.2; cursor: pointer; }
+	.flip { position: relative; }
+	.flip .flip-body { display: none; }
+	.flip.open .flip-body { display: block; }
+	.btn-flip-all:not(.open) .open { display: inline; }
+	.flip.open .btn-flip .open,
+	.btn-flip-all .open { display: none; }
+	.flip:not(.open) .btn-flip .close,
+	.btn-flip-all:not(.open) .close { display: none; }
+	.pull-left { float: left; }
+	.pull-right { float: right; }
+</style>
+
+<script>
+$(document).ready(function(){
+	// 설명 영역 축약 (flip)
+	$(".btn-flip").click(function(){
+		$(this).parents(".flip").toggleClass("open");
+	});
+	$(".btn-flip-all").click(function(){
+		if(!$(this).hasClass("open")){
+			$(this).addClass("open");
+			$(this).parents("h2").next().find(".flip").addClass("open");
+		} else {
+			$(this).removeClass("open");
+			$(this).parents("h2").next().find(".flip").removeClass("open");
+		}
+	});
+
+	// 진행 상태별 셀 컬러
+	$("li.text-success").parents("tr").addClass("bg-success");
+	$("li.text-danger").parents("tr").addClass("bg-success2");
+	$(".status:contains('작업 중'), .status:contains('수정 중'), .status:contains('수정 예정')").parents("tr").removeClass("bg-success2").addClass("bg-danger");
+	$(".status:contains('검토 요청')").parents("tr").removeClass("bg-success2").addClass("bg-warning");
+	$(".status:contains('-'), .status:empty").parents("tr").addClass("bg-wait");
+
+	// 모바일 링크 타겟 변경
+	var filter = "win16|win32|win64|mac|macintel"; if ( navigator.platform ) {
+		if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
+			// mobile
+			$("a").attr("target", "_self");
+			// alert("[010PAY 퍼블리싱 안내]\n모바일 접속! 링크는 페이지 이동으로 적용됩니다.");
+		} else {
+			// pc
+			$("a").attr("target", "_blank");
+		}
+	}
+});
+</script>
+</head>
+
+<body>
+<header>
+	<h1>010PAY 리액트 프로젝트(핫딜, 리퍼럴 이벤트) 퍼블리싱 안내</h1>
+	<p>최종 수정일 : 2022-09-28</p>
+</header>
+
+<div class="main">
+	<h2>GUIDE <span class="pull-right"><button type="button" class="btn btn-flip-all"><span class="open">비고 내용 모두 보기</span><span class="close">비고 지난 내용 숨기기</span></button></span></h2>
+	<div class="table-responsive">
+		<table class="table" id="guideTable">
+			<colgroup>
+				<col style="width: 10%">
+				<col style="width: 15%">
+				<col style="width: 15%">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>구분</th>
+					<th>화면명</th>
+					<th>파일</th>
+					<th>화면코드</th>
+					<th>날짜</th>
+					<th>상태</th>
+					<th>비고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="4">공통<br>
+						(common)</td>
+					<td>기본 레이아웃</td>
+					<td><a href="public/html/common/DefaultLayout.html">DefaultLayout</a></td>
+					<td>-</td>
+					<td class="date">2022-04-07</td>
+					<td class="status">완료</td>
+					<td>
+						<ul class="text-info">
+							<li>[참고] 기본 레이아웃 component</li>
+						</ul>
+						<ul>
+							<li>2022-04-07 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>기본 모달</td>
+					<td><a href="public/html/common/DefaultModal.html">DefaultModal</a></td>
+					<td>-</td>
+					<td class="date">2022-07-19</td>
+					<td class="status">완료</td>
+					<td>
+						<ul class="text-info">
+							<li>[참고] 공통 모달 component</li>
+						</ul>
+						<ul>
+							<li>2022-04-07 : 화면 추가</li>
+							<li>2022-07-19 : 사명 변경</li>
+						</ul>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<h2>PAGE <span class="pull-right"><button type="button" class="btn btn-flip-all"><span class="open">비고 내용 모두 보기</span><span class="close">비고 지난 내용 숨기기</span></button></span></h2>
+	<div class="table-responsive">
+		<table class="table" id="pageTable">
+			<colgroup>
+				<col style="width: 10%">
+				<col style="width: 15%">
+				<col style="width: 15%">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>구분</th>
+					<th>화면명</th>
+					<th>파일</th>
+					<th>화면코드</th>
+					<th>날짜</th>
+					<th>상태</th>
+					<th>비고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="13">핫딜</td>
+					<td>메인</td>
+					<td><a href="public/html/hotdeal/main.html">main</a></td>
+					<td>-</td>
+					<td class="date">2022-09-28</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2021-12-28 : [공통] UI 개선, 상품가 최대 금액 변경</li>
+								<li>2021-12-29 : 상품 이미지 배경 컬러 추가</li>
+								<li>2022-01-11 : 버튼명 변경(내 당첨확률 보기)</li>
+								<li>~ 2022-01-19 : [공통] 메인 슬라이드 외 동작 구현 방식 변경(리액트 개발 대응)</li>
+								<li>2022-02-08 : 당첨 문구 변경</li>
+								<li>2022-05-19 : [공통] 문구 변경(리라이팅 220511 일부)</li>
+								<li>2022-07-01 : 리라이팅 (문구 개선 + 디자인 변경)</li>
+								<li>2022-07-13 : nav 버튼 수정, 토스트 팝업 변경</li>
+								<li>2022-08-03 : 토스트 팝업 문구 변경(머니 → 포인트)</li>
+								<li>2022-09-15 : 토스트 팝업 문구 변경)</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+						<ul>
+							<li class="text-success">2022-09-28 : 뒤로가기 네비게이션 버튼 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr class="bg-wait del">
+					<td>메인 - 핫딜 사전 안내</td>
+					<td><a href="public/html/hotdeal/mainReady.html">mainReady</a></td>
+					<td>-</td>
+					<td class="date">2022-01-21</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-01-21 : 화면 추가</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+						<ul>
+							<li>2022-07-04 : 미사용 확인</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>상품 상세</td>
+					<td><a href="public/html/hotdeal/prodDetail.html">prodDetail</a></td>
+					<td>-</td>
+					<td class="date">2022-05-19</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2021-12-28 : 유의사항, 하단 버튼 템플릿 추가</li>
+								<li>2022-01-11 : 버튼명 변경(내 당첨확률 보기), UI 개선(상품 이미지 영역)</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>응모하기</td>
+					<td><a href="public/html/hotdeal/apply.html">apply</a></td>
+					<td>-</td>
+					<td class="date">2022-05-19</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2021-12-28 : 약관 목록 변경</li>
+								<li>2022-01-12 : 약관명 변경</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>내 당첨 확률</td>
+					<td><a href="public/html/hotdeal/shareEvent.html">shareEvent</a></td>
+					<td>-</td>
+					<td class="date">2022-07-04</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-01-11 : 화면 추가</li>
+								<li>2022-04-19 : 하단 버튼 상단 문구 변경</li>
+								<li>2022-07-01 : 리라이팅 (문구 개선 + 디자인 변경)</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>핫딜 목록</td>
+					<td><a href="public/html/hotdeal/list.html">List</a></td>
+					<td>-</td>
+					<td class="date">2022-05-19</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2021-12-29 : [공통] UI 개선(상품 이미지 배경)</li>
+								<li>2022-01-12 : [공통] UI 개선(상품 이미지 배경), 바로가기 아이콘(&gt;) 삭제</li>
+								<li>2022-01-19 : 예정 목록 UI 변경</li>
+								<li>2022-02-08 : 당첨 문구 변경</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>핫딜 목록 - 당첨, 낙첨(다중화)</td>
+					<td><a href="public/html/hotdeal/list-loser.html">list-loser</a></td>
+					<td>-</td>
+					<td class="date">2022-05-19</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-04-27 : 화면 추가</li>
+								<li>2022-04-29 : ! 이탤릭 클래스 제거</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>핫딜 목록 - 없음(응모한)</td>
+					<td><a href="public/html/hotdeal/list-apply-empty.html">list-apply-empty</a></td>
+					<td>-</td>
+					<td class="date">2022-05-19</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>핫딜 목록 - 없음(진행&middot;예정)</td>
+					<td><a href="public/html/hotdeal/list-ready-empty.html">list-ready-empty</a></td>
+					<td>-</td>
+					<td class="date">2022-05-19</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>핫딜 목록 - 없음(관심있는)</td>
+					<td><a href="public/html/hotdeal/list-wish-empty.html">list-wish-empty</a></td>
+					<td>-</td>
+					<td class="date">2022-05-19</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>핫딜 목록 - 없음(종료된)</td>
+					<td><a href="public/html/hotdeal/list-close-empty.html">list-close-empty</a></td>
+					<td>-</td>
+					<td class="date">2022-05-19</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>핫딜 안내</td>
+					<td><a href="public/html/hotdeal/guide.html">guide</a></td>
+					<td>-</td>
+					<td class="date">2022-08-03</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-05-02 : 문구 변경(핫딜 오픈 기간 2주 → 1주 관련)</li>
+								<li>2022-07-04 : 레이아웃 수정</li>
+								<li>2022-07-06 : 슬라이드 bg 컬러 추가</li>
+								<li>2022-08-03 : 정책 변경 수정(핫딜 기간 외)</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>모달 모음</td>
+					<td><a href="public/html/hotdeal/modal.html">modal</a></td>
+					<td>-</td>
+					<td class="date">2022-09-15</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2021-12-28
+									<ul>
+										<li>슬라이드 모달 동작 구현 방식 변경(js → css)</li>
+										<li>당첨자 목록 내 당첨자명 표기 형식 변경</li>
+									</ul>
+								</li>
+								<li>2022-01-12 : 약관 상세 모달 추가, UI 개선(당첨 안내, 응모 완료)</li>
+								<li>2022-02-08 : 당첨 문구 변경</li>
+								<li>2022-04-04 : 당첨자 안내 이름 표기 형식 변경(글자수 기준)</li>
+								<li>2022-04-22 : 개인정보 수집·이용 동의 약관 변경</li>
+								<li>2022-07-01 : 낙첨 안내, 낙첨 이벤트 이미지 교체</li>
+								<li>2022-07-19 : 사명, 이용약관 변경</li>
+								<li>2022-08-03 : 정책 변경 수정(머니 → 포인트)</li>
+								<li>2022-09-15 : 낙첨 이벤트 문구 변경</li>
+							</ul>
+							<p>
+								<button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button>
+							</p>
+							<!-- <ul>
+								<li class="text-danger">2022-09-15 : 낙첨 이벤트 문구 변경</li>
+							</ul> -->
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="3">리퍼럴 이벤트</td>
+					<td>친구 초대 이벤트</td>
+					<td><a href="public/html/referral/friend.html">friend</a></td>
+					<td>-</td>
+					<td class="date">2022-08-16</td>
+					<td class="status">완료</td>
+					<td>
+						<ul class="text-info">
+							<li>[모달 확인 방법]
+								<ul>
+									<li>하단 버튼 클릭 → 초대 코드 발급 완료 모달</li>
+									<li>인맥왕 이벤트 탭 클릭 → Coming soon 모달</li>
+								</ul>
+							</li>
+						</ul>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-04-07 : 화면 추가</li>
+								<li>2022-04-11 : 문구 변경</li>
+								<li>2022-04-25 : 이벤트 마감 모달 추가</li>
+								<li>2022-05-02 : 인맥왕 미진행 안내(Coming soon) 모달 추가</li>
+								<li>2022-05-16 : 문구, 디자인 변경(포인트 단위, 앱 설치 및 회원 가입 관련)</li>
+								<li>2022-06-07 : 유의사항 문구 변경</li>
+								<li>2022-08-16 : 문구, 디자인 변경(초대 보상 금액)</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>내 초대 현황</td>
+					<td><a href="public/html/referral/friend/info.html">info</a></td>
+					<td>-</td>
+					<td class="date">2022-05-13</td>
+					<td class="status">완료</td>
+					<td>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-04-07 : 화면 추가</li>
+								<li>2022-04-25 : 탈퇴 회원 UI 추가</li>
+								<li>2022-05-13 : 문구 변경(앱 설치 및 회원 가입 관련)</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>인맥왕 이벤트</td>
+					<td><a href="public/html/referral/ranking.html">ranking</a></td>
+					<td>-</td>
+					<td class="date">2022-06-07</td>
+					<td class="status">완료</td>
+					<td>
+						<ul class="text-info">
+							<li>[참고] 하단 버튼 클릭 → 초대 코드 발급 완료 모달</li>
+						</ul>
+						<div class="flip">
+							<ul class="flip-body">
+								<li>2022-04-07 : 화면 추가</li>
+								<li>2022-04-11 : 문구 변경</li>
+								<li>2022-04-25 : 이벤트 마감 모달 추가, 문구 변경(유의사항)</li>
+								<li>2022-05-13 : 문구, 디자인 변경(포인트 단위, 앱 설치 및 회원 가입 관련)</li>
+								<li>2022-05-31 : 문구 변경(머니+포인트)</li>
+								<li>2022-06-07 : 유의사항 문구 변경</li>
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="20">기프티몰</td>
+					<td>메인</td>
+					<td><a href="test/coupon_pub">main</a></td>
+					<td>-</td>
+					<td class="date">2022-09-28</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip">
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+						<ul>
+							<li class="text-danger">2022-08-03 : 검토 요청</li>
+							<li class="text-danger">2022-08-25 : 적립 프로모션 배너 영역 추가</li>
+							<li class="text-danger">2022-08-26 : 스켈레톤 적용</li>
+							<li class="text-danger">2022-09-28 : 헤더 타이틀 폰트 사이즈 수정</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>리스트</td>
+					<td><a href="test/coupon_pub/list">list</a></td>
+					<td>-</td>
+					<td class="date">2022-08-11</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip">
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+						<ul>
+							<li class="text-danger">2022-08-11 : 검토 요청</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>리스트(기획전)</td>
+					<td><a href="test/coupon_pub/list/indexThema">indexThema</a></td>
+					<td>-</td>
+					<td class="date">2022-08-26</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip">
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+						<ul>
+							<li class="text-danger">2022-08-26 : 검토 요청</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>리스트(스켈레톤 적용)</td>
+					<td><a href="test/coupon_pub/list/indexOpen">indexOpen</a></td>
+					<td>-</td>
+					<td class="date">2022-08-11</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip">
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+						<ul>
+							<li class="text-danger">2022-08-11 : 검토 요청</li>
+							<li class="text-danger">2022-08-26 : 스켈레톤 적용</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>리스트(상단 고정)</td>
+					<td><a href="test/coupon_pub/list/indexFixed">indexFixed</a></td>
+					<td>-</td>
+					<td class="date">2022-08-11</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip">
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+						<ul>
+							<li class="text-danger">2022-08-11 : 검토 요청</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>리스트(상품없음)</td>
+					<td><a href="test/coupon_pub/list/indexEmpty">indexEmpty</a></td>
+					<td>-</td>
+					<td class="date">2022-08-11</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip">
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+						<ul>
+							<li class="text-danger">2022-08-08 : 검토 요청</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>쿠폰함</td>
+					<td><a href="test/coupon_pub/mypage">mypage</a></td>
+					<td>-</td>
+					<td class="date">2022-08-17</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip">
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+						<ul>
+							<li class="text-danger">2022-08-17 : 검토 요청</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>쿠폰함(보유쿠폰없음)</td>
+					<td><a href="test/coupon_pub/mypage/indexEmpty">indexEmpty</a></td>
+					<td>-</td>
+					<td class="date">2022-08-17</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip">
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+						<ul>
+							<li class="text-danger">2022-08-17 : 검토 요청</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>상품 상세</td>
+					<td><a href="test/coupon_pub/detail/">detail</a></td>
+					<td>-</td>
+					<td class="date">2022-08-24</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip">
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+						<ul>
+							<li class="text-danger">2022-08-24 : 검토 요청</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>상품 상세 (스크롤)</td>
+					<td><a href="test/coupon_pub/detail/indexSmall">indexSmall</a></td>
+					<td>-</td>
+					<td class="date">2022-08-24</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip">
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+						<ul>
+							<li class="text-danger">2022-08-24 : 검토 요청</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>브랜드</td>
+					<td><a href="test/coupon_pub/list/brand">brand</a></td>
+					<td>-</td>
+					<td class="date">2022-08-26</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip">
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+						<ul>
+							<li class="text-danger">2022-08-26 : 검토 요청</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>검색(최근검색없음)</td>
+					<td><a href="test/coupon_pub/searchNoHistory">searchNoHistory</a></td>
+					<td>-</td>
+					<td class="date">2022-08-30</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip">
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+						<ul>
+							<li class="text-danger">2022-08-30 : 검토 요청</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>검색</td>
+					<td><a href="test/coupon_pub/search">search</a></td>
+					<td>-</td>
+					<td class="date">2022-08-30</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip">
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+						<ul>
+							<li class="text-danger">2022-08-30 : 검토 요청</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>검색(결과있음)</td>
+					<td><a href="test/coupon_pub/searchResult">searchResult</a></td>
+					<td>-</td>
+					<td class="date">2022-08-30</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip">
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+						<ul>
+							<li class="text-danger">2022-08-30 : 검토 요청</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>검색(결과없음)</td>
+					<td><a href="test/coupon_pub/searchResultEmpty">searchResultEmpty</a></td>
+					<td>-</td>
+					<td class="date">2022-08-30</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip">
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+						<ul>
+							<li class="text-danger">2022-08-30 : 검토 요청</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>결제</td>
+					<td><a href="test/coupon_pub/pay">pay</a></td>
+					<td>-</td>
+					<td class="date">2022-09-07</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip">
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+						<ul>
+							<li class="text-danger">2022-09-07 : 검토 요청</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>선물하기</td>
+					<td><a href="test/coupon_pub/pay/indexGift">indexGift</a></td>
+					<td>-</td>
+					<td class="date">2022-09-07</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip">
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+						<ul>
+							<li class="text-danger">2022-09-07 : 검토 요청</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>충전</td>
+					<td><a href="test/coupon_pub/pay/load">load</a></td>
+					<td>-</td>
+					<td class="date">2022-09-16</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip">
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div>
+						<ul>
+							<li class="text-danger">2022-09-16 : 검토 요청</li>
+						</ul>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<h2>MEMO</h2>
+	<div class="well">
+		<ul>
+			<li>앱 내 웹뷰</li>
+			<li>container 너비 : 280px ~ 700px (갤럭시 Z 폴드 최소 280px, 최대 683px 지원 추가)</li>
+			<li>iOS 10 이상 지원</li>
+			<li>안드로이드 5 이상 지원</li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

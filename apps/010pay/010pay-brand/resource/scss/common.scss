@@ -1,0 +1,292 @@
+@charset "utf-8";
+
+/* 초기화 */
+@import "reset";
+
+/* 폰트설정 */
+@import "fonts";
+
+/* 기본설정 */
+@import "variables";
+
+
+*, ::after, ::before {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	word-break: keep-all;
+	word-wrap: break-word;
+	white-space: normal;
+	color: $gray;
+	letter-spacing: -.03em;
+}
+
+body, input, textarea, button, table {
+	font-family: 'pretendard', Malgun Gothic, dotumm, gulim, sans-serif;
+}
+
+strong { font-weight: 700 }
+a { text-decoration: none }
+button[type=button] { cursor: pointer; }
+img { image-rendering: auto }
+
+// 웹표준 보완
+iframe {
+	border: none;
+	html { overflow: hidden; }
+}
+
+.fixed { position: fixed !important; }
+
+.row, .clearFix {
+	&::after {
+		clear: both;
+		content: "";
+		display: block;
+	}
+}
+.clear { clear: both; }
+
+.d_table	 { display: table; }
+.d_tablecell {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+section, .section {
+	width: 100%;
+	position: relative;
+	&:nth-of-type(2n-1) {background-color: $bg;}
+	.container {
+		padding: 70px 80px;
+	}
+	&:last-child .container {
+		padding-bottom: 120px;
+	}
+}
+
+.container {
+	max-width: $max-width;
+	margin: auto;
+	position: relative;
+	overflow: hidden;
+	&::after {
+		clear: both;
+		content: "";
+		display: block;
+	}
+}
+
+.content_wrap { min-width: auto; }
+
+.d_flex {
+	display: flex!important;
+	align-items: center!important
+}
+.flex_fill { flex: 1 1 auto!important; }
+
+/* 폰트 */
+.italic { font-style: italic; }
+
+/* 여백 */
+.mt100	 { margin-top: 100px !important }
+.mt40	 { margin-top: 40px !important }
+.mt14	 { margin-top: 14px !important }
+.mt10	 { margin-top: 10px !important }
+.pb14	 { padding-bottom: 14px !important }
+.pn 	 { padding: none !important }
+
+/* size */
+.W156 { width: 156px }
+.W146 { width: 146px }
+.W140 { width: 140px }
+
+
+/* color */
+.point 	{ color: $point2 }
+
+/* 정렬 */
+.center { text-align: center !important }
+.left 	{ text-align: left !important }
+.right 	{ text-align: right !important }
+
+/* 디자인 */
+.mark_line {
+	position: relative;
+	display: inline-block;
+	z-index: 2;
+	&::after {
+		position: absolute;
+		bottom:0px;
+		content: '';
+		display: block;
+		width: 0;
+		height: 50%;
+		border-radius: 10px;
+		background: #ffdfd4;
+		transition: width .3s ease-in-out;
+		z-index: -1;
+	}
+}
+
+.dim {
+	position: fixed;
+	top:0;
+	display: none;
+	width: 100%; height: 100%;
+	z-index: 998;
+	background: rgba(0,0,0,.5)
+}
+
+.hidden {overflow: hidden;}
+
+.update {
+	position: fixed; left:0; top:0; z-index: 99999;
+	width: 100%; padding: 50px;
+	color: $dark; font-size: 22px; text-align: center; line-height: 1.5em;
+	background:#ffdfd4;
+	a {
+		color: #ff3700;
+		font-weight: $font-weight-bold;
+		text-decoration: underline;
+	}
+}
+
+/* 약관 상세 */
+.terms {
+	font-size: 14px; line-height: 1.4; color: #666; word-break: normal;
+	h3, h4, h5, p, li, .table {
+		margin: .25em 0;
+	}
+	h3 {
+		font-size: 18px; color: #ff7e00;
+	}
+	h4 {
+		font-size: 16px; color: $dark;
+	}
+	h5 {
+		font-size: 14px; color: $dark;
+	}
+	.indent {
+		padding-left: 1.143em;
+	}
+}
+
+/* 탭 */
+.tab-nav {
+	clear: both;
+	width: 100%;
+	font-size: 14px;
+	text-align: center;
+	&:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+	li {
+		position: relative;
+		float: left;
+		width: 50%;
+		height: 43px;
+		vertical-align: middle;
+		border: 1px solid #d1d1d1;
+		a {
+			position: relative;
+			display: block;
+			width: 100%;
+			height: 100%;
+			line-height: 1.1;
+			color: #878787;
+			span {
+				position: absolute;
+				left: 0;
+				top: 50%;
+				padding: 3px;
+				width: 100%;
+				transform: translateY(-50%);
+			}
+		}
+		&.active {
+			border-color: #555;
+			background-color: #555;
+			a {
+				color: $white;
+				font-weight: bold;
+			}
+		}
+	}
+}
+.tab-content {
+	display: none;
+}
+
+/* 팝업 */
+.popup {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	font-size: 14px;
+}
+.popup-terms {
+	.popup-header {
+		position: absolute;
+		top: 0;
+		left: 15px;
+		right: 15px;
+		z-index: 2;
+		padding: 15px 0;
+		border-bottom: 2px solid $dark;
+		.popup-title {
+			font-size: 20px;
+			line-height: 30px;
+			color: $dark;
+		}
+		.tab-nav {
+			margin-top: 15px;
+		}
+	}
+	.popup-content {
+		position: relative;
+		padding: 75px 15px 15px;
+		width: 100%;
+		height: 100%;
+		.terms {
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+		}
+	}
+	&.has-tabs .popup-content {
+		padding-top: 135px;
+	}
+}
+
+@media only screen and (min-device-width: 992px) {
+	.popup-terms {
+		.popup-header {
+			left: 30px;
+			right: 30px;
+			padding: 30px 0;
+			.popup-title {
+				font-size: 28px;
+			}
+			.tab-nav {
+				margin-top: 30px;
+			}
+		}
+		.popup-content {
+			padding: 122px 30px 30px;
+		}
+		&.has-tabs .popup-content {
+			padding-top: 195px;
+		}
+	}
+}

@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<title>내통장결제</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link rel="stylesheet" href="../../css/jquery-ui.css">
+<link rel="stylesheet" href="../../css/owl.carousel.min.css">
+<link rel="stylesheet" href="../../css/common.css?ezauthver=5.0">
+<!--[if lt IE 9]>
+<script type="text/javascript" src="../../js/html5shiv.js"></script>
+<script type="text/javascript" src="../../js/respond.min.js"></script>
+<![endif]-->
+<script src="../../js/jquery-1.8.3.min.js"></script>
+<script src="../../js/jquery.placeholder.min.js"></script>
+<script src="../../js/jquery-ui.js"></script>
+<script src="../../js/jquery.ui.touch-punch.min.js"></script>
+<script src="../../js/owl.carousel.min.js"></script>
+<script src="../../js/design.js?ezauthver=5.0" defer="defer"></script>
+<script src="../../js/commonmsg.js?ezauthver=5.0"></script>
+<script src="../../js/commonutil.js?ezauthver=5.0"></script>
+<style>
+.bg-primary, .input-mark .mark i.on, .switch .switch-inner:before, .icon-star.on, .btn-star.on > .icon-star, .btn-primary, .loading-bar { background-color: #ff3a4a; }
+.icon-check.primary:before, .btn-primary, .btn-primary-outline, .home-sec.current .per { border-color: #ff3a4a; }
+.used-sec .price .add, .check-primary { color: #ff3a4a; }
+.text-primary { color: #ff3a4a !important; }
+</style>
+</head>
+
+<body class="custom-pass kt">
+<!-- form -->
+<form class="main_form" action="javascript: void(0);" autocomplete="off">
+	<!-- wrap -->
+	<div id="wrap">
+		<!-- header -->
+		<div id="header">
+			<div class="container">
+				<button type="button" id="btnBack" class="btn-back hidden"><i class="icon-angle-left">뒤로가기</i></button>
+				<h1 class="brand-name">
+					<a href="#">
+						<span class="shop-logo"><img src="../../images/logo-pass-org.png?ver=1.1" alt="PASS"></span>
+						<span class="my-logo"><img src="../../images/logo-010pay-black.png?ver=1.1" class="logo" alt="010PAY"></span>
+					</a>
+				</h1>
+				<h2 class="page-title hidden">계좌 등록</h2>
+				<button type="button" id="closeWindow" class="btn-close"><i class="icon-times">창닫기</i></button>
+			</div>
+		</div>
+		<!-- //header -->
+
+		<!-- content -->
+		<div id="content">
+			<!-- container -->
+			<div class="container">
+				<!-- headline -->
+				<div class="headline">
+					<!-- <p><strong>계좌 등록</strong></p>
+					<p class="small">최초 1회 출금 계좌 등록 후<br>
+						<strong>PASS인증</strong>만으로 쉽고 빠르게 결제할 수 있습니다.</p> -->
+					<p><span class="medium">결제 시 사용하실</span><br>
+						<strong>계좌를 등록</strong>해 주세요.</p>
+				</div>
+				<!-- //headline -->
+			</div>
+			<!-- //container -->
+
+			<!-- bottom area -->
+			<div class="bottom-area">
+				<!-- container -->
+				<div class="container">
+					<!-- 정보 입력 -->
+					<div class="section">
+						<ul class="form-type">
+							<li>
+								<label class="label">은행계좌</label>
+								<span class="input select-input">
+									<button type="button" class="select bank-select">은행 선택</button>
+									<input type="tel" name="accNo" id="accNo" maxlength="16" placeholder="- 없이 계좌번호 입력">
+								</span>
+							</li>
+						</ul>
+					</div>
+					<!-- //정보 입력 -->
+
+					<button type="button" id="send" class="btn mgt40" disabled>확인</button>
+				</div>
+				<!-- //container -->
+			</div>
+			<!-- //bottom area -->
+		</div>
+		<!-- //content -->
+	</div>
+	<!-- //wrap -->
+</form>
+<!-- //form -->
+
+<!-- 은행 목록 -->
+<div class="modal modal-banklist modal-slide">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<button type="button" class="btn btn-close">취소</button>
+				<ul class="bank-list">
+					<li>
+						<button type="button" name="011">
+							<span class="logo"><img src="../../images/bank/logo_011.png?ver=1.1" alt="NH농협"></span>
+							<span class="name">NH농협</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="004">
+							<span class="logo"><img src="../../images/bank/logo_004.png?ver=1.1" alt="국민"></span>
+							<span class="name">국민</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="088">
+							<span class="logo"><img src="../../images/bank/logo_088.png?ver=1.1" alt="신한"></span>
+							<span class="name">신한</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="020">
+							<span class="logo"><img src="../../images/bank/logo_020.png?ver=1.1" alt="우리"></span>
+							<span class="name">우리</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="005">
+							<span class="logo"><img src="../../images/bank/logo_005.png?ver=1.1" alt="하나"></span>
+							<span class="name">하나</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="090">
+							<span class="logo"><img src="../../images/bank/logo_090.png?ver=1.1" alt="카카오뱅크"></span>
+							<span class="name">카카오뱅크</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="092">
+							<span class="logo"><img src="../../images/bank/logo_092.png?ver=1.1" alt="토스뱅크"></span>
+							<span class="name">토스뱅크</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="089">
+							<span class="logo"><img src="../../images/bank/logo_089.png?ver=1.1" alt="케이뱅크"></span>
+							<span class="name">케이뱅크</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="031">
+							<span class="logo"><img src="../../images/bank/logo_031.png?ver=1.1" alt="대구"></span>
+							<span class="name">대구</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="045">
+							<span class="logo"><img src="../../images/bank/logo_045.png?ver=1.1" alt="새마을"></span>
+							<span class="name">새마을</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="032">
+							<span class="logo"><img src="../../images/bank/logo_032.png?ver=1.1" alt="부산"></span>
+							<span class="name">부산</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="003">
+							<span class="logo"><img src="../../images/bank/logo_003.png?ver=1.1" alt="기업"></span>
+							<span class="name">기업</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="023">
+							<span class="logo"><img src="../../images/bank/logo_023.png?ver=1.1" alt="SC제일"></span>
+							<span class="name">SC제일</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="034">
+							<span class="logo"><img src="../../images/bank/logo_034.png?ver=1.1" alt="광주"></span>
+							<span class="name">광주</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="071">
+							<span class="logo"><img src="../../images/bank/logo_071.png?ver=1.1" alt="우체국"></span>
+							<span class="name">우체국</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="039">
+							<span class="logo"><img src="../../images/bank/logo_039.png?ver=1.1" alt="경남"></span>
+							<span class="name">경남</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="048">
+							<span class="logo"><img src="../../images/bank/logo_048.png?ver=1.1" alt="신협"></span>
+							<span class="name">신협</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="037">
+							<span class="logo"><img src="../../images/bank/logo_037.png?ver=1.1" alt="전북"></span>
+							<span class="name">전북</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="007">
+							<span class="logo"><img src="../../images/bank/logo_007.png?ver=1.1" alt="수협"></span>
+							<span class="name">수협</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="002">
+							<span class="logo"><img src="../../images/bank/logo_002.png?ver=1.1" alt="산업"></span>
+							<span class="name">산업</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="035">
+							<span class="logo"><img src="../../images/bank/logo_035.png?ver=1.1" alt="제주"></span>
+							<span class="name">제주</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="027">
+							<span class="logo"><img src="../../images/bank/logo_027.png?ver=1.1" alt="한국시티"></span>
+							<span class="name">한국시티</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="209">
+							<span class="logo"><img src="../../images/bank/logo_209.png?ver=1.1" alt="유안타"></span>
+							<span class="name">유안타</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="287">
+							<span class="logo"><img src="../../images/bank/logo_287.png?ver=1.1" alt="메리츠"></span>
+							<span class="name">메리츠</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="247">
+							<span class="logo"><img src="../../images/bank/logo_247.png?ver=1.1" alt="NH투자"></span>
+							<span class="name">NH투자</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="280">
+							<span class="logo"><img src="../../images/bank/logo_280.png?ver=1.1" alt="유진투자"></span>
+							<span class="name">유진투자</span>
+						</button>
+					</li>
+					<li>
+						<button type="button" name="103">
+							<span class="logo"><img src="../../images/bank/logo_103.png?ver=1.1" alt="SBI저축"></span>
+							<span class="name">SBI저축</span>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //은행 목록 -->
+
+<!-- loading -->
+<div class="modal modal-loading">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="loading">
+					<div class="loading-bar"></div>
+					<div class="loading-bar"></div>
+					<div class="loading-bar"></div>
+					<div class="loading-bar"></div>
+				</div>
+				<span class="text">로딩 중</span>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //loading -->
+
+<!-- common alert -->
+<div id="commonAlert" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3 id="alertTitle"></h3>
+				<p id="alertContents"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" onclick="modalClose();" class="btn btn-confirm">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //common alert -->
+
+<!-- common prompt -->
+<div id="commonPrompt" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3 id="promptTitle"></h3>
+				<p id="promptContents"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" onclick="modalClose();" class="btn btn-cancel">취소</button>
+				<button type="button" id="promptOk" class="btn btn-confirm">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //common prompt -->
+</body>
+</html>

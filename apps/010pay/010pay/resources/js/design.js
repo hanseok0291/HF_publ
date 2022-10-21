@@ -406,7 +406,6 @@ function modalOpenSlide(obj) {
   var temp = $("#" + obj);
   var modalCont = $(temp).find(".modal-content");
 
-<<<<<<< HEAD
 	temp.show();
 	$(modalCont).animate({bottom: 0}, 200);
 	// 이중 모달이 아닌 경우
@@ -416,24 +415,6 @@ function modalOpenSlide(obj) {
 	if(!$(this).hasClass("depth2")) {
 		scrollOff(); // 바디 스크롤 제거
 	} else 
-=======
-  temp.show();
-  $(modalCont).animate({ bottom: 0 }, 200);
-  // 이중 모달이 아닌 경우
-  if (obj === "modal-useCoupon") {
-    $("body").addClass("modal-open");
-  } else if (!$(this).hasClass("depth2")) {
-    scrollOff(); // 바디 스크롤 제거
-  }
-
-  // 바깥 영역 클릭 시 팝업 닫힘
-  else
-    $(temp).on("click", function (e) {
-      if (!$(".modal-content").has(e.target).length) {
-        modalCloseSlide();
-      }
-    });
->>>>>>> c192c5c4769091cf95b3c15a06dee48f4f416f59
 
   // 팝업 내 하단 버튼 클릭 시 팝업 닫힘
   $(temp)

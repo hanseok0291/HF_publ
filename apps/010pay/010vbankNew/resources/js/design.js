@@ -180,7 +180,11 @@ function modalSet() {
 		var targetStep = $(this).data('step');
 		var temp = $("#modal-"+targetStep);
 		temp.show();
+<<<<<<< HEAD
 		$(temp).find('.modal-content').stop().animate({bottom: 0}, 300);
+=======
+		$(temp).find('.modal-content').animate({bottom: 0}, 300);
+>>>>>>> e8517960fab2fff300ec9968a9f92dfcb1dde46c
 		scrollOff(); // 바디 스크롤 제거
 
 		// 바깥 영역 클릭 시 팝업 닫힘
@@ -197,7 +201,11 @@ function modalSet() {
 		// bottom modal 닫기
 		function modalOut() {
 			temp.fadeOut();
+<<<<<<< HEAD
 			$(temp).find('.modal-content').stop().animate({bottom: modalH}, 300);
+=======
+			$(temp).find('.modal-content').animate({bottom: modalH}, 300);
+>>>>>>> e8517960fab2fff300ec9968a9f92dfcb1dde46c
 			scrollOn(); // 바디 스크롤 제거 해제
 		}
 	});

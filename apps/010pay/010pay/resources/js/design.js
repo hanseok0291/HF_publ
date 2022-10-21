@@ -382,11 +382,21 @@ function modalOpenSlide(obj){
 
 	temp.show();
 	$(modalCont).animate({bottom: 0}, 200);
+<<<<<<< HEAD
 
 	// 이중 모달이 아닌 경우
 	if(!$(this).hasClass("depth2")) {
 		scrollOff(); // 바디 스크롤 제거
 	}
+=======
+	// 이중 모달이 아닌 경우
+	if (obj === 'modal-useCoupon') {
+		$("body").addClass("modal-open");
+	} else 
+	if(!$(this).hasClass("depth2")) {
+		scrollOff(); // 바디 스크롤 제거
+	} else 
+>>>>>>> e8517960fab2fff300ec9968a9f92dfcb1dde46c
 
 	// 바깥 영역 클릭 시 팝업 닫힘
 	$(temp).on('click', function(e) {
@@ -453,6 +463,45 @@ function chargeIpForm() {
 	})
 }
 
+<<<<<<< HEAD
+=======
+// 체크박스 라디오 선택 시 컨테이너 컬러 변경
+function checkBorderChange(){
+	$(".coupon-wrap input").on('click', function(){
+		$('.border-change').removeClass('on');
+		$(".coupon-wrap input").not($(this)).prop("checked", false);
+		if($(this).is(':checked')){
+			$(this).closest('.border-change').addClass('on');
+			$("#modal-useCoupon .title-text strong").addClass("text-error");
+		} else {
+			$("#modal-useCoupon .title-text strong").removeClass("text-error");
+		}
+		modalOpenSlide('modal-useCoupon');
+	});
+}
+checkBorderChange();
+
+// 쿠폰함 탭
+function couponTab (){
+	$(window).on("scroll",function(){
+		if($(window).scrollTop()>$('.main-coupon .top-banner').offset().top + $('.main-coupon .top-banner').outerHeight() - 60){
+			$('.main-coupon .tab-btn-wrap, .main-coupon .tab-wrap').addClass('fixed');
+		} else {
+			$('.main-coupon .tab-btn-wrap, .main-coupon .tab-wrap').removeClass('fixed');
+		}
+	});
+	$('.main-coupon .tab-btn-wrap li').click('on', function(){
+		var idx = $(this).index();
+		$('.main-coupon .tab-btn-wrap li, .main-coupon .tab-wrap .tab').removeClass('on');
+		$(this).addClass('on');
+		$('.main-coupon .tab-wrap .tab').eq(idx).addClass('on');
+	});
+}
+
+if($('#wrap').is('.main-coupon')){
+	couponTab();
+}
+>>>>>>> e8517960fab2fff300ec9968a9f92dfcb1dde46c
 
 /* 개발 시 추가
  * -------------------------------------------------------------------- */

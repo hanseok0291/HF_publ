@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>내통장결제</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="../../css/jquery-ui.css" />
+    <link rel="stylesheet" href="../../css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="../../css/common.css?ezauthver=5.0" />
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="../../js/html5shiv.js"></script>
+      <script type="text/javascript" src="../../js/respond.min.js"></script>
+    <![endif]-->
+    <script src="../../js/jquery-1.8.3.min.js"></script>
+    <script src="../../js/jquery.placeholder.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/jquery.ui.touch-punch.min.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+    <script src="../../js/design.js?ezauthver=5.0" defer="defer"></script>
+    <script src="../../js/commonmsg.js?ezauthver=5.0"></script>
+    <script src="../../js/commonutil.js?ezauthver=5.0"></script>
+  </head>
+
+  <body>
+    <!-- form -->
+    <form class="main_form" action="javascript: void(0);" autocomplete="off">
+      <!-- wrap -->
+      <div id="wrap">
+        <!-- header -->
+        <div id="header">
+          <div class="container">
+            <button type="button" id="btnBack" class="btn-back hidden"><i class="icon-angle-left">뒤로가기</i></button>
+            <h1 class="brand-name"><a href="#"><span class="my-logo"><img src="../../images/logo-myaccount.png" class="logo" alt="내통장결제"></span></a></h1>
+            <h2 class="page-title hidden">결제</h2>
+            <button type="button" id="closeWindow" class="btn-close"><i class="icon-times">창닫기</i></button>
+          </div>
+        </div>
+        <!-- //header -->
+
+        <!-- content -->
+        <div id="content" class="directDiscount exStyle">
+          <!-- container -->
+          <div class="container">
+            <!-- headline -->
+            <div class="headline">
+              <p> 
+                바이오일레븐에서<br />
+                <strong class="">2,000,000원</strong
+                > 결제합니다.
+              </p>
+              <p class="small">드시모네 5000 30포 외 2건</p>
+            </div>
+            <!-- //headline -->
+          </div>
+          <!-- //container -->
+
+          <!-- bottom area -->
+          <div class="bottom-area">
+            <!-- container -->
+            <div class="container pay-wrap">
+              <!-- 정보 입력 -->
+              <div class="section pay-sec">
+                <div class="bg-gray">
+                  <ul class="form-type">
+                    <li>
+                      <label class="label">쿠폰 할인</label>
+                      <button type="button" class="usable-desc info-chg btn-icon">
+                        <span>사용가능 <span class="text-error font-weight-700">2</span></span><!-- 쿠폰 할인 적용 전 -->
+                        <span class="icon-angle-right-sm"></span>
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+                <!-- 기본형 -->
+                <div class="border-black">
+                  <ul class="form-type">
+                    <li class="discount">
+                      <label class="label"
+                        >머니 사용</label
+                      >
+                      <button id="useMoney" type="button" class="form-desc info-chg">
+                        <em class="price"><i>2,500</i>원</em>
+                        <span class="icon-angle-right-sm"></span>
+                      </button>
+                    </li>
+                    <li>
+                      <label class="label">계좌 충전</label>
+                      <button
+                          type="button"
+                          id="account"
+                          class="select info-chg btn-account"
+                        >
+                        <img
+                          src="../../images/bank/logo_090.png"
+                          alt="카카오뱅크"
+                        />
+                        <em>895</em>
+                      </button>
+                      <div class="form-desc">
+                        <em class="price text-primary"><i>1,000,000</i>원</em>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <!-- 기본형 -->
+                <ul class="check-type">
+                  <!-- 0월 결제 시 미노출 -->
+                  <li>
+                    <span class="checkbox square">
+                      <input
+                        type="checkbox"
+                        name="checkbox-receipt"
+                        id="checkbox-receipt"
+                        checked
+                      />
+                      <label for="checkbox-receipt">현금영수증 발급</label>
+                    </span>
+                    <span class="receipt">
+                      <i>010****1234</i>
+                      <button
+                        type="button"
+                        id="receipt"
+                        class="text-link info-chg"
+                      >
+                        변경
+                      </button>
+                    </span>
+                  </li>
+                  <!-- // 0월 결제 시 미노출 -->
+                  <li>
+                    <span class="checkbox square">
+                      <input
+                        type="checkbox"
+                        name="checkbox_agree"
+                        id="checkbox_agree"
+                        checked
+                      />
+                      <label for="checkbox_agree">결제조건 확인 및 결제정보 제공 동의</label>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+              <!-- //정보 입력 -->
+
+              <button type="button" id="send" class="btn">
+                1,000,000원 결제하기
+              </button>
+            </div>
+            <!-- //container -->
+          </div>
+          <!-- //bottom area -->
+        </div>
+        <!-- //content -->
+      </div>
+      <!-- //wrap -->
+    </form>
+    <!-- //form -->
+
+    <!-- 머니 사용하기 -->
+    <div id="modal-useMoney" class="modal modal-slide modal-info exStyle">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body my-info">
+            <div class="title_wrap">
+              <p class="modal-title">보유 머니 <span class="price text-error">2,500원</span></p>
+              <p class="modal-sub">1원 단위로 사용할 수 있습니다.</p>
+            </div>
+            <button type="button" id="closeWindow" class="btn-close">
+              <i class="icon-times">창닫기</i>
+            </button>
+            <div class="pay-sec">
+              <ul class="form-type">
+                <li class="with-input">
+                  <div class="form-desc">
+                    <div class="position-relative">
+                      <input type="tel" class="input-text-lg text-primary text-error" placeholder="사용할 금액 입력"><!-- 에러 시 text-error 클래스 추가 -->
+                      <span class="form-control-clear hidden"><i class="icon-times-circle sr-only">삭제</i></span>
+                    </div>
+                    <button type="button" class="alluse-btn"><span class="text-dark">전액사용</span></button>
+                  </div>
+                  <p class="text-error">보유 머니를 초과하였습니다.</p><!-- 머니 입력 오류 -->
+                  <p class="text-error">결제 금액을 초과하였습니다.</p><!-- 머니 입력 오류 2 -->
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn" disabled>사용하기</button>
+          </div>
+          <ul class="number-area">
+            <li><button>1</button></li>
+            <li><button>2</button></li>
+            <li><button>3</button></li>
+            <li><button>4</button></li>
+            <li><button>5</button></li>
+            <li><button>6</button></li>
+            <li><button>7</button></li>
+            <li><button>8</button></li>
+            <li><button>9</button></li>
+            <li></li>
+            <li><button>0</button></li>
+            <li><button class="del-btn"><span class="icon-del"></span></button></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- //머니 사용하기 -->
+
+    <!-- 계좌 선택 -->
+    <div id="modal-account" class="modal modal-slide modal-info">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body my-info">
+            <button type="button" class="btn btn-close">취소</button>
+            <div class="account-info">
+              <ul class="btn-list">
+                <li>
+                  <button type="button" class="btn on">
+                    <span class="account-number"
+                      ><img
+                        src="../../images/bank/logo_090.png"
+                        alt="카카오뱅크"
+                      />
+                      카카오뱅크 <em class="number"><i>****</i>123</em></span
+                    >
+                    <span class="check-primary"
+                      ><span>머니 충전</span> <i class="icon-check primary"></i
+                    ></span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn">
+                    <span class="account-number"
+                      ><img src="../../images/bank/logo_004.png" alt="국민" />
+                      국민 <em class="number"><i>****</i>123</em></span
+                    >
+                    <span class="check-primary"
+                      ><span>머니 충전</span> <i class="icon-check primary"></i
+                    ></span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn">
+                    <span class="account-number"
+                      ><img src="../../images/bank/logo_004.png" alt="국민" />
+                      국민 <em class="number"><i>****</i>123</em></span
+                    >
+                    <span class="check-primary"
+                      ><span>머니 충전</span> <i class="icon-check primary"></i
+                    ></span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn">
+                    <span class="account-number"
+                      ><img src="../../images/bank/logo_004.png" alt="국민" />
+                      국민 <em class="number"><i>****</i>123</em></span
+                    >
+                    <span class="check-primary"
+                      ><span>머니 충전</span> <i class="icon-check primary"></i
+                    ></span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn">
+                    <span class="account-number"
+                      ><img src="../../images/bank/logo_004.png" alt="국민" />
+                      국민 <em class="number"><i>****</i>123</em></span
+                    >
+                    <span class="check-primary"
+                      ><span>머니 충전</span> <i class="icon-check primary"></i
+                    ></span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn">
+                    <span class="account-number"
+                      ><img src="../../images/bank/logo_004.png" alt="국민" />
+                      국민 <em class="number"><i>****</i>123</em></span
+                    >
+                    <span class="check-primary"
+                      ><span>머니 충전</span> <i class="icon-check primary"></i
+                    ></span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn">
+                    <span class="account-number"
+                      ><img src="../../images/bank/logo_004.png" alt="국민" />
+                      국민 <em class="number"><i>****</i>123</em></span
+                    >
+                    <span class="check-primary"
+                      ><span>머니 충전</span> <i class="icon-check primary"></i
+                    ></span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn">
+                    <span class="account-number"
+                      ><img src="../../images/bank/logo_004.png" alt="국민" />
+                      국민 <em class="number"><i>****</i>123</em></span
+                    >
+                    <span class="check-primary"
+                      ><span>머니 충전</span> <i class="icon-check primary"></i
+                    ></span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn">
+                    <span class="account-number"
+                      ><img src="../../images/bank/logo_004.png" alt="국민" />
+                      국민 <em class="number"><i>****</i>123</em></span
+                    >
+                    <span class="check-primary"
+                      ><span>머니 충전</span> <i class="icon-check primary"></i
+                    ></span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="container mgt20">
+              <button type="button" class="btn btn-outline">
+                <i class="icon icon-plus"></i> <span>계좌 추가</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //계좌 선택 -->
+
+    <!-- 현금영수증 발급정보 -->
+    <div id="modal-receipt" class="modal modal-slide modal-info">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body my-info">
+            <button type="button" class="btn btn-close">취소</button>
+            <div class="chg-info">
+              <h4>현금영수증 발급정보를 입력하세요.</h4>
+              <ul class="checkbox-group checked-one">
+                <li>
+                  <span class="checkbox">
+                    <input
+                      type="checkbox"
+                      name="checkbox_01"
+                      id="checkbox_01_01"
+                    />
+                    <label for="checkbox_01_01">개인소득공제(휴대폰)</label>
+                  </span>
+                </li>
+                <li>
+                  <span class="checkbox">
+                    <input
+                      type="checkbox"
+                      name="checkbox_01"
+                      id="checkbox_01_02"
+                    />
+                    <label for="checkbox_01_02"
+                      >개인소득공제(현금영수증카드)</label
+                    >
+                  </span>
+                </li>
+                <li>
+                  <span class="checkbox">
+                    <input
+                      type="checkbox"
+                      name="checkbox_01"
+                      id="checkbox_01_03"
+                    />
+                    <label for="checkbox_01_03">지출증빙(사업자용)</label>
+                  </span>
+                </li>
+                <li>
+                  <span class="checkbox">
+                    <input
+                      type="checkbox"
+                      name="checkbox_01"
+                      id="checkbox_01_04"
+                    />
+                    <label for="checkbox_01_04">지출증빙(현금영수증카드)</label>
+                  </span>
+                </li>
+              </ul>
+              <ul class="form-type">
+                <li class="">
+                  <div class="position-relative">
+                    <input
+                      type="tel"
+                      placeholder="010 1234 5678"
+                      class="input-text-lg"
+                    />
+                    <span class="form-control-clear hidden"
+                      ><i class="icon-times-circle sr-only">삭제</i></span
+                    >
+                  </div>
+                </li>
+              </ul>
+              <p class="info">
+                현금영수증은 등록한 정보 기준으로 자동 발행됩니다.
+              </p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //현금영수증 발급정보 -->
+
+    <!-- loading -->
+    <div class="modal modal-loading">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="loading">
+              <div class="loading-bar"></div>
+              <div class="loading-bar"></div>
+              <div class="loading-bar"></div>
+              <div class="loading-bar"></div>
+            </div>
+            <span class="text">로딩 중</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //loading -->
+
+    <!-- common alert -->
+    <div id="commonAlert" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="alertTitle"></h3>
+            <p id="alertContents"></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalClose();"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //common alert -->
+
+    <!-- common prompt -->
+    <div id="commonPrompt" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="promptTitle"></h3>
+            <p id="promptContents"></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalClose();"
+              class="btn btn-cancel"
+            >
+              취소
+            </button>
+            <button type="button" id="promptOk" class="btn btn-confirm">
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //common prompt -->
+  </body>
+</html>

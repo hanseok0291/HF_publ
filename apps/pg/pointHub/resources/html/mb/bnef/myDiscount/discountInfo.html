@@ -1,0 +1,153 @@
+<%@  page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"
+%><%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"
+%><%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%--
+ **********************************************************************************************
+ * @desc : 혜택플랫폼 - 나의할인View
+ * @FileName : /pointHub/src/main/webapp/WEB-INF/views/mb/bnef/myDiscount/discountInfo.jsp
+ * @author jungukjae
+ * @since 2020.04.02
+ * @version 1.0
+ * @see 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *  수 정 일      수 정 자             수정내용
+ * ----------   -----------   -----------------------------
+ * 2020.04.02    jungukjae      	   최초생성
+ * </pre>
+ **********************************************************************************************
+--%> 
+
+<!DOCTYPE html>  
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head profile="http://gmpg.org/xfn/11">
+		<title>CLIP</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+	
+		<c:set var="TimeStamp" value="19112601"	scope="request" />
+		<c:set var="ResRoot"   value="${pageContext.request.contextPath}/resources"	scope="request" />
+		<c:set var="ViewRoot"  value="${pageContext.request.contextPath}" scope="request" />	
+		
+		<!-- 공통JS -->
+		<script src="${ResRoot}/common/js/ph-fnc.js?${TimeStamp}"></script> 
+		<script src="${ResRoot}/common/js/ph-util.js?${TimeStamp}"></script> 
+		<script src="${ResRoot}/common/js/ph-event.js?${TimeStamp}"></script> 
+		<script src="${ResRoot}/common/js/ph-valid.js?${TimeStamp}"></script> 
+		
+		<!-- 공통CSS -->
+	    <link rel="stylesheet" href="${ResRoot}/mb/benefits/css/payment.css">  
+	    <link rel="stylesheet" href="${ResRoot}/mb/benefits/css/common.css">
+	    
+	    <script type="text/javascript" src="${ResRoot}/common/jQuery/jquery.min.js?v331"></script>
+	    <script type="text/javascript" src="${ResRoot}/common/benefitsJs/swiper.min.js"></script>
+	</head>
+	
+	<body>
+		<!-- wrap -->
+		<div class="wrap noheader">
+		
+			<div class="header main_header opt1">
+				<h1 class="page_title opt1">통신료 납부</h1>
+				<a href="javascript:;" class="btn_back" onclick="javascript:fn.page.backEvent();"><span>뒤로가기</span></a>
+			</div>
+		
+			<!-- contents -->
+			<div class="contents">
+				<div class="section sec_payment">
+					<div>
+						<ul class="earn_tab tab_chg color_opt1">
+							<li class="active">나의할인</li>
+							<li>즉시납부</li>
+							<li>납부내역</li>
+						</ul>
+					</div>
+
+                    <!-- 나의할인 -->
+                    <div class="tab_con mysale">
+                        
+                        <c:set var="custName" value="${rootMap.userInfo.clipCustName}" />
+                        <c:set var="phCustId" value="${rootMap.userInfo.phCustId}" />
+                        <c:set var="discountList" value="${rootMap.discountInfo.response.data.result}" />
+                        
+                        <c:choose>
+                        
+                            <c:when test="${empty discountList}">
+                        
+                                <div class="desc"><span class="name">${custName}님</span>은 아직 통신료 할인을 안받고 계십니다. <br>지금 할인 프로그램에 참여해 보세요.</div>
+                                <div class="sec1">
+                                    <div class="txt1">통신료를 매월 가장 많이 할인 받을 수 있는 방법은?</div>
+                                    <div class="vi"><img src="${ResRoot}/mb/benefits/img/payment/img_mysale.png" alt=""></div>
+                                    <div class="btn_wrap">
+                                       <button onclick="javascript:moveCoinPlusPage();">할인 프로그램 자세히 보기</button>
+                                    </div>
+                                </div>
+                        
+                            </c:when>
+                            <c:otherwise>
+
+                                <c:forEach var="dcList" items="${discountList}" varStatus="status">
+                                
+                                    <fmt:parseDate value="${dcList.engg_strt_mm}01" pattern="yyyyMMdd" var="strtMm" />
+                                    <fmt:parseDate value="${dcList.engg_end_mm}01" pattern="yyyyMMdd" var="endMm" />
+                                    <fmt:formatNumber value="${dcList.mm_engg_pnt}" type="number" maxFractionDigits="3" var="enggPnt" />
+
+                                    <div class="sec1">
+                                        <div class="card_wrap">
+                                            <div class="title">${dcList.cprt_goods_nm}<button class="popup-open3 ico_plus" appkey="${dcList.cprt_goods_id}">할인내역 보기</button></div>
+                                            <dl>
+                                                <dt>할인금액</dt>
+                                                <dd>최대 ${enggPnt}원 <c:if test="${dcList.cndt_stsf_goods_yn eq 'Y'}">(조건 충족시)</c:if></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>신청기간</dt>
+                                                <dd><fmt:formatDate pattern="yyyy년 MM월" value="${strtMm}" /> ~ <fmt:formatDate pattern="yyyy년 MM월" value="${endMm}" /></dd>
+                                            </dl>
+                                        </div>
+                                        
+                                </c:forEach>
+                                        <div class="btn_wrap">
+                                            <button onclick="javascript:moveCoinPlusPage();">할인 혜택 참여하기</button>
+                                        </div>
+                                    </div>
+
+                            </c:otherwise>
+                        
+                        </c:choose>
+                        
+                    </div>
+                    <!-- //나의할인 -->
+				</div>
+			</div><!-- // contents -->
+		
+		
+            <!-- popup 할인내역 -->
+            <div class="popup-s3 popup-confirm3">
+                <div class="popup-s3__inner">
+                    <div class="popup-s3__box width_mod">
+                        <div class="popup-s3__tit center">
+                            슈퍼세이브 KT통신할인
+                            <a href="#" class="popup-s3__box-close popup-close3"></a>
+                        </div>
+                        <div class="pop_mysale">
+                            <table>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- //popup 할인내역 -->
+		 
+		</div><!-- // wrap -->
+	
+		<%-- jsp include --%>
+		<jsp:include page="/WEB-INF/views/mb/bnef/myDiscount/discountInfoJs.jsp" flush="false" />	
+	</body>
+</html>
+

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>세틀뱅크 개발 지원</title>
+
+<!-- Meta -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="세틀뱅크의 내통장결제, 간편현금결제 연동 가이드">
+<meta name="author" content="세틀뱅크">
+<link rel="shortcut icon" href="../../images/favicon.ico">
+
+<!-- FontAwesome -->
+<link rel="stylesheet" href="../../fonts/fontawesome/css/all.css">
+<script defer src="../../fonts/fontawesome/js/all.min.js"></script>
+
+<!-- Plugins CSS -->
+<link rel="stylesheet" href="../../plugins/owlcarousel/css/owl.carousel.min.css">
+<link rel="stylesheet" href="../../plugins/owlcarousel/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="../../plugins/highlight/atom-one-dark.min.css">
+<link rel="stylesheet" href="../../plugins/datatable/css/dataTables.bootstrap4.min.css">
+
+<!-- Theme CSS -->
+<link rel="stylesheet" href="../../css/theme.css">
+<link rel="stylesheet" href="../../css/design.css">
+
+<!-- Javascript -->
+<script src="../../plugins/jquery-3.4.1.min.js"></script>
+<script src="../../plugins/popper.min.js"></script>
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../plugins/datatable/js/datatables.min.js"></script>
+<script src="../../plugins/datatable/js/dataTables.bootstrap4.min.js"></script>
+<script src="../../plugins/highlight/highlight.min.js"></script>
+<script src="../../js/highlight-custom.js"></script>
+<script src="../../js/design.js"></script>
+</head>
+
+<body>
+<!-- skip navigation -->
+<ul id="skipNav">
+	<li><a href="#gnb">주메뉴 바로가기</a></li>
+	<li><a href="#content">본문 바로가기</a></li>
+	<li><a href="#footer">페이지 하단 바로가기</a></li>
+</ul>
+<!-- //skip navigation -->
+
+<!-- header -->
+<header id="header" class="header fixed-top">
+	<!-- branding -->
+	<div class="branding">
+		<!-- containter -->
+		<div class="container-fluid position-relative">
+			<!-- navbar -->
+			<nav class="navbar navbar-expand-lg">
+				<!-- logo -->
+				<div class="site-logo">
+					<a class="navbar-brand" href="/">
+						<img class="logo-icon" src="../../images/site-logo.svg" alt="SettleBank"><span class="logo-text">Developer</span>
+					</a>
+				</div>
+				<!-- logo -->
+
+				<!-- menu toggle -->
+				<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation"><span></span> <span></span> <span></span></button>
+				<!-- //menu toggle -->
+
+				<!-- navigation + search -->
+				<div class="collapse navbar-collapse" id="navigation" role="menu">
+					<!-- gnb -->
+					<ul id="gnb" class="navbar-nav ml-lg-auto gnb">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">서비스</a>
+							<ul class="dropdown-menu dropdown-menu-right shadow menu-animate slideIn">
+								<li><a class="dropdown-item" href="#">서비스 홈</a></li>
+								<li class="dropdown-divider m-0"></li>
+								<li><a class="dropdown-item" href="#">서비스 소개</a></li>
+								<li><a class="dropdown-item" href="#">서비스별 테스트 신청</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">개발 가이드</a>
+							<ul class="dropdown-menu dropdown-menu-right shadow menu-animate slideIn">
+								<li><a class="dropdown-item" href="#">개발 가이드 홈</a></li>
+								<li class="dropdown-divider m-0"></li>
+								<li><a class="dropdown-item" href="#">연동 가이드</a></li>
+								<li><a class="dropdown-item" href="#">API 문서</a></li>
+								<li><a class="dropdown-item" href="#">SDK 다운로드</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">개발자 포럼</a>
+							<ul class="dropdown-menu dropdown-menu-right shadow menu-animate slideIn">
+								<li><a class="dropdown-item" href="#">개발자 포럼 홈</a></li>
+								<li class="dropdown-divider m-0"></li>
+								<li><a class="dropdown-item" href="#">공지사항</a></li>
+								<li><a class="dropdown-item" href="#">포럼</a></li>
+								<li><a class="dropdown-item" href="#">FAQ</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown active">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">관리자</a>
+							<ul class="dropdown-menu dropdown-menu-right shadow menu-animate slideIn">
+								<li><a class="dropdown-item" href="#">관리자 모드</a></li>
+								<li class="dropdown-divider m-0"></li>
+								<li class="active"><a class="dropdown-item" href="#">서비스 관리</a></li>
+								<li><a class="dropdown-item" href="#">게시판 관리</a></li>
+								<li><a class="dropdown-item" href="#">온라인 문서 관리</a></li>
+								<li><a class="dropdown-item" href="#">메뉴 관리</a></li>
+								<li><a class="dropdown-item" href="#">권한 그룹 관리</a></li>
+								<li><a class="dropdown-item" href="#">사용자 관리</a></li>
+								<li><a class="dropdown-item" href="#">테스트 승인 관리</a></li>
+							</ul>
+						</li>
+					</ul>
+					<!-- //gnb -->
+
+					<!-- search -->
+					<div class="top-search-box">
+						<form class="search-form">
+							<input type="text" placeholder="통합 검색" name="search" class="form-control search-input">
+							<button type="submit" class="btn search-btn"><i class="fas fa-search"></i> <span class="sr-only">검색</span></button>
+						</form>
+					</div>
+					<!-- //search -->
+
+					<!-- member navigation -->
+					<ul class="navbar-nav d-flex flex-row member-nav">
+						<!-- 로그인 전 -->
+						<!--
+						<li><a href="../member/login.html"><i class="fas fa-sign-in-alt"></i> <span>로그인</span></a></li>
+						<li><a href="../member/join.html"><i class="fas fa-user-edit"></i> <span>회원가입</span></a></li>
+						-->
+						<!-- //로그인 전 -->
+						<!-- 로그인 후 -->
+						<li><a href="#"><i class="fas fa-sign-out-alt"></i> <span>로그아웃</span></a></li>
+						<li><a href="../mypage/mypageHome.html"><i class="fas fa-user"></i> <span>마이 페이지</span></a></li>
+						<!-- //로그인 후 -->
+					</ul>
+					<!-- //member navigation -->
+				</div>
+				<!-- //navigation + search -->
+			</nav>
+			<!-- //navbar -->
+		</div>
+		<!-- //container -->
+	</div>
+	<!-- //branding -->
+</header>
+<!-- //header -->
+
+<!-- main -->
+<main id="main" class="admin-wrapper"> <!-- 1 depth menu class 추가 -->
+	<!-- page header -->
+	<div class="page-header sub-visual">
+		<div class="container">
+			<div class="page-heading">관리자 모드</div>
+		</div>
+	</div>
+	<!-- //page header -->
+
+	<!-- lnb -->
+	<div class="page-nav lnb">
+		<div class="container">
+			<nav class="navbar navbar-expand-sm">
+				<ul class="navbar-nav text-center">
+					<li class="nav-item active"><a class="nav-link" href="#">서비스 관리</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">게시판 관리</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">온라인 문서 관리</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">메뉴 관리</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">권한 그룹 관리</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">사용자 관리</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">테스트 승인 관리</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- //lnb -->
+
+	<!-- page title -->
+	<div class="page-title">
+		<div class="container">
+			<h1 class="page-heading">서비스 관리</h1>
+		</div>
+	</div>
+	<!-- //page title -->
+
+	<!-- page content -->
+	<div id="content" class="page-content">
+		<!-- board area -->
+		<div class="container board-area">
+			<!-- board search -->
+			<div class="card board-search">
+				<div class="card-body">
+					<form>
+						<div class="form-row justify-content-center">
+							<div class="col-sm-4 col-lg-2 my-1">
+								<label class="sr-only" for="">검색 조건</label>
+								<select name="searchType" id="searchType" class="form-control">
+									<option value="">전체</option>
+									<option value="">option</option>
+									<option value="">option</option>
+								</select>
+							</div>
+							<div class="col-sm-6 col-lg-4 my-1">
+								<label class="sr-only" for="">검색어</label>
+								<input type="text" id="searchKeyword" class="form-control" placeholder="검색어 입력">
+							</div>
+							<div class="col-auto my-1">
+								<button type="submit" class="btn btn-secondary">검색</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- //board search -->
+
+			<div class="row">
+				<div class="col-xl-6 mb-3">
+					<!-- board-top -->
+					<div class="board-top"><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#serviceModal">서비스 등록</button></div>
+					<!-- //board-top -->
+
+					<!-- table -->
+					<div class="table-responsive">
+						<table class="table table-bordered table-list" id="example">
+							<caption>서비스 목록</caption>
+							<thead>
+								<tr>
+									<th>서비스 ID</th>
+									<th>서비스명</th>
+									<th>관리키 개수</th>
+									<th>사용여부</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>ID0010</td>
+									<td><a href="#" data-toggle="modal" data-target="#serviceModal">간편결제</a></td>
+									<td>5</td>
+									<td>사용</td>
+								</tr>
+								<tr>
+									<td>-</td>
+									<td><a href="#">-</a></td>
+									<td>-</td>
+									<td>-</td>
+								</tr>
+								<tr class="bg-wait">
+									<td>ID0001</td>
+									<td><a href="#" data-toggle="modal" data-target="#serviceModal">내통장결제</a></td>
+									<td>3</td>
+									<td>미사용</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- //table -->
+				</div>
+				<!-- 서비스 -->
+
+				<!-- 관리키 -->
+				<div class="col-xl-6 mb-3">
+					<!-- board-top -->
+					<div class="board-top"><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#keyModal">관리키 등록</button></div>
+					<!-- //board-top -->
+
+					<!-- table -->
+					<div class="table-responsive">
+						<table class="table table-bordered table-list" id="example1">
+							<caption>관리키 목록</caption>
+							<thead>
+								<tr>
+									<th>관리키 ID</th>
+									<th>관리키명</th>
+									<th>사용여부</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>ID0012</td>
+									<td><a href="#" data-toggle="modal" data-target="#keyModal">MID</a></td>
+									<td>사용</td>
+								</tr>
+								<tr>
+									<td>ID0010</td>
+									<td><a href="#" data-toggle="modal" data-target="#keyModal">MID</a></td>
+									<td>사용</td>
+								</tr>
+								<tr>
+									<td>ID0008</td>
+									<td><a href="#" data-toggle="modal" data-target="#keyModal">MID</a></td>
+									<td>사용</td>
+								</tr>
+								<tr class="bg-wait">
+									<td>ID0007</td>
+									<td><a href="#" data-toggle="modal" data-target="#keyModal">라이센스키</a></td>
+									<td>미사용</td>
+								</tr>
+								<tr class="bg-wait">
+									<td>ID0007</td>
+									<td><a href="#" data-toggle="modal" data-target="#keyModal">라이센스키</a></td>
+									<td>미사용</td>
+								</tr>
+								<tr class="bg-wait">
+									<td>ID0007</td>
+									<td><a href="#" data-toggle="modal" data-target="#keyModal">라이센스키</a></td>
+									<td>미사용</td>
+								</tr>
+								<tr>
+									<td>ID0006</td>
+									<td><a href="#" data-toggle="modal" data-target="#keyModal">MID</a></td>
+									<td>사용</td>
+								</tr>
+								<tr>
+									<td>ID0006</td>
+									<td><a href="#" data-toggle="modal" data-target="#keyModal">MID</a></td>
+									<td>사용</td>
+								</tr>
+								<tr>
+									<td>ID0006</td>
+									<td><a href="#" data-toggle="modal" data-target="#keyModal">MID</a></td>
+									<td>사용</td>
+								</tr>
+								</tr>
+								<tr>
+									<td>ID0004</td>
+									<td><a href="#" data-toggle="modal" data-target="#keyModal">MID</a></td>
+									<td>사용</td>
+								</tr>
+								<tr>
+									<td>ID0002</td>
+									<td><a href="#" data-toggle="modal" data-target="#keyModal">MID</a></td>
+									<td>사용</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- //table -->
+				</div>
+				<!-- 관리키 -->
+			</div>
+		</div>
+		<!-- //board area -->
+	</div>
+	<!-- //page content -->
+</main>
+<!-- //main -->
+
+<!-- modal - 서비스 등록정보 -->
+<div class="modal" id="serviceModal" tabindex="-1" role="dialog" aria-labelledby="serviceModalLabel" aria-hidden="true" data-backdrop="static">
+	<div class="modal-dialog" role="form">
+		<form>
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="serviceModalLabel">서비스 등록정보</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<!-- 도움말 -->
+					<div class="alert alert-info">
+						<h4 class="alert-title"><i class="fas fa-info-circle"></i> 도움말</h4>
+						<p>도움말 영역입니다.<br> 안내할 내용을 입력해 주세요.</p>
+					</div>
+					<!-- //도움말 -->
+
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="control-label required" for="">서비스 ID</label>
+								<input type="text" id="" class="form-control" placeholder="서비스 ID" value="ID0001" readonly required>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="control-label required" for="">서비스명</label>
+								<input type="text" id="" class="form-control" placeholder="서비스명" required>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label class="control-label" for="">설명</label>
+								<textarea id="" rows="4" class="form-control" placeholder="설명"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label class="control-label required" for="">사용여부</label>
+								<select id="" class="form-control" required>
+									<option value="">사용</option>
+									<option value="">미사용</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline-primary">삭제</button>
+					<button type="submit" class="btn btn-primary">저장</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- //modal - 서비스 등록정보 -->
+
+<!-- modal - 관리키 등록정보 -->
+<div class="modal" id="keyModal" tabindex="-1" role="dialog" aria-labelledby="keyModalLabel" aria-hidden="true" data-backdrop="static">
+	<div class="modal-dialog" role="form">
+		<form>
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="keyModalLabel">관리키 등록정보</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="control-label required" for="">관리키 ID</label>
+								<input type="text" id="" class="form-control" placeholder="관리키 ID" value="ID0001" readonly required>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="control-label required" for="">관리키명</label>
+								<input type="text" id="" class="form-control" placeholder="관리키명" required>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label class="control-label" for="">설명</label>
+								<textarea id="" rows="4" class="form-control" placeholder="설명"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label class="control-label required" for="">사용여부</label>
+								<select id="" class="form-control" required>
+									<option value="">사용</option>
+									<option value="">미사용</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline-primary">삭제</button>
+						<button type="button" class="btn btn-primary">저장</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- //modal - 관리키 등록정보 -->
+
+<!-- footer -->
+<footer id="footer" class="footer theme-bg-dark">
+	<!-- sitemap -->
+	<div class="sitemap">
+		<div class="container">
+			<div class="row">
+				<div class="footer-col col-6 col-lg-3">
+					<h4 class="col-heading">서비스</h4>
+					<ul class="list-unstyled">
+						<li><a href="#">서비스 홈</a></li>
+						<li><a href="#">서비스 소개</a></li>
+						<li><a href="#">서비스별 테스트 신청</a></li>
+					</ul>
+				</div>
+				<div class="footer-col col-6 col-lg-3">
+					<h4 class="col-heading">개발 가이드</h4>
+					<ul class="list-unstyled">
+						<li><a href="#">개발 가이드 홈</a></li>
+						<li><a href="#">연동 가이드</a></li>
+						<li><a href="#">API 문서</a></li>
+						<li><a href="#">SDK 다운로드</a></li>
+					</ul>
+				</div>
+				<div class="footer-col col-6 col-lg-3">
+					<h4 class="col-heading">개발자 포럼</h4>
+					<ul class="list-unstyled">
+						<li><a href="#">개발자 포럼 홈</a></li>
+						<li><a href="#">공지사항</a></li>
+						<li><a href="#">포럼</a></li>
+						<li><a href="#">FAQ</a></li>
+					</ul>
+				</div>
+				<div class="footer-col col-6 col-lg-3">
+					<h4 class="col-heading">약관</h4>
+					<ul class="list-unstyled">
+						<li><a href="#">서비스 이용약관</a></li>
+						<li><a href="#"><strong>개인정보 처리방침</strong></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //sitemap -->
+
+	<!-- company info -->
+	<div class="company-info">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-9">
+					<div class="company">
+						<span>세틀뱅크(주)</span> <span>(06220) 서울특별시 강남구 테헤란로 34길 6, 9~10층 (역삼동, 태광타워)</span> <span>사업자등록번호 : 101-81-63383</span><br>
+						<span>TEL. 1600-5220</span> <span>FAX. 02-588-2724</span> <span>E-mail. info@settlebank.co.kr</span>
+					</div>
+					<div class="copyright">
+						Copyrightⓒ Settlebank, INC. All Rights Reserved.
+					</div>
+				</div>
+				<div class="col-lg-3">
+					<div class="btn-group dropup w-100">
+						<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">패밀리사이트</button>
+						<div class="dropdown-menu">
+						<a href="https://settlebank.co.kr" target="_blank" class="dropdown-item">세틀뱅크(주)</a>
+						<a href="https://mytongjang.com" target="_blank" class="dropdown-item">내통장결제</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- company info -->
+</footer>
+<!-- //footer -->
+
+<script>
+$(document).ready(function() {
+	$("#example, #example1").DataTable({
+		"searching": false,
+		"lengthChange": false,
+		"ordering": false,
+		"language": {
+			"info": "_START_ - _END_ / _TOTAL_",
+			"paginate": {
+				"previous": "<i class='fas fa-chevron-left'></i>",
+				"next": "<i class='fas fa-chevron-right'></i>"
+			}
+		}
+	});
+});
+</script>
+</body>
+</html>

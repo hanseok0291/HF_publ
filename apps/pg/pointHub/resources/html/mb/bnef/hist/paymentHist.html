@@ -1,0 +1,206 @@
+<%@  page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"
+%><%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"
+%><%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%--
+ **********************************************************************************************
+ * @desc : 혜택플랫폼 - 이용내역
+ * @FileName : /pointhub_git/src/main/webapp/WEB-INF/views/mb/bnef/hist/paymentHist.jsp
+ * @author jungukjae
+ * @since 2020.02.06
+ * @version 1.0
+ * @see 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *  수 정 일      수 정 자             수정내용
+ * ----------   -----------   -----------------------------
+ * 2020.02.06    jungukjae      	   최초생성
+ * </pre>
+ **********************************************************************************************
+--%> 
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head profile="http://gmpg.org/xfn/11">
+		<title>CLIP</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+	
+		<c:set var="TimeStamp" value="19112601"	scope="request" />
+		<c:set var="ResRoot"   value="${pageContext.request.contextPath}/resources"	scope="request" />
+		<c:set var="ViewRoot"  value="${pageContext.request.contextPath}" scope="request" />	
+		
+		<!-- 공통JS -->
+		<script src="${ResRoot}/common/js/ph-fnc.js?${TimeStamp}"></script> 
+		<script src="${ResRoot}/common/js/ph-util.js?${TimeStamp}"></script> 
+		<script src="${ResRoot}/common/js/ph-event.js?${TimeStamp}"></script> 
+		<script src="${ResRoot}/common/js/ph-valid.js?${TimeStamp}"></script> 
+		
+		<!-- 공통CSS -->
+	    <link rel="stylesheet" href="${ResRoot}/mb/benefits/css/payment.css">  
+	    <link rel="stylesheet" href="${ResRoot}/mb/benefits/css/common.css">
+	    
+	    <script type="text/javascript" src="${ResRoot}/common/jQuery/jquery.min.js?v331"></script>
+	    <script type="text/javascript" src="${ResRoot}/common/benefitsJs/swiper.min.js"></script>
+	</head>
+	
+	<body>
+		<!-- wrap -->
+		<div class="wrap noheader">
+			<div class="header main_header opt1">
+				<h1 class="page_title opt1">통신비 납부</h1>
+				<a href="javascript:;" class="btn_back" onclick="javascript:backEvent();"><span>뒤로가기</span></a>
+			</div>
+		
+			<!-- contents -->
+			<div class="contents">
+				<div class="section sec_payment" id="sec_payment">
+					<div>
+						<ul class="earn_tab tab_chg color_opt1">
+							<li>나의할인</li>
+							<li>즉시납부</li>
+							<li class="active">납부내역</li>
+						</ul>
+					</div>
+		
+					<!-- 통신료 납부 : (include -> doAction으로 변경) -->
+					<div class="tab_con"></div>
+		
+					<!-- 이용 내역 -->
+					<div class="tab_con wrap_use active" style"display:none;">
+						<div class="coin_save"> 
+							<a href="#" class="btn_save" onclick="javascript:moveCoinPlusPage();">K포인트 적립하러 가기 <span class="bg_icon"></span></a>
+							<div class="sort_set">
+								<a href="#" class="btn_opt" id="btnOpt"><span id="us_fntDate">6개월</span> · <span id="us_fntPrdName">전체상품</span><span class="bg_icon"></span></a>
+								<a href="#" class="btn_time on" id="us_sortCondition" onclick="javascript:fn.usingContents.sortChn();" val="C"><span id="us_fntSortName">최신순</span><span class="bg_icon"></span></a>
+							</div>
+						</div>
+						<div class="wrap_sort" id="wrapSort">
+							<div class="title">조회기간</div>
+							<div class="term_set" id="termDateSet">
+								<button onclick="javascript:fn.usingContents.srchDateSet(1);">1개월</button>
+								<button onclick="javascript:fn.usingContents.srchDateSet(3);">3개월</button>
+								<button onclick="javascript:fn.usingContents.srchDateSet(6);">6개월</button>
+								<input type="hidden" id="termDateBtnSel">
+								<button class="btn_input" id="us_dirDate">직접입력</button>
+							</div> 
+							<div class="date_set" id="dateSet">
+								<input type="date" id="us_dirStDate" placeholder="날짜 입력">
+								<span>-</span>
+								<input type="date" id="us_dirEdDate" placeholder="날짜 입력">
+							</div>
+							<div class="title">통신상품</div>
+							<!-- <div class="selbx">
+								<button class="popup-open">전체 (팝업) <span class="bg_icon"></span></button>
+							</div> -->
+							<div class="selbx"> <%-- 서버에서 내려주는 리스트 --%>
+								<select id="us_chnlNameList">
+									<c:if test="${empty rootMap.cmpnInfo.response.data.result}">
+										<option><font color="gray" size="4">상품 목록이 없습니다.</font></option>
+									</c:if>  
+									<c:if test="${fn:length('${rootMap.cmpnInfo.response.data.result}') > 0}">
+									    <option value="all" cprt_cmpn_nm="전체상품">전체상품</option>
+										<c:forEach items="${rootMap.cmpnInfo.response.data.result}" var="chnlList" varStatus="">
+											<c:if test="${rootMap.result.request.cmpn_id == chnlList.cprt_cmpn_id}"> 
+												<option value="${chnlList.cprt_cmpn_id}" cprt_cmpn_nm="${chnlList.cprt_cmpn_nm}" selected="selected">  
+														${chnlList.cprt_cmpn_nm} 
+												</option>  
+											</c:if>				
+											<c:if test="${rootMap.result.request.cmpn_id != chnlList.cprt_cmpn_id}">
+												<option value="${chnlList.cprt_cmpn_id}" cprt_cmpn_nm="${chnlList.cprt_cmpn_nm}"> ${chnlList.cprt_cmpn_nm} </option>  
+											</c:if>				
+										</c:forEach> 
+									</c:if>
+								</select>  
+							</div>
+							<div class="wrap_btn"> 
+								<button onclick="fn.usingContents.listSearch()">조회</button>
+							</div>
+						</div>
+						
+						<div class="point_use_list" id="us_point_use_info">
+							<ul id="">
+								<c:if test="${empty rootMap.payload.response.data.result}">
+									<div align="center" style="margin-top: 25px;"> <font size="4" color="gray">이용내역이 존재하지 않습니다.</font> </div>
+								</c:if>
+								<c:if test="${fn:length('${rootMap.payload.response.data.result}') > 0}">
+									<c:forEach items="${rootMap.payload.response.data.result}" var="usingList" varStatus=""> 
+										<li event_dt="${usingList.event_dt}" deviceName="${fn:split(usingList.bill_titl,' ')[0]}" deviceNumber="${fn:split(usingList.bill_titl,' ')[1]}" biller_user_key="${usingList.biller_user_key}" 
+											cmpn_nm="${usingList.cmpn_nm}"   pay_amt="${usingList.pay_amt}" description="${usingList.description}" hist_se="${usingList.hist_se}">
+											<span class="date"> 
+												<!-- 2020.01.01 -->
+												<c:out value="${fn:substring(usingList.event_dt,0,4)}"/>.<c:out value="${fn:substring(usingList.event_dt,4,6)}"/>.<c:out value="${fn:substring(usingList.event_dt,6,8)}"/> 
+											</span> 
+											<span class="subject">	
+												<!-- TV DDD**** -->
+												${usingList.bill_titl}
+											</span>
+											<span class="kind">
+												<!-- KT멤버십 : 채널이름 -->
+												${usingList.cmpn_nm}
+											</span>
+											<c:if test="${usingList.hist_se == 'pay'}">
+												<div class="point_use">
+													<c:if test="${usingList.pay_amt < 0}">  
+														<span class="tx_point minus">
+															<fmt:formatNumber type="number" maxFractionDigits="3" value="${usingList.pay_amt}"/> P
+														</span> 
+														<span class="desc"> 
+															${usingList.description}
+														</span>
+													</c:if>
+													<c:if test="${usingList.pay_amt > 0}">
+														<span class="tx_point plus">
+															<fmt:formatNumber type="number" maxFractionDigits="3" value="${usingList.pay_amt}"/> P
+													    </span>
+														<span class="desc"> 
+															${usingList.description} 취소
+														</span>
+													</c:if>
+												</div>	
+											</c:if>
+											<c:if test="${usingList.hist_se == 'err'}">
+												<div class="point_use">
+														<span class="tx_point cancel">P</span> 
+														<span class="desc"> 
+															${usingList.description}
+														</span>
+												</div>	
+											</c:if>
+											<c:if test="${usingList.hist_se == 'chng'}">
+												<c:choose>
+													<c:when test="${usingList.description == '신청'}">
+														<span class="btn_autopay">자동납부 ${usingList.description}</span>
+													</c:when>				
+													<c:when test="${usingList.description == '해지'}">
+														<span class="btn_autopay termination">자동납부 ${usingList.description}</span>
+													</c:when>			
+													<c:otherwise>
+														<span class="btn_autopay2 alteration">${usingList.description}</span>													
+													</c:otherwise>	 
+												</c:choose> 			 								
+											</c:if>
+										</li>
+									</c:forEach>								
+								</c:if>
+							</ul>
+							<input type="hidden" id="curPageInfo" value="1">
+						</div>
+					</div>
+				</div> 
+			</div><!-- // contents -->
+		
+			<!-- 팝업 내역 -->
+			<jsp:include page="/WEB-INF/views/mb/bnef/popupInfo.jsp" flush="false" />
+		
+		</div><!-- // wrap -->
+	
+		<%-- jsp include --%>
+		<jsp:include page="/WEB-INF/views/mb/bnef/hist/paymentHistJs.jsp" flush="false" />	
+	</body>
+</html>
+

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link rel="stylesheet" href="../../css/common/css/common.css?dummy=20190730152521717">
+<link rel="stylesheet" href="../../css/common/css/site.css?dummy=20190730152521717">
+<script src="../../css/common/js/jquery-1.8.3.min.js?dummy=20190730152521717"></script>
+<script src="../../css/common/js/webfont.js?dummy=20190730152521717"></script> 
+<script src="../../css/common/js/design.js?dummy=20190730152521717" defer="defer"></script>
+<script src="../../css/common/js/dialog.js?dummy=20190730152521717" defer="defer"></script>
+<script src="../../js/gtag/sbgtag-1.0.js?dummy=20190730152521717" ></script> 
+<script src="../../css/common/js/custom.js?dummy=20190730152521717" defer="defer"></script>
+<script>
+	$(function(){
+		try {
+			var mid = $("input[name=PMid]").val();
+			if (mid){
+				SettleBank.init(mid);
+				SettleBank.gaTracker('/jsp/firm/viewCash/MBWeb/reg/cert_sms.jsp');
+				SettleBankCSS.init(mid);
+			}
+		} catch(e){}
+	});
+</script>
+<script>
+	$(document).ready(function(){
+		setInterval(function(){
+			btnCheck();
+		}, 500);
+		
+		//숫자 체크
+		$('[data-type="number"]').keyup(function(){
+			if (this.value != this.value.replace(/[^0-9]/g, '')){
+				$(this).val($(this).val().replace(/[^0-9]/g, ''));
+			}
+			btnCheck();
+		});
+
+		time("start");
+		$("#phoneAuthNo").attr("pattern", "[0-9]*");
+		$("#phoneAuthNo").attr("inputmode", "numeric");
+		$(".prev").click(function(){
+			$("#_method").val("authView");
+			$("#frm").attr('action', '' + URL_PATH).submit();
+		});
+
+		if ($("#phoneAuthNo").val().length > 0){
+			$("#phoneAuthNo").val("");
+			$("#phoneAuthNo").attr("disabled", true);
+			btnCheck();
+		}
+
+		if ($("#tid").val().length < 1){
+			$("#phoneAuthNo").attr("disabled", true);
+		}
+
+		$("#confirmCancel").click(function(){
+			agreeCancel();
+		});
+
+		$("#confirmOk").click(function(){
+			if ($(this).hasClass('off')) return false;
+			if ($("#phoneAuthNo").val() == ''){
+				alert("인증번호를 입력해주세요.");
+				return;
+			}
+			
+			$.ajax({
+				type: "post",
+				url: "" + URL_PATH + "?_method=MbAuthNoCheck_rep",
+				dataType: "json",
+				data: {
+					phoneAuthNo: $("#phoneAuthNo").val(),
+					tid: $("#tid").val(),
+					mobileCo: 'SKT'
+				},
+				success: function(data){
+					if (data.code == "0000"){
+						$("#phoneAuthNo").val();
+						$("#_method").val("input");
+						$("#frm").attr('action', '' + URL_PATH).submit();
+					} else if (data.code == "9999"){
+						alert(data.msg + "\n다시 입력해 주세요", function(){
+							$("#phoneAuthNo").val("");
+							btnCheck();
+						});
+					} else if (data.code == "session"){
+						$("#_method").val("goErrorPage");
+						$("#frm").attr('action', '' + URL_PATH).submit();
+					} else {
+						alert("인증번호가 일치하지 않습니다.\n다시 입력해 주세요", function(){
+							$("#phoneAuthNo").val("");
+							btnCheck();
+						});
+					}
+				},
+				error: function(e){
+					alert("서비스 오류가 발생되었습니다.\n다시 시도 하십시오.");
+				}
+			});
+		});
+
+		function btnCheck(){
+			var $btn = $("#confirmOk");
+			if ($("#phoneAuthNo").val().length == 6){
+				$btn.removeClass("off");
+				$btn.addClass("on");
+				$btn.attr('disabled', false);
+			} else {
+				$btn.removeClass("on");
+				$btn.addClass("off");
+				$btn.attr('disabled', true);
+			}
+		}
+	});
+
+	var timeStart = function(min, sec){
+		interval = setInterval(function(){
+			if (sec < 0){
+				--min;
+				sec = 59;
+			}
+			if (sec < 10)
+				sec = "0" + sec;
+			$(".time").text(min + ":" + sec);
+			if (min == 0 && sec == 0){
+				clearInterval(interval);
+				$("#phoneAuthNo").val("");
+				$("#phoneAuthNo").attr("disabled", "disabled");
+				alert("인증번호 입력시간이 초과되었습니다.\n인증번호를 다시 요청합니다.", function(){
+					time("stop");
+					var $btn = $("#confirmOk");
+					$btn.removeClass("on");
+					$btn.addClass("off");
+					$btn.attr('disabled', true);
+					doRefleshConfirm();
+				});
+				return;
+			}
+			--sec;
+		}, 1000);
+	}
+	var min = 2;
+	var sec = 00;
+	var time = function(data){
+		if (data == "stop"){
+			clearInterval(interval);
+		} else {
+			timeStart(min, sec);
+		}
+	}
+
+	function refleshConfirm(){
+		confirm('인증번호를 재전송하시겠습니까?', function(){
+			doRefleshConfirm();
+		});
+	}
+
+	function doRefleshConfirm(){
+		$("#phoneAuthNo").val("");
+		var $btn = $("#confirmOk");
+		$btn.removeClass("on");
+		$btn.addClass("off");
+		$btn.attr('disabled', true);
+		time("stop");
+		$.ajax({
+			type: "post",
+			url: "" + URL_PATH + "?_method=authCheck_rep",
+			dataType: "json",
+			data: {
+				tid: '201907301525212019073065561605',
+				mobileCo: 'SKT',
+				payGb: $("#payGb").val(),
+				authType: 'sms',
+				PCustId: $("#PCustId").val(),
+				PMid: $("#PMid").val()
+			},
+			success: function(data){
+				if (data.code == "0000"){
+					time("start");
+					$("#tid").val(data.msg);
+					$("input[id=phoneAuthNo]").attr("disabled", false);
+				} else if (data.code == "session"){
+					$("#_method").val("goErrorPage");
+					$("#frm").attr('action', '' + URL_PATH).submit();
+				} else {
+					alert(data.msg);
+				}
+			},
+			error: function(e){
+				alert("서비스 오류가 발생되었습니다.\n다시 시도 하십시오.");
+			}
+		});
+	}
+
+	function agreeCancelConfirm(){
+		confirm("인증을 취소하시겠습니까?", function(){
+			$("#_method").val("payCancel");
+			$("#frm").attr('action', '' + URL_PATH).submit();
+		});
+	}
+</script>
+<title>간편결제</title>
+</head>
+
+<body>
+<header id="header">
+	<h1>신규/추가 등록</h1>
+</header>
+
+<form id="frm" action="" >
+	<input type="hidden" id="_method" name="_method" value="">
+	<input type="hidden" id="tid" name="tid" value="201907301525212019073065561605"/>
+	<input type="hidden" id="PCancUrl" name="PCancUrl" value="https://test-driver.settlebank.co.kr:443/resultCanclPayment?_csrf=dae7d902-2b95-4592-a23f-1c5f708501d4" />
+	<input type="hidden" id="subPayGb" name="subPayGb" value="" />
+	<input type="hidden" id="PTrNo" name="PTrNo" value="SBank_FIRMbio1101tW220190730152026043672" />
+	<input type="hidden" id="payGb" name="payGb" value="RE"/>
+	<input type="hidden" id="PCustId" name="PCustId" value="jaehee7996"/>
+	<input type="hidden" id="PMid" name="PMid" value="bio1101t"/>
+	<input type="hidden" name="PMchtParam" id="PMchtParam" value="" />
+	<input type="hidden" id="PErrCd" name="PErrCd" value="">
+	<input type="hidden" id="PRmesg1" name="PRmesg1" value="">
+	<input type="hidden" id="PStatus" name="PStatus" value="">
+	<div id="ct">
+		<fieldset class="form_type mt0">
+			<legend>인증번호 입력폼</legend>
+			<ul>
+				<li class="cau">문자로 받은 인증번호를 입력해주세요.</li>
+				<li class="numskip"> <span class="input">
+					<input type="tel" data-type="number" name="phoneAuthNo" id="phoneAuthNo" placeholder="인증번호(숫자6자리)" maxlength="6">
+					</span> <b class="time">2:00</b>
+					<button type="button" onclick="refleshConfirm();" class="btn_renum" id="reScCheck" >인증번호재전송</button>
+				</li>
+			</ul>
+		</fieldset>
+		<ul class="btn_area2 v1">
+			<li class="bt1">
+				<button type="button" onclick="agreeCancelConfirm();" class="btn_xr btn_type2">취소</button>
+			</li>
+			<li class="bt2">
+				<button type="button" id="confirmOk" name ="confirmOk" class="btn_xr btn_type off" >확인</button>
+			</li>
+		</ul>
+	</div>
+	<!-- //content -->
+</form>
+
+<!-- loading -->
+<div class="ly_pop ly_loading" style="display: none;">
+	<div class="bg"><!-- shadow --></div>
+	<div id="ly_loading" class="cont">
+		<div class="ele">
+			<div class="circle_motion">
+				<div class="span"></div>
+			</div>
+			<img src="../../css/common/images/pc/loading.gif" alt="로딩중" class="img_loading"> </div>
+	</div>
+</div>
+<!-- //loading -->
+
+<script>
+	$(document).ajaxStart(function(){
+		openLoading();
+	});
+	$(document).ajaxComplete(function(){
+		closeLoading();
+	});
+	function openLoading(){
+		var ver = 0; // Browser Version
+		if(navigator.appName.charAt(0) == "M"){
+		ver = getInternetVersion("MSIE");
+		if (ver < "10"){ // ie10 이하
+		$('.ly_loading').addClass('ie9_after');
+		}
+		}
+		layer_open('ly_loading');
+	}
+	function closeLoading(){
+		layer_close();
+	}
+</script>
+</body>
+</html>

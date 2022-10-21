@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link rel="stylesheet" href="../css/common/css/common.css?dummy=20190730154314516">
+<link rel="stylesheet" href="../css/common/css/site.css?dummy=20190730154314516">
+<script src="../css/common/js/jquery-1.8.3.min.js?dummy=20190730154314516"></script>
+<script src="../css/common/js/webfont.js?dummy=20190730154314516"></script>
+<script src="../css/common/js/design.js?dummy=20190730154314516" defer="defer"></script>
+<script src="../css/common/js/dialog.js?dummy=20190730154314516" defer="defer"></script>
+<script src="../js/gtag/sbgtag-1.0.js?dummy=20190730154314516" ></script> 
+<script src="../css/common/js/custom.js?dummy=20190730154314516" defer="defer"></script>
+<script>
+	$(function(){
+		try{
+			var mid = $("input[name=PMid]").val();
+			if(mid){
+				SettleBank.init(mid);
+				SettleBank.gaTracker('/jsp/firm/viewCash/MBWeb/reg/ars.jsp');
+				SettleBankCSS.init(mid);
+			}
+		}catch(e){}
+	});
+</script>
+<title>간편결제</title>
+<script>
+	$(document).ready(function(){
+		var check = true;
+		var retryCheck = true;
+		var min = 3; var sec = 00;
+		$("#limit_time").text(min + ":" + (sec < 10 ? "0" + sec : sec));
+		var interval = -1;
+
+		$(function(){
+			var $timer = $("#limit_time");
+			var after = new Date(Date.parse(new Date()) + ((1000 * 60 * min) + (sec * 1000) + 1000));
+			interval = setInterval(function(){
+				var nowTime = new Date();
+				var nowTimeStr = timeString(nowTime);
+				var afterTime = after
+				var afterTimeStr = timeString(afterTime);
+				if(afterTimeStr <= nowTimeStr){
+					clearInterval(interval);
+					$("#_method").val("againGoArsAuth");
+					$("#arsAuthFailMsg").val(encodeURIComponent("입력시간 초과"));
+					$("#frm").attr('action',''+URL_PATH).submit();
+				}else{
+					var diff = new Date(afterTime - nowTime);
+					var resultMin = diff.getMinutes();
+					var resultSec = diff.getSeconds();
+					resultSec = resultSec < 10 ? "0" + resultSec : resultSec;
+					$("#limit_time").text(resultMin + ":" + resultSec);
+				}
+			},1000);
+			function timeString(d){
+				var year = d.getFullYear();
+				var month = (d.getMonth() + 1);
+				month = month < 10 ? "0"+month:month;
+				var day = d.getDate();
+				day = day < 10 ? "0"+day:day;
+				var hour = d.getHours();
+				hour = hour < 10 ? "0"+hour:hour;
+				var min = d.getMinutes();
+				min = min < 10 ? "0"+min:min;
+				var sec = d.getSeconds();
+				sec = sec < 10 ? "0"+sec:sec;
+				return year +""+month+""+day+""+hour+""+min+""+sec;
+			}
+		});
+
+		$('.btn_xr.btn_type.on').click(function(e){
+			$.ajax({
+				type: "post",
+				url : "/firm/FirmArsAction.do?_method=getResult",
+				dataType: "json",
+				async:false,
+				data: { mid : 'bio1101t',
+				trNo : 'SBank_FIRMbio1101tW220190730154213045845'},
+				success: function(data){
+					if (data.code == "00"){
+						if ("false" == "true"){
+							clearInterval(interval);
+							alert(decodeURIComponent(""), function(){
+							goRegAcct();
+							});
+						} else {
+							goRegAcct();
+						}
+					} else if (data.code =="000"){
+						alert("인증처리가 완료되지 않았습니다. 잠시 후 다시 시도해 주세요");
+					} else {
+						clearInterval(interval);
+						$("#_method").val("againGoArsAuth");
+						$("#arsAuthFailMsg").val(encodeURIComponent(data.msg));
+						$("#frm").attr('action',''+URL_PATH).submit();
+					}
+				},
+				error: function(err){
+					clearInterval(interval);
+					$("#_method").val("againGoArsAuth");
+					$("#arsAuthFailMsg").val(encodeURIComponent("정상적인 거래가 아닙니다. 처음부터 다시 해주세요."));
+					$("#frm").attr('action',''+URL_PATH).submit();
+				}
+			});
+		});
+
+		// 계좌등록
+		var goRegAcct = function(){
+			clearInterval(interval);
+			if ("0" == '1'){
+				$("#_method").val("regAcctNo");
+				$("#frm").attr('action',''+URL_PATH).submit();
+			} else {
+				$("#_method").val("transNoRegView");
+				$("#frm").attr('action',''+URL_PATH).unbind("submit").submit();
+			}
+		};
+	});
+</script>
+</head>
+<body>
+<header id="header">
+	<h1>신규/추가 등록</h1>
+</header>
+
+<div id="ct">
+	<form name="frm" id="frm" method="post">
+		<input type="hidden" id="_method" name="_method" value=""/>
+		<input type="hidden" id="PCancUrl" name="PCancUrl" value="https://test-driver.settlebank.co.kr:443/resultCanclPayment?_csrf=dae7d902-2b95-4592-a23f-1c5f708501d4" />
+		<input type="hidden" id="errMsg" name="errMsg" value="">
+		<input type="hidden" id="arsAuthFailMsg" name="arsAuthFailMsg" value="">
+		<input type="hidden" id="payGb" name="payGb" value="RE"/>
+		<input type="hidden" id="PCustId" name="PCustId" value="jaehee7996"/>
+		<input type="hidden" id="PMid" name="PMid" value="bio1101t"/>
+		<input type="hidden" id="pTransAuth" name="pTransAuth" value="0"/>
+		<input type="hidden" id="PMchtParam" name="PMchtParam" value="" />
+		<input type="hidden" id="PErrCd" name="PErrCd" value="">
+		<input type="hidden" id="PRmesg1" name="PRmesg1" value="">
+		<input type="hidden" id="PStatus" name="PStatus" value="">
+		<section class="ars_timer">
+			<h2>전화를 받고, <strong class="fc_reg">불러주는 인증번호 <br/>
+				2자리를 입력</strong>해주세요.</h2>
+			<div class="circle_motion">
+				<div class="span"></div>
+				<i class="ico_com ico_tel"></i></div>
+			<p class="timer"><i class="ico_com ico_watch"></i>대기시간 <strong class="fc_reg" id="limit_time">3:00</strong></p>
+			<div class="btn_area v3">
+				<p class="txt_cm_cau2">통화가 완료되면, <strong class="fc_reg">하단의<br/>
+					'인증완료' 버튼</strong>을 눌러주세요.</p>
+				<button type="button" onclick="" class="btn_xr btn_type on">인증완료</button>
+			</div>
+		</section>
+	</form>
+</div>
+<!-- //content --> 
+
+<!-- loading -->
+<div class="ly_pop ly_loading" style="display: none;">
+	<div class="bg"><!-- shadow --></div>
+	<div id="ly_loading" class="cont">
+		<div class="ele">
+			<div class="circle_motion">
+				<div class="span"></div>
+			</div>
+			<img src="../css/common/images/pc/loading.gif" alt="로딩중" class="img_loading"> </div>
+	</div>
+</div>
+<!-- //loading -->
+
+<script>
+	$(document).ajaxStart(function(){
+		openLoading();
+	});
+	$(document).ajaxComplete(function(){
+		closeLoading();
+	});
+	function openLoading(){
+		var ver = 0; // Browser Version
+		if(navigator.appName.charAt(0) == "M"){
+			ver = getInternetVersion("MSIE");
+			if (ver < "10"){ // ie10 이하
+				$('.ly_loading').addClass('ie9_after');
+			}
+		}
+		layer_open('ly_loading');
+	}
+	function closeLoading(){
+		layer_close();
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,758 @@
+<!-- <%@  page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"
+%><%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"
+%><%@ taglib prefix="fmt"    uri="http://java.sun.com/jsp/jstl/fmt"
+%><%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> -->
+<!--
+   Point Hub version 1.0
+
+   Copyright ⓒ 2014 kt corp. All rights reserved.
+
+   This is a proprietary software of kt corp, and you may not use this file except in
+   compliance with license agreement with kt corp. Any redistribution or use of this
+   software, with or without modification shall be strictly prohibited without prior written
+   approval of kt corp, and the copyright notice above does not evidence any actual or
+   intended publication of such software.
+ -->
+<!-- <%--
+ **********************************************************************************************
+ * @desc : 포인트 조회 결제 화면(소진형 - PC)
+ * @FileName : /pointHub/src/main/webapp/WEB-INF/views/pc/std/pointPageCU.jsp
+ * @author 이형우
+ * @since 2018.11.13
+ * @version 1.0
+ * @see
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ * 수 정 일             수 정 자          수정내용
+ * ----------   --------   -----------------------------
+ * 2018.11.13    이형우        최초생성
+ * </pre>
+ **********************************************************************************************
+--%> -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<!-- <%-- Head --%>
+	<jsp:include page="/WEB-INF/views/pc/include/globalVar.jsp" flush="false" />
+
+	<%-- Head --%>
+	<jsp:include page="/WEB-INF/views/pc/include/incHead.jsp" flush="false" /> -->
+	<!-- pc/include/incHead.jsp -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+	<link rel="shortcut icon" type="image/x-icon" href="../../../favicon/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="../../../favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../../favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../../favicon/favicon-16x16.png">
+	<link rel="mask-icon" href="../../../favicon/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+
+	<title>포인트다모아</title>
+
+	<link rel="stylesheet" href="../../../pc/css/style.css?${TimeStamp}">
+	<script type="text/javascript" src="../../../common/jQuery/jquery.min.js?v331"></script>
+	<script type="text/javascript" src="../../../common/pubJs/script.js?v=js_Ver1&${TimeStamp}"></script>
+	<!--[if lt IE 9]>
+	<script src="../../../common/pubJs/html5shiv.js"></script>
+	<script src="../../../common/pubJs/html5shiv-printshiv.js"></script><![endif]-->
+	<!-- //pc/include/incHead.jsp -->
+</head>
+<body>
+
+
+<div id="wrap">
+<!-- header 시작-->
+    <header style="padding: 20px 20px 40px 20px;">
+        <div class="container">
+            <form id="pointForm" method="post">
+                <input type="hidden" id="hdn_pgTrNo" name="pg_tr_no">
+                <input type="hidden" id="hdn_phubTrNo" name="phub_tr_no">
+                <input type="hidden" id="hdn_payAmt" name="pay_amt">
+                <input type="hidden" id="hdn_points" name="points">
+                <input type="hidden" id="hdn_wonAmt" name="won_amt">
+                <input type="hidden" id="hdn_authLimitDtm" name="auth_limit_dtm">
+                <input type="hidden" id="hdn_payMethod" name="pay_method">
+                <input type="hidden" id="hdn_retCode" name="ret_code">
+                <input type="hidden" id="hdn_retMsg" name="ret_msg">
+            </form>
+
+            <input type="hidden" id="itemName" name="itemName" >
+            <input type="hidden" id="itemPrice" name="itemPrice" value="0">
+            <input type="hidden" id="totalPointAmtVal" name="totalPointAmtVal" value="0">
+
+            <div class="title">포인트다모아</div>
+            <!-- <div class="script_title">충전 포인트 선택</div> -->
+            <div class="script_text">사용할 포인트를 입력하시면 충전금액으로 전환됩니다.</div>
+            <div class="total">
+                <ul>
+                    <li class="total_row">
+                        <div class="point">
+                            <div class="point_total">
+                                <ul>
+                                    <li class="point_row">전환 포인트</li>
+                                    <li class="point_row"><span id="ttlPntAmt" val="0">0</span>P</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+<!-- header 끝-->
+
+<!-- contents 시작-->
+    <section class="contents">
+        <div class="container">
+            <!-- 20190617 "포인트전부사용" 버튼 추가 -->
+            <div class="have_point add_btn">
+                <ul>
+                    <li><span id="custName"><c:out value="${result.custName}"/></span>님 총 보유 포인트</li>
+                    <li><span id="ttlAvlPnt" val='<c:out value="${result.ttlAvlPnt}"/>'></span>P</li>
+                </ul>
+                <div class="point_use"><div class="btn maxBtn">포인트 전부 사용</div></div>
+            </div>
+    <c:if test="${fn:length(result.pntList) == 0}">
+            <section class="point_null">
+                <div class="point_null_script">
+                    고객님의 충전 가능 포인트가 없습니다.
+                </div>
+            </section>
+    </c:if>
+    <c:if test="${fn:length(result.pntList) > 0}">
+            <div class="item_area" style="height: 323px;">
+                <div class="item_2th" style="padding: 16px 20px 0px 20px;">
+                    <div class="tab">
+                        <ul>
+                            <li class="tb_top"></li>
+                            <li class="tb_top">보유<br>포인트</li>
+                            <li class="tb_top">사용<br>포인트</li>
+                            <li class="tb_top">전환<br>포인트</li>
+                        </ul>
+                    </div>
+                </div>
+    <c:forEach var="pntMap" items="${result.pntList}">
+                <div class="item_2th pointGroup"  style="padding: 0px 20px;">
+                    <div class="tab">
+                        <ul>
+                            <li class="tb_middle"><img src='<c:out value="${pntMap.imageLink}"/>' alt='<c:out value="${pntMap.pntNm}"/>'></li>
+                            <li class="tb_middle"><span class="avlPnt" val='<c:out value="${pntMap.avlPnt}"/>'></span><c:out value="${pntMap.dpUnit}"/></li>
+                            <li class="tb_middle"><input type="text" class="pnt" val="0" oninput="setPntAmt($(this));" value="0"><c:out value="${pntMap.dpUnit}"/></li>
+                            <li class="tb_middle"><span class="cprtAmt" val='<c:out value="0"/>'></span><c:out value="${pntMap.dpUnit}"/></li>
+                        </ul>
+                        <ul>
+                            <li class="tb_bottom"></li>
+                            <li class="tb_bottom"></li>
+                            <li class="tb_bottom"><div class="btn maxBtn">전액충전</div></li>
+                            <li class="tb_bottom"><div class="btn initBtn">초기화</div></li>
+                        </ul>
+                    </div>
+                    <input type="hidden" class="pntCd" value='<c:out value="${pntMap.pntCd}"/>'>
+                    <input type="hidden" class="pntTrNo" value='<c:out value="${pntMap.pntTrNo}"/>'>
+                    <input type="hidden" class="dealUnit" value='<c:out value="${pntMap.dealUnit}"/>'>
+                    <input type="hidden" class="minAvlPnt" value='<c:out value="${pntMap.minAvlPnt}"/>'>
+                    <input type="hidden" class="pntExchRate" value='<c:out value="${pntMap.pntExchRate}"/>'>
+                    <input type="hidden" class="pntAmt">
+                </div>
+
+                <c:if test="${not empty pntMap.pntRule}">
+                    <div class="item_script">
+                        <!-- <%--
+                        <c:if test="${pntMap.pntExchRate < 1}">
+                            <div class="bullet" style="color: red;">※</div>
+                            <div class="script" style="color: red;">
+                                <c:out value="${pntMap.pntNm}"/>는 <fmt:parseNumber integerOnly="true" value="${pntMap.pntExchRate * 100}"/>%만 전환 됩니다.
+                            </div>
+                        </c:if>
+                        --%> -->
+                        <c:if test="${pntMap.pntCd == 'samsungcard'}">
+                            <div class="bullet" style="color: red;">※</div>
+                            <div class="script" style="color: red;"><c:out value="${pntMap.pntRule}" escapeXml="false" /></div>
+                        </c:if>
+                        <c:if test="${pntMap.pntCd != 'samsungcard'}">
+                            <div class="bullet">※</div>
+                            <div class="script"><c:out value="${pntMap.pntRule}" escapeXml="false" /></div>
+                        </c:if>
+                    </div>
+                </c:if>
+
+                <c:if test="${empty pntMap.pntRule}">
+                    <div class="item_script">
+                        <c:if test="${pntMap.pntExchRate < 1}">
+                            <div class="bullet" style="color: red;">※</div>
+                            <div class="script" style="color: red;">
+                                <c:out value="${pntMap.pntNm}"/>는 <fmt:parseNumber integerOnly="true" value="${pntMap.pntExchRate * 100}"/>%만 전환 됩니다.
+                            </div>
+                        </c:if>
+                    </div>
+                </c:if>
+                <div class="dot"><div class="dot_line"></div></div>
+    </c:forEach>
+            </div>
+            <div class="total_point">
+                <div class="tab">
+                    <ul>
+                        <li class="tb_middle">합계</li>
+                        <li class="tb_middle"><span id="total_avlPnt"></span>P</li>
+                        <li class="tb_middle"><span id="total_pnt">0</span>P</li>
+                        <li class="tb_middle"><span id="total_pntAmt">0</span>P</li>
+                    </ul>
+                </div>
+                <div class="dot"><div class="dot_line"></div></div>
+                <div class="item_script">
+                    <c:if test="${result.shopPntRate+0 > 0}">
+                        <div class="bullet" style="color: red;">※</div>
+                        <div class="script" style="color: red;">
+                            전환 포인트는 <c:out value="${result.pgCmpnNm}"/> 수수료 <c:out value="${result.shopPntRate}"/>%가 차감된 포인트 입니다.
+                        </div>
+                    </c:if>
+                </div>
+            </div>
+    </c:if>
+        </div>
+    </section>
+    <!-- contents 끝-->
+    <!-- footer 시작-->
+    <section class="footer">
+        <div class="submet_btn_bottom">
+            <ul>
+                <li><a href="#!"><div id="cancelBtn" class="btn_cancel">취소</div></a></li>
+                <li><a href="#!"><div id="confirmBtn" class="btn_ok">확인</div></a></li>
+            </ul>
+        </div>
+    </section>
+    <!-- footer 끝-->
+</div>
+<!-- <%-- Footer --%>
+<jsp:include page="/WEB-INF/views/pc/include/incFooter.jsp" flush="false" /> -->
+<!-- pc/include/incFooter.jsp -->
+<!-- <%-- 공통 js --%> -->
+<script src="../../../common/js/ph-const.js?${TimeStamp}"></script>
+<script src="../../../common/js/ph-fnc.js?${TimeStamp}"></script>
+<script src="../../../common/js/ph-util.js?${TimeStamp}"></script>
+<script src="../../../common/js/ph-valid.js?${TimeStamp}"></script>
+<!-- <%--
+<script type="text/javascript">
+$(function(){
+	// javascript 구현
+});
+</script>
+<section id="pop-loading" class="popup loading" style="position:fixed;">
+	<div class="bg"></div>
+	<img src="../../../mb/images/common/loading.gif" alt="로딩중"/>
+</section>
+
+<footer>
+	<small>Copyright (c) 2018 KT, Inc.</small>
+</footer>
+--%> -->
+
+<form id="formReturn" action="${return_url_2}" method="post">
+	<input type="hidden" name="pg_tr_no" id="return_pgTrNo" value="${pg_tr_no}">
+	<input type="hidden" name="phub_tr_no" id="return_phubTrNo" value="">
+	<input type="hidden" name="pay_amt" id="return_payAmt" value="">
+	<input type="hidden" name="points" id="return_points" value="">
+	<input type="hidden" name="points_amt" id="return_pointsAmt" value="0">
+	<input type="hidden" name="won_amt" id="return_wonAmt" value="">
+	<input type="hidden" name="auth_limit_dtm" value="">
+	<input type="hidden" name="pay_method" id="return_payMethod" value="">
+	<input type="hidden" name="ret_code" id="return_retCode" value="${ret_code}">
+	<input type="hidden" name="ret_msg" id="return_retMsg" value="${ret_msg}">
+</form>
+
+<form id="dnlFormReturn" action="${return_url_2}" method="post">
+	<input type="hidden" name="pg_tr_no" id="dnl_return_pgTrNo" value="${pg_tr_no}">
+	<input type="hidden" name="phub_tr_no" id="dnl_return_phubTrNo" value="">
+	<input type="hidden" name="pay_amt" id="dnl_return_payAmt" value="">
+	<input type="hidden" name="points" id="dnl_return_points" value="">
+	<input type="hidden" name="points_amt" id="dnl_return_pointsAmt" value="">
+	<input type="hidden" name="won_amt" id="dnl_return_wonAmt" value="">
+	<input type="hidden" name="auth_limit_dtm" value="">
+	<input type="hidden" name="pay_method" id="dnl_return_payMethod" value="">
+	<input type="hidden" name="ret_code" id="dnl_return_retCode" value="${ret_code}">
+	<input type="hidden" name="ret_msg" id="dnl_return_retMsg" value="${ret_msg}">
+</form>
+
+<form id="formErr" action="/error_custom.do" method="post">
+	<input type="hidden" name="eCode" id="eCode">
+	<input type="hidden" name="eMsg" id="eMsg">
+</form>
+
+<script type="text/javascript">
+	function errCustom(data){
+		$('#eCode').val(data.ret_code);
+		$('#eMsg').val(data.ret_msg);
+		var url = $('#formErr').attr('action');
+		var attrObj = {'form' : '#formErr'};
+		PHFnc.doAction(url, '', attrObj);
+	}
+</script>
+
+        <div class="tab">
+            <div class="popup_toggle3">
+                <p class="popup_title">브라우저 쿠키 설정 차단으로</p>
+                <p class="popup_title">서비스 이용이 불가합니다.</p>
+                <p class="popup_title">&nbsp;</p>
+                <p class="popup_text">브라우저 쿠키 사용 설정 후,</p>
+                <p class="popup_text">다시 접속해 주시기 바랍니다.</p>
+                <span class="closeBtn">닫기</span>
+            </div>
+        </div>
+<!-- //pc/include/incFooter.jsp -->
+
+<!-- <%-- js --%>
+<jsp:include page="./pointPageJs_CU.jsp" flush="false" /> -->
+<!-- pointPageJs_CU.jsp -->
+<script type="text/javascript">
+$(document).ready(function(){
+	PointFunc.initEvent();
+});
+
+var PointFunc = {
+	initEvent:function(){
+
+		// 포인트 전체사용버튼
+		$("div.point_use > div.btn.maxBtn").click(function(){
+
+			$("div.maxBtn").each(function(){
+
+				if($(this).parent().is("li")){
+
+					var obj = $(this).parents('.pointGroup');
+
+					var avlPnt = Number(obj.find('.avlPnt').attr('val'));  // 사용 가능한 보유 포인트
+					var minAvlPnt = Number(obj.find('.minAvlPnt').val());  // 최소 사용가능 금액
+
+					if(avlPnt >= minAvlPnt){
+
+					    $(this).click();
+                    }else{
+
+                        obj.find('div.initBtn').click();    // 초기화 클릭
+                    }
+				}
+			});
+		});
+
+		//전액충전 버튼 클릭 이벤트
+		$('.maxBtn').click(function(){
+			var ttlPntAmt = Number($('#ttlPntAmt').attr('val'));	//충전할 포인트
+
+			var obj = $(this).parents('.pointGroup');
+			var pntObj = obj.find('.pnt');
+			var pntAmtObj = obj.find('.pntAmt');
+			var cprtAmtObj = obj.find('.cprtAmt');
+			var avlPntObj = obj.find('.avlPnt');
+			var pntExchRate = obj.find('.pntExchRate').val();
+
+			var pnt = Number(pntObj.attr('val'));					//충전할 포인트
+			var cprtAmt = Number(cprtAmtObj.attr('val'));			//전환된 결제금액
+			var avlPnt = Number(avlPntObj.attr('val'));				//보유 포인트
+
+			//javascript 소수점 계산 오류 방지
+			//카드 수수료율 적용
+			var pntAmt = parseFloat(avlPnt * pntExchRate).toFixed(2);
+			pntAmt = getCalcPnt(pntAmt, 'Y');
+			pntAmtObj.attr('val', pntAmt);
+
+			//가맹점 수수료율 적용
+			var shopPntRate = Number('${result.shopPntRate}');		//가맹점 수수료율
+			var cprtAmt = parseFloat(pntAmt - (pntAmt * (shopPntRate/100) ) ).toFixed(2);
+			cprtAmt = getCalcPnt(cprtAmt, 'Y');
+
+			pnt = avlPnt;
+
+			//사용포인트 표시
+			pntObj.attr('val', pnt);
+			pntObj.val(PHUtil.setComma(pnt));
+			$('#total_pnt').text(PHUtil.setComma(getTtlPnt()));
+
+			//전환 포인트 표시
+			cprtAmtObj.attr('val', cprtAmt);
+			cprtAmtObj.text(PHUtil.setComma(cprtAmt));
+
+			$('#ttlPntAmt').attr('val', getTtlPntAmt());
+			$('#ttlPntAmt').text(PHUtil.setComma(getTtlCprtAmt()));
+			$('#total_pntAmt').text(PHUtil.setComma(getTtlCprtAmt()));
+
+			//충전할 포인트 0초과일 경우 확인버튼 활성화
+			toggleConfirmBtn();
+		});
+
+		//초기화 버튼 클릭 이벤트
+		$('.initBtn').click(function(){
+			var pntObj = $(this).parents('.pointGroup').find('.pnt');
+			var cprtAmtObj = $(this).parents('.pointGroup').find('.cprtAmt');
+			var pntAmtObj = $(this).parents('.pointGroup').find('.pntAmt');
+
+			pntObj.attr('val', 0);
+			pntObj.val(0);
+			$('#total_pnt').text(PHUtil.setComma(getTtlPnt()));
+
+			cprtAmtObj.attr('val', 0);
+			cprtAmtObj.text(0);
+
+			pntAmtObj.attr('val', 0);
+
+			$('#ttlPntAmt').attr('val', getTtlPntAmt());
+			$('#ttlPntAmt').text(PHUtil.setComma(getTtlCprtAmt()));
+			$('#total_pntAmt').text(PHUtil.setComma(getTtlCprtAmt()));
+
+			//충전할 포인트 0초과일 경우 확인버튼 활성화
+			toggleConfirmBtn();
+		});
+
+		//확인 버튼 클릭 이벤트
+		$('#confirmBtn').click(function(){
+			if(checkValidate()){
+				PointFunc.pay();
+			}
+		});
+
+		//취소 버튼 클릭 이벤트
+		$('#cancelBtn').click(function(){
+			var pgTrNo			= '${result.pg_tr_no}';
+			var phubTrNo		= '${result.phubTrNo}';
+			var payAmt			= 0;
+			var points			= 0;
+			var wonAmt			= 0;
+			var payMethod		= '${result.payMethod}';
+			var retCode			= 'F999';
+			var retMsg			= '사용자 취소';
+
+			$('#return_pgTrNo').val(pgTrNo);
+			$('#return_phubTrNo').val(phubTrNo);
+			$('#return_payAmt').val(payAmt);
+			$('#return_points').val(points);
+			$('#return_wonAmt').val(wonAmt);
+			$('#return_payMethod').val(payMethod);
+			$('#return_retCode').val(retCode);
+			$('#return_retMsg').val(retMsg);
+
+			var url = '${result.return_url_2}';
+			var attrObj = {'form' : '#formReturn'};
+			PHFnc.doAction(url, '', attrObj);
+		});
+		initPointPage();
+	},
+	pay:function(){
+		var pntList = new Array();
+		$('.pointGroup').each(function(){
+			var data = new Object() ;
+			data.pntCd = $(this).find('.pntCd').val();
+			data.pntTrNo = $(this).find('.pntTrNo').val();
+			data.pntAmt = $(this).find('.pntAmt').attr('val');
+			data.cprtAmt = $(this).find('.cprtAmt').attr('val');
+			data.dealUnit = $(this).find('.dealUnit').val();
+			data.pntExchRate = $(this).find('.pntExchRate').val();
+			data.avlPnt = $(this).find('.avlPnt').attr('val');
+			data.pnt = $(this).find('.pnt').attr('val');
+			data.minAvlPnt = $(this).find('.minAvlPnt').val();
+
+			if(Number(data.pntAmt) > 0){
+				pntList.push(data);
+			}
+		});
+		var pntListJson = JSON.stringify(pntList);
+
+		var ttlPntAmt = getTtlPntAmt();
+		var ttlCprtAmt = getTtlCprtAmt();
+		var ttlRmndAmt = 0;
+
+		var url = '/phub/std/pay.do';
+		var params = {
+			'phubTrNo'		: '${result.phubTrNo}',
+			'dealInd'		: '${result.dealInd}',
+			'dealPgInd'		: '${result.dealPgInd}',
+			'custId'		: '${result.custId}',
+			'ttlPntAmt'		: ttlPntAmt,
+			'ttlCprtAmt'	: ttlCprtAmt,
+			'ttlRmndAmt'	: ttlRmndAmt,
+			'shopPntRate'	: '${result.shopPntRate}',
+			'pntList'		: pntListJson
+ 		}
+		var type = 'post';
+		var dataType = 'json';
+		var success = function(data, textStatus, jqXHR){
+			if(data.ret_code == '00'){
+				PointFunc.pgRetSubmit(data);
+			}
+		}
+		PHFnc.ajax(url, params, type, dataType, success, errCustom, true, true);
+	},
+	pgRetSubmit:function(data){
+		var pgTrNo = data.pg_tr_no;
+		var phubTrNo = data.phub_tr_no;
+		var payAmt = data.pay_amt;
+		var points = data.points;
+		var wonAmt = data.won_amt;
+		var authLimitDtm = data.auth_limit_dtm;
+		var payMethod = data.pay_method;
+		var retCode = data.ret_code;
+		var retMsg = data.ret_msg;
+		var returnUrl2 = data.return_url_2;
+
+		$('#hdn_pgTrNo').val(pgTrNo);
+		$('#hdn_phubTrNo').val(phubTrNo);
+		$('#hdn_payAmt').val(payAmt);
+		$('#hdn_points').val(points);
+		$('#hdn_wonAmt').val(wonAmt);
+		$('#hdn_authLimitDtm').val(authLimitDtm);
+		$('#hdn_payMethod').val(payMethod);
+		$('#hdn_retCode').val(retCode);
+		$('#hdn_retMsg').val(retMsg);
+
+		var url = returnUrl2;
+		var attrObj = {'form' : '#pointForm'};
+		PHFnc.doAction(url, '', attrObj);
+	}
+}
+
+//초기 포인트 값 설정
+var initPointPage = function(){
+
+	var ttlAvlPnt = $('#ttlAvlPnt').attr('val');   //총 소유 포인트
+
+	//각 소유 포인트 표시
+	$('.pointGroup').each(function(){
+		var avlPntObj = $(this).find('.avlPnt')
+		var avlPnt = avlPntObj.attr('val');
+		avlPntObj.text(PHUtil.setComma(avlPnt));
+	});
+
+	//총 소유 포인트 comma 설정하여 표시
+	$('#ttlAvlPnt').text(PHUtil.setComma(ttlAvlPnt));
+	$('#total_avlPnt').text(PHUtil.setComma(ttlAvlPnt));
+
+	//전환된 결제금액 0 표시
+	$('.cprtAmt').text(0);
+}
+
+//포인트 입력값 input값으로 입력 변환
+function setPntAmt(obj){
+	var pntObj = obj.parents('.pointGroup').find('.pnt');
+	var pntAmtObj = obj.parents('.pointGroup').find('.pntAmt');
+	var cprtAmtObj = obj.parents('.pointGroup').find('.cprtAmt');
+	var pntExchRate = obj.parents('.pointGroup').find('.pntExchRate').val();
+	var pnt = pntObj.val();
+
+	//입력값 없으면 0처리
+	if(pnt == '' || pnt.match(/\d/g) == null){
+		pntObj.attr('val', 0);
+		pntObj.val('0');
+		$('#total_pnt').text(PHUtil.setComma(getTtlPnt()));
+		pntAmtObj.attr('val', 0);
+		cprtAmtObj.attr('val', 0);
+		cprtAmtObj.text('0');
+	}else{
+		pnt = pnt.match(/\d/g);
+		pnt = pnt.join("");
+		if(pnt.length > 1 && pnt.substring(0,1) == 0){
+			pnt = pnt.substring(1, pnt.length);
+		}
+		//javascript 소수점 계산 오류 방지
+		var pntAmt = parseFloat(pnt * pntExchRate).toFixed(2);
+		pntAmt = getCalcPnt(pntAmt, 'Y');
+		pntAmtObj.attr('val', pntAmt);
+
+		var shopPntRate = Number('${result.shopPntRate}');		//가맹점 수수료율
+		var cprtAmt = parseFloat(pntAmt - (pntAmt * (shopPntRate/100) ) ).toFixed(2);
+		cprtAmt = getCalcPnt(cprtAmt, 'Y');
+
+		pntObj.attr('val', pnt);
+		pntObj.val(PHUtil.setComma(pnt));
+		$('#total_pnt').text(PHUtil.setComma(getTtlPnt()));
+
+		pntAmtObj.attr('val', pntAmt);
+		cprtAmtObj.attr('val', cprtAmt);
+		cprtAmtObj.text(PHUtil.setComma(cprtAmt));
+	}
+	//포인트 입력 시 각 포인트 확인 및 총포인트 계산, 표시
+	setTtlPntAmt(pntObj, pntAmtObj, cprtAmtObj);
+}
+
+//포인트 입력 시 각 포인트 확인 및 총포인트 계산, 표시
+function setTtlPntAmt(pntObj, pntAmtObj, cprtAmtObj){
+	var isValid = true;
+	var msg = '';
+	var ttlPntAmt = getTtlPntAmt();					//충전할 포인트
+
+	//보유 포인트보다 충전할 포인트가 클 경우(카드사별)
+	var avlPnt = Number(cprtAmtObj.parent().parent().find('.avlPnt').attr('val'));
+	var pnt = Number(pntObj.attr('val'));
+
+	if(avlPnt < pnt && isValid){
+		isValid = false;
+		msg = '입력하신 포인트보다 보유 포인트가 부족 합니다.';
+	}
+
+	if(!isValid){
+		PHFnc.alert(msg);
+		pntObj.attr('val', 0);
+		pntObj.val(0);
+		pntAmtObj.attr('val', 0);
+		cprtAmtObj.attr('val', 0);
+		cprtAmtObj.text(0);
+	}
+
+	//충전할 포인트 0초과일 경우 확인버튼 활성화
+	toggleConfirmBtn();
+
+	//사용 포인트 표시
+	$('#total_pnt').text(PHUtil.setComma(getTtlPnt()));
+
+	//충전할 포인트 표시
+	$('#ttlPntAmt').attr('val', getTtlPntAmt());
+	$('#ttlPntAmt').text(PHUtil.setComma(getTtlCprtAmt()));
+	$('#total_pntAmt').text(PHUtil.setComma(getTtlCprtAmt()));
+}
+
+//충전할 포인트 0초과일 경우 확인버튼 활성화
+function toggleConfirmBtn(){
+	var ttlCprtAmt = getTtlCprtAmt();
+
+	if(ttlCprtAmt > 0){
+		$('#confirmBtn').removeClass();
+		$('#confirmBtn').addClass('btn_ok_on');
+	}else{
+		$('#confirmBtn').removeClass();
+		$('#confirmBtn').addClass('btn_ok');
+	}
+}
+
+// 총 전환 포인트값 산출
+function getTtlPntAmt(){
+	var ttlPntAmt = 0;
+	$('.pntAmt').each(function(){
+		var pntAmt = PHUtil.nvl($(this).attr('val'));
+		if(pntAmt == ''){
+			pntAmt = 0;
+		}
+		ttlPntAmt += Number(pntAmt);
+	});
+	return ttlPntAmt;
+}
+
+function getTtlCprtAmt(){
+	var ttlCprtAmt = 0;
+	$('.cprtAmt').each(function(){
+		var cprtAmt = PHUtil.nvl($(this).attr('val'));
+		if(cprtAmt == ''){
+			cprtAmt = 0;
+		}
+		ttlCprtAmt += Number(cprtAmt);
+	});
+	return ttlCprtAmt;
+}
+
+//총 사용 포인트값 산출
+function getTtlPnt(){
+	var ttlPnt = 0;
+	$('.pnt').each(function(){
+		var pnt = PHUtil.nvl($(this).attr('val'));
+		if(pnt == ''){
+			pnt = 0;
+		}
+		ttlPnt += Number(pnt);
+	});
+	return ttlPnt;
+}
+
+
+function checkValidate(){
+	var isValid = true;
+	var msg = '';
+
+	var ttlCprtAmt = getTtlCprtAmt();
+	var maxPerDeal = Number('${result.maxPerDeal}');
+	var minPerDeal = Number('${result.minPerDeal}');
+
+	if(ttlCprtAmt <= 0){
+		isValid = false;
+		return isValid;
+	}else if(ttlCprtAmt < minPerDeal){
+		minPerDeal = PHUtil.setComma(minPerDeal);
+		msg = '최소 포인트금액은 '+minPerDeal+'P 입니다.';
+		isValid = false;
+	}else if(maxPerDeal < ttlCprtAmt){
+		maxPerDeal = PHUtil.setComma(maxPerDeal);
+		msg = '거래당 사용가능한 포인트금액은 '+maxPerDeal+'P 입니다.';
+		isValid = false;
+	}
+
+	if(!isValid){
+		PHFnc.alert(msg);
+		return isValid;
+	}
+
+
+    $('.pointGroup').each(function(){
+
+        var pnt = Number($(this).find('.pnt').attr('val'));
+        var pntNm = $(this).find('img').attr('alt');
+        var pntAmt = Number($(this).find('.pntAmt').attr('val'));
+		var avlPnt = Number($(this).find('.avlPnt').attr('val'));
+		var dealUnit = Number($(this).find('.dealUnit').val());
+		var minAvlPnt = Number($(this).find('.minAvlPnt').val());
+		var maxPerDeal = Number($(this).find('.maxPerDeal').val());
+
+        if(pntAmt > 0){
+
+            if(pntAmt%dealUnit > 0){
+
+                msg = '거래단위를 확인해주세요';
+                isValid = false;
+            }else if(avlPnt < minAvlPnt){
+
+                msg = pntNm + '의 최소 사용 가능한 포인트가 부족합니다.';
+                isValid = false;
+            }else if(pnt < minAvlPnt){
+
+                msg = pntNm + '의 최소 사용 포인트는 '+ minAvlPnt +'포인트 이상입니다.';
+                isValid = false;
+            }
+        }
+
+		if(!isValid){
+			PHFnc.alert(msg);
+			return isValid;
+		}
+	});
+
+	return isValid;
+}
+
+
+//포인트 소수점 계산
+function getCalcPnt(pnt, isInput){
+	var calcStrMode = '${result.CALC_STR_MODE}';
+
+	//직접 입력
+	if(isInput == 'Y'){
+		if(calcStrMode == 'FLOOR'){
+			pnt = Math.floor(pnt);
+		}else if(calcStrMode == 'CEIL'){
+			pnt = Math.ceil(pnt);
+		}else if(calcStrMode == 'ROUND'){
+			pnt = Math.round(pnt);
+		}
+	//전액충전 버튼 클릭
+	}else{
+		if(calcStrMode == 'FLOOR'){
+			pnt = Math.ceil(pnt);
+		}else if(calcStrMode == 'CEIL'){
+			pnt = Math.floor(pnt);
+		}else if(calcStrMode == 'ROUND'){
+			pnt = Math.floor(pnt);
+		}
+	}
+	return pnt;
+}
+</script>
+<!-- //pointPageJs_CU.jsp -->
+</body>
+</html>

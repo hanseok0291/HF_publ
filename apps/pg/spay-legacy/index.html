@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>세틀뱅크 홈페이지 퍼블리싱 안내</title>
+<script type="text/javascript" src="pc/js/jquery-1.8.2.min.js"></script>
+
+
+<style>
+	html, body { width: 100%; height: 100%; }
+	p { margin: .25em 0; }
+	body { margin: 0; padding: 0; background-color: #fff; font-family: 'Nanum Square Round', 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; font-size: 12px; line-height: 1.4; letter-spacing: -0.03em; color: #222; }
+	input, button, label { font-family: 'Nanum Square Round', 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; }
+	header { margin: 0; padding: 20px 20px; border-bottom: 1px solid #ccc; }
+	header h1 { margin: 0 0 10px; font-size: 24px; font-weight: 700; color: #faa61a; }
+	header p { line-height: 1.4; }
+	.main { position: relative; padding: 0 20px 20px; }
+	h2 { margin: 30px 0 10px; font-size: 18px; font-weight: 800; }
+	small { font-size: 90% !important; color: #9a9a9a; }
+	ul { margin: 0; padding-left: 1.667em; list-style: disc; }
+	ul ul { margin-top: .333em; list-style: circle; }
+	li { margin-top: .333em; }
+	ul li:first-child { margin-top: 0; }
+	a { color: #1d8dd8; }
+	a, a:hover, a:active, a:focus { text-decoration: underline; }
+	.strong { font-weight: 500; }
+	.table-responsive { width: 100%; overflow-x: auto; border: 1px solid #ddd; }
+	.table { margin: 0; min-width: 550px;  border-collapse: collapse; width: 100%; font-size: 12px; border: 0; }
+	.table th, .table td {  padding: 5px 10px; height: auto; border: 1px solid #ddd; }
+	.table th { background: #f1f2f4; color: #222; font-weight: 500; text-align: center; }
+	.table .date, .table .status { text-align: center; }
+	.well { padding: 20px; border: 2px solid #ddd; }
+	.bg-info { background: #dbf5ff; }
+	.bg-success { background: #e7fbe2; }
+	.bg-warning { background: #ff9; }
+	.bg-danger { background: #ffe5e8; }
+	.bg-wait { background: #eee; color: #888; }
+	.del { text-decoration: line-through; }
+	code { padding: 2px 4px; background-color: #f9f2f4; font-size: 96%; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; color: #c7254e; }
+	.text-primary { color: #faa61a; }
+	.text-info { color: #1d8dd8; }
+	.text-danger { color: #ff4f51; }
+	.text-success { color: #28a745; }
+	.badge { display: inline-block; padding: 3px 4px; border-radius: 2px; background-color: #45a3e3; font-size: 92%; line-height: 1.1; color: #fff; }
+	.badge-primary { background-color: #faa61a; }
+	.badge-wait { background-color: #b7b7b7; }
+	.btn { display: inline-block; padding: .25em .5em; border: 1px solid #5e8cc0; border-radius: .5em; background-color: transparent; font-size: 11px; color: #5e8cc0; line-height: 1.2; }
+	.flip { position: relative; }
+	.flip .flip-body { display: none; }
+	.flip.open .flip-body { display: block; }
+	.flip.open .btn-flip .open { display: none; }
+	.flip:not(.open) .btn-flip .close { display: none; }
+</style>
+<script>
+$(document).ready(function(){
+	$(".status:contains('검토 요청')").parents("tr").addClass("bg-warning");
+	$(".status:contains('작업 중'), .status:contains('검토 중'), .status:contains('수정 예정')").parents("tr").addClass("bg-danger");
+	$("li.text-success").parents("tr").addClass("bg-success");
+	$(".status:empty").parents("tr").addClass("bg-wait");
+});
+</script>
+</head>
+
+<body>
+<header>
+	<h1>PG 결제창(레거시) 퍼블리싱 안내</h1>
+	<p>최종 수정일 : 2022-01-14</p>
+</header>
+
+<div class="main">
+<!--	<h2>GUIDE</h2>
+	<div class="table-responsive">
+		<table class="table">
+			<colgroup>
+				<col style="width: 15%">
+				<col style="width: 30%">
+				<col style="width: 15%">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>구분</th>
+					<th>화면명</th>
+					<th>파일</th>
+					<th>날짜</th>
+					<th>상태</th>
+					<th>비고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="4">공통<br> (common)</td>
+					<td>레이아웃</td>
+					<td><a href="common/layout.html" target="_blank">layout</a></td>
+					<td class="date">2019-07-10</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>공통 레이아웃</li>
+							<li>2019-07-08 : [공통] viewport 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>서브 레이아웃</td>
+					<td><a href="common/layout_sub.html" target="_blank">layout_sub</a></td>
+					<td class="date">2019-07-11</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>서브 페이지 공통 레이아웃</li>
+							<li>2019-07-08 : 좌측 메뉴 뎁스 추가</li>
+							<li>2019-07-09 : [공통] 페이지 제목 영역 변경</li>
+							<li>2019-07-10 : [공통] 콘텐츠 내 섹션 간격 축소(css)</li>
+							<li>2019-07-11 : [공통] 서브 비주얼, 제목 배경 바 변경(image, css)</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>헤더</td>
+					<td><a href="common/header.html" target="_blank">header</a></td>
+					<td class="date">2019-07-10</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>공통 헤더</li>
+							<li>2019-07-08 : [공통] GNB 서브메뉴 애니메이션 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>푸터</td>
+					<td><a href="common/footer.html" target="_blank">footer</a></td>
+					<td class="date">2019-07-10</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>공통 푸터</li>
+							<li>2019-07-10 : [공통] 상단 이동 버튼 추가</li>
+						</ul>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>-->
+
+	<h2>PAGE</h2>
+	<div class="table-responsive">
+		<table class="table" id="pageTable">
+			<colgroup>
+				<col style="width: 15%">
+				<col style="width: 15%">
+				<col style="width: 15%">
+				<col style="width: 15%">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>구분</th>
+					<th>Depth 1</th>
+					<th>Depth 2</th>
+					<th>파일</th>
+					<th>날짜</th>
+					<th>상태</th>
+					<th>비고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="4">PC</td>
+					<td rowspan="3">약관<br>(provision)</td>
+					<td>전자금융거래 이용약관</td>
+					<td><a href="pc/html/common/provision/layerpop_iprovision1_detail.html" target="_blank">provision1</a></td>
+					<td class="date">2022-01-14</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2022-01-14 : 내용 변경(분쟁 관련 담당자 변경)</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>개인정보 수집 및 이용</td>
+					<td><a href="pc/html/common/provision/layerpop_iprovision2_detail.html" target="_blank">provision2</a></td>
+					<td class="date">-</td>
+					<td class="status">-</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>개인정보 제공 및 위탁 안내</td>
+					<td><a href="pc/html/common/provision/layerpop_iprovision3_detail.html" target="_blank">provision3</a></td>
+					<td class="date">-</td>
+					<td class="status">-</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>신용카드<br>(card)</td>
+					<td>-</td>
+					<td><a href="pc/html/card/card.html" target="_blank">card</a></td>
+					<td class="date">-</td>
+					<td class="status">-</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td rowspan="3">Mobile</td>
+					<td rowspan="3">약관<br>(provision)</td>
+					<td>전자금융거래 이용약관</td>
+					<td><a href="mobile/html/common/provision/mb_iprovision1.html" target="_blank">provision1</a></td>
+					<td class="date">2022-01-14</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2022-01-14 : 내용 변경(분쟁 관련 담당자 변경)</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>개인정보 수집 및 이용</td>
+					<td><a href="mobile/html/common/provision/mb_iprovision2.html" target="_blank">provision2</a></td>
+					<td class="date">-</td>
+					<td class="status">-</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>개인정보 제공 및 위탁 안내</td>
+					<td><a href="mobile/html/common/provision/mb_iprovision3.html" target="_blank">provision3</a></td>
+					<td class="date">-</td>
+					<td class="status">-</td>
+					<td>-</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<h2>MEMO</h2>
+	<div class="well">
+		<ul>
+			<li>PC 새창 팝업 : 720px × 630px</li>
+			<li>브라우저 지원 : 크롬, 파이어폭스, IE9 이상</li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

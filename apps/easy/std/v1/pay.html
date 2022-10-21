@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+<head>
+<title>표준간편결제</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link rel="stylesheet" href="resources/css/owl.carousel.min.css">
+<link rel="stylesheet" href="resources/css/common.css">
+<link rel="stylesheet" href="resources/css/site.css">
+<!--[if lt IE 9]>
+<script type="text/javascript" src="resources/js/html5shiv.js"></script>
+<script type="text/javascript" src="resources/js/respond.min.js"></script>
+<![endif]-->
+<script src="resources/js/jquery-1.8.3.min.js"></script>
+<script src="resources/js/placeholders.min.js"></script>
+<script src="resources/js/owl.carousel.min.js"></script>
+<script src="resources/js/design.js" defer="defer"></script>
+<script src="resources/js/commonmsg.js"></script>
+<script src="resources/js/commonutil.js"></script>
+</head>
+
+<body>
+<script>
+$(document).ready(function() {
+	//계좌 슬라이드
+	$(".bank_slide").owlCarousel({
+		stageElement: 'ul',
+		itemElement: 'li',
+		items: 1,
+		nav: true,
+		smartSpeed: 500
+	});
+
+	$('#closeWindow').click(function() {
+		if ( '' == 'Y' )
+			$.closeSetting();
+		else
+			$.closeOrder();
+	});
+
+	$('#prevPage').click(function() {
+		$.closeOrder();
+	});
+
+	$('#sendMenu').click(function() {
+		$.sendMenu();
+	});
+
+	$('#addAccountNo').click(function() {
+		$.addAccountNo();
+	});
+
+	$('#forgetPassword').click(function() {
+		$.promptMessage("휴대폰 본인인증 요청",  "<span class='text_primary'>비밀번호를 재설정하기 위해<br> 휴대폰본인인증이 진행됩니다.</span>", $('#commonPrompt'), 
+				$('#promptOk'), 
+				"$.resetPassword()");
+	});
+});
+</script>
+
+<!-- wrap -->
+<div id="wrap" class="bg_gray">
+	<!-- header -->
+	<div id="header">
+		<div class="logo_area"><img src="resources/images/logo_payco.png" alt="PAYCO"></div>
+		<div class="tit_area">
+			<button type="button" id="prevPage" class="btn_prev"><i class="ico ico_prev">뒤로가기</i></button>
+			<h1>간편현금결제</h1>
+			<button type="button" id="closeWindow" class="btn_cls"><i class="ico ico_cls">창닫기</i></button>
+		</div>
+	</div>
+	<!-- //header -->
+
+	<!-- content -->
+	<div id="ct" class="pay">
+		<!-- container -->
+		<div class="container">
+			
+			<div class="select_account">
+				<div class="text_right"><button type="button" id="sendMenu" onclick="" class="btn_bankadm"><i class="ico ico_set">계좌/현금영수증관리</i></button></div>
+				
+				<!-- 계좌 슬라이드 -->
+				<div class="bank_slide owl-carousel">
+					<div class="item">
+						<span class="bank"><img src="resources/images/bank/fullname_004.png" alt="국민은행"> 815********945</span>
+					</div>
+					<div class="item">
+						<span class="bank"><img src="resources/images/bank/fullname_088.png" alt="신한은행"> 366*****452</span>
+					</div>
+					<div class="item">
+						<button type="button" class="btn_bankplus"><i class="ico ico_plus_o_sm"></i> <span class="underline">은행계좌 추가</span></button>
+					</div>
+				</div>
+				<!-- //계좌 슬라이드 -->
+			</div>
+
+			<!-- 결제금액 -->
+			<div class="money">
+				<span class="price_wrap">
+					<strong id="price">200,000</strong>원
+				</span>
+				<button type="button" class="btn_help"><i class="ico ico_question"></i></button>
+				<!-- 즉시할인 정보 -->
+				<div class="pop_help">
+					<ul>
+						<li><span class="tit">원금액</span> <span class="price">250,000원</span></li>
+						<li><span class="tit">즉시할인</span> <span class="price">50,000원</span></li>
+						<li class="total"><span class="tit">결제금액(원금액 - 즉시할인)</span> <span class="price">200,000원</span></li>
+					</ul>
+				</div>
+				<!-- //즉시할인 정보 -->
+			</div>
+			<!-- //결제금액 -->
+
+			<!-- 비밀번호 -->
+			<div class="bank_pw">
+				<span class="input input_mark">
+					<span class="mark"><i id="pwd_01" class="on"></i><i id="pwd_02" class="on"></i><i id="pwd_03"></i><i id="pwd_04"></i><i id="pwd_05"></i><i id="pwd_06"></i></span>
+				</span>
+				<span class="input input_help hidden" id="pwdSpan">
+					<input type="password" name="currentPwd" id="currentPwd" style="ime-mode:disabled;" npkencrypt="on" data-keypad-type="num" data-keypad-theme="settle_keypad" data-keypad-next="__hide__" value="" class="i_text tc" maxlength="6" size="24" autofocus placeholder="숫자 6자리">
+				</span>
+				
+				<p class="right_link"><button type="button" id="forgetPassword" class="underline" onClick="layer_open('ly_bank');">비밀번호를 잊으셨나요?</button></p>
+				
+				<p class="feedback">비밀번호를 잘못 입력하셨습니다.<br>
+				5회 실패 시 서비스 이용이 제한됩니다.(1/5)</p>
+			</div>
+			<!-- //비밀번호 -->
+
+			<!-- 현금영수증 -->
+			<div class="cash_check">
+				<span class="checkbox">
+					<input type="checkbox" name="cashReceipt" id="cashReceipt" checked>
+					<label for="cashReceipt">현금영수증 : 01031229785</label>
+				</span>
+				<button type="button" id="manageCashReceipt" onClick="layer_open('ly_manageCashReceipt');" class="btn btn_sm btn_default pull_right">변경</button>
+			</div>
+			<!-- //현금영수증 -->
+		</div>
+		<!-- //container -->
+	</div>
+	<!-- //content -->
+</div>
+<!-- //wrap -->
+
+<!-- Alert Format -->
+<div id="commonAlert" class="ly_pop ly_pwre">
+	<div class="bg"></div>
+	<div id="ly_pwre" class="cont">
+		<div class="ele">
+			<div class="pop_body">
+				<h2 id="alertTitle"></h2>
+				<p id="alertContents"></p>
+			</div>
+			<div class="pop_footer">
+				<button type="button" onclick="layer_close();" class="btn btn_primary">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //Alert Format -->
+
+<!-- Prompt Format -->
+<div id="commonPrompt" class="ly_pop ly_bank">
+	<div class="bg"></div>
+	<div id="ly_bank" class="cont">
+		<div class="ele">
+			<div class="pop_body">
+				<h2 id="promptTitle"></h2>
+				<p id="promptContents"><span class="text_primary"></span></p>
+			</div>
+			<div class="pop_footer btn_type2">
+				<button type="button" onclick="layer_close();" class="btn">취소</button>
+				<button type="button" id="promptOk" class="btn btn_primary">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //Prompt Format -->
+
+<!-- 현금영수증 설정 -->
+<div class="ly_pop ly_manageCashReceipt">
+	<div class="bg"></div>
+	<div id="ly_manageCashReceipt" class="cont">
+		<div class="ele">
+			<div class="pop_body dropdown_wrap">
+				<!-- 분류 선택 드롭다운 -->
+				<div class="dropdown">
+					<div class="head">개인소득공제용</div>
+					<ul class="list">
+						<li class="active"><a href="dropdown_content1_1">개인소득공제용</a></li>
+						<li><a href="dropdown_content1_2">지출증빙용</a></li>
+					</ul>
+				</div>
+				<!-- //분류 선택 드롭다운 -->
+
+				<!-- 개인소득공제용 -->
+				<div id="dropdown_content1_1" class="list_content active">
+					<div class="input">
+						<span class="checkbox circle">
+							<input type="radio" name="private" id="private1" checked>
+							<label for="private1"></label>
+						</span>
+						<input type="text" name="receiptPersonMobileNo" id="receiptPersonMobileNo" placeholder="휴대폰번호(-없이 입력)" maxlength="11" value="01031229785">
+						<button type="button" class="btn_del"><i class="ico ico_del"></i></button>
+					</div>
+					
+					<div class="input">
+						<span class="checkbox circle">
+							<input type="radio" name="private" id="private2">
+							<label for="private2"></label>
+						</span>
+						<input type="text" name="receiptPersonCashCard" id="receiptPersonCashCard" placeholder="현금영수증 카드번호 입력" maxlength="16">
+						<button type="button" class="btn_del"><i class="ico ico_del"></i></button>
+					</div>
+				</div>
+				<!-- //개인소득공제용 -->
+
+				<!-- 지출증빙용 -->
+				<div id="dropdown_content1_2" class="list_content">
+					<div class="input">
+						<span class="checkbox circle">
+							<input type="radio" name="report" id="report1">
+							<label for="report1"></label>
+						</span>
+						<input type="text" name="receiptCompanyNo" id="receiptCompanyNo" placeholder="사업자번호 입력(-없이 입력)" maxlength="10">
+						<button type="button" class="btn_del"><i class="ico ico_del"></i></button>
+					</div>
+					
+					<div class="input">
+						<span class="checkbox circle">
+							<input type="radio" name="report" id="report2">
+							<label for="report2"></label>
+						</span>
+						<input type="text" name="receiptCompanyCashCard" id="receiptCompanyCashCard" placeholder="현금영수증 카드번호 입력" maxlength="16">
+						<button type="button" class="btn_del"><i class="ico ico_del"></i></button>
+					</div>
+				</div>
+				<!-- //지출증빙용 -->
+			</div>
+
+			<div class="pop_footer">
+				<button type="button" onclick="layer_close();" class="btn btn_primary">저장</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //현금영수증 설정 -->
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!-- <%@  page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"
+%><%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"
+%> -->
+
+<!--
+   Point Hub version 1.0
+
+   Copyright ⓒ 2014 kt corp. All rights reserved.
+
+   This is a proprietary software of kt corp, and you may not use this file except in
+   compliance with license agreement with kt corp. Any redistribution or use of this
+   software, with or without modification shall be strictly prohibited without prior written
+   approval of kt corp, and the copyright notice above does not evidence any actual or
+   intended publication of such software.
+ -->
+<!-- <%--
+ **********************************************************************************************
+ * @desc : KMC본인인증 결과 수신 페이지
+ * @FileName : /pointHub/src/main/webapp/WEB-INF/views/pc/std/validateResult.jsp
+ * @author 이형우
+ * @since 2018.11.13
+ * @version 1.0
+ * @see
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ * 수 정 일             수 정 자          수정내용
+ * ----------   --------   -----------------------------
+ * 2018.11.13    이형우        최초생성
+ * </pre>
+ **********************************************************************************************
+--%> -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<!-- <%-- Head --%>
+	<jsp:include page="/WEB-INF/views/pc/include/globalVar.jsp" flush="false" />
+
+	<%-- Head --%>
+	<jsp:include page="/WEB-INF/views/pc/include/incHead.jsp" flush="false" /> -->
+	<!-- pc/include/incHead.jsp -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+	<link rel="shortcut icon" type="image/x-icon" href="../../../favicon/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="../../../favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../../favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../../favicon/favicon-16x16.png">
+	<link rel="mask-icon" href="../../../favicon/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+
+	<title>포인트다모아</title>
+
+	<link rel="stylesheet" href="../../../pc/css/style.css?${TimeStamp}">
+	<script type="text/javascript" src="../../../common/jQuery/jquery.min.js?v331"></script>
+	<script type="text/javascript" src="../../../common/pubJs/script.js?v=js_Ver1&${TimeStamp}"></script>
+	<!--[if lt IE 9]>
+	<script src="../../../common/pubJs/html5shiv.js"></script>
+	<script src="../../../common/pubJs/html5shiv-printshiv.js"></script><![endif]-->
+	<!-- //pc/include/incHead.jsp -->
+</head>
+<body>
+
+
+<!-- <%--
+	*******************************************************************************
+	** Html 구현
+	*******************************************************************************
+--%>
+<%-- Footer --%>
+<jsp:include page="/WEB-INF/views/pc/include/incFooter.jsp" flush="false" /> -->
+<!-- pc/include/incFooter.jsp -->
+<!-- <%-- 공통 js --%> -->
+<script src="../../../common/js/ph-const.js?${TimeStamp}"></script>
+<script src="../../../common/js/ph-fnc.js?${TimeStamp}"></script>
+<script src="../../../common/js/ph-util.js?${TimeStamp}"></script>
+<script src="../../../common/js/ph-valid.js?${TimeStamp}"></script>
+<!-- <%--
+<script type="text/javascript">
+$(function(){
+	// javascript 구현
+});
+</script>
+<section id="pop-loading" class="popup loading" style="position:fixed;">
+	<div class="bg"></div>
+	<img src="../../../mb/images/common/loading.gif" alt="로딩중"/>
+</section>
+
+<footer>
+	<small>Copyright (c) 2018 KT, Inc.</small>
+</footer>
+--%> -->
+
+<form id="formReturn" action="${return_url_2}" method="post">
+	<input type="hidden" name="pg_tr_no" id="return_pgTrNo" value="${pg_tr_no}">
+	<input type="hidden" name="phub_tr_no" id="return_phubTrNo" value="">
+	<input type="hidden" name="pay_amt" id="return_payAmt" value="">
+	<input type="hidden" name="points" id="return_points" value="">
+	<input type="hidden" name="points_amt" id="return_pointsAmt" value="0">
+	<input type="hidden" name="won_amt" id="return_wonAmt" value="">
+	<input type="hidden" name="auth_limit_dtm" value="">
+	<input type="hidden" name="pay_method" id="return_payMethod" value="">
+	<input type="hidden" name="ret_code" id="return_retCode" value="${ret_code}">
+	<input type="hidden" name="ret_msg" id="return_retMsg" value="${ret_msg}">
+</form>
+
+<form id="dnlFormReturn" action="${return_url_2}" method="post">
+	<input type="hidden" name="pg_tr_no" id="dnl_return_pgTrNo" value="${pg_tr_no}">
+	<input type="hidden" name="phub_tr_no" id="dnl_return_phubTrNo" value="">
+	<input type="hidden" name="pay_amt" id="dnl_return_payAmt" value="">
+	<input type="hidden" name="points" id="dnl_return_points" value="">
+	<input type="hidden" name="points_amt" id="dnl_return_pointsAmt" value="">
+	<input type="hidden" name="won_amt" id="dnl_return_wonAmt" value="">
+	<input type="hidden" name="auth_limit_dtm" value="">
+	<input type="hidden" name="pay_method" id="dnl_return_payMethod" value="">
+	<input type="hidden" name="ret_code" id="dnl_return_retCode" value="${ret_code}">
+	<input type="hidden" name="ret_msg" id="dnl_return_retMsg" value="${ret_msg}">
+</form>
+
+<form id="formErr" action="/error_custom.do" method="post">
+	<input type="hidden" name="eCode" id="eCode">
+	<input type="hidden" name="eMsg" id="eMsg">
+</form>
+
+<script type="text/javascript">
+	function errCustom(data){
+		$('#eCode').val(data.ret_code);
+		$('#eMsg').val(data.ret_msg);
+		var url = $('#formErr').attr('action');
+		var attrObj = {'form' : '#formErr'};
+		PHFnc.doAction(url, '', attrObj);
+	}
+</script>
+
+        <div class="tab">
+            <div class="popup_toggle3">
+                <p class="popup_title">브라우저 쿠키 설정 차단으로</p>
+                <p class="popup_title">서비스 이용이 불가합니다.</p>
+                <p class="popup_title">&nbsp;</p>
+                <p class="popup_text">브라우저 쿠키 사용 설정 후,</p>
+                <p class="popup_text">다시 접속해 주시기 바랍니다.</p>
+                <span class="closeBtn">닫기</span>
+            </div>
+        </div>
+<!-- //pc/include/incFooter.jsp -->
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	 var cert_code = '<c:out value="${cert_code}"/>';
+
+	 if(cert_code === 'true') {
+		opener.afterCert();
+	 }else {
+		 var cert_msg = '<c:out value="${cert_msg}"/>';
+		 alert(cert_msg); 	// (I326)본인소유의 포인트만 사용이 가능 합니다.
+	 }
+
+	window.close();
+});
+
+function closeWindow(){
+	window.close();
+}
+</script>
+</body>
+</html>

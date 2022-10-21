@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<title>헥토파이낸셜 지불서비스</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link rel="stylesheet" href="../../css/common.css">
+<script src="../../js/jquery-1.8.3.min.js"></script>
+</head>
+
+<body>
+<!-- wrap -->
+<div class="wrap-default">
+	<!-- header -->
+	<div id="header" class="container">
+		<h1 class="logo"><img src="../../images/logo-spay-white.png" alt="S'pay"></h1>
+	</div>
+	<!-- //header -->
+
+	<!-- main content -->
+	<div id="main">
+		<!-- headline -->
+		<div class="headline container">
+			<h2>영수증 조회</h2>
+			<p>헥토파이낸셜 S’pay 서비스를 통해<br>
+				결제한 내역을 확인하실 수 있습니다.</p>
+		</div>
+		<!-- //headline -->
+
+		<!-- content box -->
+		<div class="content-box container">
+			<!-- form -->
+			<form autocomplete="off">
+				<!-- section - 인증 수단 선택 -->
+				<div class="section">
+					<div class="section-content">
+						<!-- 인증 수단 선택 -->
+						<div class="select-tab">
+							<div class="check-group">
+								<input type="radio" name="authType" id="authTypeName">
+								<label for="authTypeName">구매자명 + 금액</label>
+								<input type="radio" name="authType" id="authTypeEmail">
+								<label for="authTypeEmail">이메일</label>
+							</div>
+						</div>
+						<!-- //인증 수단 선택 -->
+
+						<!-- 구매자명 + 금액 정보 -->
+						<div class="select-tab-content authTypeName">
+							<ul class="form-type">
+								<li>
+									<input type="text" id="buyerNm" name="buyerNm" placeholder="구매자명">
+									<div class="text-error"><!-- 구매자명을 정확히 입력해 주세요. --></div>
+								</li>
+								<li>
+									<input type="tel" id="amt" name="amt" placeholder="결제금액">
+									<div class="text-error"><!-- 결제금액을 정확히 입력해 주세요. --></div>
+								</li>
+							</ul>
+							<ul class="info-list mgt15">
+								<li>결제 시 입력하신 주문자명과 결제금액을 정확히 입력해 주세요.</li>
+							</ul>
+						</div>
+						<!-- //구매자명 + 금액 정보 -->
+
+						<!-- 이메일 정보 -->
+						<div class="select-tab-content authTypeEmail hidden">
+							<ul class="form-type mgt10">
+								<li>
+									<input type="text" name="buyerEmail" id="buyerEmail" placeholder="이메일">
+									<div class="text-error"><!-- 이메일을 정확히 입력해 주세요. --></div>
+								</li>
+							</ul>
+							<ul class="info-list mgt15">
+								<li>결제 시 이메일 주소를 입력하신 경우에만 가능합니다.</li>
+							</ul>
+						</div>
+						<!-- //이메일 정보 -->
+					</div>
+				</div>
+				<!-- //section - 인증 수단 선택 -->
+
+				<!-- bottom button -->
+				<div class="section btn-area">
+					<button type="submit" class="btn btn-lg btn-secondary">조회하기</button>
+				</div>
+				<!-- //bottom button -->
+			</form>
+			<!-- //form -->
+		</div>
+		<!-- //content box -->
+	</div>
+	<!-- //main content -->
+
+	<!-- footer -->
+	<div id="footer">
+		<div class="container">
+			<p>Copyright(c) Hecto Financial Co,. Ltd. All Rights Reserved.</p>
+			<p class="mgt10"><strong class="text-primary">헥토파이낸셜 고객센터 1600-5220</strong></p>
+		</div>
+	</div>
+	<!-- //footer -->
+</div>
+<!-- //wrap -->
+
+<script src="../../js/jquery.placeholder.min.js"></script>
+<script>
+	$(document).ready(function(){
+		// IE9 이하 jquery.placeholder.js 적용
+		$("input, textarea").placeholder();
+
+		// 인증 수단 첫번째 항목 활성
+		$("#authTypeName").prop('checked', true);
+		$(".authTypeEmail").addClass("hidden");
+
+		// 인증 수단 선택
+		$("[name='authType']").click(function(){
+			if($("#authTypeName").is(":checked")){
+				$(".authTypeName").removeClass("hidden");
+				$(".authTypeEmail").addClass("hidden");
+			} else {
+				$(".authTypeName").addClass("hidden");
+				$(".authTypeEmail").removeClass("hidden");
+			}
+		});
+	})
+</script>
+</body>
+</html>

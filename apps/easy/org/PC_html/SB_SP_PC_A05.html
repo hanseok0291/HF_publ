@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="ko" class="wf-loading" style="font-size: 78.71%;"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/site.css">
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../js/webfont.js"></script>
+<script src="../js/design.js" defer="defer"></script>
+
+<!--[if lt IE 9]>
+<script src="/css/bandipay/js/html5shiv.js"></script>
+<link rel="stylesheet" href="/css/bandipay/css/ie-down.css">
+<![endif]-->
+<title>간편결제</title>
+<script>
+
+$(function(){
+
+	var check = true;
+	var arscheck = true;
+
+	
+	$('#doAuthAcctNmCheck').click(function(e){
+		
+		if(!$(this).hasClass('on')){
+			$(this).addClass('on');			
+		}
+
+		layer_open('ly_ars');
+		
+	});
+	
+	$('#doArsCancel').click(function(e){
+		layer_close();
+		check = true;
+
+		if($("#POacctNo").val()){
+			$('.btn_xr.btn_type').addClass('on');
+		}else{
+			$('.btn_xr.btn_type').removeClass('on');
+		}
+	});
+	
+	$('#doArs').click(function(e){
+		if(arscheck){					
+			arscheck = false;	
+		}
+	});
+
+	$("#POacctNo").keyup(function(e){
+		$(this).val($(this).val().replace(/[^0-9]/g,""));
+		
+		if($("#POacctNo").val() != null && $("#POacctNo").val() != ""){
+			if(!$('.btn_xr.btn_type').hasClass('on')){
+				$('.btn_xr.btn_type').addClass('on');
+				$('.btn_xr.btn_type').attr('disabled', false);
+			}
+		}else{
+			if($('.btn_xr.btn_type').hasClass('on')){
+				$('.btn_xr.btn_type').removeClass('on');
+				$('.btn_xr.btn_type').attr('disabled', true);
+			}
+		}
+	});
+});
+
+</script></head>
+
+<body>
+<header id="header">
+	<h1>신규/추가 등록</h1>
+</header>
+
+<div id="ct">
+	
+	
+	<h2 class="logo_fullname"><img src="../img/bank/fullname_002.png" alt="산업은행"></h2>
+	<fieldset class="ars_form">
+		<legend>계좌번호 입력폼</legend>		
+		<ul class="brb0">
+			<li class="master">
+				<span class="stit">예금주</span>
+				<strong>전홍식</strong>
+			</li>
+			<li class="num">
+				<span class="stit">계좌번호</span>
+				<span class="input"><input type="tel" name="POacctNo" id="POacctNo" placeholder="‘-’없이 입력" tabindex="2"></span>
+			</li>
+		</ul>
+	</fieldset>
+	<div class="btn_area4 v1">
+		<p class="txt_cm_cau">본인명의 계좌만 가능<br>가상계좌, 적금, 펀드계좌, 평생계좌등록 불가</p>
+		<ul>
+			<li class="bt1"><button type="button" id="cancle" name="cancle" class="btn_xr btn_type2">취소</button></li>
+			<li class="bt2"><button type="button" onclick="$(this).toggleClass('on');" class="btn_xr btn_type" id="doAuthAcctNmCheck">ARS인증하기</button></li>
+		</ul>
+	</div>
+	</form>
+</div>
+<!-- //content -->
+
+<!-- ARS인증 -->
+<div class="ly_pop ly_ars">
+	<div class="bg"><!-- shadow --></div>
+	<div id="ly_ars" class="cont">      
+		<div class="ele">
+			<section class="inner2">
+				<h2>ARS 인증 전화를 요청합니다.</h2>
+				<p>전화를 받은 후 안내에 따라<br><strong class="fc_reg">생년월일</strong>을 입력하세요</p>
+			</section>
+			<ul class="btn_area3">
+			<li class="bt1"><button type="button" onclick="layer_close();" class="btn_xr btn_type3" id="doArsCancel">취소</button></li>
+			<li class="bt2"><button type="button" onclick="" class="btn_xr btn_type3 fc_reg" id="doArs">ARS 인증하기</button></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- //ARS인증 -->
+
+
+</body></html>

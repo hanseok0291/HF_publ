@@ -1,0 +1,290 @@
+<!doctype html>
+<html>
+<head>
+<title>표준간편결제</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link rel="stylesheet" href="resources/css/owl.carousel.min.css">
+<link rel="stylesheet" href="resources/css/common.css">
+<link rel="stylesheet" href="resources/css/site.css">
+<!--[if lt IE 9]>
+<script type="text/javascript" src="resources/js/html5shiv.js"></script>
+<script type="text/javascript" src="resources/js/respond.min.js"></script>
+<![endif]-->
+<script src="resources/js/jquery-1.8.3.min.js"></script>
+<script src="resources/js/placeholders.min.js"></script>
+<script src="resources/js/owl.carousel.min.js"></script>
+<script src="resources/js/design.js" defer="defer"></script>
+<script src="resources/js/commonmsg.js"></script>
+<script src="resources/js/commonutil.js"></script>
+</head>
+
+<body>
+<script>
+$(document).ready(function() {
+	//배너 슬라이드
+	$(".banner_slide").owlCarousel({
+		stageElement: 'ul',
+		itemElement: 'li',
+		items: 1,
+		loop: true,
+		smartSpeed: 500,
+		autoplay: true,
+		autoplayTimeout: 5000
+	});
+	
+	//등록 은행 체크
+	var btn = $('.bank_list button');
+	btn.click(function(){
+		if  ( $(this).children('.ico_upload').length == 0  ) {
+			$('input[name="bnkCd"]').val($(this).prop('name'));
+			//$.paySend();
+		} else {
+			$.alertMessage(errTitle.bankSelection, errMsg.dualSelection, $('#commonAlert'));
+		}
+	});
+
+	$('#closeWindow').click(function() {
+		if ( 'Y' == 'Y' )
+			$.closeSetting();
+		else
+			$.closeOrder();
+	});
+
+	$('#prevPage').click(function() {
+		$.prevPage();
+	});
+});
+</script>
+
+<!-- wrap -->
+<div id="wrap">
+	<!-- header -->
+	<div id="header">
+		<div class="logo_area"><img src="resources/images/logo_payco.png" alt="PAYCO"></div>
+		<div class="tit_area">
+			<button type="button" id="prevPage" class="btn_prev"><i class="ico ico_prev">뒤로가기</i></button>
+			<h1>은행 선택</h1>
+			<button type="button" id="closeWindow" class="btn_cls"><i class="ico ico_cls">창닫기</i></button>
+		</div>
+	</div>
+	<!-- //header -->
+
+	<!-- content -->
+	<div id="ct" class="select_bank">
+		<!-- 광고 배너 슬라이드 -->
+		<div class="banner_slide owl-carousel owl-dot1">
+			<img src="resources/images/banner_event_01.png" alt="카카오뱅크">
+			<img src="resources/images/banner_event_02.png" alt="sample">
+		</div>
+		<!-- //광고 배너 슬라이드 -->
+
+		<!-- container -->
+		<div class="container">
+			<!-- 안내문 -->
+			<p class="select_bank_info">본인 명의의 계좌만 등록 가능합니다.<br>
+			<span class="text_gray">(1은행 1계좌)</span></p>
+			<!-- 안내문 -->
+
+			<!-- 은행 목록 -->
+			<ul class="bank_list">
+				<li>
+					<button type="button" name="004" class="upload">
+						<span><img src="resources/images/bank/logo_004.png" alt="국민은행"></span>
+						<span>국민은행</span>
+						<i class="ico ico_upload">등록</i>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="088" class="upload event">
+						<span><img src="resources/images/bank/logo_088.png" alt="신한은행"></span>
+						<span>신한은행</span>
+						<i class="ico ico_upload">등록</i>
+						<i class="ico ico_event">이벤트</i>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="005">
+						<span><img src="resources/images/bank/logo_005.png" alt="KEB하나은행"></span>
+						<span>KEB하나은행</span>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="045">
+						<span><img src="resources/images/bank/logo_045.png" alt="새마을금고"></span>
+						<span>새마을금고</span>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="011">
+						<span><img src="resources/images/bank/logo_011.png" alt="NH농협은행"></span>
+						<span>NH농협은행</span>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="023">
+						<span><img src="resources/images/bank/logo_023.png" alt="SC제일은행"></span>
+						<span>SC제일은행</span>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="031">
+						<span><img src="resources/images/bank/logo_031.png" alt="대구은행"></span>
+						<span>대구은행</span>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="032">
+						<span><img src="resources/images/bank/logo_032.png" alt="부산은행"></span>
+						<span>부산은행</span>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="039">
+						<span><img src="resources/images/bank/logo_039.png" alt="경남은행"></span>
+						<span>경남은행</span>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="037">
+						<span><img src="resources/images/bank/logo_037.png" alt="전북은행"></span>
+						<span>전북은행</span>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="034" class="event">
+						<span><img src="resources/images/bank/logo_034.png" alt="광주은행"></span>
+						<span>광주은행</span>
+						<i class="ico ico_event">이벤트</i>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="035">
+						<span><img src="resources/images/bank/logo_035.png" alt="제주은행"></span>
+						<span>제주은행</span>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="002">
+						<span><img src="resources/images/bank/logo_002.png" alt="산업은행"></span>
+						<span>산업은행</span>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="071">
+						<span><img src="resources/images/bank/logo_071.png" alt="우체국"></span>
+						<span>우체국</span>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="048">
+						<span><img src="resources/images/bank/logo_048.png" alt="신협"></span>
+						<span>신협</span>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="007">
+						<span><img src="resources/images/bank/logo_007.png" alt="수협은행"></span>
+						<span>수협은행</span>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="003">
+						<span><img src="resources/images/bank/logo_003.png" alt="기업은행"></span>
+						<span>기업은행</span>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="020">
+						<span><img src="resources/images/bank/logo_020.png" alt="우리은횅"></span>
+						<span>우리은횅</span>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="027">
+						<span><img src="resources/images/bank/logo_027.png" alt="시티은행"></span>
+						<span>시티은행</span>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="089">
+						<span><img src="resources/images/bank/logo_089.png" alt="케이뱅크"></span>
+						<span>케이뱅크</span>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="090">
+						<span><img src="resources/images/bank/logo_090.png" alt="카카오뱅크"></span>
+						<span>카카오뱅크</span>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="209">
+						<span><img src="resources/images/bank/logo_209.png" alt="유안타증권"></span>
+						<span>유안타증권</span>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="247">
+						<span><img src="resources/images/bank/logo_247.png" alt="NH투자증권"></span>
+						<span>NH투자증권</span>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="280">
+						<span><img src="resources/images/bank/logo_280.png" alt="유진투자증권"></span>
+						<span>유진투자증권</span>
+					</button>
+				</li>
+				<li>
+					<button type="button" name="287">
+						<span><img src="resources/images/bank/logo_287.png" alt="메리츠종금"></span>
+						<span>메리츠종금</span>
+					</button>
+				</li>
+			</ul>
+			<!-- //은행 목록 -->
+		</div>
+		<!-- //container -->
+	</div>
+	<!-- //content -->
+</div>
+<!-- //wrap -->
+
+<!-- Alert Format -->
+<div id="commonAlert" class="ly_pop ly_pwre">
+	<div class="bg"></div>
+	<div id="ly_pwre" class="cont">
+		<div class="ele">
+			<div class="pop_body">
+				<h2 id="alertTitle"></h2>
+				<p id="alertContents"></p>
+			</div>
+			<div class="pop_footer">
+				<button type="button" onclick="layer_close();" class="btn btn_primary">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //Alert Format -->
+
+<!-- Prompt Format -->
+<div id="commonPrompt" class="ly_pop ly_bank">
+	<div class="bg"></div>
+	<div id="ly_bank" class="cont">
+		<div class="ele">
+			<div class="pop_body">
+				<h2 id="promptTitle"></h2>
+				<p id="promptContents"><span class="text_primary"></span></p>
+			</div>
+			<div class="pop_footer btn_type2">
+				<button type="button" onclick="layer_close();" class="btn">취소</button>
+				<button type="button" id="promptOk" class="btn btn_primary">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //Prompt Format -->
+</body>
+</html>

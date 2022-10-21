@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<html lang="ko" class="wf-notosans-n4-active wf-active" style="font-size: 73.24%;"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/site.css">
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../js/webfont.js"></script>
+<script src="../js/design.js" defer="defer"></script>
+<script>
+	var scCheckFlag = true;
+	var goNextPage = false;
+	
+	
+	$(function(){
+		
+		$('input[type=tel]').keyup(function(e){
+			
+			var id = $(this).attr('id');
+			var len =  $(this).attr("maxLength");
+			
+			if(this.value != this.value.replace(/[^0-9]/g, '')){
+				alert("숫자만 입력하세요");
+				this.value = this.value.replace(/[^0-9]/g, '');
+			}else{
+				if(this.value.length > len){
+					$(this).val(this.value.substring(0,len));					
+				}else if($('#'+id).val().length ==len){
+					$(this).next('input').focus();
+					
+				}
+			}
+		});
+	
+		$('[data-type="number"]').keyup(function() {
+			if (this.value != this.value.replace(/[^0-9]/g, '')) {
+				this.value = this.value.replace(/[^0-9]/g, '');
+				return;
+			}
+		});
+
+		$('[data-check="on"]').keyup(function() {
+			reqBtnCheck();
+		});
+
+		$('[data-focus="on"]').keyup(function() {
+
+			var group = $(this).attr("data-focus-group");
+			var step = $(this).attr("data-focus-step");
+			var length = $(this).attr("maxlength");
+
+			if($(this).val().length ==length){
+				$(this).parents().find('[data-focus-group="'+group+'"][data-focus-step="'+(Number(step)+1)+'"]').focus();
+			}
+		});
+		
+		$(".ly_tel").click(function(){
+			$("#mvno_txt").text($(this).text().replace("(","").replace(")",""));
+			$("#mobileCo").val($(this).val());
+			
+			$("#mvnoYn").val("Y");
+		});
+		
+		$("#sel_mvno").click(function(){
+			if($("#mvnoYn").val() !="Y" ){
+				$(".tel_select").find("button").each(function(){
+					$(this).removeClass("selected");
+				});
+			}
+			
+			if($("#mvnoYn").val()=="N"){
+				
+				$(".tel_select").find("button").each(function(){
+					$(this).removeClass("selected");
+				});
+				
+				$(".tel_select").find($('[name='+$("#mobileCo").val()+']')).addClass("selected");
+				
+			}
+			
+		});
+		
+		$(".tel_select").find("button").click(function(){
+			
+			$(".tel_select").find("button").each(function(){
+				$(this).removeClass("selected");
+			});
+			
+			$(this).addClass("selected");
+
+			if($(this).val()){
+				$("#mvno_txt").text("알뜰폰");
+				$("#mvnoYn").val("N");
+				$("#mobileCo").val($(this).val());
+			}
+		});
+			
+
+		//화면 초기 진입시 SKT 선택
+		$("#SKT").click();
+		
+	});	
+
+	function doLayer(id){
+
+		if($("#mvnoYn").val() != "Y"){
+			
+			$("#"+id).find("button").each(function(){
+				$(this).removeClass("selected");
+			});
+		}
+		
+		layer_open(id);
+	}
+
+	function agreeCancelConfirm(){
+		if(confirm("인증을 취소하시겠습니까?")){
+			$("#_method").val("payCancel");
+			$("#frm").attr('action',''+URL_PATH).submit();
+		}
+	}
+
+	
+	function doSmsAction(type){
+		$("#authType").val(type);
+
+		if(type == "app"){
+			$(".capcha").hide();
+			$(".btn_area2").addClass("v1");
+			$("#SKT2").hide();
+
+			//앱인증 시 SKT 알뜰폰 없음.
+			if($('#mobileCo').val() == "SKT2"){
+				$('#SKT').click();
+			}
+			
+		}else{
+			$(".capcha").show();
+			$(".btn_area2").removeClass("v1");
+			$("#SKT2").show();
+		}
+
+		reqBtnCheck();
+		
+		
+	}
+
+	function reqBtnCheck(){
+		var btnFlg = true;
+		$('[data-check="on"]').each(function(e){
+
+			var dataId = $("#"+$(this).attr('id')).val();
+
+			if($("#authType").val() == "app"){
+				//보안숫자 제외
+				if($(this).attr('id') != "answer"){
+					if(!dataId) btnFlg = false;
+				}
+			}else{
+				if(!dataId) btnFlg = false;
+			}
+		});
+
+		var $btn = $("#auth_req");
+		if(btnFlg){
+			$btn.removeClass("off");
+			$btn.addClass("on");
+			$btn.attr('disabled', false);
+		}else{
+			$btn.removeClass("on");
+			$btn.addClass("off");
+			$btn.attr('disabled', true);
+		}
+	}
+
+
+</script>
+<title>간편결제</title>
+
+</head>
+<body>
+  <!-- header (고정영역)-->
+  <header id="header">
+	<h1>신규/추가 등록</h1>
+</header>
+  <!-- //header (고정영역)--> 
+  
+  <!-- content -->
+  <div id="ct" class="userskip">
+	<ul class="tab_type">
+	<li><button type="button" onclick="doSmsAction('sms');" class="active">휴대폰본인확인(문자)</button></li>
+	<li><button type="button" onclick="doSmsAction('app');" class="">간편본인확인(앱)</button></li>
+	</ul>
+	
+	<div id="hp" class="inner">
+		<fieldset class="form_type">
+			<legend>휴대폰본인확인 입력폼</legend>
+			<ul>
+				<li class="name">
+					<input type="text" id="PUname" name="PUname" placeholder="이름" class="inppd" tabindex="1" maxlength="15" data-check="on" value="">
+				</li>
+				<li class="hp">
+					<ul>
+					<li class="num_first">
+						<input type="tel" maxlength="6" data-focus-group="hp" data-focus="on" data-focus-step="1" data-type="number" data-check="on" name="PRrn" id="PRrn" placeholder="생년월일 6자리" tabindex="2">
+					</li>
+					<li class="bar">-</li>
+					<li class="num_last">
+						<input type="tel" maxlength="1" data-focus-group="hp" data-focus="on" data-focus-step="2" data-type="number" data-check="on" name="genderCheck" id="genderCheck" tabindex="3"><i></i><i></i><i></i><i></i><i></i><i></i>
+					</li>
+					</ul>
+				</li>
+				<li class="telecom tel_select">
+					<ul>
+					<li><button type="button" id="SKT" name="SKT" onclick="" class="btn_tel selected" value="SKT">SKT</button></li>
+					<li><button type="button" id="KT" name="KT" onclick="" class="btn_tel" value="KT">KT</button></li>
+					<li><button type="button" id="LGT" name="LGT" onclick="" class="btn_tel" value="LGT">LG U+</button></li>
+					<li><button type="button" id="MVNO" name="MVNO" class="btn_tel" onclick="doLayer('ly_subphone')" ;=""><span id="mvno_txt">알뜰폰</span></button></li>
+					</ul>
+					<input type="tel" data-focus-group="hp" data-focus="on" data-focus-step="3" data-check="on" name="phoneNo" id="phoneNo" placeholder="휴대폰번호(-없이 입력)" tabindex="4" maxlength="11">
+				</li>
+				<li class="capcha" style="display: list-item;">
+					<ul>
+					<li class="key">
+						<div id="catpcha"><img src="../img/stickyCaptcha.png" width="80%" height="100%"></div>
+						<button type="button" onclick="" id="refreshBtn" name="refreshBtn" class="btn_refresh"><i class="ico_com ico_refresh">새로고침</i></button>
+					</li>
+					<li>
+						<input type="tel" data-focus-group="hp" data-focus="on" data-focus-step="4" name="answer" id="answer" data-check="on" placeholder="보안숫자 입력" tabindex="5" maxlength="5">
+					</li>
+					</ul>
+				</li>
+			</ul>
+		</fieldset>
+		<!-- /form -->
+		<ul class="btn_area2">
+			<li class="bt1"><button type="button" id="cancle" name="cancle" onclick="agreeCancelConfirm();" class="btn_xr btn_type2">취소</button></li>
+			<li class="bt2"><button type="button" id="auth_req" name="auth_req" class="btn_xr btn_type off" disabled="disabled">인증받기</button></li>
+		</ul>
+	</div>
+	
+</div>    
+      
+  <!-- //content --> 
+  
+  <div class="ly_pop ly_subphone">
+	<div class="bg"><!-- shadow --></div>
+	<div id="ly_subphone" class="cont">      
+		<div class="ele">
+			<ul>
+			<li><button type="button" id="SKT2" name="SKT2" onclick="" class="btn_tel ly_tel" value="SKT2" style="display: inline-block;">SKT(알뜰폰)</button></li>
+			<li><button type="button" id="KT2" name="KT2" onclick="" class="btn_tel ly_tel" value="KT2">KT(알뜰폰)</button></li>
+			<li><button type="button" id="LGT2" name="LGT2" onclick="" class="btn_tel ly_tel" value="LGT2">LGU+(알뜰폰)</button></li>
+			</ul>
+ 			<button type="button" onclick="layer_close();" id="sel_mvno" name="sel_mvno" class="btn_xr btn_type on">확인</button> 
+		</div>
+	</div>
+</div>
+  
+
+
+<!-- //모바일에서 페이지 내 스크롤생성-->
+
+
+<!-- loading -->
+<div class="ly_pop ly_loading" style="display: none;">
+	<div class="bg"><!-- shadow --></div>
+	<div id="ly_loading" class="cont">
+		<div class="ele">
+			<div class="circle_motion"><div class="span"></div></div>
+			<img src="../img/loading.gif" alt="로딩중" class="img_loading">
+		</div>
+	</div>
+</div>
+<script>
+
+	$(document).ajaxStart(function(){
+		openLoading();
+	});
+	
+	$(document).ajaxComplete(function(){
+		closeLoading();
+	});
+
+	function openLoading(){
+		$('html').css('overflow-y','');
+		var ver = 0; // Browser Version
+		if(navigator.appName.charAt(0) == "M"){
+			ver = getInternetVersion("MSIE");		
+			if (ver < "10"){ // ie10 이하
+				$('.ly_loading').addClass('ie9_after');
+			}
+		}
+		layer_open('ly_loading');
+	}
+
+	function closeLoading(){
+		$('html').css('overflow-y','scroll');
+		layer_close();
+	}
+</script>
+
+
+</body></html>

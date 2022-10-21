@@ -1,0 +1,373 @@
+@charset "utf-8";
+
+/**
+* ====================== TABLE OF INDEX ======================
+* - #LAYOUT
+* - #THEME
+* - #COMPONENT
+* - #CONTENT
+* - #UTILITY
+* ============================================================
+*/
+
+
+/* #LAYOUT
+------------------------------------------------------------*/
+/* clearfix */
+#wrap, .container, #header, .logo_area, .tit_area, #ct { clear: both; }
+#wrap:after, .container:after, #header:after, .logo_are:after, .tit_area:after, #ct:after { content: ''; display: block; clear: both; }
+.container { padding-left: 15px; padding-right: 15px; width: 100%; }
+@media only screen and (min-device-width : 420px) {
+	.container { margin-left: auto; margin-right: auto; width: 100%; max-width: 450px; }
+}
+/* ----- default layout ----- */
+#wrap { position: relative; width: 100%; min-width: 320px; min-height: 100%; max-height: 100%; overflow-y: auto; background-color: #fff; }
+
+/* iPad에서 iframe 사이즈 미적용되어 wrap 사이즈 지정 - 레이어 팝업 내 iframe 용 */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+	#wrap { /*margin-left: auto; margin-right: auto; max-width: 400px;*/ max-height: 640px; }
+}
+
+/* ----- header ----- */
+#header { position: relative; background: #fff; text-align: center; -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1); box-shadow: 0 2px 3px rgba(0,0,0,.1); z-index: 99; }
+#header .logo_area { padding: 7px 15px; background-color: #fff; font-size: 0; font-weight: 700; vertical-align: top; }
+#header .logo_area img { vertical-align: middle; }
+#header .tit_area { position: relative; height: 40px; background: #f4f4f4; border-top: 1px solid #dbdbdb; border-bottom: 1px solid #cdcdcd; color: #212121; }
+#header .tit_area h1 { padding: 10px 0; font-size: 16px; line-height: 18px; font-weight: 500; }
+#header .tit_area .btn_prev, #header .tit_area .btn_cls { position: absolute; top: 0; width: 38px; height: 38px; font-size: 0; }
+#header .tit_area .btn_prev { left: 5px; }
+#header .tit_area .btn_cls { right: 5px; }
+#header .tit_area .ico { width: 20px; height: 20px; background: url(../images/tit_icon_black.png) 0 0 no-repeat; background-image: url(../images/tit_icon_black_1x.png)\9; background-size: 40px auto; }
+#header .tit_area .ico.ico_cls { background-position: -20px 0; }
+
+/* ----- 하단 버튼 -----*/
+.fix_btm_btn { position: fixed; bottom: 0; left: 0; right: 0; text-align: center; z-index: 99; }
+.fix_btm_btn .info { margin: 20px auto; }
+
+
+/* #THEME (관리자 설정 영역)
+------------------------------------------------------------*/
+/* 테마 B - blue */
+.themeB #header .logo_area { background-color: #f4f4f4; }
+.themeB #header .tit_area { background-color: #fff; }
+.themeB .btn.on, .themeB .btn.btn_primary { border-color: #2e8dd3; background-color: #2e8dd3; }
+/* 테마 C - green */
+.themeC #header .logo_area { background-color: #263959; }
+.themeC .btn.on, .themeC .btn.btn_primary { border-color: #10cc5e; background-color: #10cc5e; }
+/* 테마 D - yellow */
+.themeD #header .tit_area { border-color: #4d4746; background-color: #4d4746; color: #fff; }
+.themeD #header .tit_area .ico { background-image: url(../images/tit_icon_white.png); background-image: url(../images/tit_icon_white_1x.png)\9; }
+.themeD #header .tit_area i { color: #fff; }
+.themeD .btn.on, .themeD .btn.btn_primary { border-color: #feea34; background-color: #feea34; color: #212121; }
+
+/* ----- 페이지 제목 영역 아이콘 이미지 교체 ----- */
+#header .tit_area .ico.ico_white { background-image: url(../images/tit_icon_white.png); background-image: url(../images/tit_icon_white_1x.png)\9; }
+
+
+/* #COMPONENT
+------------------------------------------------------------*/
+/* ----- icon ----- */
+.ico { display: inline-block; background-image: url(../images/common.png); background-image: url(../images/common_1x.png)\9; background-color: transparent; background-repeat: no-repeat; background-size: 200px auto; font-size: 0; color: transparent; white-space: nowrap; vertical-align: middle; }
+.ico_arr { width: 11px; height: 7px; background-position: 0 0; }
+.ico_plus_o { width: 25px; height: 28px; background-position: -140px 0; }
+.ico_plus_o_sm { width: 13px; height: 13px; background-position: -180px 0; }
+.ico_del { width: 15px; height: 15px; background-position: -40px 0; }
+.ico_star { width: 20px; height: 20px; background-position: -120px 0; }
+.on>.ico_star { background-position: -120px -20px; }
+.ico_speaker { width: 9px; height: 9px; background-position: 0 -40px; }
+.ico_refresh { width: 9px; height: 9px; background-position: 0 -50px; }
+.ico_upload { width: 15px; height: 32px; background-position: -80px -40px; }
+.ico_event { width: 41px; height: 13px; background-position: -100px -40px; }
+.ico_tel { width: 40px; height: 40px; background-position: -40px -40px; }
+.ico_set { width: 15px; height: 15px; background-position: -20px -40px; }
+.ico_question { width: 15px; height: 15px; background-position: -180px -20px; }
+
+/* ----- button ----- */
+.btn { display: inline-block; width: 100%; border: 1px solid #aaa; background-color: #aaa; font-size: 16px; font-weight: 500; color: #fff; line-height: 43px; text-align: center; }
+.btn_sm { padding: 0 10px; width: auto; height: 25px; font-size: 13px; line-height: 23px; }
+.btn_lg { font-size: 17px; line-height: 48px; }
+.btn.btn_white { background-color: #fff; color: #212121; }
+.btn.btn_default { border-color: #d2d2d2; background-color: #ebebeb; color: #878787; }
+.btn.btn_default2 { border-color: #dbdbdb; background-color: #dbdbdb; color: #878787; }
+.btn.on, .btn.btn_primary { border-color: #fa4132; background-color: #fa4132; color: #fff; }
+.btn i { margin-right: 3px; }
+.btn_type2 .btn { float: left; width: 50%; }
+.btn_star, .btn_del { width: 40px; height: 40px; font-size: 0; vertical-align: middle; }
+
+/* ----- accordion ----- */
+.accordion { border: 1px solid #dbdbdb; border-top: 0; }
+.accordion li { border-top: 1px solid #dbdbdb; }
+.accordion li .list_header { position: relative; padding: 10px; }
+.accordion li .list_header .toggle_btn { position: absolute; top: 0; right: 0; width: 40px; height: 40px; }
+.accordion li.active .list_header .toggle_btn .ico_arr { background-position: 0 -20px; }
+.accordion li .list_content { display: none; padding: 10px 0; width: 100%; background-color: #f4f4f4; border-top: 1px solid #dbdbdb; }
+.accordion li .list_content, .accordion li .list_content table { color: #878787; }
+.accordion li .list_content .scroll { padding: 0 10px; }
+
+/* ----- dropdown ----- */
+.ly_pop .pop_body.dropdown_wrap { padding-top: 10px; }
+.dropdown { position: relative; display: block; color: #212121; }
+.dropdown .head { height: 38px; line-height: 38px; font-size: 14px; cursor: pointer; }
+.dropdown .head:after { content: ''; display: inline-block; margin-left: 10px; width: 12px; height: 8px; background: url(../images/common.png) -20px 0 no-repeat; background-image: url(../images/common.png)\9; background-size: 200px auto; }
+.dropdown .head.focus { border-color: #212121; }
+.dropdown .head.focus:after { background-position: -20px -20px; }
+.dropdown .head.focus+.list { z-index: 9; }
+.dropdown .list { display: none; position: absolute; left: 0; right: 0; overflow-y: auto; max-height: 128px; border: 1px solid #212121; background-color: #fff; font-size: 13px; }
+.dropdown .list a { display: block; line-height: 30px; }
+.dropdown li.active { background-color: #f4f4f4; }
+.dropdown li:hover { background-color: #ebebeb; }
+.dropdown~.list_content { display: none; }
+.dropdown~.list_content.active { display: block; }
+
+/* ----- 슬라이드 공통 ----- */
+.owl-carousel { clear: both; margin: auto; max-width: 640px; }
+.owl-carousel:after { content: ''; display: block; clear: both; }
+
+/* dots(pagination) */
+.owl-carousel.owl-dot1 { padding-bottom: 15px; }
+.owl-carousel.owl-dot1 .owl-dots { position: absolute; bottom: 0; margin: 0; width: 100%; text-align: center; font-size: 0; z-index: 2; }
+.owl-carousel.owl-dot1 .owl-dots .owl-dot { display: inline-block; margin: 0 5px; vertical-align: top; }
+.owl-carousel.owl-dot1 .owl-dots span { display: block; width: 8px; height: 8px; background: #dbdbdb; -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; }
+.owl-carousel.owl-dot1 .owl-dots .owl-dot.active span { background: #fa4132; }
+
+/* navigation */
+.owl-next, .owl-prev { position: absolute; top: 50%; margin-top: -10px; width: 20px; height: 20px; background-color: #fff; background-image: url(../images/common.png); background-image: url(../images/common_1x.png)\9; background-size: 200px auto; background-repeat: no-repeat; vertical-align: middle; color: transparent; font-size: 0; }
+.bg_gray .owl-next, .bg_gray .owl-prev { background-color: #f4f4f4; }
+.owl-prev { left: -1px; background-position: -60px -20px; }
+.owl-next { right: -1px; background-position: -80px -20px; }
+.owl-prev.disabled { background-position: -60px 0; }
+.owl-next.disabled { background-position: -80px 0; }
+
+/* ----- layer popup ----- */
+.ly_pop { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99; }
+.ly_pop .bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000; opacity: .6; }
+.ly_pop .cont { width: 100%; height: 100%; position: absolute; top: 0; left: 0; text-align: center; z-index: 999; }
+.ly_pop .cont:before { content: ''; display: inline-block; height: 100%; vertical-align: middle; }
+.ly_pop .ele { position: relative; display: inline-block; margin: 0 auto; width: 80%; max-width: 400px; vertical-align: middle; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
+.ly_pop .pop_body, .ly_pop .pop_footer { clear: both; }
+.ly_pop .pop_body:after, .ly_pop .pop_footer:after { content: ''; clear: both; display: block; }
+.ly_pop .pop_body { padding: 20px 15px; background: #fff; color: #878787; word-break: keep-all; -webkit-border-top-left-radius: 3px; -moz-border-top-left-radius: 3px; border-top-left-radius: 3px; -webkit-border-top-right-radius: 3px; -moz-border-top-right-radius: 3px; border-top-right-radius: 3px; }
+.ly_pop .pop_body h2 { margin-bottom: 15px; font-size: 15px; color: #212121; }
+.ly_pop .pop_body h2:empty { margin-bottom: 0; }
+.ly_pop .pop_footer { overflow: hidden; -webkit-border-bottom-left-radius: 3px; -moz-border-bottom-left-radius: 3px; border-bottom-left-radius: 3px; -webkit-border-bottom-right-radius: 3px; -moz-border-bottom-right-radius: 3px; border-bottom-right-radius: 3px; }
+
+/* ----- 안내 팝업 ----- */
+.btn_help { position: relative; margin: 0 -3px; width: 30px; height: 30px; font-size: 0; overflow: visible; }
+.btn_help.active:after { content: ''; display: block; position: absolute; top: 30px; left: 50%; margin-left: -10px; width: 20px; height: 13px; background-image: url(../images/common.png); background-image: url(../images/common_1x.png)\9; background-repeat: no-repeat; background-size: 200px auto; background-position: -100px -60px; z-index: 88; }
+.pop_help { display: none; position: absolute; top: 42px; left: 0; width: 100%; padding: 15px 20px; background-color: #363a43; -webkit-border-radius: 3px; border-radius: 3px; color: #cdcdcd; z-index: 88; }
+.money .pop_help { font-size: 12px; font-weight: 500; }
+.money .pop_help li { clear: both; line-height: 1.2; }
+.money .pop_help li:after { content: ''; clear: both; display: block; }
+.money .pop_help li+li { padding-top: 8px; }
+.money .pop_help li .tit { float: left; }
+.money .pop_help li .price { float: right; }
+.money .pop_help li.total { margin-top: 8px; padding-top: 10px; border-top: 1px solid #757b89; color: #fff; }
+.money .pop_help li.total .price { font-weight: 700; color: #fa4132; }
+
+/* ----- scroll ----- */
+.scroll { width: 100%; overflow-y: auto; }
+
+/* 안내문 */
+.info { position: relative; margin-top: 20px; padding-left: 20px; color: #878787; }
+.info+.info { margin-top: 5px; }
+.info:after { content: ''; position: absolute; top: 2px; left: 0; width: 13px; height: 13px; display: block; background: url(../images/common.png) -100px 0 no-repeat; background-image: url(../images/common_1x.png); background-size: 200px auto; }
+.info.info_primary { color: #fa4132; }
+.info.info_primary:after { background-position: -100px -20px; }
+.info.info_primary.round { margin-left: auto; margin-right: auto; padding: 4px 8px 4px 26px; display: inline-block; border: 1px solid #fa4132; -webkit-border-radius: 12px; -moz-border-radius: 12px; border-radius: 12px; line-height: 15px; }
+.info.info_primary.round:after { top: 5px; left: 8px; }
+
+
+/* #CONTENT
+------------------------------------------------------------*/
+#ct { padding: 20px 0; min-height: 200px; }
+#ct.select_bank { padding-top: 0; }
+#ct.reg_account { padding-top: 50px; }
+#ct.pay { padding-top: 5px; }
+#ct.manage { padding-top: 10px; }
+
+/* ----- common text ----- */
+.tit_small { margin: 15px 0 5px; font-size: 13px; color: #666; font-weight: 500; }
+.headline { padding: 30px 0 0; min-height: 100px; font-size: 20px; color: #212121; font-weight: 500; text-align: center; }
+.right_link { margin-top: 15px !important; text-align: right; }
+.right_link .underline { font-size: 12px; padding-top: 1px; }
+.feedback { margin-top: 15px; font-size: 12px; color: #fa4132; text-align: center; }
+
+/* ----- 약관동의 ----- */
+.join_agree .scroll { font-size: 11px; line-height: 1.3; max-height: 100px; }
+.join_agree .scroll h3 { margin: 20px 0 5px; font-size: 12px; font-weight: 700; }
+.join_agree .scroll h4 { margin: 15px 0 5px; font-size: 12px; font-weight: 500; }
+.join_agree .scroll table { margin: 5px auto; width: 100%; font-size: 11px; line-height: 1.3; }
+.join_agree .scroll table th, .join_agree .scroll table td { padding: 3px; border: 1px solid #dbdbdb; text-align: center; }
+
+/* ----- 본인인증 ----- */
+.form_type>ul>li { margin-top: 4px; }
+.form_type>ul>li:first-child { margin-top: 0; }
+
+/* 통신사 + 휴대폰번호 */
+.form_type li.telecom ul { background-color: #fff; line-height: 0; vertical-align: top; }
+.form_type li.telecom ul:after { content: ''; display: block; clear: both; }
+.form_type li.telecom li { float: left; width: 25%; }
+.form_type li.telecom li button { position: relative; width: 100%; height: 47px; background-color: #f4f4f4; border: 1px solid #dbdbdb; border-left: 0; vertical-align: top; color: #878787; line-height: 1.2; }
+.form_type li.telecom li:first-child button { border-left: 1px solid #dbdbdb; }
+.form_type li.telecom li button.selected { border-color: #212121; background-color: #212121; color: #fff; z-index: 2; }
+.form_type li.telecom input { position: relative; margin-top: -1px; }
+.form_type li.telecom .brnd { display: block; }
+
+/* 보안숫자(캡챠) */
+.form_type li.capcha { clear: both; }
+.form_type li.capcha ul:after { display: block; clear: both; content: ''; }
+.form_type li.capcha li { position: relative; float: left; width: 50%; }
+.form_type li.capcha li:first-child { height: 47px; padding-left: 10px; border: 1px solid #dbdbdb; border-right: 0; }
+.form_type li.capcha img.temp { width: auto; height: 45px; }
+.form_type li.capcha .btn_area { position: absolute; top: 0; right: 0; width: 30px; height: 45px; float: right; }
+.form_type li.capcha .btn_area button { width: 30px; height: 22px; font-size: 0; }
+.form_type li.capcha .btn_area .btn_speaker { padding-top: 3px; }
+.form_type li.capcha .btn_area .btn_refresh { padding-bottom: 3px; }
+
+/* 보안인증 > 안내글 */
+.form_type li.cau { margin-bottom: 10px; line-height: 1.1; color: #656565; }
+
+/* 보안인증번호 입력 영역 */
+.form_type li.numskip { position: relative; }
+.form_type li.numskip input { padding-right: 50px; }
+
+/* 보안인증 문자 타이머 */
+.form_type li.numskip .time { position: absolute; top: 11px; right: 11px; font-size: 14px; line-height: 25px; color: #fa4132; font-weight: 500; z-index: 2; }
+
+/* 계좌 등록 안내 */
+.select_bank_info { margin-top: 20px; text-align: center; }
+
+/* 은행 목록 */
+.bank_list { position: relative; clear: both; margin-top: 20px; padding: 1px 0 0 1px; width: 100%; border-right: 0; border-bottom: 0; z-index: 1; }
+.bank_list:after { content: ''; display: block; clear: both; }
+.bank_list li { position: relative; display: block; float: left; margin: -1px 0 0 -1px; width: 25%; width: calc(25% + 1px); }
+.bank_list li:after { content: ""; display: block; padding-bottom: 100%; }
+.bank_list button { position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; border: 1px solid #dbdbdb; background-color: #fff; font-size: 12px; font-weight: 500; color: #878787; text-align: center; }
+.bank_list button>span { display: block; padding: 10px 0 0; }
+.bank_list button>span+span { line-height: 1.1; }
+.bank_list img { width: auto; height: 30px; }
+
+/* 등록된 은행 */
+.bank_list .upload { background-color: #fffbd9; color: #212121; }
+.bank_list .ico_upload { position: absolute; top: 0; left: 0; }
+
+/* 이벤트 은행 */
+.bank_list .event { border: 1px solid #fa4132; z-index: 2; }
+.bank_list .ico_event { position: absolute; top: 0; right: 0; }
+
+@media only screen and (min-width : 360px) {
+	.bank_list button { font-size: 13px; }
+	.bank_list img { height: 35px; }
+}
+
+/* ----- 계좌등록 ----- */
+/* 계좌 입력 안내 */
+.reg_account_info { margin: 0 0 20px; text-align: center; }
+.reg_account_info .p1 { font-size: 15px; }
+.reg_account_info .p2 { color: #878787; }
+
+/* 입력폼 */
+.reg_form>ul { overflow: hidden; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
+.reg_form>ul>li { position: relative; padding: 10px 0 10px 80px; border: 1px solid #dbdbdb; border-bottom: 0; line-height: 25px; min-height: 47px; }
+.reg_form>ul>li>.tit, .reg_form>ul>li>.desc { display: inline-block; }
+.reg_form>ul>li>.tit { position: absolute; top: 0; left: 10px; line-height: 46px; color: #656565; z-index: 3; }
+.reg_form>ul>li>.desc { font-size: 15px; }
+.reg_form>ul>li>.desc .btn { position: absolute; top: 10px; right: 10px; }
+.reg_form>ul>li.head { padding-left: 0; background-color: #f4f4f4; line-height: 30px; text-align: center; }
+.reg_form>ul>li.head img { width: auto; height: 30px; }
+.reg_form>ul>li.form { padding: 0; border: 0; }
+.reg_form>ul>li.form .input { position: absolute; top: 0; left: 0; padding-left: 70px; overflow: hidden; -webkit-border-bottom-left-radius: 3px; -moz-border-bottom-left-radius: 3px; border-bottom-left-radius: 3px; -webkit-border-bottom-right-radius: 3px; -moz-border-bottom-right-radius: 3px; border-bottom-right-radius: 3px; }
+
+/* ----- ARS 인증 ----- */
+.ars_timer { text-align: center }
+.ars_timer .timer { margin-top: 10px; font-size: 14px; font-weight: 700; color: #fa4132; line-height: 1.1; }
+.ars_timer .restart_set { margin-top: 30px; color: #878787; }
+
+/* loading */
+@keyframes spin {
+	to { -webkit-transform: rotate(360deg); -moz-transform: rotate(360deg); -ms-transform: rotate(360deg); -o-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+	to { -webkit-transform: rotate(360deg); -moz-transform: rotate(360deg); -ms-transform: rotate(360deg); -o-transform: rotate(360deg); transform: rotate(360deg); }
+}
+.loading_motion .span { display: inline-block; width: 100%; height: 100%; border: 2px solid #dbdbdb; border-top-color: #000; border-right-color: #000; -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; -webkit-animation: spin 1.5s ease-in-out infinite; animation: spin 1.5s ease-in-out infinite; }
+.loading_motion { display: inline-block; position: relative; width: 85px; height: 85px; }
+.loading_motion .ico_tel { position: absolute; top: 50%; left: 50%; margin-top: -20px; margin-left: -20px; }
+
+/* ----- 결제 -----*/
+/** 관리 버튼 **/
+.select_account .btn_bankadm { margin-right: -5px; padding: 5px; font-size: 0; line-height: 15px; }
+
+/** 계좌 슬라이드 **/
+.bank_slide { width: 85%; clear: both; margin: auto; text-align: center; line-height: 20px; }
+.bank_slide .bank { display: block; height: 30px; padding: 5px; line-height: 20px; }
+.bank_slide .bank img { display: inline-block; margin-right: 10px; width: auto; height: 20px; vertical-align: top; }
+
+/* 계좌 추가 */
+.bank_slide .btn_bankplus { padding: 5px; font-size: 12px; color: #878787; }
+
+/* 금액 */
+.pay .money { position: relative; margin-top: 5px; margin-bottom: 10px; text-align: center; }
+.pay .money .price_wrap { display: inline-block; padding-left: 8px; font-size: 16px; font-weight: 500; line-height: 30px; }
+.pay .money .price_wrap strong { font-size: 22px; }
+
+/* 현금영수증 체크 */
+.pay .cash_check { margin-top: 15px; }
+.pay .cash_check label { font-size: 13px; }
+
+/* ----- 관리 ----- */
+.manage ul { background-color: #fff; }
+.manage ul li { position: relative; margin-bottom: -1px; border: 1px solid #dbdbdb; font-size: 14px; line-height: 40px; }
+.manage .list_menu button, .manage .list_menu a { position: relative; display: block; width: 100%; padding: 0 10px; line-height: 40px; text-align: left; }
+.manage .list_bank .btn_star { float: left; }
+.manage .list_bank label { position: relative; display: inline-block; padding: 0 40px; line-height: 40px; cursor: auto; }
+.manage .list_bank .btn_star, .manage .list_bank .btn_del { position: absolute; top: 0; z-index: 2; }
+.manage .list_bank .btn_star { left: 0; }
+.manage .list_bank .btn_del { right: 0; }
+.manage .list_bank .name { margin-right: 10px; }
+
+/* ----- 팝업 ----- */
+/* 현금영수증 설정 */
+.ly_manageCashReceipt .input+.input { margin-top: -1px; }
+.ly_manageCashReceipt .input.focus .ico_del { background-position: -40px -20px; }
+
+/* 알뜰폰 통신사 선택 */
+.ly_frugal .ele { overflow: hidden; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
+.ly_frugal li { border-top: 1px solid #dbdbdb; }
+.ly_frugal li:first-child { border-top: 0; }
+.ly_frugal .btn { border: 0; }
+
+
+/* #UTILITY
+------------------------------------------------------------*/
+/* display */
+.blind { width: 0; height: 0; line-height: 0; visibility: hidden; overflow: hidden; }
+.hidden { display: none; }
+.pull_left { float: left; }
+.pull_right { float: right; }
+
+/* decoration */
+.underline { display: inline-block; padding-bottom: 1px; border-bottom: 1px solid #878787; line-height: 1.1; }
+.underline.text_primary { border-bottom-color: #fa4132; }
+
+/* spacing */
+.m0 { margin: 0; }
+.mt0 { margin-top: 0 !important; }
+.mt10 { margin-top: 10px !important; }
+.mt30 { margin-top: 30px !important; }
+.p0 { padding: 0; }
+
+/* align */
+.text_left { text-align: left; }
+.text_right { text-align: right; }
+.text_center { text-align: center; }
+
+/* color */
+.text_black { color: #212121; }
+.text_gray { color: #878787; }
+.text_primary { color: #fa4132; }
+.bg_gray, #wrap.bg_gray { background-color: #f4f4f4; }
+
+/* UI Guide*/
+.example { margin-top: 20px; }
+.example p { margin-bottom: 10px; }

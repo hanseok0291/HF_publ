@@ -1,0 +1,754 @@
+<%@  page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%--
+ **********************************************************************************************
+ * @desc : 포인트 조회 결제 스크립트(원스토어)
+ * @FileName : /pointhub/src/main/webapp/WEB-INF/views/pc/oneStore/pointPageJs_one.jsp
+ * @author khj
+ * @since 2019.07.15
+ * @version 1.0
+ * @see 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ * 수 정 일             수 정 자          수정내용
+ * ----------   --------   -----------------------------
+ * 2019.07.15    khj        최초생성
+ * 2020.07.14    harry      스크립트 보완
+ * </pre>
+ **********************************************************************************************
+--%>
+<script type="text/javascript">
+$(document).ready(function(){
+	PointFunc.initEvent();
+});
+
+var PointFunc = {
+	initEvent:function(){
+		
+		// 포인트 전체사용버튼
+		$("div.point_use > div.btn.maxBtn").click(function(){
+			
+			var _fnc = function() {
+
+                $("div.maxBtn").each(function(){
+                    
+                    if($(this).parent().is("li")){
+                        
+                        var obj = $(this).parents('.pointGroup');
+                        
+                        var avlPnt = Number(obj.find('.avlPnt').attr('val'));  // 사용 가능한 보유 포인트
+                        var minAvlPnt = Number(obj.find('.minAvlPnt').val());  // 최소 사용가능 금액
+                        
+                        if(avlPnt >= minAvlPnt){
+                            
+                            $(this).click();
+                        }else{
+                            
+                            obj.find('div.initBtn').click();    // 초기화 클릭
+                        }
+                    }
+                });
+			}
+
+			PHFnc.execFnc('pointPageJs_one', 'div.btn.maxBtn.click', _fnc);
+		});
+		
+		
+		//닫기 버튼 눌렀을 때 팝업 닫기
+		$('.closeBtn').click(function(){
+			$(this).parent().hide();
+		});
+		
+		//물음표 버튼 클릭 시 팝업 toggle
+		$('.toggleBtn1').click(function(){
+			$('.popup_toggle1').toggle();
+		});
+		
+		$('.toggleBtn2').click(function(){
+			$('#popup1').toggle();
+		});
+		
+		
+		// 전액충전 버튼 클릭 이벤트
+		$('.maxBtn').click(function(){
+			
+			var obj = $(this).parents('.pointGroup');
+			obj.find('.initBtn').trigger('click');		// 초기화 시킨후 진행
+
+			var pntObj      = obj.find('.pnt');
+			var pntAmtObj   = obj.find('.pntAmt');
+			var cprtAmtObj  = obj.find('.cprtAmt');
+			var avlPntObj   = obj.find('.avlPnt');
+			var pntExchRate = obj.find('.pntExchRate').val();			
+	        var maxPerDeal  = obj.find('.maxPerDeal').val();            // 건당 최대 사용 포인트
+	        var pntCd       = obj.find('.pntCd').val();                 // 카드종류
+
+			var limitPayAmt = Number($('#limitPayAmt').attr('val'));	// 최대 할인 가능 포인트(고정)
+			var ttlCprtAmt  = Number($('#ttlCprtAmt').attr('val'));     // 충전할 포인트
+
+			var pnt      = Number(pntObj.attr('val'));					// 충전할 포인트
+			var pntAmt   = Number(pntAmtObj.attr('val'));				// 카드사 전환률 적용(hidden)
+			var cprtAmt  = Number(cprtAmtObj.attr('val'));				// 카드사 전환률 적용
+			var avlPnt   = Number(avlPntObj.attr('val'));				// 보유 포인트
+			var dealUnit = Number(obj.find('.dealUnit').val());         // 결제단위
+			
+			var modPntAmt = getModPntAmt();				                // 남은 충전 금액
+			
+
+            if (pntCd == 'hyundaicard'){
+            	
+            	limitPayAmt = Math.floor((limitPayAmt / pntExchRate).toFixed(12));
+            	modPntAmt = Math.floor((modPntAmt / pntExchRate).toFixed(12));
+            }
+						
+			
+			// 전액충전시 최대값
+			var maxLimit = Math.min(maxPerDeal, limitPayAmt, avlPnt, modPntAmt);  // 최대사용가능포인트, 최대할인가능포인트, 보유포인트, 남은포인트(전환금액)
+			
+			
+            // 최대값에 맞춰 pnt 보정
+            pnt = dealUnit * (Math.floor((maxLimit / dealUnit).toFixed(12)));
+            
+
+            // 전환 포인트 1단위 제거 후 다시 역계산하여 pnt 구함
+			pntAmt = Math.floor((pnt * pntExchRate).toFixed(12));
+			pntAmt = getCalculateDigit(pntAmt);
+		    
+			pnt = Math.floor((pntAmt / pntExchRate).toFixed(12));
+			
+
+			var pntValue = pnt;
+			pntObj.attr('val', pntValue);
+			pntObj.val(PHUtil.setComma(pntValue));
+			
+			//var pntAmtValue = getCalculateDigit(pntAmt);
+			var pntAmtValue = pntAmt;
+			pntAmtObj.attr('val', pntAmtValue);
+			pntAmtObj.text(PHUtil.setComma(pntAmtValue));
+			
+			cprtAmtObj.attr('val', pntAmtValue);
+			cprtAmtObj.text(PHUtil.setComma(pntAmtValue));
+
+			var ttlCprtAmtValue = getCalculateDigit(getTtlCprtAmt());
+			$('#ttlCprtAmt').attr('val', ttlCprtAmtValue);
+			$('#ttlCprtAmt').text(PHUtil.setComma(ttlCprtAmtValue));
+			
+			var totalPntValue = getTtlPnt();
+			$('#total_pnt').attr('val', totalPntValue);
+			$('#total_pnt').text(PHUtil.setComma(totalPntValue));
+			
+			$('#paymentDiscountAmount').text(PHUtil.setComma(getPaymentDiscountAmount()));
+			
+			//충전할 포인트 0초과 && 1단위 없을 경우 확인버튼 활성화
+			toggleConfirmBtn();
+		});
+		
+		
+		//초기화 버튼 클릭 이벤트
+		$('.initBtn').click(function(){
+
+			var pntObj = $(this).parents('.pointGroup').find('.pnt');
+			var pntAmtObj = $(this).parents('.pointGroup').find('.pntAmt');
+			var cprtAmtObj = $(this).parents('.pointGroup').find('.cprtAmt');
+			
+			pntObj.attr('val', 0);
+			pntObj.val(0);
+			
+			pntAmtObj.attr('val', 0);
+			pntAmtObj.text(0);
+			
+			cprtAmtObj.attr('val', 0);
+			cprtAmtObj.text(0);
+
+			$('#ttlCprtAmt').attr('val', getTtlCprtAmt());
+			$('#ttlCprtAmt').text(PHUtil.setComma(getTtlCprtAmt()));
+			
+			$('#total_pnt').attr('val', getTtlPnt());
+			$('#total_pnt').text(PHUtil.setComma(getTtlPnt()));
+			
+			$('#paymentDiscountAmount').text(PHUtil.setComma(getPaymentDiscountAmount()));
+
+			//충전할 포인트 0초과 && 1단위 없을 경우 확인버튼 활성화
+			toggleConfirmBtn();
+		});
+
+		
+        // 사용포인트 focusout
+        $('input:text.pnt').focusout(function(){
+            
+            var obj = $(this).parents('.pointGroup');
+            
+//            var isOverPoints = false;
+            var isValidPoints = false;
+
+            var pntObj = obj.find('.pnt');                            // 사용포인트 obj(입력)
+            var avlPntObj = obj.find('.avlPnt');                      // 보유포인트 obj
+            var pntAmtObj = obj.find('.pntAmt');                      // 전환포인트 obj(hidden)
+            var cprtAmtObj = obj.find('.cprtAmt');                    // 전환포인트 obj
+            
+            var pntCd = obj.find('.pntCd').val();                     // 카드종류
+            var maxPerDeal = obj.find('.maxPerDeal').val();           // 건당최대사용포인트
+            var pntExchRate = obj.find('.pntExchRate').val();         // 카드사별전환율(hidden)
+            var maxPerDeal = obj.find('.maxPerDeal').val();           // 건당 최대 사용 포인트
+            var limitPayAmt = Number($('#limitPayAmt').attr('val'));  // 최대 할인 가능 포인트(고정)
+            
+            var inPnt = Number(pntObj.attr('val'));                   // 사용포인트
+            var avlPnt = Number(avlPntObj.attr('val'));               // 보유포인트
+            var cprtAmt = Number(cprtAmtObj.attr('val'));             // 전환포인트
+            var dealUnit = Number(obj.find('.dealUnit').val());       // 결제단위(카드사별)
+            
+            var modPntAmt = getModPntAmt();                           // 남은 충전 금액
+
+            var limitPnt = 0;                                         // limitPayAmt 를 역계산
+
+
+            // 현대카드 경우 남은 결제금액 역계산
+            if (pntCd == 'hyundaicard'){
+	            
+	            limitPnt = Math.floor((limitPayAmt / pntExchRate).toFixed(12));
+            } else {
+            	
+            	limitPnt = limitPayAmt;
+            }
+            
+            // 가장 낮은 금액에 입력 최대치를 맞춘다.           
+            var maxLimit = Math.min(maxPerDeal, avlPnt, limitPnt, inPnt);
+
+            // 전환금액 역계산
+            var floorCprtAmt = getCalculateDigit(cprtAmt);                        // 1자리 제거
+            var floorPnt = Math.floor((floorCprtAmt / pntExchRate).toFixed(12));  // 전환금액 역계산
+   
+            
+            // 나머지 결제금액 초과시
+            if (modPntAmt < 0) {
+                
+            	// 포인트 입력시 실시간으로 체크되서 여기로 들어올 케이스가 없을 것 같음
+                obj.find('.initBtn').trigger('click');      // 초기화
+            } else {
+
+                pnt = dealUnit * (Math.floor((floorPnt / dealUnit).toFixed(12)));
+                
+                if (pnt == inPnt) {
+                	isValidPoints = true;
+                } else {
+                	isValidPoints = false;
+                }
+            }
+            
+            
+            // 역전환된 pnt를 다시 전환포인트 계산
+            cprtAmt = Math.floor((pnt * pntExchRate).toFixed(12));
+            
+            
+            // 사용포인트 표시
+            var pntValue = pnt;
+            pntObj.attr('val', pntValue);
+            pntObj.val(PHUtil.setComma(pntValue));
+                        
+            // 전환 포인트
+            var pntAmtValue = cprtAmt;
+            pntAmtObj.attr('val', pntAmtValue);
+            pntAmtObj.text(PHUtil.setComma(pntAmtValue));
+
+            //전환 포인트 표시
+            cprtAmtObj.attr('val', pntAmtValue);
+            cprtAmtObj.text(PHUtil.setComma(pntAmtValue));
+            
+            $('#total_pnt').text(PHUtil.setComma(getTtlPnt()));
+
+            //충전할 포인트 0초과일 경우 확인버튼 활성화
+            toggleConfirmBtn();
+
+            if(isValidPoints){
+                $('#popup2').hide();
+            }else{
+                $('#popup2').show();
+            }
+            
+            /*
+            if(isOverPoints){
+                $('#popup3_point').text(PHUtil.setComma(maxPerDeal));
+                $('#popup3').show();
+            }else{
+                $('#popup3').hide();
+            }
+            */
+
+            //포인트 입력 시 각 포인트 확인 및 총포인트 계산, 표시
+            setTtlPntAmt(pntObj, pntAmtObj, cprtAmtObj);
+        });
+        
+		
+		//확인 버튼 클릭 이벤트
+		$('#confirmBtn').click(function() {
+			if (PHFnc.execFnc('pointPageJs_one', '#confirmBtn.click', checkValidate)) {
+				PointFunc.pay();
+			}
+		});
+		
+		//취소 버튼 클릭 이벤트
+		$('#cancelBtn').click(function(){
+			var pgTrNo			= '${result.pg_tr_no}';
+			var phubTrNo		= '${result.phubTrNo}';
+			var payAmt			= '${result.ttlPayAmt}';
+			var points			= 0;
+			var pointsAmt		= 0;
+			var wonAmt			= 0;
+			var payMethod		= '${result.payMethod}';
+			var retCode			= 'F999';
+			var retMsg			= '사용자 취소';
+			
+			$('#return_pgTrNo').val(pgTrNo);
+			$('#return_phubTrNo').val(phubTrNo);
+			$('#return_payAmt').val(payAmt);
+			$('#return_points').val(points);
+			$('#return_pointsAmt').val(pointsAmt);
+			$('#return_wonAmt').val(wonAmt);
+			$('#return_payMethod').val(payMethod);
+			$('#return_retCode').val(retCode);
+			$('#return_retMsg').val(retMsg);
+			
+			var url = '${result.return_url_2}';
+			var attrObj = {'form' : '#dnlFormReturn'};
+			PHFnc.doAction(url, '', attrObj);
+		});
+		
+		initPointPage();
+	},
+	pay:function() {
+
+		var _fnc = function() {
+
+            var pntList = new Array();
+            
+            $('.pointGroup').each(function(){
+                var data = new Object() ;
+                data.pntCd = $(this).find('.pntCd').val();
+                data.pntTrNo = $(this).find('.pntTrNo').val();
+                data.pntAmt = $(this).find('.pntAmt').attr('val');
+                data.cprtAmt = String(getCalculateCprtAmt($(this).find('.pntAmt').attr('val')));
+                data.dealUnit = $(this).find('.dealUnit').val();
+                data.pntExchRate = $(this).find('.pntExchRate').val();
+                data.avlPnt = $(this).find('.avlPnt').attr('val');
+                data.pnt = $(this).find('.pnt').attr('val');
+                data.minAvlPnt = $(this).find('.minAvlPnt').val();
+                data.maxPerDeal = $(this).find('.maxPerDeal').val();
+                
+                if(Number(data.pntAmt) > 0){
+                    pntList.push(data);
+                }
+            });
+
+            var pntListJson = JSON.stringify(pntList); 
+            
+            var ttlPntAmt = getTtlPntAmt();
+            var ttlCprtAmt = getTtlCprtAmt();
+            var ttlPayAmt = $('#ttlPayAmt').attr('val');
+            var paymentDiscountAmount = getPaymentDiscountAmount();     // 실 포인트 사용금액 (총 전환포인트에 가맹점수수료율 적용, 1자리 버림)
+            var ttlRmndAmt = Number(ttlPayAmt) - paymentDiscountAmount;
+            
+            var url = '/phub/std/pay.do';
+            var params = {
+                'phubTrNo'		: '${result.phubTrNo}',
+                'dealInd'		: '${result.dealInd}',
+                'dealPgInd'		: '${result.dealPgInd}',
+                'custId'		: '${result.custId}',
+                'ttlPntAmt'		: ttlPntAmt,
+                'ttlCprtAmt'	: ttlCprtAmt,
+                'ttlRmndAmt'	: ttlRmndAmt,
+                'requestTtlPayAmt': ttlPayAmt,
+                'paymentDiscountAmount': paymentDiscountAmount,
+                'shopPntRate'	: '${result.cprtCmsnRate}', 
+                'pntList'		: pntListJson
+             }
+            var type = 'post';
+            var dataType = 'json';
+            var success = function(data, textStatus, jqXHR){
+                if(data.ret_code == '00'){
+                    PointFunc.pgRetSubmit(data);
+                }
+            }
+            PHFnc.ajax(url, params, type, dataType, success, errCustom, true, true);
+		};
+		
+		PHFnc.execFnc('pointPageJs_one', 'payFnc', _fnc);
+	},
+	pgRetSubmit:function(data){
+		var pgTrNo = data.pg_tr_no;
+		var phubTrNo = data.phub_tr_no;
+		var payAmt = data.pay_amt;
+		var points = data.points;
+		var pointsAmt = data.points_amt;
+		var wonAmt = data.won_amt;
+		var authLimitDtm = data.auth_limit_dtm;
+		var payMethod = data.pay_method;
+		var retCode = data.ret_code;
+		var retMsg = data.ret_msg;
+		var returnUrl2 = data.return_url_2;
+
+		$('#hdn_pgTrNo').val(pgTrNo);
+		$('#hdn_phubTrNo').val(phubTrNo);
+		$('#hdn_payAmt').val(payAmt);
+		$('#hdn_points').val(points);
+		// $('#hdn_pointsAmt').val(pointsAmt);  // TODO 2020-10-21 harry
+		$('#hdn_wonAmt').val(wonAmt);
+		$('#hdn_authLimitDtm').val(authLimitDtm);
+		$('#hdn_payMethod').val(payMethod);
+		$('#hdn_retCode').val(retCode);
+		$('#hdn_retMsg').val(retMsg);
+
+		var url = returnUrl2;
+		var attrObj = {'form' : '#pointForm'};
+		PHFnc.doAction(url, '', attrObj);
+	}
+}
+
+//초기 포인트 값 설정
+var initPointPage = function(){
+	var ttlPayAmt = $('#ttlPayAmt').attr('val');   //총 결제 금액
+	var ttlAvlPnt = $('#ttlAvlPnt').attr('val');   //총 소유 포인트
+	var limitPayAmt = $('#limitPayAmt').attr('val');   //최대 사용 가능 포인트
+	
+	//총 결제 금액 comma 설정하여 표시
+	$('#ttlPayAmt').text(PHUtil.setComma(ttlPayAmt));
+	
+	//각 소유 포인트 표시
+ 	$('.pointGroup').each(function(){
+		var avlPntObj = $(this).find('.avlPnt')
+		var avlPnt = avlPntObj.attr('val');
+		avlPntObj.text(PHUtil.setComma(avlPnt));
+	});
+
+	//총 소유 포인트 comma 설정하여 표시
+	$('#ttlAvlPnt').text(PHUtil.setComma(ttlAvlPnt));
+	$('#total_avlPnt').text(PHUtil.setComma(ttlAvlPnt));
+	
+	//최대 사용 가능 포인트 comma 설정하여 표시 
+	$('#limitPayAmt').text(PHUtil.setComma(limitPayAmt));
+	
+	//전환된 결제금액 0 표시
+	$('.cprtAmt').text(0);
+}
+
+
+// 화면에서 사용포인트 입력 
+function setPntAmt(obj){
+
+	var pntObj = obj.parents('.pointGroup').find('.pnt');
+	var pntAmtObj = obj.parents('.pointGroup').find('.pntAmt');
+	var cprtAmtObj = obj.parents('.pointGroup').find('.cprtAmt');
+	var pntExchRate = obj.parents('.pointGroup').find('.pntExchRate').val();
+	var pnt = pntObj.val();
+	
+	// 입력값 없으면 0처리
+	if(pnt == '' || pnt.match(/\d/g) == null){
+
+		pntObj.attr('val', 0);
+		pntObj.val('0');
+
+		pntAmtObj.attr('val', 0);
+		pntAmtObj.text('0');
+		
+		cprtAmtObj.attr('val', 0);
+		cprtAmtObj.text('0');
+		
+		$('#total_pnt').text(PHUtil.setComma(getTtlPnt()));
+	}else{
+
+		pnt = pnt.match(/\d/g);
+		pnt = pnt.join("");
+
+		if(pnt.length > 1 && pnt.substring(0,1) == 0){
+
+			pnt = pnt.substring(1, pnt.length);
+		}
+
+		// 전환금액 계산	
+		var pntAmt = Math.floor((pnt * pntExchRate).toFixed(12));
+
+
+		pntObj.attr('val', pnt);
+		pntObj.val(PHUtil.setComma(pnt));
+		
+		pntAmtObj.attr('val', pntAmt);
+		pntAmtObj.text(PHUtil.setComma(pntAmt));
+		
+		cprtAmtObj.attr('val', pntAmt);
+		cprtAmtObj.text(PHUtil.setComma(pntAmt));
+		
+		$('#total_pnt').text(PHUtil.setComma(getTtlPnt()));
+	}
+
+	// 포인트 입력 시 각 포인트 확인 및 총포인트 계산, 표시
+	setTtlPntAmt(pntObj, pntAmtObj, cprtAmtObj);
+}
+
+
+// 포인트 입력 시 각 포인트 확인 및 총포인트 계산, 표시
+function setTtlPntAmt(pntObj, pntAmtObj, cprtAmtObj){
+
+	var msg = '';
+	var isValid = true;
+	var limitPayAmt = $('#limitPayAmt').attr('val');
+	var ttlCprtAmt = getTtlCprtAmt();					    // 충전할 포인트
+	var paymentDiscountAmount = getPaymentDiscountAmount(); // 결제할인액, PG 수수료 제외한 금액
+	var ttlRmndAmt = ttlCprtAmt - paymentDiscountAmount;
+	
+
+	// 최대 할인 가능 포인트보다 충전할 포인트가 클 경우
+	if(limitPayAmt < ttlCprtAmt){
+		
+		isValid = false;
+		msg = '입력하신 포인트가 최대 할인 가능 포인트를 초과 하였습니다.';
+	}
+
+	//보유 포인트보다 충전할 포인트가 클 경우(카드사별)
+	var pnt = Number(pntObj.attr('val'));
+	var avlPnt = Number(cprtAmtObj.parent().parent().find('.avlPnt').attr('val'));
+	
+	if((avlPnt < pnt) && isValid){
+
+		isValid = false;
+		msg = '입력하신 포인트보다 보유 포인트가 부족 합니다.';
+	}
+	
+	
+	if(!isValid){
+		PHFnc.alert(msg);
+		pntObj.attr('val', 0);
+		pntObj.val(0);
+		pntAmtObj.attr('val', 0);
+		pntAmtObj.text(0);
+		cprtAmtObj.attr('val', 0);
+		cprtAmtObj.text(0);
+		ttlRmndAmt = ttlCprtAmt - paymentDiscountAmount;
+	}
+
+
+	//충전할 포인트 0초과 && 1단위 없을 경우 확인버튼 활성화
+	toggleConfirmBtn();
+	
+	$('#ttlCprtAmt').attr('val', getTtlCprtAmt());
+	$('#ttlCprtAmt').text(PHUtil.setComma(getTtlCprtAmt()));
+
+	$('#paymentDiscountAmount').text(PHUtil.setComma(getPaymentDiscountAmount()));
+	
+	$('#total_pnt').attr('val', getTtlPnt());
+	$('#total_pnt').text(PHUtil.setComma(getTtlPnt()));
+	
+	//잔여 충전 금액 표시
+	$('#ttlRmndAmt').attr('val', ttlRmndAmt);
+	$('#ttlRmndAmt').text(PHUtil.setComma(ttlRmndAmt));
+	
+	//가맹점 수수료 계산
+	//setShopPnt();
+}
+
+
+//충전할 포인트 0초과 && 1단위 없을 경우 확인버튼 활성화
+function toggleConfirmBtn(){
+	var ttlCprtAmt = getTtlCprtAmt();
+	var globalDealUnit = ${result.dealUnit};
+	
+	if(ttlCprtAmt > 0 && (ttlCprtAmt % globalDealUnit == 0)){
+		$('#confirmBtn').removeClass();
+		$('#confirmBtn').addClass('btn_ok_on');
+	}else{
+		$('#confirmBtn').removeClass();
+		$('#confirmBtn').addClass('btn_ok');
+	}
+}
+
+// 총포인트값 산출
+function getTtlPntAmt(){
+    var ttlPntAmt = 0;
+    $('.pntAmt').each(function(){
+        var pntAmt = PHUtil.nvl($(this).attr('val'));
+        if(pntAmt == ''){
+            pntAmt = 0;
+        }
+        ttlPntAmt += Number(pntAmt);
+    });
+    return ttlPntAmt;
+}
+
+//총 전환 포인트값 산출
+function getTtlCprtAmt(){
+	var ttlCprtAmt = 0;
+	$('.cprtAmt').each(function(){
+		var cprtAmt = PHUtil.nvl($(this).attr('val'));
+		if(cprtAmt == ''){
+			cprtAmt = 0;
+		}
+		ttlCprtAmt += Number(cprtAmt);	  	
+	});
+	return ttlCprtAmt;
+}
+
+//총 사용 포인트값 산출
+function getTtlPnt() {
+	var ttlPnt = 0;
+	$('.pnt').each(function(){
+		var pnt = PHUtil.nvl($(this).attr('val'));
+		if(pnt == ''){
+			pnt = 0;
+		}
+		ttlPnt += Number(pnt);	  	
+	});
+	return ttlPnt;
+}
+
+
+function checkValidate(){
+	var isValid = true;
+	var msg = '';
+	var globalDealUnit = ${result.dealUnit};
+	
+	var ttlPntAmt = getTtlCprtAmt();
+	var paymentDiscountAmount = getPaymentDiscountAmount();
+	var limitPayAmt = $('#limitPayAmt').attr('val');
+	var maxPerDeal = Number('${result.maxPerDeal}');
+	var minPerDeal = Number('${result.minPerDeal}');
+	
+	if(isValid && ttlPntAmt <= 0){
+		msg = '포인트를 사용해주세요.';
+		isValid = false;
+	}else if((ttlPntAmt % globalDealUnit) != 0){
+		msg = '포인트는 ' + globalDealUnit + 'P 단위로 사용하실 수 있습니다.';
+		isValid = false;
+	}else if(paymentDiscountAmount < minPerDeal){
+		minPerDeal = PHUtil.setComma(minPerDeal);
+		msg = '최소 포인트금액은 ' + minPerDeal + 'P 입니다.';
+		isValid = false;
+	}else if(maxPerDeal < paymentDiscountAmount){
+		maxPerDeal = PHUtil.setComma(maxPerDeal);
+		msg = '거래당 사용가능한 포인트금액은 ' + maxPerDeal + 'P 입니다.';
+		
+		isValid = false;
+	}
+	
+	if(!isValid){
+		PHFnc.alert(msg);
+		return isValid;
+	}
+	
+	
+	$('.pointGroup').each(function(){
+		
+		var pnt = Number($(this).find('.pnt').attr('val'));
+		var pntNm = $(this).find('img').attr('alt');
+		var pntAmt = Number($(this).find('.pntAmt').attr('val'));
+		var avlPnt = Number($(this).find('.avlPnt').attr('val'));
+		var dealUnit = Number($(this).find('.dealUnit').val());
+		var minAvlPnt = Number($(this).find('.minAvlPnt').val());
+		var maxPerDeal = Number($(this).find('.maxPerDeal').val());
+		
+ 		if(pntAmt > 0){
+			
+			if(pnt % dealUnit > 0){
+				
+				msg = '거래단위를 확인해주세요';
+				isValid = false;
+			}else if(avlPnt < minAvlPnt){
+				
+				msg = pntNm + '의 최소 사용 가능한 포인트가 부족합니다.';
+				isValid = false;
+			}else if(pnt < minAvlPnt){
+				 
+				msg = pntNm + '의 최소 사용 포인트는 '+ minAvlPnt +'포인트 이상입니다.';
+				isValid = false;
+			}else if(pnt > maxPerDeal){
+                 
+                msg = pntNm + '의 최대 사용 포인트는 '+ maxPerDeal +'포인트 입니다.';
+                isValid = false;
+            }
+
+		}
+		
+		if(!isValid){
+			PHFnc.alert(msg);
+			return isValid;
+		}
+	});
+	
+	return isValid;
+}
+
+
+//포인트 소수점 계산
+function getCalcPnt(pnt, isInput){
+	var calcStrMode = '${result.CALC_STR_MODE}';
+	
+	//직접 입력
+	if(isInput == 'Y'){
+		if(calcStrMode == 'FLOOR'){
+			pnt = Math.floor(pnt);
+		}else if(calcStrMode == 'CEIL'){
+			pnt = Math.ceil(pnt);
+		}else if(calcStrMode == 'ROUND'){
+			pnt = Math.round(pnt);
+		}
+	//전액충전 버튼 클릭
+	}else{
+		if(calcStrMode == 'FLOOR'){
+			pnt = Math.ceil(pnt);
+		}else if(calcStrMode == 'CEIL'){
+			pnt = Math.floor(pnt);
+		}else if(calcStrMode == 'ROUND'){
+			pnt = Math.floor(pnt);
+		}
+	}
+	return pnt;
+}
+
+/* 
+ * 포인트 소수점 역계산
+ * ROUND:반올림, CEIL:올림, FLOOR:버림
+ */
+function getCalcPntReverse(pnt){
+	var calcStrMode = '${result.CALC_STR_MODE}';
+	
+	if(calcStrMode == 'FLOOR'){
+		pnt = Math.floor(pnt)+1;
+	}else if(calcStrMode == 'CEIL'){
+		pnt = Math.ceil(pnt)-1;
+	}else if(calcStrMode == 'ROUND'){
+		pnt = Math.round(pnt);
+	}
+	return pnt;
+}
+
+
+
+// PG 수수료 계산 
+function getCalculateCprtAmt(point) {
+	
+	return Math.floor((point * (100 - '${result.cprtCmsnRate}') / 100));
+}
+
+
+//결제 할인액 최종 계산
+function getPaymentDiscountAmount() {
+
+	return getCalculateDigit(getTtlCprtAmt() * (100 - '${result.cprtCmsnRate}') / 100);
+}
+
+
+// 1자리 버림
+function getCalculateDigit(point) {
+
+	return Math.floor(point / 10) * 10;
+}
+
+
+// 남은 충전금액
+function getModPntAmt(){
+	
+    var limitPayAmt = Number($('#limitPayAmt').attr('val'));	// 최대 할인 가능 포인트(고정)
+    var ttlCprtAmt = getTtlCprtAmt();
+
+	return limitPayAmt - ttlCprtAmt; 
+}
+</script>

@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>화이트라벨 퍼블리싱 안내</title>
+<script src="../js/jquery-3.6.0.min.js"></script>
+
+<style>
+	html, body { width: 100%; height: 100%; }
+	p { margin: .25em 0; }
+	body { margin: 0; padding: 0; background-color: #fff; font-family: 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; font-size: 12px; line-height: 1.4; letter-spacing: -0.03em; color: #222; }
+	input, button, label { font-family: 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; }
+	header { margin: 0; padding: 20px 20px; border-bottom: 1px solid #ccc; }
+	header h1 { margin: 0 0 10px; font-size: 24px; font-weight: 700; color: #faa61a; }
+	header p { line-height: 1.4; }
+	.main { position: relative; padding: 0 20px 20px; }
+	h2 { margin: 30px 0 10px; font-size: 18px; font-weight: 800; }
+	small { font-size: 90% !important; color: #9a9a9a; }
+	ul { margin: 0; padding-left: 1.667em; list-style: disc; }
+	ul ul { margin-top: .333em; list-style: circle; }
+	li { margin-top: .333em; }
+	ul li:first-child { margin-top: 0; }
+	a { color: #1d8dd8; }
+	a, a:hover, a:active, a:focus { text-decoration: underline; }
+	.strong { font-weight: 500; }
+	.table-responsive { width: 100%; overflow-x: auto; border: 1px solid #ddd; }
+	.table { margin: 0; min-width: 600px;  border-collapse: collapse; width: 100%; font-size: 12px; border: 0; }
+	.table th, .table td {  padding: 5px 10px; height: auto; border: 1px solid #ddd; }
+	.table th { background: #f1f2f4; color: #222; font-weight: 500; text-align: center; }
+	.table .date, .table .status { text-align: center; }
+	.well { padding: 20px; border: 2px solid #ddd; }
+	.bg-info { background: #dbf5ff; }
+	.bg-success { background: #e7fbe2; }
+	.bg-warning { background: #ff9; }
+	.bg-danger { background: #ffe5e8; }
+	.bg-wait { background: #eee; color: #888; }
+	.del { text-decoration: line-through; }
+	code { padding: 2px 4px; background-color: #f9f2f4; font-size: 96%; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; color: #c7254e; }
+	.text-primary { color: #faa61a; }
+	.text-info { color: #1d8dd8; }
+	.text-danger { color: #ff4f51; }
+	.text-success { color: #28a745; }
+	.btn { display: inline-block; padding: .5em .5em .25em; border: 1px solid #5e8cc0; border-radius: .5em; background-color: rgba(255,255,255,.5); font-size: 11px; color: #5e8cc0; line-height: 1.2; }
+	.flip { position: relative; }
+	.flip .flip-body { display: none; }
+	.flip.open .flip-body { display: block; }
+	.btn-flip-all:not(.open) .open { display: inline; }
+	.flip.open .btn-flip .open,
+	.btn-flip-all .open { display: none; }
+	.flip:not(.open) .btn-flip .close,
+	.btn-flip-all:not(.open) .close { display: none; }
+	.pull-left { float: left; }
+	.pull-right { float: right; }
+</style>
+
+<script>
+$(document).ready(function(){
+	// 설명 영역 축약 (flip)
+	$(".btn-flip").click(function(){
+		$(this).parents(".flip").toggleClass("open");
+	});
+	$(".btn-flip-all").click(function(){
+		if(!$(this).hasClass("open")){
+			$(this).addClass("open");
+			$(this).parents("h2").next().find(".flip").addClass("open");
+		} else {
+			$(this).removeClass("open");
+			$(this).parents("h2").next().find(".flip").removeClass("open");
+		}
+	});
+
+	// 진행 상태별 셀 컬러
+	$(".status:contains('검토 요청')").parents("tr").addClass("bg-warning");
+	$(".status:contains('작업 중'), .status:contains('수정 중'), .status:contains('수정 예정')").parents("tr").addClass("bg-danger");
+	$("li.text-success").parents("tr").addClass("bg-success");
+	$(".status:empty").parents("tr").addClass("bg-wait");
+
+	// 모바일 링크 타겟 변경
+	var filter = "win16|win32|win64|mac|macintel"; if ( navigator.platform ) {
+		if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
+			// mobile
+			$("a").attr("target", "_self");
+			// alert("[차세대 PG 퍼블리싱 안내]\n모바일 접속! 링크는 페이지 이동으로 적용됩니다.");
+		} else {
+			// pc
+			$("a").attr("target", "_blank");
+		}
+	}
+});
+</script>
+</head>
+
+<body>
+<header>
+	<h1>화이트라벨 퍼블리싱 안내</h1>
+	<p>최종 수정일 : 2022-08-02</p>
+</header>
+
+<div class="main">
+	<h2>GUIDE <span class="pull-right"><button type="button" class="btn btn-flip-all"><span class="open">비고 내용 모두 보기</span><span class="close">비고 지난 내용 숨기기</span></button></span></h2>
+	<div class="table-responsive">
+		<table class="table">
+			<colgroup>
+				<col style="width: 10%">
+				<col style="width: 20%">
+				<col style="width: 15%">
+				<col style="width: 15%">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>구분</th>
+					<th>화면명</th>
+					<th>파일</th>
+					<th>화면코드</th>
+					<th>날짜</th>
+					<th>상태</th>
+					<th>비고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="2">레이아웃<br> (layout)</td>
+					<td>기본 레이아웃</td>
+					<td><a href="layout/defaultLayout.html" target="_blank">defaultLayout</a></td>
+					<td>-</td>
+					<td class="date">2022-07-18</td>
+					<td class="status">완료</td>
+					<td>
+						<ul class="text-info">
+							<li>[참고] 공통 UI 안내
+								<ul>
+									<li>헤더, 하단 버튼 위치 고정</li>
+									<li>IE9 이하 접속 시 브라우저 지원 안내 레이어 노출</li>
+								</ul>
+							</li>
+						</ul>
+						<!-- <div class="flip">
+							<ul class="flip-body">
+
+							</ul>
+							<p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p>
+						</div> -->
+					</td>
+				</tr>
+				<tr>
+					<td>로딩 레이어</td>
+					<td><a href="layout/loading.html" target="_blank">loading</a></td>
+					<td>-</td>
+					<td class="date">2022-07-18</td>
+					<td class="status">완료</td>
+					<td>
+						<ul class="text-info">
+							<li>[참고] 모든 페이지 하단에 로딩 레이어 숨김. 필요 시 <code>.loading</code>에 <code>.hidden</code> 삭제</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>UI (ui)</td>
+					<td>UI 템플릿</td>
+					<td><a href="ui/template.html" target="_blank">template</a></td>
+					<td>-</td>
+					<td class="date">2022-07-20</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td rowspan="3">가맹점 테마<br> (theme)</td>
+					<td>기본 레이아웃</td>
+					<td><a href="theme/defaultLayout.html" target="_blank">defaultLayout</a></td>
+					<td>-</td>
+					<td class="date">2022-07-21</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>로딩 레이어</td>
+					<td><a href="theme/loading.html" target="_blank">loading</a></td>
+					<td>-</td>
+					<td class="date">2022-07-21</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>UI 템플릿</td>
+					<td><a href="theme/template.html" target="_blank">template</a></td>
+					<td>-</td>
+					<td class="date">2022-07-21</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<h2>PAGE <span class="pull-right"><button type="button" class="btn btn-flip-all"><span class="open">비고 내용 모두 보기</span><span class="close">비고 지난 내용 숨기기</span></button></span></h2>
+	<div class="table-responsive">
+		<table class="table" id="pageTable">
+			<colgroup>
+				<col style="width: 10%">
+				<col style="width: 20%">
+				<col style="width: 15%">
+				<col style="width: 15%">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>구분</th>
+					<th>화면명</th>
+					<th>파일</th>
+					<th>화면코드</th>
+					<th>날짜</th>
+					<th>상태</th>
+					<th>비고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="2">공통<br> (common)</td>
+					<td>오류</td>
+					<td><a href="common/error.html" target="_blank">error</a></td>
+					<td>-</td>
+					<td class="date">2022-07-21</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2022-07-21 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>오류 <small>(리소스 연결 불가 시 사용)</small></td>
+					<td><a href="common/error2.html" target="_blank">error2</a></td>
+					<td>-</td>
+					<td class="date">2022-07-21</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2022-07-21 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="4">회원<br> (member)</td>
+					<td>약관 동의</td>
+					<td><a href="member/agree.html" target="_blank">agree</a></td>
+					<td>-</td>
+					<td class="date">2022-07-18</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2022-07-18 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>설정</td>
+					<td><a href="member/myPage.html" target="_blank">myPage</a></td>
+					<td>-</td>
+					<td class="date">2022-07-21</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2022-07-21 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>결제 수단 관리</td>
+					<td><a href="member/myPay.html" target="_blank">myPay</a></td>
+					<td>-</td>
+					<td class="date">2022-08-02</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2022-07-21 : 화면 추가</li>
+							<li>2022-08-02 : 계좌 목록 추가, 정렬 핸들러 수정</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>현금영수증 관리</td>
+					<td><a href="member/myCashReceipt.html" target="_blank">myCashReceipt</a></td>
+					<td>-</td>
+					<td class="date">2022-07-21</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2022-07-21 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="5">인증<br> (auth)</td>
+					<td>본인 인증 - SMS / PASS 인증 요청</td>
+					<td><a href="auth/sms.html" target="_blank">sms</a></td>
+					<td>-</td>
+					<td class="date">2022-07-20</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2022-07-18 : 화면 추가</li>
+							<li>2022-07-20 : 문구 변경</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>본인 인증 - SMS 인증 확인</td>
+					<td><a href="auth/smsConfirm.html" target="_blank">smsConfirm</a></td>
+					<td>-</td>
+					<td class="date">2022-07-20</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2022-07-18 : 화면 추가</li>
+							<li>2022-07-20 : 문구 변경</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>결제 비밀번호 입력</td>
+					<td><a href="auth/pin.html" target="_blank">pin</a></td>
+					<td>-</td>
+					<td class="date">2022-07-20</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2022-07-20 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>결제 비밀번호 설정</td>
+					<td><a href="auth/registerPin.html" target="_blank">registerPin</a></td>
+					<td>-</td>
+					<td class="date">2022-07-20</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2022-07-20 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>결제 비밀번호 설정 확인</td>
+					<td><a href="auth/registerPinVerify.html" target="_blank">registerPinVerify</a></td>
+					<td>-</td>
+					<td class="date">2022-07-20</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2022-07-20 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="5">결제<br> (pay)</td>
+					<td>결제</td>
+					<td><a href="pay/pay.html" target="_blank">pay</a></td>
+					<td>-</td>
+					<td class="date">2022-07-22</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2022-07-19 : 화면 추가</li>
+							<li>2022-07-20 : 무이자 할부 안내 팝업 추가</li>
+							<li>2022-07-22 : 은행 목록 수정</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>결제 - 결제 수단 미등록</td>
+					<td><a href="pay/payEmpty.html" target="_blank">payEmpty</a></td>
+					<td>-</td>
+					<td class="date">2022-07-18</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2022-07-18 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>결제 수단 등록 - 은행 선택</td>
+					<td><a href="pay/selectBank.html" target="_blank">selectBank</a></td>
+					<td>-</td>
+					<td class="date">2022-08-02</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2022-07-18 : 화면 추가</li>
+							<li>2022-08-02 : 은행 목록 수정</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>결제 수단 등록 - 계좌 정보 입력</td>
+					<td><a href="pay/registerAccount.html" target="_blank">registerAccount</a></td>
+					<td>-</td>
+					<td class="date">2022-07-18</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2022-07-18 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>결제 수단 등록 - ARS 인증 확인</td>
+					<td><a href="pay/authArs.html" target="_blank">authArs</a></td>
+					<td>-</td>
+					<td class="date">2022-07-18</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2022-07-18 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<h2>MEMO</h2>
+	<div class="well">
+		<ul>
+			<li>반응형(PC/태블릿/모바일 단일 소스)</li>
+			<li>PC 새창 팝업 : 430px × 660px</li>
+			<li>container 너비 : 320px ~ 700px</li>
+			<li>브라우저 지원 : 크롬, 엣지, <span class="text-danger">IE10 이상</span>, ...</li>
+			<li>포함된 라이브러리 : jQuery v3.6.0, Bootstrap v4(only js), Slick v1.8.1(사용 시 body 하단에 삽입)</li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link rel="stylesheet" href="../../resources/css/common.css">
+<link rel="stylesheet" href="../../resources/css/site.css">
+<script src="../../resources/js/jquery-1.8.3.min.js"></script>
+<script src="../../resources/js/design.js" defer="defer"></script>
+<!--[if lt IE 9]>
+<script src="../../resources/js/html5shiv.js"></script>
+<link rel="stylesheet" href="../../resources/css/ie-down.css">
+<link rel="stylesheet" href="../../resources/css/common/css/custom/yanolja/pc/yanolja.css">
+<![endif]-->
+<!-- <link rel="stylesheet" href="../../resources/css/common/css/custom/yanolja/yanolja.css"> -->
+<title>간편결제</title>
+</head>
+<body>
+
+<header id="header">
+	<h1>신규/추가 등록</h1>
+	<button type="button" class="btn_cls"><i class="ico_com ico_cls">창닫기</i></button>
+</header>
+
+<div id="ct" class="userskip">
+	<ul class="tab_type">
+	<li><button type="button" onclick="$('.inner').hide();$('#hp').show();" class="active">휴대폰본인확인(문자)</button></li>
+	<li><button type="button" onclick="$('.inner').hide();$('#simple').show();">간편본인확인(앱)</button></li>
+	</ul>
+	<div id="hp" class="inner">
+		<fieldset class="form_type">
+			<legend>휴대폰본인확인 입력폼</legend>
+			<ul>
+				<li class="name"><input type="text" name="" id="" placeholder="이름" tabindex="1" maxlength="3"></li>
+				<li class="hp">
+					<ul>
+						<li class="num_first"><input type="text" name="" id="" placeholder="주민번호 앞자리" tabindex="2" maxlength="6"></li>
+						<li class="bar">-</li>
+						<li class="num_last"><input type="text" name="" id="" tabindex="3" maxlength="1"><i></i><i></i><i></i><i></i><i></i><i></i></li>
+					</ul>
+				</li>
+				<li class="telecom">
+					<ul>
+						<li><button type="button" onclick="" class="selected">SKT</button></li>
+						<li><button type="button" onclick="">KT</button></li>
+						<li><button type="button" onclick="">LG U+</button></li>
+						<li class="last"><button type="button" onclick="layer_open('ly_subphone');">알뜰폰</button></li>
+					</ul>
+					<input type="text" name="" id="" placeholder="휴대폰번호(-없이 입력)" tabindex="4" maxlength="11">
+				</li>
+				<li class="capcha">
+					<ul>
+						<li class="key">
+							<img src="../../resources/images/temp_capcha.gif" alt="보안문자 이미지" class="temp">
+							<button type="button" onclick="" class="btn_speaker"><i class="ico_com ico_speaker">소리로 듣기</i></button>
+							<button type="button" onclick="" class="btn_refresh"><i class="ico_com ico_refresh">새로고침</i></button>
+						</li>
+						<li><input type="text" name="" id="" placeholder="보안숫자 입력" tabindex="5" maxlength="5"></li>
+					</ul>
+				</li>
+			</ul>
+		</fieldset>
+		<!-- /form -->
+		<ul class="btn_area2">
+			<li class="bt1"><button type="button" onclick="" class="btn_xr btn_type2">취소</button></li>
+			<li class="bt2"><button type="button" onclick="$(this).toggleClass('on')" class="btn_xr btn_type">인증번호 받기</button></li>
+		</ul>
+	</div>
+	<!-- //휴대폰본인확인(문자) -->
+	<div id="simple" class="inner" style="display:none">
+		<fieldset class="form_type">
+			<legend>간편본인확인 입력폼</legend>
+			<ul>
+				<li class="name"><input type="text" name="" id="" placeholder="이름" tabindex="1" maxlength="3"></li>
+				<li class="hp">
+					<ul>
+						<li class="num_first"><input type="text" name="" id="" placeholder="주민번호 앞자리" tabindex="2" maxlength="6"></li>
+						<li class="bar">-</li>
+						<li class="num_last"><input type="text" name="" id="" tabindex="3" maxlength="1"><i></i><i></i><i></i><i></i><i></i><i></i></li>
+					</ul>
+				</li>
+				<li class="telecom">
+					<ul>
+						<li><button type="button" onclick="" class="selected">SKT</button></li>
+						<li><button type="button" onclick="">KT</button></li>
+						<li><button type="button" onclick="">LG U+</button></li>
+						<li class="last"><button type="button" onclick="layer_open('ly_subphone');">알뜰폰</button></li>
+					</ul>
+					<input type="text" name="" id="" placeholder="휴대폰번호(-없이 입력)" tabindex="4" maxlength="11">
+				</li>
+			</ul>
+		</fieldset>
+		<!-- /form -->
+		<ul class="btn_area2 v1">
+			<li class="bt1"><button type="button" onclick="" class="btn_xr btn_type2">취소</button></li>
+			<li class="bt2"><button type="button" onclick="$(this).toggleClass('on')" class="btn_xr btn_type">인증번호 받기</button></li>
+		</ul>
+	</div>
+	<!-- //간편본인확인(앱) -->
+</div>
+<!-- //content -->
+
+<!-- 알뜰폰선택 -->
+<div class="ly_pop ly_subphone">
+	<div class="bg"><!-- shadow --></div>
+	<div id="ly_subphone" class="cont">
+		<div class="ele">
+			<ul>
+				<li><button type="button" onclick="">SKT(알뜰폰)</button></li>
+				<li><button type="button" onclick="" class="selected">KT(알뜰폰)</button></li>
+				<li><button type="button" onclick="">LGU+(알뜰폰)</button></li>
+			</ul>
+			<button type="button" onclick="layer_close();" class="btn_xr btn_type on">확인</button>
+		</div>
+	</div>
+</div>
+<!-- //알뜰폰선택 -->
+
+</body>
+</html>

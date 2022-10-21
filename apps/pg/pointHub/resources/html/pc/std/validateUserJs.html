@@ -1,0 +1,446 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"
+%><%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"
+%><%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %><%--
+ **********************************************************************************************
+ * @desc : 약관동의 및 본인인증 팝업호출 스크립트
+ * @FileName : /pointHub/src/main/webapp/WEB-INF/views/pc/std/validateUserJs.jsp
+ * @author 이형우
+ * @since 2018.07.31
+ * @version 1.0
+ * @see 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ * 수 정 일             수 정 자          수정내용
+ * ----------   --------   -----------------------------
+ * 2018.07.31    이형우        최초생성
+ * </pre>
+ **********************************************************************************************
+--%>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	
+	// div 확인 버튼이 있는 페이지에 적용
+	var confirmBtn = $(".btn_ok");
+	
+	if($("div").is(confirmBtn)){
+	    
+		var url = '/comn/checkCookie.do';
+	    var params = {}
+	    var type = 'post';
+	    var dataType = 'json';
+	    var success = function(data, textStatus, jqXHR){
+	    	//PHFnc.alert("success");
+	    }
+	    var error = function(data, textStatus, jqXHR){
+	        //PHFnc.alert("쿠키 차단을 해제해주세요");
+	    	$('.popup_toggle3').show();
+	    }
+	    
+	    PHFnc.ajax(url, params, type, dataType, success, error, false, isPc(), false);
+	}
+	
+    // 안내팝업 닫기 버튼 클릭
+    $('.closeBtn').click(function(){
+        $('.popup_toggle3').hide();
+    });
+	
+	//초기 이벤트 생성
+	validateUserFunc.initEvent();
+});
+
+var validateUserFunc = {
+	initEvent:function(){
+		//약관 동의 클릭 이벤트 설정
+		setAgreeEvent();
+		
+		//다날_본인 인증 버튼 클릭 이벤트
+		$('#dnlValidateBtn_all').click(function(){
+		
+			$('.all_check').removeClass('checked');
+			$('.check_type').addClass('checked');
+			$('.check_toggle').addClass('check_toggle_on');
+			$('.check_toggle_on').removeClass('check_toggle');
+			validateUserFunc.dnlValidate();
+		});
+		
+		$('#dnlConfirmBtn').click(function(){
+			validateUserFunc.dnlValidate();
+		});
+		
+		$('#kmcValidateBtn').click(function(){
+			
+			$('.all_check').removeClass('checked');
+			$('.check_type').addClass('checked');
+			$('.check_toggle').addClass('check_toggle_on');
+			$('.check_toggle_on').removeClass('check_toggle');
+			toggleFFiBtn();
+			
+			// 확인버튼 클립 trigger
+			$('#confirmBtn').trigger('click');
+		});
+		
+		// 확인 버튼 클릭 이벤트
+		$('#confirmBtn').click(function(){
+            if( 'Y' == '<c:out value="${phCertPassYN}"/>' ) {
+                <%-- 무인증 처리--%>
+                validateUserFunc.noCertValidate();
+            } else {
+                <%-- KMC 본인인증 처리--%>
+                validateUserFunc.kmcValidate();
+            }
+		});
+		
+		//취소 버튼 클릭 이벤트
+		$('#cancelBtn').click(function(){
+			var pgTrNo			= '${pg_tr_no}';
+			var phubTrNo		= '${phubTrNo}';
+			var payAmt			= '${ttlPayAmt}';
+			var points			= 0;
+			var wonAmt			= 0;
+			var payMethod		= '${payMethod}';
+			var retCode			= 'F999';
+			var retMsg			= '사용자 취소';
+			
+			if(payMethod == 'CU'){
+				payAmt = 0;
+			}
+			
+			$('#return_pgTrNo').val(pgTrNo);
+			$('#return_phubTrNo').val(phubTrNo);
+			$('#return_payAmt').val(payAmt);
+			$('#return_points').val(points);
+			$('#return_wonAmt').val(wonAmt);
+			$('#return_payMethod').val(payMethod);
+			$('#return_retCode').val(retCode);
+			$('#return_retMsg').val(retMsg);
+			
+			var url = $('#formReturn').attr('action');
+			var attrObj = {'form' : '#formReturn'};
+			
+			PHFnc.doPost(url, '', attrObj);
+		});
+		
+		//약관 상세 클릭 이벤트
+		$('.alink').click(function(){
+			var clsUrl = $(this).attr('clsUrl');
+			var clsTitl = $(this).attr('clsTitl');
+			
+			popupCenter(clsUrl, clsTitl, 640, 480);
+		});
+		
+		//팝업 닫기 클릭 이벤트
+		$('.btn_closePop').click(function(){
+			$('#myPopup').css('display', 'none');
+			$('#ifClause').attr('src', '');
+			$('#dtlTitl').text('');
+		});
+	},
+	noCertValidate:function(){
+		<%-- 무인증 처리 --%>
+		if(validateAgree()){
+			validateUserFunc.reqNoCerttifi();
+		}
+	},	
+	kmcValidate:function(){
+		if(validateAgree()){
+			validateUserFunc.getKmcSendParam();
+		}
+	},
+	dnlValidate: function(){
+		if(validateAgree()){
+			validateUserFunc.getDnlSendParam();
+		}
+	},
+	reqNoCerttifi:function(){
+		<%-- 무인증 처리 요청 --%>
+		var chnnl = $('#chnnl').val();
+		var phubTrNo =  '${phubTrNo}';
+		var clsList = JSON.stringify(getClsList());
+		
+		var url = '/phub/reqNoCertifi.do';
+		var params = {
+				'phubTrNo'	: phubTrNo,
+				'clsList'	: clsList,
+				'rt_url'	: '${rt_url}',
+				'platform'	: '${platform}'
+		}
+		var type = 'post';
+		var dataType = 'json';
+		var success = function(data, textStatus, jqXHR){
+			if(data.ret_code == '00'){
+				afterCert();
+			}
+		}
+
+		<%-- PHFnc.progressbar(true, true);
+		//this.ajaxProgress = false; --%>
+		PHFnc.ajax(url, params, type, dataType, success, errCustom, false, true);
+	},	
+	getKmcSendParam:function(){
+		
+		var chnnl = $('#chnnl').val();
+		var phubTrNo =  '${phubTrNo}';
+		var clsList = JSON.stringify(getClsList());
+		
+		var url = '/phub/getKmcSendParam.do';
+		var params = {
+				'phubTrNo'	: phubTrNo,
+				'clsList'	: clsList,
+				'rt_url'	: '${rt_url}',
+				'platform'	: '${platform}'
+		}
+		var type = 'post';
+		var dataType = 'json';
+		var success = function(data, textStatus, jqXHR){
+			if(data.ret_code == '00'){
+				$('#tr_cert').val(data.trCert);
+				$('#tr_url').val(data.resultUrl);
+				$('#tr_add').val(data.trAdd);
+				$('#reqKMCISForm').attr('action', data.sendUrl);
+				validateUserFunc.kmcPop();
+			}
+		}
+		PHFnc.ajax(url, params, type, dataType, success, errCustom, true, true);
+	},
+	getDnlSendParam: function(){
+		
+		var chnnl = $('#chnnl').val();
+		var phubTrNo =  '${phubTrNo}';
+		var clsList = JSON.stringify(getClsList());
+		
+		var url = '/phub/getDnlSendParam.do';
+		var params = {
+				'phubTrNo'	: phubTrNo,
+				'clsList'	: clsList,
+				'rt_url'	: '${rt_url}',
+				'platform'	: '${platform}'
+		}
+		var type = 'post';
+		var dataType = 'json';
+		
+		var success = function(data, textStatus, jqXHR){
+			if(data.ret_code == '00'){
+				$('#TID').val(data.TID);
+				$('#BackURL').val(data.BackURL);
+				$('#IsCharSet').val(data.IsCharSet);
+				$('#reqDNLForm').attr('action', data.sendUrl);
+				validateUserFunc.dnlPop();
+			}
+		}
+		PHFnc.ajax(url, params, type, dataType, success, errCustom, true, true);
+	},	
+	dnlPop: function() {
+		$('#reqDNLForm').attr('target', '');
+		$('#reqDNLForm').submit();
+	},
+	kmcPop:function(){
+		if('${deviceInd}' != 'PC'){
+			$('#reqKMCISForm').attr('target', '');
+			$('#reqKMCISForm').submit();
+		}else{
+			var w = 397;
+			var h = 693;
+			
+			var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : window.screenX;
+			var dualScreenTop = window.screenTop != undefined ? window.screenTop : window.screenY;
+			
+			var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+			var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+			
+			var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+			var top = ((height / 2) - (h / 2)) + dualScreenTop;
+			
+			var KMCIS_window = window.open('', 'KMCISWindow', 'width='+w+', height='+h+', resizable=0, Scrollbars=no, status=0, titlebar=0, toolbar=0, left='+left+', top='+top);
+			if(KMCIS_window == null){
+				var alertMsg = '※ 윈도우 XP SP2 또는 인터넷 익스플로러 7 사용자일 경우에는 \n    화면 상단에 있는 팝업 차단 알림줄을 클릭하여 팝업을 허용해 주시기 바랍니다. \n\n※ MSN,야후,구글 팝업 차단 툴바가 설치된 경우 팝업허용을 해주시기 바랍니다.';
+				PHFnc.alert(alertMsg);
+			}else{
+				$('#reqKMCISForm').attr('target', 'KMCISWindow');
+				$('#reqKMCISForm').submit();
+			}
+		}
+		
+	},
+	clsAgr:function(){
+		var phubTrNo =  '${phubTrNo}';
+		
+		var url = '/phub/std/clsAgr.do';
+		var params = {
+				'phubTrNo'	: phubTrNo
+		}
+		var type = 'post';  
+		var dataType = 'json';
+		
+		var success = function(data, textStatus, jqXHR){
+			if(data.ret_code == '00'){
+				if(data.serviceId == 'SVC_FP' && data.payYn == 'N'){		
+					if(data.path == 'CL'){		
+						PHFnc.doAction("/phub/fp/couponList.do", "custId="+data.custId);															
+					}else{
+						PHFnc.doAction("/phub/fp/familyList.do", "phub_tr_no=${phubTrNo}");										
+					} 
+				}else{
+						PHFnc.doAction("/phub/std/point.do", "phubTrNo=${phubTrNo}");
+				}
+			}
+		}
+		PHFnc.ajax(url, params, type, dataType, success, errCustom, true, true);
+	}
+}
+
+//약관 동의 관련 클릭 이벤트 함수
+function setAgreeEvent(){
+	//약관 동의 전체 개수(전체 약관 동의 제외)
+	var maxCheckCount = $('.check_toggle').length - 1;
+	
+	//전체 약관 동의 클릭
+	$('.all_check').click(function(){
+		if($(this).hasClass('checked')){
+			$(this).removeClass('checked');
+			$('.check_type').removeClass('checked');
+			$('.check_toggle_on').addClass('check_toggle');
+			$('.check_toggle').removeClass('check_toggle_on');
+		}else{
+			$(this).addClass('checked');
+			$('.check_type').addClass('checked');
+			$('.check_toggle').addClass('check_toggle_on');
+			$('.check_toggle_on').removeClass('check_toggle');
+		}
+		toggleFFiBtn();
+	});
+	
+	//약관동의 클릭
+	$('.check_link').click(function(){
+		var allCheckObj = $('.all_check').children().children('div:first');
+		var checkObj = $(this).children('div:first');
+		var checkTypeObj = $(this).parent();
+		//체크 해제
+		if(checkTypeObj.hasClass('checked')){
+			checkTypeObj.removeClass('checked');
+			checkObj.addClass('check_toggle');
+			checkObj.removeClass('check_toggle_on');
+			
+			//전체 약관 동의 체크 해제
+			$('.all_check').removeClass('checked');
+			allCheckObj.removeClass('check_toggle_on');
+			allCheckObj.addClass('check_toggle');
+		//체크
+		}else{
+			checkTypeObj.addClass('checked');
+			checkObj.removeClass('check_toggle');
+			checkObj.addClass('check_toggle_on');
+			
+			//전체 약관 동의 체크 개수
+			var checkedCount = $('.check_toggle_on').length;
+			if(maxCheckCount == checkedCount){
+				$('.all_check').addClass('checked');
+				allCheckObj.removeClass('check_toggle');
+				allCheckObj.addClass('check_toggle_on');
+			}
+		}
+		toggleFFiBtn();
+	});
+}
+
+//화면 가운데 팝업 표시 함수
+function popupCenter(url, title, w, h) {
+	// Fixes dual-screen position                         Most browsers      Firefox
+	var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : window.screenX;
+	var dualScreenTop = window.screenTop != undefined ? window.screenTop : window.screenY;
+	
+	var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+	var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+	
+	var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+	var top = ((height / 2) - (h / 2)) + dualScreenTop;
+	var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+	
+	// Puts focus on the newWindow
+	if (window.focus) {
+		newWindow.focus();
+	}
+}
+
+//본인인증 버튼 UI 변경 함수
+function toggleFFiBtn(){
+	var serviceId = '${serviceId}';
+	if($('.mandY').hasClass('check_toggle')){
+		//본인인증 비활성화
+		$('#confirmBtn').removeClass();
+		$('#dnlConfirmBtn').removeClass();
+		$('#confirmBtn').addClass('btn_ok');
+		$('#dnlConfirmBtn').addClass('btn_ok');
+    }else if($('.mandY').hasClass('check_toggle_on')){
+    	//본인인증 활성화
+    	$('#confirmBtn').removeClass();
+    	if(serviceId == 'SVC_FP'){
+    		$('#confirmBtn').addClass('btn_ok_on_frnt');
+    	}else{
+    		$('#confirmBtn').addClass('btn_ok_on');
+    		$('#dnlConfirmBtn').addClass('btn_ok_on_frnt');
+    	}
+    	
+    }
+}
+
+//약관 동의 유효성 체크
+function validateAgree(){
+	if($('.mandY').hasClass('check_toggle')){
+		PHFnc.alert('CLiP 이용약관, 개인정보 수집/이용 동의, 전자금융거래 이용약관, 개인정보 3자제공 동의, 포인트 사용 동의에 모두 동의해 주셔야 본 서비스를 이용 하실 수 있습니다.');
+    	return false;
+    }else if($('.mandY').hasClass('check_toggle_on')){
+    	return true;
+    }
+}
+
+//본인인증 후 UI 변경
+function afterCert() {
+	validateUserFunc.clsAgr();
+}
+
+//약관 동의 리스트 조회 함수
+function getClsList(){
+	var clsList = new Array();
+	$('.check_type').each(function(){
+		var clsId = $(this).attr('clsId');
+		var checkYn = $(this).hasClass('checked') ? 'Y' : 'N';
+		var prvdrId = $(this).attr('prvdrId');
+		var clsVer = $(this).attr('clsVer');
+		var clsTitl = $(this).attr('clsTitl');
+		clsList.push({
+			'clsId'		: clsId,
+			'checkYn'	: checkYn,
+			'prvdrId'	: prvdrId,
+			'clsVer'	: clsVer,
+			'clsTitl'	: clsTitl
+		});
+	});
+	
+	$('.card_info').each(function(){
+		var clsId = $(this).attr('clsId');
+		var checkYn = $('.check_type').last().hasClass('checked') ? 'Y' : 'N';
+		var prvdrId = $(this).attr('prvdrId');
+		var clsVer = $(this).attr('clsVer');
+		var clsTitl = $(this).attr('clsTitl');
+		
+		clsList.push({
+			'clsId'		: clsId,
+			'checkYn'	: checkYn,
+			'prvdrId'	: prvdrId,
+			'clsVer'	: clsVer,
+			'clsTitl'	: clsTitl
+		});
+	});
+	return clsList;
+}
+
+function isPc(){
+	if('${deviceInd}' == 'PC'){
+		return true;
+	}else{
+		return false;
+	}
+}
+</script>

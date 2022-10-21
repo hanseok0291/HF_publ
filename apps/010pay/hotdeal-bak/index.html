@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>핫딜 퍼블리싱 안내</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<!-- favicon -->
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="resources/images/favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<!--// favicon -->
+
+<link rel="stylesheet" href="resources/fonts/notosanskr/notosanskr.css">
+<link rel="stylesheet" href="resources/fonts/kanit/kanit.css">
+<link rel="stylesheet" href="resources/fonts/roboto/roboto.css">
+<script src="resources/js/jquery-1.8.3.min.js"></script>
+
+<style>
+	html, body { width: 100%; height: 100%; }
+	p { margin: .25em 0; }
+	body { margin: 0; padding: 0; background-color: #fff; font-family: 'Roboto', 'Noto Sans KR', 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; font-size: 12px; line-height: 1.4; letter-spacing: -0.03em; color: #222; }
+	header { margin: 0; padding: 20px 20px; border-bottom: 1px solid #777; }
+	header h1 { margin: 0 0 10px; font-size: 24px; font-weight: 500; color: #ff7e00; }
+	header p { margin: 0; line-height: 1.4; }
+	.main { position: relative; padding: 0 20px 20px; }
+	h2 { margin: 30px 0 10px; font-size: 18px; font-weight: 500; }
+	small { font-size: 90% !important; color: #777; }
+	ul { margin: 0; padding-left: 1.667em; list-style: disc; }
+	ul ul { margin-top: .333em; list-style: circle; }
+	li { margin-top: .333em; }
+	ul li:first-child { margin-top: 0; }
+	a { color: #5e8cc0; }
+	a, a:hover, a:active, a:focus { text-decoration: underline; }
+	.table-responsive { width: 100%; overflow-x: auto; border: 1px solid #ddd; }
+	.table { margin: 0; min-width: 550px;  border-collapse: collapse; width: 100%; font-size: 12px; border: 0; }
+	.table th, .table td {  padding: 5px 10px; height: auto; border: 1px solid #ddd; }
+	.table th { background: #f1f2f4; color: #222; font-weight: 500; text-align: center; }
+	.table .date, .table .status { text-align: center; }
+	.well { padding: 20px; border: 2px solid #ddd; }
+	.bg-info { background: #dbf5ff; }
+	.bg-success { background: #e7fbe2; }
+	.bg-warning { background: #ff9; }
+	.bg-danger { background: #ffe5e8; }
+	.bg-wait { background: #eee; color: #888; }
+	.del { text-decoration: line-through; }
+	code { padding: 2px 4px; background-color: #f9f2f4; font-size: 96%; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; color: #c7254e; }
+	.text-primary { color: #ff7e00; }
+	.text-info { color: #ff7e00; }
+	.text-danger { color: #dc3545; }
+	.text-success { color: #28a745; }
+	.btn { display: inline-block; padding: .25em .5em; border: 1px solid #5e8cc0; border-radius: .5em; background-color: transparent; font-family: 'Noto Sans KR'; font-size: 11px; color: #5e8cc0; line-height: 1.2; cursor: pointer; }
+	.flip { position: relative; }
+	.flip .flip-body { display: none; }
+	.flip.open .flip-body { display: block; }
+	.flip.open .btn-flip .open { display: none; }
+	.flip:not(.open) .btn-flip .close { display: none; }
+</style>
+
+<script>
+$(document).ready(function(){
+	// 설명 영역 축약 (flip)
+	$(".btn-flip").click(function(){
+		$(this).parents(".flip").toggleClass("open");
+	});
+
+	// 진행 상태별 셀 컬러
+	$(".status:contains('작업 중')").parents("tr").addClass("bg-danger");
+	$(".status:contains('검토 요청')").parents("tr").addClass("bg-warning");
+	$("li.text-success").parents("tr").addClass("bg-success");
+	$(".status:contains('-'), .status:empty").parents("tr").addClass("bg-wait");
+});
+</script>
+</head>
+
+<body>
+<header>
+	<h1>010PAY 핫딜 퍼블리싱 안내</h1>
+	<p>최종 수정일 : 2021-12-16</p>
+</header>
+
+<div class="main">
+
+	<h2>PAGE</h2>
+	<div class="table-responsive">
+		<table class="table" id="pageTable">
+			<colgroup>
+				<col style="width: 10%">
+				<col style="width: 15%">
+				<col style="width: 15%">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>구분</th>
+					<th>화면명</th>
+					<th>파일</th>
+					<th>화면코드</th>
+					<th>날짜</th>
+					<th>상태</th>
+					<th>비고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>메인</td>
+					<td>메인</td>
+					<td><a href="resources/html/main.html" target="_blank">main</a></td>
+					<td>-</td>
+					<td class="date">2021-12-16</td>
+					<td class="status">진행중</td>
+					<td>
+						<div class="flip open">
+							<ul class="flip-body">
+							</ul>
+							<!-- <p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p> -->
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>제품 상세</td>
+					<td>제품 상세</td>
+					<td><a href="resources/html/detail.html" target="_blank">detail</a></td>
+					<td>-</td>
+					<td class="date">2021-12-16</td>
+					<td class="status">진행중</td>
+					<td>
+						<div class="flip open">
+							<ul class="flip-body">
+							</ul>
+							<!-- <p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p> -->
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>응모하기</td>
+					<td>응모하기</td>
+					<td><a href="resources/html/apply.html" target="_blank">apply</a></td>
+					<td>-</td>
+					<td class="date">2021-12-16</td>
+					<td class="status">진행중</td>
+					<td>
+						<div class="flip open">
+							<ul class="flip-body">
+								<li>약관 전체 동의 시 버튼의 disable 속성 지워야 함</li>
+							</ul>
+							<!-- <p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p> -->
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="5">핫딜 리스트</td>
+					<td>핫딜 리스트</td>
+					<td><a href="resources/html/list-apply.html" target="_blank">list-apply</a></td>
+					<td>-</td>
+					<td class="date">2021-12-16</td>
+					<td class="status">진행중</td>
+					<td>
+						<div class="flip open">
+							<ul class="flip-body">
+							</ul>
+							<!-- <p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p> -->
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>핫딜 없음(응모한)</td>
+					<td><a href="resources/html/list-apply-blank.html" target="_blank">list-apply-blank</a></td>
+					<td>-</td>
+					<td class="date">2021-12-16</td>
+					<td class="status">진행중</td>
+					<td>
+						<div class="flip open">
+							<ul class="flip-body">
+
+							</ul>
+							<!-- <p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p> -->
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>핫딜 없음(진행&middot;예정)</td>
+					<td><a href="resources/html/list-ready-blank.html" target="_blank">list-ready-blank</a></td>
+					<td>-</td>
+					<td class="date">2021-12-16</td>
+					<td class="status">진행중</td>
+					<td>
+						<div class="flip open">
+							<ul class="flip-body">
+
+							</ul>
+							<!-- <p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p> -->
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>핫딜 없음(관심있는)</td>
+					<td><a href="resources/html/list-pick-blank.html" target="_blank">list-pick-blank</a></td>
+					<td>-</td>
+					<td class="date">2021-12-16</td>
+					<td class="status">진행중</td>
+					<td>
+						<div class="flip open">
+							<ul class="flip-body">
+
+							</ul>
+							<!-- <p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p> -->
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>핫딜 없음(종료된)</td>
+					<td><a href="resources/html/list-close-blank.html" target="_blank">list-close-blank</a></td>
+					<td>-</td>
+					<td class="date">2021-12-16</td>
+					<td class="status">진행중</td>
+					<td>
+						<div class="flip open">
+							<ul class="flip-body">
+
+							</ul>
+							<!-- <p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p> -->
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>핫딜 안내</td>
+					<td>핫딜 안내</td>
+					<td><a href="resources/html/guide.html" target="_blank">guide</a></td>
+					<td>-</td>
+					<td class="date">2021-12-16</td>
+					<td class="status">진행중</td>
+					<td>
+						<div class="flip open">
+							<ul class="flip-body">
+							</ul>
+							<!-- <p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p> -->
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>모달</td>
+					<td>모달 모음</td>
+					<td><a href="resources/html/modal.html" target="_blank">modal</a></td>
+					<td>-</td>
+					<td class="date">2021-12-16</td>
+					<td class="status">진행중</td>
+					<td>
+						<div class="flip open">
+							<ul class="flip-body">
+								<li>종류별 모달 모음</li>
+							</ul>
+							<!-- <p><button type="button" class="btn btn-flip"><span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span></button></p> -->
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<h2>MEMO</h2>
+	<div class="well">
+		<ul>
+			<!-- <li>반응형(모바일/태블릿/PC 단일 소스)</li>
+			<li>PC 새창 팝업 : 420px × 610px</li>
+			<li><code>.container</code> 가로 사이즈 : 320px(iPhone 5) ~ 420px(PC 새창 팝업)</li>
+			<li>PC 브라우저 지원 : 크롬, 웨일, 파이어폭스, Internet Explorer 9 이상,...</li> -->
+			<li>모바일용 UI</li>
+			<li>모바일 브러우저 지원 : 크롬, 사파리</li>
+			<li>화면 사이즈 : 320px ~ 420px</li>
+			<!-- <li>안드로이드 5.0 이상 지원</li> -->
+		</ul>
+	</div>
+</div>
+</body>
+</html>

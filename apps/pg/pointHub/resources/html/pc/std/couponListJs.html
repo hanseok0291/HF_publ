@@ -1,0 +1,233 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%--
+ **********************************************************************************************
+ * @desc : 쿠폰 리스트 스크립트
+ * @FileName : /pointHub/src/main/webapp/WEB-INF/views/pc/std/couponListJs.jsp
+ * @author 정욱재
+ * @since 2019.05.28
+ * @version 1.0
+ * @see 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ * 수 정 일			수 정 자		수정내용
+ * ----------	--------	-----------------------------
+ * 2019.05.28	정욱재			최초생성
+ * </pre>
+ **********************************************************************************************
+--%>
+<script type="text/javascript">
+	var rt_url 		= "${rt_url}";
+	var platform 	= "${platform}";
+	const COUPON_MAX_COUNT = "${COUPON_MAX_COUNT}";
+
+	//각 쿠폰의 체크박스를 선택시 발동함수 --%>
+	var clickCheckToggle = function(obj) {
+		var checkToggleOnLength = $('.check_toggle_on').length
+		if (checkToggleOnLength >= COUPON_MAX_COUNT && $(obj).hasClass('check_toggle')) {
+			PHFnc.alert("최대 " + COUPON_MAX_COUNT +"개 까지 선택 가능합니다.")			
+		} else {
+			var details	= jQuery(obj).parent().parent();
+			var amt		= jQuery(details).data("amt");
+			displayToggle(obj);
+			updateTotal();
+		}
+	}
+	
+	//쿠폰 전체선택을 누를시 발동함수 --%>
+	var clickAllCheck = function(obj) {
+		if ($(".item .details").length > COUPON_MAX_COUNT) {
+			PHFnc.alert("최대 " + COUPON_MAX_COUNT +"개 까지 선택 가능합니다.")	
+		} else {
+			if (checkedAll()) {
+				unCheckAll();
+			}
+			else {
+				checkAll();
+			}
+		
+			updateTotal();
+		}
+	}
+	
+	//체크박스의class를 바꾸어 전체선택이 되도록 css적용하는 함수 --%>
+	var checkAll = function() {
+		jQuery(".check_toggle").addClass("check_toggle_on");
+		jQuery(".check_toggle").removeClass("check_toggle");
+	}
+	
+	//체크박스의class를 바꾸어 전체해제가 되도록 css적용하는 함수 --%>
+	var unCheckAll = function() {
+		jQuery(".check_toggle_on").addClass("check_toggle");
+		jQuery(".check_toggle_on").removeClass("check_toggle_on");
+	}
+	
+	//쿠폰이 전체선택이되였는지 아닌지 여부를 체크함수 --%>
+	var checkedAll = function() {
+		selected	= jQuery(".check_toggle_on").length;
+		issued		= jQuery(".item .details").length;
+	
+		return selected == issued;
+	}
+	
+	//선택한 쿠폰의 class를 바꾸어 css를 적용하는 함수 --%>
+	var displayToggle = function(obj) {
+		if (jQuery(obj).hasClass("check_toggle")) {
+			jQuery(obj).removeClass("check_toggle");
+			jQuery(obj).addClass("check_toggle_on");
+		}			
+		else {
+			jQuery(obj).removeClass("check_toggle_on");
+			jQuery(obj).addClass("check_toggle");
+		}
+	}
+	
+	//선택한 쿠폰에따라 총 할인액을 비동기적으로 갱신함수 --%>
+	var updateTotal = function() {
+		var selected	= jQuery(".check_toggle_on");
+		var total		= 0;
+	
+		jQuery(selected).each(function() {
+			total += parseInt(jQuery(this).parent().parent().data("amt"));
+		})
+		
+		jQuery("#point_li").text(formatNumber(total));
+	}
+	
+	var setDest = function(coupons) {
+		//var dest = rt_url + '?coupons=';
+		var data = {}
+		
+		data['code'] = '00';
+		data['msessage'] = 'SUCCESS';
+		data['coupon_list'] = coupons;
+		
+		var dest = JSON.stringify(data);
+		
+		//console.log(dest);
+		return dest;
+	}
+	
+	var cnvrtData = function(amtEncrypt, cpnId) {
+		var item = {};
+		item['coupon'] = cpnId;
+		item['point']  = amtEncrypt;
+		item['type'] = '01';
+		
+		return item;
+	}
+	
+	//확인버튼 클릭시 발동함수 --%>
+	var clickBtnOk = function() {
+		var selected	= jQuery(".check_toggle_on");
+		var coupons		= [];
+	
+		jQuery(selected).each(function() {
+			var amtEncrypt = jQuery(this).parent().parent().data("amt-encrypt");
+			var cpnId = jQuery(this).parent().parent().data("cpn-id");
+	
+			coupons.push(cnvrtData(amtEncrypt, cpnId));
+		})
+		/*
+		var url = '/phub/fp/couponPointEncrypt.do'
+		var params = {
+			'coupons': JSON.stringify(coupons)
+		}
+		var type = 'post'
+		var dataType = 'json'
+		var success = function(data, textStatus, jqXHR) {
+			if (data.ret_code == '00') {
+				location.href = setDest(data.coupons);
+			}
+		}
+		PHFnc.ajax(url, params, type, dataType, success, errCustom, true, true)
+		*/
+		if (rt_url.indexOf('http') == 0) {
+			$('#coupons').val(setDest(coupons));
+			$('#couponListForm').attr("action", rt_url);
+			$('#couponListForm').submit();
+		} else {
+			location.href = rt_url + '?coupons=' + setDest(coupons);
+		}
+	}
+	
+	//jQuery영역 --%>
+	jQuery(document).ready(function() {
+		
+	    //각 쿠폰리스트의 체크박스를 클릭시 발생되는 이벤트함수 --%>
+		jQuery(".check_toggle").click(function() {
+			clickCheckToggle(this);
+		});
+	
+	    //전체선택 버튼을 클릭시 발생되는 이벤트함수 --%>		
+		jQuery("#all_check").click(function() {
+			clickAllCheck(this);
+		});
+	
+	    //새로고침 버튼을 클릭시 발생되는 이벤트함수 --%>				
+		jQuery(".btn_refresh").click(function() {
+			PHFnc.doAction('/phub/fp/couponList.do', '');
+		});
+	
+		updateTotal();
+	
+	    //확인 버튼을 클릭시 발생되는 이벤트함수 --%>						
+		jQuery(".btn_ok").click(function(){
+			if(jQuery(".check_toggle_on").length > 0){ 
+				if(confirm("쿠폰을 사용하시겠습니까?")){
+					clickBtnOk();
+					
+				}else {
+					PHFnc.alert("쿠폰사용이 취소되었습니다.");
+				}
+			}else {
+					PHFnc.alert("선택된 쿠폰이 없습니다.")
+			}
+		});
+		
+		<%-- 전화번호 포맷 변경 --%>
+		jQuery(".custCtnCell").each(function() {
+			jQuery(this).text(
+				phoneFomatter($(this).text())
+			);
+			
+			jQuery(this).css("opacity", "1");
+		});		
+	})
+	
+	//1000단위 콤마를 적용하는 Form메소드 --%>
+	var formatNumber = function(num) {
+		  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+	};
+	
+	var phoneFomatter = function(num,type){
+	    var formatNum = '';
+	    if(num.length==11){
+	        if(type==0){
+	            formatNum = num.replace(/(\d{3})(\d{4})(\d{4})/, '$1-****-$3');
+	        }else{
+	            formatNum = num.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+	        }
+	    }else if(num.length==8){
+	        formatNum = num.replace(/(\d{4})(\d{4})/, '$1-$2');
+	    }else{
+	        if(num.indexOf('02')==0){
+	            if(type==0){
+	                formatNum = num.replace(/(\d{2})(\d{4})(\d{4})/, '$1-****-$3');
+	            }else{
+	                formatNum = num.replace(/(\d{2})(\d{4})(\d{4})/, '$1-$2-$3');
+	            }
+	        }else{
+	            if(type==0){
+	                formatNum = num.replace(/(\d{3})(\d{3})(\d{4})/, '$1-***-$3');
+	            }else{
+	                formatNum = num.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+	            }
+	        }
+	    }
+
+	    return formatNum;
+	};
+</script>

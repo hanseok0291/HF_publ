@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<title>내통장결제</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link rel="stylesheet" href="../../css/jquery-ui.css">
+<link rel="stylesheet" href="../../css/owl.carousel.min.css">
+<link rel="stylesheet" href="../../css/common.css?ezauthver=5.0">
+<!--[if lt IE 9]>
+<script type="text/javascript" src="../../js/html5shiv.js"></script>
+<script type="text/javascript" src="../../js/respond.min.js"></script>
+<![endif]-->
+<script src="../../js/jquery-1.8.3.min.js"></script>
+<script src="../../js/jquery.placeholder.min.js"></script>
+<script src="../../js/jquery-ui.js"></script>
+<script src="../../js/jquery.ui.touch-punch.min.js"></script>
+<script src="../../js/owl.carousel.min.js"></script>
+<script src="../../js/design.js?ezauthver=5.0" defer="defer"></script>
+<script src="../../js/commonmsg.js?ezauthver=5.0"></script>
+<script src="../../js/commonutil.js?ezauthver=5.0"></script>
+<style>
+.bg-primary, .input-mark .mark i.on, .switch .switch-inner:before, .icon-star.on, .btn-star.on > .icon-star, .btn-primary, .loading-bar { background-color: #ff3a4a; }
+.icon-check.primary:before, .btn-primary, .btn-primary-outline, .home-sec.current .per { border-color: #ff3a4a; }
+.used-sec .price .add, .check-primary { color: #ff3a4a; }
+.text-primary { color: #ff3a4a !important; }
+</style>
+</head>
+
+<body class="custom-pass skt">
+<!-- form -->
+<form class="main_form" action="javascript: void(0);" autocomplete="off">
+	<!-- wrap -->
+	<div id="wrap">
+		<!-- header -->
+		<div id="header">
+			<div class="container">
+				<button type="button" id="btnBack" class="btn-back"><i class="icon-angle-left">뒤로가기</i></button>
+				<h1 class="brand-name hidden">
+					<a href="#">
+						<span class="shop-logo"><img src="../../images/logo-pass-org.png?ver=1.1" alt="PASS"></span>
+						<span class="my-logo"><img src="../../images/logo-010pay-black.png?ver=1.1" class="logo" alt="010PAY"></span>
+					</a>
+				</h1>
+				<h2 class="page-title">전환하기</h2>
+				<button type="button" id="closeWindow" class="btn-close hidden"><i class="icon-times">창닫기</i></button>
+			</div>
+		</div>
+		<!-- //header -->
+
+		<!-- content -->
+		<div id="content">
+			<!-- charge wrap -->
+			<div class="charge-wrap">
+				<!-- 충전 머니 -->
+				<div class="charge-sec current bg-gray">
+					<div class="container">
+						<dl>
+							<dt>전환 가능 PASS 머니</dt>
+							<dd><span class="price"><strong>1,890,000</strong>원</span></dd>
+						</dl>
+					</div>
+				</div>
+				<!-- //충전 머니 -->
+
+				<!-- container -->
+				<div class="container">
+					<div class="charge-sec else">
+						<div class="note">
+							<h3>유의사항</h3>
+							<ul>
+								<li class="info text-light">전환 시 취소가 불가능합니다.</li>
+								<li class="info text-light">전환 시 PASS 제휴 서비스 PASS페이의 이용 정책을 따릅니다.</li>
+								<li class="info text-light">PASS페이 머니 보유 한도는 최대 200만원입니다.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- //container -->
+			</div>
+			<!-- //charge wrap -->
+
+			<!-- bottom area -->
+			<div class="bottom-area">
+				<!-- container -->
+				<div class="container text-center">
+					<button type="button" id="cancelAgree" class="text-light text-link">개인정보 제 3자 제공 동의 철회하기</button>
+					<button type="button" id="send" class="btn btn-outline mgt30">전환하기</button>
+				</div>
+				<!-- //container -->
+			</div>
+			<!-- //bottom area -->
+		</div>
+		<!-- //content -->
+	</div>
+	<!-- //wrap -->
+</form>
+<!-- //form -->
+
+<!-- 약관 동의 -->
+<div id="modal-agree" class="modal modal-slide modal-info type2" onclick="$(this).off();">
+	<div class="modal-dialog">
+		<div class="modal-content" style="bottom: 0px; position: fixed;">
+			<div class="modal-body">
+				<div class="container chg-info agree">
+					<h4>개인정보 제 3자 제공</h4>
+					<p>SK텔레콤 주식회사는 안전한 전자금융거래 서비스를 제공하기 위하여 본인의 동의 하에 개인정보를 제공합니다.</p>
+					<div class="terms">
+						<table class="table">
+							<thead>
+								<th>제공받는 자</th>
+								<th>제공 목적</th>
+								<th>제공 항목</th>
+								<th>보유 기간</th>
+							</thead>
+							<tbody>
+								<tr>
+									<td>(주)헥토파이낸셜</td>
+									<td>PASS 머니 가입 여부, PASS 머니 잔액 조회</td>
+									<td>PASS 머니 가입 회원, PASS 머니 잔액</td>
+									<td>잔액 조회 서비스 종료 시까지.<br>
+										단, 전자금융거래법 등 관련법령에 따라 보존</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="checkbox square">
+						<input type="checkbox" name="checkbox-receipt" id="checkbox-receipt" checked="">
+						<label for="checkbox-receipt">개인정보 제 3자 제공 동의하기</label>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer type2">
+				<button type="button" class="btn btn-cancel">취소</button>
+				<button type="button" class="btn btn-confirm">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //약관 동의 -->
+
+<!-- 전환하기 -->
+<div id="modal-changeMoney" class="modal modal-slide modal-info">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body my-info">
+				<button type="button" class="btn btn-close">취소</button>
+				<div class="refund-info change">
+					<div class="pay-sec">
+						<dl class="charge-sec">
+							<dt>전환 가능 PASS 머니</dt>
+							<dd><span class="price"><strong>1,890,000</strong>원</span></dd>
+						</dl>
+						<div class="bg-gray">
+							<ul class="form-type">
+								<li class="with-input lg">
+									<label class="label">전환 신청</label>
+									<div class="form-desc">
+										<div class="position-relative">
+											<input type="tel" class="input-text-lg input-box text-primary" placeholder="전환할 금액 입력">
+											<span class="form-control-clear hidden"><i class="icon-times-circle sr-only">삭제</i></span>
+										</div>
+										<div class="text-error"><i class="icon icon-error"></i> 최소 전환 금액은 10원입니다.</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<p class="text-info">※ PASS페이 머니로 전환 후 취소할 수 없습니다.</p>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn">전환하기</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //전환하기 -->
+
+<!-- loading -->
+<div class="modal modal-loading">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="loading">
+					<div class="loading-bar"></div>
+					<div class="loading-bar"></div>
+					<div class="loading-bar"></div>
+					<div class="loading-bar"></div>
+				</div>
+				<span class="text">로딩 중</span>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //loading -->
+
+<!-- common alert -->
+<div id="commonAlert" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3 id="alertTitle"></h3>
+				<p id="alertContents"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" onclick="modalClose();" class="btn btn-confirm">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //common alert -->
+
+<!-- common prompt -->
+<div id="commonPrompt" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3 id="promptTitle"></h3>
+				<p id="promptContents"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" id="promptNo" onclick="modalClose();" class="btn btn-cancel">취소</button>
+				<button type="button" id="promptOk" class="btn btn-confirm">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //common prompt -->
+
+<script>
+$(document).ready(function() {
+	// 약관 동의 팝업 오픈
+	modalOpenSlide("modal-agree");
+
+	// 약관 동의 철회
+	$("#cancelAgree").click(function(){
+		$.promptMessage("", "헥토파이낸셜의 개인정보 제 3자 제공 동의를 철회하시겠습니까?", $("#commonPrompt"), $("#promptOk"), "modalClose()");
+	});
+
+	// 전환하기 모달 오픈
+	$("#send").click(function(){
+		modalOpenSlide("modal-changeMoney");
+	});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+/* mixin */
+
+@mixin limit-width {
+	margin-left: auto;
+	margin-right: auto;
+	min-width: $min-width;
+	max-width: $max-width;
+}
+@mixin clearfix {
+	clear: both;
+	&:after{
+		content: '';
+		clear: both;
+		display: block;
+	}
+}
+@mixin box-shadow($left, $top, $blur, $color) {
+	@each $prefix in -webkit-, -moz-, '' {
+		#{$prefix}box-shadow: $left $top $blur $color;
+	}
+}
+@mixin transition($property: all, $duration: .2s, $easing: ease) {
+	@each $prefix in -webkit-, -moz-, '' {
+		#{$prefix}transition: $property $duration $easing;
+	}
+}
+@mixin border-radius($radius: 6px) {
+	@each $prefix in -webkit-, -moz-, '' {
+		#{$prefix}border-radius: $radius;
+	}
+}

@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<!-- favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="../../settlebank/img/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="../../settlebank/img/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="../../settlebank/img/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../../settlebank/img/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="../../settlebank/img/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../../settlebank/img/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="../../settlebank/img/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="../../settlebank/img/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="../../settlebank/img/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../settlebank/img/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../settlebank/img/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../settlebank/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../../settlebank/img/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../settlebank/img/favicon/favicon-16x16.png">
+<link rel="manifest" href="../../settlebank/img/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="../../settlebank/img/favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<!-- //favicon -->
+
+<title>포인트다모아(클립) 세틀뱅크 퍼블리싱 안내</title>
+<script src="../../settlebank/js/jquery-1.8.3.min.js"></script>
+
+<style>
+	html, body { width: 100%; height: 100%; }
+	p { margin: .25em 0; }
+	body { margin: 0; padding: 0; background-color: #fff; font-family: 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; font-size: 12px; line-height: 1.4; letter-spacing: -0.03em; color: #222; }
+	input, button, label { font-family: 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; }
+	header { margin: 0; padding: 20px 20px; border-bottom: 1px solid #ccc; }
+	header h1 { margin: 0 0 10px; font-size: 24px; font-weight: 700; color: #faa61a; }
+	header p { line-height: 1.4; }
+	.main { position: relative; padding: 0 20px 20px; }
+	h2 { margin: 30px 0 10px; font-size: 18px; font-weight: 800; }
+	h3 { margin: 0 0 10px; font-size: 14px; }
+	small { font-size: 90% !important; color: #9a9a9a; }
+	ul { margin: 0; padding-left: 1.667em; list-style: disc; }
+	ul ul { margin-top: .333em; list-style: circle; }
+	li { margin-top: .333em; }
+	ul li:first-child { margin-top: 0; }
+	a { color: #1d8dd8; }
+	a, a:hover, a:active, a:focus { text-decoration: underline; }
+	.strong { font-weight: 500; }
+	.table-responsive { width: 100%; overflow-x: auto; border: 1px solid #ddd; }
+	.table { margin: 0; min-width: 550px;  border-collapse: collapse; width: 100%; font-size: 12px; border: 0; }
+	.table th, .table td {  padding: 5px 10px; height: auto; border: 1px solid #ddd; }
+	.table th { background: #f1f2f4; color: #222; font-weight: 500; text-align: center; }
+	.table .date, .table .status { text-align: center; }
+	.well { padding: 20px; border: 2px solid #ddd; }
+	.bg-info { background: #dbf5ff; }
+	.bg-success { background: #e7fbe2; }
+	.bg-warning { background: #ff9; }
+	.bg-danger { background: #ffe5e8; }
+	.bg-wait { background: #eee; color: #888; }
+	.del { text-decoration: line-through; }
+	code { padding: 2px 4px; background-color: #f9f2f4; font-size: 96%; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; color: #c7254e; }
+	.text-primary { color: #faa61a; }
+	.text-info { color: #1d8dd8; }
+	.text-danger { color: #ff4f51; }
+	.text-success { color: #28a745; }
+	.btn { display: inline-block; padding: .25em .5em; border: 1px solid #5e8cc0; border-radius: .5em; background-color: transparent; font-size: 11px; color: #5e8cc0; line-height: 1.2; }
+	.flip { position: relative; }
+	.flip .flip-body { display: none; }
+	.flip.open .flip-body { display: block; }
+	.flip.open .btn-flip .open { display: none; }
+	.flip:not(.open) .btn-flip .close { display: none; }
+</style>
+<script>
+$(document).ready(function(){
+	$(".status:contains('검토 요청')").parents("tr").addClass("bg-warning");
+	$(".status:contains('작업 중'), .status:contains('수정 중'), .status:contains('수정 예정')").parents("tr").addClass("bg-danger");
+	$("li.text-success").parents("tr").addClass("bg-success");
+	$(".status:empty").parents("tr").addClass("bg-wait");
+});
+</script>
+</head>
+
+<body>
+<header>
+	<h1>포인트다모아(클립) 세틀뱅크 퍼블리싱 안내</h1>
+	<p>최종 수정일 : 2021-06-29</p>
+</header>
+
+<div class="main">
+	<h2>세틀뱅크 전용 신규 화면 <small>(/settlebank/*)</small></h2>
+	<div class="table-responsive">
+		<table class="table" id="pageTable">
+			<colgroup>
+				<col style="width: 10%">
+				<col style="width: 25%">
+				<col style="width: 15%">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>구분</th>
+					<th>화면명</th>
+					<th>파일</th>
+					<th>날짜</th>
+					<th>상태</th>
+					<th>비고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="5">공통<br>
+						(comm)</td>
+					<td>기본 레이아웃</td>
+					<td><a href="comm/defaultLayout.html" target="_blank">defaultLayout</a></td>
+					<td class="date">2021-05-26</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li class="text-info">[참고] 공통 팝업(모달), 서비스 이용 불가(쿠키 설정 차단) 팝업</li>
+							<li>2021-05-21 : 화면 추가</li>
+							<li>2021-05-26 : 서비스 이용 불가(쿠키 설정 차단) 팝업 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>로딩</td>
+					<td><a href="comm/loading.html" target="_blank">loading</a></td>
+					<td class="date">2021-05-21</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2021-05-21 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>결제 실패</td>
+					<td><a href="comm/payFail.html" target="_blank">payFail</a></td>
+					<td class="date">2021-05-21</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2021-05-21 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>시스템 오류</td>
+					<td><a href="comm/error.html" target="_blank">error</a></td>
+					<td class="date">2021-05-21</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2021-05-21 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>시스템 오류 2 <small>(리소스 연결 불가 시 사용)</small></td>
+					<td><a href="comm/error2.html" target="_blank">error2</a></td>
+					<td class="date">2021-05-21</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2021-05-21 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="2">표준<br>
+						(std)</td>
+					<td>약관 동의(복합결제 소진형)</td>
+					<td><a href="std/validateUser_CU.html" target="_blank">validateUser_CU</a></td>
+					<td class="date">2021-05-27</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li class="text-info">[참고] 전체 약관 선택 시 박스 컬러 활성</li>
+							<li class="text-info">[참고] 필수 약관 전체 선택 시 하단 버튼 활성</li>
+							<li>2021-05-21 : 화면 추가</li>
+							<li>2021-05-25 : 약관 추가</li>
+							<li>2021-05-27 : 예시금액 변경</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>포인트 조회 결제(복합결제 소진형)</td>
+					<td><a href="std/pointPage_CU.html" target="_blank">pointPage_CU</a></td>
+					<td class="date">2021-06-29</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2021-05-21 : 화면 추가</li>
+							<li>2021-05-27 : 예시금액 변경</li>
+							<li>2021-05-31
+								<ul>
+									<li>뒤로 이동 버튼 팝업 추가</li>
+									<li>상단 결제정보 항목 순서, UI 변경</li>
+									<li>문구 변경 : 포인트 사용 안내 팝업 내용, 보유 포인트 제목</li>
+								</ul>
+							</li>
+							<li class="text-success">2021-06-29 : 전액 사용 버튼 추가, 초기화 버튼 변경</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>약관<br>
+						(terms)</td>
+					<td>개인정보 제3자 제공 및 위탁 안내</td>
+					<td><a href="../../terms/privacy210525.html" target="_blank">privacy210525</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2021-05-25 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<h2>기존 개발 화면 일부 - 모바일 버전 <small>(/mb/*)</small></h2>
+	<div class="table-responsive">
+		<table class="table" id="pageTable">
+			<colgroup>
+				<col style="width: 10%">
+				<col style="width: 25%">
+				<col style="width: 15%">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>구분</th>
+					<th>화면명</th>
+					<th>파일</th>
+					<th>날짜</th>
+					<th>상태</th>
+					<th>비고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="4">공통<br>
+						(comm)</td>
+					<td>오류</td>
+					<td><a href="../mb/comm/error.html" target="_blank">error</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>오류</td>
+					<td><a href="../mb/comm/error_custom.html" target="_blank">error_custom</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>오류(ios)</td>
+					<td><a href="../mb/comm/error_custom_ios.html" target="_blank">error_custom_ios</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>로딩</td>
+					<td><a href="../mb/comm/loading.html" target="_blank">loading</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td rowspan="11">표준<br>
+						(std)</td>
+					<td>약관 동의</td>
+					<td><a href="../mb/std/validateUser.html" target="_blank">validateUser</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>약관 동의(패밀리포인트)</td>
+					<td><a href="../mb/std/validateUser_FP.html" target="_blank">validateUser_FP</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>약관 동의(쿠폰리스트)</td>
+					<td><a href="../mb/std/validateUser_CL.html" target="_blank">validateUser_CL</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>포인트 조회 결제(단일결제)</td>
+					<td><a href="../mb/std/pointPage_SI.html" target="_blank">pointPage_SI</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>포인트 조회 결제(복합결제)</td>
+					<td><a href="../mb/std/pointPage_CO.html" target="_blank">pointPage_CO</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>포인트 조회 결제(소진형)</td>
+					<td><a href="../mb/std/pointPage_CU.html" target="_blank">pointPage_CU</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>포인트 조회 결제(소진형 Type2 탑툰 제외한 웹툰 계열)</td>
+					<td><a href="../mb/std/pointPage_CU2.html" target="_blank">pointPage_CU2</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>포인트 조회 결제(패밀리포인트)</td>
+					<td><a href="../mb/std/pointPage_FP.html" target="_blank">pointPage_FP</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>KMC본인인증 결과 수신</td>
+					<td><a href="../mb/std/validateResult.html" target="_blank">validateResult</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>조르기(요청)(패밀리포인트)</td>
+					<td><a href="../mb/std/familyPoint.html" target="_blank">familyPoint</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>쿠폰리스트 조회(패밀리포인트)</td>
+					<td><a href="../mb/std/couponList.html" target="_blank">couponList</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td rowspan="2">내통장결제<br>
+						(idsr)</td>
+					<td>포인트 조회 결제(소진형 내통장결제)</td>
+					<td><a href="../mb/idsr/pointPage_COC.html" target="_blank">pointPage_COC</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>포인트 조회 결제(내통장결제)</td>
+					<td><a href="../mb/idsr/pointPage_COC2.html" target="_blank">pointPage_COC2</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<h2>기존 개발 화면 일부 - PC 버전 <small>(/pc/*)</small></h2>
+	<div class="table-responsive">
+		<table class="table" id="pageTable">
+			<colgroup>
+				<col style="width: 10%">
+				<col style="width: 25%">
+				<col style="width: 15%">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>구분</th>
+					<th>화면명</th>
+					<th>파일</th>
+					<th>날짜</th>
+					<th>상태</th>
+					<th>비고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="4">공통<br>
+						(comm)</td>
+					<td>오류</td>
+					<td><a href="../pc/comm/error.html" target="_blank">error</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>오류</td>
+					<td><a href="../pc/comm/error_custom.html" target="_blank">error_custom</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>오류(ios)</td>
+					<td><a href="../pc/comm/error_custom_ios.html" target="_blank">error_custom_ios</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>로딩</td>
+					<td><a href="../pc/comm/loading.html" target="_blank">loading</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td rowspan="12">표준<br>
+						(std)</td>
+					<td>약관 동의</td>
+					<td><a href="../pc/std/validateUser.html" target="_blank">validateUser</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>약관 동의(패밀리포인트)</td>
+					<td><a href="../pc/std/validateUser_FP.html" target="_blank">validateUser_FP</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>약관 동의(쿠폰리스트)</td>
+					<td><a href="../pc/std/validateUser_CL.html" target="_blank">validateUser_CL</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>포인트 조회 결제(단일결제)</td>
+					<td><a href="../pc/std/pointPage_SI.html" target="_blank">pointPage_SI</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>포인트 조회 결제(복합결제)</td>
+					<td><a href="../pc/std/pointPage_CO.html" target="_blank">pointPage_CO</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>포인트 조회 결제(소진형)</td>
+					<td><a href="../pc/std/pointPage_CU.html" target="_blank">pointPage_CU</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>포인트 조회 결제(소진형 Type2 탑툰 제외한 웹툰 계열)</td>
+					<td><a href="../pc/std/pointPage_CU2.html" target="_blank">pointPage_CU2</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>포인트 조회 결제(패밀리포인트)</td>
+					<td><a href="../pc/std/pointPage_FP.html" target="_blank">pointPage_FP</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>KMC본인인증 결과 수신</td>
+					<td><a href="../pc/std/validateResult.html" target="_blank">validateResult</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>조르기(요청)(패밀리포인트)</td>
+					<td><a href="../pc/std/familyPoint.html" target="_blank">familyPoint</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>쿠폰리스트 조회(패밀리포인트)</td>
+					<td><a href="../pc/std/couponList.html" target="_blank">couponList</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>쿠폰리스트 조회(패밀리포인트) - 본인인증 이동</td>
+					<td><a href="../pc/std/couponValidateUser.html" target="_blank">couponValidateUser</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td rowspan="2">내통장결제<br>
+						(idsr)</td>
+					<td>고객 부담형 복합결제 (원스토어 전용사용)</td>
+					<td><a href="../pc/idsr/pointPage_COC.html" target="_blank">pointPage_COC</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>포인트 조회 결제(내통장결제)</td>
+					<td><a href="../pc/idsr/pointPage_COC2.html" target="_blank">pointPage_COC2</a></td>
+					<td class="date">2021-05-25</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<h2>MEMO</h2>
+	<div class="well">
+		<h3>세틀뱅크 전용 신규 화면</h3>
+		<ul>
+			<li>반응형(PC/태블릿/모바일 단일 소스)</li>
+			<li>PC 새창 팝업 : 430px × 660px</li>
+			<li>브라우저 지원 : 크롬, IE11, 파이어폭스, ...</li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

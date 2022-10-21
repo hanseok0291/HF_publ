@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link rel="stylesheet" href="../css/common/css/common.css?dummy=20191021154314516">
+<link rel="stylesheet" href="../css/common/css/site.css?dummy=20191021154314516">
+<script src="../css/common/js/jquery-1.8.3.min.js?dummy=20191021154314516"></script>
+<script src="../css/common/js/webfont.js?dummy=20191021154314516"></script>
+<script src="../css/common/js/design.js?dummy=20191021154314516" defer="defer"></script>
+<script src="../css/common/js/dialog.js?dummy=20191021154314516" defer="defer"></script>
+<script src="../js/gtag/sbgtag-1.0.js?dummy=20191021154314516" ></script> 
+<script src="../css/common/js/custom.js?dummy=20191021154314516" defer="defer"></script>
+<title>간편결제</title>
+</head>
+<body>
+<header id="header">
+	<h1>신규/추가 등록</h1>
+</header>
+
+<div id="ct">
+	<form name="frm" id="frm" method="post">
+		<input type="hidden" id="_method" name="_method" value=""/>
+		<input type="hidden" id="PCancUrl" name="PCancUrl" value="https://test-driver.settlebank.co.kr:443/resultCanclPayment?_csrf=dae7d902-2b95-4592-a23f-1c5f708501d4" />
+		<input type="hidden" id="errMsg" name="errMsg" value="">
+		<input type="hidden" id="arsAuthFailMsg" name="arsAuthFailMsg" value="">
+		<input type="hidden" id="payGb" name="payGb" value="RE"/>
+		<input type="hidden" id="PCustId" name="PCustId" value="jaehee7996"/>
+		<input type="hidden" id="PMid" name="PMid" value="bio1101t"/>
+		<input type="hidden" id="pTransAuth" name="pTransAuth" value="0"/>
+		<input type="hidden" id="PMchtParam" name="PMchtParam" value="" />
+		<input type="hidden" id="PErrCd" name="PErrCd" value="">
+		<input type="hidden" id="PRmesg1" name="PRmesg1" value="">
+		<input type="hidden" id="PStatus" name="PStatus" value="">
+		
+		<section class="ars_timer">
+			<h2>전자서명 출금동의 진행 중</h2>
+			<p class="txt fc_gry">금융결제원 <strong class="fc_reg">'어카운트인포'</strong> 앱에서 동의해 주세요.</p>
+			<div class="circle">
+				<div class="animation_stage">
+					<div class="blink">
+						<i class="dot dot1"></i>
+						<i class="dot dot2"></i>
+						<i class="dot dot3"></i>
+					</div>
+				</div>
+			</div>
+			<div class="btn_area v3">
+				<p class="txt_cm_cau2 btn_cm_btm">앱 이용이 어렵거나 실행이 안된다면<br>
+					ARS인증을 이용해 주세요.<br>
+					<button type="button" onclick="" class="btn_underline"><u>ARS인증하기</u></button></p>
+				<p><button type="button" onclick="" class="btn_xr btn_type on">확인</button></p>
+			</div>
+		</section>
+	</form>
+</div>
+<!-- //content --> 
+
+<!-- loading -->
+<div class="ly_pop ly_loading" style="display: none;">
+	<div class="bg"><!-- shadow --></div>
+	<div id="ly_loading" class="cont">
+		<div class="ele">
+			<div class="circle_motion">
+				<div class="span"></div>
+			</div>
+			<img src="../css/common/images/pc/loading.gif" alt="로딩중" class="img_loading"> </div>
+	</div>
+</div>
+<!-- //loading -->
+
+<script>
+	$(document).ajaxStart(function(){
+		openLoading();
+	});
+	$(document).ajaxComplete(function(){
+		closeLoading();
+	});
+	function openLoading(){
+		var ver = 0; // Browser Version
+		if(navigator.appName.charAt(0) == "M"){
+			ver = getInternetVersion("MSIE");
+			if (ver < "10"){ // ie10 이하
+				$('.ly_loading').addClass('ie9_after');
+			}
+		}
+		layer_open('ly_loading');
+	}
+	function closeLoading(){
+		layer_close();
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<title>헥토파이낸셜 지불서비스</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<!-- favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="../../images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="../../images/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="../../images/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../../images/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="../../images/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../../images/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="../../images/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="../../images/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="../../images/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../images/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../../images/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon/favicon-16x16.png">
+<link rel="manifest" href="../../images/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="../../images/favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<!-- //favicon -->
+
+<link rel="stylesheet" href="../../css/owl.carousel.min.css">
+<link rel="stylesheet" href="../../css/slick.min.css">
+<link rel="stylesheet" href="../../css/common.css">
+<!--[if lt IE 9]>
+<script type="text/javascript" src="../../js/html5shiv.js"></script>
+<script type="text/javascript" src="../../js/respond.min.js"></script>
+<![endif]-->
+<script src="../../js/jquery-1.8.3.min.js"></script>
+<script src="../../js/jquery.placeholder.min.js"></script>
+<script src="../../js/owl.carousel.min.js"></script>
+<script src="../../js/slick.min.js"></script>
+<script src="../../js/design.js" defer="defer"></script>
+<script src="../../js/commonmsg.js"></script>
+<script src="../../js/commonutil.js"></script>
+
+<!-- custom style -->
+<style>
+.modal-footer .btn:not(.btn-xl), .terms h3, .text-primary { color: #ff6900; }
+.checkbox > input:checked + label:before, .checkbox.circle > input:checked + label:after,
+.switch .switch-inner:before, .badge-primary, .btn-primary:not(:disabled), .bg-primary { background-color: #ff6900; }
+input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="tel"]:focus,
+select:focus, textarea:focus, .input.focus, .checkbox > input:checked + label:before,
+.btn-primary:not(:disabled), .bubble-bg, .bubble:after, .card.active, .pay-complete .headline:before, .pay-complete .headline:after, .border-primary { border-color: #ff6900; }
+.loading:after { border-top-color: #ff6900; }
+</style>
+<!-- //custom style -->
+</head>
+
+<body>
+<!-- wrap -->
+<div id="wrap" class="wrap">
+	<!-- form -->
+	<form class="wrap" autocomplete="off">
+		<!-- header -->
+		<div id="header">
+			<div class="container">
+				<button type="button" id="btnBack" class="btn-back"><i class="icon-angle-left">뒤로 가기</i></button>
+				<h1 class="brand-name"><span class="my-logo"><img src="../../images/custom/logo-joongna.svg" alt="중고나라 PAY"></span></h1>
+				<button type="button" class="btn-notice hidden" data-toggle="modal" data-target="#noticeDetail"><i class="icon icon-bell">알림</i></button>
+				<button type="button" id="closeWindow" class="btn-close" data-toggle="modal" data-target="#commonConfirm"><i class="icon-times">창 닫기</i></button>
+			</div>
+		</div>
+		<!-- //header -->
+
+		<!-- content -->
+		<div id="content" class="template">
+			<!-- container -->
+			<div class="container">
+				<!-- typography -->
+				<div class="section mgt10">
+					<h3 class="section-title">Typography</h3>
+					<div class="section-content">
+						<h3>h3. Heading</h3>
+						<h4>h4. Heading</h4>
+						<h5>h5. Heading</h5>
+						<p class="mgt10">
+							<span class="text-primary">Primary color</span><br>
+							<span class="text-secondary">Secondary color</span><br>
+							<span class="text-danger">Danger</span> / <span class="text-error">Error color</span><br>
+							<span class="text-dark">Dark color <small>(Black)</small></span><br>
+							<span class="text-body">Default Body color <small>(Drak Gray)</small></span><br>
+							<span class="text-light">Light color <small>(Gray)</small></span><br>
+							<span class="text-lighter">Lighter color <small>(Light Gray)</small></span>
+						</p>
+						<p>
+							<span class="text-regular">Regular Text</span><br>
+							<span class="text-bold">Bold Text <small>(font-weight: 700)</small></span><br>
+							<span class="text-bolder">Bolder Text <small>(font-weight: 800)</small></span><br>
+						</p>
+						<p><span class="mark-underline">Highlighter</span></p>
+					</div>
+				</div>
+				<!-- //typography -->
+
+				<!-- icon -->
+				<div class="section">
+					<h3 class="section-title">Logo / Icon</h3>
+					<div class="section-content">
+						<h4 class="mgb10">Logo</h4>
+						<div class="well">
+							<p><span class="my-logo"><img src="../../images/custom/logo-joongna.svg" alt="중고나라 PAY"></span>
+								<span class="my-logo"><img src="../../images/logo-hecto.png?ver=1.0" alt="헥토파이낸셜"></span>
+								<img src="../../images/symbol-settlebank.svg" width="32" alt="헥토파이낸셜"></p>
+						</div>
+
+						<h4 class="mgt20 mgb10">Image Icon <code>.icon.icon-*</code></h4>
+						<div class="well">
+							<p>
+								<i class="icon icon-bell"></i>
+								<i class="icon icon-search"></i>
+								<i class="icon icon-refresh"></i>
+								<i class="icon icon-speaker"></i>
+								<i class="icon icon-print"></i>
+								<i class="icon icon-receipt"></i>
+								<i class="icon icon-clock"></i>
+							</p>
+							<p>
+								<i class="icon icon-coins"></i>
+								<i class="icon icon-research"></i>
+							</p>
+							<p>
+								<i class="icon icon-error-lg"></i>
+								<i class="icon icon-fix-lg"></i>
+							</p>
+						</div>
+						<h4 class="mgt20 mgb10">CSS Icon <code>.icon-*</code></h4>
+						<div class="well">
+							<p>
+								<i class="icon-times"></i>
+								<i class="icon-times-sm"></i>
+								<i class="icon-times-sm gray"></i>
+								<i class="icon-times-lg"></i>
+								<i class="icon-times-lg white"></i>
+								<i class="icon-angle-left"></i>
+								<i class="icon-angle-right"></i>
+								<i class="icon-angle-left-sm"></i>
+								<i class="icon-angle-right-sm"></i>
+								<i class="icon-angle-left-sm gray"></i>
+								<i class="icon-angle-right-sm gray"></i>
+							</p>
+							<p>
+								<i class="icon-minus">-</i>
+								<i class="icon-plus">+</i>
+								<i class="icon-help shadow">?</i><span class="sr-only">도움말</span>
+								<i class="icon-info text-primary border-primary">!</i>
+							</p>
+						</div>
+					</div>
+				</div>
+				<!-- //icon -->
+
+				<!-- button -->
+				<div class="section">
+					<h3 class="section-title">Button</h3>
+					<p>
+						<button type="button" class="btn">버튼</button>
+						<button type="button" class="btn" disabled>[disabled]</button>
+						<button type="button" class="btn btn-primary">Primary</button>
+						<button type="button" class="btn btn-secondary">Secondary</button>
+						<button type="button" class="btn btn-info">안내 버튼</button>
+						<button type="button" class="btn btn-round">라운드 버튼</button>
+					</p>
+					<p>
+						<button type="button" class="btn btn-xs">xs 버튼</button>
+						<button type="button" class="btn btn-xs btn-round btn-info">xs 안내 라운드 버튼</button>
+					</p>
+					<p>
+						<button type="button" class="btn btn-sm">sm 버튼</button>
+						<button type="button" class="btn btn-sm btn-round btn-info">sm 안내 라운드 버튼</button>
+					</p>
+					<p>
+						<button type="button" class="btn btn-md">md 버튼</button>
+						<button type="button" class="btn btn-md btn-round btn-info">md 안내 라운드 버튼</button>
+					</p>
+					<p><button type="button" class="btn btn-lg">lg 버튼</button></p>
+					<p><button type="button" class="btn btn-lg btn-round btn-info">lg 안내 라운드 버튼</button></p>
+					<p><button type="button" class="btn btn-xl">xl 버튼</button></p>
+					<p><button type="button" class="btn btn-xl btn-round btn-info">xl 안내 라운드 버튼</button></p>
+				</div>
+				<!-- //button -->
+
+				<!-- button icon -->
+				<div class="section">
+					<h3 class="section-title">Button Icon</h3>
+					<p><button type="button" class="btn btn-xs btn-secondary"><span>xs 버튼</span> <i class="icon-angle-right-sm white"></i></button>
+						<button type="button" class="btn btn-xs btn-icon"><i class="icon-angle-right-sm"></i></button>
+					</p>
+					<p><button type="button" class="btn btn-sm btn-secondary"><span>sm 버튼</span> <i class="icon-angle-right-sm white"></i></button>
+						<button type="button" class="btn btn-icon"><i class="icon-angle-right-sm"></i></button></p>
+					<p><button type="button" class="btn btn-md btn-secondary"><span>md 버튼</span> <i class="icon-angle-right-sm white"></i></button></p>
+					<p><button type="button" class="btn btn-lg btn-secondary"><span>lg 버튼</span> <i class="icon-angle-right white"></i></button></p>
+					<p><button type="button" class="btn btn-xl btn-secondary"><span>xl 버튼</span> <i class="icon-angle-right white"></i></button></p>
+				</div>
+				<!-- //button icon -->
+
+				<!-- button group -->
+				<div class="section">
+					<h3 class="section-title">Button Group</h3>
+					<p class="btn-group grid1">
+						<button type="button" class="btn">btn 1</button>
+					</p>
+					<p class="btn-group"> <!-- 기본형 -->
+						<button type="button" class="btn">btn 1</button>
+						<button type="button" class="btn">btn 2</button>
+					</p>
+					<p class="btn-group grid3">
+						<button type="button" class="btn">btn 1</button>
+						<button type="button" class="btn">btn 2</button>
+						<button type="button" class="btn">btn 3</button>
+					</p>
+					<p class="btn-group grid4">
+						<button type="button" class="btn">btn 1</button>
+						<button type="button" class="btn">btn 2</button>
+						<button type="button" class="btn">btn 3</button>
+						<button type="button" class="btn">btn 4</button>
+					</p>
+					<p class="btn-group-gap grid1">
+						<a href="#" class="btn">btn 1</a>
+					</p>
+					<p class="btn-group-gap"> <!-- 기본형 -->
+						<a href="#" class="btn">btn 1</a>
+						<a href="#" class="btn">btn 2</a>
+					</p>
+					<p class="btn-group-gap grid3">
+						<a href="#" class="btn">btn 1</a>
+						<a href="#" class="btn">btn 2</a>
+						<a href="#" class="btn">btn 3</a>
+					</p>
+					<p class="btn-group-gap grid4">
+						<a href="#" class="btn">btn 1</a>
+						<a href="#" class="btn">btn 2</a>
+						<a href="#" class="btn">btn 3</a>
+						<a href="#" class="btn">btn 4</a>
+					</p>
+				</div>
+				<!-- //button group -->
+
+				<!-- modal button -->
+				<div class="section">
+					<h3 class="section-title">Common Modal</h3>
+					<p class="btn-group">
+						<button type="button" id="commonModal1" class="btn btn-lg btn-info" data-toggle="modal" data-target="#commonAlert">Alert</button>
+						<button type="button" id="commonModal2" class="btn btn-lg btn-info" data-toggle="modal" data-target="#commonConfirm">Prompt</button>
+					</p>
+				</div>
+				<!-- //modal button -->
+
+				<!-- bubble -->
+				<div class="section">
+					<h3 class="section-title">Bubble</h3>
+
+					<!-- speech bubble -->
+					<div class="bubble pull-right">
+						<div class="bubble-bg"></div>
+						<div class="bubble-content">가족 포인트를 <span class="text-primary">모아모아!</span></div>
+					</div>
+					<!-- //speech bubble -->
+
+					<!-- speech bubble -->
+					<div class="bubble pull-right">
+						<div class="bubble-bg"></div>
+						<div class="bubble-content">Speech <span class="text-primary">Bubble</span></div>
+					</div>
+					<!-- //speech bubble -->
+
+					<div class="clearfix"></div>
+
+					<!-- popover -->
+					<div class="position-relative well">
+						<div style="height: 120px">popover 영역 샘플</div>
+						<div class="popover">
+							<div class="popover-content">
+								<div class="popover-header">
+									<h3 class="popover-title">popover title</h3>
+									<button type="button" class="btn btn-icon" data-dismiss="popover"><i class="icon-times-sm gray">닫기</i></button>
+								</div>
+								<div class="popover-body">
+									popover body
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- //popover -->
+				</div>
+				<!-- //bubble -->
+
+				<!-- form -->
+				<div class="section">
+					<h3 class="section-title">Form</h3>
+					<ul class="form-type">
+						<li><input type="text" placeholder="input text"></li>
+						<li><input type="text" value="input text readonly" readonly></li>
+						<li><input type="text" value="input text disabled" disabled></li>
+						<li><input type="number" placeholder="input number"></li>
+						<li><input type="tel" placeholder="input tel"></li>
+						<li>
+							<select>
+								<option value="">select</option>
+								<option value="">select option 1</option>
+								<option value="">select option 2</option>
+							</select>
+						</li>
+						<li>
+							<select disabled>
+								<option value="">select disabled</option>
+								<option value="">select option 1</option>
+								<option value="">select option 2</option>
+							</select>
+						</li>
+						<li>
+							<div class="input select-input">
+								<select class="select">
+									<option value="">select</option>
+									<option value="">select option 1</option>
+								</select>
+								<input type="text" placeholder="input text">
+							</div>
+						</li>
+						<li>
+							<div class="pull-type2">
+								<select class="pull-left">
+									<option value="">select</option>
+								</select>
+								<select class="pull-right">
+									<option value="">select</option>
+								</select>
+							</div>
+						</li>
+						<li>
+							<div class="pull-type2 myid">
+								<span class="pull-left"><input type="tel" id="" maxlength="6" placeholder="생년월일(6자리)"></span>
+								-
+								<span class="pull-right gender">
+									<label class="sr-only">주민등록번호 뒤 첫째 자리</label>
+									<input type="tel" id="" maxlength="1" placeholder="＊">
+									<span class="masking"><i></i> <i></i> <i></i> <i></i> <i></i> <i></i></span>
+								</span>
+							</div>
+						</li>
+						<li>
+							<div class="input-btn">
+								<input type="tel" placeholder="input tel + button">
+								<button type="button" class="btn btn-sm btn-secondary">btn</button>
+							</div>
+						</li>
+						<li>
+							<div class="input-btn type2">
+								<input type="tel" placeholder="input tel + button type2">
+								<button type="button" class="btn btn-circle shadow first"><i class="icon-minus">-</i></button>
+								<button type="button" class="btn btn-circle shadow"><i class="icon-plus">+</i></button>
+							</div>
+						</li>
+						<li>
+							<div class="input-btn">
+								<input type="tel" placeholder="input tel + switch">
+								<div class="switch">
+									<input type="checkbox" id="remember" class="switch-checkbox">
+									<label for="remember" class="switch-label">
+										<span class="switch-inner"></span>
+										<span class="switch-switch"></span>
+										<span class="sr-only">저장</span>
+									</label>
+								</div>
+							</div>
+						</li>
+						<li><textarea cols="30" rows="3" placeholder="textraea"></textarea></li>
+						<li>
+							<label class="label">Button style radio</label>
+							<div class="check-group">
+								<input type="radio" name="check_group_01" id="check_group_01_01" checked>
+								<label for="check_group_01_01">radio</label>
+								<input type="radio" name="check_group_01" id="check_group_01_02">
+								<label for="check_group_01_02">radio</label>
+							</div>
+						</li>
+						<li>
+							<label class="label">Button style radio - disabled</label>
+							<div class="check-group grid3">
+								<input type="radio" name="check_group_02" id="check_group_02_01" disabled checked>
+								<label for="check_group_02_01">radio</label>
+								<input type="radio" name="check_group_02" id="check_group_02_02" disabled>
+								<label for="check_group_02_02">radio</label>
+								<input type="radio" name="check_group_02" id="check_group_02_03" disabled>
+								<label for="check_group_02_03">radio</label>
+							</div>
+						</li>
+						<li>
+							<label class="label">Button style checkbox</label>
+							<div class="check-group grid4">
+								<input type="checkbox" name="check_group_03" id="check_group_03_01" checked>
+								<label for="check_group_03_01">checkbox</label>
+								<input type="checkbox" name="check_group_03" id="check_group_03_02">
+								<label for="check_group_03_02">checkbox</label>
+								<input type="checkbox" name="check_group_03" id="check_group_03_03" checked>
+								<label for="check_group_03_03">checkbox</label>
+								<input type="checkbox" name="check_group_03" id="check_group_03_04">
+								<label for="check_group_03_04">checkbox</label>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!-- //form -->
+
+				<!-- check style form -->
+				<div class="section">
+					<h3 class="section-title">Check style form</h3>
+					<h4 class="text-primary mgb10">Check group - Inline type</h4>
+					<p class="checkbox-inline-group">
+						<span class="checkbox">
+							<input type="checkbox" name="checkbox_01" id="checkbox_01_01">
+							<label for="checkbox_01_01">checkbox</label>
+						</span>
+						<span class="checkbox">
+							<input type="checkbox" name="checkbox_01" id="checkbox_01_02" checked>
+							<label for="checkbox_01_02">checkbox</label>
+						</span>
+					</p>
+					<p class="checkbox-inline-group">
+						<span class="checkbox child">
+							<input type="checkbox" name="checkbox_03" id="checkbox_03_01">
+							<label for="checkbox_03_01">checkbox</label>
+						</span>
+						<span class="checkbox child">
+							<input type="checkbox" name="checkbox_03" id="checkbox_03_02" checked>
+							<label for="checkbox_03_02">checkbox</label>
+						</span>
+					</p>
+					<p class="checkbox-inline-group">
+						<span class="checkbox circle">
+							<input type="radio" name="radio_01" id="radio_01_01">
+							<label for="radio_01_01">radio</label>
+						</span>
+						<span class="checkbox circle">
+							<input type="radio" name="radio_01" id="radio_01_02" checked>
+							<label for="radio_01_02">radio</label>
+						</span>
+					</p>
+
+					<h4 class="text-primary mgt20 mgb10">Check group - Block type</h4>
+					<p class="checkbox-block-group">
+						<span class="checkbox">
+							<input type="checkbox" name="checkbox_04" id="checkbox_04_01">
+							<label for="checkbox_04_01">checkbox</label>
+						</span>
+						<span class="checkbox">
+							<input type="checkbox" name="checkbox_04" id="checkbox_04_02" checked>
+							<label for="checkbox_04_02">checkbox</label>
+						</span>
+					</p>
+					<p class="checkbox-block-group">
+						<span class="checkbox child">
+							<input type="checkbox" name="checkbox_06" id="checkbox_06_01">
+							<label for="checkbox_06_01">checkbox</label>
+						</span>
+						<span class="checkbox child">
+							<input type="checkbox" name="checkbox_06" id="checkbox_06_02" checked>
+							<label for="checkbox_06_02">checkbox</label>
+						</span>
+					</p>
+					<p class="checkbox-block-group">
+						<span class="checkbox circle">
+							<input type="radio" name="radio_03" id="radio_03_01">
+							<label for="radio_03_01">radio</label>
+						</span>
+						<span class="checkbox circle">
+							<input type="radio" name="radio_03" id="radio_03_02" checked>
+							<label for="radio_03_02">radio</label>
+						</span>
+					</p>
+
+					<h4 class="text-primary mgt20 mgb10">Square Style Checkbox</h4>
+					<p class="checkbox-block-group">
+						<span class="checkbox square">
+							<input type="checkbox" name="checkbox_07" id="checkbox_07_01">
+							<label for="checkbox_07_01">checkbox</label>
+						</span>
+						<span class="checkbox square">
+							<input type="checkbox" name="checkbox_07" id="checkbox_07_02" checked>
+							<label for="checkbox_07_02">checkbox</label>
+						</span>
+					</p>
+
+					<h4 class="text-primary mgt20 mgb10">Switch Style Checkbox</h4>
+					<p>
+						<div class="switch">
+							<input type="checkbox" id="remember1" class="switch-checkbox">
+							<label for="remember1" class="switch-label">
+								<span class="switch-inner"></span>
+								<span class="switch-switch"></span>
+								<span class="sr-only">저장</span>
+							</label>
+						</div>
+						<div class="switch">
+							<input type="checkbox" id="remember2" class="switch-checkbox" checked>
+							<label for="remember2" class="switch-label">
+								<span class="switch-inner"></span>
+								<span class="switch-switch"></span>
+								<span class="sr-only">저장</span>
+							</label>
+						</div>
+					</p>
+				</div>
+				<!-- //check style form -->
+
+				<!-- infomation -->
+				<div class="section">
+					<h3 class="section-title">Infomation</h3>
+					<p class="info">Infomation</p>
+					<ul class="info-list">
+						<li>Infomation list</li>
+						<li>Infomation list</li>
+					</ul>
+					<div class="info-area mgt15">
+						<p class="info-title"><i class="icon-info text-primary border-primary">!</i> 결제 정보 입력 안내</p>
+						<p class="info">결제 및 구매 확인 시 고객님의 본인 확인을 위한 정보이므로 정확히 입력해 주세요. (입력하신 이메일로 구매 결정 안내 메일이 발송됩니다.)</p>
+					</div>
+				</div>
+				<!-- //infomation -->
+			</div>
+			<!-- //container -->
+		</div>
+		<!-- //content -->
+
+		<!-- footer -->
+		<div id="footer">
+			<!-- container -->
+			<div class="container">
+				<button type="button" id="send" class="btn btn-xl btn-primary">확인</button>
+			</div>
+			<!-- //container -->
+		</div>
+		<!-- //footer -->
+	</form>
+	<!-- //form -->
+</div>
+<!-- //wrap -->
+
+<!-- modal - common alert -->
+<div id="commonAlert" class="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3 id="alertTitle"></h3>
+				<div id="alertContents"></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn" data-dismiss="modal">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //modal - common alert -->
+
+<!-- modal - common confirm -->
+<div id="commonConfirm" class="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3 id="confirmTitle"></h3>
+				<div id="confirmContents"></div>
+			</div>
+			<div class="modal-footer type2">
+				<button type="button" class="btn" data-dismiss="modal">취소</button>
+				<button type="button" id="confirmOk" class="btn">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //modal - common confirm -->
+
+<!-- loading -->
+<div class="loading hidden">로딩 중</div>
+<!-- //loading -->
+</body>
+
+<script>
+	$(document).ready(function(){
+		// 공통 모달 샘플
+		$("#commonModal1").click(function(){
+			$.alertMessage("공통 모달(Alert) 제목", "공통 모달(Alert) 본문입니다.", "");
+		});
+		$("#commonModal2").click(function(){
+			$.confirmMessage("공통 모달(Confirm) 제목", "공통 모달(Confirm) 본문입니다.", $('#confirmOk'), "");
+		});
+	});
+</script>
+</html>

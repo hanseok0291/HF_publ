@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>차세대 PG 결제 이메일 퍼블리싱 안내</title>
+<script src="https://nspay.settlebank.co.kr/js/libs/jquery-2.1.1.min.js"></script>
+
+<style>
+	html, body { width: 100%; height: 100%; }
+	p { margin: .25em 0; }
+	body { margin: 0; padding: 0; background-color: #fff; font-family: 'Nanum Square Round', 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; font-size: 12px; line-height: 1.4; letter-spacing: -0.03em; color: #222; }
+	input, button, label { font-family: 'Nanum Square Round', 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; }
+	header { margin: 0; padding: 20px 20px; border-bottom: 1px solid #ccc; }
+	header h1 { margin: 0 0 10px; font-size: 24px; font-weight: 700; color: #faa61a; }
+	header p { line-height: 1.4; }
+	.main { position: relative; padding: 0 20px 20px; }
+	h2 { margin: 30px 0 10px; font-size: 18px; font-weight: 800; }
+	small { font-size: 90% !important; color: #9a9a9a; }
+	ul { margin: 0; padding-left: 1.667em; list-style: disc; }
+	ul ul { margin-top: .333em; list-style: circle; }
+	li { margin-top: .333em; }
+	ul li:first-child { margin-top: 0; }
+	a { color: #1d8dd8; }
+	a, a:hover, a:active, a:focus { text-decoration: underline; }
+	.strong { font-weight: 500; }
+	.table-responsive { width: 100%; overflow-x: auto; border: 1px solid #ddd; }
+	.table { margin: 0; min-width: 550px;  border-collapse: collapse; width: 100%; font-size: 12px; border: 0; }
+	.table th, .table td {  padding: 5px 10px; height: auto; border: 1px solid #ddd; }
+	.table th { background: #f1f2f4; color: #222; font-weight: 500; text-align: center; }
+	.table .date, .table .status { text-align: center; }
+	.well { padding: 20px; border: 2px solid #ddd; }
+	.bg-info { background: #dbf5ff; }
+	.bg-success { background: #e7fbe2; }
+	.bg-warning { background: #ff9; }
+	.bg-danger { background: #ffe5e8; }
+	.bg-wait { background: #eee; color: #888; }
+	.del { text-decoration: line-through; }
+	code { padding: 2px 4px; background-color: #f9f2f4; font-size: 96%; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; color: #c7254e; }
+	.text-primary { color: #faa61a; }
+	.text-info { color: #1d8dd8; }
+	.text-danger { color: #ff4f51; }
+	.text-success { color: #28a745; }
+	.badge { display: inline-block; padding: 3px 4px; border-radius: 2px; background-color: #45a3e3; font-size: 92%; line-height: 1.1; color: #fff; }
+	.badge-primary { background-color: #faa61a; }
+	.badge-wait { background-color: #b7b7b7; }
+	.btn { display: inline-block; padding: .25em .5em; border: 1px solid #5e8cc0; border-radius: .5em; background-color: transparent; font-size: 11px; color: #5e8cc0; line-height: 1.2; }
+	.flip { position: relative; }
+	.flip .flip-body { display: none; }
+	.flip.open .flip-body { display: block; }
+	.flip.open .btn-flip .open { display: none; }
+	.flip:not(.open) .btn-flip .close { display: none; }
+</style>
+<script>
+$(document).ready(function(){
+	$(".status:contains('검토 요청')").parents("tr").addClass("bg-warning");
+	$(".status:contains('작업 중'), .status:contains('검토 중'), .status:contains('수정 예정')").parents("tr").addClass("bg-danger");
+	$("li.text-success").parents("tr").addClass("bg-success");
+	$(".status:empty").parents("tr").addClass("bg-wait");
+});
+</script>
+</head>
+
+<body>
+<header>
+	<h1>차세대 PG 이메일 퍼블리싱 안내</h1>
+	<p>최종 수정일 : 2022-09-13</p>
+</header>
+
+<div class="main">
+	<h2>결제 관련 <small>(차세대 TFT 개발 소스로 변환 - html_dev/*)</small></h2>
+	<div class="table-responsive">
+		<table width="100%" class="table">
+			<colgroup>
+				<col style="width: 15%">
+				<col style="width: 15%">
+				<col style="width: 15%">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>구분</th>
+					<th>결제수단</th>
+					<th>파일</th>
+					<th>날짜</th>
+					<th>상태</th>
+					<th>비고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>주문 완료<br>
+						(orderComplete)</td>
+					<td>가상계좌</td>
+					<td><a href="html_dev/orderComplete/vbank.html" target="_blank">vbank</a></td>
+					<td class="date">2021-05-03</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-12-21 : 화면 추가</li>
+							<li>2021-04-20 : 템플릿 전체 변경</li>
+							<li>2021-05-03 : 하단 버튼 삭제</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="6">결제 완료<br>
+						(payComplete)</td>
+					<td>계좌이체, 가상계좌</td>
+					<td><a href="html_dev/payComplete/bank.html" target="_blank">bank</a></td>
+					<td class="date">2021-08-11</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-12-21 : 화면 추가</li>
+							<li>2021-04-20 : 템플릿 전체 변경</li>
+							<li>2021-08-11 : 가상계좌 결제 완료 메일 추가 - 계좌이체와 동일</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>휴대폰</td>
+					<td><a href="html_dev/payComplete/mobile.html" target="_blank">mobile</a></td>
+					<td class="date">2021-05-04</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-12-21 : 화면 추가</li>
+							<li>2021-04-20 : 템플릿 전체 변경</li>
+							<li>2021-05-04 : 할인금액 행 추가, 분기
+								<ul>
+									<li>할인 미적용 시에만 노출 : 할인금액</li>
+									<li>할인 적용 시 해당 항목 노출(다중 적용 가능) : 할인금액(즉시할인), 할인금액(제휴할인)</li>
+								</ul>
+							</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>신용카드</td>
+					<td><a href="html_dev/payComplete/card.html" target="_blank">card</a></td>
+					<td class="date">2021-05-04</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-12-21 : 화면 추가
+								<ul class="del">
+									<li>즉시할인 적용 시에만 노출 : 주문금액, 할인금액</li>
+								</ul></li>
+							<li>2021-04-20 : 템플릿 전체 변경</li>
+							<li>2021-05-04 : 할인금액 행 추가, 분기
+								<ul>
+									<li>할인 미적용 시에만 노출 : 할인금액</li>
+									<li>할인 적용 시 해당 항목 노출(다중 적용 가능) : 할인금액(즉시할인), 할인금액(제휴할인)</li>
+								</ul>
+							</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>신용카드 복합결제</td>
+					<td><a href="html_dev/payComplete/complex.html" target="_blank">complex</a></td>
+					<td class="date">2021-05-10</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-12-21 : 화면 추가
+								<ul class="del">
+									<li>즉시할인 적용 시에만 노출 : 주문금액, 할인금액</li>
+								</ul>
+							</li>
+							<li>2021-04-20 : 템플릿 전체 변경</li>
+							<li>2021-05-04 : 할인금액 행 추가, 분기
+								<ul>
+									<li>할인 미적용 시에만 노출 : 할인금액</li>
+									<li>할인 적용 시 해당 항목 노출(다중 적용 가능) : 할인금액(즉시할인), 할인금액(제휴할인)</li>
+								</ul>
+							</li>
+							<li>2021-05-10 : 포인트 결제금액 (*P) 값 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>포인트다모아</td>
+					<td><a href="html_dev/payComplete/clip.html" target="_blank">clip</a></td>
+					<td class="date">2021-04-20</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-12-21 : 화면 추가</li>
+							<li>2021-04-20 : 템플릿 전체 변경</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>상품권, 티머니</td>
+					<td><a href="html_dev/payComplete/gift.html" target="_blank">gift</a></td>
+					<td class="date">2021-04-20</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-12-21 : 화면 추가</li>
+							<li>2021-04-20 : 템플릿 전체 변경</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="6">결제 취소<br>
+						(payCancel)</td>
+					<td> 계좌이체, 가상계좌</td>
+					<td><a href="html_dev/payCancel/bank.html" target="_blank">bank</a></td>
+					<td class="date">2021-04-20</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-12-21 : 화면 추가
+								<ul class="del">
+									<li>[취소 메일 공통] 부분 취소 시에만 노출 : 결제금액(총 결제금액), 취소 후 잔액</li>
+								</ul>
+							</li>
+							<li>2021-04-20 : 템플릿 전체 변경
+								<ul>
+									<li>[취소 메일 공통] 부분 취소 시에만 노출 : 취소 후 잔액</li>
+								</ul>
+							</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>휴대폰</td>
+					<td><a href="html_dev/payCancel/mobile.html" target="_blank">mobile</a></td>
+					<td class="date">2021-05-04</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-12-21 : 화면 추가</li>
+							<li>2021-04-20 : 템플릿 전체 변경</li>
+							<li>2021-05-04 : 할인금액 행 추가, 분기
+								<ul>
+									<li>할인 미적용 시에만 노출 : 할인금액</li>
+									<li>할인 적용 시 해당 항목 노출(다중 적용 가능) : 할인금액(즉시할인), 할인금액(제휴할인)</li>
+								</ul>
+							</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>신용카드</td>
+					<td><a href="html_dev/payCancel/card.html" target="_blank">card</a></td>
+					<td class="date">2021-05-04</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-12-22 : 화면 추가
+								<ul class="del">
+									<li>즉시할인 적용 시에만 노출 : 주문금액, 할인금액</li>
+									<li>즉시할인 취소 금액 없는 경우만 사용</li>
+								</ul></li>
+							<li>2021-04-20 : 템플릿 전체 변경
+								<ul>
+									<li>부분 취소 시에만 노출 : 할인 취소금액, 신용카드 취소금액, 취소 후 잔액</li>
+								</ul>
+							</li>
+							<li>2021-05-04 : 할인금액 행 추가, 분기
+								<ul>
+									<li>할인 미적용 시에만 노출 : 할인금액</li>
+									<li>할인 적용 시 해당 항목 노출(다중 적용 가능) : 할인금액(즉시할인), 할인금액(제휴할인)</li>
+								</ul>
+							</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>신용카드 복합결제</td>
+					<td><a href="html_dev/payCancel/complex.html" target="_blank">complex</a></td>
+					<td class="date">2021-05-10</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-12-21 : 화면 추가
+								<ul class="del">
+									<li>즉시할인 적용 시에만 노출 : 주문금액, 할인금액, 할인 취소금액(즉시할인 취소 금액 없는 경우 미노출)</li>
+									<li>즉시할인 취소 금액 있는 경우 신용카드 취소 메일 겸용</li>
+								</ul>
+							</li>
+							<li>2021-04-20 : 템플릿 전체 변경
+								<ul>
+									<li>부분 취소 시에만 노출 : 할인 취소금액, 포인트 취소금액, 신용카드 취소금액, 취소 후 잔액</li>
+								</ul>
+							</li>
+							<li>2021-05-04 : 할인금액 행 추가, 분기
+								<ul>
+									<li>할인 미적용 시에만 노출 : 할인금액</li>
+									<li>할인 적용 시 해당 항목 노출(다중 적용 가능) : 할인금액(즉시할인), 할인금액(제휴할인)</li>
+								</ul>
+							</li>
+							<li>2021-05-10 : 포인트 결제금액 (*P) 값 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>포인트다모아</td>
+					<td><a href="html_dev/payCancel/clip.html" target="_blank">clip</a></td>
+					<td class="date">2021-04-20</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-12-21 : 화면 추가</li>
+							<li>2021-04-20 : 템플릿 전체 변경</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>상품권, 티머니</td>
+					<td><a href="html_dev/payCancel/gift.html" target="_blank">gift</a></td>
+					<td class="date">2021-04-20</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-12-21 : 화면 추가</li>
+							<li>2021-04-20 : 템플릿 전체 변경</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>에스크로<br>
+						(escrow)</td>
+					<td>구매 결정</td>
+					<td><a href="html_dev/escrow/payConfirm.html" target="_blank">payConfirm</a></td>
+					<td class="date">2021-04-20</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-12-21 : 화면 추가</li>
+							<li>2021-04-20 : 템플릿 전체 변경</li>
+						</ul>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<h2>MEMO</h2>
+	<div class="well">
+		<ul>
+			<li><strong class="text-info">결제 관련 이메일</strong>
+				<ul>
+					<li>담당 : 차세대TFT(2021.03. 기준)</li>
+					<li>미노출 항목 소스 : <code>tr</code>에 스타일(<code>style='display:none'</code>) 추가</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>핫딜</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="../css/slick.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script src="../js/slick.js"></script>
+    <script src="../js/modal.js"></script>
+</head>
+<body>
+
+<!-- wrap -->
+<div id="wrap" class="detail-page product-detail">
+    <!-- header -->
+    <div id="header" class="detail-header">
+        <div class="container">
+            <h1 class="page-title-wrap">
+                <a href="#" class="page-title text-white">
+                    <span><i class="icon-arrow-left-white"></i></span>
+                    <span class="page-title-name">iPad Pro</span>
+                </a>
+            </h1>
+        </div>
+    </div>
+    <!-- //header -->
+
+    <!-- content -->
+    <div id="content" class="detail-content">
+        <div class="container">
+            <!-- product-slide-wrap -->
+            <div class="product-slide-wrap">
+                <!-- product-slide-box -->
+                <div class="product-slide-box">
+                    <div class="product-slide">
+                        <div class="product-slide-box"><img src="../images/sample/sample04.jpg" alt="제품이미지"></div>
+                        <div class="product-slide-box"><img src="../images/sample/sample02.jpg" alt="제품이미지"></div>
+                        <div class="product-slide-box"><img src="../images/sample/sample03.jpg" alt="제품이미지"></div>
+                    </div>
+                </div>
+                <!-- //product-slide-box -->
+
+                <script>
+                    $('.product-slide').slick({
+                        dots: true,
+                        infinite: true,
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        arrows: false,
+                        initialSlide: 1,
+                    });
+
+                    $('.product-slide').slick('slickGoTo', 0);
+                </script>
+            </div>
+            <!-- //product-slide-wrap -->
+
+            <!-- product-content -->
+            <div class="product-content">
+                <!-- product-info -->
+                <div class="section product-info">
+                    <!-- product-txt -->
+                    <div class="product-txt clearfix">
+                        <h2 class="product-title">
+                            <em class="product-summary">궁극의 iPad란 이런 것</em>
+                            <em class="product-name">iPad Pro</em>
+                        </h2>
+                        <div class="product-tooltip">
+                            <button class="btn-pick"><i class="icon-pick"></i></button>
+                            <button class="btn-share"><i class="icon-share"></i></button>
+
+                            <script>
+                                $('.btn-pick').click(function () {
+                                    $(this).toggleClass('active');
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <!-- //product-txt -->
+
+                    <!-- produc-price -->
+                    <div class="product-price">
+                        <p class="price">
+                            <em class="cost">999,000</em>
+                            <em class="hotdeal-price">0원</em>
+                        </p>
+                        <p class="remain-time-box"><em class="remain-time">3일 14:10:20</em> 남음</p>
+                    </div>
+                    <!-- //produc-price -->
+                </div>
+                <!-- //product-info -->
+
+                <!-- hotdeal-info -->
+                <div class="section hotdeal-info">
+                    <h3 class="section-title">핫딜 정보</h3>
+                    <ul class="hotdeal-info-dl">
+                        <li class="clearfix">
+                            <div class="hotdeal-info-dt">응모기간</div>
+                            <div class="hotdeal-info-dd">2021.11.09(화) 9시 ~ 2021.11.09(화) 18시</div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="hotdeal-info-dt">당첨자 발표</div>
+                            <div class="hotdeal-info-dd">2021.11.11(목) 10시</div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="hotdeal-info-dt">당첨인원</div>
+                            <div class="hotdeal-info-dd">총 50명</div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- //hotdeal-info -->
+
+                <!-- product-detail-info -->
+                <div class="section product-detail-info">
+                    <h3 class="section-title">상품 상세 정보</h3>
+                    <div class="detail-info-txt">
+                        <img src="../images/sample/detail01.jpg" alt="">
+                        <img src="../images/sample/detail02.jpg" alt="">
+                        <img src="../images/sample/detail03.jpg" alt="">
+                    </div>
+                </div>
+                <!-- //product-detail-info -->
+
+                <!-- notice -->
+                <div class="section notice">
+                    <h3 class="section-title">유의 사항</h3>
+                    <div class="notice-txt">
+                        핫딜 유의사항이 이곳에 적힙니다. <br>
+                        핫딜 유의
+                    </div>
+                </div>
+                <!-- //notice -->
+
+                <!-- btn-box -->
+                <div class="btn-box btn-detail bg-gradient-white">
+                    <button type="button" class="btn">응모하기</button>
+                </div>
+                <!-- //btn-box -->
+            </div>
+            <!-- //product-content -->
+        </div>
+    </div>
+    <!-- //content -->
+
+    <!-- script -->
+    <script>
+        $(document).ready(function () {
+
+            // 제품 상세 페이지 일정 높이만큼 스크롤 시 스타일 변화 효과
+            var $productSlideH = $(".product-detail .product-slide-box").outerWidth();
+            $(".product-detail .product-content").css({ top: $productSlideH });
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > $productSlideH - 63) {
+                    $(".product-detail .detail-header").addClass("scroll-style");
+                    $($(".product-detail .detail-header .page-title > span > i")).attr({ "class": "icon-arrow-left" });
+                } else {
+                    $(".product-detail .detail-header").removeClass("scroll-style");
+                    $($(".product-detail .detail-header .page-title > span > i")).attr({ "class": "icon-arrow-left-white" });
+                }
+            });
+
+        });
+
+        // 창 넓이 변화 시 이미지 슬라이드 높이값 가져오기
+        $(window).resize(function () {
+            var $productSlideH = $(".product-detail .product-slide-box").outerWidth();
+            $(".product-detail .product-content").css({ top: $productSlideH });
+        });
+
+    </script>
+    <!-- //script -->
+</div>
+<!-- //wrap -->
+
+</body>
+</html>

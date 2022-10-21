@@ -1,0 +1,166 @@
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<!--<meta name="viewport">-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+
+<!-- impayDesign -->
+
+<link href="css/common.css?v=1" rel="stylesheet" type="text/css">
+<link href="./css/font_sb.css?v=1" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" type="image/x-icon" href="./images/IMPayFavicon.ico">
+
+<!-- impayDesign -->
+
+<link href="./impay_css/common.css?ver=202008241714" rel="stylesheet" type="text/css">
+<title>imPAY</title>
+</head>
+<body class="default">
+<div id="includehtml"> </div>
+<div id="openAgreePayment"></div>
+<!-- 2018-03-07 msuk SKT 휴대폰결제이용동의 절차 간소화 추가 레이어 제어 -->
+<div id="pageview">
+	<div class="wrap">
+		<div id="header" class="header-grp">
+			<h1>IMPAY</h1>
+			<h2 class="payletter">페이레터</h2>
+			<div class="simple-pay-history">
+				<dl>
+					<dt>제품명</dt>
+					<dd>테스트상품</dd>
+				</dl>
+				<dl>
+					<dt>결제금액</dt>
+					<dd><strong>10</strong> <span>원</span></dd>
+				</dl>
+				<dl>
+					<dt>결제일자</dt>
+					<dd>2020.08.24</dd>
+				</dl>
+			</div>
+		</div>
+		<div id="content" class="content-grp">
+			<div class="frm-grp">
+				<div class="frm-box">
+					<ul class="choose-btn-list col-type">
+						<li class="active"> <a href="javascript:;" data-value="CKCCSK">SKT</a> </li>
+						<li> <a href="javascript:;" data-value="CKCCKT">KT</a> </li>
+						<li> <a href="javascript:;" data-value="CKCCLG">LGU+</a> </li>
+						
+						<!-- // 2018-03-12 by msuk : 통신사 추가 종료-->
+						<li>
+							<div class="row"> <span class="field">
+								<label for="eco" class="blind">결제하실 휴대폰이 알뜰폰일 경우에 선택해 주세요.</label>
+								<select id="eco">
+									<option value="MVNO" selected="selected">알뜰폰 선택</option>
+									<!-- // 2018-03-12 by msuk : 통신사 추가 시작 -->
+									
+									<option value="CKMVCJ">헬로 모바일</option>
+									<option value="CKMVSL">SK 7mobile</option>
+									<option value="CKMVKC">KCT</option>
+									
+									<!-- // 2018-03-12 by msuk : 통신사 추가 종료 -->
+									
+									<option value="MVNO_CKCCKT">KT 알뜰폰</option>
+									<option value="MVNO_CKCCLG">LG U+알뜰폰</option>
+								</select>
+								</span> </div>
+						</li>
+					</ul>
+					<div class="frm-box">
+						<ul class="rdo-chk-list other-type space" id="paySecureType" style="display: block;">
+							<li style="display: block;">
+								<input type="radio" class="frm-chk st01" checked="checked" id="paytype01" name="paytype">
+								<label for="paytype01" tabindex="0">일반결제</label>
+							</li>
+							<li id="paySecureTypeSmartOtp" style="display: none;">
+								<input type="radio" class="frm-chk st01" id="paytype03" name="paytype">
+								<label for="paytype03" class="img-type" tabindex="0"><span class="usim-cert">U+멤버스 간편결제</span></label>
+							</li>
+							<li id="paySecureTypePasswd" style="display: none;">
+								<input type="radio" class="frm-chk st01" id="paytype02" name="paytype">
+								<label for="paytype02" class="other-line" tabindex="0">휴대폰 결제 비밀번호 사용자<a href="javascript:;" class="tip-help">관련 도움말 보기</a></label>
+								<div class="tip-help-box"> 해당 내용 설명이 들어 갑니다. </div>
+							</li>
+							<!--<li id="payTPayApp">
+                            <input type="radio" class="frm-chk st01" id="paytype04" name="paytype" />
+                            <label for="paytype04" class="img-type" tabindex="0"><span class="tpay">T pay 간편인증</span></label>
+                        </li>-->
+							<li id="payKTPayApp" style="display: none;">
+								<input type="radio" class="frm-chk st01" id="paytype05" name="paytype">
+								<label for="paytype05" tabindex="0">KT 인증(App설치)</label>
+							</li>
+						</ul>
+					</div>
+					<div class="row"> <span class="field">
+						<label for="phoneNumber" style="display: none;">- 없이 휴대폰번호 입력</label>
+						<input type="tel" id="phoneNumber" name="phoneNumber" class="inp-st numberOnly" maxlength="11" autocomplete="off">
+						</span> </div>
+				</div>
+				<div class="frm-box solo-st" id="payPerNoInput" style="display: block;">
+					<p class="age_ni" style="font-size:11px">* 법정생년월일과 성별을 입력해 주세요. (예시 : 900101-1******)</p>
+					<div class="row col-type"> <span class="field">
+						<label for="perNo1" style="display: none;">Y Y M M D D</label>
+						<input type="tel" id="perNo1" class="inp-st numberOnly" maxlength="6" autocomplete="off">
+						</span> <span class="field one-txt"><span class="txt">-</span></span> <span class="field one-field">
+						<label for="perNo2" style="display: none;"><img src="img/xhdpi/ico_secure01.png" class="sec-code" alt="보안 문자"></label>
+						<input type="tel" id="perNo2" class="inp-st numberOnly" maxlength="1" autocomplete="off">
+						</span> <span class="field sec-txt-set"> <span class="sec-txt"> <img src="img/xhdpi/ico_secure02.png" class="sec-code" alt="보안 문자"> <img src="img/xhdpi/ico_secure02.png" class="sec-code" alt="보안 문자"> <img src="img/xhdpi/ico_secure02.png" class="sec-code" alt="보안 문자"> <img src="img/xhdpi/ico_secure02.png" class="sec-code" alt="보안 문자"> <img src="img/xhdpi/ico_secure02.png" class="sec-code" alt="보안 문자"> <img src="img/xhdpi/ico_secure02.png" class="sec-code" alt="보안 문자"> </span> </span> </div>
+					<div class="row" id="paySecurePasswdInput" style="display: none;"> <span class="field">
+						<label for="carryPin">비밀번호 입력</label>
+						<input type="tel" id="carryPin" class="inp-st numberOnly" maxlength="6" autocomplete="off" style="-webkit-text-security: disc;">
+						</span> </div>
+				</div>
+				<ul class="rdo-chk-list other-type02">
+					<li class="all">
+						<input type="checkbox" class="frm-chk st01" id="allAgreeCheck" name="allAgreeCheck">
+						<label for="allAgreeCheck" tabindex="0">전체동의</label>
+					</li>
+					<li>
+						<input type="checkbox" class="frm-chk st01" id="agreeCheck01" name="agreeCheckbox">
+						<label for="agreeCheck01" tabindex="0" class="other-line-max"> 통신과금서비스 이용약관(필수) </label>
+						<a href="javascript:;" data-value="agreementType1" class="linker linker2">보기</a> </li>
+					<li>
+						<input type="checkbox" class="frm-chk st01" id="agreeCheck03" name="agreeCheckbox">
+						<label for="agreeCheck03" tabindex="0" class="other-line-max"> 개인(신용)정보 수집 및 이용 동의(필수) </label>
+						<a href="javascript:;" data-value="agreementType4" class="linker linker2">보기</a> </li>
+					<li>
+						<input type="checkbox" class="frm-chk st01" id="agreeCheck02" name="agreeCheckbox">
+						<label for="agreeCheck02" tabindex="0" class="other-line-max"> 개인(신용)정보 제3자 제공 및 위탁 동의(필수) </label>
+						<a href="javascript:;" data-value="agreementType2" class="linker linker2">보기</a> </li>
+					<li>
+						<input type="checkbox" class="frm-chk st01" id="agreeCheck11" name="agreeCheckbox">
+						<label for="agreeCheck11" tabindex="0" class="other-line-max"> 광고성정보 전송을 위한 개인정보 수집/이용동의(선택) </label>
+						<a href="javascript:;" tabindex="0" class="linker linker2" data-value="agreementType11">보기</a> </li>
+					<li>
+						<input type="checkbox" class="frm-chk st01" id="agreeCheck12" name="agreeCheckbox">
+						<label for="agreeCheck12" tabindex="0" class="other-line-max"> 광고성정보 전송을 위한 개인정보 제3자 제공 동의(선택) </label>
+						<a href="javascript:;" tabindex="0" class="linker linker2" data-value="agreementType12">보기</a> </li>
+				</ul>
+			</div>
+		</div>
+		<div id="footer" class="footer-grp">
+			<div class="main-footer">
+				<div class="btn-grp">
+					<div class="btn-row"> <span class="btn-cell fixed-width"><a href="javascript:;" id="btnCancel">취소</a></span> <span class="btn-cell"><a href="javascript:;" id="btnOk" class="point">다음</a></span> </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="ads"></div>
+<div id="impayLoadingBar">
+	<div class="above-all-layer"></div>
+	<div class="loading-box">
+		<div class="ani-box gif"></div>
+	</div>
+</div>
+<!--// loading -->
+</body>
+</html>

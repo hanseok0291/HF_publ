@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>세틀뱅크 개발 지원</title>
+
+<!-- Meta -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="세틀뱅크의 내통장결제, 간편현금결제 연동 가이드">
+<meta name="author" content="세틀뱅크">
+<link rel="shortcut icon" href="https://develop.sbsvc.online/images/favicon.ico">
+
+<!-- Noto Sans KR font -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+<!-- FontAwesome -->
+<link rel="stylesheet" href="https://develop.sbsvc.online/fonts/fontawesome/css/all.css">
+<script defer src="https://develop.sbsvc.online/fonts/fontawesome/js/all.min.js"></script>
+
+<!-- Plugins CSS -->
+<link rel="stylesheet" href="https://develop.sbsvc.online/plugins/owlcarousel/css/owl.carousel.min.css">
+<link rel="stylesheet" href="https://develop.sbsvc.online/plugins/owlcarousel/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="https://develop.sbsvc.online/plugins/highlight/atom-one-dark.min.css">
+<link rel="stylesheet" href="https://develop.sbsvc.online/plugins/datatable/css/dataTables.bootstrap4.min.css">
+
+<!-- Theme CSS -->
+<link rel="stylesheet" href="https://develop.sbsvc.online/css/theme.css">
+<link rel="stylesheet" href="https://develop.sbsvc.online/css/design.css">
+
+<!-- Javascript -->
+<script src="https://develop.sbsvc.online/plugins/jquery-3.4.1.min.js"></script>
+<script src="https://develop.sbsvc.online/plugins/popper.min.js"></script>
+<script src="https://develop.sbsvc.online/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://develop.sbsvc.online/plugins/datatable/js/datatables.min.js"></script>
+<script src="https://develop.sbsvc.online/plugins/datatable/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://develop.sbsvc.online/plugins/highlight/highlight.min.js"></script>
+<script src="https://develop.sbsvc.online/js/highlight-custom.js"></script>
+<script src="https://develop.sbsvc.online/js/design.js"></script>
+</head>
+
+<body>
+<!-- skip navigation -->
+<ul id="skipNav">
+	<li><a href="#docs-nav">주메뉴 바로가기</a></li>
+	<li><a href="#content">본문 바로가기</a></li>
+	<li><a href="#footer">페이지 하단 바로가기</a></li>
+</ul>
+<!-- //skip navigation -->
+
+<!-- header -->
+<header class="header fixed-top">
+	<div class="branding docs-branding">
+		<div class="container-fluid position-relative">
+			<!-- logo -->
+			<div class="docs-logo-wrapper">
+				<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible mr-2 d-xl-none" type="button"> <span></span> <span></span> <span></span> </button>
+				<div class="site-logo">
+					<a class="navbar-brand" href="../layout/docs.html">
+						<img class="logo-icon" src="https://develop.sbsvc.online/images/site-mark.svg" alt="SettleBank">
+						<span class="logo-text">개발 가이드 <span class="sub-title">연동 가이드</span></span>
+					</a>
+				</div>
+			</div>
+			<!-- //logo -->
+
+			<!-- docs-top-utilities -->
+			<div class="docs-top-utilities d-flex justify-content-end align-items-center">
+				<!-- search -->
+				<div class="top-search-box d-none d-lg-flex">
+					<form class="search-form">
+						<input type="text" placeholder="통합 검색" name="search" class="form-control search-input">
+						<button type="submit" class="btn search-btn"><i class="fas fa-search"></i> <span class="sr-only">검색</span></button>
+					</form>
+				</div>
+				<!-- //search -->
+
+				<!-- member navigation -->
+				<ul class="navbar-nav d-flex flex-row member-nav">
+					<!-- 로그인 전 -->
+					<!--
+					<li><a href="../member/login.html"><i class="fas fa-sign-in-alt"></i> <span>로그인</span></a></li>
+					<li><a href="../member/join.html"><i class="fas fa-user-edit"></i> <span>회원가입</span></a></li>
+					-->
+					<!-- //로그인 전 -->
+					<!-- 로그인 후 -->
+					<li><a href="#"><i class="fas fa-sign-out-alt"></i> <span>로그아웃</span></a></li>
+					<li><a href="../mypage/mypageHome.html"><i class="fas fa-user"></i> <span>마이 페이지</span></a></li>
+					<!-- //로그인 후 -->
+				</ul>
+				<!-- //member navigation -->
+			</div>
+			<!-- //docs-top-utilities -->
+		</div>
+		<!--//container-->
+	</div>
+	<!--//branding-->
+</header>
+<!--//header-->
+
+<!-- wrapper -->
+<div id="main" class="docs-wrapper"> <!-- 1 depth menu class 추가 -->
+	<!-- sidebar -->
+	<div id="docs-sidebar" class="docs-sidebar">
+		<!-- search -->
+		<div class="top-search-box d-lg-none">
+			<form class="search-form">
+				<input type="text" placeholder="통합 검색" name="search" class="form-control search-input">
+				<button type="submit" class="btn search-btn"><i class="fas fa-search"></i> <span class="sr-only">검색</span></button>
+			</form>
+		</div>
+		<!-- //search -->
+
+		<!-- docs navigation -->
+		<nav id="docs-nav" class="docs-nav navbar">
+			<ul class="section-items list-unstyled nav flex-column pb-3">
+				<li class="nav-item section-title">
+					<a class="nav-link scrollto" href="#section-1">1. Article</a>
+					<button class="btn btn-bookmark active">
+						<i class="far fa-bookmark off" title="즐겨찾기 추가"></i>
+						<i class="fas fa-bookmark on" title="즐겨찾기 제거"></i>
+					</button>
+					<ul>
+						<li class="nav-item">
+							<a class="nav-link scrollto" href="#item-1-1">1.1. Section</a>
+							<button class="btn btn-bookmark">
+								<i class="far fa-bookmark off" title="즐겨찾기 추가"></i>
+								<i class="fas fa-bookmark on" title="즐겨찾기 제거"></i>
+							</button>
+							<ul>
+								<li class="nav-item">
+									<a class="nav-link scrollto" href="#item-1-1-1">1.1.1. Section</a>
+									<button class="btn btn-bookmark active">
+										<i class="far fa-bookmark off" title="즐겨찾기 추가"></i>
+										<i class="fas fa-bookmark on" title="즐겨찾기 제거"></i>
+									</button>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item section-title">
+					<a class="nav-link scrollto" href="#section-2">2. 템플릿</a>
+					<button class="btn btn-bookmark">
+						<i class="far fa-bookmark off" title="즐겨찾기 추가"></i>
+						<i class="fas fa-bookmark on" title="즐겨찾기 제거"></i>
+					</button>
+					<ul>
+						<li class="nav-item">
+							<a class="nav-link scrollto" href="#item-2-1">2.1. 텍스트</a>
+							<button class="btn btn-bookmark">
+								<i class="far fa-bookmark off" title="즐겨찾기 추가"></i>
+								<i class="fas fa-bookmark on" title="즐겨찾기 제거"></i>
+							</button>
+							<ul>
+								<li class="nav-item">
+									<a class="nav-link scrollto" href="#item-2-1-1">2.1.1. 문장, 목록</a>
+									<button class="btn btn-bookmark">
+										<i class="far fa-bookmark off" title="즐겨찾기 추가"></i>
+										<i class="fas fa-bookmark on" title="즐겨찾기 제거"></i>
+									</button>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link scrollto" href="#item-2-1-2">2.1.2. 컬러</a>
+									<button class="btn btn-bookmark">
+										<i class="far fa-bookmark off" title="즐겨찾기 추가"></i>
+										<i class="fas fa-bookmark on" title="즐겨찾기 제거"></i>
+									</button>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link scrollto" href="#item-2-1-3">2.1.3. 링크</a>
+									<button class="btn btn-bookmark">
+										<i class="far fa-bookmark off" title="즐겨찾기 추가"></i>
+										<i class="fas fa-bookmark on" title="즐겨찾기 제거"></i>
+									</button>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link scrollto" href="#item-2-2">2.2. 테이블</a>
+							<button class="btn btn-bookmark">
+								<i class="far fa-bookmark off" title="즐겨찾기 추가"></i>
+								<i class="fas fa-bookmark on" title="즐겨찾기 제거"></i>
+							</button>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link scrollto" href="#item-2-3">2.3. 박스 스타일, 이미지</a>
+							<button class="btn btn-bookmark">
+								<i class="far fa-bookmark off" title="즐겨찾기 추가"></i>
+								<i class="fas fa-bookmark on" title="즐겨찾기 제거"></i>
+							</button>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link scrollto" href="#item-2-4">2.4. 소스 코드</a>
+							<button class="btn btn-bookmark">
+								<i class="far fa-bookmark off" title="즐겨찾기 추가"></i>
+								<i class="fas fa-bookmark on" title="즐겨찾기 제거"></i>
+							</button>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		<!-- //docs navigation -->
+	</div>
+	<!-- //sidebar -->
+
+	<!-- content -->
+	<div id="content" class="docs-content">
+		<!-- container -->
+		<div class="container">
+			<!-- article - depth 1 -->
+			<article class="docs-article" id="section-1">
+				<!-- article header - depth 1 -->
+				<header class="docs-header">
+					<h1 class="docs-heading">1. Article <code>.docs-heading</code></h1>
+					<!-- content - depth 1 -->
+					<section class="section-content">
+						<p>Section Content <code>.section-content</code></p>
+					</section>
+					<!-- //content - depth 1 -->
+				</header>
+				<!-- //article header - depth 1 -->
+
+				<!-- section - depth 2 -->
+				<section class="docs-section" id="item-1-1">
+					<h2 class="section-heading">1.1. Section Item <code>.section-heading</code></h2>
+					<div class="section-content">
+						<p>Section Content <code>.section-content</code></p>
+					</div>
+
+					<!-- section - depth 3 -->
+					<section class="docs-section" id="item-1-1-1">
+						<h3 class="section-heading">1.1.1. Section Item <code>.section-heading</code></h3>
+						<div class="section-content">
+							<p>Section Content <code>.section-content</code></p>
+						</div>
+					</section>
+					<!-- //section -depth 3 -->
+				</section>
+				<!-- //section - depth 2 -->
+			</article>
+			<!-- //article - depth 1 -->
+
+			<!-- article - depth 1 -->
+			<article class="docs-article" id="section-2">
+				<!-- article header - depth 1 -->
+				<header class="docs-header">
+					<h1 class="docs-heading">2. 템플릿</h1>
+					<!-- content - depth 1 -->
+					<section class="section-content">
+						<p></p>
+					</section>
+					<!-- //content - depth 1 -->
+				</header>
+				<!-- //article header - depth 1 -->
+
+				<!-- section - depth 2 -->
+				<section class="docs-section" id="item-2-1">
+					<h2 class="section-heading">2.1. 텍스트</h2>
+					<div class="section-content">
+						<p></p>
+					</div>
+
+					<!-- section - depth 3 -->
+					<section class="docs-section" id="item-2-1-1">
+						<h3 class="section-heading">2.1.1. 제목, 문장, 목록</h3>
+						<div class="section-content">
+							<h3>콘텐츠 내 제목 <code>h3</code></h3>
+							<h4>콘텐츠 내 제목 <code>h4</code></h4>
+							<h5>콘텐츠 내 제목 <code>h5</code></h5>
+							<p><code>p</code> 문장입니다.</p>
+							<p class="text-center"><code>p</code> 문장 가운데 정렬입니다. <code>.text-center</code></p>
+							<p class="text-right"><code>p</code> 문장 우측 정렬입니다. <code>.text-right</code></p>
+							<ol>
+								<li><code>ol</code> 목록입니다.</li>
+								<li>목록입니다.</li>
+							</ol>
+							<ul>
+								<li><code>ul</code> 목록입니다.</li>
+								<li>목록입니다.
+									<ul>
+										<li>목록입니다.</li>
+										<li>목록입니다.</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</section>
+					<!-- //section -depth 3 -->
+
+					<!-- section - depth 3 -->
+					<section class="docs-section" id="item-2-1-2">
+						<h3 class="section-heading">2.1.2. 컬러</h3>
+						<div class="section-content">
+							<p>기본 컬러 : <span class="text-primary">Primary</span> <code>.text-primary</code>,
+								<span class="text-secondary">Secondary</span> <code>.text-secondary</code></p>
+							<p>테마 컬러 : <span class="text-danger">Red</span> <code>.text-danger</code>,
+								<span class="text-warning">Yellow</span> <code>.text-warning</code>,
+								<span class="text-info">Blue</span> <code>.text-info</code>,
+								<span class="text-success">Green</span> <code>.text-success</code>,
+								<span class="text-muted">Muted</span> <code>.text-muted</code></p>
+						</div>
+					</section>
+					<!-- //section -depth 3 -->
+
+					<!-- section - depth 3 -->
+					<section class="docs-section" id="item-2-1-3">
+						<h3 class="section-heading">2.1.3. 링크</h3>
+						<div class="section-content">
+							<p>텍스트 링크 : <a href="#">default link</a> <code>a</code>, <a href="#" class="theme-link">theme link</a> <code>a.theme-link</code></p>
+							<p>버튼 사이즈 : <a href="#" class="btn btn-xs btn-default">.btn-xs</a>
+								<a href="#" class="btn btn-sm btn-default">.btn-sm</a>
+								<a href="#" class="btn btn-md btn-default">.btn-md</a>
+								<a href="#" class="btn btn-default">default</a>
+								<a href="#" class="btn btn-lg btn-default">.btn-lg</a>
+							</p>
+							<p>버튼 컬러 : <a href="#" class="btn btn-default">.btn-default</a>
+								<a href="#" class="btn btn-primary">.btn-primary</a>
+								<a href="#" class="btn btn-info">.btn-info</a>
+								<a href="#" class="btn btn-success">.btn-success</a>
+								<a href="#" class="btn btn-warning">.btn-warning</a>
+								<a href="#" class="btn btn-danger">.btn-danger</a></p>
+							<p>테두리형 버튼 : <a href="#" class="btn btn-outline-primary">.btn-outline-primary</a>
+								<a href="#" class="btn btn-outline-info">.btn-outline-primary</a>
+								<a href="#" class="btn btn-outline-success">.btn-outline-success</a>
+								<a href="#" class="btn btn-outline-warning">.btn-outline-warning</a>
+								<a href="#" class="btn btn-outline-danger">.btn-outline-danger</a></p>
+						</div>
+					</section>
+					<!-- //section -depth 3 -->
+				</section>
+				<!-- //section - depth 2 -->
+
+				<!-- section - depth 2 -->
+				<section class="docs-section" id="item-2-2">
+					<h2 class="section-heading">2.2. 테이블</h2>
+					<div class="section-content">
+						<h4>기본형</h4>
+						<table>
+							<colgroup>
+								<col style="width: 33.33%">
+								<col style="width: 33.33%">
+								<col>
+							</colgroup>
+							<thead>
+								<tr>
+									<th>th</th>
+									<th>th</th>
+									<th>th</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th>th</th>
+									<td>td</td>
+									<td>td</td>
+								</tr>
+								<tr>
+									<th class="text-center">가운데 정렬 th <code>.text-center</code></th>
+									<td class="text-center">가운데 정렬 td <code>.text-center</code></td>
+									<td class="text-right">우측 정렬 td <code>.text-right</code></td>
+								</tr>
+							</tbody>
+						</table>
+
+						<p>&nbsp;</p>
+
+						<h4>목록형 <code>.table-list</code></h4>
+						<table class="table-list">
+							<colgroup>
+								<col style="width: 33.33%">
+								<col style="width: 33.33%">
+								<col>
+							</colgroup>
+							<thead>
+								<tr class="table-dark text-lg">
+									<th colspan="3"><code>tr.table-dark.text-lg</code> th</th>
+								</tr>
+								<tr>
+									<th>th</th>
+									<th>th</th>
+									<th>th</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>td</td>
+									<td>td</td>
+									<td>td</td>
+								</tr>
+								<tr>
+									<td>td</td>
+									<td class="text-left">좌측 정렬 td <code>.text-left</code></td>
+									<td class="text-right">우측 정렬 td <code>.text-right</code></td>
+								</tr>
+								<tr class="table-primary">
+									<td><code>tr.table-primary</code> td</td>
+									<td>td</td>
+									<td>td</td>
+								</tr>
+								<tr class="table-info">
+									<td><code>tr.table-info</code> td</td>
+									<td>td</td>
+									<td>td</td>
+								</tr>
+								<tr class="table-success">
+									<td><code>tr.table-success</code> td</td>
+									<td>td</td>
+									<td>td</td>
+								</tr>
+								<tr class="table-warning">
+									<td><code>tr.table-warning</code> td</td>
+									<td>td</td>
+									<td>td</td>
+								</tr>
+								<tr class="table-danger">
+									<td><code>tr.table-danger</code> td</td>
+									<td>td</td>
+									<td>td</td>
+								</tr>
+								<tr class="table-dark">
+									<td><code>tr.table-dark</code> td</td>
+									<td>td</td>
+									<td>td</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</section>
+				<!-- //section - depth 2 -->
+
+				<!-- section - depth 2 -->
+				<section class="docs-section" id="item-2-3">
+					<h2 class="section-heading">2.3. 박스 스타일, 이미지</h2>
+					<div class="section-content">
+						<p>박스 : <code>.card&gt;.card-body.text-center</code></p>
+						<div class="card">
+							<div class="card-body text-center"><img alt="내통장결제 프로세스" src="https://develop.sbsvc.online/images/contents/docs/process_myaccount_01.gif"></div>
+						</div>
+					</div>
+				</section>
+				<!-- //section - depth 2 -->
+
+				<!-- section - depth 2 -->
+				<section class="docs-section" id="item-2-4">
+					<h2 class="section-heading">2.4. 소스 코드</h2>
+					<div class="section-content">
+						<p>코드 안내 : <code>code</code></p>
+						<p>코드 블럭 : <code>.docs-code-block&gt;pre.rounded&gt;code.*.hljs</code></p>
+						<!-- html -->
+						<div class="docs-code-block">
+<pre class="rounded"><code class="html hljs">&lt;!-- html --&gt;
+&lt;div id="id" class="class"&gt;test&lt;/div&gt;</code></pre>
+						</div>
+
+						<!-- css -->
+						<div class="docs-code-block">
+<pre class="rounded"><code class="css hljs">/* css */
+.test { color: #faa61a; }</code></pre>
+						</div>
+
+						<!-- js -->
+						<div class="docs-code-block">
+<pre class="rounded"><code class="js hljs">// js
+function callSettlePay() {
+	test
+}</code></pre>
+						</div>
+
+						<!-- java -->
+						<div class="docs-code-block">
+<pre class="rounded"><code class="json hljs">// java, json
+{
+	"resultCd": "-1",
+	"errCd": "ST09",
+	"resultMsg": "유효하지 않는 요청전문"
+}</code></pre>
+						</div>
+					</div>
+				</section>
+				<!-- //section - depth 2 -->
+			</article>
+			<!-- //article - depth 1 -->
+		</div>
+		<!-- //container -->
+	</div>
+	<!-- //content -->
+</div>
+<!-- //main / wrapper -->
+
+<!-- footer -->
+<footer id="footer" class="footer">
+	<div class="container text-center pt-3 pb-5">Copyrightⓒ Settlebank, INC. All Rights Reserved.</div>
+</footer>
+<!-- //footer -->
+
+<!-- Page Specific JS -->
+<script src="https://develop.sbsvc.online/plugins/jquery.scrollTo.min.js"></script>
+<script src="https://develop.sbsvc.online/plugins/lightbox/dist/ekko-lightbox.min.js"></script>
+<script src="https://develop.sbsvc.online/js/docs.js"></script>
+
+<script>
+$(document).ready(function() {
+	// 북마크 아이콘
+	$(".btn-bookmark").click(function(){
+		$(this).toggleClass("active");
+	});
+});
+</script>
+</body>
+</html>

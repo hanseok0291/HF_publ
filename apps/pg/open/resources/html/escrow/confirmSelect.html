@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<title>헥토파이낸셜 지불서비스</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link rel="stylesheet" href="../../css/common.css">
+<script src="../../js/jquery-1.8.3.min.js"></script>
+</head>
+
+<body>
+<!-- wrap -->
+<div class="wrap-default">
+	<!-- header -->
+	<div id="header" class="container">
+		<h1 class="logo"><img src="../../images/logo-spay-white.png" alt="S'pay"></h1>
+	</div>
+	<!-- //header -->
+
+	<!-- main content -->
+	<div id="main">
+		<!-- headline -->
+		<div class="headline container">
+			<h2>에스크로 구매 결정</h2>
+			<p>배송된 상품을 수령하셨나요?<br>
+				주문하신 상품의<br>
+				구매를 확정해주세요!</p>
+		</div>
+		<!-- //headline -->
+
+		<!-- content box -->
+		<div class="content-box container">
+			<!-- form -->
+			<form autocomplete="off">
+				<!-- section - 결제 정보 -->
+				<div class="section order-info">
+					<h3 class="section-title">결제 정보</h3>
+					<div class="section-content">
+						<div class="card card-sm">
+							<div class="card-body">
+								<ul class="list-type-table">
+									<li>
+										<div class="dt">상품명</div>
+										<div class="dd"><strong class="ellipsis dp-block">드시모네 키즈 세트 afghjlmoprqyz 12345678901234567890</strong></div>
+									</li>
+									<li>
+										<div class="dt">주문금액</div>
+										<div class="dd"><strong class="price text-primary"><em class="value">287,000</em>원</strong></div>
+									</li>
+									<li>
+										<div class="dt">거래일시</div>
+										<div class="dd">2020년 07월 24일 23:24:50</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- //section - 결제 정보 -->
+
+				<!-- section - 구매 선택 -->
+				<div class="section">
+					<h3 class="section-title">구매 선택</h3>
+					<div class="section-content">
+						<!-- 구매 결정 선택 -->
+						<div class="select-tab">
+							<div class="check-group">
+								<input type="radio" name="confirmType" id="confirmTypeY">
+								<label for="confirmTypeY">구매 확정</label>
+								<input type="radio" name="confirmType" id="confirmTypeN">
+								<label for="confirmTypeN">구매 거절</label>
+							</div>
+						</div>
+						<!-- //구매 결정 선택 -->
+
+						<!-- 구매 확정 정보 -->
+						<div class="select-tab-content confirmTypeY">
+							<p class="text-secondary">주문한 상품을 수령하여 구매를 확정합니다.</p>
+						</div>
+						<!-- //구매 확정 정보 -->
+
+						<!-- 구매 거절 정보 -->
+						<div class="select-tab-content confirmTypeN">
+							<div class="card card-sm">
+								<div class="card-header">
+									<ul class="list-type-table">
+										<li>
+											<div class="dt">예금주명</div>
+											<div class="dd"><strong class="text-secondary">홍길동</strong></div>
+										</li>
+										<li>
+											<div class="dt">환불 예정금액</div>
+											<div class="dd"><strong class="text-secondary"><em>287,000</em>원</strong></div>
+										</li>
+									</ul>
+								</div>
+							</div>
+
+							<ul class="form-type mgt10">
+								<li>
+									<select>
+										<option value="">환불계좌 은행</option>
+									</select>
+									<div class="text-error"><!-- 환불계좌 은행을 선택해 주세요. --></div>
+								</li>
+								<li class="input-btn">
+									<input type="tel" placeholder="계좌 번호 (’-’없이 입력)">
+									<button type="button" class="btn btn-sm btn-secondary">계좌 확인</button>
+									<div class="text-error">결제 시 입력한 예금주명과 환불계좌 정보가 일치하지 않습니다.</div>
+								</li>
+								<li>
+									<select>
+										<option value="">구매 거절 사유</option>
+										<option value="0">상품 미수령</option>
+										<option value="1">기타(직접 입력)</option>
+									</select>
+									<input type="text" placeholder="구매 거절 사유 직접 입력">
+									<div class="text-error">구매 거절 사유를 입력해 주세요.</div>
+								</li>
+							</ul>
+						</div>
+						<!-- //구매 거절 정보 -->
+					</div>
+				</div>
+				<!-- //section - 구매 선택 -->
+
+				<!-- bottom button -->
+				<div class="section btn-area">
+					<button type="submit" class="btn btn-lg btn-secondary">확인</button>
+				</div>
+				<!-- //bottom button -->
+			</form>
+			<!-- //form -->
+		</div>
+		<!-- //content box -->
+	</div>
+	<!-- //main content -->
+
+	<!-- footer -->
+	<div id="footer">
+		<div class="container">
+			<p>Copyright(c) Hecto Financial Co,. Ltd. All Rights Reserved.</p>
+			<p class="mgt10"><strong class="text-primary">헥토파이낸셜 고객센터 1600-5220</strong></p>
+		</div>
+	</div>
+	<!-- //footer -->
+</div>
+<!-- //wrap -->
+
+<script src="../../js/jquery.placeholder.min.js"></script>
+<script>
+	$(document).ready(function(){
+		// IE9 이하 jquery.placeholder.js 적용
+		$("input, textarea").placeholder();
+
+		// 구매 결정 첫번째 항목 활성
+		$("#confirmTypeY").prop('checked', true);
+		$(".confirmTypeN").addClass("hidden");
+
+		// 구매 결정 선택
+		$("[name='confirmType']").click(function(){
+			if($("#confirmTypeY").is(":checked")){
+				$(".confirmTypeY").removeClass("hidden");
+				$(".confirmTypeN").addClass("hidden");
+			} else {
+				$(".confirmTypeY").addClass("hidden");
+				$(".confirmTypeN").removeClass("hidden");
+			}
+		});
+	})
+</script>
+</body>
+</html>

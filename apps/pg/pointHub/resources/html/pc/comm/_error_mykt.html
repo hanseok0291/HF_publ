@@ -1,0 +1,73 @@
+<%@  page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"
+%><%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"
+%><%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+<%--
+ **********************************************************************************************
+ * @desc : 마이케이티 전용 ErrorPage
+ * @FileName : /pointHub/src/main/webapp/WEB-INF/views/pc/comm/error_mykt.jsp
+ * @author jungukjae
+ * @since 2020.04.21
+ * @version 1.0
+ * @see
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ * 수 정 일       수 정 자             수정내용
+ * ----------   -----------   -----------------------------
+ * 2020.04.21    jungukjae             최초생성
+ * </pre>
+ **********************************************************************************************
+--%>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width">
+		<meta name="Author-Date(Date)" content="2020/05/06">
+		<meta name="Description" content="[통신비할인프로그램] 페이지 오류 - 죄송합니다. 요청하신 페이지를 찾을 수 없습니다."/>
+		<title>[통신비할인프로그램]페이지 오류 - 마음을 담다, KT</title>
+
+		<!-- 통계생성JS(adobe/GA 포함) -->
+		<!-- <script type="text/javascript" src="http://mtb.kt.com/js/common/global/mKTGlobal.js"></script> -->
+		<script type="text/javascript" src="https://m.kt.com/js/common/global/mKTGlobal.js"></script>
+
+		<c:set var="TimeStamp" value="19112601"	scope="request" />
+		<c:set var="ResRoot"   value="https://tb.pointhub.clipwallet.co.kr/resources"	scope="request" />
+		<c:set var="ViewRoot"  value="${pageContext.request.contextPath}" scope="request" />
+
+		<!-- MyKT전용 CSS -->
+	    <link rel="stylesheet" href="${ResRoot}/mb/mykt/css/paydiscount.css">
+
+		<!-- 공통JS -->
+		<script src="${ResRoot}/common/js/ph-fnc.js?${TimeStamp}"></script>
+		<script src="${ResRoot}/common/js/ph-util.js?${TimeStamp}"></script>
+		<script src="${ResRoot}/common/js/ph-event.js?${TimeStamp}"></script>
+		<script src="${ResRoot}/common/js/ph-valid.js?${TimeStamp}"></script>
+
+	    <script type="text/javascript" src="${ResRoot}/common/jQuery/jquery.min.js?v331"></script>
+	    <script type="text/javascript">
+			s.pageName = "^m^errorPage^페이지오류(500)^통신비할인프로그램";
+			s.pageType = "errorPage";
+		 	mkt.gnb();
+		</script>
+	</head>
+
+	<body>
+		<div class="error_msg404">
+			<p class="tits">통신비할인프로그램</p>
+			<div class="error_cont">
+				<div class="error_img">
+					<img src="${ResRoot}/mb/mykt/img/super_reward_error.png" alt="">
+				</div>
+				<div class="error_txt">
+					<p class="txt">고객님, 죄송합니다. <br>해당 페이지를 찾을 수 없습니다.</p>
+				</div>
+				<div class="error_btn">
+					<a href="https://m.kt.com" onclick="KT_trackClicks('errorPage404:통신비할인프로그램', '^m_errorPage^페이지없음(404)^서비스명기입^홈으로이동');">홈으로 이동</a>
+					<!-- <a href="#">홈으로 이동</a> -->
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

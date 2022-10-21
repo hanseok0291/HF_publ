@@ -1,0 +1,290 @@
+<!-- <%@  page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"
+%><%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"
+%><%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<!--
+   Point Hub version 1.0
+
+   Copyright ⓒ 2014 kt corp. All rights reserved.
+
+   This is a proprietary software of kt corp, and you may not use this file except in
+   compliance with license agreement with kt corp. Any redistribution or use of this
+   software, with or without modification shall be strictly prohibited without prior written
+   approval of kt corp, and the copyright notice above does not evidence any actual or
+   intended publication of such software.
+ -->
+<!-- <%--
+ **********************************************************************************************
+ * @desc : 탑툰 약관동의 및 본인인증 팝업호출 화면(모바일)
+ * @FileName : /pointHub/src/main/webapp/WEB-INF/views/mb/std/validateUser_TT.jsp
+ * @author jungukjae
+ * @since 2020.06.24
+ * @version 1.0
+ * @see
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ * 수 정 일      수 정 자          		수정내용
+ * ----------   -----------   -----------------------------
+ * 2020.06.24    jungukjae        		최초생성
+ * </pre>
+ **********************************************************************************************
+--%>
+<%
+response.setHeader("Cache-Control","no-store");
+response.setHeader("Pragma","no-cache");
+response.setDateHeader("Expires",0);
+if (request.getProtocol().equals("HTTP/1.1"))
+        response.setHeader("Cache-Control", "no-cache");
+%> --> -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<%-- Head --%>
+	<jsp:include page="/WEB-INF/views/mb/include/globalVar.jsp" flush="false" />
+
+	<%-- Head --%>
+	<jsp:include page="/WEB-INF/views/mb/include/incHead.jsp" flush="false" />
+
+</head>
+<body>
+<div id="wrap">
+	<!-- header 시작-->
+    <header class="index">
+        <div class="header_overlay_bg"></div>
+        <div class="header_img">
+            <img src="${ResRoot}/mb/img/top_banner1.png" alt="무료충전으로 탑툰 공짜로 보세요 연간 소멸되는 숨은 카드 포인트 찾아 드릴게요!">
+        </div>
+
+        <!-- <div class="container">
+            <div class="title">포인트다모아</div>
+            <div class="script_text">서비스 이용 위해서는<br>서비스 이용약관동의, 본인확인인증 필요합니다.</div>
+        </div> -->
+    </header>
+	<!-- header 끝-->
+
+	<!-- popup 시작-->
+	<div id="myPopup" class="popup">
+		<div class="popup_content">
+			<div class="popup_title"><span class="ls" id="dtlTitl"></span><a href="javascript:;"><div class="close btn_closePop"></div></a></div>
+			<div class="clause_text" id="clauseText">
+				<iframe id="ifClause"></iframe>
+			</div>
+			<a href="javascript:;"><div class="close_btn btn_closePop">닫기</div></a>
+		</div>
+	</div>
+	<!-- popup 끝-->
+
+	<!-- contents 시작-->
+    <section class="clause">
+        <div class="container">
+            <!-- <div class="clause_title">서비스 이용약관 동의</div> -->
+             <!-- 20190712 - 버튼 추가(기존 본인인증 버튼) -->
+			<div class="check_next">
+				<div id="certiBtn" class="certi_btn point_hub">
+					<a href="javascript:;" id="kmcValidateBtn">
+						<ul>
+							<li id="certiBtnTxt">전체 약관 동의 후 <span>포인트 조회하기</span></li>
+						</ul>
+					</a>
+				</div>
+			</div>
+
+            <div class="check_row">
+		</div>
+			<c:forEach var="clsMap" items="${clsList}">
+				<div class="check_row">
+					<ul>
+						<li>
+							<div class="check_type" clsId='<c:out value="${clsMap.clsId}"/>' prvdrId='<c:out value="${clsMap.prvdrId}"/>' clsVer='<c:out value="${clsMap.clsVer}"/>' clsTitl='<c:out value="${clsMap.clsTitl}${clsMap.clsSubTitl}"/>'>
+								<a href="javascript:;" class="${((clsMap.clsUrl ne null) && (clsMap.clsUrl ne '')) ? 'check_link nlink' : 'check_link wlink'}">
+									<c:if test="${clsMap.mandYn == 'Y'}">
+										<c:if test="${clsMap.clsId != 'PHA3'}">
+											<div class="check_toggle mandY"></div>
+										</c:if>
+										<c:if test="${clsMap.clsId == 'PHA3'}">
+											<div class="check_toggle mandY" style="height: 40px;"></div>
+										</c:if>
+									</c:if>
+									<c:if test="${clsMap.mandYn == 'N'}">
+										<div class="check_toggle mandN"></div>
+									</c:if>
+
+									<div class="check_name">
+										<c:out value="${clsMap.clsTitl}"/>
+										<c:if test="${clsMap.mandYn == 'Y' }">
+											<span class="red">(필수)</span>
+										</c:if>
+										<c:if test="${clsMap.mandYn == 'N' }">
+											<span>(선택)</span>
+										</c:if>
+										<c:if test="${clsMap.clsId == 'PHA3'}">
+											<br>
+											<c:out value="${clsMap.clsSubTitl}"/>
+										</c:if>
+									</div>
+								</a>
+								<c:if test="${(clsMap.clsUrl ne null) && (clsMap.clsUrl ne '')}">
+									<a href="javascript:;" class="alink" clsUrl="${clsMap.clsUrl}" clsTitl="${clsMap.clsTitl}">
+										<div class="arrow_right"></div>
+									</a>
+								</c:if>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<c:if test="${clsMap.clsId == 'PHA1' || clsMap.clsId == 'PHA3'}">
+					<div class="clauseCard_table">
+						<table width="100%" border="0" cellpadding="0" cellspacing="0">
+							<c:if test="${clsMap.clsId == 'PHA1'}">
+				                <colgroup>
+				               		<col width="25%"/>
+				                    <col width="*"/>
+				                    <col width="26%"/>
+				                    <col width="24%"/>
+								</colgroup>
+								<tbody>
+				               		<c:forEach var="cardInfoMap" items="${cardInfoList}">
+				               			<c:if test="${cardInfoMap.clsId == 'PHA1'}">
+					               			<c:if test="${cardInfoMap.sortOrd == '0'}">
+					                			<tr>
+					                				<th><c:out value="${cardInfoMap.prvdrNm}"/></th>
+					                				<th><c:out value="${cardInfoMap.prps}"/></th>
+					                				<th><c:out value="${cardInfoMap.item}"/></th>
+					                				<th><c:out value="${cardInfoMap.holdPrd}"/></th>
+					                			</tr>
+					               			</c:if>
+					               			<c:if test="${cardInfoMap.sortOrd == '1'}">
+					                			<tr  class="card_info"
+									                clsId='<c:out value="${cardInfoMap.clsId}"/>'
+									                prvdrId='<c:out value="${cardInfoMap.prvdrId}"/>'
+									                clsVer='<c:out value="${cardInfoMap.clsVer}"/>'
+									                clsTitl='<c:out value="${cardInfoMap.clsTitl}"/>'>
+					                				<td><c:out value="${cardInfoMap.prvdrNm}"/></td>
+					                				<td rowspan="${recvRowCount-1}"><c:out value="${cardInfoMap.prps}"/></td>
+					                				<td rowspan="${recvRowCount-2}"><c:out value="${cardInfoMap.item}"/></td>
+					                				<td rowspan="${recvRowCount}"><c:out value="${cardInfoMap.holdPrd}"/></td>
+					                			</tr>
+					               			</c:if>
+					               			<c:if test="${cardInfoMap.sortOrd != '0' && cardInfoMap.sortOrd != '1'}">
+					                			<tr  class="card_info"
+									                clsId='<c:out value="${cardInfoMap.clsId}"/>'
+									                prvdrId='<c:out value="${cardInfoMap.prvdrId}"/>'
+									                clsVer='<c:out value="${cardInfoMap.clsVer}"/>'
+									                clsTitl='<c:out value="${cardInfoMap.clsTitl}"/>'>
+					                				<td><c:out value="${cardInfoMap.prvdrNm}"/></td>
+
+													<c:if test="${cardInfoMap.sortOrd == '29'}">
+														<td><c:out value="${cardInfoMap.prps}"/></td>
+													</c:if>
+
+													<c:if test="${cardInfoMap.sortOrd == '19' or cardInfoMap.sortOrd == '29'}">
+					                					<td><c:out value="${cardInfoMap.item}"/></td>
+					                				</c:if>
+					                			</tr>
+					               			</c:if>
+				               			</c:if>
+				               		</c:forEach>
+								</tbody>
+			              	</c:if>
+			              	<c:if test="${clsMap.clsId == 'PHA3'}">
+			              		<colgroup>
+									<col width="21%"/>
+									<col width="20%"/>
+									<col width="*"/>
+									<col width="20%"/>
+									<col width="19%"/>
+								</colgroup>
+			              		<tbody>
+				               		<c:forEach var="cardInfoMap" items="${cardInfoList}">
+				               			<c:if test="${cardInfoMap.clsId == 'PHA3'}">
+					               			<c:if test="${cardInfoMap.sortOrd == '0'}">
+					                			<tr>
+					                				<th><c:out value="${cardInfoMap.prvdrNm}"/></th>
+					                				<th><c:out value="${cardInfoMap.rcvrNm}"/></th>
+					                				<th><c:out value="${cardInfoMap.prps}"/></th>
+					                				<th><c:out value="${cardInfoMap.item}"/></th>
+					                				<th><c:out value="${cardInfoMap.holdPrd}"/></th>
+					                			</tr>
+					               			</c:if>
+					               			<c:if test="${cardInfoMap.sortOrd == '1'}">
+					               				<tr  class="card_info"
+									                clsId='<c:out value="${cardInfoMap.clsId}"/>'
+									                prvdrId='<c:out value="${cardInfoMap.prvdrId}"/>'
+									                clsVer='<c:out value="${cardInfoMap.clsVer}"/>'
+									                clsTitl='<c:out value="${cardInfoMap.clsTitl}"/>'>
+					                				<td><c:out value="${cardInfoMap.prvdrNm}"/></td>
+					                				<td rowspan="${prvdRowCount}"> <c:out value="${cardInfoMap.rcvrNm}"/> </td>
+					                				<td rowspan="${prvdRowCount-2}"><c:out value="${cardInfoMap.prps}"/> </td>
+					                				<td rowspan="${prvdRowCount-1}"><c:out value="${cardInfoMap.item}"/> </td>
+					                				<td rowspan="${prvdRowCount}"><c:out value="${cardInfoMap.holdPrd}"/> </td>
+					                			</tr>
+					               			</c:if>
+					               			<c:if test="${cardInfoMap.sortOrd != '0' && cardInfoMap.sortOrd != '1'}">
+					                			<tr  class="card_info"
+									                clsId='<c:out value="${cardInfoMap.clsId}"/>'
+									                prvdrId='<c:out value="${cardInfoMap.prvdrId}"/>'
+									                clsVer='<c:out value="${cardInfoMap.clsVer}"/>'
+									                clsTitl='<c:out value="${cardInfoMap.clsTitl}"/>'>
+					                				<td><c:out value="${cardInfoMap.prvdrNm}"/></td>
+
+					                				<c:if test="${cardInfoMap.sortOrd == '19' or cardInfoMap.sortOrd == '29'}">
+					                					<td><c:out value="${cardInfoMap.prps}"/></td>
+					                				</c:if>
+
+													<c:if test="${cardInfoMap.sortOrd == '29'}">
+														<td><c:out value="${cardInfoMap.item}"/></td>
+													</c:if>
+					                			</tr>
+					               			</c:if>
+				               			</c:if>
+				               		</c:forEach>
+								</tbody>
+							</c:if>
+						</table>
+			       	</div>
+				</c:if>
+			</c:forEach>
+        </div>
+    </section>
+
+		<section class="footer clause">
+
+			<!-- 20190712 - 전체 약관 동의 이동 -->
+			<div class="container">
+				<div class="check_row">
+					<ul>
+						<li>
+							<div class="all_check">
+								<a href="javascript:;"><div class="check_toggle"></div>
+									<div class="check_name">약관 전체 동의</div></a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="submet_btn">
+	            <ul>
+	                <li>
+	                    <c:if test="${not empty return_url_2}">
+	                        <a href="javascript:;"><div id="cancelBtn" class="btn_cancel">취소</div></a>
+	                    </c:if>
+	                </li>
+	                <li><a href="javascript:;"><div id="confirmBtn" class="btn_ok">확인</div></a></li>
+	            </ul>
+      		</div>
+		</section>
+		<!-- contents 끝-->
+</div>
+<form id="reqKMCISForm">
+ 	<input type="hidden" id="tr_cert" name="tr_cert">
+	<input type="hidden" id="tr_url" name="tr_url">
+	<input type="hidden" id="tr_add" name="tr_add">
+</form>
+
+<%-- Footer --%>
+<jsp:include page="/WEB-INF/views/mb/include/incFooter.jsp" flush="false" />
+
+<%-- js --%>
+<jsp:include page="/WEB-INF/views/pc/std/validateUserJs.jsp" flush="false" />
+</body>
+</html>

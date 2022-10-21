@@ -1,0 +1,2011 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<title>세틀뱅크 개발 지원</title>
+
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="세틀뱅크의 내통장결제, 간편현금결제 연동 가이드">
+	<meta name="author" content="세틀뱅크">
+	<link rel="shortcut icon" href="../../images/favicon.ico">
+
+	<!-- Noto Sans KR font -->
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+	<!-- FontAwesome -->
+	<link rel="stylesheet" href="../../fonts/fontawesome/css/all.css">
+	<script defer src="../../fonts/fontawesome/js/all.min.js"></script>
+
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" href="../../plugins/owlcarousel/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../../plugins/owlcarousel/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="../../plugins/highlight/atom-one-dark.min.css">
+	<link rel="stylesheet" href="../../plugins/datatable/css/dataTables.bootstrap4.min.css">
+
+	<!-- Theme CSS -->
+	<link rel="stylesheet" href="../../css/theme.css">
+	<link rel="stylesheet" href="../../css/design.css">
+
+	<!-- Javascript -->
+	<script src="../../plugins/jquery-3.4.1.min.js"></script>
+	<script src="../../plugins/popper.min.js"></script>
+	<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../../plugins/datatable/js/datatables.min.js"></script>
+	<script src="../../plugins/datatable/js/dataTables.bootstrap4.min.js"></script>
+	<script src="../../plugins/highlight/highlight.min.js"></script>
+	<script src="../../js/highlight-custom.js"></script>
+	<script src="../../js/design.js"></script>
+</head>
+
+<body>
+	<!-- skip navigation -->
+	<ul id="skipNav">
+		<li><a href="#docs-nav">주메뉴 바로가기</a></li>
+		<li><a href="#content">본문 바로가기</a></li>
+		<li><a href="#footer">페이지 하단 바로가기</a></li>
+	</ul>
+	<!-- //skip navigation -->
+
+	<!-- header -->
+	<header class="header fixed-top">
+		<div class="branding docs-branding">
+			<div class="container-fluid position-relative">
+				<!-- logo -->
+				<div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible mr-2 d-xl-none" type="button"> <span></span> <span></span> <span></span> </button>
+					<div class="site-logo">
+						<a class="navbar-brand" href="../layout/docs.html">
+							<img class="logo-icon" src="../../images/site-mark.svg" alt="SettleBank">
+							<span class="logo-text">개발 가이드 <span class="sub-title">연동 가이드</span></span>
+						</a>
+					</div>
+				</div>
+				<!-- //logo -->
+
+				<!-- docs-top-utilities -->
+				<div class="docs-top-utilities d-flex justify-content-end align-items-center">
+					<!-- search -->
+					<div class="top-search-box d-none d-lg-flex">
+						<form class="search-form">
+							<input type="text" placeholder="통합 검색" name="search" class="form-control search-input">
+							<button type="submit" class="btn search-btn"><i class="fas fa-search"></i> <span class="sr-only">검색</span></button>
+						</form>
+					</div>
+					<!-- //search -->
+
+					<!-- member navigation -->
+					<ul class="navbar-nav d-flex flex-row member-nav">
+						<!-- 로그인 전 -->
+						<!--
+					<li><a href="../member/login.html"><i class="fas fa-sign-in-alt"></i> <span>로그인</span></a></li>
+					<li><a href="../member/join.html"><i class="fas fa-user-edit"></i> <span>회원가입</span></a></li>
+					-->
+						<!-- //로그인 전 -->
+						<!-- 로그인 후 -->
+						<li><a href="#"><i class="fas fa-sign-out-alt"></i> <span>로그아웃</span></a></li>
+						<li><a href="../mypage/mypageHome.html"><i class="fas fa-user"></i> <span>마이 페이지</span></a></li>
+						<!-- //로그인 후 -->
+					</ul>
+					<!-- //member navigation -->
+				</div>
+				<!-- //docs-top-utilities -->
+			</div>
+			<!--//container-->
+		</div>
+		<!--//branding-->
+	</header>
+	<!--//header-->
+
+	<!-- wrapper -->
+	<div id="main" class="docs-wrapper">
+		<!-- 1 depth menu class 추가 -->
+		<!-- sidebar -->
+		<div id="docs-sidebar" class="docs-sidebar">
+			<!-- search -->
+			<div class="top-search-box d-lg-none">
+				<form class="search-form">
+					<input type="text" placeholder="통합 검색" name="search" class="form-control search-input">
+					<button type="submit" class="btn search-btn"><i class="fas fa-search"></i> <span class="sr-only">검색</span></button>
+				</form>
+			</div>
+			<!-- //search -->
+
+			<!-- docs navigation -->
+			<nav id="docs-nav" class="docs-nav navbar">
+				<ul class="section-items list-unstyled nav flex-column pb-3">
+					<li class="nav-item section-title">
+						<a class="nav-link scrollto" href="#section-1">1. Article</a>
+						<button class="btn btn-bookmark active">
+							<i class="far fa-bookmark off" title="즐겨찾기 추가"></i>
+							<i class="fas fa-bookmark on" title="즐겨찾기 제거"></i>
+						</button>
+						<ul>
+							<li class="nav-item">
+								<a class="nav-link scrollto" href="#item-1-1">1.1. Section</a>
+								<button class="btn btn-bookmark">
+									<i class="far fa-bookmark off" title="즐겨찾기 추가"></i>
+									<i class="fas fa-bookmark on" title="즐겨찾기 제거"></i>
+								</button>
+								<ul>
+									<li class="nav-item">
+										<a class="nav-link scrollto" href="#item-1-1-1">1.1.1. Section</a>
+										<button class="btn btn-bookmark active">
+											<i class="far fa-bookmark off" title="즐겨찾기 추가"></i>
+											<i class="fas fa-bookmark on" title="즐겨찾기 제거"></i>
+										</button>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<!-- //docs navigation -->
+		</div>
+		<!-- //sidebar -->
+
+		<!-- content -->
+		<div id="content" class="docs-content">
+			<!-- container -->
+			<div class="container">
+				<article class="docs-article" id="item-755">
+					<header class="docs-header">
+						<h1 class="docs-heading">현금영수증 API 소개</h1>
+						<section class="section-content">
+							<p>현금영수증 실시간 API 발급을 위한 문서입니다.</p>
+						</section>
+					</header>
+				</article>
+				<article class="docs-article" id="item-756">
+					<header class="docs-header">
+						<h1 class="docs-heading">현금영수증 API 연동규격서</h1>
+						<section class="section-content">
+							<p></p>
+						</section>
+					</header>
+					<section class="docs-section" id="item-757">
+						<h2 class="section-heading">1. 개요</h2>
+						<div class="section-content">
+							<p></p>
+						</div>
+						<section class="docs-section" id="item-758">
+							<h2 class="section-heading">1.1 현금영수증 등록/조회</h2>
+							<div class="section-content">
+								<p></p>
+								<div class="card">
+									<div class="card-body text-center"><img alt="현금영수증 등록/조회 FLOW" src="https://cash.settlebank.co.kr/images/cash1.jpg"></div>
+								</div>
+								<p></p>
+<ol>
+	<li>현금영수증 등록/취소 호출, 승인번호와 현금영수증 발급일자 수신 (가맹점 → 세틀뱅크)</li>
+	<li>익일(D+1) 00시 전일 요청한 현금영수증 발급내역을 국세청으로 일괄 파일 송신 (세틀뱅크 → 국세청)</li>
+	<li>D+1일 9시-12시, 현금영수증 등록 오류내역을 국세청으로부터 수신 (국세청 → 세틀뱅크)</li>
+	<li>13시 이후, 현금영수증 발급 오류내역 조회</li>
+</ol>
+<p class="text-danger">※ 국세청 작업에 의해, 오류내역 조회 가능 시간은 지연될 수 있습니다.</p>
+							</div>
+						</section>
+
+						<section class="docs-section" id="item-759">
+							<h2 class="section-heading">1.2 현금영수증 재처리</h2>
+							<div class="section-content">
+
+								<div class="card">
+									<div class="card-body text-center"><img alt="현금영수증 재처리 FLOW" src="https://cash.settlebank.co.kr/images/cash2.jpg"></div>
+								</div>
+								<p></p>
+<p>1. 현금영수증 등록/취소 호출, 승인번호와 현금영수증 발급일자 수신 (가맹점 → 세틀뱅크)</p>
+<p>2. 익일(D+1) 00시 전일 요청한 현금영수증 발급내역을 국세청으로 일괄 파일 송신(세틀뱅크 → 국세청)</p>
+<p>3. 9시-12시, 현금영수증 등록 오류내역을 국세청으로부터 수신 (국세청 → 세틀뱅크)</p>
+<p>4.1. 자동재처리 가맹점인 경우<br>
+	<span style="display:inline-block;margin-left:2em;padding-left:3em;text-indent:-3em">4.1.1. 13시 이후, 현금영수증 발급 오류내역 조회 (재처리 데이터는 세틀뱅크에서 자동 생성되어, 익일 국세청으로 일괄 전송함)</span></p>
+<p>4.2. 자동재처리 가맹점이 아닌 경우<br>
+	<span style="display:inline-block;margin-left:2em;padding-left:3em;text-indent:-3em">4.2.1. 13시 이후, 현금영수증 발급 오류내역 조회</span><br>
+	<span style="display:inline-block;margin-left:2em;padding-left:3em;text-indent:-3em">4.2.2. 조회된 오류내역 중 재처리 요청 대상 건을 재처리 API를 통해 등록 진행</span></p>
+<p>5. D+2 전일 재처리 요청된 거래내역을 국세청으로 일괄 전송 (세틀뱅크 → 국세청)</p>
+<p>6. 현금영수증 등록 오류내역을 국세청으로부터 수신 (국세청 → 세틀뱅크)</p>
+<p>7. 재처리 결과내역 API를 통해 재처리 결과 수신</p>
+<p class="text-danger">※ 국세청 작업에 의해, 오류/재처리 내역 조회 가능 시간은 지연될 수 있습니다.</p>
+							</div>
+						</section>
+					</section>
+					<section class="docs-section" id="item-760">
+						<h2 class="section-heading">2. 연동정보</h2>
+						<div class="section-content">
+							<p></p>
+							<p></p>
+							<p></p>
+						</div>
+						<section class="docs-section" id="item-761">
+							<h2 class="section-heading">2.1 연동정보</h2>
+							<div class="section-content">
+<p>&nbsp;</p>
+<h4>서버 IP</h4>
+<ul>
+	<li>TEST : 210.112.82.158</li>
+	<li>REAL : 210.112.82.158</li>
+</ul>
+<p>&nbsp;</p>
+<h4>URL</h4>
+<ul>
+	<li>TEST 도메인 : tcash.settlebank.co.kr</li>
+	<li>REAL 도메인 : cash.settlebank.co.kr</li>
+</ul>
+<table>
+	<colgroup>
+		<col style="width:20%">
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th>항목</th>
+			<th>URI</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="text-center" style="word-break:keep-all">현금영수증<br>
+				등록/취소 API</td>
+			<td>https://{domain}/pgtrans/CashReceiptMultiAction.do?_method=insertReceiptInfo</td>
+		</tr>
+		<tr>
+			<td class="text-center" style="word-break:keep-all">현금영수증<br>
+				발급오류내역 조회 API</td>
+			<td>https://{domain}/pgtrans/CashReceiptMultiAction.do?_method=getReceiptErrList</td>
+		</tr>
+		<tr>
+			<td class="text-center" style="word-break:keep-all">현금영수증<br>
+				재처리 등록 API</td>
+			<td>https://{domain}/pgtrans/CashReceiptMultiAction.do?_method=insertReceiptInfo</td>
+		</tr>
+		<tr>
+			<td class="text-center" style="word-break:keep-all">현금영수증<br>
+				재처리 결과내역 API</td>
+			<td>https://{domain}/pgtrans/CashReceiptMultiAction.do?_method=getReceiptReReqList</td>
+		</tr>
+	</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>기타 연동 정보</h4>
+<ul>
+	<li>encode : UTF-8</li>
+	<li>method : GET/POST</li>
+</ul>
+							</div>
+						</section>
+					</section>
+					<section class="docs-section" id="item-762">
+						<h2 class="section-heading">3. 현금영수증 등록 / 조회</h2>
+						<div class="section-content">
+							<p></p>
+						</div>
+						<section class="docs-section" id="item-763">
+							<h2 class="section-heading">3.1 현금영수증 등록/취소</h2>
+							<div class="section-content">
+<p>&nbsp;</p>
+<h4>3.1.1 URL</h4>
+https://{domain}/pgtrans/CashReceiptMultiAction.do?_method=<strong>insertReceiptInfo</strong>
+<p>&nbsp;</p>
+<h4>3.1.2 등록요청 parameter</h4>
+<table>
+	<colgroup>
+		<col style="width:20%">
+		<col style="width:10%">
+		<col style="width:10%">
+		<col style="width:10%">
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th>필드</th>
+			<th>데이터타입</th>
+			<th>길이</th>
+			<th>필수</th>
+			<th>필드명</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mid</td>
+			<td class="text-center">String</td>
+			<td class="text-center">10</td>
+			<td class="text-center">●</td>
+			<td>상점아이디</td>
+		</tr>
+		<tr>
+			<td>assort</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">●</td>
+			<td>승인구분 (‘0’)</td>
+		</tr>
+		<tr>
+			<td>transNo</td>
+			<td class="text-center">String</td>
+			<td class="text-center">50</td>
+			<td class="text-center">●</td>
+			<td>승인주문번호 (가맹점 고유번호)</td>
+		</tr>
+		<tr>
+			<td>ordNm</td>
+			<td class="text-center">String</td>
+			<td class="text-center">30</td>
+			<td class="text-center">○</td>
+			<td>주문자명</td>
+		</tr>
+		<tr>
+			<td>trDt</td>
+			<td class="text-center">String</td>
+			<td class="text-center">14</td>
+			<td class="text-center">●</td>
+			<td>거래일시 (yyyyMMddhh24miss)</td>
+		</tr>
+		<tr>
+			<td>taxYn</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">○</td>
+			<td>과세구분</td>
+		</tr>
+		<tr>
+			<td>amt</td>
+			<td class="text-center">Number</td>
+			<td class="text-center">10</td>
+			<td class="text-center">●</td>
+			<td>공급가액</td>
+		</tr>
+		<tr>
+			<td>vat</td>
+			<td class="text-center">Number</td>
+			<td class="text-center">10</td>
+			<td class="text-center">●</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>svcAmt</td>
+			<td class="text-center">Number</td>
+			<td class="text-center">10</td>
+			<td class="text-center">○</td>
+			<td>봉사료</td>
+		</tr>
+		<tr>
+			<td>bizRegNo</td>
+			<td class="text-center">Number</td>
+			<td class="text-center">10</td>
+			<td class="text-center">○</td>
+			<td>하위사업자번호</td>
+		</tr>
+		<tr>
+			<td>purpose</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">●</td>
+			<td>용도구분</td>
+		</tr>
+		<tr>
+			<td>identityGb</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">●</td>
+			<td>현금영수증 등록번호 구분</td>
+		</tr>
+		<tr>
+			<td>identity</td>
+			<td class="text-center">Number</td>
+			<td class="text-center">18</td>
+			<td class="text-center">●</td>
+			<td>현금영수증 등록번호</td>
+		</tr>
+		<tr>
+			<td>deductionType</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">○</td>
+			<td>추가공제 구분 (대중교통/도서,공연비)</td>
+		</tr>
+	</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>3.1.3 취소요청 parameter</h4>
+<table>
+	<colgroup>
+		<col style="width:20%">
+		<col style="width:10%">
+		<col style="width:10%">
+		<col style="width:10%">
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th>필드</th>
+			<th>데이터타입</th>
+			<th>길이</th>
+			<th>필수</th>
+			<th>필드명</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mid</td>
+			<td class="text-center">String</td>
+			<td class="text-center">10</td>
+			<td class="text-center">●</td>
+			<td>상점아이디</td>
+		</tr>
+		<tr>
+			<td>assort</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">●</td>
+			<td>승인구분 (‘1’)</td>
+		</tr>
+		<tr>
+			<td>transNo</td>
+			<td class="text-center">String</td>
+			<td class="text-center">50</td>
+			<td class="text-center">●</td>
+			<td>취소주문번호 (가맹점 고유번호)</td>
+		</tr>
+		<tr>
+			<td>ordNm</td>
+			<td class="text-center">String</td>
+			<td class="text-center">30</td>
+			<td class="text-center">○</td>
+			<td>주문자명</td>
+		</tr>
+		<tr>
+			<td>trDt</td>
+			<td class="text-center">String</td>
+			<td class="text-center">14</td>
+			<td class="text-center">●</td>
+			<td>취소거래일시 (yyyyMMddhh24miss)</td>
+		</tr>
+		<tr>
+			<td>taxYn</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">○</td>
+			<td>과세구분</td>
+		</tr>
+		<tr>
+			<td>amt</td>
+			<td class="text-center">Number</td>
+			<td class="text-center">10</td>
+			<td class="text-center">●</td>
+			<td>공급가액</td>
+		</tr>
+		<tr>
+			<td>vat</td>
+			<td class="text-center">Number</td>
+			<td class="text-center">10</td>
+			<td class="text-center">●</td>
+			<td>부가세</td>
+		</tr>
+		<tr>
+			<td>svcAmt</td>
+			<td class="text-center">Number</td>
+			<td class="text-center">10</td>
+			<td class="text-center">○</td>
+			<td>봉사료</td>
+		</tr>
+		<tr>
+			<td>bizRegNo</td>
+			<td class="text-center">Number</td>
+			<td class="text-center">10</td>
+			<td class="text-center">○</td>
+			<td>하위사업자번호</td>
+		</tr>
+		<tr>
+			<td>purpose</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">●</td>
+			<td>용도구분</td>
+		</tr>
+		<tr>
+			<td>identityGb</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">●</td>
+			<td>현금영수증 등록번호 구분</td>
+		</tr>
+		<tr>
+			<td>identity</td>
+			<td class="text-center">Number</td>
+			<td class="text-center">18</td>
+			<td class="text-center">●</td>
+			<td>현금영수증 등록번호</td>
+		</tr>
+		<tr>
+			<td>deductionType</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">○</td>
+			<td>추가공제 구분 (대중교통/도서,공연비)</td>
+		</tr>
+		<tr>
+			<td>authNo</td>
+			<td class="text-center">String</td>
+			<td class="text-center">9</td>
+			<td class="text-center">●</td>
+			<td>원거래 승인번호</td>
+		</tr>
+		<tr>
+			<td>orgTrDt</td>
+			<td class="text-center">String</td>
+			<td class="text-center">14</td>
+			<td class="text-center">●</td>
+			<td>원거래 승인일시 (yyyyMMddhh24miss)</td>
+		</tr>
+	</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>3.1.4 등록/취소 요청 parameter 상세설명</h4>
+<table>
+	<colgroup>
+		<col style="width:20%">
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th>필드</th>
+			<th>상세내용</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mid</td>
+			<td>당사로부터 발급받은 가맹점ID</td>
+		</tr>
+		<tr>
+			<td>assort</td>
+			<td>승인구분 (승인 : 0 / 취소 : 1)</td>
+		</tr>
+		<tr>
+			<td>transNo</td>
+			<td>가맹점에서 관리하는 고유주문번호<br>
+				<span class="text-danger">취소주문번호는 승인주문번호가 아닌, 새로 채번된 주문번호로 요청하셔야 합니다.</span></td>
+		</tr>
+		<tr>
+			<td>taxYn</td>
+			<td>과세구분 (과세 : N / 면세 : Y / 복합과세 : G)<br>
+				* 과세(N) – amt 과세금액, vat 부가세 입력<br>
+				* 면세(Y) – amt 면세금액, vat는 0으로 입력<br>
+				* 복합과세(G) – amt (과세+면세금액), vat는 과세금액의 부가세를 입력<br>
+				* 미 입력(null) – amt에 거래금액 입력<br>
+				(taxYn 미 요청 시, 과세구분 값을 당사 등록된 가맹점 정보 기준으로 구분하여, amt금액에서 자동 계산합니다.)<br>
+				<span class="text-danger"><span class="alert-warning text-danger">* 전체 취소 시 identityGb, identity 빈 값으로 전달 시에는 원거래승인번호, 원거래승인일시의 현금영수증 발행 정보로 취소<br>
+					* 부분 취소 시에는 identityGb, identity 빈 값으로 전달하고 취소 금액에 대해 계산 후 전달</span><br>
+					<span class="text-danger">* 취소 시에 현금영수증 등록번호구분, 현금영수증 등록번호, 과세구분, 공급가액, 부가세, 봉사료, 하위사업자번호, 용도구분은 요청주시는대로 국세청에 신고가 되게 되니 원거래 조회 후 취소를 할 수 있는 기준인 <span class="alert-warning text-danger">identityGb, identity 빈 값으로 전달 권장</span>합니다.</span></td>
+		</tr>
+		<tr>
+			<td>purpose</td>
+			<td>용도구분 (0 : 소득공제 / 1 : 지출증빙)<br>
+				* 자진발급번호로 요청 시, 0 (소득공제)로 입력</td>
+		</tr>
+		<tr>
+			<td>identityGb</td>
+			<td>현금영수증 등록번호 구분<br>
+				1 : 카드번호 (국세청에 등록된 카드번호)<br>
+				2 : 주민번호<br>
+				3 : 사업자번호<br>
+				4 : 휴대전화번호<br>
+				* 자진발급번호로 요청 시, 4 (휴대전화번호)로 입력</td>
+		</tr>
+		<tr>
+			<td>identity</td>
+			<td>identityGb의 구분값에 따른 등록번호<br>
+				<span class="text-danger">* 숫자로 입력</span><br>
+				* 자진발급번호로 요청 시, ‘0100001234’ 로 입력.</td>
+		</tr>
+		<tr>
+			<td>deductionType</td>
+			<td>대중교통 및 도서&middot;공연비인 경우에만 요청 (대중교통 : Y / 도서,공연비 : C)<br>
+				* 도서&middot;공연비 소득공제 제공 단일사업자인 경우, 값을 전송하지 않아도 도서&middot;공연비로 발급 처리됨.</td>
+		</tr>
+	</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>3.1.5 응답 parameter</h4>
+<ul>
+	<li>Data Type : JSON</li>
+</ul>
+<table>
+	<colgroup>
+		<col style="width:20%">
+		<col style="width:20%">
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th>필드</th>
+			<th>필드명</th>
+			<th>상세내용</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>resultCd</td>
+			<td>응답코드</td>
+			<td>※ <a href="#item-769" class="scrollto theme-link">5.1 요청결과 코드표</a> 참조</td>
+		</tr>
+		<tr>
+			<td>resultMsg</td>
+			<td>응답메시지</td>
+			<td>※ <a href="#item-769" class="scrollto theme-link">5.1 요청결과 코드표</a> 참조</td>
+		</tr>
+		<tr>
+			<td>trTime</td>
+			<td>발급일시</td>
+			<td>등록 시 trDt 값으로 발급, 취소 시 API 요청일시(sysdate)로 발급됩니다.<br>
+				<span class="text-danger">* 가맹점 관리 필요</span></td>
+		</tr>
+		<tr>
+			<td>authNo</td>
+			<td>승인번호</td>
+			<td>국세청에 등록될 현금영수증 승인번호<br>
+				<span class="text-danger">* 가맹점 관리 필요</span></td>
+		</tr>
+	</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>3.1.6 예시</h4>
+<ul>
+	<li>등록 요청 예시</li>
+</ul>
+<div class="docs-code-block pt-0">
+	<pre class="rounded"><code class="html hljs xml">// 발급 요청금액 10,000원(과세)
+https://tcash.settlebank.co.kr/pgtrans/CashReceiptMultiAction.do?_method=insertReceiptInfo
+&amp;mid=mid_test
+&amp;assort=0
+&amp;transNo=AP20210316144106
+&amp;ordNm=
+&amp;trDt=20210316144106
+&amp;taxYn=N
+&amp;amt=9090
+&amp;vat=910
+&amp;svcAmt=0
+&amp;bizRegNo=1018163383
+&amp;purpose=0
+&amp;identityGb=4
+&amp;identity=0100001234
+&amp;deductionType=</code></pre>
+</div>
+<ul>
+	<li>전체 취소 요청 예시</li>
+</ul>
+<div class="docs-code-block pt-0">
+	<pre class="rounded"><code class="html hljs xml">https://tcash.settlebank.co.kr/pgtrans/CashReceiptMultiAction.do?_method=insertReceiptInfo
+&amp;mid=mid_test
+&amp;assort=1
+&amp;transNo=CA20210316144124
+&amp;ordNm=
+&amp;trDt=20210316144124
+&amp;taxYn=
+&amp;amt=
+&amp;vat=
+&amp;svcAmt=
+&amp;bizRegNo=
+&amp;purpose=
+&amp;identityGb=
+&amp;identity=
+&amp;authNo=F67198300
+&amp;orgTrDt=20210316144106</code></pre>
+</div>
+<ul>
+	<li>부분 취소 요청 예시</li>
+</ul>
+<div class="docs-code-block pt-0">
+	<pre class="rounded"><code class="html hljs xml">// 취소 요청금액 5,000원(과세)
+https://tcash.settlebank.co.kr/pgtrans/CashReceiptMultiAction.do?_method=insertReceiptInfo
+&amp;mid=mid_test
+&amp;assort=1
+&amp;transNo=CA20210316144124
+&amp;ordNm=
+&amp;trDt=20210316144124
+&amp;taxYn=
+&amp;amt=4545
+&amp;vat=455
+&amp;svcAmt=
+&amp;bizRegNo=
+&amp;purpose=
+&amp;identityGb=
+&amp;identity=
+&amp;authNo=F67198300
+&amp;orgTrDt=20210316144106</code></pre>
+</div>
+<ul>
+	<li>응답 예시(실패)</li>
+</ul>
+<div class="docs-code-block pt-0">
+<pre class="rounded"><code class="json hljs">{
+	<span class="hljs-attr">"trTime"</span>: <span class="hljs-string">""</span>,
+	<span class="hljs-attr">"resultCd"</span>: <span class="hljs-string">"1010"</span>,
+	<span class="hljs-attr">"authNo"</span>: <span class="hljs-string">""</span>,
+	<span class="hljs-attr">"resultMsg"</span>: <span class="hljs-string">"금액정보가 잘못되었습니다."</span>
+}</code></pre>
+</div>
+<ul>
+	<li>응답 예시(성공)</li>
+</ul>
+<div class="docs-code-block pt-0">
+<pre class="rounded"><code class="json hljs">{
+	<span class="hljs-attr">"trTime"</span>: <span class="hljs-string">"20180401001200"</span>,
+	<span class="hljs-attr">"resultCd"</span>: <span class="hljs-string">"0000"</span>,
+	<span class="hljs-attr">"authNo"</span>: <span class="hljs-string">"F62624672"</span>,
+	<span class="hljs-attr">"resultMsg"</span>: <span class="hljs-string">"현금영수증 등록이 성공하였습니다."</span>
+}</code></pre>
+</div>
+							</div>
+						</section>
+
+						<section class="docs-section" id="item-764">
+							<h2 class="section-heading">3.2 현금영수증 발급오류내역 조회 API</h2>
+							<div class="section-content">
+<p>&nbsp;</p>
+<h4>3.2.1 URL</h4>
+https://{domain}/pgtrans/CashReceiptMultiAction.do?_method=<strong>getReceiptErrList</strong>
+<p>&nbsp;</p>
+<h4>3.2.2 조회 요청 parameter</h4>
+<table>
+	<colgroup>
+		<col style="width:20%">
+		<col style="width:10%">
+		<col style="width:10%">
+		<col style="width:10%">
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th>필드</th>
+			<th>데이터타입</th>
+			<th>길이</th>
+			<th>필수</th>
+			<th>필드명</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mid</td>
+			<td class="text-center">String</td>
+			<td class="text-center">10</td>
+			<td class="text-center">●</td>
+			<td>상점아이디</td>
+		</tr>
+		<tr>
+			<td>trDtGb</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">●</td>
+			<td>거래일자 조회구분</td>
+		</tr>
+		<tr>
+			<td>trDt1</td>
+			<td class="text-center">String</td>
+			<td class="text-center">8</td>
+			<td class="text-center">●</td>
+			<td>조회시작일자 (from)</td>
+		</tr>
+		<tr>
+			<td>trDt2</td>
+			<td class="text-center">String</td>
+			<td class="text-center">8</td>
+			<td class="text-center">○</td>
+			<td>조회종료일자 (to)</td>
+		</tr>
+		<tr>
+			<td>ordNo</td>
+			<td class="text-center">String</td>
+			<td class="text-center">40</td>
+			<td class="text-center">○</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>authNo</td>
+			<td class="text-center">String</td>
+			<td class="text-center">9</td>
+			<td class="text-center">○</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+<div class="callout-block callout-block-danger">
+	<div class="content">
+		<h4 class="callout-title"><span class="callout-icon-holder"> <i class="fas fa-exclamation-triangle"></i></span> 오류내역 조회</h4>
+		<ul class="mb-0">
+			<li>오류내역은 등록요청일자 기준 익일부터 조회 가능합니다.<strong>(13시 이후 조회)</strong><br>
+				국세청 작업으로 인해 늦어지는 경우 조회결과 확인이 늦어질 수 있습니다. (조회불가 시, 2001 오류코드 응답)</li>
+			<li>해당 API는 재처리 건에 대한 오류내역은 조회되지 않습니다.<br>
+				재처리 발급건의 결과내역은 <strong>"4.2 현금영수증 재처리 결과내역 조회 API"</strong> <a href="#item-767" class="scrollto"><i class="fas fa-external-link-alt"></i><span class="sr-only">바로가기</span></a> 를 참고하시기 바랍니다.</li>
+		</ul>
+	</div>
+</div>
+<p>&nbsp;</p>
+<h4>3.2.3 요청 parameter 상세설명</h4>
+<table>
+	<colgroup>
+		<col style="width:20%">
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th>필드</th>
+			<th>상세내용</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>trDtGb</td>
+			<td>조회일자 기준<br>
+				1 : 등록 시 요청한 trDt 값 기준일자로 조회 (취소 시 취소 API 요청일자)<br>
+				2 : 국세청 전송일자 기준으로 조회<br>
+				* 국세청 전송일자 : API요청일의 익일 (국세청 작업 시, 변동될 수 있습니다.)</td>
+		</tr>
+		<tr>
+			<td>trDt1</td>
+			<td>조회 시작일자 (yyyyMMdd)</td>
+		</tr>
+		<tr>
+			<td>trDt2</td>
+			<td>기간 조회 시 종료일자 (yyyyMMdd)<br>
+				* 조회기간은 최대 7일까지 가능합니다.<br>
+				* 일일 데이터만 조회 시 빈 값으로 요청 (빈 값으로 요청 시 trDt1 날짜 기준으로 조회됩니다.)</td>
+		</tr>
+	</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>3.2.4 응답 parameter</h4>
+<ul>
+	<li>데이터 타입 : CSV</li>
+</ul>
+<table>
+	<colgroup>
+		<col style="width:5%">
+		<col style="width:15%">
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th>No</th>
+			<th>필드명</th>
+			<th>상세내용</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="text-center">1</td>
+			<td>거래일시</td>
+			<td>등록/취소 API 내 trTime 응답필드 값과 동일</td>
+		</tr>
+		<tr>
+			<td class="text-center">2</td>
+			<td>주문번호</td>
+			<td>등록/취소 API 내 transNo 요청필드 값과 동일</td>
+		</tr>
+		<tr>
+			<td class="text-center">3</td>
+			<td>등록/취소구분</td>
+			<td>승인 : 0 / 취소 : 1</td>
+		</tr>
+		<tr>
+			<td class="text-center">4</td>
+			<td>승인번호</td>
+			<td>현금영수증 승인번호<br>
+				등록/취소 API 내 authNo 응답필드 값과 동일</td>
+		</tr>
+		<tr>
+			<td class="text-center">5</td>
+			<td>오류코드</td>
+			<td>※ <a href="#item-771" class="scrollto">5.3 현금영수증 등록결과 오류코드표</a> 참조<br>
+				<span class="text-danger">※ ‘TSN’ 오류코드는 거래유형이 일반으로 변경되어 국세청 정상 발급된 건입니다. (자세한 내용은 오류코드표 참조)</span></td>
+		</tr>
+	</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>3.2.5 예시</h4>
+<ul>
+	<li>요청 예시(GET)</li>
+</ul>
+<div class="docs-code-block pt-0">
+	<pre class="rounded"><code class="html hljs xml">// 거래/취소일자 2018.03.01 오류내역 조회 시
+https://tcash.settlebank.co.kr/pgtrans/CashReceiptMultiAction.do?_method=getReceiptErrList
+&amp;mid=mid_test
+&amp;trDtGb=1
+&amp;trDt1=20180301</code></pre>
+</div>
+<ul>
+	<li>응답 예시(오류)</li>
+</ul>
+<div class="docs-code-block pt-0 pb-1">
+	<pre class="rounded"><code class="html hljs xml">2001</code></pre>
+</div>
+<p>※ 조회 오류 시, 코드만 표기됨. (5.2 조회 오류코드표 참조)</p>
+<ul>
+	<li>응답 예시(성공)</li>
+</ul>
+<div class="docs-code-block pt-0">
+	<pre class="rounded"><code class="html hljs xml">20171207001336,test1234,0,F61839890,BLO
+20171207003238,test1235,0,F61840946,BLO
+20171207004750,test1236,0,F61841883,BLO
+20171207011728,test1237,0,F61843540,TS2
+20171207025839,test1238,0,F61847416,BLO</code></pre>
+</div>
+							</div>
+						</section>
+					</section>
+
+					<section class="docs-section" id="item-765">
+						<h2 class="section-heading">4. 현금영수증 재처리 등록 / 조회</h2>
+						<div class="section-content">
+<p>현금영수증 재처리는 국세청 발급 오류 건에 한하여 재처리 되고, 가맹점의 동의여부에 따라 자동 재처리 가능합니다.<br>
+	(자동 재처리 신청은 영업담당자를 통해 문의)</p>
+<p>&nbsp;</p>
+<h4>자동 재처리 가맹점인 경우</h4>
+<ol>
+	<li>국세청 오류코드에 따라 당사에서 일괄 자동 재처리됩니다.</li>
+	<li>자동 재처리 결과는 재처리 내역조회 API를 통해 확인 가능하며 재처리 불가한 오류코드는 가맹점 확인이 필요한 건으로, 필요한 경우 재처리 등록 API를 호출해주시기 바랍니다.</li>
+	<li>자동 재처리 시 <span class="text-danger">등록번호는 자진발급번호로 등록, 취소건 재처리는 원승인거래 등록번호로 발급</span>됩니다.<br>
+		자진발급 번호로 발급받은 거래 건은 고객이 국세청(홈텍스) 홈페이지에서 변경 등록합니다.</li>
+	<li>자동 재처리 건의 승인번호 부여 기준<br>
+		발급일자가 국세청 등록 가능 기한(영업일 기준 3일전) 이내 거래인 경우 최초 발급된 승인번호와 동일한 번호 및 발급일자로 재처리 되고, 기한 초과한 거래 건은 승인번호와 발급일자가 신규 채번됩니다.<br>
+		API를 통해 재처리 요청하신 거래는 영업일 기준에 관계없이 승인번호와 발급일자 값이 신규 채번됩니다.</li>
+</ol>
+<p>&nbsp;</p>
+<h4>자동 재처리 가맹점이 아닌 경우</h4>
+<ol>
+	<li>오류내역 수신 시, 재처리 요청이 필요한 경우 재처리 API를 호출해주셔야 합니다.</li>
+	<li>API를 통해 재처리 요청하신 거래는 영업일 기준에 관계없이 승인번호와 발급일자 값이 신규 채번됩니다.</li>
+</ol>
+						</div>
+
+						<section class="docs-section" id="item-766">
+							<h2 class="section-heading">4.1 현금영수증 등록/취소 재처리 요청</h2>
+							<div class="section-content">
+<p>&nbsp;</p>
+<h4>4.1.1 URL</h4>
+<p>https://{domain}/pgtrans/CashReceiptMultiAction.do?_method=<strong>insertReceiptInfo</strong></p>
+<p>&nbsp;</p>
+<h4>4.1.2 등록 재처리 요청 parameter</h4>
+<p>현금영수증 등록/취소 API와 동일한 parameter로 구성되며, 재처리를 위한 필드값만 추가하여 요청.</p>
+<table>
+	<colgroup>
+		<col style="width:20%">
+		<col style="width:10%">
+		<col style="width:10%">
+		<col style="width:10%">
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th>필드</th>
+			<th>데이터타입</th>
+			<th>길이</th>
+			<th>필수</th>
+			<th>필드명</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mid</td>
+			<td class="text-center">String</td>
+			<td class="text-center">10</td>
+			<td class="text-center">●</td>
+			<td>상점아이디</td>
+		</tr>
+		<tr>
+			<td>assort</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">●</td>
+			<td>승인구분 (‘0’)</td>
+		</tr>
+		<tr>
+			<td>transNo</td>
+			<td class="text-center">String</td>
+			<td class="text-center">50</td>
+			<td class="text-center">●</td>
+			<td>승인주문번호 (가맹점 고유번호)</td>
+		</tr>
+		<tr>
+			<td>ordNm</td>
+			<td class="text-center">String</td>
+			<td class="text-center">40</td>
+			<td class="text-center">○</td>
+			<td>주문자명</td>
+		</tr>
+		<tr>
+			<td>trDt</td>
+			<td class="text-center">String</td>
+			<td class="text-center">14</td>
+			<td class="text-center">●</td>
+			<td>거래일시 (yyyyMMddhh24miss)</td>
+		</tr>
+		<tr>
+			<td>taxYn</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">○</td>
+			<td>과세구분</td>
+		</tr>
+		<tr>
+			<td>amt</td>
+			<td class="text-center">Number</td>
+			<td class="text-center">10</td>
+			<td class="text-center">●</td>
+			<td>공급가액</td>
+		</tr>
+		<tr>
+			<td>vat</td>
+			<td class="text-center">Number</td>
+			<td class="text-center">10</td>
+			<td class="text-center">●</td>
+			<td>부가세</td>
+		</tr>
+		<tr>
+			<td>svcAmt</td>
+			<td class="text-center">Number</td>
+			<td class="text-center">10</td>
+			<td class="text-center">●</td>
+			<td>봉사료</td>
+		</tr>
+		<tr>
+			<td>bizRegNo</td>
+			<td class="text-center">Number</td>
+			<td class="text-center">10</td>
+			<td class="text-center">○</td>
+			<td>하위사업자번호</td>
+		</tr>
+		<tr>
+			<td>purpose</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">●</td>
+			<td>용도구분</td>
+		</tr>
+		<tr>
+			<td>identityGb</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">●</td>
+			<td>현금영수증 등록번호 구분</td>
+		</tr>
+		<tr>
+			<td>identity</td>
+			<td class="text-center">Number</td>
+			<td class="text-center">18</td>
+			<td class="text-center">●</td>
+			<td>현금영수증 등록번호</td>
+		</tr>
+		<tr>
+			<td>deductionType</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">○</td>
+			<td>추가공제 구분 (대중교통/도서,공연비)</td>
+		</tr>
+		<tr class="table-warning">
+			<td>reYn</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">●</td>
+			<td>재처리여부</td>
+		</tr>
+		<tr class="table-warning">
+			<td>reTrDt</td>
+			<td class="text-center">String</td>
+			<td class="text-center"></td>
+			<td class="text-center">●</td>
+			<td>재처리 원거래 발급일자</td>
+		</tr>
+		<tr class="table-warning">
+			<td>reAuthNo</td>
+			<td class="text-center">String</td>
+			<td class="text-center">9</td>
+			<td class="text-center">●</td>
+			<td>재처리 원거래 승인번호</td>
+		</tr>
+	</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>4.1.3 취소 재처리 요청 parameter</h4>
+<p>현금영수증 등록/취소 API와 동일한 parameter로 구성되며, 재처리를 위한 필드값만 추가하여 요청.</p>
+<table>
+	<colgroup>
+		<col style="width:20%">
+		<col style="width:10%">
+		<col style="width:10%">
+		<col style="width:10%">
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th>필드</th>
+			<th>데이터타입</th>
+			<th>길이</th>
+			<th>필수</th>
+			<th>필드명</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mid</td>
+			<td class="text-center">String</td>
+			<td class="text-center">10</td>
+			<td class="text-center">●</td>
+			<td>상점아이디</td>
+		</tr>
+		<tr>
+			<td>assort</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">●</td>
+			<td>승인구분 (‘1’)</td>
+		</tr>
+		<tr>
+			<td>transNo</td>
+			<td class="text-center">String</td>
+			<td class="text-center">50</td>
+			<td class="text-center">●</td>
+			<td>취소주문번호 (가맹점 고유번호)</td>
+		</tr>
+		<tr>
+			<td>taxYn</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">○</td>
+			<td>과세구분</td>
+		</tr>
+		<tr>
+			<td>amt</td>
+			<td class="text-center">Number</td>
+			<td class="text-center">10</td>
+			<td class="text-center">●</td>
+			<td>공급가액</td>
+		</tr>
+		<tr>
+			<td>vat</td>
+			<td class="text-center">Number</td>
+			<td class="text-center">10</td>
+			<td class="text-center">●</td>
+			<td>부가세</td>
+		</tr>
+		<tr>
+			<td>svcAmt</td>
+			<td class="text-center">Number</td>
+			<td class="text-center">10</td>
+			<td class="text-center">●</td>
+			<td>봉사료</td>
+		</tr>
+		<tr>
+			<td>bizRegNo</td>
+			<td class="text-center">Number</td>
+			<td class="text-center">10</td>
+			<td class="text-center">○</td>
+			<td>하위사업자번호</td>
+		</tr>
+		<tr>
+			<td>purpose</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">●</td>
+			<td>용도구분</td>
+		</tr>
+		<tr>
+			<td>identityGb</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">●</td>
+			<td>현금영수증 등록번호 구분</td>
+		</tr>
+		<tr>
+			<td>identity</td>
+			<td class="text-center">Number</td>
+			<td class="text-center">18</td>
+			<td class="text-center">●</td>
+			<td>현금영수증 등록번호</td>
+		</tr>
+		<tr>
+			<td>authNo</td>
+			<td class="text-center">String</td>
+			<td class="text-center">9</td>
+			<td class="text-center">●</td>
+			<td>원거래 승인번호</td>
+		</tr>
+		<tr>
+			<td>orgTrDt</td>
+			<td class="text-center">String</td>
+			<td class="text-center">14</td>
+			<td class="text-center">●</td>
+			<td>원거래 승인일시 (yyyyMMddhh24miss)</td>
+		</tr>
+		<tr>
+			<td>deductionType</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">○</td>
+			<td>추가공제 구분 (대중교통/도서,공연비)</td>
+		</tr>
+		<tr class="table-warning">
+			<td>reYn</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">●</td>
+			<td>재처리여부</td>
+		</tr>
+		<tr class="table-warning">
+			<td>reTrDt</td>
+			<td class="text-center">String</td>
+			<td class="text-center"></td>
+			<td class="text-center">●</td>
+			<td>재처리 원거래 발급일자 (yyyyMMdd)</td>
+		</tr>
+		<tr class="table-warning">
+			<td>reAuthNo</td>
+			<td class="text-center">String</td>
+			<td class="text-center">9</td>
+			<td class="text-center">●</td>
+			<td>재처리 원거래 승인번호</td>
+		</tr>
+	</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>4.1.4 등록/취소 요청 parameter 상세설명</h4>
+<table>
+	<colgroup>
+		<col style="width:20%">
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th>필드</th>
+			<th>상세내용</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>reYn</td>
+			<td>재처리여부 (재처리요청 – Y)</td>
+		</tr>
+		<tr>
+			<td>reTrDt</td>
+			<td>재처리 요청할 오류거래의 발급일자 (yyyyMMdd)</td>
+		</tr>
+		<tr>
+			<td>reAuthNo</td>
+			<td>재처리 요청할 오류거래의 승인번호</td>
+		</tr>
+	</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>4.1.5 응답 parameter</h4>
+<ul>
+	<li>Data Type : JSON</li>
+</ul>
+<table>
+	<colgroup>
+		<col style="width:20%">
+		<col style="width:20%">
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th>필드</th>
+			<th>필드명</th>
+			<th>상세내용</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>resultCd</td>
+			<td>응답코드</td>
+			<td>※ <a href="#item-769" class="scrollto theme-link">5.1 요청결과 코드표</a> 참조</td>
+		</tr>
+		<tr>
+			<td>resultMsg</td>
+			<td>응답메시지</td>
+			<td>※ <a href="#item-769" class="scrollto theme-link">5.1 요청결과 코드표</a> 참조</td>
+		</tr>
+		<tr>
+			<td>trTime</td>
+			<td>발급일시</td>
+			<td>등록 시 trDt 값으로 발급, 취소 시 API 요청일시(sysdate)로 발급됩니다.<br>
+				<span class="text-danger">* 가맹점 관리 필요</span></td>
+		</tr>
+		<tr>
+			<td>authNo</td>
+			<td>승인번호</td>
+			<td>국세청에 등록될 현금영수증 승인번호<br>
+				<span class="text-danger">* 가맹점 관리 필요</span></td>
+		</tr>
+	</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>4.1.6 예시</h4>
+<ul>
+	<li>요청 예시</li>
+</ul>
+<div class="docs-code-block pt-0">
+	<pre class="rounded"><code class="html hljs xml">https://tcash.settlebank.co.kr/pgtrans/CashReceiptMultiAction.do?_method=insertReceiptInfo
+&amp;mid=mid_test
+&amp;assort=0
+&amp;transNo=test115
+&amp;ordNm=테스트&amp;trDt=20180401001200
+&amp;taxYn=N
+&amp;amt=10000
+&amp;vat=1000
+&amp;svcAmt=0
+&amp;bizRegNo=0001112222
+&amp;purpose=0
+&amp;identityGb=4
+&amp;identity=0100001234
+&amp;reYn=Y
+&amp;reTrDt=20180401
+&amp;reAuthNo=F62624672</code></pre>
+</div>
+<ul>
+	<li>응답 예시(실패)</li>
+</ul>
+<div class="docs-code-block pt-0">
+	<pre class="rounded"><code class="json hljs">{
+	<span class="hljs-attr">"trTime"</span>: <span class="hljs-string">""</span>,
+	<span class="hljs-attr">"resultCd"</span>: <span class="hljs-string">"1118"</span>,
+	<span class="hljs-attr">"authNo"</span>: <span class="hljs-string">""</span>,
+	<span class="hljs-attr">"resultMsg"</span>: <span class="hljs-string">"재처리를 위한 원거래 정보가 없습니다."</span>
+}</code></pre>
+</div>
+<ul>
+	<li>응답 예시(성공)</li>
+</ul>
+<div class="docs-code-block pt-0">
+	<pre class="rounded"><code class="json hljs">{
+	<span class="hljs-attr">"trTime"</span>: <span class="hljs-string">"20180401001200"</span>,
+	<span class="hljs-attr">"resultCd"</span>: <span class="hljs-string">"0000"</span>,
+	<span class="hljs-attr">"authNo"</span>: <span class="hljs-string">"F62624676"</span>,
+	<span class="hljs-attr">"resultMsg"</span>: <span class="hljs-string">"현금영수증 등록이 성공하였습니다."</span>
+}</code></pre>
+</div>
+							</div>
+						</section>
+
+						<section class="docs-section" id="item-767">
+							<h2 class="section-heading">4.2 현금영수증 재처리 결과내역 조회 API</h2>
+							<div class="section-content">
+<p>&nbsp;</p>
+<h4>4.2.1 URL</h4>
+<p>https://{domain}/pgtrans/CashReceiptMultiAction.do?_method=<strong>getReceiptReReqList</strong></p>
+<p>&nbsp;</p>
+<h4>4.2.2 조회 요청 parameter</h4>
+<table>
+	<colgroup>
+		<col style="width:20%">
+		<col style="width:10%">
+		<col style="width:10%">
+		<col style="width:10%">
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th>필드</th>
+			<th>데이터타입</th>
+			<th>길이</th>
+			<th>필수</th>
+			<th>필드명</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mid</td>
+			<td class="text-center">String</td>
+			<td class="text-center">10</td>
+			<td class="text-center">●</td>
+			<td>상점아이디</td>
+		</tr>
+		<tr>
+			<td>searGb</td>
+			<td class="text-center">String</td>
+			<td class="text-center">1</td>
+			<td class="text-center">●</td>
+			<td>조회구분</td>
+		</tr>
+		<tr>
+			<td>trDt</td>
+			<td class="text-center">String</td>
+			<td class="text-center">8</td>
+			<td class="text-center">●</td>
+			<td>조회일자</td>
+		</tr>
+	</tbody>
+</table>
+<div class="callout-block callout-block-danger">
+	<div class="content">
+		<p class="mb-0">국세청 작업으로 인해 늦어지는 경우 조회결과 확인이 늦어질 수 있습니다. (조회 불가 시, 2001 오류코드응답)</p>
+	</div>
+</div>
+<p>&nbsp;</p>
+<p>※ 국세청 작업으로 인해 늦어지는 경우 조회결과 확인이 늦어질 수 있습니다. (조회 불가 시, 2001 오류코드응답)</p>
+<p>&nbsp;</p>
+<h4>4.2.3 조회 요청 parameter 상세설명</h4>
+<table>
+	<colgroup>
+		<col style="width:20%">
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th>필드</th>
+			<th>상세내용</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>searGb</td>
+			<td>조회 구분 (기본값 : 1)<br>
+				1 : 오류 건에 대한 전체 결과 조회(재처리 대상, 불가 거래건 모두 조회)<br>
+				2 : 신규채번된 승인번호로 재처리된 거래 결과만 조회<br>
+				3 : 재처리 요청일자 기준 조회(재처리 요청된 건에 한해 조회 됨. 재처리 불가 건은 조회 불가)</td>
+		</tr>
+		<tr>
+			<td>trDt</td>
+			<td>searGb에 따른 조회일자<br>
+				searGb 값 기준,<br>
+				1, 2 : 재처리 건의 <span class="text-danger">원거래 발급일자</span>로 요청<br>
+				3 : 재처리 건의 국세청 발송일자로 요청(원거래 발급일자 기준으로 D+2일 후 재처리 건이 국세청에 발송됨)</td>
+		</tr>
+	</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>4.2.4 응답 parameter</h4>
+<ul>
+	<li>데이터 타입 : CSV</li>
+</ul>
+<table>
+	<colgroup>
+		<col style="width:5%">
+		<col style="width:15%">
+		<col style="width:15%">
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th>No</th>
+			<th>필드명</th>
+			<th colspan="2">상세내용</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="text-center">1</td>
+			<td>원거래 발급일자</td>
+			<td colspan="2">최초 발급요청한 거래의 발급일자</td>
+		</tr>
+		<tr>
+			<td class="text-center">2</td>
+			<td>원거래 승인번호</td>
+			<td colspan="2">최초 발급요청한 거래의 승인번호</td>
+		</tr>
+		<tr>
+			<td class="text-center">3</td>
+			<td>주문번호</td>
+			<td colspan="2">가맹점 요청 주문번호</td>
+		</tr>
+		<tr>
+			<td class="text-center">4</td>
+			<td>등록/취소구분</td>
+			<td colspan="2">등록 : 0 / 취소 : 1</td>
+		</tr>
+		<tr>
+			<td class="text-center">5</td>
+			<td>원거래 오류코드</td>
+			<td colspan="2">※ <a href="#item-771" class="scrollto">5.3 현금영수증 등록결과 오류코드표</a> 참조</td>
+		</tr>
+		<tr>
+			<td class="text-center">6</td>
+			<td>재처리 결과코드</td>
+			<td colspan="2">00 : 정상 재처리 완료<br>
+				09 : 재처리 결과 오류 (자동 재처리 대상)<br>
+				99 : 재처리 결과 오류 (자동 재처리 미대상)</td>
+		</tr>
+		<tr>
+			<td rowspan="5" class="text-center">7</td>
+			<td rowspan="5">재처리결과<br>
+				상세코드</td>
+			<td colspan="2" class="text-center"><strong>[재처리 결과 코드에 따른 상세코드]</strong></td>
+		</tr>
+		<tr>
+			<th class="text-center">재처리 결과코드</th>
+			<th class="text-center">상세코드</th>
+		</tr>
+		<tr>
+			<td class="text-center">00</td>
+			<td>01 : 국세청 발송 전 (재처리 건의 국세청 발송 전 취소 요청 시)<br>
+				02 : 국세청 발송 후</td>
+		</tr>
+		<tr>
+			<td class="text-center">09</td>
+			<td>※ <a href="#item-771" class="scrollto">5.3 현금영수증 등록결과 오류코드표</a> 참조</td>
+		</tr>
+		<tr>
+			<td class="text-center">99</td>
+			<td>99</td>
+		</tr>
+		<tr>
+			<td class="text-center">8</td>
+			<td>재처리일자</td>
+			<td colspan="2">최종 재처리 발급 일자<br>
+				* 재처리가 여러 번 진행 되는 경우, 마지막 재처리된 거래의 발급일자<br>
+				<span class="text-danger">* 가맹점 관리 필요</span></td>
+		</tr>
+		<tr>
+			<td class="text-center">9</td>
+			<td>재처리 승인번호</td>
+			<td colspan="2">최종 재처리 승인번호<br>
+				* 재처리가 여러 번 진행 되는 경우, 마지막 재처리된 거래의 승인번호<br>
+				<span class="text-danger">* 가맹점 관리 필요</span></td>
+		</tr>
+		<tr>
+			<td class="text-center">10</td>
+			<td>자진발급여부</td>
+			<td colspan="2">재처리 건의 자진발급 여부<br>
+				자진발급번호 : Y / 자진발급번호 아님 : N</td>
+		</tr>
+	</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>4.2.5 오류코드 별 자동재처리 여부</h4>
+<p>자동재처리 가맹점만 해당됩니다.</p>
+<table>
+	<colgroup>
+		<col style="width:20%">
+		<col style="width:20%">
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th>오류코드</th>
+			<th>자동재처리여부</th>
+			<th>오류메시지</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th class="text-center">TS1</th>
+			<td class="text-center">●</td>
+			<td>신분확인정보 자릿수 오류</td>
+		</tr>
+		<tr>
+			<th class="text-center">TS2</th>
+			<td class="text-center">●</td>
+			<td>카드정보 자릿수 오류</td>
+		</tr>
+		<tr>
+			<th class="text-center">TS3</th>
+			<td class="text-center">×</td>
+			<td>위장/휴폐업사업자와 거래한 현금결제</td>
+		</tr>
+		<tr>
+			<th class="text-center">TS4</th>
+			<td class="text-center">×</td>
+			<td>매출금액 입력 오류 (5,000원 미만)</td>
+		</tr>
+		<tr>
+			<th class="text-center">TS5</th>
+			<td class="text-center">×</td>
+			<td>승인번호 중복 및 오류</td>
+		</tr>
+		<tr>
+			<th class="text-center">TS6</th>
+			<td class="text-center">●</td>
+			<td>매출일자 오류</td>
+		</tr>
+		<tr>
+			<th class="text-center">TS7</th>
+			<td class="text-center">×</td>
+			<td>미등록 사업자</td>
+		</tr>
+		<tr>
+			<th class="text-center">TS8</th>
+			<td class="text-center">×</td>
+			<td>파일 레이아웃 오류</td>
+		</tr>
+		<tr>
+			<th class="text-center">TSB</th>
+			<td class="text-center">●</td>
+			<td>신분확인정보 거래자구분 불일치</td>
+		</tr>
+		<tr>
+			<th class="text-center">TSC</th>
+			<td class="text-center">●</td>
+			<td>취소거래입력 오류</td>
+		</tr>
+		<tr>
+			<th class="text-center">TSF</th>
+			<td class="text-center">×</td>
+			<td>취소거래와 승인거래 거래자구분 불일치</td>
+		</tr>
+		<tr>
+			<th class="text-center">TSG</th>
+			<td class="text-center">×</td>
+			<td>취소거래와 승인거래 거래금액 총합계 불일치</td>
+		</tr>
+		<tr>
+			<th class="text-center">TSH</th>
+			<td class="text-center">●</td>
+			<td>취소거래와 승인거래 신분확인 불일치</td>
+		</tr>
+		<tr>
+			<th class="text-center">TSJ</th>
+			<td class="text-center">×</td>
+			<td>취소거래 중복</td>
+		</tr>
+		<tr>
+			<th class="text-center">TSN</th>
+			<td class="text-center">×</td>
+			<td>도서,공연비 거래를 발행한 가맹점이 도서,공연 소득공제 대상 사업자로 등록되어 있지 않은 경우</td>
+		</tr>
+		<tr>
+			<th class="text-center">TSO</th>
+			<td class="text-center">×</td>
+			<td>대중교통 거래로 전송한 가맹점이 도서,공연 사업자로 등록되어 있는 경우</td>
+		</tr>
+		<tr>
+			<th class="text-center">E1</th>
+			<td class="text-center">●</td>
+			<td>거래일자 오류</td>
+		</tr>
+		<tr>
+			<th class="text-center">E2</th>
+			<td class="text-center">×</td>
+			<td>원거래&nbsp; 없음 (취소요청 시)</td>
+		</tr>
+		<tr>
+			<th class="text-center">E3</th>
+			<td class="text-center">●</td>
+			<td>레이아웃 오류</td>
+		</tr>
+		<tr>
+			<th class="text-center">E4</th>
+			<td class="text-center">×</td>
+			<td>레이아웃 오류</td>
+		</tr>
+		<tr>
+			<th class="text-center">BLO</th>
+			<td class="text-center">×</td>
+			<td>위/폐업 사업자</td>
+		</tr>
+	</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>4.2.6 예시</h4>
+<ul>
+	<li>요청 예시(GET)</li>
+</ul>
+<div class="docs-code-block pt-0">
+	<pre class="rounded"><code class="json hljs">// 거래/취소일자 2018.03.01 오류내역 조회 시
+https://tcash.settlebank.co.kr/pgtrans/CashReceiptMultiAction.do?_method=getReceiptReReqList
+&amp;mid=mid_test
+&amp;trDt=20180401
+&amp;searGb=1</code></pre>
+</div>
+<ul>
+	<li>응답 예시(오류)</li>
+</ul>
+<div class="docs-code-block pt-0">
+	<pre class="rounded"><code class="json hljs">2001</code></pre>
+</div>
+<ul>
+	<li>응답 예시(성공)</li>
+</ul>
+<div class="docs-code-block pt-0">
+	<pre class="rounded"><code class="json hljs">20180401004649,F69214247,test_20180401_1,0,TS1,00,02,20171129004649,F62615388,Y // 재처리성공
+20180401080321,F69226149,test_20180401_2,0,TS2,00,02,20171129080321,F62615390,Y
+20180401082658,F69227439,test_20180401_3,0,TS2,00,02,20171129082658,F62615391,Y
+20180401234651,F61174103,test_20180401_4,0,BLO,99,BLO,,,N // 재처리실패
+20180401233717,F61172881,test_20180401_5,0,BLO,99,BLO,,,N
+20180401230629,F61169147,test_20180401_6,0,BLO,99,BLO,,,N</code></pre>
+</div>
+							</div>
+						</section>
+					</section>
+
+					<section class="docs-section" id="item-768">
+						<h2 class="section-heading">5. 코드표</h2>
+						<div class="section-content">
+
+<p>&nbsp;</p>
+<h4>5.1 요청결과 코드</h4>
+<table>
+	<colgroup>
+		<col style="width:20%">
+		<col style="width:40%">
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th>오류코드</th>
+			<th>오류메시지</th>
+			<th>내용</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th class="text-center">0000</th>
+			<td>현금영수증 등록이 성공하였습니다.</td>
+			<td>정상 등록</td>
+		</tr>
+		<tr>
+			<th class="text-center">1000</th>
+			<td>현금영수증 등록 서비스를 이용할 수 없습니다.</td>
+			<td>현금영수증 등록 가맹점이 아닌 경우</td>
+		</tr>
+		<tr>
+			<th class="text-center">1010</th>
+			<td>금액 정보가 잘못되었습니다.</td>
+			<td>과세 구분에 따른 금액정보가 잘못된 경우</td>
+		</tr>
+		<tr>
+			<th class="text-center">1111</th>
+			<td>Exception Message</td>
+			<td>시스템 오류</td>
+		</tr>
+		<tr>
+			<th class="text-center">1112</th>
+			<td>거래번호(주문번호)가 없습니다.</td>
+			<td>주문번호(transNo)가 빈값으로 요청된 경우</td>
+		</tr>
+		<tr>
+			<th class="text-center">1113</th>
+			<td>동일 transNo/동일금액 취소 건이 존재합니다.</td>
+			<td>동일한 주문번호(transNo)로 중복취소 요청한 경우</td>
+		</tr>
+		<tr>
+			<th class="text-center">1114</th>
+			<td>정상처리된 원거래가 존재하지 않습니다</td>
+			<td>취소 요청 시 정상처리된 원거래 없는 경우</td>
+		</tr>
+		<tr>
+			<th class="text-center">1115</th>
+			<td>기존 등록된 거래가 존재합니다.<br>
+				거래(주문)번호를 확인하세요.</td>
+			<td>동일한 주문번호(transNo)로 중복등록 요청한 경우</td>
+		</tr>
+		<tr>
+			<th class="text-center">1116</th>
+			<td>원거래 금액보다 취소금액이 큽니다.</td>
+			<td></td>
+		</tr>
+		<tr>
+			<th class="text-center">1117</th>
+			<td>필수정보가 누락되었습니다.</td>
+			<td>필수 데이터를 빈값으로 요청한 경우</td>
+		</tr>
+		<tr>
+			<th class="text-center">1118</th>
+			<td>재처리를 위한 원거래 정보가 없습니다.</td>
+			<td>재처리 요청 시 원거래가 없는 경우</td>
+		</tr>
+		<tr>
+			<th class="text-center">1119</th>
+			<td>자동재처리 대상 건입니다.</td>
+			<td>재처리 요청 거래가 자동재처리 대상일 경우</td>
+		</tr>
+		<tr>
+			<th class="text-center">1120</th>
+			<td>이미 재처리 요청된 내역이 있습니다.</td>
+			<td></td>
+		</tr>
+		<tr>
+			<th class="text-center">2000</th>
+			<td>등록된 상점이 없습니다. ID를 확인해주세요.</td>
+			<td>상점ID가 없는 경우</td>
+		</tr>
+	</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>5.2 조회결과 오류코드</h4>
+<table>
+	<colgroup>
+		<col style="width:20%">
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th>오류코드</th>
+			<th>상세내용</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th class="text-center">1000</th>
+			<td>상점아이디 오류</td>
+		</tr>
+		<tr>
+			<th class="text-center">1001</th>
+			<td>상점정보 없음</td>
+		</tr>
+		<tr>
+			<th class="text-center">1003</th>
+			<td>거래일자 오류</td>
+		</tr>
+		<tr>
+			<th class="text-center">2000</th>
+			<td>거래 없음</td>
+		</tr>
+		<tr>
+			<th class="text-center">2001</th>
+			<td>국세청 결과 미수신, 잠시 후 다시 조회 요망</td>
+		</tr>
+		<tr>
+			<th class="text-center">9999</th>
+			<td>시스템 오류</td>
+		</tr>
+	</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>5.3 현금영수증 등록결과 오류코드</h4>
+<table>
+	<colgroup>
+		<col style="width:20%">
+		<col>
+	</colgroup>
+	<thead>
+		<tr>
+			<th>오류코드</th>
+			<th>상세내용</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th class="text-center">TS0</th>
+			<td>기 정정 처리됨</td>
+		</tr>
+		<tr>
+			<th class="text-center">TS1</th>
+			<td>신분확인정보 자릿수 오류</td>
+		</tr>
+		<tr>
+			<th class="text-center">TS2</th>
+			<td>카드정보 자릿수 오류</td>
+		</tr>
+		<tr>
+			<th class="text-center">TS3</th>
+			<td>위장/휴폐업사업자와 거래한 현금결제</td>
+		</tr>
+		<tr>
+			<th class="text-center">TS4</th>
+			<td>매출금액 입력 오류 (5,000원 미만)</td>
+		</tr>
+		<tr>
+			<th class="text-center">TS5</th>
+			<td>승인번호 중복 및 오류</td>
+		</tr>
+		<tr>
+			<th class="text-center">TS6</th>
+			<td>매출일자 오류</td>
+		</tr>
+		<tr>
+			<th class="text-center">TS7</th>
+			<td>미등록 사업자</td>
+		</tr>
+		<tr>
+			<th class="text-center">TS8</th>
+			<td>파일 레이아웃 오류</td>
+		</tr>
+		<tr>
+			<th class="text-center">TS9</th>
+			<td>정정구분 오류</td>
+		</tr>
+		<tr>
+			<th class="text-center">TSA</th>
+			<td>비 구축DATA 삭제 요청</td>
+		</tr>
+		<tr>
+			<th class="text-center">TSB</th>
+			<td>신분확인정보 거래자구분 불일치</td>
+		</tr>
+		<tr>
+			<th class="text-center">TSC</th>
+			<td>취소거래 입력 오류</td>
+		</tr>
+		<tr>
+			<th class="text-center">TSD</th>
+			<td>승인거래 입력 오류</td>
+		</tr>
+		<tr>
+			<th class="text-center">TSE</th>
+			<td>취소거래와 승인거래 가맹점 사업자 번호 불일치</td>
+		</tr>
+		<tr>
+			<th class="text-center">TSF</th>
+			<td>취소거래와 승인거래 거래자구분 불일치</td>
+		</tr>
+		<tr>
+			<th class="text-center">TSG</th>
+			<td>취소거래와 승인거래 거래금액 총합계 불일치</td>
+		</tr>
+		<tr>
+			<th class="text-center">TSH</th>
+			<td>취소거래와 승인거래 신분확인 불일치</td>
+		</tr>
+		<tr>
+			<th class="text-center">TSJ</th>
+			<td>취소거래 중복</td>
+		</tr>
+		<tr>
+			<th class="text-center">TSK</th>
+			<td>종사업자 일련번호 입력 오류 (숫자 4자리 또는 '&nbsp;&nbsp;&nbsp;&nbsp;' 이외 값)</td>
+		</tr>
+		<tr>
+			<th class="text-center">TSL</th>
+			<td>종사업자 일련번호 값이 있고, 사업자단위과세 사업자가 아닌 경우 (일반사업자인 경우)</td>
+		</tr>
+		<tr>
+			<th class="text-center">TSM</th>
+			<td>종사업자 일련번호 값이 있고, 사업자단위과세 사업자이나 전통시장에 소속된 사업장이 없는 경우 (전통시장 외부에 존재하는 사업자)</td>
+		</tr>
+		<tr>
+			<th class="text-center">TSN</th>
+			<td>* 도서,공연비 거래를 발행한 가맹점이 도서,공연 소득공제 대상 사업자로 등록되어 있지 않은 경우<br>
+				<span class="text-danger">* 국세청에서 거래 유형을 일반으로 변경하여 발급처리 되며,<br>
+					이후 “도서&middot;공연비 소득공제 제공사업자” 등록완료 시점에 따라 도서&middot;공연비로 정정될 수 있음.</span></td>
+		</tr>
+		<tr>
+			<th class="text-center">TSO</th>
+			<td>현금영수증사업자가 대중교통 거래로 전송한 가맹점이 도서,공연 사업자로 등록되어 있는 경우</td>
+		</tr>
+		<tr>
+			<th class="text-center">BLO</th>
+			<td>위/폐업 사업자</td>
+		</tr>
+		<tr>
+			<th class="text-center">E1</th>
+			<td>거래가능일 경과</td>
+		</tr>
+		<tr>
+			<th class="text-center">E2</th>
+			<td>원 거래없음 (취소요청 시)</td>
+		</tr>
+		<tr>
+			<th class="text-center">E3</th>
+			<td>항목별 입력 값 오류</td>
+		</tr>
+		<tr>
+			<th class="text-center">E4</th>
+			<td>항목별 입력 값 오류</td>
+		</tr>
+	</tbody>
+</table>
+						</div>
+					</section>
+				</article>
+			</div>
+			<!-- //container -->
+		</div>
+		<!-- //content -->
+	</div>
+	<!-- //main / wrapper -->
+
+	<!-- footer -->
+	<footer id="footer" class="footer">
+		<div class="container text-center pt-3 pb-5">Copyrightⓒ Settlebank, INC. All Rights Reserved.</div>
+	</footer>
+	<!-- //footer -->
+
+	<!-- Page Specific JS -->
+	<script src="../../plugins/jquery.scrollTo.min.js"></script>
+	<script src="../../plugins/lightbox/dist/ekko-lightbox.min.js"></script>
+	<script src="../../js/docs.js"></script>
+
+	<script>
+		$(document).ready(function() {
+			// 북마크 아이콘
+			$(".btn-bookmark").click(function() {
+				$(this).toggleClass("active");
+			});
+		});
+	</script>
+</body>
+
+</html>

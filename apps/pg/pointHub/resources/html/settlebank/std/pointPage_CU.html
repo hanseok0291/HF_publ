@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<title>세틀뱅크 지불서비스</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<!-- favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="../../../settlebank/img/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="../../../settlebank/img/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="../../../settlebank/img/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../../../settlebank/img/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="../../../settlebank/img/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../../../settlebank/img/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="../../../settlebank/img/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="../../../settlebank/img/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="../../../settlebank/img/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../../settlebank/img/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../../settlebank/img/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../settlebank/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../../../settlebank/img/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../../settlebank/img/favicon/favicon-16x16.png">
+<link rel="manifest" href="../../../settlebank/img/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="../../../settlebank/img/favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<!-- //favicon -->
+
+<link rel="stylesheet" href="../../../settlebank/css/owl.carousel.min.css"> <!-- 슬라이드 스타일 -->
+<link rel="stylesheet" href="../../../settlebank/css/common.css?ver=20210629"> <!-- 공통 스타일 -->
+<script src="../../../settlebank/js/jquery-1.8.3.min.js"></script> <!-- jquery -->
+<script src="../../../settlebank/js/owl.carousel.min.js"></script> <!-- 슬라이드 스크립트 -->
+<script src="../../../settlebank/js/design.js" defer="defer"></script> <!-- 공통 레이아웃, 동작 스크립트 -->
+<script src="../../../settlebank/js/commonutil.js"></script> <!-- 공통 모달 외 스크립트 -->
+<script src="../../../settlebank/js/commonmsg.js"></script> <!-- 공통 모달 메시지 -->
+</head>
+
+<body>
+<!-- wrap -->
+<div id="wrap" class="wrap">
+	<!-- form -->
+	<form class="wrap" autocomplete="off">
+		<!-- header -->
+		<div id="header">
+			<div class="container">
+				<button type="button" id="btnBack" class="btn-back"><i class="icon-angle-left">뒤로 가기</i></button>
+				<h1 class="brand-name"><span class="my-logo"><img src="../../../settlebank/img/logo-spay.svg" alt="S'pay"></span></h1>
+				<button type="button" id="closeWindow" class="btn-close" data-toggle="modal" data-target="#commonConfirm"><i class="icon-times">창 닫기</i></button>
+			</div>
+		</div>
+		<!-- //header -->
+
+		<!-- content -->
+		<div id="content">
+			<!-- container -->
+			<div class="container">
+				<h2 class="page-title pay-type">포인트다모아(클립) 결제</h2>
+
+				<!-- 결제정보 -->
+				<div class="section card active shadow total-info">
+					<div class="card-body">
+						<ul>
+							<li class="total">
+								<span class="dt">결제금액</span>
+								<span class="dd"><strong class="value">50,000</strong>원</span>
+							</li>
+							<li class="list point">
+								<span class="dt"><i class="icon icon-p"></i> 사용 포인트 <small><span class="mark-underline">(최대 10,000P)</span></small></span>
+								<span class="dd"><strong class="value">0</strong>P</span>
+							</li>
+							<li class="list">
+								<span class="dt"><i class="icon icon-won"></i> 포인트 결제금액</span>
+								<span class="dd text-primary"><strong class="value">0</strong>원</span>
+							</li>
+						</ul>
+					</div>
+					<div class="card-footer">
+						<p class="info pull-left nowrap">포인트 결제금액은 부분 취소 불가합니다.</p>
+						<div class="popover-wrap">
+							<button type="button" class="btn btn-xs btn-icon pull-right open-popover"><i class="icon-help-outline">?<span class="sr-only">도움말</span></i></button>
+							<div class="popover hidden">
+								<div class="popover-content">
+									<div class="popover-header">
+										<h3 class="popover-title">포인트 사용 안내</h3>
+									</div>
+									<div class="popover-body">
+										<ul class="info-list">
+											<li>사용 포인트 : 내가 입력한 포인트의 총합</li>
+											<li>(최대 P) : 포인트 결제 시 최대 사용할 수 있는 포인트 한도이며, 결제금액의 20%까지 사용 가능</li>
+											<li>포인트 결제금액 : 사용 포인트의 10%를 차감한 금액</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- //결제정보 -->
+
+				<!-- 가용 포인트 미보유 -->
+				<div class="section card">
+					<div class="card-body">
+						<p class="text-center text-danger">고객님의 사용 가능 포인트가 없습니다.</p>
+					</div>
+				</div>
+				<!-- //가용 포인트 미보유 -->
+
+				<!-- 가용 포인트 보유 -->
+				<div class="section point-area">
+					<!-- 보유 포인트, 초기화 버튼 -->
+					<div class="summary">
+						<div class="have-point">
+							<i class="icon icon-point"></i>
+							<span class="dt"><strong>OOO</strong>님 보유 포인트</span>
+							<span class="dd point"><strong class="value">1,000,000</strong>P</span>
+						</div>
+						<div class="reset">
+							<button type="button" class="btn btn-xxs btn-round btn-info">전액 사용</button>
+							<button type="button" class="btn btn-xxs btn-circle btn-info"><i class="icon icon-refresh">초기화</i></button>
+						</div>
+					</div>
+					<!-- //보유 포인트, 초기화 버튼 -->
+
+					<!-- 포인트 목록 -->
+					<div class="card point-list">
+						<div class="card-body">
+							<ul class="list">
+								<li class="item">
+									<span class="clearfix">
+										<span class="title">BC탑포인트</span>
+										<span class="point"><strong class="value">1,000,000</strong><span class="unit">P</span></span>
+										<span class="input"><input type="tel" class="value" value="0"><span class="unit">P</span></span>
+									</span>
+									<span class="script"></span>
+								</li>
+								<li class="item">
+									<span class="clearfix">
+										<span class="title">마이신한포인트</span>
+										<span class="point"><strong class="value">0</strong><span class="unit">P</span></span>
+										<span class="input"><input type="tel" class="value" value="0"><span class="unit">P</span></span>
+									</span>
+									<span class="script">
+										<ul class="info-list">
+											<li>충전한도 : 10만P/일</li>
+										</ul>
+									</span>
+								</li>
+								<li class="item">
+									<span class="clearfix">
+										<span class="title">하나머니</span>
+										<span class="point"><strong class="value">0</strong><span class="unit">원</span></span>
+										<span class="input"><input type="tel" class="value" value="0"><span class="unit">원</span></span>
+									</span>
+									<span class="script">
+										<ul class="info-list">
+											<li>충전한도 : 10회/일, 50만원/월</li>
+										</ul>
+									</span>
+								</li>
+								<li class="item">
+									<span class="clearfix">
+										<span class="title">현대카드포인트</span>
+										<span class="point"><strong class="value">0</strong><span class="unit">P</span></span>
+										<span class="input"><input type="tel" class="value" value="0"><span class="unit">P</span></span>
+									</span>
+									<span class="script">
+										<ul class="info-list">
+											<li>전환비율 : 1,500M = 1,000P</li>
+											<li>전환단위 : 1,500M부터 1M 단위</li>
+											<li>전환한도 : 15만M포인트/월</li>
+										</ul>
+									</span>
+								</li>
+								<li class="item">
+									<span class="clearfix">
+										<span class="title">KB포인트리</span>
+										<span class="point"><strong class="value">0</strong><span class="unit">P</span></span>
+										<span class="input"><input type="tel" class="value" value="0"><span class="unit">P</span></span>
+									</span>
+									<span class="script">
+										<ul class="info-list">
+											<li>충전한도 : 30만P/월</li>
+										</ul>
+									</span>
+								</li>
+								<li class="item">
+									<span class="clearfix">
+										<span class="title">롯데엘포인트</span>
+										<span class="point"><strong class="value">0</strong><span class="unit">P</span></span>
+										<span class="input"><input type="tel" class="value" value="0"><span class="unit">P</span></span>
+									</span>
+									<span class="script">
+										<ul class="info-list">
+											<li>결제단위 : 100P</li>
+										</ul>
+									</span>
+								</li>
+								<li class="item">
+									<span class="clearfix">
+										<span class="title">NH포인트</span>
+										<span class="point"><strong class="value">0</strong><span class="unit">P</span></span>
+										<span class="input"><input type="tel" class="value" value="0"><span class="unit">P</span></span>
+									</span>
+									<span class="script">
+										<ul class="info-list">
+											<li>사용 포인트 2% 재적립</li>
+											<li>최소 거래 포인트 100P</li>
+											<li>거래단위 : 100P</li>
+										</ul>
+									</span>
+								</li>
+								<li class="item">
+									<span class="clearfix">
+										<span class="title">삼성카드포인트</span>
+										<span class="point"><strong class="value">0</strong><span class="unit">P</span></span>
+										<span class="input"><input type="tel" class="value" value="0"><span class="unit">P</span></span>
+									</span>
+									<span class="script">
+										<ul class="info-list">
+											<li><span class="text-primary">전환 시 결제 SMS 발송되나, 결제되지 않습니다</span></li>
+										</ul>
+									</span>
+								</li>
+								<li class="item">
+									<span class="clearfix">
+										<span class="title">우리위비꿀머니</span>
+										<span class="point"><strong class="value">0</strong><span class="unit">P</span></span>
+										<span class="input"><input type="tel" class="value" value="0"><span class="unit">P</span></span>
+									</span>
+									<span class="script">
+										<ul class="info-list">
+											<li>전환한도 : 50만원/일, 200만원/월</li>
+											<li>위비꿀머니 &amp; 모아포인트</li>
+										</ul>
+									</span>
+								</li>
+								<li class="item">
+									<span class="clearfix">
+										<span class="title">도서문화상품권</span>
+										<span class="point"><strong class="value">0</strong><span class="unit">P</span></span>
+										<span class="input"><input type="tel" class="value" value="0"><span class="unit">P</span></span>
+									</span>
+									<span class="script"></span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- //포인트 목록 -->
+				</div>
+				<!-- //가용 포인트 보유 -->
+			</div>
+			<!-- //container -->
+		</div>
+		<!-- //content -->
+
+		<!-- footer -->
+		<div id="footer">
+			<!-- container -->
+			<div class="container">
+				<button type="button" id="send" class="btn btn-xl btn-primary" disabled>확인</button> <!-- 버튼 비활성 -->
+				<!-- <button type="button" id="send" class="btn btn-xl btn-primary">확인</button> --> <!-- 버튼 활성 -->
+			</div>
+			<!-- //container -->
+		</div>
+		<!-- //footer -->
+	</form>
+	<!-- //form -->
+</div>
+<!-- //wrap -->
+
+<!-- modal - common alert -->
+<div id="commonAlert" class="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3 id="alertTitle"></h3>
+				<p id="alertContents"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn" data-dismiss="modal">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //modal - common alert -->
+
+<!-- modal - common confirm -->
+<div id="commonConfirm" class="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3 id="confirmTitle"></h3>
+				<p id="confirmContents"></p>
+			</div>
+			<div class="modal-footer type2">
+				<button type="button" id="confirmCancel" class="btn" data-dismiss="modal">취소</button>
+				<button type="button" id="confirmOk" class="btn" data-dismiss="modal">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //modal - common confirm -->
+
+<!-- loading -->
+<div class="loading hidden">로딩 중</div>
+<!-- //loading -->
+
+<script>
+	$(document).ready(function(){
+		// 뒤로 가기 버튼 팝업
+		$("#btnBack").click(function(){
+			var btnOpen = $(this);
+			$.confirmMessage("안내", "포인트 사용을 취소하시겠습니까?<br> 입력하신 포인트는 적용되지 않습니다.", "#confirmOk", "");
+			$("#confirmCancel").click(function(){
+				btnOpen.focus();
+			});
+		});
+	});
+</script>
+</body>
+</html>

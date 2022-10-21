@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>내통장결제 브랜드 사이트 퍼블리싱 안내</title>
+<link rel="stylesheet" href="resources/fonts/nanumsquareround/nanumsquareround.min.css">
+<script src="resources/js/jquery-1.8.3.min.js"></script>
+
+<style>
+	html, body { width: 100%; height: 100%; }
+	p { margin: .25em 0; }
+	body { margin: 0; padding: 0; background-color: #fff; font-family: 'NanumSquareRound', 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; font-size: 12px; line-height: 1.4; letter-spacing: -0.03em; color: #222; }
+	input, button, label { font-family: 'NanumSquareRound', 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; }
+	header { margin: 0; padding: 20px 20px; border-bottom: 1px solid #ccc; }
+	header h1 { margin: 0 0 10px; font-size: 24px; font-weight: 700; color: #faa61a; }
+	header p { line-height: 1.4; }
+	.main { position: relative; padding: 0 20px 20px; }
+	h2 { margin: 30px 0 10px; font-size: 18px; font-weight: 800; }
+	h3 { margin: 0 0 5px; font-size: 14px; }
+	small { font-size: 90% !important; color: #9a9a9a; }
+	ul { margin: 0; padding-left: 1.667em; list-style: disc; }
+	ul ul { margin-top: .333em; list-style: circle; }
+	li { margin-top: .333em; }
+	ul li:first-child { margin-top: 0; }
+	a { color: #1d8dd8; }
+	a, a:hover, a:active, a:focus { text-decoration: underline; }
+	.strong { font-weight: 500; }
+	.table-responsive { width: 100%; overflow-x: auto; border: 1px solid #ddd; }
+	.table { margin: 0; min-width: 550px;  border-collapse: collapse; width: 100%; font-size: 12px; border: 0; }
+	.table th, .table td {  padding: 5px 10px; height: auto; border: 1px solid #ddd; }
+	.table th { background: #f1f2f4; color: #222; font-weight: 500; text-align: center; }
+	.table .date, .table .status { text-align: center; }
+	.well { padding: 20px; border: 2px solid #ddd; }
+	.bg-info { background: #dbf5ff; }
+	.bg-success { background: #e7fbe2; }
+	.bg-warning { background: #ff9; }
+	.bg-danger { background: #ffe5e8; }
+	.bg-wait { background: #eee; color: #888; }
+	.del { text-decoration: line-through; }
+	code { padding: 2px 4px; background-color: #f9f2f4; font-size: 96%; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; color: #c7254e; }
+	.text-primary { color: #faa61a; }
+	.text-info { color: #1d8dd8; }
+	.text-danger { color: #ff4f51; }
+	.text-success { color: #28a745; }
+	.badge { display: inline-block; padding: 3px 4px; border-radius: 2px; background-color: #45a3e3; font-size: 92%; line-height: 1.1; color: #fff; }
+	.badge-primary { background-color: #faa61a; }
+	.badge-wait { background-color: #b7b7b7; }
+	.btn { display: inline-block; padding: .25em .5em; border: 1px solid #5e8cc0; border-radius: .5em; background-color: transparent; font-size: 11px; color: #5e8cc0; line-height: 1.2; }
+	.flip { position: relative; }
+	.flip .flip-body { display: none; }
+	.flip.open .flip-body { display: block; }
+	.flip.open .btn-flip .open { display: none; }
+	.flip:not(.open) .btn-flip .close { display: none; }
+</style>
+
+<script>
+$(document).ready(function(){
+	// 진행 상태별 셀 컬러
+	$(".status:contains('검토 요청')").parents("tr").addClass("bg-warning");
+	$(".status:contains('작업 중'), .status:contains('수정 중'), .status:contains('검토 중'), .status:contains('수정 예정')").parents("tr").addClass("bg-danger");
+	$("li.text-success").parents("tr").addClass("bg-success");
+	$(".status:empty").parents("tr").addClass("bg-wait");
+
+	// 모바일 링크 타겟 변경
+	var filter = "win16|win32|win64|mac|macintel"; if ( navigator.platform ) {
+		if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
+			// mobile
+			$("a").attr("target", "_self");
+		} else {
+			// pc
+			$("a").attr("target", "_blank");
+		}
+	}
+});
+</script>
+</head>
+
+<body>
+<header>
+	<h1>내통장결제 브랜드 사이트 퍼블리싱 안내</h1>
+	<p>최종 수정일 : 2022-07-08</p>
+</header>
+
+<div class="main">
+	<h2>PAGE</h2>
+	<div class="table-responsive">
+		<table class="table" id="pageTable">
+			<colgroup>
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>구분</th>
+					<th>화면명</th>
+					<th>퍼블리싱</th>
+					<th>개발(테스트)</th>
+					<th>개발(운영)</th>
+					<th>날짜</th>
+					<th>상태</th>
+					<th>비고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="6">내통장결제 브랜드 사이트</td>
+					<td>메인(서비스 소개)</td>
+					<td><a href="resources/html/index.html" target="_blank">index</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/brand/" target="_blank">intro</a></td>
+					<td><a href="https://mytongjang.com" target="_blank">intro</a></td>
+					<td class="date">2022-07-08</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-12-11 : [공통] 리뉴얼(브랜드명, 대표 컬러 관련 변경)</li>
+							<li>2021-07-02 : 010PAY 체크카드 이벤트 팝업 추가</li>
+							<li>2022-07-08 : [공통] 사명, 홈페이지 링크 변경</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>서비스 특징</td>
+					<td><a href="resources/html/feature.html" target="_blank">feature</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/brand/feature.do" target="_blank">feature</a></td>
+					<td><a href="https://mytongjang.com/feature.do" target="_blank">feature</a></td>
+					<td class="date">2022-07-08</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2021-03-30 : API 연동 문서 링크 - 개발 지원 사이트 연결</li>
+							<li>2022-07-08 : 문구 변경(SFP → HFP)</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>고객센터</td>
+					<td><a href="resources/html/cs.html" target="_blank">cs</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/brand/faq.do" target="_blank">faq</a></td>
+					<td><a href="https://mytongjang.com/faq.do" target="_blank">faq</a></td>
+					<td class="date">2020-12-11</td>
+					<td class="status">완료</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>제휴 안내</td>
+					<td><a href="resources/html/affiliate.html" target="_blank">affiliate</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/brand/affiliate.do" target="_blank">affiliate</a></td>
+					<td><a href="https://mytongjang.com/affiliate.do" target="_blank">affiliate</a></td>
+					<td class="date">2021-10-28</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2021-10-28 : 가맹점 고객센터 번호 변경</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>제휴 제안</td>
+					<td><a href="resources/html/affiliateReg.html" target="_blank">affiliateReg</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/brand/affiliateReg.do" target="_blank">affiliateReg</a></td>
+					<td><a href="https://mytongjang.com/affiliateReg.do" target="_blank">affiliateReg</a></td>
+					<td class="date">2020-12-11</td>
+					<td class="status">완료</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>오류</td>
+					<td><a href="resources/html/error.html" target="_blank">error</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/brand/error.do" target="_blank">error</a></td>
+					<td><a href="https://mytongjang.com/error.do" target="_blank">error</a></td>
+					<td class="date">2020-12-11</td>
+					<td class="status">완료</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>010제로페이<br>
+						(010zeropay)</td>
+					<td>010제로페이</td>
+					<td><a href="resources/html/010zeropay/app.html" target="_blank">app</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/brand/010zeropay/app" target="_blank">app</a></td>
+					<td><a href="https://mytongjang.com/010zeropay/app" target="_blank">app</a></td>
+					<td class="date">2021-02-04</td>
+					<td class="status">완료</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td rowspan="6">프로모션<br>
+						(promotion)</td>
+					<td>[KBC 대출] #니돈내산 현금 증정</td>
+					<td><a href="resources/html/promotion/loan_promotion.html" target="_blank">loan_promotion</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/brand/loan_promotion" target="_blank">loan_promotion</a></td>
+					<td><a href="https://mytongjang.com/loan_promotion" target="_blank">loan_promotion</a></td>
+					<td class="date">2020-12-02</td>
+					<td class="status">완료</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>[KBC 대출] 세뱃돈 드림</td>
+					<td><a href="resources/html/promotion/loan_promotion_feb.html" target="_blank">loan_promotion_feb</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/brand/loan_promotion/feb" target="_blank">feb</a></td>
+					<td><a href="https://mytongjang.com/loan_promotion/feb" target="_blank">feb</a></td>
+					<td class="date">2021-02-08</td>
+					<td class="status">완료</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>[PASS페이] 골핑 V1</td>
+					<td><a href="resources/html/promotion/open_golping.html" target="_blank">open_golping</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/brand/open_golping" target="_blank">open_golping</a></td>
+					<td><a href="https://mytongjang.com/open_golping" target="_blank">open_golping</a></td>
+					<td class="date">2020-12-23</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li class="text-info">[참고] PASS 앱 내 웹뷰</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>[PASS페이] 골핑 V2</td>
+					<td><a href="resources/html/promotion/open_golping_v2.html" target="_blank">open_golping_v2</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/brand/open_golping" target="_blank">open_golping</a></td>
+					<td><a href="https://mytongjang.com/open_golping" target="_blank">open_golping</a></td>
+					<td class="date">2021-03-11</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li class="text-info">[참고] PASS 앱 내 웹뷰</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>[PASS페이] 골핑 핫딜</td>
+					<td><a href="resources/html/promotion/event_golping.html" target="_blank">event_golping</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/brand/event_golping" target="_blank">event_golping</a></td>
+					<td><a href="https://mytongjang.com/event_golping" target="_blank">event_golping</a></td>
+					<td class="date">2021-09-03</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li class="text-info">[참고] PASS 앱 내 웹뷰</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>[PASS페이] 모바일캐시비</td>
+					<td><a href="resources/html/promotion/open_cashbee.html" target="_blank">open_cashbee</a></td>
+					<td><a href="https://tbezauth.settlebank.co.kr/brand/open_cashbee" target="_blank">open_cashbee</a></td>
+					<td class=""><a href="https://mytongjang.com/open_cashbee" target="_blank">open_cashbee</a></td>
+					<td class="date">2021-03-05</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li class="text-info">[참고] PASS 앱 내 웹뷰</li>
+						</ul>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<h2>MEMO</h2>
+	<div class="well">
+		<h3>내통장결제 브랜드 사이트</h3>
+		<ul>
+			<li>반응형(PC/태블릿/모바일 단일 소스)</li>
+			<li>브라우저 지원 : 크롬, 파이어폭스, IE9 이상(애니메이션은 IE10 이상), ...</li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

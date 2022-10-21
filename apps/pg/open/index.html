@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>차세대 PG 영수증, 에스크로 퍼블리싱 안내</title>
+<link rel="stylesheet" href="resources/fonts/nanumsquareround/nanumsquareround.css">
+<script src="resources/js/jquery-1.8.3.min.js"></script>
+
+<style>
+	html, body { width: 100%; height: 100%; }
+	p { margin: .25em 0; }
+	body { margin: 0; padding: 0; background-color: #fff; font-family: 'Nanum Square Round', 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; font-size: 12px; line-height: 1.4; letter-spacing: -0.03em; color: #222; }
+	input, button, label { font-family: 'Nanum Square Round', 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; }
+	header { margin: 0; padding: 20px 20px; border-bottom: 1px solid #ccc; }
+	header h1 { margin: 0 0 10px; font-size: 24px; font-weight: 700; color: #faa61a; }
+	header p { line-height: 1.4; }
+	.main { position: relative; padding: 0 20px 20px; }
+	h2 { margin: 30px 0 10px; font-size: 18px; font-weight: 800; }
+	small { font-size: 90% !important; color: #9a9a9a; }
+	ul { margin: 0; padding-left: 1.667em; list-style: disc; }
+	ul ul { margin-top: .333em; list-style: circle; }
+	li { margin-top: .333em; }
+	ul li:first-child { margin-top: 0; }
+	a { color: #1d8dd8; }
+	a, a:hover, a:active, a:focus { text-decoration: underline; }
+	.strong { font-weight: 500; }
+	.table-responsive { width: 100%; overflow-x: auto; border: 1px solid #ddd; }
+	.table { margin: 0; min-width: 550px;  border-collapse: collapse; width: 100%; font-size: 12px; border: 0; }
+	.table th, .table td {  padding: 5px 10px; height: auto; border: 1px solid #ddd; }
+	.table th { background: #f1f2f4; color: #222; font-weight: 500; text-align: center; }
+	.table .date, .table .status { text-align: center; }
+	.well { padding: 20px; border: 2px solid #ddd; }
+	.bg-info { background: #dbf5ff; }
+	.bg-success { background: #e7fbe2; }
+	.bg-warning { background: #ff9; }
+	.bg-danger { background: #ffe5e8; }
+	.bg-wait { background: #eee; color: #888; }
+	.del { text-decoration: line-through; }
+	code { padding: 2px 4px; background-color: #f9f2f4; font-size: 96%; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; color: #c7254e; }
+	.text-primary { color: #faa61a; }
+	.text-info { color: #1d8dd8; }
+	.text-danger { color: #ff4f51; }
+	.text-success { color: #28a745; }
+	.badge { display: inline-block; padding: 3px 4px; border-radius: 2px; background-color: #45a3e3; font-size: 92%; line-height: 1.1; color: #fff; }
+	.badge-primary { background-color: #faa61a; }
+	.badge-wait { background-color: #b7b7b7; }
+	.btn { display: inline-block; padding: .25em .5em; border: 1px solid #5e8cc0; border-radius: .5em; background-color: transparent; font-size: 11px; color: #5e8cc0; line-height: 1.2; }
+	.flip { position: relative; }
+	.flip .flip-body { display: none; }
+	.flip.open .flip-body { display: block; }
+	.flip.open .btn-flip .open { display: none; }
+	.flip:not(.open) .btn-flip .close { display: none; }
+</style>
+
+<script>
+$(document).ready(function(){
+	$(".status:contains('검토 요청')").parents("tr").addClass("bg-warning");
+	$(".status:contains('작업 중'), .status:contains('수정 중'), .status:contains('검토 중'), .status:contains('수정 예정')").parents("tr").addClass("bg-danger");
+	$("li.text-success").parents("tr").addClass("bg-success");
+	$(".status:empty").parents("tr").addClass("bg-wait");
+});
+</script>
+</head>
+
+<body>
+<header>
+	<h1>차세대 PG 영수증, 에스크로 퍼블리싱 안내</h1>
+	<p>최종 수정일 : 2022-10-13</p>
+</header>
+
+<div class="main">
+	<h2>PAGE</h2>
+	<div class="table-responsive">
+		<table class="table" id="pageTable">
+			<colgroup>
+				<col style="width: 10%">
+				<col style="width: 15%">
+				<col style="width: 15%">
+				<col style="width: 15%">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>구분</th>
+					<th>화면명</th>
+					<th>거래유형 / 결제수단</th>
+					<th>파일</th>
+					<th>날짜</th>
+					<th>상태</th>
+					<th>비고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="2">공통<br>
+						(common)</td>
+					<td>시스템 오류</td>
+					<td>-</td>
+					<td><a href="resources/html/common/error.html" target="_blank">error</a></td>
+					<td class="date">2022-07-01</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-11-13 : 화면 추가</li>
+							<li>2022-06-23, 2022-07-01 : [공통] 사명 변경</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>시스템 오류 2 <small>(리소스 연결 불가 시 사용)</small></td>
+					<td>-</td>
+					<td><a href="resources/html/common/error2.html" target="_blank">error2</a></td>
+					<td class="date">2022-07-01</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-11-23 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="12">영수증<br>
+						(receipt)</td>
+					<td>영수증 조회</td>
+					<td>-</td>
+					<td><a href="resources/html/receipt/custAuth.html" target="_blank">custAuth</a></td>
+					<td class="date">2022-07-01</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-11-19 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="7">{결제수단명} 영수증</td>
+					<td><span class="badge badge-primary">기본형</span> <span class="badge">승인</span> 상품권, 티머니, 포인트다모아(클립)</td>
+					<td><a href="resources/html/receipt/default.html" target="_blank">default</a></td>
+					<td class="date">2022-07-01</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li class="text-info">[영수증 공통] 영수증 PC 새창(윈도우 팝업일 경우 : 430px × 660px)</li>
+							<li>2020-11-09 : 화면 추가</li>
+							<li>2021-01-18 : [공통] 결제대행업체 정보 대표자명 변경</li>
+							<li>2022-05-18 : [공통] container 최대 너비 변경(430px → 700px 갤럭시 폴드 지원)</li>
+							<li>2022-06-30 : [공통] 영수증 상단 로고 숨김</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td><span class="badge badge-primary">기본형</span> <span class="badge badge-wait">취소</span> 상품권, 티머니, 포인트다모아(클립)</td>
+					<td><a href="resources/html/receipt/defaultCancel.html" target="_blank">defaultCancel</a></td>
+					<td class="date">2022-07-01</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li class="text-info">[공통] 취소 UI : <code>.print-receipt</code>에 <code>.mark-cancel</code>) 추가, 거래유형 항목값 &quot;취소&quot;</li>
+							<li>2020-11-09 : 화면 추가</li>
+							<li>2020-11-16 : 취소 마크 변경(인쇄 기능 개선 : background → block)</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td><span class="badge badge-primary">기본형</span> <span class="badge badge-wait">취소</span> 상품권, 티머니, 포인트다모아(클립), 영문</td>
+					<td><a href="resources/html/receipt/defaultCancelEn.html" target="_blank">defaultCancelEn</a></td>
+					<td class="date">2022-10-13</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li class="text-success">2022-10-13 : 영문 버전 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td><span class="badge">승인</span> 계좌이체, 가상계좌</td>
+					<td><a href="resources/html/receipt/bank.html" target="_blank">bank</a></td>
+					<td class="date">2022-07-01</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li class="text-info">기본형에 "은행명" 항목 추가</li>
+							<li class="text-info">계좌이체, 가상계좌 항목 동일, 결제수단명만 상이</li>
+							<li>2020-11-09 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td><span class="badge badge-wait">취소</span> 계좌이체, 가상계좌</td>
+					<td><a href="resources/html/receipt/bankCancel.html" target="_blank">bankCancel</a></td>
+					<td class="date">2022-07-01</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li class="text-info">기본형에 "은행명" 항목 추가</li>
+							<li class="text-info">계좌이체, 가상계좌 항목 동일, 결제수단명만 상이</li>
+							<li>2020-11-09 : 화면 추가</li>
+							<li>2020-11-16 : 취소 마크 변경(인쇄 기능 개선 : background → block)</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td><span class="badge">승인</span> 휴대폰</td>
+					<td><a href="resources/html/receipt/mobile.html" target="_blank">mobile</a></td>
+					<td class="date">2022-07-01</td>
+					<td class="status">완료</td>
+					<td><ul>
+						<li class="text-info">기본형에 "통신사" 항목 추가</li>
+						<li>2020-11-09 : 화면 추가</li>
+					</ul></td>
+				</tr>
+				<tr>
+					<td><span class="badge badge-wait">취소</span> 휴대폰</td>
+					<td><a href="resources/html/receipt/mobileCancel.html" target="_blank">mobileCancel</a></td>
+					<td class="date">2022-07-01</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li class="text-info">기본형에 "통신사" 항목 추가</li>
+							<li>2020-11-09 : 화면 추가</li>
+							<li>2020-11-16 : 취소 마크 변경(인쇄 기능 개선 : background → block)</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="2">통합 영수증</td>
+					<td><span class="badge">승인</span> 복합결제(신용카드 + 포인트)</td>
+					<td><a href="resources/html/receipt/complex.html" target="_blank">complex</a></td>
+					<td class="date">2022-07-01</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2022-11-09 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td><span class="badge badge-wait">취소</span> 복합결제(신용카드 + 포인트)</td>
+					<td><a href="resources/html/receipt/complexCancel.html" target="_blank">complexCancel</a></td>
+					<td class="date">2022-07-01</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-11-09 : 화면 추가</li>
+							<li>2020-11-16 : 취소 마크 변경(인쇄 기능 개선 : background → block)</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="2">신용카드 매출전표</td>
+					<td><span class="badge">승인</span> 신용카드</td>
+					<td><a href="resources/html/receipt/card.html" target="_blank">card</a></td>
+					<td class="date">2022-07-01</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-11-09 : 화면 추가</li>
+							<li>2020-11-11 : 문구 변경(사업등록번호 → 사업자등록번호), 봉사료 항목 추가</li>
+							<li>2020-11-16 : 유효 기간 항목 삭제</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td><span class="badge badge-wait">취소</span> 신용카드</td>
+					<td><a href="resources/html/receipt/cardCancel.html" target="_blank">cardCancel</a></td>
+					<td class="date">2022-07-01</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-11-09 : 화면 추가</li>
+							<li>2020-11-11 : 문구 변경(사업등록번호 → 사업자등록번호), 봉사료 항목 추가</li>
+							<li>2020-11-16 : 유효 기간 항목 삭제</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="7">에스크로<br>
+						(escrow)</td>
+					<td>에스크로 서비스 가입 사실 확인</td>
+					<td>-</td>
+					<td><a href="resources/html/escrow/certificate.html" onclick="window.open(this.href,'_blank','width=414,height=428,scrollbars=auto,resizable=yes'); return false;">certificate</a></td>
+					<td class="date">2022-07-11</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2022-11-13 : 화면 추가</li>
+							<li class="text-success">2022-07-11 : 에스페이 마크 변경</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>배너, 마크 다운로드 파일 안내</td>
+					<td>-</td>
+					<td><a href="resources/html/escrow/guideResources.html" target="_blank">guideResources</a></td>
+					<td class="date">2022-07-11</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2022-11-13 : 화면 추가</li>
+							<li class="text-success">2022-07-11 : 에스페이 마크 변경</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>구매 결정 - 인증</td>
+					<td>-</td>
+					<td><a href="resources/html/escrow/confirmAuth.html" target="_blank">confirmAuth</a></td>
+					<td class="date">2022-07-01</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-11-18 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>구매 결정 - 확정/거절</td>
+					<td>-</td>
+					<td><a href="resources/html/escrow/confirmSelect.html" target="_blank">confirmSelect</a></td>
+					<td class="date">2022-07-01</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-11-18 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>구매 확정 완료</td>
+					<td>-</td>
+					<td><a href="resources/html/escrow/confirmCompleteY.html" target="_blank">confirmCompleteY</a></td>
+					<td class="date">2022-07-01</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-11-18 : 화면 추가</li>
+							<li>2021-03-18 : 닫기 버튼 제거, 문구 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>구매 거절 완료</td>
+					<td>-</td>
+					<td><a href="resources/html/escrow/confirmCompleteN.html" target="_blank">confirmCompleteN</a></td>
+					<td class="date">2022-07-01</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-11-18 : 화면 추가</li>
+							<li>2021-03-18 : 닫기 버튼 제거</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>시스템 오류</td>
+					<td>-</td>
+					<td><a href="resources/html/escrow/error.html" target="_blank">error</a></td>
+					<td class="date">2022-07-01</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2020-12-08 : 화면 추가</li>
+							<li>2021-03-18 : 닫기 버튼 제거</li>
+						</ul>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<h2>MEMO</h2>
+	<div class="well">
+		<ul>
+			<li>반응형(PC/태블릿/모바일 단일 소스)</li>
+			<li>영수증 PC 새창(윈도우 팝업일 경우 : 430px × 660px)</li>
+			<li>브라우저 지원 : 크롬, 파이어폭스, IE9 이상, ...</li>
+			<li class="text-info">리소스 위치 : 통합 백오피스</li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

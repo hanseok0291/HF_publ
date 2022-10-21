@@ -1,0 +1,557 @@
+<!-- <%@  page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"
+%><%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"
+%><%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%--
+ **********************************************************************************************
+ * @desc : 혜택플랫폼 통신비 자동납부 변경JSP
+ * @FileName : /pointhub_git/src/main/webapp/WEB-INF/views/mb/bnef/chngAtcng.jsp
+ * @author jungukjae
+ * @since 2020.02.10
+ * @version 1.0
+ * @see
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *  수 정 일      수 정 자             수정내용
+ * ----------   -----------   -----------------------------
+ * 2020.02.10    jungukjae      	   최초생성
+ * </pre>
+ **********************************************************************************************
+--%> -->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head profile="http://gmpg.org/xfn/11">
+		<title>CLIP</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+
+		<!-- <c:set var="TimeStamp" value="19112601"	scope="request" />
+		<c:set var="ResRoot"   value="${pageContext.request.contextPath}/resources"	scope="request" />
+		<c:set var="ViewRoot"  value="${pageContext.request.contextPath}" scope="request" /> -->
+
+		<!-- 공통JS -->
+		<script src="../../../../common/js/ph-fnc.js?${TimeStamp}"></script>
+		<script src="../../../../common/js/ph-util.js?${TimeStamp}"></script>
+		<script src="../../../../common/js/ph-event.js?${TimeStamp}"></script>
+		<script src="../../../../common/js/ph-valid.js?${TimeStamp}"></script>
+
+		<!-- 공통CSS -->
+	    <link rel="stylesheet" href="../../../../mb/benefits/css/payment.css">
+	    <link rel="stylesheet" href="../../../../mb/benefits/css/common.css">
+
+	    <script type="text/javascript" src="../../../../common/jQuery/jquery.min.js?v331"></script>
+	    <script type="text/javascript" src="../../../../common/benefitsJs/swiper.min.js"></script>
+	</head>
+
+	<body>
+		<!-- wrap -->
+		<div class="wrap noheader">
+			<div class="header main_header opt1">
+				<h1 class="page_title opt1">자동납부 변경</h1>
+				<a href="javascript:;" class="btn_back" onclick="javascript:backEvent();"><span>뒤로가기</span></a>
+			</div>
+
+			<!-- contents -->
+			<div class="contents">
+				<div class="section sec_payment sec_payment_change">
+					<div class="accordion_pay">
+						<div class="cont_dv2">
+							<!-- 자동이체 상품이 없을시, 특정문구 표기로직 -->
+							<div class="tit">신청 상품</div>
+							<div class="selbx">
+								<button class="popup-open3">
+									<span class="type" id="chngAtcng_deviceName"></span>
+									<span class="num fontRoboto" id="chngAtcng_userCtn"></span>
+									<span class="bg_icon"></span>
+								</button>
+							</div>
+						</div>
+						<div class="cont_dv2">
+							<div class="tit">신청 금액</div>
+							<div class="cont_dv">
+								<div class="tit">K포인트(매월)</div>
+								<div class="txt_point has_input">
+									<c:choose>
+										<c:when test="${rootMap.userInfo.os == 'ios'}">
+											<input type="number" pattern="\d*" placeholder="금액 입력" id="chngAtcngPayCoin" value="${rootMap.atcng.response.data.result[0].atcng_amt}">
+										</c:when>
+										<c:when test="${rootMap.userInfo.os == 'aos'}">
+											<input type="number" placeholder="금액 입력" id="chngAtcngPayCoin" value="${rootMap.atcng.response.data.result[0].atcng_amt}">
+										</c:when>
+										<c:otherwise>
+											<input type="number" placeholder="금액 입력" id="chngAtcngPayCoin" value="${rootMap.atcng.response.data.result[0].atcng_amt}">
+										</c:otherwise>
+									</c:choose>
+									<button class="bg_icon btn_del" onclick="javascript:inputClear();">입력취소</button>
+								</div>
+							</div>
+							<div class="txt_wr">* 최소 1,000P ~ 100,000P (100P 단위는 입력 불가)</div>
+							<div class="point_input">
+								<button onclick="setAtcngChnnPointPlus(1);">+1천P</button>
+								<button onclick="setAtcngChnnPointPlus(2);">+5천P</button>
+								<button onclick="setAtcngChnnPointPlus(3);">+1만P</button>
+								<button onclick="setAtcngChnnPointPlus(4);">전액</button>
+							</div>
+						</div>
+						<div class="cont_dv2">
+							<div class="tit">자동납부일</div>
+							<label class="label1">
+								<input type="checkbox" class="checkbox_s1" id="chngAtcngCheck">
+								<span><strong>매월 9~18일 사이</strong> 자동 납부됩니다.</span>
+							</label>
+						</div>
+						<div class="txt_noti2">자동이체 상세 내역 변경은 익월부터 적됩니다.</div>
+						<div class="btn_pay_wrap">
+							<button class="btn_cancel" onclick="javascript:movePaymentPage();">취소</button> <!-- 취소를 누를시(자동이체 신청) 이전화면으로 이동 -->
+							<button id="atcng_chngBtn" class="btn_submit" onclick="javascript:atcngChng();" disabled="disabled">확인</button>
+						</div>
+					</div>
+				</div>
+
+				<input type="hidden"  name="auto_pay_amt" 	id="chng_atcng_pay_amt">
+				<input type="hidden"  name="bill_user_key"  id="chng_atcng_biller_user_key">
+				<input type="hidden"  name="bill_titl" 		id="chng_atcng_title">
+				<input type="hidden"  name="atcng_stat_nm" 	id="chng_atcng_stat_nm">
+				<input type="hidden"  name="aply_dt" 	    id="chng_atcng_aply_dt">
+			</div><!-- // contents -->
+
+			<!-- 팝업 내역 -->
+			<jsp:include page="/WEB-INF/views/mb/bnef/popupInfo.jsp" flush="false" />
+
+		</div><!-- // wrap -->
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				PHEvt.commNum();
+				initChngAtcngDataSet();
+
+				//자동이체 변경 납부목록 불러오기
+				var $popupBtn   = $(".popup-open3");
+				var $popup      = $(".popup-confirm3");
+				var $popupClose = $(".popup-close3");
+				$popupBtn.on('click', function(e) {
+					$popup.fadeIn(200);
+				});
+				$popupClose.on('click', function(e) {
+					$popup.fadeOut(200);
+				});
+
+				$('input[id="chngAtcngPayCoin"]').on('keyup',function(e){
+
+					var deviceOperation = '${rootMap.userInfo.os}';
+					var lengthCheck 	= $('input[id="chngAtcngPayCoin"]').val().length;
+					var value        	= parseInt($('input[id="chngAtcngPayCoin"]').val(),10);
+					var keyCode     	= e.keyCode;
+
+					// 숫자가 아닌 특수문자, 소수점은 공백으로전환
+					$(this).val($(this).val().replace(/[^0-9]/gi,""));
+
+					// 입력한 길이가 1이하일시..
+					if(lengthCheck <= 1) {
+						if(value == 0) {
+							$('input[id="chngAtcngPayCoin"]').val('');
+							$('input[id="chngAtcngPayCoin"]').focus();
+						}
+					}
+				});
+
+				//입력폼 포커스
+				$(".has_input").focusin(function() {
+					$(".has_input").removeClass("focus");
+					$(this).addClass("focus");
+				}).focusout(function() {
+					$(this).removeClass("focus");
+				});
+
+				$('.popup-s3_list_product a').on('click', function() {
+					$('.popup-s3_list_product a').removeClass('on');
+					$(this).addClass('on');
+					return false;
+				});
+
+				$('.btn_opt').on('click', function() {
+					$(this).toggleClass('on');
+					$('.wrap_sort').toggleClass('view');
+					return false;
+				});
+
+				$('.btn_time').on('click', function() {
+					$(this).toggleClass('on');
+					return false;
+				});
+
+				$('.term_set button').on('click', function() {
+					$('.term_set button').removeClass('on');
+					$(this).addClass('on');
+					$('.date_set').removeClass('view');
+				});
+
+				$('.term_set button.btn_input').on('click', function() {
+					$('.date_set').addClass('view');
+				});
+
+				<%-- 자동이체(변경화면) : 체크박스 체크시, 확인버튼 활성화 --%>
+				$('#chngAtcngCheck').on('click', function() {
+		            var atcngCheck = $('#chngAtcngCheck').is(':checked');
+					if(atcngCheck) {
+						jQuery('#atcng_chngBtn').attr('disabled', false);
+					}else {
+						jQuery('#atcng_chngBtn').attr('disabled', true);
+					}
+				});
+			});
+
+			<%-- 자동이체 : 변경 상품변경 적용 --%>
+			function atcngConfirm() {
+
+ 			    var userSelAmount, userSelExpireDate, userSelDevice, userSelCtn, userSelBilledYearMonth, userSelBillerUserKey, userSelActive;
+
+			    $('#atchgList_item li').each(
+					 function() {
+						 if ($(this).find('a').is('.on')) {
+							 userSelAmount       	= PHUtil.nvl($(this).find('a.on').attr('amount'));
+							 userSelExpireDate 	    = PHUtil.nvl($(this).find('a.on').attr('pay_expire_date'));
+							 userSelDevice 			= PHUtil.nvl($(this).find('a.on').attr('title'));
+							 userSelCtn 		    = PHUtil.nvl($(this).find('a.on').attr('description'));
+							 userSelBilledYearMonth = PHUtil.nvl($(this).find('a.on').attr('billed_year_month'));
+							 userSelBillerUserKey   = PHUtil.nvl($(this).find('a.on').attr('biller_user_key'));
+							 userSelActive		    = PHUtil.nvl($(this).find('a.on').attr('isActive'));
+					 }
+				 });
+
+				 $('#chngAtcng_deviceName').empty(); // 자동이체 신청상품 변경내역 Set
+				 $('#chngAtcng_deviceName').append(userSelDevice);
+
+   			     $('#chngAtcng_userCtn').empty();
+   			     $('#chngAtcng_userCtn').append(userSelCtn);
+
+				 // Form(자동이체 변경 Data Set)
+				 $('#chng_atcng_biller_user_key').val(userSelBillerUserKey);
+				 $('#chng_atcng_title').val(userSelDevice+userSelCtn);
+				 $('#chng_atcng_stat_nm').val('');
+				 $('#chng_atcng_aply_dt').val(userSelBilledYearMonth);
+
+				 //팝업Close
+				 $(".popup-confirm3").fadeOut(200);
+			}
+
+			<%--자동이체신청 취소버튼 클릭시 화면이동 --%>
+			function movePaymentPage() {
+
+				//Loading Bar Start..
+				//PHFnc.benefitsLoadingBar(true);
+				jQuery('body').append('<div id="lbarTtlArea"><div class="loadingWrap"><div class="loadinginner"><div></div><div><div></div></div></div></div></div>');
+
+				var phCustId  = '<c:out value="${rootMap.userInfo.phCustId}"/>';  // 고객ID
+				var custId 	  = '<c:out value="${rootMap.userInfo.cust_id}"/>';   // APP에서 넘겨주는 암호화된 고객ID
+				var gaId 	  = '<c:out value="${rootMap.userInfo.gaid}"/>';   	  // APP에서 넘겨주는 GAID
+				var appVer    = '<c:out value="${rootMap.userInfo.appver}"/>';    // APP Version
+				var osType    = '<c:out value="${rootMap.userInfo.os}"/>';   	  // 운영체재 구분(안드로이드,IOS)
+				var ctn       = '<c:out value="${rootMap.userInfo.ctn}"/>';   	  // APP에서 넘겨주는 암호화된 고객 전화번호
+				var viewId    = "atcngDtl";
+
+                PHFnc.doAction('<c:url value="/benefits/clip/scr/payment.do"/>', "cust_id="+custId+"&phCustId="+phCustId+"&os="+osType+"&appver="+appVer+"&ctn="+ctn+"&gaid="+gaId+"&viewId="+viewId);
+			}
+
+			<%--자동이체 신청 변경 --%>
+			function atcngChng() {
+
+			    var atchgCntCheck = $('#atchgList_item li').length;
+		        var chngAtcngStr = jQuery('#chngAtcngPayCoin').val();
+		        var payCoinParse = parseInt(jQuery('#chngAtcngPayCoin').val(), 10);
+		        var userPayCoinParse = parseInt(jQuery(':hidden[id="userPayCoin"]').val(), 10);
+
+				var minPerDeal = Number('${rootMap.pntInfo.minAvlPnt}');
+				var maxPerDeal = Number('${rootMap.pntInfo.maxPerDeal}');
+
+				//Step1_1. 금액입력을 하지 않았을시, 자동이체신청X
+				if(chngAtcngStr == null || chngAtcngStr == "" || chngAtcngStr == undefined) {
+					PHFnc.alert('포인트가 입력되지 않았습니다.');
+					jQuery('#chngAtcngPayCoin').focus();
+					return;
+				}
+
+				//Step1. 자동이체 회선목록 갯수체크(상품목록이 0이라면 진행불가)
+				if(atchgCntCheck < 1) {
+			        PHFnc.alert('변경가능한 상품이 존재하지 않습니다.');
+			        return;
+			    }
+
+				//Step2. 코인의 부족여부체크2 : 1,000원 미만일시..(범위초과)
+				if (jQuery('#chngAtcngPayCoin').val() < minPerDeal) {
+					popupConfirmLy5();
+					jQuery('#chngAtcngPayCoin').val(minPerDeal);
+					return;
+				}
+
+				//Step3. 코인의 부족여부체크2 : 100,000 초과일시..(범위초과)
+				if (jQuery('#chngAtcngPayCoin').val() > maxPerDeal) {
+					popupConfirmLy2();
+					jQuery('#chngAtcngPayCoin').val(maxPerDeal);
+					return;
+				}
+
+				//Step5. 입력된 코인의 100원단위체크
+				if (!atcngChngCoinHundredCheck()) {
+					if (confirm('자동이체를 변경을 진행 하시겠습니까?')) {
+
+						//Loading Bar Start..
+						jQuery('body').append('<div id="lbarTtlArea"><div class="loadingWrap"><div class="loadinginner"><div></div><div><div></div></div></div></div></div>');
+					    //PHFnc.benefitsLoadingBar(true);
+
+						var billUserKey = $('#chng_atcng_biller_user_key').val();
+						var billTitl    = $('#chng_atcng_title').val();
+						var atcngStatNm = $('#chng_atcng_stat_nm').val();
+						var aplyDt 		= $('#chng_atcng_aply_dt').val();
+						var custName  = '<c:out value="${rootMap.userInfo.clipCustName}"/>';
+						var phCustId  = '<c:out value="${rootMap.userInfo.phCustId}"/>';    // 고객ID
+						var custId 	  = '<c:out value="${rootMap.userInfo.cust_id}"/>';     // APP에서 넘겨주는 암호화된 고객ID
+						var gaId 	  = '<c:out value="${rootMap.userInfo.gaid}"/>';   	    // APP에서 넘겨주는 GAID
+						var appVer    = '<c:out value="${rootMap.userInfo.appver}"/>';      // APP Version
+						var osType    = '<c:out value="${rootMap.userInfo.os}"/>';   	    // 운영체재 구분(안드로이드,IOS)
+						var ctn       = '<c:out value="${rootMap.userInfo.ctn}"/>';   	    // APP에서 넘겨주는 암호화된 고객 전화번호
+
+						var url = '<c:url value="/benefits/clip/scr/atcngChng.do"/>';
+
+						var params = {
+						  	'bill_user_key' : billUserKey
+						  ,	'bill_titl'     : billTitl
+						  ,	'atcng_stat_nm' : atcngStatNm
+						  ,	'aply_dt' 	    : aplyDt
+						  ,	'auto_pay_amt'  : payCoinParse
+						  ,	'cust_name'     : custName
+						  , 'phCustId'   	: phCustId
+						  , 'cust_id'    	: custId
+						  , 'gaid'       	: gaId
+						  , 'appver'    	: appVer
+						  ,	'os' 			: osType
+						  ,	'ctn'  			: ctn
+						}
+
+						var type = 'post';
+						var dataType = 'json';
+						var success = function(data) {
+
+							//Loading Bar End
+							$('#lbarTtlArea').remove();
+						    //PHFnc.benefitsLoadingBar(false);
+
+							var dataStr = JSON.stringify(data);
+							console.log('dataStr : ' + dataStr);
+
+							//Ajax성공
+							if (data.ret_code == '00') {
+								alert('변경되었습니다.\n변경내용은 다음달부터 적용됩니다.');
+								var viewId = data.result.viewId;	//자동이체 변경처리 성공시 Sever에서 내려주는 ViewId
+
+					            PHFnc.doAction('<c:url value="/benefits/clip/scr/payment.do"/>', "cust_id="+custId+"&phCustId="+phCustId+"&os="+osType+"&appver="+appVer+"&ctn="+ctn+"&gaid="+gaId+"&viewId="+viewId);
+					            //PHFnc.doAction('<c:url value="/benefits/clip/scr/main.do"/>', "cust_id="+custId+"&phCustId="+phCustId+"&os="+osType+"&appver="+appVer+"&ctn="+ctn+"&gaid="+gaId+"&viewId="+viewId+"&tabIdx="+1);
+							}else {
+								var uri = '<c:url value="/benefits/clip/scr/mvComnErrPage.do"/>';
+								location.href = uri;
+							}
+						}
+						var errCustom = function(data, textStatus, jqXHR) {
+
+							//Loading Bar End
+						    //PHFnc.benefitsLoadingBar(false);
+							$('#lbarTtlArea').remove();
+
+							var alertMsg = data.ret_msg;
+							PHFnc.alert(alertMsg);
+						}
+						PHFnc.ajaxProc(url, params, type, dataType, success, errCustom, true, true, "T");
+					}
+				} else {
+					popupConfirmLy3();
+					var payCoinStr  = jQuery('#chngAtcngPayCoin').val();	// 입력한 금액의 문자열Data
+					var payCoinLength = payCoinStr.length; 					// 입력한 금액의 길이
+					payCoinStr = payCoinStr.substring(0, (payCoinLength-3)) + '000';
+					$('input[id="chngAtcngPayCoin"]').val(payCoinStr);
+					$('input[id="chngAtcngPayCoin"]').focus();
+					return;
+				}
+			}
+
+			<%-- 자동이체 신청변경 : 코인100원단위 Check스크립트 --%>
+			function atcngChngCoinHundredCheck() {
+				var coinVal = $('#chngAtcngPayCoin').val();
+				var dealUnit = Number('${rootMap.pntInfo.dealUnit}');
+				if ((coinVal % dealUnit) == 0) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+
+			<%--자동이체 신청 변경화면 : (1천,5천,1만,전액) 클릭시 코인누적 스크립트 --%>
+			function setAtcngChnnPointPlus(selUnit) {
+				var payCoin = $('input[id="chngAtcngPayCoin"]');
+				var payCoinVal = $('input[id="chngAtcngPayCoin"]').val();
+
+				var minPerDeal = Number('${rootMap.pntInfo.minAvlPnt}');	//자동납부가능 최소코인
+				var maxPerDeal = Number('${rootMap.pntInfo.maxPerDeal}');   //자동납부가능 최대코인
+				//alert(maxPerDeal)
+
+				<%-- 금액입력을 최초로 하였을시. --%>
+				if (payCoinVal == NaN || payCoinVal == "") {
+					payCoin.val('0');
+				}
+				var payCoinValParse = parseInt(payCoin.val(), 10); //10진수 정수형으로 파싱
+
+				switch (selUnit) {
+				case 1: // (+1000코인)
+					var compVal = payCoinValParse + 1000;
+					if(maxPerDeal >= compVal) {
+						payCoin.val(payCoinValParse += 1000);
+					}else {
+						popupConfirmLy2();
+					}
+					break;
+				case 2: // (+5000코인)
+					var compVal = payCoinValParse + 5000;
+					if(maxPerDeal >= compVal) {
+						payCoin.val(payCoinValParse += 5000);
+					}else {
+						popupConfirmLy2();
+					}
+					break;
+				case 3: // (+10000코인)
+					var compVal = payCoinValParse + 10000;
+					if(maxPerDeal >= compVal) {
+						payCoin.val(payCoinValParse += 10000);
+					}else {
+						popupConfirmLy2();
+					}
+					break;
+				case 4: // (+전액)
+					payCoin.val(100000);
+					break;
+				default:
+					break;
+				}
+			}
+
+			<%-- 납입코인 1000미만 설정시 경고팝업 --%>
+			function popupConfirmLy2() {
+				var $popup = $(".popup-confirm-ly2");
+
+				var $popupClose = $(".popup-close-ly2");
+
+				$popup.fadeIn(200);
+
+				$popupClose.on('click', function(e) {
+					$popup.fadeOut(200);
+				});
+			}
+
+
+			<%-- 납입코인 100000초과 설정시 경고팝업 --%>
+			function popupConfirmLy3() {
+				var $popup = $(".popup-confirm-ly3");
+
+				var $popupClose = $(".popup-close-ly3");
+
+				$popup.fadeIn(200);
+
+				$popupClose.on('click', function(e) {
+					$popup.fadeOut(200);
+				});
+			}
+
+			<%-- 납입포인트 1000포인트 미만설정시. --%>
+			function popupConfirmLy5() {
+				var $popup = $(".popup-confirm-ly5");
+				var $popupClose = $(".popup-close-ly5");
+
+				$popup.fadeIn(200);
+
+				$popupClose.on('click', function(e) {
+					$popup.fadeOut(200);
+				});
+			}
+
+			<%-- 자동이체 신청변경 : 화면진입 전처리 메소드 --%>
+			function initChngAtcngDataSet() {
+
+				//자동이체 : 화면로드시, 신청코인 Default initSet
+				//jQuery('#atCngPayCoin').val(PHUtil.setComma(1000) + ' P');  --P포인트 표시를 붙어야하는데
+				//jQuery('#atCngPayCoin').val(1000);
+
+ 			   var userSelAmount, userSelExpireDate, userSelDevice, userSelCtn, userSelBilledYearMonth, userSelBillerUserKey, userSelActive, beforeCoinAmount;
+
+ 			   /*Step1. 자동이체 신청화면으로 왔을시, isActive("true")
+ 			   	 자동이체 신청완료된 건수를 체크한다 */
+ 			   var atcngCnt = 0;
+
+ 			   $.each($('#atchgList_item li'), function(index, item){
+				   if($(this).find('a').attr('isActive') == "true") {
+					   atcngCnt++;
+				   }
+ 			   });
+
+ 			   /*Step2. 자동이체 신청건수가 1건이상(존재할시) 신청상품에 최초표기를 진행한다. */
+ 			   if(atcngCnt > 0) {
+ 					//최초 팝업오픈시 최초셋팅된목록을 셋팅하는 로직추가..
+ 				   $('#atchgList_item li').each(
+ 							function() {
+ 								var checkActive = $(this).find('a').attr('isActive');
+ 								if (checkActive == "true") {
+ 									$(this).find('a').addClass('on');
+ 									userSelAmount          = PHUtil.nvl($(this).find('a').attr('amount'),"");
+ 									userSelBilledYearMonth = PHUtil.nvl($(this).find('a').attr('billed_year_month'),"");
+ 									userSelDevice          = PHUtil.nvl($(this).find('a').attr('title'),"");
+ 									userSelCtn             = PHUtil.nvl($(this).find('a').attr('description'),"");
+ 									userSelBillerUserKey   = PHUtil.nvl($(this).find('a').attr('biller_user_key'),"");
+ 									userSelExpireDate      = PHUtil.nvl($(this).find('a').attr('pay_expire_date'),"");
+ 									userSelActive		   = PHUtil.nvl($(this).find('a').attr('isActive'),"");
+ 									beforeCoinAmount 	   = PHUtil.nvl($(this).find('a').attr('atcng_amt'),"");
+ 								}
+ 						});
+ 			   }else {
+ 				  userSelAmount = "";
+ 				  userSelBilledYearMonth = "";
+ 				  userSelDevice = "";
+ 				  userSelCtn = "";
+ 				  userSelBillerUserKey = "";
+ 				  userSelExpireDate = "";
+  				  userSelActive = "";
+ 				  beforeCoinAmount = "";
+ 			   }
+			   <%-- 자동이체 변경화면 최초 Data셋팅 --%>
+			   $('#chngAtcng_deviceName').append(userSelDevice);  // 자동이체 신청상품 화면표기 Set
+			   $('#chngAtcng_userCtn').append(userSelCtn);
+			   $('#chngAtcngPayCoin').val(beforeCoinAmount);
+
+			   // Form(자동이체 변경 Data Set)
+			   $('#chng_atcng_biller_user_key').val(userSelBillerUserKey);
+			   $('#chng_atcng_title').val(userSelDevice+userSelCtn);
+			   $('#chng_atcng_stat_nm').val('');
+			   $('#chng_atcng_aply_dt').val(userSelBilledYearMonth);
+			}
+			function inputClear() {
+				jQuery('input[id="chngAtcngPayCoin"]').val('');
+			}
+			function backEvent() { //['<' 닫기버튼을 눌렀을시 처리함수]
+
+				//Sever로 부터 받은 운영체재 변수를 체크(Android, IOS)
+				var operatingDevice = '${rootMap.result.request.os}';
+
+				if(operatingDevice == "ios") {
+					//IOS
+			        window.webkit.messageHandlers.closeWebview.postMessage("");
+				}else {
+					//안드로이드
+			        window.Kpoint.closeWebview();
+				}
+			}
+		</script>
+		<!-- <%-- jsp include --%>
+		<%-- <jsp:include page="/WEB-INF/views/mb/bnef/paymentJs.jsp" flush="false" />	 --%> -->
+	</body>
+</html>

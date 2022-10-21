@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<!-- favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="../images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="../images/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="../images/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../images/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="../images/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../images/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="../images/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="../images/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="../images/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../images/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../images/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../images/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../images/favicon/favicon-16x16.png">
+<link rel="manifest" href="../images/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="../images/favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<!-- //favicon -->
+
+<title>디지털 ARS 퍼블리싱 안내</title>
+<link rel="stylesheet" href="../fonts/notosanskr-v13/notosanskr.min.css">
+<link rel="stylesheet" href="../fonts/scdream/scdream.min.css">
+<script src="../js/jquery-1.8.3.min.js"></script>
+
+<style>
+	::selection { background-color: #fddba3; color: #121212; }
+	::-moz-selection { background-color: #fddba3; color: #121212; }
+	html, body { width: 100%; height: 100%; }
+	body { margin: 0; padding: 0; background-color: #fff; font-family: 'Noto Sans KR', 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; font-size: 12px; line-height: 1.4; letter-spacing: -0.03em; color: #222; }
+	h1, h2, h3, h4, th { font-family: 'S-Core Dream'; font-weight: 500; line-height: 1.3; color: #222; }
+	p { margin: .25em 0; }
+	input, button, label { font-family: 'Noto Sans KR', 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; }
+	header { padding: 20px 20px 0; }
+	header h1 { display: inline-block; margin: 0 0 10px; padding: 25px 50px;
+		border-radius: 20px 20px 20px 0; background-color: #faa61a; background: linear-gradient(100deg, #faa61a 0%, #fa7b1a 98%); box-shadow: 0 6px 8px rgba(255,142,13,.3);
+		font-size: 22px; color: #fff; word-break: keep-all; }
+	header p { line-height: 1.4; color: #9a9a9a; }
+	.main { position: relative; padding: 0 20px 20px; }
+	h2 { margin: 30px 0 10px; font-size: 18px; }
+	small { font-size: 90% !important; color: #9a9a9a; }
+	ul { margin: 0; padding-left: 1.667em; list-style: disc; }
+	ul ul { margin-top: .333em; list-style: circle; }
+	li { margin-top: .333em; }
+	ul li:first-child { margin-top: 0; }
+	a { color: #1d8dd8; }
+	a, a:hover, a:active, a:focus { text-decoration: underline; }
+	.strong { font-weight: 500; }
+	.table-responsive { width: 100%; overflow-x: auto; }
+	.table { margin: 0; min-width: 800px;  border-collapse: collapse; width: 100%; font-family: 'Noto Sans KR', 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; font-size: 12px; border: 0; }
+	.table th, .table td {  padding: 5px 10px; height: auto; border: 1px solid #ddd; }
+	.table th { background: #f2f3f5; color: #222; font-weight: 500; text-align: center; }
+	.table .date, .table .status { text-align: center; }
+	.well { padding: 20px; border: 2px solid #ddd; }
+	.bg-info { background: #dbf5ff; }
+	.bg-success { background: #e7fbe2; }
+	.bg-warning { background: #fffcde; }
+	.bg-danger { background: #ffe5e8; }
+	.bg-wait { background: #eee; color: #888; }
+	.del { text-decoration: line-through; }
+	code { padding: 2px 4px; background-color: #f9f2f4; font-size: 96%; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; color: #c7254e; }
+	.text-primary { color: #faa61a; }
+	.text-info { color: #1d8dd8; }
+	.text-danger { color: #ff4f51; }
+	.text-success { color: #28a745; }
+	.btn { display: inline-block; padding: .25em .5em; border: 1px solid #5e8cc0; border-radius: .5em; background-color: transparent; font-size: 11px; color: #5e8cc0; line-height: 1.2; }
+	.flip { position: relative; }
+	.flip .flip-body { display: none; }
+	.flip.open .flip-body { display: block; }
+	.flip.open .btn-flip .open { display: none; }
+	.flip:not(.open) .btn-flip .close { display: none; }
+	@media screen and (max-width: 375px){
+		header h1 { padding: 15px 20px; font-size: 18px; }
+	}
+</style>
+<script>
+$(document).ready(function(){
+	// 진행 상태별 셀 컬러
+	$(".status:contains('검토 요청')").parents("tr").addClass("bg-warning");
+	$(".status:contains('작업 중'), .status:contains('수정 중'), .status:contains('수정 예정')").parents("tr").addClass("bg-danger");
+	$("li.text-success").parents("tr").addClass("bg-success");
+	$(".status:empty").parents("tr").addClass("bg-wait");
+
+	// 모바일 링크 타겟 변경
+	var filter = "win16|win32|win64|mac|macintel"; if ( navigator.platform ) {
+		if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
+			// mobile
+			$("a").attr("target", "_self");
+		} else {
+			// pc
+			$("a").attr("target", "_blank");
+		}
+	}
+});
+</script>
+</head>
+
+<body>
+<header>
+	<h1>헥토파이낸셜 고객센터(디지털 ARS) 퍼블리싱 안내</h1>
+	<p>최종 수정일 : 2022-01-17</p>
+</header>
+
+<div class="main">
+	<h2>GUIDE</h2>
+	<div class="table-responsive">
+		<table class="table">
+			<colgroup>
+				<col style="width: 10%">
+				<col style="width: 20%">
+				<col style="width: 15%">
+				<col style="width: 15%">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>구분</th>
+					<th>화면명</th>
+					<th>파일</th>
+					<th>화면코드</th>
+					<th>날짜</th>
+					<th>상태</th>
+					<th>비고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="6">레이아웃<br> (layout)</td>
+					<td>기본 레이아웃</td>
+					<td><a href="layout/defaultLayout.html" target="_blank">defaultLayout</a></td>
+					<td>-</td>
+					<td class="date">2021-09-09</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2021-09-09 : [고객 화면 공통] 전체 메뉴 변경('오입금 문의' 추가)</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>로딩 레이어</td>
+					<td><a href="layout/loading.html" target="_blank">loading</a></td>
+					<td>-</td>
+					<td class="date">2021-08-24</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>메인</td>
+					<td><a href="layout/main.html" target="_blank">main</a></td>
+					<td>-</td>
+					<td class="date">2021-08-24</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>서브 메인</td>
+					<td><a href="layout/subMain.html" target="_blank">subMain</a></td>
+					<td>-</td>
+					<td class="date">2021-08-24</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>문의 목록</td>
+					<td><a href="layout/list.html" target="_blank">list</a></td>
+					<td>-</td>
+					<td class="date">2021-08-24</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>인증</td>
+					<td><a href="layout/auth.html" target="_blank">auth</a></td>
+					<td>-</td>
+					<td class="date">2021-10-26</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2021-08-24 : 화면 추가</li>
+							<li>2021-09-01 : [공통] 은행 선택 레이어 수정(목록 추가)</li>
+							<li>2021-10-22 : [공통] 은행 선택 레이어 수정(토스뱅크 추가)</li>
+							<li>2021-10-26
+								<ul>
+									<li>[공통] 휴대폰번호 input readonly 추가</li>
+									<li>[공통] 은행 선택 레이어 UI 변경</li>
+									<li>[공통] SC제일은행, 산림조합중앙회 로고 변경</li>
+									<li>[공통] 약관 동의 문구 변경, 약관 상세 내용 변경</li>
+									<li>[공통] iOS 15 애니메이션 버그 수정</li>
+								</ul>
+							</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>UI (ui)</td>
+					<td>UI 템플릿</td>
+					<td><a href="ui/template.html" target="_blank">template</a></td>
+					<td>-</td>
+					<td class="date">2021-08-24</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<h2>PAGE</h2>
+	<div class="table-responsive">
+		<table class="table" id="pageTable">
+			<colgroup>
+				<col style="width: 10%">
+				<col style="width: 20%">
+				<col style="width: 15%">
+				<col style="width: 15%">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>구분</th>
+					<th>화면명</th>
+					<th>파일</th>
+					<th>화면코드</th>
+					<th>날짜</th>
+					<th>상태</th>
+					<th>비고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="2">공통<br> (common)</td>
+					<td>오류</td>
+					<td><a href="common/error.html" target="_blank">error</a></td>
+					<td>DigitalARS_Error</td>
+					<td class="date">2021-09-03</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2021-08-31 : [공통] 캐릭터 말풍선 스타일 애니메이션 추가 (CSS)</li>
+							<li>2021-09-03 : 페이지 제목 변경, 헤더 버튼 숨김</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>오류 - 페이지 만료(인증 오류)</td>
+					<td><a href="common/errorAuth.html" target="_blank">errorAuth</a></td>
+					<td>DigitalARS_Error</td>
+					<td class="date">2021-09-03</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2021-09-03 : 화면 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="5">공통 거래내역<br> (cmTrdHist)</td>
+					<td>거래 가맹점 조회</td>
+					<td><a href="cmTrdHist/cmTrdHistView.html" target="_blank">cmTrdHistView</a></td>
+					<td>DigitalARS_TransCheck_Insert</td>
+					<td class="date">2021-08-24</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>거래 가맹점 조회 결과 - 목록</td>
+					<td><a href="cmTrdHist/cmTrdHistList.html" target="_blank">cmTrdHistList</a></td>
+					<td>DigitalARS_TransCheck_Result</td>
+					<td class="date">2021-08-24</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>거래 가맹점 조회 결과 - 내역 없음</td>
+					<td><a href="cmTrdHist/cmTrdHistList_empty.html" target="_blank">cmTrdHistList_empty</a></td>
+					<td>DigitalARS_TransCheck_Result2</td>
+					<td class="date">2021-08-24</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>결제 실패 문의</td>
+					<td><a href="cmTrdHist/cmTrdHistFail.html" target="_blank">cmTrdHistFail</a></td>
+					<td>DigitalARS_TransFail_in<br>
+						DigitalARS_TransFail_out</td>
+					<td class="date">2021-08-31</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2021-08-31 : [공통] 메뉴명 변경</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>결제 실패 문의 - 내역 없음</td>
+					<td><a href="cmTrdHist/cmTrdHistFail_empty.html" target="_blank">cmTrdHistFail_empty</a></td>
+					<td>DigitalARS_TransFail2</td>
+					<td class="date">2021-08-31</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2021-08-31 : [공통] 메뉴명 변경</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="5">정보 입력(공통 인증)<br> (cmAuth)</td>
+					<td>공통</td>
+					<td><a href="cmAuth/cmAuth.html" target="_blank">cmAuth</a></td>
+					<td>-</td>
+					<td class="date">2021-10-26</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>출금이체 문자 수신</td>
+					<td><a href="cmAuth/cmAuth_P2_View.html" target="_blank">cmAuth_P2_View</a></td>
+					<td>DigitalARS_PaymentSMS_Insert</td>
+					<td class="date">2021-10-26</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>휴대폰번호 / 계좌번호</td>
+					<td><a href="cmAuth/cmAuth_P_View.html" target="_blank">cmAuth_P_View</a></td>
+					<td>DigitalARS_Myaccount_Insert<br>
+						DigitalARS_Myaccount_Insert2</td>
+					<td class="date">2021-10-26</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>신용카드 번호 / 승인번호</td>
+					<td><a href="cmAuth/cmAuth_C_View.html" target="_blank">cmAuth_C_View</a></td>
+					<td>DigitalARS_Card_Insert<br>
+						DigitalARS_Card_Insert2</td>
+					<td class="date">2021-10-26</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2021-09-14 : 신용카드 번호 조회 안내문 추가</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>틴캐시 ID / PIN 번호</td>
+					<td><a href="cmAuth/cmAuth_E_View.html" target="_blank">cmAuth_E_View</a></td>
+					<td>DigitalARS_GiftCard_Teencash1<br>
+						DigitalARS_GiftCard_Teencash2</td>
+					<td class="date">2021-10-26</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td rowspan="14">고객<br> (cust)</td>
+					<td>고객 메인</td>
+					<td><a href="cust/custMain.html" target="_blank">custMain</a></td>
+					<td>DigitalARS_Main</td>
+					<td class="date">2021-08-24</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>서브 메인 - 상품권</td>
+					<td><a href="cust/etcPmtGcView.html" target="_blank">etcPmtGcView</a></td>
+					<td>DigitalARS_GiftCard</td>
+					<td class="date">2021-08-24</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>서브 메인 - 기타 문의</td>
+					<td><a href="cust/etcPmtOptMain.html" target="_blank">etcPmtOptMain</a></td>
+					<td>DigitalARS_Other</td>
+					<td class="date">2021-08-24</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>문의 목록 - 휴대폰결제</td>
+					<td><a href="cust/cphonePmtMain.html" target="_blank">cphonePmtMain</a></td>
+					<td>DigitalARS_PhoneBill_Main</td>
+					<td class="date">2021-08-24</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>출금이체 문자 수신 - 문자 안내</td>
+					<td><a href="cust/ezpView.html" target="_blank">ezpView</a></td>
+					<td>DigitalARS_PaymentSMS</td>
+					<td class="date">2021-08-24</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>출금이체 문자 수신 - 출금동의 가맹점 조회 - 목록</td>
+					<td><a href="cust/ezpAcntNoList.html" target="_blank">ezpAcntNoList</a></td>
+					<td>DigitalARS_PaymentSMS_TransInfo</td>
+					<td class="date">2021-08-24</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>출금이체 문자 수신 - 출금동의 가맹점 조회 - 내역 없음</td>
+					<td><a href="cust/ezpAcntNoList_empty.html" target="_blank">ezpAcntNoList_empty</a></td>
+					<td>DigitalARS_PaymentSMS_TransInfo</td>
+					<td class="date">2021-08-24</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>휴대폰결제 월 청구요금</td>
+					<td><a href="cust/cphonePmtMonthList.html" target="_blank">cphonePmtMonthList</a></td>
+					<td>DigitalARS_PhoneBill_Billing</td>
+					<td class="date">2021-08-24</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>휴대폰결제 월 청구요금 상세</td>
+					<td><a href="cust/cphonePmtMonthDetailList.html" target="_blank">cphonePmtMonthDetailList</a></td>
+					<td>DigitalARS_PhoneBill_Transinfo</td>
+					<td class="date">2021-08-24</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>헥토파이낸셜 휴대폰결제 차단</td>
+					<td><a href="cust/cphonePmtBlkView.html" target="_blank">cphonePmtBlkView</a></td>
+					<td>DigitalARS_PhoneBill_Block</td>
+					<td class="date">2021-08-24</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li class="text-info">참고 : 결제 차단하기 버튼 클릭 → 휴대폰결제 차단 완료 모달 오픈</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>헥토파이낸셜 휴대폰결제 차단 - 해제 요청</td>
+					<td><a href="cust/cphonePmtBlkView2.html" target="_blank">cphonePmtBlkView2</a></td>
+					<td>DigitalARS_PhoneBill_Block2</td>
+					<td class="date">2021-08-24</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>현금영수증 (국세청 바로 가기 안내)</td>
+					<td><a href="cust/hometax.html" target="_blank">hometax</a></td>
+					<td>-</td>
+					<td class="date">2021-09-01</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2021-09-01 : 화면 추가, [공통] 메뉴 링크 변경(국세청 새창 → 현금영수증 안내 이동)</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>고객 대응센터</td>
+					<td><a href="cust/custCsMain.html" target="_blank">custCsMain</a></td>
+					<td>DigitalARS_Customer_Respon</td>
+					<td class="date">2022-01-17</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2021-08-24 : 화면 추가</li>
+							<li>2021-11-05 : 자주 묻는 질문 숨김, 레이아웃 변경</li>
+							<li class="text-success">2022-01-17 : 자주 묻는 질문 노출, 아이콘 변경</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>상담원 연결 실패 (콜백 신청)</td>
+					<td><a href="cust/custCallFail.html" target="_blank">custCallFail</a></td>
+					<td>DigitalARS_Customer_Respon2</td>
+					<td class="date">2021-08-24</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li class="text-info">참고 : 콜백 신청하기 버튼 클릭 → 콜백 신청 완료 모달 오픈</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="4">가맹점<br> (cpn)</td>
+					<td>가맹점 메인</td>
+					<td><a href="cpn/cpnMain.html" target="_blank">cpnMain</a></td>
+					<td>DigitalARSBiz_Main</td>
+					<td class="date">2021-08-31</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2021-08-31 : [공통] 메뉴명 변경</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>문의 목록 - 결제 서비스 이용 가맹점</td>
+					<td><a href="cpn/norPmtSvcView.html" target="_blank">norPmtSvcView</a></td>
+					<td>DigitalARSBiz_Payservice</td>
+					<td class="date">2021-08-31</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>문의 목록 - G뱅킹 이용 지자체</td>
+					<td><a href="cpn/gBankSvcView.html" target="_blank">gBankSvcView</a></td>
+					<td>DigitalARSBiz_G-banking</td>
+					<td class="date">2021-08-31</td>
+					<td class="status">완료</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>가맹점 대응센터</td>
+					<td><a href="cpn/cpnCsMain.html" target="_blank">cpnCsMain</a></td>
+					<td>DigitalARSBiz_mall_Respon</td>
+					<td class="date">2022-01-17</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2021-08-31 : 화면 추가</li>
+							<li>2021-10-25 : 고객센터 전화번호 수정</li>
+							<li>2021-11-05 : 자주 묻는 질문 숨김, 레이아웃 변경</li>
+							<li class="text-success">2022-01-17 : 자주 묻는 질문 노출, 아이콘 변경</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>홈페이지<br>
+						(homepage)</td>
+					<td>자주 묻는 질문</td>
+					<td><a href="homepage/faq.html" target="_blank">faq</a></td>
+					<td>DigitalARS_Faq</td>
+					<td class="date">2022-01-17</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li class="text-success">2022-01-17 : 화면 추가, [공통] 전체 메뉴 변경(자주 묻는 질문 추가)</li>
+						</ul>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<h2>MEMO</h2>
+	<div class="well">
+		<ul>
+			<li>반응형(PC/태블릿/모바일 단일 소스)</li>
+			<li>container 최대 : W 768px</li>
+			<li>브라우저 지원 : 크롬, 파이어폭스, IE9 이상(애니메이션은 IE10 이상), ...</li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

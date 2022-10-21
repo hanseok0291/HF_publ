@@ -1,0 +1,147 @@
+<%@  page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"
+%><%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"
+%><%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%--
+ **********************************************************************************************
+ * @desc : 혜택플랫폼 통신비 자동납부 해지완료JSP
+ * @FileName : /pointhub_git/src/main/webapp/WEB-INF/views/mb/bnef/trmnAtcng.jsp
+ * @author jungukjae
+ * @since 2020.02.10
+ * @version 1.0
+ * @see 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *  수 정 일      수 정 자             수정내용
+ * ----------   -----------   -----------------------------
+ * 2020.02.10
+     jungukjae      	   최초생성
+ * </pre>
+ **********************************************************************************************
+--%>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head profile="http://gmpg.org/xfn/11">
+		<title>CLIP</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="pragma" content="no-cache" />
+		
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+	
+		<c:set var="TimeStamp" value="19112601"	scope="request" />
+		<c:set var="ResRoot"   value="${pageContext.request.contextPath}/resources"	scope="request" />
+		<c:set var="ViewRoot"  value="${pageContext.request.contextPath}" scope="request" />	
+		
+		<!-- 공통JS -->
+		<script src="${ResRoot}/common/js/ph-fnc.js?${TimeStamp}"></script> 
+		<script src="${ResRoot}/common/js/ph-util.js?${TimeStamp}"></script> 
+		<script src="${ResRoot}/common/js/ph-event.js?${TimeStamp}"></script> 
+		<script src="${ResRoot}/common/js/ph-valid.js?${TimeStamp}"></script> 
+		
+		<!-- 공통CSS -->
+		<link rel="stylesheet" href="${ResRoot}/mb/benefits/css/payment.css">  
+	    <link rel="stylesheet" href="${ResRoot}/mb/benefits/css/common.css">
+	    
+	    <script type="text/javascript" src="${ResRoot}/common/jQuery/jquery.min.js?v331"></script>
+	    <script type="text/javascript" src="${ResRoot}/common/benefitsJs/swiper.min.js"></script>
+	</head>
+
+	<body>
+
+		<!-- wrap -->
+		<div class="wrap noheader">
+		
+			<div class="header main_header opt1">
+				<h1 class="page_title opt1">자동납부 해지</h1>
+				<!-- <a href="javascript:;" class="btn_back" onclick="javascript:backEvent();"><span>뒤로가기</span></a> -->
+				<a href="#" class="btn_close" onclick="movePage(1);"><span>닫기</span></a>
+			</div>
+		
+			<!-- contents -->
+			<div class="contents">
+				<div class="section sec_payment_termination">
+					<div class="txt1">${rootMap.userInfo.clipCustName}님 <br>통신요금 자동납부가 해지되었습니다.</div>
+					<div class="box1"> 
+						<table>
+							<colgroup>
+								<col width="110"> 
+								<col>
+							</colgroup>
+							<tr>
+								<th>신청자</th>
+								<td>${rootMap.userInfo.clipCustName}</td>
+							</tr>  
+							<tr>
+								<th>신청 상품</th>
+								<td>
+									<!-- 모바일 <span class="fontRoboto">01012345678</span> 모바일  모바일 <span class="fontRoboto">01012345678</span> -->
+									${rootMap.response.data.result[0].title} 
+								</td>
+							</tr>
+							<tr>
+								<th>신청 포인트</th>           <!-- PHUtil.setComma(콤마적용) -->
+								<td><span class="fontRoboto" id="trmn_coin_amt"></span></td>
+							</tr>
+							<tr>
+								<th>자동납부일</th>
+								<td>매월 9~18일 사이 납부</td>
+							</tr>
+							<tr>  
+								<th>해지 일자</th>
+								<td><span class="fontRoboto" id="trmnDate">${rootMap.response.data.result[0].sys_dt}</span></td>
+							</tr>
+							<tr>
+								<th>해지 결과</th>
+								<td>정상</td> 
+							</tr>
+						</table>
+					</div>
+					<div class="wrap_btn_bot">
+						<button onclick="movePage(2);">닫기</button>
+					</div>
+				</div> 
+			</div><!-- // contents -->
+		</div><!-- // wrap -->
+		<script type="text/javascript"> 
+			$(document).ready(function() {
+				var todayDateStr    = PHUtil.getToday();
+				var todayDateFormat = todayDateStr.substring(0,4) + "." + todayDateStr.substring(4,6) + "." + todayDateStr.substring(6,8);
+				//var beforeAtcngAmt = '${rootMap.atcng.response.data.result[0].atcng_amt}';
+				var beforeAtcngAmt = '${rootMap.response.data.result[0].atcng_amt}'; 
+				var commaAtcngAmt = PHUtil.setComma(beforeAtcngAmt) + "P";
+				$('#trmn_coin_amt').append(commaAtcngAmt);
+				//$('#trmnDate').append(todayDateFormat);	//해지일자(오늘 날짜로 셋팅)
+			}); 
+			function movePage(pageNo) {
+				
+			    //Loading Bar Start..
+				jQuery('body').append('<div id="lbarTtlArea"><div class="loadingWrap"><div class="loadinginner"><div></div><div><div></div></div></div></div></div>'); 	
+			    //PHFnc.benefitsLoadingBar(true);
+			    
+				//화면이동시, 항시 필수적으로 가져야할 6가지 APP에서 넘겨주는 DATA	
+				var phCustId      = '<c:out value="${rootMap.userInfo.phCustId}"/>'; // 고객ID
+				var custId 	  	  = '<c:out value="${rootMap.userInfo.cust_id}"/>';  // APP에서 넘겨주는 암호화된 고객ID		
+				var gaId 	  	  = '<c:out value="${rootMap.userInfo.gaid}"/>';   	 // APP에서 넘겨주는 GAID				
+				var appVer    	  = '<c:out value="${rootMap.userInfo.appver}"/>';   // APP Version
+				var osType    	  = '<c:out value="${rootMap.userInfo.os}"/>';   	 // 운영체재 구분(안드로이드,IOS)
+				var ctn       	  = '<c:out value="${rootMap.userInfo.ctn}"/>';   	 // APP에서 넘겨주는 암호화된 고객 전화번호				
+				
+				if(pageNo==1) {
+	                PHFnc.doAction('<c:url value="/benefits/clip/scr/payment.do"/>', "cust_id="+custId+"&phCustId="+phCustId+"&os="+osType+"&appver="+appVer+"&ctn="+ctn+"&gaid="+gaId);
+					
+				}else {
+	                PHFnc.doAction('<c:url value="/benefits/clip/scr/paymentHist.do"/>', "cust_id="+custId+"&phCustId="+phCustId+"&os="+osType+"&appver="+appVer+"&ctn="+ctn+"&gaid="+gaId);
+					
+				}
+				
+            	//PHFnc.doAction('<c:url value="/benefits/clip/scr/main.do"/>', "cust_id="+custId+"&phCustId="+phCustId+"&os="+osType+"&appver="+appVer+"&ctn="+ctn+"&gaid="+gaId+"&viewId="+viewId+"&tabIdx="+1);					
+			}
+			function backEvent() {
+				history.go(-1);
+			}
+		</script>
+	</body>
+</html>

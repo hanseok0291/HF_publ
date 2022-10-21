@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>세틀뱅크 개발 지원</title>
+
+<!-- Meta -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="세틀뱅크의 내통장결제, 간편현금결제 연동 가이드">
+<meta name="author" content="세틀뱅크">
+<link rel="shortcut icon" href="../../images/favicon.ico">
+
+<!-- FontAwesome -->
+<link rel="stylesheet" href="../../fonts/fontawesome/css/all.css">
+<script defer src="../../fonts/fontawesome/js/all.min.js"></script>
+
+<!-- Plugins CSS -->
+<link rel="stylesheet" href="../../plugins/owlcarousel/css/owl.carousel.min.css">
+<link rel="stylesheet" href="../../plugins/owlcarousel/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="../../plugins/highlight/atom-one-dark.min.css">
+<link rel="stylesheet" href="../../plugins/datatable/css/dataTables.bootstrap4.min.css">
+
+<!-- Theme CSS -->
+<link rel="stylesheet" href="../../css/theme.css">
+<link rel="stylesheet" href="../../css/design.css?ver=20200122">
+
+<!-- Javascript -->
+<script src="../../plugins/jquery-3.4.1.min.js"></script>
+<script src="../../plugins/popper.min.js"></script>
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../plugins/datatable/js/datatables.min.js"></script>
+<script src="../../plugins/datatable/js/dataTables.bootstrap4.min.js"></script>
+<script src="../../plugins/highlight/highlight.min.js"></script>
+<script src="../../js/highlight-custom.js"></script>
+<script src="../../js/design.js"></script>
+</head>
+
+<body>
+<!-- skip navigation -->
+<ul id="skipNav">
+	<li><a href="#gnb">주메뉴 바로가기</a></li>
+	<li><a href="#content">본문 바로가기</a></li>
+	<li><a href="#footer">페이지 하단 바로가기</a></li>
+</ul>
+<!-- //skip navigation -->
+
+<!-- header -->
+<header id="header" class="header fixed-top">
+	<!-- branding -->
+	<div class="branding">
+		<!-- containter -->
+		<div class="container-fluid position-relative">
+			<!-- navbar -->
+			<nav class="navbar navbar-expand-lg">
+				<!-- logo -->
+				<div class="site-logo">
+					<a class="navbar-brand" href="/">
+						<img class="logo-icon" src="../../images/site-logo.svg" alt="SettleBank"><span class="logo-text">Developer</span>
+					</a>
+				</div>
+				<!-- logo -->
+
+				<!-- menu toggle -->
+				<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation"><span></span> <span></span> <span></span></button>
+				<!-- //menu toggle -->
+
+				<!-- navigation + search -->
+				<div class="collapse navbar-collapse" id="navigation" role="menu">
+					<!-- gnb -->
+					<ul id="gnb" class="navbar-nav ml-lg-auto gnb">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">서비스</a>
+							<ul class="dropdown-menu dropdown-menu-right shadow menu-animate slideIn">
+								<li><a class="dropdown-item" href="#">서비스 홈</a></li>
+								<li class="dropdown-divider m-0"></li>
+								<li><a class="dropdown-item" href="#">서비스 소개</a></li>
+								<li><a class="dropdown-item" href="#">서비스별 테스트 신청</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">개발 가이드</a>
+							<ul class="dropdown-menu dropdown-menu-right shadow menu-animate slideIn">
+								<li><a class="dropdown-item" href="#">개발 가이드 홈</a></li>
+								<li class="dropdown-divider m-0"></li>
+								<li><a class="dropdown-item" href="#">연동 가이드</a></li>
+								<li><a class="dropdown-item" href="#">API 문서</a></li>
+								<li><a class="dropdown-item" href="#">SDK 다운로드</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">개발자 포럼</a>
+							<ul class="dropdown-menu dropdown-menu-right shadow menu-animate slideIn">
+								<li><a class="dropdown-item" href="#">개발자 포럼 홈</a></li>
+								<li class="dropdown-divider m-0"></li>
+								<li><a class="dropdown-item" href="#">공지사항</a></li>
+								<li><a class="dropdown-item" href="#">포럼</a></li>
+								<li><a class="dropdown-item" href="#">FAQ</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">관리자</a>
+							<ul class="dropdown-menu dropdown-menu-right shadow menu-animate slideIn">
+								<li><a class="dropdown-item" href="#">관리자 모드</a></li>
+								<li class="dropdown-divider m-0"></li>
+								<li><a class="dropdown-item" href="#">서비스 관리</a></li>
+								<li><a class="dropdown-item" href="#">게시판 관리</a></li>
+								<li><a class="dropdown-item" href="#">온라인 문서 관리</a></li>
+								<li><a class="dropdown-item" href="#">메뉴 관리</a></li>
+								<li><a class="dropdown-item" href="#">권한 그룹 관리</a></li>
+								<li><a class="dropdown-item" href="#">사용자 관리</a></li>
+								<li><a class="dropdown-item" href="#">테스트 승인 관리</a></li>
+							</ul>
+						</li>
+					</ul>
+					<!-- //gnb -->
+
+					<!-- search -->
+					<div class="top-search-box">
+						<form class="search-form">
+							<input type="text" placeholder="통합 검색" name="search" class="form-control search-input">
+							<button type="submit" class="btn search-btn"><i class="fas fa-search"></i> <span class="sr-only">검색</span></button>
+						</form>
+					</div>
+					<!-- //search -->
+
+					<!-- member navigation -->
+					<ul class="navbar-nav d-flex flex-row member-nav">
+						<!-- 로그인 전 -->
+						<!--
+						<li><a href="../member/login.html"><i class="fas fa-sign-in-alt"></i> <span>로그인</span></a></li>
+						<li><a href="../member/join.html"><i class="fas fa-user-edit"></i> <span>회원가입</span></a></li>
+						-->
+						<!-- //로그인 전 -->
+						<!-- 로그인 후 -->
+						<li><a href="#"><i class="fas fa-sign-out-alt"></i> <span>로그아웃</span></a></li>
+						<li><a href="../mypage/mypageHome.html"><i class="fas fa-user"></i> <span>마이 페이지</span></a></li>
+						<!-- //로그인 후 -->
+					</ul>
+					<!-- //member navigation -->
+				</div>
+				<!-- //navigation + search -->
+			</nav>
+			<!-- //navbar -->
+		</div>
+		<!-- //container -->
+	</div>
+	<!-- //branding -->
+</header>
+<!-- //header -->
+
+<!-- main -->
+<main id="main">
+	<!-- page content -->
+	<div id="content" class="main-content">
+		<!-- main visual -->
+		<div class="section main-visual">
+			<div class="item py-4 py-md-5">
+				<div class="container">
+					<div class="row">
+						<div class="col-12 col-md-5 py-3 py-lg-5 mb-lg-0">
+							<h1 class="page-heading mb-4"><strong>세틀뱅크 결제 서비스</strong><br>
+								개발 지원 사이트를 통해<br>
+								더 빠르고! 간단하게!</h1>
+							<p class="mb-4">결제 연동부터 테스트 환경까지<br>
+								간편하게 개발할 수 있도록 다양한 정보를 제공합니다.</p>
+							<div class="btn-area"><a href="../docs/docsHome.html" class="btn btn-lg btn-outline-primary">시작하기</a></div>
+						</div>
+						<div class="col-12 col-md-7 text-center"><img class="hero-figur mx-auto" src="../../images/main-visual-01.png" alt="세틀뱅크 개발 지원 사이트"></div>
+					</div>
+					<!--//row-->
+				</div>
+			</div>
+		</div>
+		<!-- //main visual -->
+
+		<!-- 주요기능 -->
+		<div class="section feature">
+			<!-- container -->
+			<div class="container">
+				<h2 class="section-title">주요기능</h2>
+				<!-- docs-overview -->
+				<div class="docs-overview">
+					<!-- row -->
+					<div class="row">
+						<div class="col-12 col-md-6 col-xl-4 py-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="card-icon-img"><img src="../../images/icon-feature-docs.png" alt="온라인 문서"></div>
+									<h5 class="card-title sm">온라인 문서</h5>
+									<p class="card-text">세틀뱅크 서비스 연동에 필요한<br>
+										다양한 API를 확인하고,<br>
+										내게 필요한 문서는 북마크 해둘 수 있습니다.</p>
+									<p><span class="btn btn-xs btn-outline-primary">바로가기</span></p>
+									<a class="card-link-mask" href="../docs/docsHome.html"></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-md-6 col-xl-4 py-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="card-icon-img"><img src="../../images/icon-feature-service.png" alt="서비스 소개"></div>
+									<h5 class="card-title sm">서비스 소개</h5>
+									<p class="card-text">세틀뱅크에서 제공하고 있는<br>
+										다양한 API를 외부(기관, 기업, 개인 등)에서<br>
+										활용할 수 있도록 제공하는 서비스입니다.</p>
+									<p><span class="btn btn-xs btn-outline-primary">바로가기</span></p>
+									<a class="card-link-mask" href="../service/serviceInfo.html"></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-md-6 col-xl-4 py-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="card-icon-img"><img src="../../images/icon-feature-test.png" alt="테스트 신청"></div>
+									<h5 class="card-title sm">테스트 신청</h5>
+									<p class="card-text">개발 편의를 위해 해당 API에 개발자가 접근하고,<br>
+										테스트 및 데이터를 검증할 수 있는<br>
+										편리한 개발 환경이 제공됩니다.</p>
+									<p><span class="btn btn-xs btn-outline-primary">바로가기</span></p>
+									<a class="card-link-mask" href="../service/requestTest.html"></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-md-6 col-xl-4 py-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="card-icon-img"><img src="../../images/icon-feature-download.png" alt="SDK 다운로드"></div>
+									<h5 class="card-title sm">SDK 다운로드</h5>
+									<p class="card-text">서비스별 SDK를 다운받을 수 있습니다.<br>
+										원할한 서비스 이용을 위해<br>
+										최신 버전의 SDK를 서비스에 적용해 주세요.</p>
+									<p><span class="btn btn-xs btn-outline-primary">바로가기</span></p>
+									<a class="card-link-mask" href="#"></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-md-6 col-xl-4 py-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="card-icon-img"><img src="../../images/icon-feature-forum.png" alt="개발자 포럼"></div>
+									<h5 class="card-title sm">개발자 포럼</h5>
+									<p class="card-text">API에 관하여 궁금한 내용 및<br>
+										개발 관련 이슈에 대해 토론할 수 있습니다.<br>
+										회원님의 지식과 정보를 자유롭게 공유해보세요.</p>
+									<p><span class="btn btn-xs btn-outline-primary">바로가기</span></p>
+									<a class="card-link-mask" href="../forum/forumList.html"></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-md-6 col-xl-4 py-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="card-icon-img"><img src="../../images/icon-feature-mypage.png" alt="마이 페이지"></div>
+									<h5 class="card-title sm">마이 페이지</h5>
+									<p class="card-text">서비스 현황, 북마크 모음,<br>
+										나의 질문과 답변 상태 등<br>
+										나의 활동 정보를 보실 수 있습니다. </p>
+									<p><span class="btn btn-xs btn-outline-primary">바로가기</span></p>
+									<a class="card-link-mask" href="../mypage/mypageHome.html"></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--//row-->
+				</div>
+				<!--//container-->
+			</div>
+			<!--//docs-overview-->
+		</div>
+		<!-- //주요기능 -->
+
+		<!-- 최근글 목록 -->
+		<section class="section recent-post">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- 포럼 -->
+					<div class="col-12 col-md-6">
+						<div class="d-flex justify-content-between">
+							<h3 class="section-title">포럼</h3>
+							<a href="#" class="btn-more"><i class="fas fa-chevron-right"></i><span class="sr-only">더 보기</span></a>
+						</div>
+						<ul class="list">
+							<li>
+								<a href="#">
+									<div class="title-wrap"><span class="subject">제목입니다. 제목입니다. 제목입니다. 제목입니다. 제목입니다. 제목입니다.</span></div>
+									<div class="date">2020-01-01</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<div class="title-wrap"><span class="subject">제목입니다. 제목입니다.</span></div>
+									<div class="date">2020-01-01</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<div class="title-wrap"><span class="subject">제목입니다. 제목입니다.</span></div>
+									<div class="date">2020-01-01</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<div class="title-wrap"><span class="subject">제목입니다. 제목입니다.</span></div>
+									<div class="date">2020-01-01</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<div class="title-wrap"><span class="subject">제목입니다. 제목입니다.</span></div>
+									<div class="date">2020-01-01</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<!-- //포럼 -->
+
+					<!-- SDK 다운로드 -->
+					<div class="col-12 col-md-6">
+						<div class="d-flex justify-content-between">
+							<h3 class="section-title">SDK 다운로드</h3>
+							<a href="#" class="btn-more"><i class="fas fa-chevron-right"></i><span class="sr-only">더 보기</span></a>
+						</div>
+						<ul class="list">
+							<li>
+								<a href="#">
+									<div class="title-wrap"><span class="subject">제목입니다. 제목입니다. 제목입니다. 제목입니다. 제목입니다. 제목입니다.</span></div>
+									<div class="date">2020-01-01</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<div class="title-wrap"><span class="subject">제목입니다. 제목입니다.</span></div>
+									<div class="date">2020-01-01</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<div class="title-wrap"><span class="subject">제목입니다. 제목입니다.</span></div>
+									<div class="date">2020-01-01</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<div class="title-wrap"><span class="subject">제목입니다. 제목입니다.</span></div>
+									<div class="date">2020-01-01</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<div class="title-wrap"><span class="subject">제목입니다. 제목입니다.</span></div>
+									<div class="date">2020-01-01</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<!-- //SDK 다운로드 -->
+				</div>
+				<!-- //row -->
+
+				<!-- row -->
+				<div class="row">
+					<!-- 공지사항 -->
+					<div class="col-12 col-md-6">
+						<div class="d-flex justify-content-between">
+							<h3 class="section-title">공지사항</h3>
+							<a href="#" class="btn-more"><i class="fas fa-chevron-right"></i><span class="sr-only">더 보기</span></a>
+						</div>
+						<ul class="list">
+							<li>
+								<a href="#">
+									<div class="title-wrap"><span class="subject">제목입니다. 제목입니다. 제목입니다. 제목입니다. 제목입니다. 제목입니다.</span></div>
+									<div class="date">2020-01-01</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<div class="title-wrap"><span class="subject">제목입니다. 제목입니다.</span></div>
+									<div class="date">2020-01-01</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<div class="title-wrap"><span class="subject">제목입니다. 제목입니다.</span></div>
+									<div class="date">2020-01-01</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<div class="title-wrap"><span class="subject">제목입니다. 제목입니다.</span></div>
+									<div class="date">2020-01-01</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<div class="title-wrap"><span class="subject">제목입니다. 제목입니다.</span></div>
+									<div class="date">2020-01-01</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<!-- //공지사항 -->
+
+					<!-- FAQ -->
+					<div class="col-12 col-md-6">
+						<div class="d-flex justify-content-between">
+							<h3 class="section-title">FAQ</h3>
+							<a href="#" class="btn-more"><i class="fas fa-chevron-right"></i><span class="sr-only">더 보기</span></a>
+						</div>
+						<ul class="list">
+							<li>
+								<a href="#">
+									<div class="title-wrap"><span class="category">서비스</span> <span class="subject">제목입니다. 제목입니다. 제목입니다. 제목입니다. 제목입니다. 제목입니다.</span></div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<div class="title-wrap"><span class="category">회원</span> <span class="subject">제목입니다. 제목입니다.</span></div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<div class="title-wrap"><span class="category">서비스</span> <span class="subject">제목입니다. 제목입니다.</span></div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<div class="title-wrap"><span class="category">회원</span> <span class="subject">제목입니다. 제목입니다.</span></div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<div class="title-wrap"><span class="category">서비스</span> <span class="subject">제목입니다. 제목입니다.</span></div>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<!-- //FAQ -->
+				</div>
+				<!-- //row -->
+			</div>
+			<!-- //container -->
+		</section>
+		<!-- //최근글 목록 -->
+	</div>
+	<!-- //main content -->
+</main>
+<!-- //main -->
+
+<!-- footer -->
+<footer id="footer" class="footer theme-bg-dark">
+	<!-- sitemap -->
+	<div class="sitemap">
+		<div class="container">
+			<div class="row">
+				<div class="footer-col col-6 col-lg-3">
+					<h4 class="col-heading">서비스</h4>
+					<ul class="list-unstyled">
+						<li><a href="#">서비스 홈</a></li>
+						<li><a href="#">서비스 소개</a></li>
+						<li><a href="#">서비스별 테스트 신청</a></li>
+					</ul>
+				</div>
+				<div class="footer-col col-6 col-lg-3">
+					<h4 class="col-heading">개발 가이드</h4>
+					<ul class="list-unstyled">
+						<li><a href="#">개발 가이드 홈</a></li>
+						<li><a href="#">연동 가이드</a></li>
+						<li><a href="#">API 문서</a></li>
+						<li><a href="#">SDK 다운로드</a></li>
+					</ul>
+				</div>
+				<div class="footer-col col-6 col-lg-3">
+					<h4 class="col-heading">개발자 포럼</h4>
+					<ul class="list-unstyled">
+						<li><a href="#">개발자 포럼 홈</a></li>
+						<li><a href="#">공지사항</a></li>
+						<li><a href="#">포럼</a></li>
+						<li><a href="#">FAQ</a></li>
+					</ul>
+				</div>
+				<div class="footer-col col-6 col-lg-3">
+					<h4 class="col-heading">약관</h4>
+					<ul class="list-unstyled">
+						<li><a href="#">서비스 이용약관</a></li>
+						<li><a href="#"><strong>개인정보 처리방침</strong></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //sitemap -->
+
+	<!-- company info -->
+	<div class="company-info">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-9">
+					<div class="company">
+						<span>세틀뱅크(주)</span> <span>(06220) 서울특별시 강남구 테헤란로 34길 6, 9~10층 (역삼동, 태광타워)</span> <span>사업자등록번호 : 101-81-63383</span><br>
+						<span>TEL. 1600-5220</span> <span>FAX. 02-588-2724</span> <span>E-mail. info@settlebank.co.kr</span>
+					</div>
+					<div class="copyright">
+						Copyrightⓒ Settlebank, INC. All Rights Reserved.
+					</div>
+				</div>
+				<div class="col-lg-3">
+					<div class="btn-group dropup w-100">
+						<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">패밀리사이트</button>
+						<div class="dropdown-menu">
+						<a href="https://settlebank.co.kr" target="_blank" class="dropdown-item">세틀뱅크(주)</a>
+						<a href="https://mytongjang.com" target="_blank" class="dropdown-item">내통장결제</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- company info -->
+</footer>
+<!-- //footer -->
+</body>
+</html>

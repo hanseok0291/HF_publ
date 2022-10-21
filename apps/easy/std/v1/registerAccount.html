@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+<head>
+<title>표준간편결제</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link rel="stylesheet" href="resources/css/owl.carousel.min.css">
+<link rel="stylesheet" href="resources/css/common.css">
+<link rel="stylesheet" href="resources/css/site.css">
+<!--[if lt IE 9]>
+<script type="text/javascript" src="resources/js/html5shiv.js"></script>
+<script type="text/javascript" src="resources/js/respond.min.js"></script>
+<![endif]-->
+<script src="resources/js/jquery-1.8.3.min.js"></script>
+<script src="resources/js/placeholders.min.js"></script>
+<script src="resources/js/owl.carousel.min.js"></script>
+<script src="resources/js/design.js" defer="defer"></script>
+<script src="resources/js/commonmsg.js"></script>
+<script src="resources/js/commonutil.js"></script>
+</head>
+
+<body>
+<script>
+$(document).ready(function() {
+	$('#closeWindow').click(function() {
+		if ( 'Y' == 'Y' )
+			$.closeSetting();
+		else
+			$.closeOrder();
+	});
+
+	$('#prevPage').click(function() {
+		$.prevPage();
+	});  
+
+	$('#send').click(function() {
+		if ( $('#accNo').val() == '' || ($('#accNo').val()).length == 0  ) {
+			$.alertMessage(errTitle.bankSelection, errMsg.accountInput, $('#commonAlert'));
+			return;
+		}
+	});
+	
+	$('#resetName').click(function() {
+		$.promptMessage("ARS 인증 전화를 요청합니다.", "<span class='text_primary'>예금주를 변경하기 위해<br> 휴대폰본인인증이 진행됩니다.</span>", $('#commonPrompt'), $('#promptOk'), "$.resetName()");
+	})
+
+	$('input').keyup(function() {
+		if ( $('input[name="accNo"]').val().length >= ACCOUNT_MIN_LEN )
+		{
+			$('#send').addClass('btn_primary');
+		}	
+		else
+		{
+			$('#send').removeClass('btn_primary');
+		}
+	});
+});
+
+$.paySend = function() {
+	var sendPayForm  = document.sendPayForm;
+	sendPayForm.method = 'POST';
+	sendPayForm.action = 'arsAuth.do';
+	sendPayForm.submit();
+}
+
+$.prevPage = function() {
+	var sendPayForm  = document.sendPayForm; 
+	sendPayForm.method = 'POST';
+	sendPayForm.action = 'selectBank.do';
+	sendPayForm.submit();
+}
+</script>
+<form name="sendPayForm">
+	<!-- wrap -->
+	<div id="wrap">
+		<!-- header -->
+		<div id="header">
+			<div class="logo_area"><img src="resources/images/logo_payco.png" alt="PAYCO"></div>
+			<div class="tit_area">
+				<button type="button" id="prevPage" class="btn_prev"><i class="ico ico_prev">뒤로가기</i></button>
+				<h1>계좌번호 입력</h1>
+				<button type="button" id="closeWindow" class="btn_cls"><i class="ico ico_cls">창닫기</i></button>
+			</div>
+		</div>
+		<!-- //header -->
+
+		<!-- content -->
+		<div id="ct" class="reg_account">
+			<!-- container -->
+			<div class="container">
+				<!-- 입력폼 -->
+				<fieldset class="reg_form">
+					<legend>계좌번호 입력폼</legend>
+					<ul>
+						<li class="head"><img src="resources/images/bank/fullname_004.png" alt="국민은행"></li>
+						<li>
+							<span class="tit">예금주</span>
+							<span class="desc">권성호 <button type="button" id="resetName" class="btn btn_sm btn_default">변경</button></span>
+						</li>
+						<li class="form">
+							<span class="tit">계좌번호</span>
+							<span class="input"><input type="text" name="accNo" id="accNo" placeholder="‘-’없이 입력" maxlength="15" tabindex="2"></span>
+						</li>
+					</ul>
+				</fieldset>
+				<!-- //입력폼 -->
+
+				<!-- 안내문 -->
+				<p class="info">가상계좌, 적금, 펀드계좌, 평생계좌등록 불가</p>
+				<!-- //안내문 -->
+			</div>
+			<!-- //container -->
+
+			<!-- fixed bottom button -->
+			<div class="fix_btm_btn"><button type="button" id="send" class="btn btn_lg">ARS 인증하기</button></div>
+			<!-- //fixed bottom button -->
+		</div>
+		<!-- //content -->
+	</div>
+	<!-- //wrap -->
+
+	<!-- Alert Format -->
+	<div id="commonAlert" class="ly_pop ly_pwre">
+		<div class="bg"></div>
+		<div id="ly_pwre" class="cont">
+			<div class="ele">
+				<div class="pop_body">
+					<h2 id="alertTitle"></h2>
+					<p id="alertContents"></p>
+				</div>
+				<div class="pop_footer">
+					<button type="button" onclick="layer_close();" class="btn btn_primary">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //Alert Format -->
+
+	<!-- Prompt Format -->
+	<div id="commonPrompt" class="ly_pop ly_bank">
+		<div class="bg"></div>
+		<div id="ly_bank" class="cont">
+			<div class="ele">
+				<div class="pop_body">
+					<h2 id="promptTitle"></h2>
+					<p id="promptContents"><span class="text_primary"></span></p>
+				</div>
+				<div class="pop_footer btn_type2">
+					<button type="button" onclick="layer_close();" class="btn">취소</button>
+					<button type="button" id="promptOk" class="btn btn_primary">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //Prompt Format -->
+</form>
+</body>
+</html>

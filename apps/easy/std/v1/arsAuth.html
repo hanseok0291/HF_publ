@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+<title>표준간편결제</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link rel="stylesheet" href="resources/css/owl.carousel.min.css">
+<link rel="stylesheet" href="resources/css/common.css">
+<link rel="stylesheet" href="resources/css/site.css">
+<!--[if lt IE 9]>
+<script type="text/javascript" src="resources/js/html5shiv.js"></script>
+<script type="text/javascript" src="resources/js/respond.min.js"></script>
+<![endif]-->
+<script src="resources/js/jquery-1.8.3.min.js"></script>
+<script src="resources/js/placeholders.min.js"></script>
+<script src="resources/js/owl.carousel.min.js"></script>
+<script src="resources/js/design.js" defer="defer"></script>
+<script src="resources/js/commonmsg.js"></script>
+<script src="resources/js/commonutil.js"></script>
+</head>
+
+<body>
+<script>
+$(document).ready(function() {
+	$('#closeWindow').click(function() {
+		if ( '' == 'Y' )
+			$.closeSetting();
+		else
+			$.closeOrder();
+	});
+
+	$('#prevPage').click(function() {
+		$.prevPage();
+	});
+
+	$('#send').click(function() {
+		$.paySend();
+	});
+
+	$('#timer').text($.toMMSSTimeFormat());
+	$.startTimer('ars');
+
+	$('#reArsSend').click(function() {
+		$.promptMessage("ARS 재 요청", "ARS를 다시 요청 합니다.<br> 안내에 따라 인증을 진행해주세요.", $('#commonPrompt'), $('#promptOk'), "$.arsRSend()");
+		return false;
+	});
+});
+
+$.paySend = function() {
+	var sendPayForm  = document.sendPayForm;
+	sendPayForm.method = 'POST';
+
+	if ( parseInt($('input[name=fStatus]').val()) & FStatus.newAccount )
+		sendPayForm.action = 'registerComplete.do';
+	else
+		sendPayForm.action = 'registerPassword.do';
+
+	sendPayForm.submit();
+}
+
+$.arsRSend = function() {
+	var sendPayForm  = document.sendPayForm;
+	sendPayForm.method = 'POST';
+	sendPayForm.action = 'arsAuth.do';
+	sendPayForm.submit();
+}
+
+$.prevPage = function() {
+	var sendPayForm  = document.sendPayForm; 
+	sendPayForm.method = 'POST';
+	sendPayForm.action = 'selectBank.do';
+	sendPayForm.submit();    
+}
+</script>
+
+<!-- wrap -->
+<div id="wrap">
+	<!-- header -->
+	<div id="header">
+		<div class="logo_area"><img src="resources/images/logo_payco.png" alt="PAYCO"></div>
+		<div class="tit_area">
+			<button type="button" id="prevPage" class="btn_prev"><i class="ico ico_prev">뒤로가기</i></button>
+			<h1>ARS  인증진행 중</h1>
+			<button type="button" id="closeWindow" class="btn_cls"><i class="ico ico_cls">창닫기</i></button>
+		</div>
+	</div>
+	<!-- //header -->
+
+	<!-- content -->
+	<div id="ct">
+		<!-- container -->
+		<div class="container ars_timer">
+			<p class="headline">전화를 받고,<br>
+				<span class="text_primary">주민번호 앞 6자리를 입력</span>해주세요.</p>
+			<div class="loading_motion"><div class="span"></div><i class="ico ico_tel"></i></div>
+			<p id="timer" class="timer">00:00</p>
+			<p class="restart_set">인증 전화가 오지 않거나 인증에 실패하신 경우<br>
+				<a href="" id="reArsSend" class="text_primary underline">재인증</a>을 진행해 주세요</p>
+		</div>
+		<!-- //container -->
+
+		<!-- fixed bottom button -->
+		<div class="fix_btm_btn">
+			<div class="info info_primary round">ARS인증 후 바로 결제가 완료됩니다.</div>
+			<button type="button" onclick="$(this).toggleClass('on');" id="send" class="btn btn_lg btn_primary">ARS 인증완료</button>
+		</div>
+		<!-- //fixed bottom button -->
+	</div>
+	<!-- //content -->
+</div>
+<!-- //wrap -->
+
+<!-- Alert Format -->
+<div id="commonAlert" class="ly_pop ly_pwre">
+	<div class="bg"></div>
+	<div id="ly_pwre" class="cont">
+		<div class="ele">
+			<div class="pop_body">
+				<h2 id="alertTitle"></h2>
+				<p id="alertContents"></p>
+			</div>
+			<div class="pop_footer">
+				<button type="button" onclick="layer_close();" class="btn btn_primary">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //Alert Format -->
+
+<!-- Prompt Format -->
+<div id="commonPrompt" class="ly_pop ly_ars">
+	<div class="bg"></div>
+	<div id="ly_ars" class="cont">
+		<div class="ele">
+			<div class="pop_body">
+				<h2 id="promptTitle"></h2>
+				<p id="promptContents"><span class="text_primary"></span></p>
+			</div>
+			<div class="pop_footer btn_type2">
+				<button type="button" onclick="layer_close();" class="btn">취소</button>
+				<button type="button" id="promptOk" class="btn btn_primary">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //Prompt Format -->
+</body>
+</html>

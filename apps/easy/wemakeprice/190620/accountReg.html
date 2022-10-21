@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)http://localhost:8080/firm/FirmWonderpayAction.pay -->
+<html lang="ko" class="wf-notosans-n4-active wf-active" style="font-size: 72.26%;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+
+
+
+<link rel="stylesheet" href="resources/wemakeprice/css/common.css">
+<link rel="stylesheet" href="resources/wemakeprice/css/site.css">
+<script src="resources/wemakeprice/js/jquery-1.8.3.min.js"></script>
+<script src="resources/wemakeprice/js/webfont.js"></script>
+<script src="resources/wemakeprice/js/design.js" defer="defer"></script>
+<script src="resources/wemakeprice/js/es/dialog.js" defer="defer"></script>
+
+<title>간편결제</title>
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans" media="all"><script>
+var check = true;
+var arscheck = true;
+
+$(function(){	
+	$('#doAuthAcctNmCheck').click(function(e){
+		$("#POacctNo").val("");
+		var obj = this;
+		if(!$('.btn_xr.btn_type').hasClass('on')){
+			$('#acctNo').focus();
+			return false;
+		}
+		
+		if(!$(this).hasClass('on')){
+			$(this).addClass('on');
+		}
+
+		//계좌체크
+		if($('#acctNo').val() == ''){
+			alert("계좌번호를 입력해주세요.");
+			$(this).removeClass('on');
+			$('#acctNo').focus();
+			return false;
+		}
+		
+		if(check){
+			//이중체크 방지
+			check=false;
+			
+			$.ajax({
+				type: "post",
+				url: ""+URL_PATH+"?_method=authAcctNmCheck",
+				dataType : "json",
+				data: {POacctNo : $("#acctNo").val(), PTrNo : $("#PTrNo").val(), PBnkCd : $("#PBnkCd").val()},
+				success:function(data){
+					if(data.code == "0000"){
+						$('#_method').val('doArsAuth');
+						$("#form").attr('action',''+URL_PATH).submit();
+						
+					} else {
+						
+						check = true;
+						$(obj).removeClass('on');
+						$('#acctNo').val("");
+						$('#acctNo').focus();
+						//alert("예금주조회에 오류가 발생되었습니다.\n다시 시도 하십시요.");
+
+						//return false;
+						if(data.code == "1111"){ 
+							$('#PRmesg1').val("세션 만료.");
+							$('#_method').val('userCanc');
+							$("#form").attr('action',''+URL_PATH).submit();
+						}else{
+							alert(data.msg);
+						}
+					}	
+				},
+				error:function(e){
+					
+					check = true;
+					
+					$(obj).removeClass('on');
+					$('#acctNo').val();
+					$('#acctNo').focus();
+					
+					return false;
+				}
+			});
+		}
+	});
+
+	$('#doArsCancel').click(function(e){
+		layer_close();
+		check = true;
+
+		if($("#acctNo").val()){
+			$('.btn_xr.btn_type').addClass('on');
+		}else{
+			$('.btn_xr.btn_type').removeClass('on');
+		}
+	});
+	
+	$('#doArs').click(function(e){
+			$('#_method').val('doArsAuth');
+			$("#form").attr('action',''+URL_PATH).submit();
+	});
+
+	$("#acctNo").keyup(function(e){
+		$(this).val($(this).val().replace(/[^0-9]/g,""));
+
+		var acctLength = $(this).val().length;
+		
+		if(7 <= acctLength && acctLength <= 15){
+			if(!$('.btn_xr.btn_type').hasClass('on')){
+				$('.btn_xr.btn_type').addClass('on');
+				$('.btn_xr.btn_type').attr('disabled', false);
+			}
+		}else{
+			if($('.btn_xr.btn_type').hasClass('on')){
+				$('.btn_xr.btn_type').removeClass('on');
+				$('.btn_xr.btn_type').attr('disabled', true);
+			}
+		}
+	});
+
+	// 은행 선택 레이어 열기
+	$('.select_bank .select').click(function(){
+		$('.ly_bankList, .ly_bankList .bg').fadeIn(200);
+		$('.ly_bankList .cont').animate({bottom: "0"},300);
+	});
+	
+	// 은행 선택 레이어 닫기
+	function closeBankLayer(){
+		$('.ly_bankList, .ly_bankList .bg').fadeOut(200);
+		$('.ly_bankList .cont').animate({bottom: "-40rem"},300);
+	};
+	$('.ly_bankList .bg').click(function(){
+		closeBankLayer();
+	});
+	
+	// 은행 버튼 클릭
+	$('.bank_list li').click(function(e){
+		e.preventDefault();
+
+		if($(this).find('i').hasClass('ico_com')){
+			alert("이미 등록된 은행입니다.");
+		}else{
+			closeBankLayer(); // 레이어 닫기
+			if(check){
+
+				//이중클릭 방지
+				check = false;
+				var bankCd = $(this).find('img').attr('id');
+				var bankNm = $(this).find('img').attr('alt');
+				$.ajax({
+					type: "post",
+					url: ""+URL_PATH+"?_method=checkBankTime",
+					dataType : "json",
+					data: {PBnkCd : bankCd, PMid : $("#PMid").val(), trGb : "NA"},
+					success:function(data){
+						if(data.stateCd == "0021"){
+
+							$('#payGb').val('RE');
+							$('#PCustId').val('4354DB78FB3C4D66BE7A2AC273534476');
+							$('#PAmt').val('');
+							$('#POid').val('');
+							$('#PTrNo').val('SBank_FIRMwonder1t0020190605174033000371');
+							$('#PMid').val('wonder1t');
+							$('#PMchtParam').val('');
+							$('#PCancUrl').val('http://192.168.0.43:9090/resultCanclPayment?_csrf=805cd983-7f19-4ac6-be40-c17ed93754be');
+							$('#PNextUrl').val('http://192.168.0.43:9090/resultPayment?_csrf=805cd983-7f19-4ac6-be40-c17ed93754be');
+							$('#PBnkCd').val(bankCd);
+							$('#bnkNm').val(bankNm);
+							$('#_method').val('inputAcctNo');
+							$("#form").attr('action',''+URL_PATH).submit(); 
+
+						}else{
+							alert(data.errMsg);
+							check = true;
+						}
+					},
+					error:function(e){
+						check = true;
+					}
+				});
+			}
+		}
+	});
+	
+	// X 버튼 클릭
+	$('.btn_cls').click(function(){
+		confirm("간편결제 취소하시겠습니까?", function(){
+			$('#payGb').val('RE');
+			$('#PCustId').val('4354DB78FB3C4D66BE7A2AC273534476');
+			$('#PAmt').val('');
+			$('#POid').val('');
+			$('#PStatus').val("0031");
+			$('#PRmesg1').val(encodeURIComponent("사용자취소"));
+			$('#PMchtParam').val('');
+			$("#form").attr('action','http://192.168.0.43:9090/resultCanclPayment?_csrf=805cd983-7f19-4ac6-be40-c17ed93754be').submit();
+		});
+	});
+
+	// 취소 버튼 클릭
+	$("#cancle").click(function(){
+		confirm("간편결제 취소하시겠습니까?", function(){
+			$('#payGb').val('RE');
+			$('#PCustId').val('4354DB78FB3C4D66BE7A2AC273534476');
+			$('#PAmt').val('');
+			$('#POid').val('');
+			$('#PStatus').val("0031");
+			$('#PRmesg1').val(encodeURIComponent("사용자취소"));
+			$('#PMchtParam').val('');
+			$("#form").attr('action','http://192.168.0.43:9090/resultCanclPayment?_csrf=805cd983-7f19-4ac6-be40-c17ed93754be').submit();
+		});
+	});
+});
+</script></head>
+<!-- Google Analytics 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-97416420-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+-->
+
+<body>
+<header id="header">
+	<h1>신규/추가등록</h1>
+	<button type="button" class="btn_cls"><i class="ico_com ico_cls">창닫기</i></button>
+</header>
+
+<div id="ct">
+	<form name="form" id="form" method="post">
+	<input type="hidden" name="_method" id="_method">
+	<input type="hidden" name="bnkNm" id="bnkNm" value="">
+	<input type="hidden" name="payGb" id="payGb" value="RE">
+	<input type="hidden" name="PCustId" id="PCustId" value="4354DB78FB3C4D66BE7A2AC273534476">
+	<input type="hidden" name="PAmt" id="PAmt" value="">
+	<input type="hidden" name="POid" id="POid" value="">
+	<input type="hidden" name="PStatus" id="PStatus" value="">
+	<input type="hidden" name="PRmesg1" id="PRmesg1" value="">
+	<input type="hidden" name="PMchtParam" id="PMchtParam" value="">
+	<input type="hidden" name="PCancUrl" id="PCancUrl" value="http://192.168.0.43:9090/resultCanclPayment?_csrf=805cd983-7f19-4ac6-be40-c17ed93754be">	
+	<input type="hidden" name="PNextUrl" id="PNextUrl" value="http://192.168.0.43:9090/resultPayment?_csrf=805cd983-7f19-4ac6-be40-c17ed93754be">	
+	<input type="hidden" name="PTrNo" id="PTrNo" value="SBank_FIRMwonder1t0020190605174455000530">
+	<input type="hidden" name="PMid" id="PMid" value="wonder1t">
+	<input type="hidden" name="PBnkCd" id="PBnkCd" value="088">
+	<input type="hidden" name="POacctNo" id="POacctNo" value="">
+	
+	<fieldset class="ars_form">
+		<legend>계좌번호 입력폼</legend>
+		<ul class="brb0">
+			<li class="select_bank">
+				<span class="stit">은행</span>
+				<span class="input">
+					<button type="button" class="select">
+						<span class="txt hidden">은행 선택</span>
+						<span class="img"><img src="resources/common/images/bank_crop/fullname_02.png" alt="신한은행"></span>
+					</button></span>
+			</li>
+			<li class="master">
+				<span class="stit">예금주</span>
+				<strong>전홍식</strong>
+			</li>
+			<li class="num">
+				<span class="stit">계좌번호</span>
+				<span class="input"><input type="tel" name="acctNo" id="acctNo" placeholder="‘-’없이 입력" tabindex="2" autocomplete="off"></span>
+			</li>
+		</ul>
+	</fieldset>
+	<div class="btn_area4 v1">
+		<p class="txt_cm_cau">본인명의 계좌만 가능<br>가상계좌, 적금, 펀드계좌, 평생계좌등록 불가</p>
+		<ul>
+			<li class="bt1"><button type="button" id="cancle" name="cancle" class="btn_xr btn_type2">취소</button></li>
+			<li class="bt2"><button type="button" class="btn_xr btn_type" id="doAuthAcctNmCheck">ARS인증 요청</button></li>
+		</ul>
+	</div>
+	<div class="arsInfoText">
+		<p><strong>'ARS인증하기'</strong> 버튼을 누르면, <br>휴대폰으로 계좌등록을 위한 ARS전화가 수신됩니다.<br>전화를 받고 
+		<strong class="fc_reg">주민번호 앞 6자리</strong>를 입력해주세요.</p>
+	</div>
+	</form>
+</div>
+<!-- //content -->
+
+<!-- ARS인증 -->
+<div class="ly_pop ly_ars">
+	<div class="bg"><!-- shadow --></div>
+	<div id="ly_ars" class="cont">
+		<div class="ele">
+			<section class="inner2">
+				<h2>계좌등록을 완료하기 위해<br>ARS 출금이체 동의가 진행됩니다.</h2>
+				<p>전화가 오면, <strong class="fc_reg">주민번호 앞 6자리</strong>를<br>입력해주세요.</p>
+			</section>
+			<ul class="btn_area5">
+			<li class="bt3" id="doArs"><button type="button" class="btn_xr btn_type3 fc_reg">ARS 인증하기</button></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- //ARS인증 -->
+
+<!-- 은행 목록 -->
+<div class="ly_slide ly_bankList">
+	<div class="bg"><!-- shadow --></div>
+	<div id="ly_bankList" class="cont">
+		<ul class="bank_list">
+			<li>
+				<button type="button"> <span><img src="resources/common/images/bank/logo_gray_089.png" alt="케이뱅크" id="089"><br>
+				케이뱅크</span> <i class="ico_com ico_upload">등록</i> </button>
+			</li>
+			<li>
+				<button type="button"> <span><img src="resources/common/images/bank/logo_gray_011.png" alt="NH농협은행" id="011"><br>
+				NH농협은행</span> <i class="ico_com ico_upload">등록</i> </button>
+			</li>
+			<li class="last">
+				<button type="button"> <span><img src="resources/common/images/bank/logo_004.png" alt="국민은행" id="004"><br>
+				국민은행</span> </button>
+			</li>
+			<li>
+				<button type="button"> <span><img src="resources/common/images/bank/logo_gray_031.png" alt="대구은행" id="031"><br>
+				대구은행</span> <i class="ico_com ico_upload">등록</i> </button>
+			</li>
+			<li>
+				<button type="button"> <span><img src="resources/common/images/bank/logo_088.png" alt="신한은행" id="088"><br>
+				신한은행</span> </button>
+			</li>
+			<li class="last">
+				<button type="button"> <span><img src="resources/common/images/bank/logo_034.png" alt="광주은행" id="034"><br>
+				광주은행</span> </button>
+			</li>
+			<li>
+				<button type="button"> <span><img src="resources/common/images/bank/logo_039.png" alt="경남은행" id="039"><br>
+				경남은행</span> </button>
+			</li>
+			<li>
+				<button type="button"> <span><img src="resources/common/images/bank/logo_023.png" alt="SC제일은행" id="023"><br>
+				SC제일은행</span> </button>
+			</li>
+			<li class="last">
+				<button type="button"> <span><img src="resources/common/images/bank/logo_027.png" alt="한국씨티은행" id="027"><br>
+				한국씨티은행</span> </button>
+			</li>
+			<li>
+				<button type="button"> <span><img src="resources/common/images/bank/logo_032.png" alt="부산은행" id="032"><br>
+				부산은행</span> </button>
+			</li>
+			<li>
+				<button type="button"> <span><img src="resources/common/images/bank/logo_037.png" alt="전북은행" id="037"><br>
+				전북은행</span> </button>
+			</li>
+			<li class="last">
+				<button type="button"> <span><img src="resources/common/images/bank/logo_002.png" alt="산업은행" id="002"><br>
+				산업은행</span> </button>
+			</li>
+			<li>
+				<button type="button"> <span><img src="resources/common/images/bank/logo_003.png" alt="기업은행" id="003"><br>
+				기업은행</span> </button>
+			</li>
+			<li>
+				<button type="button"> <span><img src="resources/common/images/bank/logo_007.png" alt="수협은행" id="007"><br>
+				수협은행</span> </button>
+			</li>
+			<li class="last">
+				<button type="button"> <span><img src="resources/common/images/bank/logo_020.png" alt="우리은행" id="020"><br>
+				우리은행</span> </button>
+			</li>
+			<li>
+				<button type="button"> <span><img src="resources/common/images/bank/logo_035.png" alt="제주은행" id="035"><br>
+				제주은행</span> </button>
+			</li>
+			<li>
+				<button type="button"> <span><img src="resources/common/images/bank/logo_045.png" alt="새마을금고" id="045"><br>
+				새마을금고</span> </button>
+			</li>
+			<li class="last">
+				<button type="button"> <span><img src="resources/common/images/bank/logo_048.png" alt="신협" id="048"><br>
+				신협</span> </button>
+			</li>
+			<li>
+				<button type="button"> <span><img src="resources/common/images/bank/logo_071.png" alt="우체국" id="071"><br>
+				우체국</span> </button>
+			</li>
+			<li>
+				<button type="button"> <span><img src="resources/common/images/bank/logo_081.png" alt="KEB하나은행" id="081"><br>
+				KEB하나은행</span> </button>
+			</li>
+		</ul>
+	</div>
+</div>
+<!-- //은행 목록 -->
+</body>
+</html>

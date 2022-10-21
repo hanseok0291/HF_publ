@@ -1,0 +1,306 @@
+<!doctype html>
+<html>
+<head>
+<title>표준간편결제</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link rel="stylesheet" href="../resources/css/owl.carousel.min.css">
+<link rel="stylesheet" href="../resources/css/common.css">
+<link rel="stylesheet" href="../resources/css/site.css">
+<!--[if lt IE 9]>
+<script type="text/javascript" src="../resources/js/html5shiv.js"></script>
+<script type="text/javascript" src="../resources/js/respond.min.js"></script>
+<![endif]-->
+<script src="../resources/js/jquery-1.8.3.min.js"></script>
+<script src="../resources/js/placeholders.min.js"></script>
+<script src="../resources/js/design.js"></script>
+
+<style>
+html, body { width: 100%; height: 100%; }
+body { position: relative; padding: 0; margin: 0; font-size: 12px; }
+header { margin: 0; padding: 20px 20px; background: #e6e7f1; }
+header h1 { margin: 0 0 10px; font-size: 24px; }
+header p { margin: 0; line-height: 1.4; }
+.main { position: relative; padding: 0 20px 20px; }
+h2 { margin: 30px 0 10px; font-size: 20px; }
+small { font-size: 80% !important; }
+h2 small strong { color: #5e8cc0; }
+ul { margin: 0; padding-left: 20px; list-style: disc; }
+li { margin-top: 5px; }
+ul li:first-child { margin-top: 0; }
+a { color: #5e8cc0; }
+a, a:hover, a:active, a:focus { text-decoration: underline; }
+.table-responsive { width: 100%; overflow-x: auto; border: 1px solid #ddd; }
+.table { margin: 0; min-width: 550px;  border-collapse: collapse; width: 100%; font-size: 12px; border: 0; }
+.table tr:hover { background-color: #f4f4f4; }
+.table th, .table td {  padding: 5px; height: auto; border: 1px solid #ddd; }
+.table th { background: #f4f4f4; text-align: center; }
+.table .date, .table .status { text-align: center; }
+.well { padding: 20px; border: 2px solid #ddd; }
+.ly_pop .bg { opacity: .65; }
+.ly_pop .ele { width: 400px; height: 640px; border: 1px solid #212121; background-color: #fff; overflow: hidden; -webkit-box-sizing: content-box; box-sizing: content-box; }
+.highlight { background: #ff9; }
+</style>
+
+<script>
+$(document).ready(function() {
+	//페이지 수
+	var completeCount = $("#pageTable .status:contains('완료')").length;
+	var totalCount = $('#pageTable tbody tr').length;
+	$('#completeCount').text(completeCount);
+	$('#totalCount').text(totalCount);
+});
+</script>
+</head>
+
+<body>
+<header>
+	<h1>간편결제 표준결제창 퍼블리싱 안내</h1>
+	<p>최종 수정일 : 2018-07-09</p>
+</header>
+
+<div class="main scroll-fix">
+	<h2>GUIDE</h2>
+	<div class="table-responsive">
+		<table class="table">
+			<colgroup>
+				<col style="width: 20%;">
+				<col style="width: 20%;">
+				<col style="width: 20%;">
+				<col style="width: 100px;">
+				<col style="width: 100px;">
+				<col>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>1depth</th>
+					<th>2depth</th>
+					<th>file</th>
+					<th>date</th>
+					<th>status</th>
+					<th>note</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>UI 템플릿</td>
+					<td>-</td>
+					<td><a href="../template.html" target="_blank">template</a></td>
+					<td class="date">2018-06-29</td>
+					<td class="status">완료</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>레이아웃</td>
+					<td>-</td>
+					<td><a href="../layout.html" target="blank">layout</a></td>
+					<td class="date">2018-06-29</td>
+					<td class="status">완료</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>레이어 팝업 (PC 레이어 사이즈 확인용)</td>
+					<td>-</td>
+					<td><a href="#" onClick="layer_open('ly_pop');">layerOpen</a></td>
+					<td class="date">2018-06-29</td>
+					<td class="status">완료</td>
+					<td><ul>
+						<li>2018-06-22 : 닫기 버튼 스크립트 코딩 생략(<span class="text_primary">검은 배경 클릭 시 레이어 닫힘</span>)</li>
+						<li>2018-06-27 : iPad에서 iframe 사이즈 미적용 이슈 해결</li>
+					</ul></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<h2>PAGE <small>(완료 <strong id="completeCount"></strong> / 총 <strong id="totalCount"></strong> 페이지)</small></h2>
+	<div class="table-responsive">
+		<table class="table" id="pageTable">
+			<colgroup>
+				<col style="width: 5%;">
+				<col style="width: 15%;">
+				<col style="width: 20%;">
+				<col style="width: 20%;">
+				<col style="width: 100px;">
+				<col style="width: 100px;">
+				<col>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>code</th>
+					<th>1depth</th>
+					<th>2depth</th>
+					<th>file</th>
+					<th>date</th>
+					<th>status</th>
+					<th>note</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1-1</td>
+					<td>약관동의</td>
+					<td>-</td>
+					<td><a href="../agreement.html" target="_blank">agreement</a></td>
+					<td class="date">2018-06-29</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2018-06-21 : 1-2, 1-3 화면 코딩 생략</li>
+							<li>2018-06-26 : 아코디언 기능 전체 연동 (태블릿, PC 레이어 스크롤 이슈 해결)</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>2-1</td>
+					<td rowspan="2">본인인증</td>
+					<td>본인인증</td>
+					<td><a href="../selfAuth.html" target="_blank">selfAuth</a></td>
+					<td class="date">2018-06-29</td>
+					<td class="status">완료</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>2-2</td>
+					<td>인증번호 입력</td>
+					<td><a href="../selfAuthSms.html" target="_blank">selfAuthSms</a></td>
+					<td class="date">2018-06-29</td>
+					<td class="status">완료</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>3-1</td>
+					<td rowspan="2">결제비밀번호 설정</td>
+					<td>결제비밀번호 설정</td>
+					<td><a href="../registerPassword.html" target="_blank">registerPassword</a></td>
+					<td class="date">2018-06-29</td>
+					<td class="status">완료</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>3-2</td>
+					<td>결제비밀번호 설정 확인</td>
+					<td><a href="../registerPasswordVerify.html" target="_blank">registerPasswordVerify</a></td>
+					<td class="date">2018-06-29</td>
+					<td class="status">완료</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>은행 선택</td>
+					<td>-</td>
+					<td><a href="../selectBank.html" target="_blank">selectBank</a></td>
+					<td class="date">2018-06-29</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2018-06-28 : 슬라이드 플러그인 교체(IE9 이하 추가)</li>
+							<li>2018-06-29 : 메리츠종금증권 -&gt; 메리츠종금</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>계좌번호 입력</td>
+					<td>-</td>
+					<td><a href="../registerAccount.html" target="_blank">registerAccount</a></td>
+					<td class="date">2018-06-29</td>
+					<td class="status">완료</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>ARS 인증진행 중</td>
+					<td>-</td>
+					<td><a href="../arsAuth.html" target="_blank">arsAuth</a></td>
+					<td class="date">2018-06-29</td>
+					<td class="status">완료</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>간편현금결제</td>
+					<td>-</td>
+					<td><a href="../pay.html" target="_blank">pay</a></td>
+					<td class="date">2018-07-02</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2018-06-28 : 슬라이드 플러그인 교체(IE9 이하 추가)</li>
+							<li>2018-07-02 : 현금영수증 팝업 내 radio + input text 포커스 연동 수정</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>8-1</td>
+					<td rowspan="3">간편현금결제 관리</td>
+					<td>간편현금결제 관리</td>
+					<td><a href="../manageAccount.html" target="_blank">manageAccount</a></td>
+					<td class="date">2018-07-02</td>
+					<td class="status">완료</td>
+					<td>
+						<ul>
+							<li>2018-07-02 : 현금영수증 팝업 내 radio + input text 포커스 연동 수정</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>8-2</td>
+					<td>비밀번호 변경</td>
+					<td><a href="../verifyPassword.html" target="_blank">verifyPassword</a></td>
+					<td class="date">2018-06-29</td>
+					<td class="status">완료</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>8-3</td>
+					<td>서비스 해지</td>
+					<td><a href="../withdraw.html" target="_blank">withdraw</a></td>
+					<td class="date">2018-06-29</td>
+					<td class="status">완료</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr class="highlight">
+					<td>-</td>
+					<td rowspan="2">관리자</td>
+					<td>UI 설정</td>
+					<td><a href="../admin.html" target="_blank">admin</a></td>
+					<td class="date">2018-07-09</td>
+					<td class="status">완료</td>
+					<td><ul>
+						<li>2018-07-09 : 컬러 설정 팔레트 추가</li>
+					</ul></td>
+				</tr>
+				<tr>
+					<td>-</td>
+					<td>테마 미리보기</td>
+					<td><a href="../theme.html" target="_blank">theme</a></td>
+					<td class="date">2018-06-29</td>
+					<td class="status">완료</td>
+					<td>&nbsp;</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<h2>MEMO</h2>
+	<div class="well">
+		<ul>
+			<li><strong>브라우저 지원 : 크롬, MS Edge, IE9 이상</strong> (이미지만 IE8 대비 2종 적용 완료)</li>
+			<li>2018-06-21 : [공통] 보안키패드 코딩 생략</li>
+			<li>2018-06-29 : [공통] 텍스트 사이즈 확대</li>
+			<li>2018-07-04 : [공통] 기획 검수 완료</li>
+			<li>2018-07-05 : 로고 이미지 ½ 자동 축소 스크립트 추가</li>
+		</ul>
+	</div>
+</div>
+
+<div class="ly_pop">
+	<div class="bg"></div>
+	<div id="ly_pop" class="cont">
+		<div class="ele"><iframe src="../selectBank.html" scrolling="no" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" style="width: 400px; height: 640px;"></iframe></div>
+	</div>
+</div>
+</body>
+</html>

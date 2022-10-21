@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<!-- favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="/resources/images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="/resources/images/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/resources/images/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/resources/images/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/resources/images/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/resources/images/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/resources/images/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/resources/images/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/resources/images/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/resources/images/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/resources/images/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/resources/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/resources/images/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/resources/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/resources/images/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/resources/images/favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<!-- //favicon -->
+<link rel="stylesheet" href="../../css/common/css/common.css?dummy=20220329102354435">
+<link rel="stylesheet" href="../../css/common/css/site.css?dummy=20220329102354435">
+<script src="../../css/common/js/jquery-1.8.3.min.js?dummy=20220329102354435"></script>
+<script src="../../css/common/js/webfont.js?dummy=20220329102354435"></script>
+<script src="../../css/common/js/design.js?dummy=20220329102354435" defer="defer"></script>
+<script src="../../css/common/js/dialog.js?dummy=20220329102354435" defer="defer"></script>
+<script src="../../css/common/js/gtag/sbgtag-1.0.js?dummy=20220329102354435" ></script>
+<script src="../../css/common/css/common/js/custom.js?dummy=20220329102354435" defer="defer"></script>
+
+<script src="../../css/common/js/jquery.placeholder.min.js?dummy=20220329102354435"></script>
+<script src="../../css/common/js/commonmsg.js?dummy=20220329102354435" ></script>
+<script src="../../css/common/js/commonutil.js?dummy=20220329102354435" ></script>
+<script src="../../css/common/js/regular.js?ezauthver=4.7&dummy=20220329102354435" ></script>
+<script>
+	$(function(){
+		var mid = $("input[name=mchtId]").val();
+		SettleBank.init(mid);
+		SettleBank.gaTracker('/WEB-INF/views/legacy/normal/biz/pay/pay.jsp');
+		SettleBankCSS.init(mid);
+	});
+</script>
+		<script type="text/javascript" src="/pluginfree/jsp/nppfs.script.jsp?dummy=20220329102354435"></script>
+		<script type="text/javascript" src="/pluginfree/js/nppfs-1.11.0.js?dummy=20220329102354435" charset="utf-8"></script>
+		<!--[if lt IE 9]>
+		<link rel="stylesheet" href="/resources/css/ie-down.css">
+		<script src="/resources/js/html5shiv.js"></script>
+		<![endif]-->
+		<style type="text/css">
+			.input_mark {position:relative; display:block; background-color : transparent; border:0; z-index:1}
+			.input_mark .mark i { display: inline-block; vertical-align: middle; width: 34px; height: 34px; margin-left: 10px; background-image: url(/resources/css/common/images/common2.png); background-position: -113px -101px; }
+			.input_mark .mark i.on { background-position: -156px -101px; }
+			.pwset_area .input, .pwset_area .input_mark {margin: 3.5rem 0 5rem}
+			input.password {background:transparent; z-index:-1; position:absolute; left:0px; border:0px; visibility:hidden}
+		
+		</style>
+		<script type="text/javascript">
+			/* 
+			 * 보안키패드 최대 값이 입력시 자동으로 닫기위하여 Input Tag에 아래 속성 필요 
+			 * data-keypad-next="__hide__"
+			 */
+			
+			var nextPwdTimer = null;				//두번째 보안키패드 출력을 위한 Timer
+			var nextPwdPopupInterval = 200; 		//두번째 보안키패드 출력 Timer 시간 200ms
+			var pwdMaxLength = 6;					//보안키패드 문자열 길이
+			
+			/* 보안 키패드 class
+			 * 키패드 창이 출력되면 active는 true, hide는 false 상태가 되면
+			 * 키패드 창이 닫히면 (Hide) 되면 active는  false, hide는 true 상태로 변경
+			 */
+			var secuKeyPad = function(name) {
+				this.name = name;		//키패드의 Input Tag Name
+				this.active = false;	//키패드의 Popup 상태를 나타내는 속성	
+				this.hide = false;		//키패드의 Hide 상태를 나타내는 속성
+				this.digitCnt = 0;		//입력된 문자열의 길이 속성
+			
+				/* 입력 문자길이 얻오오는 함수 */
+				this.getDigitCnt = function () {
+					return digitCnt;
+				};
+				
+				/* 입력 문자길이 설정 input name 으로 설정 */
+				this.setDigitCnt = function () {
+					var elemName = "input[name='" + this.name + "']";
+					var digit = new String ( $(elemName).val() );
+					digitCnt = digit.length;
+					return;
+				};
+				
+				/* 입력 문자길이 초기화 */
+				this.clearDigitCnt = function() {
+					digitCnt = 0;
+					return;
+				};
+			};
+		
+			var firstKey = new secuKeyPad("payPwd");
+			
+			/* 보안 키패드 창이 나타날때 이벤트 처리 */
+			jQuery(document).on("nppfs-npv-after-show", function(event) {
+		
+				/* 첫번째 창이 나타나면 이전 속성 값을 Clear */
+				if ( event.name == firstKey.name )
+				{
+					firstKey.active = true;
+					firstKey.hide = false;
+					firstKey.clearDigitCnt();
+				}
+			});
+			
+			jQuery(document).on("nppfs-npv-after-hide", function(event) {
+				
+				/* 첫번째 보안 키패드는 이미 hide 된 후 다른 elem나 배경을 선택해도 hide 이벤트가 오는것을 방지 */
+				if ( event.name == firstKey.name && firstKey.active == true )
+				{
+					/* 첫번째 보안 키패드의 문자열 길이는 설정 */
+					firstKey.setDigitCnt();
+		
+					if ( firstKey.getDigitCnt() == pwdMaxLength ){
+						
+						if($("#payPwd").val().length != 6){
+							alert("비밀번호는 숫자 6자리입니다.");	
+							return false;
+						}
+						
+						var formData = $("#frm").serialize();
+						$.ajax({
+							type: "post",
+							url: "/ajax/std/pay/verifyPw",
+							dataType : "json",
+							data: formData,
+							success:function(data){
+									
+								var statCd = data.outStatCd;
+								var rsltCd = data.outRsltCd;
+								var rsltMsg = data.outRsltMsg;
+								var payPinUUID = data.payPinUUID;
+								
+								//핀번호 검증 성공
+								if(statCd == "0021"){
+									
+									$(".error").hide();
+									$("#payPinUUID").val(payPinUUID);
+									payment();	
+	
+								} else if(rsltCd == "session") {
+									$(".error").hide();	
+									npVCtrl.resetKeypad("payPwd");
+									$("#frm").attr('action','/ui/view/legacy/error/session').submit();
+									
+								} else {
+									var errCnt = data.pwErrCnt;
+									$("#errCountMsg").text("비밀번호 입력 오류 (" + errCnt + "/5)");
+									
+									if(errCnt >= 5){
+										
+										
+											alert("비밀번호 5회 입력에 실패하여\n서비스 이용이 제한되었습니다.\n비밀번호 초기화해주세요.", function(){
+												$("#way").val("P");
+												$("#frm").attr('action','/ui/view/legacy/initterms').submit();
+											});
+										
+									} else if(errCnt < 5) {
+										//비밀번호 오류 5회 이하
+										//DIV enable
+										removeImg();
+										$(".error").show();		
+										$(".error").text("비밀번호를 잘못입력 하였습니다.(" + data.pwErrCnt + "/5)");
+										
+										npVCtrl.resetKeypad("payPwd");
+										$("input[name='" + firstKey.name + "']").focus();
+										
+										return false;
+									} else {
+										alert(rsltMsg, function(){
+											removeImg();
+										});
+									}
+									
+								}
+							},
+							error:function(e){
+								alert("서비스 오류가 발생되었습니다.\n다시 시도 하십시오.", function(){
+									removeImg();
+									npVCtrl.resetKeypad("payPwd");
+								});
+								return false;
+							}				
+						});	
+						
+					}
+					
+					/* 보안 키패드 hide시 상태 변경, hide 이벤트가 중복해서 오더라도 처리하지 않도록 설정  */
+					firstKey.active = false;
+					firstKey.hide = true;
+				}
+			});
+			
+			$(document).ready(function(){
+				
+				//keypad set
+				uV.dV.zo = "/pluginfree/jsp/nppfs.keypad.jsp";  // 마우스입력기 페이지
+		 		npPfsStartup(document.frm, false, false, false, true, "npkencrypt", "on");
+		 		
+				$(".input_mark").click(function(){
+		
+					var tmp = $(this).attr("data-passwd");
+					$("#"+tmp).focus();
+					npVCtrl.resetKeypad(tmp);
+					
+					$("input[name=payPwd]").each(function(){
+						
+						$(this).parent().find('i').each(function(idx){
+								$(this).removeClass("on");
+						});
+					});
+				});
+		
+				$("input[name=payPwd]").keyup(function(){
+					
+					var len = $(this).val().length;
+					
+					$(this).parent().find('i').each(function(idx){
+						if(len > idx){
+							$(this).addClass("on");
+						}else{
+							$(this).removeClass("on");
+						}
+					});
+				});
+				
+				if ($("#mchtId").val().indexOf('ebcard') >= 0) {
+					$(".error").show();				
+					$(".error").text("모바일캐시비 결제비밀번호가 아닌 간편계좌 등록 시 설정하신 비밀번호를 입력해주시기 바랍니다.");
+				}
+			});
+		
+			function removeImg(){
+				$("input[name=payPwd]").each(function(){
+					
+					$(this).parent().find('i').each(function(idx){
+							$(this).removeClass("on");
+					});
+				});
+			}
+			
+			$(window).load(function(){
+				$("input[name='" + firstKey.name + "']").focus();
+				
+				//결제 2차 인증
+				var isAuthArsA1 = 'false';
+				
+				if(isAuthArsA1 == 'true'){
+					alert("결제 기준을 초과하여 ARS 인증을 진행합니다.\n전화수신 후 <span class='fc_reg'>인증번호 2자리</span>를 입력해주세요.", function(){
+						var formData = $("#frm").serialize();
+						$("#frm").attr('action','/ui/view/legacy/pay/arsAuth').submit();
+					});
+				}
+			});
+								
+			function payment(){	
+		
+				//현금영수증 여부
+				var isCashTax = $("#tax").is(':checked');
+				if (isCashTax) {
+					$("#csrcIssReqYn").val("Y");
+				} else {
+					$("#csrcIssReqYn").val("N");
+				}
+				
+				var formData = $("#frm").serialize();
+				$("#frm").attr('action','/ui/view/legacy/pay/action').submit(); 
+			}
+		
+			function findPwdConfirm(type){
+				
+				if(type == "pwd"){
+					confirm("비밀번호 초기화를 위해 결제를 종료합니다.", function(){
+						$("#way").val("P");
+						$("#frm").attr('action','/ui/view/legacy/initterms').submit();
+					});
+				}else{
+					$("#frm").attr('action','/ui/view/legacy/main').submit();
+				}
+			}
+			
+			function agreeCancelConfirm(){
+				confirm("결제를 취소하시겠습니까?", function(){
+					$("#way").val("P");
+					$("#frm").attr('action','/ui/view/legacy/pay/cancel').submit();
+				});
+			}
+		</script>
+		<title>간편결제</title>
+	</head>
+	<body>
+		<div id="nppfs-loading-modal" style="display:none;"></div>
+		<header id="header">
+			<h1>결제진행</h1>
+			<button type="button" class="btn_cls" onclick="agreeCancelConfirm();"><i class="ico_com ico_cls">창닫기</i></button>
+		</header>
+		<form id="frm" name="frm">	
+			<input type="hidden" id="payPinUUID" name="payPinUUID" />
+			<input type="hidden" id="way" name="way"/>
+			<input type="hidden" id="csrcIssReqYn" name="csrcIssReqYn" />
+			 
+			<input type="hidden" id="mchtId" name="mchtId" value="bio1102t"/>
+			<input type="hidden" id="mchtCustIdEnc" name="mchtCustIdEnc" value="hanseok0291"/>
+			<input type="hidden" id="contactType" name="contactType" value="RP"/>
+			<input type="hidden" id="mchtParam" name="mchtParam" value=""/>
+			<input type="hidden" id="cancUrl" name="cancUrl" value="https://test-driver.settlebank.co.kr:443/resultCanclPayment"/> 
+			 
+			<div id="ct">	
+				<div class="bank_slide">
+					
+						<button type="button" onclick="findPwdConfirm();" class="btn_bankadm">
+							
+							계좌/비밀번호 관리<i class="ico_com ico_set"></i>
+							
+							
+						</button>
+					
+					<div class="swiper-container">
+						<ul class="swiper-wrapper">
+							<li class="swiper-slide">
+								<span class="ticket">
+									<span class="flex">
+										<img src="/resources/css/common/images/bank/fullname_004.png?r=1.0" alt="국민은행">
+										<strong class="num">
+											457
+											***********
+											074
+										</strong>
+									</span>
+								</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			    <!-- //계좌(slide) -->
+			    <div class="ars_form mty">
+					<p class="pay">
+						<span>결제금액</span>
+						<strong><b class="fc_reg">10,000</b>원</strong>
+					</p>
+					
+					<div class="pw_bg">
+	                    <section class="firstPw">
+	                        <span class="input_mark pay_input" data-passwd="payPwd">
+	                        
+	                        	<input type="password" readonly="readonly" class="tc password" style="ime-mode:disabled; height: 7rem;" 
+						 		npkencrypt="on" data-keypad-type="num" data-keypad-theme="default" 
+						 		maxlength="6" name="payPwd" id="payPwd" 
+						 		data-keypad-next="__hide__" size="6" value="" data-keypad-type-y="bottom"/>
+								<span class="mark"><i id="pwd_01"></i><i id="pwd_02"></i><i id="pwd_03"></i><i id="pwd_04"></i><i id="pwd_05"></i><i id="pwd_06"></i></span>
+	                        </span>
+	                    </section>
+	                    
+						
+						
+						<p class="txt_cm_cau">결제 비밀번호 6자리 입력</p>
+						
+						
+					</div> 
+					
+					<p class="error fc_reg tc" style="display:block;"></p> 
+					
+					
+						<ul class="brb0">
+							<li class="tax">
+								<span class="control">
+									<span class="checkbox ty">
+											<input type="checkbox" name="tax" id="tax"><label for="tax">현금영수증 : <span id="csrcRegNo_text">01026508690</span></label>
+										</span>
+										<button type="button" class="btn_taxchg">변경</button>
+								</span>	
+								<!-- 개인소득공제용 -->
+								<div class="skipbx" style="margin-bottom: 5px;">
+									<select id="issPurpsDivCd">
+										<option value="0" selected>개인소득공제용</option>
+										<option value="1" >지출증빙용</option>
+									</select>				
+									<div id="tax0" class="row taxbx" style="display:block">
+										<span class="input"><span class="checkbox ty3"><input type="radio" name="private" id="private1" checked>
+										<label for="private1" class="on"></label></span>
+											<input data-type="tax_text" data-issPurpsDivCd="0" data-csrcRegNoDivCd="4" type="tel" name="tax0_1" id="tax0_1" placeholder="휴대폰번호(-없이 입력)" maxlength="11" value="01026508690">
+											<button type="button" onclick="" class="btn_del"><i class="ico_com ico_del3"></i></button>
+										</span>
+										<span class="input"><span class="checkbox ty3"><input type="radio" name="private" id="private2" >
+										<label for="private2" class=""></label></span>
+											<input data-type="tax_text" data-issPurpsDivCd="0" data-csrcRegNoDivCd="1" type="tel" name="tax0_2" id="tax0_2" placeholder="현금영수증 카드번호 입력" maxlength="" value="">
+											<button type="button" onclick="" class="btn_del"><i class="ico_com ico_del3"></i></button>
+										</span>
+									</div>
+									<div id="tax1" class="row taxbx">
+										<span class="input"><span class="checkbox ty3"><input type="radio" name="report" id="report1" >
+										<label for="report1" class=""></label></span>
+											<input data-type="tax_text" data-issPurpsDivCd="1" data-csrcRegNoDivCd="3" type="tel" name="tax1_1" id="tax1_1" placeholder="사업자번호 입력(-없이 입력)" maxlength="10" value="">
+											<button type="button" onclick="" class="btn_del"><i class="ico_com ico_del3"></i></button>
+										</span>
+										<span class="input"><span class="checkbox ty3"><input type="radio" name="report" id="report2" >
+										<label for="report2" class=""></label></span>
+											<input data-type="tax_text" data-issPurpsDivCd="1" data-csrcRegNoDivCd="1" type="tel" name="tax1_2" id="tax1_2" placeholder="현금영수증 카드번호 입력" maxlength="" value="">
+											<button type="button" onclick="" class="btn_del"><i class="ico_com ico_del3"></i></button>
+										</span>
+									</div>
+									<div class="btn_save"><button type="button" onclick="cashReg();" class="btn_x btn_type2">저장</button></div>
+								</div>
+								<!-- //개인소득공제용 -->
+							</li>
+						</ul>
+						<script type="text/javascript">
+							$('[data-type="tax_text"]').keyup(function(){
+					
+								$(this).val($(this).val().replace(/[^0-9]/g,""));
+								
+								var $selectObj = $(this);
+								
+								$('[data-type="tax_text"]').each(function() {
+									if ($selectObj.attr("id") == $(this).attr("id")) {
+										$(this).parent().find('input[type=radio]').attr("checked", true);
+										$(this).parent().find('label').addClass('on');
+									} else {
+										$(this).parent().find('input[type=radio]').attr("checked", false);
+										$(this).parent().find('label').removeClass('on');
+										$(this).val("");
+									}
+								});	
+							});
+					
+							function cashReg() {
+								var _issPurpsDivCd;
+								var _csrcRegNo;
+								var _csrcRegNoDivCd;
+								
+								$('input[data-type=tax_text]').each(function(){
+									if($(this).val()){
+										_issPurpsDivCd = $(this).attr('data-issPurpsDivCd');
+										_csrcRegNo = $(this).val();
+										_csrcRegNoDivCd = $(this).attr('data-csrcRegNoDivCd');
+										return;
+									}
+								});
+								
+								//현금영수증 저장
+								$.ajax({
+									type: "post",
+									url: "/ajax/std/csrc/reg",
+									dataType : "json",
+									data: {
+										issPurpsDivCd : _issPurpsDivCd
+										,csrcRegNoDivCd : _csrcRegNoDivCd
+										,csrcRegNo : _csrcRegNo
+									},
+									success:function(data){
+										
+										var statCd = data.outStatCd;
+										var rsltCd = data.outRsltCd;
+										var rsltMsg = data.outRsltMsg;
+										
+										if (statCd == "0021") {
+											if (!_csrcRegNo) {
+												$("#csrcRegNo_text").text("없음");
+												$("#tax").attr("checked", false);
+												$('label[for=tax]').removeClass('on');
+											} else {
+												$("#csrcRegNo_text").text(_csrcRegNo);
+												$("#tax").attr("checked", true);
+												$('label[for=tax]').addClass('on');
+											}
+										} else if (rsltCd =="session") { 
+											$("#frm").attr('action','/ui/view/legacy/error/session').submit();
+										} else {
+											alert(rsltMsg);
+										}
+									},
+									error: function(e) {
+										npVCtrl.resetKeypad("payPwd");
+										alert("서비스 오류가 발생되었습니다.\n다시 시도 하십시오.");
+										return false;
+									}				
+								});	
+							}
+							
+							// 현금영수증 컨트롤
+							$(function(){
+								var btn = $('.btn_taxchg');
+								var save = $('.btn_save button');
+								var pw = $('.pw input');
+								btn.on('click', function(){
+									//보안키패드 숨김
+									npVCtrl.hideKeypad("payPwd");
+									$('.skipbx').show();
+								});
+								save.on('click', function(){
+									$('.skipbx').removeAttr('style');
+								});
+								pw.on('focus', function(){
+									$('.skipbx').removeAttr('style');
+								});
+								
+								$("select").change(function () {
+									var str = "";
+									$( "select option:selected" ).each(function() {
+										str += $( this ).index();
+									});
+									$('.row').hide();
+									$('#tax'+str).show();
+									$('[data-type="tax_text"]').each(function(){
+										if($(this).val()){
+											$(this).focus();
+										}
+									});	
+								});
+					
+								var csrcRegNo = '01026508690';
+								
+								if(!csrcRegNo){
+									$("#csrcRegNo_text").text("없음");
+									$("#tax").attr("checked", false);
+									$("#tax").parent().find('label').removeClass('on');
+								}else{
+									var cashReceiptCheckedYn = 'false';
+																		if(cashReceiptCheckedYn == 'true'){
+										$("#tax").attr("checked", true);
+										$("#tax").parent().find('label').addClass('on');
+									}else{
+										$("#tax").attr("checked", false);
+										$("#tax").parent().find('label').removeClass('on');
+									}
+								}
+					
+								var str = "";
+								$( "select option:selected" ).each(function() {
+									str += $( this ).index();
+								});
+								$('.row').hide();
+								$('#tax'+str).show();
+								
+								$('[data-type="tax_text"]').each(function(){
+									if($(this).val()){
+										$(this).focus();
+									}
+								});	
+								$("#tax").on('change', function(){
+									if($("#csrcRegNo_text").text() == "없음"){
+										$("#tax").attr("checked", false);
+										$("#tax").parent().find('label').removeClass('on');
+										
+										npVCtrl.hideKeypad("payPwd");
+										$('.skipbx').show();
+									}
+								});
+							});	
+						</script>
+					
+					
+				</div>
+				
+					<div class="btn_cm_btm mty"><button type="button" onclick="findPwdConfirm('pwd');"><u>비밀번호 초기화</u></button></div>
+				
+			</div>
+			<!-- //content -->
+		</form>
+		
+<!-- loading -->
+<div class="ly_pop ly_loading" style="display: none;">
+	<div class="bg"><!-- shadow --></div>
+	<div id="ly_loading" class="cont">
+		<div class="ele">
+			<div class="circle_motion"><div class="span"></div></div>
+			<img src="/resources/images/loading.gif" alt="로딩중" class="img_loading">
+		</div>
+	</div>
+</div>
+<script>
+
+	$(document).ajaxStart(function(){
+		openLoading();
+	});
+	
+	$(document).ajaxComplete(function(){
+		closeLoading();
+	});
+
+	function openLoading(){
+		var ver = 0; // Browser Version
+		if(navigator.appName.charAt(0) == "M"){
+			ver = getInternetVersion("MSIE");		
+			if (ver < "10"){ // ie10 이하
+				$('.ly_loading').addClass('ie9_after');
+			}
+		}
+		layer_open('ly_loading');
+	}
+
+	function closeLoading(){
+		layer_close();
+	}
+</script>
+
+		<div class="nppfs-elements" style="display:none;"></div>	
+		<div class="nppfs-keypad-div" style="display:none;"></div>
+		
+	</body>
+</html>

@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html lang="ko" class="wf-loading" style="font-size: 73.24%;"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/site.css">
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../js/webfont.js"></script>
+<script src="../js/design.js" defer="defer"></script>
+
+<title>간편결제</title>
+
+<script>
+	
+$(document).ready(function(){
+	var check = true;
+	var retryCheck = true;
+
+	var min = 3; var sec = 00;
+	$("#limit_time").text(min + ":" + (sec < 10 ? "0" + sec : sec));
+	
+	var interval = -1;
+	
+	$(function(){
+		var $timer = $("#limit_time");
+		var after = new Date(Date.parse(new Date()) + ((1000 * 60 * min) + (sec * 1000) + 1000));
+		
+		interval = setInterval(function(){
+
+			var nowTime = new Date();
+			var nowTimeStr = timeString(nowTime);
+
+			var afterTime = after
+			var afterTimeStr = timeString(afterTime);
+			
+			if(afterTimeStr <= nowTimeStr){
+				clearInterval(interval);
+			}else{
+				var diff = new Date(afterTime - nowTime);
+				var resultMin = diff.getMinutes();
+				var resultSec = diff.getSeconds();
+				resultSec = resultSec < 10 ? "0" + resultSec : resultSec;
+
+				$("#limit_time").text(resultMin + ":" + resultSec);
+			}
+			
+		},1000);
+
+		function timeString(d){
+
+			var year = d.getFullYear();
+			var month = (d.getMonth() + 1);
+			month = month < 10 ? "0"+month:month;
+			var day = d.getDate();
+			day = day < 10 ? "0"+day:day;
+			var hour = d.getHours();
+			hour = hour < 10 ? "0"+hour:hour;
+			var min = d.getMinutes();
+			min = min < 10 ? "0"+min:min;
+			var sec = d.getSeconds();
+			sec = sec < 10 ? "0"+sec:sec;
+			
+			return year +""+month+""+day+""+hour+""+min+""+sec;
+		}
+	});
+	
+});
+</script></head>
+<body>
+
+<header id="header">
+	<h1>신규/추가 등록</h1>
+</header>
+
+<div id="ct">
+	<section class="ars_timer">
+		<h2>ARS 인증전화를 요청하였습니다.</h2>
+		<p class="txt">전화를 받은 후, <strong class="fc_reg u">생년월일  6자리</strong>를 입력하세요.</p>
+		<!-- <span class="circle"><i class="ico_com ico_tel"></i></span> -->		
+		<div class="circle_motion"><div class="span"></div><i class="ico_com ico_tel"></i></div>
+		<p class="timer"><i class="ico_com ico_watch"></i>대기시간 <strong class="fc_reg" id="limit_time">2:49</strong></p>
+		<div class="btn_area v3">
+			<p class="txt_cm_cau2">통화완료 후, <strong class="fc_reg">[ARS인증완료]</strong>버튼을 눌러주세요.</p>
+			<button type="button" onclick="" class="btn_xr btn_type on">ARS 종료 후 인증완료</button>
+		</div>
+	</section>
+</div>
+<!-- //content -->
+
+
+<!-- loading -->
+<div class="ly_pop ly_loading" style="display: none;">
+	<div class="bg"><!-- shadow --></div>
+	<div id="ly_loading" class="cont">
+		<div class="ele">
+			<div class="circle_motion"><div class="span"></div></div>
+			<img src="../img/loading.gif" alt="로딩중" class="img_loading">
+		</div>
+	</div>
+</div>
+<script>
+
+	$(document).ajaxStart(function(){
+		openLoading();
+	});
+	
+	$(document).ajaxComplete(function(){
+		closeLoading();
+	});
+
+	function openLoading(){
+		$('html').css('overflow-y','');
+		var ver = 0; // Browser Version
+		if(navigator.appName.charAt(0) == "M"){
+			ver = getInternetVersion("MSIE");		
+			if (ver < "10"){ // ie10 이하
+				$('.ly_loading').addClass('ie9_after');
+			}
+		}
+		layer_open('ly_loading');
+	}
+
+	function closeLoading(){
+		$('html').css('overflow-y','scroll');
+		layer_close();
+	}
+</script>
+
+
+</body></html>

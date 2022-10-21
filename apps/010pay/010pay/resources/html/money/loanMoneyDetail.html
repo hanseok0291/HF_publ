@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<title>내통장결제</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link rel="stylesheet" href="../../css/jquery-ui.css">
+<link rel="stylesheet" href="../../css/owl.carousel.min.css">
+<link rel="stylesheet" href="../../css/common_bak_loan_20220224.css">
+<!--[if lt IE 9]>
+<script type="text/javascript" src="../../js/html5shiv.js"></script>
+<script type="text/javascript" src="../../js/respond.min.js"></script>
+<![endif]-->
+<script src="../../js/jquery-1.8.3.min.js"></script>
+<script src="../../js/jquery.placeholder.min.js"></script>
+<script src="../../js/jquery-ui.js"></script>
+<script src="../../js/jquery.ui.touch-punch.min.js"></script>
+<script src="../../js/owl.carousel.min.js"></script>
+<script src="../../js/design.js?ezauthver=5.0" defer="defer"></script>
+<script src="../../js/commonmsg.js?ezauthver=5.0"></script>
+<script src="../../js/commonutil.js?ezauthver=5.0"></script>
+</head>
+
+<body>
+<!-- wrap -->
+<div id="wrap">
+	<!-- header -->
+	<div id="header">
+		<div class="container">
+			<button type="button" id="btnBack" class="btn-back"><i class="icon-angle-left">뒤로가기</i></button>
+			<h1 class="brand-name hidden"><a href="#"><span class="my-logo"><img src="../../images/logo-myaccount.png" class="logo" alt="내통장결제"></span></a></h1>
+			<h2 class="page-title">대출 머니 관리</h2>
+			<button type="button" id="closeWindow" class="btn-close"><i class="icon-times">창닫기</i></button>
+		</div>
+	</div>
+	<!-- //header -->
+
+	<!-- content -->
+	<div id="content">
+		<!-- charge wrap -->
+		<div class="charge-wrap">
+			<!-- 충전 머니 -->
+			<div class="charge-sec current bg-gray">
+				<div class="container">
+					<dl>
+						<dt class="text-nowrap">대출 머니
+							<button type="button" class="btn btn-icon btn-more"><i class="icon-angle-down-xs"><span class="sr-only">더보기</span></i></button>
+							<button type="button" class="btn btn-icon btn-more hidden"><i class="icon-angle-up-xs"><span class="sr-only">버튼 숨기기</span></i></button>
+						</dt>
+						<dd>
+							<span class="price"><strong>1,890,000</strong>원</span>
+							<div class="more-btn hidden">
+								<span><button type="button" id="change" class="btn btn-xxs btn-nobg info-chg">전환하기</button></span>
+								<span><button type="button" id="repayment" class="btn btn-xxs btn-nobg info-chg">상환하기</button></span>
+							</div>
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<!-- //충전 머니 -->
+
+			<!-- container -->
+			<div class="container">
+				<div class="charge-sec else">
+					<dl>
+						<dt class="text-nowrap">대출 잔액
+							<div class="popover-parent">
+								<button type="button" class="btn btn-icon open-popover"><i class="icon icon-question-circle"><span class="sr-only">도움말</span></i></button>
+								<div class="popover hidden">
+									<div class="popover-body">고객님께서 아직 상환하지 않으신<br>
+										<span class="text-error">잔여 대출 원금</span>입니다.<br>
+										(문의 : KB캐피탈 1544 -1200)</div>
+								</div>
+							</div>
+						</dt>
+						<dd><span class="price"><strong>1,890,000</strong>원</span></dd>
+					</dl>
+					<div class="note">
+						<h3>대출 머니 유의사항</h3>
+						<ul>
+							<li class="info text-light">보유한 대출 머니가 대출 잔액보다 적은 경우 대출 잔액의 상환 또는 철회를 통해 환급이 가능합니다.</li>
+							<li class="info text-light">대출금의 상환 또는 철회를 통한 환급 시 환급금은 KB캐피탈의 대출금 상환용 가상계좌로 입금됩니다.</li>
+							<li class="info text-light">대출 관련 문의는 KB캐피탈로 하셔야 빠른 확인이 가능합니다.<br> (1544-1200)</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- //container -->
+		</div>
+		<!-- //charge wrap -->
+
+		<!-- bottom area -->
+		<div class="bottom-area">
+			<!-- container -->
+			<div class="container">
+				<button type="button" id="refund" class="btn btn-outline info-chg"><i class="icon icon-refund"></i><span>환급하기</span></button>
+			</div>
+			<!-- //container -->
+		</div>
+		<!-- //bottom area -->
+	</div>
+	<!-- //content -->
+</div>
+<!-- //wrap -->
+
+<!-- 전환하기 modal -->
+<div id="modal-change" class="modal modal-slide modal-info">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body my-info">
+				<button type="button" class="btn btn-close">취소</button>
+				<div class="refund-info">
+					<p>보유하신 대출 머니를<br> 일반 머니로 전환할 수 있습니다.</p>
+					<div class="pay-sec">
+						<dl>
+							<dt>대출 머니</dt>
+							<dd><span>1,890,000</span>원</dd>
+						</dl>
+						<dl class="sub">
+							<dt class="text-nowrap">전환 가능
+								<div class="popover-parent">
+									<button type="button" class="btn btn-icon open-popover"><i class="icon icon-question-circle"><span class="sr-only">도움말</span></i></button>
+									<div class="popover hidden">
+										<div class="popover-body">대출 잔액은<br>
+											<span class="text-error">전환 가능 금액에서 제외</span>됩니다.</div>
+									</div>
+								</div>
+							</dt>
+							<dd><span>1,000,000</span>원</dd>
+						</dl>
+						<div class="bg-gray">
+							<ul class="form-type">
+								<li class="with-input">
+									<label class="label">전환 신청</label>
+									<div class="form-desc">
+										<div class="position-relative">
+											<input type="tel" class="input-text-lg input-box text-primary">
+											<span class="form-control-clear hidden"><i class="icon-times-circle sr-only">삭제</i></span>
+										</div>
+									</div>
+								</li>
+								<li>
+									<dl>
+										<dt>수수료</dt>
+										<dd>무료<!-- <i>500</i>원 --></dd>
+									</dl>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn" onclick="modalOpen('alert-change');">전환하기</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //전환하기 modal -->
+
+<!-- 전환 완료 modal -->
+<div id="alert-change" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3>전환 완료</h3>
+				<p>일반 머니로 전환 완료되었습니다.</p>
+				<div class="refund-result">
+					<ul>
+						<li>
+							<dl>
+								<dt>전환 금액</dt>
+								<dd class="text-primary"><i>1,000,000</i>원</dd>
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dt>수수료</dt>
+								<dd>무료</dd>
+							</dl>
+						</li>
+					</ul>
+					<dl>
+						<dt>대출 머니 잔액</dt>
+						<dd><i>890,000</i>원</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" onclick="modalClose();" class="btn btn-confirm">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //전환 완료 modal -->
+
+<!-- 상환하기 modal -->
+<div id="modal-repayment" class="modal modal-slide modal-info">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body my-info">
+				<button type="button" class="btn btn-close">취소</button>
+				<div class="refund-info">
+					<p>보유하신 대출 머니 중 일부를<br> 상환용 계좌로 환급할 수 있습니다.</p>
+					<div class="pay-sec">
+						<dl>
+							<dt>대출 머니</dt>
+							<dd><span>1,890,000</span>원</dd>
+						</dl>
+						<dl class="sub">
+							<dt class="text-nowrap">상환 가능
+								<div class="popover-parent">
+									<button type="button" class="btn btn-icon open-popover"><i class="icon icon-question-circle"><span class="sr-only">도움말</span></i></button>
+									<div class="popover hidden">
+										<div class="popover-body">보유한 대출 머니 중 <span class="text-error">대출 잔액을</span><br>
+											<span class="text-error">상환할 수 있는 금액</span>입니다.</div>
+									</div>
+								</div>
+							</dt>
+							<dd><span>1,000,000</span>원</dd>
+						</dl>
+						<div class="bg-gray">
+							<ul class="form-type">
+								<li class="with-input">
+									<label class="label">상환 신청</label>
+									<div class="form-desc">
+										<div class="position-relative">
+											<input type="tel" class="input-text-lg input-box text-primary">
+											<span class="form-control-clear hidden"><i class="icon-times-circle sr-only">삭제</i></span>
+										</div>
+									</div>
+								</li>
+								<li>
+									<dl>
+										<dt>상환 계좌</dt>
+										<dd>
+											<div class="text-nowrap">
+												<span class="account-number full-underline"><img src="../../images/bank/logo_089.png?ver=1.1" alt="케이뱅크"> 케이뱅크 <em class="number">1234567890123456</em></span>
+												<button type="button" class="btn btn-icon"><i class="icon icon-copy"><span class="sr-only">복사</span></i></button>
+											</div>
+											<div class="account-name">예금주 : 홍길동(KB캐피탈)</div>
+										</dd>
+									</dl>
+								</li>
+							</ul>
+						</div>
+						<div class="info-sm">※ 상환 문의 : KB캐피탈 1544 -1200 (평일 09시~18시)
+							<span class="pull-right"><button type="button" id="withdraw"  onclick="modalClose();" class="btn btn-xxs btn-nobg text-lighter info-chg"><span>철회신청</span> <i class="icon-angle-right-xxs"></i></button></span>
+						</div>
+						<div class="mgt10">
+							<span class="checkbox square">
+								<input type="checkbox" name="checkbox_agree" id="checkbox_agree">
+								<label for="checkbox_agree">대출 머니를 상환 계좌로 환급하는 것에 동의합니다.</label>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn" onclick="modalOpen('alert-repayment-apply');">상환하기</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //상환하기 modal -->
+
+<!-- 상환 신청 modal -->
+<div id="alert-repayment-apply" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3>상환 신청</h3>
+				<p>아래 내용으로 상환하시겠습니까?</p>
+				<div class="refund-result">
+					<ul>
+						<li>
+							<dl>
+								<dt>상환 금액</dt>
+								<dd class="text-primary"><i>1,000,000</i>원</dd>
+							</dl>
+							<ul>
+								<li>
+									<dt>원금</dt>
+									<dd><i>998,123</i>원</dd>
+								</li>
+								<li>
+									<dt>대출이자</dt>
+									<dd><i>998,123</i>원</dd>
+								</li>
+								<li>
+									<dt>중도상환 수수료</dt>
+									<dd><i>10,005</i>원</dd>
+								</li>
+								<li>
+									<dt>연체지손금</dt>
+									<dd><i>10,005</i>원</dd>
+								</li>
+								<li>
+									<dt>미리 내신 금액</dt>
+									<dd><i>10,005</i>원</dd>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div class="info-sm">※ 상환 문의 : KB캐피탈 1544 -1200 (평일 09시~18시)</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" onclick="modalClose();" class="btn btn-cancel">취소</button>
+				<button type="button" onclick="modalClose(); modalOpen('alert-repayment');" class="btn">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //상환 신청 modal -->
+
+<!-- 상환 완료 modal -->
+<div id="alert-repayment" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3>상환 완료</h3>
+				<p>일반 머니로 전환 완료되었습니다.</p>
+				<div class="refund-result">
+					<ul>
+						<li>
+							<dl>
+								<dt>전환 금액</dt>
+								<dd class="text-primary"><i>1,000,000</i>원</dd>
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dt>수수료</dt>
+								<dd>무료</dd>
+							</dl>
+						</li>
+					</ul>
+					<dl>
+						<dt>대출 머니 잔액</dt>
+						<dd><i>890,000</i>원</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" onclick="modalClose();" class="btn btn-confirm">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //상환 완료 modal -->
+
+<!-- 철회하기 modal -->
+<div id="modal-withdraw" class="modal modal-slide modal-info">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body my-info">
+				<button type="button" class="btn btn-close">취소</button>
+				<div class="refund-info">
+					<p>철회 신청 시 KB캐피탈로 철회 신청이 접수되며<br> 보유하신 대출 머니 전액이 환급 계좌로 입급됩니다.</p>
+					<div class="pay-sec">
+						<dl>
+							<dt>대출 머니</dt>
+							<dd><span>1,000,000</span>원</dd>
+						</dl>
+						<div class="bg-gray">
+							<ul class="form-type">
+								<li class="first-price">
+									<dt>환급 금액</dt>
+									<dd class="text-primary"><span>1,000,000</span>원</dd>
+								</li>
+								<li>
+									<dl>
+										<dt>환급 계좌</dt>
+										<dd>
+											<!-- 등록된 계좌 있는 경우 -->
+											<span class="account-number"><img src="../../images/bank/logo_090.png" alt="카카오뱅크"> 카카오뱅크 <em class="number"><i>****</i>123</em></span>
+											<!-- //등록된 계좌 있는 경우 -->
+
+											<!-- 등록된 계좌 없는 경우 -->
+											<button type="button" class="account-submit"><i></i>계좌등록</button>
+											<!-- //등록된 계좌 없는 경우 -->
+										</dd>
+									</dl>
+								</li>
+							</ul>
+						</div>
+						<div class="info-sm">※ 철회 문의 : KB캐피탈 1544 -1200 (평일 09시~18시)</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn" onclick="modalOpen('alert-withdraw');">철회 신청</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //철회하기 modal -->
+
+<!-- 철회 완료 modal -->
+<div id="alert-withdraw" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3>철회 신청 완료</h3>
+				<p>KB캐피탈로 철회 신청 및 보유하신<br> 대출 머니의 환급이 완료되었습니다.</p>
+				<div class="refund-result">
+					<ul>
+						<li>
+							<dl>
+								<dt>환급 금액</dt>
+								<dd class="text-primary"><i>1,000,000</i>원</dd>
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dt>수수료</dt>
+								<dd>무료</dd>
+							</dl>
+						</li>
+					</ul>
+				</div>
+				<div class="info-sm">※ 철회 문의 : KB캐피탈 1544 -1200 (평일 09시~18시)</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" onclick="modalClose();" class="btn btn-confirm">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //철회 완료 modal -->
+
+<!-- 환급하기 modal -->
+<div id="modal-refund" class="modal modal-slide modal-info">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body my-info">
+				<button type="button" class="btn btn-close">취소</button>
+				<div class="refund-info">
+					<p>보유하신 대출 머니를<br> 주계좌로 환급 받으실 수 있습니다.</p>
+					<div class="pay-sec">
+						<dl>
+							<dt>대출 머니</dt>
+							<dd><span>1,890,000</span>원</dd>
+						</dl>
+						<dl class="sub">
+							<dt class="text-nowrap">환급 가능
+								<div class="popover-parent">
+									<button type="button" class="btn btn-icon open-popover"><i class="icon icon-question-circle"><span class="sr-only">도움말</span></i></button>
+									<div class="popover hidden">
+										<div class="popover-body">대출 잔액 및 환급 수수료는<br>
+											<span class="text-error">환급 가능 금액에서 제외</span>됩니다.</div>
+									</div>
+								</div>
+							</dt>
+							<dd><span>1,000,000</span>원</dd>
+						</dl>
+						<div class="bg-gray">
+							<ul class="form-type">
+								<li class="with-input">
+									<label class="label">환급 신청</label>
+									<div class="form-desc">
+										<div class="position-relative">
+											<input type="tel" class="input-text-lg input-box text-primary">
+											<span class="form-control-clear hidden"><i class="icon-times-circle sr-only">삭제</i></span>
+										</div>
+									</div>
+								</li>
+								<li>
+									<dl>
+										<dt>수수료 <small>(월 5회 무료)<!-- (수수료를 차감 후 환급) --></small></dt>
+										<dd>무료<!-- <i>500</i>원 --></dd>
+									</dl>
+								</li>
+								<li>
+									<dl>
+										<dt>환급 계좌</dt>
+										<dd>
+											<!-- 등록된 계좌 있는 경우 -->
+											<span class="account-number"><img src="../../images/bank/logo_090.png?ver=1.1" alt="케이뱅크"> 케이뱅크 <em class="number"><i>****</i>123</em></span>
+											<!-- //등록된 계좌 있는 경우 -->
+
+											<!-- 등록된 계좌 없는 경우 -->
+											<button type="button" class="account-submit"><i></i>계좌등록</button>
+											<!-- //등록된 계좌 없는 경우 -->
+										</dd>
+									</dl>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn" onclick="modalOpen('alert-refund');">환급하기</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //환급하기 modal -->
+
+<!-- 환급 완료 modal -->
+<div id="alert-refund" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3>환급 완료</h3>
+				<p>주계좌로 입금 완료되었습니다.</p>
+				<div class="refund-result">
+					<ul>
+						<li>
+							<dl>
+								<dt>환급 금액</dt>
+								<dd class="text-primary"><i>1,000,000</i>원</dd>
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dt>수수료</dt>
+								<dd>무료</dd>
+							</dl>
+						</li>
+					</ul>
+					<dl>
+						<dt>보유 머니 잔액</dt>
+						<dd><i>890,000</i>원</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" onclick="modalClose();" class="btn btn-confirm">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //환급 완료 modal -->
+
+<!-- loading -->
+<div class="modal modal-loading">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="loading">
+					<div class="loading-bar"></div>
+					<div class="loading-bar"></div>
+					<div class="loading-bar"></div>
+					<div class="loading-bar"></div>
+				</div>
+				<span class="text">로딩 중</span>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //loading -->
+
+<!-- common alert -->
+<div id="commonAlert" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3 id="alertTitle"></h3>
+				<p id="alertContents"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" onclick="modalClose();" class="btn btn-confirm">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //common alert -->
+
+<!-- common prompt -->
+<div id="commonPrompt" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3 id="promptTitle"></h3>
+				<p id="promptContents"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" onclick="modalClose();" class="btn btn-cancel">취소</button>
+				<button type="button" id="promptOk" class="btn btn-confirm">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //common prompt -->
+
+<script>
+$(document).ready(function(){
+	// 전환, 상환하기 버튼 토글
+	$(".charge-sec .btn-more").click(function(){
+		$(".charge-sec .btn-more, .charge-sec .more-btn").toggleClass("hidden");
+	});
+})
+</script>
+</body>
+</html>

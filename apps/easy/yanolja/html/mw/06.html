@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link rel="stylesheet" href="../../resources/css/common.css">
+<link rel="stylesheet" href="../../resources/css/site.css">
+<link rel="stylesheet" href="../../resources/css/common/css/custom/yanolja/yanolja.css">
+<script src="../../resources/js/jquery-1.8.3.min.js"></script>
+<script src="../../resources/js/design.js" defer="defer"></script>
+<title>간편결제</title>
+<style type="text/css">
+	.input_mark {position:relative; display:block; background-color:transparent; border:0; z-index:1}
+	.input_mark .mark i { display: inline-block; vertical-align: middle; width: 34px; height: 34px; margin-left: 10px; background-image: url(../../resources/css/common/images/common2.png); background-position: -113px -101px; }
+	.input_mark .mark i.on { background-position: -156px -101px; }
+	.pwset_area .input, .pwset_area .input_mark {margin: 3.5rem 0 5rem}
+	input.password {background:transparent; z-index:-1; position:absolute; left:0px; border:0px; visibility:hidden}
+</style>
+</head>
+<body>
+
+<header id="header">
+	<h1>결제진행</h1>
+	<button type="button" class="btn_cls"><i class="ico_com ico_cls">창닫기</i></button>
+</header>
+
+<div id="ct">
+	<div class="bank_slide">
+		<button type="button" onclick="" class="btn_bankadm">계좌/비밀번호 관리<i class="ico_com ico_set"></i></button>
+		<div class="swiper-container">
+			<ul class="swiper-wrapper">
+				<li class="swiper-slide">
+					<span class="ticket"><span class="flex"><img src="../../resources/images/bank/fullname_04.png" alt="KEB하나은행"><strong class="num">123********123</strong></span></span>
+				</li>
+				<!-- <li class="swiper-slide">
+					<span class="ticket"><span class="flex"><img src="../../resources/images/bank/fullname_16.png" alt="IBK기업은행"><strong class="num">123********123</strong></span></span>
+				</li>
+				<li class="swiper-slide">
+					<span class="ticket"><span class="flex"><img src="../../resources/images/bank/fullname_17.png" alt="우리은행"><strong class="num">456********456</strong></span></span>
+				</li>
+				<li class="swiper-slide">
+					<span class="ticket"><span class="flex"><img src="../../resources/images/bank/fullname_18.png" alt="CITYBANK"><strong class="num">456********456</strong></span></span>
+				</li>
+				<li class="swiper-slide">
+					<span class="ticket"><span class="flex"><img src="../../resources/images/bank/fullname_19.png" alt="NH투자증권"><strong class="num">456********456</strong></span></span>
+				</li>
+				<li class="swiper-slide">
+					<span class="ticket nobank"><span class="flex"><button type="button" onclick=""><i class="ico_com ico_plus"></i><br>은행계좌 추가</button></span></span>
+				</li> -->
+			</ul>
+			<!--
+				은행이미지
+				<img src="../../resources/images/bank/fullname_01.png" alt="NH농협은행">
+				<img src="../../resources/images/bank/fullname_02.png" alt="KB국민은행">
+				<img src="../../resources/images/bank/fullname_03.png" alt="신한은행">
+				<img src="../../resources/images/bank/fullname_04.png" alt="KEB하나은행">
+				<img src="../../resources/images/bank/fullname_05.png" alt="SC제일은행">
+				<img src="../../resources/images/bank/fullname_06.png" alt="대구은행">
+				<img src="../../resources/images/bank/fullname_07.png" alt="부산은행">
+				<img src="../../resources/images/bank/fullname_08.png" alt="경남은행">
+				<img src="../../resources/images/bank/fullname_09.png" alt="전북은행">
+				<img src="../../resources/images/bank/fullname_10.png" alt="광주은행">
+				<img src="../../resources/images/bank/fullname_11.png" alt="제주은행">
+				<img src="../../resources/images/bank/fullname_12.png" alt="KDB산업은행">
+				<img src="../../resources/images/bank/fullname_13.png" alt="우체국">
+				<img src="../../resources/images/bank/fullname_14.png" alt="신협">
+				<img src="../../resources/images/bank/fullname_15.png" alt="수협은행">
+				<img src="../../resources/images/bank/fullname_16.png" alt="IBK기업은행">
+				<img src="../../resources/images/bank/fullname_17.png" alt="우리은행">
+				<img src="../../resources/images/bank/fullname_18.png" alt="CITYBANK">
+				<img src="../../resources/images/bank/fullname_19.png" alt="NH투자증권">
+			-->
+			<div class="swiper-pagination"></div>
+			<div class="swiper-button-next">다음으로</div>
+			<div class="swiper-button-prev">이전으로</div>
+		</div>
+	</div>
+	<link rel="stylesheet" href="../../resources/css/swiper.min.css">
+	<script src="../../resources/js/swiper.min.js"></script>
+	<script>
+	$(function(){
+		var swiper = new Swiper('.swiper-container', {
+			pagination: '.swiper-pagination',
+			paginationClickable: true,
+			nextButton: '.swiper-button-next',
+			prevButton: '.swiper-button-prev'
+	    });
+	});
+    </script>
+    <!-- //계좌(slide) -->
+	<div class="ars_form mty">
+			<p class="pay">
+				<span>결제금액</span>
+				<strong><b class="fc_reg">1,000</b>원</strong>
+			</p>
+
+			<div class="pw_bg">
+	            <section class="firstPw">
+	                <span class="input_mark pay_input" data-passwd="payPwd">
+	                	<input type="password" readonly="readonly" class="tc password nppfs-npv ls focus" style="height: 14rem; background-color: rgb(255, 204, 0); color: rgb(0, 0, 0);" npkencrypt="on" data-keypad-type="num" data-keypad-theme="settle_keypad" maxlength="6" name="payPwd" id="payPwd" data-keypad-next="__hide__" size="6" value="" nppfs-keypad-uuid="nppfs-keypad-payPwd" data-input-useyn-type="toggle" data-keypad-useyn-input="__KU_38a16ea27b0b" nppfs-readonly="true">
+						<span class="mark"><i id="pwd_01" class="on"></i><i id="pwd_02"></i><i id="pwd_03"></i><i id="pwd_04"></i><i id="pwd_05"></i><i id="pwd_06"></i></span>
+	                </span>
+	            </section>
+				<p class="txt_cm_cau">결제 비밀번호 6자리 입력</p>
+			</div>
+			<p class="error fc_reg tc" style="display:block;"></p>
+
+			<ul class="brb0">
+				<li class="tax">
+					<span class="control">
+						<span class="checkbox ty">
+							<input type="checkbox" name="tax" id="tax" checked="checked"><label for="tax" class="on">현금영수증 : <span id="csrcRegNo_text">01035075520</span></label>
+						</span>
+						<button type="button" class="btn_taxchg">변경</button>
+					</span>
+					<!-- 개인소득공제용 -->
+					<div class="skipbx" style="margin-bottom: 5px;">
+						<select id="issPurpsDivCd" name="issPurpsDivCd">
+							<option value="0" selected="">개인소득공제용</option>
+							<option value="1">지출증빙용</option>
+						</select>
+						<div id="tax0" class="row taxbx" style="display: block;">
+							<span class="input"><span class="checkbox ty3"><input type="radio" name="private" id="private1" checked="">
+							<label for="private1" class="on"></label></span>
+								<input data-type="tax_text" data-isspurpsdivcd="0" data-csrcregnodivcd="4" type="tel" name="tax0_1" id="tax0_1" placeholder="휴대폰번호(-없이 입력)" maxlength="11" value="01035075520">
+								<button type="button" onclick="" class="btn_del"><i class="ico_com ico_del3"></i></button>
+							</span>
+							<span class="input"><span class="checkbox ty3"><input type="radio" name="private" id="private2">
+							<label for="private2" class=""></label></span>
+								<input data-type="tax_text" data-isspurpsdivcd="0" data-csrcregnodivcd="1" type="tel" name="tax0_2" id="tax0_2" placeholder="현금영수증 카드번호 입력" maxlength="" value="">
+								<button type="button" onclick="" class="btn_del"><i class="ico_com ico_del3"></i></button>
+							</span>
+						</div>
+						<div id="tax1" class="row taxbx" style="display: none;">
+							<span class="input"><span class="checkbox ty3"><input type="radio" name="report" id="report1">
+							<label for="report1" class=""></label></span>
+								<input data-type="tax_text" data-isspurpsdivcd="1" data-csrcregnodivcd="3" type="tel" name="tax1_1" id="tax1_1" placeholder="사업자번호 입력(-없이 입력)" maxlength="10" value="">
+								<button type="button" onclick="" class="btn_del"><i class="ico_com ico_del3"></i></button>
+							</span>
+							<span class="input"><span class="checkbox ty3"><input type="radio" name="report" id="report2">
+							<label for="report2" class=""></label></span>
+								<input data-type="tax_text" data-isspurpsdivcd="1" data-csrcregnodivcd="1" type="tel" name="tax1_2" id="tax1_2" placeholder="현금영수증 카드번호 입력" maxlength="" value="">
+								<button type="button" onclick="" class="btn_del"><i class="ico_com ico_del3"></i></button>
+							</span>
+						</div>
+						<div class="btn_save"><button type="button" onclick="cashReg();" class="btn_x btn_type2">저장</button></div>
+					</div>
+					<!-- //개인소득공제용 -->
+				</li>
+			</ul>
+			<script type="text/javascript">
+				$('[data-type="tax_text"]').keyup(function(){
+
+					$(this).val($(this).val().replace(/[^0-9]/g,""));
+
+					var $selectObj = $(this);
+
+					$('[data-type="tax_text"]').each(function() {
+						if ($selectObj.attr("id") == $(this).attr("id")) {
+							$(this).parent().find('input[type=radio]').attr("checked", true);
+							$(this).parent().find('label').addClass('on');
+						} else {
+							$(this).parent().find('input[type=radio]').attr("checked", false);
+							$(this).parent().find('label').removeClass('on');
+							$(this).val("");
+						}
+					});
+				});
+
+				function cashReg() {
+					var _issPurpsDivCd;
+					var _csrcRegNo;
+					var _csrcRegNoDivCd;
+
+					$('input[data-type=tax_text]').each(function(){
+						if($(this).val()){
+							_issPurpsDivCd = $(this).attr('data-issPurpsDivCd');
+							_csrcRegNo = $(this).val();
+							_csrcRegNoDivCd = $(this).attr('data-csrcRegNoDivCd');
+							return;
+						}
+					});
+
+					//현금영수증 저장
+					$.ajax({
+						type: "post",
+						url: "/ajax/std/csrc/reg",
+						dataType : "json",
+						data: {
+							issPurpsDivCd : _issPurpsDivCd
+							,csrcRegNoDivCd : _csrcRegNoDivCd
+							,csrcRegNo : _csrcRegNo
+						},
+						success:function(data){
+
+							var statCd = data.outStatCd;
+							var rsltCd = data.outRsltCd;
+							var rsltMsg = data.outRsltMsg;
+
+							if (statCd == "0021") {
+								if (!_csrcRegNo) {
+									$("#csrcRegNo_text").text("없음");
+									$("#tax").attr("checked", false);
+									$('label[for=tax]').removeClass('on');
+								} else {
+									$("#csrcRegNo_text").text(_csrcRegNo);
+									$("#tax").attr("checked", true);
+									$('label[for=tax]').addClass('on');
+								}
+							} else if (rsltCd =="session") {
+								$("#frm").attr('action','/ui/view/legacy/error/session').submit();
+
+							} else {
+								alert(rsltMsg);
+							}
+						},
+						error: function(e) {
+							npVCtrl.resetKeypad("payPwd");
+							alert("서비스 오류가 발생되었습니다.\n다시 시도 하십시오.");
+							return false;
+						}
+					});
+				}
+
+				// 현금영수증 컨트롤
+				$(function(){
+					var btn = $('.btn_taxchg');
+					var save = $('.btn_save button');
+					var pw = $('.pw input');
+					btn.on('click', function(){
+						//보안키패드 숨김
+						npVCtrl.hideKeypad("payPwd");
+						$('.skipbx').show();
+					});
+					save.on('click', function(){
+						$('.skipbx').removeAttr('style');
+					});
+					pw.on('focus', function(){
+						$('.skipbx').removeAttr('style');
+					});
+
+					$("select").change(function () {
+						var str = "";
+						$( "select option:selected" ).each(function() {
+							str += $( this ).index();
+						});
+						$('.row').hide();
+						$('#tax'+str).show();
+						$('[data-type="tax_text"]').each(function(){
+							if($(this).val()){
+								$(this).focus();
+							}
+						});
+					});
+
+					var csrcRegNo = '01035075520';
+
+					if(!csrcRegNo){
+						$("#csrcRegNo_text").text("없음");
+						$("#tax").attr("checked", false);
+						$("#tax").parent().find('label').removeClass('on');
+					}else{
+						var cashReceiptCheckedYn = 'true';
+															if(cashReceiptCheckedYn == 'true'){
+							$("#tax").attr("checked", true);
+							$("#tax").parent().find('label').addClass('on');
+						}else{
+							$("#tax").attr("checked", false);
+							$("#tax").parent().find('label').removeClass('on');
+						}
+					}
+
+					var str = "";
+					$( "select option:selected" ).each(function() {
+						str += $( this ).index();
+					});
+					$('.row').hide();
+					$('#tax'+str).show();
+
+					$('[data-type="tax_text"]').each(function(){
+						if($(this).val()){
+							$(this).focus();
+						}
+					});
+
+					$("#tax").on('change', function(){
+						if($("#csrcRegNo_text").text() == "없음"){
+							$("#tax").attr("checked", false);
+							$("#tax").parent().find('label').removeClass('on');
+
+							npVCtrl.hideKeypad("payPwd");
+							$('.skipbx').show();
+						}
+					});
+				});
+			</script>
+		</div>
+	<script>
+	// 현금영수증 컨트롤
+	$(function(){
+		var btn = $('.btn_taxchg');
+		var save = $('.btn_save button');
+		var pw = $('.pw input');
+		btn.on('click', function(){
+			$('.skipbx').show();
+			$('.skipbx .input:first-child').addClass('focus');
+			$('.skipbx .input:first-child input').focus();
+		});
+		save.on('click', function(){
+			$('.skipbx').removeAttr('style');
+		});
+		pw.on('focus', function(){
+			$('.skipbx').removeAttr('style');
+		});
+		$("select").change(function () {
+			var str = "";
+			$( "select option:selected" ).each(function() {
+				str += $( this ).index();
+			});
+			$('.row').hide();
+			$('#tax'+str).show();
+			$('#tax'+str).show().find('.input:first-child input').focus();
+		});
+	});
+	</script>
+	<!-- //form -->
+	<div class="btn_cm_btm mty"><button type="button" onclick="findPwdConfirm('pwd');"><u>비밀번호 초기화</u></button></div>
+</div>
+<!-- //content -->
+
+</body>
+</html>

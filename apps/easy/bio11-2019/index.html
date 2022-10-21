@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>간편결제(바이오일레븐) 퍼블리싱 안내</title>
+<link rel="stylesheet" href="resources/fonts/notosanskr/notosanskr.css">
+
+<style>
+	html, body { width: 100%; height: 100%; }
+	body { margin: 0; padding: 0; background-color: #fff; font-family: 'Noto Sans KR', 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; font-size: 12px; line-height: 1.4; letter-spacing: -0.03em; color: #333; }
+	header { margin: 0; padding: 20px 20px; border-bottom: 2px solid  #1275d6; }
+	header h1 { margin: 0 0 10px; font-size: 24px; color: #1275d6; }
+	header p { margin: 0; line-height: 1.4; }
+	.main { position: relative; padding: 0 20px 20px; }
+	h2 { margin: 30px 0 10px; font-size: 18px; }
+	small { font-size: 80% !important; }
+	ul { margin: 0; padding-left: 1.667em; list-style: disc; }
+	ul ul { margin-top: .333em; list-style: circle; }
+	li { margin-top: .333em; }
+	ul li:first-child { margin-top: 0; }
+	a { color: #5e8cc0; }
+	a, a:hover, a:active, a:focus { text-decoration: underline; }
+	.table-responsive { width: 100%; overflow-x: auto; border: 1px solid #ddd; }
+	.table { margin: 0; min-width: 550px;  border-collapse: collapse; width: 100%; font-size: 12px; border: 0; }
+	.table th, .table td {  padding: 5px 10px; height: auto; border: 1px solid #ddd; }
+	.table th { background: #f3f4f8; color: #222; font-weight: 500; text-align: center; }
+	.table tr:hover { background-color: #f3f4f8; }
+	.table tr.highlight:hover { background-color: #fff399; }
+	.table tr.light:hover { background-color: #dbedfb; }
+	.table tr.wait { background-color: #f3f3f3; color: #777; }
+	.table tr.wait:hover { background-color: #eee; color: #777; }
+	.table .date, .table .status { text-align: center; }
+	.well { padding: 20px; border: 2px solid #ddd; }
+	.highlight { background: #ff9; }
+	.midlight { background: #ff9; }
+	.light { background: #dbf5ff; }
+	.del { text-decoration: line-through; }
+	code { padding: 2px 4px; background-color: #f9f2f4; font-size: 96%; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; color: #c7254e; }
+	.text-danger { color: #dc3545; }
+	.text-success { color: #28a745; }
+	.text-center { text-align: center; }
+</style>
+</head>
+
+<body>
+<header>
+	<h1>간편결제(바이오일레븐) 웹 결제창 퍼블리싱 안내</h1>
+	<p>최종 수정일 : 2019-11-19</p>
+</header>
+
+<div class="main">
+	<h2>PAGE</h2>
+	<div class="table-responsive">
+		<table class="table" id="pageTable">
+			<colgroup>
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 15%">
+				<col style="width: 15%">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>구분</th>
+					<th>프로젝트</th>
+					<th>화면명</th>
+					<th>파일</th>
+					<th>작업 구분</th>
+					<th>날짜</th>
+					<th>상태</th>
+					<th>비고</th>
+				</tr>
+				<tr>
+					<td rowspan="12">모바일<br>
+						(mobile)</td>
+					<td rowspan="2">어카운트인포</td>
+					<td>계좌입력 + 인증 수단 선택</td>
+					<td><a href="mobile/accountInfoRegisterAccount.html" target="_blank">accountInfoRegisterAccount</a></td>
+					<td class="text-center">추가</td>
+					<td class="date">2019-10-22</td>
+					<td class="status">완료</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>전자서명 진행 중</td>
+					<td><a href="mobile/accountInfoAuth.html" target="_blank">accountInfoAuth</a></td>
+					<td class="text-center">추가</td>
+					<td class="date">2019-10-22</td>
+					<td class="status">완료</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr class="light">
+					<td rowspan="6">샌드박스</td>
+					<td>약관동의</td>
+					<td><a href="mobile/agreement.html" target="_blank">agreement</a></td>
+					<td class="text-center">수정</td>
+					<td class="date">2019-11-19</td>
+					<td class="status">완료</td>
+					<td><ul>
+						<li>2019-08-12 : 약관명 수정, SMS출금동의 서비스 이용약관 추가</li>
+						<li>2019-09-02 : '전체 동의, 확인' 버튼 분리, 약관 사이즈 목록 축소 (체크박스 전체 선택, 버튼 활성 코딩 생략)</li>
+						<li class="text-success">2019-11-19 : 필수, 선택 표시 추가</li>
+					</ul></td>
+				</tr>
+				<tr class="light">
+					<td>계좌입력</td>
+					<td><a href="mobile/smsRegisterAccount.html" target="_blank">smsRegisterAccount</a></td>
+					<td class="text-center">추가</td>
+					<td class="date">2019-11-19</td>
+					<td class="status">완료</td>
+					<td><ul>
+						<li>2019-08-12 : 페이지 추가</li>
+						<li>2019-08-16 : 안내문 변경</li>
+						<li>2019-09-02 : 하단 버튼명 변경</li>
+						<li class="text-success">2019-11-19 : 안내문 변경(금융당국이 → 금융위원회가)</li>
+					</ul></td>
+				</tr>
+				<tr>
+					<td> 본인인증 + 출금동의</td>
+					<td><a href="mobile/smsSelfAuth.html" target="_blank">smsSelfAuth</a></td>
+					<td class="text-center">추가</td>
+					<td class="date">2019-09-03</td>
+					<td class="status">완료</td>
+					<td><ul>
+						<li>2019-08-12 : 페이지 추가</li>
+						<li>2019-08-16 : 안내문 변경</li>
+						<li>2019-09-03 : 안내문 목록화</li>
+					</ul></td>
+				</tr>
+				<tr>
+					<td>출금동의 확인</td>
+					<td><a href="mobile/smsSelfAuthConfirm.html" target="_blank">smsSelfAuthConfirm</a></td>
+					<td class="text-center">추가</td>
+					<td class="date">2019-09-04</td>
+					<td class="status">완료</td>
+					<td><ul>
+						<li>2019-08-12 : 페이지 추가</li>
+						<li>2019-08-16 : 항목명 외 변경</li>
+						<li>2019-09-03 : 휴대폰번호, 생년월일 마스킹 추가</li>
+						<li>2019-09-04 : 마스킹 제거, 항목값 모두 노출</li>
+					</ul></td>
+				</tr>
+				<tr>
+					<td>ARS인증</td>
+					<td><a href="mobile/smsArsAuth.html" target="_blank">smsArsAuth</a></td>
+					<td class="text-center">추가</td>
+					<td class="date">2019-09-04</td>
+					<td class="status">완료</td>
+					<td><ul>
+						<li>2019-08-16 : 페이지 추가</li>
+						<li>2019-08-16 : 안내문 변경</li>
+						<li>2019-09-03 : 안내문 목록화</li>
+						<li>2019-09-04 : 기획 v0.8 반영</li>
+					</ul></td>
+				</tr>
+				<tr class="del">
+					<td> ARS인증 완료</td>
+					<td><a href="mobile/smsArsAuthComplete.html" target="_blank">smsArsAuthComplete</a></td>
+					<td class="text-center">추가</td>
+					<td class="date">2019-09-04</td>
+					<td class="status">완료</td>
+					<td><ul>
+						<li>2019-09-02 : 페이지 추가</li>
+						<li>2019-09-03 : 안내문 목록화</li>
+						<li>2019-09-04 : 페이지 사용 안함</li>
+					</ul></td>
+				</tr>
+				<tr class="wait">
+					<td rowspan="4">AS-IS</td>
+					<td>본인인증</td>
+					<td><a href="mobile/selfAuth.html" target="_blank">selfAuth</a></td>
+					<td class="text-center">유지(참고용)</td>
+					<td class="date">2019-08-12</td>
+					<td class="status">-</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr class="wait del">
+					<td>계좌입력</td>
+					<td><a href="mobile/registerAccount.html" target="_blank">registerAccount</a></td>
+					<td class="text-center">유지(참고용)</td>
+					<td class="date">2019-08-12</td>
+					<td class="status">-</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr class="wait">
+					<td>SMS인증</td>
+					<td><a href="mobile/smsAuth.html" target="_blank">smsAuth</a></td>
+					<td class="text-center">유지(참고용)</td>
+					<td class="date">2019-08-12</td>
+					<td class="status">-</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr class="wait">
+					<td>ARS인증</td>
+					<td><a href="mobile/arsAuth.html" target="_blank">arsAuth</a></td>
+					<td class="text-center">유지(참고용)</td>
+					<td class="date">2019-08-12</td>
+					<td class="status">-</td>
+					<td>&nbsp;</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="light">
+					<td rowspan="10">PC<br>
+						(pc)</td>
+					<td rowspan="6">샌드박스</td>
+					<td>약관동의</td>
+					<td><a href="pc/agreement.html" target="_blank">agreement</a></td>
+					<td class="text-center">수정</td>
+					<td class="date">2019-11-19</td>
+					<td class="status">검토요청</td>
+					<td><ul>
+						<li>2019-08-12 : 약관명 수정, SMS출금동의 서비스 이용약관 추가</li>
+						<li>2019-09-02 : '전체 동의, 확인' 버튼 분리, 약관 사이즈 목록 축소 (체크박스 전체 선택, 버튼 활성 코딩 생략)</li>
+						<li class="text-success">2019-11-19 : 필수, 선택 표시 추가</li>
+					</ul></td>
+				</tr>
+				<tr class="light">
+					<td>계좌입력</td>
+					<td><a href="pc/smsRegisterAccount.html" target="_blank">smsRegisterAccount</a></td>
+					<td class="text-center">추가</td>
+					<td class="date">2019-11-19</td>
+					<td class="status">검토요청</td>
+					<td><ul>
+						<li>2019-08-12 : 페이지 추가</li>
+						<li>2019-08-16 : 안내문 변경</li>
+						<li>2019-09-02 : 하단 버튼명 변경</li>
+						<li class="text-success">2019-11-19 : 안내문 변경(금융당국이 → 금융위원회가)</li>
+					</ul></td>
+				</tr>
+				<tr>
+					<td>본인인증 + 출금동의</td>
+					<td><a href="pc/smsSelfAuth.html" target="_blank">smsSelfAuth</a></td>
+					<td class="text-center">추가</td>
+					<td class="date">2019-09-03</td>
+					<td class="status">완료</td>
+					<td><ul>
+						<li>2019-08-12 : 페이지 추가</li>
+						<li>2019-08-16 : 안내문 변경</li>
+						<li>2019-09-03 : 안내문 목록화</li>
+					</ul></td>
+				</tr>
+				<tr>
+					<td> 출금동의 확인</td>
+					<td><a href="pc/smsSelfAuthConfirm.html" target="_blank">smsSelfAuthConfirm</a></td>
+					<td class="text-center">추가</td>
+					<td class="date">2019-09-04</td>
+					<td class="status">완료</td>
+					<td><ul>
+						<li>2019-08-12 : 페이지 추가</li>
+						<li>2019-08-16 : 항목명 외 변경</li>
+						<li>2019-09-03 : 휴대폰번호, 생년월일 마스킹 추가</li>
+						<li>2019-09-04 : 마스킹 제거, 항목값 모두 노출</li>
+					</ul></td>
+				</tr>
+				<tr>
+					<td>ARS인증</td>
+					<td><a href="pc/smsArsAuth.html" target="_blank">smsArsAuth</a></td>
+					<td class="text-center">추가</td>
+					<td class="date">2019-09-04</td>
+					<td class="status">완료</td>
+					<td><ul>
+						<li>2019-08-16 : 페이지 추가</li>
+						<li>2019-09-03 : 안내문 목록화</li>
+						<li>2019-09-04 : 기획 v0.8 반영</li>
+					</ul></td>
+				</tr>
+				<tr class="del">
+					<td>ARS인증 완료</td>
+					<td><a href="pc/smsArsAuthComplete.html" target="_blank">smsArsAuthComplete</a></td>
+					<td class="text-center">추가</td>
+					<td class="date">2019-09-04</td>
+					<td class="status">완료</td>
+					<td><ul>
+						<li>2019-09-02 : 페이지 추가</li>
+						<li>2019-09-03 : 안내문 목록화</li>
+						<li>2019-09-04 : 페이지 사용 안함</li>
+					</ul></td>
+				</tr>
+				<tr class="wait">
+					<td rowspan="4">AS-IS</td>
+					<td>본인인증</td>
+					<td><a href="pc/selfAuth.html" target="_blank">selfAuth</a></td>
+					<td class="text-center">유지(참고용)</td>
+					<td class="date">2019-08-12</td>
+					<td class="status">-</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr class="wait">
+					<td>계좌입력</td>
+					<td><a href="mobile/registerAccount.html" target="_blank">registerAccount</a></td>
+					<td class="text-center">유지(참고용)</td>
+					<td class="date">2019-08-12</td>
+					<td class="status">-</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr class="wait">
+					<td>SMS인증</td>
+					<td><a href="mobile/smsAuth.html" target="_blank">smsAuth</a></td>
+					<td class="text-center">유지(참고용)</td>
+					<td class="date">2019-08-12</td>
+					<td class="status">-</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr class="wait">
+					<td>ARS인증</td>
+					<td><a href="mobile/arsAuth.html" target="_blank">arsAuth</a></td>
+					<td class="text-center">유지(참고용)</td>
+					<td class="date">2019-08-12</td>
+					<td class="status">-</td>
+					<td>&nbsp;</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<h2>MEMO</h2>
+	<div class="well">
+		<ul>
+			<li>PC, 모바일 버전</li>
+			<li>브라우저 지원 : 크롬, IE8 이상, ...</li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

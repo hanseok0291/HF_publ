@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>010가상계좌</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<!-- favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="../../images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="../../images/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="../../images/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../../images/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="../../images/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../../images/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="../../images/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="../../images/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="../../images/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="../../images/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../../images/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon/favicon-16x16.png">
+<link rel="manifest" href="../../images/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="../../images/favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<!--// favicon -->
+
+<link rel="stylesheet" href="../../css/owl.carousel.min.css">
+<link rel="stylesheet" href="../../css/style_new.css?v=220425">
+
+<!--[if lt IE 9]>
+<script type="text/javascript" src="../../js/html5shiv.js"></script>
+<script type="text/javascript" src="../../js/respond.min.js"></script>
+<![endif]-->
+<script src="../../js/jquery-1.8.3.min.js"></script>
+<script src="../../js/jquery.placeholder.min.js"></script>
+<script src="../../js/owl.carousel.min.js"></script>
+<script src="../../js/polyfill.js" defer="defer"></script>
+<script src="../../js/design.js?v=220421" defer="defer"></script>
+<script src="../../js/commonmsg.js"></script>
+<script src="../../js/commonutil.js"></script>
+</head>
+<body>
+<!-- form -->
+<form class="main_form" action="javascript: void(0);" autocomplete="off">
+	<!-- wrap -->
+	<div id="wrap">
+		<!-- header -->
+		<div id="header">
+			<div class="container container-new">
+				<h1 class="brand-name"><span class="my-logo"><img src="../../images/logo.png?ver=20201103" class="logo" alt="010가상계좌"></span></h1>
+				<!-- <button type="button" id="closeWindow" class="btn-close"><i class="icon-times">창닫기</i></button> -->
+				<button type="button" onclick="$.promptMessage('', '<span>결제</span>를 취소하시겠습니까?', $('#commonPrompt'), $('#promptOk'), 'modalClose()');" class="btn-close"><i class="icon-times">창닫기</i></button>
+			</div>
+		</div>
+		<!-- //header -->
+
+		<!-- content -->
+		<div id="content">
+			<!-- container -->
+			<div class="container container-new">
+				<!-- headline -->
+				<div class="headline">
+					<strong>내 휴대폰 번호가<br>계좌번호로!</strong>
+					<p>
+						<span>주문하신 상품의</span>
+						<span class="headLineSub"><strong>결제대금 입금</strong>을 위해</span>
+						<span class="headLineSub"><strong class="text-danger text-bold">케이뱅크 가상계좌</strong>를 생성합니다</span>
+					</p>
+				</div>
+				<!-- //headline -->
+
+				<!-- number-area -->
+				<div class="number-area">
+					<!-- number-container -->
+					<div class="number-container">
+						<div class="save">
+							<span>내 번호 기억하기</span>
+							<!-- 휴대폰 번호 저장 스위치 -->
+							<label class="switch-button"> <input type="checkbox"/> <span class="onoff-switch"></span> </label>
+							<!-- //휴대폰 번호 저장 스위치 -->
+						</div>
+						<div class="input fix-010">
+							<span class="front">010-</span>
+							<input type="tel" maxlength="8" placeholder="1234-5678" id="numberInput" class="input-text-lg" autofocus>
+							<!-- <button type="button" class="btn btn-secondary btn-sm" disabled>인증번호 발송</button> 기본 -->
+							<!-- <button type="button" class="btn btn-secondary btn-sm">인증번호 재발송</button> --> <!-- 인증번호 발송 후 -->
+						</div>
+
+					</div>
+					<!-- //number-container -->
+				</div>
+				<!-- //number-area -->
+				<!-- btn area -->
+				<div class="btn-wrap">
+					<button type="button" id="terms2" class="btn-modal btn-auth" onclick="openModal('myModal1')" data-step="step1" disabled>휴대폰 번호 인증</button>
+				</div>
+				<!-- //btn area -->
+			</div>
+			<!-- //container -->
+		</div>
+		<!-- //content -->
+		<!-- bottom area -->
+		<div class="bottom-area bot0">
+			<div class="container">
+				<ul class="cs-area">
+					<li><img src="../../images/logo-010pay.png" class="logo" alt="010PAY"> 고객센터</li>
+					<li><a href="tel:1600-5220">1600 - 5220</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- //bottom area -->
+	</div>
+	<!-- //wrap -->
+
+<!-- modal -->
+<div id="myModal1" class="modal">
+	<!-- modal-wrap -->
+    <div class="modal-wrap step1">
+        <div class="modal-container modal-con1">
+        <!-- <button id="cModal" class="close" onclick="closeModal('myModal1')"></button> -->
+          <div class="section">
+			<button type="button" id="cModal" class="btn-close" onclick="closeModal('myModal1')"><i class="icon-times">창닫기</i></button>
+            <div class="join-agree check-wrap">
+              <div class="agree-all check-wrap-tit">
+                <span class="checkbox">
+                  <input type="checkbox" name="agreeAll" id="agreeAll_01">
+                  <label for="agreeAll_01">이용약관 전체동의</label>
+                </span>
+              </div>
+              <ul class="check-list check-wrap-list">
+                <li>					
+                  <span class="checkbox child">
+                    <input type="checkbox" name="agree_01" id="agree_01_01">
+                    <label for="agree_01_01">(필수) 서비스 이용약관</label>
+                  </span>
+				  <button type="button" class="info-change info-chg ico-arrow" data-step="terms1"></button>
+                  <!-- myModalSub -->
+                  <div id="myModalSub" class="modal-sub">
+                  </div>
+                  <!-- //myModalSub -->
+                </li>
+                <li>
+                  <span class="checkbox child">
+                    <input type="checkbox" name="agree_01" id="agree_01_03">
+                    <label for="agree_01_03">(필수) 전자금융거래 이용약관</label>
+                  </span>
+				  <button type="button" class="info-change info-chg ico-arrow" data-step="terms1"></button>
+                  <!-- myModalSub -->
+                  <div id="myModalSub" class="modal-sub">
+                    asd
+                    <button id="cModal" class="close" onclick="closeModal('myModalSub')">&times;</button>
+                  </div>
+                  <!-- //myModalSub -->
+                </li>
+                <li>
+                  <span class="checkbox child">
+                    <input type="checkbox" name="agree_01" id="agree_01_02">
+                    <label for="agree_01_02">(필수) 개인정보 수집 · 이용동의</label>
+                  </span>
+				  <button type="button" class="info-change info-chg ico-arrow" data-step="terms1"></button>
+                  <!-- myModalSub -->
+                  <div id="myModalSub" class="modal-sub">
+                    asd
+                    <button id="cModal" class="close" onclick="closeModal('myModalSub')">&times;</button>
+                  </div>
+                  <!-- //myModalSub -->
+                </li>
+                <li>
+                  <span class="checkbox child">
+                    <input type="checkbox" name="agree_01" id="agree_01_04">
+                    <label for="agree_01_04">(필수) 개인정보 제 3자 제공 및 위탁</label>
+                  </span>
+				  <button type="button" class="info-change info-chg ico-arrow" data-step="terms1"></button>
+                  <!-- myModalSub -->
+                  <div id="myModalSub" class="modal-sub">
+                    asd
+                    <button id="cModal" class="close" onclick="closeModal('myModalSub')">&times;</button>
+                  </div>
+                  <!-- //myModalSub -->
+                </li>
+              </ul>
+				<div>
+					<button type="button" class="btn-round btn-modal btn-agree-next" disabled>다음</button>
+					<!-- <button type="button" class="btn-round btn-modal btn-agree-next" data-step="step2" onclick="openModal('myModalSubAuth')" disabled>다음</button> -->
+				</div>
+            </div>
+          </div>
+        </div>
+		<!-- //modal-container -->
+		<!--  -->
+        <div class="modal-container modal-con2">
+			<!-- <button id="cModal" class="close" onclick="closeModal('myModalSubAuth')"></button> -->
+			<div class="section">
+				<button type="button" id="cModal2" class="btn-close" onclick="closeModal('myModal1')"><i class="icon-times">창닫기</i></button>
+				<p class="title">인증번호 입력</p>
+				<ul class="form-type form-type-input">
+					<!-- 휴대폰 인증번호 입력 -->
+					<li>
+						<span class="input">
+							<input type="tel" name="cnum" id="cnum" maxlength="4" placeholder="4자리 숫자 입력" class="">
+							<span class="time" id="timer"><i class="icon icon-clock sr-only">유효시간</i> <em>03:00</em></span>
+						</span>
+						<!-- 입력시도 5회이하 불일치시 노출 -->
+						<p class="noti-msg type1">
+							확인 후 다시 입력해 주세요.
+						</p>
+						<!-- //입력시도 5회이하 불일치시 노출 -->
+						<!-- 입력시도 5회이상, 입력시간 초과할 경우 노출 -->
+						<p class="noti-msg type2">
+							&#91;재발송&#93;을 눌러 다시 진행해 주세요
+						</p>
+						<!-- //입력시도 5회이상, 입력시간 초과할 경우 노출 -->
+					</li>
+					<!-- //휴대폰 인증번호 입력 -->
+				</ul>
+			</div>
+			<div class="noti-container">
+				<p>인증번호를 받지 못했나요?</p>
+				<button type="button" class="btn btn-secondary btn-sm">재발송</button> <!-- 인증번호 발송 후 -->
+			</div>
+		</div>
+		<!--  -->
+    </div>
+	<!-- //modal-wrap -->
+</div>
+<!-- //modal -->
+</form>
+<!-- //form -->
+
+<!-- 약관 상세 -->
+<div id="modal-terms1" class="modal modal-terms modal-slide modal-info">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<!-- modal body -->
+			<div class="modal-body">
+				<button type="button" class="btn btn-close">취소</button>
+
+				<div class="container container-new">
+					<div class="nav owl-carousel">
+						<div class="item">
+							<h2>서비스 이용약관</h2>
+						</div>
+						<div class="item">
+							<h2>전자금융거래 이용약관</h2>
+							<select class="select-sm">
+								<option value="">2020.06.30</option>
+								<option value="">2019.11.11</option>
+							</select>
+						</div>
+						<div class="item">
+							<h2>개인정보 수집 및 이용 동의</h2>
+						</div>
+						<div class="item">
+							<h2>개인정보 제3자 제공 및 위탁 동의 </h2>
+						</div>
+					</div>
+					<div class="terms scroll">
+						<h3>고유식별정보의 처리에 관한 사항 동의</h3>
+						<p>&nbsp;</p>
+						<p>에스케이티㈜ (이하 "본인확인기관")가 다날(이하 "회사")을 통해 제공하는 휴대폰 본인확인 서비스 관련하여 이용자로부터 수집한 고유식별정보를 이용하거나 타인에게 제공할 때에는 '정보통신망 이용촉진 및 정보보호 등에 관한 법률'(이하 "정보통신망법")에 따라 이용자의 동의를 얻어야 합니다.</p>
+						<p>&nbsp;</p>
+						<h4>제 1 조[고유식별정보의 처리 동의]</h4>
+						<p>"본인확인기관"은 정보통신망법 제23조의2 제2항에 따라 인터넷상에서 주민등록번호를 입력하지 않고도 본인임을 확인할 수 있는 휴대폰 본인확인서비스를 제공하기 위해 고유식별정보를 처리합니다.</p>
+						<p>&nbsp;</p>
+						<h4>제 2 조[고유식별정보의 제공 동의]</h4>
+						<p>"본인확인기관 지정 등에 관한 기준(방송통신위원회 고시)"에 따라 "회사"와 계약한 정보통신서비스 제공자의 연계서비스 및 중복가입확인을 위해 아래와 같이 본인의 고유식별정보를 '다른 본인확인기관'에 제공하는 것에 동의합니다.</p>
+						<p>&nbsp;</p>
+						<h4>[고유식별정보 제공 동의]</h4>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>제공자(본인확인기관)</th>
+									<th>제공 받는자(본인확인기관)</th>
+									<th>제공하는 항목</th>
+									<th>제공 목적</th>
+									<th>보유 및 이용기간</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>에스케이티㈜</td>
+									<td>NICE신용평가정보(주)</td>
+									<td>주민등록번호(내국인), 외국인등록번호(국내거주외국인)</td>
+									<td>CI(연계정보), DI(중복가입확인정보)의 생성 및 전달</td>
+									<td>CI(연계정보), DI(중복가입확인정보) 생성 후 즉시 폐기</td>
+								</tr>
+							</tbody>
+						</table>
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+						<h3>고유식별정보의 처리에 관한 사항 동의</h3>
+						<p>&nbsp;</p>
+						<p>(주)케이티 (이하 "본인확인기관")가 다날(이하 "회사")을 통해 제공하는 휴대폰 본인확인 서비스 관련하여 이용자로부터 수집한 고유식별정보를 이용하거나 타인에게 제공할 때에는 '정보통신망 이용촉진 및 정보보호 등에 관한 법률'(이하 "정보통신망법")에 따라 이용자의 동의를 얻어야 합니다.</p>
+						<p>&nbsp;</p>
+						<h4>제 1 조[고유식별정보의 처리 동의]</h4>
+						<p>"본인확인기관"은 정보통신망법 제23조의2 제2항에 따라 인터넷상에서 주민등록번호를 입력하지 않고도 본인임을 확인할 수 있는 휴대폰 본인확인서비스를 제공하기 위해 고유식별정보를 처리합니다.</p>
+						<p>&nbsp;</p>
+						<h4>제 2 조[고유식별정보의 제공 동의]</h4>
+						<p>"본인확인기관 지정 등에 관한 기준(방송통신위원회 고시)"에 따라 "회사"와 계약한 정보통신서비스 제공자의 연계서비스 및 중복가입확인을 위해 아래와 같이 본인의 고유식별정보를 '다른 본인확인기관'에 제공하는 것에 동의합니다.</p>
+						<p>&nbsp;</p>
+						<h4>[고유식별정보 제공 동의]</h4>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>제공자(본인확인기관)</th>
+									<th>제공 받는자(본인확인기관)</th>
+									<th>제공하는 항목</th>
+									<th>제공 목적</th>
+									<th>보유 및 이용기간</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>(주)케이티</td>
+									<td>코리아크레딧뷰로㈜, 서울신용평가정보㈜</td>
+									<td>주민등록번호(내국인), 외국인등록번호(국내거주외국인)</td>
+									<td>CI(연계정보), DI(중복가입확인정보)의 생성 및 전달</td>
+									<td>CI(연계정보), DI(중복가입확인정보) 생성 후 즉시 폐기</td>
+								</tr>
+							</tbody>
+						</table>
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+						<h3>고유식별정보의 처리에 관한 사항 동의</h3>
+						<p>&nbsp;</p>
+						<p>㈜엘지유플러스 (이하 "본인확인기관")가 다날(이하 "회사")을 통해 제공하는 휴대폰 본인확인 서비스 관련하여 이용자로부터 수집한 고유식별정보를 이용하거나 타인에게 제공할 때에는 '정보통신망 이용촉진 및 정보보호 등에 관한 법률'(이하 "정보통신망법")에 따라 이용자의 동의를 얻어야 합니다.</p>
+						<p>&nbsp;</p>
+						<h4>제 1 조[고유식별정보의 처리 동의]</h4>
+						<p>"본인확인기관"은 정보통신망법 제23조의2 제2항에 따라 인터넷상에서 주민등록번호를 입력하지 않고도 본인임을 확인할 수 있는 휴대폰 본인확인서비스를 제공하기 위해 고유식별정보를 처리합니다.</p>
+						<p>&nbsp;</p>
+						<h4>제 2 조[고유식별정보의 제공 동의]</h4>
+						<p>"본인확인기관 지정 등에 관한 기준(방송통신위원회 고시)"에 따라 "회사"와 계약한 정보통신서비스 제공자의 연계서비스 및 중복가입확인을 위해 아래와 같이 본인의 고유식별정보를 '다른 본인확인기관'에 제공하는 것에 동의합니다.</p>
+						<p>&nbsp;</p>
+						<h4>[고유식별정보 제공 동의]</h4>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>제공자(본인확인기관)</th>
+									<th>제공 받는자(본인확인기관)</th>
+									<th>제공하는 항목</th>
+									<th>제공 목적</th>
+									<th>보유 및 이용기간</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>㈜엘지유플러스</td>
+									<td>서울신용평가정보(주),코리아크레딧뷰로(주)</td>
+									<td>주민등록번호(내국인), 외국인등록번호(국내거주외국인)</td>
+									<td>CI(연계정보), DI(중복가입확인정보)의 생성 및 전달</td>
+									<td>CI(연계정보), DI(중복가입확인정보) 생성 후 즉시 폐기</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<!-- //modal body -->
+
+			<!-- modal footer -->
+			<div class="modal-footer">
+				<button type="button" class="btn">확인</button>
+			</div>
+			<!-- //modal footer -->
+		</div>
+	</div>
+</div>
+<!-- //약관 상세 -->
+
+<!-- common alert -->
+<div id="commonAlert" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3 id="alertTitle"></h3>
+				<p id="alertContents"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" onclick="modalClose();" class="btn">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //common alert -->
+
+<!-- common prompt -->
+<div id="commonPrompt" class="modal modal-common">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3 id="promptTitle"></h3>
+				<div id="promptContents"></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" onclick="modalClose();" class="btn btn-cancel">취소</button>
+				<button type="button" onclick="btnBack();" class="btn btn-confirm">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //common prompt -->
+
+<!-- common alert -->
+<div id="commonAlert1" class="modal modal-alert">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3 id="alertTitle">개인정보 노출 주의</h3>
+				<p id="alertContents">
+					<span>
+						현재 공공장소나 PC방 등에서 이용하고 있다면
+						해당 기능을 해제하여 주세요.
+					</span>
+					고객님의 개인정보가 노출될 수 있습니다.
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" onclick="modalClose('commonAlert1');" class="btn">네, 확인했어요</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //common alert -->
+
+<!-- loading -->
+<div class="modal modal-loading">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="loading">
+					<div class="loading-bar"></div>
+					<div class="loading-bar"></div>
+					<div class="loading-bar"></div>
+					<div class="loading-bar"></div>
+				</div>
+				<span class="text">로딩 중</span>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //loading -->
+
+<script>
+// 뒤로가기, 새로고침 시 체크박스, 인풋 초기화
+$('form').each(function() {
+	this.reset();
+});
+
+$(document).ready(function() {
+	setTimeout(function() {
+		$("#numberInput").val('');
+		$("#numberInput").focus();
+	}, 100);
+});
+
+// 처음으로 버튼
+function btnBack() {
+	location.href = 'orderA.html';
+}
+
+$(function(){
+
+	$(document).on("keyup", ".fix-010 input", function() { 
+		$(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(^[0-9]{4})([0-9]+)?([0-9]{4})/,"$1-$2-$3").replace("--", "-") ); 
+	});
+	$(".input input[type='tel']").on('click', function (e) {
+		$(".btn-auth").show();
+	});
+	
+	// 글자수 체크 버튼 활성화
+	$(".fix-010 input").keyup(function(e) {
+		var content = $(this).val();
+		if (content.length > 7) {
+			$(".btn-auth").prop('disabled', false);
+			$(".btn-auth").addClass('sucess');
+		} else {
+			$(".btn-auth").prop('disabled', true);
+			$(".btn-auth").removeClass('sucess');
+		}
+	});
+
+	var keyCnt = 0;
+	$("#cnum").keyup(function(e) {
+		var content = $(this).val();
+		
+		if (content == '1234' && content.length > 3) {
+			location.href = 'step1-2.html';
+		} else if (content.length > 3) {
+			if (keyCnt > 4) {
+				$(".noti-msg.type1").hide();
+				$(".noti-msg.type2").show();
+			} else {
+				$(".noti-msg.type1").show();
+				$(".noti-msg.type2").hide();
+			}
+			keyCnt++;
+		} else {
+			$(".noti-msg").hide();
+		}
+		
+	});
+
+	// 체크박스 전체 선택
+	$(".join-agree").on("click", "#agreeAll_01", function () {
+		$(this).parents(".join-agree").find('input').prop("checked", $(this).is(":checked"));
+		$('.btn-agree-next').prop('disabled', function(i, v) { return !v; });
+	});
+
+	// 체크박스 개별 선택
+	$(".join-agree").on("click", ".check-wrap-list .checkbox input", function() {
+		if($('#agree_01_01').is(":checked") && $('#agree_01_02').is(":checked") && $('#agree_01_03').is(":checked") && $('#agree_01_04').is(":checked") == true){
+			$('#agreeAll_01').prop("checked", true);
+			$('.btn-agree-next').prop('disabled', function(i, v) { return !v; });
+		} else {
+			$('#agreeAll_01').prop("checked", false);
+			$('.btn-agree-next').prop('disabled', true);
+		}
+	});
+
+	// 번호 저장 토글
+	$(".switch-button input").on("click", function () {
+		if($(this).is(":checked") == true) {
+			$("#commonAlert1").show();
+		}
+	});
+	
+	$(".btn-modal").on("click", function() {
+		var step = $(this).data('step');
+		$("."+step).addClass('open');
+	});
+
+	// 이용약관 다음버튼
+	$(".btn-agree-next").on('click', function (e) {
+		$('.modal-con1').slideUp('fast');
+		$(".modal-con2").slideDown('fast');
+		$("#cnum").focus();
+	});
+
+	$("#cModal2").on('click', function (e) {
+		$('.modal-con1').show();
+		$(".modal-con2").hide();
+	});
+	
+});
+
+
+function openModal(mod_name) {
+	scrollOff();
+	var modal = document.getElementById(mod_name);
+	$('.modal-wrap').removeClass('open');
+	// Add open class to make visible and trigger animation	
+	modal.classList.add('open');
+}
+
+function closeModal(mod_name) {
+	scrollOn();
+	var modal = document.getElementById(mod_name);
+	// Remove open class to hide and trigger animation
+	modal.classList.remove('open');
+	$(this).children('.modal-wrap').removeClass('open');
+}
+
+
+
+</script>
+</body>
+</html>

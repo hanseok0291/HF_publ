@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link rel="stylesheet" href="../../css/common/css/common.css?dummy=20190730142537390">
+<link rel="stylesheet" href="../../css/common/css/site.css?dummy=20190730142537390">
+<script src="../../css/common/js/jquery-1.8.3.min.js?dummy=20190730142537390"></script> 
+<script src="../../css/common/js/webfont.js?dummy=20190730142537390"></script> 
+<script src="../../css/common/js/design.js?dummy=20190730142537390" defer="defer"></script> 
+<script src="../../css/common/js/dialog.js?dummy=20190730142537390" defer="defer"></script> 
+<script src="../../js/gtag/sbgtag-1.0.js?dummy=20190730142537390" ></script> 
+<script src="../../css/common/js/custom.js?dummy=20190730142537390" defer="defer"></script> 
+<script>
+	$(function(){
+		try{
+			var mid = $("input[name=PMid]").val();
+			if(mid){
+				SettleBank.init(mid);
+				SettleBank.gaTracker('/jsp/firm/viewCash/PCWeb/reg/cert.jsp');
+				SettleBankCSS.init(mid);
+			}
+		}catch(e){}
+	});
+</script> 
+<!--[if lt IE 9]>
+<script src="../css/common/js/html5shiv.js"></script>
+<link rel="stylesheet" href="../css/common/css/ie-down.css">
+<![endif]-->
+<title>간편결제</title>
+<script>
+	var agent = navigator.userAgent.toLocaleLowerCase();
+	var scCheckFlag = true;
+	var goNextPage = false;
+	$(function(){
+		$("#authType").val("sms");
+		setInterval(function(){
+			if (goNextPage){
+				$("#_method").val("phoneAuthCheck");
+				$("#frm").attr('action', '' + URL_PATH).submit();
+			}
+		}, 1000);
+		$('input[type=tel]').keyup(function(e){
+			var id = $(this).attr('id');
+			var len = $(this).attr("maxLength");
+			if (this.value != this.value.replace(/[^0-9]/g, '')){
+				this.value = this.value.replace(/[^0-9]/g, '');
+			} else {
+				if (this.value.length > len){
+					$(this).val(this.value.substring(0, len));
+				} else if ($('#' + id).val().length == len){
+					$(this).next('input').focus();
+				}
+			}
+		});
+		$('[data-type="number"]').keyup(function(){
+			if (this.value != this.value.replace(/[^0-9]/g, '')){
+				this.value = this.value.replace(/[^0-9]/g, '');
+				return;
+			}
+		});
+		$('[data-type="number1"]').keyup(function(){
+			if (this.value != this.value.replace(/[^1-8]/g, '')){
+				this.value = this.value.replace(/[^1-8]/g, '');
+				return;
+			}
+		});
+		$('[data-check="on"]').keyup(function(){
+			reqBtnCheck();
+		});
+		$('[data-focus="on"]').keyup(function(){
+			var group = $(this).attr("data-focus-group");
+			var step = $(this).attr("data-focus-step");
+			var length = $(this).attr("maxlength");
+			if ($(this).val().length == length){
+				$(this).parents().find('[data-focus-group="' + group + '"][data-focus-step="' + (Number(step) + 1) + '"]').focus();
+			}
+		});
+		$("#refreshBtn").click(function(){
+			refreshcatpcha1();
+		});
+		$("#speakerBtn").click(function(){
+			var d = new Date();
+			var agent = window.navigator.userAgent;
+			var ie = agent.indexOf("MSIE");
+			var ie8 = agent.indexOf("IE8");
+			var trident = agent.indexOf("Trident");
+			if (ie > 0){
+				var ver = getIEVersion("MSIE");
+				if (ver < 8){
+					document.getElementById("ifmAudioCaptcha").src = 'https://testpay.settlebank.co.kr:443/audio.wav';
+				} else if (ver == 8){
+					setTimeout(function(){
+						document.getElementById("audioSupport").innerHTML = "<object type=\"audio/x-wav\" data=\"https://testpay.settlebank.co.kr:443/audio.wav?var1=" + d.getTime() + "\" width=\"200\" height=\"40\">"
+							+ "<param name=\"src\" value=\"https://testpay.settlebank.co.kr:443/audio.wav?var1=" + d.getTime() + "\"/>"
+							+ "<param name=\"autoplay\" value=\"true\"/>"
+							+ "<param name=\"autostart\" value=\"true\"/>"
+							+ "<param name=\"controller\" value=\"false\"/>"
+							+ "</object>"
+					}, 200);
+				} else if (ver > 8){
+					setTimeout(function(){
+						document.getElementById("audioSupport").innerHTML = "오디오 <BGSOUND src='https://testpay.settlebank.co.kr:443/audio.wav?var1=" + d.getTime() + "' loop='1'>";
+					}, 200);
+				}
+			} else {
+				if (trident > 0){
+					setTimeout(function(){
+						document.getElementById("audioSupport").innerHTML = "오디오 <BGSOUND src='https://testpay.settlebank.co.kr:443/audio.wav?var1=" + d.getTime() + "' loop='1'>";
+					}, 200);
+				} else {
+					setTimeout(function(){
+						document.getElementById("audioSupport").innerHTML = "오디오 <audio controls autoplay src='https://testpay.settlebank.co.kr:443/audio.wav?var1=" + d.getTime() + "'></audio>";
+					}, 200);
+				}
+			}
+		});
+
+		function getIEVersion(ver){
+			var rv = -1; // Return value assumes failure.
+			var ua = navigator.userAgent;
+			var re = null;
+			if (ver == "MSIE"){
+				re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+			} else {
+				re = new RegExp(ver + "/([0-9]{1,}[\.0-9]{0,})");
+			}
+			if (re.exec(ua) != null){
+				rv = parseFloat(RegExp.$1);
+			}
+			return rv;
+		}
+
+		function refreshcatpcha1(){
+			$('#catpcha').html('<img src="/stickyCaptcha.png?rand=' + Math.random() + '" width="80%" style="height: 3.2rem;" class="temp"/>');
+		}
+		$(".ly_tel").click(function(){
+			$("#mvno_txt").text($(this).text().replace("(", "").replace(")", ""));
+			$("#mobileCo").val($(this).val());
+			$("#mvnoYn").val("Y");
+		});
+		$("#sel_mvno").click(function(){
+			if ($("#mvnoYn").val() != "Y"){
+				$(".tel_select").find("button").each(function(){
+					$(this).removeClass("selected");
+				});
+			}
+			if ($("#mvnoYn").val() == "N"){
+				$(".tel_select").find("button").each(function(){
+					$(this).removeClass("selected");
+				});
+				$(".tel_select").find($('[name=' + $("#mobileCo").val() + ']')).addClass("selected");
+			}
+		});
+		$(".tel_select").find("button").click(function(){
+			$(".tel_select").find("button").each(function(){
+				$(this).removeClass("selected");
+			});
+			$(this).addClass("selected");
+			if ($(this).val()){
+				$("#mvno_txt").text("알뜰폰");
+				$("#mvnoYn").val("N");
+				$("#mobileCo").val($(this).val());
+			}
+		});
+		//인증번호 요청 클릭
+		$("#auth_req").click(function(){
+			//비활성화일때 버튼방지
+			if ($(this).hasClass('off')) return false;
+			if (scCheckFlag){
+				//sms 인증
+				//인증번호 체크
+				if ($('#PUname').val() == null || '' == $('#PUname').val()){
+					alert("이름을 입력해주세요.");
+					return;
+				}
+				if ($('#PUname').val() == $('#PUname').attr("placeholder")){
+					alert("이름을 입력해주세요.");
+					return;
+				}
+				if ($('#PRrn').val() == null || $('#genderCheck').val() == null
+					|| $('#PRrn').val() == '' || $('#genderCheck').val() == ''){
+					alert("주민번호를 입력해주세요.");
+					return;
+				}
+				if ($('#PRrn').val() == $('#PRrn').attr("placeholder")){
+					alert("주민번호를 입력해주세요.");
+					return;
+				}
+				if ($("#PRrn").val().length < 6){
+					alert("주민번호 앞 6자리를 입력해주세요.");
+					return;
+				}
+				if ($('#mobileCo').val() == ''){
+					alert("통신사를 선택해 주세요.");
+					return;
+				}
+				if ($('#phoneNo').val() == null || '' == $('#phoneNo').val()){
+					alert("휴대폰번호를 입력해주세요.");
+					return;
+				}
+				if ($('#phoneNo').val() == $('#phoneNo').attr("placeholder")){
+					alert("휴대폰번호를 입력해주세요.");
+					return;
+				}
+				if ($("#authType").val() == 'sms'){
+					if ($("#answer").val() == ''){
+						alert("보안숫자를 입력하세요.");
+						return;
+					}
+					if ($('#answer').val() == $('#answer').attr("placeholder")){
+						alert("보안숫자를 입력하세요.");
+						return;
+					}
+					if ($('#answer').val() != null || '' != $('#answer').val()){
+						$.ajax({
+							type: "post",
+							url: "/api/ApiMultiAction.do?_method=captchaCheck",
+							dataType: "json",
+							data: {
+								answer: $('#answer').val()
+							},
+							success: function(data){
+								if (data.code == "0000"){
+									scCheckFlag = false;
+									setTimeout(
+										function(){
+											authCheck();
+										}, 300);
+									return;
+								} else if (data.code == "0031"){
+									alert("보안숫자가 잘못 입력되었습니다.", function(){
+										$("#answer").val("");
+										refreshcatpcha1();
+									});
+									return false;
+								} else if (data.code == "session"){
+									$("#_method").val("goErrorPage");
+									$("#frm").attr('action', '' + URL_PATH).submit();
+								} else {
+									alert(data.msg, function(){
+										refreshcatpcha1();
+										scCheckFlag = true;
+									});
+								}
+							},
+							error: function(e){
+								alert("서비스 오류가 발생되었습니다.\n다시 시도 하십시오.");
+							}
+						});
+					}
+				} else if ($("#authType").val() == 'app'){ //간편본인인증
+					authCheckByApp();
+				}
+			}
+		});
+
+		function authCheck(){
+			var temp = $("#genderCheck").val();
+			$("#juminNo").val($("#PRrn").val() + temp);
+			$.ajax({
+				type: "post",
+				url: "" + URL_PATH + "?_method=authCheck_rep",
+				dataType: "json",
+				data: {
+					juminNo: $("#juminNo").val(),
+					PUname: $("#PUname").val(),
+					PAuthGb: "ARS",
+					phoneNo: $("#phoneNo").val(),
+					mobileCo: $("#mobileCo").val(),
+					PTrNo: $("#PTrNo").val(),
+					mvnoYn: $("#mvnoYn").val(),
+					PRrn: $("#PRrn").val(),
+					payGb: $("#payGb").val(),
+					PCustId: $("#PCustId").val(),
+					PMid: $("#PMid").val(),
+					authType: $("#authType").val()
+				},
+				success: function(data){
+					if (data.code == "0000"){
+						$("#tid").val(data.msg);
+						goNextPage = true;
+						//확인완료체크하기
+					} else if (data.code == "session"){
+						$("#_method").val("goErrorPage");
+						$("#frm").attr('action', '' + URL_PATH).submit();
+					} else {
+						//초기화
+						if (data.msg == ""){
+							data.msg = "인증실패입니다. 이름,생년월일,휴대폰번호,성별,통신사를 확인후 다시 시도 바랍니다.";
+						}
+						alert(data.msg, function(){
+							scCheckFlag = true;
+						});
+						return;
+					}
+				},
+				error: function(e){
+					alert("서비스 오류가 발생되었습니다.\n다시 시도 하십시오.", function(){
+						scCheckFlag = true;
+						init("sms");
+					});
+					return;
+				}
+			});
+		}
+
+		function authCheckByApp(){
+			var temp = $("#genderCheck").val();
+			$("#juminNo").val($("#PRrn").val() + temp);
+			$.ajax({
+				type: "post",
+				url: "" + URL_PATH + "?_method=authCheck",
+				dataType: "json",
+				data: {
+					juminNo: $("#juminNo").val(),
+					PUname: $("#PUname").val(),
+					PAuthGb: "ARS",
+					phoneNo: $("#phoneNo").val(),
+					mobileCo: $("#mobileCo").val(),
+					phoneAuthNo: $("#phoneNo").val(),
+					PRrn: $("#PRrn").val(),
+					PTrNo: $("#PTrNo").val(),
+					mvnoYn: $("#mvnoYn").val(),
+					payGb: $("#payGb").val(),
+					PCustId: $("#PCustId").val(),
+					PMid: $("#PMid").val(),
+					authType: $("#authType").val()
+				},
+				success: function(data){
+					if (data.code == "0000"){
+						$("#tid").val(data.msg);
+						$("#PTrNo").val();
+						$("#_method").val("authCheckByAppView");
+						$("#frm").attr('action', '' + URL_PATH).submit();
+					} else if (data.code == "session"){
+
+						$("#_method").val("goErrorPage");
+						$("#frm").attr('action', '' + URL_PATH).submit();
+					} else {
+						if (data.msg == ""){
+							data.msg = "인증실패입니다. 이름,생년월일,휴대폰번호,성별,통신사를 확인후 다시 시도 바랍니다.";
+						}
+						alert(data.msg, function(){
+							scCheckFlag = true;
+						});
+					}
+				},
+				error: function(e){
+					alert("서비스 오류가 발생되었습니다.\n다시 시도 하십시오.", function(){
+						scCheckFlag = true;
+						init("app");
+					});
+					return;
+				}
+			});
+		}
+		//화면 초기 진입시 SKT 선택
+		$("#SKT").click();
+		//본인확인 APP 인증에서 진입
+		var smsData = '01';
+		if (smsData == "00"){
+			$("#PUname").val('');
+			$("#genderCheck").val('');
+			$("#PRrn").val('');
+			$("#phoneNo").val('');
+			var mobileCo = '';
+			$("#mobileCo").val(mobileCo);
+			if (mobileCo.indexOf("2") != -1){
+				$("#mvnoYn").val("Y");
+				$("#mvno_txt").text($("#" + mobileCo).text().replace("(", "").replace(")", ""));
+				$(".tel_select").find("button").each(function(){
+					$(this).removeClass("selected");
+				});
+				$("#MVNO").addClass("selected");
+				$(".ly_tel").each(function(){
+					if ($(this).attr("id") == mobileCo){
+						$(this).addClass("selected");
+					}
+				});
+			} else {
+				$("#mvnoYn").val("N");
+				$("#" + mobileCo).click();
+			}
+		}
+	});
+
+	function doLayer(id){
+		if ($("#mvnoYn").val() != "Y"){
+			$("#" + id).find("button").each(function(){
+				$(this).removeClass("selected");
+			});
+		}
+		layer_open(id);
+	}
+
+	function agreeCancelConfirm(){
+		confirm("인증을 취소하시겠습니까?", function(){
+			$("#_method").val("payCancel");
+			$("#frm").attr('action', '' + URL_PATH).submit();
+		});
+	}
+
+	function doSmsAction(type){
+		//nav 클릭 시 ie placeholder 문제
+		/* if(agent.indexOf("msie") != -1){
+		$('input').each(function(){
+		$(this).focus();
+		document.body.focus();
+		});
+		} */
+		$("#authType").val(type);
+		if (type == "app"){
+			$(".capcha").hide();
+			$(".btn_area2").addClass("v1");
+			$("#SKT2").hide();
+			//앱인증 시 SKT 알뜰폰 없음.
+			if ($('#mobileCo').val() == "SKT2"){
+				$('#SKT').click();
+			}
+		} else {
+			$(".capcha").show();
+			$(".btn_area2").removeClass("v1");
+			$("#SKT2").show();
+		}
+		reqBtnCheck();
+	}
+
+	function reqBtnCheck(){
+		var btnFlg = true;
+		$('[data-check="on"]').each(function(e){
+			var dataId = $("#" + $(this).attr('id')).val();
+			if ($("#authType").val() == "app"){
+				//보안숫자 제외
+				if ($(this).attr('id') != "answer"){
+					if (!dataId) btnFlg = false;
+				}
+			} else {
+				if (!dataId) btnFlg = false;
+			}
+		});
+		var $btn = $("#auth_req");
+		if (btnFlg){
+			$btn.removeClass("off");
+			$btn.addClass("on");
+			//$btn.attr('disabled', false);
+		} else {
+			$btn.removeClass("on");
+			$btn.addClass("off");
+			//$btn.attr('disabled', true);
+		}
+	}
+
+	function init(type){
+		if (type == "app"){
+			$(".capcha").hide();
+			$(".btn_area2").addClass("v1");
+			$("#SKT2").hide();
+		} else {
+			$(".capcha").show();
+			$(".btn_area2").removeClass("v1");
+			$("#SKT2").show();
+		}
+		$("#juminNo").val("");
+		$("#PUname").val("");
+		$("#PRrn").val("");
+		$("#genderCheck").val("");
+		$("#mobileCo").val("");
+		$('#phoneNo').val("");
+		$('#answer').val("");
+		$(".tel_select").find("button").each(function(){
+			$(this).removeClass("selected");
+		});
+		$("#mvno_txt").text("알뜰폰");
+		$("#mvnoYn").val("");
+		//초기화 시 SKT 선택
+		$("#SKT").click();
+		reqBtnCheck();
+	}
+</script>
+</head>
+
+<body>
+<header id="header">
+	<h1>신규/추가 등록</h1>
+</header>
+
+<form id="frm" method="post">
+	<input type="hidden" id="_method" name="_method" value="">
+	<input type="hidden" id="juminNo" name="juminNo" value="">
+	<input type="hidden" id="tid" name="tid" value=""/>
+	<input type="hidden" id="PCancUrl" name="PCancUrl" value="https://test-driver.settlebank.co.kr:443/resultCanclPayment?_csrf=dae7d902-2b95-4592-a23f-1c5f708501d4" />
+	<input type="hidden" id="mvnoYn" name="mvnoYn" value=""/>
+	<input type="hidden" id="mobileCo" name="mobileCo" data-check="on" value=""/>
+	<input type="hidden" id="payGb" name="payGb" value="RE"/>
+	<input type="hidden" id="PCustId" name="PCustId" value="jaehee7996"/>
+	<input type="hidden" id="PMid" name="PMid" value="bio1101t"/>
+	<input type="hidden" id="backCk" name="backCk"/>
+	<input type="hidden" id="authType" name="authType"/>
+	<input type="hidden" id="PTrNo" name="PTrNo" value="SBank_FIRMbio1101tW220190730142535040757">
+	<input type="hidden" name="PBnkCd" id="PBnkCd" value="088" />
+	<input type="hidden" name="PMchtParam" id="PMchtParam" value="" />
+	<input type="hidden" id ="PErrCd" name="PErrCd" value="">
+	<input type="hidden" id ="PRmesg1" name="PRmesg1" value="">
+	<input type="hidden" id ="adminSt" name="adminSt" value="">
+	<input type="password" id ="tmp" style="display: none;">
+	<!-- content -->
+	<div id="ct" class="userskip">
+		<ul class="tab_type">
+			<li style="background-color:#415564;">
+				<button type="button" onclick="doSmsAction('sms');" class="active">휴대폰본인확인(문자)</button>
+			</li>
+			<li>
+				<button type="button" onclick="doSmsAction('app');">간편본인확인(앱)</button>
+			</li>
+		</ul>
+		<div id="hp" class="inner">
+			<fieldset class="form_type">
+				<legend>휴대폰본인확인 입력폼</legend>
+				<ul>
+					<li class="name">
+						<input type="text" id="PUname" name="PUname" placeholder="이름" class="inppd" tabindex="1" maxlength="15" data-check="on" value="">
+					</li>
+					<li class="hp">
+						<ul>
+							<li class="num_first">
+								<input type="text" data-focus-group="hp" data-focus="on" data-focus-step="1" data-type="number" data-check="on" name="PRrn" id="PRrn" placeholder="주민번호 앞 6자리" tabindex="2" maxlength="6">
+							</li>
+							<li class="bar">-</li>
+							<li class="num_last">
+								<input type="text" data-focus-group="hp" data-focus="on" data-focus-step="2" data-type="number1" data-check="on" name="genderCheck" id="genderCheck" tabindex="3" maxlength="1">
+								<i></i><i></i><i></i><i></i><i></i><i></i> </li>
+						</ul>
+					</li>
+					<li class="telecom tel_select">
+						<ul>
+							<li style="border-left: 0px;">
+								<button type="button" id="SKT" name ="SKT" onclick="" class="btn_tel" value="SKT">SKT</button>
+							</li>
+							<li>
+								<button type="button" id="KT" name ="KT" onclick="" class="btn_tel" value="KT">KT</button>
+							</li>
+							<li>
+								<button type="button" id="LGT" name ="LGT" onclick="" class="btn_tel" value="LGT">LG U+</button>
+							</li>
+							<li class="last">
+								<button type="button" id="MVNO" name ="MVNO" class="btn_tel" onclick="doLayer('ly_subphone');" value=""><span id="mvno_txt">알뜰폰</span></button>
+							</li>
+						</ul>
+						<input type="text" data-type="number" data-focus-group="hp" data-focus="on" data-focus-step="3" data-check="on" name="phoneNo" id="phoneNo" placeholder="휴대폰번호(-없이 입력)" tabindex="4" maxlength="11">
+					</li>
+					<li class="capcha">
+						<ul>
+							<li class="key">
+								<div id="catpcha" > <!--<img src="/stickyCaptcha.png" width="80%" style="height: 3.2rem;" class="temp"/>--> <img src="../../css/common/images/stickyCaptcha.png" width="80%" style="height: 3.2rem;" class="temp"/></div>
+								<button type="button" onclick="" id="speakerBtn" name ="speakerBtn" class="btn_speaker"><i class="ico_com ico_speaker">보안숫자 소리듣기</i></button>
+								<button type="button" onclick="" id="refreshBtn" name ="refreshBtn" class="btn_refresh"><i class="ico_com ico_refresh">보안숫자 새로고침</i></button>
+								<iframe name="ifmAudioCaptcha" id="ifmAudioCaptcha" style="display: none;" width="0" height="0"></iframe>
+								<span id="audioSupport" style="display: none;"></span> </li>
+							<li>
+								<input type="text" data-type="number" name="answer" id="answer" data-focus-group="hp" data-focus="on" data-focus-step="4" data-check="on" placeholder="보안숫자 입력" tabindex="5" maxlength="5">
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</fieldset>
+			<!-- //form -->
+
+			<ul class="btn_area2">
+				<li class="bt1">
+					<button type="button" id="cancle" name="cancle" onclick="agreeCancelConfirm();" class="btn_xr btn_type2">취소</button>
+				</li>
+				<li class="bt2">
+					<button type="button" id="auth_req" name ="auth_req" class="btn_xr btn_type off" >인증번호 받기</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- //content -->
+
+	<!-- 알뜰폰 선택 -->
+	<div class="ly_pop ly_subphone">
+		<div class="bg"><!-- shadow --></div>
+		<div id="ly_subphone" class="cont">
+			<div class="ele">
+				<ul>
+					<li>
+						<button type="button" id="SKT2" name ="SKT2" onclick="" class="btn_tel ly_tel" value="SKT2" >SKT(알뜰폰)</button>
+					</li>
+					<li>
+						<button type="button" id="KT2" name ="KT2" onclick="" class="btn_tel ly_tel" value="KT2">KT(알뜰폰)</button>
+					</li>
+					<li>
+						<button type="button" id="LGT2" name ="LGT2" onclick="" class="btn_tel ly_tel" value="LGT2">LGU+(알뜰폰)</button>
+					</li>
+				</ul>
+				<button type="button" onclick="layer_close();" id="sel_mvno" name="sel_mvno" class="btn_xr btn_type on">확인</button>
+			</div>
+		</div>
+	</div>
+	<!-- //알뜰폰 선택 -->
+</form>
+<!-- //모바일에서 페이지 내 스크롤생성-->
+
+<!-- loading -->
+<div class="ly_pop ly_loading" style="display: none;">
+	<div class="bg"><!-- shadow --></div>
+	<div id="ly_loading" class="cont">
+		<div class="ele">
+			<div class="circle_motion">
+				<div class="span"></div>
+			</div>
+			<img src="../../css/common/images/pc/loading.gif" alt="로딩중" class="img_loading"></div>
+	</div>
+</div>
+<!-- //loading -->
+
+<script>
+	$(document).ajaxStart(function(){
+		openLoading();
+	});
+
+	$(document).ajaxComplete(function(){
+		closeLoading();
+	});
+
+	function openLoading(){
+		var ver = 0; // Browser Version
+		if(navigator.appName.charAt(0) == "M"){
+			ver = getInternetVersion("MSIE");		
+			if (ver < "10"){ // ie10 이하
+				$('.ly_loading').addClass('ie9_after');
+			}
+		}
+		layer_open('ly_loading');
+	}
+
+	function closeLoading(){
+		layer_close();
+	}
+</script>
+</body>
+</html>

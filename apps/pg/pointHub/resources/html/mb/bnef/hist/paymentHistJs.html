@@ -1,0 +1,705 @@
+<%@  page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%><%@ taglib prefix="c"
+	uri="http://java.sun.com/jsp/jstl/core"%><%@ taglib prefix="fn"
+	uri="http://java.sun.com/jsp/jstl/functions"%><%@ taglib
+	prefix="spring" uri="http://www.springframework.org/tags"%>
+<%--
+ **********************************************************************************************
+ * @desc : 혜택플랫폼 이용내역 스크립트
+ * @FileName : /pointhub_git/src/main/webapp/WEB-INF/views/mb/bnef/hist/paymentHistJs.jsp
+ * @author jungukjae
+ * @since 2020.02.13
+ * @version 1.0
+ * @see 
+ * <pre>
+ * << 개정이력(Modification Information) >> 
+ *  수 정 일      수 정 자             수정내용
+ * ----------   -----------   -----------------------------
+ * 2020.02.05    jungukjae      	   최초생성
+ * </pre>
+ **********************************************************************************************
+--%>
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		fn.tab.init();
+		
+		var stepStatus = 1;
+		
+		//입력폼 포커스
+		$(".has_input").focusin(function() {
+			$(".has_input").removeClass("focus");
+			$(this).addClass("focus");
+		}).focusout(function() {
+			$(this).removeClass("focus");
+		});
+
+		$('.btn_opt').on('click', function() {
+			$(this).toggleClass('on');
+			$('.wrap_sort').toggleClass('view');
+			return false;
+		});
+
+		$('.btn_time').on('click', function() {
+			$(this).toggleClass('on');
+			return false;
+		});
+
+		$('.term_set button').on('click', function() {
+			$('.term_set button').removeClass('on');
+			$(this).addClass('on');
+			$('.date_set').removeClass('view');
+		});
+
+		$('.term_set button.btn_input').on('click', function() {
+			$('.date_set').addClass('view');
+		});
+
+		<%-- 이용내역 : 날짜선택시 정렬글씨변경 : cf). 직접입력 · 전체상품 --%>
+		$('#us_dirDate').on('click', function() {
+			jQuery('#termDateBtnSel').val('');
+			jQuery('#us_fntDate').empty();
+			jQuery('#us_fntDate').text('직접입력');
+		});
+		
+		<%-- 이용내역 : 통신상품 선택시 글씨변경 --%>
+		$('#us_chnlNameList').on('change',function(){
+			var v1 = jQuery('#termDateBtnSel').val();
+			var chnlName = ""; 
+			chnlName = $('#us_chnlNameList > option:selected').attr('cprt_cmpn_nm');
+			jQuery('#us_fntPrdName').empty();
+			jQuery('#us_fntPrdName').text(chnlName);			
+		}); 
+	});
+	
+	//함수
+	var fn = {
+		// 탭 관련 함수
+		tab : {
+			init : function() {	//화면 최초로드시 초기화 처리함수..
+				
+				calendarAttrInit(); //직접입력 달력의 검색범위 셋팅
+				initDataSet();      //최초화면 진입시 달력 셋팅
+				
+			    $(window).scroll(function() {
+			        var scrolltop = $(document).scrollTop();
+			        var height = $(document).height();
+			        var height_win = $(window).height();
+			        
+			        if($(document).height() <= $(window).scrollTop() + $(window).height()){
+			        	morePaymentHistList();
+			        }
+			        /* if (Math.round( $(window).scrollTop()) == $(document).height() - $(window).height()) {
+			        	morePaymentHistList();
+			   		}  */
+			    });
+				
+				this.$tab_tg1 = jQuery('.tab_chg li');
+				this.$tab_tg2 = jQuery('.tab_con');
+				this.$body = $('body');
+				this.tabEvent();
+				 
+				this.$tab_tg1.eq(2).addClass('active');
+				this.$tab_tg2.eq(2).show();
+			},
+			tabEvent : function() {
+				var _this = this;
+				this.$tab_tg1.click(function(e) {
+					var $this = jQuery(this);
+					var $index = $this.index();
+					fn.tab.tabHide($index);
+				});
+			},
+			
+			tabHide : function(num) { 
+				
+				var payIndex	  = 1;
+				var histIndex     = 2;
+				var phCustId      = '<c:out value="${rootMap.userInfo.phCustId}"/>';  // 고객ID
+				var custId 	  	  = '<c:out value="${rootMap.userInfo.cust_id}"/>';   // APP에서 넘겨주는 암호화된 고객ID
+				var gaId 	  	  = '<c:out value="${rootMap.userInfo.gaid}"/>';   	  // APP에서 넘겨주는 GAID								
+				var appVer    	  = '<c:out value="${rootMap.userInfo.appver}"/>';    // APP Version
+				var osType    	  = '<c:out value="${rootMap.userInfo.os}"/>';   // 운영체재 구분(안드로이드,IOS) 
+				var ctn       	  = '<c:out value="${rootMap.userInfo.ctn}"/>';   	  // APP에서 넘겨주는 암호화된 고객 전화번호				
+				
+				if(num==0) {
+					jQuery('body').append('<div id="lbarTtlArea"><div class="loadingWrap"><div class="loadinginner"><div></div><div><div></div></div></div></div></div>'); 	
+					//나의할인 카테고리로 이동하는 doAction추가해야됨.
+	                PHFnc.doAction('<c:url value="/benefits/clip/scr/selectDiscountInfoList.do"/>', "cust_id="+custId+"&phCustId="+phCustId+"&os="+osType+"&appver="+appVer+"&ctn="+ctn+"&gaid="+gaId);						
+					
+				}else if(num==1){
+					jQuery('body').append('<div id="lbarTtlArea"><div class="loadingWrap"><div class="loadinginner"><div></div><div><div></div></div></div></div></div>'); 	
+	            	//PHFnc.doAction('<c:url value="/benefits/clip/scr/main.do"/>', "cust_id="+custId+"&phCustId="+phCustId+"&os="+osType+"&appver="+appVer+"&ctn="+ctn+"&gaid="+gaId+"&tabIdx="+payIndex);					
+					//PHFnc.benefitsLoadingBar(true);
+	                PHFnc.doAction('<c:url value="/benefits/clip/scr/payment.do"/>', "cust_id="+custId+"&phCustId="+phCustId+"&os="+osType+"&appver="+appVer+"&ctn="+ctn+"&gaid="+gaId);	
+				}else {
+					jQuery('body').append('<div id="lbarTtlArea"><div class="loadingWrap"><div class="loadinginner"><div></div><div><div></div></div></div></div></div>'); 	
+	            	//PHFnc.doAction('<c:url value="/benefits/clip/scr/main.do"/>', "cust_id="+custId+"&phCustId="+phCustId+"&os="+osType+"&appver="+appVer+"&ctn="+ctn+"&gaid="+gaId+"&tabIdx="+histIndex);					
+					//PHFnc.benefitsLoadingBar(true);
+	                PHFnc.doAction('<c:url value="/benefits/clip/scr/paymentHist.do"/>', "cust_id="+custId+"&phCustId="+phCustId+"&os="+osType+"&appver="+appVer+"&ctn="+ctn+"&gaid="+gaId);
+				}						
+			}
+		},
+		usingContents : {  /* 이용내역화면 관련 제어 스크립트 */
+			sortChn : function() {	//정렬방식 변경 스크립트(Sever Data조회가 아닌 현 목록을 재정렬)
+				
+				//Step1_1. Sever로 Ajax요청할 Parameters준비..
+				
+				var curPage   = $('#curPageInfo').val();				// 현재 페이지(Default=1)
+				var startPage = 1;										// 정렬요청시 지정 시작페이지 
+				var pageSize  = 30;										// 한 페이지당 이용내역 허용갯수
+				var ListSize  = $('#us_point_use_info li').length;		// 현 페이지 목록갯수
+				curPage = Math.ceil(ListSize/pageSize);  				// 현재페이지를 계산식으로 구한다. 
+			
+				var startDate = jQuery('#us_dirStDate').val();				
+				var endDate   = jQuery('#us_dirEdDate').val();	
+				var srchStDate = PHUtil.replaceAll(startDate,'-','');
+				var srchEdDate = PHUtil.replaceAll(endDate,'-',''); 
+				var srchChnl   = $('#us_chnlNameList').val(); 
+				var phCustId   = '<c:out value="${rootMap.userInfo.phCustId}"/>';  // 고객ID
+				var custId 	   = '<c:out value="${rootMap.userInfo.cust_id}"/>';   // APP에서 넘겨주는 암호화된 고객ID		
+				var gaId 	   = '<c:out value="${rootMap.userInfo.gaid}"/>';      // APP에서 넘겨주는 GAID				
+				var appVer     = '<c:out value="${rootMap.userInfo.appver}"/>';    // APP Version
+				var osType     = '<c:out value="${rootMap.userInfo.os}"/>';  	   // 운영체재 구분(안드로이드,IOS) 
+				var ctn        = '<c:out value="${rootMap.userInfo.ctn}"/>';   	   // APP에서 넘겨주는 암호화된 고객 전화번호				
+				var ordrBy     = $('#us_sortCondition').attr('val');
+				var monthSel   = PHUtil.nvl($('#termDateBtnSel').val(),"");
+				
+				if(srchChnl == "all") {	srchChnl = ""; }
+				
+				if(ordrBy == 'C') {
+					//현재면 -> 과거요청
+					ordrBy = "asc";
+					jQuery('#us_sortCondition').attr('val','F');
+					jQuery('#us_fntSortName').empty();
+					jQuery('#us_fntSortName').text('과거순');
+				}else {
+					//과거면 -> 현재요청 
+					ordrBy = "desc";
+					jQuery('#us_sortCondition').attr('val','C');
+					jQuery('#us_fntSortName').empty();
+					jQuery('#us_fntSortName').text('최신순');
+				}
+
+	    		//Loading Bar Start..
+	    		jQuery('body').append('<div id="lbarTtlArea"><div class="loadingWrap"><div class="loadinginner"><div></div><div><div></div></div></div></div></div>'); 	
+
+	            //Step1_2. Sever로 Ajax요청  
+				var url = '<c:url value="/benefits/clip/scr/selectHistList.do"/>';
+				
+				var params = {
+				     'startPage'  : startPage
+				   , 'curPage'    : curPage
+				   , 'cust_id'    : custId
+				   , 'start_date' : srchStDate	
+				   , 'end_date'   : srchEdDate
+				   , 'cmpn_id'    : srchChnl
+				   , 'phCustId'   : phCustId     
+				   , 'os' 		  : osType      
+				   , 'appver' 	  : appVer       
+				   , 'gaid' 	  : gaId      
+				   , 'ctn'		  : ctn       
+				   , 'sel_month'  : monthSel       
+				   , 'ordrBy'     : ordrBy
+				}
+				
+				var type = 'post';
+				var dataType = 'json';
+				var success = function(data) {
+					
+					/*
+					 data
+					 {
+						data : {
+							result : [
+							            {
+							            	 cmpn_id : "PO0001"
+							            	,cmpn_nm : "슈퍼리워드"
+							            	
+							            },
+							            {
+							            	
+							            },
+							          
+							          ]
+							
+						}
+						
+						
+					 }
+					
+					
+					
+					
+					*/
+					
+					
+					//Ajax성공
+					if (data.ret_code == '00') {
+						
+						var nuArr = new Array();
+						
+			            //Step2_1. 기존List영역 Empty
+						$('div[id="us_point_use_info"]').empty();
+
+			            //Step2_2. 기존List영역 새로운리스트 Append
+						for(var i=0; i < data.data.result.length; i++) {
+							var jsonObj = new Object();		
+					        var deviceDiv = {};
+							deviceDiv = data.data.result[i].bill_titl.split(' ');  
+							jsonObj.event_dt     	= PHUtil.nvl(data.data.result[i].event_dt,"");
+							jsonObj.cmpn_nm      	= PHUtil.nvl(data.data.result[i].cmpn_nm ,"");
+							jsonObj.description  	= PHUtil.nvl(data.data.result[i].description,"");
+							jsonObj.pay_amt	     	= PHUtil.nvl(data.data.result[i].pay_amt,""); 
+							jsonObj.hist_se      	= PHUtil.nvl(data.data.result[i].hist_se,"");
+							jsonObj.deviceName   	= PHUtil.nvl(deviceDiv[0],""); 
+							jsonObj.deviceNumber    = PHUtil.nvl(deviceDiv[1],"");
+							jsonObj.biller_user_key = PHUtil.nvl(data.data.result[i].biller_user_key,"");
+							var jsonObjStr = JSON.stringify(jsonObj); 
+							nuArr.push(jsonObj);							
+						}		            
+						var payStartStr = '<ul id="">'; 
+						
+						for(var i=0; i<nuArr.length; i++) {						
+							var devideArea = "";
+							var eventDateFormat = nuArr[i].event_dt.substring(0,4) + "." + nuArr[i].event_dt.substring(4,6) + "." + nuArr[i].event_dt.substring(6,8);
+							
+							if(nuArr[i].hist_se=='pay') {								
+								if(nuArr[i].pay_amt > 0) {
+									devideArea = '<div class="point_use"><span class="tx_point plus">'+PHUtil.setComma(nuArr[i].pay_amt) +' P</span><span class="desc">'+nuArr[i].description+' 취소</span></div>'; 
+								}else {
+									devideArea = '<div class="point_use"><span class="tx_point minus">'+PHUtil.setComma(nuArr[i].pay_amt) +' P</span><span class="desc">'+nuArr[i].description+'</span></div>'; 
+								}								
+							}else if(nuArr[i].hist_se=='err'){
+								devideArea = '<div class="point_use"><span class="tx_point cancel">P</span><span class="desc">'+nuArr[i].description+'</span></div>'; 
+							}else if(nuArr[i].hist_se=='chng') {		
+								if(nuArr[i].description == '신청') {
+									devideArea = '<span class="btn_autopay">자동납부 '+nuArr[i].description+'</span>';
+								}else if(nuArr[i].description == '해지') {								
+									devideArea = '<span class="btn_autopay termination">자동납부 '+nuArr[i].description+'</span>';
+								}else { 
+									devideArea = '<span class="btn_autopay2 alteration">'+nuArr[i].description+'</span>';
+								}
+							} 
+							payStartStr += '<li>'+
+											   '<span class="date">'+eventDateFormat+'</span>' +
+											   '<span class="subject">'+nuArr[i].deviceName+' '+nuArr[i].deviceNumber+'</span>' +						  
+											   '<span class="kind">'+nuArr[i].cmpn_nm+'</span>' +
+											   devideArea + 						  
+								 		   '</li>'; 
+						}
+						payStartStr +='</ul>'; 
+
+						$('div[id="us_point_use_info"]').append(payStartStr);
+						
+			            //Step3. 리스트에 속성 값 셋팅
+						$('#us_point_use_info li').each(function(index, item) {	
+							$(this).attr('event_dt'    	  , PHUtil.nvl(nuArr[index].event_dt) );
+							$(this).attr('cmpn_nm'     	  , PHUtil.nvl(nuArr[index].cmpn_nm) );
+							$(this).attr('description' 	  , PHUtil.nvl(nuArr[index].description) ); 
+							$(this).attr('pay_amt'	   	  , PHUtil.nvl(nuArr[index].pay_amt) ); 
+							$(this).attr('hist_se'	   	  , PHUtil.nvl(nuArr[index].hist_se) );
+							$(this).attr('deviceName'	  , PHUtil.nvl(nuArr[index].deviceName) ); 
+							$(this).attr('deviceNumber'	  , PHUtil.nvl(nuArr[index].deviceNumber) );
+							$(this).attr('biller_user_key', PHUtil.nvl(nuArr[index].biller_user_key) );
+						});  
+						
+						//Loading Bar End
+						$('#lbarTtlArea').remove(); 
+						
+					}else {		
+						//Ajax요청 실패(ret_code != '-1') 
+						var uri = '<c:url value="/benefits/clip/scr/mvComnErrPage.do"/>'; 
+						location.href = uri;	
+					}									
+				}
+				var errCustom = function(data, textStatus, jqXHR) {
+					
+					//Loading Bar End
+					$('#lbarTtlArea').remove(); 
+					
+				    //PHFnc.benefitsLoadingBar(false);
+					var alertMsg = data.ret_msg;
+					PHFnc.alert(alertMsg);
+				}
+				PHFnc.ajaxProc(url, params, type, dataType, success, errCustom, true, true, "T");   				
+			},
+			srchDateSet : function(userSel) { //조회기간 : (1개월, 3개월, 6개월) 버튼 처리함수
+				
+				//setp1_1. 사용자가 선택한 개월수의 특정값 셋팅  
+				jQuery('#termDateBtnSel').val(userSel);
+			
+				//setp1_2. 종료일자: 오늘날짜로 셋팅
+				var toDayStr     = PHUtil.getToday();
+			    var parseToDay   = toDayStr.substring(0,4)+'-'+
+			    				   toDayStr.substring(4,6)+'-'+toDayStr.substring(6,8); 
+				//var strDateParse = PHUtil.fmtDate(toDayStr); 
+				jQuery('#us_dirEdDate').val(parseToDay); 
+				
+				//setp2. 시작일자: 선택한 오늘날짜로부터(선택한 개월수 만큼 이전날짜셋팅)
+				var endDate = new Date();
+				var monthOfYear = endDate.getMonth();
+				endDate.setMonth(monthOfYear - userSel);
+				
+				var endYear 	 = endDate.getFullYear();
+				var endMonth 	 = ("0" + (endDate.getMonth() + 1)).slice(-2);
+				var endDay  	 = ("0" + endDate.getDate()).slice(-2);
+				var endDateStr   = endYear+'-'+endMonth+'-'+endDay;
+				//var endDateParse = PHUtil.fmtDate(endDateStr);
+				jQuery('#us_dirStDate').val(endDateStr);
+				
+				//setp3. 화면표기변경
+				jQuery('#us_fntDate').empty(); 
+				jQuery('#us_fntDate').text(userSel+'개월');
+ 
+			},
+			listSearch : function() { //이용내역 검색처리 스크립트
+				var startDate = jQuery('#us_dirStDate').val();				
+				var endDate   = jQuery('#us_dirEdDate').val();	
+				var endDateFormat = PHUtil.replaceAll(endDate,'-','');
+				var strDateFormat = PHUtil.replaceAll(startDate,'-','');	
+				var toDayStr      = PHUtil.getToday();
+				var monthSel	  = PHUtil.nvl($('#termDateBtnSel').val(),"");
+				
+				//setp1. 선택된 날짜가 Null또는 빈값인지 체크 
+				if (PHUtil.isEmpty(startDate) || PHUtil.isEmpty(endDate)) {
+					PHFnc.alert('검색일자를 확인하여 주십시오.');
+					return;
+				}
+				
+				//setp2. 종료일자가 오늘날자를 초과하였는지 체크 
+				if(toDayStr < endDateFormat) {
+					PHFnc.alert('종료일자는 현재일자를 초과할 수 없습니다.');
+					var modifyDate = toDayStr.substring(0,4)+"-"+toDayStr.substring(4,6)+"-"+toDayStr.substring(6,8);
+					$('#us_dirEdDate').val(modifyDate);
+					return;
+				}
+
+				//setp3. 시작일자와 종료일자 체크 
+				if(endDateFormat < strDateFormat) {
+					PHFnc.alert('시작일자는 종료일자를 초과할 수 없습니다.');
+					return;
+				}
+				
+				//setp4. 비동기적 검색진행. 
+				if (confirm('이용내역을 검색 하시겠습니까?')) {
+					
+					var srchStDate = PHUtil.replaceAll(startDate,'-','');
+					var srchEdDate = PHUtil.replaceAll(endDate,'-',''); 
+					var srchChnl   = $('#us_chnlNameList').val(); 
+					var phCustId   = '<c:out value="${rootMap.userInfo.phCustId}"/>';  // 고객ID
+					var custId 	   = '<c:out value="${rootMap.userInfo.cust_id}"/>';   // APP에서 넘겨주는 암호화된 고객ID		
+					var gaId 	   = '<c:out value="${rootMap.userInfo.gaid}"/>';      // APP에서 넘겨주는 GAID				
+					var appVer     = '<c:out value="${rootMap.userInfo.appver}"/>';    // APP Version
+					var osType     = '<c:out value="${rootMap.userInfo.os}"/>';  	   // 운영체재 구분(안드로이드,IOS) 
+					var ctn        = '<c:out value="${rootMap.userInfo.ctn}"/>';   	   // APP에서 넘겨주는 암호화된 고객 전화번호				
+			
+					if(srchChnl == "all") {	srchChnl = ""; }
+					
+	                var params = {
+						'start_date' : srchStDate, 
+						'end_date'   : srchEdDate,
+						'cmpn_id'    : srchChnl,  
+						'sel_month'  : monthSel,
+						'cust_id'    : custId
+	                };
+	                
+	                //Loading Bar Start..
+					jQuery('body').append('<div id="lbarTtlArea"><div class="loadingWrap"><div class="loadinginner"><div></div><div><div></div></div></div></div></div>'); 	
+				    //PHFnc.benefitsLoadingBar(true);
+	                
+                    PHFnc.doAction('<c:url value="/benefits/clip/scr/paymentHist.do"/>',"cust_id="+custId+"&start_date="+srchStDate+"&end_date="+srchEdDate+"&cmpn_id="+srchChnl+"&phCustId="+phCustId+"&os="+osType+"&appver="+appVer+"&gaid="+gaId+"&ctn="+ctn+"&sel_month="+monthSel);
+                	//PHFnc.doAction('<c:url value="/benefits/clip/scr/main.do"/>', "cust_id="+custId+"&phCustId="+phCustId+"&os="+osType+"&appver="+appVer+"&ctn="+ctn+"&gaid="+gaId+"&viewId="+viewId+"&tabIdx="+1);					
+				}  				
+			}
+		}   
+	}
+	function morePaymentHistList() {
+		
+		var curPage   = $('#curPageInfo').val();				// 현재 페이지(Default=1)
+		var pageSize  = 30;										// 한 페이지당 이용내역 허용갯수
+		var ListSize  = $('#us_point_use_info li').length;		// 현 페이지 목록갯수
+		curPage = Math.ceil(ListSize/pageSize);  				// 현재페이지를 계산식으로 구한다. 
+		
+		/*
+		 *	현재 페이지 1일시 목록갯수 30개 이상만 함수발동 (curPage+1)로 Sever에 요청 	
+		 *	현재 페이지 2일시 목록갯수 60개 이상만 함수발동 (curPage+1)로 Sever에 요청 	
+		 *	현재 페이지 3일시 목록갯수 90개 이상만 함수발동 (curPage+1)로 Sever에 요청 	
+		 */   
+		 
+		//  cf1. curPage : 1, pageSize : 30, ListSize : 30
+		//  cf2. curPage : 2, pageSize : 30, ListSize : 45
+		//  cf3. curPage : 3, pageSize : 30, ListSize : 90
+		
+		/* 신규내역 Append Test SampleData */
+		/* var nuArr = new Array();
+		var payStartStr = ''; 
+
+		for(var i=1; i<4; i++) {
+			switch (i) {
+			case 1:	payStartStr+= '<li><span class="subject">2020.03.01</span><span class="subject">Test1***</span><span class="kind">Test Channel</span><div class="point_use"><span class="tx_point minus">1000P</span><span class="desc">테스트사용1</span></li>';
+				break;
+			case 2:	payStartStr+= '<li><span class="subject">2020.03.02</span><span class="subject">Test2***</span><span class="kind">Test Channel2</span><div class="point_use"><span class="tx_point minus">1500P</span><span class="desc">테스트사용2</span></li>';
+				break;
+			case 3:	payStartStr+= '<li><span class="subject">2020.03.03</span><span class="subject">Test3***</span><span class="kind">Test Channel3</span><div class="point_use"><span class="tx_point minus">2500P</span><span class="desc">테스트사용3</span></li>';
+				break;
+			default:
+				break;
+			}
+		}
+		//Step5_1. 새로운 List를 Append시킨다. 
+		$('div[id="us_point_use_info"] > ul').append(payStartStr); */		
+		
+		if((curPage * pageSize) <= ListSize) {
+			
+			var startDate = jQuery('#us_dirStDate').val();				
+			var endDate   = jQuery('#us_dirEdDate').val();	
+			var srchStDate = PHUtil.replaceAll(startDate,'-','');
+			var srchEdDate = PHUtil.replaceAll(endDate,'-',''); 
+			var srchChnl   = $('#us_chnlNameList').val(); 
+			var phCustId   = '<c:out value="${rootMap.userInfo.phCustId}"/>';  // 고객ID
+			var custId 	   = '<c:out value="${rootMap.userInfo.cust_id}"/>';   // APP에서 넘겨주는 암호화된 고객ID		
+			var gaId 	   = '<c:out value="${rootMap.userInfo.gaid}"/>';      // APP에서 넘겨주는 GAID				
+			var appVer     = '<c:out value="${rootMap.userInfo.appver}"/>';    // APP Version
+			var osType     = '<c:out value="${rootMap.userInfo.os}"/>';  	   // 운영체재 구분(안드로이드,IOS) 
+			var ctn        = '<c:out value="${rootMap.userInfo.ctn}"/>';   	   // APP에서 넘겨주는 암호화된 고객 전화번호				
+			var ordrBy     = $('#us_sortCondition').attr('val');
+			var monthSel   = PHUtil.nvl($('#termDateBtnSel').val(),"");
+			
+			if(srchChnl == "all") {	srchChnl = ""; }
+			
+			if(ordrBy == 'C') {
+				ordrBy = "desc";
+			}else {
+				ordrBy = "asc";
+			}			
+			
+    		//Loading Bar Start..
+    		jQuery('body').append('<div id="lbarTtlArea"><div class="loadingWrap"><div class="loadinginner"><div></div><div><div></div></div></div></div></div>'); 	
+
+            //Step1_2. Sever로 Ajax요청  
+			var url = '<c:url value="/benefits/clip/scr/selectHistList.do"/>';
+			
+			var params = {
+			     'curPage'    : curPage+1
+			   , 'cust_id'    : custId
+			   , 'start_date' : srchStDate	
+			   , 'end_date'   : srchEdDate
+			   , 'cmpn_id'    : srchChnl
+			   , 'phCustId'   : phCustId     
+			   , 'os' 		  : osType      
+			   , 'appver' 	  : appVer       
+			   , 'gaid' 	  : gaId      
+			   , 'ctn'		  : ctn       
+			   , 'sel_month'  : monthSel       
+			   , 'ordrBy'     : ordrBy
+			}
+			
+			var type = 'post';
+			var dataType = 'json';
+			var success = function(data) {
+				
+				//Ajax성공
+				if (data.ret_code == '00') {
+					
+ 					var nuArr = new Array();
+					var payStartStr = ''; 
+					
+		            //Step2 기존List영역 새로운리스트 Append할 Data ArrayData가공 및 셋팅
+					for(var i=0; i < data.data.result.length; i++) {
+						var jsonObj = new Object();		
+				        var deviceDiv = {};
+						deviceDiv = data.data.result[i].bill_titl.split(' ');  
+						jsonObj.event_dt     	= PHUtil.nvl(data.data.result[i].event_dt,"");
+						jsonObj.cmpn_nm      	= PHUtil.nvl(data.data.result[i].cmpn_nm ,"");
+						jsonObj.description  	= PHUtil.nvl(data.data.result[i].description,"");
+						jsonObj.pay_amt	     	= PHUtil.nvl(data.data.result[i].pay_amt,""); 
+						jsonObj.hist_se      	= PHUtil.nvl(data.data.result[i].hist_se,"");
+						jsonObj.deviceName   	= PHUtil.nvl(deviceDiv[0],""); 
+						jsonObj.deviceNumber    = PHUtil.nvl(deviceDiv[1],"");
+						jsonObj.biller_user_key = PHUtil.nvl(data.data.result[i].biller_user_key,"");
+						var jsonObjStr = JSON.stringify(jsonObj); 
+						nuArr.push(jsonObj);							
+					}		            
+					
+					for(var i=0; i<nuArr.length; i++) {						
+						var devideArea = "";
+						var eventDateFormat = nuArr[i].event_dt.substring(0,4) + "." + nuArr[i].event_dt.substring(4,6) + "." + nuArr[i].event_dt.substring(6,8);
+						
+						if(nuArr[i].hist_se=='pay') {								
+							if(nuArr[i].pay_amt > 0) {
+								devideArea = '<div class="point_use"><span class="tx_point plus">'+PHUtil.setComma(nuArr[i].pay_amt) +' P</span><span class="desc">'+nuArr[i].description+' 취소</span></div>'; 
+							}else {
+								devideArea = '<div class="point_use"><span class="tx_point minus">'+PHUtil.setComma(nuArr[i].pay_amt) +' P</span><span class="desc">'+nuArr[i].description+'</span></div>'; 
+							}								
+						}else if(nuArr[i].hist_se=='err'){
+							devideArea = '<div class="point_use"><span class="tx_point cancel">P</span><span class="desc">'+nuArr[i].description+'</span></div>'; 
+						}else if(nuArr[i].hist_se=='chng') {		
+							if(nuArr[i].description == '신청') {
+								devideArea = '<span class="btn_autopay">자동납부 '+nuArr[i].description+'</span>';
+							}else if(nuArr[i].description == '해지') {								
+								devideArea = '<span class="btn_autopay termination">자동납부 '+nuArr[i].description+'</span>';
+							}else { 
+								devideArea = '<span class="btn_autopay2 alteration">'+nuArr[i].description+'</span>';
+							}
+						} 
+						payStartStr += '<li>'+
+										   '<span class="date">'+eventDateFormat+'</span>' +
+										   '<span class="subject">'+nuArr[i].deviceName+' '+nuArr[i].deviceNumber+'</span>' +						  
+										   '<span class="kind">'+nuArr[i].cmpn_nm+'</span>' +
+										   devideArea + 						  
+							 		   '</li>'; 
+					}
+					//Step5_1. 새로운 List를 Append시킨다. 
+					$('div[id="us_point_use_info"] > ul').append(payStartStr); 
+					
+					//Loading Bar End
+					$('#lbarTtlArea').remove(); 
+					 
+				}else {		
+					//Ajax요청 실패(ret_code != '-1')
+					var uri = '<c:url value="/benefits/clip/scr/mvComnErrPage.do"/>'; 
+					location.href = uri;	
+				}									
+			}
+			var errCustom = function(data, textStatus, jqXHR) {
+				//Loading Bar End
+				//$('#lbarTtlArea').remove(); 
+			    //PHFnc.benefitsLoadingBar(false);
+				var alertMsg = data.ret_msg;
+				PHFnc.alert(alertMsg);
+			}
+			PHFnc.ajaxProc(url, params, type, dataType, success, errCustom, true, true, "T");              
+		}
+	}	
+	function calendarAttrInit() {
+		//직접검색을 이용하는 달력의 최소날짜와 최대날짜를 구하여 기본셋팅으로잡은다.
+		var maxDateStr     = PHUtil.getToday();
+		var maxDateStrForm = maxDateStr.substring(0,4)+"-"+maxDateStr.substring(4,6)+"-"+maxDateStr.substring(6,8);
+		
+		var endDate = new Date();
+		var monthOfYear = endDate.getMonth();
+		endDate.setMonth(monthOfYear - 6);
+		
+		var endYear 	 = endDate.getFullYear();
+		var endMonth 	 = ("0" + (endDate.getMonth() + 1)).slice(-2);
+		var endDay  	 = ("0" + endDate.getDate()).slice(-2);
+		var minDateStrForm   = endYear+'-'+endMonth+'-'+endDay;		
+		
+		//시작일 과거6개월 ~ 오늘
+		jQuery('input[id="us_dirStDate"]').attr('min',minDateStrForm);
+		jQuery('input[id="us_dirStDate"]').attr('max',maxDateStrForm);
+		
+		//종료일 과거6개월 ~ 오늘 
+		jQuery('input[id="us_dirEdDate"]').attr('min',minDateStrForm);
+		jQuery('input[id="us_dirEdDate"]').attr('max',maxDateStrForm);
+	}	
+	
+	function initDataSet() {	  // 달력 최초초기화 셋팅
+		
+		var bfStartDate = PHUtil.nvl("${rootMap.result.request.start_date}"); 	  // 이전 검색조건(시작일자)
+		var bfEndDate   = PHUtil.nvl("${rootMap.result.request.end_date}"); 	  // 이전 검색조건(종료일자)
+		var bfMonthSel  = PHUtil.nvl("${rootMap.result.request.sel_month}"); 	  // 이전 검색조건(달력버튼 선택)
+		var bfCmpnId    = PHUtil.nvl("${rootMap.result.request.cmpn_id}"); 	      // 이전 검색조건(채널구분)
+		 
+		jQuery('#termDateBtnSel').val(bfMonthSel); 
+		
+		//Step1_1. 이전 검색조건(채널명)이 존재하였을시 셋팅해준다.
+		if(bfCmpnId == "" || bfCmpnId == null) {
+			jQuery('#us_fntPrdName').empty(); 
+			jQuery('#us_fntPrdName').text('전체상품');			
+			
+		}else {
+			$('#us_chnlNameList > option').each(function(index, item) {	
+				var cprtCmpnIdData = $(this).val();
+				var cprtCmpnNmData = $(this).attr('cprt_cmpn_nm');
+				
+				if(bfCmpnId == cprtCmpnIdData) {
+					jQuery('#us_fntPrdName').empty();
+					jQuery('#us_fntPrdName').text(cprtCmpnNmData);					
+				} 
+			});			
+		}
+		
+		//Step1_2. 이전 검색조건(시작일, 종료일)이 존재하였을시 셋팅해준다.
+		if(bfStartDate == "" || bfStartDate == null) {
+			//이전검색일자가 비어있을시, Default값으로 채워준다.
+			fn.usingContents.srchDateSet(6);	//Default(6개월)
+			$('#termDateBtnSel').val('6'); 
+			$('#termDateSet > button').each(function(index, item) {	
+				if(index==2) {	//index(2) : 6개월 버튼 class(ON)
+					$(this).addClass('on');
+				}
+			});
+			
+		}else {
+			if(bfMonthSel == "" || bfMonthSel == null) {
+				jQuery('#us_fntDate').empty();
+				jQuery('#us_fntDate').text('직접입력');
+				$('#termDateSet > button:eq(3)').addClass('on'); 
+				$('#dateSet').addClass('view');			
+			}else{
+				switch (bfMonthSel) {
+					case '1': 
+							jQuery('#us_fntDate').empty();
+							jQuery('#us_fntDate').text('1개월');
+							$('#termDateSet > button:eq(0)').addClass('on'); 
+							break;
+					case '3': 
+							jQuery('#us_fntDate').empty();
+							jQuery('#us_fntDate').text('3개월');
+							$('#termDateSet > button:eq(1)').addClass('on'); 
+							
+							break;    	
+					case '6': 
+							jQuery('#us_fntDate').empty();
+							jQuery('#us_fntDate').text('6개월');
+							$('#termDateSet > button:eq(2)').addClass('on'); 
+							break;
+					default : 
+							break;
+				}
+			}
+			//이전 검색조건이 존재할시 달력에 셋팅
+			var stDateFormat = bfStartDate.substring(0,4)+"-"+bfStartDate.substring(4,6)+"-"+bfStartDate.substring(6,8);  
+			var edDateFormat = bfEndDate.substring(0,4)+"-"+bfEndDate.substring(4,6)+ "-"+bfEndDate.substring(6,8); 
+			$('#us_dirStDate').val(stDateFormat);
+			$('#us_dirEdDate').val(edDateFormat); 		
+			
+			//이전 검색일자가 넘어왔을시, 검색조건 영역이 펼쳐지게 한다.
+			$('#btnOpt').addClass('on');
+			$('#wrapSort').addClass('view');			
+		}		
+	}
+	function moveCoinPlusPage() { // ["K포인트 적립하러 가기" 버튼 처리 스크립트] 
+	
+		var operatingDevice = '${rootMap.userInfo.os}';  //Sever로 부터 받은 운영체재 변수를 체크(Android, IOS)
+	    var jsonObj = new Object();
+	    
+	    jsonObj.version = "1";
+	    var jsonInfo = JSON.stringify(jsonObj);
+
+		if(operatingDevice == "ios") { 			
+			//IOS
+	        window.webkit.messageHandlers.openKpointListView.postMessage(jsonInfo);
+		}else {
+			//안드로이드
+	        window.Kpoint.openKpointListView(jsonInfo);
+		}
+		
+		
+	} 
+	function backEvent() {  // ['<' 닫기버튼을 눌렀을시 처리함수]
+	
+		//Sever로 부터 받은 운영체재 변수를 체크(Android, IOS)
+		var operatingDevice = '${rootMap.userInfo.os}';
+ 
+		if(operatingDevice == "ios") { 
+			//IOS
+	        window.webkit.messageHandlers.closeWebview.postMessage("");
+		}else {
+			//안드로이드
+	        window.Kpoint.closeWebview();
+		}
+	}
+</script>

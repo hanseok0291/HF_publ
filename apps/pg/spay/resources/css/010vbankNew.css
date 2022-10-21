@@ -1,0 +1,614 @@
+@charset "UTF-8"; @import url(../fonts/pretendard/pretendard-subset.min.css); /**
+* ====================== TABLE OF INDEX ======================
+* - #RESET
+* - #LAYOUT
+* - #COMPONENT
+* - #CONTENT
+* - #UTILITY
+* ============================================================
+*/
+
+
+/* #RESET
+------------------------------------------------------------*/
+*, *:after, *:before { -webkit-box-sizing: border-box; box-sizing: border-box; -webkit-text-size-adjust: none; text-size-adjust: none; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-font-smoothing: antialiased; } 
+html { -ms-touch-action: none; } 
+body, p, ul, menu, ol, li, dl, dt, dd, form, table, th, td,
+fieldset, input, textarea, select, button, h1, h2, h3, h4, h5, h6, pre, address, i, svg { margin: 0; padding: 0; } 
+html, body { width: 100%; height: 100%; } 
+body { background-color: #fff; font-family: 'Pretendard'; font-size: 13px; line-height: 1.4; letter-spacing: -0.03em; color: #666; word-break: keep-all; } 
+header, footer, section, article, aside, nav, hgroup, details, menu, figure, figcaption { display: block; margin: 0; padding: 0; } 
+fieldset, img { border: 0; } 
+img { vertical-align: top; -ms-interpolation-mode: bicubic; } 
+img, video, audio, object, embed, iframe { max-width: 100% } 
+caption, legend { width: 0; height: 0; line-height: 0; visibility: hidden; overflow: hidden; } 
+table { border-spacing: 0; border-collapse: collapse; } 
+ul, ol, menu { list-style: none; } 
+a { color: #666; text-decoration: none; cursor: pointer; } 
+address, em, i { font-style: normal; } 
+del { text-decoration: none; } 
+button { overflow: hidden; border: 0; background: none; } 
+h1, h2, h3, h4, h5 { color: #222; font-weight: 500; line-height: 1.2; } 
+pre { word-break: break-all; white-space: pre-line; } 
+strong { font-weight: 700; } 
+input[type=text]::-ms-clear { display: none; } 
+/*:focus { outline: 0; } */
+
+/* #FORM
+------------------------------------------------------------*/
+label, input, select, textarea, button { border: 0; border-radius: 0; background-color: transparent; -webkit-appearance: none; -moz-appearance: none; appearance: none; font-size: 18px; font-weight: 400; vertical-align: top; } 
+label, input, select, textarea { outline: none; } 
+input, select, textarea { color: #222; } 
+label, textarea, button { font-family: 'Pretendard'; } 
+input, select { font-family: 'Pretendard'; } 
+textarea { padding: 10px; width: 100%; border: 1px solid #dadada; resize: none; } 
+input[type="image"], input[type="submit"], input[type="cancel"], label, button, select { cursor: pointer; } 
+input:disabled, select:disabled, textarea:disabled,
+input[readonly], select[readonly], textarea[readonly],
+.disabled, .readonly { background-color: #fff; color: #8d8d8d; /*-webkit-text-fill-color: #8d8d8d; */ opacity:1; } 
+code { padding: 2px 4px; background-color: #f9f2f4; font-size: 96%; font-family: 'Pretendard'; color: #c7254e; } 
+
+/* ----- input, select ----- */
+input[type="text"], input[type="password"], input[type="number"], input[type="email"], input[type="tel"],
+.input, select, .select { display: inline-block; width: 100%; height: 40px; border-bottom: 1px solid #dadada; vertical-align: top; } 
+input[type="text"], input[type="password"], input[type="number"], input[type="email"], input[type="tel"], select, .select { padding: 4px; line-height: 31px; caret-color: #222; } 
+.input input[type="text"], .input input[type="password"], .input input[type="number"], .input input[type="email"], .input input[type="tel"],
+.input select, .input .select { border: 0; background-color: transparent; } 
+input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="tel"]:focus, select:focus, textarea:focus, .input.focus { border-color: #222; z-index: 2; } 
+select, .select { background: transparent url("../images/010vbankNew/select-bg.png?ver=20210119") right center no-repeat; background-size: 10px auto; text-align: left; } 
+select:disabled, .select:disabled, select[readony], .select[readony] { background-image: url("../images/select-disabled-bg.png?ver=20210119"); cursor: default; } 
+
+/* input number */
+input[type='number'] { -moz-appearance: textfield; } 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; } 
+
+/** for IE **/
+button:active { border-style: outset; } 
+select::-ms-expand { display: none; } /* 화살표 없애기 for IE10, 11 */
+input::-ms-clear,
+input::-ms-reveal { display: none; width : 0; height: 0; } /* IE 삭제 버튼(X) 숨기기 for IE10, 11 */
+input[type=text]::-ms-clear { display: none; } 
+input[type=password]::-ms-reveal { display: none; } 
+
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration { display: none; } 
+
+/** placeholder **/
+input::placeholder { color: #dadada; font-weight: 400; height: 35px; line-height: 35px; } 
+textarea::placeholder { color: #dadada; font-weight: 400; line-height: 21px; } 
+/* webkit */
+input::-webkit-input-placeholder { color: #dadada; font-weight: 400; } 
+textarea::-webkit-input-placeholder { color: #dadada; font-weight: 400; } 
+/* firefox 4-18 */
+input:-moz-placeholder { color: #b3b3b3; font-weight: 400; } 
+textarea:-moz-placeholder { color: #b3b3b3; font-weight: 400; } 
+/* firefox 19+ */
+input::-moz-placeholder { color: #b3b3b3; font-weight: 400; } 
+textarea::-moz-placeholder { color: #b3b3b3; font-weight: 400; } 
+/* ie10+ */
+input:-ms-input-placeholder { color: #dadada !important; font-weight: 700 !important; } 
+textarea:-ms-input-placeholder { color: #dadada !important; font-weight: 700 !important; } 
+
+.placeholder { color: #dadada !important; font-weight: 700 !important; } 
+.number-area .input input[type='tel'].placeholder, .number-area .input input[type='text'].placeholder, .number-area .input input[type='password'].placeholder { padding-left: 6px; } 
+
+[class|="icon-angle"]:before { content: ''; position: absolute; top: 50%; left: 50%; margin-top: -6px; margin-left: -2px; width: 12px; height: 12px; border-top: 1px solid #222; border-left: 1px solid #222; }
+[class|="icon-angle-left"]:before { -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); } 
+[class|="icon-angle-right"]:before { margin-left: -10px; -webkit-transform: rotate(135deg); -moz-transform: rotate(135deg); -o-transform: rotate(135deg); transform: rotate(135deg); } 
+.icon-angle-left-sm:before, .icon-angle-right-sm:before { margin-top: -4px; width: 8px; height: 8px; border-color: #666; } 
+.icon-angle-right-sm:before { margin-left: -6px; } 
+.icon-angle-left-sm:before, .icon-angle-right-sm:before { width: 7px; height: 7px; margin-top: -5px; } 
+.ico-arrow { background: url(../images/010vbankNew/ico/ico_arrow.png) 0 0 no-repeat; background-size: 20px auto; } 
+.ico-arrow.btn-change { padding-right: 20px; background-position: right center; } 
+.mgt20 { margin-top: 20px !important; } 
+.pb0 { padding-bottom: 0 !important; } 
+.hidden { display: none !important; }
+.italic { font-style: italic; }
+.underline { position: relative; }
+.underline::after { content: ''; width: 100%; height: 1px; position: absolute; bottom: 0; left: 0; background-color: #666; }
+.bg-gray { background-color: #f9f9f9 !important; }
+
+/* #LAYOUT
+------------------------------------------------------------*/
+/* clearfix */
+#wrap, .container, .container-fluid, #header, .brand-name, #content, .clearfix { clear: both; } 
+#wrap:after, .container:after, .container-fluid:after, #header:after, .brand-name:after, #content:after, .clearfix:after { content: ''; display: block; clear: both; } 
+.container { position: relative; margin-left: auto; margin-right: auto; padding-left: 20px; padding-right: 20px; width: 100%; max-width: 700px; z-index: 1; } 
+.container-fluid { position: relative; width: 100%; } 
+#content .container { background-color: #fff; } 
+
+@media only screen and (max-width: 359px){
+ .container { padding-left: 20px; padding-right: 20px; } 
+ }
+
+/* ----- button ----- */
+.btn { display: inline-block; padding: 14px 10px; width: 100%; border: 1px solid #222; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; background-color: #222; font-size: 16px; font-weight: 500; color: #fff; line-height: 30px; white-space: nowrap; text-align: center; } 
+
+/* 닫기버튼 */
+.icon, [class|="icon"] { position: relative; display: inline-block; width: 30px; height: 30px; vertical-align: top; } 
+[class|="icon-times"]:before { -webkit-transform: rotate(-135deg); -moz-transform: rotate(-135deg); -o-transform: rotate(-135deg); transform: rotate(-135deg); } 
+[class|="icon-times"]:after { -webkit-transform: rotate(135deg); -moz-transform: rotate(135deg); -o-transform: rotate(135deg); transform: rotate(135deg); } 
+.btn-close { position: absolute; top: -2px; right: 17px; width: 30px; height: 30px; } 
+[class|="icon-times"]:after, [class|="icon-times"]:before { content: ''; position: absolute; top: 50%; left: 50%; margin-top: -1px; height: 1px; } 
+.icon-times:after, .icon-times:before { color: #151515; width: 18px; margin-left: -9px; background-color: #222; } 
+.modal-wrap .btn-close { position: absolute; right: 20px; top: 17px; z-index: 1; } 
+.modal-wrap .icon-times:after, .modal-wrap .icon-times:before { width: 18px; } 
+.close { width:24px; height: 24px; } 
+.close:before, .close:after { position: absolute; left: 15px; content:' '; height: 12px; width: 2px; background-color: #151515; } 
+.close:before { transform: rotate(45deg); } 
+.close:after { transform: rotate(-45deg); } 
+.icon-times-circle { width: 20px; height: 20px; background: url('../images/010vbankNew/ico/ico_del.png') no-repeat center / contain; }
+
+/* custom */
+.btn-back, .btn-close, .btn-star { display: inline-block; background: none; font-size: 0; vertical-align: top; } 
+.btn-question { position: relative; width: 24px; height: 24px; background-color: #151515; color: #fff; border-radius: 50%; font-size: 16px; } 
+
+.pop-sub { display: none; position: absolute; top: 46px; z-index: 1; width: 100%; padding: 24px 16px;  border-radius: 8px; box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16); background-color: rgba(21, 21, 21, .8); color: #fff; } 
+.pop-sub .pop-sub-tit { font-size: 15px; font-weight: 500; } 
+.pop-sub .pop-sub-con { font-size: 13px; font-weight: 300; } 
+.pop-sub .pop-sub-con li { padding-left: 15px; margin-top: 30px; background: url(../images/010vbankNew/ico/ico_chk_sm.png) no-repeat; background-size: 13px auto; background-position: left top 4px; line-height: 20px; } 
+.pop-sub .pop-sub-con em { color: #ffc400; } 
+@media only screen and (min-width: 375px) {
+	.pop-sub br { display: none; }
+}
+
+.icon, [class|="icon"] { position: relative; display: inline-block; width: 16px; height: 32px; vertical-align: top; } 
+.icon { background: url(../images/010vbankNew/ico/ico_timer.png) 0 0 no-repeat; background-size: 16px auto; } 
+.sr-only { font-size: 0; text-indent: -100000px; } 
+.icon-clock { background-position: center 7px; } 
+.icon-check-sm { top: 5px; width: 8px; height: 8px; margin-right: 5px; background-image: url(../images/ico/check-sm.svg?ver=20220203); background-size: 8px auto; } 
+
+/* ----- default layout ----- */
+body > form.main_form { width: 100%; height: 100%; } 
+#wrap { position: relative; width: 100%; height: 100%; min-width: 320px;  } 
+
+/* ----- header ----- */
+#header { position: fixed; top: 0; left: 0; width: 100%; height: 50px; padding: 12px 0; background-color: #fff; text-align: center; z-index: 100; } 
+#header.header-shadow-on { box-shadow: 0 1px 1px 0 rgb(0 0 0 / 5%); }
+#header > .container { position: relative; } 
+#header h1, h2 { font-size: 16px; line-height: 26px; } 
+#header .brand-name img,
+#header .brand-name svg { width: auto; max-width: inherit; height: 26px; } 
+#header .brand-name span + span { margin-left: 7px; } 
+#header .brand-name span.my-logo { font-weight: 400; color: #222; } 
+#header .brand-name span.shop-logo { font-weight: 300; } 
+#header .page-title { font-weight: 700; } 
+#header .btn-back { position: absolute; top: -2px; left: 13px; width: 30px; height: 30px; } 
+#header .btn-back:not(.hidden) + .brand-name { display: inline-block; padding-left: 30px; text-align: center; } 
+
+#content { padding: 40px 0; } 
+
+.text-danger { color: #ff3701 !important; } 
+.bg-white { background-color: #fff !important; }
+
+.container-new .headline { padding: 47px 0 0; text-align: left; background: url(../images/010vbankNew/bg/bg-vbank.png) no-repeat right 12px bottom / 125px auto; } 
+.container-new .headline strong { font-size: 28px; line-height: 30px; color: #151515; word-break: keep-all; } 
+.container-new .headline p { line-height: 20px; margin-top: 12px; font-size: 14px; color: #575757; } 
+.container-new .headline p > strong { font-size: 14px; font-weight: 700; color: #151515; } 
+.container-new .headline p > span { font-size: 14px; } 
+.container-new .headline2 { padding-top: 40px; background: none; text-align: center; } 
+.container-new .headline2 p { font-size: 25px; line-height: 30px; margin-top: 0; font-weight: 400; color: #151515; } 
+.container-new .headline2 p > strong { font-size: 25px; font-weight: 400; } 
+
+.container-new .form-type .input { height: 70px; line-height: 70px; background-color: #fff; border: 1px solid #cfcfcf; border-radius: 8px; } 
+.container-new .form-type .label-switch { margin-bottom: 0; padding: 22px 16px; } 
+.container-new .form-type .input .time { top: 20px; right: 20px; } 
+
+/* 번호입력 인풋 영역 */
+.number-area { margin-top: 40px; } 
+.number-area .number-container { background-color: #F6F6F6; border-radius: 8px; } 
+.number-area .save { padding: 14px 12px; } 
+.number-area .save > span { font-size: 12px; font-weight: 400; color: #575757; } 
+.number-area .save .switch-container { float: right; } 
+.number-area .number-container .input { position: relative; height: 70px; border: 1px solid #cfcfcf; border-radius: 8px; background-color: #fff; font-size: 24px; font-weight: 700; } 
+.number-area .number-container .input.focus { border: 1px solid #151515; } 
+.number-area .number-container .input .front { display: block; position: absolute; top: 0; left: 16px; font-size: 24px; font-weight: 700; line-height: 68px; color: #151515; pointer-events : none; } 
+.number-area .number-container .input input[type="tel"] { padding: 0 0 0 6px; height: 68px; font-weight: 700; vertical-align: middle; } 
+.number-area .number-container .input input[type="tel"]::placeholder { font-weight: 700; } 
+
+.number-area .number-container .fix-010 { padding-left: 62px } 
+.number-area .number-container .fix-010.focus { box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16); } 
+
+.switch-button { position: relative; margin-top: 3px; width: 24px; height: 12px; float: right; } 
+.switch-button input { opacity:0; width: 0; height: 0; } 
+.input input[type="tel"], .input input[type="text"], .input input[type="password"] { padding-left: 17px; height: 100%; font-size: 24px; font-weight: 700; color: #151515; caret-color: #ff3701; } 
+.number-area .input input[type='tel'] { padding-left: 6px; } 
+.onoff-switch { position: absolute; cursor: pointer; top: 0; left: -5px; right: 0; bottom: 0; border-radius:20px; background-color: #CFCFCF; -webkit-transition: .4s; transition:.4s; } 
+.onoff-switch:before { position: absolute; content: ""; height: 22px; width: 22px; left: -6px; bottom: -5px; background-color: #fff; -webkit-transition: .5s; transition: .4s; border-radius:20px; border: 1px solid #DEDEDE; } 
+.switch-button input:checked + .onoff-switch { background-color: #ff3701; box-shadow: inset 1px 5px 1px #ff3701; } 
+.switch-button input:checked + .onoff-switch:before { -webkit-transform: translateX(18px); -ms-transform: translateX(18px); transform: translateX(18px); } 
+/* //번호입력 인풋 영역 */
+
+/* ----- table ----- */
+.table { border-collapse: collapse; table-layout: fixed; border-spacing: 0; width: 100%; } 
+.table th, .table td { border: 1px solid #c5c5c5; padding: 5px; height: 33px; text-align: center; } 
+.table th { font-weight: 400; color: #151515; text-align: center; } 
+.table thead th { background-color: #f1f2f4; } 
+.table tbody th { background-color: #f6f7f8; } 
+.table-list td { text-align: center; } 
+.table-view tbody th { text-align: left; } 
+.table .text-left { text-align: left; } 
+.table .text-right { text-align: right; } 
+.table .text-center { text-align: center; } 
+
+/* 버튼 */
+.btn-auth:focus { outline: none; } 
+.btn-auth { display: block; width:100%; height: 60px; background-color: #dadada; color: #fff; font-size: 18px; font-weight: 700; z-index: 10; } 
+.btn-auth.sucess { background-color: #151515; } 
+
+/* 약관동의 */
+.modal .btn-round { display: block; width: 100%; height: 60px; border-radius: 8px; background-color: #151515; color: #fff; font-weight: 700; } 
+.modal .btn-round:disabled { background-color: #dadada; color: #fff; } 
+
+/* 모달창 */
+.modal-dialog, .modal-content, .modal-header, .modal-body, .modal-footer { clear: both; } 
+.modal-dialog:after, .modal-content:after, .modal-header:after, .modal-body:after, .modal-footer:after { content: ''; clear: both; display: block; } 
+.modal { display: none; position: fixed; top: 0; left: 0; padding: 0 20px; width: 100%; height: 100%; overflow-x: hidden; overflow-y: auto; z-index: 999; } 
+.modal:before { content: ''; display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; } 
+.modal-dialog { position: absolute; top: 50%; left: 0; margin-top: -160px; padding: 20px; width: 100%; z-index: 2; } 
+.modal-content { width: 100%; min-width: 280px; max-width: 380px; overflow: hidden; display: inline-block; border-radius: 18px; background-color: #fff; text-align: left; vertical-align: top; } 
+.modal-header { position: relative; padding: 20px; background-color: #fff; } 
+.modal-header .modal-title { font-size: 18px; font-weight: 800; line-height: 20px; } 
+.modal-header .btn-close { position: absolute; top: 15px; right: 15px; width: 30px; height: 30px; } 
+.modal-body { padding: 35px 24px; min-height: 90px; background-color: #fff; font-size: 14px; } 
+.modal-body h3 { margin-bottom: 13px; font-size: 18px; color: #151515; } 
+.modal-body h3:empty { margin-bottom: 0; } 
+.modal-footer { background-color: #fff; } 
+.modal-footer .btn { padding: 0 24px; width: auto; font-size: 16px; font-weight: 400; line-height: 60px; border: 0; background-color: transparent; } 
+.modal-footer .btn-cancel { float: left; color: #575757; } 
+.modal-footer .btn-confirm { float: right; color: #151515; font-weight: 700; } 
+.modal-dialog, .modal-content, .modal-header, .modal-body, .modal-footer { clear: both; } 
+.modal-dialog:after, .modal-content:after, .modal-header:after, .modal-body:after, .modal-footer:after { content: ''; clear: both; display: block; } 
+.modal { display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; overflow-x: hidden; overflow-y: auto; background-color: rgba(0, 0, 0, 0.5); transition: all .25s linear; } 
+.modal.open { display: block !important; visibility: visible; } 
+.modal.open .modal-wrap.open { transform: translate(-50%, 0); transition: transform .25s linear; } 
+.modal-wrap { transform: translate(-50%, 100%); position: fixed; border-radius: 18px 18px 0 0; z-index: 1; left: 50%; bottom: 0; max-width: 700px; width: 100%; height: auto; overflow: hidden; background-color: #fff; } 
+.modal-wrap .section { position: relative; } 
+.modal-auth .text-error { display: none; font-size: 12px; font-weight: 500; color: #fb3636; margin-top: 12px; } 
+.modal .modal-container { position: relative; } 
+.modal .modal-container.modal-con1 { z-index: 1; } 
+.modal .modal-container.modal-con2 { z-index: 2; } 
+.modal .modal-container.modal-con2 .noti-container {}
+.modal .modal-container > .section { position: relative; padding: 20px 22px; } 
+.modal-common .modal-body h3:empty + div { font-size: 18px; font-weight: 500; color: #151515; } 
+.modal-common .modal-body h3:empty + div span, .modal-common .modal-body h3:empty + p { font-size: 18px; font-weight: 500; color: #fb3636; } 
+.modal-new { visibility: hidden; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.5); transition: all .25s linear; } 
+.modal-new.open { visibility: visible; } 
+.modal-new.open .modal-wrap.open { transform: translate(-50%, 0); transition: transform .25s linear; } 
+.modal-new .modal-container { position: relative; padding: 20px 22px; } 
+.modal-new .btn-round { display: block; width: 100%; height: 60px; border-radius: 8px; border: 1px solid #CFCFCF; background-color: #151515; color: #fff; font-weight: 700; } 
+.modal-new .btn-round:disabled { background-color: #fff; color: #151515; } 
+.modal-new .escrow .btn-round:disabled, .modal-new .cash .btn-round:disabled { background-color: #DADADA; color: #fff; } 
+.icon-angle-left-sm, .icon-angle-right-sm { width: 7px; height: 11px; } 
+.modal-new .join-agree .btn-round:disabled { background-color: #dadada; } 
+.modal-new .join-agree .btn-round { border: none; background-color: #151515; color: #fff; } 
+
+.modal-sub.open { visibility: visible; transform: translateY(0px); transition: all .1s linear; } 
+.modal-sub { visibility: hidden; transform: translateY(100%); transition: all .25s linear; position: fixed; z-index: 1; left: 0; bottom: 0; width: 100%; height: 100%; overflow: auto; background-color: #fff; } 
+
+.modal-sub.auth.open { visibility: visible; transform: translateY(0px); transition: all .1s linear; } 
+.modal-sub.auth { visibility: hidden; transform: translateY(100%); transition: all .25s linear; position: fixed; z-index: 1; left: 0; bottom: 0; width: 100%; height: auto; overflow: auto; background-color: #fff; } 
+.modal-slide .modal-content { position: fixed; left: 50%; bottom: -100%; max-width: 700px; border-radius: 0; transform: translateX(-50%); border-radius: 15px 15px 0 0; } 
+
+.modal-slide .modal-dialog { top: 0; margin-top: 0; padding: 0; } 
+.modal-dialog { position: absolute; top: 50%; left: 50%; margin-top: -160px; padding: 20px; width: 100%; z-index: 2; transform: translateX(-50%); text-align: center; } 
+.modal-con2 { display: none; } 
+.modal-con2 .title { margin-bottom: 24px; } 
+
+#myModal1 .noti-container { position: relative; height: 48px; line-height: 48px; font-size: 14px; }
+#renewal-modal-terms .noti-container { position: relative; height: 48px; line-height: 48px; font-size: 14px; }
+
+/* 하단 슬라이드 모달 - 선택 버튼 그룹 */
+.modal-slide .modal-dialog { top: 0; margin-top: 0; padding: 0; } 
+.modal-slide .modal-body { position: relative; padding: 50px 0 24px; margin: 0 auto; max-width: 700px; max-height: 100%; overflow: hidden; border-top-left-radius: 15px; border-top-right-radius: 15px; } 
+.modal-slide.modal-terms2 .modal-body { padding: 20px; max-width: 700px; border-top-left-radius:0; border-top-right-radius:0 } 
+.modal-slide .modal-body .container { position: relative; height: 100%; overflow: hidden; } 
+.modal-slide .modal-body .btn-close,
+.modal-banklist .modal-body .btn-close { position: absolute; top: 0; left: 0; padding: 0; width: 100%; height: 35px; border: 0; border-radius: 0; line-height: 35px; z-index: 2; } 
+.modal-slide .modal-body .btn-close:before,
+.modal-banklist .modal-body .btn-close:before { content: ''; position: absolute; top: 10px; left: 50%; margin-left: -18px; width: 36px; height: 5px; border-radius: 2.5px; background-color: #e8e8e8; } 
+.modal-terms2 .modal-content { border-radius: 18px 18px 0 0; } 
+.modal-terms2 .modal-body .btn-close { position: absolute; top: -4px; right: -4px; left: auto; width: 30px; height: 30px; z-index: 2; } 
+.modal-terms2 .modal-body .btn-close:before { display: none; } 
+.modal-terms2 .modal-body .container { padding-left: 0; padding-right: 0; } 
+.modal-terms2 .input input[type="tel"], .modal-terms2 .input input[type="text"], .modal-terms2 .input input[type="password"] { font-size: 20px; color: #151515; font-family: 'Pretendard'; } 
+.modal-terms2 .input input::placeholder { color: #dadada !important; } 
+.modal-terms2 .input input[type='tel']::placeholder, .modal-terms2 .input input[type='text']::placeholder, .modal-terms2 .input input[type='password']::placeholder { color: #dadada; } 
+
+
+/* 푸터 버튼 있는 경우 */
+.modal-footer { background-color: #fff; } 
+.modal-info .modal-footer { margin: auto; height: 60px; width: 100%; max-width: 100%; background-color: #151515; position: absolute;bottom: 0; z-index: 2; } 
+.modal-info .modal-footer .btn { float: none; width: 100%; line-height: 60px; } 
+.modal-terms2 .modal-footer { max-width: 100%; padding: 20px 20px; background: linear-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,1) 40%); border-radius: 0; height: auto; z-index: 2; position: absolute; bottom: 0; left: 0; } 
+.modal-terms2 .modal-footer .btn { background-color: #151515; color: #fff; font-size: 18px; font-weight: 700; } 
+.modal-terms2 .modal-footer .btn:disabled { background-color: #dadada; } 
+#modal-terms .modal-footer .btn-confirm { color: #fff; } 
+
+/* 약관 상세 모달 */
+/* .modal-terms .modal-content { max-height: calc(100% - 60px); } 60 = dimed area height */
+#modal-terms .modal-content { position: fixed; height: calc(100% - 60px); }
+#modal-terms .modal-body .terms.scroll { height: calc(100% - 60px); padding-bottom: 0; }
+.modal-terms .modal-body { height: calc(100% - 60px); overflow: hidden; } /* 60 = footer height */
+.modal-terms .nav { height: 60px; }
+.modal-terms .nav .owl-stage-outer { position: absolute; top: 0; left: 0; right: 59px; }
+.modal-terms .nav .owl-nav { position: absolute; top: 0; right: 0; width: 59px; }
+.modal-terms .nav .owl-nav button { float: left; position: relative; width: 30px; height: 30px; font-size: 0; border: 1px solid #222; }
+.modal-terms .nav .owl-nav button.owl-next { margin-left: -1px; }
+.modal-terms .nav .owl-nav button span:before { content: ''; position: absolute; top: 50%; left: 50%; margin-top: -6px; margin-left: -2px; width: 12px; height: 12px; border-top: 1px solid #222; border-left: 1px solid #222; }
+.modal-terms .nav .owl-nav button.owl-prev span:before { -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); }
+.modal-terms .nav .owl-nav button.owl-next span:before { margin-left: -9px; -webkit-transform: rotate(135deg); -moz-transform: rotate(135deg); -o-transform: rotate(135deg); transform: rotate(135deg); }
+.modal-terms .nav .owl-nav button.disabled span:before { border-color: #e1e1e1; }
+.modal-terms .nav .item { padding-right: 60px; height: 60px; } /* 시행일 미표시 */
+.modal-terms .nav .item.has-select { padding-right: 165px; } /* 시행일 표시 */
+.modal-terms .nav .item h2 { padding-top: 5px; font-size: 16px; font-weight: 500; color: #222; line-height: 1.3; word-break: break-all; }
+.modal-terms .nav .item .select-sm {position: absolute;top: 0;right: 58px;padding: 0 0 0 10px;width: 100px;height: 30px;border: 1px solid #222;background-position: right 5px center;font-size: 12px;line-height: 28px;font-family: Roboto, 'Noto Sans KR';}
+.modal-terms .terms { width: 100%; height: 100%; text-align: left; }
+.modal-terms .terms h3 { margin: .214em 0; }
+/* //모달창 */
+
+/* ----- scroll ----- */
+.scroll { width: 100%; overflow-y: auto; } 
+
+/* ----- terms ----- */
+.terms { font-size: 12px; color: #666; word-break: normal; } 
+.terms h3, .terms h4, .terms h4 { font-weight: 500; color: #222; } 
+.terms h3 { font-size: 17px; } 
+.terms h4 { font-size: 14px; } 
+.terms h5 { font-size: 13px; } 
+.terms h3, .terms h4, .terms h5, .terms p, .terms li, .terms .table { margin: .25em 0; } 
+.terms .indent { padding-left: 1.333em; } 
+.terms.scroll { padding-right: 4px; } 
+
+/* full */
+.full { font-size: 12px; color: #666; word-break: normal; } 
+.full h3, .full h4, .full h4 { font-weight: 500; color: #222; } 
+.full h3 { font-size: 17px; } 
+.full h4 { font-size: 14px; } 
+.full h5 { font-size: 13px; } 
+.full h3, .full h4, .full h5, .full p, .full li, .full .table { margin: .25em 0; } 
+.full .indent { padding-left: 1.333em; } 
+.full.scroll { padding-right: 4px; } 
+
+/* ----- list ----- */
+.ul-list { padding-left: 1.333em; list-style-type: disc; } 
+.ul-list > li { margin-top: 0.5em; } 
+.ul-list > li ul { margin-top: .357em; } 
+
+/* ----- 슬라이드 공통 ----- */
+.owl-carousel { clear: both; margin: auto; } 
+.owl-carousel:after { content: ''; display: block; clear: both; } 
+
+/* dots */
+.owl-carousel .owl-dots { font-size: 0; text-align: center; } 
+.owl-carousel .owl-dots .owl-dot { display: inline-block; } 
+.owl-carousel .owl-dots .owl-dot span { display: block; width: 10px; height: 10px; margin: 10px 5px; border: 1px solid #fff; -webkit-backface-visibility: visible; transition: opacity .2s ease; -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; } 
+.owl-carousel .owl-dots .owl-dot.active span { background: #fff; } 
+
+/* 체크박스 */
+.checkbox { position: relative; display: inline-block; vertical-align: top; } 
+.checkbox > input[type="checkbox"], .checkbox>input[type="radio"] { position: absolute; top: 0; left: 0; width: 0; height: 0; font-size: 0; border: 0; -webkit-appearance: none; -moz-appearance: none; appearance: none; } 
+.checkbox > input + label { position: relative; display: block; padding-left: 28px; height: 26px; font-size: 13px; line-height: 26px; color: #222; } 
+.checkbox > input + label:before { content: ''; position: absolute; top: 4px; left: 3px; display: block; width: 16px; height: 10px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; -webkit-transform: rotate(-50deg); transform: rotate(-50deg); z-index: 2; } /* check icon */
+.checkbox > input + label:after { content: ''; position: absolute; top: 3px; left: 0; display: block; width: 20px; height: 20px; -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; background-color: #e7e7e7; } /* circle */
+.checkbox > input + label { font-size: 14px; font-weight: 400; color: #575757; } 
+.checkbox > input + label:before { top: 8px; left: 7px; width: 12px; height: 7px; } 
+.checkbox > input + label::after { top: 0; width: 26px; height: 26px; } 
+.checkbox > input:checked + label:after { background-color: #222; } 
+.checkbox.child > input + label { font-size: 12px; color: #575757; } 
+.checkbox.child > input + label:before { border-color: #e1e1e1; } 
+.checkbox.child > input + label:after { background-color: transparent; } 
+.checkbox.child > input:checked + label:before { border-color: #222; } 
+.agree-all .checkbox > input + label { font-size: 18px; font-weight: 700; color: #151515; padding-left: 30px; margin-bottom: 0; } 
+.check-list li { display: block; position: relative; clear: both; } 
+
+.check-wrap { margin: 0; } 
+.check-wrap > .check-wrap-tit { font-size: 18px; font-weight: 700; color: #151515; } 
+.modal-wrap .check-wrap > .check-wrap-list { margin: 13px 0 40px; } 
+.check-wrap > .check-wrap-list { margin: 9px 0 -12px 0; } 
+.check-wrap > .check-wrap-list li span + i { position: absolute; top: 11px; right: 1px } 
+.check-wrap > .check-wrap-list > li input + label::before { border-color: #dadada; } 
+.check-wrap > .check-wrap-list .checkbox { float: none; display: block; } 
+.check-wrap > .check-wrap-list .checkbox > input + label { height: auto; line-height: 1.2; font-size: 14px; padding: 9px 0 9px 28px; margin: 0; } 
+.check-wrap > .check-wrap-list .checkbox > input + label::after { top: 6px; width: 20px; height: 20px; } 
+.check-wrap > .check-wrap-list .checkbox > input + label::before { top: 12px; left: 7px; } 
+.check-wrap > .check-wrap-list .btn-hidden.hidden { visibility: hidden; } 
+
+.info-change { position: absolute; min-width: 30px; height: 30px; top: 2px; right: 0; font-size: 13px; background-position: center; } 
+.terms .check-wrap > .check-wrap-list { margin: 13px 0 } 
+
+/* 스퀘어 */
+.check-wrap.square > .check-wrap-list > li > .checkbox > input + label:after { background-color: #DADADA; } 
+.check-wrap.square > .check-wrap-list .checkbox.child > input + label:before { border-color: #fff; } 
+.check-wrap.square > .check-wrap-list .check-wrap-list > li input + label:before { border-color: #dadada; } 
+.check-wrap.square > .check-wrap-list .check-wrap-list .checkbox.child > input + label:before { border-color: #dadada; } 
+.check-wrap.square > .check-wrap-list .check-wrap-list .checkbox.child > input:checked + label:before { border-color: #151515; } 
+.check-wrap.square > .check-wrap-list .checkbox > input + label { padding: 12px 0 12px 28px; height: 40px; } 
+.check-wrap.square > .check-wrap-list .checkbox > input + label::before { top: 15px; } 
+.check-wrap.square > .check-wrap-list .checkbox > input + label::after { top: 10px; } 
+.check-wrap.square .checkbox > input + label::after { border-radius: 8px; } 
+.check-wrap.square .checkbox.child > input:checked + label::after { background-color: #151515; } 
+/* .check-wrap.square .check-wrap-list .btn-change { top: 12px; } */
+.check-wrap.square .check-wrap-list .checkbox > input + label::before { width: 10px; height: 6px; top: 16px; left: 5px; } 
+
+.check-wrap .check-wrap-list.square .square .checkbox.child > input:checked + label:before { left: 4px; border-color: #fff; } 
+.check-wrap .check-wrap-list .square .checkbox.child > input:checked + label:before { left: 4px; border-color: #fff; } 
+.check-wrap .check-wrap-list .square .checkbox > input:checked + label:after { background-color: #000; } 
+.check-wrap .check-wrap-list .btn-change { position: absolute; top: 5px; right: -7px; color: #151515; } 
+.check-wrap .check-wrap-list .btn-change > i { margin-left: 5px; vertical-align: middle; } 
+.check-wrap .check-wrap-list-sub .checkbox.child > input:checked + label::after { background-color: #fff; } 
+.check-wrap .check-wrap-list-sub .checkbox.child > input:checked + label::before { border-color: #151515; } 
+/* .check-wrap-list .check-wrap-list-sub { display: none; } */
+/* .check-wrap-list .open .check-wrap-list-sub { display: block; } */
+.icon-angle-left-sm:before, .icon-angle-right-sm:before { width: 6px; height: 6px; margin-top: -4px; } 
+/* //체크박스 */
+
+/* 얼럿모달 */
+.modal-alert .modal-content { position: relative; overflow: visible; border: none; text-align: center; border-radius: 18px; } 
+.modal-alert .modal-content::before { content: ''; position: absolute; top: -22px; left: 50%; transform: translateX(-50%); width: 54px; height: 54px; display: block; background: url(../images/010vbankNew/bg/bg-alert.png) no-repeat center / contain; z-index: 1; } 
+.modal-alert2 .modal-content::before { background: url(../images/010vbankNew/bg/bg-alert-v2.png) no-repeat center / contain; } 
+.modal-alert .modal-body { border-radius: 18px 18px 0 0; padding: 30px 20px; font-weight: 500; } 
+.modal-alert .modal-footer { margin-top: 0; margin-bottom: 0; margin-right: 0; background-color: #fff; border-radius: 0 0 18px 18px; border: none; padding: 0 20px; } 
+.modal-alert .modal-footer .btn:last-child { clear: both; color: #151515; width: 100%; font-size: 16px; font-weight: 700; padding: 0; border-top: 1px solid #dadada; border-radius: 0; line-height: 49px; } 
+.modal-alert .modal-body h3 { font-size: 18px; margin-top: 10px; font-weight: 700; } 
+.modal-alert .modal-body #alertContents { line-height: 22px; }
+.modal-alert .modal-body p { font-size: 14px; font-weight: 500; color: #575757; line-height: 20px; word-break: keep-all; } 
+.modal-alert .modal-body .text-color { color: #ff3701; } 
+
+.modal-slide .modal-dialog { position: fixed; transform: none; left: 0; bottom: 0; height: 100%; padding: 60px 0 0; overflow: hidden; overflow-y: auto; } 
+
+/* 입금확인 모달 */
+#modal-end .modal-dialog { padding: 20px; text-align: center; left: 0; } 
+#modal-end .modal-content { height: auto; } 
+#modal-end .modal-dialog .tit { font-size: 25px; line-height: 30px; margin-top: 20px; font-weight: 400; color: #151515; text-align: center; } 
+#modal-end .modal-dialog .tit > span { display: block; } 
+#modal-end .modal-dialog .tit .company { font-size: 14px; color: #151515; } 
+#modal-end .modal-dialog .tit .product { font-size: 14px; color: #575757; } 
+#modal-end .modal-dialog .box { padding: 16px; margin-top: 20px; margin-bottom: 25px; border-radius: 8px; background-color: #f9f9f9; } 
+#modal-end .modal-dialog .box .list-two-row li { margin-bottom: 20px; } 
+#modal-end .modal-dialog .box .list-two-row li::after { content: ''; display: block; clear: both; } 
+#modal-end .modal-dialog .box .list-two-row li:last-child { margin-bottom: 0; } 
+#modal-end .modal-dialog .box .list-two-row li span { float: left; font-size: 14px; color: #575757; } 
+#modal-end .modal-dialog .box .list-two-row li span:last-child { float: right; font-size: 15px; font-weight: 700; color: #151515; } 
+/* //입금확인 모달 */
+/* //얼럿모달 */
+
+/* 에스크로 사용 정보, 현금영수증 모달 */
+.modal-check.escrow, .modal-check.cash { height: calc(100% - 50px); text-align: left; } 
+.modal-check.escrow .btn-bot, .modal-check.cash .btn-bot { position: absolute; bottom: 0; } 
+.form-control-clear { display: block; position: absolute; top: 50%; right: 14px; transform: translateY(-50%); padding: 4px; line-height: 1; }
+/* .modal-check.escrow .btn-bot, .modal-check.cash .btn-bot { margin-top: 10px; } */
+/* //에스크로 사용 정보, 현금영수증 모달 */
+
+.modal-wrap .title, .modal-terms2 .title { font-size: 18px; font-weight: 700; color: #151515; padding-bottom: 20px;} 
+.modal-terms2 .form-type { margin-top: 35px; margin-bottom: 100px; }
+.modal-terms2 .input input { padding-right: 39px; }
+#modal-cash.modal-terms2 .form-type { margin-top: 20px; }  
+#modalReceipt.modal-terms2 .form-type { margin-top: 20px; } 
+#myModalSubAuth.modal-wrap .title { margin-bottom: 24px; } 
+
+.form-type-input > li { margin-top: 22px; } 
+.form-type-input > li:first-child { margin-top: 0 } 
+.form-type-input .input { position: relative; border: 1px solid #cfcfcf; border-radius: 8px; height: 70px; } 
+.form-type-input .input.focus { border: 1px solid #151515; box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16); } 
+.form-type-input .input input::placeholder { font-weight: 700; } 
+.form-type-input .text-error { display: none; font-size: 12px; color: #fb3636; padding-left: 4px; margin-top: 10px; line-height: 16px; } 
+.form-type-input .btn-round { background-color: #DADADA; } 
+/* .form-type-input .btn-round { background-color: #151515; } */
+.form-type .input .time { position: absolute; top: 4px; right: 4px; font-size: 14px; line-height: 30px; color: #ff3701; } 
+.form-type .input .time { top: 18px; right: 20px; } 
+.form-type li > .tit { display: inline-block; font-size: 14px; font-weight: 400; color: #575757; line-height: 1.2; margin-bottom: 6px; } 
+.form-type li > .tit:first-child { margin-top: 0; } 
+.form-type li > .tit.bg-chk { padding-left: 15px; background: url(../images/010vbankNew/ico/check-sm.svg?ver=20220203) no-repeat; background-size: 8px auto; background-position: left top 6px; line-height: 20px; color: #575757; font-size: 13px; } 
+
+.form-control-clear { display: block; position: absolute; top: 50%; right: 14px; transform: translateY(-50%); padding: 4px; line-height: 1; }
+.icon-times-circle { width: 20px; height: 20px; background: url('../images/010vbankNew/ico/ico_del.png') no-repeat center / contain; }
+
+/* .modal-new .close { position: absolute; top: 20px; right: 18px; } 
+#myModal.modal-new .close { position: absolute; top: auto; bottom: 24px; } 
+.modal-auth .close { top: 15px; } */
+/* .modal-new .modal-wrap .btn-close { position: absolute; top: 20px; right: 20px; z-index: 1; } */
+.modal-new .modal-wrap.escrow .btn-close, .modal-new .modal-wrap.cash .btn-close { position: absolute; top: -4px; right: -4px; } 
+[class|="icon-times"]:after, [class|="icon-times"]:before { height: 2px; } 
+/* //닫기버튼 */
+
+.arrow-right { position: relative; line-height: 1.2; width: 12px; height: 26px; float: right; } 
+.arrow-right::after { position: absolute; left: 0; top: 10px; content: ''; width: 7px; /* 사이즈 */ height: 7px; /* 사이즈 */ border-top: 1px solid #707070; /* 선 두께 */ border-right: 1px solid #707070; /* 선 두께 */ transform: rotate(45deg); /* 각도 */ } 
+
+.join-agree, .join-agree .agree-all, .join-agree .agree-list, .join-agree .agree-list li { position: relative; } 
+.agree-list .info-chg { position: absolute; top: 7px; right: 0 } 
+
+.noti-container { position: relative; font-size: 14px; } 
+.noti-container > p { font-size: 14px; color: #575757; } 
+.noti-container .btn { width: 60px; height: 30px; line-height: 28px; padding: 0; margin-left: 14px; background-color: #fff; font-size: 14px; font-weight: 700; border-radius: 15px; border: solid 1px #b4b4b4; color: #151515; } 
+.position-relative .btn { border-radius: 0; } 
+.position-relative .noti-container { line-height: 30px; padding: 10px 0; text-align: center } 
+.position-relative .noti-container .btn { border-radius: 15px; } 
+.modal-wrap .noti-container { padding: 0 20px; } 
+
+.modal .noti-container { background-color: #f9f9f9; } 
+.modal .noti-container .btn { position: absolute; top: 9px; right: 20px; width: 60px; height: 30px; padding: 0; background-color: #fff; font-size: 14px; font-weight: 700; border-radius: 15px; border: solid 1px #b4b4b4; color: #151515; } 
+.modal .noti-container .btn:disabled{ color: #b4b4b4; cursor: default; } 
+
+.cs-container { position: relative; height: 48px; line-height: 48px; font-size: 14px; background-color: #f9f9f9; } 
+
+.headline p { font-size: 25px; font-weight: 500; color: #151515; } 
+.headline p span { display: block; font-size: 14px; } 
+.headline2 p span { display: inline-block; font-size: 14px; } 
+.headline .headLineSub strong { font-size: 14px; line-height: 1; } 
+.headline .product span { font-size: 14px; } 
+.headline .product span:first-child { color: #151515; } 
+.headline .product span:last-child { color: #575757; } 
+
+/* 계좌정보 */
+.account-box-new { margin-top: 30px; border: 1px solid #707070; border-radius: 8px; text-align: left; } 
+.account-box-new .account { width: 100%; height: 100%; color: #151515; font-size: 18px; font-weight: 700; text-align: center; } 
+.account-box-new .account-bank { margin-top: 14px; margin-bottom: -5px; }
+/* .account-box-new .account > span.logo { } */
+.account-box-new .logo { position: relative; top: 3px; display: inline-block; vertical-align: top; } 
+.account-box-new .logo img { width: 19px; height: 19px; border-radius: 100%; }
+.account-box-new .account-info { position: relative; display: inline-block; font-size: 14px; font-weight: 500; color: #575757; } 
+.account-box-new .deposit { margin-top: 15px; padding: 12px 15px; border-radius: 0 0 8px 8px; background-color: #f9f9f9; background-image: linear-gradient(to right, #bcbcbc 50%, rgba(255,255,255,0) 0%); background-position: top; background-size: 7px 1px; background-repeat: repeat-x; }
+.account-box-new .deposit-box { font-size: 14px; margin: 6px 0; }
+.account-box-new .deposit-box::after { content: ''; display: block; clear: both; }
+.account-box-new .deposit-box .left { float: left; }
+.account-box-new .deposit-box .right { float: right; font-weight: 700; }
+.account-box-new .deposit-price .right { color: #151515; }
+.account-box-new .deposit-date .right { color: #ff3701; }
+/* //계좌정보 */
+
+/* 버튼 영역 */
+.btn-wrap .btn-auth { margin-top: 26px; border-radius: 8px; } 
+.btn-wrap .btn-auth.on { background: #151515; } 
+/* //버튼 영역 */
+
+/* bottom-area */
+.bottom-area { position: relative; bottom: 0; width: 100%; z-index: 0; background-color: #fff; padding-top: 20px; } 
+.bottom-area.fixed { position: fixed; }
+.cs-area { text-align: center; } 
+.cs-area > li { display: inline-block; font-size: 14px; font-weight: 500; line-height: 26px; color: #575757; } 
+.cs-area > li .logo { height: 17px; margin: 4px 2px 0 0 } 
+.cs-area > li a { color: #151515; } 
+.cs-area > li:last-child { font-size: 16px; color: #151515; } 
+.cs-area > li:last-child::before { content: ''; position: relative; top: 5px; display: inline-block; width: 1px; height: 16px; background: #707070; vertical-align: top; margin: 0 8px; } 
+/* //bottom-area */
+
+/* 현금영수증 발급 모달 */
+.form-type-cash > li { display: none; } 
+.form-type-cash > li.on { display: block; } 
+/* //현금영수증 발급 모달 */
+
+/* 다건 결제 모달 */
+/* #infoSame .modal-body div { font-size: 16px; font-weight: 500; color: #151515; } */
+/* #infoSame .modal-body div span { font-size: 16px;font-weight: 500;color: #fb3636; } */
+/* #infoSame .modal-body h3 { padding-left: 40px; background: url(../images/010vbankNew/bg/bg-alert-v2.png) 0 0 no-repeat; background-size: 32px auto; } */
+/* //다건 결제 모달 */
+
+/* 텍스트 하이라이트 */
+.highlight { position: relative; display: inline-block; }
+.highlight:after { content: ''; z-index: -1; position: absolute; left: 0; bottom: 14%; display: block; background-color: #EDFF29; width: 100%; height: 55%; }
+/* //텍스트 하이라이트 */
+
+.form-type-cash .fix-010 { padding-left: 62px; } 
+.form-type-cash .input .front { display: block; position: absolute; top: 0; left: 16px; font-size: 24px; font-weight: 700; line-height: 68px; color: #000; pointer-events: none; }
+#modal-cash.modal-terms2 .input.fix-010 input[type="tel"] { padding-left: 6px; font-size: 24px; }  
+#modalReceipt.modal-terms2 .input.fix-010 input[type="tel"] { padding-left: 6px; font-size: 24px; } 
+.modal-terms2 .form-type-cash .input input { font-size: 24px; } 
+
+/* loading */
+.loading { position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; background: rgba(0,0,0,.5); font-size: 0; line-height: 0; text-align: center; z-index: 9999; }
+.loading:after { content: ''; position: absolute; top: 50%; left: 50%; margin: -50px 0 0 -24px; width: 48px; height: 48px; border: 4px solid #fff; border-top-color: #faa61a; border-radius: 50%; animation: spin 1s linear infinite; }
+.loading .text { display: block; position: absolute; top: 50%; left: 0; margin-top: 20px; width: 100%; font-size: 13px; text-indent: 0; color: #fff; }
+@keyframes spin {
+	0% { -webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); -moz-transform: rotate(360deg); -ms-transform: rotate(360deg); -o-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+/* hack */
+@media screen and (min-width:0\0) and (min-resolution: .001dpcm) { /* // IE9 CSS */
+.number-area .input input[type='tel'], .number-area .input input[type='text'], .number-area .input input[type='password'], input[type='text'].chk-phone { padding-left: 6px; } 
+button:disabled, button[disabled] { color: #fff; } 
+ }

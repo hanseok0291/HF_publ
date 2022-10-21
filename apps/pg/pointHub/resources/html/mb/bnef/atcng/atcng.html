@@ -1,0 +1,73 @@
+<%@  page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%--
+ **********************************************************************************************
+ * @desc : 혜택플랫폼 통신비 자동이체 신청 
+ * @FileName : /pointhub_git/src/main/webapp/WEB-INF/views/mb/bnef/atcng.jsp
+ * @author jungukjae
+ * @since 2020.02.06
+ * @version 1.0
+ * @see 
+ * <pre>
+ * << 개정이력(Modification Information) >>
+ *  수 정 일      수 정 자             수정내용
+ * ----------   -----------   -----------------------------
+ * 2020.02.06    jungukjae      	   최초생성
+ * </pre>
+ **********************************************************************************************
+--%>
+
+<dd> 
+	<div class="cont_dv2">
+		<input type="hidden" id="atcng_billed_year_month"/>
+		<input type="hidden" id="atcng_biller_user_key"/>	
+		<input type="hidden" id="atcng_amount"/>			<!-- 회선요금 --> 		
+		<div class="tit">신청 상품</div> 
+		<div class="selbx">    
+			<button class="popup-open3">
+				<span class="type" id="atcng_deviceName"> <!-- 모바일 --> </span>
+				<span class="num fontRoboto" id="atcng_userCtn"> <!-- 01033***234 --> </span>
+				<span class="bg_icon"></span>
+			</button>
+		</div>
+	</div>
+	<div class="cont_dv2">
+		<div class="tit">신청 금액</div>
+		<div class="cont_dv">
+			<div class="tit">K포인트(매월)</div>
+			<div class="txt_point has_input">
+				<c:choose>
+					<c:when test="${rootMap.userInfo.os == 'ios'}">
+						<input type="number" pattern="\d*" id="atCngPayCoin" placeholder="금액 입력">				
+					</c:when>				
+					<c:when test="${rootMap.userInfo.os == 'aos'}">
+						<input type="number" id="atCngPayCoin" placeholder="금액 입력">				
+					</c:when>			
+					<c:otherwise>
+						<input type="number" id="atCngPayCoin" placeholder="금액 입력">				
+					</c:otherwise>	
+				</c:choose>
+				<button class="bg_icon btn_del"  onclick="javascript:inputClear();">입력취소</button>
+			</div>
+		</div>
+		<div class="txt_wr">* 최소 1,000P ~ 100,000P (100P 단위는 입력 불가)</div>
+		<div class="point_input">
+			<button onclick="setAtcngPointPlus(1);">+1천P</button>
+			<button onclick="setAtcngPointPlus(2);">+5천P</button>
+			<button onclick="setAtcngPointPlus(3);">+1만P</button>
+			<button onclick="setAtcngPointPlus(4);">전액</button> 
+		</div>
+	</div>
+	<div class="cont_dv2">
+		<div class="tit">자동납부일</div>
+		<label class="label1">
+			<input type="checkbox" class="checkbox_s1" id="atcngCheck">
+			<span><strong>매월 9~18일 사이</strong> 자동 납부됩니다.</span>
+		</label>
+	</div>
+	<div class="txt_noti2">자동이체 신청 내역은 익월부터 적용됩니다.</div>
+	<div class="btn_pay_wrap">
+		<button id="atcng_submitBtn" onclick="javascript:fn.coin.atcngPay();" disabled="disabled">신청하기</button>
+	</div>
+</dd>

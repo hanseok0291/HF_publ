@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<title>헥토파이낸셜 지불서비스</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<!-- favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="../../images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="../../images/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="../../images/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../../images/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="../../images/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../../images/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="../../images/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="../../images/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="../../images/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../images/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../../images/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon/favicon-16x16.png">
+<link rel="manifest" href="../../images/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="../../images/favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<!-- //favicon -->
+
+<link rel="stylesheet" href="../../css/owl.carousel.min.css">
+<link rel="stylesheet" href="../../css/slick.min.css">
+<link rel="stylesheet" href="../../css/common.css">
+<!--[if lt IE 9]>
+<script type="text/javascript" src="../../js/html5shiv.js"></script>
+<script type="text/javascript" src="../../js/respond.min.js"></script>
+<![endif]-->
+<script src="../../js/jquery-1.8.3.min.js"></script>
+<script src="../../js/jquery.placeholder.min.js"></script>
+<script src="../../js/owl.carousel.min.js"></script>
+<script src="../../js/slick.min.js"></script>
+<script src="../../js/design.js" defer="defer"></script>
+<script src="../../js/commonmsg.js"></script>
+<script src="../../js/commonutil.js"></script>
+</head>
+
+<body>
+<!-- wrap -->
+<div id="wrap" class="wrap">
+	<!-- form -->
+	<form class="wrap" autocomplete="off">
+		<!-- header -->
+		<div id="header">
+			<div class="container">
+				<button type="button" id="btnBack" class="btn-back"><i class="icon-angle-left">뒤로 가기</i></button>
+				<h1 class="brand-name"><span class="my-logo"><img src="../../images/logo-hecto.png?ver=1.0" alt="헥토파이낸셜"></span></h1>
+				<button type="button" class="btn-notice" data-toggle="modal" data-target="#noticeDetail"><i class="icon icon-bell">알림</i></button>
+				<button type="button" id="closeWindow" class="btn-close" data-toggle="modal" data-target="#commonConfirm"><i class="icon-times">창 닫기</i></button>
+			</div>
+		</div>
+		<!-- //header -->
+
+		<!-- content -->
+		<div id="content" class="giftcard-pay">
+			<!-- container -->
+			<div class="container">
+				<h2 class="page-title pay-type">해피머니 결제</h2>
+
+				<!-- 주문정보 -->
+				<div class="order-info">
+					<p class="prd-goods">드시모네 키즈 세트 afghjlmoprqyz 12345678901234567890</p>
+					<p class="prd-price"><strong class="price text-primary"><em class="value">298,000</em>원</strong> 결제합니다.</p>
+					<p class="prd-period">별도 제공기간 없음</p>
+				</div>
+				<!-- //주문정보 -->
+
+				<!-- seection -->
+				<div class="section">
+					<h3 class="section-title">해피머니 정보</h3>
+
+					<!-- 정보 입력/잔액 조회 -->
+					<div class="search-area">
+						<!-- 정보 입력 -->
+						<ul class="form-type">
+							<li>
+								<input type="text" id="userId" placeholder="해피머니 아이디">
+								<div class="text-error">아이디를 입력해 주세요.</div>
+							</li>
+							<li>
+								<input type="password" id="userPw" placeholder="결제비밀번호">
+								<div class="text-error">결제비밀번호를 입력해 주세요.</div>
+								<div class="text-info">결제비밀번호(6자리)를 입력하세요. <button type="button" class="btn btn-xs btn-icon" data-toggle="modal" data-target="#modalInfo"><i class="icon-help shadow">?</i><span class="sr-only">도움말</span></button></div>
+							</li>
+							<li class="captcha">
+								<ul>
+									<li>
+										<div class="img-area"><img src="../../images/sample/captchaImg.png" id="captchaImg" alt="보안문자 이미지" class="img"></div>
+										<div id="captchaAudio" style="display:none;"></div>
+										<div class="btn-area">
+											<button type="button" id="refreshCaptcha" class="btn btn-refresh" onclick="refreshCaptchaImage()"><i class="icon icon-refresh"></i> 새로고침</button>
+											<button type="button" id="soundCaptcha" class="btn btn-speaker" onclick="audio()"><i class="icon icon-speaker"></i> 음성듣기</button>
+										</div>
+									</li>
+									<li>
+										<input type="tel" name="captchaInput" id="catpchaInput" placeholder="보안숫자" maxlength="6" class="captcha-input">
+										<div class="text-error">보안숫자를 입력해 주세요.</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<!-- //정보 입력 -->
+
+						<!-- 조회 버튼 영역 -->
+						<div class="btn-area mgt20">
+							<button type="button" class="btn btn-lg btn-secondary shadow btn-search fixedFooterJS"><i class="icon icon-search"></i> 잔액 조회하기</button>
+
+							<!-- 바로가기 - 모바일 버전 -->
+							<div class="btn-group-gap grid3 mgt10 hidden-pc">
+								<a href="#" class="btn">회원가입</a>
+								<a href="#" class="btn">아이디 찾기</a>
+								<a href="#" class="btn">비밀번호 찾기</a>
+							</div>
+							<!-- //바로가기 - 모바일 버전 -->
+
+							<!-- 바로가기 - PC 버전 -->
+							<div class="btn-group-gap grid3 mgt10 hidden-mobile">
+								<a href="https://www.happymoney.co.kr/svc/join/memberJoin.hm" target="_blank" class="btn">회원가입</a>
+								<a href="https://www.happymoney.co.kr/svc/find/findId.hm" target="_blank" class="btn">아이디 찾기</a>
+								<a href="https://www.happymoney.co.kr/svc/find/findPassword.hm" target="_blank" class="btn">비밀번호 찾기</a>
+							</div>
+							<!-- //바로가기 - PC 버전 -->
+						</div>
+						<!-- //조회 버튼 영역 -->
+					</div>
+					<!-- //정보 입력/잔액 조회 -->
+
+					<!-- 잔액 조회 결과 -->
+					<div class="result-area hidden">
+						<div class="card active shadow">
+							<div class="card-body">
+								<p class="pull-left"><i class="icon icon-coins"></i></p>
+								<p class="pull-left">
+									<span class="title">잔액</span>
+									<span class="price text-primary"><em class="value">50,000</em>원</span>
+								</p>
+								<p class="pull-right"><button type="button" class="btn btn-nobg btn-research fixedFooterJS"><i class="icon icon-research">다시 조회</i></button></p>
+							</div>
+							<div class="card-footer">
+								<p class="text-error">잔액이 부족합니다.<br>
+									해피머니 사이트에서 충전 후 다시 시도해 주세요. (<a href="https://www.happymoney.co.kr" target="_blank"><strong class="text-error">https://www.happymoney.co.kr</strong></a>)</p>
+							</div>
+						</div>
+					</div>
+					<!-- //잔액 조회 결과 -->
+				</div>
+				<!-- //seection -->
+			</div>
+			<!-- //container -->
+		</div>
+		<!-- //content -->
+
+		<!-- footer -->
+		<div id="footer">
+			<!-- container -->
+			<div class="container">
+				<button type="button" id="send" class="btn btn-xl btn-primary" disabled>확인</button>
+			</div>
+			<!-- //container -->
+		</div>
+		<!-- //footer -->
+	</form>
+	<!-- //form -->
+</div>
+<!-- //wrap -->
+
+<!-- modal - 정보 -->
+<div id="modalInfo" class="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3>결제비밀번호 서비스란?</h3>
+				<p>해피머니 온라인 사용처에서 결제창에 회원 비밀번호 대신 결제비밀번호를 입력하여 결제하는 보안 서비스입니다.<br><br>
+					발행된 결제비밀번호는 1시간 동안만 사용 가능하고, 1시간 경과 후에는 재발행 받으셔야 합니다.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn" data-dismiss="modal">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //modal - common alert -->
+
+<!-- modal - 공지사항 상세 -->
+<div id="noticeDetail" class="modal modal-full" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="container">
+					<!-- 게시판 상세 -->
+					<div class="board-detail">
+						<h3 class="subject">공지사항 제목</h3>
+						<div class="content">
+							공지사항 내용
+						</div>
+					</div>
+					<!-- //게시판 상세 -->
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-xl btn-secondary" data-dismiss="modal">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //modal - 공지사항 상세 -->
+
+<!-- modal - common alert -->
+<div id="commonAlert" class="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3 id="alertTitle"></h3>
+				<div id="alertContents"></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn" data-dismiss="modal">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //modal - common alert -->
+
+<!-- modal - common confirm -->
+<div id="commonConfirm" class="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3 id="confirmTitle"></h3>
+				<div id="confirmContents"></div>
+			</div>
+			<div class="modal-footer type2">
+				<button type="button" class="btn" data-dismiss="modal">취소</button>
+				<button type="button" id="confirmOk" class="btn">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //modal - common confirm -->
+
+<!-- loading -->
+<div class="loading hidden">로딩 중</div>
+<!-- //loading -->
+
+<script>
+	$(document).ready(function(){
+		// '잔액 조회하기', '다시 조회' 버튼 클릭 시 해당 영역 노출/미노출
+		$(".btn-search").click(function(){
+			$(this).parents(".search-area").addClass("hidden");
+			$(this).parents(".search-area").siblings(".result-area").removeClass("hidden");
+		});
+		$(".btn-research").click(function(){
+			$(this).parents(".result-area").addClass("hidden");
+			$(this).parents(".result-area").siblings(".search-area").removeClass("hidden");
+		});
+	})
+</script>
+</body>
+</html>

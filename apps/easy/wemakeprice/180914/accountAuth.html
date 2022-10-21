@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link rel="stylesheet" href="resources/css/common.css"> <!-- 실제 소스 경로로 변경해 주세요. -->
+<link rel="stylesheet" href="resources/css/site.css"> <!-- 실제 소스 경로로 변경해 주세요. -->
+<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script src="https://www.googletagmanager.com/gtag/js?id=UA-97416420-4" async=""></script>
+<script src="resources/js/jquery-1.8.3.min.js"></script> <!-- 실제 소스 경로로 변경해 주세요. -->
+<script src="/css/wemakeprice/js/webfont.js?dummy=20180917113733194"></script>
+<script src="resources/js/design.js" defer="defer"></script> <!-- 실제 소스 경로로 변경해 주세요. -->
+<script src="resources/js/dialog.js" defer="defer"></script> <!-- 실제 소스 경로로 변경해 주세요. -->
+<script src="/js/gtag/sbgtag-1.0.js?dummy=20180917113733194"></script>
+<title>간편결제</title>
+<script>
+$(document).ready(function(){
+	//폼 입력 시 확인 버튼 활성
+	$('input').keyup(function(){
+		if ($('#acctRmAuth').val().length >= 3) {
+			$('#doAuthAcctNmCheck').addClass('on');
+		} else {
+			$('#doAuthAcctNmCheck').removeClass('on');
+		}
+	});
+});
+</script>
+</head>
+
+<body>
+<header id="header">
+	<h1>계좌확인</h1>
+	<button type="button" class="btn_cls"><i class="ico_com ico_cls">창닫기</i></button>
+</header>
+
+<!-- content -->
+<div id="ct" class="acct_auth">
+	<form name="form" id="form" method="post">
+		<h2>안전한 거래를 위해 입력하신 계좌가<br>
+		<span class="fc_red">본인의 계좌인지 확인</span>합니다.</h2>
+
+		<div class="info">
+			<h3 class="head">아래 안내에 따라 진행해 주세요.</h3>
+			<ul class="cont">
+				<li class="txt">은행앱 또는 텔레뱅킹을 실행하여<br>
+				거래내역을 확인해 주세요.</li>
+				<li class="img"><img src="resources/images/acct_auth_info.png" alt="입금자명 앞 3자리 확인 후 입력"></li>
+				<li class="txt">원더페이가 입금한 <span class="fc_red">입금자명 앞</span><br>
+				<span class="fc_red">숫자 3자리</span>를 확인 후 입력해주세요.</li>
+			</ul>
+		</div>
+
+		<fieldset class="form">
+			<p><input type="tel" name="acctRmAuth" id="acctRmAuth" placeholder="숫자 3자리 입력" tabindex="1" autocomplete="off" maxlength="3" value=""></p>
+			<p class="txt_cm_cau">* 16시 15분까지 입력해주세요.</p>
+		</fieldset>
+
+		<div class="btn_area">
+			<p><button type="button" class="btn_xr btn_type" id="doAuthAcctNmCheck">다음</button></p>
+		</div>
+	</form>
+</div>
+<!-- //content -->
+</body>
+</html>

@@ -382,13 +382,6 @@ function modalOpenSlide(obj){
 
 	temp.show();
 	$(modalCont).animate({bottom: 0}, 200);
-<<<<<<< HEAD
-
-	// 이중 모달이 아닌 경우
-	if(!$(this).hasClass("depth2")) {
-		scrollOff(); // 바디 스크롤 제거
-	}
-=======
 	// 이중 모달이 아닌 경우
 	if (obj === 'modal-useCoupon') {
 		$("body").addClass("modal-open");
@@ -396,7 +389,6 @@ function modalOpenSlide(obj){
 	if(!$(this).hasClass("depth2")) {
 		scrollOff(); // 바디 스크롤 제거
 	} else 
->>>>>>> e8517960fab2fff300ec9968a9f92dfcb1dde46c
 
 	// 바깥 영역 클릭 시 팝업 닫힘
 	$(temp).on('click', function(e) {
@@ -463,8 +455,6 @@ function chargeIpForm() {
 	})
 }
 
-<<<<<<< HEAD
-=======
 // 체크박스 라디오 선택 시 컨테이너 컬러 변경
 function checkBorderChange(){
 	$(".coupon-wrap input").on('click', function(){
@@ -501,7 +491,6 @@ function couponTab (){
 if($('#wrap').is('.main-coupon')){
 	couponTab();
 }
->>>>>>> e8517960fab2fff300ec9968a9f92dfcb1dde46c
 
 /* 개발 시 추가
  * -------------------------------------------------------------------- */

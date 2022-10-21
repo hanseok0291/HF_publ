@@ -28,10 +28,6 @@ function modalOpen(obj){
 			scrollOn(); // 바디 스크롤 제거 해제
 		}
 	}
-<<<<<<< HEAD
-	
-=======
->>>>>>> e8517960fab2fff300ec9968a9f92dfcb1dde46c
 
 	// 팝업 내 닫기 버튼 클릭 시 팝업 닫기
 	$(temp).find('.modalClose').click(function() {

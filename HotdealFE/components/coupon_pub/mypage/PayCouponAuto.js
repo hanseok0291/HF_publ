@@ -25,9 +25,27 @@ const PayCouponAuto = ({ handleClick, toggleState }) => {
       <div className={styleCouponSet.botCon}>
         <p>※ 아래 브랜드는 자동 적용 설정 시에만 사용 가능</p>
         <ul>
-          <li><img src="../../../images/coupon/icon/mypage/icon-onestore.png" alt="원스토어" />원스토어</li>
-          <li><img src="../../../images/coupon/icon/mypage/icon-kt.png" alt="KT멤버쉽" />KT멤버쉽</li>
-          <li><img src="../../../images/coupon/icon/mypage/icon-korail.png" alt="코레일" />코레일</li>
+          <li>
+            <img
+              src="../../../images/coupon/icon/mypage/icon-onestore.png"
+              alt="원스토어"
+            />
+            <span>원스토어</span>
+          </li>
+          <li>
+            <img
+              src="../../../images/coupon/icon/mypage/icon-kt.png"
+              alt="KT멤버쉽"
+            />
+            <span>KT멤버쉽</span>
+          </li>
+          <li>
+            <img
+              src="../../../images/coupon/icon/mypage/icon-korail.png"
+              alt="코레일"
+            />
+            <span>코레일</span>
+          </li>
         </ul>
       </div>
     </div>

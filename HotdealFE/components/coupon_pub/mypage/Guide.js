@@ -54,27 +54,34 @@ const Guide = () => {
                 <p className={`${styleGuide.box}`}>
                   <a href="tel:16005220">
                     <span className={`${styleGuide.title}`}>
+                      결제 · 취소 문의
+                    </span>
+
+                    <span className={`${styleGuide.desc}`}>
                       <img
                         src="../../images/hotdeal/logo-010pay-color.svg"
                         className={`${styleGuide.logo}`}
                         alt="010PAY"
-                      ></img>{" "}
-                      결제 · 취소 문의
+                      ></img>
+                      <i className={`${styleCommon.bar} ${styleGuide.bar}`}></i>
+                      1600-5220
                     </span>
-                    <span className={`${styleGuide.desc}`}>1600-5220</span>
                   </a>
                 </p>
                 <p className={`${styleGuide.box}`}>
                   <a href="tel:15886474">
                     <span className={`${styleGuide.title}`}>
+                      사용 · 환불 문의
+                    </span>
+                    <span className={`${styleGuide.desc}`}>
                       <img
                         src="../../images/coupon/logo/brand/kt-alpha.png"
                         className={`${styleGuide.logo}`}
                         alt="KT ALPHA"
-                      ></img>{" "}
-                      사용 · 환불 문의
+                      ></img>
+                      <i className={`${styleCommon.bar} ${styleGuide.bar}`}></i>
+                      1588-6474
                     </span>
-                    <span className={`${styleGuide.desc}`}>1588-6474</span>
                   </a>
                 </p>
               </div>
@@ -86,14 +93,17 @@ const Guide = () => {
                 <p className={`${styleGuide.box}`}>
                   <a href="tel:16005220">
                     <span className={`${styleGuide.title}`}>
+                      결제 · 취소 · 사용 · 환불 문의
+                    </span>
+                    <span className={`${styleGuide.desc}`}>
                       <img
                         src="../../images/hotdeal/logo-010pay-color.svg"
                         className={`${styleGuide.logo}`}
                         alt="010PAY"
-                      ></img>{" "}
-                      결제 · 취소 · 사용 · 환불 문의
+                      ></img>
+                      <i className={`${styleCommon.bar} ${styleGuide.bar}`}></i>
+                      1600-5220
                     </span>
-                    <span className={`${styleGuide.desc}`}>1600-5220</span>
                   </a>
                 </p>
               </div>

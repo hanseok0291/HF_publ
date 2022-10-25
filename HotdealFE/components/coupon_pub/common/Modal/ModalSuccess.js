@@ -107,7 +107,7 @@ const ModalSuccessFriend = ({ show, onClose }) => {
                     </p>
                     {/* 결제완료 */}
                     <p
-                      className={`${styleCouponDetail.infoProduct} ${stylePay.infoProduct}`}
+                      className={`${styleCouponDetail.infoProduct} ${stylePay.infoProduct} ${stylePay.paySuccess}`}
                     >
                       <p className={`${stylePay.prdName}`}>
                         시원하게 함께 세트시원하게 함께 세트시원하게 함께
@@ -119,7 +119,7 @@ const ModalSuccessFriend = ({ show, onClose }) => {
                     {/* //결제완료 */}
                     {/* 결제실패 메시지 */}
                     {/* <p
-                      className={`${styleCouponDetail.infoProduct} ${stylePay.infoProduct}`}
+                      className={`${styleCouponDetail.infoProduct} ${stylePay.infoProduct} ${stylePay.paySuccess}`}
                     >
                       <p className={`${stylePay.prdName}`}>
                         시원하게 함께 세트
@@ -138,20 +138,26 @@ const ModalSuccessFriend = ({ show, onClose }) => {
                   </div>
                 </div>
                 {/* 받는 사람 */}
-                {/* <div
+                <div
                   className={`${styleCouponDetail.CouponDetaiSmalllWrap} ${stylePay.CouponDetaiSmalllWrap} ${styleCommon.betweenWrap} ${styleCommon.alignCenter}`}
                 >
-                  <div className={`${stylePay.inputBox}`}>
+                  <div
+                    className={`${stylePay.inputBox} ${stylePay.inputBoxMt0}`}
+                  >
                     <div className={`${stylePay.inputInfoBox}`}>
                       <strong className={`${stylePay.title}`}>받는 사람</strong>
                       <span className={`${stylePay.titleRight}`}>이세틀</span>
                     </div>
-                    <p className={`${stylePay.subTitle}`}>
+                    <p className={`${stylePay.subTitle} ${stylePay.sendMsg}`}>
                       친구에게 선물 소식을 알려드릴까요?
                     </p>
                   </div>
-                  <div className={`${styleCommon.textBox}`}>알려주기</div>
-                </div> */}
+                  <div
+                    className={`${styleCommon.textBox} ${styleCommon.mtAuto}`}
+                  >
+                    알려주기
+                  </div>
+                </div>
                 {/* 받는 사람 */}
                 {/* 자동 결제 적용 설정 안내 */}
                 <div
@@ -207,7 +213,7 @@ const ModalSuccessFriend = ({ show, onClose }) => {
                     </p>
                     {/* 결제완료 */}
                     <p
-                      className={`${styleCouponDetail.infoProduct} ${stylePay.infoProduct}`}
+                      className={`${styleCouponDetail.infoProduct} ${stylePay.infoProduct} ${stylePay.paySuccess}`}
                     >
                       <p className={`${stylePay.prdName}`}>
                         시원하게 함께 세트
@@ -218,7 +224,7 @@ const ModalSuccessFriend = ({ show, onClose }) => {
                     {/* //결제완료 */}
                     {/* 결제실패 메시지 */}
                     {/* <p
-                      className={`${styleCouponDetail.infoProduct} ${stylePay.infoProduct}`}
+                      className={`${styleCouponDetail.infoProduct} ${stylePay.infoProduct} ${stylePay.paySuccess}`}
                     >
                       <p className={`${stylePay.prdName}`}>
                         시원하게 함께 세트
@@ -257,16 +263,22 @@ const ModalSuccessFriend = ({ show, onClose }) => {
                 <div
                   className={`${styleCouponDetail.CouponDetaiSmalllWrap} ${stylePay.CouponDetaiSmalllWrap} ${stylePay.borderBold} ${styleCommon.betweenWrap} ${styleCommon.alignCenter}`}
                 >
-                  <div className={`${stylePay.inputBox}`}>
+                  <div
+                    className={`${stylePay.inputBox} ${stylePay.inputBoxMt0}`}
+                  >
                     <div className={`${stylePay.inputInfoBox}`}>
                       <strong className={`${stylePay.title}`}>받는 사람</strong>
                       <span className={`${stylePay.titleRight}`}>이세틀</span>
                     </div>
-                    <p className={`${stylePay.subTitle}`}>
+                    <p className={`${stylePay.subTitle} ${stylePay.sendMsg}`}>
                       친구에게 선물 소식을 알려드릴까요?
                     </p>
                   </div>
-                  <div className={`${styleCommon.textBox}`}>알려주기</div>
+                  <div
+                    className={`${styleCommon.textBox} ${styleCommon.mtAuto}`}
+                  >
+                    알려주기
+                  </div>
                 </div>
                 {/* 받는 사람 */}
               </div>

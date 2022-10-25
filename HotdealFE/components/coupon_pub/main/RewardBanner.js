@@ -8,7 +8,12 @@ const RewardBanner = () => {
   return (
     <>
       <div className={`${styleRewardBanner.rewardBannerWrap}`}>
-        <a href="#">적립 프로모션 배너 영역 (크기 미정)</a>
+        <a href="#">
+          <img
+            src="../images/coupon/banner/banner.png"
+            alt="적립 프로모션"
+          ></img>
+        </a>
       </div>
     </>
   );

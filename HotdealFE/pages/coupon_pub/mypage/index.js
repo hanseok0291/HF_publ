@@ -14,7 +14,7 @@ const Index = () => {
 
   return (
     <>
-      <HeaderMypage pageTitle="선물함" />
+      <HeaderMypage pageTitle="선물함" isShowRegCodeBtn={true} />
       <Layout>
         <Menu />
         <Footer />

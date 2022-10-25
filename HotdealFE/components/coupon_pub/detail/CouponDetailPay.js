@@ -25,7 +25,7 @@ export default function GiftDetail() {
           <div className={`${styleCommon.container}`}>
             <div className={`${styleGiftPresent.GiftDetaiSmalllWrap}`}>
               <div
-                className={`${styleCommon.imgBox} ${styleGiftPresent.imgBox} ${styleCommon.stamp} ${styleCommon.stamp_1} ${styleCommon.centerSmall}`}
+                className={`${styleCommon.imgBox} ${styleGiftPresent.imgBox}`}
               >
                 <img
                   src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
@@ -33,9 +33,7 @@ export default function GiftDetail() {
                 ></img>
               </div>
               <div className={styleGiftPresent.infoBox}>
-                <p
-                  className={`${styleGiftPresent.infoBrand} ${styleCommon.flexWrap} ${styleCommon.alignCenter}`}
-                >
+                <p className={styleGiftPresent.infoBrand}>
                   스타벅스
                   <i
                     className={`${styleCommon.bar} ${styleGiftPresent.bar}`}
@@ -95,37 +93,6 @@ export default function GiftDetail() {
                   <button type="button">유의사항</button>
                 </li>
               </ul>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div className={`${styleCouponDetail.CouponDetailInfoWrap}`}>
-            <div
-              className={`${styleCouponDetail.TabContent} ${styleCouponDetail.TabContentOn}`}
-            >
-              <div
-                className={`${styleCommon.container} ${styleCouponDetail.InfoTabContent}`}
-              >
-                <span className={`${styleCouponDetail.InfoTabImage}`}>
-                  <img src="../../../../images/coupon/visual/detail_test1.png"></img>
-                </span>
-                - 물품형 교환권을 기재된 상품이 아닌 타 상품으로 교환할 경우,
-                쿠폰 가격 이상의 다른 상품으로 교환 가능하며, 초과 금액은 추가로
-                지불하셔야 합니다.
-                <br />
-                - 포인트 적립 및 제휴카드 할인 등은 교환처의 정책에 따릅니다.
-                <br />- 본 쿠폰은 유효기간 연장 및 환불되지 않습니다 - 물품형
-                교환권을 기재된 상품이 아닌 타 상품으로 교환할 경우, 쿠폰 가격
-                이상의 다른 상품으로 교환 가능하며, 초과 금액은 추가로
-                지불하셔야 합니다.
-                <br />
-                - 포인트 적립 및 제휴카드 할인 등은 교환처의 정책에 따릅니다.
-                <br />- 본 쿠폰은 유효기간 연장 및 환불되지 않습니다 - 물품형
-                교환권을 기재된 상품이 아닌 타 상품으로 교환할 경우, 쿠폰 가격
-                이상의 다른 상품으로 교환 가능하며, 초과 금액은 추가로
-                지불하셔야 합니다
-              </div>
             </div>
           </div>
         </div>

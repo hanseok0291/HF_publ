@@ -33,7 +33,41 @@ function SwiperWrap(props) {
               <SwiperSlide>
                 <div className={styleSwiper.imgBox}>
                   <img
-                    src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
+                    src="https://tbezauth.settlebank.co.kr/theme/cm/product/BR00007_G00000117178.jpg"
+                    alt="핫딜 TEST"
+                  ></img>
+                </div>
+                {props.accumulate == "true" ? (
+                  <div className={styleSwiper.infoBox}>
+                    <p className={styleSwiper.infoBrand}>스타벅스</p>
+                    <p className={styleSwiper.infoProduct}>
+                      아이스 카페 라떼 T
+                    </p>
+                    <p className={styleSwiper.infoAccumulate}>
+                      <span className={styleSwiper.infoAccumulateColor}>
+                        500원
+                      </span>{" "}
+                      적립
+                    </p>
+                  </div>
+                ) : (
+                  <div className={styleSwiper.infoBox}>
+                    <p className={styleSwiper.infoBrand}>스타벅스</p>
+                    <p className={styleSwiper.infoProduct}>
+                      아이스 카페 라떼 T
+                    </p>
+                    <p className={styleSwiper.infoPrice}>8,800원</p>
+                    <p className={styleSwiper.infoDcPrice}>
+                      <span className={styleSwiper.infoDcPercent}>25%</span>{" "}
+                      8,800원
+                    </p>
+                  </div>
+                )}
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className={styleSwiper.imgBox}>
+                  <img
+                    src="https://tbezauth.settlebank.co.kr/theme/cm/product/PB00145_20221006153424285.jpg"
                     alt="핫딜 TEST"
                   ></img>
                   {props.labelShow == "true" ? (
@@ -44,105 +78,41 @@ function SwiperWrap(props) {
                     <></>
                   )}
                 </div>
-                {props.accumulate == "true" ? (
-                  <div className={styleSwiper.infoBox}>
-                    <p className={styleSwiper.infoBrand}>스타벅스</p>
-                    <p className={styleSwiper.infoProduct}>
-                      아이스 카페 라떼 T
-                    </p>
-                    <p className={styleSwiper.infoAccumulate}>
-                      <span className={styleSwiper.infoAccumulateColor}>
-                        500원
-                      </span>{" "}
-                      적립
-                    </p>
-                  </div>
-                ) : (
-                  <div className={styleSwiper.infoBox}>
-                    <p className={styleSwiper.infoBrand}>스타벅스</p>
-                    <p className={styleSwiper.infoProduct}>
-                      아이스 카페 라떼 T
-                    </p>
-                    <p className={styleSwiper.infoPrice}>8,800원</p>
-                    <p className={styleSwiper.infoDcPrice}>
-                      <span className={styleSwiper.infoDcPercent}>25%</span>{" "}
-                      8,800원
-                    </p>
-                  </div>
-                )}
+                <div className={styleSwiper.infoBox}>
+                  <p className={styleSwiper.infoBrand}>스타벅스</p>
+                  <p className={styleSwiper.infoProduct}>아이스 카페 라떼 T</p>
+                  {/* <p className={styleSwiper.infoPrice}>8,800원</p> */}
+                  <p className={styleSwiper.infoDcPrice}>
+                    {/* <span className={styleSwiper.infoDcPercent}>25%</span>{" "} */}
+                    8,800원
+                  </p>
+                </div>
               </SwiperSlide>
               <SwiperSlide>
                 <div className={styleSwiper.imgBox}>
                   <img
-                    src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
+                    src="https://tbezauth.settlebank.co.kr/theme/cm/product/PB00145_20221006133121119.jpg"
                     alt="핫딜 TEST"
                   ></img>
                 </div>
-                {props.accumulate == "true" ? (
-                  <div className={styleSwiper.infoBox}>
-                    <p className={styleSwiper.infoBrand}>스타벅스</p>
-                    <p className={styleSwiper.infoProduct}>
-                      아이스 카페 라떼 T
-                    </p>
-                    <p className={styleSwiper.infoAccumulate}>
-                      <span className={styleSwiper.infoAccumulateColor}>
-                        500원
-                      </span>{" "}
-                      적립
-                    </p>
-                  </div>
-                ) : (
-                  <div className={styleSwiper.infoBox}>
-                    <p className={styleSwiper.infoBrand}>스타벅스</p>
-                    <p className={styleSwiper.infoProduct}>
-                      아이스 카페 라떼 T
-                    </p>
-                    <p className={styleSwiper.infoPrice}>8,800원</p>
-                    <p className={styleSwiper.infoDcPrice}>
-                      <span className={styleSwiper.infoDcPercent}>25%</span>{" "}
-                      8,800원
-                    </p>
-                  </div>
-                )}
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className={styleSwiper.imgBox}>
-                  <img
-                    src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
-                    alt="핫딜 TEST"
-                  ></img>
+                <div className={styleSwiper.infoBox}>
+                  <p className={styleSwiper.infoBrand}>스타벅스</p>
+                  <p className={styleSwiper.infoProduct}>아이스 카페 라떼 T</p>
+                  <p className={styleSwiper.infoPrice}>8,800원</p>
+                  <p className={styleSwiper.infoDcPrice}>
+                    <span className={styleSwiper.infoDcPercent}>25%</span>{" "}
+                    <span className={styleSwiper.price}>8,800원</span>
+                  </p>
+                  <p className={styleSwiper.infoDcPrice}>
+                    <span className={styleSwiper.infoDcPercent}>추가 10%</span>{" "}
+                    <span>8,800원</span>
+                  </p>
                 </div>
-                {props.accumulate == "true" ? (
-                  <div className={styleSwiper.infoBox}>
-                    <p className={styleSwiper.infoBrand}>스타벅스</p>
-                    <p className={styleSwiper.infoProduct}>
-                      아이스 카페 라떼 T
-                    </p>
-                    <p className={styleSwiper.infoAccumulate}>
-                      <span className={styleSwiper.infoAccumulateColor}>
-                        500원
-                      </span>{" "}
-                      적립
-                    </p>
-                  </div>
-                ) : (
-                  <div className={styleSwiper.infoBox}>
-                    <p className={styleSwiper.infoBrand}>스타벅스</p>
-                    <p className={styleSwiper.infoProduct}>
-                      아이스 카페 라떼 T
-                    </p>
-                    <p className={styleSwiper.infoPrice}>8,800원</p>
-                    <p className={styleSwiper.infoDcPrice}>
-                      <span className={styleSwiper.infoDcPercent}>25%</span>{" "}
-                      8,800원
-                    </p>
-                  </div>
-                )}
               </SwiperSlide>
               <SwiperSlide>
                 <div className={styleSwiper.imgBox}>
                   <img
-                    src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
+                    src="https://tbezauth.settlebank.co.kr/theme/cm/product/PB00145_20221006134857069.png"
                     alt="핫딜 TEST"
                   ></img>
                 </div>

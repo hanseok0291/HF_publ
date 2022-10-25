@@ -96,7 +96,7 @@ const RollingCoupon = () => {
             <div className={styleSlick.card}>
               <div className={styleSlick.imgBox}>
                 <img
-                  src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
+                  src="https://tbezauth.settlebank.co.kr/theme/cm/product/BR00007_G00000117178.jpg"
                   alt="핫딜 TEST"
                 ></img>
               </div>
@@ -108,14 +108,17 @@ const RollingCoupon = () => {
                   아이스 카페 라떼 T 아이스 카페 라떼 T
                 </p>
                 <p className={styleSlick.infoPrice}>
-                  <span className={styleSlick.infoDcPrice}>8,000원</span>0원
+                  <span className={`${styleSlick.infoDcPriceNormal}`}>
+                    포인트 사용해서
+                  </span>
+                  0원
                 </p>
-                {<p className={styleSlick.infoBottomText}>
+                <p className={styleSlick.infoBottomText}>
                   <i
                     className={`${styleCommon.infoIcon} ${styleCommon.icon} ${styleCommon.iconRaffle}`}
                   ></i>
                   <span>100명</span> 추첨
-                </p>}
+                </p>
               </div>
             </div>
             <div className={styleSlick.card}>
@@ -133,7 +136,10 @@ const RollingCoupon = () => {
                   아이스 카페 라떼 T 아이스 카페 라떼 T
                 </p>
                 <p className={styleSlick.infoPrice}>
-                  <span className={styleSlick.infoDcPrice}>8,000원</span>0원
+                  <span className={`${styleSlick.infoDcPriceNormal}`}>
+                    포인트 사용해서
+                  </span>
+                  0원
                 </p>
                 <p className={styleSlick.infoBottomText}>
                   <i
@@ -168,7 +174,7 @@ const RollingCoupon = () => {
             <div className={styleSlick.card}>
               <div className={styleSlick.imgBox}>
                 <img
-                  src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
+                  src="../images/coupon/icon/common/icon-misson-color.png"
                   alt="핫딜 TEST"
                 ></img>
               </div>

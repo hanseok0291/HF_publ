@@ -278,7 +278,6 @@ const BrandIn = (props) => {
           </div>
         </div>
       </div>
-      {/* <ModalFilter /> */}
     </>
   );
 };

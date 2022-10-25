@@ -11,7 +11,7 @@ const LimitCoupon = () => {
       <div className={styleLimitCoupon.LimitCouponWrap}>
         <div className={`${styleCommon.container}`}>
           <h2 className={styleLimitCoupon.LimitCouponTitle}>
-            지금만 이 가격, 선착순 특가 <span>⏰</span>
+            지금만 이 가격, 선착순 특가<span className="titleEmoticon">⏰</span>
           </h2>
           <ul className={styleLimitCoupon.LimitCouponList}>
             <li className={styleLimitCoupon.LimitCouponItem}>
@@ -42,7 +42,7 @@ const LimitCoupon = () => {
               <button href={`/coupon_pub/`}>
                 <div className={styleLimitCoupon.imgBox}>
                   <img
-                    src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
+                    src="https://tbezauth.settlebank.co.kr/theme/cm/product/PB00145_20221006133121119.jpg"
                     alt="핫딜 TEST"
                   ></img>
                 </div>

@@ -11,7 +11,7 @@ import styleToast from "../../styles/coupon_pub/Toast.module.css";
 import Layout from "../../components/common/Layout";
 import Header from "../../components/coupon_pub/common/Header";
 import Footer from "../../components/coupon_pub/common/Footer";
-//import Search from "../../components/coupon_pub/main/Search";
+import Search from "../../components/coupon_pub/main/Search";
 import Category from "../../components/coupon_pub/main/Category";
 import RollingCoupon from "../../components/coupon_pub/main/RollingCoupon";
 import HotBrand from "../../components/coupon_pub/main/HotBrand";
@@ -63,7 +63,10 @@ const Index = () => {
             <ReturnPoint />
             {/* 혹시 이 상품 찾으세요? */}
             <MaybeCoupon
-              pageTitle={["혹시 이 상품 찾으세요?", <span>🔍</span>]}
+              pageTitle={[
+                "혹시 이 상품 찾으세요?",
+                <span className="titleEmoticon">🔍</span>,
+              ]}
             />
             {/* 프로모션 배너 */}
             <PromotionBanner />
@@ -72,7 +75,7 @@ const Index = () => {
             {/* 요즘 잘 나가는 상품 */}
             <PopularCoupon />
           </div>
-          {/* <div
+          <div
             className={`${styleToast.toastPopup} ${styleToast.toastPopup2}`}
             style={{
               bottom: `0`,
@@ -81,7 +84,7 @@ const Index = () => {
             <div className={`${styleToast.toastBox}`}>
               <div className={`${styleCommon.container}`}>
                 <p className={`${styleToast.toastTitle}`}>
-                  나를 위한 선물<span>💟</span>
+                  나를 위한 선물<span className="titleEmoticon">🎁</span>
                 </p>
                 <p className={`${styleToast.toastSubTitle}`}>
                   결제할 때 사용해서 저렴하게 구매해 보세요
@@ -93,8 +96,8 @@ const Index = () => {
                 </div>
               </div>
             </div>
-          </div> */}
-          {/* <Footer /> */}
+          </div>
+          <Footer />
         </div>
       </Layout>
     </>

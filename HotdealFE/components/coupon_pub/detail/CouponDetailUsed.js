@@ -15,24 +15,24 @@ export default function CouponDetail() {
           <div>
             <div className={`${styleSlick.card} ${styleCouponDetail.card}`}>
               {/* 미사용 */}
-              <div
+              {/* <div
                 className={`${styleCouponDetail.imgBox} ${styleCommon.imgBox}`}
               >
                 <img
                   src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
                   alt="핫딜 TEST"
                 ></img>
-              </div>
+              </div> */}
               {/* //미사용 */}
               {/* 사용완료 */}
-              {/* <div
+              <div
                 className={`${styleCouponDetail.imgBox} ${styleCommon.imgBox} ${styleCommon.stamp} ${styleCommon.stamp_1} ${styleCommon.rightMedium}`}
               >
                 <img
                   src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
                   alt="핫딜 TEST"
                 ></img>
-              </div> */}
+              </div>
               {/* //사용완료 */}
             </div>
           </div>
@@ -107,7 +107,7 @@ export default function CouponDetail() {
             </div>
           </div>
         </div>
-        <div>
+        <div className={`${styleCouponDetail.CouponDetailWrap}`}>
           <div className={`${styleCouponDetail.CouponDetailInfoWrap}`}>
             <div
               className={`${styleCouponDetail.TabContent} ${styleCouponDetail.TabContentOn}`}
@@ -115,9 +115,6 @@ export default function CouponDetail() {
               <div
                 className={`${styleCommon.container} ${styleCouponDetail.InfoTabContent}`}
               >
-                <span className={`${styleCouponDetail.InfoTabImage}`}>
-                  <img src="../../../../images/coupon/visual/detail_test1.png"></img>
-                </span>
                 - 물품형 교환권을 기 - 물품형 교환권을 기재된 상품이 아닌 타
                 상품으로 교환할 경우, 쿠폰 가격 이상의 다른 상품으로 교환
                 가능하며, 초과 금액은 추가로 지불하셔야 합니다.

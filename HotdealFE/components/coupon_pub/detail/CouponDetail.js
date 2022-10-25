@@ -79,6 +79,9 @@ export default function CouponDetail({ isfixedTop }) {
                 <div
                   className={`${styleCommon.container} ${styleCouponDetail.InfoTabContent}`}
                 >
+                  <span className={`${styleCouponDetail.InfoTabImage}`}>
+                    <img src="../../images/coupon/visual/detail_test1.png"></img>
+                  </span>
                   - 물품형 교환권을 기재된 상품이 아닌 타 상품으로 교환할 경우,
                   쿠폰 가격 이상의 다른 상품으로 교환 가능하며, 초과 금액은
                   추가로 지불하셔야 합니다.
@@ -257,7 +260,21 @@ export default function CouponDetail({ isfixedTop }) {
                   <div
                     className={`${styleCouponDetail.infoBox} ${styleCouponDetail.priceType2}`}
                   >
-                    <p className={styleCouponDetail.infoBrand}>스타벅스</p>
+                    <p
+                      className={`${styleCouponDetail.infoBrand} ${styleCommon.flexWrap} ${styleCommon.alignCenter}`}
+                    >
+                      스타벅스
+                      <i
+                        className={`${styleCommon.bar} ${styleCouponDetail.bar}`}
+                      ></i>
+                      <span className={styleCouponDetail.infoView}>
+                        사용처 보기
+                      </span>
+                      <button
+                        type="button"
+                        className={`${styleCommon.btnArrow} ${styleCommon.iconArrowRight}`}
+                      ></button>
+                    </p>
                     <p className={styleCouponDetail.infoProduct}>
                       시원하게 함께 세트
                     </p>
@@ -324,8 +341,26 @@ export default function CouponDetail({ isfixedTop }) {
               <div
                 className={`${styleSlick.infoBox} ${styleCouponDetail.infoBox}`}
               >
-                <h2 className={styleSlick.infoLabel}>0원 구매 찬스!</h2>
-                <p className={styleCouponDetail.infoBrand}>스타벅스</p>
+                <h2
+                  className={`${styleSlick.infoLabel} ${styleCouponDetail.infoLabel}`}
+                >
+                  0원 구매 찬스!
+                </h2>
+                <p
+                  className={`${styleCouponDetail.infoBrand} ${styleCommon.flexWrap} ${styleCommon.alignCenter}`}
+                >
+                  스타벅스
+                  <i
+                    className={`${styleCommon.bar} ${styleCouponDetail.bar}`}
+                  ></i>
+                  <span className={styleCouponDetail.infoView}>
+                    사용처 보기
+                  </span>
+                  <button
+                    type="button"
+                    className={`${styleCommon.btnArrow} ${styleCommon.iconArrowRight}`}
+                  ></button>
+                </p>
                 <p className={styleCouponDetail.infoProduct}>
                   시원하게 함께 세트 기본영역
                 </p>
@@ -403,6 +438,14 @@ export default function CouponDetail({ isfixedTop }) {
                     className={`${styleSlick.infoBottomText} ${styleCouponDetail.labelBoxContent}`}
                   >
                     <i
+                      className={`${styleCommon.infoIcon} ${styleCommon.icon} ${styleCouponDetail.icon} ${styleCommon.iconSelectColor}`}
+                    ></i>
+                    <strong>1,124명의</strong> 선택
+                  </p>
+                  <p
+                    className={`${styleSlick.infoBottomText} ${styleCouponDetail.labelBoxContent}`}
+                  >
+                    <i
                       className={`${styleCommon.infoIcon} ${styleCommon.icon} ${styleCouponDetail.icon} ${styleCommon.iconDcColor}`}
                     ></i>
                     25% <strong>+ 추가할인 25%</strong>
@@ -414,6 +457,14 @@ export default function CouponDetail({ isfixedTop }) {
                       className={`${styleCommon.infoIcon} ${styleCommon.icon} ${styleCouponDetail.icon} ${styleCommon.iconRaffle}`}
                     ></i>
                     <strong>100명</strong> 추첨
+                  </p>
+                  <p
+                    className={`${styleSlick.infoBottomText} ${styleCouponDetail.labelBoxContent}`}
+                  >
+                    <i
+                      className={`${styleCommon.infoIcon} ${styleCommon.icon} ${styleCouponDetail.icon} ${styleCommon.iconCash}`}
+                    ></i>
+                    <strong>보유 포인트</strong>로 <strong>0원</strong> 구매
                   </p>
                 </div>
               </div>
@@ -432,153 +483,175 @@ export default function CouponDetail({ isfixedTop }) {
                 </ul>
               </div>
             </div>
-          </div>
-          <div className={`${styleCouponDetail.CouponDetailWrap}`}>
-            <div className={`${styleCouponDetail.CouponDetailInfoWrap}`}>
-              <div
-                className={`${styleCouponDetail.TabContent} ${styleCouponDetail.TabContentOn}`}
-              >
+            <div>
+              <div className={`${styleCouponDetail.CouponDetailInfoWrap}`}>
                 <div
-                  className={`${styleCommon.container} ${styleCouponDetail.InfoTabContent}`}
+                  className={`${styleCouponDetail.TabContent} ${styleCouponDetail.TabContentOn}`}
                 >
-                  - 물품형 교환권을 기 - 물품형 교환권을 기재된 상품이 아닌 타
-                  상품으로 교환할 경우, 쿠폰 가격 이상의 다른 상품으로 교환
-                  가능하며, 초과 금액은 추가로 지불하셔야 합니다.
-                  <br />
-                  - 포인트 적립 및 제휴카드 할인 등은 교환처의 정책에 따릅니다.
-                  <br />- 본 쿠폰은 유효기간 연장 및 환불되지 않습니다 - 물품형
-                  교환권을 기재된 상품이 아닌 타 상품으로 교환할 경우, 쿠폰 가격
-                  이상의 다른 상품으로 교환 가능하며, 초과 금액은 추가로
-                  지불하셔야 합니다.
-                  <br />
-                  - 포인트 적립 및 제휴카드 할인 등은 교환처의 정책에 따릅니다.
-                  <br />- 본 쿠폰은 유효기간 연장 및 환불되지 않습니다 - 물품형
-                  교환권을 기재된 상품이 아닌 타 상품으로 교환할 경우, 쿠폰 가격
-                  이상의 다른 상품으로 교환 가능하며, 초과 금액은 추가로
-                  지불하셔야 합니다.
-                  <br />
-                  - 포인트 적립 및 제휴카드 할인 등은 교환처의 정책에 따릅니다.
-                  <br />- 본 쿠폰은 유효기간 연장 및 환불되지 않습니다 - 물품형
-                  교환권을 기재된 상품이 아닌 타 상품으로 교환할 경우, 쿠폰 가격
-                  이상의 다른 상품으로 교환 가능하며, 초과 금액은 추가로
-                  지불하셔야 합니다.
-                  <br />
-                  - 포인트 적립 및 제휴카드 할인 등은 교환처의 정책에 따릅니다.
-                  <br />- 본 쿠폰은 유효기간 연장 및 환불되지 않습니다 - 물품형
-                  교환권을 기재된 상품이 아닌 타 상품으로 교환할 경우, 쿠폰 가격
-                  이상의 다른 상품으로 교환 가능하며, 초과 금액은 추가로
-                  지불하셔야 합니다.
-                  <br />
-                  - 포인트 적립 및 제휴카드 할인 등은 교환처의 정책에 따릅니다.
-                  <br />- 본 쿠폰은 유효기간 연장 및 환불되지 않습니다 - 포인트
-                  적립 및 제휴카드 할인 등은 교환처의 정책에 따릅니다.
-                  <br />- 본 쿠폰은 유효기간 연장 및 환불되지 않습니다
-                </div>
-              </div>
-              <div className={`${styleCouponDetail.TabContent}`}>
-                <div className={`${styleCommon.container}`}>
-                  <div className={`${styleCouponDetail.TabContentBox}`}>
-                    <p className={`${styleCouponDetail.TabContentTitle}`}>
-                      상품 고시 정보
-                    </p>
-                    <p>
-                      <span className={`${styleCouponDetail.TabContentLeft}`}>
-                        발행자
-                      </span>{" "}
-                      <span className={`${styleCouponDetail.TabContentRight}`}>
-                        (주)헥토파이낸셜
-                      </span>
-                    </p>
-                    <p>
-                      <span className={`${styleCouponDetail.TabContentLeft}`}>
-                        유효기간
-                      </span>{" "}
-                      <span className={`${styleCouponDetail.TabContentRight}`}>
-                        2022. 5. 30
-                      </span>
-                    </p>
-                    <p>
-                      <span className={`${styleCouponDetail.TabContentLeft}`}>
-                        교환권 공급자
-                      </span>{" "}
-                      <span className={`${styleCouponDetail.TabContentRight}`}>
-                        (주)케이티알파
-                      </span>
-                    </p>
-                    <p>
-                      <span className={`${styleCouponDetail.TabContentLeft}`}>
-                        이용 조건
-                      </span>{" "}
-                      <span className={`${styleCouponDetail.TabContentRight}`}>
-                        상품상세설명 참조
-                      </span>
-                    </p>
-                    <p>
-                      <span className={`${styleCouponDetail.TabContentLeft}`}>
-                        이용 가능 매장
-                      </span>{" "}
-                      <span className={`${styleCouponDetail.TabContentRight}`}>
-                        상품상세설명 참조
-                      </span>
-                    </p>
-                    <p>
-                      <span className={`${styleCouponDetail.TabContentLeft}`}>
-                        소비자 상담
-                      </span>{" "}
-                      <span className={`${styleCouponDetail.TabContentRight}`}>
-                        1600-5200(결제 문의) <br />
-                        1588-6474(사용 문의)
-                      </span>
-                    </p>
-                  </div>
-                  <div className={`${styleCouponDetail.TabContentBox}`}>
-                    <p className={`${styleCouponDetail.TabContentTitle}`}>
-                      취소 · 환불 · 유효기간 연장 정책 및 방법
-                    </p>
-                    <p className={`${styleCouponDetail.TabContentLeft}`}>
-                      별도 전달 예정 별도 전달 예정
-                      <br />
-                      별도 전달 예정 별도 전달
-                      <br />
-                      별도 전달 예정
-                      <br />
-                      별도 전달{" "}
-                    </p>
+                  <div
+                    className={`${styleCommon.container} ${styleCouponDetail.InfoTabContent}`}
+                  >
+                    <span className={`${styleCouponDetail.InfoTabImage}`}>
+                      <img src="../../images/coupon/visual/detail_test1.png"></img>
+                    </span>
+                    - 물품형 교환권을 기 - 물품형 교환권을 기재된 상품이 아닌 타
+                    상품으로 교환할 경우, 쿠폰 가격 이상의 다른 상품으로 교환
+                    가능하며, 초과 금액은 추가로 지불하셔야 합니다.
+                    <br />
+                    - 포인트 적립 및 제휴카드 할인 등은 교환처의 정책에
+                    따릅니다.
+                    <br />- 본 쿠폰은 유효기간 연장 및 환불되지 않습니다 -
+                    물품형 교환권을 기재된 상품이 아닌 타 상품으로 교환할 경우,
+                    쿠폰 가격 이상의 다른 상품으로 교환 가능하며, 초과 금액은
+                    추가로 지불하셔야 합니다.
+                    <br />
+                    - 포인트 적립 및 제휴카드 할인 등은 교환처의 정책에
+                    따릅니다.
+                    <br />- 본 쿠폰은 유효기간 연장 및 환불되지 않습니다 -
+                    물품형 교환권을 기재된 상품이 아닌 타 상품으로 교환할 경우,
+                    쿠폰 가격 이상의 다른 상품으로 교환 가능하며, 초과 금액은
+                    추가로 지불하셔야 합니다.
+                    <br />
+                    - 포인트 적립 및 제휴카드 할인 등은 교환처의 정책에
+                    따릅니다.
+                    <br />- 본 쿠폰은 유효기간 연장 및 환불되지 않습니다 -
+                    물품형 교환권을 기재된 상품이 아닌 타 상품으로 교환할 경우,
+                    쿠폰 가격 이상의 다른 상품으로 교환 가능하며, 초과 금액은
+                    추가로 지불하셔야 합니다.
+                    <br />
+                    - 포인트 적립 및 제휴카드 할인 등은 교환처의 정책에
+                    따릅니다.
+                    <br />- 본 쿠폰은 유효기간 연장 및 환불되지 않습니다 -
+                    물품형 교환권을 기재된 상품이 아닌 타 상품으로 교환할 경우,
+                    쿠폰 가격 이상의 다른 상품으로 교환 가능하며, 초과 금액은
+                    추가로 지불하셔야 합니다.
+                    <br />
+                    - 포인트 적립 및 제휴카드 할인 등은 교환처의 정책에
+                    따릅니다.
+                    <br />- 본 쿠폰은 유효기간 연장 및 환불되지 않습니다 -
+                    포인트 적립 및 제휴카드 할인 등은 교환처의 정책에 따릅니다.
+                    <br />- 본 쿠폰은 유효기간 연장 및 환불되지 않습니다
                   </div>
                 </div>
+                <div className={`${styleCouponDetail.TabContent}`}>
+                  <div className={`${styleCommon.container}`}>
+                    <div className={`${styleCouponDetail.TabContentBox}`}>
+                      <p className={`${styleCouponDetail.TabContentTitle}`}>
+                        상품 고시 정보
+                      </p>
+                      <p>
+                        <span className={`${styleCouponDetail.TabContentLeft}`}>
+                          발행자
+                        </span>{" "}
+                        <span
+                          className={`${styleCouponDetail.TabContentRight}`}
+                        >
+                          (주)헥토파이낸셜
+                        </span>
+                      </p>
+                      <p>
+                        <span className={`${styleCouponDetail.TabContentLeft}`}>
+                          유효기간
+                        </span>{" "}
+                        <span
+                          className={`${styleCouponDetail.TabContentRight}`}
+                        >
+                          2022. 5. 30
+                        </span>
+                      </p>
+                      <p>
+                        <span className={`${styleCouponDetail.TabContentLeft}`}>
+                          교환권 공급자
+                        </span>{" "}
+                        <span
+                          className={`${styleCouponDetail.TabContentRight}`}
+                        >
+                          (주)케이티알파
+                        </span>
+                      </p>
+                      <p>
+                        <span className={`${styleCouponDetail.TabContentLeft}`}>
+                          이용 조건
+                        </span>{" "}
+                        <span
+                          className={`${styleCouponDetail.TabContentRight}`}
+                        >
+                          상품상세설명 참조
+                        </span>
+                      </p>
+                      <p>
+                        <span className={`${styleCouponDetail.TabContentLeft}`}>
+                          이용 가능 매장
+                        </span>{" "}
+                        <span
+                          className={`${styleCouponDetail.TabContentRight}`}
+                        >
+                          상품상세설명 참조
+                        </span>
+                      </p>
+                      <p>
+                        <span className={`${styleCouponDetail.TabContentLeft}`}>
+                          소비자 상담
+                        </span>{" "}
+                        <span
+                          className={`${styleCouponDetail.TabContentRight}`}
+                        >
+                          1600-5200(결제 문의) <br />
+                          1588-6474(사용 문의)
+                        </span>
+                      </p>
+                    </div>
+                    <div className={`${styleCouponDetail.TabContentBox}`}>
+                      <p className={`${styleCouponDetail.TabContentTitle}`}>
+                        취소 · 환불 · 유효기간 연장 정책 및 방법
+                      </p>
+                      <p className={`${styleCouponDetail.TabContentLeft}`}>
+                        별도 전달 예정 별도 전달 예정
+                        <br />
+                        별도 전달 예정 별도 전달
+                        <br />
+                        별도 전달 예정
+                        <br />
+                        별도 전달{" "}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
 
-            <div
-              className={`${styleCouponDetail.CouponDetailBottomWrap} ${styleCommon.bottomFixed}`}
-            >
-              <div className={`${styleCouponDetail.nowViewWrap}`}>
-                <span>10,000명</span>이 기분 전환 중 <span>🎵</span>
-              </div>
               <div
-                className={`${styleCommon.container} ${styleCommon.flexWrap}`}
+                className={`${styleCouponDetail.CouponDetailBottomWrap} ${styleCommon.bottomFixed}`}
               >
-                <p className={`${styleCommon.floatLeft}`}>
-                  <button
-                    className={`${styleCommon.btnIcon} ${styleCommon.btnWish} ${styleCouponDetail.btnWish}`}
-                  >
-                    좋아요
-                  </button>
-                  <button
-                    className={`${styleCommon.btnIcon} ${styleCommon.btnShare} ${styleCouponDetail.btnShare}`}
-                  >
-                    공유하기
-                  </button>
-                </p>
-                <p
-                  className={`${styleCommon.marginLeft} ${styleCommon.flexWrap} ${styleCommon.alignCenter}`}
+                <div className={`${styleCouponDetail.nowViewWrap}`}>
+                  <span>10,000명</span>이 기분 전환 중 <span>🎵</span>
+                </div>
+                <div
+                  className={`${styleCommon.container} ${styleCommon.flexWrap}`}
                 >
-                  <button className={`${styleCommon.btnGift}`}>선물하기</button>
-                  <span className={`${styleCommon.bar}`}></span>
-                  <button className={`${styleCommon.btnGiftMe}`}>
-                    선물하기
-                  </button>
-                </p>
+                  <p className={`${styleCommon.floatLeft}`}>
+                    <button
+                      className={`${styleCommon.btnIcon} ${styleCommon.btnWish} ${styleCouponDetail.btnWish}`}
+                    >
+                      좋아요
+                    </button>
+                    <button
+                      className={`${styleCommon.btnIcon} ${styleCommon.btnShare} ${styleCouponDetail.btnShare}`}
+                    >
+                      공유하기
+                    </button>
+                  </p>
+                  <p
+                    className={`${styleCommon.marginLeft} ${styleCommon.flexWrap} ${styleCommon.alignCenter}`}
+                  >
+                    <button className={`${styleCommon.btnGift}`}>
+                      선물하기
+                    </button>
+                    <span className={`${styleCommon.bar}`}></span>
+                    <button className={`${styleCommon.btnGiftMe}`}>
+                      선물하기
+                    </button>
+                  </p>
+                </div>
               </div>
             </div>
           </div>

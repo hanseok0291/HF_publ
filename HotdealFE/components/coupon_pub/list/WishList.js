@@ -38,9 +38,9 @@ const CouponList = (props) => {
             <ul className={`${styleCouponList.CouponList}`}>
               <li className={`${styleCouponList.CouponItem}`}>
                 <button href={`/coupon_pub/`}>
-                  <div className={`${styleWishList.imgWrap} `}>
+                  <div className={styleWishList.imgWrap}>
                     <div
-                      className={`${styleCouponList.imgBox} ${styleWishList.imgBox} ${styleCommon.imgBox} stamp `}
+                      className={`${styleCouponList.imgBox} ${styleWishList.imgBox}`}
                     >
                       <img
                         src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
@@ -56,7 +56,7 @@ const CouponList = (props) => {
                       <div className={styleWishList.delete}>
                         <span>삭제</span>
                       </div>
-                      <div className={`${styleWishList.buy} finishSale`}>
+                      <div className={styleWishList.buy}>
                         <span>구매</span>
                       </div>
                     </div>
@@ -91,7 +91,7 @@ const CouponList = (props) => {
                       className={`${styleCouponList.imgBox} ${styleWishList.imgBox}`}
                     >
                       <img
-                        src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
+                        src="https://tbezauth.settlebank.co.kr/theme/cm/product/PB00145_20221006132805407.jpg"
                         alt="핫딜 TEST"
                       ></img>
                     </div>
@@ -131,7 +131,7 @@ const CouponList = (props) => {
                       className={`${styleCouponList.imgBox} ${styleWishList.imgBox}`}
                     >
                       <img
-                        src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
+                        src="https://tbezauth.settlebank.co.kr/theme/cm/product/BR01389_G00000117386.jpg"
                         alt="핫딜 TEST"
                       ></img>
                     </div>

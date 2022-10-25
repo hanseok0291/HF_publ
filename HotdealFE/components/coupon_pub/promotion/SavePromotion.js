@@ -1,6 +1,5 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper";
 
 // Import Swiper styles
 import "swiper/css";
@@ -14,9 +13,6 @@ const SavePromotion = () => {
   const dotTopText = "사용만 해도";
 
   const settings = {
-    autoplay: {
-      delay: 1000,
-    },
     loop: true,
     slidesPerView: 1.8,
     centeredSlides: true,
@@ -28,8 +24,8 @@ const SavePromotion = () => {
       <div className={savePromotion.topTextWrap}>
         <p className={savePromotion.text_1}>
           구매한 쿠폰{" "}
-          {dotTopText.split("").map((item, index) => (
-            <span key={index} className={`${item !== " " ? savePromotion.dotTop : ""}`}>
+          {dotTopText.split("").map((item) => (
+            <span className={`${item !== " " ? savePromotion.dotTop : ""}`}>
               {item}
             </span>
           ))}
@@ -64,7 +60,7 @@ const SavePromotion = () => {
           </div>
         </div>
         <div className={savePromotion.rightBox}>
-          <Swiper {...settings} className={savePromotion.slide} modules={[Autoplay]}>
+          <Swiper {...settings} className={savePromotion.slide}>
             <SwiperSlide>
               <img
                 src="../../../images/promotion/savePromotion-slide_1.png"

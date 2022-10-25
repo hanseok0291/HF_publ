@@ -6,9 +6,12 @@ import { useEffect, useRef, useState } from "react";
 import styleDefaultLayout from "../../../styles/coupon_pub/DefaultLayout.module.css";
 import styleGiftCoupon from "../../../styles/coupon_pub/GiftCoupon.module.css";
 
+//css
 // //components
+import Layout from "../../../components/common/Layout";
 import Header from "../../../components/coupon_pub/common/Header";
 import GiftCoupon from "../../../components/coupon_pub/mypage/GiftCoupon";
+import ModalAlert from "../../../components/coupon_pub/common/Modal/ModalAlert";
 
 const Index = () => {
   //헤더 아이콘 디폴트 세팅

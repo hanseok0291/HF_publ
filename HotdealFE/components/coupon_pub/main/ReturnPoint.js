@@ -7,7 +7,10 @@ const ReturnPointWrap = () => {
   return (
     <>
       <SwiperItem
-        title={["사용하면 적립받아요", <span>✋</span>]}
+        title={[
+          "사용하면 적립받아요",
+          <span className="titleEmoticon">✋</span>,
+        ]}
         accumulate="true"
         moreBtnShow="true"
         labelShow="true"

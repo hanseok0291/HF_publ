@@ -37,50 +37,35 @@ const ModalAlert = ({ show, onClose }) => {
                 <div className={`${styleRecent.modalItem}`}>
                   <span className={`${styleRecent.name}`}>김세틀</span>
                   <span className={`${styleRecent.tel}`}>010-1234-5678</span>
-                  <button
-                    type="button"
-                    className={`${styleRecent.btn} ${styleCommon.btn}`}
-                  >
+                  <button type="button" className={`${styleRecent.btn}`}>
                     선택
                   </button>
                 </div>
                 <div className={`${styleRecent.modalItem}`}>
                   <span className={`${styleRecent.name}`}>김세틀</span>
                   <span className={`${styleRecent.tel}`}>010-1234-5678</span>
-                  <button
-                    type="button"
-                    className={`${styleRecent.btn} ${styleCommon.btn}`}
-                  >
+                  <button type="button" className={`${styleRecent.btn}`}>
                     선택
                   </button>
                 </div>
                 <div className={`${styleRecent.modalItem}`}>
                   <span className={`${styleRecent.name}`}>김세틀</span>
                   <span className={`${styleRecent.tel}`}>010-1234-5678</span>
-                  <button
-                    type="button"
-                    className={`${styleRecent.btn} ${styleCommon.btn}`}
-                  >
+                  <button type="button" className={`${styleRecent.btn}`}>
                     선택
                   </button>
                 </div>
                 <div className={`${styleRecent.modalItem}`}>
                   <span className={`${styleRecent.name}`}>김세틀</span>
                   <span className={`${styleRecent.tel}`}>010-1234-5678</span>
-                  <button
-                    type="button"
-                    className={`${styleRecent.btn} ${styleCommon.btn}`}
-                  >
+                  <button type="button" className={`${styleRecent.btn}`}>
                     선택
                   </button>
                 </div>
                 <div className={`${styleRecent.modalItem}`}>
                   <span className={`${styleRecent.name}`}>김세틀</span>
                   <span className={`${styleRecent.tel}`}>010-1234-5678</span>
-                  <button
-                    type="button"
-                    className={`${styleRecent.btn} ${styleCommon.btn}`}
-                  >
+                  <button type="button" className={`${styleRecent.btn}`}>
                     선택
                   </button>
                 </div>
@@ -121,7 +106,7 @@ const ModalAlert = ({ show, onClose }) => {
                 <span className={`${styleRecent.tel}`}>010-1234-5678</span>
                 <button
                   type="button"
-                  className={`${styleRecent.btn} ${styleCommon.btn}`}
+                  className={`${styleRecent.btn}`}
                 >
                   선택
                 </button>
@@ -131,7 +116,7 @@ const ModalAlert = ({ show, onClose }) => {
                 <span className={`${styleRecent.tel}`}>010-1234-5678</span>
                 <button
                   type="button"
-                  className={`${styleRecent.btn} ${styleCommon.btn}`}
+                  className={`${styleRecent.btn}`}
                 >
                   선택
                 </button>
@@ -141,7 +126,7 @@ const ModalAlert = ({ show, onClose }) => {
                 <span className={`${styleRecent.tel}`}>010-1234-5678</span>
                 <button
                   type="button"
-                  className={`${styleRecent.btn} ${styleCommon.btn}`}
+                  className={`${styleRecent.btn}`}
                 >
                   선택
                 </button>
@@ -151,7 +136,7 @@ const ModalAlert = ({ show, onClose }) => {
                 <span className={`${styleRecent.tel}`}>010-1234-5678</span>
                 <button
                   type="button"
-                  className={`${styleRecent.btn} ${styleCommon.btn}`}
+                  className={`${styleRecent.btn}`}
                 >
                   선택
                 </button>

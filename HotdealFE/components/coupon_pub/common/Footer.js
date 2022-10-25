@@ -1,7 +1,11 @@
 import { isEmpty } from "lodash";
 import Link from "next/link";
 
-//import ModalEnter from "../../../components/coupon_pub/common/modal/ModalEnter";
+import ModalEnter from "../../../components/coupon_pub/common/modal/ModalEnter";
+import ModalEnterType2 from "../../../components/coupon_pub/common/modal/ModalEnterType2";
+import ModalEnterType3 from "../../../components/coupon_pub/common/modal/ModalEnterType3";
+import ModalEnterType4 from "../../../components/coupon_pub/common/modal/ModalEnterType4";
+import ModalEnterType5 from "../../../components/coupon_pub/common/modal/ModalEnterType5";
 
 import styleCommon from "../../../styles/coupon_pub/Common.module.css";
 import styleLayout from "../../../styles/coupon_pub/Layout.module.css";
@@ -32,6 +36,18 @@ const FooterInfo = () => {
 
 export default function Footer({ isfixedBottom }) {
   const [visible, setVisible] = useState(false);
+
+  const onDropDown = (e) => {
+    if (!visible) {
+      e.target.style.transform = "rotate(180deg)";
+      e.target.style.backgroundPosition = "100% center";
+    } else {
+      e.target.style.transform = "rotate(0)";
+      e.target.style.backgroundPosition = "0% center";
+    }
+    setVisible(!visible);
+  };
+
   return (
     <>
       {isfixedBottom ? (
@@ -57,17 +73,13 @@ export default function Footer({ isfixedBottom }) {
               </a>
             </Link>
           </div>
-          <div
-            className={styleFooter.addressWrap}
-            onClick={() => {
-              setVisible(!visible);
-            }}
-          >
+          <div className={styleFooter.addressWrap}>
             <div className={styleFooter.addressBtn}>
               (주)헥토파이낸셜{" "}
               <button
                 type="button"
                 className={`${styleCommon.icon} ${styleCommon.iconArrowDown} ${styleFooter.iconArrowDown}`}
+                onClick={onDropDown}
               ></button>
               {visible && <FooterInfo />}
             </div>
@@ -95,22 +107,22 @@ export default function Footer({ isfixedBottom }) {
               </a>
             </Link>
           </div>
-          <div
-            className={styleFooter.addressWrap}
-            onClick={() => {
-              setVisible(!visible);
-            }}
-          >
+          <div className={styleFooter.addressWrap}>
             <div className={styleFooter.addressBtn}>
               (주)헥토파이낸셜{" "}
               <button
                 type="button"
                 className={`${styleCommon.icon} ${styleCommon.iconArrowDown} ${styleFooter.iconArrowDown}`}
+                onClick={onDropDown}
               ></button>
               {visible && <FooterInfo />}
             </div>
           </div>
-          {/* <ModalEnter /> */}
+          {/* <ModalEnter />
+          <ModalEnterType2 />
+          <ModalEnterType3 />
+          <ModalEnterType4 />
+          <ModalEnterType5 />*/}
         </div>
       )}
     </>

@@ -20,7 +20,11 @@ const FirstCouponSelect = ({ setModalShow_1, selectBrand }) => {
         {!selectBrand ? (
           <span>브랜드 선택</span>
         ) : (
-          <span>코레일</span>
+          <img
+            src="../../../images/coupon/icon/mypage/icon-kt.png"
+            alt=""
+            className={styleCouponSet.logoImg}
+          />
         )}
       </button>
     </div>

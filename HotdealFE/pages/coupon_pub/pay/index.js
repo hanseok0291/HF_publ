@@ -8,13 +8,15 @@ import styleCommon from "../../../styles/coupon_pub/Common.module.css";
 import stylePay from "../../../styles/coupon_pub/Pay.module.css";
 import styleCouponDetail from "../../../styles/coupon_pub/CouponDetail.module.css";
 import styleCouponList from "../../../styles/coupon_pub/CouponList.module.css";
-import styleApply from ".././../../styles/coupon_pub/Apply.module.css";
+import styleApply from "../../../styles/coupon_pub/Apply.module.css";
+import styleToast from "../../../styles/coupon_pub/Toast.module.css";
 
 // //components
 import Layout from "../../../components/common/Layout";
 import Header from "../../../components/coupon_pub/common/Header";
 import Footer from "../../../components/coupon_pub/common/Footer";
 import ModalTerms from "../../../components/coupon_pub/common/modal/ModalTerms";
+import ToastError from "../../../components/coupon_pub/common/toast/ToastError";
 
 const Index = () => {
   //헤더 아이콘 디폴트 세팅
@@ -152,6 +154,7 @@ const Index = () => {
                     <p className={`${stylePay.right}`}>0원</p>
                   </div>
                 </div>
+                {/* 충전 금액 부족 시 ${stylePay.error} 클래스 추가 */}
                 <div
                   className={`${stylePay.inputBox} ${stylePay.inputDouble} ${stylePay.addBorderBottom}`}
                 >
@@ -159,19 +162,31 @@ const Index = () => {
                     <strong>머니 충전 결제</strong>
                     <p>부족한 금액은 자동 충전 후 머니로 결제됩니다.</p>
                   </div>
+                  {/* 충전 */}
                   <div
                     className={`${stylePay.inputDoubleBox} ${stylePay.inputTop}`}
                   >
-                    <span>충전</span>
-                    <input
-                      type="text"
-                      value="10,000원"
-                      className={`${stylePay.input}`}
-                    ></input>
-                    <i
-                      className={`${styleCommon.iconArrow} ${styleCommon.iconArrowRoundDown} ${stylePay.iconArrowRoundDown}`}
-                    ></i>
+                    <div>
+                      <span>충전</span>
+                    </div>
+                    <div
+                      className={`${styleCommon.flexWrap} ${styleCommon.alignCenter}`}
+                    >
+                      <p className={`${stylePay.errorText}`}>
+                        <i className={`${styleCommon.iconErrorRed}`}></i>
+                        &nbsp;충전 금액 부족
+                      </p>
+                      <span
+                        className={`${stylePay.input} ${stylePay.loadMoney}`}
+                      >
+                        10,000원
+                      </span>
+                      <i
+                        className={`${styleCommon.iconArrow} ${styleCommon.iconArrowRoundDown} ${stylePay.iconArrowRoundDown}`}
+                      ></i>
+                    </div>
                   </div>
+                  {/* //충전 */}
                   <div
                     className={`${stylePay.inputDoubleBox} ${stylePay.inputBottom}`}
                   >
@@ -207,16 +222,17 @@ const Index = () => {
           </div>
         </div>
         <div className={`${styleCommon.bottomFixed} ${stylePay.bottomFixed}`}>
+          {/* 에러 토스트 */}
+          {/* <ToastError /> */}
+          {/* //에러 토스트 */}
           {/* 비활성 버튼 */}
-          <button className={`${styleCommon.btnGray} ${styleCommon.btnGift}`}>
-            결제하기
-          </button>
+          <button className={`${styleCommon.btnGray}`}>결제하기</button>
           {/* //비활성 버튼 */}
           {/* 활성 버튼 */}
-          {/* <button className={`${styleCommon.btnGift}`}>결제하기</button> */}
+          {/* <button>결제하기</button> */}
           {/* //활성 버튼 */}
         </div>
-        <ModalTerms />
+        {/* <ModalTerms /> */}
       </Layout>
     </>
   );

@@ -137,6 +137,7 @@ export default function GiftDetail() {
           <div className={`${styleCouponDetail.nowViewWrap}`}>
             <span>자동 사용 설정 OFF </span>상태입니다
           </div>
+          {/* 버튼 4개일 경우 ${styleCommon.btnWrap}에 ${styleCommon.fourBtn} 클래스 추가 */}
           <div className={`${styleCommon.btnWrap}`}>
             <button className={`${styleCommon.btnGift} ${styleCommon.btn}`}>
               쿠폰 저장

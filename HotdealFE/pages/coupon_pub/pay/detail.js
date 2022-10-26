@@ -29,9 +29,10 @@ import CouponDetail from "../../../components/coupon_pub/pay/CouponDetail";
 
 const Index = () => {
   //헤더 아이콘 디폴트 세팅
-  const [isShowBackBtn, setShowBackBtn] = useState(true);
+  const [isShowBackBtn, setShowBackBtn] = useState(false);
   const [isShowSearchBtn, setShowSearchBtn] = useState(false);
   const [isShowMypageBtn, setShowMypageBtn] = useState(false);
+  const [isShowCloseBtn, setShowCloseBtn] = useState(true);
   const [isFixedTop, setFixedTop] = useState(false);
   const [isFixedBottom, setFixedBottom] = useState(true);
 
@@ -39,10 +40,11 @@ const Index = () => {
     <>
       <Layout>
         <Header
-          pageTitle="상세 내역"
+          pageTitle="구매 완료"
           isShowBackBtn={isShowBackBtn}
           isShowSearchBtn={isShowSearchBtn}
           isShowMypageBtn={isShowMypageBtn}
+          isShowCloseBtn={isShowCloseBtn}
         />
         <div
           className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap}`}

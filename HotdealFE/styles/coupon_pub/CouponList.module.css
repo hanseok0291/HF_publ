@@ -11,15 +11,15 @@
 .DropBoxOn { padding-top: 53px; }
 .CouponListWrap .subTitle {margin-top: 50px; font-size: 15px; font-weight: 500; line-height: 1;}
 .CouponListWrap .LimitCouponTitle { font-size: 22px; font-weight: 700; }
-.CouponListWrap .CouponList { display: flex; flex-wrap: wrap; justify-content: space-between; width: 100%; margin: 20px 0 0; flex-direction: row; }
-.CouponListWrap .CouponList .CouponItem { position: relative; width: 50%; padding: 0 7.5px; margin-bottom: 35px; }
-.CouponListWrap .CouponList .CouponItem button { position: relative; width: 100%; }
+.CouponListWrap .CouponList { display: flex; flex-wrap: wrap; justify-content: space-between; width: 100%; margin: 20px 0 200px; flex-direction: row; }
+.CouponListWrap .CouponList .CouponItem { width: 50%; margin-bottom: 35px; }
+.CouponListWrap .CouponList .CouponItem button { width: 100%; padding: 0 7.5px; }
 .CouponListWrap .HotBrandLink { display: block; width: 100%; padding: 16px 0; background-color: #fff; border: 1px solid #dfdfdf; border-radius: 5px; }
 .CouponListWrap .HotBrandLink span { font-weight: 700; }
 .containerWrap { margin: 0 -7.5px; }
 .CouponListWrap .CouponList .listEmpty { width: 100%; text-align: center; font-size: 14px; font-weight: 300; color: #a2a2a2; background-image: url('../../public/images/coupon/icon/common/empty.png'); background-size: 34px auto; background-position: center 80px; background-repeat: no-repeat; padding: 140px 0 75px; margin-bottom: 0; }
 
-.CouponListWrap .CouponListVoid .CouponItem .imgBox { min-width: 130px; min-height: 130px; background-color: #f1f1f1; }
+.CouponListWrap .CouponListVoid .CouponItem .imgBox { min-width: 130px; min-height: 130px; background-color: #f1f1f1; overflow: hidden; }
 .CouponListWrap .CouponListVoid .CouponItem .infoBrand { position: relative; overflow: hidden; background-color: #f1f1f1; width: 100%; height: 14px; font-size: 0; }
 .CouponListWrap .CouponListVoid .CouponItem .infoProduct { position: relative; overflow: hidden; background-color: #f1f1f1; width: 100%; height: 34px; font-size: 0; }
 .CouponListWrap .CouponListVoid .CouponItem .infoPrice { position: relative; overflow: hidden; background-color: #f1f1f1; width: 100%; height: 14px; font-size: 0; }
@@ -41,14 +41,19 @@
   }
 }
 
-.imgBox { position: relative; border: 1px solid #f1f1f1; border-radius: 10px; overflow: hidden; }
+.imgBox { position: relative; border: 1px solid #f1f1f1; padding-bottom: calc(100% - 2px); border-radius: 10px; overflow: hidden; } /* 리스트쪽 제품 보더때문에 overflow:hidden 필요 */
+.imgBox img { position: absolute; top: 0; right: 0; bottom: 0; left: 0; height: 100%; object-fit: contain; } /* 리스트 이미지 고정영역으로 지정하기 위해 필요 */
+.infoBox .barcode { display: block; position: absolute; right: -7px; top: -40px; width: 40.5px; height: 40.5px; background: url(../../public/images/coupon/icon/common/icon-barcode.png) no-repeat center / 34px; }
 
-.infoBox { text-align: left; }
+.infoBox { text-align: left; position: relative; }
 .infoBox p { color: #151515; }
 .infoBox p > strong { color: #ff2b00; }
 .infoBox .infoLabel { display: inline-block; padding: 5px 9px; margin-top: 15px; color: #e6ff00; font-size: 11px; background-color: #000; border-radius: 2.5px; }
 .infoBox .infoBrand { font-size: 12px; margin-top: 10px; font-weight: 700; }
-.infoBox .infoProduct { margin-top: 5px; font-size: 14px; max-height: 34px; line-height: 17px; overflow: hidden; text-overflow: ellipsis; }
+.infoBox .infoProduct { margin-top: 5px; margin-bottom: 15px; font-size: 14px; max-height: 34px; line-height: 17px; overflow: hidden; text-overflow: ellipsis; }
+.infoBox .infoFrom { margin-top: 15px; font-size: 16px; font-weight: 700; }
+.infoBox .infoAuto { margin-top: 9px; color: #575757; font-size: 12px; }
+.infoBox .infoAuto.on { color: #fb2b00; }
 
 .infoBox .infoPrice { margin-top: 15px; font-size: 13px; color: #a2a2a2; text-decoration: line-through; }
 .infoBox .infoDcPrice { font-size: 18px; font-weight: 700; color: #151515; }
@@ -63,6 +68,7 @@
 
 /* label */
 .label { padding: 6px 10px; }
+.label.count { background-color: #a2a2a2; color: #fff; font-size: 12px; }
 
 /* 테마 영역 */
 .ThemeWrap { height: 850px; background-color: #ffe062; }
@@ -74,7 +80,7 @@
 .brandInBg { position: absolute; width: 205px; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: .1; z-index: -1; }
 .nameBox { display: flex; align-items: center; }
 .nameBox > span { margin-right: 2px; color: #151515; font-weight: 500; }
-.brandLogo { width: 43px; height: 43px; margin-bottom: 4px; }
+.brandLogo { display: flex; justify-content: center; align-items: center; width: 43px; height: 43px; margin-bottom: 4px; background-size: contain; }
 
 .brandInList { padding-top: 0; }
 .brandInList .CouponList { padding-top: 15px; margin-top: 0; }

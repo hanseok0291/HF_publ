@@ -5,13 +5,16 @@ export default function Header({
   isShowBackBtn,
   isShowSearchBtn,
   isShowMypageBtn,
+  isShowCloseBtn,
   pageTitle,
 }) {
   return (
     <div
       className={`${styleDefaultLayout.pageHeader} ${styleDefaultLayout.defaultHeader}`}
     >
-      <div className={`${styleDefaultLayout.container}`}>
+      <div
+        className={`${styleDefaultLayout.container} ${styleCommon.pageHeader}`}
+      >
         {isShowBackBtn && (
           <button
             type="button"
@@ -21,6 +24,14 @@ export default function Header({
           </button>
         )}
         <h1 className={styleDefaultLayout.pageTitle}>{pageTitle}</h1>
+        {isShowCloseBtn && (
+          <button
+            type="button"
+            className={`${styleCommon.btnIcon} ${styleCommon.btnClose}`}
+          >
+            닫기
+          </button>
+        )}
         {isShowSearchBtn && (
           <button
             type="button"

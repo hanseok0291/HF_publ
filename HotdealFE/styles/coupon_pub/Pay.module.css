@@ -19,9 +19,10 @@
 /* payInfoWrap */
 .payInfoWrap { padding-bottom: 140px; }
 .listTitle { margin-top: 40px; border-bottom: 2px solid #151515; padding-bottom: 15px; font-size: 15px; font-weight: 700; color: #151515; }
+.listTitle.first { margin-top: 20px; }
 .listTitle.last { display: flex; justify-content: space-between; align-items: center; font-size: 18px; }
 .listTitle.last span + span { color: #ff2b00; }
-.infoProduct { white-space: nowrap; max-height: 17px !important; }
+.infoProduct { white-space: nowrap; max-height: 17px; }
 .infoBox { display: flex; flex-direction: column; }
 .priceBox { display: flex; flex-direction: column; margin-top: auto; }
 .priceBox .price { font-size: 13px; color: #575757; }
@@ -34,12 +35,15 @@
 /* inputBox */
 .addBorderBottom { padding-bottom: 20px; border-bottom: 1px solid #ececec; }
 .inputBox input:focus { padding: 0; }
-.inputBox input[type="text"], .inputBox input[type="tel"] { height: 55px; padding: 0 15px; }
+.inputBox input[type="text"], .inputBox input[type="tel"], .inputBox input[type="number"] { height: 55px; line-height: 55px; padding: 0 15px; }
 .inputBox .input { position: relative; text-align: right; }
-.inputBox .input::placeholder { font-size: 16px; font-weight: 400; }
-.inputBox .inputInfoBox { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; }
+.inputBox .input::placeholder { font-size: 16px; height: auto; line-height: 55px; font-weight: 400; }
+.inputBox { margin-top: 24px; }
+.inputBox.inputBoxMt0 { margin-top: 0; }
+.inputBox .inputInfoBox { display: flex; justify-content: space-between; align-items: center; position: relative; }
 .inputBox .inputInfoBox > p { font-size: 13px; color: #151515; }
 .inputBox .inputInfoBox > p > strong { margin-right: 6px; }
+.inputBox .inputInfoBox .labelTitle { font-size: 15px; }
 .inputBox .checkbox { position: relative; display: block; }
 .inputBox .checkbox > input[type="checkbox"] { position: absolute; top: 0; left: 0; width: 0; height: 0; border: 0; font-size: 0; }
 .inputBox .checkbox > input + label { position: relative; display: inline-block; padding: 0 0 0 20px; font-size: 14px; font-weight: 400; line-height: 20px; }
@@ -49,20 +53,30 @@
 .inputBox.inputDouble .inputInfoBox { flex-direction: column; align-items: start; }
 .inputBox.inputDouble .inputInfoBox > p { color: #575757; }
 .inputBox.inputDouble .inputDoubleBox { position: relative; }
+.inputBox.inputDouble .inputTop { position: relative; padding: 0 15px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center; width: 100%; height: 55px; border: 1px solid #f1f1f1; border-radius: 10px; color: #575757; background-color: #fff; }
 .inputBox.inputDouble .inputDoubleBox > span { position: absolute; top: 50%; left: 14px; transform: translateY(-50%); margin-top: 5px; z-index: 1; color: #575757; }
-.inputBox.inputDouble .inputTop .input { padding-right: 35px; }
+.inputBox.inputDouble .inputTop .input { padding-right: 10px; }
+.inputBox.inputDouble .inputTop .loadMoney { font-size: 16px; font-weight: 700; color: #151515; }
 .inputBox.inputDouble .inputBottom .input { position: relative; top: -5px; margin-top: 0; background-color: #f1f1f1; z-index: -1; }
 .inputBox.inputDouble .inputBottom .input { color: #575757; }
+.inputBox.inputDouble .errorText { opacity: 0; display: flex; align-items: center; padding-right: 8px; color: #fb3636; font-size: 13px; z-index: 1; }
+.inputBox.inputDouble.error .inputTop .input { position: relative; }
+.inputBox.inputDouble.error .inputBottom .input { color: #fb3636; }
+.inputBox.inputDouble.error .errorText { opacity: 1; }
 .inputBox.inputDouble .inputBottom > span { margin-top: -3px; }
-.inputBox.inputDouble .iconArrowRoundDown { position: absolute; top: 50%; right: 18px; }
+/* .inputBox.inputDouble .iconArrowRoundDown { position: absolute; top: 50%; right: 18px; } */
 .forYou .inputBox .input { text-align: left; }
 .forYou .inputGiftBox .name { width: 41%; }
 .forYou .inputGiftBox .number { margin-left: 10px; }
 .forYou .inputGiftBox .textArea { margin-top: 10px; }
-.forYou input { font-weight: 500; }
+.forYou input, .forYou textarea { font-weight: 500; }
 
+.inputBox .subTitle { font-size: 13px; }
+.inputBox .inputInfoBox + .subTitle { margin-top: 24px; }
+
+/* 충전 */
 .load .inputBox .input { text-align: left; }
-.load .inputBox .inputInfoBox > p { font-size: 15px; }
+.load .inputBox .inputInfoBox > p, .load .inputBox .inputInfoBox .title { font-size: 15px; }
 .load .loadOptionBox { display: flex; margin-top: 10px; }
 .load .loadOptionBox button { width: 25%; background-color: #f1f1f1; font-size: 14px; color: #151515; }
 .load .accountBox .subTitle { font-size: 13px; color: #575757; }
@@ -70,10 +84,45 @@
 .load .btnAdd { display: flex; justify-content: center; align-items: center;  width: 100%; line-height: 53px; padding: 0; border: 1px dashed #e1e1e1; background-color: #fff; font-size: 16px; color: #151515; }
 .load .btnAdd i { margin-right: 7px; }
 
-.inputBox.inputDouble .moneyInfoBox { display: flex; flex-direction: row; justify-content: space-between; }
+.load .inputBox .highlightText { margin-top: 20px; font-size: 15px; font-weight: 700; color: #151515; text-align: center; }
+.load .inputBox .inputLoadBox { position: relative; }
+.load .inputBox .inputLoadBox .floatText { position: absolute; top: 28px; left: 15px; z-index: 1; font-size: 14px; font-weight: 500; opacity: 0; }
+.load .inputBox .inputLoadBox .btnDel { opacity: 0; }
+.load .inputBox .inputLoad { height: 90px; line-height: 90px; font-size: 28px; }
+.load .inputBox .inputLoad::placeholder { font-size: 28px; font-weight: 700; margin-top: -10px; }
+.load .inputBox .inputLoadBox.focus .inputLoad { padding-top: 21.5px; }
+.load .inputBox .inputLoadBox.focus .floatText { opacity: 1; }
+.load .inputBox .inputLoadBox.focus .btnDel { opacity: 1; top: auto; bottom: 21px; }
+.load .inputBox .inputLoadBox.focus.error input[type="tel"] { border: 1px solid #fb3636; color: #fb3636; }
+.load .inputBox .inputLoadBox.focus.error .floatText { color: #fb3636; }
+
+.inputBox.inputDouble .moneyInfoBox { display: flex; flex-direction: row; justify-content: space-between; margin-top: 15px; }
 .inputBox.inputDouble .moneyInfoBox > p span { color: #151515; }
 .inputBox.inputDouble .moneyInfoBox .right { font-size: 16px; font-weight: 700; color: #151515; }
 /* //inputBox */
+
+/* 구매 완료 */
+.successWrap .inputBox .inputInfoBox { margin-top: 24px; flex-direction: row; justify-content: start; }
+.successWrap .inputBox .inputInfoBox .title { margin-right: 6px; }
+.successWrap .infoBox .prdName { display: inline-block; margin-right: 6px; vertical-align: top; }
+.successWrap .CouponDetaiSmalllWrap .infoBox .infoBrand { margin-top: auto; color: #151515; }
+.successWrap .CouponDetaiSmalllWrap .infoBox .infoProduct { margin-bottom: auto; white-space: normal; color: #151515; }
+.successWrap .CouponDetaiSmalllWrap .infoBox .infoProduct.paySuccess { max-height: none; } /* 구매완료 일때만 제품명 말줄임 제거 */
+.successWrap .infoBox .prdErrorMsg { display: inline-block; max-height: 36px; margin-bottom: auto; font-size: 13px; font-weight: 400; color: #a2a2a2; text-overflow: ellipsis; overflow: hidden; }
+
+.successWrap .CouponDetaiSmalllWrap { border-bottom: 1px solid #eee; }
+.successWrap .CouponDetaiSmalllWrap .inputInfoBox { margin-top: 0; }
+.successWrap .inputInfoBox .title { font-size: 14px; }
+.successWrap .inputInfoBox .titleRight { font-size: 13px; }
+.successWrap .subTitle { font-size: 13px; color: #575757; }
+.successWrap .subTitle.sendMsg { margin-top: 7px; }
+.successWrap .borderBold { border-bottom: 2px solid #151515; }
+
+.modalBtnWrap { text-align: center; }
+.modalBtnWrap .subTitle { margin-top: 43px; }
+.modalBtnWrap .btn { width: 101px; height: 30px; margin-top: 20px; font-size: 13px; background-color: #fff; color: #151515; border: 1px solid #151515; border-radius: 5px; }
+.modalBtnWrap .btnRefresh { width: 130px; }
+.modalBtnWrap .icoRefresh { display: inline-block; width: 12px; height: 11px; margin-right: 6px; background: url('../../public/images/coupon/icon/common/icon-refresh.png') no-repeat center / contain; }
 
 .btnOption { display: flex; align-items: center; padding: 0 15px; }
 .btnOption img { width: 30px; height: 30px; margin-right: 9px; }

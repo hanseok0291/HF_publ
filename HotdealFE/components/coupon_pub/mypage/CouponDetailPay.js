@@ -137,24 +137,19 @@ export default function GiftDetail() {
           <div className={`${styleCouponDetail.nowViewWrap}`}>
             <span>자동 사용 설정 OFF </span>상태입니다
           </div>
-          <div className={`${styleCommon.btnWrap} `}>
-            <button
-              className={`${styleCommon.btnGift} ${styleCommon.btn}`}
-              style={{ fontSize: 13 }}
-            >
+          {/* 버튼 4개일 경우 ${styleCommon.btnWrap}에 ${styleCommon.fourBtn} 클래스 추가 */}
+          <div className={`${styleCommon.btnWrap} ${styleCommon.fourBtn}`}>
+            <button className={`${styleCommon.btnGift} ${styleCommon.btn}`}>
               쿠폰 저장
             </button>
-            <button
-              className={`${styleCommon.btnGiftMe} ${styleCommon.btn}`}
-              style={{ fontSize: 13 }}
-            >
+            <button className={`${styleCommon.btnGiftMe} ${styleCommon.btn}`}>
               자동 사용 설정
             </button>
-            <button
-              className={`${styleCommon.btnGiftMe} ${styleCommon.btn}`}
-              style={{ fontSize: 13 }}
-            >
+            <button className={`${styleCommon.btnGiftMe} ${styleCommon.btn}`}>
               결제 취소
+            </button>
+            <button className={`${styleCommon.btnGiftMe} ${styleCommon.btn}`}>
+              유효기간 연장
             </button>
           </div>
         </div>

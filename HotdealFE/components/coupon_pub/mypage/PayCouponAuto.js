@@ -30,42 +30,42 @@ const PayCouponAuto = ({ handleClick, toggleState }) => {
               src="../../../images/coupon/icon/mypage/icon-onestore.png"
               alt="원스토어"
             />
-            원스토어
+            <span>원스토어</span>
           </li>
           <li>
             <img
               src="../../../images/coupon/icon/mypage/icon-korail.png"
               alt="코레일"
             />
-            코레일
+            <span>코레일</span>
           </li>
           <li>
             <img
               src="../../../images/coupon/icon/mypage/icon-kt.png"
               alt="KT멤버쉽"
             />
-            KT멤버쉽
+            <span>KT멤버쉽</span>
           </li>
           <li>
             <img
               src="../../../images/coupon/icon/mypage/icon-korail.png"
               alt="코레일"
             />
-            코레일
+            <span>코레일</span>
           </li>
           <li>
             <img
               src="../../../images/coupon/icon/mypage/icon-kt.png"
               alt="KT멤버쉽"
             />
-            KT멤버쉽
+            <span>KT멤버쉽</span>
           </li>
           <li>
             <img
               src="../../../images/coupon/icon/mypage/icon-kt.png"
               alt="KT멤버쉽"
             />
-            KT멤버쉽
+            <span>KT멤버쉽</span>
           </li>
         </ul>
       </div>

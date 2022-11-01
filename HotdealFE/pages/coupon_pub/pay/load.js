@@ -36,7 +36,7 @@ const Index = () => {
           isShowCloseBtn={isShowCloseBtn}
         />
         <div
-          className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap}`}
+          className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap} ${stylePay.payInfoContent}`}
         >
           <div className={`${stylePay.payInfoWrap} ${stylePay.load}`}>
             <div className={`${styleCommon.container}`}>

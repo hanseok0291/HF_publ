@@ -27,26 +27,27 @@ const RollingCoupon = () => {
     centerMode: true,
     autoplay: false,
     autoplaySpeed: 2000,
-    responsive: [
-      {
-        breakpoint: 1200,
-        settings: {
-          centerPadding: "30%",
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          centerPadding: "17%",
-        },
-      },
-      {
-        breakpoint: 370,
-        settings: {
-          centerPadding: "32px",
-        },
-      },
-    ],
+    centerPadding: "17%",
+    // responsive: [
+    //   {
+    //     breakpoint: 1200,
+    //     settings: {
+    //       centerPadding: "30%",
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 768,
+    //     settings: {
+    //       centerPadding: "17%",
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 370,
+    //     settings: {
+    //       centerPadding: "32px",
+    //     },
+    //   },
+    // ],
   };
 
   // 0원 구매 찬스!

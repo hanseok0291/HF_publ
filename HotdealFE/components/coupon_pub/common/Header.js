@@ -6,7 +6,7 @@ export default function Header({
   isShowSearchBtn,
   isShowMypageBtn,
   isShowCloseBtn,
-  pageTitle,
+  pageTitle
 }) {
   return (
     <div
@@ -23,7 +23,8 @@ export default function Header({
             뒤로가기
           </button>
         )}
-        <h1 className={styleDefaultLayout.pageTitle}>{pageTitle}</h1>
+				<h1 className={`${styleDefaultLayout.pageTitle} ${!isShowBackBtn && styleDefaultLayout.pageTitleMain}`}>{pageTitle}</h1>
+        
         {isShowCloseBtn && (
           <button
             type="button"

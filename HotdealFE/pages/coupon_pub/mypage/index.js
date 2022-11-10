@@ -9,12 +9,21 @@ import Menu from "../../../components/coupon_pub/mypage/Menu";
 import Footer from "../../../components/coupon_pub/common/Footer";
 
 const Index = () => {
+	const [useTitle, setUseTitle] = useState(false);
   const router = useRouter();
   const wrapRef = useRef();
 
+	useEffect(() => {
+		window.addEventListener("scroll", () => {
+			const scrollTop = document.scrollingElement.scrollTop;
+			scrollTop > 0 ? setUseTitle(true) : setUseTitle(false);
+		});
+	}, [])
+	
+
   return (
     <>
-      <HeaderMypage pageTitle="선물함" isShowRegCodeBtn={true} />
+      <HeaderMypage pageTitle={useTitle && "선물함"} isShowRegCodeBtn={true} />
       <Layout>
         <Menu />
         <Footer />

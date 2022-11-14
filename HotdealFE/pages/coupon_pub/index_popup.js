@@ -99,7 +99,7 @@ const Index = () => {
               </div>
             </div>
           </div>
-					{/* <MainPopup /> */}
+					<MainPopup />
           <Footer />
         </div>
       </Layout>

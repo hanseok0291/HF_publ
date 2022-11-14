@@ -100,9 +100,14 @@ const RollingCoupon = () => {
                   src="https://tbezauth.settlebank.co.kr/theme/cm/product/BR00007_G00000117178.jpg"
                   alt="핫딜 TEST"
                 ></img>
+								<span className={`${styleSlick.labelIcon} ${styleCommon.labelIconLimit}`}>
+									<img
+										src="../images/coupon/icon/common/icon-limit-coupon.png"
+										alt="기간 한정 특가"
+									/>
+								</span>
               </div>
               <div className={styleSlick.infoBox}>
-                <h2 className={styleSlick.infoLabel}>0원 구매 찬스!</h2>
                 <p className={styleSlick.infoBrand}>스타벅스</p>
                 <p className={styleSlick.infoProduct}>
                   아이스 카페 라떼 T 아이스 카페 라떼 T 아이스 카페 라떼 T
@@ -128,9 +133,14 @@ const RollingCoupon = () => {
                   src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
                   alt="핫딜 TEST"
                 ></img>
+								<span className={`${styleSlick.labelIcon} ${styleCommon.labelIconLimit}`}>
+									<img
+										src="../images/coupon/icon/common/icon-return-poing-coupon.png"
+										alt="포인트 추가 적립"
+									/>
+								</span>
               </div>
               <div className={styleSlick.infoBox}>
-                <h2 className={styleSlick.infoLabel}>0원 구매 찬스!</h2>
                 <p className={styleSlick.infoBrand}>스타벅스</p>
                 <p className={styleSlick.infoProduct}>
                   아이스 카페 라떼 T 아이스 카페 라떼 T 아이스 카페 라떼 T
@@ -156,9 +166,14 @@ const RollingCoupon = () => {
                   src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
                   alt="핫딜 TEST"
                 ></img>
+								<span className={`${styleSlick.labelIcon} ${styleCommon.labelIconLimit}`}>
+									<img
+										src="../images/coupon/icon/common/icon-free-coupon.png"
+										alt="0원 구매 찬스"
+									/>
+								</span>
               </div>
               <div className={styleSlick.infoBox}>
-                <h2 className={styleSlick.infoLabel}>포인트 추가 적립</h2>
                 <p className={styleSlick.infoBrand}>스타벅스</p>
                 <p className={styleSlick.infoProduct}>
                   아이스 카페 라떼 T <br />
@@ -178,9 +193,14 @@ const RollingCoupon = () => {
                   src="../images/coupon/icon/common/icon-misson-color.png"
                   alt="핫딜 TEST"
                 ></img>
+								<span className={`${styleSlick.labelIcon} ${styleCommon.labelIconLimit}`}>
+									<img
+										src="../images/coupon/icon/common/icon-benefit-coupon.png"
+										alt="미션"
+									/>
+								</span>
               </div>
               <div className={styleSlick.infoBox}>
-                <h2 className={styleSlick.infoLabel}>미션</h2>
                 <p className={styleSlick.infoBrand}>미션 완료하면</p>
                 <p className={styleSlick.infoProduct}>
                   233,300원 <br />
@@ -200,9 +220,14 @@ const RollingCoupon = () => {
                   src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
                   alt="핫딜 TEST"
                 ></img>
+								<span className={`${styleSlick.labelIcon} ${styleCommon.labelIconLimit}`}>
+									<img
+										src="../images/coupon/icon/common/icon-popular-coupon.png"
+										alt="인기상품"
+									/>
+								</span>
               </div>
               <div className={styleSlick.infoBox}>
-                <h2 className={styleSlick.infoLabel}>기간 한정 특가</h2>
                 <p className={styleSlick.infoBrand}>스타벅스</p>
                 <p className={styleSlick.infoProduct}>
                   아이스 카페 라떼 T 아이스 카페 라떼 T 아이스 카페 라떼 T
@@ -225,9 +250,14 @@ const RollingCoupon = () => {
                   src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
                   alt="핫딜 TEST"
                 ></img>
+								<span className={`${styleSlick.labelIcon} ${styleCommon.labelIconLimit}`}>
+									<img
+										src="../images/coupon/icon/common/icon-hotdeal-coupon.png"
+										alt="핫딜"
+									/>
+								</span>
               </div>
               <div className={styleSlick.infoBox}>
-                <h2 className={styleSlick.infoLabel}>인기 상품</h2>
                 <p className={styleSlick.infoBrand}>스타벅스</p>
                 <p className={styleSlick.infoProduct}>아이스 카페 라떼 T</p>
                 <p className={styleSlick.infoPrice}>8,800원</p>
@@ -245,9 +275,14 @@ const RollingCoupon = () => {
                   src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
                   alt="핫딜 TEST"
                 ></img>
+								<span className={`${styleSlick.labelIcon} ${styleCommon.labelIconLimit}`}>
+									<img
+										src="../images/coupon/icon/common/icon-hotdeal-coupon.png"
+										alt="핫딜"
+									/>
+								</span>
               </div>
               <div className={styleSlick.infoBox}>
-                <h2 className={styleSlick.infoLabel}>인기 상품</h2>
                 <p className={styleSlick.infoBrand}>스타벅스</p>
                 <p className={styleSlick.infoProduct}>아이스 카페 라떼 T</p>
                 <p className={styleSlick.infoPrice}>8,800원</p>

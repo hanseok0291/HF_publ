@@ -26,16 +26,16 @@ function SwiperBannerWrap(props) {
 					onSwiper={(swiper) => console.log(swiper)}
 				>
 					<SwiperSlide>
-						<img src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png" alt="핫딜 TEST"></img>
+						<img src="https://tbezauth.settlebank.co.kr/theme/banner/BAN000003309_20220921134745076.jpg" alt="핫딜 TEST"></img>
 					</SwiperSlide>
 					<SwiperSlide>
-						<img src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png" alt="핫딜 TEST"></img>
+						<img src="https://tbezauth.settlebank.co.kr/theme/banner/BAN000003309_20220921134745076.jpg" alt="핫딜 TEST"></img>
 					</SwiperSlide>
 					<SwiperSlide>
-						<img src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png" alt="핫딜 TEST"></img>
+						<img src="https://tbezauth.settlebank.co.kr/theme/banner/BAN000003309_20220921134745076.jpg" alt="핫딜 TEST"></img>
 					</SwiperSlide>
 					<SwiperSlide>
-						<img src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png" alt="핫딜 TEST"></img>
+						<img src="https://tbezauth.settlebank.co.kr/theme/banner/BAN000003309_20220921134745076.jpg" alt="핫딜 TEST"></img>
 					</SwiperSlide>
 				</Swiper>
 		</div>

@@ -211,6 +211,11 @@
 					<button type="button" onclick="$.alertMessage('제목', '#commonAlert 내용입니다. #commonAlert 내용입니다.', $('#commonAlert'));" class="btn btn-md btn-outline">확인</button>
 					<button type="button" onclick="$.promptMessage('제목', '#commonPrompt 내용입니다. #commonPrompt 내용입니다.', $('#commonPrompt'), $('#promptOk'), 'modalClose()');" class="btn btn-md btn-outline">확인/취소</button>
 				</p>
+				<h4 class="mgt20 mgb10">기본 모달(경고 O / 경고 X)</h4>
+				<p class="btn-group">
+					<button type="button" onclick="$.promptMessage('전자서명을 취소하시겠습니까?', '보낸이 : 삼성생명<br/>제목 : 보험 재계약 연장<br/>요청시간 : 2018-09-09 18:00', $('#commonPrompt'), $('#promptOk'), 'modalClose()', '취소 후 인증을 받으시려면<br/>해당기관에 재요청하셔야 합니다.');" class="btn btn-md btn-outline">아니요/예</button>
+					<button type="button" onclick="$.promptMessage('Title', '서브내용 영역<br/>서브내용 영역', $('#commonPrompt'), $('#promptOk'));" class="btn btn-md btn-outline">아니요/예</button>
+				</p>
 				<h4 class="mgt20 mgb10">기본 모달(제목 X)</h4>
 				<p class="btn-group">
 					<button type="button" onclick="$.alertMessage('', '#commonAlert 내용입니다. #commonAlert 내용입니다.', $('#commonAlert'));" class="btn btn-md btn-outline">확인</button>
@@ -602,11 +607,12 @@
 		<div class="modal-content">
 			<div class="modal-body">
 				<h3 id="promptTitle"></h3>
+				<p id="promptWarning"></p>
 				<p id="promptContents"></p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" id="promptNo" onclick="modalClose();" class="btn btn-cancel">취소</button>
-				<button type="button" id="promptOk" onclick="modalClose();" class="btn btn-confirm">확인</button>
+				<button type="button" id="promptNo" onclick="modalClose();" class="btn btn-cancel">아니요</button>
+				<button type="button" id="promptOk" onclick="modalClose();" class="btn btn-confirm">예</button>
 			</div>
 		</div>
 	</div>

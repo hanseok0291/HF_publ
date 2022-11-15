@@ -115,8 +115,9 @@ $.alertCallback = function(alertObj, alertOkObj, callbackFunc) {
 	modalOpen(alertObj.attr("id"));
 }
 
-$.promptMessage = function(title, contents, promptObj, promptOkObj, callbackFunc) {
+$.promptMessage = function(title, contents, promptObj, promptOkObj, callbackFunc, warning = "") {
 	$('#promptTitle').html(title);
+	$('#promptWarning').html(warning);
 	$('#promptContents').html(contents);
 
 	var clickEvent = new Function(callbackFunc);

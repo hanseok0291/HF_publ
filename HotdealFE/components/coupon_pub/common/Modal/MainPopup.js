@@ -1,15 +1,21 @@
+import { useState } from "react";
 import styleCommon from "../../../../styles/coupon_pub/Common.module.css";
 import styleModal from "../../../../styles/coupon_pub/Modal.module.css";
 
-const MainPopup = ({ title, cancle = "취소", confirm = "확인", content }) => {
+const MainPopup = ({ title, cancle = "취소", confirm = "확인", content, onClose }) => {
+	const btnClose = () => {
+		onClose();
+	}
+
   return (
     <div
       className={`${styleModal.modal} ${styleModal.modalCommon} ${styleModal.modalMain} ${styleModal.open}`}
     >
       <div className={styleModal.modalDialog}>
         <div className={styleModal.modalContent}>
+					<button type="button" className={styleModal.modalClick}>
           <div className={styleModal.modalHeader}>
-						<button type="button" className={`${styleCommon.btnIcon} ${styleModal.btnClose} ${styleModal.modalClose}`}>닫기</button>
+						<button type="button" onClick={btnClose} className={`${styleCommon.btnIcon} ${styleModal.btnClose} ${styleModal.modalClose}`}>닫기</button>
           </div>
           <div className={styleModal.modalBody}>
             <h3 className={styleModal.popupTitle}>
@@ -32,27 +38,20 @@ const MainPopup = ({ title, cancle = "취소", confirm = "확인", content }) =>
 						</p>
           </div>
           <div className={styleModal.modalFooter}>
-            {/* {cancle && (
-              <button
-                type="button"
-                className={`${styleModal.btn} ${styleModal.btnCancel} ${styleModal.modalClose}`}
-              >
-                {cancle}
-              </button>
-            )} */}
             <button
               type="button"
-              className={`${styleModal.btn} ${styleModal.btnConfirm} ${styleModal.btnFull}`}
+              className={`${styleModal.btn} ${styleModal.btnFull}`}
             >
               마시고 적립받기
             </button>
           </div>
+					</button>
         </div>
       </div>
     </div>
   );
-};
 
+};
 // ModalAlert.propTypes = {
 //   content: PropTypes.string.isRequired,
 // };

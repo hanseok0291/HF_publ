@@ -31,6 +31,7 @@ const Index = () => {
   const [isShowBackBtn, setShowBackBtn] = useState(false);
   const [isShowSearchBtn, setShowSearchBtn] = useState(true);
   const [isShowMypageBtn, setShowMypageBtn] = useState(true);
+	const [showMainPopup, setShowMainPopup] = useState(true);
 
   // useEffect(() => {
   // 	if (termsYn === "N") {
@@ -99,7 +100,13 @@ const Index = () => {
               </div>
             </div>
           </div>
-					{/* <MainPopup /> */}
+					{showMainPopup && (
+						<MainPopup
+							onClose={() => {
+								setShowMainPopup(!showMainPopup);
+							}}
+						/>
+					)}
           <Footer />
         </div>
       </Layout>

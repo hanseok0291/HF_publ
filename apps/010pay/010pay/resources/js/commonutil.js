@@ -115,10 +115,13 @@ $.alertCallback = function(alertObj, alertOkObj, callbackFunc) {
 	modalOpen(alertObj.attr("id"));
 }
 
-$.promptMessage = function(title, contents, promptObj, promptOkObj, callbackFunc, warning = "") {
+$.promptMessage = function(title, contents, promptObj, promptOkObj, callbackFunc, warning) {
 	$('#promptTitle').html(title);
 	$('#promptWarning').html(warning);
 	$('#promptContents').html(contents);
+
+	title ? $('#promptTitle').show() : $('#promptTitle').hide();
+	warning ? $('#promptWarning').show() : $('#promptWarning').hide();
 
 	var clickEvent = new Function(callbackFunc);
 	promptOkObj.prop('onclick', null).off('click'); 	//기존에 등록된 함수가 반복 실행을 막음. reset

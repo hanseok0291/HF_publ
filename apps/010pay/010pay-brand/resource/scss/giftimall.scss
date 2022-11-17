@@ -295,9 +295,11 @@
             }
             .img-wrap {
               position: relative;
+              overflow: hidden;
               width: 150px;
               height: 150px;
               margin: 0 auto 34px;
+              border-radius: 50%;
               &::after {
                 content: "";
                 display: block;
@@ -1131,12 +1133,20 @@
               padding: 0;
               box-sizing: content-box;
               &>div {
+                position: relative;
                 width: 100%;
                 height: 100%;
                 padding: 4px;
+                text-align: center;
                 background-color: #fff;
                 img {
                   height: 100%;
+                }
+                &:nth-child(1) {
+                  z-index: -1;
+                }
+                &:nth-child(4),&:nth-child(5) {
+                  z-index: 3;
                 }
               }
             }
@@ -1262,6 +1272,7 @@
           }
 
           .price>div {
+            -webkit-animation: scroll 8s 1.4s ease forwards;
             animation: scroll 8s 1.4s ease forwards;
           }
         }

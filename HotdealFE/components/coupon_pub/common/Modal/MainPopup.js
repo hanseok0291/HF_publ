@@ -45,16 +45,10 @@ const MainPopup = ({ title, cancle = "취소", confirm = "확인", content, onCl
 										<span className={styleCommon.highlight}>매일 4%</span> 적립<i className={`${styleCommon.italic}`}>!</i>
 									</strong>
 								</h3>
-								<p 
-									style={{
-										textAlign: `center`
-									}}>
+								<p className={styleModal.modalImgBox}>
 									<img
-									style={{
-										maxWidth: `212.5px`
-									}}
 										src="../images/coupon/popup/popup1.png"
-										alt="팝업"
+										alt="스타벅스 아메리카노"
 									/>
 								</p>
 							</div>
@@ -69,22 +63,18 @@ const MainPopup = ({ title, cancle = "취소", confirm = "확인", content, onCl
 						</div>
 						<div>
 							<div className={styleModal.modalBody}>
-								<h3 className={styleModal.popupTitle}>
-									<p className={styleModal.popupSubTitle}>아메리카노 마시고</p>
-									<strong className={styleModal.popupMainTitle}>
-										<span className={styleCommon.highlight}>매일 4%</span> 적립<i className={`${styleCommon.italic}`}>!</i>
+								<h3 className={`${styleModal.popupTitle} ${styleModal.popupTitle2}`} style={{top: `-6px`}}>
+									<p className={styleModal.popupSubTitle}>
+										<span style={{color: `#e51616`}}>월드컵</span> 함께 응원해요<i className={`${styleCommon.italic}`}>!</i></p>
+									<strong className={`${styleModal.popupMainTitle} ${styleModal.popupMainTitle2}`}>
+									치킨&amp;피자 먹으면<br />
+										<span className={`${styleCommon.highlight} ${styleCommon.highlight2}`}>4% 캐시백<i className={`${styleCommon.italic}`}>!</i></span>
 									</strong>
 								</h3>
-								<p 
-									style={{
-										textAlign: `center`
-									}}>
+								<p className={styleModal.modalImgBox}>
 									<img
-									style={{
-										maxWidth: `212.5px`
-									}}
-										src="../images/coupon/popup/popup1.png"
-										alt="팝업"
+										src="../images/coupon/popup/popup2.png"
+										alt="월드컵 치킨&amp;피자"
 									/>
 								</p>
 							</div>
@@ -92,8 +82,11 @@ const MainPopup = ({ title, cancle = "취소", confirm = "확인", content, onCl
 								<button
 									type="button"
 									className={`${styleModal.btn} ${styleModal.btnFull}`}
+									style={{
+										backgroundColor: `#e51616`
+									}}
 								>
-									마시고 적립받기
+									응원하러 가기
 								</button>
 							</div>
 						</div>

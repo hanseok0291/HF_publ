@@ -630,7 +630,7 @@ export default function CouponDetail({ isfixedTop }) {
                 >
                   <p className={`${styleCommon.floatLeft}`}>
                     <button
-                      className={`${styleCommon.btnIcon} ${styleCommon.btnWish} ${styleCouponDetail.btnWish}`}
+                      className={`${styleCommon.btnIcon} ${styleCommon.btnWish} ${styleCommon.active} ${styleCouponDetail.btnWish}`}
                     >
                       좋아요
                     </button>

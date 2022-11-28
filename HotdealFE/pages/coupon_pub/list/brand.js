@@ -46,7 +46,7 @@ const Index = () => {
         >
           {/* 카테고리 메뉴 */}
           <Category />
-          <div className={`${styleCommon.containerWrap}`}>
+          <div className={`${styleCommon.containerWrap} ${styleCommon.brand}`}>
             {/* Brand 리스트 */}
             <Brand />
             {/* 카테고리 상품리스트 */}

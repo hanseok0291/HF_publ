@@ -156,7 +156,7 @@ const CouponListEmpty = ({
 
         <div className={`${styleCommon.container}`}>
           <div className={`${styleCouponList.containerWrap}`}>
-            <ul className={styleCouponList.CouponList}>
+            <ul className={`${styleCouponList.CouponList} ${styleCouponList.CouponListEmpty}`}>
               <li className={styleCouponList.listEmpty}>
                 <p>{innerText}</p>
               </li>

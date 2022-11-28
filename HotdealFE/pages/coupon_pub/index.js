@@ -54,7 +54,7 @@ const Index = () => {
         >
           {/* 카테고리 메뉴 */}
           <Category />
-          <div className={`${styleCommon.containerWrap}`}>
+          <div className={`${styleCommon.containerWrap} ${styleCommon.main}`}>
             {/* 자동 롤링 배너 */}
             <RollingCoupon />
             {/* 지금 가장 인기 있어요 */}

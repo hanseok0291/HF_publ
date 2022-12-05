@@ -120,7 +120,13 @@ $.promptMessage = function(title, contents, promptObj, promptOkObj, callbackFunc
 	$('#promptWarning').html(warning);
 	$('#promptContents').html(contents);
 
-	title ? $('#promptTitle').show() : $('#promptTitle').hide();
+	if(title !== ""){
+		$('#promptTitle').show()
+		$('#promptContents').removeClass("noTitle");
+	} else {
+		$('#promptContents').addClass("noTitle");
+		$('#promptTitle').hide();
+	}
 	warning ? $('#promptWarning').show() : $('#promptWarning').hide();
 
 	var clickEvent = new Function(callbackFunc);

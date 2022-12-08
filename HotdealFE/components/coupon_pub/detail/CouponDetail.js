@@ -491,6 +491,7 @@ export default function CouponDetail({ isfixedTop }) {
                   <div
                     className={`${styleCommon.container} ${styleCouponDetail.InfoTabContent}`}
                   >
+										<div className={`${styleCouponDetail.InfoAlertMsg}`}>해당 브랜드는 환불 불가합니다</div>
                     <span className={`${styleCouponDetail.InfoTabImage}`}>
                       <img src="../../images/coupon/visual/detail_test1.png"></img>
                     </span>

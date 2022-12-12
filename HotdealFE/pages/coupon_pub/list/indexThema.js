@@ -48,8 +48,6 @@ const Index = () => {
           {/* 카테고리 메뉴 */}
           <Category />
           <div className={`${styleCommon.containerWrap}`}>
-            {/* 카테고리 리스트 */}
-            <CategoryList />
             {/* 카테고리 상품리스트 */}
             <CouponListThema />
           </div>

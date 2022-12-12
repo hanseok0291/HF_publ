@@ -139,7 +139,7 @@
 		<section class="section title">
 			<div class="container vertical-middle">
 				<h2 class="page_tit"><i class="icon-visual-hotdeal"></i>핫딜</h2>
-				<div class="txt_info">누구나 응모만 해도 1천원 주는 <strong>꽝 없는 0원딜</strong></div>
+				<div class="txt_info">응모만 해도 최대 1만원 주는 <strong>꽝 없는 0원딜</strong></div>
 			</div>
 		</section>
 		<!-- //title section -->
@@ -216,14 +216,14 @@
 									</dl>
 								</div>
 								<div class="img-wrap">
-									<img src="../../resource/images/hotdeal/sample/product-07.png" alt="">
+									<img src="../../resource/images/hotdeal/sample/product-06.png" alt="">
 								</div>
 							</div>
 						</div>
 						<div class="swiper-slide">
 							<div class="cont-wrap">
 								<div class="text-wrap">
-									<p class="date-alert">1일 후 시작</p>
+									<p class="date-alert on">1일 후 시작</p>
 									<p class="brand-name">죠스떡볶이 2인세트</p>
 									<dl class="detail">
 										<dt>핫딜가</dt>
@@ -254,7 +254,7 @@
 									</dl>
 								</div>
 								<div class="img-wrap">
-									<img src="../../resource/images/hotdeal/sample/product-06.png" alt="">
+									<img src="../../resource/images/hotdeal/sample/product-07.png" alt="">
 								</div>
 							</div>
 						</div>
@@ -297,7 +297,7 @@
 					</div>
 					<div class="join-li">
 						<div class="join-img">
-							<img src="../../resource/images/hotdeal/about-join-033.png?ver=1.0" alt="머니 1,000원 드려요" class="about-join-img">
+							<img src="../../resource/images/hotdeal/about-join-03-v2.png?ver=1.0" alt="머니 1,000원 드려요" class="about-join-img">
 						</div>
 						<p class="join-txt"><i>3</i><span>당첨되지 않아도 <strong>머니 1,000원<i
 										class="italic">!</i></strong></span></p>
@@ -444,7 +444,7 @@
 var popularItem1 = new Swiper(".tab-1 .popularItem-slide", {
 	autoplay: {
 	  delay: 2000,
-	  disableOnInteraction: false, // 221031_수정
+	  disableOnInteraction: false,
 	},
 	spaceBetween: -18,
 	loop: true,
@@ -468,11 +468,16 @@ var popularItem1 = new Swiper(".tab-1 .popularItem-slide", {
 
 // 라인업 슬라이드
 var setting = {
+	autoplay: {
+	  delay: 2000,
+	  disableOnInteraction: false,
+	},
 	centeredSlides: true,
 	slidesPerView: 2,
 	initialSlide: 1,
 	spaceBetween: 50,
 	slidesPerView: 2.8,
+	loop: true,
 	navigation: {
 		nextEl: ".lineup-slide .swiper-button-next",
 		prevEl: ".lineup-slide .swiper-button-prev",
@@ -496,6 +501,18 @@ initSwiper();
 $(window).on('resize', function(){
 	initSwiper();
 }); 
+
+
+lineup.autoplay.stop();
+var lineUp_state = false;
+$(window).on("scroll load", function(){
+	if($(".line-up").hasClass("animation") && !lineUp_state){
+		setTimeout(function(){
+			lineup.autoplay.start();
+		}, 100);
+		lineUp_state = true;
+	}
+});
 
 // 라인업 슬라이드 END
 

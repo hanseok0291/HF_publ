@@ -189,7 +189,7 @@
 		<!-- visual section -->
 
 		<!-- lineUp section -->
-		<section class="section line-up">
+		<section class="section line-up progress">
 			<div class="container">
 				<div class="sub-title"><div class="text-box"><span>진행예정</span></div> 핫딜 LINE UP</div>
 				<div class="lineup-slide">
@@ -209,14 +209,14 @@
 									</dl>
 								</div>
 								<div class="img-wrap">
-									<img src="../../resource/images/hotdeal/sample/product-07.png" alt="">
+									<img src="../../resource/images/hotdeal/sample/product-06.png" alt="">
 								</div>
 							</div>
 						</div>
 						<div class="swiper-slide">
 							<div class="cont-wrap">
 								<div class="text-wrap">
-									<p class="date-alert">1일 후 시작</p>
+									<p class="date-alert on">1일 후 시작</p>
 									<p class="brand-name">죠스떡볶이 2인세트</p>
 									<dl class="detail">
 										<dt>핫딜가</dt>
@@ -247,7 +247,7 @@
 									</dl>
 								</div>
 								<div class="img-wrap">
-									<img src="../../resource/images/hotdeal/sample/product-06.png" alt="">
+									<img src="../../resource/images/hotdeal/sample/product-07.png" alt="">
 								</div>
 							</div>
 						</div>
@@ -454,11 +454,16 @@
 // slide
 // 라인업 슬라이드
 var setting = {
+	autoplay: {
+	  delay: 2000,
+	  disableOnInteraction: false,
+	},
 	centeredSlides: true,
 	slidesPerView: 2,
 	initialSlide: 1,
 	spaceBetween: 50,
 	slidesPerView: 2.8,
+	loop: true,
 	navigation: {
 		nextEl: ".lineup-slide .swiper-button-next",
 		prevEl: ".lineup-slide .swiper-button-prev",
@@ -482,6 +487,17 @@ initSwiper();
 $(window).on('resize', function(){
 	initSwiper();
 }); 
+
+lineup.autoplay.stop();
+var lineUp_state = false;
+$(window).on("scroll load", function(){
+	if($(".line-up").hasClass("animation") && !lineUp_state){
+		setTimeout(function(){
+			lineup.autoplay.start();
+		}, 100);
+		lineUp_state = true;
+	}
+});
 
 // 라인업 슬라이드 END
 

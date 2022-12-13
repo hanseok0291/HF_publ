@@ -43,52 +43,6 @@ const settings2rows = {
   centerPadding: "32px",
 };
 
-const CategoryListWrap = () => {
-  return (
-    <>
-      {/* 브랜드 드롭박스 클릭시 hidden 클래스 제거하여 해당 영역 노출 */}
-      <div className={`${styleCategoryList.CategoryListWrap}`}>
-        <div className={`${styleCommon.container}`}>
-          <div className={styleCategoryList.CategoryListSlick}>
-            <Slider {...settings2rows}>
-              <div
-                className={`${styleCategoryList.slidewidth} ${styleCategoryList.slidewidthActive}`}
-              >
-                <div className={styleCategoryList.CategoryListImg}>
-                  <img
-                    src="../../images/coupon/icon/common/all.png"
-                    alt="All"
-                  ></img>
-                </div>
-                <p className={styleCategoryList.CategoryListName}>전체</p>
-              </div>
-              <div className={styleCategoryList.slidewidth}>
-                <div className={styleCategoryList.CategoryListImg}>
-                  <img
-                    src="https://ux.sbsvc.online/010pay/react/test/images/coupon/logo/brand/02.png"
-                    alt="TEST"
-                  ></img>
-                </div>
-                <p className={styleCategoryList.CategoryListName}>스타벅스</p>
-              </div>
-              <div className={styleCategoryList.slidewidth}>
-                <div className={styleCategoryList.CategoryListImg}>
-                  <img
-                    src="https://ux.sbsvc.online/010pay/react/test/images/coupon/logo/brand/02.png"
-                    alt="TEST"
-                  ></img>
-                </div>
-                <p className={styleCategoryList.CategoryListName}>스타벅스</p>
-              </div>
-            </Slider>
-          </div>
-        </div>
-      </div>
-      {/* //브랜드 드롭박스 클릭시 hidden 클래스 제거하여 해당 영역 노출 */}
-    </>
-  );
-};
-
 const CouponList = () => {
   const [visible, setVisible] = useState(false);
   return (
@@ -114,12 +68,9 @@ const CouponList = () => {
                   setVisible(!visible);
                 }}
               >
-                <i className={`${styleCommon.iconSm}`}>
-                  <img
-                    src="../../images/coupon/icon/brand/icon-bakery-sm.png"
-                    alt="카테고리"
-                  ></img>
-                </i>
+                {/* <i className={`${styleCommon.iconSm}`}>
+									<img src="../../../images/coupon/icon/brand/icon-bakery-sm.png"></img>
+                </i> */}
                 전체
                 <i
                   className={`${styleCommon.iconArrow} ${styleCommon.iconArrowRoundDown}`}

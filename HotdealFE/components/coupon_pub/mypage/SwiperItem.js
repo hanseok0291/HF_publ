@@ -20,7 +20,8 @@ function SwiperWrap(props) {
 			<></>
 			: 
 			<div className={`${styleSwiper.SwiperWrap} ${styleSwiper.SwiperWrapList} ${stylePossibleCoupon.SwiperWrapList}`}>
-			<div>
+			<div className={`${stylePossibleCoupon.dottedWrap}`}></div>
+			<div className={`${stylePossibleCoupon.SwiperWrap}`}>
 				<h2 className={`${styleCommon.container} ${stylePossibleCoupon.SwiperTitle}`}>사용가능한 선물 <span>12</span>개가 있어요.</h2>
 				<div className={`${styleCommon.container} ${styleSwiper.container}`}>
 					<Swiper

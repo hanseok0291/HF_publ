@@ -63,7 +63,7 @@
 	<![endif]-->
 </head>
 
-<body>
+<body ontouchstart>
 <div id="verCheck" class="update" style="display: none">
 	지원하지 않는 브라우저 버전입니다.<br>
 	업데이트 후 다시 시도해 주세요.<br>
@@ -503,14 +503,17 @@ $(window).on('resize', function(){
 }); 
 
 
-lineup.autoplay.stop();
 var lineUp_state = false;
 $(window).on("scroll load", function(){
-	if($(".line-up").hasClass("animation") && !lineUp_state){
-		setTimeout(function(){
-			lineup.autoplay.start();
-		}, 100);
-		lineUp_state = true;
+	var screenWidth = $(window).width();
+	if(screenWidth>768) {
+		lineup.autoplay.stop();
+		if($(".line-up").hasClass("animation") && !lineUp_state){
+			setTimeout(function(){
+				lineup.autoplay.start();
+			}, 100);
+			lineUp_state = true;
+		}
 	}
 });
 

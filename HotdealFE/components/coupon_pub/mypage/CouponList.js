@@ -18,7 +18,7 @@ const CouponList = (props) => {
       <div className={`${styleCouponList.CouponListWrap}`}>
         <div className={`${styleCommon.container}`}>
           <div className={`${styleCouponList.containerWrap}`}>
-            <ul className={`${styleCouponList.CouponList}`}>
+            <ul className={`${styleCouponList.CouponList}`}> {/* 제품 없을 경우 CouponListEmpty 추가하여 여백 조정 */}
               <li className={`${styleCouponList.CouponItem}`}>
                 <button href={`/coupon_pub/`}>
                   <div className={styleCouponList.imgBox}>

@@ -34,7 +34,7 @@ const FooterInfo = () => {
   );
 };
 
-export default function Footer({ isfixedBottom }) {
+export default function Footer({ isfixedBottom, isDeadlinFixed }) {
   const [visible, setVisible] = useState(false);
 
   const onDropDown = (e) => {
@@ -50,81 +50,45 @@ export default function Footer({ isfixedBottom }) {
 
   return (
     <>
-      {isfixedBottom ? (
-        <div
-          className={`${styleFooter.footerWrap} ${styleLayout.container} ${styleFooter.fixBottomUse}`}
-        >
-          <div className={styleFooter.footer}>
-            <Link href={`/coupon/`}>
-              <a className={`${styleLayout.btnLink} ${styleLayout.btnLink1}`}>
-                고객센터
-              </a>
-            </Link>
-            <span className={styleFooter.txtBar}>|</span>
-            <Link href={`/coupon/`}>
-              <a className={`${styleLayout.btnLink} ${styleLayout.btnLink1}`}>
-                이용약관
-              </a>
-            </Link>
-            <span className={styleFooter.txtBar}>|</span>
-            <Link href={`/coupon/`}>
-              <a className={`${styleLayout.btnLink} ${styleLayout.btnLink1}`}>
-                개인정보처리방침
-              </a>
-            </Link>
-          </div>
-          <div className={styleFooter.addressWrap}>
-            <div className={styleFooter.addressBtn}>
-              (주)헥토파이낸셜{" "}
-              <button
-                type="button"
-                className={`${styleCommon.icon} ${styleCommon.iconArrowDown} ${styleFooter.iconArrowDown}`}
-                onClick={onDropDown}
-              ></button>
-              {visible && <FooterInfo />}
-            </div>
-          </div>
-          {/* <ModalEnter /> */}
+      <div
+        className={`${styleFooter.footerWrap} ${styleLayout.container} ${
+          isfixedBottom ? styleFooter.fixBottomUse : ""
+        } ${
+          isDeadlinFixed ? styleFooter.detailBottom : ""
+        }`}
+      >
+        <div className={styleFooter.footer}>
+          <Link href={`/coupon/`}>
+            <a className={`${styleLayout.btnLink} ${styleLayout.btnLink1}`}>
+              고객센터
+            </a>
+          </Link>
+          <span className={styleFooter.txtBar}>|</span>
+          <Link href={`/coupon/`}>
+            <a className={`${styleLayout.btnLink} ${styleLayout.btnLink1}`}>
+              이용약관
+            </a>
+          </Link>
+          <span className={styleFooter.txtBar}>|</span>
+          <Link href={`/coupon/`}>
+            <a className={`${styleLayout.btnLink} ${styleLayout.btnLink1}`}>
+              개인정보처리방침
+            </a>
+          </Link>
         </div>
-      ) : (
-        <div className={`${styleFooter.footerWrap} ${styleLayout.container}`}>
-          <div className={styleFooter.footer}>
-            <Link href={`/coupon/`}>
-              <a className={`${styleLayout.btnLink} ${styleLayout.btnLink1}`}>
-                고객센터
-              </a>
-            </Link>
-            <span className={styleFooter.txtBar}>|</span>
-            <Link href={`/coupon/`}>
-              <a className={`${styleLayout.btnLink} ${styleLayout.btnLink1}`}>
-                이용약관
-              </a>
-            </Link>
-            <span className={styleFooter.txtBar}>|</span>
-            <Link href={`/coupon/`}>
-              <a className={`${styleLayout.btnLink} ${styleLayout.btnLink1}`}>
-                개인정보처리방침
-              </a>
-            </Link>
+        <div className={styleFooter.addressWrap}>
+          <div className={styleFooter.addressBtn}>
+            (주)헥토파이낸셜{" "}
+            <button
+              type="button"
+              className={`${styleCommon.icon} ${styleCommon.iconArrowDown} ${styleFooter.iconArrowDown}`}
+              onClick={onDropDown}
+            ></button>
+            {visible && <FooterInfo />}
           </div>
-          <div className={styleFooter.addressWrap}>
-            <div className={styleFooter.addressBtn}>
-              (주)헥토파이낸셜{" "}
-              <button
-                type="button"
-                className={`${styleCommon.icon} ${styleCommon.iconArrowDown} ${styleFooter.iconArrowDown}`}
-                onClick={onDropDown}
-              ></button>
-              {visible && <FooterInfo />}
-            </div>
-          </div>
-          {/* <ModalEnter />
-          <ModalEnterType2 />
-          <ModalEnterType3 />
-          <ModalEnterType4 />
-          <ModalEnterType5 />*/}
         </div>
-      )}
+        {/* <ModalEnter /> */}
+      </div>
     </>
   );
 }

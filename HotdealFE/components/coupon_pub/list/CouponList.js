@@ -24,6 +24,7 @@ import styleCategoryList from "../../../styles/coupon_pub/CategoryList.module.cs
 import styleCouponList from "../../../styles/coupon_pub/CouponList.module.css";
 
 import { Grid, Pagination } from "swiper";
+import CouponListItem from "./CouponListItem";
 
 const settings = {
   rows: 1,
@@ -91,6 +92,78 @@ const CategoryListWrap = () => {
 
 const CouponList = (props) => {
   const [visible, setVisible] = useState(false);
+
+  const listItem = [
+    {
+      labelType1: true,
+      labelType2: false,
+      infoImg: "https://tbezauth.settlebank.co.kr/theme/cm/product/PB00145_20221006133121119.jpg",
+      infoBrand: "스타벅스",
+      infoProduct: "따뜻한 카페라떼 커플세트",
+      infoPrice: "10,000원",
+      infoDcPrice: "7,500원",
+      infoDcPercent: "25%",
+      addInfo1: true,
+      addInfo2: true,
+    },
+    {
+      labelType1: true,
+      labelType2: false,
+      infoImg: "https://tbezauth.settlebank.co.kr/theme/cm/product/PB00145_20221006134857069.png",
+      infoBrand: "스타벅스",
+      infoProduct: "따뜻한 카페라떼 커플세트 따뜻한 카페라떼",
+      infoPrice: "10,000원",
+      infoDcPrice: "7,500원",
+      infoDcPercent: "25%",
+      addInfo1: true,
+      addInfo2: true,
+    },
+    {
+      labelType1: false,
+      labelType2: false,
+      infoImg: "https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png",
+      infoBrand: "스타벅스",
+      infoProduct: "시원하게 함께 세트",
+      infoDcPrice: "6,300원",
+      addInfo1: false,
+      addInfo2: false,
+    },
+    {
+      labelType1: false,
+      labelType2: true,
+      infoImg: "https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png",
+      infoBrand: "스타벅스",
+      infoProduct: "시원하게 함께 세트 시원하 함께 세트",
+      infoDcPrice: "6,300원",
+      addInfo1: false,
+      addInfo2: false,
+    },
+    {
+      labelType1: false,
+      labelType2: false,
+      infoImg: "https://tbezauth.settlebank.co.kr/theme/cm/product/PB00129_20220923100052926.png",
+      infoBrand: "스타벅스",
+      infoProduct: "따뜻한 카페라떼 커플세트",
+      infoDcPercent: "25%",
+      infoPrice: "10,000원",
+      infoDcPrice: "6,300원",
+      addInfo1: false,
+      addInfo2: false,
+    },
+    {
+      labelType1: false,
+      labelType2: false,
+      infoImg: "https://tbezauth.settlebank.co.kr/theme/cm/product/PB00129_20220923100052926.png",
+      infoBrand: "스타벅스",
+      infoProduct: "따뜻한 카페라떼 커플세트 따뜻한 카페라떼 커플세트",
+      infoDcPercent: "25%",
+      infoPrice: "10,000원",
+      infoDcPrice: "6,300원",
+      addInfo1: false,
+      addInfo2: false,
+    },
+  ];
+
   return (
     <>
       {/* <Theme /> */}
@@ -168,150 +241,11 @@ const CouponList = (props) => {
         <div className={`${styleCommon.container}`}>
           <div className={`${styleCouponList.containerWrap}`}>
             <ul className={`${styleCouponList.CouponList}`}>
-              <li className={`${styleCouponList.CouponItem}`}>
-                <button href={`/coupon_pub/`}>
-                  <div className={styleCouponList.imgBox}>
-                    <img
-                      src="https://tbezauth.settlebank.co.kr/theme/cm/product/PB00145_20221006133121119.jpg"
-                      alt="핫딜 TEST"
-                    ></img>
-                    <span
-                      className={`${styleCommon.label} ${styleCouponList.label}`}
-                    >
-                      한정판매
-                    </span>
-                  </div>
-                  <div className={styleCouponList.infoBox}>
-                    <p className={styleCouponList.infoBrand}>투썸플레이스</p>
-                    <p className={styleCouponList.infoProduct}>오렌지에이드</p>
-                    <p className={styleCouponList.infoPrice}>8,800원</p>
-                    <p
-                      className={`${styleCouponList.infoDcPrice} ${styleCouponList.infoDcPriceSmall}`}
-                    >
-                      <span className={styleCouponList.infoDcPercent}>25%</span>{" "}
-                      <span className={styleCommon.textLine}>8,800원</span>
-                    </p>
-                    <p className={styleCouponList.infoDcPrice}>
-                      <span className={styleCouponList.infoDcPercent}>25%</span>{" "}
-                      8,800원
-                    </p>
-                    <p className={styleCouponList.infoBottomText}>
-                      <i
-                        className={`${styleCommon.infoIcon} ${styleCommon.icon} ${styleCommon.iconTimer}`}
-                      ></i>
-                      <span>3일 04 : 19 : 40</span> 후 마감
-                    </p>
-                  </div>
-                </button>
-              </li>
-              <li className={`${styleCouponList.CouponItem}`}>
-                <button href={`/coupon_pub/`}>
-                  <div className={styleCouponList.imgBox}>
-                    <img
-                      src="https://tbezauth.settlebank.co.kr/theme/cm/product/BR01421_G00000117373.jpg"
-                      alt="핫딜 TEST"
-                    ></img>
-                  </div>
-                  <div className={styleCouponList.infoBox}>
-                    <p className={styleCouponList.infoBrand}>BHC</p>
-                    <p className={styleCouponList.infoProduct}>
-                      아이스 카페 라떼 T 아이스 카페 라떼 T 아이스 카페 라떼 T
-                      아이스 카페 라떼 T 아이스 카페 라떼 T
-                    </p>
-                    <p className={styleCouponList.infoPrice}>8,800원</p>
-                    <p className={styleCouponList.infoDcPrice}>
-                      <span className={styleCouponList.infoDcPercent}>25%</span>{" "}
-                      8,800원
-                    </p>
-                    <p className={styleCouponList.infoBottomText}>
-                      <i
-                        className={`${styleCommon.infoIcon} ${styleCommon.icon} ${styleCommon.iconCash}`}
-                      ></i>
-                      사용 시 <span>10원 적립</span>
-                    </p>
-                  </div>
-                </button>
-              </li>
-              <li className={`${styleCouponList.CouponItem}`}>
-                <button href={`/coupon_pub/`}>
-                  <div className={styleCouponList.imgBox}>
-                    <img
-                      src="https://tbezauth.settlebank.co.kr/theme/cm/product/PB00145_20221006134857069.png"
-                      alt="핫딜 TEST"
-                    ></img>
-                  </div>
-                  <div className={styleCouponList.infoBox}>
-                    <p className={styleCouponList.infoBrand}>BHC</p>
-                    <p className={styleCouponList.infoProduct}>
-                      아이스 카페 라떼 T 아이스 카페 라떼 T 아이스 카페 라떼 T
-                      아이스 카페 라떼 T 아이스 카페 라떼 T
-                    </p>
-                    <p className={styleCouponList.infoPrice}>8,800원</p>
-                    <p className={styleCouponList.infoDcPrice}>
-                      <span className={styleCouponList.infoDcPercent}>25%</span>{" "}
-                      8,800원
-                    </p>
-                  </div>
-                </button>
-              </li>
-              <li className={`${styleCouponList.CouponItem}`}>
-                <button href={`/coupon_pub/`}>
-                  <div className={styleCouponList.imgBox}>
-                    <img
-                      src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
-                      alt="핫딜 TEST"
-                    ></img>
-                  </div>
-                  <div className={styleCouponList.infoBox}>
-                    <p className={styleCouponList.infoBrand}>BHC</p>
-                    <p className={styleCouponList.infoProduct}>
-                      아이스 카페 라떼 T
-                    </p>
-                    <p className={styleCouponList.infoDcPrice}>8,800원</p>
-                  </div>
-                </button>
-              </li>
-              <li className={`${styleCouponList.CouponItem}`}>
-                <button href={`/coupon_pub/`}>
-                  <div className={styleCouponList.imgBox}>
-                    <img
-                      src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
-                      alt="핫딜 TEST"
-                    ></img>
-                  </div>
-                  <div className={styleCouponList.infoBox}>
-                    <p className={styleCouponList.infoBrand}>BHC</p>
-                    <p className={styleCouponList.infoProduct}>
-                      아이스 카페 라떼 T 아이스 카페 라떼 T 아이스 카페 라떼 T
-                      아이스 카페 라떼 T 아이스 카페 라떼 T
-                    </p>
-                    <p className={styleCouponList.infoPrice}>8,800원</p>
-                    <p className={styleCouponList.infoDcPrice}>
-                      <span className={styleCouponList.infoDcPercent}>25%</span>{" "}
-                      8,800원
-                    </p>
-                  </div>
-                </button>
-              </li>
-              <li className={`${styleCouponList.CouponItem}`}>
-                <button href={`/coupon_pub/`}>
-                  <div className={styleCouponList.imgBox}>
-                    <img
-                      src="https://tbezauth.settlebank.co.kr/theme/cm/product/PB00129_20220923100052926.png"
-                      alt="핫딜 TEST"
-                    ></img>
-                  </div>
-                  <div className={styleCouponList.infoBox}>
-                    <p className={styleCouponList.infoBrand}>BHC</p>
-                    <p className={styleCouponList.infoProduct}>마음</p>
-                    <p className={styleCouponList.infoPrice}>8,800원</p>
-                    <p className={styleCouponList.infoDcPrice}>
-                      <span className={styleCouponList.infoDcPercent}>25%</span>{" "}
-                      8,800원
-                    </p>
-                  </div>
-                </button>
-              </li>
+              {listItem.map((item, idx) => {
+                return (
+                  <li className={`${styleCouponList.CouponItem}`} key={idx}><CouponListItem listItem={item}/></li>
+                )
+              })}
             </ul>
           </div>
         </div>

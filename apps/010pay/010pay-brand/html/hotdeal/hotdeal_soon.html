@@ -467,6 +467,9 @@ var popularItem1 = new Swiper(".tab-1 .popularItem-slide", {
 });
 
 // 라인업 슬라이드
+
+var slideNum = $(".lineup-slide .swiper-slide").length;
+
 var setting = {
 	autoplay: {
 	  delay: 2000,
@@ -477,7 +480,7 @@ var setting = {
 	initialSlide: 1,
 	spaceBetween: 50,
 	slidesPerView: 2.8,
-	loop: true,
+	loop: slideNum !== 1 ? true : false,
 	navigation: {
 		nextEl: ".lineup-slide .swiper-button-next",
 		prevEl: ".lineup-slide .swiper-button-prev",
@@ -510,7 +513,7 @@ $(window).on("scroll load", function(){
 		lineup.autoplay.stop();
 		if($(".line-up").hasClass("animation") && !lineUp_state){
 			setTimeout(function(){
-				lineup.autoplay.start();
+				//lineup.autoplay.start();
 			}, 100);
 			lineUp_state = true;
 		}

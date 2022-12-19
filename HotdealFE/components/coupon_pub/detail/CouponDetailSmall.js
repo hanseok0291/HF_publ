@@ -16,7 +16,7 @@ export default function CouponDetailSmall({ isfixedTop }) {
             <div className={`${styleCommon.container}`}>
               {/* 추가할인 일때 ${styleCouponDetail.priceType2} 추가 */}
               <div
-                className={`${styleCouponDetail.CouponDetaiSmalllWrap} ${styleCouponDetail.priceType2}`}
+                className={`${styleCouponDetail.CouponDetaiSmalllWrap}`}
               >
                 <div className={styleCouponDetail.imgBox}>
                   <img
@@ -26,21 +26,20 @@ export default function CouponDetailSmall({ isfixedTop }) {
                 </div>
 
                 {/* 할인 */}
-                {/* <div className={`${styleCouponDetail.infoBox}`}>
+                <div className={`${styleCouponDetail.infoBox}`}>
                     <p className={styleCouponDetail.infoBrand}>스타벅스</p>
                     <p className={styleCouponDetail.infoProduct}>
                       시원하게 함께 세트
                     </p>
-                    <div className={`${styleCouponDetail.priceType1}`}>
-                      <p className={styleCouponDetail.infoDcPrice}>9,000원</p>
+                    <div>
                       <p className={styleCouponDetail.infoPrice}>
-                        <span>25%</span> <strong>6,300원</strong>
+                        <strong>6,300원</strong>
                       </p>
                     </div>
-                  </div> */}
+                  </div>
                 {/* //할인 */}
                 {/* 추가할인 */}
-                <div
+                {/* <div
                   className={`${styleCouponDetail.infoBox} ${styleCouponDetail.priceType2}`}
                 >
                   <p className={styleCouponDetail.infoBrand}>스타벅스</p>
@@ -58,7 +57,7 @@ export default function CouponDetailSmall({ isfixedTop }) {
                       <span>+추가 10%</span> <strong>5,670원</strong>
                     </span>
                   </div>
-                </div>
+                </div> */}
                 {/* 추가할인 */}
               </div>
             </div>

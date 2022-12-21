@@ -34,6 +34,7 @@ const Index = () => {
   const [isShowMypageBtn, setShowMypageBtn] = useState(false);
   const [isFixedTop, setFixedTop] = useState(false);
   const [isFixedBottom, setFixedBottom] = useState(true);
+  const [isDeadlinFixed, setDeadlinFixed] = useState(false);
 
   return (
     <>
@@ -47,9 +48,9 @@ const Index = () => {
         <div
           className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap}`}
         >
-          <CouponDetail isfixedTop={isFixedTop} />
+          <CouponDetail isFixedTop={isFixedTop} isDeadlinFixed={isDeadlinFixed} setDeadlinFixed={setDeadlinFixed}/>
         </div>
-        <Footer isfixedBottom={isFixedBottom} />
+        <Footer isfixedBottom={isFixedBottom} isDeadlinFixed={isDeadlinFixed}/>
       </Layout>
     </>
   );

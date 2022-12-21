@@ -7,14 +7,14 @@ import styleModal from "../../../../styles/coupon_pub/Modal.module.css";
 
 const ModalPromotion = () => {
   return (
-    <div className={savePromotion.modalWrap}>
+    <div className={`${savePromotion.modalWrap} ${savePromotion.nextType}`}>
       <button
         type="button"
         className={`${styleCommon.btnIcon} ${savePromotion.btnClose} ${styleModal.modalClose}`}
       >
         닫기
       </button>
-      <p className={savePromotion.modalText}>지금 적립 받을 수 있는 포인트</p>
+      <p className={`${savePromotion.modalText}`} >지금 적립 받을 수 있는 포인트</p>
       <p className={savePromotion.price}>3,000원</p>
       <button className={savePromotion.botBtn}>포인트 받기</button>
     </div>

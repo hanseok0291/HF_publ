@@ -26,7 +26,7 @@ const Index = () => {
     <>
       <Layout>
         <Header
-          pageTitle="쿠폰 사용하고 포인트 적립 받자"
+          pageTitle="특별한 혜택 놓치지 마세요"
           isShowBackBtn={isShowBackBtn}
           isShowSearchBtn={isShowSearchBtn}
           isShowMypageBtn={isShowMypageBtn}
@@ -41,7 +41,7 @@ const Index = () => {
           <span>포인트 받기</span>
         </button>
       </Layout>
-      <ModalPromotion />
+      {/* <ModalPromotion /> */}
     </>
   );
 };

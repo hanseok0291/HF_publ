@@ -41,70 +41,9 @@ export default function CouponDetail({isDeadlinFixed, setDeadlinFixed }) {
   };
   return (
     <>
-      {/* <div
-        className={`${styleCouponDetail.CouponDetailWrap} ${styleCouponDetail.fixed}`}
-      >
-        <div
-          className={`${styleCouponDetail.hideWrap} ${styleCouponDetail.show}`}
-        >
-          <div className={`${styleCommon.container}`}>
-            <div className={`${styleCouponDetail.CouponDetaiSmalllWrap}`}>
-              <div className={styleCouponDetail.imgBox}>
-                <img
-                  src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
-                  alt="핫딜 TEST"
-                ></img>
-              </div>
-              <div
-                className={`${styleCouponDetail.infoBox} ${styleCouponDetail.priceType2}`}
-              >
-                <p
-                  className={`${styleCouponDetail.infoBrand} ${styleCommon.flexWrap} ${styleCommon.alignCenter}`}
-                >
-                  스타벅스
-                  <i
-                    className={`${styleCommon.bar} ${styleCouponDetail.bar}`}
-                  ></i>
-                  <span className={styleCouponDetail.infoView}>
-                    사용처 보기
-                  </span>
-                  <button
-                    type="button"
-                    className={`${styleCommon.btnArrow} ${styleCommon.iconArrowRight}`}
-                  ></button>
-                </p>
-                <p className={styleCouponDetail.infoProduct}>
-                  시원하게 함께 세트
-                </p>
-                <div className={styleCouponDetail.priceWrap}>
-                  <span className={styleCouponDetail.infoDcPrice}>9,000원</span>
-                  <span className={styleCouponDetail.infoPrice}>
-                    <span>10%</span> <strong>5,670원</strong>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={`${styleCouponDetail.InfoWrap}`}>
-            <div className={`${styleCommon.container}`}>
-              <ul className={`${styleCouponDetail.InfoTab}`}>
-                <li
-                  className={`${styleCouponDetail.active} ${styleCommon.halfWrap}`}
-                >
-                  <button type="button">사용안내</button>
-                </li>
-                <li className={`${styleCommon.halfWrap}`}>
-                  <button type="button">유의사항</button>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div> */}
       <div className={`${styleCouponDetail.CouponDetailWrap}`}>
         <div className={`${styleSlick.card} ${styleCouponDetail.card}`}>
           <div
-            children
             className={`${styleCouponDetail.imgLabelWrap} ${styleCouponDetail.red}`}
           >
             <p className={`${styleCouponDetail.imgLabel}`}>포인트 적립</p>
@@ -135,7 +74,7 @@ export default function CouponDetail({isDeadlinFixed, setDeadlinFixed }) {
           >
             <p>
               <strong className={styleCouponDetail.colorText}>
-                3일 04 : 50 : 12
+                3일 00 : 00 : 00
               </strong>{" "}
               후 마감
             </p>

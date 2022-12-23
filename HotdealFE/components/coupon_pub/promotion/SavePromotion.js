@@ -82,7 +82,7 @@ const SavePromotion = () => {
       <div className={savePromotion.botContWrap}>
         <div className={savePromotion.innerTextWrap}>
           <p>내 1회차 적립 포인트</p>
-          <p>* 이번 회차 동안 사용해야 적립돼요!</p>
+          <p>* 이번 회차 동안 사용해야 적립돼요</p>
         </div>
         <p className={savePromotion.priceText}>{useCountUp(0, 1700, 1500, 1000)}원</p>
       </div>

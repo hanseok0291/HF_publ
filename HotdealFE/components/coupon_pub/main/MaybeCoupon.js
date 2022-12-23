@@ -10,7 +10,15 @@ const MaybeCouponWrap = (props) => {
         title={props.pageTitle}
         moreBtnShow="false"
         labelShow="true"
+				paddingBottomOff="true"
       />
+      <div
+        style={{
+          width: "100%",
+          height: "15px",
+          background: "#f1f1f1",
+        }}
+      ></div>
     </>
   );
 };

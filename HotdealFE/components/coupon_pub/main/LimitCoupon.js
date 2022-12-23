@@ -38,7 +38,7 @@ const LimitCoupon = () => {
                 </div>
               </button>
             </li>
-            <li className={styleLimitCoupon.LimitCouponItem}>
+            {/* <li className={styleLimitCoupon.LimitCouponItem}>
               <button href={`/coupon_pub/`}>
                 <div className={styleLimitCoupon.imgBox}>
                   <img
@@ -63,7 +63,7 @@ const LimitCoupon = () => {
                   </p>
                 </div>
               </button>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

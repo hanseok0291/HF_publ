@@ -41,7 +41,7 @@ const Index = () => {
           <span>포인트 받기</span>
         </button>
       </Layout>
-      {/* <ModalPromotion /> */}
+      <ModalPromotion />
     </>
   );
 };

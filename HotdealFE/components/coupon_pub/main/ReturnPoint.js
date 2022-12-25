@@ -8,20 +8,13 @@ const ReturnPointWrap = () => {
     <>
       <SwiperItem
         title={[
-          "사용하면 적립받아요",
-          <span className="titleEmoticon">✋</span>,
+          "특별한 혜택 놓치지 마세요",
+          <span className="titleEmoticon">💰</span>,
         ]}
         accumulate="true"
-        moreBtnShow="true"
         labelShow="true"
+				isPromotion="true"
       />
-      <div
-        style={{
-          width: "100%",
-          height: "15px",
-          background: "#f1f1f1",
-        }}
-      ></div>
     </>
   );
 };

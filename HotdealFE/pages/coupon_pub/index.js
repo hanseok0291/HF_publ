@@ -57,12 +57,12 @@ const Index = () => {
           <div className={`${styleCommon.containerWrap} ${styleCommon.main}`}>
             {/* 자동 롤링 배너 */}
             <RollingCoupon />
-            {/* 지금 가장 인기 있어요 */}
-            <HotBrand />
             {/* 적립 프로모션 배너 */}
             <RewardBanner />
-            {/* 사용하면 적립받아요 */}
+            {/* 특별한 혜택 놓치지 마세요 */}
             <ReturnPoint />
+            {/* 지금 가장 인기 있어요 */}
+            <HotBrand />
             {/* 혹시 이 상품 찾으세요? */}
             <MaybeCoupon
               pageTitle={[
@@ -71,7 +71,7 @@ const Index = () => {
               ]}
             />
             {/* 프로모션 배너 */}
-            <PromotionBanner />
+            {/* <PromotionBanner /> */}
             {/* 지금만 이 가격 선착순 특가 */}
             <LimitCoupon />
             {/* 요즘 잘 나가는 상품 */}

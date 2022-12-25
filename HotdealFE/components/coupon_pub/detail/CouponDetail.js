@@ -7,19 +7,24 @@ import styleCouponDetail from "../../../styles/coupon_pub/CouponDetail.module.cs
 
 export default function CouponDetail({isDeadlinFixed, setDeadlinFixed }) {
   const [isTabTop, setTabdTop] = useState(false);
-  const [isToolTip, setIsToolTip] = useState(false); // 툴팁
+  const [isToolTip, setIsToolTip] = useState(false);// 툴팁
+  const [toolTipPos, setToolTipPos] = useState(false)
 
   const imgRef = useRef();
   const tabRef = useRef();
   const tabConRef = useRef();
-
-  useEffect(() => {
-    if (process.browser) {
-      window.addEventListener("scroll", handleScroll);
-    }
-  });
+  const toolTipRef = useRef();
 
   const handleScroll = () => {
+    console.log(isToolTip)
+    if(!isToolTip){
+      if(toolTipRef.current.getBoundingClientRect().top < window.innerHeight / 3) {
+        setToolTipPos(true);
+      } else {
+        setToolTipPos(false);
+      }
+    }
+
     if (imgRef.current !== null) {
       if (imgRef.current.getBoundingClientRect().bottom < 58) {
         setDeadlinFixed(true);
@@ -39,6 +44,13 @@ export default function CouponDetail({isDeadlinFixed, setDeadlinFixed }) {
       }
     }
   };
+
+  useEffect(() => {
+    if (process.browser) {
+      window.addEventListener("scroll", handleScroll);
+    }
+  }, [isToolTip]);
+  
   return (
     <>
       <div className={`${styleCouponDetail.CouponDetailWrap}`}>
@@ -124,15 +136,14 @@ export default function CouponDetail({isDeadlinFixed, setDeadlinFixed }) {
             <dl className={styleCouponDetail.finalPrice}>
               <dt>
                 최종 혜택가
-                <div className={styleCouponDetail.tooltopWrap}>
+                <div className={styleCouponDetail.tooltopWrap} ref={toolTipRef}>
                   <button
                     onClick={() => setIsToolTip(!isToolTip)}
                     className={styleCouponDetail.tooltipBtn}
                   ></button>
                   {isToolTip && (
-                    <p className={styleCouponDetail.tooltip}>
-                      사용 후 적립받는 포인트가 적용된 가격으로 <br />
-                      실제 결제 금액과 다를 수 있습니다.
+                    <p className={`${styleCouponDetail.tooltip} ${toolTipPos && styleCouponDetail.reverse}`}>
+                      * 할인 혜택은 동시가 아닌 위에서부터 순차적으로 적용됩니다.
                     </p>
                   )}
                 </div>

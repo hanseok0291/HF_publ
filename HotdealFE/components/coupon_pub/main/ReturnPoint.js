@@ -13,7 +13,7 @@ const ReturnPointWrap = () => {
         ]}
         accumulate="true"
         labelShow="true"
-				isPromotion="true"
+        moreBtnShow="true"
       />
     </>
   );

@@ -131,7 +131,7 @@ export default function CouponDetail({isDeadlinFixed, setDeadlinFixed }) {
                   ></button>
                   {isToolTip && (
                     <p className={styleCouponDetail.tooltip}>
-                      사용 후 적립받는 포인트가 적용된 가격으로 <br />
+                      * 사용 후 적립받는 포인트가 적용된 가격으로 
                       실제 결제 금액과 다를 수 있습니다.
                     </p>
                   )}

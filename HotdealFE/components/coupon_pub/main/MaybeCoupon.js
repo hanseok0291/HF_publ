@@ -8,13 +8,12 @@ const MaybeCouponWrap = (props) => {
     <>
       <SwiperItem
         title={props.pageTitle}
-        moreBtnShow="false"
+        moreBtnShow="true"
         labelShow="true"
-				paddingBottomOff="true"
       />
       <div
         style={{
-          width: "100%",
+          width: "100%", 
           height: "15px",
           background: "#f1f1f1",
         }}

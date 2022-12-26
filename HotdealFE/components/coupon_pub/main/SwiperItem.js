@@ -60,9 +60,9 @@ function SwiperWrap(props) {
   return (
     <>
 			<div
-        className={props.paddingBottomOff ? `${styleSwiper.SwiperWrap} ${styleSwiper.paddingBottomOff}` : `${styleSwiper.SwiperWrap} ${styleBrandList.SwiperWrap}`}
-        style={{ backgroundColor: props.bgColor }}
-      >
+					className={props.moreBtnShow ? `${styleSwiper.SwiperWrap} ${styleBrandList.SwiperWrap}` : `${styleSwiper.SwiperWrap} ${styleSwiper.paddingBottomOff}`}
+					style={{ backgroundColor: props.bgColor }}
+				>
         <div>
           <h2
             className={`${styleCommon.container} ${styleSwiper.SwiperTitle}`}
@@ -87,6 +87,7 @@ function SwiperWrap(props) {
               })}
             </Swiper>
           </div>
+
           {props.moreBtnShow == "true" ? (
             <div className={`${styleCommon.container}`}>
               <button
@@ -100,21 +101,7 @@ function SwiperWrap(props) {
               </button>
             </div>
           ) : (
-            props.isPromotion == "true" ? (
-							<div className={`${styleCommon.container}`}>
-              <button
-                href={`/coupon_pub/`}
-                className={`${styleCommon.btn} ${styleCommon.container} ${styleSwiper.SwiperLink}`}
-              >
-                상품 더보기{" "}
-                <i
-                  className={`${styleCommon.iconArrow} ${styleCommon.iconArrowRight}`}
-                ></i>
-              </button>
-            </div>
-						) : (
-						<></>
-						)
+            <></>
           )}
         </div>
       </div>

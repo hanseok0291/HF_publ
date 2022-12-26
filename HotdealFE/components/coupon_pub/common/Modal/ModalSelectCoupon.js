@@ -10,7 +10,7 @@ import styleCouponSet from "../../../../styles/coupon_pub/styleCouponSet.module.
 // 선택 가능 브랜드 토스트
 export const ModalSelectCoupon = ({ setModalShow_1, setSelectBrand }) => {
   /* 220926_수정 */
-  const [isList, setIsList] = useState(false);
+  const [isList, setIsList] = useState(true);
   const brandList = useRef();
   /* // 220926_수정 */
 

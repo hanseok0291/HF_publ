@@ -16,7 +16,7 @@ const SavePromotion = () => {
     const [count, setCount] = useState(start);
     const frameRate = 1000 / 30;
     const totalFrame = Math.round(dur / frameRate)
-    
+
     useEffect(() => {
       let currntNumber = start;
       setTimeout(() => {
@@ -24,7 +24,7 @@ const SavePromotion = () => {
           const progress = ++currntNumber / totalFrame;
           let value = Math.round(end * progress)
           setCount(value);
-  
+
           if (progress === 1){
             clearInterval(counter);
             setCount(value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
@@ -44,15 +44,15 @@ const SavePromotion = () => {
         </p>
         <div className={savePromotion.text_2}>
           <div className={savePromotion.innerTextContainer}>
-            <p className={savePromotion.innerTextWrap}>
-              <span className={savePromotion.innerText_1}>최대</span>
-              <span className={savePromotion.innerText_2}>12%</span>
-            </p>
+            <div className={`${savePromotion.innerTextWrap} ${savePromotion.innerTextWrapCopy}`}>
+              <p className={savePromotion.innerText_1}><span>최</span><span>대</span></p>
+              <p className={savePromotion.innerText_2}>12%</p>
+            </div>
             {/* 그림자용 텍스트 */}
-            <p className={`${savePromotion.innerTextWrap} ${savePromotion.innerTextWrapCopy}`}>
-              <span className={savePromotion.innerText_1}>최대</span>
-              <span className={savePromotion.innerText_2}>12%</span>
-            </p>
+            <div className={`${savePromotion.innerTextWrap}`}>
+              <p className={savePromotion.innerText_1}><span>최</span><span>대</span></p>
+              <p className={savePromotion.innerText_2}>12%</p>
+            </div>
             {/* //그림자용 텍스트 */}
           </div>
           <span className={savePromotion.innerText_3}>

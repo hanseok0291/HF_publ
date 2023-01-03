@@ -35,15 +35,17 @@ const CouponListItem = (
         <div className={styleCouponList.infoBox}>
           <p className={styleCouponList.infoBrand}>{infoBrand}</p>
           <p className={styleCouponList.infoProduct}>{infoProduct}</p>
-          <p className={styleCouponList.infoPrice}>{infoPrice}</p>
-          <p className={styleCouponList.infoDcPrice}>
-            {infoDcPercent && (
-              <span className={styleCouponList.infoDcPercent}>
-                {infoDcPercent}
-              </span>
-            )}
-            {infoDcPrice}
-          </p>
+          <div className={styleCouponList.infoPriceWrap}>
+            <p className={styleCouponList.infoPrice}>{infoPrice}</p>
+            <p className={styleCouponList.infoDcPrice}>
+              {infoDcPercent && (
+                <span className={styleCouponList.infoDcPercent}>
+                  {infoDcPercent}
+                </span>
+              )}
+              {infoDcPrice}
+            </p>
+          </div>
           <div className={styleCouponList.addInfoWrap}>
             {addInfo1 && (
               <span className={styleCouponList.warning}>종료임박</span>

@@ -260,10 +260,38 @@
           }
         }
       }
+
+      .icon-wrap {
+        display: inline-block;
+        height: 59px;
+        border: 2px solid transparent;
+        border-radius: 20px;
+        background-image: linear-gradient(#22262d, #22262d), linear-gradient(to left, #fa367b, #f28240);
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+        color: #fc5952;
+        font-size: 22px;
+        font-weight: 700;
+        opacity: 0;
+
+        p {
+          display: flex;
+          padding: 16px 14px;
+          
+          &::before {
+            display: block;
+            content: "";
+            width: 23px;
+            height: 23px;
+            margin-right: 8px;
+            background: url('../images/giftimall/icon/icon-clock.png') 0 / 23px 23px no-repeat;
+          }
+        }
+      }
+
       .tab-wrap {
         display: none;
         width: 100%;
-        margin-top: -13px;
 
         &.on {
           display: flex;
@@ -287,123 +315,176 @@
         .slide-wrap {
           position: relative;
           opacity: 0;
-        }
-        .popularItem-slide {
-          flex: 0 0 auto;
-          position: relative;
-          overflow: hidden;
-          width: 822px;
-          padding-bottom: 42px;
-          cursor: unset;
 
-          .swiper-slide {
-            display: flex;
-            flex-direction: column;
-            padding: 30px 30px 40px;
-            border-radius: 40px;
-            background-color: #fff;
-            transform: scale(0.7) translateY(-12px);
-            box-shadow: 0 10px 15px 0 rgba(12, 12, 12, 0.4);
-            transition: transform 0.3s;
-            -webkit-tap-highlight-color : transparent;
-            &.swiper-slide-active {
-              transform: scale(1);
-              padding: 30px 30px 35px;
-
-              .img-wrap {
-                width: 150px;
-                height: 150px;
-                margin: 0 auto 34px;
-              }
-              .product-name {
-                margin: 10px 0 20px;
-              }
-            }
-            .img-wrap {
-              position: relative;
+          .popularItem-slide {
+            flex: 0 0 auto;
+            position: relative;
+            overflow: hidden;
+            width: 822px;
+            padding-bottom: 42px;
+            cursor: unset;
+  
+            .swiper-slide {
+              display: flex;
+              flex-direction: column;
               overflow: hidden;
-              width: 174px;
-              height: 174px;
-              margin: 0 auto 42px;
-              border-radius: 50%;
-              &::after {
-                content: "";
+              position: relative;
+              padding: 30px 30px 40px;
+              border-radius: 40px;
+              background-color: #fff;
+              transform: scale(0.7) translateY(-12px);
+              box-shadow: 0 10px 15px 0 rgba(12, 12, 12, 0.4);
+              transition: transform 0.3s;
+              -webkit-tap-highlight-color : transparent;
+
+              &.soldout::after {
                 display: block;
                 position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.04);
+                left: -1px;
+                top: -1px;
+                content: "";
+                width: calc(100% + 2px);
+                height: calc(100% + 2px);
+                background: rgba(0, 0, 0, 0.66) url("../images/giftimall/soldout.png") right 42% / 166px 78px no-repeat;
+              }
+
+              &.swiper-slide-active {
+                transform: scale(1);
+                padding: 30px 30px 35px;
+  
+                .img-wrap {
+                  width: 150px;
+                  height: 150px;
+                  margin: 0 auto 34px;
+                }
+                .product-name {
+                  margin: 10px 0 20px;
+                }
+              }
+              .img-wrap {
+                position: relative;
+                overflow: hidden;
+                width: 174px;
+                height: 174px;
+                margin: 0 auto 42px;
                 border-radius: 50%;
+                &::after {
+                  content: "";
+                  display: block;
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  width: 100%;
+                  height: 100%;
+                  background-color: rgba(0, 0, 0, 0.04);
+                  border-radius: 50%;
+                }
+                img {
+                  width: 100%;
+                }
               }
-              img {
+              p {
                 width: 100%;
               }
-            }
-            p {
-              width: 100%;
-            }
-            .brand-name {
-              font-size: 20px;
-              font-weight: 700;
-            }
-            .product-name {
-              margin: 10px 0 30px;
-              font-size: 23px;
-              font-weight: 500;
-              line-height: 26px;
-              word-break: break-all;
-            }
-            .price {
-              font-size: 28px;
-              font-weight: 700;
-              .discount {
+              .brand-name {
+                font-size: 20px;
+                font-weight: 700;
+              }
+              .product-name {
+                margin: 10px 0 30px;
+                font-size: 23px;
+                font-weight: 500;
+                line-height: 26px;
                 word-break: break-all;
-                margin-right: 10px;
-                color: #ff2b00;
+              }
+              .price {
+                font-size: 28px;
+                font-weight: 700;
+                .discount {
+                  word-break: break-all;
+                  margin-right: 10px;
+                  color: #ff2b00;
+                }
+              }
+            }
+            .swiper-pagination {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              position: relative;
+              margin-top: 0;
+              .swiper-pagination-bullet {
+                width: 6px;
+                height: 6px;
+                margin: 0 5px;
+                background-color: rgba(255, 255, 255, 0.2);
+                &.swiper-pagination-bullet-active {
+                  width: 12px;
+                  height: 12px;
+                  background-color: rgba(255, 255, 255, 1);
+                }
               }
             }
           }
-          .swiper-pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            margin-top: 30px;
-            .swiper-pagination-bullet {
-              width: 6px;
-              height: 6px;
-              margin: 0 5px;
-              background-color: rgba(255, 255, 255, 0.2);
-              &.swiper-pagination-bullet-active {
-                width: 12px;
-                height: 12px;
-                background-color: rgba(255, 255, 255, 1);
-              }
+          .swiper-button {
+            top: 200px;
+            width: 40px;
+            height: 40px;
+            background-image: url("../images/giftimall/icon/icon-slide-move-off.png");
+            background-size: 40px 40px;
+            &:hover {
+              background-image: url("../images/giftimall/icon/icon-slide-move-on.png");
+            }
+            &.swiper-button-prev {
+              left: -17px;
+              transform: rotate(180deg);
+            }
+  
+            &.swiper-button-next {
+              right: -17px;
+            }
+  
+            &::after {
+              display: none;
             }
           }
-        }
-        .swiper-button {
-          top: 200px;
-          width: 40px;
-          height: 40px;
-          background-image: url("../images/giftimall/icon/icon-slide-move-off.png");
-          background-size: 40px 40px;
-          &:hover {
-            background-image: url("../images/giftimall/icon/icon-slide-move-on.png");
-          }
-          &.swiper-button-prev {
-            left: -17px;
-            transform: rotate(180deg);
-          }
 
-          &.swiper-button-next {
-            right: -17px;
-          }
+          &.type2 {
+            .popularItem-slide {
+              width: 738px;
 
-          &::after {
-            display: none;
+              .swiper-slide {
+                transform: scale(0.8) translateY(-12px);
+                padding: 30px;
+
+                &.swiper-slide-active {
+                  transform: scale(1);
+                }
+
+                .img-wrap {
+                  margin: 0 auto 28px;
+                }
+
+                .product-name {
+                  margin: 8px 0 16px;
+                  font-size: 20px;
+                }
+
+                .price {
+                  font-size: 26px;
+                }
+              }
+            }
+
+            .swiper-button {
+              &.swiper-button-prev {
+                left: -36px;
+              }
+    
+              &.swiper-button-next {
+                right: -36px;
+              }
+            }
           }
         }
       }
@@ -431,6 +512,11 @@
         }
       }
       &.animation {
+        .icon-wrap {
+          animation: opacity 0.5s 0.4s ease-in-out backwards;
+          opacity: 1;
+        }
+
         .btn-wrap {
           animation: opacity $duration 0.4s ease-in-out backwards;
           opacity: 1;
@@ -442,6 +528,10 @@
         .tab-wrap .text-wrap .sub-text {
           animation: opacity $duration 0.6s ease-in-out backwards;
           opacity: 1;
+
+          b {
+            font-weight: 700;
+          }
         }
         .slide-wrap {
           animation: opacity $duration 0.8s ease-in-out backwards;
@@ -1150,9 +1240,6 @@
               background-repeat: no-repeat;
             }
             .price {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
               overflow: hidden;
               position: absolute;
               top: 40.5%;
@@ -1190,6 +1277,10 @@
                 url("../images/giftimall/zero-img-m-3.png")
                 url("../images/giftimall/zero-img-m-4.png")
                 url("../images/giftimall/zero-img-m-5.png")
+                url("../images/giftimall/zero-img-m-2-2.png")
+                url("../images/giftimall/zero-img-m-2-3.png")
+                url("../images/giftimall/zero-img-m-2-4.png")
+                url("../images/giftimall/zero-img-m-2-5.png")
                 url("../images/giftimall/zero-clear-1.png")
                 url("../images/giftimall/zero-clear-2.png")
                 url("../images/giftimall/zero-clear-3.png")
@@ -1573,6 +1664,95 @@
     top: 50%;
     transform: translateY(-50%);
   }
+
+  &.gdn {
+    .section.title.gdn {
+      background-color: #fff;
+    }
+    .section.popularItem {
+      .tab-wrap {
+        .popularItem-slide {
+          padding-bottom: 0;
+
+          .swiper-pagination {
+            margin-top: 0;
+          }
+        }
+        .text-wrap {
+          padding-top: 70px;
+
+          .title-text {
+            margin: 24px 0 12px;
+            font-size: 40px;
+          }
+        }
+        
+      }
+    }
+
+    .section.zeroPoint {
+      padding: 40px 0;
+      .inner-wrap {
+        .bot-btn {
+          position: relative;
+          z-index: 2;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 270px;
+          height: 70px;
+          margin: 30px 0 0 80px;
+          color: #fff;
+          font-size: 24px;
+          font-weight: 700;
+          background: linear-gradient(to left, #356be5, #2d9fff );
+          border-radius: 35px;
+          box-shadow: 0 6px 15px 0 rgba(0, 0, 0, 0.3);
+          opacity: 0;
+          &.web-view {
+            display: flex;
+          }
+          &.mo-view {
+            display: none;
+          }
+        }
+
+        .title-text {
+          &::before {
+            background-image: url('../images/giftimall/icon/icon-zeroPoint-2.png');
+          }
+        }
+
+        .frame {
+          width: 415px;
+          height: 615px;
+          background-image: url('../images/giftimall/zero-frame-bg-2.png');
+          
+          .inner-img {
+            top: 30px;
+            width: 292px;
+            height: 552px;
+            background-image: url('../images/giftimall/zero-img-m-2-1.png');
+    
+            .price {
+              width: 164px;
+              height: 48px;
+            }
+          }
+        }
+      } 
+    }
+
+    .section.zeroPoint.animation {
+      .bot-btn {
+        animation: opacity 0.5s 1s ease-in-out backwards;
+        opacity: 1;
+      }
+      .frame .inner-img {
+        animation: image-change-mo-2 8s 1.4s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 767px) {
@@ -1692,64 +1872,114 @@
               line-height: 25px;
             }
           }
-
-          .popularItem-slide {
-            width: 100%;
-            margin-top: 50px;
-            padding-bottom: 0;
-            .swiper-slide {
-              padding: 24px 22px;
-              border-radius: 20px;
-              text-align: left;
-
-              &.swiper-slide-active {
+          
+          .slide-wrap {
+            .popularItem-slide {
+              width: 100%;
+              margin-top: 50px;
+              padding-bottom: 0;
+              .swiper-slide {
                 padding: 24px 22px;
+                border-radius: 25px;
+                text-align: left;
+  
+                &.swiper-slide-active {
+                  padding: 24px 22px;
+                  .img-wrap {
+                    width: 110px;
+                    height: 110px;
+                    margin-bottom: 25px;
+                  }
+                  .product-name {
+                    margin: 8px 0 16px;
+                  }
+                }
+  
                 .img-wrap {
                   width: 110px;
                   height: 110px;
                   margin-bottom: 25px;
                 }
+                .brand-name {
+                  font-size: 15px;
+                }
                 .product-name {
                   margin: 8px 0 16px;
+                  font-size: 17px;
+                  line-height: 20px;
+                }
+                .price {
+                  font-size: 22px;
+                  .discount {
+                    margin-right: 7px;
+                  }
                 }
               }
+              .swiper-pagination {
+                margin-top: 20px;
+                .swiper-pagination-bullet {
+                  width: 5px;
+                  height: 5px;
+                  margin: 0 5px;
+                  &.swiper-pagination-bullet-active {
+                    width: 9px;
+                    height: 9px;
+                  }
+                }
+              }
+            }
+            .swiper-button-next,
+            .swiper-button-prev {
+              display: none;
+            }
+            
+            &.type2 {
+              .popularItem-slide {
+                width: 738px;
+  
+                .swiper-slide {
+                  transform: scale(0.7) translateY(0);
+                  padding: 24px;
 
-              .img-wrap {
-                width: 110px;
-                height: 110px;
-                margin-bottom: 25px;
+                  &.soldout::after {
+                    background: rgba(0, 0, 0, 0.66) url("../images/giftimall/soldout.png") right 42% / 124px auto no-repeat;
+                  }
+
+                  &.swiper-slide-active {
+                    transform: scale(1);
+
+                    .product-name {
+                      font-size: 17px;
+                    }
+                  }
+  
+                  .img-wrap {
+                    margin: 0 auto 28px;
+                  }
+  
+                  .product-name {
+                    margin: 8px 0 16px;
+                  }
+  
+                  .price {
+                    font-size: 20px;
+                  }
+                }
+                .swiper-pagination {
+                  margin-top: 0;
+                }
               }
-              .brand-name {
-                font-size: 15px;
-              }
-              .product-name {
-                margin: 8px 0 16px;
-                font-size: 17px;
-                line-height: 20px;
-              }
-              .price {
-                font-size: 22px;
-                .discount {
-                  margin-right: 7px;
+  
+              .swiper-button {
+                &.swiper-button-prev {
+                  left: -36px;
+                }
+      
+                &.swiper-button-next {
+                  right: -36px;
                 }
               }
             }
-            .swiper-pagination {
-              margin-top: 20px;
-              .swiper-pagination-bullet {
-                width: 5px;
-                height: 5px;
-                margin: 0 5px;
-                &.swiper-pagination-bullet-active {
-                  width: 9px;
-                  height: 9px;
-                }
-              }
-            }
-          }
-          .swiper-button-next,
-          .swiper-button-prev {
-            display: none;
           }
         }
         .bot-btn {
@@ -2229,6 +2459,77 @@
         }
       }
     }
+    &.gdn {
+      .section.popularItem {
+        padding-top: 60px;
+        .icon-wrap {
+          height: 50px;
+          font-size: 17px;
+          
+          p::before {
+            width: 17px;
+            height: 17px;
+
+            background-size: 17px 17px;
+          }
+        }
+        .tab-wrap {
+          .text-wrap {
+            padding-top: 0;
+            .title-text {
+             font-size: 34px;
+           }
+          }
+
+          .slide-wrap.type2 .popularItem-slide {
+            width: 100%;
+          }
+        } 
+      }
+      
+      .section.zeroPoint  {
+        padding: 50px 0;
+        .inner-wrap {
+          .bot-btn {
+            width: 260px;
+            height: 60px;
+            margin: 20px auto 0;
+            font-size: 18px;
+            border-radius: 30px;
+            &.web-view {
+              display: none;
+            }
+            &.mo-view {
+              display: flex;
+            }
+          }
+
+          .frame {
+            width: 68%;
+            height: 0;
+            margin-top: 14px;
+            padding-top: calc(759 / 512 * 68%);
+
+            .inner-img {
+              top: 5.2%;
+              width: 70%;
+              height: 0;
+              padding-top: calc(680 / 360 * 70%);
+              border-radius: 20px;
+
+              .price {
+                width: auto;
+                height: calc(7.3% + 8px);
+              }
+            }
+          }
+        }
+          
+        &.animation {
+          
+        }
+      }
+    }
   }
 }
 
@@ -2429,6 +2730,57 @@
   100.0% {
     -webkit-background-image: url("../images/giftimall/zero-img-m-5.png");
     background-image: url("../images/giftimall/zero-img-m-5.png");
+  }
+}
+
+@keyframes image-change-mo-2 {
+  0.0% {
+    -webkit-background-image: url("../images/giftimall/zero-img-m-2-2-1.png");
+    background-image: url("../images/giftimall/zero-img-m-2-1.png");
+  }
+  6.0% {
+    -webkit-background-image: url("../images/giftimall/zero-img-m-2-1.png");
+    background-image: url("../images/giftimall/zero-img-m-2-1.png");
+  }
+  10.0% {
+    -webkit-background-image: url("../images/giftimall/zero-img-m-2-2.png");
+    background-image: url("../images/giftimall/zero-img-m-2-2.png");
+  }
+  26.0% {
+    -webkit-background-image: url("../images/giftimall/zero-img-m-2-2.png");
+    background-image: url("../images/giftimall/zero-img-m-2-2.png");
+  }
+  30.0% {
+    -webkit-background-image: url("../images/giftimall/zero-img-m-2-3.png");
+    background-image: url("../images/giftimall/zero-img-m-2-3.png");
+  }
+  46.0% {
+    -webkit-background-image: url("../images/giftimall/zero-img-m-2-3.png");
+    background-image: url("../images/giftimall/zero-img-m-2-3.png");
+  }
+  50.0% {
+    -webkit-background-image: url("../images/giftimall/zero-img-m-2-4.png");
+    background-image: url("../images/giftimall/zero-img-m-2-4.png");
+  }
+  66.0% {
+    -webkit-background-image: url("../images/giftimall/zero-img-m-2-4.png");
+    background-image: url("../images/giftimall/zero-img-m-2-4.png");
+  }
+  70.0% {
+    -webkit-background-image: url("../images/giftimall/zero-img-m-2-5.png");
+    background-image: url("../images/giftimall/zero-img-m-2-5.png");
+  }
+  86.0% {
+    -webkit-background-image: url("../images/giftimall/zero-img-m-2-5.png");
+    background-image: url("../images/giftimall/zero-img-m-2-5.png");
+  }
+  90.0% {
+    -webkit-background-image: url("../images/giftimall/zero-img-m-2-5.png");
+    background-image: url("../images/giftimall/zero-img-m-2-5.png");
+  }
+  100.0% {
+    -webkit-background-image: url("../images/giftimall/zero-img-m-2-5.png");
+    background-image: url("../images/giftimall/zero-img-m-2-5.png");
   }
 }
 

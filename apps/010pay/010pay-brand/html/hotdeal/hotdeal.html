@@ -52,7 +52,7 @@
 	<link rel="stylesheet" href="../../resource/css/slick.css">
 	<link rel="stylesheet" href="../../resource/css/common.css">
 	<link rel="stylesheet" href="../../resource/css/010pay_style.css">
-	<link rel="stylesheet" href="../../resource/css/hotdeal.css?ver=1.0">
+	<link rel="stylesheet" href="../../resource/css/hotdeal.css?ver=230103">
 
 	<!-- script -->
 	<script src="../../resource/library/jquery-1.8.3.min.js"></script>
@@ -146,50 +146,36 @@
 		<!-- //title section -->
 
 		<!-- visual section -->
-		<section class="section visual">
+		<section class="section popularItem progress">
 			<div class="container">
-				<div class="hotdeal-time">
-					<h3 class="state"><span>진행중</span></h3>
-					<div class="remain">
-						<em class="remain-day"><i>5</i></em><span>일</span><em class="remain-time"><i>0</i><i>1</i><i class="mid">:</i><i>2</i><i>3</i><i class="mid">:</i><i>4</i><i>5</i></em><span>남음</span>
+				<div class="text-wrap">
+					<h3 class="title-text">핫딜은 <br>현재 진행중<i>!</i></h3>
+					<p class="time-text"><span>4일 <em>12:05:02</em>남음</span></p>
+					<a href="#" class="bot-btn web-view btn-hotdeal btn-modal-qr">지금 바로 응모하기</a>
+				</div>
+				<div class="content-wrap">
+					<div class="img-wrap">
+						<img src="../../resource/images/hotdeal/sample/product-08.png" alt="투썸플레이스 퀸즈 캐롯 케이크">
+					</div>
+					<div class="text-wrap">
+						<p class="content-sub-title">All I Want For Christmas Is</p>
+						<p class="content-title">투썸플레이스 퀸즈 캐롯 케이크</p>
+						<dl class="detail">
+							<dt>핫딜가</dt>
+							<dd><span class="mid-line">34,000원</span><span class="price">0원</span></dd>
+							<dt>당첨 인원</dt>
+							<dd>50명 추첨</dd>
+							<dt>당첨자 발표</dt>
+							<dd>2022.1213 (금) 앱에서 발표</dd>
+						</dl>
 					</div>
 				</div>
-				<div class="hotdeal-product">
-					<div class="hotdeal-img"><img src="../../resource/images/hotdeal/sample/product-04.png" alt="상품 이미지">
-					</div>
-					<div class="hotdeal-content">
-						<h4 class="product-title">
-							<em class="product-summary">공간 음향과 함께, 완전히 새롭게 ABCD1234678</em>
-							<em class="product-name">공간 음향과 함께, 완전히 새롭게 ABCDEFGHIJ123467890</em>
-						</h4>
-						<div class="hotdeal-info">
-							<div class="hotdeal-info-li">
-								<h5 class="info-title">핫딜가</h5>
-								<p class="info-content">
-									<span class="price-origin">249,000원</span>
-									<strong class="price-free">0원</strong>
-								</p>
-							</div>
-							<div class="hotdeal-info-li">
-								<h5 class="info-title">당첨 인원</h5>
-								<p class="info-content">50명 추첨</p>
-							</div>
-							<div class="hotdeal-info-li">
-								<h5 class="info-title">당첨자 발표</h5>
-								<p class="info-content"><em class="date">2022.05.05 (금)</em> 앱에서 발표</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="btn-hotdeal-box">
-					<a href="#" class="btn-hotdeal btn-modal-hotdeal"><span>앱에서 응모하기</span> <span class="icons"><i class="icon-arrow-right"></i><i class="icon-arrow-right"></i><i class="icon-arrow-right"></i></span></a>
-				</div>
-			</div>
+				<a href="https://bit.ly/3qMVIjf" class="bot-btn mo-view">지금 바로 응모하기</a>
 		</section>
 		<!-- visual section -->
 
 		<!-- lineUp section -->
-		<section class="section line-up progress">
+		<section class="section line-up">
 			<div class="container">
 				<div class="sub-title"><div class="text-box"><span>진행예정</span></div> 핫딜 LINE UP</div>
 				<div class="lineup-slide">
@@ -543,46 +529,33 @@ $('.join-slide').on('afterChange', function(event, slick, currentSlide){
 });
 
 
-// 바디 스크롤 제거/해제
-var scrollHeight = 0;
-function scrollOff(){
-	scrollHeight = $(document).scrollTop();
-	$("body").addClass("modal-open");
-	$(".content_wrap").css("position", "fixed");
-	$(".content_wrap").css("top", - scrollHeight);
-}
-function scrollOn(){
-	$("body").removeClass("modal-open");
-	$(".content_wrap").css("top", 0);
-	$(".content_wrap").css("position", "relative");
-	$(document).scrollTop(scrollHeight);
-}
-
 // 레이어 팝업(모달) 열기
-function modalOpen(obj){
+function modalOpen(obj) {
 	var temp = $("#" + obj);
 	temp.fadeIn(100).addClass("open");
-	scrollOff(); // 바디 스크롤 제거
+	
+	$('.modal').on('scroll touchmove mousewheel', function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		return false;
+	});
 
 	// 슬라이드 모달 닫기
 	function modalOut() {
 		temp.fadeOut(300).removeClass("open");
-
-		// 이중 모달이 아닌 경우
-		if (!$(temp).hasClass("depth2")) {
-			scrollOn(); // 바디 스크롤 제거 해제
-		}
 	}
 
 	// 팝업 내 닫기 버튼 클릭 시 팝업 닫기
-	$(temp).find('.modal-close').click(function() {
-		modalOut();
-	});
+	$(temp)
+		.find(".modal-close")
+		.click(function () {
+			modalOut();
+		});
 }
 
 // 레이어 팝업(모달) 닫기
-function modalClose(obj){
-	if (obj != null && obj != undefined && obj != '') {
+function modalClose(obj) {
+	if (obj != null && obj != undefined && obj != "") {
 		var temp = $("#" + obj);
 		temp.fadeOut(300).removeClass("open");
 	} else {
@@ -592,12 +565,10 @@ function modalClose(obj){
 }
 
 // 화면 너비에 따라 열리는 방식 지정
-$(".btn-modal-hotdeal").click(function(){
-	if($(window).width() > 738){
+$(".btn-modal-qr").click(function (e) {
+	if ($(window).width() > 738) {
+		e.preventDefault();
 		modalOpen("modal-qr");
-	}else{
-		alert("모바일입니다.");
-		return false;
 	}
 });
 </script>

@@ -9,6 +9,7 @@ import styleDefaultLayout from "../../../styles/coupon_pub/DefaultLayout.module.
 import styleCommon from "../../../styles/coupon_pub/Common.module.css";
 import styleMenu from "../../../styles/coupon_pub/Menu.module.css";
 import PossibleCoupon from "../../../components/coupon_pub/mypage/PossibleCoupon";
+import PossibleCouponEmpty from "../../../components/coupon_pub/mypage/PossibleCouponEmpty";
 
 const Menu = () => {
   return (
@@ -36,7 +37,8 @@ const Menu = () => {
             </li>
           </ul>
         </div>
-        <PossibleCoupon />
+        {/* <PossibleCoupon /> */}
+        <PossibleCouponEmpty />
         <Guide />
         {/* <Footer /> */}
       </div>

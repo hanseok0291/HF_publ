@@ -21,7 +21,7 @@ const Guide = () => {
           </li>
           <li>
             <a href={`/coupon/`} className={`${styleCommon.container}`}>
-              <span>쿠폰 자동 사용 설정</span>
+              <span>PAY쿠폰 사용 설정</span>
             </a>
           </li>
         </ul>

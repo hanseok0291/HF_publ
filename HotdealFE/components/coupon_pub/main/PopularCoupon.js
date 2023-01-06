@@ -8,10 +8,9 @@ const PopularWrap = () => {
     <>
       <SwiperItem
         title={[
-          "카페는 역시 별다방",
-          <span className="titleEmoticon">⭐</span>,
+          "요즘 잘 나가는 상품",
+          <span className="titleEmoticon">🔥</span>,
         ]}
-        moreBtnShow="true"
       />
       {/* <div
         style={{

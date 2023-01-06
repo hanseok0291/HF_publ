@@ -39,16 +39,15 @@ const MainPopup = ({ title, cancle = "취소", confirm = "확인", content, onCl
           <Slider {...settings}>
 						<div>
 							<div className={styleModal.modalBody}>
-								<h3 className={styleModal.popupTitle}>
-									<p className={styleModal.popupSubTitle}>아메리카노 마시고</p>
-									<strong className={styleModal.popupMainTitle}>
-										<span className={styleCommon.highlight}>매일 4%</span> 적립<i className={`${styleCommon.italic}`}>!</i>
+								<h3 className={`${styleModal.popupTitle} ${styleModal.popupTitle2}`}>
+									<p className={styleModal.popupSubTitle}>망설이면 품절<i className={`${styleCommon.italic}`}>!</i></p>
+									<strong className={styleModal.popupMainTitle}>놓치면 후회하는 <span className={styleCommon.highlight}>선착순 특가 </span>&nbsp;OPEN<i className={`${styleCommon.italic}`}>!</i>
 									</strong>
 								</h3>
 								<p className={styleModal.modalImgBox}>
 									<img
-										src="../images/coupon/popup/popup1.png"
-										alt="스타벅스 아메리카노"
+										src="../images/coupon/popup/week_1.png"
+										alt="망설이면 품절! 놓치면 후회하는 선착순 특가 OPEN!"
 									/>
 								</p>
 							</div>
@@ -57,36 +56,7 @@ const MainPopup = ({ title, cancle = "취소", confirm = "확인", content, onCl
 									type="button"
 									className={`${styleModal.btn} ${styleModal.btnFull}`}
 								>
-									마시고 적립받기
-								</button>
-							</div>
-						</div>
-						<div>
-							<div className={styleModal.modalBody}>
-								<h3 className={`${styleModal.popupTitle} ${styleModal.popupTitle2}`} style={{top: `-6px`}}>
-									<p className={styleModal.popupSubTitle}>
-										<span style={{color: `#e51616`}}>월드컵</span> 함께 응원해요<i className={`${styleCommon.italic}`}>!</i></p>
-									<strong className={`${styleModal.popupMainTitle} ${styleModal.popupMainTitle2}`}>
-									치킨&amp;피자 먹으면<br />
-										<span className={`${styleCommon.highlight} ${styleCommon.highlight2}`}>4% 캐시백<i className={`${styleCommon.italic}`}>!</i></span>
-									</strong>
-								</h3>
-								<p className={styleModal.modalImgBox}>
-									<img
-										src="../images/coupon/popup/popup2.png"
-										alt="월드컵 치킨&amp;피자"
-									/>
-								</p>
-							</div>
-							<div className={styleModal.modalFooter}>
-								<button
-									type="button"
-									className={`${styleModal.btn} ${styleModal.btnFull}`}
-									style={{
-										backgroundColor: `#e51616`
-									}}
-								>
-									응원하러 가기
+									지금 구경하기
 								</button>
 							</div>
 						</div>

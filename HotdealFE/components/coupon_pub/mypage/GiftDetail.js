@@ -63,7 +63,7 @@ export default function GiftDetail() {
               <dt>사용 일시</dt>
               <dd>2022. 10. 10 오후 1:11:11</dd>
               <dt>적립 예정 포인트</dt>
-              <dd>사용 시 100원</dd>
+              <dd>2023. 12. 12 까지 사용 시 100원</dd>
             </dl>
           </div>
         </div>

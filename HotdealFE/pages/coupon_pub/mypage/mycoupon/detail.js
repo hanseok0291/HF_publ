@@ -62,11 +62,11 @@ const Index = () => {
           className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap}`}
         >
           {/* 보유 쿠폰 사용 가능 */}
-          {/* <CouponDetail isfixedTop={isFixedTop} /> */}
+          <CouponDetail isfixedTop={isFixedTop} />
           {/* 보유 쿠폰 사용 완료 */}
           {/* <CouponDetailUsed isfixedTop={isFixedTop} /> */}
           {/* 사용 가능  */}
-          <CouponDetailPay isfixedTop={isFixedTop} />
+          {/* <CouponDetailPay isfixedTop={isFixedTop} /> */}
           {/* <CouponDetailPayUsed isfixedTop={isFixedTop} /> */}
         </div>
         {/* 사용가능처 토스트 */}

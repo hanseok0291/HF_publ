@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 
+
 import styleCommon from "../../../styles/coupon_pub/Common.module.css";
 import styleSlick from "../../../styles/coupon_pub/Slick.module.css";
 import styleCouponDetail from "../../../styles/coupon_pub/CouponDetail.module.css";
@@ -8,12 +9,14 @@ import styleCouponDetail from "../../../styles/coupon_pub/CouponDetail.module.cs
 export default function CouponDetail({isDeadlinFixed, setDeadlinFixed }) {
   const [isTabTop, setTabdTop] = useState(false);
   const [isToolTip, setIsToolTip] = useState(false);// 툴팁
-  const [toolTipPos, setToolTipPos] = useState(false)
+  const [toolTipPos, setToolTipPos] = useState(false);
+  const [dropDown, setDropDown] = useState(false);
 
   const imgRef = useRef();
   const tabRef = useRef();
   const tabConRef = useRef();
   const toolTipRef = useRef();
+  const dropDownRef = useRef();
 
   const handleScroll = () => {
     console.log(isToolTip)
@@ -119,23 +122,9 @@ export default function CouponDetail({isDeadlinFixed, setDeadlinFixed }) {
                 <span>10%</span> <strong>5,670원</strong>
               </span>
             </div>
-            <dl className={styleCouponDetail.priceDetailWrap}>
-              <dt>판매가</dt>
-              <dd>36,000원</dd>
-              <dt>
-                기본 할인 <span>6%</span>
-              </dt>
-              <dd>2,160원</dd>
-              <dt>
-                기간 한정 할인<span>4%</span>
-              </dt>
-              <dd>1,080원</dd>
-              <dt>사용 후 적립</dt>
-              <dd>1,080원</dd>
-            </dl>
             <dl className={styleCouponDetail.finalPrice}>
               <dt>
-                최종 혜택가
+                최대 혜택가
                 <div className={styleCouponDetail.tooltopWrap} ref={toolTipRef}>
                   <button
                     onClick={() => setIsToolTip(!isToolTip)}
@@ -152,6 +141,42 @@ export default function CouponDetail({isDeadlinFixed, setDeadlinFixed }) {
                 <span>11%</span> <strong>30,960원</strong>
               </dd>
             </dl>
+            <div className={styleCouponDetail.priceDetailWrap}>
+              <dl>
+                <dt>
+                  기본 할인 <span>6%</span>
+                </dt>
+                <dd>2,160<em>원</em></dd>
+                <dt>
+                  기간 한정 할인<span>4%</span>
+                </dt>
+                <dd>1,080<em>원</em></dd>
+                <dt>
+                  <input type="checkbox"  name="checkbox" id="checkbox_3"/>
+                  <label for="checkbox_3">사용 후 적립 <span className={styleCouponDetail.benefitAlert}>(23. 1. 2까지 사용 시)</span></label>
+                </dt>
+                <dd className={styleCouponDetail.mainColor}>1,080<em>원</em></dd>
+              </dl>
+              <dl className={styleCouponDetail.addBenefit}>
+                <dt>추가 혜택</dt>
+                <dd><button ref={dropDownRef} className={`${ dropDown && styleCouponDetail.on}`} onClick={() => setDropDown(!dropDown)}></button></dd>
+              </dl>
+              { 
+                dropDown &&
+                <dl className={styleCouponDetail.pointWrap}>
+                  <dt>
+                    <input type="checkbox"  name="checkbox" id="checkbox_4" className={styleCouponDetail.whiteBox}/>
+                    <label for="checkbox_4">포인트 사용 <span className={styleCouponDetail.benefitAlert}>(보유 : 0원)</span></label>
+                  </dt>
+                  <dd>2,000<em>원</em></dd>
+                  <dt>
+                    <input type="checkbox"  name="checkbox" id="checkbox_5" className={styleCouponDetail.whiteBox}/>
+                    <label for="checkbox_5">카드 포인트 사용 <span className={styleCouponDetail.benefitAlert}>(전환 가능 : ?원)</span></label>
+                  </dt>
+                  <dd><button className={styleCouponDetail.pointCheck}>조회하기<i className={styleCommon.iconArrowRight}></i></button></dd>
+                </dl>
+              }
+            </div>
           </div>
         </div>
         <div
@@ -320,7 +345,7 @@ export default function CouponDetail({isDeadlinFixed, setDeadlinFixed }) {
             >
               <button className={`${styleCommon.btnGift}`}>선물하기</button>
               <span className={`${styleCommon.bar}`}></span>
-              <button className={`${styleCommon.btnGiftMe}`}>선물하기</button>
+              <button className={`${styleCommon.btnGiftMe}`}>나에게 선물하기</button>
             </p>
           </div>
         </div>

@@ -199,24 +199,30 @@ const Index = () => {
                   </div>
                 </div>
               </div>
+              <div className={stylePay.cardPointWrap}>
+                <dl>
+                  {/* 약관 동의 전 */}
+                  <dt>숨은 내 카드 포인트를 010PAY머니로 전환하세요<i className={styleCommon.iconArrowRight}></i></dt>
+                  {/* 약관 동의 후 */}
+                  {/* <dt>카드 포인트 <span>(전환 가능 : 50,000원)</span></dt>
+                  <dd>전환하기<i className={styleCommon.iconArrowRight}></i></dd> */}
+                </dl>
+                <div className={stylePay.logoWrap}>
+                  <div className={stylePay.logoBox}>
+                    <ImgBox/>
+                    <ImgBox/>
+                  </div>
+                </div>
+              </div>
               <div>
                 <p className={`${stylePay.listTitle} ${stylePay.last}`}>
                   <span>총 결제 금액</span>
                   <span>6,300원</span>
                 </p>
-
-                <div className={`${stylePay.inputBox}`}>
-                  <p className={`${stylePay.inputInfoBox}`}>
-                    <span
-                      className={`${stylePay.checkbox} ${styleApply.checkbox} ${styleApply.parents}`}
-                    >
-                      <input type="checkbox" name="agreeAll" id="agreeAll_03" />
-                      <label for="agreeAll_03">
-                        결제 조건 확인 및 결제 정보 제공 동의
-                      </label>
-                    </span>
-                  </p>
-                </div>
+                <ul className={stylePay.bottomList}>
+                  <li>위 주문 내용 및 결제조건을 확인하였으며, 결제진행에 동의합니다.</li>
+                  <li>사용 가능 쿠폰 보유 시 010PAY 회원을 탈퇴할 수 없습니다.</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -237,5 +243,20 @@ const Index = () => {
     </>
   );
 };
+
+const ImgBox = () => {
+  return (
+    <>
+      <img src="../../images/coupon/logo/brand/logo-liiv.png" alt="" />
+      <img src="../../images/coupon/logo/brand/logo-top.png" alt="" />
+      <img src="../../images/coupon/logo/brand/logo-shinhanplus.png" alt="" />
+      <img src="../../images/coupon/logo/brand/logo-hana.png" alt="" />
+      <img src="../../images/coupon/logo/brand/logo-Hyundai.png" alt="" />
+      <img src="../../images/coupon/logo/brand/logo-lpoint.png" alt="" />
+      <img src="../../images/coupon/logo/brand/logo-samsung.png" alt="" />
+      <img src="../../images/coupon/logo/brand/logo-woori.png" alt="" />
+    </>
+  )
+}
 
 export default Index;

@@ -88,7 +88,7 @@ export default function CouponDetail() {
                 <dt>사용 후 잔액</dt>
                 <dd>2,400원</dd>
                 <dt>적립 예정 포인트</dt>
-                <dd>사용 시 100원</dd>
+                <dd><span className={styleGiftPresent.date}>23.01.06 까지</span> 사용 시 100원</dd>
               </dl>
             </div>
           </div>

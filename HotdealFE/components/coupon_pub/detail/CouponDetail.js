@@ -6,7 +6,7 @@ import styleCommon from "../../../styles/coupon_pub/Common.module.css";
 import styleSlick from "../../../styles/coupon_pub/Slick.module.css";
 import styleCouponDetail from "../../../styles/coupon_pub/CouponDetail.module.css";
 
-export default function CouponDetail({isDeadlinFixed, setDeadlinFixed }) {
+export default function CouponDetail({setDeadlinFixed }) {
   const [isTabTop, setTabdTop] = useState(false);
   const [isToolTip, setIsToolTip] = useState(false);// 툴팁
   const [toolTipPos, setToolTipPos] = useState(false);
@@ -19,14 +19,7 @@ export default function CouponDetail({isDeadlinFixed, setDeadlinFixed }) {
   const dropDownRef = useRef();
 
   const handleScroll = () => {
-    console.log(isToolTip)
-    if(!isToolTip){
-      if(toolTipRef.current.getBoundingClientRect().top < window.innerHeight / 3) {
-        setToolTipPos(true);
-      } else {
-        setToolTipPos(false);
-      }
-    }
+    
 
     if (imgRef.current !== null) {
       if (imgRef.current.getBoundingClientRect().bottom < 58) {
@@ -47,6 +40,17 @@ export default function CouponDetail({isDeadlinFixed, setDeadlinFixed }) {
       }
     }
   };
+
+  const handleClick = () => {
+    setIsToolTip(!isToolTip)
+    if(!isToolTip) {
+      if(toolTipRef.current.getBoundingClientRect().top < window.innerHeight / 3) {
+        setToolTipPos(true);
+      } else {
+        setToolTipPos(false);
+      }
+    }
+  }
 
   useEffect(() => {
     if (process.browser) {
@@ -83,9 +87,7 @@ export default function CouponDetail({isDeadlinFixed, setDeadlinFixed }) {
             ></img>
           </div>
           <div
-            className={`${styleCouponDetail.alertInfo} ${
-              isDeadlinFixed && styleCouponDetail.fixed
-            }`}
+            className={`${styleCouponDetail.alertInfo}`} //마감 스크롤 시 하단 fixed 삭제
           >
             <p>
               <strong className={styleCouponDetail.colorText}>
@@ -127,7 +129,7 @@ export default function CouponDetail({isDeadlinFixed, setDeadlinFixed }) {
                 최대 혜택가
                 <div className={styleCouponDetail.tooltopWrap} ref={toolTipRef}>
                   <button
-                    onClick={() => setIsToolTip(!isToolTip)}
+                    onClick={handleClick}
                     className={styleCouponDetail.tooltipBtn}
                   ></button>
                   {isToolTip && (
@@ -153,7 +155,7 @@ export default function CouponDetail({isDeadlinFixed, setDeadlinFixed }) {
                 <dd>1,080<em>원</em></dd>
                 <dt>
                   <input type="checkbox"  name="checkbox" id="checkbox_3"/>
-                  <label for="checkbox_3">사용 후 적립 <span className={styleCouponDetail.benefitAlert}>(23. 1. 2까지 사용 시)</span></label>
+                  <label htmlFor="checkbox_3">사용 후 적립 <span className={styleCouponDetail.benefitAlert}>(23. 1. 2 까지 사용 시)</span></label>
                 </dt>
                 <dd className={styleCouponDetail.mainColor}>1,080<em>원</em></dd>
               </dl>
@@ -165,18 +167,22 @@ export default function CouponDetail({isDeadlinFixed, setDeadlinFixed }) {
                 dropDown &&
                 <dl className={styleCouponDetail.pointWrap}>
                   <dt>
-                    <input type="checkbox"  name="checkbox" id="checkbox_4" className={styleCouponDetail.whiteBox}/>
-                    <label for="checkbox_4">포인트 사용 <span className={styleCouponDetail.benefitAlert}>(보유 : 0원)</span></label>
+                    <input type="checkbox"  name="checkbox" id="checkbox_4" />
+                    <label htmlFor="checkbox_4">포인트 사용 <span className={styleCouponDetail.benefitAlert}>(보유 : 0원)</span></label>
                   </dt>
                   <dd>2,000<em>원</em></dd>
                   <dt>
                     <input type="checkbox"  name="checkbox" id="checkbox_5" className={styleCouponDetail.whiteBox}/>
-                    <label for="checkbox_5">카드 포인트 사용 <span className={styleCouponDetail.benefitAlert}>(전환 가능 : ?원)</span></label>
+                    <label htmlFor="checkbox_5">카드 포인트 사용 <span className={styleCouponDetail.benefitAlert}>(전환 가능 : ?원)</span></label>
                   </dt>
                   <dd><button className={styleCouponDetail.pointCheck}>조회하기<i className={styleCommon.iconArrowRight}></i></button></dd>
                 </dl>
               }
             </div>
+            <ul className={styleCouponDetail.bottomList}>
+              <li>최대 혜택가는 확인 용도로 실제 결제 금액과 다를 수 있습니다.</li>
+              <li>결제 시 보유 포인트와 함께 전환한 카드 포인트가 자동 사용됩니다.</li>
+            </ul>
           </div>
         </div>
         <div

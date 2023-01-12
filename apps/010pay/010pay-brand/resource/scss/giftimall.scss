@@ -261,34 +261,6 @@
         }
       }
 
-      .icon-wrap {
-        display: inline-block;
-        height: 59px;
-        border: 2px solid transparent;
-        border-radius: 20px;
-        background-image: linear-gradient(#22262d, #22262d), linear-gradient(to left, #fa367b, #f28240);
-        background-origin: border-box;
-        background-clip: content-box, border-box;
-        color: #fc5952;
-        font-size: 22px;
-        font-weight: 700;
-        opacity: 0;
-
-        p {
-          display: flex;
-          padding: 16px 14px;
-          
-          &::before {
-            display: block;
-            content: "";
-            width: 23px;
-            height: 23px;
-            margin-right: 8px;
-            background: url('../images/giftimall/icon/icon-clock.png') 0 / 23px 23px no-repeat;
-          }
-        }
-      }
-
       .tab-wrap {
         display: none;
         width: 100%;
@@ -521,6 +493,10 @@
           animation: opacity $duration 0.4s ease-in-out backwards;
           opacity: 1;
         }
+        .tab-wrap .text-wrap .title-text-wrap {
+          animation: opacity $duration 0.4s ease-in-out backwards;
+          opacity: 1;
+        }
         .tab-wrap .text-wrap .title-text {
           animation: opacity $duration 0.4s ease-in-out backwards;
           opacity: 1;
@@ -533,6 +509,7 @@
             font-weight: 700;
           }
         }
+
         .slide-wrap {
           animation: opacity $duration 0.8s ease-in-out backwards;
           opacity: 1;
@@ -1201,6 +1178,9 @@
           font-size: 24px;
           font-weight: 500;
           line-height: 33px;
+          b {
+            font-weight: 700;
+          }
         }
         .frame-wrap {
           display: flex;
@@ -1670,6 +1650,30 @@
       background-color: #fff;
     }
     .section.popularItem {
+      .title-text-wrap {
+        display: flex;
+        opacity: 0;
+          &::before {
+            display: block;
+            content: "";
+            width: 60px;
+            height: 60px;
+            margin-right: 20px;
+            background-image: url('../images/giftimall/icon/icon-clock.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 60px 60px;
+          }
+        .title-text {
+          line-height: 1.2;
+          span {
+            color: #ff528f;
+          }
+        }
+      }
+      .sub-text {
+        padding-left: 80px;
+      }
       .tab-wrap {
         .popularItem-slide {
           padding-bottom: 0;
@@ -1682,11 +1686,10 @@
           padding-top: 70px;
 
           .title-text {
-            margin: 24px 0 12px;
+            margin: 8px 0 12px;
             font-size: 40px;
           }
         }
-        
       }
     }
 
@@ -2466,25 +2469,27 @@
     &.gdn {
       .section.popularItem {
         padding-top: 60px;
-        .icon-wrap {
-          height: 50px;
-          font-size: 17px;
-          
-          p::before {
-            width: 17px;
-            height: 17px;
-
-            background-size: 17px 17px;
-          }
-        }
         .tab-wrap {
           .text-wrap {
+            .title-text-wrap {
+              flex-direction: column;
+              align-items: center;
+              &::before {
+                width: 46px;
+                height: 46px;
+                margin: 0 auto 22px;
+                background-size: cover;
+              }
+            }
             padding-top: 0;
             .title-text {
-             font-size: 34px;
-           }
+              margin: 0 0 12px;
+              font-size: 28px;
+            }
+            .sub-text {
+              padding-left: 0;
+            }
           }
-
           .slide-wrap.type2 .popularItem-slide {
             width: 100%;
             padding-bottom: 20px;
@@ -2528,10 +2533,6 @@
               }
             }
           }
-        }
-          
-        &.animation {
-          
         }
       }
     }

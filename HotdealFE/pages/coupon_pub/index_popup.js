@@ -61,7 +61,7 @@ const Index = () => {
             <HotBrand />
             {/* 적립 프로모션 배너 */}
             <RewardBanner />
-            {/* 사용하면 적립받아요 */}
+            {/* 오늘의 혜택 놓치지 마세요 */}
             <ReturnPoint />
             {/* 혹시 이 상품 찾으세요? */}
             <MaybeCoupon

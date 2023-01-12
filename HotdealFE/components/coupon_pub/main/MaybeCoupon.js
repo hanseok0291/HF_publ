@@ -8,7 +8,6 @@ const MaybeCouponWrap = (props) => {
     <>
       <SwiperItem
         title={props.pageTitle}
-        moreBtnShow="true"
         labelShow="true"
       />
       <div

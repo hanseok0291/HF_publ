@@ -31,7 +31,7 @@ const Index = () => {
   const [isShowBackBtn, setShowBackBtn] = useState(false);
   const [isShowSearchBtn, setShowSearchBtn] = useState(true);
   const [isShowMypageBtn, setShowMypageBtn] = useState(true);
-	const [showMainPopup, setShowMainPopup] = useState(true);
+  const [showMainPopup, setShowMainPopup] = useState(true);
 
   // useEffect(() => {
   // 	if (termsYn === "N") {
@@ -55,8 +55,10 @@ const Index = () => {
           {/* 카테고리 메뉴 */}
           <Category />
           <div className={`${styleCommon.containerWrap} ${styleCommon.main}`}>
+            {/* 요즘 잘 나가는 상품 */}
+            <PopularCoupon />
             {/* 자동 롤링 배너 */}
-            <RollingCoupon />
+            {/* <RollingCoupon /> */}
             {/* 적립 프로모션 배너 */}
             <RewardBanner />
             {/* 특별한 혜택 놓치지 마세요 */}
@@ -74,14 +76,12 @@ const Index = () => {
             {/* <PromotionBanner /> */}
             {/* 지금만 이 가격 선착순 특가 */}
             <LimitCoupon />
-            {/* 요즘 잘 나가는 상품 */}
-            <PopularCoupon />
           </div>
           <div
             className={`${styleToast.toastPopup} ${styleToast.toastPopup2}`}
             style={{
               bottom: `0`,
-							display: `none`
+              display: `none`,
             }}
           >
             <div className={`${styleToast.toastBox}`}>
@@ -100,13 +100,13 @@ const Index = () => {
               </div>
             </div>
           </div>
-					{showMainPopup && (
-						<MainPopup
-							onClose={() => {
-								setShowMainPopup(!showMainPopup);
-							}}
-						/>
-					)}
+          {showMainPopup && (
+            <MainPopup
+              onClose={() => {
+                setShowMainPopup(!showMainPopup);
+              }}
+            />
+          )}
           <Footer />
         </div>
       </Layout>

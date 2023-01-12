@@ -8,6 +8,7 @@ import styleDefaultLayout from "../../../styles/coupon_pub/DefaultLayout.module.
 // //components
 import Layout from "../../../components/common/Layout";
 import Header from "../../../components/coupon_pub/common/Header";
+import Footer from "../../../components/coupon_pub/common/Footer";
 
 import BuyMain from "../../../components/coupon_pub/mypage/BuyMain";
 
@@ -29,9 +30,10 @@ const Index = () => {
           isShowMypageBtn={isShowMypageBtn}
         />
         <div
-          className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap}`}
+          className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap} ${styleDefaultLayout.footerWrap}`}
         >
           <BuyMain />
+          <Footer />
         </div>
       </Layout>
     </>

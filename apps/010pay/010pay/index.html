@@ -2,211 +2,57 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
-    />
-    <meta
-      name="format-detection"
-      content="telephone=no, address=no, email=no"
-    />
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no, address=no, email=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <title>010PAY(내통장결제) 퍼블리싱 안내</title>
-    <link
-      rel="stylesheet"
-      href="resources/fonts/pretendard/pretendard-subset.min.css"
-    />
+    <link rel="stylesheet" href="resources/fonts/pretendard/pretendard-subset.min.css">
     <script src="resources/js/jquery-1.8.3.min.js"></script>
 
     <style>
-      html,
-      body {
-        width: 100%;
-        height: 100%;
-      }
-      p {
-        margin: 0.25em 0;
-      }
-      body {
-        margin: 0;
-        padding: 0;
-        background-color: #fff;
-        line-height: 1.4;
-        letter-spacing: -0.03em;
-        color: #151515;
-      }
-      body,
-      table {
-        font-family: "Pretendard", "Malgun Gothic", "Dotum",
-          "Apple SD Gothic Neo", sans-serif;
-        font-size: 12px;
-      }
-      header {
-        margin: 0;
-        padding: 20px 20px;
-        border-bottom: 1px solid #e3e3e3;
-      }
-      header h1 {
-        margin: 0 0 10px;
-        font-size: 24px;
-        color: #ff7e00;
-      }
-      header p {
-        line-height: 1.4;
-      }
-      .main {
-        position: relative;
-        padding: 0 20px 20px;
-      }
-      h2 {
-        margin: 30px 0 10px;
-        font-size: 18px;
-      }
-      small {
-        font-size: 90% !important;
-        color: #777;
-      }
-      ul {
-        margin: 0;
-        padding-left: 1.667em;
-        list-style: disc;
-      }
-      ul ul {
-        margin-top: 0.333em;
-        list-style: circle;
-      }
-      li {
-        margin-top: 0.333em;
-      }
-      ul li:first-child {
-        margin-top: 0;
-      }
-      a {
-        color: #5e8cc0;
-      }
-      a,
-      a:hover,
-      a:active,
-      a:focus {
-        text-decoration: underline;
-      }
-      .strong {
-        font-weight: 700;
-      }
-      .table-responsive {
-        width: 100%;
-        overflow-x: auto;
-        border: 1px solid #ddd;
-      }
-      .table {
-        margin: 0;
-        min-width: 800px;
-        border-collapse: collapse;
-        width: 100%;
-        border: 0;
-      }
-      .table th,
-      .table td {
-        padding: 5px 10px;
-        height: auto;
-        border: 1px solid #ddd;
-      }
-      .table th {
-        background: #f1f2f4;
-        color: #151515;
-        font-weight: 400;
-        text-align: center;
-      }
-      .table .date,
-      .table .status {
-        text-align: center;
-      }
-      .well {
-        padding: 20px;
-        border: 2px solid #ddd;
-      }
-      .bg-info {
-        background: #dbf5ff;
-      }
-      .bg-success {
-        background: #e7fbe2;
-      }
-      .bg-success2 {
-        background: #dff5d8;
-      }
-      .bg-warning {
-        background: #ff9;
-      }
-      .bg-danger {
-        background: #ffe5e8;
-      }
-      .bg-wait {
-        background: #eee;
-        color: #888;
-      }
-      .del {
-        text-decoration: line-through;
-      }
-      code {
-        padding: 2px 4px;
-        background-color: #f9f2f4;
-        font-size: 96%;
-        font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-        color: #c7254e;
-      }
-      .text-primary {
-        color: #ff7e00;
-      }
-      .text-info {
-        color: #1275d6;
-      }
-      .text-danger {
-        color: #dc3545;
-      }
-      .text-success {
-        color: #28a745;
-      }
-      .text-minwise {
-        color: #b920f5;
-      }
-      .btn {
-        display: inline-block;
-        padding: 0.25em 0.5em;
-        border: 1px solid #5e8cc0;
-        border-radius: 0.5em;
-        background-color: transparent;
-        font-family: "Noto Sans KR";
-        font-size: 11px;
-        color: #5e8cc0;
-        line-height: 1.2;
-        cursor: pointer;
-      }
-      .flip {
-        position: relative;
-      }
-      .flip .flip-body {
-        display: none;
-      }
-      .flip.open .flip-body {
-        display: block;
-      }
-      .btn-flip-all:not(.open) .open {
-        display: inline;
-      }
-      .flip.open .btn-flip .open,
-      .btn-flip-all .open {
-        display: none;
-      }
-      .flip:not(.open) .btn-flip .close,
-      .btn-flip-all:not(.open) .close {
-        display: none;
-      }
-      .pull-left {
-        float: left;
-      }
-      .pull-right {
-        float: right;
-      }
+		html, body { width: 100%; height: 100%; }
+		p { margin: .25em 0; }
+		body { margin: 0; padding: 0; background-color: #fff; font-family: "Pretendard", "Malgun Gothic", "Dotum", "Apple SD Gothic Neo", sans-serif; font-size: 12px; line-height: 1.4; letter-spacing: -0.03em; color: #222; }
+		input, button, label { font-family: "Pretendard", "Malgun Gothic", "Dotum", "Apple SD Gothic Neo", sans-serif; }
+		header { margin: 0; padding: 20px 20px; border-bottom: 1px solid #ccc; }
+		header h1 { margin: 0 0 10px; font-size: 24px; font-weight: 700; color: #faa61a; }
+		header p { line-height: 1.4; }
+		.main { position: relative; padding: 0 20px 20px; }
+		h2 { margin: 30px 0 10px; font-size: 18px; font-weight: 800; }
+		small { font-size: 90% !important; color: #9a9a9a; }
+		ul { margin: 0; padding-left: 1.667em; list-style: disc; }
+		ul ul { margin-top: .333em; list-style: circle; }
+		li { margin-top: .333em; }
+		ul li:first-child { margin-top: 0; }
+		a { color: #1d8dd8; }
+		a, a:hover, a:active, a:focus { text-decoration: underline; }
+		.strong { font-weight: 500; }
+		.table-responsive { width: 100%; overflow-x: auto; border: 1px solid #ddd; }
+		.table { margin: 0; min-width: 550px;  border-collapse: collapse; width: 100%; font-size: 12px; border: 0; }
+		.table th, .table td {  padding: 5px 10px; height: auto; border: 1px solid #ddd; }
+		.table th { background: #f1f2f4; color: #222; font-weight: 500; text-align: center; }
+		.table .date, .table .status { text-align: center; }
+		.well { padding: 20px; border: 2px solid #ddd; }
+		.bg-info { background: #dbf5ff; }
+		.bg-success { background: #e7fbe2; }
+		.bg-warning { background: #ff9; }
+		.bg-danger { background: #ffe5e8; }
+		.bg-wait { background: #eee; color: #888; }
+		.del { text-decoration: line-through; }
+		code { padding: 2px 4px; background-color: #f9f2f4; font-size: 96%; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; color: #c7254e; }
+		.text-primary { color: #faa61a; }
+		.text-info { color: #1d8dd8; }
+		.text-danger { color: #ff4f51; }
+		.text-success { color: #28a745; }
+		.badge { display: inline-block; padding: 3px 4px; border-radius: 2px; background-color: #45a3e3; font-size: 92%; line-height: 1.1; color: #fff; }
+		.badge-primary { background-color: #faa61a; }
+		.badge-wait { background-color: #b7b7b7; }
+		.btn { display: inline-block; padding: .25em .5em; border: 1px solid #5e8cc0; border-radius: .5em; background-color: transparent; font-size: 11px; color: #5e8cc0; line-height: 1.2; }
+		.flip { position: relative; }
+		.flip .flip-body { display: none; }
+		.flip.open .flip-body { display: block; }
+		.flip.open .btn-flip .open { display: none; }
+		.flip:not(.open) .btn-flip .close { display: none; }
     </style>
 
     <script>
@@ -261,7 +107,7 @@
   <body>
     <header>
       <h1>010PAY(내통장결제) 퍼블리싱 안내</h1>
-      <p>최종 수정일 : 2022-12-20</p>
+      <p>최종 수정일 : 2023-01-11</p>
     </header>
 
     <div class="main">
@@ -2536,7 +2382,7 @@
               <td class="date">●</td>
               <td class="date">X</td>
               <td class="date">●</td>
-              <td class="date">2022-11-01</td>
+              <td class="date">2023-01-11</td>
               <td class="status">완료</td>
               <td>
                 <div class="flip">
@@ -2574,7 +2420,7 @@
                     </button>
                   </p>
                   <ul>
-                    
+                    <li class="text-success">2023-01-11 : 이용내용 바로 진입 시 nav바 제거 후 여백 조정에 필요한 스타일(.menu-direct) 추가</li>
                   </ul>
                 </div>
               </td>
@@ -5459,11 +5305,12 @@
               <td class="date">-</td>
               <td class="date">-</td>
               <td class="date">2022-12-20</td>
-              <td class="status">검토 요청</td>
+              <td class="status">완료</td>
               <td>
                 <div class="flip">
                   <ul class="flip-body">
 										<li>2022-12-20 : 화면 추가</li>
+										<li>2023-01-04 : 혜택상자 팝업 추가</li>
                   </ul>
                   <p>
                     <button type="button" class="btn btn-flip">
@@ -6013,7 +5860,7 @@
               <td class="date">-</td>
               <td class="date">-</td>
               <td class="date">2022-12-08</td>
-              <td class="status">검토 요청</td>
+              <td class="status">완료</td>
               <td>
                 <div class="flip">
                   <ul class="flip-body">
@@ -6077,7 +5924,7 @@
               <td class="date">-</td>
               <td class="date">-</td>
               <td class="date">2022-12-08</td>
-              <td class="status">검토 요청</td>
+              <td class="status">완료</td>
               <td>
                 <div class="flip">
                   <ul class="flip-body">
@@ -6088,6 +5935,7 @@
                     <li>2022-06-27 : 문구, 이벤트 변경(심의 관련)</li>
                     <li>2022-07-13 : 사명 변경</li>
                     <li>2022-09-07 : 유의사항 추가</li>
+                    <li>2022-12-08 : 기간 및 내용 수정</li>
                   </ul>
                   <p>
                     <button type="button" class="btn btn-flip">
@@ -6096,7 +5944,6 @@
                     </button>
                   </p>
                   <ul>
-                    <li class="text-danger">2022-12-08 : 기간 및 내용 수정</li>
                   </ul>
                 </div>
               </td>
@@ -6349,7 +6196,7 @@
               <td class="date">X</td>
               <td class="date">X</td>
               <td class="date">2022-12-08</td>
-              <td class="status">검토 요청</td>
+              <td class="status">완료</td>
               <td>
                 <div class="flip">
                   <ul class="flip-body">
@@ -6359,6 +6206,7 @@
                     <li>2022-09-07 : 유의사항 추가</li>
                     <li>2022-09-26 : 하단 텍스트 수정</li>
                     <li>2022-10-25 : 문구 변경</li>
+                    <li>2022-12-08 : 기간 및 내용 변경</li>
                   </ul>
                   <p>
                     <button type="button" class="btn btn-flip">
@@ -6367,7 +6215,6 @@
                     </button>
                   </p>
                   <ul>
-                    <li class="text-danger">2022-12-08 : 기간 및 내용 변경</li>
                   </ul>
                 </div>
               </td>
@@ -6390,6 +6237,7 @@
                   <ul class="flip-body">
                     <li>2022-06-24 : 화면 추가</li>
                     <li>2022-07-08 : 문구 변경(스텝, 유의사항)</li>
+                    <li>2022-12-05 : 문구 변경(이벤트 기간)</li>
                   </ul>
                   <p>
                     <button type="button" class="btn btn-flip">
@@ -6398,7 +6246,6 @@
                     </button>
                   </p>
                   <ul>
-                    <li class="text-success">2022-12-05 : 문구 변경(이벤트 기간)</li>
                   </ul>
                 </div>
               </td>

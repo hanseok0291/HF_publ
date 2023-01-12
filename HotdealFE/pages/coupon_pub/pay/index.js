@@ -23,7 +23,7 @@ const Index = () => {
   const [isShowBackBtn, setShowBackBtn] = useState(true);
   const [isShowSearchBtn, setShowSearchBtn] = useState(false);
   const [isShowMypageBtn, setShowMypageBtn] = useState(false);
-  console.log(new Date())
+  
   return (
     <>
       <Layout>

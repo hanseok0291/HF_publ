@@ -17,6 +17,7 @@ import Footer from "../../../components/coupon_pub/common/Footer";
 import ModalRecent from "../../../components/coupon_pub/common/Modal/ModalRecent";
 import ModalEnterType4 from "../../../components/coupon_pub/common/modal/ModalEnterType4";
 import ModalEnterType5 from "../../../components/coupon_pub/common/modal/ModalEnterType5";
+import ToastError from "../../../components/coupon_pub/common/toast/ToastError";
 
 const Index = () => {
   //헤더 아이콘 디폴트 세팅
@@ -253,6 +254,7 @@ const Index = () => {
           </div>
         </div>
         <div className={`${styleCommon.bottomFixed} ${stylePay.bottomFixed}`}>
+          <ToastError errorMsg="'내정보' 입려 시 선물이 불가합니다."/>
           {/* 비활성 버튼 */}
           <button
             type="button"

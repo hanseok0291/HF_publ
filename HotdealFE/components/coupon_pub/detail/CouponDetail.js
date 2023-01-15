@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import styleCommon from "../../../styles/coupon_pub/Common.module.css";
 import styleSlick from "../../../styles/coupon_pub/Slick.module.css";
 import styleCouponDetail from "../../../styles/coupon_pub/CouponDetail.module.css";
+import ToastError from "../common/toast/ToastError";
 
 export default function CouponDetail({setDeadlinFixed }) {
   const [isTabTop, setTabdTop] = useState(false);
@@ -75,6 +76,11 @@ export default function CouponDetail({setDeadlinFixed }) {
               className={`${styleCouponDetail.imgLabel} ${styleCouponDetail.type2}`}
             >
               보유 포인트로 0원
+            </p>
+            <p
+              className={`${styleCouponDetail.imgLabel} ${styleCouponDetail.type3}`}
+            >
+              최저가 선물전
             </p>
           </div>
           <div

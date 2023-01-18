@@ -14,7 +14,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <link rel="stylesheet" href="../../css/jquery-ui.css" />
     <link rel="stylesheet" href="../../css/owl.carousel.min.css" />
-    <link rel="stylesheet" href="../../css/common.css?ezauthver=5.0" />
+    <link rel="stylesheet" href="../../css/common.css?ezauthver=6.0" />
+
+		<link rel="stylesheet" href="../../css/common.css">
+		<link rel="stylesheet" href="../../css/layout.css">
+		<link rel="stylesheet" href="../../css/queries.css">
     <!--[if lt IE 9]>
       <script type="text/javascript" src="../../js/html5shiv.js"></script>
       <script type="text/javascript" src="../../js/respond.min.js"></script>
@@ -33,7 +37,7 @@
     <!-- form -->
     <form class="main_form" action="javascript: void(0);" autocomplete="off">
       <!-- wrap -->
-      <div id="wrap">
+			<div id="wrap" class="wrap">
         <!-- header -->
         <div id="header">
           <div class="container">
@@ -51,13 +55,12 @@
           <div class="container">
             <!-- headline -->
             <div class="headline">
-              <p class="top-text text-error"><i class="icon icon-error-circle"></i>첫 결제 이후 자동 결제됩니다.</p><!-- 1원 이상 정기결제 시-->
-              <p>
-                바이오일레븐에서<br />
-                <strong class="text-primary">2,000,000원</strong
+              <p> 
+                한국철도공사에서<br />
+                <strong class="text-orange">50,800원</strong
                 > 결제합니다.
               </p>
-              <p class="small">드시모네 5000 30포 외 2건</p>
+              <p class="small">한국철도공사</p>
             </div>
             <!-- //headline -->
           </div>
@@ -69,12 +72,31 @@
             <div class="container pay-wrap">
               <!-- 정보 입력 -->
               <div class="section pay-sec">
-                <!-- 0원 결제창 -->
-                <p class="top-text text-error"><i class="icon icon-error-circle"></i>아래 계좌를 ONE pay 내통장결제로 등록합니다.</p>
-                <div class="border-black">
+                <div class="bg-gray">
                   <ul class="form-type">
                     <li>
-                      <label class="label">등록 계좌</label>
+                      <label class="label">쿠폰 할인</label>
+                      <button type="button" class="usable-desc info-chg btn-icon">
+                        <span>사용가능 <span class="text-error font-weight-700">2</span></span><!-- 쿠폰 할인 적용 전 -->
+                        <span class="icon-angle-right-sm"></span>
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+                <!-- 기본형 -->
+                <div class="border-black">
+                  <ul class="form-type">
+                    <li class="discount">
+                      <label class="label"
+                        >머니 사용</label
+                      >
+                      <button id="useMoney" type="button" class="form-desc info-chg">
+                        <em class="price"><i>2,500</i>원</em>
+                        <span class="icon-angle-right-sm"></span>
+                      </button>
+                    </li>
+                    <li>
+                      <label class="label">계좌 충전</label>
                       <button
                           type="button"
                           id="account"
@@ -86,11 +108,37 @@
                         />
                         <em>895</em>
                       </button>
+                      <div class="form-desc">
+                        <em class="price text-primary"><i>78,000</i>원</em>
+                      </div>
                     </li>
                   </ul>
                 </div>
-                <!-- // 0원 결제창 -->
+                <!-- 기본형 -->
                 <ul class="check-type">
+                  <!-- 0월 결제 시 미노출 -->
+                  <li>
+                    <span class="checkbox square">
+                      <input
+                        type="checkbox"
+                        name="checkbox-receipt"
+                        id="checkbox-receipt"
+                        checked
+                      />
+                      <label for="checkbox-receipt">현금영수증 발급</label>
+                    </span>
+                    <span class="receipt">
+                      <i>010****1234</i>
+                      <button
+                        type="button"
+                        id="receipt"
+                        class="text-link info-chg"
+                      >
+                        변경
+                      </button>
+                    </span>
+                  </li>
+                  <!-- // 0월 결제 시 미노출 -->
                   <li>
                     <span class="checkbox square">
                       <input
@@ -103,11 +151,15 @@
                     </span>
                   </li>
                 </ul>
+                <button class="border-black point-info">
+                  <label class="label">전환 가능 <em class="text-error">카드 포인트 조회하기</em></label>
+                  <span class="icon-angle-right-sm"></span>
+                </button>
               </div>
               <!-- //정보 입력 -->
 
               <button type="button" id="send" class="btn">
-                1,000,000원 결제하기
+                80,000원 결제하기
               </button>
             </div>
             <!-- //container -->
@@ -436,5 +488,11 @@
       </div>
     </div>
     <!-- //common prompt -->
+    <script>
+      $("#modal-phone").on("focus", function(){
+        console.log($('body').height());
+        $("html, body").scrollTop(200);
+      })
+    </script>
   </body>
 </html>

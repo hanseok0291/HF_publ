@@ -21,7 +21,7 @@ const MainPopup = ({ title, cancle = "취소", confirm = "확인", content, onCl
     slidesToScroll: 1,
     initialSlide: 0,
     arrows: false,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 3000
   };
 
@@ -36,8 +36,8 @@ const MainPopup = ({ title, cancle = "취소", confirm = "확인", content, onCl
           </div>
 					
           <Slider {...settings}>
-					<div>
-							<button type="button" className={styleModal.modalClick}>
+						<div>
+							<div type="button" className={styleModal.modalClick}>
 								<div className={styleModal.modalBody}>
 									<h3 className={`${styleModal.popupTitle} ${styleModal.popupTitle2}`}>
 										<p className={styleModal.popupSubTitle}>베스트 상품만 모았어요<i className={`${styleCommon.italic}`}>!</i></p>
@@ -58,10 +58,10 @@ const MainPopup = ({ title, cancle = "취소", confirm = "확인", content, onCl
 										선물하러 가기
 									</button>
 								</div>
-							</button>
+							</div>
 						</div>
 						<div>
-							<button type="button" className={styleModal.modalClick}>
+							<div type="button" className={styleModal.modalClick}>
 								<div className={styleModal.modalBody}>
 									<h3 className={`${styleModal.popupTitle} ${styleModal.popupTitle2}`}>
 										<p className={styleModal.popupSubTitle}>망설이면 품절<i className={`${styleCommon.italic}`}>!</i></p>
@@ -83,7 +83,7 @@ const MainPopup = ({ title, cancle = "취소", confirm = "확인", content, onCl
 										지금 구경하기
 									</button>
 								</div>
-							</button>
+							</div>
 						</div>
 					</Slider>
         </div>

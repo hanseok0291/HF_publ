@@ -34,19 +34,18 @@ const MainPopup = ({ title, cancle = "취소", confirm = "확인", content, onCl
           <div className={styleModal.modalHeader}>
 						<button type="button" onClick={btnClose} className={`${styleCommon.btnIcon} ${styleModal.btnClose} ${styleModal.modalClose}`}>닫기</button>
           </div>
-					
           <Slider {...settings}>
 						<div>
-							<div type="button" className={styleModal.modalClick}>
+							<div className={styleModal.modalClick}>
 								<div className={styleModal.modalBody}>
 									<h3 className={`${styleModal.popupTitle} ${styleModal.popupTitle2}`}>
-										<p className={styleModal.popupSubTitle}>베스트 상품만 모았어요<i className={`${styleCommon.italic}`}>!</i></p>
-										<strong className={styleModal.popupMainTitle}>새해맞이 <br /> <span className={styleCommon.highlight}>최저가 선물전</span></strong>
+										<p className={styleModal.popupSubTitle}>발렌타인데이</p>
+										<strong className={styleModal.popupMainTitle}>Special Gift <br />달콤한 <span className={styleCommon.highlight}>20% 할인</span></strong>
 									</h3>
 									<p className={styleModal.modalImgBox}>
 										<img
-											src="../images/coupon/popup/newYear.png"
-											alt="새해맞이 최저가 선물전"
+											src="../images/coupon/popup/valentine.png"
+											alt="Special Gift 달콤한 20% 할인"
 										/>
 									</p>
 								</div>
@@ -55,13 +54,13 @@ const MainPopup = ({ title, cancle = "취소", confirm = "확인", content, onCl
 										type="button"
 										className={`${styleModal.btn} ${styleModal.btnFull}`}
 									>
-										선물하러 가기
+										최저가에 선물하기
 									</button>
 								</div>
 							</div>
 						</div>
 						<div>
-							<div type="button" className={styleModal.modalClick}>
+							<div className={styleModal.modalClick}>
 								<div className={styleModal.modalBody}>
 									<h3 className={`${styleModal.popupTitle} ${styleModal.popupTitle2}`}>
 										<p className={styleModal.popupSubTitle}>망설이면 품절<i className={`${styleCommon.italic}`}>!</i></p>

@@ -22,7 +22,7 @@ import PromotionBanner from "../../components/coupon_pub/main/PromotionBanner";
 import LimitCoupon from "../../components/coupon_pub/main/LimitCoupon";
 import RewardBanner from "../../components/coupon_pub/main/RewardBanner";
 import MainPopup from "../../components/coupon_pub/common/Modal/MainPopup";
-import ModalEnter from "../../components/coupon_pub/common/Modal/ModalEnter";
+import ModalEnter from "../../components/coupon_pub/common/modal/ModalEnter";
 
 const Index = () => {
   const router = useRouter();
@@ -104,6 +104,11 @@ const Index = () => {
           {showMainPopup && (
             <ModalEnter
             />
+            // <MainPopup
+						// 	onClose={() => {
+						// 		setShowMainPopup(!showMainPopup);
+						// 	}}
+						// />
           )}
           <Footer />
         </div>

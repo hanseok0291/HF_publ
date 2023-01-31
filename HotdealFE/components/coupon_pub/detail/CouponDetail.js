@@ -20,8 +20,6 @@ export default function CouponDetail({setDeadlinFixed }) {
   const dropDownRef = useRef();
 
   const handleScroll = () => {
-    
-
     if (imgRef.current !== null) {
       if (imgRef.current.getBoundingClientRect().bottom < 58) {
         setDeadlinFixed(true);

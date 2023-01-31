@@ -1,4 +1,4 @@
-@charset "UTF-8";@import url(../fonts/pretendard/pretendard-subset.min.css); @import url(../fonts/kanit/kanit.min.css); @import url(../fonts/scdream/scdream.min.css); @import url(../fonts/gmarketsans/gmarketsans.min.css); @import url(../fonts/notosanskr/notosanskr.min.css);/**
+@charset "UTF-8"; @import url(../fonts/pretendard/pretendard-subset.min.css); @import url(../fonts/kanit/kanit.min.css); @import url(../fonts/scdream/scdream.min.css); @import url(../fonts/gmarketsans/gmarketsans.min.css); @import url(../fonts/notosanskr/notosanskr.min.css); /**
 * ====================== TABLE OF INDEX ======================
 * - #RESET
 * - #FORM
@@ -136,7 +136,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
 .checkbox > input + label { position: relative; display: block; padding: 3px 0 3px 28px; font-size: 13px; line-height: 20px; color: #151515; font-weight: 700; } 
 .checkbox > input + label:before { content: ''; position: absolute; top: 4px; left: 3px; display: block; width: 16px; height: 10px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; -webkit-transform: rotate(-50deg); transform: rotate(-50deg); z-index: 2; } /* check icon */
 .exStyle .checkbox > input + label:before { content: ''; position: absolute; top: 9px; left: 5px; display: block; width: 10px; height: 7px; border: none; transform: rotate(0); z-index: 2; background-image: url("../images/icon/check-round.svg") } 
-.checkbox > input + label:after { content: ''; position: absolute; top: 3px; left: 0; display: block; width: 20px; height: 20px; border-radius: 50%; background-color: #e7e7e7; } /* circle */
+.checkbox > input + label:after { content: ''; position: absolute; top: 50%; left: 0; transform: translateY(-50%); display: block; width: 20px; height: 20px; border-radius: 50%; background-color: #e7e7e7; } /* circle */
 .exStyle.checkbox > input + label:after { content: ''; position: absolute; top: 3px; left: 0; display: block; width: 20px; height: 20px; border-radius: 50%; background-color: #dadada; } /* circle */
 .checkbox.child > input + label { font-size: 12px; color: #575757; font-weight: 400; } 
 .checkbox.child > input + label:before { border-color: #e1e1e1; } 
@@ -148,12 +148,17 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
 .exStyle .checkbox.square > input + label:after { border-radius: 4px; } 
 .checkbox.square2 > input + label { padding-left: 26px; font-size: 15px; color: #151515; font-weight: 400; } 
 .checkbox.square2 > input + label:before { display: none; } 
-.checkbox.square2 > input + label:after { border: 0; border-radius: 6px; background: #d5d5d5 url("../images/icon/check.svg?ver=20221012") 0 0 / 100% no-repeat; } 
+.checkbox.square2 > input + label:after { border: 0; border-radius: 0; background: url("../images/icon/check-square2-off.svg") 0 0 / 100% no-repeat; } 
 .checkbox.square.white > input + label:before { border-color: #f1f2f4; } 
 .checkbox.square.white > input + label:after { background-color: #fff; } 
+.checkbox.single > input + label { padding-left: 22px; font-size: 15px; color: #151515; font-weight: 400; } 
+.checkbox.single > input + label:before { display: none; } 
+.checkbox.single > input + label:after { width: 16px; height: 16px; border: 0; border-radius: 0; background: url("../images/icon/check-single-off.svg") 0 0 / 100% no-repeat; } 
 /* checked */
 .checkbox > input:checked + label:after,
 .checkbox.square.white > input:checked + label:after { background-color: #151515; } 
+.checkbox.square2 > input:checked + label:after { background: url("../images/icon/check-square2-on.svg") 0 0 / 100% no-repeat; } 
+.checkbox.single > input:checked + label:after { background: url("../images/icon/check-single-on.svg") 0 0 / 100% no-repeat; } 
 .checkbox.child > input:checked + label:before { border-color: #151515; } 
 .checkbox.child > input:checked + label:after { background-color: transparent; } 
 .checkbox > input + label.text-gray { font-size: 14px; } 
@@ -423,7 +428,7 @@ body > form.main_form, body > div, body > div > form.main_form { width: 100%; he
 .icon-bg:before,
 .icon-bg:after,
 .icon-times-circle:after,
-.icon-times-circle:before { display: none; background-repeat: no-repeat; background-position: center; bqackground-size: 100%; } 
+.icon-times-circle:before { display: none; background-repeat: no-repeat; background-position: center; background-size: 100%; } 
 .icon-times-circle { width: 18px; height: 18px; background-image: url("../images/icon/times-circle-gray.svg?ver=20221012") !important; } 
 [class|="icon-circle"] { font-size: 0; text-indent: -100000px; } 
 .icon-circle-010 { width: 16px; height: 16px; background-image: url("../images/icon/circle-010.svg?ver=20221012") !important; } 
@@ -655,7 +660,7 @@ body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer { padding: 0 10px 
 .modal-banklist .modal-body .btn-close:before { content: ''; position: absolute; top: 16px; left: 50%; margin-left: -18px; width: 36px; height: 5px; border-radius: 2.5px; background-color: #e8e8e8; } 
 .modal-slide .modal-body .btn-close:before,
 .modal-banklist .modal-body .btn-close:before { display: none; } 
-.modal-slide .modal-body .btn-close.btn-icon { position: absolute; top: 10px; left: auto; right: 10px; width: 30px; height: 30px; } /* 우측 상단 X 버튼 */
+.modal-slide .modal-body .btn-close.btn-icon { position: absolute; top: 16px; left: auto; right: 16px; width: 30px; height: 30px; } /* 우측 상단 X 버튼 */
 .modal-slide .modal-body .btn-close.btn-icon .icon-times { height: 30px; } 
 .modal-slide .modal-body .btn-close.btn-icon:before { display: none; } 
 .modal-slide.exStyle .modal-body .pay-sec .form-type li { flex-direction: column; } 
@@ -1538,8 +1543,8 @@ to { width: 100%; }
 .wrap-app .section-info .info-title { margin-bottom: 10px; } 
 .wrap-app .section-info .info-title .icon-info-circle { vertical-align: .05em; } 
 /* modal */
-.modal-app.modal .btn-close.btn-icon { z-index: 2; width: 58px; height: 58px; background: url("../images/icon/close.svg?ver=20221012") center / 18px no-repeat; font-size: 0; } 
-.modal-app.modal-slide .modal-body { padding: 45px 0 15px; } 
+.modal-app.modal .btn-close.btn-icon { z-index: 2; width: 28px; height: 28px; background: url("../images/icon/close.svg?ver=20221012") center / cover no-repeat; font-size: 0; } 
+.modal-app.modal-slide .modal-body { top: 1px; padding: 45px 0 15px; } 
 .modal-app.modal-slide .modal-footer { height: auto; padding: 20px; } 
 .modal-app.modal-slide .modal-footer .btn { border-radius: 10px; font-size: 18px; } 
 .modal-app .modal-headline { margin-bottom: 30px; font-size: 15px; color: #151515; text-align: center; } 
@@ -1665,16 +1670,17 @@ to { width: 100%; }
 .wrap-app.guide.benefit .partner-area .rolling-list li { width: 90px; height: 90px; -webkit-box-shadow: 0 2px 5px rgba(173, 183, 102, .15); box-shadow: 0 2px 5px rgba(173, 183, 102, .15); } 
 .wrap-app.guide .section-list { background-color: #fff; } 
 .wrap-app.guide .section-list .guide-list a { display: block; font-size: 17px; line-height: 65px; background: url("../images/icon/arrow-right-bold.svg?ver=20221012") center right 20px / 6px 10px no-repeat; } 
-.wrap-app.guide .section-charge { padding: 30px 0 24px; } 
-.wrap-app.guide .section-charge .list-wrap li { margin-top: 15px; background-color: #fff; border-radius: 13px; } 
-.wrap-app.guide .section-charge .list-wrap li:first-child { margin-top: 10px; } 
-.wrap-app.guide .section-charge .list-wrap li a { display: flex; align-items: center; padding: 11px 13px; font-size: 14px; } 
-.wrap-app.guide .section-charge .list-wrap li a::before { display: block; content: ""; width: 43px; height: 43px; margin-right: 13px; background-size: cover; background-repeat: no-repeat; } 
-.wrap-app.guide .section-charge .list-wrap li:nth-child(1) a::before { background-image: url("../images/benefit/guide-charge1.png"); } 
-.wrap-app.guide .section-charge .list-wrap li:nth-child(2) a::before { background-image: url("../images/benefit/guide-charge2.png"); } 
-.wrap-app.guide .section-charge .list-wrap li:nth-child(3) a::before { background-image: url("../images/benefit/guide-charge3.png"); } 
-.wrap-app.guide .section-charge .list-wrap li:nth-child(4) a::before { background-image: url("../images/benefit/guide-charge4.png"); } 
-.wrap-app.guide .section-cs { padding: 0 0 30px; } 
+.wrap-app.guide .section-cs { padding: 30px 0; } 
+.wrap-app.guide .section-cs .container:first-child { margin-bottom: 24px; } 
+.wrap-app.guide .section-cs .container:last-child { margin-bottom: 0; } 
+.wrap-app.guide .section-cs .list-wrap li { margin-top: 15px; background-color: #fff; border-radius: 13px; } 
+.wrap-app.guide .section-cs .list-wrap li:first-child { margin-top: 10px; } 
+.wrap-app.guide .section-cs .list-wrap li a { display: flex; align-items: center; padding: 11px 13px; font-size: 14px; } 
+.wrap-app.guide .section-cs .list-wrap li a::before { display: block; content: ""; width: 43px; height: 43px; margin-right: 13px; background-size: cover; background-repeat: no-repeat; } 
+.wrap-app.guide .section-cs .list-wrap li:nth-child(1) a::before { background-image: url("../images/benefit/guide-charge1.png"); } 
+.wrap-app.guide .section-cs .list-wrap li:nth-child(2) a::before { background-image: url("../images/benefit/guide-charge2.png"); } 
+.wrap-app.guide .section-cs .list-wrap li:nth-child(3) a::before { background-image: url("../images/benefit/guide-charge3.png"); } 
+.wrap-app.guide .section-cs .list-wrap li:nth-child(4) a::before { background-image: url("../images/benefit/guide-charge4.png"); } 
 .wrap-app.guide .section-cs .section-title { font-size: 15px; } 
 .wrap-app.guide .section-cs .section-desc { margin-bottom: 12px; line-height: 15px; } 
 .wrap-app.guide .section-cs .section-desc .title:after { content: ''; display: inline-block; margin: 0 6px 0 10px; width: 1px; height: 15px; background-color: #c9c9c9; vertical-align: top; } 
@@ -3307,4 +3313,4 @@ body > .layout-payment form.main_form { width: 100%; height: 100%; }
 .facebook-passbook #content .login-form-wrap .banner-wrap { display: flex; justify-content: space-between; align-items: center; position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); z-index: 0; width: 100%; max-width: 700px; height: 105px; padding: 0 12px 0 22px; text-align: center; background-color: #FBFFDF; } 
 .facebook-passbook #content .login-form-wrap .banner-wrap::after { display: block; content: ""; width: 130px; height: 94px; background: url('../images/icon-facebook-banner.png') 0 / 130px 94px no-repeat; } 
 .facebook-passbook #content .login-form-wrap .banner-wrap p { color: #151515; text-align: left; letter-spacing: -0.025em; } 
-.facebook-passbook #content .login-form-wrap .banner-wrap p span { font-size: 20px; } 
+.facebook-passbook #content .login-form-wrap .banner-wrap p span { font-size: 20px; }

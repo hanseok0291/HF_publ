@@ -101,15 +101,15 @@ const Index = () => {
               </div>
             </div>
           </div>
-          {/* {showMainPopup && (
+          {showMainPopup && (
             // <ModalEnter
             // />
-            // <MainPopup
-						// 	onClose={() => {
-						// 		setShowMainPopup(!showMainPopup);
-						// 	}}
-						// />
-          )} */}
+            <MainPopup
+							onClose={() => {
+								setShowMainPopup(!showMainPopup);
+							}}
+						/>
+          )}
           <Footer />
         </div>
       </Layout>

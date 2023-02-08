@@ -39,13 +39,13 @@ const MainPopup = ({ title, cancle = "취소", confirm = "확인", content, onCl
 							<div className={styleModal.modalClick}>
 								<div className={styleModal.modalBody}>
 									<h3 className={`${styleModal.popupTitle} ${styleModal.popupTitle2}`}>
-										<p className={styleModal.popupSubTitle}>발렌타인데이</p>
-										<strong className={styleModal.popupMainTitle}>Special Gift <br />달콤한 <span className={styleCommon.highlight}>20% 할인</span></strong>
+										<p className={styleModal.popupSubTitle}>두근두근 설레는 시작</p>
+										<strong className={styleModal.popupMainTitle}>신학기 <span className={styleCommon.highlight}>20% 할인</span></strong>
 									</h3>
 									<p className={styleModal.modalImgBox}>
 										<img
-											src="../images/coupon/popup/valentine.png"
-											alt="Special Gift 달콤한 20% 할인"
+											src="../images/coupon/popup/newSchool.png"
+											alt="신학기 20% 할인"
 										/>
 									</p>
 								</div>
@@ -55,31 +55,6 @@ const MainPopup = ({ title, cancle = "취소", confirm = "확인", content, onCl
 										className={`${styleModal.btn} ${styleModal.btnFull}`}
 									>
 										최저가에 선물하기
-									</button>
-								</div>
-							</div>
-						</div>
-						<div>
-							<div className={styleModal.modalClick}>
-								<div className={styleModal.modalBody}>
-									<h3 className={`${styleModal.popupTitle} ${styleModal.popupTitle2}`}>
-										<p className={styleModal.popupSubTitle}>망설이면 품절<i className={`${styleCommon.italic}`}>!</i></p>
-										<strong className={styleModal.popupMainTitle}>놓치면 후회하는 <span className={styleCommon.highlight}>선착순 특가 </span>&nbsp;OPEN<i className={`${styleCommon.italic}`}>!</i>
-										</strong>
-									</h3>
-									<p className={styleModal.modalImgBox}>
-										<img
-											src="../images/coupon/popup/week_1.png"
-											alt="망설이면 품절! 놓치면 후회하는 선착순 특가 OPEN!"
-										/>
-									</p>
-								</div>
-								<div className={styleModal.modalFooter}>
-									<button
-										type="button"
-										className={`${styleModal.btn} ${styleModal.btnFull}`}
-									>
-										지금 구경하기
 									</button>
 								</div>
 							</div>

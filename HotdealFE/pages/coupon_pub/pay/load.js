@@ -86,16 +86,19 @@ const Index = () => {
                     </p>
                   </div>
                   {/* input 포커스 되면 ${stylePay.focus} 클래스 추가 */}
-                  <div
-                    className={`${stylePay.inputLoadBox} ${stylePay.focus} ${stylePay.error}`}
-                  >
-                    {/* <p className={`${stylePay.floatText}`}>충전 금액</p> */}
-                    <p className={`${stylePay.floatText} ${stylePay.error}`}>
+                  <div className={`${stylePay.inputLoadBox} ${stylePay.focus}`}>
+                    <p className={`${stylePay.floatText}`}>충전 금액</p>
+                    {/* <p className={`${stylePay.floatText} ${stylePay.error}`}>
                       18만원까지만 충전할 수 있습니다.
+                    </p> */}
+                    <p
+                      className={`${stylePay.placeholderText} ${stylePay.show}`}
+                    >
+                      만원 단위 입력
                     </p>
                     <input
                       type="tel"
-                      placeholder="만원 단위 입력"
+                      placeholder=""
                       className={`${stylePay.input} ${stylePay.inputLoad}`}
                     ></input>
                     <button

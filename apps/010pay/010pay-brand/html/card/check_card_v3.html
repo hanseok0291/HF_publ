@@ -512,15 +512,16 @@
             return false;
           }
           is_action = true;
+          var baseRoller = document.querySelector(".roller_list");
           var roller = document.querySelector(".roller");
+          roller.appendChild(baseRoller.cloneNode(true));
           roller.id = "roller1";
-
           var clone = roller.cloneNode(true);
           clone.id = "roller2";
           document.querySelector(".rollingbanner .wrap").appendChild(clone);
 
           document.querySelector("#roller1").style.left = "0px";
-          document.querySelector("#roller2").style.left = "2171px";
+          document.querySelector("#roller2").style.left = roller.offsetWidth+"px";
 
           $("#roller1").addClass("original");
           $("#roller2").addClass("clone");

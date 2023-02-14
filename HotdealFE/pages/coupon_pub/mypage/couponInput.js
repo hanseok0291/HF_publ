@@ -12,28 +12,32 @@ import Layout from "../../../components/common/Layout";
 import Header from "../../../components/coupon_pub/common/Header";
 import GiftCoupon from "../../../components/coupon_pub/mypage/GiftCoupon";
 import ModalAlert from "../../../components/coupon_pub/common/Modal/ModalAlert";
+import PromotionCoupon from "../../../components/coupon_pub/mypage/PromotionCoupon";
+import BuyTab from "../../../components/coupon_pub/mypage/BuyTab";
 
 const Index = () => {
   //헤더 아이콘 디폴트 세팅
   const [isShowBackBtn, setShowBackBtn] = useState(true);
   const [isShowSearchBtn, setShowSearchBtn] = useState(false);
   const [isShowMypageBtn, setShowMypageBtn] = useState(false);
-  const [isFixedTop, setFixedTop] = useState(false);
-  const [isFixedBottom, setFixedBottom] = useState(true);
+  const [content, setContent] = useState(0);
 
   return (
     <>
       <div className={styleGiftCoupon.wrap}>
         <Header
-          pageTitle="선물받은 쿠폰 등록"
+          pageTitle="쿠폰 코드 등록"
           isShowBackBtn={isShowBackBtn}
           isShowSearchBtn={isShowSearchBtn}
           isShowMypageBtn={isShowMypageBtn}
         />
         <div
-          className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap} ${styleGiftCoupon.conWrap}`}
+          className={`${styleDefaultLayout.wrap} ${styleGiftCoupon.conWrap}`}
         >
-          <GiftCoupon />
+          <BuyTab tabItem={["선물받은 쿠폰", "프로모션 쿠폰"]} setContent={setContent}/>
+          {
+            content === 0 ? <GiftCoupon /> : <PromotionCoupon />
+          }
         </div>
       </div>
     </>

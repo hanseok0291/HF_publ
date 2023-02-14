@@ -1,17 +1,37 @@
+import rhp from "html-react-parser";
 import styleModal from "../../../../styles/coupon_pub/Modal.module.css";
 
-const ModalAlert = ({ title, cancle = "취소", confirm = "확인", content }) => {
+const ModalAlert = ({ title, cancle = "취소", confirm = "확인", message }) => {
+  const TextLine = ({ text }) => {
+    return (
+      <>
+        {rhp(text)}
+        <br />
+      </>
+    )
+  }
   return (
     <div
       className={`${styleModal.modal} ${styleModal.modalCommon} ${styleModal.open}`}
     >
       <div className={styleModal.modalDialog}>
         <div className={styleModal.modalContent}>
-          <div className={styleModal.modalHeader}>
-            {title && <h3 className={styleModal.modalTitle}>{title}</h3>}
+          {title && title !== "" ? (
+            <div className={styleModal.modalHeader}>
+            <h3 className={styleModal.modalTitle}>{title}</h3>
           </div>
+          ): null}
+          
           <div className={styleModal.modalBody}>
-            <p>{content}</p>
+            <p>
+              {message &&
+                message
+                .replace(/\r/gi, "")
+                .split("\n")
+                .map((line, idx) => {
+                  return <TextLine key={idx} text={line}/>
+                })}
+            </p>
           </div>
           <div className={styleModal.modalFooter}>
             {cancle && (

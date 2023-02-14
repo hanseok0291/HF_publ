@@ -40,7 +40,7 @@ const StatusTab = () => {
   );
 };
 
-const BuyTab = ({ tabItem, tabLink }) => {
+const BuyTab = ({ tabItem, tabLink, setContent }) => {
   const [tabIndex, setTabIndex] = useState(0);
   const tabRef = useRef();
 
@@ -59,8 +59,9 @@ const BuyTab = ({ tabItem, tabLink }) => {
   };
 
   useEffect(() => {
+    setContent(tabIndex);
     window.addEventListener("scroll", scrollMove);
-  }, []);
+  }, [tabIndex]);
 
   return (
     <>
@@ -69,7 +70,7 @@ const BuyTab = ({ tabItem, tabLink }) => {
           return (
             <li
               className={tabIndex === idx ? "active" : undefined}
-              onClick={() => onTab(idx)}
+              onClick={() => {onTab(idx)}}
               key={idx}
             >
               {item}

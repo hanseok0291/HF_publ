@@ -20,7 +20,6 @@ const Index = () => {
   const [isShowBackBtn, setShowBackBtn] = useState(true);
   const [isShowSearchBtn, setShowSearchBtn] = useState(false);
   const [isShowMypageBtn, setShowMypageBtn] = useState(false);
-  const [content, setContent] = useState(0);
 
   return (
     <>
@@ -34,10 +33,9 @@ const Index = () => {
         <div
           className={`${styleDefaultLayout.wrap} ${styleGiftCoupon.conWrap}`}
         >
-          <BuyTab tabItem={["선물받은 쿠폰", "프로모션 쿠폰"]} setContent={setContent}/>
-          {
-            content === 0 ? <GiftCoupon /> : <PromotionCoupon />
-          }
+          <BuyTab tabItem={["선물받은 쿠폰", "프로모션 쿠폰"]}/>
+          <GiftCoupon /> {/* 선물받은 쿠폰 */}
+          {/* <PromotionCoupon /> 프로모션 쿠폰 */}
         </div>
       </div>
     </>

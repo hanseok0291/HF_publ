@@ -25,10 +25,10 @@ export default function HeaderMypage({
               type="button"
               className={`${styleCommon.icon} ${styleCommon.iconReg}`}
             >
-              선물 코드 등록
+              쿠폰 코드 등록
             </button>
             <span className={`${styleCommon.tooltip}`}>
-              지금 바로 사용해 보세요
+              등록 후 바로 사용 가능해요
               <i className={`${styleCommon.italic}`}>!</i>
             </span>
           </>

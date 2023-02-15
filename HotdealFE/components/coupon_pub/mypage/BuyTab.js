@@ -22,7 +22,7 @@ const StatusTab = () => {
   return (
     <>
       <div ref={tabRef} className={styleBuyMain.statusTabWrap}>
-        <div className={`${styleCommon.container} ${styleBuyMain.fixed}`}>
+        <div className={`${styleCommon.container} ${styleBuyMain.container}`}>
           <ul className={styleBuyMain.statusList}>
             <li className={`${styleBuyMain.statusItem} ${styleBuyMain.active}`}>
               <a href="#">전체</a>
@@ -33,6 +33,9 @@ const StatusTab = () => {
             <li className={styleBuyMain.statusItem}>
               <a href="#">PAY쿠폰</a>
             </li>
+            <li className={styleBuyMain.statusItem}>
+              <a href="#">프로모션 쿠폰</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -40,7 +43,7 @@ const StatusTab = () => {
   );
 };
 
-const BuyTab = ({ tabItem, tabLink, setContent }) => {
+const BuyTab = ({ tabItem, tabLink }) => {
   const [tabIndex, setTabIndex] = useState(0);
   const tabRef = useRef();
 
@@ -59,7 +62,6 @@ const BuyTab = ({ tabItem, tabLink, setContent }) => {
   };
 
   useEffect(() => {
-    setContent(tabIndex);
     window.addEventListener("scroll", scrollMove);
   }, [tabIndex]);
 

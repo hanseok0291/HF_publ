@@ -1,7 +1,18 @@
 /**
  * Design Script
  */
-
+// 모바일 위주로 구별
+var mobileKeyWords = new Array('iPhone', 'iPod', 'BlackBerry', 'Android', 'Windows CE', 'Windows CE;', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson', 'Mobile', 'Symbian', 'Opera Mobi', 'Opera Mini', 'IEmobile');
+  for (var word in mobileKeyWords) {
+    if (navigator.userAgent.match(mobileKeyWords[word]) != null) {
+			console.log('m');
+			$("body").removeClass("pc");
+   		break;
+  } else {
+		console.log('pc');
+		$("body").addClass("pc");
+	}
+}
 
 // 스크롤 시 헤더 동작
 // var didScroll;
@@ -176,37 +187,37 @@ $(function(){
 // 레이아웃, 토글, 슬라이드
 $(function(){
 	// 푸터 고정 토글
-	// function fixedFooter(){
-	// 	// 짧은 화면 푸터 고정
-	// 	var winHeight = $(window).innerHeight();
-	// 	var mainHeight = $("#content").height() + $("#header").innerHeight() + $("#footer").innerHeight();
-	// 	var gap = winHeight - mainHeight; // 콘텐츠가 짧은 경우
-	// 	if(gap > 0) {
-	// 		$("#footer").addClass("fixed");
-	// 	} else {
-	// 		$("#footer").removeClass("fixed");
-	// 	}
+	function fixedFooter(){
+		// 짧은 화면 푸터 고정
+		var winHeight = $(window).innerHeight();
+		var mainHeight = $("#content").height() + $("#header").innerHeight() + $("#footer").innerHeight();
+		var gap = winHeight - mainHeight; // 콘텐츠가 짧은 경우
+		if(gap > 0) {
+			$("#footer").addClass("fixed");
+		} else {
+			$("#footer").removeClass("fixed");
+		}
 
 	// 	// 푸터 고정 시 하단 여백 확보
-	// 	var fixFoot = $("#footer.fixed");
-	// 	if(fixFoot.length > 0){
-	// 		var fixFootHeight = $(fixFoot).innerHeight();
-	// 		$("#content").css("padding-bottom", fixFootHeight);
-	// 	} else {
-	// 		$("#content").css("padding-bottom", 0);
-	// 	}
-	// }
-	// fixedFooter();
+		var fixFoot = $("#footer.fixed");
+		if(fixFoot.length > 0){
+			var fixFootHeight = $(fixFoot).innerHeight();
+			$("#content").css("padding-bottom", fixFootHeight);
+		} else {
+			$("#content").css("padding-bottom", fixFootHeight);
+		}
+	}
+	fixedFooter();
 
 	// // 클릭 시 콘텐츠 높이 변경되는 경우
-	// $(".fixedFooterJS, #send").click(function(){
-	// 	fixedFooter();
-	// });
+	$(".fixedFooterJS, #send").click(function(){
+		fixedFooter();
+	});
 
 	// // 리사이즈
-	// $(window).resize(function(){
-	// 	fixedFooter();
-	// });
+	$(window).resize(function(){
+		fixedFooter();
+	});
 
 	// 약관 네비 슬라이드
 	$(".modal-terms .nav").owlCarousel({
@@ -249,17 +260,24 @@ $(function(){
 	
 	// };
 	// acodian.click('.accordion-title');
+
 	// 아코디언 메뉴
-	$(".accordion-list li").eq(0).addClass("on").find(".list-body").addClass("active"); // 첫번째 아이템 활성
-	// $(".accordion-list li").eq(0).addClass("on").find(".list-body").slideDown(300); // 첫번째 아이템 활성
-	$(".accordion-list .list-header a").click(function(){
-		// 답변 영역 열기/닫기
+	// $(".accordion-list li").eq(0).addClass("on").find(".list-body").addClass("active"); // 첫번째 아이템 활성
+	// $(".accordion-list .list-header a").click(function(){
+	// 	// 영역 열기/닫기
+	// 	var thisItem = $(this).parents("li");
+	// 	var otherItem = $(thisItem).siblings("li");
+	// 	$(thisItem).toggleClass("on").find(".list-body").addClass("active");
+	// 	$(otherItem).removeClass("on").find(".list-body").removeClass("active");
+
+	$(".accordion-list li").removeClass("active").find(".list-body").hide(); // 첫번째 아이템 활성
+	$(".accordion-list li").eq(0).addClass("active").find(".list-body").slideDown(300); // 첫번째 아이템 활성
+	$(".accordion-list .list-header button").click(function(){
 		var thisItem = $(this).parents("li");
 		var otherItem = $(thisItem).siblings("li");
-		// $(thisItem).toggleClass("on").find(".list-body").slideToggle(300);
-		// $(otherItem).removeClass("on").find(".list-body").slideUp(300);
-		$(thisItem).toggleClass("on").find(".list-body").addClass("active");
-		$(otherItem).removeClass("on").find(".list-body").removeClass("active");
+		$(thisItem).toggleClass("active").find(".list-body").slideToggle(300);
+		$(otherItem).removeClass("active").find(".list-body").slideUp(300);
+	});
 
 		// 목록 상단으로 스크롤
 		// setTimeout(function(){
@@ -270,4 +288,8 @@ $(function(){
 		// 	}, 200);
 		// }, 210);
 	});
-});
+$('input').on('focus',function(){
+    var inputHeight=$(this).offset().top;
+    $("html, body").animate({ scrollTop: inputHeight}, 600);
+    return false;
+ });

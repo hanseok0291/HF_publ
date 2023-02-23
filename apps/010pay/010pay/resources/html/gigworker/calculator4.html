@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>예상 종합 소득세 간편 계산</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="../../css/jquery-ui.css" />
+    <link rel="stylesheet" href="../../css/common.css" />
+    <link rel="stylesheet" href="../../css/gigworker.css" />
+
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="../../js/html5shiv.js"></script>
+      <script type="text/javascript" src="../../js/respond.min.js"></script>
+    <![endif]-->
+    <script src="../../js/jquery-1.8.3.min.js"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap" class="gigworker">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <button type="button" id="btnBack" class="btn-back"><i class="icon-angle-left">뒤로가기</i></button>
+        </div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <div class="container pdLR24 pdB100">
+          <div class="titleWrap">
+            <h3 class="mainTitle">
+              이제 마지막이에요 ! <br>
+              소득정보를 알려주세요 <em>💰</em>
+            </h3>
+            <p class="subText">실제에 가깝게 입력할수록 계산이 더 정확해요.</p>
+          </div>
+          <div class="userInfoWrap">
+            <dl>
+              <dt>업종</dt>
+              <dd>퀵 배달원</dd>
+            </dl>
+            <dl>
+              <dt>사업자 유형</dt>
+              <dd>신규 사업자</dd>
+            </dl>
+          </div>
+          <ul class="cashInputWrap">
+            <li class="error">
+              <span class="default">2022년 예상 수입</span>
+              <span class="errorText">입력가능 범위를 초과하였습니다.</span>
+              <input type="number" placeholder="2022년 수입을 입력해주세요."/>
+              <button type="button" class="inputDel"></button>
+            </li>
+            <li>
+              <span class="default">2022년 예상 경비</span>
+              <span class="errorText">입력가능 범위를 초과하였습니다.</span>
+              <input type="number" placeholder="2022년 경비를 입력해주세요."/>
+              <button type="button" class="inputDel"></button>
+            </li>
+            <li>
+              <span class="default">2021년 예상 수입</span>
+              <span class="errorText">입력가능 범위를 초과하였습니다.</span>
+              <input type="number" placeholder="2021년 수입을 입력해주세요."/>
+              <button type="button" class="inputDel"></button>
+            </li>
+          </ul>
+          <div class="botBtnWrap">
+            <button type="button" class="bot-btn">계산하기</button>
+          </div>
+        </div>
+        </div>
+      <!-- //content -->
+    </div>
+    <!-- //wrap -->
+
+
+    <script>
+      $(".cashInputWrap input").on("propertychange change paste input", function(){
+        var $this = $(this);
+        if($this.val().length > 0){
+          $this.closest("li").addClass("active");
+        } else {
+          $this.closest("li").removeClass("active");
+        }
+      });
+
+      $(".inputDel").on("click", function(){
+        var $this = $(this);
+        $this.closest("li").find("input").val("");
+        $this.closest("li").removeClass("active");
+      });
+    </script>
+  </body>
+</html>

@@ -346,7 +346,7 @@ body.custom-musinsa input::placeholder { font-size: 14px; }
 .custom-musinsa #footer .btn { font-size: 18px; padding: 0; border: 0; border-radius: 0; line-height: 56px; }
 .custom-musinsa #footer .btn-default, .custom-musinsa #footer .btn:disabled { background-color: #9f9f9f; color: #fff; }
 .custom-musinsa #footer .btn-next { background-color: #ff9f00; }
-.custom-musinsa .wrap { background-color: #e2e2e2; }
+.custom-musinsa .wrap { background-color: #e2e2e2; height: auto; }
 .custom-musinsa .container-wrap { background-color: #fff; }
 .custom-musinsa .section { padding: 20px; margin: 0; }
 .custom-musinsa .order-info.list-table { font-size: 12px; }
@@ -443,7 +443,8 @@ body.custom-musinsa input::placeholder { font-size: 14px; }
 .custom-musinsa .form-type.col-2 li { display: inline-block; width: 50%; }
 
 .custom-musinsa .noti-list { margin-top: 6px; font-size: 13px; }
-.custom-musinsa .noti-list .num { position: relative; top: 4px; display: inline-block; font-size: 11px; vertical-align: top; }
+.custom-musinsa .noti-list .num { position: relative; top: 3px; display: inline-block; font-size: 11px; vertical-align: top; width: 10px; height: 13px; }
+.custom-musinsa .noti-list .num img { width: 100%; height: 100%; }
 .custom-musinsa .accordion-list .noti-list li { margin-bottom: 0; }
 .custom-musinsa .input-box { margin-top: 14px; }
 /* .custom-musinsa .input-box:not(nth-child(1)) { margin-top: 14px; } */
@@ -469,9 +470,10 @@ body.custom-musinsa input::placeholder { font-size: 14px; }
 .modal-head .subject { font-size: 15px; font-weight: 700; color: #151515; line-height: 52px; }
 .modal-dialog {}
 body.pc .modal-terms .container, .modal-terms .container { padding: 0 24px; max-width: 700px; }
-.modal-terms .modal-content { position: relative; }
+.modal-terms .modal-content { position: relative; overflow: hidden; }
 .modal-terms .modal-body { max-height: 50vh; overflow-y: scroll; padding: 18px 0 100px; border-top: 1px solid #e2e2e2; font-size: 12px; color: #151515; }
-.modal-terms .modal-footer { position: absolute; bottom: 0; width: 100%; height: 92px; padding: 30px 14px 14px; background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, .1)); }
+.modal-terms .modal-footer { position: absolute; bottom: 0; width: 100%; height: 62px; padding: 0 14px 14px; border-radius: 0 0 10px 10px; background-color: #fff; }
+.modal-terms .modal-footer::after { content: ''; position: absolute; top: -30px; left: 0; width: 100%; height: 30px; background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, .1)); }
 .modal-terms .modal-footer .btn { width: 100%; height: 48px; background-color: #151515; }
 
 @keyframes max-height {
@@ -582,3 +584,12 @@ body.pc .modal-terms .container, .modal-terms .container { padding: 0 24px; max-
 .ssPayArsCheck .number-wrap div {display: flex; justify-content: center; align-items: center; width: 87px; height: 87px; margin: 0 4px; border: 1px solid #222222; border-radius: 7px; box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);}
 .ssPayArsCheck .number-wrap div span {font-size: 65px; font-family: "Play"; font-weight: 700; color: #000;}
 .ssPayArsCheck .sub-text { font-size: 15px; text-align: center; }
+
+/* loading */
+.loading { position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; background: rgba(0,0,0,.5); font-size: 0; line-height: 0; text-align: center; z-index: 9999; }
+.loading:after { content: ''; position: absolute; top: 50%; left: 50%; margin: -50px 0 0 -24px; width: 48px; height: 48px; border: 4px solid #fff; border-top-color: #faa61a; border-radius: 50%; animation: spin 1s linear infinite; }
+.loading .text { display: block; position: absolute; top: 50%; left: 0; margin-top: 20px; width: 100%; font-size: 13px; text-indent: 0; color: #fff; }
+@keyframes spin {
+	0% { -webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); -moz-transform: rotate(360deg); -ms-transform: rotate(360deg); -o-transform: rotate(360deg); transform: rotate(360deg); }
+}

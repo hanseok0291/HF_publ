@@ -36,7 +36,7 @@
 
       <!-- content -->
       <div id="content">
-        <div class="container pdLR24">
+        <div class="container pdLR22">
           <div class="titleWrap">
             <h3 class="mainTitle normal">
               이명구님은 <br />
@@ -155,10 +155,12 @@
         var widthArr;
         var leftCount = 0;
 
+        // 그래프 노출
         setTimeout(function(){
           $(".line").addClass("active");
         }, 1400)
         
+        // 금액 및 타입
         $(".barWrap > .bar").each(function(i){
           var $this = $(this),
             $price = $this.data("price"),
@@ -170,12 +172,14 @@
           priceArr[i] = {price: $price, type: $type}
         });
 
+        // 복식 부기 구분
         if(priceArr.length > 1) {
           widthCalc(priceArr[0]["price"], priceArr[1]["price"]);
         } else {
           widthCalc(50, 0);
         }
 
+        // 금액 퍼센트 계산
         function widthCalc(a, b){
           var widthArr
           if(a - b > 0){
@@ -192,6 +196,7 @@
             }
           }
 
+          // 타입 분류
           $(".barWrap > .bar").each(function(i){
             var $this = $(this);
             if(widthArr[1] === 50 ){

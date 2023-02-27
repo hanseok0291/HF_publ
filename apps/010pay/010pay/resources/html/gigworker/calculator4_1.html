@@ -36,7 +36,7 @@
 
       <!-- content -->
       <div id="content">
-        <div class="container pdLR24 pdB100">
+        <div class="container pdLR22 pdB100">
           <div class="titleWrap">
             <h3 class="mainTitle">
               이제 마지막이에요 ! <br>
@@ -51,25 +51,31 @@
             </dl>
             <dl>
               <dt>사업자 유형</dt>
-              <dd>신규 사업자</dd>
+              <dd>기존 사업자</dd>
             </dl>
           </div>
           <ul class="cashInputWrap">
             <li class="error">
               <span class="default">2022년 예상 수입</span>
               <span class="errorText">입력가능 범위를 초과하였습니다.</span>
-              <input type="number" placeholder="2022년 수입을 입력해주세요."/>
+              <input type="number" placeholder="2022년 수입을 입력해주세요." pattern="\d*"/>
               <button type="button" class="inputDel"></button>
             </li>
             <li>
               <span class="default">2022년 예상 경비</span>
               <span class="errorText">입력가능 범위를 초과하였습니다.</span>
-              <input type="number" placeholder="2022년 경비를 입력해주세요."/>
+              <input type="number" placeholder="2022년 경비를 입력해주세요." pattern="\d*"/>
+              <button type="button" class="inputDel"></button>
+            </li>
+            <li>
+              <span class="default">2021년 예상 수입</span>
+              <span class="errorText">입력가능 범위를 초과하였습니다.</span>
+              <input type="number" placeholder="2021년 수입을 입력해주세요." pattern="\d*"/>
               <button type="button" class="inputDel"></button>
             </li>
           </ul>
           <div class="botBtnWrap">
-            <button type="button" class="bot-btn">계산하기</button>
+            <button type="button" class="bot-btn disable">계산하기</button>
           </div>
         </div>
         </div>
@@ -79,19 +85,34 @@
 
 
     <script>
+      $(".cashInputWrap input").on("focus", function(){
+        var $this = $(this);
+        $this.closest("li").addClass("active shadow");
+        $this.closest("li").find(".inputDel").show(); 
+      });
+
+      $(".cashInputWrap input").on("blur", function(){
+        var $this = $(this);
+        $this.closest("li").find(".inputDel").hide(); 
+        $this.closest("li").removeClass("shadow");
+        if($this.val().length === 0){
+          $this.closest("li").removeClass("active");
+        }
+      });
+
       $(".cashInputWrap input").on("propertychange change paste input", function(){
         var $this = $(this);
         if($this.val().length > 0){
-          $this.closest("li").addClass("active");
+          $this.closest("li").find(".inputDel").show();     
         } else {
-          $this.closest("li").removeClass("active");
+          $this.closest("li").find(".inputDel").hide(); 
         }
       });
 
       $(".inputDel").on("click", function(){
         var $this = $(this);
-        $this.closest("li").find("input").val("");
-        $this.closest("li").removeClass("active");
+        $this.hide();
+        $this.closest("li").find("input").val("").focus();
       });
     </script>
   </body>

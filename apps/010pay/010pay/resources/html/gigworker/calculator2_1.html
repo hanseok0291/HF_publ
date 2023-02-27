@@ -25,15 +25,13 @@
 
   <body>
     <!-- wrap -->
-    <div id="wrap" class="gigworker">
+    <div id="wrap" class="gigworker searchPage">
       <!-- header -->
       <div id="header">
         <div class="container">
           <button type="button" id="btnBack" class="btn-back"><i class="icon-angle-left">뒤로가기</i></button>
-          <div class="searchArea">
-            <input type="text" placeholder="프리랜서는 기타자영업으로 검색해보세요." id="search"/>
-            <button type="button" class="cancleBtn">취소</button>
-          </div>
+          <button type="button" class="searchBtn">프리랜서는 기타자영업으로 검색해보세요.</button>
+          <button type="button" class="cancleBtn">취소</button>
         </div>
       </div>
       <!-- //header -->
@@ -41,11 +39,11 @@
       <!-- content -->
       <div id="content">
         <div class="container">
-          <div class="searchBefore pdLR24">
+          <div class="searchBefore pdLR22">
             <div class="titleWrap">
               <h3 class="mainTitle">
-                먼저 이명구님의 <br>
-                업종을 선택해주세요 <em>👩‍🍳</em>
+                이명구님은 <br>
+                어떤 일을 하시나요? <em>👩‍🍳</em>
               </h3>
               <p class="subText">업종에 맞는 예상 소득세를 빠르게 계산해볼게요.</p>
             </div>
@@ -76,30 +74,65 @@
               <button type="button">골프장캐디</button>
             </div>
           </div>
+          <div class="serchWrap">
+            <div class="searchArea">
+              <button type="button" class="btn-back"><i class="icon-angle-left">뒤로가기</i></button>
+              <input type="text" placeholder="프리랜서는 기타자영업으로 검색해보세요." id="search"/>
+              <button type="button" class="inputDel"></button>
+              <button type="button" class="cancleBtn">취소</button>
+            </div>
+          </div>
         </div>
       </div>
       <!-- //content -->
+
+      
     </div>
     <!-- //wrap -->
 
 
     <script>
+      function searchToggle(state){
+        if(state){
+          $("body").addClass("noScroll");
+          $(".serchWrap").css("display", "flex");
+          $("#search").focus();
+        } else {
+          $("body").removeClass("noScroll");
+          $(".serchWrap").css("display", "none");
+        }
+      }
+
+      $(".searchBtn").on("click", function(){
+        searchToggle(true);
+        setTimeout(function(){
+          $(".gigworker").addClass("searching");
+        }, 50)
+      });
+
       $("#search").on("propertychange change paste input", function(){
         if($(this).val().length > 0){
-          $(".container").addClass("searching");
+          $(".inputDel").show();           
         } else {
-          $(".container").removeClass("searching");
+          $(".inputDel").hide(); 
         }
       });
 
       $(".cancleBtn").on("click", function(){
+        searchToggle(false);
+        $(".gigworker").removeClass("searching");
         $("#search").val("");
-        $(".container").removeClass("searching");
+        $(".inputDel").hide(); 
       });
 
       $(".selectJob button").on("click", function(){
         $(".selectJob button").removeClass("active");
         $(this).addClass("active");
+      });
+
+      $(".inputDel").on("click", function(){
+        $("#search").val("").focus();
+        $(".inputDel").hide(); 
       });
     </script>
   </body>

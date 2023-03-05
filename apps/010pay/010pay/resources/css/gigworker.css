@@ -4,6 +4,22 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker .pdLR22 { padding-left: 22px !important; padding-right: 22px !important; } 
 .gigworker .pdLR24 { padding-left: 24px !important; padding-right: 24px !important; } 
 .gigworker .pdB100 { padding-bottom: 100px !important; } 
+
+.gigworker .boxInput { display: flex; flex-direction: column; justify-content: center; position: relative; height: 70px; padding: 13px 20px; border: solid 1px #ccc; border-radius: 14px; } 
+.gigworker .boxInput.active { border: solid 1px #151515; } 
+.gigworker .boxInput.active.shadow { box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16); } 
+.gigworker .boxInput.active span { display: block; } 
+.gigworker .boxInput.active.error { border-color: #fb3636; } 
+.gigworker .boxInput.active.error .default { display: none; } 
+.gigworker .boxInput.active.error .errorText { display: block; } 
+.gigworker .boxInput > span { display: none; margin-bottom: 6px; font-size: 12px; } 
+.gigworker .boxInput > span.errorText { display: none; } 
+.gigworker .boxInput input { width: 90%; height: 24px; border: none; padding: 0; font-size: 20px; font-weight: 700; line-height: 24px; } 
+.gigworker .boxInput input::placeholder { color: #E2E2E2; font-size: 20px; font-weight: 700; } 
+.gigworker .boxInput .inputArea { display: flex; position: relative; width: 90%; } 
+.gigworker .boxInput .inputArea .placeholderText { position: absolute; left: 0; top: 50%; transform: translateY(-50%); color: #E2E2E2; font-size: 20px; font-weight: 700; pointer-events: none; } 
+
+
 .gigworker.landing, .gigworker.landing #header { background-color: #deeaff; } 
 .gigworker #header { height: 44px; padding: 0; top: 0; } 
 .gigworker #header .container,
@@ -18,9 +34,10 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker .serchWrap #search { color: #151515; } 
 .gigworker .serchWrap #search::placeholder { font-size: 15px; } 
 .gigworker .cancleBtn { flex: 0 0 auto; position: absolute; right: -70px; height: 40px; font-size: 16px; font-weight: 700; transition: all 0.3s; } 
+.gigworker.landing #content { padding-top: 60px; } 
 .gigworker.landing #content #landingCon.open .titleWrap .textWrap dd { height: 136px; } 
 .gigworker.landing #content #landingCon.open .visualImg { top: 300px; } 
-.gigworker.landing #content .container { overflow: hidden; position: relative; padding: 16px 32px; } 
+.gigworker.landing #content .container { overflow: hidden; position: relative; padding: 0 32px; } 
 .gigworker.landing #content .container .titleWrap { position: relative; z-index: 1; color: #151515; animation: slideRight 0.5s 0.5s both ease-out; } 
 .gigworker.landing #content .container .titleWrap .topText { padding-left: 2px; font-size: 18px; } 
 .gigworker.landing #content .container .titleWrap .mainTitle { margin-top: 4px; font-size: 30px; font-weight: 500; line-height: 1.13; letter-spacing: -1.5px; } 
@@ -99,8 +116,8 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker #content .container .cashInputWrap li span { display: none; margin-bottom: 6px; font-size: 12px; } 
 .gigworker #content .container .cashInputWrap li span.errorText { display: none; } 
 .gigworker #content .container .cashInputWrap li input { width: 94%; height: 24px; border: none; padding: 0; font-size: 20px; font-weight: 700; line-height: 24px; } 
-.gigworker #content .container .cashInputWrap li input::placeholder { font-size: 20px; font-weight: 700; } 
-.gigworker .inputDel { display: none; position: absolute; top: 50%; right: 16px; z-index: 2; transform: translateY(-50%); width: 16px; height: 16px; background: url("../images/icon/icon-close-gray.svg") 0 / cover no-repeat; } 
+.gigworker #content .container .cashInputWrap li input::placeholder { color: #E2E2E2; font-size: 20px; font-weight: 700; } 
+.gigworker .inputDel { display: none; position: absolute; top: 50%; right: 8px; z-index: 2; transform: translateY(-50%); width: 32px; height: 32px; background: url("../images/icon/icon-close-gray.svg") center / 16px no-repeat; } 
 
 .gigworker #content .container .graphWrap .barBg { display: flex; justify-content: space-between; position: relative; padding-top: 122px; } 
 .gigworker #content .container .graphWrap .barBg::before,.gigworker #content .container .graphWrap .barBg::after { display: block; content: ""; width: calc(50% - 2px); height: 34px; background-color: #f6f6f6
@@ -143,12 +160,12 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker #content .container .botBtnWrap .bot-btn.disable { background-color: #e2e2e2; pointer-events: none; font-weight: bold; } 
 
 /* bottomBanner */
-.gigworker .bottomBanner { position: fixed; bottom: -180px; left: 50%; transform: translateX(-50%); max-width: 700px; width: 100%; height: 158px; transition: 0.3s;} 
+.gigworker .bottomBanner { position: fixed; bottom: -180px; left: 50%; transform: translateX(-50%); max-width: 700px; width: 100%; height: 158px; transition: 0.3s; } 
 .gigworker .bottomBanner::before { display: block; content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 158px; border-radius: 16px 16px 0 0; background-color: #eef4ff; } 
 .gigworker .bottomBanner::after { display: block; content: ""; position: absolute; right: 0; bottom: 0; width: 138px; height: 176px; background: url("../images/gigworker/calculator-banner-bg.png") right 0 bottom 0 / 138px auto no-repeat; } 
 .gigworker .bottomBanner .text { position: relative; z-index: 1; color: #151515; font-size: 14px; margin: 27px 0 10px 30px; } 
 .gigworker .bottomBanner .textImg { display: block; position: relative; z-index: 1; width: 172px; margin: 0 0 12px 30px; } 
-.gigworker .bottomBanner .btnImg { display: block; position: relative; z-index: 1; width: 145px; margin-left: 25px;} 
+.gigworker .bottomBanner .btnImg { display: block; position: relative; z-index: 1; width: 145px; margin-left: 25px; } 
 
 
 /* 슬라이드 모달 */
@@ -161,6 +178,20 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker .modal-slide .modal-body .container dl dd { margin-top: 8px; color: #575757; font-size: 12px; line-height: 1.33; } 
 .gigworker .modal-slide .modal-footer { padding: 0 20px; } 
 .gigworker .modal-slide .modal-footer .btn { border-radius: 12px; font-size: 18px; } 
+
+.progress { display: flex; justify-content: center; align-items: center; gap: 4px; height: 32px; }
+.progress span { display: block; width: 9px; height: 12px; border-radius: 4.5px; background-color: #3580f8; opacity: 0.2; animation: loadingProgress 0.8s both ease-in-out infinite;} 
+.progress span:nth-child(1) { animation-delay: 0; } 
+.progress span:nth-child(2) { animation-delay: 0.2s; } 
+.progress span:nth-child(3) { animation-delay: 0.4s; } 
+.progress span:nth-child(4) { animation-delay: 0.6s; } 
+
+@keyframes loadingProgress { 
+  0% { opacity: 0.2; height: 12px; } 
+  20% { opacity: 1; height: 32px; } 
+  40% { opacity: 0.2; height: 12px; } 
+  100% { opacity: 0.2; height: 12px; } 
+  }
 
 @keyframes slideRight { 
  0% { opacity: 0; left: -70px; } 

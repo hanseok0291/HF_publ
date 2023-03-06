@@ -93,38 +93,6 @@ $(function(){
 
 // 레이아웃, 토글, 슬라이드
 $(function(){
-	// 푸터 고정 토글
-	function fixedFooter(){
-		// 짧은 화면 푸터 고정
-		var winHeight = $(window).innerHeight();
-		var mainHeight = $("#content").height() + $("#header").innerHeight() + $("#footer").innerHeight();
-		var gap = winHeight - mainHeight; // 콘텐츠가 짧은 경우
-		if(gap > 0) {
-			$("#footer").addClass("fixed");
-		} else {
-			$("#footer").removeClass("fixed");
-		}
-
-	// 	// 푸터 고정 시 하단 여백 확보
-		var fixFoot = $("#footer.fixed");
-		if(fixFoot.length > 0){
-			var fixFootHeight = $(fixFoot).innerHeight();
-			$("#content").css("padding-bottom", fixFootHeight);
-		} else {
-			$("#content").css("padding-bottom", fixFootHeight);
-		}
-	}
-	fixedFooter();
-
-	// // 클릭 시 콘텐츠 높이 변경되는 경우
-	$(".fixedFooterJS, #send").click(function(){
-		fixedFooter();
-	});
-
-	// // 리사이즈
-	$(window).resize(function(){
-		fixedFooter();
-	});
 
 	// 약관 네비 슬라이드
 	$(".modal-terms .nav").owlCarousel({
@@ -132,12 +100,6 @@ $(function(){
 		nav: true,
 		dots: false,
 		smartSpeed: 300
-	});
-
-	// 결제 완료 내역 더보기
-	$(".pay-complete .btn-more .btn").click(function(){
-		$(".btn-more .btn i, .item-more").toggleClass("hidden");
-		fixedFooter();
 	});
 
 	$(".accordion-list li").removeClass("active").find(".list-body").hide(); // 아이템 감추기

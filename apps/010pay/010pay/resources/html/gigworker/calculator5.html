@@ -24,7 +24,8 @@
 
   <body>
     <!-- wrap -->
-    <div id="wrap" class="gigworker">
+    <!-- 배너 있을시에 isBanner 클래스 추가 -->
+    <div id="wrap" class="gigworker isBanner">
       <!-- header -->
       <div id="header">
         <div class="container">
@@ -47,7 +48,7 @@
             <div class="barBg">
               <div class="barWrap">
                 <!-- 납부 일경우 left class 추가, refund 환급, payment 납부 -->
-                <div class="bar green" data-price="100" data-type="refund"></div><!-- 간편장부 -->
+                <div class="bar green" data-price="100" data-type="payment"></div><!-- 간편장부 -->
                 <div class="bar orange" data-price="1" data-type="refund"></div><!-- 경비율 -->
                 <!-- <div class="bar blue"  data-price="100" data-type="refund"></div> --><!-- 복식부기 -->
                 <div class="line">
@@ -118,6 +119,15 @@
         </div>
       </div>
       <!-- //content -->
+
+      <!-- 배너 있을시에 #wrap에 isBanner 클래스 추가 -->
+      <!-- bottom banner -->
+      <a class="bottomBanner">
+        <p class="text">예상 환급액을 확인하신 이명구님</p>
+        <img class="textImg" src="../../images/gigworker/calculator-banner-text.png" alt="사전 예약 신청하고 선물까지 받아가세요!">
+        <img class="btnImg" src="../../images/gigworker/calculator-banner-btn.png" alt="지금 바로 응모하기">
+      </a>
+      <!-- //bottom banner -->
 
       <!-- slide modal -->
       <div id="modalSlideType1" class="modal modal-slide modal-info">
@@ -197,21 +207,22 @@
           // 타입 분류
           $(".barWrap > .bar").each(function(i){
             var $this = $(this);
+            var barWidth = 48.5
             if(widthArr[1] === 50 ){
               $("#ratioType").text("경비율");
               if(i === 0){
                 $this.css({"z-index": 2});
               }
               if(leftCount === 2) {
-                $(".line").css({"left": 48.5 - widthArr[0] + "%", "right": "auto"});
+                $(".line").css({"left": barWidth - widthArr[0] + "%", "right": "auto"});
                 $("#ratioType").text("간편장부");
               } else if(leftCount === 1 && $this.hasClass("left")) {
-                $(".line").css({"right": 48.5 - widthArr[0] + "%", "left": "auto"});
+                $(".line").css({"right": barWidth - widthArr[0] + "%", "left": "auto"});
                 $("#ratioType").text("간편장부");
               } else if (leftCount === 1) {
-                $(".line").css({"right": 48.5 - widthArr[1] + "%", "left": "auto"});
+                $(".line").css({"right": barWidth - widthArr[1] + "%", "left": "auto"});
               } else {
-                $(".line").css({"right": 48.5 - widthArr[1] + "%", "left": "auto"});
+                $(".line").css({"right": barWidth - widthArr[1] + "%", "left": "auto"});
               }
             } else {
               if(i === 1){
@@ -219,15 +230,15 @@
               }
               $("#ratioType").text("경비율");
               if(leftCount === 2) {
-                $(".line").css({"left": 48.5 - widthArr[1] + "%", "right": "auto"});
+                $(".line").css({"left": barWidth - widthArr[1] + "%", "right": "auto"});
               } else if(leftCount === 1 && $this.hasClass("left")) {
-                $(".line").css({"right": 48.5 - widthArr[0] + "%", "left": "auto"});
+                $(".line").css({"right": barWidth - widthArr[0] + "%", "left": "auto"});
                 $("#ratioType").text("간편장부");
               } else if(leftCount === 1) {
-                $(".line").css({"right": 48.5 - widthArr[1] + "%", "left": "auto"});
+                $(".line").css({"right": barWidth - widthArr[1] + "%", "left": "auto"});
               } else {
                 $("#ratioType").text("간편장부");
-                $(".line").css({"right": 48.5 - widthArr[0] + "%", "left": "auto"});
+                $(".line").css({"right": barWidth - widthArr[0] + "%", "left": "auto"});
               }
             }
             if($this.hasClass("blue")) {
@@ -237,6 +248,15 @@
             $this.css({"width" : widthArr[i] + "%"});
           });
         }
+
+        // 하단 배너 노출
+        $(window).on("scroll", function(){
+          if($(this).scrollTop() > 40) {
+            $(".bottomBanner").css("bottom"," 0");
+          } else {
+            $(".bottomBanner").css("bottom"," -180px");
+          }
+        });
       });
     </script>
   </body>

@@ -56,14 +56,7 @@ const Guide = () => {
                     <span className={`${styleGuide.title}`}>
                       결제 · 취소 문의
                     </span>
-
                     <span className={`${styleGuide.desc}`}>
-                      <img
-                        src="../../images/hotdeal/logo-010pay-color.svg"
-                        className={`${styleGuide.logo}`}
-                        alt="010PAY"
-                      ></img>
-                      <i className={`${styleCommon.bar} ${styleGuide.bar}`}></i>
                       1600-5220
                     </span>
                   </a>
@@ -96,12 +89,6 @@ const Guide = () => {
                       결제 · 취소 · 사용 · 환불 문의
                     </span>
                     <span className={`${styleGuide.desc}`}>
-                      <img
-                        src="../../images/hotdeal/logo-010pay-color.svg"
-                        className={`${styleGuide.logo}`}
-                        alt="010PAY"
-                      ></img>
-                      <i className={`${styleCommon.bar} ${styleGuide.bar}`}></i>
                       1600-5220
                     </span>
                   </a>

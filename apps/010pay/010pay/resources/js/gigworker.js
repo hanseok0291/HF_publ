@@ -11,11 +11,15 @@ $(window).load(function(){
         val += $($input[i]).val();
       }
       if(val.length > 0){
-        $input.closest(".boxInput").find(".inputDel, .dash").show(); 
+        $input.closest(".boxInput").find(".inputDel, .dash, .ipnutShow").show(); 
         $input.closest(".boxInput").find(".placeholderText").hide(); 
       } else {
-        $input.closest(".boxInput").find(".inputDelm, .dash").hide();
+        $input.closest(".boxInput").find(".inputDel, .dash, .ipnutShow").hide();
         $input.closest(".boxInput").find(".placeholderText").show(); 
+      }
+      if($(this).hasClass("lastInput") && $(this).val().length === 0 && $input.closest(".boxInput").find(".firstInput").val().length === 0){
+        $input.closest(".boxInput").find(".firstInput").focus();
+        $input.closest(".boxInput").addClass("active");
       }
     });
 
@@ -41,6 +45,14 @@ $(window).load(function(){
       $this.closest(".boxInput").find("input").eq(0).focus();
     });
 
+    $(".ipnutShow").on("touchstart", function(){
+      $(this).closest(".boxInput").find("input").addClass("show").prop("type", "text");
+    });
+
+    $(".ipnutShow").on("touchend", function(){
+      $(this).closest(".boxInput").find("input").removeClass("show").prop("type", "password");
+    });
+
     $(".inputDel").on("touchstart mousedown", function(){
       var $this = $(this);
       blurDelay = true;
@@ -48,7 +60,7 @@ $(window).load(function(){
       $this.hide();
       val = "";
       $this.closest("li").find(".placeholderText").show();
-      $this.closest("li").find(".dash").hide();
+      $this.closest("li").find(".dash, .ipnutShow").hide();
       $this.closest(".boxInput").find("input").eq(0).focus();
       setTimeout(() => {
         $this.closest(".boxInput").find("input").eq(0).focus();
@@ -57,6 +69,32 @@ $(window).load(function(){
       
     });
   });
+
+  // 약관 동의 체크 박스
+  $(".join-agree .checkbox > input").change("change", function(){
+    if($(this).is(":checked")){
+      $(this).closest(".join-agree").find(".inner-agree input").prop("checked", true);
+    } else {
+      $(this).closest(".join-agree").find(".inner-agree input").prop("checked", false);
+    }
+  });
+
+  // 내부 약관 동의 체크
+  $(".inner-agree input").change(function(){
+    var checkLength = 0;
+    var $innerInput = $(this).closest(".inner-agree").find("input")
+    $innerInput.each(function(i, e){
+      if($(this).is(":checked")){
+        checkLength++;
+      }
+    });
+    if(checkLength === $innerInput.length){
+      $(this).closest(".join-agree").find(".checkbox input").prop("checked", true);
+    } else {
+      $(this).closest(".join-agree").find(".checkbox input").prop("checked", false);
+    }
+  });
+  
 });
 
 // maxlength
@@ -64,4 +102,21 @@ function maxLengthCheck(object){
   if (object.value.length > object.maxLength){
     object.value = object.value.slice(0, object.maxLength);
   }    
+}
+
+// 레이어 팝업(모달) 닫기
+function modalClose() {
+  $(".modal").hide();
+  scrollOn(); // 바디 스크롤 제거 해제
+}
+
+function modalClose(obj) {
+  if (obj != null && obj != undefined && obj != "") {
+    var temp = $("#" + obj);
+    temp.hide();
+  } else {
+    $(".modal").hide();
+  }
+
+  scrollOn(); // 바디 스크롤 제거 해제
 }

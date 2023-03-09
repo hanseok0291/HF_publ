@@ -94,6 +94,11 @@ $(window).load(function(){
       $(this).closest(".join-agree").find(".checkbox input").prop("checked", false);
     }
   });
+
+  // 전체 동의
+  $(".agreement-btn").on("click", function(){
+    $(this).closest(".modal-body").find("input").prop("checked", true);
+  });
   
 });
 

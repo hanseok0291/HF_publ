@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>혜택</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<link rel="stylesheet" type="text/css" href="../../../resource/fonts/notosanskr-v13/notosanskr.min.css">
+<link rel="stylesheet" type="text/css" href="../../../resource/css/promotion.css?ver=230309">
+<link rel="stylesheet" type="text/css" href="../../../resource/css/fullpage.min.css">
+<script src="../../../resource/library/jquery-1.8.3.min.js"></script>
+<script src="../../../resource/js/fullpage.js"></script>
+<style>
+	.wrap-promotion .section { position: relative; }
+	.wrap-promotion .section img { display: block; }
+	/* .wrap-promotion .section .container { background: transparent; padding-bottom: 24px; } */
+	.wrap-promotion .section .container.bg-on { background: linear-gradient(180deg,rgba(102,102,102,0) 0,rgba(102,102,102,.1) 100%) }
+	.wrap-promotion .section .img-end { display: none; position: absolute; top: 23.93%; left: 0; width: 38.8%; }
+	.wrap-promotion .section .img-end.on { display: block; }
+	.wrap-promotion .section .img-end1 { left: 8.4%; }
+	.wrap-promotion .section .img-end2 { left: 52.8%; }
+	.wrap-promotion .section .img-end3 { top: 53.31%; left: 8.4%; }
+	.wrap-promotion .section .img-end4 { top: 53.31%; left: 52.8%; }
+	.wrap-promotion .footer-btn .btn { background: #151515;} 
+</style>
+</head>
+
+<body>
+	
+<main class="content fullpage" id="fullpage">
+	<div class="section">
+	<!-- wrap -->
+	<div id="wrap" class="wrap-promotion advance-reservation animation-section bridge mo">
+		<div id="header">
+			<div class="container">
+				<span class="page-title">사전 예약 이벤트</span>
+			</div>
+		</div>
+		<!-- main content -->
+		<div id="content">
+			<!-- container -->
+			<div class="container full">
+			<!-- section - img -->			
+				<div class="section section-1">
+					<img class="ani-slide-1" src="../../../resource/images/promotion/benefit/bridge-title-mo-01.png" alt="03.28(화) ~ 04.30(일) 내 숨은 돈 계산하고 프로일잘러 필수템 받자!">
+					<img class="ani-slide-2 img2" src="../../../resource/images/promotion/benefit/bridge-title-mo-02.png" alt="전국민 숨은 돈 찾기 서비스 5월2일 오픈! 내 환급액 미리 계산하면 푸짐한 경품을 드려요!">
+					<div class="flow-banner flow-bannerLeft">
+						<ul class="list list-left">
+							<li><img src="../../../resource/images/promotion/benefit/s-011.png" alt=""></li>
+							<li><img src="../../../resource/images/promotion/benefit/s-011.png" alt=""></li>
+						</ul>
+					</div>
+					<div class="flow-banner flow-bannerRight">
+						<ul class="list list-right">
+							<li><img src="../../../resource/images/promotion/benefit/s-011.png" alt=""></li>
+							<li><img src="../../../resource/images/promotion/benefit/s-011.png" alt=""></li>
+						</ul>
+					</div>
+					<div class="btn-wrap bridge">
+						<div class="container">
+							<a href="#" class="btn"><img src="../../../resource/images/promotion/benefit/bridge-title-03.png" alt=""></a>
+						</div>
+				</div>
+			</div>
+			<!-- //container-->
+		</div>
+		<!-- //main content -->
+	</div>
+	<!-- //wrap -->
+
+	<!-- modal -->
+	<div id="modal-draw" class="modal modal-bridge">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<button class="modal-close modal-giftimall">닫기</button>
+				<div class="modal-body">
+					<h3 class="modal-title">
+						<img src="../../../resource/images/promotion/benefit/bridge-title-04.png" alt="010PAY 앱에서 지금 바로 응모해 보세요!">
+					</h3>
+					<div>
+						<ul class="qr-list">
+							<li>
+								<img
+									src="../../../resource/images/promotion/benefit/qr.png"
+									alt="QR코드"
+								/>
+								<div class="btn-wrap">
+									<h3><img
+										src="../../../resource/images/promotion/benefit/bridge-title-google.png"
+										alt="QR코드"
+									/></h3>
+									<span class="bar"></span>
+									<h3><img
+										src="../../../resource/images/promotion/benefit/bridge-title-app.png"
+										alt="QR코드"
+									/></h3>
+								</div>
+							</li>
+						</ul>
+						<h4 class="modal-title-sub">
+							<img
+							src="../../../resource/images/promotion/benefit/bridge-title-05.png"
+							alt="QR코드"
+						/>
+						</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</main>
+	<script>
+$(window).on('load', function () {
+    setFlowBanner();
+
+		$('#fullpage').fullpage({
+			sectionsColor: ['#303EFF']
+		});
+})
+
+function setFlowBanner(){
+    const $wrap = $('.flow-banner');
+    const $wrapLeft = $('.flow-bannerLeft');
+    const $wrapRight = $('.flow-bannerRight');
+    const $list = $('.flow-banner .list');
+    const $listLeft = $('.flow-bannerLeft .list');
+    const $listRight = $('.flow-bannerRight .list');
+    let wrapWidth = $wrap.width();
+    let listWidth = $list.width();
+    const speed = 50; //1초에 몇픽셀 이동하는지 설정
+
+    //리스트 복제
+    let $cloneLeft = $listLeft.clone(),
+    $cloneRight = $listRight.clone();
+    $wrapLeft.append($cloneLeft);
+    $wrapRight.append($cloneRight);
+    flowBannerAct()
+
+    //배너 실행 함수
+    function flowBannerAct() {
+        //무한 반복을 위해 리스트를 복제 후 배너에 추가
+        if (listWidth < wrapWidth) {
+            const listCount = Math.ceil(wrapWidth * 2 / listWidth);
+            for (let i = 2; i < listCount; i++) {
+                $cloneLeft = $cloneLeft.clone();
+                $cloneRight = $cloneRight.clone();
+                $wrapLeft.append($cloneLeft);
+                $wrapRight.append($cloneRight);
+            }
+        }
+        $wrapLeft.find('.list-left').css({ 'animation': `${listWidth / speed}s linear infinite flowRollingLeft` }); 
+        $wrapRight.find('.list-right').css({ 'animation': `${listWidth / speed}s linear infinite flowRollingRight` }); 
+    } 
+}
+
+$(document).ready(function(){
+
+	$(window).on("resize", function () {
+		var windowW = $(window).width();
+		if (windowW > 768) {
+			//PC버전
+			$("#wrap").removeClass("mo");
+			$("#wrap").addClass("pc");
+		} else if (windowW < 768) {
+			//모바일 버전
+			$("#wrap").removeClass("pc");
+			$("#wrap").addClass("mo");
+		}
+	});
+
+	var windowW = $(window).width();
+	if (windowW > 768) {
+		//PC버전
+		$("#wrap").removeClass("mo");
+		$("#wrap").addClass("pc");
+	} else if (windowW < 768) {
+		//모바일 버전
+		$("#wrap").removeClass("pc");
+		$("#wrap").addClass("mo");
+	}
+
+	$('input:radio[name=selectProduct]').click(function(){
+		$(this).parents('li').siblings().removeClass('on').addClass('cover');
+		$(this).parents('li').addClass('on').removeClass('cover');
+		if($(this).is(':checked')) {
+			$('.btn-draw').attr('disabled', false);
+		}
+	});
+	
+	$(window).scroll(function(){
+		var scrollT = $(this).scrollTop();
+
+		// 스크롤 시 하단 버튼 토글
+		if (scrollT > 10) {
+			$(".footer-btn").css("margin-bottom", 0);
+		} else {
+			$(".footer-btn").css("margin-bottom", "-100%");
+		}
+
+		if($(window).scrollTop() + $(window).height() == $(document).height()) {
+			$(".wrap-promotion .section .container").addClass('bg-on');
+		} else {
+			$(".wrap-promotion .section .container").removeClass('bg-on');
+		}
+
+		// 스크롤 최하단일 경우 하단 버튼 배경 제거
+		var scrollMax = $("#content").innerHeight() - $(window).innerHeight() - 100;
+		if (scrollT > scrollMax) {
+			$(".footer-btn").addClass("bottom");
+		} else {
+			$(".footer-btn").removeClass("bottom");
+		}
+	});
+
+	// 스크롤 시 애니메이션 활성화
+	var winHeight = $(window).height();
+	var scrollTop = $(window).scrollTop();
+	
+	function sectionActive(){
+		// section active
+		$(".section").each(function(){
+			var sectionTop = $(this).offset().top;
+			if (scrollTop > sectionTop - winHeight + winHeight/6) {
+				$(this).addClass("active");
+			}
+		});
+	}
+
+	$(window).load(function(){
+		setTimeout(function(){
+			sectionActive();
+		}, 100);
+	});
+	
+	$(window).scroll(function(){
+		sectionActive();
+		scrollTop = $(window).scrollTop();
+		if (scrollTop > 30) {
+			$("body:not(.modal-open) .fixed-bottom").addClass("active");
+		} else {
+			$("body:not(.modal-open) .fixed-bottom").removeClass("active");
+		}
+	});
+
+	// 바디 스크롤 제거/해제
+	var scrollHeight = 0;
+	function scrollOff() {
+		scrollHeight = $(document).scrollTop();
+		$("body").addClass("modal-open");
+		$(".content_wrap").css("position", "fixed");
+		$(".content_wrap").css("top", -scrollHeight);
+	}
+	function scrollOn() {
+		$("body").removeClass("modal-open");
+		$(".content_wrap").css("top", 0);
+		$(".content_wrap").css("position", "relative");
+		$(document).scrollTop(scrollHeight);
+	}
+
+	// 레이어 팝업(모달) 열기
+	function modalOpen(obj) {
+		var temp = $("#" + obj);
+		temp.fadeIn(100).addClass("open");
+		scrollOff(); // 바디 스크롤 제거
+
+		// 슬라이드 모달 닫기
+		function modalOut() {
+			temp.fadeOut(300).removeClass("open");
+
+			// 이중 모달이 아닌 경우
+			if (!$(temp).hasClass("depth2")) {
+				scrollOn(); // 바디 스크롤 제거 해제
+			}
+		}
+
+		// 팝업 내 닫기 버튼 클릭 시 팝업 닫기
+		$(temp)
+			.find(".modal-close")
+			.click(function () {
+				modalOut();
+			});
+	}
+
+	// 레이어 팝업(모달) 닫기
+	function modalClose(obj) {
+		if (obj != null && obj != undefined && obj != "") {
+			var temp = $("#" + obj);
+			temp.fadeOut(300).removeClass("open");
+		} else {
+			$(".modal").fadeOut(300).removeClass("open");
+		}
+		scrollOn(); // 바디 스크롤 제거 해제
+	}
+
+	// 화면 너비에 따라 열리는 방식 지정
+	$(".btn-draw").click(function (e) {
+			modalOpen("modal-draw");
+	});
+
+});
+		</script>
+</body>
+</html>

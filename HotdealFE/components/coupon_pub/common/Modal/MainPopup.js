@@ -53,11 +53,9 @@ const MainPopup = ({
                   <h3
                     className={`${styleModal.popupTitle} ${styleModal.popupTitle2}`}
                   >
-                    <p className={styleModal.popupSubTitle}>
-                      달콤한 딸기와 함께
-                    </p>
+                    <p className={styleModal.popupSubTitle}>010PAY와 함께</p>
                     <strong className={styleModal.popupMainTitle}>
-                      화이트데이 <br />
+                      봄 나들이 떠나 봄<br />
                       <span className={styleCommon.highlight}>
                         20% EVENT<i className={`${styleCommon.italic}`}>!</i>
                       </span>
@@ -65,8 +63,8 @@ const MainPopup = ({
                   </h3>
                   <p className={styleModal.modalImgBox}>
                     <img
-                      src="../images/coupon/popup/whiteDay.png"
-                      alt="신학기 20% 할인"
+                      src="../images/coupon/popup/spring.png"
+                      alt="010PAY와 함께 봄 나들이 떠나 봄 20% EVENT!"
                     />
                   </p>
                 </div>
@@ -75,7 +73,7 @@ const MainPopup = ({
                     type="button"
                     className={`${styleModal.btn} ${styleModal.btnFull}`}
                   >
-                    최저가에 선물하기
+                    20% 할인가에 선물하기
                   </button>
                 </div>
               </div>
@@ -86,18 +84,18 @@ const MainPopup = ({
                   <h3
                     className={`${styleModal.popupTitle} ${styleModal.popupTitle2}`}
                   >
-                    <p className={styleModal.popupSubTitle}>
-                      두근두근 설레는 시작
-                    </p>
+                    <p className={styleModal.popupSubTitle}>010PAY와 함께</p>
                     <strong className={styleModal.popupMainTitle}>
-                      신학기{" "}
-                      <span className={styleCommon.highlight}>20% 할인</span>
+                      봄 나들이 떠나 봄<br />
+                      <span className={styleCommon.highlight}>
+                        20% EVENT<i className={`${styleCommon.italic}`}>!</i>
+                      </span>
                     </strong>
                   </h3>
                   <p className={styleModal.modalImgBox}>
                     <img
-                      src="../images/coupon/popup/newSchool.png"
-                      alt="신학기 20% 할인"
+                      src="../images/coupon/popup/spring.png"
+                      alt="010PAY와 함께 봄 나들이 떠나 봄 20% EVENT!"
                     />
                   </p>
                 </div>
@@ -106,7 +104,7 @@ const MainPopup = ({
                     type="button"
                     className={`${styleModal.btn} ${styleModal.btnFull}`}
                   >
-                    최저가에 선물하기
+                    20% 할인가에 선물하기
                   </button>
                 </div>
               </div>

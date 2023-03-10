@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../../css/jquery-ui.css" />
     <link rel="stylesheet" href="../../css/common.css" />
     <link rel="stylesheet" href="../../css/gigworker.css" />
+    <link rel="stylesheet" href="../../css/slick.css" />
 
     <!--[if lt IE 9]>
       <script type="text/javascript" src="../../js/html5shiv.js"></script>
@@ -26,9 +27,10 @@
     <script src="../../js/design.js"></script>
   </head>
 
+  <!-- 230310 검토 -->
   <body>
     <!-- wrap -->
-    <div id="wrap" class="gigworker detailCondition">
+    <div id="wrap" class="gigworker acceptAgree">
       <!-- header -->
       <div id="header">
         <div class="container">
@@ -42,58 +44,56 @@
       <div id="content">
         <div class="container pdLR22 pdB100">
           <div class="titleWrap">
-            <h3 class="mainTitle normal">
-              아래 내용으로 <br>
-              <b>수수료 결제를 취소</b>할게요.
+            <h3 class="mainTitle normal"> 
+              이제 마지막으로 <br>
+              <b>수임동의</b>가 필요해요.
             </h3>
           </div>
 
-          <div class="detailTaxWrap">
-            <div class="detailBox white">
-              <p>결제 취소 정보</p>
-              <dl>
-                <dt>취소 유형</dt>
-                <dd>전체 취소</dd>
-                <dt class="normal">취소 금액</dt>
-                <dd>53,000원</dd>
-              </dl>
-            </div>
-          </div>
-
           <div class="noteWrap">
-            <p class="title">안내사항</p>
+            <p class="title">수임동의란?</p>
             <ul class="note">
-              <li>결제 취소 완료 후 일정 시간이 경과했을 경우 예상 환급액 조회 과정을 다시 진행 하실 수 있습니다.</li>
-              <li>종합소득세 신고자료 정정을 위한결제  취소를 원하는 고객님께서는 택스비 고객센터 0000-0000으로 연락 바랍니다.</li>
-              <li>결제와 관련된 문의사항은 010PAY 고객센터 1600-5220 <br> (평일 09:00 ~ 18:00)으로 연락 바랍니다.</li>
+              <li>홈택스상에 내 세무 신고를 대리할 전문 세무사를 등록하는 데
+                동의함을 말해요. 서비스 이용을 위해선 필요한 단계예요.</li>
+              <li>신고 완료 후엔 언제든 010PAY 앱에서 수임동의를 <br>
+                해지할 수 있어요.</li>
             </ul>
           </div>
-
-          <div class="join-agree">
-            <span class="checkbox square2 blank">
-              <input type="checkbox" name="agreeTerms" id="agreeTerms1">
-              <label for="agreeTerms1">위 내용을 확인하였으며, 이에 동의합니다.</label>
-            </span>
-          </div>
-
+          
           <div class="botBtnWrap">
             <!-- 버튼 비활성화 시 disable 클래스 -->
-            <button type="button" class="bot-btn disable" onclick="modalOpenSlide('modalSlideType1')">결제 취소하기</button>
+            <button type="button" class="bot-btn">동의해요</button>
           </div>
         </div>
       </div>
       <!-- //content -->
     </div>
     <!-- //wrap -->
-    
+
+    <div id="commonAlert" class="modal" style="display: block;">
+      <div class="modal-dialog" style="margin-top: -95px;">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="alertTitle"></h3>
+            <p id="alertContents">
+              다른 서비스를 통해 <br>
+              조회 및 신고하신 적이 있나요? <br>
+              현재 홈택스상에 등록된 세무 대리인이 <br>
+              있습니다. 계속하려면 기존 세무 대리인 <br>
+              해임이 필요합니다.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" onclick="modalClose();" class="btn btn-confirm">취소</button>
+            <button type="button" onclick="modalClose();" class="btn btn-confirm">해임하기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <script>
-      $(".join-agree input").change(function(){
-        if($(this).is(":checked")){
-          $(".bot-btn").removeClass("disable");
-        } else {
-          $(".bot-btn").addClass("disable");
-        }
-      });
+
     </script>
   </body>
 </html>

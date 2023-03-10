@@ -49,15 +49,13 @@
             <p class="subText">등록된 계좌로 환급액이 입금돼요!</p>
           </div>
           <ul class="mt24 pdLR22">
-            <!-- 입력가능 범위를 초과 시 error 클래스 -->
             <li class="boxInput bankInput" onclick="modalOpenSlide('modalBankSel')">
               <span class="default">은행</span> 
               <div class="inputArea">은행 선택</div>
               <button class="btn-view"></button>
             </li>
-            <li class="boxInput error">
+            <li class="boxInput">
               <span class="default">계좌 번호</span>
-              <span class="errorText">확인 후 다시 입력해 주세요.</span>
               <input type="number" placeholder="계좌 번호" pattern="\d*" />
               <button type="button" class="inputDel"></button>
             </li>
@@ -154,7 +152,7 @@
     </div>
     <!-- //wrap -->
 
-    <div id="commonAlert" class="modal" style="display: none;">
+    <div id="commonAlert" class="modal" style="display: block;">
       <div class="modal-dialog" style="margin-top: -95px;">
         <div class="modal-content">
           <div class="modal-body">
@@ -213,7 +211,7 @@
         }
       })
 
-      // 본인과의 관계 선택
+      // 은행 선택
       $(".modal-bank .bankWrap li").on("click", function(){
         var bankLogo = $(this).find(".bankLogo").attr("src");
         var bankName = $(this).find(".bankName").text();

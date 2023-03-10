@@ -29,11 +29,11 @@
 
   <body>
     <!-- wrap -->
-    <div id="wrap" class="gigworker familyInfoEnter">
+    <div id="wrap" class="gigworker complete">
       <!-- header -->
       <div id="header">
         <div class="container">
-          <button type="button" id="btnBack" class="btn-back"><i class="icon-angle-left">뒤로가기</i></button>
+          <!-- <button type="button" id="btnBack" class="btn-back"><i class="icon-angle-left">뒤로가기</i></button> -->
           <button type="button" id="closeWindow" class="btn-close"><i class="icon-times">닫기</i></button>
         </div>
       </div>
@@ -44,188 +44,43 @@
         <div class="container pdLR22 pdB100">
           <div class="titleWrap">
             <h3 class="mainTitle normal">
-              <b>홈택스 계정을 입력</b>하면 <br>
-              이제 환급 신청이 모두 끝나요!
+              종합 소득세 <br>
+              <b>환급 신청이 완료</b> 되었어요.
             </h3>
-            <p class="subText">홈택스 계정이 없다면 가입 후에 시도해 주세요.</p>
+            <p class="subBtn"><i class="icon-info"></i>환급액은 언제 입금되나요?<i class="icon-right-arrow"></i></p>
           </div>
-          <ul class="mt24">
-            <!-- 입력가능 범위를 초과 시 error 클래스 -->
-            <li class="boxInput error">
-              <span class="default">아이디</span>
-              <span class="errorText">확인 후 다시 입력해 주세요.</span>
-              <input type="text" placeholder="홈택스 아이디 입력" />
-              <button type="button" class="inputDel"></button>
-            </li>
-            <li class="boxInput password">
-              <span class="default">비밀번호</span>
-              <span class="errorText">확인 후 다시 입력해 주세요.</span>
-              <input type="password" placeholder="홈택스 비밀번호 입력" />
-              <button type="button" class="ipnutShow"></button>
-              <button type="button" class="inputDel"></button>
-            </li>
-            <li class="boxInput residentNum">
-              <span class="default">주민등록번호</span>
-              <span class="errorText">확인 후 다시 입력해 주세요.</span>
-              <div class="inputArea">
-                <span class="placeholderText">주민등록번호 입력</span>
-                <input class="firstInput" type="text" pattern="\d*" maxlength="6" oninput="maxLengthCheck(this)"/>
-                <span class="dash">-</span>
-                <input class="lastInput" type="number" inputmode="numeric" pattern="\d*" maxlength="7" oninput="maxLengthCheck(this)"/>
+
+          <figure class="visualImg"></figure>
+
+          <div class="detailTaxWrap">
+            <div class="detailBox">
+              <div class="topWrap">
+                <span>예상 환급액</span>
+                <b>568,248원</b>
               </div>
-              <button type="button" class="inputDel"></button>
-            </li>
-          </ul>
+              <dl>
+                <dt>환급 연도</dt>
+                <dd>2020년, 2022년</dd>
+                <dt>신청 수수료</dt>
+                <dd>53,000원</dd>
+                <dt class="normal">신청 일자</dt>
+                <dd class="normal">2023년 5월 14일</dd>
+              </dl>
+            </div>
+          </div>
 
           <div class="botBtnWrap">
             <!-- 버튼 비활성화 시 disable 클래스 -->
-            <button type="button" class="bot-btn disable">신청 완료</button>
+            <button type="button" class="bot-btn">확인</button>
+            <button type="button" class="text-btn"><span class="mainColor">전문 세무사</span><span>의 도움도 필요해요</span> <i class="arrow-right"></i></button>
           </div>
         </div>
         </div>
       <!-- //content -->
-
-      <!-- slide modal -->
-      <div id="modalRelationSel" class="modal modal-slide modal-relation">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3>본인과의 관계 선택</h3>
-              <button type="button" class="btn btn-close hide">
-                <i class="icon-times">닫기</i>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="container">
-                <ul class="optionWrap">
-                  <li>본인의 직계 존속</li>
-                  <li>배우자의 직계 존속</li>
-                  <li>배우자</li>
-                  <li>직계 비속(자녀, 입양자)</li>
-                  <li>직계 비속(자녀, 입양자 제외)</li>
-                  <li>형제자매</li>
-                  <li>수급자</li>
-                  <li>위탁 아동</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- //slide modal -->
-
-      <!-- slide modal -->
-      <div id="modalYearCheck" class="modal modal-slide modal-year">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3>공제 연도 선택 <span>(복수 선택 가능)</span></h3>
-              <button type="button" class="btn btn-close hide">
-                <i class="icon-times">닫기</i>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="container">
-                <ul class="checkWrap">
-                  <li>2022년</li>
-                  <li>2021년</li>
-                  <li>2020년</li>
-                  <li>2019년</li>
-                  <li>2018년</li>
-                </ul>
-              </div>
-              <button type="button" class="bot-btn checkComplete">선택 완료</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- //slide modal -->
     </div>
     <!-- //wrap -->
-
-    <div id="commonAlert" class="modal" style="display: none;">
-      <div class="modal-dialog" style="margin-top: -95px;">
-        <div class="modal-content">
-          <div class="modal-body">
-            <h3 id="alertTitle"></h3>
-            <p id="alertContents">
-              이 페이지를 떠날 경우 작성 했던 정보는 <br>
-              없어지게 됩니다. <br>
-              그래도 이 페이지를 나가시겠어요?
-            </p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" onclick="modalClose();" class="btn btn-confirm">예</button>
-            <button type="button" onclick="modalClose();" class="btn btn-confirm">아니요</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="commonAlert" class="modal" style="display: none;">
-      <div class="modal-dialog" style="margin-top: -95px;">
-        <div class="modal-content">
-          <div class="modal-body">
-            <h3 id="alertTitle"></h3>
-            <p id="alertContents">
-              현재 홈택스 상에 수임동의가 해지되어 <br>
-              종합소득세 신고 진행이 제한됩니다. <br>
-              수임동의 후 신고 진행을 도와드릴까요?
-            </p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" onclick="modalClose();" class="btn btn-confirm">아니요</button>
-            <button type="button" onclick="modalClose();" class="btn btn-confirm">예</button>
-          </div>
-        </div>
-      </div>
-    </div>
     
-
     <script>
-      function modalClose(e){
-        var temp = $(e).parents(".modal");
-        $(temp).fadeOut(200);
-        $(e).parents(".modal-content").animate({ bottom: -450 }, 200);
-        $(".bank-list").scrollTop(0);
-      };
-
-      // 본인과의 관계 선택
-      $(".modal-relation .optionWrap li").on("click", function(){
-        var option = $(this).text();
-        $(".selectInput input").val(option);
-        $(".selectInput").addClass("active");
-        modalClose(this);
-      });
-
-      // 공제 연도 선택
-      var yearArr = [];
-      $(".modal-year .checkWrap li").on("click", function(){
-        yearArr = [];
-        if(!$(this).hasClass("checked")){
-          $(this).addClass("checked");
-        } else {
-          $(this).removeClass("checked");
-        }
-        $(".modal-year .checkWrap li").each(function(i, e){
-          var year = $(e).text().replace("년","");
-          if($(e).hasClass("checked")){
-            yearArr.push(year)
-          }
-        });
-      });
-
-      $(".checkComplete").on("click", function(){
-        if(yearArr.length > 0){
-          $(".checkInput input").val(yearArr.sort().join(", "));
-          $(".checkInput").addClass("active");
-        } else {
-          $(".checkInput input").val("");
-          $(".checkInput").removeClass("active");
-        }
-        modalClose(this);
-      });
-
     </script>
   </body>
 </html>

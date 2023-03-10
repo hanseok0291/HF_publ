@@ -97,9 +97,23 @@ $(window).load(function(){
 
   // 전체 동의
   $(".agreement-btn").on("click", function(){
-    $(this).closest(".modal-body").find("input").prop("checked", true);
+    $(".join-agree input").prop("checked", true);
+    $(".bot-btn").removeClass("disable");
   });
-  
+
+  $(".formWrap input").on("change", function(){
+    var checkLength = 0;
+    $(".formWrap input").each(function(i, e){
+      if($(this).is(":checked")){
+        checkLength++;
+      }
+    });
+    if(checkLength === $(".formWrap input").length){
+      $(this).closest(".container").find(".bot-btn").removeClass("disable");
+    } else {
+      $(this).closest(".container").find(".bot-btn").addClass("disable");
+    }
+  });
 });
 
 // maxlength
@@ -125,3 +139,4 @@ function modalClose(obj) {
 
   scrollOn(); // 바디 스크롤 제거 해제
 }
+

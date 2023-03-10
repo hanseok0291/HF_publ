@@ -29,73 +29,43 @@
 
   <body>
     <!-- wrap -->
-    <div id="wrap" class="gigworker infoEnter deductionEnter">
+    <div id="wrap" class="gigworker deductionEnter">
       <!-- header -->
       <div id="header">
         <div class="container">
-          <button type="button" id="btnBack" class="btn-back"><i class="icon-angle-left">뒤로가기</i></button>
-          <!-- <button type="button" id="closeWindow" class="btn-close"><i class="icon-times">닫기</i></button> -->
+          <!-- <button type="button" id="btnBack" class="btn-back"><i class="icon-angle-left">뒤로가기</i></button> -->
+          <button type="button" id="closeWindow" class="btn-close"><i class="icon-times">닫기</i></button>
         </div>
       </div>
       <!-- //header -->
 
       <!-- content -->
       <div id="content">
-        <div class="container pdLR22 pdB100">
-          <div class="titleWrap">
+        <div class="container">
+          <div class="titleWrap pdLR22">
             <h3 class="mainTitle normal">
-              수임동의를 해지할게요. <br>
-              <b>홈택스 인증정보</b>를 알려주세요.
+              <b>공제 자료 입력</b> 후 <br>
+              최종 환급 신청을 도와드릴게요.
             </h3>
+            <p class="subText">
+              박혜빈님의 예상 환급액은 <b class="mainColor">568,248</b>원이에요.
+            </p>
           </div>
-          <ul class="mt24">
-            <!-- 입력가능 범위를 초과 시 error 클래스 -->
-            <li class="boxInput">
-              <span class="default">이름</span>
-              <span class="errorText">확인 후 다시 입력해 주세요.</span>
-              <input type="number" placeholder="이름 입력" pattern="\d*"/>
-              <button type="button" class="inputDel"></button>
-            </li>
-            <li class="boxInput phoneNum">
-              <span class="default">휴대폰 번호</span>
-              <span class="errorText">확인 후 다시 입력해 주세요.</span>
-              <div class="inputArea">
-                <span class="placeholderText">휴대폰 번호 입력</span>
-                <input type="text" pattern="\d*" maxlength="11" oninput="maxLengthCheck(this)"/>
-              </div>
-              <button type="button" class="inputDel"></button>
-            </li>
-            <li class="boxInput residentNum">
-              <span class="default">주민등록번호</span>
-              <span class="errorText">확인 후 다시 입력해 주세요.</span>
-              <div class="inputArea">
-                <span class="placeholderText">주민등록번호 입력</span>
-                <input class="firstInput" type="text" pattern="\d*" maxlength="6" oninput="maxLengthCheck(this)"/>
-                <span class="dash">-</span>
-                <input class="lastInput" type="number" inputmode="numeric" pattern="\d*" maxlength="7" oninput="maxLengthCheck(this)"/>
-              </div>
-              <button type="button" class="inputDel"></button>
-            </li>
-          </ul>
-          <div class="section2">
-            <div class="lineTitleText">
-              <p>간편인증 선택</p>
-            </div>
-            <div class="itemWrap verification">
-              <div class="item kakao">
-                <input type="radio" id="kakao" name="verification"/>
-                <label for="kakao"><span>카카오지갑</span></label>
-              </div>
-              <div class="item naver">
-                <input type="radio" id="naver" name="verification"/>
-                <label for="naver"><span>네이버</span></soab></label>
-              </div>
-              <div class="item pass">
-                <input type="radio" id="pass" name="verification"/>
-                <label for="pass"><span>PASS</span></label>
-              </div>
-            </div>
+
+          <figure class="visualImg"></figure>
+
+          <div class="noteWrap">
+            <p class="title">공제 자료 입력을 꼭 해야하나요?</p>
+            <ul class="note">
+              <li>
+                하지만 나도 모르는 공제 자료가 있을 수 있으니 <br> 최종 신청 전에 같이 한 번 확인해 볼게요.</li>
+              <li>공제받을 항목이 있다면 꼭 입력해 주세요. <br>
+                내가 환급받을 세금이 더 많아져서 유리하거든요.</li>
+              <li>현재 010PAY에선 부양가족 정보만 입력할 수 있지만, <br>
+                앞으로 다른 공제 자료도 입력할 수 있도록 지원할 예정이에요.</li>
+            </ul>
           </div>
+          
           <div class="botBtnWrap">
             <!-- 버튼 비활성화 시 disable 클래스 -->
             <button type="button" class="bot-btn" onclick="modalOpenSlide('modalSlideType1')">다음</button>
@@ -111,14 +81,14 @@
             <div class="modal-body">
               <button type="button" class="btn btn-close hide"><i class="icon-times">닫기</i></button>
               <div class="container">
-                <h4><b>수임동의 해지</b>를 위해 <br/>아래의 약관 동의가 필요해요.</h4>
+                <h4><b>공제 자료 입력</b>을 위해 <br/>아래의 약관 동의가 필요해요.</h4>
                 <div>
                   <button type="button" class="noraml-btn agreement-btn">전체 동의</button>
                   <div class="formWrap">
                     <div class="join-agree">
                       <span class="checkbox square2 blank">
                         <input type="checkbox" name="agreeTerms" id="agreeTerms2">
-                        <label for="agreeTerms2">(필수) 국세청 이용약관</label>
+                        <label for="agreeTerms2">(필수) 헥토파이낸셜 이용약관</label>
                       </span>
                       <ul class="inner-agree">
                         <li>
@@ -133,8 +103,31 @@
                         </li>
                       </ul>
                     </div>
+                    <div class="join-agree">
+                      <span class="checkbox square2 blank">
+                        <input type="checkbox" name="agreeTerms" id="agreeTerms3">
+                        <label for="agreeTerms3">(필수) 택스비 이용약관</label>
+                      </span>
+                      <ul class="inner-agree">
+                        <li>
+                          <input type="checkbox" name="agreeTerms" id="innerAgree3_1">
+                          <label for="innerAgree3_1">개인정보 수집 및 이용 동의</label>
+                          <button class="btn-view"></button>
+                        </li>
+                        <li>
+                          <input type="checkbox" name="agreeTerms" id="innerAgree3_2">
+                          <label for="innerAgree3_2">개인정보 제 3자 제공 동의</label>
+                          <button class="btn-view"></button>
+                        </li>
+                        <li>
+                          <input type="checkbox" name="agreeTerms" id="innerAgree3_3">
+                          <label for="innerAgree3_3">고유식별정보 수집 및 이용 동의</label>
+                          <button class="btn-view"></button>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                  <button type="button" class="bot-btn">동의 후 계속</button>
+                  <button type="button" class="bot-btn disable">확인</button>
                 </div>
               </div>
             </div>

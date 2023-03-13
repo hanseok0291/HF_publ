@@ -151,6 +151,21 @@
       <!-- //slide modal -->
     </div>
     <!-- //wrap -->
+    <div id="commonAlert" class="modal" style="display: none;">
+      <div class="modal-dialog" style="margin-top: -95px;">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="alertTitle"></h3>
+            <p id="alertContents">
+              환급 계좌가 등록되었습니다.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" onclick="modalClose();" class="btn btn-confirm">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div id="commonAlert" class="modal" style="display: none;">
       <div class="modal-dialog" style="margin-top: -95px;">
@@ -192,10 +207,23 @@
         $(temp).fadeOut(200);
         $(e).parents(".modal-content").animate({ bottom: -450 }, 200);
         $(".bank-list").scrollTop(0);
+        
       };
+
+      $(".modal-slide").click(function(e){
+        if (!$(".modal-content").has(e.target).length) {
+          $(".btn-view").css({"transform": "rotate(90deg)"});
+        }
+      });
+
+      $(".btn-close").click(function(e){
+        $(".btn-view").css({"transform": "rotate(90deg)"});
+      });
+
 
 
       $(".bankInput").on("click", function(){
+        $(".btn-view").css({"transform": "rotate(270deg)"});
         if($(".bankWrap").height() > 400){
           $(".modal-bank .modal-body").addClass("blur");
         }
@@ -209,14 +237,17 @@
         } else {
           $(this).closest(".modal-body").addClass("blur");
         }
-      })
+      });
 
       // 은행 선택
       $(".modal-bank .bankWrap li").on("click", function(){
         var bankLogo = $(this).find(".bankLogo").attr("src");
         var bankName = $(this).find(".bankName").text();
+        $(".modal-bank .bankWrap li").removeClass("on");
+        $(this).addClass("on");
         $(".bankInput").addClass("active");
-        $(".bankInput .inputArea").html("<img src='" + bankLogo + "' alt='" + bankName + "' /><span>"+bankName+"</span>")
+        $(".bankInput .inputArea").html("<img src='" + bankLogo + "' alt='" + bankName + "' /><span>"+bankName+"</span>");
+        $(".btn-view").css({"transform": "rotate(90deg)"});
         modalClose(this);
       });
 

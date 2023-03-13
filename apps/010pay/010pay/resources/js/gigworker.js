@@ -1,4 +1,13 @@
+
+
 $(window).load(function(){
+  function modalClose(e){
+    var temp = $(e).parents(".modal");
+    $(temp).fadeOut(200);
+    $(e).parents(".modal-content").animate({ bottom: -450 }, 200);
+    $(".bank-list").scrollTop(0);
+  };
+
   // 인풋 입력
   $(".boxInput").each(function(idx, e){
     var $input = $(e).find("input");
@@ -17,9 +26,12 @@ $(window).load(function(){
         $input.closest(".boxInput").find(".inputDel, .dash, .ipnutShow").hide();
         $input.closest(".boxInput").find(".placeholderText").show(); 
       }
+
       if($(this).hasClass("lastInput") && $(this).val().length === 0 && $input.closest(".boxInput").find(".firstInput").val().length === 0){
         $input.closest(".boxInput").find(".firstInput").focus();
         $input.closest(".boxInput").addClass("active");
+      } else if($(this).hasClass("lastInput") && $(this).val().length === 0){
+
       }
     });
 
@@ -97,8 +109,16 @@ $(window).load(function(){
 
   // 전체 동의
   $(".agreement-btn").on("click", function(){
-    $(".join-agree input").prop("checked", true);
-    $(".bot-btn").removeClass("disable");
+    if(!$(this).hasClass("active")){
+      $(".join-agree input").prop("checked", true);
+      $(".bot-btn").removeClass("disable");
+      $(".agreement-btn").addClass("active");
+    } else {
+      $(".join-agree input").prop("checked", false);
+      $(".bot-btn").addClass("disable");
+      $(".agreement-btn").removeClass("active");
+    }
+    
   });
 
   $(".formWrap input").on("change", function(){
@@ -110,11 +130,14 @@ $(window).load(function(){
     });
     if(checkLength === $(".formWrap input").length){
       $(this).closest(".container").find(".bot-btn").removeClass("disable");
+      $(".agreement-btn").addClass("active");
     } else {
       $(this).closest(".container").find(".bot-btn").addClass("disable");
+      $(".agreement-btn").removeClass("active");
     }
   });
 });
+
 
 // maxlength
 function maxLengthCheck(object){

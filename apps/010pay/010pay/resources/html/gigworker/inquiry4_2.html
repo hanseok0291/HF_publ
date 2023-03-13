@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../../css/jquery-ui.css" />
     <link rel="stylesheet" href="../../css/common.css" />
     <link rel="stylesheet" href="../../css/gigworker.css" />
+    <link rel="stylesheet" href="../../css/slick.css" />
 
     <!--[if lt IE 9]>
       <script type="text/javascript" src="../../js/html5shiv.js"></script>
@@ -29,12 +30,12 @@
   <!-- 230310 검토 -->
   <body>
     <!-- wrap -->
-    <div id="wrap" class="gigworker infoEnter">
+    <div id="wrap" class="gigworker acceptAgree">
       <!-- header -->
       <div id="header">
         <div class="container">
-          <button type="button" id="btnBack" class="btn-back"><i class="icon-angle-left">뒤로가기</i></button>
-          <!-- <button type="button" id="closeWindow" class="btn-close"><i class="icon-times">닫기</i></button> -->
+          <!-- <button type="button" id="btnBack" class="btn-back"><i class="icon-angle-left">뒤로가기</i></button> -->
+          <button type="button" id="closeWindow" class="btn-close"><i class="icon-times">닫기</i></button>
         </div>
       </div>
       <!-- //header -->
@@ -43,29 +44,28 @@
       <div id="content">
         <div class="container pdLR22 pdB100">
           <div class="titleWrap">
-            <h3 class="mainTitle normal">
-              <b>간편인증</b> <br>
-              요청 알림을 보냈어요.
+            <h3 class="mainTitle normal"> 
+              이제 마지막으로 <br>
+              <b>수임동의</b>가 필요해요.
             </h3>
           </div>
 
-          <div class="verificationTimer kakao">
-            <p>
-              카카오톡 앱에서 인증 후, <br>
-              아래의 [인증 완료]를 눌러주세요.
-            </p>
-
-            <div class="timeWrap ">
-              <!-- 인증 유효시간 만료 시 warning class 추가 -->
-              <span class="warning">04 : 59</span>
-            </div>
+          <div class="noteWrap">
+            <p class="title">수임동의란?</p>
+            <ul class="note">
+              <li>홈택스상에 내 세무 신고를 대리할 전문 세무사를 등록하는 데
+                동의함을 말해요. 서비스 이용을 위해 필요한 단계예요.</li>
+              <li>신고 완료 후엔 언제든 010PAY 앱에서 수임동의를 <br>
+                해지할 수 있어요.</li>
+            </ul>
           </div>
           
           <div class="botBtnWrap">
-            <button type="button" class="bot-btn">인증 완료</button>
+            <!-- 버튼 비활성화 시 disable 클래스 -->
+            <button type="button" class="bot-btn">동의해요</button>
           </div>
         </div>
-        </div>
+      </div>
       <!-- //content -->
     </div>
     <!-- //wrap -->
@@ -75,10 +75,16 @@
         <div class="modal-content">
           <div class="modal-body">
             <h3 id="alertTitle"></h3>
-            <p id="alertContents">인증이 완료되지 않았습니다. <br>카카오톡 앱에서 인증 후에 다시 눌러주세요.</p>
+            <p id="alertContents">
+              다른 서비스를 통해
+              조회 및 신고하신 적이 있나요?
+              홈택스상에 세무 대리인이 등록되어 있어
+              해임 후에 계속할 수 있습니다.
+            </p>
           </div>
           <div class="modal-footer">
-            <button type="button" onclick="modalClose();" class="btn btn-confirm">확인</button>
+            <button type="button" onclick="modalClose();" class="btn btn-confirm">취소</button>
+            <button type="button" onclick="modalClose();" class="btn btn-confirm">해임하기</button>
           </div>
         </div>
       </div>
@@ -90,12 +96,13 @@
           <div class="modal-body">
             <h3 id="alertTitle"></h3>
             <p id="alertContents">
-              인증 요청 시간이 만료되었습니다. <br>
-              재인증을 요청해주세요.
+              아직 환급액 조회가 완료되지 않았습니다. <br>
+              그래도 이 창을 닫을까요?
             </p>
           </div>
           <div class="modal-footer">
-            <button type="button" onclick="modalClose();" class="btn btn-confirm">재인증 요청하기</button>
+            <button type="button" onclick="modalClose();" class="btn btn-confirm">예</button>
+            <button type="button" onclick="modalClose();" class="btn btn-confirm">아니요</button>
           </div>
         </div>
       </div>

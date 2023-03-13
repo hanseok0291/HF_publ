@@ -61,7 +61,7 @@
               <span class="errorText">확인 후 다시 입력해 주세요.</span>
               <div class="inputArea">
                 <span class="placeholderText">주민등록번호 입력</span>
-                <input class="firstInput" type="text" pattern="\d*" maxlength="6" oninput="maxLengthCheck(this)"/>
+                <input class="firstInput" type="number" pattern="\d*" maxlength="6" oninput="maxLengthCheck(this)"/>
                 <span class="dash">-</span>
                 <input class="lastInput" type="number" inputmode="numeric" pattern="\d*" maxlength="7" oninput="maxLengthCheck(this)"/>
               </div>
@@ -88,7 +88,7 @@
       <!-- //content -->
 
       <!-- slide modal -->
-      <div id="modalRelationSel" class="modal modal-slide modal-relation">
+      <div id="modalRelationSel" class="modal modal-slide modal-select">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -137,7 +137,7 @@
                     <div class="botArea">
                       <div class="join-agree">
                         <span class="checkbox square2 blank">
-                          <input type="checkbox" id="agreeModal1_1">
+                          <input type="checkbox" id="agreeModal1_1" checked>
                           <label for="agreeModal1_1">내국인이에요.</label>
                         </span>
                       </div>
@@ -149,7 +149,7 @@
                       </div>
                       <div class="join-agree">
                         <span class="checkbox square2 blank">
-                          <input type="checkbox" id="agreeModal1_3">
+                          <input type="checkbox" id="agreeModal1_3" checked>
                           <label for="agreeModal1_3">연소득 100만원 이하예요.</label>
                         </span>
                       </div>
@@ -163,7 +163,7 @@
                     <div class="botArea">
                       <div class="join-agree">
                         <span class="checkbox square2 blank">
-                          <input type="checkbox" id="agreeModal2_1">
+                          <input type="checkbox" id="agreeModal2_1" checked>
                           <label for="agreeModal2_1">내국인이에요.</label>
                         </span>
                       </div>
@@ -175,7 +175,7 @@
                       </div>
                       <div class="join-agree">
                         <span class="checkbox square2 blank">
-                          <input type="checkbox" id="agreeModal2_3">
+                          <input type="checkbox" id="agreeModal2_3" checked>
                           <label for="agreeModal2_3">연소득 100만원 이하예요.</label>
                         </span>
                       </div>
@@ -189,7 +189,7 @@
                     <div class="botArea">
                       <div class="join-agree">
                         <span class="checkbox square2 blank">
-                          <input type="checkbox" id="agreeModal3_1">
+                          <input type="checkbox" id="agreeModal3_1" checked>
                           <label for="agreeModal3_1">내국인이에요.</label>
                         </span>
                       </div>
@@ -201,7 +201,7 @@
                       </div>
                       <div class="join-agree">
                         <span class="checkbox square2 blank">
-                          <input type="checkbox" id="agreeModal3_3">
+                          <input type="checkbox" id="agreeModal3_3" checked>
                           <label for="agreeModal3_3">연소득 100만원 이하예요.</label>
                         </span>
                       </div>
@@ -215,7 +215,7 @@
                     <div class="botArea">
                       <div class="join-agree">
                         <span class="checkbox square2 blank">
-                          <input type="checkbox" id="agreeModal4_1">
+                          <input type="checkbox" id="agreeModal4_1" checked>
                           <label for="agreeModal4_1">내국인이에요.</label>
                         </span>
                       </div>
@@ -227,7 +227,7 @@
                       </div>
                       <div class="join-agree">
                         <span class="checkbox square2 blank">
-                          <input type="checkbox" id="agreeModal4_3">
+                          <input type="checkbox" id="agreeModal4_3" checked>
                           <label for="agreeModal4_3">연소득 100만원 이하예요.</label>
                         </span>
                       </div>
@@ -241,7 +241,7 @@
                     <div class="botArea">
                       <div class="join-agree">
                         <span class="checkbox square2 blank">
-                          <input type="checkbox" id="agreeModal5_1">
+                          <input type="checkbox" id="agreeModal5_1" checked>
                           <label for="agreeModal5_1">내국인이에요.</label>
                         </span>
                       </div>
@@ -253,7 +253,7 @@
                       </div>
                       <div class="join-agree">
                         <span class="checkbox square2 blank">
-                          <input type="checkbox" id="agreeModal5_3">
+                          <input type="checkbox" id="agreeModal5_3" checked>
                           <label for="agreeModal5_3">연소득 100만원 이하예요.</label>
                         </span>
                       </div>
@@ -280,7 +280,7 @@
       };
 
       // 본인과의 관계 선택
-      $(".modal-relation .optionWrap li").on("click", function(){
+      $(".modal-select .optionWrap li").on("click", function(){
         var option = $(this).text();
         $(".selectInput input").val(option);
         $(".selectInput").addClass("active");
@@ -290,14 +290,19 @@
       // 공제 연도 선택
       var yearArr = [];
       $(".modal-year .checkWrap .topArea").on("click", function(){
+        var checkStatus = false;
         var $parent = $(this).parent();
-        
-        if(!$parent.hasClass("active")){
-          $parent.find(".botArea").slideDown();
-          $parent.addClass("active");
+        $(".botArea").not($parent.find(".botArea")).slideUp();
+        $parent.find(".botArea").slideToggle();
+        $parent.find(".botArea input").each(function(){
+          if($(this).prop("checked")){
+            checkStatus = true;
+          }
+        });
+        if(checkStatus){
+          $parent.addClass("active checked");
         } else {
           $parent.removeClass("active");
-          $parent.find(".botArea").slideUp();
         }
       });
 
@@ -317,7 +322,6 @@
 
       $(".checkComplete").on("click", function(){
         $(".botArea").hide();
-        $(".checkWrap li").removeClass("active");
         yearArr = [];
         $(".checkWrap li").each(function(i, e){
           if($(e).hasClass("checked")){

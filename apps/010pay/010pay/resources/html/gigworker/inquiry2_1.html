@@ -22,9 +22,6 @@
     <![endif]-->
     <script src="../../js/jquery-1.8.3.min.js"></script>
     <script src="../../js/gigworker.js"></script>
-    <script src="../../js/jquery.placeholder.min.js"></script>
-    <script src="../../js/owl.carousel.min.js"></script>
-    <script src="../../js/design.js"></script>
   </head>
 
   <!-- 230310 검토 -->
@@ -45,7 +42,7 @@
         <div class="container pdLR22 pdB100">
           <div class="titleWrap">
             <h3 class="mainTitle normal">
-              수임동의를 진행할게요. <br>
+              환급액을 알아볼게요. <br>
               <b>홈택스 인증정보</b>를 알려주세요.
             </h3>
           </div>
@@ -71,7 +68,7 @@
               <span class="errorText">확인 후 다시 입력해 주세요.</span>
               <div class="inputArea">
                 <span class="placeholderText">주민등록번호 입력</span>
-                <input class="firstInput" type="text" pattern="\d*" maxlength="6" oninput="maxLengthCheck(this)"/>
+                <input class="firstInput" type="number" pattern="\d*" maxlength="6" oninput="maxLengthCheck(this)"/>
                 <span class="dash">-</span>
                 <input class="lastInput" type="number" inputmode="numeric" pattern="\d*" maxlength="7" oninput="maxLengthCheck(this)"/>
               </div>
@@ -102,53 +99,32 @@
             <button type="button" class="bot-btn disable">다음</button>
           </div>
         </div>
-      </div>
-      <!-- //content -->
-
-      <!-- slide modal -->
-      <div id="modalSlideType1" class="modal modal-slide modal-info">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-body">
-              <button type="button" class="btn btn-close hide"><i class="icon-times">닫기</i></button>
-              <div class="container">
-                <h4><b>수임동의</b>를 위해 <br/>아래의 약관 동의가 필요해요.</h4>
-                <div>
-                  <button type="button" class="noraml-btn agreement-btn">전체 동의</button>
-                  <div class="formWrap">
-                    <div class="join-agree">
-                      <span class="checkbox square2 blank">
-                        <input type="checkbox" name="agreeTerms" id="agreeTerms2">
-                        <label for="agreeTerms2">(필수) 국세청 이용약관</label>
-                      </span>
-                      <ul class="inner-agree">
-                        <li>
-                          <input type="checkbox" name="agreeTerms" id="innerAgree2_2">
-                          <label for="innerAgree2_2">개인정보 수집 및 이용 동의</label>
-                          <button class="btn-view"></button>
-                        </li>
-                        <li>
-                          <input type="checkbox" name="agreeTerms" id="innerAgree2_3">
-                          <label for="innerAgree2_3">개인정보 제 3자 제공 동의</label>
-                          <button class="btn-view"></button>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <button type="button" class="bot-btn disable">확인</button>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-      <!-- //slide modal -->
+      <!-- //content -->
     </div>
     <!-- //wrap -->
 
+    <div id="commonAlert" class="modal" style="display: block;">
+      <div class="modal-dialog" style="margin-top: -95px;">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="alertTitle"></h3>
+            <p id="alertContents">
+              지금 닫으면 입력했던 정보가 사라집니다. <br>
+              그래도 이 창을 닫을까요?
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" onclick="modalClose();" class="btn btn-confirm">예</button>
+            <button type="button" onclick="modalClose();" class="btn btn-confirm">아니요</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <script>
-      modalOpenSlide('modalSlideType1');
+
     </script>
   </body>
 </html>

@@ -259,10 +259,12 @@
 
         // 하단 배너 노출
         $(window).on("scroll", function(){
-          if($(this).scrollTop() > 40) {
-            $(".bottomBanner").css("bottom"," 0");
-          } else {
-            $(".bottomBanner").css("bottom"," -180px");
+          if($("body").outerHeight() < $("#content").outerHeight()){ //230313 추가
+            if($(this).scrollTop() > 40) {
+              $(".bottomBanner").css("bottom"," 0");
+            } else {
+              $(".bottomBanner").css("bottom"," -180px");
+            }
           }
         });
       });

@@ -1,12 +1,14 @@
 /* 조회결과 */
-.gigworker.target #content { padding-bottom: 100px !important; } 
+.gigworker.target #content { padding-bottom: 200px !important; } 
 .gigworker.target #content .container .titleWrap.small .subText { font-weight: 400; }
 .gigworker.target #content .noteWrap { flex: 1; margin: 0; padding: 34px 24px; background-color: #f9f9f9; }
-.gigworker.target .taxWrap { border-bottom: 10px solid #f9f9f9; padding-bottom: 32px; }
 .gigworker.target .taxWrap:last-child { border-bottom: 0; }
 .gigworker.target .visualImg { display: block; width: 138px; height: 137px; margin: 0 0 34px 57.33%; background: url("../images/gigworker/check-result-01.png") 0 / cover no-repeat; } 
-.gigworker.target .tabWrap.fixed { position: relative; top: 44px; }
-.gigworker.target .tabWrap .tab { font-size: 0; background-color: #f9f9f9; }
+.gigworker.target .tabWrap.btnWrap { position: sticky; top: 44px; z-index: 1; }
+.gigworker.target .tabWrap.btnWrap .tab.down { transform: translateY(-101%); }
+.gigworker.target .tabContainer { margin-top: 40px; }
+.gigworker.target .tabContainer > .taxWrap2 { margin-top: 80px; }
+.gigworker.target .tabWrap .tab { font-size: 0; background-color: #f9f9f9; transition: 0.2s; }
 .gigworker.target .tabWrap .tab li { position: relative; float: left; font-size: 16px; font-weight: 700; color: #ccc; width: 50%; line-height: 56px; text-align: center; }
 .gigworker.target .tabWrap .tab li.on { color: #151515; }
 .gigworker.target .tabWrap .tab li.on::after { content: ''; position: absolute; bottom: 2px; display: block; width: 100%; height: 4px; background-color: #151515; }
@@ -14,23 +16,31 @@
 .gigworker.target .tabContent { margin-top: 40px; }
 .gigworker.target .tabContent .content { display: none; }
 .gigworker.target .tabContent .content.on { display: block; }
-.gigworker.target .titleWrap { margin-top: 40px; font-size: 18px; font-weight: 700; color: #151515; }
+.gigworker.target .titleWrap { font-size: 18px; font-weight: 700; color: #151515; }
 .gigworker.target .titleWrap .sub { font-size: 12px; font-weight: 400; color: #575757; }
 .gigworker.target .titleWrap .result { font-size: 22px; font-weight: 700; color: #151515; }
-.gigworker.target #content .container .graphWrapVertical .barBg { display: flex; justify-content: space-between; position: relative; padding-top: 36px; border-bottom: 2px solid #eee; }
-.gigworker.target #content .container .graphWrapVertical .barBg .barWrap { position: relative; width: 100%; height: 150px; display: flex; justify-content: space-between; align-items: end; padding-left: 96px; padding-right: 17px; }
-.gigworker.target #content .container .graphWrapVertical .barBg .barWrap > .bar { width: 26px; height: 0px; border-radius: 17px 17px 0 0; background-color: #f6f6f6; transition: height 1s 0.5s ease-out; }
-.gigworker.target #content .container .graphWrapVertical .barBg .barWrap > .bar.blue { background: linear-gradient(360deg, rgba(167,200,252,1) 0%, rgba(53,128,248,1) 100%); }
-.gigworker.target #content .container .graphWrapVertical .barBg .barWrap > .bar .data { position: relative; top: -15px; left: -3px; display: inline-block; width: 30px; font-size: 12px; font-weight: 700; color: #151515; text-align: center; }
-.gigworker.target #content .container .graphWrapVertical .barBg .barWrap > .line { position: absolute; left: 0; width: 0; height: 2px; background: url(../images/gigworker/horizon-dot.png) center / cover no-repeat; transition: all .6s; }
-.gigworker.target #content .container .graphWrapVertical .barBg .barWrap > .line .hasBg { position: relative; top: -7px; display: block; width: 59.5px; height: 15px; padding-top: 1px; padding-left: 4px; color: #fff; font-size: 10px; background: url(../images/gigworker/check-textbox.png) center / cover no-repeat; }
-.gigworker.target #content .container .graphWrapVertical .textWrap { display: flex; justify-content: space-between; width: 100%; margin-top: 6px; padding: 0 17px 0 96px; font-size: 12px; }
+.gigworker.target #content .container .taxWrap .graphWrapVertical .barBg { display: flex; justify-content: space-between; position: relative; padding-top: 36px; border-bottom: 2px solid #eee; }
+.gigworker.target #content .container .taxWrap .graphWrapVertical .barBg .barWrap { position: relative; width: 100%; height: 120px; display: flex; justify-content: space-between; align-items: end; padding-left: 96px; padding-right: 17px; }
+.gigworker.target #content .container .taxWrap .graphWrapVertical .barBg .barWrap > .bar { width: 26px; height: 0px; border-radius: 17px 17px 0 0; background-color: #f6f6f6; transition: height 1s 0.5s ease-out; }
+.gigworker.target #content .container .taxWrap .graphWrapVertical .barBg .barWrap > .bar.blue { background: linear-gradient(360deg, rgba(167,200,252,1) 0%, rgba(53,128,248,1) 100%); }
+.gigworker.target #content .container .taxWrap .graphWrapVertical .barBg .barWrap > .bar .data { position: relative; top: -15px; left: -3px; display: inline-block; width: 30px; font-size: 12px; font-weight: 700; color: #151515; text-align: center; opacity: 0; transition: 0.2s; }
+.gigworker.target #content .container .taxWrap.active .graphWrapVertical .barBg .barWrap > .bar .data { opacity: 1; transition-delay: 1.4s; }
+.gigworker.target #content .container .taxWrap .graphWrapVertical .barBg .barWrap > .line { position: absolute; left: 0; width: 100%; height: 2px;}
+.gigworker.target #content .container .taxWrap .graphWrapVertical .barBg .barWrap > .line .lineImg { position: absolute; left: 0; width: 0; height: 2px; background: url(../images/gigworker/horizon-dot.png) center / cover no-repeat; transition: all .6s; }
+.gigworker.target #content .container .taxWrap .graphWrapVertical .barBg .barWrap > .line .hasBg { position: relative; top: -8px; display: inline-block;  height: 15px; padding-top: 1px; padding-left: 4px; padding-right: 10px; color: #fff; font-size: 10px; background: url(../images/gigworker/check-textbox.png) center / 100% 100% no-repeat; transition: 0.3s; opacity: 0; }
+.gigworker.target #content .container .taxWrap.active .graphWrapVertical .barBg .barWrap > .line .hasBg { opacity: 1; transition-delay: 1.6s; }
+.gigworker.target #content .container .taxWrap.active .graphWrapVertical .barBg .barWrap > .line .lineImg { width: 100%; transition: all .6s; transition-delay: 1.8s; }
 
-.gigworker.target .resultContent .content .box { margin: 8px 0; background-color: #f9f9f9; border-radius: 16px; padding: 20px; }
+.gigworker.target #content .container .taxWrap .graphWrapVertical .textWrap { display: flex; justify-content: space-between; width: 100%; margin-top: 6px; padding: 0 17px 0 96px; font-size: 12px; }
+
+.gigworker.target .resultContent { margin: 26px 0 0; }
+.gigworker.target .resultContent .content .box { margin: 8px 0; background-color: #f9f9f9; border-radius: 16px; padding: 20px; padding-right: 0; }
 .gigworker.target .resultContent .content .box .year { float: left; line-height: 22px; font-size: 14px; font-weight: 700; color: #151515; }
-.gigworker.target .resultContent .content .box .slide-area { padding-left: 72px; }
-.gigworker.target .resultContent .content .box .slide-area .item { display: flex; justify-content: space-between; font-size: 12px; line-height: 22px; }
-.gigworker.target .resultContent .content .box .slide-area .slick-dots { position: relative; top: 0; right: 0; margin-top: 16px; }
+.gigworker.target .resultContent .content .box .slide-area { position: relative; padding-bottom: 20px; padding-left: 52px; }
+.gigworker.target .resultContent .content .box .slide-area .slide,
+.gigworker.target .resultContent .content .box .slide-area .slick-list { position: static; }
+.gigworker.target .resultContent .content .box .slide-area .item { display: flex; justify-content: space-between; padding: 0 20px; font-size: 12px; line-height: 22px; }
+.gigworker.target .resultContent .content .box .slide-area .slick-dots { position: absolute; bottom: 0; top: auto; left: 50%; right: auto; transform: translateX(-50%); margin-top: 16px; }
 .gigworker.target .resultContent .content .box .slide-area .slick-dots li button:before { width: 6px; height: 6px; background-color: #ccc; }
 .gigworker.target .resultContent .content .box .slide-area .slick-dots li.slick-active button:before { width: 18px; background-color: #575757; }
 .gigworker.target .resultContent .content .box .slide-area .slick-dots li { margin-left: 6px; }
@@ -51,8 +61,9 @@
 
 .gigworker.checkTax #content { padding-bottom: 0 !important; }
 .gigworker.checkTax .visualImg { display: block; width: 170px; height: 207px; margin: 70px auto 67px; background: url("../images/gigworker/check-result-02.png") 0 / cover no-repeat; } 
-.gigworker.checkTax #content .noteWrap { flex: 1; margin: 0; padding: 34px 24px; background-color: #f9f9f9; }
+.gigworker.checkTax #content .noteWrap { flex: 1; margin: 0; padding: 34px 24px 100px; background-color: #f9f9f9; }
 
 .gigworker.checkNot #content { padding-bottom: 0 !important; } 
+.gigworker.checkNot #content { padding-bottom: 0 !important; } 
 .gigworker.checkNot .visualImg { display: block; width: 227px; height: 174px; margin: 70px auto 67px; background: url("../images/gigworker/check-result-03.png") 0 / cover no-repeat; } 
-.gigworker.checkNot #content .noteWrap { flex: 1; margin: 0; padding: 34px 24px; background-color: #f9f9f9; }
+.gigworker.checkNot #content .noteWrap { flex: 1; margin: 0; padding: 34px 24px 100px; background-color: #f9f9f9; }

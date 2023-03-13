@@ -7,10 +7,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
 <meta name="format-detection" content="telephone=no, address=no, email=no">
 <link rel="stylesheet" type="text/css" href="../../resource/fonts/notosanskr-v13/notosanskr.min.css">
-<link rel="stylesheet" type="text/css" href="../../resource/css/promotion.css?ver=230311">
+<link rel="stylesheet" type="text/css" href="../../resource/css/promotion.css">
 <link rel="stylesheet" type="text/css" href="../../resource/css/fullpage.min.css">
 <script src="../../resource/library/jquery-1.8.3.min.js"></script>
 <script src="../../resource/js/fullpage.js"></script>
+<!-- infomation -->
+<meta name="author" content="010PAY">
+<meta property="og:image" content="https://010pay.kr/resource/images/promotion/benefit/img-share.png">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="420">
 <style>
 	.wrap-promotion .section { position: relative; }
 	.wrap-promotion .section img { display: block; }
@@ -43,7 +48,7 @@
 			<!-- section - img -->			
 				<div class="section section-1">
 					<img class="ani-slide-1" src="../../resource/images/promotion/benefit/bridge-title-mo-01.png" alt="03.28(화) ~ 04.30(일) 내 숨은 돈 계산하고 프로일잘러 필수템 받자!">
-					<img class="ani-slide-2 img2" src="../../resource/images/promotion/benefit/bridge-title-mo-02.png" alt="전국민 숨은 돈 찾기 서비스 5월2일 오픈! 내 환급액 미리 계산하면 푸짐한 경품을 드려요!">
+					<img class="ani-slide-2 img2" src="../../resource/images/promotion/benefit/bridge-title-mo-02.png?ver=0310" alt="전국민 숨은 돈 찾기 서비스 5월1일 오픈! 내 환급액 미리 계산하면 푸짐한 경품을 드려요!">
 					<div class="flow-banner flow-bannerLeft">
 						<ul class="list list-left">
 							<li><img src="../../resource/images/promotion/benefit/s-011.png" alt=""></li>
@@ -58,7 +63,8 @@
 					</div>
 					<div class="btn-wrap bridge">
 						<div class="container">
-							<a href="#" class="btn"><img src="../../resource/images/promotion/benefit/bridge-title-03.png?ver=0310" alt=""></a>
+							<a href="#" class="btn btn-draw pc"><img src="../../resource/images/promotion/benefit/bridge-title-03.png?ver=0310" alt=""></a>
+							<a href="#" class="btn mo"><img src="../../resource/images/promotion/benefit/bridge-title-03.png?ver=0310" alt=""></a>
 						</div>
 				</div>
 			</div>
@@ -74,36 +80,7 @@
 			<div class="modal-content">
 				<button class="modal-close modal-giftimall">닫기</button>
 				<div class="modal-body">
-					<h3 class="modal-title">
-						<img src="../../resource/images/promotion/benefit/bridge-title-04.png" alt="010PAY 앱에서 지금 바로 응모해 보세요!">
-					</h3>
-					<div>
-						<ul class="qr-list">
-							<li>
-								<img
-									src="../../resource/images/promotion/benefit/qr.png"
-									alt="QR코드"
-								/>
-								<div class="btn-wrap">
-									<h3><img
-										src="../../resource/images/promotion/benefit/bridge-title-google.png"
-										alt="QR코드"
-									/></h3>
-									<span class="bar"></span>
-									<h3><img
-										src="../../resource/images/promotion/benefit/bridge-title-app.png"
-										alt="QR코드"
-									/></h3>
-								</div>
-							</li>
-						</ul>
-						<h4 class="modal-title-sub">
-							<img
-							src="../../resource/images/promotion/benefit/bridge-title-05.png"
-							alt="QR코드"
-						/>
-						</h4>
-					</div>
+					<p class="qrWrap"></p>
 				</div>
 			</div>
 		</div>
@@ -156,6 +133,16 @@ function setFlowBanner(){
 }
 
 $(document).ready(function(){
+		var windowW = $(window).width();
+		if (windowW > 768) {
+			//PC버전
+			$(".btn.pc").show();
+			$(".btn.mo").hide();
+		} else if (windowW < 768) {
+			//모바일 버전
+			$(".btn.mo").show();
+			$(".btn.pc").hide();
+		}
 
 	$(window).on("resize", function () {
 		var windowW = $(window).width();
@@ -163,10 +150,14 @@ $(document).ready(function(){
 			//PC버전
 			$("#wrap").removeClass("mo");
 			$("#wrap").addClass("pc");
+			$(".btn.pc").show();
+			$(".btn.mo").hide();
 		} else if (windowW < 768) {
 			//모바일 버전
 			$("#wrap").removeClass("pc");
 			$("#wrap").addClass("mo");
+			$(".btn.mo").show();
+			$(".btn.pc").hide();
 		}
 	});
 

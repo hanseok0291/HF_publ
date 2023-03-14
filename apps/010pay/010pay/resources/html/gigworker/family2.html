@@ -277,6 +277,10 @@
         $(temp).fadeOut(200);
         $(e).parents(".modal-content").animate({ bottom: -450 }, 200);
         $(".bank-list").scrollTop(0);
+        $("body").removeClass("modal-open");
+        $("#wrap").css("top", 0);
+        $("#wrap").css("position", "relative");
+        $("#header").css("top", "-1px");
       };
 
       // 본인과의 관계 선택
@@ -284,6 +288,7 @@
         var option = $(this).text();
         $(".selectInput input").val(option);
         $(".selectInput").addClass("active");
+        $("body").removeClass("modal-open");
         modalClose(this);
       });
 

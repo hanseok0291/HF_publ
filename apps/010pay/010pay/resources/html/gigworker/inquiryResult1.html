@@ -73,11 +73,9 @@
 									<div class="barBg">
 										<div class="barWrap">
 											<!-- 납부 일경우 left class 추가, refund 환급, payment 납부 -->
-											<div class="bar" data-price="40"><span class='data'></span></div>
-											<div class="bar" data-price="30"><span class='data'></span></div>
-											<div class="bar" data-price="20"><span class='data'></span></div>
-											<div class="bar" data-price="50"><span class='data'></span></div>
-											<div class="bar" data-price="60"><span class='data'></span></div>
+											<div class="bar" data-price="300"><span class='data'></span><p class="year">2020</p></div>
+											<div class="bar" data-price="800"><span class='data'></span><p class="year">2021</p></div>
+											<div class="bar" data-price="900"><span class='data'></span><p class="year">2022</p></div>
 											<div class="line">
 												<div class="lineImg"></div>
 												<div class="textBox">
@@ -86,13 +84,6 @@
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="textWrap">
-										<span>2018</span>
-										<span>2019</span>
-										<span>2020</span>
-										<span>2021</span>
-										<span>2022</span>
 									</div>
 								</div>
 								<div class="resultContent">
@@ -160,20 +151,20 @@
 						<!-- //사업소득 -->
 
 						<!-- 납부세금 -->
+						<!-- 년도가 하나일 경우 singleBar class 추가됨 -->
 						<div class="taxWrap taxWrap2">
 							<div class="pdLR22">
 								<div class="titleWrap">
-									<p><span>📊</span> 최근 5년 납부세금 <span class="sub">(단위:만원)</span></p>
+									<p><span>📊</span> 최근 5년 납부세금 <span class="sub">(단위:천원)</span></p>
 									<p class="result">5,425,200원</p>
 								</div>
 								<div class="graphWrapVertical">
 									<div class="barBg">
 										<div class="barWrap">
-											<div class="bar" data-price="40"><span class='data'></span></div>
-											<div class="bar" data-price="30"><span class='data'></span></div>
-											<div class="bar" data-price="20"><span class='data'></span></div>
-											<div class="bar" data-price="10"><span class='data'></span></div>
-											<div class="bar" data-price="60"><span class='data'></span></div>
+											<div class="bar" data-price="30"><span class='data'></span><p class="year">2019</p></div>
+											<div class="bar" data-price="20"><span class='data'></span><p class="year">2020</p></div>
+											<div class="bar" data-price="10"><span class='data'></span><p class="year">2021</p></div>
+											<div class="bar" data-price="60"><span class='data'></span><p class="year">2022</p></div>
 											<div class="line">
 												<div class="lineImg"></div>
 												<div class="textBox">
@@ -182,13 +173,6 @@
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="textWrap">
-										<span>2018</span>
-										<span>2019</span>
-										<span>2020</span>
-										<span>2021</span>
-										<span>2022</span>
 									</div>
 								</div>
 								<div class="resultContent">
@@ -280,13 +264,17 @@
 						priceArr.push($price);
 					average += $price;
 				});
-				average = average / priceArr.length;
+				average = Math.round(average / priceArr.length);
 				var lowVal = priceArr.sort(function(a, b)  {
 					return a - b;
 				})[0];
 				var highVal = priceArr.sort(function(a, b)  {
 					return b - a;
 				})[0];
+
+				if(priceArr.length === 1){
+					$(taxCon).addClass("singleBar");
+				}
 
 				$(taxCon + " .barWrap > .bar").each(function(i){
 					var $this = $(this),
@@ -342,9 +330,9 @@
 					}
 
 					prevScrollTop = nowScrollTop;
-					if(tab2 - viewHeight / 3 < curTop){
+					if(tab2 - viewHeight / 2 < curTop){
 						taxAni(".taxWrap2");
-					} else if(tab1 - viewHeight / 3 < curTop){
+					} else if(tab1 - viewHeight / 2 < curTop){
 						taxAni(".taxWrap1");
 					}
 					

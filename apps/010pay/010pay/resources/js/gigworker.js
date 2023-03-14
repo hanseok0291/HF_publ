@@ -1,13 +1,4 @@
-
-
 $(window).load(function(){
-  function modalClose(e){
-    var temp = $(e).parents(".modal");
-    $(temp).fadeOut(200);
-    $(e).parents(".modal-content").animate({ bottom: -450 }, 200);
-    $(".bank-list").scrollTop(0);
-  };
-
   // 인풋 입력
   $(".boxInput").each(function(idx, e){
     var $input = $(e).find("input");
@@ -20,18 +11,20 @@ $(window).load(function(){
         val += $($input[i]).val();
       }
       if(val.length > 0){
-        $input.closest(".boxInput").find(".inputDel, .dash, .ipnutShow").show(); 
+        $input.closest(".boxInput").find(".inputDel, .ipnutShow").show(); 
         $input.closest(".boxInput").find(".placeholderText").hide(); 
       } else {
-        $input.closest(".boxInput").find(".inputDel, .dash, .ipnutShow").hide();
+        $input.closest(".boxInput").find(".inputDel, .ipnutShow").hide();
         $input.closest(".boxInput").find(".placeholderText").show(); 
       }
 
-      if($(this).hasClass("lastInput") && $(this).val().length === 0 && $input.closest(".boxInput").find(".firstInput").val().length === 0){
-        $input.closest(".boxInput").find(".firstInput").focus();
+      if($(this).hasClass("lastInput")){
+        console.log($(this).val().length);
         $input.closest(".boxInput").addClass("active");
-      } else if($(this).hasClass("lastInput") && $(this).val().length === 0){
-
+        $(this).next($(".inputDot")).find("span").removeClass("fill");
+        for(var i = 0; i < $(this).val().length; i ++){
+          $(this).next($(".inputDot")).find("span").eq(i).addClass("fill");
+        }
       }
     });
 
@@ -52,7 +45,7 @@ $(window).load(function(){
       }
     });
 
-    $(".placeholderText").on("click", function(){
+    $(".placeholderText, .inputDot").on("click", function(){
       var $this = $(this);
       $this.closest(".boxInput").find("input").eq(0).focus();
     });
@@ -71,8 +64,9 @@ $(window).load(function(){
       $this.closest(".boxInput").find("input").val(""); 
       $this.hide();
       val = "";
+      $this.closest("li").find(".inputDot span").removeClass("fill");
       $this.closest("li").find(".placeholderText").show();
-      $this.closest("li").find(".dash, .ipnutShow").hide();
+      $this.closest("li").find(".ipnutShow").hide();
       $this.closest(".boxInput").find("input").eq(0).focus();
       setTimeout(() => {
         $this.closest(".boxInput").find("input").eq(0).focus();
@@ -149,7 +143,6 @@ function maxLengthCheck(object){
 // 레이어 팝업(모달) 닫기
 function modalClose() {
   $(".modal").hide();
-  scrollOn(); // 바디 스크롤 제거 해제
 }
 
 function modalClose(obj) {
@@ -159,7 +152,5 @@ function modalClose(obj) {
   } else {
     $(".modal").hide();
   }
-
-  scrollOn(); // 바디 스크롤 제거 해제
 }
 

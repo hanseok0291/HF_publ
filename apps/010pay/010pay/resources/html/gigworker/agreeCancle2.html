@@ -48,36 +48,42 @@
               <b>홈택스 인증정보</b>를 알려주세요.
             </h3>
           </div>
-          <ul class="mt24">
+          <div class="userInfoWrap">
+            <dl>
+              <dt>소득자 본인</dt>
+              <dd>박혜빈</dd>
+            </dl>
+            <dl>
+              <dt>휴대폰 번호</dt>
+              <dd>010-9999-9999</b></dd>
+            </dl>
+          </div>
+          <ul class="mt12">
             <!-- 입력가능 범위를 초과 시 error 클래스 -->
-            <li class="boxInput">
-              <span class="default">이름</span>
-              <span class="errorText">확인 후 다시 입력해 주세요.</span>
-              <input type="text" placeholder="이름 입력"/>
-              <button type="button" class="inputDel"></button>
-            </li>
             <li class="boxInput selectInput" onclick="modalOpenSlide('modalTelSel')">
               <span class="default">통신사</span> 
               <input type="text" placeholder="통신사 선택" />
               <button class="btn-view"></button>
             </li>
-            <li class="boxInput phoneNum">
-              <span class="default">휴대폰 번호</span>
-              <span class="errorText">확인 후 다시 입력해 주세요.</span>
-              <div class="inputArea">
-                <span class="placeholderText">휴대폰 번호 입력</span>
-                <input type="number" pattern="\d*" maxlength="11" oninput="maxLengthCheck(this)"/>
-              </div>
-              <button type="button" class="inputDel"></button>
-            </li>
             <li class="boxInput residentNum">
               <span class="default">주민등록번호</span>
               <span class="errorText">확인 후 다시 입력해 주세요.</span>
               <div class="inputArea">
-                <span class="placeholderText">주민등록번호 입력</span>
-                <input class="firstInput" type="text" pattern="\d*" maxlength="6" oninput="maxLengthCheck(this)"/>
+                <span class="birthDate">911212</span>
                 <span class="dash">-</span>
-                <input class="lastInput" type="number" inputmode="numeric" pattern="\d*" maxlength="7" oninput="maxLengthCheck(this)"/>
+                <div class="lastInputWrap">
+                  <input class="lastInput" type="number" inputmode="numeric" pattern="\d*" maxlength="7" oninput="maxLengthCheck(this)"/>
+                  <div class="inputDot">
+                    <!-- span에 fill Class 추가 시 입력 -->
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
               </div>
               <button type="button" class="inputDel"></button>
             </li>
@@ -183,6 +189,10 @@
         $(temp).fadeOut(200);
         $(e).parents(".modal-content").animate({ bottom: -450 }, 200);
         $(".bank-list").scrollTop(0);
+        $("body").removeClass("modal-open");
+        $("#wrap").css("top", 0);
+        $("#wrap").css("position", "relative");
+        $("#header").css("top", "-1px");
       };
 
       // 선택

@@ -11,15 +11,14 @@ $(window).load(function(){
         val += $($input[i]).val();
       }
       if(val.length > 0){
-        $input.closest(".boxInput").find(".inputDel, .ipnutShow").show(); 
+        $input.closest(".boxInput").find(".inputDel, .dash2, .ipnutShow").show(); 
         $input.closest(".boxInput").find(".placeholderText").hide(); 
       } else {
-        $input.closest(".boxInput").find(".inputDel, .ipnutShow").hide();
+        $input.closest(".boxInput").find(".inputDel, .dash2, .ipnutShow").hide();
         $input.closest(".boxInput").find(".placeholderText").show(); 
       }
 
       if($(this).hasClass("lastInput")){
-        console.log($(this).val().length);
         $input.closest(".boxInput").addClass("active");
         $(this).next($(".inputDot")).find("span").removeClass("fill");
         for(var i = 0; i < $(this).val().length; i ++){
@@ -45,9 +44,14 @@ $(window).load(function(){
       }
     });
 
-    $(".placeholderText, .inputDot").on("click", function(){
+    $(".placeholderText").on("click", function(){
       var $this = $(this);
       $this.closest(".boxInput").find("input").eq(0).focus();
+    });
+
+    $(".inputDot").on("click", function(){
+      var $this = $(this);
+      $this.closest(".boxInput").find(".lastInput").focus();
     });
 
     $(".ipnutShow").on("touchstart", function(){
@@ -66,7 +70,7 @@ $(window).load(function(){
       val = "";
       $this.closest("li").find(".inputDot span").removeClass("fill");
       $this.closest("li").find(".placeholderText").show();
-      $this.closest("li").find(".ipnutShow").hide();
+      $this.closest("li").find(".dash2, .ipnutShow").hide();
       $this.closest(".boxInput").find("input").eq(0).focus();
       setTimeout(() => {
         $this.closest(".boxInput").find("input").eq(0).focus();
@@ -105,11 +109,11 @@ $(window).load(function(){
   $(".agreement-btn").on("click", function(){
     if(!$(this).hasClass("active")){
       $(".join-agree input").prop("checked", true);
-      $(".bot-btn").removeClass("disable");
+      $(this).closest(".container").find(".bot-btn").removeClass("disable");
       $(".agreement-btn").addClass("active");
     } else {
       $(".join-agree input").prop("checked", false);
-      $(".bot-btn").addClass("disable");
+      $(this).closest(".container").find(".bot-btn").addClass("disable");
       $(".agreement-btn").removeClass("active");
     }
     

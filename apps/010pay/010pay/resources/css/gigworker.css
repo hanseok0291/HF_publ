@@ -2,6 +2,7 @@ body.noScroll { position: fixed; overflow: hidden; }
 #wrap.isBanner { height: auto; padding-bottom: 178px; } 
 .mainColor { color: #3580F8 !important; } 
 .gigworker input { font-family: 'Pretendard', 'Malgun Gothic', 'Dotum', 'Apple SD Gothic Neo', sans-serif !important } 
+.gigworker input::placeholder { height: auto !important; } 
 .gigworker .btn-close:hover , .btn-confirm:hover,
 .gigworker .btn-close:active , .btn-confirm:active { box-shadow: none; } 
 .gigworker .pdLR22 { padding-left: 22px !important; padding-right: 22px !important; } 
@@ -28,16 +29,24 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker .boxInput input { width: 90%; height: 24px; border: none; padding: 0; font-size: 20px; font-weight: 700; line-height: 24px; box-sizing: content-box; } 
 .gigworker .boxInput input::placeholder { color: #E2E2E2; font-size: 20px; font-weight: 700; } 
 .gigworker .boxInput .inputArea { display: flex; position: relative; width: 90%; } 
-.gigworker .boxInput .inputArea .placeholderText { display: block; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 100%; color: #E2E2E2; font-size: 20px; font-weight: 700; } 
-.gigworker .boxInput .inputArea .dash { height: 24px; margin: 0 10px; line-height: 24px; font-size: 20px; font-weight: 700; } 
+.gigworker .boxInput .inputArea .placeholderText { display: block; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 100%; color: #E2E2E2; font-size: 20px; font-weight: 700; z-index: 1;} 
+.gigworker .boxInput .inputArea .dash,
+.gigworker .boxInput .inputArea .dash2 { height: 24px; margin: 0 10px; line-height: 24px; font-size: 20px; font-weight: 700; } 
+.gigworker .boxInput .inputArea .dash2 {display: none;}
 .gigworker .boxInput.password input.show { padding-bottom: 0; font-size: 20px; } 
-.gigworker .boxInput.residentNum > .default { display: block; } 
+/* .gigworker .boxInput.residentNum > .default { display: block; }  */
 .gigworker .boxInput.residentNum .inputArea .birthDate { color: #151515; font-size: 20px; font-weight: 700; } 
+.gigworker .boxInput.residentNum .inputArea .firstInput { width: 80px; } 
 .gigworker .boxInput.residentNum .inputArea .lastInputWrap { position: relative; width: 120px; height: 28px; } 
 .gigworker .boxInput.residentNum .inputArea .lastInputWrap .lastInput { width: 100%; height: 100%; font-size: 20px; -webkit-text-security: disc; caret-color: transparent; color: transparent; -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; pointer-events: none; } 
 .gigworker .boxInput.residentNum .inputArea .lastInputWrap .inputDot { display: flex; align-items: center; justify-content: space-between; position: absolute; left: 0; top:0; width: 120px; height: 100%; } 
 .gigworker .boxInput.residentNum .inputArea .lastInputWrap .inputDot > span { display: block; width: 12px; height: 12px; border-radius: 50%; background-color: #e2e2e2; } 
+.gigworker .boxInput.residentNum.type2 .inputArea .lastInputWrap .inputDot > span { background-color: transparent; } 
 .gigworker .boxInput.residentNum .inputArea .lastInputWrap .inputDot > span.fill { background-color: #151515; } 
+.gigworker .boxInput.residentNum.type2 input,
+.gigworker .boxInput.residentNum.type2 .inputDot { pointer-events: none; } 
+.gigworker .boxInput.residentNum.type2.active input,
+.gigworker .boxInput.residentNum.type2.active .inputDot { pointer-events:initial; } 
 .gigworker .boxInput.selectInput input,
 .gigworker .boxInput.checkInput input { pointer-events: none; } 
 
@@ -52,7 +61,7 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker #header .container .searchArea { position: relative; display: flex; width: 90%; margin-left: auto; transition: all 0.3s; } 
 .gigworker #header .container .searchArea .inputDel { right: 56px; } 
 .gigworker #header .container .searchBtn,
-.gigworker .serchWrap #search { position: relative; z-index: 1; width: calc(100% - 36px); height: 40px; padding-left: 36px; border: 1px solid #ccc; border-radius: 20px; color: #ccc; font-size: 15px; text-align: left; background: #fff url("../images/gigworker/icon-search.svg") 10px center / 20px 20px no-repeat; transition: all 0.3s; } 
+.gigworker .serchWrap #search { display: block; position: relative; z-index: 1; width: calc(100% - 36px); height: 40px; padding-left: 36px; border: 1px solid #ccc; border-radius: 20px; color: #ccc; font-size: 15px; text-align: left; line-height: 40px; background: #fff url("../images/gigworker/icon-search.svg") 10px center / 20px 20px no-repeat; transition: all 0.3s; } 
 .gigworker .serchWrap #search { color: #151515; } 
 .gigworker .serchWrap #search::placeholder { font-size: 15px; } 
 .gigworker .cancleBtn { flex: 0 0 auto; position: absolute; right: -70px; height: 40px; font-size: 16px; font-weight: 700; transition: all 0.3s; } 
@@ -80,7 +89,7 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker #content .container .titleWrap .mainTitle em.building { display: inline-block; top: 2px; width: 25px; height: 24px; background: url("../images/gigworker/building.svg") 0 0 / cover no-repeat; } 
 .gigworker #content .container .titleWrap.small .mainTitle { font-size: 24px; line-height: 30px; } 
 .gigworker #content .container .titleWrap.small .subText { font-size: 14px; line-height: 18px; } 
-.gigworker #content .container .titleWrap .subText { margin: 4px 0 0 2px; color: #151515; font-size: 16px; } 
+.gigworker #content .container .titleWrap .subText { margin: 4px 0 0 2px; color: #151515; font-size: 16px; letter-spacing: -0.05em; } 
 .gigworker #content .container .titleWrap .subBtn { display: flex; align-items: center; margin: 6px 0 0 4px; color: #151515; font-size: 16px; } 
 .gigworker #content .container .titleWrap .subBtn .icon-info { margin-right: 4px; } 
 .gigworker #content .container .titleWrap .subBtn .icon-right-arrow { margin-left: 2px; } 
@@ -92,8 +101,8 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker #content .container .note li p { margin-top: 4px; font-size: 10px; } 
 .gigworker #content .container .note li p span { color: #3580f8; } 
 .gigworker.searchPage #header { padding-bottom: 18px; box-sizing: content-box; } 
-.gigworker #content .container .selectJob { display: flex; flex-wrap: wrap; gap: 10px; } 
-.gigworker #content .container .selectJob button { padding: 10px 22px; border-radius: 23px; font-size: 17px; background-color: #f6f6f6; } 
+.gigworker #content .container .selectJob { display: flex; flex-wrap: wrap; } 
+.gigworker #content .container .selectJob button { margin:0 10px 10px 0; padding: 10px 22px; border-radius: 23px; font-size: 17px; background-color: #f6f6f6; } 
 .gigworker #content .container .selectJob button.active { color: #fff; background-color: #3580f8; } 
 .gigworker #content .container .searchBefore { flex: 1; position: relative; padding-bottom: 100px; } 
 .gigworker #content .container .searchBefore::after { position: fixed; left: 0; bottom: 0; content: ""; width: 100%; height: 90px; background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8) 50%); } 
@@ -143,8 +152,8 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker #content .container .cashInputWrap li.active.error .errorText { display: block; } 
 .gigworker #content .container .cashInputWrap li > span { display: none; margin-bottom: 6px; font-size: 12px; } 
 .gigworker #content .container .cashInputWrap li > span.errorText { display: none; } 
-.gigworker #content .container .cashInputWrap li input { width: 94%; height: 30px; border: none; padding: 0; font-size: 20px; font-weight: 700; line-height: 24px; box-sizing: content-box; } 
-.gigworker #content .container .cashInputWrap li input::placeholder { color: #E2E2E2; font-size: 20px; font-weight: 700; padding: 10px } 
+.gigworker #content .container .cashInputWrap li input { display: block; width: 94%; height: 30px; border: none; padding: 0; font-size: 20px; font-weight: 700; line-height: 30px; box-sizing: content-box; } 
+.gigworker #content .container .cashInputWrap li input::placeholder { color: #E2E2E2; font-size: 20px; font-weight: 700; padding: 0; } 
 .gigworker .inputBtnWrap { display: flex; position: absolute; top: 50%; right: 16px; transform: translateY(-50%); } 
 .gigworker .inputBtnWrap .inputDel,
 .gigworker .inputBtnWrap .ipnutShow { position: static; transform: translateY(0%); width: 16px; height: 16px; margin-left: 10px; } 
@@ -207,6 +216,7 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker .bottomBanner .text { position: relative; z-index: 1; color: #151515; font-size: 14px; margin: 27px 0 10px 30px; } 
 .gigworker .bottomBanner .textImg { display: block; position: relative; z-index: 1; width: 172px; margin: 0 0 12px 30px; } 
 .gigworker .bottomBanner .btnImg { display: block; position: relative; z-index: 1; width: 145px; margin-left: 25px; } 
+.gigworker.noRefund .bottomBanner { bottom: 0; } 
 
 /* 본서비스 */
 /* 환금액 조회 */
@@ -443,10 +453,12 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker.refundRequest .modal-bank .modal-body.blur::after { position: absolute; left: 0; bottom: 0; content: ""; width: 100%; height: 90px; background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8) 50%); pointer-events: none; } 
 .gigworker.refundRequest .modal-bank .modal-body .container { overflow: auto; position: relative; max-height: 400px; padding:20px 20px 24px; background-color: #f9f9f9; } 
 .gigworker.refundRequest .modal-bank .modal-body .container .bankWrap { background-color: #f9f9f9; } 
-.gigworker.refundRequest .modal-bank .modal-body .container .bankWrap { display: grid; gap: 7px; grid-template-columns: repeat(3, 1fr); } 
-.gigworker.refundRequest .modal-bank .modal-body .container .bankWrap li { display: flex; flex-direction: column; align-items: center; padding: 15px 29px; font-size: 14px; color: #222; text-align: center; border-radius: 8px; background-color: #fff; border: 1px solid #fff; } 
+.gigworker.refundRequest .modal-bank .modal-body .container .bankWrap { display: flex; flex-wrap: wrap; } 
+.gigworker.refundRequest .modal-bank .modal-body .container .bankWrap li { display: flex; flex-direction: column; align-items: center; width: calc(33% - 4px); margin: 0 7px 7px 0; padding: 15px 0; font-size: 14px; color: #222; text-align: center; border-radius: 8px; background-color: #fff; border: 1px solid #fff; } 
+.gigworker.refundRequest .modal-bank .modal-body .container .bankWrap li:nth-child(3n) { margin-right: 0; } 
 .gigworker.refundRequest .modal-bank .modal-body .container .bankWrap li.on { border: 1px solid #151515; box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16); } 
-.gigworker.refundRequest .modal-bank .modal-body .container .bankWrap li img { width: 49px; margin-bottom: 5px; } 
+.gigworker.refundRequest .modal-bank .modal-body .container .bankWrap li .imgWrap { display: flex; width: 49px; height: 49px; margin-bottom: 5px; } 
+.gigworker.refundRequest .modal-bank .modal-body .container .bankWrap li .imgWrap img { flex: 0 0 auto; width: 49px; } 
 .gigworker.refundRequest .paymentWrap { width: calc(100% - 40px); margin: auto; padding: 10px 0; border-radius: 14px; border: solid 1px #151515; } 
 .gigworker.refundRequest .paymentWrap li { display: flex; justify-content: space-between; align-items: center; height: 40px; padding: 0 16px; color: #151515; font-weight: 700; } 
 .gigworker.refundRequest .paymentWrap li > div { display: flex; } 
@@ -488,6 +500,11 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker .modal-slide .modal-body .container dl dd { margin-top: 8px; color: #575757; font-size: 12px; line-height: 1.33; } 
 .gigworker .modal-slide .modal-footer { padding: 0 20px; } 
 .gigworker .modal-slide .modal-footer .btn { border-radius: 12px; font-size: 18px; } 
+
+/* 약관 동의 팝업 */
+.gigworker .modal-app .modal-header { display: flex; align-items: center; height: 44px; padding: 0 14px; } 
+.gigworker .modal-app .modal-header .modal-title { margin-left: 6px; line-height: 44px; } 
+.gigworker .modal-app.modal .btn-close.btn-icon { flex: 0 0 auto; position: static; width: 28px; height: 28px; margin-left: auto; background: none; } 
 
 .progress { display: flex; justify-content: center; align-items: center; gap: 4px; height: 32px; } 
 .progress span { display: block; width: 9px; height: 12px; border-radius: 4.5px; background-color: #3580f8; opacity: 0.2; animation: loadingProgress 1s ease-in-out infinite; } 

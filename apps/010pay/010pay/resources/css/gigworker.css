@@ -3,6 +3,7 @@ body.noScroll { position: fixed; overflow: hidden; }
 .mainColor { color: #3580F8 !important; } 
 .gigworker input { font-family: 'Pretendard', 'Malgun Gothic', 'Dotum', 'Apple SD Gothic Neo', sans-serif !important } 
 .gigworker input::placeholder { height: auto !important; } 
+.gigworker .checkbox.square2 > input + label { line-height: 22px; } 
 .gigworker .btn-close:hover , .btn-confirm:hover,
 .gigworker .btn-close:active , .btn-confirm:active { box-shadow: none; } 
 .gigworker .pdLR22 { padding-left: 22px !important; padding-right: 22px !important; } 
@@ -15,8 +16,10 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker .pd0 { padding: 0 !important; } 
 .gigworker .noraml-btn { width: 100%; height: 50px; border: 1px solid #e2e2e2; border-radius: 12px; color: #151515; font-size: 16px; line-height: 48px; font-weight: 700; } 
 .gigworker .noraml-btn.agreement-btn.active { border: 1px solid #151515; } 
+.gigworker .selectAccount { display: inline-block; margin-left: 5px; padding: 5px 8px; border-radius: 10px; color: #ff2b00; font-size: 10px; background: #ffeae2; line-height: 1; font-weight: 400; } 
 
-.gigworker .boxInput { display: flex; flex-direction: column; justify-content: center; position: relative; height: 70px; margin-bottom: 12px; padding: 0 20px; border: solid 1px #ccc; border-radius: 14px; } 
+
+.gigworker .boxInput { display: flex; flex-direction: column; justify-content: center; position: relative; height: 70px; margin-bottom: 12px; padding: 0 20px; border: solid 1px #ccc; border-radius: 14px; background-color: #fff; } 
 .gigworker .boxInput:last-child { margin-bottom: 0; } 
 .gigworker .boxInput.active { border: solid 1px #151515; } 
 .gigworker .boxInput.active.shadow { box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16); } 
@@ -29,19 +32,22 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker .boxInput input { width: 90%; height: 24px; border: none; padding: 0; font-size: 20px; font-weight: 700; line-height: 24px; box-sizing: content-box; } 
 .gigworker .boxInput input::placeholder { color: #E2E2E2; font-size: 20px; font-weight: 700; } 
 .gigworker .boxInput .inputArea { display: flex; position: relative; width: 90%; } 
-.gigworker .boxInput .inputArea .placeholderText { display: block; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 100%; color: #E2E2E2; font-size: 20px; font-weight: 700; z-index: 1;} 
+.gigworker .boxInput .inputArea .placeholderText { display: block; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 100%; color: #E2E2E2; font-size: 20px; font-weight: 700; z-index: 1; } 
 .gigworker .boxInput .inputArea .dash,
-.gigworker .boxInput .inputArea .dash2 { height: 24px; margin: 0 10px; line-height: 24px; font-size: 20px; font-weight: 700; } 
-.gigworker .boxInput .inputArea .dash2 {display: none;}
+.gigworker .boxInput .inputArea .dash2 { height: 28px; margin: 0 10px; line-height: 28px; font-size: 20px; font-weight: 700; } 
+.gigworker .boxInput .inputArea .dash2 { visibility: hidden; } 
+.gigworker .boxInput .inputArea .dash2.on { visibility: visible; } 
 .gigworker .boxInput.password input.show { padding-bottom: 0; font-size: 20px; } 
-/* .gigworker .boxInput.residentNum > .default { display: block; }  */
+/* .gigworker .boxInput.residentNum > .default { display: block; } */
 .gigworker .boxInput.residentNum .inputArea .birthDate { color: #151515; font-size: 20px; font-weight: 700; } 
-.gigworker .boxInput.residentNum .inputArea .firstInput { width: 80px; } 
+.gigworker .boxInput.residentNum.type2.active .inputArea .firstInput { width: 80px; height: 28px; line-height: 28px; } 
 .gigworker .boxInput.residentNum .inputArea .lastInputWrap { position: relative; width: 120px; height: 28px; } 
 .gigworker .boxInput.residentNum .inputArea .lastInputWrap .lastInput { width: 100%; height: 100%; font-size: 20px; -webkit-text-security: disc; caret-color: transparent; color: transparent; -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; pointer-events: none; } 
 .gigworker .boxInput.residentNum .inputArea .lastInputWrap .inputDot { display: flex; align-items: center; justify-content: space-between; position: absolute; left: 0; top:0; width: 120px; height: 100%; } 
 .gigworker .boxInput.residentNum .inputArea .lastInputWrap .inputDot > span { display: block; width: 12px; height: 12px; border-radius: 50%; background-color: #e2e2e2; } 
 .gigworker .boxInput.residentNum.type2 .inputArea .lastInputWrap .inputDot > span { background-color: transparent; } 
+.gigworker .boxInput.residentNum.type2 .inputArea .lastInputWrap .inputDot.on > span { background-color: #e2e2e2; } 
+.gigworker .boxInput.residentNum.type2 .inputArea .lastInputWrap .inputDot.on > span.fill { background-color: #151515; } 
 .gigworker .boxInput.residentNum .inputArea .lastInputWrap .inputDot > span.fill { background-color: #151515; } 
 .gigworker .boxInput.residentNum.type2 input,
 .gigworker .boxInput.residentNum.type2 .inputDot { pointer-events: none; } 
@@ -216,7 +222,6 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker .bottomBanner .text { position: relative; z-index: 1; color: #151515; font-size: 14px; margin: 27px 0 10px 30px; } 
 .gigworker .bottomBanner .textImg { display: block; position: relative; z-index: 1; width: 172px; margin: 0 0 12px 30px; } 
 .gigworker .bottomBanner .btnImg { display: block; position: relative; z-index: 1; width: 145px; margin-left: 25px; } 
-.gigworker.noRefund .bottomBanner { bottom: 0; } 
 
 /* 본서비스 */
 /* 환금액 조회 */
@@ -309,8 +314,8 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker.addFamily .section2 .familyWrap ul li .years { margin-top: 8px; } 
 .gigworker.addFamily .section2 .familyWrap ul li .years span { margin-right: 4px; padding: 3px 6px; border-radius: 20px; background-color: #F1F1F1; } 
 .gigworker.addFamily .section2 .familyWrap ul li .delBtn { position: absolute; bottom: 8px; right: 8px; z-index: 2; width: 32px; height: 32px; background: url(../images/icon/icon-close-gray.svg) center / 16px no-repeat; font-size: 0; text-indent: -9999px; } 
-.gigworker.addFamily .section2 .familyWrap .familyAddBtn { display: flex; justify-content: center; align-items: center; width: 100%; height: 55px; border: 1px dashed #ccc; border-radius: 12px; font-size: 16px; } 
-.gigworker.addFamily .section2 .familyWrap .familyAddBtn::before { display: block; content: ""; width: 26px; height: 26px; margin-right: 6px; background: url("../images/gigworker/icon-plus.svg") 0 / cover no-repeat; } 
+.gigworker .familyAddBtn { display: flex; justify-content: center; align-items: center; width: 100%; height: 55px; border: 1px dashed #ccc; border-radius: 12px; font-size: 16px; } 
+.gigworker .familyAddBtn::before { display: block; content: ""; width: 26px; height: 26px; margin-right: 6px; background: url("../images/gigworker/icon-plus.svg") 0 / cover no-repeat; } 
 .gigworker.addFamily .modal-slide .modal-body .container p { margin-top: 10px; padding: 0 2px; color: #151515; font-size: 16px; line-height: 20px; } 
 .gigworker.addFamily .modal-slide .modal-body .container dl { display: flex; flex-wrap: wrap; margin-top: 20px; color: #575757; font-size: 12px; } 
 .gigworker.addFamily .modal-slide .modal-body .container dl dt { margin: 0 4px 6px 0; padding: 0; border: none; font-size: 12px; line-height: 1.33; } 
@@ -331,7 +336,7 @@ body.noScroll { position: fixed; overflow: hidden; }
 /* .gigworker.familyInfoEnter .modal-slide .modal-body .container .checkWrap li.active, */
 .gigworker.familyInfoEnter .modal-slide .modal-body .container .checkWrap li.checked { border: 1px solid #151515; font-weight: 700; background-color: #fff; color: #151515; } 
 .gigworker.familyInfoEnter .modal-slide .modal-body .container .checkWrap li.checked .topArea .dropdown-btn { background: url("../images/gigworker/btn-plus-black.svg") 0 / 16px 16px no-repeat; } 
-.gigworker.familyInfoEnter .modal-slide.modal-year .modal-body { padding-bottom: 24px; } 
+.gigworker.familyInfoEnter .modal-slide.modal-year .modal-body { padding-bottom: 24px; background-color: #F9F9F9; } 
 .gigworker.familyInfoEnter .modal-slide .modal-body .bot-btn { width: calc(100% - 40px); } 
 .gigworker.familyInfoEnter .section2 { margin-top: 24px; } 
 .gigworker.familyInfoEnter .section2 .lineTitleText { margin-bottom: 26px; } 
@@ -463,11 +468,29 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker.refundRequest .paymentWrap li { display: flex; justify-content: space-between; align-items: center; height: 40px; padding: 0 16px; color: #151515; font-weight: 700; } 
 .gigworker.refundRequest .paymentWrap li > div { display: flex; } 
 .gigworker.refundRequest .paymentWrap li > div.left { font-size: 14px; } 
+.gigworker.refundRequest .paymentWrap li > div.left p { line-height: 20px; } 
 .gigworker.refundRequest .paymentWrap li > div.right { font-size: 16px; } 
 .gigworker.refundRequest .paymentWrap li .accountInfo { display: flex; align-items: center; height: 20px; padding: 0 28px 0 0; margin-left: 7px; font-size: 14px; background: transparent url(../images/select-bg.png?ver=20221012) right center no-repeat; background-size: 20px auto; font-weight: 400; } 
 .gigworker.refundRequest .paymentWrap li .accountInfo img { width: auto; height: 16px; } 
 .gigworker.refundRequest .paymentWrap li .accountInfo em { margin-left: 2px; line-height: 1; } 
 .gigworker.refundRequest .paymentWrap li button { font-size: 14px; } 
+.gigworker.refundRequest .modal-slide .modal-body { background-color: #f9f9f9; } 
+.gigworker.refundRequest .modal-slide.modal-info .modal-body { background-color: #fff; } 
+.gigworker.refundRequest .modal-slide.modal-info .modal-body .container { padding: 0 22px; } 
+.gigworker.refundRequest .modal-slide.modal-info .modal-body .container h4 { display: block; margin-bottom: 20px; padding: 0 2px; font-size: 18px; font-weight: 400; } 
+.gigworker.refundRequest .modal-slide.modal-info .modal-body .container .join-agree { display: flex; justify-content: space-between; } 
+.gigworker.refundRequest .modal-slide.modal-info .modal-body .container .join-agree::after { content: none; } 
+.gigworker.refundRequest .modal-slide.modal-info .modal-body .container .btn-view { width: 28px; height: 28px; margin: 0; background: url(../images/icon/arrow-right-round.svg) right center / 16px 16px no-repeat; } 
+.gigworker.refundRequest .modal-slide.modal-info .modal-body .container .bot-btn { margin-top: 40px; } 
+.gigworker.refundRequest .modal-slide .modal-body .container { padding: 20px 20px 0; } 
+.gigworker.refundRequest .modal-slide .modal-body .container .optionWrap { padding: 0; } 
+.gigworker.refundRequest .modal-slide .modal-body .container .optionWrap li { display: flex; align-items: center; height: 64px; margin-bottom: 12px; background-color: #fff; border: 1px solid #fff; border-radius: 12px; } 
+.gigworker.refundRequest .modal-slide .modal-body .container .optionWrap li.active { border: 1px solid #151515; } 
+.gigworker.refundRequest .modal-slide .modal-body .container .optionWrap .imgWrap { display: flex; flex: 0 0 auto; align-items: center; width: 30px; height: 30px; margin-right: 7px; } 
+.gigworker.refundRequest .modal-slide .modal-body .container .optionWrap .imgWrap img { flex: 0 0 auto; display: block; width: 100%; height: auto; } 
+.gigworker.refundRequest .modal-slide .modal-body .container .optionWrap p { font-size: 16px; font-weight: 400; } 
+.gigworker.refundRequest .modal-slide .familyAddBtn { background-color: #fff; } 
+.gigworker.accountAdd { background-color: #f9f9f9; } 
 
 .gigworker.taxAccountant #content .container .titleWrap .mainTitle em { top: -4px; font-size: 20px; } 
 .gigworker.taxAccountant .contentWrap { flex: 1; margin-top: 24px; padding: 24px 22px 120px; background: #F9F9F9 url(../images/gigworker/logo-010pay.png) center bottom 60px / 60px auto no-repeat; } 
@@ -485,7 +508,7 @@ body.noScroll { position: fixed; overflow: hidden; }
 
 /* 슬라이드 모달 */
 .modal-slide .modal-body .btn-close .icon-times { position: absolute; right: 16px; top: 16px; } 
-.gigworker .modal-slide .modal-header { display: flex; align-items: center; justify-content: space-between; position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 1; width: 100%; max-width: 700px; height: 66px; } 
+.gigworker .modal-slide .modal-header { display: flex; align-items: center; justify-content: space-between; position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 1; width: 100%; max-width: 700px; height: 66px; background: #fff; border-radius: 16px 16px 0 0; } 
 .gigworker .modal-slide .modal-header h3 { position: static; margin-left: 20px; font-size: 18px; } 
 .gigworker .modal-slide .modal-header h3 span { font-size: 16px; font-weight: 400; } 
 .gigworker .modal-slide .modal-header .btn-close { position: static; width: 54px; height: 66px; margin-left: auto; line-height: 1; border: none; } 

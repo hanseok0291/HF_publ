@@ -11,11 +11,18 @@ $(window).load(function(){
         val += $($input[i]).val();
       }
       if(val.length > 0){
-        $input.closest(".boxInput").find(".inputDel, .dash2, .ipnutShow").show(); 
+        $input.closest(".boxInput").find(".inputDel, .ipnutShow").show(); 
+        $input.closest(".boxInput").find(".dash2, .inputDot").addClass("on"); 
         $input.closest(".boxInput").find(".placeholderText").hide(); 
       } else {
-        $input.closest(".boxInput").find(".inputDel, .dash2, .ipnutShow").hide();
+        $input.closest(".boxInput").find(".inputDel, .ipnutShow").hide();
+        $input.closest(".boxInput").find(".dash2, .inputDot").removeClass("on"); 
         $input.closest(".boxInput").find(".placeholderText").show(); 
+      }
+
+      if($(this).hasClass("firstInput") && $(this).val().length === 6){
+        $input.closest(".boxInput").find(".lastInput").focus();
+        $input.closest(".boxInput").addClass("shadow");
       }
 
       if($(this).hasClass("lastInput")){
@@ -23,6 +30,11 @@ $(window).load(function(){
         $(this).next($(".inputDot")).find("span").removeClass("fill");
         for(var i = 0; i < $(this).val().length; i ++){
           $(this).next($(".inputDot")).find("span").eq(i).addClass("fill");
+        }
+
+        if($(this).val().length === 0){
+          $input.closest(".boxInput").find(".firstInput").focus();
+          $input.closest(".boxInput").addClass("shadow");
         }
       }
     });
@@ -70,7 +82,8 @@ $(window).load(function(){
       val = "";
       $this.closest("li").find(".inputDot span").removeClass("fill");
       $this.closest("li").find(".placeholderText").show();
-      $this.closest("li").find(".dash2, .ipnutShow").hide();
+      $this.closest("li").find(".ipnutShow").hide();
+      $this.closest(".boxInput").find(".dash2, .inputDot").removeClass("on"); 
       $this.closest(".boxInput").find("input").eq(0).focus();
       setTimeout(() => {
         $this.closest(".boxInput").find("input").eq(0).focus();
@@ -133,6 +146,21 @@ $(window).load(function(){
       $(this).closest(".container").find(".bot-btn").addClass("disable");
       $(".agreement-btn").removeClass("active");
     }
+  });
+
+  //통신사 선택
+  $(".boxInput.selectInput, .boxInput.checkInput").on("click", function(){
+    $(this).find(".btn-view").css({"transform": "rotate(270deg)"});
+  });
+
+  $(".modal-slide").click(function(e){
+    if (!$(".modal-content").has(e.target).length) {
+      $(".btn-view").css({"transform": "rotate(90deg)"});
+    }
+  });
+
+  $(".btn-close").click(function(e){
+    $(".btn-view").css({"transform": "rotate(90deg)"});
   });
 });
 

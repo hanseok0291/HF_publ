@@ -1,9 +1,27 @@
 $(window).load(function(){
+
   // 인풋 입력
   $(".boxInput").each(function(idx, e){
     var $input = $(e).find("input");
     var val = "";
     var blurDelay = false;
+    if($(e).find("input").length > 0){
+      if($input.val().length > 0 && $(e).find("input").length > 0){
+        val = $input.val();
+        $input.closest(".boxInput").addClass("active");
+        $input.closest(".boxInput").find(".placeholderText").hide();
+        $input.closest(".boxInput").find(".dash2, .inputDot").addClass("on");
+        if($input.hasClass("lastInput")){
+          var lastInputval = $input.closest(".boxInput").find(".lastInput").val();
+          $input.closest(".boxInput").find(".lastInput").val("");
+          $input.closest(".boxInput").find(".lastInput").val(lastInputval);
+          for(var i = 0; i < lastInputval.length;i++){
+            $input.closest(".boxInput").find(".inputDot span").eq(i).addClass("fill");
+          }
+        }
+      }
+    }
+
     $input.on("propertychange change paste input", function(){
       val = "";
       for(var i = 0;i<$input.length;i++){
@@ -33,6 +51,9 @@ $(window).load(function(){
         }
 
         if($(this).val().length === 0){
+          var firstInputval = $input.closest(".boxInput").find(".firstInput").val();
+          $input.closest(".boxInput").find(".firstInput").val("");
+          $input.closest(".boxInput").find(".firstInput").val(firstInputval);
           $input.closest(".boxInput").find(".firstInput").focus();
           $input.closest(".boxInput").addClass("shadow");
         }

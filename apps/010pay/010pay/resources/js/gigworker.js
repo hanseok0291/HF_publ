@@ -63,7 +63,7 @@ $(window).load(function(){
     $input.on("focus", function(){
       var $this = $(this);
       $this.closest(".boxInput").addClass("active shadow");
-      if(val.length > 0 || $this.closest(".boxInput").find("input").val() > 0){
+      if($this.closest(".boxInput").find("input").val() > 0){
         $this.closest(".boxInput").find(".inputDel").show();
       } 
     });
@@ -72,7 +72,7 @@ $(window).load(function(){
       var $this = $(this);
       $this.closest(".boxInput").find(".inputDel").hide();
       $this.closest(".boxInput").removeClass("shadow");
-      if(val.length === 0 && !blurDelay ){
+      if($this.closest(".boxInput").find("input").val().length === 0 && !blurDelay ){
         $this.closest(".boxInput").removeClass("active");
       }
     });
@@ -100,7 +100,6 @@ $(window).load(function(){
       blurDelay = true;
       $this.closest(".boxInput").find("input").val(""); 
       $this.hide();
-      val = "";
       $this.closest("li").find(".inputDot span").removeClass("fill");
       $this.closest("li").find(".placeholderText").show();
       $this.closest("li").find(".ipnutShow").hide();
@@ -110,7 +109,6 @@ $(window).load(function(){
         $this.closest(".boxInput").find("input").eq(0).focus();
         blurDelay = false;
       }, 100);
-      
     });
   });
 
@@ -176,12 +174,34 @@ $(window).load(function(){
 
   $(".modal-slide").click(function(e){
     if (!$(".modal-content").has(e.target).length) {
-      $(".btn-view").css({"transform": "rotate(90deg)"});
+      $(".boxInput .btn-view").css({"transform": "rotate(90deg)"});
     }
   });
 
-  $(".btn-close").click(function(e){
-    $(".btn-view").css({"transform": "rotate(90deg)"});
+  $(".modal-slide .btn-close").click(function(e){
+    $(".boxInput .btn-view").css({"transform": "rotate(90deg)"});
+  });
+
+  // 모달 팝업 제거 시 감지하여 화살표 방향 초기화
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      var attributeName = mutation.attributeName;
+      if (attributeName === 'class') {
+        var previousClassList = mutation.oldValue ? mutation.oldValue.split(' ') : [];
+        var currentClassList = mutation.target.classList;
+        if (previousClassList.indexOf('modal-open') !== -1 && !currentClassList.contains('modal-open')) {
+          $(".boxInput .btn-view").css({"transform": "rotate(90deg)"});
+        }
+      }
+    });
+  });
+  
+  var targetNode = document.querySelector('body');
+  
+  observer.observe(targetNode, {
+    attributes: true,
+    attributeOldValue: true,
+    attributeFilter: ['class']
   });
 });
 
@@ -206,4 +226,3 @@ function modalClose(obj) {
     $(".modal").hide();
   }
 }
-

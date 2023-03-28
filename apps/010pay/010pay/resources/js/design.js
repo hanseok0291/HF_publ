@@ -252,19 +252,26 @@ $(function () {
       $(".bottom-area").addClass("fixed");
     } else {
       $(".bottom-area").removeClass("fixed");
+			console.log('1');
     }
+
   }
   fixFootBtn();
 
   // 하단 고정 영역 여백 확보
   function wrapPadding() {
     var fixFoot = $(".bottom-area.fixed");
-    if (fixFoot.length > 0) {
-      var fixFootHeight = $(fixFoot).innerHeight();
-      $("#content").css("padding-bottom", fixFootHeight);
-    } else {
-      $("#content").css("padding-bottom", 24);
-    }
+		const matchesMediaQuery = window.matchMedia('(max-width:999px) and (orientation:landscape)').matches;
+
+		if (fixFoot.length > 0 && !matchesMediaQuery) {
+			var fixFootHeight = $(fixFoot).innerHeight();
+			$("#content").css("padding-bottom", fixFootHeight);
+			$(".wrap.oneStore").removeClass("horizontal");
+		} else {
+			$(".wrap.oneStore").addClass("horizontal");
+			$("#content").css("padding-bottom", 24);
+		}
+    
   }
   wrapPadding();
 

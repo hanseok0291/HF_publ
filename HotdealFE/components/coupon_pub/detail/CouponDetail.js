@@ -123,9 +123,9 @@ export default function CouponDetail({setDeadlinFixed }) {
             </p>
             <p className={styleCouponDetail.infoProduct}>시원하게 함께 세트</p>
             <div className={styleCouponDetail.priceWrap}>
-              <span className={styleCouponDetail.infoDcPrice}>9,000원</span>
+              <span className={styleCouponDetail.infoDcPrice}>9,000</span>
               <span className={styleCouponDetail.infoPrice}>
-                <span>10%</span> <strong>5,670원</strong>
+                <span>10%</span> <strong>5,670<span className={styleCouponDetail.unitText}>원</span></strong>
               </span>
             </div>
             <dl className={styleCouponDetail.finalPrice}>
@@ -144,7 +144,7 @@ export default function CouponDetail({setDeadlinFixed }) {
                 </div>
               </dt>
               <dd>
-                <span>11%</span> <strong>30,960원</strong>
+                <span>11%</span> <strong>30,960<span className={styleCouponDetail.unitText}>원</span></strong>
               </dd>
             </dl>
             <div className={styleCouponDetail.priceDetailWrap}>

@@ -110,7 +110,7 @@ const Index = () => {
                       <p className={`${stylePay.price}`}>
                         <span>가격</span>
                         <span>
-                          <strong>6,300원</strong>
+                          <strong>6,300<span className={stylePay.unitText}>원</span></strong>
                         </span>
                       </p>
                     </div>
@@ -140,7 +140,7 @@ const Index = () => {
                         &nbsp;(보유 : 1,000원)
                       </span>
                     </p>
-                    <p className={`${stylePay.right}`}>1,000원</p>
+                    <p className={`${stylePay.right}`}>1,000<span className={stylePay.unitText}>원</span></p>
                   </div>
                   <div
                     className={`${stylePay.inputInfoBox} ${stylePay.moneyInfoBox}`}
@@ -151,7 +151,7 @@ const Index = () => {
                         &nbsp;(보유 : 0원)
                       </span>
                     </p>
-                    <p className={`${stylePay.right}`}>0원</p>
+                    <p className={`${stylePay.right}`}>0<span className={stylePay.unitText}>원</span></p>
                   </div>
                 </div>
                 {/* 충전 금액 부족 시 ${stylePay.error} 클래스 추가 */}
@@ -179,7 +179,7 @@ const Index = () => {
                       <span
                         className={`${stylePay.input} ${stylePay.loadMoney}`}
                       >
-                        10,000원
+                        10,000<span className={stylePay.unitText}>원</span>
                       </span>
                       <i
                         className={`${styleCommon.iconArrow} ${styleCommon.iconArrowRoundDown} ${stylePay.iconArrowRoundDown}`}
@@ -191,11 +191,15 @@ const Index = () => {
                     className={`${stylePay.inputDoubleBox} ${stylePay.inputBottom}`}
                   >
                     <span>사용</span>
-                    <input
-                      type="text"
-                      defaultValue="5,300원"
-                      className={`${stylePay.input}`}
-                    ></input>
+                    <div className={stylePay.inputArea}>
+                      <input
+                        type="text"
+                        defaultValue="5,300"
+                        className={`${stylePay.input}`}
+                        readOnly
+                      ></input>
+                      <span className={stylePay.unitText}>원</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -217,7 +221,7 @@ const Index = () => {
               <div>
                 <p className={`${stylePay.listTitle} ${stylePay.last}`}>
                   <span>총 결제 금액</span>
-                  <span>6,300원</span>
+                  <span>6,300<span className={stylePay.unitText}>원</span></span>
                 </p>
                 <ul className={stylePay.bottomList}>
                   <li>위 주문 내용 및 결제조건을 확인하였으며, 결제진행에 동의합니다.</li>

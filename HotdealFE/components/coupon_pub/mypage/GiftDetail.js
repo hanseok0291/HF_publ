@@ -37,7 +37,7 @@ export default function GiftDetail() {
                   시원하게 함께 세트
                 </p>
                 <p className={styleGiftPresent.infoPrice}>
-                  <strong>6,300원</strong>
+                  <strong>6,300<span className={styleGiftPresent.unitText}>원</span></strong>
                 </p>
               </div>
             </div>

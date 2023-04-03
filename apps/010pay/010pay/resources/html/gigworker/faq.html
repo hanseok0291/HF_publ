@@ -109,12 +109,44 @@
     <!-- //wrap -->
 
     <script>
+      var headerHeight = $("#header").height() + $(".navWrap").outerHeight();
+      var scollStatus = true;
+      $(window).on("scroll", function(){
+
+        var curScroll = $(this).scrollTop();
+        var content1 = $(".content1").offset().top - headerHeight - 10;
+        var content2 = $(".content2").offset().top - headerHeight - 10;
+        var content3 = $(".content3").offset().top - headerHeight - 10;
+        var content4 = $(".content4").offset().top - headerHeight - 10;
+        
+        if(scollStatus){
+          $(".navWrap button").removeClass("active")
+          if(curScroll < content2){
+            $(".navWrap button").eq(0).addClass("active");
+          } else if(content2 < curScroll && curScroll <= content3){
+            $(".navWrap button").eq(1).addClass("active");
+          } else if(content3 < curScroll && curScroll <= content4-250){
+            $(".navWrap button").eq(2).addClass("active");
+          } else if(content4-250 < curScroll){
+            $(".navWrap button").eq(3).addClass("active");
+          }
+        }
+        
+      });
+
       $(".navWrap button").on("click", function(){
+        var scrollTime;
+        clearTimeout(scrollTime);
+        scollStatus = false;
         var idx = $(this).index() + 1;
         var scroll = $(".content" + idx).offset().top;
         $(".navWrap button").removeClass("active");
         $(this).addClass("active");
-        $("html, body").animate({scrollTop: scroll - $("#header").height() - $(".navWrap").outerHeight()});
+        $("html, body").stop().animate({scrollTop: scroll - headerHeight}, function(){
+          scrollTime = setTimeout(function(){
+            scollStatus = true;
+          }, 200);
+        });
       });
     </script>
   </body>

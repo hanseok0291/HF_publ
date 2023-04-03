@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../../css/jquery-ui.css" />
     <link rel="stylesheet" href="../../css/common.css" />
     <link rel="stylesheet" href="../../css/gigworker.css" />
+    <link rel="stylesheet" href="../../css/gigworker_check.css" />
 
     <!--[if lt IE 9]>
       <script type="text/javascript" src="../../js/html5shiv.js"></script>
@@ -25,128 +26,51 @@
 
   <body>
     <!-- wrap -->
-    <div id="wrap" class="gigworker">
+    <div id="wrap" class="gigworker noRefund">
       <!-- header -->
       <div id="header">
         <div class="container">
-          <button type="button" id="btnBack" class="btn-back"><i class="icon-angle-left">뒤로가기</i></button>
+          <!-- <button type="button" id="btnBack" class="btn-back"><i class="icon-angle-left">뒤로가기</i></button> -->
+          <button type="button" id="closeWindow" class="btn-close"><i class="icon-times">닫기</i></button>
         </div>
       </div>
       <!-- //header -->
 
       <!-- content -->
       <div id="content">
-        <div class="container pdLR22 pdB100">
-          <div class="titleWrap">
-            <h3 class="mainTitle">
-              이제 마지막이에요 ! <br>
-              소득정보를 알려주세요 <em>💰</em>
-            </h3>
-            <p class="subText">실제에 가깝게 입력할수록 계산이 더 정확해요.</p>
-          </div>
+        <div class="container">
+					<div class="pdLR22">
+						<div class="titleWrap">
+							<h3 class="mainTitle normal">
+								이명구님은 <br>
+                <b>예상 환급액이 0원이에요.</b>
+							</h3>
+							<p class="subText">예상 환급/납부액은 추정치로 실제와 다를 수 있어요.</p>
+						</div>
+					</div>
+					
+          <figure class="visualImg"></figure>
 
-          <ul>
-            <!-- 입력가능 범위를 초과 시 error 클래스 -->
-            <li class="boxInput error">
-              <span class="default">2022년 예상 수입</span>
-              <span class="errorText">입력가능 범위를 초과하였습니다.</span>
-              <div class="inputArea">
-                <!-- <span class="placeholderText">주민등록번호 입력</span> -->
-                <input type="text" pattern="\d*"/>
-                <input type="password" pattern="\d*"/>
-              </div>
-              <button type="button" class="inputDel"></button>
-            </li>
-            <li class="boxInput">
-              <span class="default">2022년 예상 경비</span>
-              <span class="errorText">입력가능 범위를 초과하였습니다.</span>
-              <input type="number" placeholder="2022년 경비를 입력해주세요." pattern="\d*"/>
-              <button type="button" class="inputDel"></button>
-            </li>
-          </ul>
-          <div class="progress">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <div class="botBtnWrap">
-            <!-- 버튼 비활성화 시 disable 클래스 -->
-            <button type="button" class="bot-btn disable">계산하기</button>
-          </div>
         </div>
-        </div>
+      </div>
       <!-- //content -->
+
+      <!-- 응모 완료 -->
+      <a class="bottomBanner">
+        <p class="text">이명구님 응모가 완료되었어요!</p>
+        <img class="textImg" src="../../images/gigworker/calculator-banner-text2.png" alt="내 응모 현황과 당첨 TIP을 살펴보세요!">
+        <img class="btnImg" src="../../images/gigworker/calculator-banner-btn2.png" alt="응모 현황 확인하기">
+      </a>
+      <!-- // 응모 완료 -->
     </div>
     <!-- //wrap -->
 
-
     <script>
-      // $(".boxInput input").on("focus", function(){
-      //   var $this = $(this);
-      //   $this.closest("li").addClass("active shadow");
-      //   if($this.val().length > 0){
-      //     $this.closest("li").find(".inputDel").show();
-      //   } 
-      // });
-
-      // $(".boxInput input").on("blur", function(){
-      //   var $this = $(this);
-      //   $this.closest("li").find(".inputDel").hide(); 
-      //   $this.closest("li").removeClass("shadow");
-      //   if($this.val().length === 0){
-      //     $this.closest("li").removeClass("active");
-      //   }
-      // });
-
-      // 인풋 입력
-      $(".boxInput").each(function(idx, e){
-        var $input = $(e).find("input");
-        var val = "";
-        var blurDelay = false;
-        $input.on("propertychange change paste input", function(){
-          val = "";
-          for(var i = 0;i<$input.length;i++){
-            $($input[i]).val()
-            val += $($input[i]).val();
-          }
-          if(val.length > 0){
-            $input.closest(".boxInput").find(".inputDel").show(); 
-          } else {
-            $input.closest(".boxInput").find(".inputDel").hide();
-          }
-        });
-
-        $input.on("focus", function(){
-          var $this = $(this);
-          $this.closest(".boxInput").addClass("active shadow");
-          if(val.length > 0){
-            $this.closest(".boxInput").find(".inputDel").show();
-          } 
-        });
-
-        $input.on("blur", function(){
-          var $this = $(this);
-          $this.closest(".boxInput").find(".inputDel").hide();
-          $this.closest(".boxInput").removeClass("shadow");
-          if(val.length === 0 && !blurDelay ){
-            $this.closest(".boxInput").removeClass("active");
-          }
-        });
-
-        $(".inputDel").on("touchstart mousedown", function(){
-          var $this = $(this);
-          blurDelay = true;
-          $this.closest(".boxInput").find("input").val(""); 
-          $this.hide();
-          val = "";
-          $this.closest(".boxInput").find("input").eq(0).focus();
-          setTimeout(() => {
-            $this.closest(".boxInput").find("input").eq(0).focus();
-            blurDelay = false;
-          }, 100);
-          
-        });
+      // 하단 배너 노출
+      $(window).on("load", function(){
+        setTimeout(function(){
+          $(".bottomBanner").css("bottom"," 0");
+        }, 1000)
       });
     </script>
   </body>

@@ -95,51 +95,75 @@
               <div class="container">
                 <ul class="bankWrap">
                   <li>
-                    <img class="bankLogo" src="../../images/gigworker/bank/logo-01.png" alt="NH농협">
+                    <div class="imgWrap">
+                      <img class="bankLogo" src="../../images/gigworker/bank/logo-020.png" alt="">
+                    </div>
                     <span class="bankName">NH농협</span>
                   </li>
                   <li>
-                    <img class="bankLogo" src="../../images/gigworker/bank/logo-02.png" alt="국민">
+                    <div class="imgWrap">
+                      <img class="bankLogo" src="../../images/gigworker/bank/logo-020.png" alt="">
+                    </div>
                     <span class="bankName">국민</span>
                   </li>
                   <li>
-                    <img class="bankLogo" src="../../images/gigworker/bank/logo-03.png" alt="신한">
+                    <div class="imgWrap">
+                      <img class="bankLogo" src="../../images/gigworker/bank/logo-020.png" alt="">
+                    </div>
                     <span class="bankName">신한</span>
                   </li>
                   <li>
-                    <img class="bankLogo" src="../../images/gigworker/bank/logo-04.png" alt="우리">
+                    <div class="imgWrap">
+                      <img class="bankLogo" src="../../images/gigworker/bank/logo-020.png" alt="">
+                    </div>
                     <span class="bankName">우리</span>
                   </li>
                   <li>
-                    <img class="bankLogo" src="../../images/gigworker/bank/logo-05.png" alt="KEB하나">
+                    <div class="imgWrap">
+                      <img class="bankLogo" src="../../images/gigworker/bank/logo-020.png" alt="">
+                    </div>
                     <span class="bankName">KEB하나</span>
                   </li>
                   <li>
-                    <img class="bankLogo" src="../../images/gigworker/bank/logo-06.png" alt="전북">
+                    <div class="imgWrap">
+                      <img class="bankLogo" src="../../images/gigworker/bank/logo-020.png" alt="">
+                    </div>
                     <span class="bankName">전북</span>
                   </li>
                   <li>
-                    <img class="bankLogo" src="../../images/gigworker/bank/logo-07.png" alt="수협">
+                    <div class="imgWrap">
+                      <img class="bankLogo" src="../../images/gigworker/bank/logo-020.png" alt="">
+                    </div>
                     <span class="bankName">수협</span>
                   </li>
                   <li>
-                    <img class="bankLogo" src="../../images/gigworker/bank/logo-08.png" alt="대구">
+                    <div class="imgWrap">
+                      <img class="bankLogo" src="../../images/gigworker/bank/logo-020.png" alt="">
+                    </div>
                     <span class="bankName">대구</span>
                   </li>
                   <li>
-                    <img class="bankLogo" src="../../images/gigworker/bank/logo-09.png" alt="새마을">
+                    <div class="imgWrap">
+                      <img class="bankLogo" src="../../images/gigworker/bank/logo-020.png" alt="">
+                    </div>
                     <span class="bankName">새마을</span>
                   </li>
                   <li>
-                    <img class="bankLogo" src="../../images/gigworker/bank/logo-10.png" alt="부산">
+                    <div class="imgWrap">
+                      <img class="bankLogo" src="../../images/gigworker/bank/logo-020.png" alt="">
+                    </div>
                     <span class="bankName">부산</span>
                   </li>
                   <li>
-                    <img class="bankLogo" src="../../images/gigworker/bank/logo-11.png" alt="기업">
+                    <div class="imgWrap">
+                      <img class="bankLogo" src="../../images/gigworker/bank/logo-020.png" alt="">
+                    </div>
                     <span class="bankName">기업</span>
                   </li>
                   <li>
-                    <img class="bankLogo" src="../../images/gigworker/bank/logo-12.png" alt="SC제일">
+                    <div class="imgWrap">
+                      <img class="bankLogo" src="../../images/gigworker/bank/logo-020.png" alt="">
+                    </div>
                     <span class="bankName">SC제일</span>
                   </li>
                 </ul>
@@ -151,6 +175,21 @@
       <!-- //slide modal -->
     </div>
     <!-- //wrap -->
+    <div id="commonAlert" class="modal" style="display: none;">
+      <div class="modal-dialog" style="margin-top: -95px;">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="alertTitle"></h3>
+            <p id="alertContents">
+              환급 계좌가 등록되었습니다.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" onclick="modalClose();" class="btn btn-confirm">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div id="commonAlert" class="modal" style="display: none;">
       <div class="modal-dialog" style="margin-top: -95px;">
@@ -184,6 +223,24 @@
         </div>
       </div>
     </div>
+
+    <div id="commonAlert" class="modal" style="display: none;">
+      <div class="modal-dialog" style="margin-top: -95px;">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="alertTitle"></h3>
+            <p id="alertContents">
+              지금 닫으면 입력했던 정보가 사라집니다. <br>
+              그래도 이 창을 닫을까요?
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" onclick="modalClose();" class="btn btn-confirm">예</button>
+            <button type="button" onclick="modalClose();" class="btn btn-confirm">아니요</button>
+          </div>
+        </div>
+      </div>
+    </div>
     
 
     <script>
@@ -192,10 +249,23 @@
         $(temp).fadeOut(200);
         $(e).parents(".modal-content").animate({ bottom: -450 }, 200);
         $(".bank-list").scrollTop(0);
+        
       };
+
+      $(".modal-slide").click(function(e){
+        if (!$(".modal-content").has(e.target).length) {
+          $(".btn-view").css({"transform": "rotate(90deg)"});
+        }
+      });
+
+      $(".btn-close").click(function(e){
+        $(".btn-view").css({"transform": "rotate(90deg)"});
+      });
+
 
 
       $(".bankInput").on("click", function(){
+        $(".btn-view").css({"transform": "rotate(270deg)"});
         if($(".bankWrap").height() > 400){
           $(".modal-bank .modal-body").addClass("blur");
         }
@@ -203,20 +273,23 @@
 
       $(".modal-bank .container").on("scroll", function(){
         var curScroll = $(this).scrollTop();
-        var bottomScroll = $(".bankWrap").height() -$(this).height()
-        if(curScroll >= bottomScroll) {
+        var bottomScroll = $(".bankWrap").height() -$(this).height();
+        if(curScroll >= bottomScroll - 50) {
           $(this).closest(".modal-body").removeClass("blur");
         } else {
           $(this).closest(".modal-body").addClass("blur");
         }
-      })
+      });
 
       // 은행 선택
       $(".modal-bank .bankWrap li").on("click", function(){
         var bankLogo = $(this).find(".bankLogo").attr("src");
         var bankName = $(this).find(".bankName").text();
+        $(".modal-bank .bankWrap li").removeClass("on");
+        $(this).addClass("on");
         $(".bankInput").addClass("active");
-        $(".bankInput .inputArea").html("<img src='" + bankLogo + "' alt='" + bankName + "' /><span>"+bankName+"</span>")
+        $(".bankInput .inputArea").html("<img src='" + bankLogo + "' alt='" + bankName + "' /><span>"+bankName+"</span>");
+        $(".boxInput .btn-view").css({"transform": "rotate(90deg)"});
         modalClose(this);
       });
 

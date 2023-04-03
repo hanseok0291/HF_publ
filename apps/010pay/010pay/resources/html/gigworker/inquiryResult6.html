@@ -62,7 +62,7 @@
             <li>
               <div class="left">
                 <p>계좌 충전</p>
-                <p class="accountInfo"><img src="../../images/bank/logo_090.png" alt="카카오뱅크"><em>895</em></p>
+                <p class="accountInfo" onclick="modalOpenSlide('modalAccountAdd')"><img src="../../images/bank/logo_090.png" alt="카카오뱅크"><em>895</em></p>
               </div>
               <div class="right">
                 <p>60,000원</p>
@@ -88,11 +88,46 @@
  
           <div class="botBtnWrap">
             <!-- 버튼 비활성화 시 disable 클래스 -->
-            <button type="button" class="bot-btn disable">53,000원 결제하고 환급받기</button>
+            <button type="button" class="bot-btn">53,000원 결제하고 환급받기</button>
           </div>
         </div>
       </div>
       <!-- //content -->
+
+      <!-- slide modal -->
+      <div id="modalAccountAdd" class="modal modal-slide modal-account">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>계좌 선택</h3>
+              <button type="button" class="btn btn-close hide">
+                <i class="icon-times">닫기</i>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <ul class="optionWrap">
+                  <li class="active">
+                    <div class="imgWrap">
+                      <img src="../../images/bank/logo_002.png" alt="신한은행">
+                    </div>
+                    <p>신한은행 <span class="accountNum">789</span></p>
+                    <span class="selectAccount">대표 계좌</span>
+                  </li>
+                  <li>
+                    <div class="imgWrap">
+                      <img src="../../images/bank/logo_287.png" alt="우리은행">
+                    </div>
+                    <p>우리은행 <span class="accountNum">456</span></p>
+                  </li>
+                </ul>
+                <button class="familyAddBtn"><span>계좌 추가하기</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- //slide modal -->
     </div>
     <!-- //wrap -->
 
@@ -116,7 +151,32 @@
     
 
     <script>
+      modalOpenSlide('modalAccountAdd');
+      $(window).load(function(){
+        var bankImgSrc;
+        var bankNum;
 
+        function modalClose(e){
+          var temp = $(e).parents(".modal");
+          $(temp).fadeOut(200);
+          $(e).parents(".modal-content").animate({ bottom: -450 }, 200);
+          $(".bank-list").scrollTop(0);
+          $("body").removeClass("modal-open");
+          $("#wrap").css("top", 0);
+          $("#wrap").css("position", "relative");
+          $("#header").css("top", "-1px");
+        };
+      
+        $(".modal-account .optionWrap li").on("click", function(){
+          $(".modal-account .optionWrap li").removeClass("active");
+          $(this).addClass("active");
+          bankImgSrc = $(this).find(".imgWrap img").attr("src");
+          bankNum = $(this).find(".accountNum").text();
+          $(".accountInfo img").attr("src", bankImgSrc);
+          $(".accountInfo em").text(bankNum);
+          modalClose(this);
+        });
+      });
     </script>
   </body>
 </html>

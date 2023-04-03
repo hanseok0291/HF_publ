@@ -48,17 +48,19 @@
               최종 환급 신청을 도와드릴게요.
             </h3>
             <p class="subText">
-              박혜빈님의 예상 환급액은 <b class="mainColor">568,248</b>원이에요.
+              박혜빈님의 예상 환급액은 <b class="mainColor">568,248원</b>이에요.
             </p>
           </div>
 
           <figure class="visualImg"></figure>
 
           <div class="noteWrap">
-            <p class="title">공제 자료 입력을 꼭 해야하나요?</p>
+            <p class="title">공제 자료가 필수는 아니에요 !</p>
             <ul class="note">
               <li>
-                하지만 나도 모르는 공제 자료가 있을 수 있으니 <br> 최종 신청 전에 같이 한 번 확인해 볼게요.</li>
+                하지만 나도 모르는 공제 자료가 있을 수 있으니<br>
+                최종 신청 전에 같이 한 번 확인해 볼게요.
+              </li>
               <li>공제받을 항목이 있다면 꼭 입력해 주세요. <br>
                 내가 환급받을 세금이 더 많아져서 유리하거든요.</li>
               <li>현재 010PAY에선 부양가족 정보만 입력할 수 있지만, <br>
@@ -87,41 +89,23 @@
                   <div class="formWrap">
                     <div class="join-agree">
                       <span class="checkbox square2 blank">
-                        <input type="checkbox" name="agreeTerms" id="agreeTerms2">
-                        <label for="agreeTerms2">(필수) 헥토파이낸셜 이용약관</label>
+                        <input type="checkbox" name="agreeTerms" id="agreeTerms1">
+                        <label for="agreeTerms1">(필수) 제휴사 이용약관</label>
                       </span>
                       <ul class="inner-agree">
                         <li>
-                          <input type="checkbox" name="agreeTerms" id="innerAgree2_2">
-                          <label for="innerAgree2_2">개인정보 수집 및 이용 동의</label>
+                          <input type="checkbox" name="agreeTerms" id="innerAgree1_1">
+                          <label for="innerAgree1_1">개인정보 수집 및 이용 동의</label>
                           <button class="btn-view"></button>
                         </li>
                         <li>
-                          <input type="checkbox" name="agreeTerms" id="innerAgree2_3">
-                          <label for="innerAgree2_3">개인정보 제 3자 제공 동의</label>
-                          <button class="btn-view"></button>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="join-agree">
-                      <span class="checkbox square2 blank">
-                        <input type="checkbox" name="agreeTerms" id="agreeTerms3">
-                        <label for="agreeTerms3">(필수) 택스비 이용약관</label>
-                      </span>
-                      <ul class="inner-agree">
-                        <li>
-                          <input type="checkbox" name="agreeTerms" id="innerAgree3_1">
-                          <label for="innerAgree3_1">개인정보 수집 및 이용 동의</label>
+                          <input type="checkbox" name="agreeTerms" id="innerAgree1_2">
+                          <label for="innerAgree1_2">개인정보 제 3자 제공 동의</label>
                           <button class="btn-view"></button>
                         </li>
                         <li>
-                          <input type="checkbox" name="agreeTerms" id="innerAgree3_2">
-                          <label for="innerAgree3_2">개인정보 제 3자 제공 동의</label>
-                          <button class="btn-view"></button>
-                        </li>
-                        <li>
-                          <input type="checkbox" name="agreeTerms" id="innerAgree3_3">
-                          <label for="innerAgree3_3">고유식별정보 수집 및 이용 동의</label>
+                          <input type="checkbox" name="agreeTerms" id="innerAgree1_3">
+                          <label for="innerAgree1_3">고유식별정보 수집 및 이용 동의</label>
                           <button class="btn-view"></button>
                         </li>
                       </ul>
@@ -135,11 +119,46 @@
         </div>
       </div>
       <!-- //slide modal -->
+
+      <!-- 약관 상세  -->
+      <div id="termsDetail" class="modal-app modal modal-fullpage modal-terms depth2" style="display: none;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title">개인정보 제 3자 제공 동의</h3>
+              <button type="button" class="btn btn-icon btn-close"><i class="icon-times">닫기</i></button>
+            </div>
+            <div class="modal-body">
+              <div class="terms text-lg termsContents">
+                <p>내용</p>
+                <p>&nbsp;</p>
+                <p>내용</p>
+                <p>1. 제공받는 자 : (주)헥토파이낸셜</p>
+                <p>2. 제공 목적 : 발로소득 가입 여부 확인 및 발로소득 포인트 조회/사용(전환)</p>
+                <p>3. 제공 정보 : 동일인 식별정보(CI), 접속 IP</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- // 약관 상세  -->
     </div>
     <!-- //wrap -->
 
     <script>
+      modalOpenSlide('modalSlideType1');
 
+      $(document).ready(function(){
+        // 약관 상세 모달
+        var $termsModal = $('#termsDetail');
+        $('.inner-agree .btn-view').click(function() {
+          $termsModal.show();
+        });
+        $termsModal.find('.btn-close').click(function(){
+            console.log(123)
+            $termsModal.hide();
+          });
+      });
     </script>
   </body>
 </html>

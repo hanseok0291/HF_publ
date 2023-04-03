@@ -24,7 +24,7 @@
 
   <body>
     <!-- wrap -->
-    <div id="wrap" class="gigworker">
+    <div id="wrap" class="gigworker isBanner">
       <!-- header -->
       <div id="header">
         <div class="container">
@@ -66,6 +66,28 @@
           <div class="detailTaxWrap">
             <p class="titleText" onclick="modalOpenSlide('modalSlideType1')"><span><em>🧾</em> 이명구님께 <b>유리한 신고 유형</b>부터 안내해 드려요</span> <button type="button" class="icon-info"></button></p>
             <div class="detailBox">
+              <p>경비율 신고 시</p>
+              <dl>
+                <dt>냈어야 할 예상 세금</dt>
+                <dd>157,200원</dd>
+                <dt>실제로 낸 예상 세금</dt>
+                <dd>660,000원</dd>
+                <dt>예상 환급액</dt>
+                <dd>532,800원</dd>
+              </dl>
+            </div>
+            <div class="detailBox">
+              <p>간편장부 신고 시</p>
+              <dl>
+                <dt>냈어야 할 예상 세금</dt>
+                <dd>157,200원</dd>
+                <dt>실제로 낸 예상 세금</dt>
+                <dd>660,000원</dd>
+                <dt>예상 납부액</dt>
+                <dd>88,800원</dd>
+              </dl>
+            </div>
+            <div class="detailBox">
               <p>복식부기 신고 시</p>
               <dl>
                 <dt>냈어야 할 예상 세금</dt>
@@ -88,9 +110,18 @@
               </ul>
             </div>
           </div>
+
         </div>
       </div>
       <!-- //content -->
+
+      <!-- 응모 완료 -->
+      <a class="bottomBanner">
+        <p class="text">이명구님 응모가 완료되었어요!</p>
+        <img class="textImg" src="../../images/gigworker/calculator-banner-text2.png" alt="내 응모 현황과 당첨 TIP을 살펴보세요!">
+        <img class="btnImg" src="../../images/gigworker/calculator-banner-btn2.png" alt="응모 현황 확인하기">
+      </a>
+      <!-- // 응모 완료 -->
 
       <!-- slide modal -->
       <div id="modalSlideType1" class="modal modal-slide modal-info">
@@ -205,6 +236,16 @@
             $this.css({"width" : widthArr[i] + "%"});
           });
         }
+        // 하단 배너 노출
+        $(window).on("scroll", function(){
+          if($("body").outerHeight() < $("#content").outerHeight()){
+            if($(this).scrollTop() > 40) {
+              $(".bottomBanner").css("bottom"," 0");
+            } else {
+              $(".bottomBanner").css("bottom"," -180px");
+            }
+          }
+        });
       });
     </script>
   </body>

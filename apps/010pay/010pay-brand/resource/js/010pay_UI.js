@@ -245,6 +245,16 @@ var positionCtl = {
         $(this).removeClass("animation");
       }
     });
+
+    $(".tax .section").each(function () {
+      if (
+        !$(this).hasClass("animation") &&
+        $(this).data("offsetTop") < position
+      ) {
+        console.log($(this).data("offsetTop"));
+        $(this).addClass("animation");
+      }
+    });
   },
 
   //애니메이션 위치값 할당

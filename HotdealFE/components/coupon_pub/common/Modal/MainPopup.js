@@ -53,18 +53,21 @@ const MainPopup = ({
                   <h3
                     className={`${styleModal.popupTitle} ${styleModal.popupTitle2}`}
                   >
-                    <p className={styleModal.popupSubTitle}>010PAY와 함께</p>
+                    <p className={styleModal.popupSubTitle}>
+                      4월 EVENT<i className={`${styleCommon.italic}`}>!</i>
+                    </p>
                     <strong className={styleModal.popupMainTitle}>
-                      봄 나들이 떠나 봄<br />
+                      누.구.나
+                      <br />
                       <span className={styleCommon.highlight}>
-                        20% EVENT<i className={`${styleCommon.italic}`}>!</i>
+                        20% 무조건 할인
                       </span>
                     </strong>
                   </h3>
                   <p className={styleModal.modalImgBox}>
                     <img
-                      src="../images/coupon/popup/spring.png"
-                      alt="010PAY와 함께 봄 나들이 떠나 봄 20% EVENT!"
+                      src="../images/coupon/popup/april.png"
+                      alt="4월 EVENT! 누.구.나 20% 무조건 할인"
                     />
                   </p>
                 </div>
@@ -73,7 +76,7 @@ const MainPopup = ({
                     type="button"
                     className={`${styleModal.btn} ${styleModal.btnFull}`}
                   >
-                    20% 할인가에 선물하기
+                    20% 할인 상품 보러가기
                   </button>
                 </div>
               </div>

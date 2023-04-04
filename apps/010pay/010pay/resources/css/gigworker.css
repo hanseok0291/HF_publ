@@ -90,6 +90,8 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker #content .container { display: flex; flex-direction: column; flex: 1; padding: 0; } 
 .gigworker #content .container .titleWrap .mainTitle { padding-left: 2px; font-size: 26px; line-height: 1.23; letter-spacing: -1.3px; } 
 .gigworker #content .container .titleWrap .mainTitle.normal { font-weight: 400; } 
+.gigworker #content .container .titleWrap .mainTitle.discount b { overflow: hidden; position: relative; } 
+.gigworker #content .container .titleWrap .mainTitle.discount b::after { content: ''; display: block; clear: both; position: absolute; top: 50%; margin-top: -2px; left: 0; width: 100%; height: 4px; background-color: #FF3701; opacity: .9; -webkit-animation: lineRight both .3s .7s ease; animation: lineRight both .3s .7s ease; } 
 .gigworker #content .container .titleWrap .mainTitle em { position: relative; top: -2px; font-size: 18px; } 
 .gigworker #content .container .titleWrap .mainTitle em.building { display: inline-block; top: 2px; width: 25px; height: 24px; background: url("../images/gigworker/building.svg") 0 0 / cover no-repeat; } 
 .gigworker #content .container .titleWrap.small .mainTitle { font-size: 24px; line-height: 30px; } 
@@ -441,6 +443,10 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker.faq #content .contentWrap > li:nth-child(2) { height: 270px; background: #fff url("../images/gigworker/faq-02.png") right 9px bottom 14px / 130px auto no-repeat; } 
 .gigworker.faq #content .contentWrap .noraml-btn { display: flex; justify-content: center; align-items: center; height: 45px; margin-top: 20px; background-color: #fff; border-color: #707070; font-size: 15px; line-height: 45px; } 
 .gigworker.faq #content .contentWrap .noraml-btn::after { display: block; content: ""; width: 16px; height: 16px; margin-left: 2px; background: url("../images/icon/arrow-right-round.svg") 0 / cover no-repeat; } 
+.gigworker.faq #content .moreFaq { font-size: 14px; color: #575757; text-align: center; line-height: 1.3; } 
+.gigworker.faq #content .moreFaq p { display: flex; align-items: center; justify-content: center; font-weight: bold; color: #151515; } 
+.gigworker.faq #content .moreFaq a::after { display: inline-block; content: ""; width: 16px; height: 16px; background: url("../images/icon/arrow-right-round.svg") 0 / cover no-repeat; } 
+.gigworker.faq #content .moreFaq::before { display: block; content: ""; width: 42px; height: 42px; margin: 60px auto 8px; background: url("../images/gigworker/icon-faq.png") 0 / cover no-repeat; } 
 
 .gigworker.refundRequest #content .container .detailTaxWrap .detailBox:first-child { margin-top: 0; } 
 .gigworker.refundRequest #content .container .detailTaxWrap .detailBox .topWrap { margin: 0; padding: 0; border: none; font-size: 14px; font-weight: 700; color: #575757; } 
@@ -467,6 +473,9 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker.refundRequest .modal-bank .modal-body .container .bankWrap li.on { border: 1px solid #151515; box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16); } 
 .gigworker.refundRequest .modal-bank .modal-body .container .bankWrap li .imgWrap { display: flex; width: 49px; height: 49px; margin-bottom: 5px; } 
 .gigworker.refundRequest .modal-bank .modal-body .container .bankWrap li .imgWrap img { flex: 0 0 auto; width: 49px; } 
+.gigworker.refundRequest .couponPrice { display: flex; align-items: center; justify-content: space-between; width: calc(100% - 40px); height: 60px; margin: 0 auto 10px; padding: 0 16px; border-radius: 14px; background-color: #f9f9f9; font-weight: bold; } 
+.gigworker.refundRequest .couponPrice dt { font-size: 14px; color: #151515; } 
+.gigworker.refundRequest .couponPrice dd { font-size: 16px; color: #ff3701; } 
 .gigworker.refundRequest .paymentWrap { width: calc(100% - 40px); margin: auto; padding: 10px 0; border-radius: 14px; border: solid 1px #151515; } 
 .gigworker.refundRequest .paymentWrap li { display: flex; justify-content: space-between; align-items: center; height: 40px; padding: 0 16px; color: #151515; font-weight: 700; } 
 .gigworker.refundRequest .paymentWrap li > div { display: flex; } 
@@ -540,8 +549,8 @@ body.noScroll { position: fixed; overflow: hidden; }
 .progress span:nth-child(4) { animation-delay: 0.3s; } 
 
 /* 로딩 레이어 */
-.loadingLayer { display: flex; align-items: center; justify-content: center; position: fixed; z-index: 200; left: 0; top: -5px; width: 100%; height: calc(100% + 10px); background: rgba(0,0,0,.5); } 
-.loadingLayer .progressBg { display: flex; align-items: center; justify-content: center; width: 90px; height: 90px; border-radius: 90px; background-color: #fff; ;} 
+.loadingLayer { display: block; position: fixed; z-index: 200; left: 0; top: -5px; width: 100%; height: calc(100% + 10px); background: rgba(0,0,0,.5); } 
+.loadingLayer .progressBg { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; width: 90px; height: 90px; border-radius: 90px; background-color: #fff; } 
 
 @keyframes loadingProgress { 
  0% { opacity: 0.2; height: 12px; } 
@@ -552,6 +561,11 @@ body.noScroll { position: fixed; overflow: hidden; }
 @keyframes slideRight { 
  0% { opacity: 0; left: -70px; } 
  100% { opacity: 1; left: 0; } 
+ }
+
+ @keyframes lineRight { 
+ from { width: 0; } 
+ to { width: 100%; } 
  }
 
 @keyframes slideLeft { 

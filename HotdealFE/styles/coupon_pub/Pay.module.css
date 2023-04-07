@@ -23,10 +23,12 @@
 .listTitle.first { margin-top: 20px; } 
 .listTitle.last { display: flex; justify-content: space-between; align-items: center; font-size: 18px; } 
 .listTitle.last span + span { color: #ff2b00; } 
+.listTitle.last .unitText { position: relative; top: -1px; font-size: 16px; } 
 .infoProduct { white-space: nowrap; max-height: 17px; } 
 .infoBox { display: flex; flex-direction: column; margin-left: 15px; } 
 .priceBox { display: flex; flex-direction: column; margin-top: auto; } 
 .priceBox .price { font-size: 13px; color: #575757; } 
+.priceBox .price .unitText { position: relative; top: -1px; font-size: 12px; color: #151515; } 
 .priceBox .price span { width: 10%; font-size: 13px; color: #575757; } 
 .priceBox .price span + span { margin-left: 20px; font-size: 14px; color: #151515; } 
 
@@ -57,6 +59,10 @@
 .addBorderBottom { padding-bottom: 20px; border-bottom: 1px solid #ececec; } 
 .inputBox input:focus { padding: 0; } 
 .inputBox input[type="text"], .inputBox input[type="tel"], .inputBox input[type="number"] { height: 55px; line-height: 55px; padding: 0 15px; } 
+.inputBox .inputArea { position: relative; z-index: 1; } 
+.inputBox .inputArea input { padding: 0 26px; } 
+.inputBox .inputArea input:focus { border: none; outline: 2px solid #505050; } 
+.inputBox .inputArea .unitText { position: absolute; top: 50%; right: 15px; transform: translateY(-50%); font-size: 14px; color: #575757; } 
 .inputBox .input { position: relative; text-align: right; } 
 .inputBox .input::placeholder { font-size: 16px; height: auto; line-height: 55px; font-weight: 400; } 
 .inputBox { margin-top: 24px; } 
@@ -74,14 +80,16 @@
 .inputBox.inputDouble .inputInfoBox > p { color: #575757; } 
 .inputBox.inputDouble .inputDoubleBox { position: relative; margin-top: -8px; padding-top: 8px; border-radius: 0 0 10px 10px; background-color: #f1f1f1; } 
 .inputBox.inputDouble .inputTop { position: relative; z-index: 1; padding: 0 15px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center; width: 100%; height: 55px; border: 1px solid #f1f1f1; border-radius: 10px; color: #575757; background-color: #fff; } 
-.inputBox.inputDouble .inputDoubleBox > span { position: absolute; top: 50%; left: 14px; transform: translateY(calc(-50% + 4px)); z-index: 1; color: #575757; } 
+.inputBox.inputDouble .inputDoubleBox > span { position: absolute; top: 50%; left: 14px; transform: translateY(calc(-50% + 4px)); z-index: 2; color: #575757; } 
 .inputBox.inputDouble .inputTop .input { padding-right: 10px; } 
 .inputBox.inputDouble .inputTop .loadMoney { font-size: 16px; font-weight: 700; color: #151515; } 
+.inputBox.inputDouble .inputTop .loadMoney .unitText { position: relative; top: -1px; font-size: 14px; } 
 .inputBox.inputDouble .inputBottom .input { position: relative; margin-top: 0; background-color: #f1f1f1; } 
 .inputBox.inputDouble .inputBottom .input { color: #575757; font-size: 16px; font-weight: 400; } 
 .inputBox.inputDouble .errorText { opacity: 0; display: flex; align-items: center; padding-right: 8px; color: #fb3636; font-size: 13px; z-index: 1; } 
 .inputBox.inputDouble.error .inputTop .input { position: relative; } 
 .inputBox.inputDouble.error .inputBottom .input { color: #fb3636; } 
+.inputBox.inputDouble.error .inputBottom .unitText { color: #fb3636; } 
 .inputBox.inputDouble.error .errorText { opacity: 1; } 
 /* .inputBox.inputDouble .iconArrowRoundDown { position: absolute; top: 50%; right: 18px; } */
 .forYou .inputBox .input { text-align: left; } 
@@ -105,26 +113,27 @@
 
 .load .inputBox .highlightText { margin-top: 20px; font-size: 15px; font-weight: 700; color: #151515; text-align: center; } 
 .load .inputBox .inputLoadBox { position: relative; height: 90px; margin-top: 10px; border: 1px solid #f1f1f1; border-radius: 10px; } 
-.load .inputBox .inputLoadBox.focus { box-shadow: 4px 4px 5px rgb(6 0 0 / 15%); border: 2px solid #505050; }
-.load .inputBox .inputLoadBox.focus.error { border: 1px solid #fb3636; }
+.load .inputBox .inputLoadBox.focus { box-shadow: 4px 4px 5px rgb(6 0 0 / 15%); border: 2px solid #505050; } 
+.load .inputBox .inputLoadBox.focus.error { border: 1px solid #fb3636; } 
 .load .inputBox .inputLoadBox .floatText { position: absolute; top: 16px; left: 15px; z-index: 1; font-size: 14px; font-weight: 500; opacity: 0; } 
 .load .inputBox .inputLoadBox .btnDel { opacity: 0; } 
 .load .inputBox .inputLoad { position: relative; top: 34px; height: 32px; line-height: 32px; font-size: 28px; margin-top: 0; border: none; background-color: transparent; } 
-.load .inputBox .inputLoad:focus { box-shadow: none; }
+.load .inputBox .inputLoad:focus { box-shadow: none; } 
 .load .inputBox .inputLoad::placeholder { font-size: 28px; font-weight: 700; margin-top: 10px; } 
-/* .load .inputBox .inputLoadBox.focus .inputLoad { padding-top: 21.5px; }  */
+/* .load .inputBox .inputLoadBox.focus .inputLoad { padding-top: 21.5px; } */
 .load .inputBox .inputLoadBox.focus .floatText { opacity: 1; } 
 .load .inputBox .inputLoadBox.focus .btnDel { opacity: 1; top: auto; bottom: 19px; right: 7px; } 
 .load .inputBox .inputLoadBox.focus.error input[type="tel"] { color: #fb3636; } 
 .load .inputBox .inputLoadBox.focus.error .floatText { color: #fb3636; } 
-.load .inputBox .inputLoadBox.focus .inputLoad { top: 38px; }
+.load .inputBox .inputLoadBox.focus .inputLoad { top: 38px; } 
 
 .inputBox.inputDouble .moneyInfoBox { display: flex; flex-direction: row; justify-content: space-between; margin-top: 6px; } 
 .inputBox.inputDouble .moneyInfoBox > p span { color: #151515; } 
 .inputBox.inputDouble .moneyInfoBox .right { font-size: 16px; font-weight: 700; color: #151515; } 
-.load .inputBox .placeholderText { position: absolute; top: 38px; left: 15px; height: 32px; line-height: 32px; font-size: 28px; font-weight: 700; color: #d5d5d5; }
-.load .inputBox .inputLoadBox.focus .placeholderText { display: none; }
-.load .inputBox .inputLoadBox.focus .placeholderText.show { display: block; }
+.inputBox.inputDouble .moneyInfoBox .right .unitText { position: relative; top: -1px; font-size: 14px; } 
+.load .inputBox .placeholderText { position: absolute; top: 38px; left: 15px; height: 32px; line-height: 32px; font-size: 28px; font-weight: 700; color: #d5d5d5; } 
+.load .inputBox .inputLoadBox.focus .placeholderText { display: none; } 
+.load .inputBox .inputLoadBox.focus .placeholderText.show { display: block; } 
 /* //inputBox */
 
 /* 구매 완료 */

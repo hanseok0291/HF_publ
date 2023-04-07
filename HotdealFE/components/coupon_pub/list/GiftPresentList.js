@@ -20,14 +20,14 @@ const GiftPresentList = () => {
                     ></img>
                   </div>
                   <div className={styleCouponList.infoBox}>
-                    <span
+                    <span 
                       className={`${styleCommon.highlight} ${styleGiftPresent.toName}`}
                     >
                       To.이세틀
                     </span>
                     <p className={styleCouponList.infoBrand}>투썸플레이스</p>
                     <p className={styleCouponList.infoProduct}>오렌지에이드</p>
-                    <p className={styleGiftPresent.infoPrice}>8,800원</p>
+                    <p className={styleGiftPresent.infoPrice}>8,800<span className={styleGiftPresent.unitText}>원</span></p>
                     <p className={styleGiftPresent.infoDate}>2022. 5. 18</p>
                   </div>
                 </button>
@@ -48,7 +48,7 @@ const GiftPresentList = () => {
                     </span>
                     <p className={styleCouponList.infoBrand}>투썸플레이스</p>
                     <p className={styleCouponList.infoProduct}>오렌지에이드</p>
-                    <p className={styleGiftPresent.infoPrice}>8,800원</p>
+                    <p className={styleGiftPresent.infoPrice}>8,800<span className={styleGiftPresent.unitText}>원</span></p>
                     <p className={styleGiftPresent.infoDate}>2022. 5. 18</p>
                   </div>
                 </button>
@@ -69,7 +69,7 @@ const GiftPresentList = () => {
                     </span>
                     <p className={styleCouponList.infoBrand}>투썸플레이스</p>
                     <p className={styleCouponList.infoProduct}>오렌지에이드</p>
-                    <p className={styleGiftPresent.infoPrice}>8,800원</p>
+                    <p className={styleGiftPresent.infoPrice}>8,800<span className={styleGiftPresent.unitText}>원</span></p>
                     <p className={styleGiftPresent.infoDate}>2022. 5. 18</p>
                   </div>
                 </button>

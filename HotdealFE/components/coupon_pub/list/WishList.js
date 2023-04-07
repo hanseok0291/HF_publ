@@ -64,16 +64,16 @@ const CouponList = (props) => {
                   <div className={styleCouponList.infoBox}>
                     <p className={styleCouponList.infoBrand}>투썸플레이스</p>
                     <p className={styleCouponList.infoProduct}>오렌지에이드</p>
-                    <p className={styleCouponList.infoPrice}>8,800원</p>
+                    <p className={styleCouponList.infoPrice}>8,800</p>
                     <p
                       className={`${styleCouponList.infoDcPrice} ${styleCouponList.infoDcPriceSmall}`}
                     >
                       <span className={styleCouponList.infoDcPercent}>25%</span>{" "}
-                      <span className={styleCommon.textLine}>8,800원</span>
+                      <span className={styleCommon.textLine}>8,800</span>
                     </p>
                     <p className={styleCouponList.infoDcPrice}>
                       <span className={styleCouponList.infoDcPercent}>25%</span>{" "}
-                      8,800원
+                      8,800<span className={styleCouponList.unitText}>원</span>
                     </p>
                     <p className={styleCouponList.infoBottomText}>
                       <i
@@ -110,10 +110,10 @@ const CouponList = (props) => {
                       아이스 카페 라떼 T 아이스 카페 라떼 T 아이스 카페 라떼 T
                       아이스 카페 라떼 T 아이스 카페 라떼 T
                     </p>
-                    <p className={styleCouponList.infoPrice}>8,800원</p>
+                    <p className={styleCouponList.infoPrice}>8,800</p>
                     <p className={styleCouponList.infoDcPrice}>
                       <span className={styleCouponList.infoDcPercent}>25%</span>{" "}
-                      8,800원
+                      8,800<span className={styleCouponList.unitText}>원</span>
                     </p>
                     <p className={styleCouponList.infoBottomText}>
                       <i
@@ -150,10 +150,10 @@ const CouponList = (props) => {
                       아이스 카페 라떼 T 아이스 카페 라떼 T 아이스 카페 라떼 T
                       아이스 카페 라떼 T 아이스 카페 라떼 T
                     </p>
-                    <p className={styleCouponList.infoPrice}>8,800원</p>
+                    <p className={styleCouponList.infoPrice}>8,800</p>
                     <p className={styleCouponList.infoDcPrice}>
                       <span className={styleCouponList.infoDcPercent}>25%</span>{" "}
-                      8,800원
+                      8,800<span className={styleCouponList.unitText}>원</span>
                     </p>
                   </div>
                 </button>
@@ -184,10 +184,10 @@ const CouponList = (props) => {
                       아이스 카페 라떼 T 아이스 카페 라떼 T 아이스 카페 라떼 T
                       아이스 카페 라떼 T 아이스 카페 라떼 T
                     </p>
-                    <p className={styleCouponList.infoPrice}>8,800원</p>
+                    <p className={styleCouponList.infoPrice}>8,800</p>
                     <p className={styleCouponList.infoDcPrice}>
                       <span className={styleCouponList.infoDcPercent}>25%</span>{" "}
-                      8,800원
+                      8,800<span className={styleCouponList.unitText}>원</span>
                     </p>
                   </div>
                 </button>
@@ -218,10 +218,10 @@ const CouponList = (props) => {
                       아이스 카페 라떼 T 아이스 카페 라떼 T 아이스 카페 라떼 T
                       아이스 카페 라떼 T 아이스 카페 라떼 T
                     </p>
-                    <p className={styleCouponList.infoPrice}>8,800원</p>
+                    <p className={styleCouponList.infoPrice}>8,800</p>
                     <p className={styleCouponList.infoDcPrice}>
                       <span className={styleCouponList.infoDcPercent}>25%</span>{" "}
-                      8,800원
+                      8,800<span className={styleCouponList.unitText}>원</span>
                     </p>
                   </div>
                 </button>

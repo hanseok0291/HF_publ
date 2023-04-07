@@ -70,16 +70,30 @@ $(window).load(function(){
 
     $input.on("blur", function(){
       var $this = $(this);
+      var valCheck = false;
+      $this.closest(".boxInput").find("input").each(function(i,e){
+        if($(e).val().length > 0){
+          valCheck = true;
+        }
+      })
       $this.closest(".boxInput").find(".inputDel").hide();
       $this.closest(".boxInput").removeClass("shadow");
-      if($this.closest(".boxInput").find("input").val().length === 0 && !blurDelay ){
+      if(!valCheck && !blurDelay ){
         $this.closest(".boxInput").removeClass("active");
       }
     });
 
-    $(".placeholderText").on("click", function(){
+    $(".boxInput.residentNum,.boxInput.phoneNum").on("click", function(){
       var $this = $(this);
-      $this.closest(".boxInput").find("input").eq(0).focus();
+      var valCheck = false;
+      $this.find("input").each(function(i, e){
+        if($(e).val().length > 0){
+          valCheck = true;
+        }
+      });
+      if(!valCheck){
+        $this.closest(".boxInput").find("input").eq(0).focus();
+      }
     });
 
     $(".inputDot").on("click", function(){

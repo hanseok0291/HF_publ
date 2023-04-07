@@ -50,6 +50,7 @@ const BuyTab = ({ tabItem, tabLink }) => {
   const tabValue = tabItem;
 
   const onTab = (e) => {
+    window.scrollTo({ top: 0 });
     setTabIndex(e);
   };
 

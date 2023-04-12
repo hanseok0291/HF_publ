@@ -193,7 +193,7 @@ $(function () {
 
   // 슬라이드 모달, 은행 선택 레이어 닫기
   $(".modal-banklist, .modal-slide").click(function (e) {
-    if (!$(".modal-content").has(e.target).length) {
+    if (!$(".modal-content").has(e.target).length && !$("#wrap").hasClass("gigworker")) {
       $(this).fadeOut(200);
       $(this).find(".modal-content").animate({ bottom: -450 }, 200);
       $(".bank-list").scrollTop(0);

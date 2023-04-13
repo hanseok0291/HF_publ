@@ -22,16 +22,16 @@ body.noScroll { position: fixed; overflow: hidden; }
 
 .gigworker .boxInput { display: flex; flex-direction: column; justify-content: center; position: relative; height: 70px; margin-bottom: 12px; padding: 0 20px; border: solid 1px #ccc; border-radius: 14px; background-color: #fff; } 
 .gigworker .boxInput:last-child { margin-bottom: 0; } 
-.gigworker .boxInput.active { border: solid 1px #151515; } 
-.gigworker .boxInput.active.shadow { box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16); } 
+.gigworker .boxInput.active { border: solid 1px #ccc; } 
+.gigworker .boxInput.active.shadow { box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16); border: solid 1px #151515; } 
 .gigworker .boxInput.active span { display: block; } 
 .gigworker .boxInput.active.error { border-color: #fb3636; } 
 .gigworker .boxInput.active.error .default { display: none; } 
 .gigworker .boxInput.active.error .errorText { display: block; } 
 .gigworker .boxInput > span { display: none; margin-bottom: 2px; font-size: 12px; } 
 .gigworker .boxInput > span.errorText { display: none; } 
-.gigworker .boxInput input { width: 90%; height: 24px; border: none; padding: 0; font-size: 20px; font-weight: 700; line-height: 24px; box-sizing: content-box; } 
-.gigworker .boxInput input::placeholder { color: #E2E2E2; font-size: 20px; font-weight: 700; } 
+.gigworker .boxInput input { width: 90%; height: 30px; border: none; padding: 0; font-size: 20px; font-weight: 700; line-height: 30px; box-sizing: content-box; } 
+.gigworker .boxInput input::placeholder { color: #E2E2E2; font-size: 20px; font-weight: 700; padding: 0; } 
 .gigworker .boxInput .inputArea { display: flex; position: relative; width: 90%; } 
 .gigworker .boxInput .inputArea .placeholderText { display: block; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 100%; color: #E2E2E2; font-size: 20px; font-weight: 700; z-index: 1; } 
 .gigworker .boxInput .inputArea .dash,
@@ -89,6 +89,8 @@ body.noScroll { position: fixed; overflow: hidden; }
 
 .gigworker #content { display: flex; flex-direction: column; padding: 70px 0 0; } 
 .gigworker #content .container { display: flex; flex-direction: column; flex: 1; padding: 0; } 
+.gigworker.fixedTitle #content .container { margin-top: 90px; } 
+.gigworker.fixedTitle #content .container .titleWrap { position: fixed; top: 44px; width: 100%; background-color: #fff; padding: 26px 0 20px; z-index: 10;} 
 .gigworker #content .container .titleWrap .mainTitle { padding-left: 2px; font-size: 26px; line-height: 1.23; letter-spacing: -1.3px; } 
 .gigworker #content .container .titleWrap .mainTitle.normal { font-weight: 400; } 
 .gigworker #content .container .titleWrap .mainTitle.discount b { overflow: hidden; position: relative; } 
@@ -215,6 +217,7 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker .bot-btn { display: block; width: 100%; height: 55px; margin: auto; border-radius: 12px; color: #fff; font-size: 18px; line-height: 55px; background-color: #151515; font-weight: 700; } 
 .gigworker .bot-btn .price { color: #E6FF00; font-family: 'Pretendard' } 
 .gigworker .bot-btn.disable { background-color: #e2e2e2; pointer-events: none; font-weight: bold; } 
+.gigworker .bot-btn.disable .price { color: #fff; } 
 .gigworker .botBtnWrap .text-btn { display: flex; align-items: center; margin: 20px auto 0; font-size: 16px; font-weight: 700; } 
 .gigworker .botBtnWrap .text-btn .arrow-right { display: inline-block; width: 16px; height: 16px; background: url("../images/icon/arrow-right-black.svg") center / 16px 16px no-repeat; } 
 
@@ -262,9 +265,8 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker .verificationTimer.naver::before { background-image: url("../images/gigworker/naver-round.png"); } 
 .gigworker .verificationTimer.pass::before { background-image: url("../images/gigworker/pass-round.png"); } 
 .gigworker .verificationTimer p { font-size: 16px; color: #151515; } 
-.gigworker .verificationTimer .timeWrap { display: flex; align-items: center; justify-content: center; width: 92px; height: 46px; margin-top: 16px; border-radius: 12px; font-size: 14px; color: #151515; background-color: #F9F9F9; } 
-.gigworker .verificationTimer .timeWrap::before { display: block; content: ""; width: 15px; height: 16px; margin-right: 5px; background: url("../images/gigworker/icon-timer.png") 0 / cover no-repeat; } 
-.gigworker .verificationTimer .timeWrap span.warning { color: #fb3636; } 
+.gigworker .verificationTimer .timeWrap { display: flex; width: 90px; height: 34px; justify-content: center; align-items: center; margin-top: 20px; border: 1px solid #e2e2e2; border-radius: 17px; color: #e2e2e2; font-size: 14px; font-weight: bold; } 
+.gigworker .verificationTimer .timeWrap.active { border: 1px solid #151515; color: #151515; } 
 
 .gigworker .agreeSlider { margin-top: 20px; } 
 .gigworker .agreeSlider .slick-slide .slide { height: 196px; padding: 26px; border-radius: 16px; } 
@@ -345,6 +347,10 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker.familyInfoEnter .modal-slide .modal-body .bot-btn { width: calc(100% - 40px); } 
 .gigworker.familyInfoEnter .section2 { margin-top: 24px; } 
 .gigworker.familyInfoEnter .section2 .lineTitleText { margin-bottom: 26px; } 
+.gigworker.familyInfoEnter .inquiryLink { display: flex; align-items: center; height: 40px; margin-top: 12px;; padding: 0 16px 0 20px; border-radius: 10px; background-color: #f6f6f6; font-size: 14px; font-weight: 700; color: #151515; } 
+.gigworker.familyInfoEnter .inquiryLink em { margin-right: 4px; } 
+.gigworker.familyInfoEnter .inquiryLink i { margin-left:auto; } 
+
 .gigworker.complete .visualImg { display: block; width: 216px; height: 179px; margin: 82px auto 0; background: url("../images/gigworker/bankbook.png") 0 / cover no-repeat; } 
 .gigworker.complete #content .container .detailTaxWrap .detailBox dl dt,
 .gigworker.complete #content .container .detailTaxWrap .detailBox dl dd { color: #575757; } 
@@ -426,15 +432,16 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker.faq #header .container { background-color: #fff; } 
 .gigworker.faq #content { padding-top: 44px; } 
 .gigworker.faq #content .container { padding: 68px 0 120px; background: #F9F9F9 url("../images/gigworker/logo-010pay.png") center bottom 60px / 60px auto no-repeat; } 
-.gigworker.faq #content .navWrap { overflow: auto; position: fixed; left: 50%; top: 44px; transform: translateX(-50%); padding: 24px 22px 22px; width: 100%; max-width: 700px; white-space: nowrap; background-color: #F9F9F9; } 
+.gigworker.faq #content .navWrap { overflow: auto; position: fixed; left: 50%; top: 43px; transform: translateX(-50%); padding: 24px 22px 22px; width: 100%; max-width: 700px; white-space: nowrap; background-color: #F9F9F9; } 
 .gigworker.faq #content .navWrap::-webkit-scrollbar { display: none; } 
 .gigworker.faq #content .navWrap button { padding: 4px 10px; color: #575757; font-size: 14px; line-height: 1; } 
 .gigworker.faq #content .navWrap button.active { border-radius: 13px; color: #fff; background-color: #151515; } 
 .gigworker.faq #content .contentWrap { padding: 0 22px; } 
 .gigworker.faq #content .contentWrap > li { margin-bottom: 10px; padding: 26px 22px 20px; border-radius: 14px; background-color: #fff; } 
-.gigworker.faq #content .contentWrap > li:last-child { margin-bottom: 0; } 
+.gigworker.faq #content .contentWrap > li:last-child { margin-bottom: 0; padding-bottom: 26px; } 
 .gigworker.faq #content .contentWrap > li h4 { margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid #E2E2E2; font-size: 16px; font-weight: 700; letter-spacing: -0.05em; } 
 .gigworker.faq #content .contentWrap > li p { color: #575757; font-size: 12px; line-height: 15px; letter-spacing: -0.05em; } 
+.gigworker.faq #content .contentWrap > li div { color: #575757; font-size: 12px; line-height: 15px; letter-spacing: -0.05em; } 
 .gigworker.faq #content .contentWrap > li ul li { margin-bottom: 6px; color: #575757; font-size: 12px; line-height: 15px; letter-spacing: -0.05em; } 
 .gigworker.faq #content .contentWrap > li dl { font-size: 12px; line-height: 15px; letter-spacing: -0.05em; } 
 .gigworker.faq #content .contentWrap > li dl dt { margin-bottom: 5px; font-weight: 700; } 
@@ -537,6 +544,13 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker .modal-slide .modal-footer { padding: 0 20px; } 
 .gigworker .modal-slide .modal-footer .btn { border-radius: 12px; font-size: 18px; } 
 
+.gigworker .modal-checkTax .modal-body { text-align: center; } 
+.gigworker .modal-checkTax .modal-body .titleText { margin-bottom: 6px; font-size: 24px; } 
+.gigworker .modal-checkTax .modal-body .titleText::before { display: block; content: ""; width: 50px; height: 50px; margin: 0 auto 14px; background: url("../images/gigworker/cancle.png") center / cover no-repeat; } 
+.gigworker .modal-checkTax .modal-body .subText { margin-bottom: 36px; font-size: 16px; color: #575757; } 
+.gigworker .modal-checkTax .modal-body .btn-close::before { display: none; } 
+.gigworker .modal-checkTax .modal-body .btn-close { position: static; height: 55px; border-radius: 12px; background-color: #151515; } 
+
 /* 약관 동의 팝업 */
 .gigworker .modal-app .modal-header { display: flex; align-items: center; height: 44px; padding: 0 14px; } 
 .gigworker .modal-app .modal-header .modal-title { margin-left: 6px; line-height: 44px; } 
@@ -552,6 +566,26 @@ body.noScroll { position: fixed; overflow: hidden; }
 /* 로딩 레이어 */
 .loadingLayer { display: block; position: fixed; z-index: 200; left: 0; top: -5px; width: 100%; height: calc(100% + 10px); background: rgba(0,0,0,.5); } 
 .loadingLayer .progressBg { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; width: 90px; height: 90px; border-radius: 90px; background-color: #fff; } 
+
+
+/* 순번 대기 팝업 */
+.modal-turnWaiting .modal-dialog { left: 50%; transform: translate(-50%,-50%); width: calc(100% - 40px); max-width: 380px; margin: 0 auto; padding: 0; border-radius: 18px; box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16); } 
+.modal-turnWaiting .modal-body { padding: 0; text-align: center; } 
+.modal-turnWaiting .modal-body .loadingWrap { position: relative; width: 200px; height: 200px; margin: 60px auto 16px; } 
+.modal-turnWaiting .modal-body .loadingWrap .loading { position: relative; width: 200px; height: 200px; background: url("../images/gigworker/loadingCircle.png") center / cover no-repeat; border-radius: 50%; animation: spin 1s ease-in-out infinite; -webkit-animation: spin 1.25s linear infinite; } 
+.modal-turnWaiting .modal-body .loadingWrap .textBox { position: absolute; left: 50%; top: 34px; transform: translateX(-50%); color: #151515; font-size: 16px; line-height: 1; } 
+.modal-turnWaiting .modal-body .loadingWrap .textBox::before { display: block; content: ""; width: 31px; height: 36px; margin: 0 auto 14px; background: url("../images/gigworker/img_wait.png") center / cover no-repeat; } 
+.modal-turnWaiting .modal-body .loadingWrap .textBox p { display: flex; align-items: center; justify-content: center; margin-top: 6px; font-weight: bold; font-size: 22px; line-height: 1
+; } 
+.modal-turnWaiting .modal-body .loadingWrap .textBox p strong { font-size: 32px; } 
+.modal-turnWaiting .modal-body dl { display: flex; justify-content: space-between; align-items: center; margin: auto; padding: 10px; width: 230px; height: 34px; border-radius: 4px; font-size: 14px; background-color: #F9F9F9; } 
+.modal-turnWaiting .modal-body dl dt { color: #575757; } 
+.modal-turnWaiting .modal-body dl dd { color: #0088FF; } 
+.modal-turnWaiting .modal-body .infoText { margin-top: 16px; font-size: 14px; line-height: 20px; } 
+.modal-turnWaiting .modal-body .infoText b { font-weight: bold; color: #151515; } 
+
+.modal-turnWaiting .botBtnWrap { padding: 30px 20px 20px; } 
+.modal-turnWaiting .botBtnWrap .bot-btn { display: block; width: 100%; height: 55px; margin: auto; border-radius: 12px; color: #fff; font-size: 18px; line-height: 55px; background-color: #151515; font-weight: 700; } 
 
 @keyframes loadingProgress { 
  0% { opacity: 0.2; height: 12px; } 
@@ -585,3 +619,7 @@ body.noScroll { position: fixed; overflow: hidden; }
  100% { opacity: 0; } 
  }
  
+ @keyframes spin { to { -webkit-transform: rotate(360deg); } 
+ }
+@-webkit-keyframes spin { to { -webkit-transform: rotate(360deg); } 
+ }

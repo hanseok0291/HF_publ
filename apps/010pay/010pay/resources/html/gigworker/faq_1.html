@@ -39,7 +39,7 @@
       <!-- //header -->
 
       <!-- content -->
-      <div id="content" class="pdb0">
+      <div id="content">
         <div class="container">
           <div class="navWrap">
             <button type="button" class="active">종합소득세란?</button>
@@ -112,9 +112,9 @@
               <p>
                 간편장부 혹은 복식부기 대상자라면
                 전문 세무사의 도움을 받는 게 좋아요.
-                환급액 조회 시 세무사를 안내해 드린 경우에 해당해요.
+                환급액 조회 때 세무사를 안내해 드린 경우에 해당해요.
                 <br><br>
-                지금 전문적인 종합 소득세 신고를 도와드릴
+                지금 전문적인 종합 소득세 신고를 도와드릴0
                 010PAY 제휴 세무사에게 자세한 상담을 받아보세요!
                 <br><br>
                 만약 환급 신청 완료 페이지에서
@@ -130,7 +130,7 @@
                 다음의 경우 국세청 심사 결과 최종 환급액이 변동될 수 있어요. <br><br>
                 <ul class="note">
                   <li>검토 중 발견된 새로운 소득이 있어<br>총 사업 소득이 증가한 경우</li>
-                  <li>검토 중 요건에 맞지 않는 공제 자료가 확인되어 <br> 총 납부 세금이 증가한 경우</li>
+                  <li>검토중 요건에 맞지 않는 공제 자료가 확인되어 <br> 총 납부 세금이 증가한 경우</li>
                 </ul>
                 <br>
                 만약 최종 환급액 변동으로 신청 수수료가 달라진 경우 <br> 010PAY 고객센터(1600-5220)로 연락해주세요.
@@ -139,7 +139,7 @@
           </ul>
           <a href="#" class="moreFaq">
             종합소득세 환급 관련 <br>
-            <p>더 자세한 내용이 궁금하신가요? <i class="icon-right-arrow"></i></p>
+            <p>더 자세한 내용이 궁금하신가요?</p>
           </a>
         </div>
       </div>
@@ -184,18 +184,24 @@
     </div>
 
     <script>
-      // modalOpenSlide('modalSlideType1');
+      modalOpenSlide('modalSlideType1');
       var headerHeight = $("#header").height() + $(".navWrap").outerHeight();
       var scollStatus = true;
-      var isScrolling =false;
       var navLeft = [];
-      
 
       $(".navWrap button").each(function(i, e){
         var leftVal = parseInt($(this).offset().left) - 22 ;
         navLeft.push(leftVal)
       });
       $(window).on("scroll", function(){
+        $(".navWrap button").each(function(i, e){
+          if($(e).hasClass("active")){
+            $(".navWrap").stop().animate({scrollLeft: navLeft[i]});
+          }
+        })
+       
+        $(".navWrap").scrollLeft()
+
         var curScroll = $(this).scrollTop();
         
         var content1 = $(".content1").offset().top - headerHeight - 10;
@@ -237,7 +243,6 @@
             scollStatus = true;
           }, 200);
         });
-        $(".navWrap").stop().animate({scrollLeft: navLeft[idx-1]});
       });
     </script>
   </body>

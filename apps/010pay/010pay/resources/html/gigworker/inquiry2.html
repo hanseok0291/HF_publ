@@ -30,7 +30,7 @@
   <!-- 230310 검토 -->
   <body>
     <!-- wrap -->
-    <div id="wrap" class="gigworker infoEnter">
+    <div id="wrap" class="gigworker infoEnter fixedTitle">
       <!-- header -->
       <div id="header">
         <div class="container">
@@ -43,7 +43,7 @@
       <!-- content -->
       <div id="content">
         <div class="container pdLR22 pdB100">
-          <div class="titleWrap">
+          <div class="titleWrap ">
             <h3 class="mainTitle normal">
               환급액을 알아볼게요. <br>
               먼저 <b>본인 확인</b>이 필요해요.
@@ -186,6 +186,19 @@
         modalClose(this);
       });
 
+      document.addEventListener('focus', function(event) {
+        if (event.target.tagName === 'INPUT') {
+          //var content = document.getElementById('content'); // 고정할 컨텐츠 엘리먼트
+          var windowHeight = window.innerHeight;
+          var inputBottom = event.target.getBoundingClientRect().bottom;
+          var diff = windowHeight - inputBottom;
+          
+          if (diff > 0) {
+            content.style.position = 'fixed';
+            content.style.top = diff + 'px';
+          }
+        }
+      }, true);
     </script>
   </body>
 </html>

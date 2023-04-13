@@ -24,6 +24,7 @@ $(window).load(function(){
 
     $input.on("propertychange change paste input", function(){
       val = "";
+      
       for(var i = 0;i<$input.length;i++){
         $($input[i]).val()
         val += $($input[i]).val();
@@ -42,8 +43,9 @@ $(window).load(function(){
         $input.closest(".boxInput").find(".lastInput").focus();
         $input.closest(".boxInput").addClass("shadow");
       }
-
       if($(this).hasClass("lastInput")){
+        var lastInputval = $(this).val().replace(/\./g, '');
+        $input.closest(".boxInput").find(".lastInput").val(lastInputval);
         $input.closest(".boxInput").addClass("active");
         $(this).next($(".inputDot")).find("span").removeClass("fill");
         for(var i = 0; i < $(this).val().length; i ++){
@@ -63,7 +65,7 @@ $(window).load(function(){
     $input.on("focus", function(){
       var $this = $(this);
       $this.closest(".boxInput").addClass("active shadow");
-      if($this.closest(".boxInput").find("input").val() > 0){
+      if($this.closest(".boxInput").find("input").val().length > 0){
         $this.closest(".boxInput").find(".inputDel").show();
       } 
     });
@@ -217,26 +219,38 @@ $(window).load(function(){
     attributeOldValue: true,
     attributeFilter: ['class']
   });
+
+  $(".modal-info").click(function (e) {
+    var $this = $(this);
+    if (!$(".modal-content").has(e.target).length && $this.has(".icon-times").length === 0) {
+      $(this).fadeOut(200);
+      $(this).find(".modal-content").animate({ bottom: -450 }, 200);
+      $(".bank-list").scrollTop(0);
+  
+      // 이중 모달 아닌 경우
+      if (!$(this).hasClass("depth2")) {
+        scrollOn(); // 바디 스크롤 제거 해제
+      }
+    }
+  });
 });
 
+// 전화번호 체크
+function formatPhoneNumber() {
+  var phoneNumber = document.getElementById("phone").value;
+  var formattedPhoneNumber = phoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, "$1 $2 $3");
+  document.getElementById("phone").value = formattedPhoneNumber;
+}
+
+function removeWhitespace() {
+  var phoneNumber = document.getElementById("phone").value;
+  var phoneNumberWithoutWhitespace = phoneNumber.replace(/\s/g, "");
+  document.getElementById("phone").value = phoneNumberWithoutWhitespace;
+}
 
 // maxlength
 function maxLengthCheck(object){
   if (object.value.length > object.maxLength){
     object.value = object.value.slice(0, object.maxLength);
   }    
-}
-
-// 레이어 팝업(모달) 닫기
-function modalClose() {
-  $(".modal").hide();
-}
-
-function modalClose(obj) {
-  if (obj != null && obj != undefined && obj != "") {
-    var temp = $("#" + obj);
-    temp.hide();
-  } else {
-    $(".modal").hide();
-  }
 }

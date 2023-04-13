@@ -36,7 +36,7 @@ const Index = () => {
           isShowMypageBtn={isShowMypageBtn}
         />
         <div style={{ paddingTop: "58px" }}>
-          <BuyTab />
+          <BuyTab tabItem={["전체", "구매 완료", "구매 취소"]}/>
           <div style={{ marginBottom: "20px" }}>
             {/* 카테고리 상품리스트 */}
             <CouponListEmpty

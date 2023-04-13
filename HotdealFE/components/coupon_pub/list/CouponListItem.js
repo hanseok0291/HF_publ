@@ -43,7 +43,7 @@ const CouponListItem = (
                   {infoDcPercent}
                 </span>
               )}
-              {infoDcPrice}
+              {infoDcPrice}<span className={styleCouponList.unitText}>원</span>
             </p>
           </div>
           <div className={styleCouponList.addInfoWrap}>

@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no, address=no, email=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>010PAY(긱워커) 퍼블리싱 안내</title>
+    <link rel="stylesheet" href="resources/fonts/pretendard/pretendard-subset.min.css">
+    <script src="resources/js/jquery-1.8.3.min.js"></script>
+
+    <style>
+		html, body { width: 100%; height: 100%; }
+		p { margin: .25em 0; }
+		body { margin: 0; padding: 0; background-color: #fff; font-family: "Pretendard", "Malgun Gothic", "Dotum", "Apple SD Gothic Neo", sans-serif; font-size: 12px; line-height: 1.4; letter-spacing: -0.03em; color: #222; }
+		input, button, label { font-family: "Pretendard", "Malgun Gothic", "Dotum", "Apple SD Gothic Neo", sans-serif; }
+		header { margin: 0; padding: 20px 20px; border-bottom: 1px solid #ccc; }
+		header h1 { margin: 0 0 10px; font-size: 24px; font-weight: 700; color: #faa61a; }
+		header p { line-height: 1.4; }
+		.main { position: relative; padding: 0 20px 20px; }
+		h2 { margin: 30px 0 10px; font-size: 18px; font-weight: 800; }
+		small { font-size: 90% !important; color: #9a9a9a; }
+		ul { margin: 0; padding-left: 1.667em; list-style: disc; }
+		ul ul { margin-top: .333em; list-style: circle; }
+		li { margin-top: .333em; }
+		ul li:first-child { margin-top: 0; }
+		a { color: #1d8dd8; }
+		a, a:hover, a:active, a:focus { text-decoration: underline; }
+		.strong { font-weight: 500; }
+		.table-responsive { width: 100%; overflow-x: auto; border: 1px solid #ddd; }
+		.table { margin: 0; min-width: 550px;  border-collapse: collapse; width: 100%; font-size: 12px; border: 0; }
+		.table th, .table td {  padding: 5px 10px; height: auto; border: 1px solid #ddd; }
+		.table th { background: #f1f2f4; color: #222; font-weight: 500; text-align: center; }
+		.table .date, .table .status { text-align: center; }
+		.well { padding: 20px; border: 2px solid #ddd; }
+		.bg-info { background: #dbf5ff; }
+		.bg-success { background: #e7fbe2; }
+		.bg-warning { background: #ff9; }
+		.bg-danger { background: #ffe5e8; }
+		.bg-wait { background: #eee; color: #888; }
+		.del { text-decoration: line-through; }
+		code { padding: 2px 4px; background-color: #f9f2f4; font-size: 96%; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; color: #c7254e; }
+		.text-primary { color: #faa61a; }
+		.text-info { color: #1d8dd8; }
+		.text-danger { color: #ff4f51; }
+		.text-success { color: #28a745; }
+		.badge { display: inline-block; padding: 3px 4px; border-radius: 2px; background-color: #45a3e3; font-size: 92%; line-height: 1.1; color: #fff; }
+		.badge-primary { background-color: #faa61a; }
+		.badge-wait { background-color: #b7b7b7; }
+		.btn { display: inline-block; padding: .25em .5em; border: 1px solid #5e8cc0; border-radius: .5em; background-color: transparent; font-size: 11px; color: #5e8cc0; line-height: 1.2; }
+		.flip { position: relative; }
+		.flip .flip-body { display: none; }
+		.flip.open .flip-body { display: block; }
+		.flip.open .btn-flip .open { display: none; }
+		.flip:not(.open) .btn-flip .close { display: none; }
+    </style>
+
+    <script>
+      $(document).ready(function () {
+        // 설명 영역 축약 (flip)
+        $(".btn-flip").click(function () {
+          $(this).parents(".flip").toggleClass("open");
+        });
+        $(".btn-flip-all").click(function () {
+          if (!$(this).hasClass("open")) {
+            $(this).addClass("open");
+            $(this).parents("h2").next().find(".flip").addClass("open");
+          } else {
+            $(this).removeClass("open");
+            $(this).parents("h2").next().find(".flip").removeClass("open");
+          }
+        });
+
+        // 진행 상태별 셀 컬러
+        $("li.text-success").parents("tr").addClass("bg-success");
+        $("li.text-danger").parents("tr").addClass("bg-success2");
+        $(
+          ".status:contains('작업 중'), .status:contains('작업 예정'), .status:contains('수정 중'), .status:contains('수정 예정')"
+        )
+          .parents("tr")
+          .removeClass("bg-success2")
+          .addClass("bg-danger");
+        $(".status:contains('검토 요청')")
+          .parents("tr")
+          .removeClass("bg-success2")
+          .addClass("bg-warning");
+        $(".status:contains('-'), .status:empty")
+          .parents("tr")
+          .addClass("bg-wait");
+
+        // 모바일 링크 타겟 변경
+        var filter = "win16|win32|win64|mac|macintel";
+        if (navigator.platform) {
+          if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
+            // mobile
+            $("a").attr("target", "_self");
+            // alert("[010PAY 퍼블리싱 안내]\n모바일 접속! 링크는 페이지 이동으로 적용됩니다.");
+          } else {
+            // pc
+            $("a").attr("target", "_blank");
+          }
+        }
+      });
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <h1>010PAY(긱워커) 퍼블리싱 안내</h1>
+      <p>최종 수정일 : 2023-03-10</p>
+    </header>
+
+    <div class="main">
+      <h2>
+        PAGE
+        <span class="pull-right"
+          ><button type="button" class="btn btn-flip-all">
+            <span class="open">비고 내용 모두 보기</span
+            ><span class="close">비고 지난 내용 숨기기</span>
+          </button></span
+        >
+      </h2>
+      <div class="table-responsive">
+        <table class="table" id="pageTable">
+          <colgroup>
+            <col style="width: 100px" />
+            <col style="width: 10%" />
+            <col style="width: 15%" />
+            <col style="width: 15%" />
+            <col style="width: 60px" />
+            <col style="width: 60px" />
+            <col style="width: 60px" />
+            <col style="width: 100px" />
+            <col style="width: 100px" />
+            <col />
+          </colgroup>
+          <thead>
+            <tr>
+              <th>구분</th>
+              <th>화면명</th>
+              <th>2depth</th>
+              <th>파일</th>
+              <th>
+                뒤로<br />
+                버튼
+              </th>
+              <th>
+                닫기<br />
+                버튼
+              </th>
+              <th>
+                타이틀
+              </th>
+              <th>날짜</th>
+              <th>상태</th>
+              <th>비고</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td rowspan="100">
+                본 서비스
+              </td>
+              <td rowspan="14">조회</td>
+              <td>랜딩</td>
+              <td>
+                <a href="resources/html/gigworker/landing.html" target="_blank"
+                  >landing</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>서비스 이용 동의</td>
+              <td>
+                <a href="resources/html/gigworker/inquiry1.html" target="_blank"
+                  >inquiry1</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>정보 입력</td>
+              <td>
+                <a href="resources/html/gigworker/inquiry2.html" target="_blank"
+                  >inquiry2</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>정보 입력 - 이탈</td>
+              <td>
+                <a href="resources/html/gigworker/inquiry2_1.html" target="_blank"
+                  >inquiry2_1</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>본인 인증</td>
+              <td>
+                <a href="resources/html/gigworker/inquiry3.html" target="_blank"
+                  >inquiry3</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>본인 인증 - 인증 요청 시간 만료</td>
+              <td>
+                <a href="resources/html/gigworker/inquiry3_1.html" target="_blank"
+                  >inquiry3_1</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>본인 인증 - 앱인증 미진행</td>
+              <td>
+                <a href="resources/html/gigworker/inquiry3_2.html" target="_blank"
+                  >inquiry3_2</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>수임동의</td>
+              <td>
+                <a href="resources/html/gigworker/inquiry4.html" target="_blank"
+                  >inquiry4</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>수임동의 - 세무인 기등록</td>
+              <td>
+                <a href="resources/html/gigworker/inquiry4_1.html" target="_blank"
+                  >inquiry4_1</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>수임동의 - 이탈</td>
+              <td>
+                <a href="resources/html/gigworker/inquiry4_2.html" target="_blank"
+                  >inquiry4_2</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>로딩</td>
+              <td>
+                <a href="resources/html/gigworker/inquiry5.html" target="_blank"
+                  >inquiry5</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>로딩2</td>
+              <td>
+                <a href="resources/html/gigworker/inquiry5_1.html" target="_blank"
+                  >inquiry5_1</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>로딩 - 이탈</td>
+            <td>
+                <a href="resources/html/gigworker/inquiry5_2.html" target="_blank"
+                  >inquiry5_2</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>조회 완료 </td>
+              <td>
+                <a href="resources/html/gigworker/inquiry6.html" target="_blank"
+                  >inquiry6</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td rowspan="20">조회 결과</td>
+              <td>대상</td>
+              <td>
+                <a href="resources/html/gigworker/inquiryResult1.html" target="_blank"
+                  >inquiryResult1</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>대상 아님</td>
+              <td>
+                <a href="resources/html/gigworker/inquiryResult2.html" target="_blank"
+                  >inquiryResult2</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>전문 세무사 필요</td>
+              <td>
+                <a href="resources/html/gigworker/inquiryResult3.html" target="_blank"
+                  >inquiryResult3</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>전문 세무사 필요 - 세무사 추천</td>
+              <td>
+                <a href="resources/html/gigworker/taxAccountant.html" target="_blank"
+                  >taxAccountant</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>환급 신청</td>
+              <td>
+                <a href="resources/html/gigworker/inquiryResult4.html" target="_blank"
+                  >inquiryResult4</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>환급 신청 - 환급 상태 안내 팝업</td>
+              <td>
+                <a href="resources/html/gigworker/inquiryResult4.html" target="_blank"
+                  >inquiryResult4_1</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>환급 계좌</td>
+              <td>
+                <a href="resources/html/gigworker/inquiryResult5.html" target="_blank"
+                  >inquiryResult5</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>환급 계좌 - 계좌 등록 알림창</td>
+              <td>
+                <a href="resources/html/gigworker/inquiryResult5_1.html" target="_blank"
+                  >inquiryResult5_1</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>환급 계좌 - 본인 명의 아닌 경우</td>
+              <td>
+                <a href="resources/html/gigworker/inquiryResult5_2.html" target="_blank"
+                  >inquiryResult5_2</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>환급 계좌 - 계좌번호 자리수 오류</td>
+              <td>
+                <a href="resources/html/gigworker/inquiryResult5_3.html" target="_blank"
+                  >inquiryResult5_3</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>환급 계좌 - 이탈</td>
+              <td>
+                <a href="resources/html/gigworker/inquiryResult5_4.html" target="_blank"
+                  >inquiryResult5_4</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>수수료 면제</td>
+              <td>
+                <a href="resources/html/gigworker/inquiryResult10.html" target="_blank"
+                  >inquiryResult10</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-17</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>수수료 결제</td>
+              <td>
+                <a href="resources/html/gigworker/inquiryResult6.html" target="_blank"
+                  >inquiryResult6</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>수수료 결제 - 등록 계좌 없음</td>
+              <td>
+                <a href="resources/html/gigworker/inquiryResult6_1.html" target="_blank"
+                  >inquiryResult6_1</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>수수료 결제 - 결제 취소</td>
+              <td>
+                <a href="resources/html/gigworker/inquiryResult6_2.html" target="_blank"
+                  >inquiryResult6_2</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>수수료 결제 - 결제 완료</td>
+              <td>
+                <a href="resources/html/gigworker/inquiryResult7.html" target="_blank"
+                  >inquiryResult7</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>수수료 결제 - 잔액 부족</td>
+              <td>
+                <a href="resources/html/gigworker/inquiryResult8.html" target="_blank"
+                  >inquiryResult8</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>결제 완료 후 이탈</td>
+              <td>
+                <a href="resources/html/gigworker/inquiryResult9.html" target="_blank"
+                  >inquiryResult9</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>결제 완료 후 이탈 - 약관</td>
+              <td>
+                <a href="resources/html/gigworker/inquiryResult9_1.html" target="_blank"
+                  >inquiryResult9_1</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>결제수단 선택</td>
+              <td>
+                <a href="resources/html/gigworker/paymentMethod.html" target="_blank"
+                  >paymentMethod</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-04-14</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td rowspan="14">부양 가족</td>
+              <td>부양 가족 추가</td>
+              <td>
+                <a href="resources/html/gigworker/family1.html" target="_blank"
+                  >family1</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>부양 가족 추가 - 부양 가족이란?</td>
+              <td>
+                <a href="resources/html/gigworker/family1_1.html" target="_blank"
+                  >family1_1</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>부양 가족 추가 - 이탈</td>
+              <td>
+                <a href="resources/html/gigworker/family1_2.html" target="_blank"
+                  >family1_2</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>부양 가족 추가 - 정보 미입력</td>
+              <td>
+                <a href="resources/html/gigworker/family1_3.html" target="_blank"
+                  >family1_3</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>부양 가족 추가 - 정보 삭제</td>
+              <td>
+                <a href="resources/html/gigworker/family1_4.html" target="_blank"
+                  >family1_4</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>부양 가족 입력</td>
+              <td>
+                <a href="resources/html/gigworker/family2.html" target="_blank"
+                  >family2</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>홈택스 계정 입력</td>
+              <td>
+                <a href="resources/html/gigworker/family3.html" target="_blank"
+                  >family3</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>홈택스 계정 입력 - 이탈</td>
+              <td>
+                <a href="resources/html/gigworker/family3_1.html" target="_blank"
+                  >family3_1</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>홈택스 계정 입력 - 미동의</td>
+              <td>
+                <a href="resources/html/gigworker/family3_2.html" target="_blank"
+                  >family3_2</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>환급 신청 완료</td>
+              <td>
+                <a href="resources/html/gigworker/family4.html" target="_blank"
+                  >family4</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>환급 신청 완료 - 환급 일정 안내</td>
+              <td>
+                <a href="resources/html/gigworker/family4_1.html" target="_blank"
+                  >family4_1</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>수임 동의 입력</td>
+              <td>
+                <a href="resources/html/gigworker/family5.html" target="_blank"
+                  >family5</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>수임 동의 입력 - 약관</td>
+              <td>
+                <a href="resources/html/gigworker/family5_1.html" target="_blank"
+                  >family5_1</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>수임 동의 입력 - 인증</td>
+              <td>
+                <a href="resources/html/gigworker/family6.html" target="_blank"
+                  >family6</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td rowspan="6">진행 현황</td>
+              <td>진행 현황</td>
+              <td>
+                <a href="resources/html/gigworker/progress1.html" target="_blank"
+                  >progress1</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>진행 현황 - 상세</td>
+              <td>
+                <a href="resources/html/gigworker/progress2.html" target="_blank"
+                  >progress2</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>진행 현황 - 취소</td>
+              <td>
+                <a href="resources/html/gigworker/progress3.html" target="_blank"
+                  >progress3</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td>
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>진행 현황 - 취소 완료</td>
+              <td>
+                <a href="resources/html/gigworker/progress4.html" target="_blank"
+                  >progress4</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td> 
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>수정
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>진행 현황 - 상세2</td>
+              <td>
+                <a href="resources/html/gigworker/progress5.html" target="_blank"
+                  >progress5</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td> 
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>수정
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>진행 현황 - 상세3</td>
+              <td>
+                <a href="resources/html/gigworker/progress6.html" target="_blank"
+                  >progress6</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td> 
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>수정
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td rowspan="100">FAQ</td>
+              <td>FAQ</td>
+              <td>
+                <a href="resources/html/gigworker/faq.html" target="_blank"
+                  >faq</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td> 
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>수정
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>수임 해지</td>
+              <td>
+                <a href="resources/html/gigworker/agreeCancle1.html" target="_blank"
+                  >agreeCancle1</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td> 
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>수정
+              <td class="status">검토 요청</td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>수임 해지 입력</td>
+              <td>
+                <a href="resources/html/gigworker/agreeCancle2.html" target="_blank"
+                  >agreeCancle2</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td> 
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>수정
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>수임 해지 입력 - 약관</td>
+              <td>
+                <a href="resources/html/gigworker/agreeCancle2_1.html" target="_blank"
+                  >agreeCancle2_1</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td> 
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>수정
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>수임 해지 - 인증</td>
+              <td>
+                <a href="resources/html/gigworker/agreeCancle3.html" target="_blank"
+                  >agreeCancle3</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td> 
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>수정
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>수임 해지 - 완료</td>
+              <td>
+                <a href="resources/html/gigworker/agreeCancle4.html" target="_blank"
+                  >agreeCancle4</a
+                >
+              </td>
+              <td class="date">X</td>
+              <td class="date">X</td> 
+              <td class="date">●</td>
+              <td class="date">2023-03-10</td>수정
+              <td class="status">검토</td>
+              <td>
+                <ul>
+                  <li class="text-success">택스비</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>MEMO</h2>
+      <div class="well">
+        <ul>
+          <li>반응형(모바일/태블릿/PC 단일 소스)</li>
+          <li>
+            <strong>SIZE</strong>
+            <ul>
+              <li>PC 새창 팝업 : 420px × 610px</li>
+              <li>
+                <code>.container</code> width : 320px ~ 700px(2022-04-25 :
+                갤럭시 Z 폴드 최대 683px 지원 추가)
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>SUPPORT</strong>
+            <ul>
+              <li>
+                PC 브라우저 : 크롬, 웨일, 파이어폭스, Internet Explorer 9
+                이상,...
+              </li>
+              <li>
+                모바일 브라우저 : 안드로이드 인터넷, 사파리, 크롬, 네이버,
+                다음,...
+              </li>
+              <li>안드로이드 5.0 이상</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

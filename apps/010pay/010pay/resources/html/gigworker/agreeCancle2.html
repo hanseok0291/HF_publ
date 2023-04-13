@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>예상 종합 소득세 간편 계산</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="../../css/jquery-ui.css" />
+    <link rel="stylesheet" href="../../css/common.css" />
+    <link rel="stylesheet" href="../../css/gigworker.css" />
+
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="../../js/html5shiv.js"></script>
+      <script type="text/javascript" src="../../js/respond.min.js"></script>
+    <![endif]-->
+    <script src="../../js/jquery-1.8.3.min.js"></script>
+    <script src="../../js/gigworker.js"></script>
+    <script src="../../js/jquery.placeholder.min.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+    <script src="../../js/design.js"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap" class="gigworker infoEnter deductionEnter">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <button type="button" id="btnBack" class="btn-back"><i class="icon-angle-left">뒤로가기</i></button>
+          <!-- <button type="button" id="closeWindow" class="btn-close"><i class="icon-times">닫기</i></button> -->
+        </div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <div class="container pdLR22 pdB100">
+          <div class="titleWrap">
+            <h3 class="mainTitle normal">
+              수임동의 해지를 위해 <br>
+              <b>본인 확인</b>이 필요해요.
+            </h3>
+            <p class="subText">알려주신 정보는 홈택스에서 사용돼요 !</p>
+          </div>
+          <ul class="mt24">
+            <li class="boxInput error">
+              <span class="default">이름</span>
+              <span class="errorText">확인 후 다시 입력해 주세요.</span>
+              <input type="text" placeholder="이름 입력" />
+              <button type="button" class="inputDel"></button>
+            </li>
+            <li class="boxInput selectInput" onclick="modalOpenSlide('modalTelSel')">
+              <span class="default">통신사</span> 
+              <input type="text" placeholder="통신사 선택" />
+              <button class="btn-view"></button>
+            </li>
+            <li class="boxInput phoneNum">
+              <span class="default">휴대폰 번호</span>
+              <span class="errorText">확인 후 다시 입력해 주세요.</span>
+              <div class="inputArea">
+                <span class="placeholderText">휴대폰 번호 입력</span>
+                <input id="phone" type="tel" pattern="\d*" maxlength="11" oninput="maxLengthCheck(this)" onblur="formatPhoneNumber()" onfocus="removeWhitespace()"/>
+              </div>
+              <button type="button" class="inputDel"></button>
+            </li>
+          </ul>
+          <div class="section2">
+            <div class="lineTitleText">
+              <p>간편인증 선택</p>
+            </div>
+            <div class="itemWrap verification">
+              <div class="item kakao">
+                <input type="radio" id="kakao" name="verification"/>
+                <label for="kakao"><span>카카오지갑</span></label>
+              </div>
+              <div class="item naver">
+                <input type="radio" id="naver" name="verification"/>
+                <label for="naver"><span>네이버</span></soab></label>
+              </div>
+              <div class="item pass">
+                <input type="radio" id="pass" name="verification"/>
+                <label for="pass"><span>PASS</span></label>
+              </div>
+            </div>
+          </div>
+          <div class="botBtnWrap">
+            <!-- 버튼 비활성화 시 disable 클래스 -->
+            <button type="button" class="bot-btn" onclick="modalOpenSlide('modalSlideType1')">다음</button>
+          </div>
+        </div>
+      </div>
+      <!-- //content -->
+
+      <!-- slide modal -->
+      <div id="modalSlideType1" class="modal modal-slide modal-info">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <button type="button" class="btn btn-close hide"><i class="icon-times">닫기</i></button>
+              <div class="container">
+                <h4><b>수임동의 해지</b>를 위해 <br/>아래의 약관 동의가 필요해요.</h4>
+                <div>
+                  <button type="button" class="noraml-btn agreement-btn">전체 동의</button>
+                  <div class="formWrap">
+                    <div class="join-agree">
+                      <span class="checkbox square2 blank">
+                        <input type="checkbox" name="agreeTerms" id="agreeTerms2">
+                        <label for="agreeTerms2">(필수) 국세청 이용약관</label>
+                      </span>
+                      <ul class="inner-agree">
+                        <li>
+                          <input type="checkbox" name="agreeTerms" id="innerAgree2_2">
+                          <label for="innerAgree2_2">개인정보 수집 및 이용 동의</label>
+                          <button class="btn-view"></button>
+                        </li>
+                        <li>
+                          <input type="checkbox" name="agreeTerms" id="innerAgree2_3">
+                          <label for="innerAgree2_3">개인정보 제 3자 제공 동의</label>
+                          <button class="btn-view"></button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <button type="button" class="bot-btn">확인</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- //slide modal -->
+
+      <!-- slide modal -->
+      <div id="modalTelSel" class="modal modal-slide modal-select">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>통신사 선택</h3>
+              <button type="button" class="btn btn-close hide">
+                <i class="icon-times">닫기</i>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <ul class="optionWrap">
+                  <li>SKT</li>
+                  <li>KT</li>
+                  <li>LG U+</li>
+                  <li>SKT 알뜰폰</li>
+                  <li>KT 알뜰폰</li>
+                  <li>LG U+ 알뜰폰</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- //slide modal -->
+    </div>
+    <!-- //wrap -->
+
+    <script>
+      function modalClose(e){
+        var temp = $(e).parents(".modal");
+        $(temp).fadeOut(200);
+        $(e).parents(".modal-content").animate({ bottom: -450 }, 200);
+        $(".bank-list").scrollTop(0);
+        $("body").removeClass("modal-open");
+        $("#wrap").css("top", 0);
+        $("#wrap").css("position", "relative");
+        $("#header").css("top", "-1px");
+      };
+
+      // 선택
+      $(".modal-select .optionWrap li").on("click", function(){
+        var option = $(this).text();
+        $(".selectInput input").val(option);
+        $(".selectInput").addClass("active");
+        modalClose(this);
+      });
+    </script>
+  </body>
+</html>

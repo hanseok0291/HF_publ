@@ -44,176 +44,118 @@
         <div class="container pdLR22 pdB100">
           <div class="titleWrap">
             <h3 class="mainTitle normal">
-              박혜빈님의 <br>
-              <b>부양가족</b>에 대해 알려주세요.
+              <b>홈택스 계정을 입력</b>하면 <br>
+              이제 환급 신청이 모두 끝나요 !
             </h3>
+            <p class="subText">계정이 없다면 먼저 가입 후에 시도해주세요.</p>
           </div>
           <ul class="mt24">
             <!-- 입력가능 범위를 초과 시 error 클래스 -->
             <li class="boxInput error">
-              <span class="default">이름</span>
+              <span class="default">아이디</span>
               <span class="errorText">확인 후 다시 입력해 주세요.</span>
-              <input type="text" placeholder="부양가족 이름 입력" />
+              <input type="text" placeholder="홈택스 아이디 입력" />
               <button type="button" class="inputDel"></button>
             </li>
-            <li class="boxInput residentNum">
+            <li class="boxInput password">
+              <span class="default">비밀번호</span>
+              <span class="errorText">확인 후 다시 입력해 주세요.</span>
+              <input type="password" placeholder="홈택스 비밀번호 입력" />
+              <div class="inputBtnWrap">
+                <button type="button" class="ipnutShow"></button>
+                <button type="button" class="inputDel"></button>
+              </div>
+            </li>
+            <li class="boxInput residentNum type2"><!-- 생년월일 직접 입력 폼 type2 추가  -->
               <span class="default">주민등록번호</span>
               <span class="errorText">확인 후 다시 입력해 주세요.</span>
               <div class="inputArea">
                 <span class="placeholderText">주민등록번호 입력</span>
                 <input class="firstInput" type="text" pattern="\d*" maxlength="6" oninput="maxLengthCheck(this)"/>
-                <span class="dash">-</span>
-                <input class="lastInput" type="number" inputmode="numeric" pattern="\d*" maxlength="7" oninput="maxLengthCheck(this)"/>
+                <span class="dash2">-</span>
+                <div class="lastInputWrap">
+                  <input class="lastInput" type="number" inputmode="numeric" pattern="\d*" maxlength="7" oninput="maxLengthCheck(this)"/>
+                  <div class="inputDot">
+                    <!-- span에 fill Class 추가 시 입력 -->
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
               </div>
               <button type="button" class="inputDel"></button>
             </li>
-            <li class="boxInput selectInput" onclick="modalOpenSlide('modalRelationSel')">
-              <span class="default">관계</span> 
-              <input type="text" placeholder="본인과의 관계 선택" />
-              <button class="btn-view"></button>
-            </li>
-            <li class="boxInput checkInput" onclick="modalOpenSlide('modalYearCheck')">
-              <span class="default">공제 연도</span> 
-              <input type="text" placeholder="공제 연도 선택" />
-              <button class="btn-view"></button>
-            </li>
           </ul>
-
-          <div class="section2">
-            <div class="lineTitleText">
-              <p>추가 정보 선택</p>
-            </div>
-            <div class="join-agree">
-              <span class="checkbox square2 blank">
-                <input type="checkbox" name="agreeTerms" id="agreeTerms1">
-                <label for="agreeTerms1">내국인이에요.</label>
-              </span>
-            </div>
-            <div class="join-agree">
-              <span class="checkbox square2 blank">
-                <input type="checkbox" name="agreeTerms" id="agreeTerms2">
-                <label for="agreeTerms2">장애가 있어요.</label>
-              </span>
-            </div>
-            <div class="join-agree">
-              <span class="checkbox square2 blank">
-                <input type="checkbox" name="agreeTerms" id="agreeTerms3">
-                <label for="agreeTerms3">연소득 100만원 이하예요.</label>
-              </span>
-            </div>
-          </div>
+          <a href="#" class="inquiryLink">
+            <em>📝</em>계정 가입 및 조회하기<i class="icon-right-arrow"></i>
+          </a>
 
           <div class="botBtnWrap">
             <!-- 버튼 비활성화 시 disable 클래스 -->
-            <button type="button" class="bot-btn disable">등록하기</button>
+            <button type="button" class="bot-btn disable">신청 완료</button>
           </div>
         </div>
         </div>
       <!-- //content -->
-
-      <!-- slide modal -->
-      <div id="modalRelationSel" class="modal modal-slide modal-relation">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3>본인과의 관계 선택</h3>
-              <button type="button" class="btn btn-close hide">
-                <i class="icon-times">닫기</i>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="container">
-                <ul class="optionWrap">
-                  <li>본인의 직계 존속</li>
-                  <li>배우자의 직계 존속</li>
-                  <li>배우자</li>
-                  <li>직계 비속(자녀, 입양자)</li>
-                  <li>직계 비속(자녀, 입양자 제외)</li>
-                  <li>형제자매</li>
-                  <li>수급자</li>
-                  <li>위탁 아동</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- //slide modal -->
-
-      <!-- slide modal -->
-      <div id="modalYearCheck" class="modal modal-slide modal-year">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3>공제 연도 선택 <span>(복수 선택 가능)</span></h3>
-              <button type="button" class="btn btn-close hide">
-                <i class="icon-times">닫기</i>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="container">
-                <ul class="checkWrap">
-                  <li>2022년</li>
-                  <li>2021년</li>
-                  <li>2020년</li>
-                  <li>2019년</li>
-                  <li>2018년</li>
-                </ul>
-              </div>
-              <button type="button" class="bot-btn checkComplete">선택 완료</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- //slide modal -->
     </div>
     <!-- //wrap -->
+
+    <!-- 로딩 시 노출되는 레이어 -->
+    <div class="loadingLayer" style="display: none;">
+      <div class="progressBg">
+        <div class="progress">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <!-- // 로딩 시 노출되는 레이어 -->
+
+    <div id="commonAlert" class="modal" style="display: none;">
+      <div class="modal-dialog" style="margin-top: -95px;">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="alertTitle"></h3>
+            <p id="alertContents">
+              지금 닫으면 입력했던 정보가 사라집니다. <br>
+              그래도 이 창을 닫을까요?
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" onclick="modalClose();" class="btn btn-confirm">예</button>
+            <button type="button" onclick="modalClose();" class="btn btn-confirm">아니요</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="commonAlert" class="modal" style="display: none;">
+      <div class="modal-dialog" style="margin-top: -95px;">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="alertTitle"></h3>
+            <p id="alertContents">
+              홈택스에서 수임동의를 해지하셨나요? <br>
+              환급 신청을 위해선 수임동의가 필요합니다. <br>
+              수임동의 후 환급 신청을 완료할까요?
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" onclick="modalClose();" class="btn btn-confirm">아니요</button>
+            <button type="button" onclick="modalClose();" class="btn btn-confirm">예</button>
+          </div>
+        </div>
+      </div>
+    </div>
     
 
     <script>
-      function modalClose(e){
-        var temp = $(e).parents(".modal");
-        $(temp).fadeOut(200);
-        $(e).parents(".modal-content").animate({ bottom: -450 }, 200);
-        $(".bank-list").scrollTop(0);
-      };
-
-      // 본인과의 관계 선택
-      $(".modal-relation .optionWrap li").on("click", function(){
-        var option = $(this).text();
-        $(".selectInput input").val(option);
-        $(".selectInput").addClass("active");
-        modalClose(this);
-      });
-
-      // 공제 연도 선택
-      var yearArr = [];
-      $(".modal-year .checkWrap li").on("click", function(){
-        yearArr = [];
-        if(!$(this).hasClass("checked")){
-          $(this).addClass("checked");
-        } else {
-          $(this).removeClass("checked");
-        }
-        $(".modal-year .checkWrap li").each(function(i, e){
-          var year = $(e).text().replace("년","");
-          if($(e).hasClass("checked")){
-            yearArr.push(year)
-          }
-        });
-      });
-
-      $(".checkComplete").on("click", function(){
-        if(yearArr.length > 0){
-          $(".checkInput input").val(yearArr.sort().join(", "));
-          $(".checkInput").addClass("active");
-        } else {
-          $(".checkInput input").val("");
-          $(".checkInput").removeClass("active");
-        }
-        modalClose(this);
-      });
-
     </script>
   </body>
 </html>

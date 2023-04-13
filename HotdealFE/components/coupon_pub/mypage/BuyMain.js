@@ -31,7 +31,7 @@ export default function GiftDetail() {
               <p className={styleBuyMain.infoBrand}>스타벅스</p>
               <p className={styleBuyMain.infoProduct}>시원하게 함께 세트</p>
               <p className={styleBuyMain.infoPrice}>
-                <strong>6,300원</strong>
+                <strong>6,300<span className={styleBuyMain.unitText}>원</span></strong>
               </p>
             </div>
           </div>
@@ -58,7 +58,7 @@ export default function GiftDetail() {
               <p className={styleBuyMain.infoBrand}>스타벅스</p>
               <p className={styleBuyMain.infoProduct}>시원하게 함께 세트</p>
               <p className={styleBuyMain.infoPrice}>
-                <strong>6,300원</strong>
+              <strong>6,300<span className={styleBuyMain.unitText}>원</span></strong>
               </p>
             </div>
           </div>
@@ -78,7 +78,7 @@ export default function GiftDetail() {
               <p className={styleBuyMain.infoBrand}>스타벅스</p>
               <p className={styleBuyMain.infoProduct}>시원하게 함께 세트</p>
               <p className={styleBuyMain.infoPrice}>
-                <strong>6,300원</strong>
+              <strong>6,300<span className={styleBuyMain.unitText}>원</span></strong>
               </p>
             </div>
           </div>
@@ -98,7 +98,7 @@ export default function GiftDetail() {
               <p className={styleBuyMain.infoBrand}>스타벅스</p>
               <p className={styleBuyMain.infoProduct}>시원하게 함께 세트</p>
               <p className={styleBuyMain.infoPrice}>
-                <strong>6,300원</strong>
+                <strong>6,300<span className={styleBuyMain.unitText}>원</span></strong>
               </p>
             </div>
           </div>
@@ -125,7 +125,7 @@ export default function GiftDetail() {
               <p className={styleBuyMain.infoBrand}>스타벅스</p>
               <p className={styleBuyMain.infoProduct}>시원하게 함께 세트</p>
               <p className={styleBuyMain.infoPrice}>
-                <strong>6,300원</strong>
+                <strong>6,300<span className={styleBuyMain.unitText}>원</span></strong>
               </p>
             </div>
           </div>

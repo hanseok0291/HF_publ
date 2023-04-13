@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>예상 종합 소득세 간편 계산</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="../../css/jquery-ui.css" />
+    <link rel="stylesheet" href="../../css/common.css" />
+    <link rel="stylesheet" href="../../css/gigworker.css" />
+
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="../../js/html5shiv.js"></script>
+      <script type="text/javascript" src="../../js/respond.min.js"></script>
+    <![endif]-->
+    <script src="../../js/jquery-1.8.3.min.js"></script>
+    <script src="../../js/gigworker.js"></script>
+    <script src="../../js/jquery.placeholder.min.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+    <script src="../../js/design.js"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap" class="gigworker familyInfoEnter">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <button type="button" id="btnBack" class="btn-back"><i class="icon-angle-left">뒤로가기</i></button>
+          <button type="button" id="closeWindow" class="btn-close"><i class="icon-times">닫기</i></button>
+        </div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <div class="container pdLR22 pdB100">
+          <div class="titleWrap">
+            <h3 class="mainTitle normal">
+              <b>홈택스 계정을 입력</b>하면 <br>
+              이제 환급 신청이 모두 끝나요!
+            </h3>
+            <p class="subText">홈택스 계정이 없다면 가입 후에 시도해 주세요.</p>
+          </div>
+          <ul class="mt24">
+            <!-- 입력가능 범위를 초과 시 error 클래스 -->
+            <li class="boxInput error">
+              <span class="default">아이디</span>
+              <span class="errorText">확인 후 다시 입력해 주세요.</span>
+              <input type="text" placeholder="홈택스 아이디 입력" />
+              <button type="button" class="inputDel"></button>
+            </li>
+            <li class="boxInput password">
+              <span class="default">비밀번호</span>
+              <span class="errorText">확인 후 다시 입력해 주세요.</span>
+              <input type="password" placeholder="홈택스 비밀번호 입력" />
+              <button type="button" class="ipnutShow"></button>
+              <button type="button" class="inputDel"></button>
+            </li>
+            <li class="boxInput residentNum">
+              <span class="default">주민등록번호</span>
+              <span class="errorText">확인 후 다시 입력해 주세요.</span>
+              <div class="inputArea">
+                <span class="placeholderText">주민등록번호 입력</span>
+                <input class="firstInput" type="text" pattern="\d*" maxlength="6" oninput="maxLengthCheck(this)"/>
+                <span class="dash">-</span>
+                <input class="lastInput" type="number" inputmode="numeric" pattern="\d*" maxlength="7" oninput="maxLengthCheck(this)"/>
+              </div>
+              <button type="button" class="inputDel"></button>
+            </li>
+          </ul>
+
+          <div class="botBtnWrap">
+            <!-- 버튼 비활성화 시 disable 클래스 -->
+            <button type="button" class="bot-btn disable">신청 완료</button>
+          </div>
+        </div>
+        </div>
+      <!-- //content -->
+
+      <!-- slide modal -->
+      <div id="modalRelationSel" class="modal modal-slide modal-relation">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>본인과의 관계 선택</h3>
+              <button type="button" class="btn btn-close hide">
+                <i class="icon-times">닫기</i>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <ul class="optionWrap">
+                  <li>본인의 직계 존속</li>
+                  <li>배우자의 직계 존속</li>
+                  <li>배우자</li>
+                  <li>직계 비속(자녀, 입양자)</li>
+                  <li>직계 비속(자녀, 입양자 제외)</li>
+                  <li>형제자매</li>
+                  <li>수급자</li>
+                  <li>위탁 아동</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- //slide modal -->
+
+      <!-- slide modal -->
+      <div id="modalYearCheck" class="modal modal-slide modal-year">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>공제 연도 선택 <span>(복수 선택 가능)</span></h3>
+              <button type="button" class="btn btn-close hide">
+                <i class="icon-times">닫기</i>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <ul class="checkWrap">
+                  <li>2022년</li>
+                  <li>2021년</li>
+                  <li>2020년</li>
+                  <li>2019년</li>
+                  <li>2018년</li>
+                </ul>
+              </div>
+              <button type="button" class="bot-btn checkComplete">선택 완료</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- //slide modal -->
+    </div>
+    <!-- //wrap -->
+
+    <div id="commonAlert" class="modal" style="display: block;">
+      <div class="modal-dialog" style="margin-top: -95px;">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="alertTitle"></h3>
+            <p id="alertContents">
+              지금 닫으면 입력했던 정보가 사라집니다. <br>
+              그래도 이 창을 닫을까요?
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" onclick="modalClose();" class="btn btn-confirm">예</button>
+            <button type="button" onclick="modalClose();" class="btn btn-confirm">아니요</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="commonAlert" class="modal" style="display: none;">
+      <div class="modal-dialog" style="margin-top: -95px;">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="alertTitle"></h3>
+            <p id="alertContents">
+              홈택스에서 수임동의를 해지하셨나요? <br>
+              환급 신청을 위해선 수임동의가 필요합니다. <br>
+              수임동의 후 환급 신청을 완료할까요?
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" onclick="modalClose();" class="btn btn-confirm">아니요</button>
+            <button type="button" onclick="modalClose();" class="btn btn-confirm">예</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <script>
+
+    </script>
+  </body>
+</html>

@@ -104,7 +104,7 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker #content { display: flex; flex-direction: column; padding: 70px 0 0; } 
 .gigworker #content .container { display: flex; flex-direction: column; flex: 1; padding: 0; } 
 .gigworker.fixedTitle #content .container { margin-top: 90px; } 
-.gigworker.fixedTitle #content .container .titleWrap { position: fixed; top: 44px; width: 100%; background-color: #fff; padding: 26px 0 20px; z-index: 10;} 
+.gigworker.fixedTitle #content .container .titleWrap { position: fixed; top: 44px; width: 100%; background-color: #fff; padding: 26px 0 20px; z-index: 10; } 
 .gigworker #content .container .titleWrap .mainTitle { padding-left: 2px; font-size: 26px; line-height: 1.23; letter-spacing: -1.3px; } 
 .gigworker #content .container .titleWrap .mainTitle.normal { font-weight: 400; } 
 .gigworker #content .container .titleWrap .mainTitle.discount b { overflow: hidden; position: relative; } 
@@ -605,6 +605,17 @@ body.noScroll { position: fixed; overflow: hidden; }
 .modal-turnWaiting .botBtnWrap { padding: 30px 20px 20px; } 
 .modal-turnWaiting .botBtnWrap .bot-btn { display: block; width: 100%; height: 55px; margin: auto; border-radius: 12px; color: #fff; font-size: 18px; line-height: 55px; background-color: #151515; font-weight: 700; } 
 
+.gigworker .toastModal { position: fixed; top: - 70px; width: 100%; padding: 0 24px; z-index: 100; animation: toastShowHide 5s 2s ease-in-out forwards; } 
+.gigworker .toastModal .container em { display: flex; justify-content: center; align-items: center; width: 44px; height: 44px; margin-right: 12px; background-color: #fff; border-radius: 50%; font-size: 20px; } 
+.gigworker .toastModal .container { display: flex; align-items: center; width: 100%; height: 64px; padding: 0 10px; border-radius: 16px; background-color: #eef4ff; line-height: 1; } 
+.gigworker .toastModal .container p { display: flex; align-items: center; margin-top: 3px; color: #151515; } 
+.gigworker .toastModal .container .icon-right-arrow { flex: 0 0 auto; width: 16px; height: 16px; background: url("../images/icon/arrow-right-round.svg") 0 / cover no-repeat; } 
+.modal.refundTravel { text-align: center; } 
+.modal.refundTravel .textWrap { text-align: center; } 
+.modal.refundTravel .textWrap::before { display: block; content: ""; width: 218px; height: 90px; margin: 0 auto 7px; background: url("../images/gigworker/refund-travel-visual.png") center / 218px 90px no-repeat; } 
+.modal.refundTravel .textWrap h4 { font-size: 20px; line-height: 1.5; } 
+.modal.refundTravel .textWrap p { margin-top: 10px; font-size: 16px; line-height: 1; } 
+.modal.refundTravel .btn-confirm { display: block; width: calc(100% - 40px); margin: 30px auto 0; padding: 28px 0; background-color: #fff; border: none; border-top: 1px solid #E2E2E2; color: #151515; font-size: 18px; } 
 @keyframes loadingProgress { 
  0% { opacity: 0.2; height: 12px; } 
  50% { opacity: 1; height: 32px; } 
@@ -635,6 +646,13 @@ body.noScroll { position: fixed; overflow: hidden; }
  0% { opacity: 0; } 
  50% { opacity: 1; } 
  100% { opacity: 0; } 
+ }
+
+ @keyframes toastShowHide { 
+ 0% { top: -70px; } 
+ 10% { top: 44px; } 
+ 90% { top: 44px; } 
+ 100% { top: -70px; } 
  }
  
  @keyframes spin { to { -webkit-transform: rotate(360deg); } 

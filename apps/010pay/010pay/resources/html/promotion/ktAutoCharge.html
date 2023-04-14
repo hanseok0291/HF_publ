@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<title>전 국민 환급액 찾기 이벤트</title>
+<title>휴대폰 결제 자동 충전 프로모션</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
 <meta name="format-detection" content="telephone=no, address=no, email=no">
@@ -50,6 +50,7 @@
 			<div class="contentWrap">
 				<img class="img-01 ani-slide-1" src="../../images/promotion/ktAutoCharge/section1-img-01.png" alt="kt 고객님을 위한 단, 한번의 휴대폰 결제 자동충전 이벤트 010pay에서만 최대 12000포인트 드려요">
 				<img class="img-02 ani-slide-2" src="../../images/promotion/ktAutoCharge/section1-img-02.png" alt="충전 금액 선택 이미지">
+				<img class="img-03 ani-slide-3" src="../../images/promotion/ktAutoCharge/section1-bg-03.png" alt="동전">
 			</div>
 			<!-- //container -->
 		</div>
@@ -125,7 +126,7 @@
       <!-- //section - notice -->
     </div>
     <!-- footer button area -->
-    <div class="fixed-btn">
+    <div class="fixed-btn bgNone">
       <button type="button" class="btn">이벤트 참여하기</button>
     </div>
     <!-- //footer button area -->
@@ -211,7 +212,7 @@
             한도가 복원됩니다. (30만원 이상 선택 시 6월 1일부터 20만원 자동 충전) </li>
         </ul>
         <div class="fixed-btn">
-          <button id="viewTerms" type="button" class="btn">충전하기</button>
+          <button id="viewTerms" type="button" class="btn" disabled>충전하기</button>
         </div>
 			</div>
 		</div>
@@ -306,6 +307,11 @@
 <!-- //common prompt -->
 
 <script>
+window.onload = function() {
+  setTimeout(function() {
+    window.scrollTo(0,0);
+  }, 10)
+}
 $(document).ready(function(){
   // rolling banner(logo)
 	var roller = $(".rolling-list");
@@ -347,6 +353,15 @@ $(document).ready(function(){
   $(".fixed-btn .btn").on("click", function(){
 		modalOpenSlide('modalAgree');
 	});
+
+  $(window).on('scroll', function(){
+    var scrollTop = $(window).scrollTop();
+    if(scrollTop > 0) {
+      $(".fixed-btn.bgNone").addClass("bottom");
+    } else {
+      $(".fixed-btn.bgNone").removeClass("bottom");
+    }
+  });
 
 	$('#btnAgree').click(function() {
 		var $termsModal = $('#termsDetail');
@@ -396,7 +411,9 @@ $(document).ready(function(){
     }
   });
 
+  // 금액 선택
   $(".ktAutoChargeTerms .buttonWrap button").on("click", function(){
+    $(this).closest(".modal-body").find(".btn").attr("disabled", false);
     $(".ktAutoChargeTerms .buttonWrap button").removeClass("active");
     $(this).addClass("active");
   });

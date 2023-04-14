@@ -22,6 +22,9 @@
     <![endif]-->
     <script src="../../js/jquery-1.8.3.min.js"></script>
     <script src="../../js/gigworker.js"></script>
+    <script src="../../js/jquery.placeholder.min.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+    <script src="../../js/design.js"></script>
   </head>
 
   <!-- 230310 검토 -->
@@ -143,6 +146,20 @@
     </div>
     <!-- //wrap -->
 
+    <div id="commonAlert" class="modal refundTravel" style="display: block;">
+      <div class="modal-dialog" style="margin-top: -95px;">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="textWrap">
+              <h4>내 환급액 찾고 <br><span class="mainColor">최대 1천만원 여행 지원금 받자 !</span></h4>
+              <p>환급액 조회만 해도 스벅 쿠폰 자동 응모</p>
+            </div>
+          </div>
+          <button type="button" onclick="modalClose();" class="btn btn-confirm">환급 신청 시작하기</button>
+        </div>
+      </div>
+    </div>
+
     <script>
       $(document).ready(function(){
         // 약관 상세 모달
@@ -151,65 +168,9 @@
           $termsModal.show();
         });
         $termsModal.find('.btn-close').click(function(){
-            console.log(123)
             $termsModal.hide();
           });
       });
-
-      const pStart = { x: 0, y: 0 };
-      const pCurrent = { x: 0, y: 0 };
-      let isLoading = false;
-
-      function loading() {
-        isLoading = true;
-        // main.style.transform = `translateY(0px)`;
-        setTimeout(() => {
-          // main.style.transform = `translateY(-100px)`;
-          isLoading = false;
-          // for (const card of cards) {
-          //   card.style.transform = `rotateX(0deg)`;
-          // }
-        }, 2000);
-      }
-
-      function swipeStart(e) {
-        if (typeof e["targetTouches"] !== "undefined") {
-          let touch = e.targetTouches[0];
-          pStart.x = touch.screenX;
-          pStart.y = touch.screenY;
-        } else {
-          pStart.x = e.screenX;
-          pStart.y = e.screenY;
-        }
-      }
-
-      function swipe(e) {
-        if (typeof e["changedTouches"] !== "undefined") {
-          let touch = e.changedTouches[0];
-          pCurrent.x = touch.screenX;
-          pCurrent.y = touch.screenY;
-        } else {
-          pCurrent.x = e.screenX;
-          pCurrent.y = e.screenY;
-        }
-        let changeY = pStart.y < pCurrent.y ? Math.abs(pStart.y - pCurrent.y) : 0;
-        const rotation = changeY < 100 ? changeY * 30 / 100 : 30;
-        if (document.body.scrollTop === 0) {
-          if (changeY > 100) loading();
-          // for (const card of cards) card.style.transform = `rotateX(${rotation}deg)`;
-        }
-      }
-
-      function swipeEnd(e) {
-        if (document.body.scrollTop === 0 && !isLoading) {
-          alert(123)
-          // for (const card of cards) card.style.transform = `rotateX(0deg)`;
-        }
-      }
-
-      document.addEventListener("touchstart", e => swipeStart(e), false);
-      document.addEventListener("touchmove", e => swipe(e), false);
-      document.addEventListener("touchend", e => swipeEnd(e), false);
     </script>
   </body>
 </html>

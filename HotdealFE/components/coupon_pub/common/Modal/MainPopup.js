@@ -53,18 +53,21 @@ const MainPopup = ({
                   <h3
                     className={`${styleModal.popupTitle} ${styleModal.popupTitle2}`}
                   >
-                    <p className={styleModal.popupSubTitle}>010PAY와 함께</p>
+                    <p className={styleModal.popupSubTitle}>
+                      선착순 20,000장 한정
+                    </p>
                     <strong className={styleModal.popupMainTitle}>
-                      봄 나들이 떠나 봄<br />
+                      세금 환급 수수료
+                      <br />
                       <span className={styleCommon.highlight}>
-                        20% EVENT<i className={`${styleCommon.italic}`}>!</i>
+                        5,000원 할인 쿠폰<i className={`${styleCommon.italic}`}>!</i>
                       </span>
                     </strong>
                   </h3>
                   <p className={styleModal.modalImgBox}>
                     <img
-                      src="../images/coupon/popup/spring.png"
-                      alt="010PAY와 함께 봄 나들이 떠나 봄 20% EVENT!"
+                      src="../images/coupon/popup/taxRefund.png"
+                      alt="종소세 할인 PAY쿠폰!"
                     />
                   </p>
                 </div>
@@ -73,7 +76,7 @@ const MainPopup = ({
                     type="button"
                     className={`${styleModal.btn} ${styleModal.btnFull}`}
                   >
-                    20% 할인가에 선물하기
+                    숨은 내 돈 환급받기
                   </button>
                 </div>
               </div>
@@ -84,18 +87,21 @@ const MainPopup = ({
                   <h3
                     className={`${styleModal.popupTitle} ${styleModal.popupTitle2}`}
                   >
-                    <p className={styleModal.popupSubTitle}>010PAY와 함께</p>
+                    <p className={styleModal.popupSubTitle}>
+                      선착순 20,000장 한정
+                    </p>
                     <strong className={styleModal.popupMainTitle}>
-                      봄 나들이 떠나 봄<br />
+                      세금 환급 수수료
+                      <br />
                       <span className={styleCommon.highlight}>
-                        20% EVENT<i className={`${styleCommon.italic}`}>!</i>
+                        5,000원 할인 쿠폰<i className={`${styleCommon.italic}`}>!</i>
                       </span>
                     </strong>
                   </h3>
                   <p className={styleModal.modalImgBox}>
                     <img
-                      src="../images/coupon/popup/spring.png"
-                      alt="010PAY와 함께 봄 나들이 떠나 봄 20% EVENT!"
+                      src="../images/coupon/popup/taxRefund.png"
+                      alt="종소세 할인 PAY쿠폰!"
                     />
                   </p>
                 </div>
@@ -104,7 +110,7 @@ const MainPopup = ({
                     type="button"
                     className={`${styleModal.btn} ${styleModal.btnFull}`}
                   >
-                    20% 할인가에 선물하기
+                    숨은 내 돈 환급받기
                   </button>
                 </div>
               </div>

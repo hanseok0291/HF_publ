@@ -54,20 +54,20 @@ const MainPopup = ({
                     className={`${styleModal.popupTitle} ${styleModal.popupTitle2}`}
                   >
                     <p className={styleModal.popupSubTitle}>
-										황금 연휴 기차 여행
+										5월은 감사의 달
                     </p>
                     <strong className={styleModal.popupMainTitle}>
-										코레일 &amp; SRT
+										사랑을 담아
                       <br />
                       <span className={styleCommon.highlight}>
-											~20% 할인 특가<i className={`${styleCommon.italic}`}>!</i>
+											20% 할인 EVENT<i className={`${styleCommon.italic}`}>!</i>
                       </span>
                     </strong>
                   </h3>
                   <p className={styleModal.modalImgBox}>
                     <img
-                      src="../images/coupon/popup/trainTravel.png"
-                      alt="황금 연휴 기차 여행 코레일 &amp; SRT ~20% 할인 특가!"
+                      src="../images/coupon/popup/may.png"
+                      alt="5월은 감사의 달 사랑을 담아 20% 할인 EVENT!"
                     />
                   </p>
                 </div>
@@ -76,7 +76,7 @@ const MainPopup = ({
                     type="button"
                     className={`${styleModal.btn} ${styleModal.btnFull}`}
                   >
-                    승차권 할인받아 떠나기
+                    20% 할인 상품 보러가기
                   </button>
                 </div>
               </div>
@@ -88,20 +88,20 @@ const MainPopup = ({
                     className={`${styleModal.popupTitle} ${styleModal.popupTitle2}`}
                   >
                     <p className={styleModal.popupSubTitle}>
-                      선착순 20,000장 한정
+										5월은 감사의 달
                     </p>
                     <strong className={styleModal.popupMainTitle}>
-                      세금 환급 수수료
+										사랑을 담아
                       <br />
                       <span className={styleCommon.highlight}>
-                        5,000원 할인 쿠폰<i className={`${styleCommon.italic}`}>!</i>
+											20% 할인 EVENT<i className={`${styleCommon.italic}`}>!</i>
                       </span>
                     </strong>
                   </h3>
                   <p className={styleModal.modalImgBox}>
                     <img
-                      src="../images/coupon/popup/taxRefund.png"
-                      alt="종소세 할인 PAY쿠폰!"
+                      src="../images/coupon/popup/may.png"
+                      alt="5월은 감사의 달 사랑을 담아 20% 할인 EVENT!"
                     />
                   </p>
                 </div>
@@ -110,7 +110,7 @@ const MainPopup = ({
                     type="button"
                     className={`${styleModal.btn} ${styleModal.btnFull}`}
                   >
-                    숨은 내 돈 환급받기
+                    20% 할인 상품 보러가기
                   </button>
                 </div>
               </div>

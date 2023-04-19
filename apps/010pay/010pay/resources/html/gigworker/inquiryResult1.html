@@ -53,15 +53,14 @@
 					</div>
 					
           <figure class="visualImg"></figure>
-
-          <div class="tabWrap btnWrap">
-						<ul class="tab">
-							<li class="on">최근 5년 사업소득</li>
-							<li>최근 5년 납부세금</li>
-						</ul>
-          </div>
 					
 					<div class="tabContainer">
+						<div class="tabWrap btnWrap">
+							<ul class="tab">
+								<li class="on tab1">최근 5년 사업소득</li>
+								<li class="tab2">최근 5년 납부세금</li>
+							</ul>
+						</div>
 						<!-- 사업소득 -->
 						<div class="taxWrap taxWrap1">
 							<div class="pdLR22">
@@ -393,14 +392,17 @@
 					}
 					
 					$(".tab li").removeClass("on");
-					if(tab2 - 10 < curTop){
-						taxAni(".taxWrap2");
-						$(".tab li").eq(1).addClass("on");
-					}else if(tab1 < curTop) {
+					if(tab1 < curTop && curTop <= tab2 - 10) {
 						taxAni(".taxWrap1");
-						$(".tab li").eq(0).addClass("on");
+						$(".tabWrap").addClass("fixed");
+						$(".tab1").addClass("on");
+					} else if(tab2 - 10 < curTop){
+						taxAni(".taxWrap2");
+						$(".tabWrap").addClass("fixed");
+						$(".tab2").addClass("on");
 					} else {
-						$(".tab li").eq(0).addClass("on");
+						$(".tabWrap").removeClass("fixed");
+						$(".tab1").addClass("on");
 					}
 				});
 

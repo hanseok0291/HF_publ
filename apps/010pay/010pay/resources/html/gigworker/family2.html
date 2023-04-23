@@ -331,6 +331,7 @@
         var checkStatus = false;
         var $parent = $(this).parent();
         $(".botArea").not($parent.find(".botArea")).slideUp();
+        $(".modal-year .checkWrap li").not($parent).removeClass("active"); // 230419 추가
         $parent.find(".botArea").slideToggle();
         $parent.find(".botArea input").each(function(){
           if($(this).prop("checked")){
@@ -342,6 +343,7 @@
           $parent.addClass("checked");
         }
         if(!$parent.hasClass("active")){
+          console.log(123)
           $parent.addClass("active");
         } else {
           $parent.removeClass("active");

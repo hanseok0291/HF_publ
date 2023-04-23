@@ -371,12 +371,12 @@
 				});
 				
 				// 스크롤
+				var scrollBottom = $(document).height() - $(window).height();
 				var tab1 = $(".taxWrap1").offset().top - 140;
 				var tab2 = $(".taxWrap2").offset().top - 140;
 				
 				var prevScrollTop = 0;
 				var nowScrollTop = 0;
-				var downStatus = true;
 				var tabTop = $(".tabContainer").offset().top - 44;
 
 				taxAni(".taxWrap1");
@@ -390,7 +390,7 @@
 					if(tab2 - viewHeight / 2 < curTop){
 						taxAni(".taxWrap2");
 					}
-					
+
 					$(".tab li").removeClass("on");
 					if(tab1 < curTop && curTop <= tab2 - 10) {
 						taxAni(".taxWrap1");
@@ -404,22 +404,19 @@
 						$(".tabWrap").removeClass("fixed");
 						$(".tab1").addClass("on");
 					}
+
+					if(curTop > scrollBottom - 30){
+						$(".tab1").removeClass("on");
+						$(".tab2").addClass("on");
+					}
 				});
 
 				$(".tab li").on("click", function(){
 					var idx = $(this).index();
-					var timeClear;
 					if(idx === 0){
-						$("html, body").stop().animate({scrollTop: tab1}, function(){
-							$(".tab").removeClass("down");
-						});
+						$("html, body").stop().animate({scrollTop: tab1});
 					} else {
-						downStatus = false
-						$("html, body").stop().animate({scrollTop: tab2}, function(){
-							timeClear = setTimeout(function(){
-								downStatus = true
-							}, 100);
-						});
+						$("html, body").stop().animate({scrollTop: tab2});
 					}
 				});
 			});

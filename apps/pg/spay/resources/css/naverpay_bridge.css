@@ -93,6 +93,23 @@ textarea:-ms-input-placeholder { color: #AAAAAC !important; font-weight: 400 !im
 .form-type li { clear: both; margin-top: 16px; }
 .form-type li:first-child { margin-top: 0; }
 
+/* ----- button ----- */
+.btn { position: relative; display: inline-block; padding: 0 1em; border: 1px solid #ddd; background-color: transparent; border-radius: 3px; font-size: 14px; font-weight: 400; color: #444; line-height: 43px; text-align: center; }
+
+/* color, style */
+.btn-default { background-color: #f8f9fa; }
+.btn-primary { border-color: #faa61a; background-color: #faa61a; color: #fff; }
+.btn-secondary { border-color: #444; background-color: #444; color: #fff; }
+.btn-info { border: 1px solid #9a9a9a; background-color: #fff; color: #9a9a9a; }
+.btn-info:active { border: 1px solid #ddd; }
+.btn-white { background-color: #fff !important; color: #757575; }
+
+/* size */
+.btn-xs { padding: 0 .75em; font-size: 13px; line-height: 23px; }
+.btn-sm { font-size: 13px; line-height: 28px; }
+.btn-md { font-size: 13px; line-height: 33px; }
+.btn-lg { width: 100%; font-size: 16px; }
+.btn-xl { width: 100%; font-size: 18px; line-height: 48px; font-weight: 700; }
 
 /* #CONTENT
 ------------------------------------------------------------*/
@@ -109,9 +126,12 @@ textarea:-ms-input-placeholder { color: #AAAAAC !important; font-weight: 400 !im
 #header .logo { float: left; margin-top: 2px; }
 #header .logo img { width: auto; height: 25px; }
 #header .btn-close { float: right; margin-right: -7px; width: 30px; height: 30px; background: url('../images/naverpay/btn-close.svg') no-repeat center center / 100%; font-size: 0; }
-#content { padding-bottom: 80px; }
+#content { padding-bottom: 100px !important; }
 #footer { position: fixed; left: 0; right: 0; bottom: 0; z-index: 99; width: 100%; background-color: #fff; }
-#footer .btn { display: block; margin: auto; width: 100%; height: 60px; background-color: #09AA5C; font-size: 18px; font-weight: 700; color: #fff; text-shadow: 0 0 2px rgba(0, 0, 0, 0.2); }
+#footer .btn { display: block; margin: auto; width: 100%; height: 60px; background-color: #09AA5C; font-size: 18px; font-weight: 700; color: #fff; text-shadow: 0 0 2px rgba(0, 0, 0, 0.2); border: 0; }
+#footer .btn:disabled { background-color: #e2e2e2; color: #fff; }
+#footer .copy { background-color: #F0F2F4; padding: 9.5px; text-align: center; font-size: 14px; font-weight: 700; color: #B4B9BC; letter-spacing: -.3px; }
+#footer .copy::before { content: ''; display: inline-block; background: url('../images/naverpay/symbol-settlebank-gray.svg') no-repeat center / contain; width: 24px; height: 18px; margin-right: 6px; vertical-align: middle; position: relative; top: -2px; }
 
 /* ----- 슬라이드 공통 ----- */
 /* owl carousel */
@@ -157,18 +177,36 @@ textarea:-ms-input-placeholder { color: #AAAAAC !important; font-weight: 400 !im
 .order-info .title { position: absolute; top: 0; left: 0; margin-bottom: 0; width: 100px; }
 .order-info .value { display: block; width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #1E1E23; text-align: right; }
 .order-info .value.price { margin: -2px 0; font-size: 22px; font-weight: 700; line-height: 26px; }
-.pay-type .label { display: block; padding: 20px 20px 20px 60px; width: 100%; height: 84px;
-	border-radius: 9px; border: 1px solid  #09AA5C; background: #fff url('../images/naverpay/icon-npoint.svg') no-repeat 20px center / 28px;
-	font-size: 16px; font-weight: 700; line-height: 42px; color: #09AA5C; box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.07); }
+
+.cashreceipt .form-type li:first-child { margin-bottom: 0; }
+
+.pay-type .label { position: relative; display: block; padding: 20px 20px 20px 60px; width: 100%; height: 84px;
+	border-radius: 9px; border: 1px solid #DCDEE0; background: #fff url('../images/naverpay/icon-npoint.svg') no-repeat 20px center / 28px;
+	font-size: 16px; font-weight: 700; line-height: 42px; color: #303038; box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.07); }
+.pay-type .label::after { content: ''; position: absolute; top: 50%; right: 20px; transform: translateY(-50%); display: inline-block; background: url(../images/naverpay/radio.svg) no-repeat center / 18px; width: 18px; height: 18px; }
+.pay-type .label.card { background: #fff url('../images/naverpay/icon-ncard.svg') no-repeat 20px center / 28px; }
+.pay-type .label.active { border: 1px solid #09AA5C; color: #09AA5C; }
+.pay-type .label.active::after { background: url(../images/naverpay/radio-active.svg) no-repeat center / 18px; }
+.pay-type .pay-type-title { margin-bottom: 24px; }
+.pay-type .pay-type-title:nth-child(2) { margin-bottom: 14px; }
+
 .info-list { font-size: 13px; color: #666; }
 .info-list li { position: relative; padding-left: 6px; }
+.info-list li:not(:last-child) { margin-bottom: 8px; }
 .info-list li:before { content: ''; display: block; position: absolute; top: 9px; left: 1px; width: 2px; height: 2px; background-color: #666; }
+
+.agree-list .form-type-title { border-bottom: 1px solid #F0F2F4; }
+.agree-list .title { position: relative; margin-bottom: 21px; }
+.agree-list .form-type-sub .title .ico-arrow { display: inline-block; background: #fff url('../images/naverpay/arrow-right.svg') no-repeat center / 4px 8px; width: 30px; height: 30px; position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: 1; }
+.agree-list .form-type-title label { color: #09AA5C; }
+.agree-list .form-type-sub label { color: #767678; font-weight: 400; }
 
 /* PC ver. */
 .ui-pc #header .btn-close { display: none; }
-.ui-pc #content { padding-bottom: 117px; }
-.ui-pc #footer { padding: 18px 20px; border-top: 1px solid #F0F2F4; }
+.ui-pc #content { padding-bottom: 117px !important; }
+.ui-pc #footer { padding: 18px 0 0 0; border-top: 1px solid #F0F2F4; }
 .ui-pc #footer .btn { max-width: 760px; }
+.ui-pc #footer .copy { margin-top: 20px; }
 
 /* ----- modal ----- */
 .modal-open { overflow: hidden; }
@@ -220,77 +258,6 @@ textarea:-ms-input-placeholder { color: #AAAAAC !important; font-weight: 400 !im
 .agree-terms .checkbox { display: block; }
 .terms-list .checkbox { float: left; padding: 4px 0; width: 90%; }
 .terms-list .btn { float: right; margin-right: -11px; } /* 상세 보기 버튼 */
-
-/* 브릿지페이지 */
-/* ----- button ----- */
-.naverpay-bridge .btn { position: relative; display: inline-block; padding: 0 1em; border: 1px solid #ddd; background-color: transparent; border-radius: 3px; font-size: 14px; font-weight: 400; color: #444; line-height: 43px; text-align: center; }
-
-/* color, style */
-.naverpay-bridge .btn-default { background-color: #f8f9fa; }
-.naverpay-bridge .btn-primary { border-color: #faa61a; background-color: #faa61a; color: #fff; }
-.naverpay-bridge .btn-secondary { border-color: #444; background-color: #444; color: #fff; }
-.naverpay-bridge .btn-info { border: 1px solid #9a9a9a; background-color: #fff; color: #9a9a9a; }
-.naverpay-bridge .btn-info:active { border: 1px solid #ddd; }
-.naverpay-bridge .btn-white { background-color: #fff !important; color: #757575; }
-
-/* size */
-.naverpay-bridge .btn-xs { padding: 0 .75em; font-size: 13px; line-height: 23px; }
-.naverpay-bridge .btn-sm { font-size: 13px; line-height: 28px; }
-.naverpay-bridge .btn-md { font-size: 13px; line-height: 33px; }
-.naverpay-bridge .btn-lg { width: 100%; font-size: 16px; }
-.naverpay-bridge .btn-xl { width: 100%; font-size: 18px; line-height: 48px; font-weight: 700; }
-
-.naverpay-bridge #content { padding-bottom: 100px !important; }
-.naverpay-bridge #footer { position: fixed; left: 0; right: 0; bottom: 0; z-index: 99; width: 100%; background-color: #fff; }
-.naverpay-bridge #footer .btn { display: block; margin: auto; width: 100%; height: 60px; background-color: #09AA5C; font-size: 18px; font-weight: 700; color: #fff; text-shadow: 0 0 2px rgba(0, 0, 0, 0.2); border: 0; }
-.naverpay-bridge #footer .btn:disabled { background-color: #e2e2e2; color: #fff; }
-.naverpay-bridge #footer .copy { background-color: #F0F2F4; padding: 9.5px; text-align: center; font-size: 14px; font-weight: 700; color: #B4B9BC; letter-spacing: -.3px; }
-.naverpay-bridge #footer .copy::before { content: ''; display: inline-block; background: url('../images/naverpay/symbol-settlebank-gray.svg') no-repeat center / contain; width: 24px; height: 18px; margin-right: 6px; vertical-align: middle; position: relative; top: -2px; }
-
-.naverpay-bridge .pay-type .label { position: relative; display: block; padding: 20px 20px 20px 60px; width: 100%; height: 84px;
-	border-radius: 9px; border: 1px solid #DCDEE0; background: #fff url('../images/naverpay/icon-npoint.svg') no-repeat 20px center / 28px;
-	font-size: 16px; font-weight: 700; line-height: 42px; color: #303038; box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.07); }
-.naverpay-bridge .pay-type .label::after { content: ''; position: absolute; top: 50%; right: 20px; transform: translateY(-50%); display: inline-block; background: url(../images/naverpay/radio.svg) no-repeat center / 18px; width: 18px; height: 18px; }
-.naverpay-bridge .pay-type .label.card { background: #fff url('../images/naverpay/icon-ncard.svg') no-repeat 20px center / 28px; }
-.naverpay-bridge .pay-type .label.active { border: 1px solid #09AA5C; color: #09AA5C; }
-.naverpay-bridge .pay-type .label.active::after { background: url(../images/naverpay/radio-active.svg) no-repeat center / 18px; }
-.naverpay-bridge .pay-type .pay-type-title { margin-bottom: 24px; }
-.naverpay-bridge .pay-type .pay-type-title:nth-child(2) { margin-bottom: 14px; }
-
-.naverpay-bridge .info-list { font-size: 13px; color: #666; }
-.naverpay-bridge .info-list li { position: relative; padding-left: 6px; }
-.naverpay-bridge .info-list li:not(:last-child) { margin-bottom: 8px; }
-.naverpay-bridge .info-list li:before { content: ''; display: block; position: absolute; top: 9px; left: 1px; width: 2px; height: 2px; background-color: #666; }
-
-.naverpay-bridge .agree-list .form-type-title { border-bottom: 1px solid #F0F2F4; }
-.naverpay-bridge .agree-list .title { position: relative; margin-bottom: 21px; }
-.naverpay-bridge .agree-list .form-type-sub .title .ico-arrow { display: inline-block; background: #fff url('../images/naverpay/arrow-right.svg') no-repeat center / 4px 8px; width: 30px; height: 30px; position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: 1; }
-.naverpay-bridge .agree-list .form-type-title label { color: #09AA5C; }
-.naverpay-bridge .agree-list .form-type-sub label { color: #767678; font-weight: 400; }
-
-/* PC ver. */
-.naverpay-bridge.ui-pc #content { padding-bottom: 117px !important; }
-.naverpay-bridge.ui-pc #footer { padding: 18px 0 0 0; border-top: 1px solid #F0F2F4; }
-.naverpay-bridge.ui-pc #footer .copy { margin-top: 20px; }
-
-/* ----- button ----- */
-.btn { position: relative; display: inline-block; padding: 0 1em; border: 1px solid #ddd; background-color: transparent; border-radius: 3px; font-size: 14px; font-weight: 400; color: #444; line-height: 43px; text-align: center; }
-
-/* color, style */
-.btn-default { background-color: #f8f9fa; }
-.btn-primary { border-color: #faa61a; background-color: #faa61a; color: #fff; }
-.btn-secondary { border-color: #444; background-color: #444; color: #fff; }
-.btn-info { border: 1px solid #9a9a9a; background-color: #fff; color: #9a9a9a; }
-.btn-info:active { border: 1px solid #ddd; }
-.btn-white { background-color: #fff !important; color: #757575; }
-
-/* size */
-.btn-xs { padding: 0 .75em; font-size: 13px; line-height: 23px; }
-.btn-sm { font-size: 13px; line-height: 28px; }
-.btn-md { font-size: 13px; line-height: 33px; }
-.btn-lg { width: 100%; font-size: 16px; }
-.btn-xl { width: 100%; font-size: 18px; line-height: 48px; font-weight: 700; }
-/* 브릿지페이지 */
 
 /* #UTILITY
 ------------------------------------------------------------*/

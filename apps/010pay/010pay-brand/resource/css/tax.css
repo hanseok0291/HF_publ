@@ -1726,12 +1726,12 @@
 .tax-landing .tab-btn-wrap {
   display: flex;
   justify-content: center;
-  position: -webkit-sticky;
-  position: sticky;
+  position: relative;
   top: 0;
   z-index: 901;
   width: 100%;
-  margin: auto;
+  height: 56px;
+  margin: 5px auto 0;
   background-color: #fff;
 }
 .tax-landing .tab-btn-wrap.active-1::before {
@@ -1739,13 +1739,14 @@
   content: "";
   position: absolute;
   left: 50%;
-  bottom: 0;
+  bottom: -1px;
   transform: translateX(-50%);
   width: 100%;
   height: 30px;
   background-color: #ff4600;
 }
 .tax-landing .tab-btn-wrap.active-1 button:nth-child(1) {
+  z-index: 4;
   background-color: #ff4600;
   color: #fff;
 }
@@ -1759,17 +1760,18 @@
   display: block;
   content: "";
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
   width: 100%;
   height: 30px;
   background-color: #003787;
 }
-.tax-landing .tab-btn-wrap.active-2 button:nth-child(2) {
-  background-color: #003787;
-  color: #fff;
-}
 .tax-landing .tab-btn-wrap.active-2 button:nth-child(1) {
   border-bottom-right-radius: 15px;
+}
+.tax-landing .tab-btn-wrap.active-2 button:nth-child(2) {
+  z-index: 4;
+  background-color: #003787;
+  color: #fff;
 }
 .tax-landing .tab-btn-wrap.active-2 button:nth-child(3) {
   border-bottom-left-radius: 15px;
@@ -1778,12 +1780,13 @@
   display: block;
   content: "";
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
   width: 100%;
   height: 30px;
   background-color: #1e1e1d;
 }
 .tax-landing .tab-btn-wrap.active-3 button:nth-child(3) {
+  z-index: 4;
   background-color: #1e1e1d;
   color: #fff;
 }
@@ -1794,18 +1797,22 @@
   border-bottom-right-radius: 15px;
 }
 .tax-landing .tab-btn-wrap button {
+  position: absolute;
+  top: 0;
+  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  position: relative;
   z-index: 2;
-  width: 33.333%;
+  width: 33%;
+  height: 56px;
   margin: 0;
   padding: 12px 0 9px;
   border: 0;
   border-radius: 15px 15px 0 0;
   color: #575757;
+  font-size: 15px;
   font-weight: bold;
   line-height: 1;
   background-color: #f1f1f1;
@@ -1816,15 +1823,26 @@
   content: "";
   margin-bottom: 5px;
 }
+.tax-landing .tab-btn-wrap button:nth-child(1) {
+  left: 0;
+}
 .tax-landing .tab-btn-wrap button:nth-child(1):before {
   width: 14px;
   height: 15px;
   background: url("../images/tax/landing-tab-1.png") center/cover;
 }
+.tax-landing .tab-btn-wrap button:nth-child(2) {
+  width: calc(34% + 1px);
+  left: 50%;
+  transform: translate(-50%);
+}
 .tax-landing .tab-btn-wrap button:nth-child(2):before {
   width: 15px;
   height: 15px;
   background: url("../images/tax/landing-tab-2.png") center/cover;
+}
+.tax-landing .tab-btn-wrap button:nth-child(3) {
+  right: 0;
 }
 .tax-landing .tab-btn-wrap button:nth-child(3):before {
   width: 15px;
@@ -2456,8 +2474,10 @@
     min-width: auto;
   }
   .tax-landing .tab-btn-wrap {
+    position: relative;
     width: 100%;
-    margin-top: 30px;
+    height: 69px;
+    margin-top: 6px;
   }
   .tax-landing .tab-btn-wrap.active-1::before {
     width: 100%;
@@ -2467,6 +2487,7 @@
     border-radius: 30px;
   }
   .tax-landing .tab-btn-wrap.active-1 button:nth-child(2) {
+    width: 200px;
     border-radius: 30px 30px 0 30px;
   }
   .tax-landing .tab-btn-wrap.active-2::before {
@@ -2490,13 +2511,20 @@
     border-bottom-right-radius: 30px;
   }
   .tax-landing .tab-btn-wrap button {
-    width: 200px;
-    height: 89px;
+    position: relative;
+    left: auto !important;
+    top: auto;
+    transform: translateX(0) !important;
+    flex-direction: row;
+    align-items: center;
+    width: 200px !important;
+    height: 69px;
     font-size: 24px;
     border-radius: 30px 30px 0 0;
   }
   .tax-landing .tab-btn-wrap button::before {
-    margin-bottom: 9px;
+    margin-bottom: 0;
+    margin-right: 11px;
   }
   .tax-landing .tab-btn-wrap button:nth-child(1)::before {
     width: 21px;
@@ -2794,9 +2822,10 @@
     height: 160px;
   }
   .tax-landing .bot-btn-wrap button {
-    height: 88px;
-    font-size: 30px;
-    border-radius: 26px;
+    max-width: 640px;
+    height: 65px;
+    font-size: 26px;
+    border-radius: 10px;
   }
 }
 @media only screen and (max-width: 767px) {

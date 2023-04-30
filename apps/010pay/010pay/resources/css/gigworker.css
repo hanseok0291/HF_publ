@@ -218,9 +218,10 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker #content .container .detailTaxWrap .detailBox p { padding-bottom: 8px; margin-bottom: 14px; border-bottom: 1px solid #151515; color: #151515; font-size: 18px; } 
 .gigworker #content .container .detailTaxWrap .detailBox .topWrap { display: flex; justify-content: space-between; padding-bottom: 8px; margin-bottom: 10px; border-bottom: 1px solid #151515; color: #151515; font-size: 18px; } 
 .gigworker #content .container .detailTaxWrap .detailBox dl { display: flex; flex-wrap: wrap; } 
-.gigworker #content .container .detailTaxWrap .detailBox dl > :nth-child(n) { width: 50%; margin-bottom: 6px; } 
+.gigworker #content .container .detailTaxWrap .detailBox dl > :nth-child(n) { margin-bottom: 6px; } 
 .gigworker #content .container .detailTaxWrap .detailBox dl > :nth-last-child(-n+2) { margin-bottom: 0; color: #151515; font-weight: 700; } 
-.gigworker #content .container .detailTaxWrap .detailBox dl dd { text-align: right; } 
+.gigworker #content .container .detailTaxWrap .detailBox dl dt { width: 110px; } 
+.gigworker #content .container .detailTaxWrap .detailBox dl dd { width: calc(100% - 110px); text-align: right; } 
 .gigworker #content .container .detailTaxWrap .detailBox dl dt.normal,
 .gigworker #content .container .detailTaxWrap .detailBox dl dd.normal { font-weight: 400; } 
 .gigworker #content .container .detailTaxWrap .detailBox dl dd.bold { font-weight: 700; } 
@@ -233,8 +234,16 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker .bot-btn .price { color: #E6FF00; font-family: 'Pretendard' } 
 .gigworker .bot-btn.disable { background-color: #e2e2e2; pointer-events: none; font-weight: bold; } 
 .gigworker .bot-btn.disable .price { color: #fff; } 
-.gigworker .botBtnWrap .text-btn { display: flex; align-items: center; margin: 20px auto 0; font-size: 16px; font-weight: 700; } 
+.gigworker .botBtnWrap .text-btn { display: flex; justify-content: center; align-items: center; position: relative; width: 100%; height: 60px; margin: 0 auto; font-size: 16px; font-weight: 700; } 
+.gigworker .botBtnWrap .text-btn::after { position: absolute; left: 0; bottom: 0; z-index: -1; content: ""; width: 100%; height: 110px; background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 70%); } 
 .gigworker .botBtnWrap .text-btn .arrow-right { display: inline-block; width: 16px; height: 16px; background: url("../images/icon/arrow-right-black.svg") center / 16px 16px no-repeat; } 
+.gigworker.isBotBanner #content .container { padding-bottom: 170px !important; } 
+.gigworker.isBotBanner #content .container .botBtnWrap { padding-bottom: 50px; } 
+.gigworker.isBotBanner #content .container .botBtnWrap .botBanner { display: block; position: fixed; left: 0; bottom: 0; width: 100%; height: 50px; margin-top: 20px; background-color: #F1F1F1; } 
+.gigworker.isBotBanner #content .container .botBtnWrap .botBanner .botBannerBox { display: flex; height: 100%; justify-content: center; align-items: center; } 
+.gigworker.isBotBanner #content .container .botBtnWrap .botBanner .botBannerBox .icon-gift-box { display: block; width: 26px; height: 17px; margin-right: 4px; background: url("../images/gigworker/icon_coupon_pink.png") center / cover no-repeat; } 
+.gigworker.isBotBanner #content .container .botBtnWrap .botBanner .botBannerBox p { font-size: 15px; color: #151515; } 
+.gigworker.isBotBanner #content .container .botBtnWrap .botBanner .botBannerBox .icon-shape { display: block; width: 13px; height: 9px; margin-left: 8px; background: url("../images/gigworker/icon-shape.png") center / cover no-repeat; } 
 
 /* bottomBanner */
 .gigworker .bottomBanner { position: fixed; bottom: -180px; left: 50%; transform: translateX(-50%); max-width: 700px; width: 100%; height: 158px; transition: 0.3s; } 
@@ -256,8 +265,8 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker .lineTitleText p { position: relative; display: inline-block; z-index: 1; padding: 0 19px; font-size: 12px; text-align: center; background-color: #fff; color: #151515; } 
 .gigworker .lineTitleText::before { display: block; content: ""; position: absolute; left: 0; top: 7px; width: 100%; height: 1px; background-color: #ccc; } 
 .gigworker.infoEnter .section2 { position: relative; display: flex; flex-wrap: wrap; justify-content: center; margin-top: 20px; } 
-.gigworker.infoEnter .section2 .itemWrap { display: flex; gap: 6px; width: 100%; margin-top: 14px; } 
-.gigworker.infoEnter .section2 .item { width: 100%; height: 70px; } 
+.gigworker.infoEnter .section2 .itemWrap { display: flex; width: 100%; margin-top: 14px; } 
+.gigworker.infoEnter .section2 .item { width: 100%; height: 70px; margin-right: 6px; } 
 .gigworker.infoEnter .section2 .item input { display: none; } 
 .gigworker.infoEnter .section2 .item label { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; height: 100%; border: 1px solid #ccc; border-radius: 10px; } 
 .gigworker.infoEnter .section2 .item input:checked + label { border: 1px solid #151515; } 
@@ -349,8 +358,9 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker.familyInfoEnter .modal-slide .modal-body .container { padding: 0; } 
 .gigworker .modal-slide .modal-body .container .optionWrap { padding: 10px 0 24px; background-color: #F9F9F9; } 
 .gigworker .modal-slide .modal-body .container .optionWrap li { height: 6px; padding: 0 24px; height: 60px; font-size: 18px; color: #151515; font-weight: 700; line-height: 60px; } 
-.gigworker.familyInfoEnter .modal-slide .modal-body .container .checkWrap { display: flex; flex-wrap: wrap; gap: 10px; padding: 20px 20px 40px; background-color: #F9F9F9; } 
-.gigworker.familyInfoEnter .modal-slide .modal-body .container .checkWrap li { width: 100%; border: 1px solid #E3E3E3; padding: 11px 20px; border-radius: 8px; background-color: #fff; transition: 0.3s; } 
+.gigworker.familyInfoEnter .modal-slide .modal-body .container .checkWrap { display: flex; flex-wrap: wrap; padding: 20px 20px 40px; background-color: #F9F9F9; } 
+.gigworker.familyInfoEnter .modal-slide .modal-body .container .checkWrap li { width: 100%; border: 1px solid #E3E3E3; margin-bottom: 10px; padding: 11px 20px; border-radius: 8px; background-color: #fff; transition: 0.3s; } 
+.gigworker.familyInfoEnter .modal-slide .modal-body .container .checkWrap li:last-child { margin-bottom: 0; } 
 .gigworker.familyInfoEnter .modal-slide .modal-body .container .checkWrap li .topArea { display: flex; align-items: center; justify-content: space-between; width: 100%; font-size: 18px; } 
 .gigworker.familyInfoEnter .modal-slide .modal-body .container .checkWrap li .topArea .dropdown-btn { width: 16px; height: 16px; background: url("../images/gigworker/btn-plus.svg") 0 / 16px 16px no-repeat; } 
 .gigworker.familyInfoEnter .modal-slide .modal-body .container .checkWrap li.active .topArea .dropdown-btn { width: 16px; height: 16px; background: url("../images/gigworker/btn-minus.svg") 0 / 16px 16px no-repeat; } 
@@ -539,8 +549,8 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker.taxAccountant .contentWrap li .topCon .rightCon img { display: block; width: 100%; } 
 .gigworker.taxAccountant .contentWrap li h4 { font-size: 18px; } 
 .gigworker.taxAccountant .contentWrap li p { margin-top: 4px; font-size: 14px; line-height: 1.14; } 
-.gigworker.taxAccountant .contentWrap li .infoWrap { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 18px; } 
-.gigworker.taxAccountant .contentWrap li .infoWrap span { padding: 5px 8px; font-size: 12px; line-height: 1; background-color: #f9f9f9; border-radius: 12px; color: #151515; } 
+.gigworker.taxAccountant .contentWrap li .infoWrap { display: flex; flex-wrap: wrap; margin-top: 18px; } 
+.gigworker.taxAccountant .contentWrap li .infoWrap span { margin-right: 4px; padding: 5px 8px; font-size: 12px; line-height: 1; background-color: #f9f9f9; border-radius: 12px; color: #151515; } 
 .gigworker.taxAccountant .contentWrap li .phone { display: flex; align-items: center; margin-top: 9px; padding: 14px 0 0; color: #151515; font-size: 14px; font-weight: 700; line-height: 1; border-top: 1px solid #e2e2e2; } 
 .gigworker.taxAccountant .contentWrap li .phone em { margin-right: 2px; font-size: 12px; } 
 
@@ -575,12 +585,12 @@ body.noScroll { position: fixed; overflow: hidden; }
 .gigworker .modal-app .modal-body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } 
 .gigworker .modal-app.modal .btn-close.btn-icon { flex: 0 0 auto; position: static; width: 28px; height: 28px; margin-left: auto; background: none; } 
 
-.progress { display: flex; justify-content: center; align-items: center; gap: 4px; height: 32px; } 
-.progress span { display: block; width: 9px; height: 12px; border-radius: 4.5px; background-color: #3580f8; opacity: 0.2; animation: loadingProgress 1s ease-in-out infinite; } 
+.progress { display: flex; justify-content: center; align-items: center; height: 32px; } 
+.progress span { display: block; width: 9px; height: 12px; margin-right: 4px; border-radius: 4.5px; background-color: #3580f8; opacity: 0.2; animation: loadingProgress 1s ease-in-out infinite; } 
 .progress span:nth-child(1) { animation-delay: 0; } 
 .progress span:nth-child(2) { animation-delay: 0.1s; } 
 .progress span:nth-child(3) { animation-delay: 0.2s; } 
-.progress span:nth-child(4) { animation-delay: 0.3s; } 
+.progress span:nth-child(4) { animation-delay: 0.3s; margin-right: 0; } 
 
 /* 로딩 레이어 */
 .loadingLayer { display: block; position: fixed; z-index: 200; left: 0; top: -5px; width: 100%; height: calc(100% + 10px); background: rgba(0,0,0,.5); } 

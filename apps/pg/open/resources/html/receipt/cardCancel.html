@@ -21,10 +21,6 @@
 	<div id="printArea">
 		<!-- wrapper -->
 		<div class="print-receipt cancel">
-			<!-- cancel mark -->
-			<div class="mark-cancel"><img src="../../images/mark-cancel.png" alt="취소"></div>
-			<!-- //cancel mark -->
-
 			<!-- print header -->
 			<div class="print-header">
 				<!-- <div class="logo"><img src="../../images/logo-spay.png" alt="S'pay"></div> -->
@@ -32,8 +28,20 @@
 			</div>
 			<!-- //print header -->
 
+			<!-- tab btn -->
+			<!-- <div class="tab-btn-wrap">
+				<button class="on">가맹점 1</button>
+				<button>가맹점 2</button>
+				<button>가맹점 3</button>
+			</div> -->
+			<!-- //tab btn -->
+
 			<!-- print body -->
 			<div class="print-body">
+				<!-- cancel mark -->
+				<div class="mark-cancel"><img src="../../images/mark-cancel.png" alt="취소"></div>
+				<!-- //cancel mark -->
+
 				<!-- section -->
 				<div class="section">
 					<h4 class="section-title">거래 정보</h4>
@@ -181,5 +189,14 @@
 	<!-- //영수증 인쇄 영역 -->
 </div>
 <!-- //wrap -->
+<script>
+	$(".tab-btn-wrap button").on("click", function(){
+		var index = $(this).index() + 1;
+		$(this).parent().find("button").removeClass("on");
+		$(this).addClass("on");
+		$(".tab").removeClass("on");
+		$(".tab-" + index).addClass("on");
+	});
+</script>
 </body>
 </html>

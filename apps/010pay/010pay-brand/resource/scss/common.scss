@@ -85,7 +85,7 @@ section, .section {
 	}
 }
 
-.content_wrap { min-width: 350px; }
+.content_wrap { min-width: auto; }
 
 .d_flex {
 	display: flex!important;
@@ -182,10 +182,15 @@ section, .section {
 
 /* 탭 */
 .tab-nav {
+	position: relative;
 	clear: both;
 	width: 100%;
 	font-size: 14px;
 	text-align: center;
+	z-index: 1;
+	background: #fff;
+	display: flex;
+	flex-direction: column;
 	&:after {
 		content: '';
 		display: block;
@@ -194,10 +199,28 @@ section, .section {
 	li {
 		position: relative;
 		float: left;
-		width: 50%;
-		height: 43px;
+		width: 100%;
+		height: 50px;
 		vertical-align: middle;
-		border: 1px solid #d1d1d1;
+		border-top: 1px solid #d1d1d1;
+		border-right: 1px solid #d1d1d1;
+		border-left: 1px solid #d1d1d1;
+		border-bottom: 1px solid #d1d1d1;
+		display: none;
+		background-image: url("../images/arrow_dw.svg");
+		background-repeat: no-repeat;
+		background-position: center right 20px;
+		background-size: 12px;
+		order: 2;
+		& + li {
+			border-top: 0;
+		}
+		&.arrow {
+			background-image: url("../images/arrow_up.svg");
+		}
+		&.show-item {
+			display: block;
+		}
 		a {
 			position: relative;
 			display: block;
@@ -215,6 +238,8 @@ section, .section {
 			}
 		}
 		&.active {
+			order: 1;
+			display: block;
 			border-color: #555;
 			background-color: #555;
 			a {
@@ -265,7 +290,7 @@ section, .section {
 		}
 	}
 	&.has-tabs .popup-content {
-		padding-top: 176px;
+		padding-top: 156px;
 	}
 }
 
@@ -279,14 +304,28 @@ section, .section {
 				font-size: 28px;
 			}
 			.tab-nav {
+				display: block;
 				margin-top: 30px;
+				li {
+					display: block;
+					width: 33.3333%;
+					height: 43px;
+					background-image: none;
+					border-top: 1px solid #d1d1d1;
+					border-right: 1px solid #d1d1d1;
+					border-left: 1px solid #d1d1d1;
+					border-bottom: 1px solid #d1d1d1;
+					&:not(:last-child) {
+						border-bottom: 1px solid #d1d1d1;
+					}
+				}
 			}
 		}
 		.popup-content {
 			padding: 122px 30px 30px;
 		}
 		&.has-tabs .popup-content {
-			padding-top: 236px;
+			padding-top: 176px;
 		}
 	}
 }

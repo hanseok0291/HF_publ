@@ -14,7 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <link rel="stylesheet" href="../../css/jquery-ui.css" />
     <link rel="stylesheet" href="../../css/common.css" />
-    <link rel="stylesheet" href="../../css/gigworker.css" />
+    <link rel="stylesheet" href="../../css/gigworker.css?ver=2305011" />
 
     <!--[if lt IE 9]>
       <script type="text/javascript" src="../../js/html5shiv.js"></script>
@@ -29,7 +29,7 @@
 
   <body>
     <!-- wrap -->
-    <div id="wrap" class="gigworker complete">
+    <div id="wrap" class="gigworker complete isBotBanner"><!-- 아래 띠 배너 노출 시 isBotBanner -->
       <!-- header -->
       <div id="header">
         <div class="container">
@@ -73,6 +73,15 @@
             <!-- 버튼 비활성화 시 disable 클래스 -->
             <button type="button" class="bot-btn">확인</button>
             <button type="button" class="text-btn"><span class="mainColor">전문 세무사</span><span>의 도움도 필요해요</span> <i class="arrow-right"></i></button>
+            <!-- 230426 띠 배너 추가 -->
+            <a class="botBanner" href="#">
+              <div class="botBannerBox">
+                <i class="icon-gift-box"></i>
+                <p><b>수수료 할인 쿠폰</b> 친구에게도 알려주기</p>
+                <i class="icon-shape"></i>
+              </div>
+            </a>
+            <!-- //230426 띠 배너 추가 -->
           </div>
         </div>
       </div>
@@ -106,11 +115,53 @@
         </div>
       </div>
       <!-- //slide modal -->
+
+      <!-- slide modal -->
+      <div id="modalSlideType2" class="modal modal-slide modal-checkTax">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body pdB0">
+              <div class="container">
+                <h3 class="titleText"><span class="normal">종합 소득세 신고를 도와드릴</span> <br>전문 세무사 상담을 신청할까요?</h3>
+                <div class="detailBox">
+                  <dl>
+                    <dt>검토 비용</dt>
+                    <dd>무료</dd>
+                    <dt>신고 수수료</dt>
+                    <dd>100,000원</dd>
+                  </dl>
+                </div>
+                <button type="button" class="bot-btn btn-close">신청하기</button>
+                <button type="button" class="bot-btn btn-close bgWhite">취소</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- //slide modal -->
     </div>
     <!-- //wrap -->
+
+    <div id="commonAlert" class="modal" style="display: block;">
+      <div class="modal-dialog" style="margin-top: -95px;">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="alertTitle"></h3>
+            <p id="alertContents">
+              상담 신청이 완료되어 <br>
+              전문 세무사가 곧 연락드릴 거예요. <br>
+              조금만 기다려주세요!
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" onclick="modalClose();" class="btn btn-confirm">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
     
     <script>
-      modalOpenSlide('modalSlideType1');
+      //modalOpenSlide("modalSlideType2");
     </script>
   </body>
 </html>

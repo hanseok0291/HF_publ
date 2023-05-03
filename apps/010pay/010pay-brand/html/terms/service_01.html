@@ -36,8 +36,9 @@
 	<div class="popup-header">
 		<h1 class="popup-title">서비스 이용약관</h1>
 		<ul class="tab-nav">
-			<li><a href="javascript:void(0);" data-content="tab1" class="btn"><span>010PAY 서비스 이용약관</span></a></li>
-			<li><a href="javascript:void(0);" data-content="tab2" class="btn"><span>핫딜 서비스 이용약관</span></a></li>
+			<li><a href="javascript:void(0);" data-content="tab1" class="btn"><span>서비스 이용약관</span></a></li>
+			<li><a href="javascript:void(0);" data-content="tab2" class="btn"><span>기프티몰(핫딜) 서비스 이용약관</span></a></li>
+			<li><a href="javascript:void(0);" data-content="tab3" class="btn"><span>세금 환급 서비스 이용약관</span></a></li>
 		</ul>
 	</div>
 	<!-- //popup header -->
@@ -47,7 +48,7 @@
 		<!-- tab content 1 -->
 		<div id="tab1" class="terms tab-content">
 			<h4>제1조 (목적)</h4>
-			<p>본 약관은 세틀뱅크 주식회사(이하 ‘회사’라 합니다)가 제공하는 010PAY 서비스의 이용과 관련하여 회사와 회원 사이의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.</p>
+			<p>본 약관은 (주)헥토파이낸셜(이하 ‘회사’라 합니다)이 제공하는 010PAY 서비스의 이용과 관련하여 회사와 회원 사이의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.</p>
 			<p>&nbsp;</p>
 			<h4>제2조 (용어의 정의)</h4>
 			<ul>
@@ -110,12 +111,22 @@
 	$(".tab-nav li:first").addClass("active");
 	$(".tab-content:first").show();
 
+	// 화면 너비에 따라 열리는 방식 지정
 	$(".tab-nav .btn").click(function() {
+	if ($(window).width() > 992) {
 		$(this).parent("li").addClass("active").siblings().removeClass("active");
 		var activeTab = $(this).attr("data-content");
 		var activeTabId = $("#" + activeTab).show();
 		$(activeTabId).siblings(".tab-content").hide();
-	});
+	} else {
+		$(".tab-nav li").toggleClass("show-item");
+		$(".tab-nav li").toggleClass("arrow");
+		$(this).parent("li").addClass("active").siblings().removeClass("active");
+		var activeTab = $(this).attr("data-content");
+		var activeTabId = $("#" + activeTab).show();
+		$(activeTabId).siblings(".tab-content").hide();
+	}
+});
 </script>
 </body>
 </html>

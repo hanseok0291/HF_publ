@@ -19,3 +19,11 @@ var confirmTitle = {
 var confirmMsg = {
 				closeWindow:			"결제를 종료하시겠습니까?<br> 확인 버튼을 누르면 결제가 종료됩니다."
 };
+
+var confirmTitleEn = {
+	closeWindow: 			"Cancel Payment"
+};
+
+var confirmMsgEn = {
+	closeWindow:			"Would you like to cancel the payment?<br> If you press the YES button, the payment will be canceled."
+};

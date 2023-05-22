@@ -9,7 +9,7 @@ const ModalLoading = ({ title }) => {
       <div className={styleModal.modalDialog}>
         <div className={styleModal.modalContent}>
           <div className={styleModal.modalBody}>
-          <div className={styleModal.loadingWrap}>
+            <div className={styleModal.loadingWrap}>
               <div className={styleModal.loading}></div>
               <div className={styleModal.textBox}>
                 내 차례까지 <br/>

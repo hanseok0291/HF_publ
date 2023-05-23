@@ -43,3 +43,10 @@ $(function(){
 		$.confirmMessage(confirmTitle.closeWindow, confirmMsg.closeWindow, $('#confirmOk'), "");
 	});
 });
+
+$(function(){
+	// 결제 종료(창 닫기) 모달 영문
+	$("#closeWindowEn").click(function(){
+		$.confirmMessage(confirmTitleEn.closeWindow, confirmMsgEn.closeWindow, $('#confirmOk'), "");
+	});
+});

@@ -1,15 +1,9 @@
 import styleDefaultLayout from "../../../styles/coupon_pub/DefaultLayout.module.css";
-import styleCommon from "../../../styles/coupon_pub/Common.module.css";
 
-export default function Header({
-  isShowSearchBtn,
-  isShowMypageBtn,
-  isShowRegCodeBtn,
-  pageTitle,
-}) {
+export default function Header({openHundredPopup}) {
   return (
     <div
-      className={`${styleDefaultLayout.pageHeader} ${styleDefaultLayout.defaultHeader}`}
+      className={`${styleDefaultLayout.pageHeader} ${styleDefaultLayout.defaultHeader} ${styleDefaultLayout.hundredDealHeader}`}
     >
       <div className={`${styleDefaultLayout.container}`}>
         <button
@@ -19,6 +13,7 @@ export default function Header({
           뒤로가기
         </button>
         <h1 className={styleDefaultLayout.pageTitle}>포인트 100원딜</h1>
+        <button type="button" onClick={openHundredPopup}>100원딜?</button>
       </div>
     </div>
   );

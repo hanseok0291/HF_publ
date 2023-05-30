@@ -13,25 +13,35 @@ import styleHundredDeal from "../../../styles/coupon_pub/HundredDeal.module.css"
 import Slider from "react-slick";
 import Layout from "../../../components/common/Layout";
 import Header from "../../../components/coupon_pub/100deal/Header";
-import ModalSlide from "../../../components/coupon_pub/common/Modal/ModalSlide";
+import ModalEntry from "../../../components/coupon_pub/common/Modal/ModalEntry";
+import ModalHundredArrival from "../../../components/coupon_pub/common/Modal/ModalHundredArrival";
+import ModalHundredInfo from "../../../components/coupon_pub/common/Modal/ModalHundredInfo";
 
 
 const Index = () => {
   const [totalSlides, setTotalSlides] = useState(0); // 슬라이드 개수 상태
-  const [isTabTop, setTabdTop] = useState(false);
-  const [isToolTip, setIsToolTip] = useState(false);// 툴팁
-  const [toolTipPos, setToolTipPos] = useState(false);
-  const [dropDown, setDropDown] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isEntryOpen, setIsEntryOpen] = useState(false);
+  const [isHundredOpen, setIsHundredOpen] = useState(false);
 
   const tabRef = useRef();
   const firstConRef = useRef();
   const secondConRef = useRef();
   const thirdConRef = useRef();
 
-  const togglePopup = () => {
-    console.log(isOpen)
-    setIsOpen(!isOpen);
+  const openHundredPopup = () => {
+    setIsHundredOpen(true);
+  }
+
+  const closeHundredPopup = () => {
+    setIsHundredOpen(false);
+  }
+
+  const openEntryPopup = () => {
+    setIsEntryOpen(true);
+  }
+
+  const closeEntryPopup = () => {
+    setIsEntryOpen(false);
   }
 
   const handleSlideChange = (swiper) => {
@@ -85,9 +95,11 @@ const Index = () => {
 
   return (
     <Layout>
-      <Header />
+      <Header isHundredOpen={isHundredOpen} openHundredPopup={openHundredPopup} />
       <div className={styleHundredDeal.hundredDeal}>
-        <div className={styleHundredDeal.topBanner}>첫 응모는 미당첨 시 <b>최대 1만 포인트 드려요</b><i>!</i></div>
+        <div className={styleHundredDeal.topBanner}>
+          첫 응모는 미당첨 시 <b>최대 1만 포인트 드려요</b><i>!</i>
+        </div>
         <div className={styleHundredDeal.topContent}>
           <p>
             매주 월·수·금 찾아오는 <br />
@@ -106,12 +118,13 @@ const Index = () => {
           </h3>
           <dl className={styleHundredDeal.endTime}>
             <dt>남은 응모 시간</dt>
+            {/* <dt>오픈까지 남은 시간</dt> */}
             <dd>
               <span>0일</span><span>15</span><em>:</em><span>45</span><em>:</em><span>00</span>
             </dd>
           </dl>
           <Swiper {...bigSlide} className="bigSlide">
-            <SwiperSlide>
+          <SwiperSlide>
               <div className="imgWrap">
                 <img src="../../images/100deal/sample/img-01.png" alt="" />
               </div>
@@ -119,7 +132,20 @@ const Index = () => {
                 <span className="people">50명</span>
                 <p className="product">메가박스 2인 관람권 팝콘 세트</p>
                 <p className="price"><span className="before">36,000</span><span className="after">100원</span></p>
-                <button type="button" onClick={togglePopup}>응모하기</button>
+                <button type="button" onClick={openEntryPopup}>응모하기</button>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="imgWrap complete">
+                <img src="../../images/100deal/sample/img-01.png" alt="" />
+                <div className="completeText"><p><span>5회</span><br />응모 완료</p></div>
+              </div>
+              <div className="textWrap">
+                <span className="people">50명</span>
+                <p className="product">메가박스 2인 관람권 팝콘 세트</p>
+                <p className="price"><span className="before">36,000</span><span className="after">100원</span></p>
+                <button type="button" disabled>내일 10시 당첨자 발표</button>
+                {/* <button type="button" onClick={openEntryPopup}>응모하기</button> */}
               </div>
             </SwiperSlide>
             <SwiperSlide>
@@ -130,7 +156,8 @@ const Index = () => {
                 <span className="people">50명</span>
                 <p className="product">메가박스 2인 관람권 팝콘 세트</p>
                 <p className="price"><span className="before">36,000</span><span className="after">100원</span></p>
-                <button type="button">응모하기</button> 
+                <button type="button" disabled>Coming Soon</button> 
+                {/* <button type="button" onClick={openEntryPopup}>응모하기</button> */}
               </div>
             </SwiperSlide>
           </Swiper>
@@ -142,10 +169,10 @@ const Index = () => {
           </p>
         </a>
         <div className={`${styleHundredDeal.borderContent} ${styleHundredDeal.restContent}`}>
-          <h3 ref={secondConRef}>
+          <h4 ref={secondConRef}>
             추가 응모하면 당첨 확률 UP <br />
             <strong>미션하고 응모권 받아요<i>!</i></strong>
-          </h3>
+          </h4>
           <div className={styleHundredDeal.pdLR25}>
             <div className={styleHundredDeal.newBox}>
               <span>1**5 님이 <b>5회 추가로 응모했어요</b></span>
@@ -178,10 +205,10 @@ const Index = () => {
             </ul>
           </div>
           <div>
-            <h3 ref={thirdConRef}>
+            <h4 ref={thirdConRef}>
               그냥 놓치기엔 아쉬운 <br />
               <strong>다음 딜을 소개해요<i>!</i></strong>
-            </h3>
+            </h4>
             <div className={styleHundredDeal.dealContentBox}>
               <p className={styleHundredDeal.dealDate}><span className={styleHundredDeal.before}></span>02. 13 월<span className={styleHundredDeal.after}></span></p>
               <Swiper {...smallSlide} className={`smallSlide`} onAfterInit={handleSlideChange}>
@@ -260,10 +287,16 @@ const Index = () => {
           <div className={styleHundredDeal.btnBox}>
             <div>보유 응모권 <span>0</span></div>
             <button type="button">응모권 받기</button>
+            {/* <button type="button">추가 응모에 사용 </button> */}
           </div>
         </div>
       </div>
-      {isOpen && <ModalSlide isOpen={isOpen} togglePopup={togglePopup} />}
+      {/* 응모하기 */}
+      {isEntryOpen && <ModalEntry isEntryOpen={isEntryOpen} openEntryPopup={openEntryPopup} closeEntryPopup={closeEntryPopup} />}
+      {/* 100원딜? */}
+      {isHundredOpen && <ModalHundredInfo isHundredOpen={isHundredOpen} openHundredPopup={openHundredPopup} closeHundredPopup={closeHundredPopup} />}
+      {/* 응모권 도착 */}
+      {/* <ModalHundredArrival /> */}
     </Layout>
   );
 };

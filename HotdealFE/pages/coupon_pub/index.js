@@ -70,8 +70,7 @@ const Index = () => {
             {/* 혹시 이 상품 찾으세요? */}
             <MaybeCoupon
               pageTitle={[
-                "혹시 이 상품 찾으세요?",
-                <span className="titleEmoticon">🔍</span>,
+                "혹시 이 상품 찾으세요?", <span className="titleEmoticon">🔍</span>,
               ]}
             />
             {/* 프로모션 배너 */}
@@ -107,12 +106,12 @@ const Index = () => {
           {showMainPopup && (
             // <ModalEnter
             // />
-            <ModalLoading />
-            // <MainPopup
-						// 	onClose={() => {
-						// 		setShowMainPopup(!showMainPopup);
-						// 	}}
-						// />
+            // <ModalLoading />
+            <MainPopup
+							onClose={() => {
+								setShowMainPopup(!showMainPopup);
+							}}
+						/>
           )}
           <Footer />
         </div>

@@ -16,6 +16,7 @@ const Index = () => {
 
   const rouletteRef = useRef();
   const rouletteBtnRef = useRef();
+  const rouletteBtnRef2 = useRef();
   const rolLength = 6;
 
   const handleTabClick = (tabIndex) => {
@@ -25,7 +26,8 @@ const Index = () => {
   const rRotate = (num, speed = 1) => {
     const panel = rouletteRef.current;
     const btn = rouletteBtnRef.current;
-    console.log(btn)
+    const btn2 = rouletteBtnRef2.current;
+    console.log(rouletteBtnRef)
     const deg = [];
     for (let i = 1, len = rolLength; i <= len; i++) {
       deg.push((360 / len) * i);
@@ -36,10 +38,12 @@ const Index = () => {
       panel.style.transition = "2s";
       panel.style.transform = "rotate(" + rotateVal + "deg)";
       btn.style.pointerEvents = "none";
+      btn2.style.pointerEvents = "none";
     setTimeout(() => {
       panel.style.transition = "none";
       panel.style.transform = "rotate(-20deg)";
       btn.style.pointerEvents = "auto";
+      btn2.style.pointerEvents = "auto";
     }, 3000);
   };
 
@@ -101,7 +105,7 @@ const Index = () => {
                 <span className={styleHundredDeal.img1}></span>
                 <span className={styleHundredDeal.img2}></span>
                 <div className={styleHundredDeal.roulette} ref={rouletteRef}></div>
-                <div className={styleHundredDeal.restCount} onClick={() => rRotate(1)}>
+                <div className={styleHundredDeal.restCount} ref={rouletteBtnRef} onClick={() => rRotate(1)}>
                   오늘 남은 횟수 <br />
                   <span>10회</span>
                 </div>
@@ -110,7 +114,7 @@ const Index = () => {
                 <div className={styleHundredDeal.textWrap}>
                   <p>보유 포인트 <br /><span>2,000,000P</span></p>
                 </div>
-                <div className={styleHundredDeal.activeBtn} ref={rouletteBtnRef} onClick={() => rRotate(4)}>룰렛 돌리기</div>
+                <div className={styleHundredDeal.activeBtn} ref={rouletteBtnRef2} onClick={() => rRotate(4)}>룰렛 돌리기</div>
               </div>
               <div className={styleHundredDeal.noteWrap}>
                 <h4>안내드려요</h4>

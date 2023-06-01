@@ -10,6 +10,7 @@ import styleHundredDeal from "../../../styles/coupon_pub/HundredDeal.module.css"
 import Layout from "../../../components/common/Layout";
 import ModalHundredArrival from "../../../components/coupon_pub/common/Modal/ModalHundredArrival";
 import ModalEntryComplete from "../../../components/coupon_pub/common/Modal/ModalEntryComplete";
+import ModalAlert from "../../../components/coupon_pub/common/Modal/ModalAlert";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -230,6 +231,8 @@ const Index = () => {
         {/* 응모권 획득 */}
         {/* <ModalHundredArrival /> */}
         {/* <ModalEntryComplete /> */}
+        <ModalAlert message={`오늘의 참여 기회를 모두 사용하였습니다.\n내일 다시 이용해 주세요.`} />
+        <ModalAlert message={`룰렛 1회당 100P가 필요합니다.\n부족한 포인트를 모아 다시 이용해 주세요.`} />
       </Layout>
     </>
   );

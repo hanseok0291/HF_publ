@@ -63,9 +63,8 @@ export default function HundredDealDetail({setDeadlinFixed }) {
             className={`${styleCouponDetail.alertInfo}`} //마감 스크롤 시 하단 fixed 삭제
           >
             <p>
-              <strong className={styleCouponDetail.colorText}>
-                3일 00 : 00 : 00
-              </strong>{" "}
+              <span>8일</span> <span>00</span> <em>:</em> <span>00</span> <em>:</em> <span>00</span>
+              {" "}
               후 마감
             </p>
           </div>
@@ -259,8 +258,21 @@ export default function HundredDealDetail({setDeadlinFixed }) {
             <p
               className={`${styleCommon.marginLeft} ${styleCommon.flexWrap} ${styleCommon.alignCenter}`}
             >
+              <span className={styleHundredDeal.addInfo}><em>무료 응모</em>가 가능해요<i>!</i></span>
               <button className={`${styleCommon.btnGift}`}>응모하기</button>
             </p>
+            {/* <p
+              className={`${styleCommon.marginLeft} ${styleCommon.flexWrap} ${styleCommon.alignCenter}`}
+            >
+              <span className={styleHundredDeal.addInfo}>사용 가능 응모권 <em>N개<i>!</i></em></span>
+              <button className={`${styleCommon.btnGift}`}>추가 응모하기</button>
+            </p> */}
+            {/* <p
+              className={`${styleCommon.marginLeft} ${styleCommon.flexWrap} ${styleCommon.alignCenter}`}
+            >
+              <span className={styleHundredDeal.addInfo}>추가 응모로 <em>당첨 확률 UP<i>!</i></em></span>
+              <button className={`${styleCommon.btnGift}`}>응모권 받기</button>
+            </p> */}
           </div>
         </div>
       </div>

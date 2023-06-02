@@ -16,7 +16,7 @@ const Index = () => {
     <>
       <Layout>
         <div className={`${styleDefaultLayout.pageHeader} ${styleDefaultLayout.defaultHeader} ${styleHundredDeal.prevDealHeader}`}>
-          <div className={`${styleDefaultLayout.container} ${styleCommon.pageHeader}`}>
+          <div className={`${styleDefaultLayout.container} ${styleCommon.pageHeader}  ${styleHundredDeal.pageHeader}`}>
             <h1 className={`${styleDefaultLayout.pageTitle} ${styleDefaultLayout.pageTitleMain}`}></h1>
             <button  type="button" className={`${styleCommon.btnIcon} ${styleCommon.btnClose} ${styleHundredDeal.btnClose}`}>닫기</button>
           </div>

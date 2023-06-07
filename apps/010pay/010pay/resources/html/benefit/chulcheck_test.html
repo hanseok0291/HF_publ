@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../../css/jquery-ui.css" />
     <link rel="stylesheet" href="../../css/owl.carousel.min.css" />
     <link rel="stylesheet" href="../../css/slick.min.css" />
-    <link rel="stylesheet" href="../../css/common.css?ver=20230411" />
+    <link rel="stylesheet" href="../../css/common.css?ver=20230526" />
     <!--[if lt IE 9]>
       <script type="text/javascript" src="../../js/html5shiv.js"></script>
       <script type="text/javascript" src="../../js/respond.min.js"></script>
@@ -29,204 +29,490 @@
     <script src="../../js/design.js" defer="defer"></script>
     <script src="../../js/commonmsg.js"></script>
     <script src="../../js/commonutil.js"></script>
-    <script src="../../js/physicsjs.js"></script>
+    <script src="../../js/matter.js"></script>
   </head>
 	<style>
+		#app {
+			 width: auto;
+			 height: 583.5px;
+			 background-color: #E0EBFF;
+			 background-repeat: no-repeat;
+			 background-position: center 27.55vw;
+			 background-size: 194.5px auto;
+			 margin: 0 auto;
+		}
+		#app canvas {
+			/* width: 320px !important; */
+			/* height: 100%; */
+		}
+		.machine {
+			position: absolute;
+			 width: 194.5px;
+			 height: 333.5px;
+			 background-image: url('../../images/drawing/bg.png');
+			 background-repeat: no-repeat;
+			 background-position: center;
+			 background-size: contain;
+			 margin: 0 auto;
+			 top: 159px;
+			 left: 50%;
+			 transform: translateX(-50%);
+		}
 	</style>
   <body>
     <!-- form -->
     <form class="main_form" action="javascript: void(0);" autocomplete="off">
       <!-- wrap -->
       <!-- <div id="wrap" class="wrap wrap-app no-header chulcheck chulcheck-may"> -->
-			<!-- 출석완료시 complete 클래스 추가 -->
-      <div id="wrap" class="wrap wrap-app no-header"> 
+			<!-- 매일 처음진입시에만 first-open 클래스 추가 -->
+      <div id="wrap" class="wrap wrap-app no-header wrap-drawing first-open">
         <!-- content -->
         <div id="content">
           <!-- section - visual -->
           <div class="section section-visual">
-						<div id="viewport">
-								<canvas id="canvas" width="550" height="550"></canvas>
-						</div>
+				   <div id="app">
+						 <h2 class="wrap-drawing-title">행운의 캡슐 뽑기</h2>
+						 <h3 class="wrap-drawing-title-sub">10P 넣으면 랜덤 포인트가 뿅<i class="italic">!</i></h3>
+						 <div class="bg-wrap">
+							 <p class="bg-money animation-bounce"></p>
+							 <p class="bg-music animation-bounce"></p>
+							 <p class="bg-ball-left"></p>
+							 <p class="bg-ball-right"></p>
+							 <div class="bg-point">
+								 <div class="box">
+									<p class="title">보유 포인트</p>
+									<p class="count-point">2,000,000</p>
+									<p>P</p>
+								 </div>
+							 </div>
+						 </div>
+					 </div>
+					 <div class="machine"></div>
+					 <div class="tooltip"></div>
+					 <button type="button" id="move-button">
+						 <p class="title">10P로 뽑기</p>
+						 <div class="box">
+							<p class="info-text">참여 가능</p>
+							<p class="info-count">5</p>
+							<p>회</p>
+						 </div>
+					 </button>
           </div>
           <!-- //section - visual -->
 
+          <!-- section - info -->
+          <div class="section section-info">
+            <div class="container">
+              <h3 class="info-title">
+                <i class="icon-info-circle">!</i> 안내 사항
+              </h3>
+              <ul class="ul-list">
+                <li>뽑기 1회당 10P가 소진되며, 일 최대 5회만 참여할 수 있습니다.</li>
+								<li>해당 미션을 통해 적립된 포인트의 유효기간은 90일입니다.</li>
+								<li>뽑기 완료 시 포인트가 즉시 적립되며, 포인트 보유 한도 초과 시 
+										초과분은 적립되지 않습니다.</li>
+								<li>비정상적인 행위가 확인될 경우, 포인트가 적립되지 않거나 이미
+										적립된 포인트가 회수될 수있습니다.</li>
+              </ul>
+            </div>
+          </div>
+          <!-- //section - info -->
+
+					<button type="button" onclick="$.alertMessage('', '', $('#resultAlert'));" class="btn btn-xs">잔여기회 x 팝업</button>
+					<button type="button" onclick="$.alertMessage('', '', $('#resultPrompt'));" class="btn btn-xs">잔여기회 o 팝업</button>
+					<button type="button" onclick="$.alertMessage('', '뽑기 1회당 10P가 필요합니다.<br>부족한 포인트를 모아 다시 이용해 주세요.', $('#pointAlert'));" class="btn btn-xs">포인트 부족 팝업</button>
+					<button type="button" onclick="$.alertMessage('', '오늘의 참여 기회를 모두 사용하였습니다 <br> 내일 다시 이용해 주세요.', $('#commonAlert'));" class="btn btn-xs">5회 완료 팝업</button>
         </div>
         <!-- //content -->
       </div>
       <!-- //wrap -->
+			
+			<!-- common alert -->
+			<div id="resultAlert" class="modal modal-result modal-result-end">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-body">
+							<h3 id="alertTitle"></h3>
+							<p id="promptContents">오늘의 마지막 캡슐<i class="italic">!</i></p>
+							<p class="modal-info-text"><span class="modal-result-color">15P가</span> 들어 있어요<i class="italic">!</i></p>
+						</div>
+						<div class="modal-footer">
+							<button
+								type="button"
+								onclick="modalClose();"
+								class="btn btn-confirm"
+							>
+								내일 다시 만나요
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- //common alert -->
+
+			<!-- common prompt -->
+			<div id="resultPrompt" class="modal modal-result-alert modal-result modal-result-more">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-body">
+							<h3 id="promptTitle"></h3>
+							<p id="promptContents">캡슐 오픈 짠<i class="italic">!</i></p>
+							<p class="modal-info-text"><span class="modal-result-color">15P가</span> 들어 있어요<i class="italic">!</i></p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" id="promptOk" class="btn btn-confirm">
+								한 번 더 뽑기
+							</button>
+							<button
+								type="button"
+								id="promptNo"
+								onclick="modalClose();"
+								class="btn btn-cancel"
+							>
+							다음에 하기
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- //common prompt -->
+						
+			<!-- common alert -->
+			<div id="pointAlert" class="modal modal-result-alert">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-body">
+							<h3 id="alertTitle"></h3>
+							<p>뽑기 1회당 10P가 필요합니다.<br>부족한 포인트를 모아 다시 이용해 주세요.</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" onclick="modalClose();" class="btn btn-confirm">확인</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- //common alert -->
+
+			<!-- common alert -->
+			<div id="commonAlert" class="modal modal-result-alert">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-body">
+							<h3 id="alertTitle"></h3>
+							<p>오늘의 참여 기회를 모두 사용하였습니다 <br> 내일 다시 이용해 주세요.</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" onclick="modalClose();" class="btn btn-confirm">확인</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- //common alert -->
+			
     </form>
     <!-- //form -->
 
 		<script>
-			//
-// Mixed Shapes
-//
-Physics({ timestep: 6 }, function (world) {
+			$('#app').on('click', function (e) {
+				if (!$('#move-button').has(e.target).length) {
+					$('.tooltip').fadeOut();
+				}
+			});
+			$('#move-button').on('click', function (e) {
+				if (!$('.section-info').has(e.target).length) {
+					$('.tooltip').fadeOut();
+				}
+			});
+			
 
-// bounds of the window
-var viewWidth = window.innerWidth
-		,viewportBounds = Physics.aabb(0, 0, window.innerWidth, window.innerHeight)
-		,edgeBounce
-		,renderer
-		;
+			let { Engine, Render, Runner, World, Bodies, Body, Events, Composite } = Matter;
+      let engine = Engine.create();
 
-// let's use the pixi renderer
-require(['vendor/pixi'], function( PIXI ){
-		window.PIXI = PIXI;
-		// create a renderer
-		renderer = Physics.renderer('pixi', {
-				el: 'viewport'
-		});
+			function setup() {
+			const width = 194.5;
+      const height = 333.5;
+			let isMoving = false;
+			var startX = width / 2;
+			var startY = height / 2 - 20;
+			
+			// create a renderer
+			let render = Render.create({
+				element: document.getElementById('app'),
+				engine: engine,
+				options: {
+						width: 194.5,
+						height: 333.5,
+						wireframes: false,
+						background: 'transparent',
+						showAngleIndicator: false,
+				},
+			});
+				
+				function draw() {
+					window.requestAnimationFrame(update);
+				}
 
-		// add the renderer
-		world.add(renderer);
-		// render on each step
-		world.on('step', function () {
-				world.render();
-		});
-		// add the interaction
-		world.add(Physics.behavior('interactive', { el: renderer.container }));
-});
+				// for (let i = 0; i < 3; i++) {
+					var circleRed = Bodies.circle(startX - 5, startY, 17, {
+							render: {
+								density: 0.0005,
+                frictionAir: 0.06,
+                restitution: 0.3,
+                friction: 0.01,
+								sprite: {
+										texture: '../../images/drawing/ball-red.svg',
+								},
+							},
+					});
+					var circleRed2 = Bodies.circle(startX - 5, startY, 5, {
+							render: {
+								mass: 1,
+								density: 0.0005,
+                frictionAir: 0.06,
+                restitution: 0.3,
+                friction: 0.01,
+								visible: false,
+								sprite: {
+										texture: '../../images/drawing/ball-red.svg',
+										xScale: 0.5,
+										yScale: 0.5,
+								},
+							},
+					});
+					var circleRed3 = Bodies.circle(startX, startY, 5, {
+							render: {
+								mass: 1,
+								density: 0.0005,
+                frictionAir: 0.06,
+                restitution: 0.3,
+                friction: 0.01,
+								visible: false,
+								sprite: {
+										texture: '../../images/drawing/ball-red.svg',
+										xScale: 0.5,
+										yScale: 0.5,
+								},
+							},
+					});
+					var circleGreen = Bodies.circle(startX, startY, 18, {
+							render: {
+								density: 0.0005,
+                frictionAir: 0.06,
+                restitution: 0.3,
+                friction: 0.01,
+								visible: true,
+								sprite: {
+										texture: '../../images/drawing/ball-green.svg',
+								},
+							},
+					});
+					var circleGreen3 = Bodies.circle(startX, startY, 5, {
+							render: {
+								friction: 1,
+								frictionStatic: 1,
+								label: 'ball',
+								density: 0.5,
+								showPosition: false,
+								restitution: 0.3,
+								visible: false,
+								sprite: {
+										texture: '../../images/drawing/ball-green.svg',
+										xScale: 0.5,
+										yScale: 0.5,
+								},
+							},
+					});
+					var circleBlue = Bodies.circle(startX, startY, 20, {
+							render: {
+								density: 0.0005,
+                frictionAir: 0.06,
+                restitution: 0.3,
+                friction: 0.01,
+								sprite: {
+										texture: '../../images/drawing/ball-blue.svg',
+								},
+							},
+					});
+					var circleBlue2 = Bodies.circle(startX - 10, startY, 20, {
+							render: {
+								density: 0.0005,
+                frictionAir: 0.06,
+                restitution: 0.3,
+                friction: 0.01,
+								sprite: {
+										texture: '../../images/drawing/ball-blue.svg',
+								},
+							},
+					});
+					var circleBlue3 = Bodies.circle(startX, startY, 20, {
+							render: {
+								density: 0.0005,
+                frictionAir: 0.06,
+                restitution: 0.3,
+                friction: 0.01,
+								sprite: {
+										texture: '../../images/drawing/ball-blue.svg',
+								},
+							},
+					});
+					var transBall1 = Bodies.circle(startX + 10, startY - 1, 6, {
+						render: {
+							mass: 100,
+							density: 1,
+							frictionAir: 1.06,
+							restitution: 0.3,
+							friction: 0.01,
+							visible: false,
+							sprite: {
+									texture: '../../images/drawing/ball.png',
+									xScale: 0.2,
+									yScale: 0.2,
+							},
+						},
+				});
+				var transBall2 = Bodies.circle(startX - 10, startY + 3, 5, {
+						render: {
+							mass: 100,
+							density: 1,
+							frictionAir: 1.06,
+							restitution: 0.3,
+							friction: 0.01,
+							visible: false,
+							sprite: {
+								texture: '../../images/drawing/ball.png',
+									xScale: 0.2,
+									yScale: 0.2,
+							},
+						},
+				});
+					World.add(engine.world, [circleBlue, circleBlue2, circleBlue3, circleRed, circleRed2, circleRed3, circleGreen, circleGreen3, transBall1, transBall2]);
+				// }
 
-// constrain objects to these bounds
-edgeBounce = Physics.behavior('edge-collision-detection', {
-		aabb: viewportBounds
-		,restitution: 0.2
-		,cof: 0.8
-});
+				// 원의 속도 및 가속도 설정
+				var moveDistance = 0.001;
+				var moveDirectionX = 0.001;
+				var moveDirectionY = 0.001;
+				
+				var circleGet = Bodies.circle(startX, startY, 15, {
+						render: {
+								density: 0.0005,
+                frictionAir: 0.06,
+                restitution: 0.3,
+                friction: 1.01,
+							sprite: {
+									texture: '../../images/drawing/ball-red.svg',
+							},
+						},
+					});
+				var circleTest = Bodies.circle(startX, startY, 15, {
+						render: {
+								density: 0.0005,
+                frictionAir: 0.06,
+                restitution: 0.3,
+                friction: 0.01,
+							sprite: {
+									texture: '../../images/drawing/ball-red.svg',
+							},
+						},
+					});
+				var circleTest2 = Bodies.circle(startX, startY, 15, {
+						render: {
+								density: 0.0005,
+                frictionAir: 0.06,
+                restitution: 0.3,
+                friction: 0.01,
+							sprite: {
+									texture: '../../images/drawing/ball-green.svg',
+							},
+						},
+					});
+				var circleTest3 = Bodies.circle(startX, startY, 15, {
+						render: {
+								density: 0.0005,
+                frictionAir: 0.06,
+                restitution: 0.3,
+                friction: 0.01,
+							sprite: {
+									texture: '../../images/drawing/ball-red.svg',
+							},
+						},
+					});
+				var circleTest4 = Bodies.circle(startX, startY, 15, {
+						render: {
+								density: 0.0005,
+                frictionAir: 0.06,
+                restitution: 0.3,
+                friction: 0.01,
+							sprite: {
+									texture: '../../images/drawing/ball-green.svg',
+							},
+						},
+					});
+				World.add(engine.world, [circleGet, circleTest, circleTest2, circleTest3, circleTest4]);
 
-// resize events
-window.addEventListener('resize', function () {
+			// 버튼 요소를 선택합니다.
+			const button = document.getElementById('move-button');
 
-		// as of 0.7.0 the renderer will auto resize... so we just take the values from the renderer
-		viewportBounds = Physics.aabb(0, 0, renderer.width, renderer.height);
-		// update the boundaries
-		edgeBounce.setAABB(viewportBounds);
+				// 매 프레임마다 호출되는 함수
+				function update() {}
+				// 버튼 클릭 이벤트 핸들러를 정의합니다.
+				engine.timing.timeScale = 1;
+				button.addEventListener('click', () => {
+					isMoving = !isMoving; // 움직임 상태를 토글합니다.
+					isPosition = 0;
+					setInterval(update, 500);
+					// 이동 함수 호출
+					moveCircle();
+				});
+				// 공을 가둘 영역 생성
+				var groundTop = Bodies.rectangle(width / 2, height / 2 - 150, 185, 5, { isStatic: true, render: { fillStyle: 'transparet', strokeStyle: 'transparet' } });
+				var groundRight = Bodies.rectangle(width / 2 + 90, height / 2 - 10, 5, 235, { isStatic: true, render: { fillStyle: 'transparet', strokeStyle: 'transparet' } });
+				var groundBottom = Bodies.rectangle(width / 2, height / 2 + 47, 185, 5, { isStatic: true, render: { fillStyle: 'transparet', strokeStyle: 'transparet' } });
+				var groundLeft = Bodies.rectangle(width / 2 - 90, height / 2 - 10, 5, 235, { isStatic: true, render: { fillStyle: 'transparet', strokeStyle: 'transparet' } });
 
-}, true);
+				// add all of the bodies to the world
+				Composite.add(engine.world, [groundTop, groundRight, groundBottom, groundLeft]);
 
-var colors = [
-		['0x268bd2', '0x0d394f']
-		,['0xc93b3b', '0x561414']
-		,['0xe25e36', '0x79231b']
-		,['0x6c71c4', '0x393f6a']
-		,['0x58c73c', '0x30641c']
-		,['0xcac34c', '0x736a2c']
-];
+				// run the renderer
+				Render.run(render);
 
-function random( min, max ){
-		return (Math.random() * (max-min) + min)|0;
-}
+				// create runner
+				var runner = Runner.create();
 
-function dropInBody(){
+				// run the engine
+				Runner.run(runner, engine);
 
-		var body;
-		var c;
+				// 이동 상태 변수
+				let isMovingRight = true;
+				let moveSpeed = 5,
+						moveSpeed2 = 15;
+				// 이동 함수
+				function moveCircle() {
+					let { x, y } = transBall1.position;
 
-		switch ( random( 0, 3 ) ){
+					if (isMovingRight) {
+						Body.translate(transBall1, { x: moveSpeed, y: 0 });
+						Body.translate(transBall2, { x: -moveSpeed, y: 0 });
 
-						// add a circle
-				case 0:
-						c = colors[0];
-						body = Physics.body('circle', {
-								x: viewWidth / 2
-								,y: 50
-								,vx: random(-5, 5)/100
-								,radius: 40
-								,restitution: 0.9
-								,styles: {
-										fillStyle: c[0]
-										,strokeStyle: c[1]
-										,lineWidth: 1
-										,angleIndicator: c[1]
-								}
-						});
-						break;
+						// 한쪽끝에 도달시 반대편으로 이동
+						if (x >= 150) {
+							isMovingRight = false;
+						}
+					} else {
+						Body.translate(transBall1, { x: -moveSpeed, y: 0 });
+						Body.translate(transBall2, { x: moveSpeed, y: 0 });
 
-						// add a square
-				case 1:
-						c = colors[1];
-						body = Physics.body('rectangle', {
-								width: 50
-								,height: 50
-								,x: viewWidth / 2
-								,y: 50
-								,vx: random(-5, 5)/100
-								,restitution: 0.9
-								,styles: {
-										fillStyle: c[0]
-										,strokeStyle: c[1]
-										,lineWidth: 1
-										,angleIndicator: c[1]
-								}
-						});
-						break;
+						// 한쪽끝에 도달시 반대편으로 이동
+						if (x <= 50) {
+							isMovingRight = true;
+						}
+					}
 
-						// add a polygon
-				case 2:
-						var s = random( 5, 10 );
-						c = colors[ Math.min(s - 3, colors.length-1) ];
-						body = Physics.body('convex-polygon', {
-								vertices: Physics.geometry.regularPolygonVertices( s, random(30, 50) )
-								,x: viewWidth / 2
-								,y: 50
-								,vx: random(-5, 5)/100
-								,angle: random( 0, 2 * Math.PI )
-								,restitution: 0.9
-								,styles: {
-										fillStyle: c[0]
-										,strokeStyle: c[1]
-										,lineWidth: 1
-										,angleIndicator: c[1]
-								}
-						});
-						break;
-		}
-
-		world.add( body );
-}
-
-var int = setInterval(function(){
-		if ( world._bodies.length > 40 ){
-				clearInterval( int );
-		}
-		dropInBody();
-}, 700);
-
-// add some fun interaction
-var attractor = Physics.behavior('attractor', {
-		order: 0,
-		strength: 0.002
-});
-world.on({
-		'interact:poke': function( pos ){
-				world.wakeUpAll();
-				attractor.position( pos );
-				world.add( attractor );
-		}
-		,'interact:move': function( pos ){
-				attractor.position( pos );
-		}
-		,'interact:release': function(){
-				world.wakeUpAll();
-				world.remove( attractor );
-		}
-});
-
-// add things to the world
-world.add([
-		Physics.behavior('constant-acceleration')
-		,Physics.behavior('body-impulse-response')
-		,Physics.behavior('body-collision-detection')
-		,Physics.behavior('sweep-prune')
-		,edgeBounce
-]);
-
-// subscribe to ticker to advance the simulation
-Physics.util.ticker.on(function( time ) {
-		world.step( time );
-});
-});
+					// 다음 프레임에 이동 함수 호출
+					requestAnimationFrame(moveCircle);
+				}
+			}
+			setup();
 
 		</script>
   </body>

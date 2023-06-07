@@ -22,6 +22,7 @@ import PromotionBanner from "../../components/coupon_pub/main/PromotionBanner";
 import LimitCoupon from "../../components/coupon_pub/main/LimitCoupon";
 import RewardBanner from "../../components/coupon_pub/main/RewardBanner";
 import MainPopup from "../../components/coupon_pub/common/Modal/MainPopup";
+import ModalLoading from "../../components/coupon_pub/common/Modal/ModalLoading";
 import ModalEnter from "../../components/coupon_pub/common/modal/ModalEnter";
 
 const Index = () => {
@@ -69,8 +70,7 @@ const Index = () => {
             {/* 혹시 이 상품 찾으세요? */}
             <MaybeCoupon
               pageTitle={[
-                "혹시 이 상품 찾으세요?",
-                <span className="titleEmoticon">🔍</span>,
+                "혹시 이 상품 찾으세요?", <span className="titleEmoticon">🔍</span>,
               ]}
             />
             {/* 프로모션 배너 */}
@@ -92,6 +92,8 @@ const Index = () => {
                 </p>
                 <p className={`${styleToast.toastSubTitle}`}>
                   결제할 때 사용해서 저렴하게 구매해 보세요
+
+                  
                   <i className={`${styleCommon.italic}`}>!</i>
                 </p>
                 <div className={`${styleToast.toastInfoBox}`}>
@@ -104,6 +106,7 @@ const Index = () => {
           {showMainPopup && (
             // <ModalEnter
             // />
+            // <ModalLoading />
             <MainPopup
 							onClose={() => {
 								setShowMainPopup(!showMainPopup);

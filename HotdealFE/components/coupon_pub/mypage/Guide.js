@@ -16,7 +16,7 @@ const Guide = () => {
         <ul className={`${styleGuide.guideList}`}>
           <li>
             <a href={`/coupon/`} className={`${styleCommon.container}`}>
-              <span>친구에게 선물한 내역</span>
+              <span>구매 내역</span>
             </a>
           </li>
           <li>

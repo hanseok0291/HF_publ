@@ -68,7 +68,7 @@ function ResultItem(props) {
             className={`${styleCommon.container} ${styleSwiper.SwiperTitle}`}
             style={{ fontSize: props.fontSize }}
           >
-            <em>100원딜 상품이</em> 3일만 이 가격<i>!</i><span>👀</span>
+            <em>100원딜 상품이</em>&nbsp;3일만 이 가격<i>!</i>&nbsp;<span>👀</span>
           </h2>
           <div className={`${styleCommon.container} ${styleSwiper.container}`}>
             <Swiper

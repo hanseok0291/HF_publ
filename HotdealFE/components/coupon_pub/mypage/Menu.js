@@ -26,16 +26,16 @@ const Menu = () => {
           <li className={`${styleMenu.menuStock}`}>
             <a href="#">보유</a>
           </li>
-          <li className={`${styleMenu.menuBuy}`}>
-            <a href="#">구매</a>
+          <li className={`${styleMenu.menuDraw}`}>
+            <a href="#">응모</a>
           </li>
           <li className={`${styleMenu.menuLike}`}>
             <a href="#">좋아요</a>
           </li>
         </ul>
       </div>
-      {/* <PossibleCoupon /> */}
-      <PossibleCouponEmpty />
+      <PossibleCoupon />
+      {/* <PossibleCouponEmpty /> */}
       <Guide />
       {/* <Footer /> */}
     </>

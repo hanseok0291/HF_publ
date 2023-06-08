@@ -35,14 +35,18 @@ const ModalHundredGiftEntry = ({ show, onClose }) => {
            <h4>선물 가능 응모권 도착</h4>
            <p>지금만 선물할 수 있어요. <br /> 선물 받은 친구는 1회 무료 응모<i>!</i></p>
            <div className={styleModal.formWrap}>
-            <div className={styleModal.textWrap}>
-              <span>받는 사람</span>
-              <button type="button">연락처 검색</button>
-            </div>
-            <div className={styleModal.inputWrap}>
-              <input type="text" className={styleModal.name} placeholder="이름"/>
-              <input type="text" className={styleModal.phone} placeholder="휴대폰 번호"/>
-            </div>
+              <div className={styleModal.textWrap}>
+                <span>받는 사람</span>
+                <button type="button">연락처 검색</button>
+              </div>
+              <div className={styleModal.inputWrap}>
+                <input type="text" className={styleModal.name} placeholder="이름"/>
+                <input type="text" className={styleModal.phone} placeholder="휴대폰 번호"/>
+                <div className={styleModal.HundredToastError}>
+                  <span>휴대폰 번호를 확인해주세요<i>!</i></span>
+                  {/* <span>이름을 확인해주세요<i>!</i></span> */}
+                </div>
+              </div>
            </div>
            <button type="button" className={styleModal.defaultBtn}>응모권 선물하기</button>
           </div>

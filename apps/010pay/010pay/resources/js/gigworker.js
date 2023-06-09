@@ -79,13 +79,16 @@ $(window).load(function(){
         }
       })
       $this.closest(".boxInput").find(".inputDel").hide();
-      $this.closest(".boxInput").removeClass("shadow");
+      
       if(!valCheck && !blurDelay ){
         $this.closest(".boxInput").removeClass("active");
       }
+      if(!$this.hasClass("lastInput")){
+        $this.closest(".boxInput").removeClass("shadow");
+      }
     });
 
-    $(".boxInput.residentNum,.boxInput.phoneNum").on("click", function(){
+    $(".boxInput.residentNum, .boxInput.phoneNum").on("click", function(){
       var $this = $(this);
       var valCheck = false;
       $this.find("input").each(function(i, e){
@@ -253,4 +256,11 @@ function maxLengthCheck(object){
   if (object.value.length > object.maxLength){
     object.value = object.value.slice(0, object.maxLength);
   }    
+}
+
+// 주민번호 뒷자리 함수
+function lastInputCheck(e){
+  for(var i = 0; i < e;i++){
+    $(".lastInput").closest(".boxInput").find(".inputDot span").eq(i).addClass("fill");
+  }
 }

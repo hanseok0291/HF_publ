@@ -80,13 +80,19 @@
 						<li>
 							<div class="input input-credit">
 								<div class="input-wrap">
-									<input type="tel" class="input" maxlength="4" placeholder="Card Number">
+									<input type="tel" class="input" maxlength="4" id="cardNum1" placeholder="Card Number">
 									<span class="dash">-</span>
-									<input type="tel" class="input" maxlength="4">
+									<input type="tel" class="input" maxlength="4" id="cardNum2">
 									<span class="dash dash2">-</span>
-									<input type="password" class="input" maxlength="4">
+									<input type="password" class="input" maxlength="4" id="cardNum3">
 									<span class="dash dash3">-</span>
-									<input type="password" class="input" maxlength="4">
+									<input type="password" class="input" maxlength="4" id="cardNum4">
+								</div>
+								<!-- <div class="text-placeholder">Card Number</div> -->
+								<div class="card-brand">
+									<img src="../../../images/custom/logo/visa.png" alt="" class="visa">
+									<img src="../../../images/custom/logo/mclogo-for-footer.svg" alt="" class="master">
+									<img src="../../../images/custom/logo/jcb_emblem_logo.svg" alt="" class="jcb">
 								</div>
 							</div>
 							<div class="text-error"></div>
@@ -205,6 +211,7 @@
 		// 신용카드 번호 구분 기호(-) 활성
 		var $creditInput = $(".input-credit .input");
 		var $creditWrap = $(".input-credit");
+		var $cardWrap = $(".card-brand");
 
 		// 입력 값 상태별 UI
 		$creditInput.on('click keyup', function() {
@@ -218,7 +225,30 @@
 			if (valTotal == 0) {
 				$creditInput.eq(0).focus(); // 클릭 시 첫번째 input 포커스
 				$creditWrap.removeClass("fill").addClass("focus"); // 입력 값 없는 경우 UI
+				$cardWrap.hide(); // 입력 값 없는 경우 카드CI 비노출
+			} else if (valTotal == 4) {
+				// 카드 브랜드 체크
+				var cardBrandCheck = document.getElementById('cardNum1');
+				console.log(cardBrandCheck.value.length);
+				if (cardBrandCheck.value.length == '4') {
+					if (cardBrandCheck.value >= 4000 && cardBrandCheck.value < 5000) {
+						$('.card-brand img').hide();
+						$('.visa').show();
+					} else if (cardBrandCheck.value >= 5100 && cardBrandCheck.value < 5599) {
+						$('.card-brand img').hide();
+						$('.master').show();
+					} else if (cardBrandCheck.value >= 2221 && cardBrandCheck.value < 2721) {
+						$('.card-brand img').hide();
+						$('.master').show();
+					} else if (cardBrandCheck.value == 3528 || cardBrandCheck.value == 3589) {
+						$('.card-brand img').hide();
+						$('.jcb').show();
+					} else {
+						$('.card-brand img').hide();
+					}
+				} 
 			} else {
+				$cardWrap.show();
 				$creditWrap.addClass("fill"); // 입력 값 있는 경우 UI
 			}
 		});

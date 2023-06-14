@@ -30,7 +30,7 @@
 
 <link rel="stylesheet" href="../../../css/owl.carousel.min.css">
 <link rel="stylesheet" href="../../../css/slick.min.css">
-<link rel="stylesheet" href="../../../css/common.css?ver=230512">
+<link rel="stylesheet" href="../../../css/common.css?ver=230616">
 <!--[if lt IE 9]>
 <script type="text/javascript" src="../../../js/html5shiv.js"></script>
 <script type="text/javascript" src="../../../js/respond.min.js"></script>
@@ -80,7 +80,7 @@
 						<li>
 							<div class="input input-credit">
 								<div class="input-wrap">
-									<input type="tel" class="input" maxlength="4" id="cardNum1" placeholder="Card Number">
+									<input type="tel" class="input" maxlength="4" id="cardNum1" placeholder="CardNumber">
 									<span class="dash">-</span>
 									<input type="tel" class="input" maxlength="4" id="cardNum2">
 									<span class="dash dash2">-</span>
@@ -213,13 +213,84 @@
 		var $creditWrap = $(".input-credit");
 		var $cardWrap = $(".card-brand");
 
+		var changeChk1 = 0;
+		var changeChk2 = 0;
+		var changeChk3 = 0;
+		$('#cardNum1').on('click keyup', function() {
+			var charLimit = $(this).attr("maxlength");
+			if(changeChk1 == 0) {
+				if (this.value.length >= 4) {
+					changeChk1 = 1;
+					$('#cardNum2').focus();
+					var cardBrandCheck = document.getElementById('cardNum1');
+					if (cardBrandCheck.value.length == '4') {
+						if (cardBrandCheck.value >= 4000 && cardBrandCheck.value < 5000) {
+							$('.card-brand img').hide();
+							$('.visa').show();
+						} else if (cardBrandCheck.value >= 5100 && cardBrandCheck.value < 5599) {
+							$('.card-brand img').hide();
+							$('.master').show();
+						} else if (cardBrandCheck.value >= 2221 && cardBrandCheck.value < 2721) {
+							$('.card-brand img').hide();
+							$('.master').show();
+						} else if (cardBrandCheck.value == 3528 || cardBrandCheck.value == 3589) {
+							$('.card-brand img').hide();
+							$('.jcb').show();
+						} else {
+							$('.card-brand img').hide();
+						}
+					} 
+				}
+				return true;
+			} else if (changeChk1 == 1) {
+				if (this.value.length >= 4) {
+					$('.card-brand img').hide();
+					changeChk1 = 0;
+					$('#cardNum1').val('');
+				}
+				return false;
+			}
+		});
+		$('#cardNum2').on('click keyup', function() {
+			var charLimit = $(this).attr("maxlength");
+			if(changeChk2 == 0) {
+				if (this.value.length >= 4) {
+					changeChk2 = 1;
+					$('#cardNum3').focus();
+				}
+				return true;
+			} else if (changeChk2 == 1) {
+				if (this.value.length >= 4) {
+					changeChk2 = 0;
+					$('#cardNum2').val('');
+				}
+				return false;
+			}
+		});
+		$('#cardNum3').on('click keyup', function() {
+			var charLimit = $(this).attr("maxlength");
+			if(changeChk3 == 0) {
+				if (this.value.length >= 4) {
+					changeChk3 = 1;
+					$('#cardNum4').focus();
+				}
+				return true;
+			} else if (changeChk3 == 1) {
+				if (this.value.length >= 4) {
+					changeChk3 = 0;
+					$('#cardNum3').val('');
+				}
+				return false;
+			}
+		});
+
 		// 입력 값 상태별 UI
 		$creditInput.on('click keyup', function() {
 			// 입력 글자 수 체크
 			var valTotal = 0;
 			for (var i=0; i<4; i++) {
 				valTotal += $creditInput.eq(i).val().length;
-			}
+			}			
 
 			// 입력 값 유무
 			if (valTotal == 0) {
@@ -229,7 +300,6 @@
 			} else if (valTotal == 4) {
 				// 카드 브랜드 체크
 				var cardBrandCheck = document.getElementById('cardNum1');
-				console.log(cardBrandCheck.value.length);
 				if (cardBrandCheck.value.length == '4') {
 					if (cardBrandCheck.value >= 4000 && cardBrandCheck.value < 5000) {
 						$('.card-brand img').hide();
@@ -252,6 +322,18 @@
 				$creditWrap.addClass("fill"); // 입력 값 있는 경우 UI
 			}
 		});
+
+		var varUA = navigator.userAgent.toLowerCase(); //userAgent 값 얻기
+ 	
+		if (varUA.match('android') != null) { 
+			$('.en.wrap').addClass('aos');
+			// alert('접속기기가 안드로이드입니다.');//안드로이드 일 경우 실행문구
+		} else if (varUA.indexOf("iphone")>-1||varUA.indexOf("ipad")>-1||varUA.indexOf("ipod")>-1) { 
+			// alert('접속기기가 iOS입니다.');//iOS 일 경우 실행문구
+			$('.en.wrap').addClass('ios');
+		} else {
+			// alert('접속기기가 안드로이드나 iOS가 아닙니다.');//나머지 일 경우 실행문구
+		}
 	})
 </script>
 </body>

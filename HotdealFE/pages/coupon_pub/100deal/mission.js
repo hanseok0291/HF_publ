@@ -184,8 +184,9 @@ const Index = () => {
                   <div className={styleHundredDeal.textWrap}>
                     <h4 className={styleHundredDeal.brand}>BHC</h4>
                     <p className={styleHundredDeal.product}>핫후라이드+콜라1.25L</p>
-                    <p className={styleHundredDeal.price}>22,000원</p>
-                    <p className={styleHundredDeal.discountPrice}><span className={styleHundredDeal.percent}>25%</span>17,600원</p>
+                    <div className={styleHundredDeal.priceWrap}>
+                      <p className={styleHundredDeal.discountPrice}>17,600원</p>
+                    </div>
                   </div>
                   <div className={styleHundredDeal.imgWrap}>
                     <img src="../../../images/100deal/sample/img-01.png" alt="" />
@@ -196,8 +197,38 @@ const Index = () => {
                   <div className={styleHundredDeal.textWrap}>
                     <h4 className={styleHundredDeal.brand}>BHC</h4>
                     <p className={styleHundredDeal.product}>핫후라이드+콜라1.25L</p>
-                    <p className={styleHundredDeal.price}>22,000원</p>
-                    <p className={styleHundredDeal.discountPrice}><span className={styleHundredDeal.percent}>25%</span>17,600원</p>
+                    <div className={styleHundredDeal.priceWrap}>
+                      <p className={styleHundredDeal.price}>22,000원</p>
+                      <p className={styleHundredDeal.discountPrice}><span className={styleHundredDeal.percent}>25%</span>17,600원</p>
+                    </div>
+                  </div>
+                  <div className={styleHundredDeal.imgWrap}>
+                    <img src="../../../images/100deal/sample/img-01.png" alt="" />
+                  </div>
+                  <a className={styleHundredDeal.btn} href="#">선물하기</a>
+                </li>
+                <li>
+                  <div className={styleHundredDeal.textWrap}>
+                    <h4 className={styleHundredDeal.brand}>BHC</h4>
+                    <p className={styleHundredDeal.product}>핫후라이드+콜라1.25L</p>
+                    <div className={styleHundredDeal.priceWrap}>
+                      <p className={styleHundredDeal.price}>22,000원</p>
+                      <p className={styleHundredDeal.discountPrice}><span className={styleHundredDeal.percent}>25%</span>17,600원</p>
+                    </div>
+                  </div>
+                  <div className={styleHundredDeal.imgWrap}>
+                    <img src="../../../images/100deal/sample/img-01.png" alt="" />
+                  </div>
+                  <a className={styleHundredDeal.btn} href="#">선물하기</a>
+                </li>
+                <li>
+                  <div className={styleHundredDeal.textWrap}>
+                    <h4 className={styleHundredDeal.brand}>BHC</h4>
+                    <p className={styleHundredDeal.product}>핫후라이드+콜라1.25L</p>
+                    <div className={styleHundredDeal.priceWrap}>
+                      <p className={styleHundredDeal.price}>22,000원</p>
+                      <p className={styleHundredDeal.discountPrice}><span className={styleHundredDeal.percent}>25%</span>17,600원</p>
+                    </div>
                   </div>
                   <div className={styleHundredDeal.imgWrap}>
                     <img src="../../../images/100deal/sample/img-01.png" alt="" />

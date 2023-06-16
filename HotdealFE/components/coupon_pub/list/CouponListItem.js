@@ -4,8 +4,6 @@ import styleCouponList from "../../../styles/coupon_pub/CouponList.module.css";
 const CouponListItem = (
   {
     listItem: {
-      labelType1, // 한정할인 노출
-      labelType2, // PICK 노출
       infoImg, // 이미지 경로
       infoBrand, // 상품명
       infoProduct, // 상품 설명
@@ -14,6 +12,10 @@ const CouponListItem = (
       infoDcPrice, // 할인 가격
       addInfo1, // 종료임박
       addInfo2, //포인트 적립
+      addInfo3, //구매 찬스
+      addInfo4, //인기 상품
+      addInfo5, //PICK
+      addInfo6, //한정 할인
     },
     slideType // 홈 슬라이드에서 사용시 추가
   },
@@ -23,14 +25,6 @@ const CouponListItem = (
       <button href={`/coupon_pub/`}>
         <div className={`${styleCouponList.imgBox} ${slideType ? styleCouponList.slideBox : ""}`}>
           <img src={infoImg} alt="핫딜 TEST"></img>
-          {labelType1 && (
-            <span className={`${styleCommon.label}`}>한정할인</span>
-          )}
-          {labelType2 && (
-            <span className={`${styleCommon.label}`}>
-              <i className={`${styleCommon.iconPick}`}></i>PICK
-            </span>
-          )}
         </div>
         <div className={styleCouponList.infoBox}>
           <p className={styleCouponList.infoBrand}>{infoBrand}</p>
@@ -48,9 +42,13 @@ const CouponListItem = (
           </div>
           <div className={styleCouponList.addInfoWrap}>
             {addInfo1 && (
-              <span className={styleCouponList.warning}>종료임박</span>
+              <span className={styleCouponList.end}>종료 임박</span>
             )}
-            {addInfo2 && <span>포인트 적립</span>}
+            {addInfo2 && <span className={styleCouponList.point}>포인트 적립</span>}
+            {addInfo3 && <span className={styleCouponList.deal}>구매 찬스</span>}
+            {addInfo4 && <span className={styleCouponList.popular}>인기 상품</span>}
+            {addInfo5 && <span className={styleCouponList.pick}>PICK</span>}
+            {addInfo6 && <span className={styleCouponList.time}>한정 할인</span>}
           </div>
         </div>
       </button>

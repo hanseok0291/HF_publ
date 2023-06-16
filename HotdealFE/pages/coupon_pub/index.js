@@ -24,6 +24,8 @@ import RewardBanner from "../../components/coupon_pub/main/RewardBanner";
 import MainPopup from "../../components/coupon_pub/common/Modal/MainPopup";
 import ModalLoading from "../../components/coupon_pub/common/Modal/ModalLoading";
 import ModalEnter from "../../components/coupon_pub/common/modal/ModalEnter";
+import ModalHundredComing from "../../components/coupon_pub/common/Modal/ModalHundredComing";
+import HundredDeal from "../../components/coupon_pub/main/HundredDeal";
 
 const Index = () => {
   const router = useRouter();
@@ -66,11 +68,12 @@ const Index = () => {
             {/* 특별한 혜택 놓치지 마세요 */}
             <ReturnPoint />
             {/* 지금 가장 인기 있어요 */}
-            <HotBrand />
+            <HundredDeal />
+            {/* <HotBrand /> */}
             {/* 혹시 이 상품 찾으세요? */}
             <MaybeCoupon
               pageTitle={[
-                "혹시 이 상품 찾으세요?", <span className="titleEmoticon">🔍</span>,
+                "혹시 이 상품 찾으세요?", <span key="123" className="titleEmoticon">🔍</span>,
               ]}
             />
             {/* 프로모션 배너 */}
@@ -107,7 +110,7 @@ const Index = () => {
             // <ModalEnter
             // />
             // <ModalLoading />
-            <MainPopup
+            <ModalHundredComing
 							onClose={() => {
 								setShowMainPopup(!showMainPopup);
 							}}

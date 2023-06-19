@@ -12,7 +12,7 @@ $(function () {
 
       $("body").addClass("password-wrap");
 
-      var load = prompt("비밀번호는?", "");
+      var load = prompt("비밀번호 입력", "");
 
       if (load == "123123") {
         $("body").removeClass("password-wrap");

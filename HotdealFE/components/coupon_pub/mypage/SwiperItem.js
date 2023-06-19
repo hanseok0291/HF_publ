@@ -22,7 +22,7 @@ function SwiperWrap(props) {
 			<div className={`${styleSwiper.SwiperWrap} ${styleSwiper.SwiperWrapList} ${stylePossibleCoupon.SwiperWrapList}`}>
 			<div className={`${stylePossibleCoupon.dottedWrap}`}></div>
 			<div className={`${stylePossibleCoupon.SwiperWrap}`}>
-				<h2 className={`${styleCommon.container} ${stylePossibleCoupon.SwiperTitle}`}>사용가능한 선물&nbsp;<span>12</span>개가 있어요.
+				<h2 className={`${styleCommon.container} ${stylePossibleCoupon.SwiperTitle}`}><p>사용가능한 선물&nbsp;<span>12</span>개가 있어요.</p>
 				<a href="#" className={stylePossibleCoupon.locate}>더보기</a>
 				</h2>
 				<div className={`${styleCommon.container} ${styleSwiper.container}`}>
@@ -40,6 +40,9 @@ function SwiperWrap(props) {
 							<div className={styleSwiper.infoBox}>
 								<p className={styleSwiper.infoBrand}>스타벅스</p>
 								<p className={styleSwiper.infoProduct}>아이스 카페 라떼 T</p>
+								<p className={`${stylePossibleCoupon.infoAuto} ${stylePossibleCoupon.on}`}>
+									<i className={`${styleCommon.auto} ${styleCommon.on}`}></i>자동 사용
+								</p>
 							</div>
 						</SwiperSlide>
 						<SwiperSlide>

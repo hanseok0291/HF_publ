@@ -12,6 +12,7 @@ import Footer from "../../../components/coupon_pub/common/Footer";
 
 import List from "../../../components/coupon_pub/100deal/List";
 import ModalHundredResult from "../../../components/coupon_pub/common/Modal/ModalHundredResult";
+import ModalHundredWinner from "../../../components/coupon_pub/common/Modal/ModalHundredWinner";
 
 const Index = () => {
   //헤더 아이콘 디폴트 세팅
@@ -38,6 +39,7 @@ const Index = () => {
         </div>
         {/* 응모 결과 팝업 */}
         {/* <ModalHundredResult/> */}
+        <ModalHundredWinner />
       </Layout>
     </>
   );

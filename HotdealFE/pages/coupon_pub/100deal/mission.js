@@ -184,8 +184,9 @@ const Index = () => {
                   <div className={styleHundredDeal.textWrap}>
                     <h4 className={styleHundredDeal.brand}>BHC</h4>
                     <p className={styleHundredDeal.product}>핫후라이드+콜라1.25L</p>
-                    <p className={styleHundredDeal.price}>22,000원</p>
-                    <p className={styleHundredDeal.discountPrice}><span className={styleHundredDeal.percent}>25%</span>17,600원</p>
+                    <div className={styleHundredDeal.priceWrap}>
+                      <p className={styleHundredDeal.discountPrice}>17,600원</p>
+                    </div>
                   </div>
                   <div className={styleHundredDeal.imgWrap}>
                     <img src="../../../images/100deal/sample/img-01.png" alt="" />
@@ -196,8 +197,38 @@ const Index = () => {
                   <div className={styleHundredDeal.textWrap}>
                     <h4 className={styleHundredDeal.brand}>BHC</h4>
                     <p className={styleHundredDeal.product}>핫후라이드+콜라1.25L</p>
-                    <p className={styleHundredDeal.price}>22,000원</p>
-                    <p className={styleHundredDeal.discountPrice}><span className={styleHundredDeal.percent}>25%</span>17,600원</p>
+                    <div className={styleHundredDeal.priceWrap}>
+                      <p className={styleHundredDeal.price}>22,000원</p>
+                      <p className={styleHundredDeal.discountPrice}><span className={styleHundredDeal.percent}>25%</span>17,600원</p>
+                    </div>
+                  </div>
+                  <div className={styleHundredDeal.imgWrap}>
+                    <img src="../../../images/100deal/sample/img-01.png" alt="" />
+                  </div>
+                  <a className={styleHundredDeal.btn} href="#">선물하기</a>
+                </li>
+                <li>
+                  <div className={styleHundredDeal.textWrap}>
+                    <h4 className={styleHundredDeal.brand}>BHC</h4>
+                    <p className={styleHundredDeal.product}>핫후라이드+콜라1.25L</p>
+                    <div className={styleHundredDeal.priceWrap}>
+                      <p className={styleHundredDeal.price}>22,000원</p>
+                      <p className={styleHundredDeal.discountPrice}><span className={styleHundredDeal.percent}>25%</span>17,600원</p>
+                    </div>
+                  </div>
+                  <div className={styleHundredDeal.imgWrap}>
+                    <img src="../../../images/100deal/sample/img-01.png" alt="" />
+                  </div>
+                  <a className={styleHundredDeal.btn} href="#">선물하기</a>
+                </li>
+                <li>
+                  <div className={styleHundredDeal.textWrap}>
+                    <h4 className={styleHundredDeal.brand}>BHC</h4>
+                    <p className={styleHundredDeal.product}>핫후라이드+콜라1.25L</p>
+                    <div className={styleHundredDeal.priceWrap}>
+                      <p className={styleHundredDeal.price}>22,000원</p>
+                      <p className={styleHundredDeal.discountPrice}><span className={styleHundredDeal.percent}>25%</span>17,600원</p>
+                    </div>
                   </div>
                   <div className={styleHundredDeal.imgWrap}>
                     <img src="../../../images/100deal/sample/img-01.png" alt="" />
@@ -231,8 +262,8 @@ const Index = () => {
         {/* 응모권 획득 */}
         {/* <ModalHundredArrival /> */}
         {/* <ModalEntryComplete /> */}
-        <ModalAlert message={`오늘의 참여 기회를 모두 사용하였습니다.\n내일 다시 이용해 주세요.`} />
-        <ModalAlert message={`룰렛 1회당 100P가 필요합니다.\n부족한 포인트를 모아 다시 이용해 주세요.`} />
+        {/* <ModalAlert message={`오늘의 참여 기회를 모두 사용하였습니다.\n내일 다시 이용해 주세요.`} />
+        <ModalAlert message={`룰렛 1회당 100P가 필요합니다.\n부족한 포인트를 모아 다시 이용해 주세요.`} /> */}
       </Layout>
     </>
   );

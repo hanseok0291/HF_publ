@@ -182,7 +182,7 @@ const Index = () => {
               <li>
                 <a href="#" onClick={(e) => {
                   e.preventDefault();
-                  router.push({pathname:router.pathname, query:{...router.query, modalProvider:"true"}});
+                  router.push({pathname:router.pathname, query:{...router.query, modalProvider:"true"}}, undefined, {scroll:false});
                 }}>
                   <p>
                     꽝 없는 포인트 룰렛으로 <br />

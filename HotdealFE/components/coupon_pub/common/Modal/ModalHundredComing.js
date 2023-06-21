@@ -29,7 +29,7 @@ const ModalHundredComing = ({
     navigation: true,
     modules: [EffectFade, Autoplay, Controller],
     autoplay: {
-      delay: 1200
+      delay: 1500
     },
     loop: true,
   };
@@ -61,13 +61,19 @@ const ModalHundredComing = ({
               className="slide1"
             >
               <SwiperSlide>
+                <img src="../images/100deal/comingsoon-img-05-1.png" alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="../images/100deal/comingsoon-img-01-1.png" alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
                 <img src="../images/100deal/comingsoon-img-02-1.png" alt="" />
               </SwiperSlide>
               <SwiperSlide>
-                  <img src="../images/100deal/comingsoon-img-01-1.png" alt="" />
+                <img src="../images/100deal/comingsoon-img-03-1.png" alt="" />
               </SwiperSlide>
               <SwiperSlide>
-                <img src="../images/100deal/comingsoon-img-03-1.png" alt="" />
+                <img src="../images/100deal/comingsoon-img-04-1.png" alt="" />
               </SwiperSlide>
             </Swiper>
             <Swiper
@@ -78,10 +84,16 @@ const ModalHundredComing = ({
                 <img className="bigImg" src="../images/100deal/comingsoon-img-01.png" alt="" />
               </SwiperSlide>
               <SwiperSlide>
-                  <img className="bigImg" src="../images/100deal/comingsoon-img-03.png" alt="" />
+                <img className="bigImg" src="../images/100deal/comingsoon-img-02.png" alt="" />
               </SwiperSlide>
               <SwiperSlide>
-                <img className="bigImg" src="../images/100deal/comingsoon-img-02.png" alt="" />
+                <img className="bigImg" src="../images/100deal/comingsoon-img-03.png" alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img className="bigImg" src="../images/100deal/comingsoon-img-04.png" alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img className="bigImg" src="../images/100deal/comingsoon-img-05.png" alt="" />
               </SwiperSlide>
             </Swiper>
             <Swiper
@@ -89,10 +101,16 @@ const ModalHundredComing = ({
               className="slide3"
             >
               <SwiperSlide>
-                <img src="../images/100deal/comingsoon-img-03-1.png" alt="" />
+                <img src="../images/100deal/comingsoon-img-02-1.png" alt="" />
               </SwiperSlide>
               <SwiperSlide>
-                  <img src="../images/100deal/comingsoon-img-02-1.png" alt="" />
+                  <img src="../images/100deal/comingsoon-img-03-1.png" alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="../images/100deal/comingsoon-img-04-1.png" alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="../images/100deal/comingsoon-img-05-1.png" alt="" />
               </SwiperSlide>
               <SwiperSlide>
                 <img src="../images/100deal/comingsoon-img-01-1.png" alt="" />

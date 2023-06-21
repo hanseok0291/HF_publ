@@ -19,6 +19,7 @@ import ModalHundredInfo from "../../../components/coupon_pub/common/Modal/ModalH
 
 
 const Index = () => {
+  const router = useRouter();
   const [totalSlides, setTotalSlides] = useState(0); // 슬라이드 개수 상태
   const [isEntryOpen, setIsEntryOpen] = useState(false);
   const [isHundredOpen, setIsHundredOpen] = useState(false);
@@ -179,7 +180,10 @@ const Index = () => {
             </div>
             <ul className={styleHundredDeal.entryContent}>
               <li>
-                <a href="#">
+                <a href="#" onClick={(e) => {
+                  e.preventDefault();
+                  router.push({pathname:router.pathname, query:{...router.query, modalProvider:"true"}});
+                }}>
                   <p>
                     꽝 없는 포인트 룰렛으로 <br />
                     <b>매일 응모권 받기</b>

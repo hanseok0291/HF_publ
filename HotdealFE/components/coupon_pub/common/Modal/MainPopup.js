@@ -54,20 +54,20 @@ const MainPopup = ({
                     className={`${styleModal.popupTitle} ${styleModal.popupTitle2}`}
                   >
                     <p className={styleModal.popupSubTitle}>
-										5월은 감사의 달
+										여름 끄떡없템
                     </p>
                     <strong className={styleModal.popupMainTitle}>
-										사랑을 담아
+										시원하게
                       <br />
                       <span className={styleCommon.highlight}>
-											20% 할인 EVENT<i className={`${styleCommon.italic}`}>!</i>
+											선착순 20% 할인<i className={`${styleCommon.italic}`}>!</i>
                       </span>
                     </strong>
                   </h3>
                   <p className={styleModal.modalImgBox}>
                     <img
-                      src="../images/coupon/popup/may.png"
-                      alt="5월은 감사의 달 사랑을 담아 20% 할인 EVENT!"
+                      src="../images/coupon/popup/june.png"
+                      alt="여름 끄떡없템 선착순 20% 할인!"
                     />
                   </p>
                 </div>

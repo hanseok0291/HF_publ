@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../../css/jquery-ui.css" />
     <link rel="stylesheet" href="../../css/owl.carousel.min.css" />
     <link rel="stylesheet" href="../../css/slick.min.css" />
-    <link rel="stylesheet" href="../../css/common.css?ver=20230602" />
+    <link rel="stylesheet" href="../../css/common.css?ver=20230613" />
     <!--[if lt IE 9]>
       <script type="text/javascript" src="../../js/html5shiv.js"></script>
       <script type="text/javascript" src="../../js/respond.min.js"></script>
@@ -45,7 +45,7 @@
           <div class="section section-visual">
 				   <div id="app">
 						 <h2 class="wrap-drawing-title">행운의 캡슐 뽑기</h2>
-						 <h3 class="wrap-drawing-title-sub">10P 넣으면 랜덤 포인트가 뿅<i class="italic">!</i></h3>
+						 <h3 class="wrap-drawing-title-sub">매일 최대 5번 랜덤 포인트가 뿅<i class="italic">!</i></h3>
 						 <div class="bg-wrap">
 							 <p class="bg-money animation-bounce"></p>
 							 <p class="bg-music animation-bounce"></p>
@@ -61,14 +61,8 @@
 						 </div>
 					 </div>
 					 <div class="machine"></div>
-					 <div class="tooltip"></div>
 					 <button type="button" id="move-button">
 						 <p class="title"><span>10</span>P로 뽑기</p>
-						 <div class="box">
-							<p class="info-text">참여 가능</p>
-							<p class="info-count">5</p>
-							<p>회</p>
-						 </div>
 					 </button>
           </div>
           <!-- //section - visual -->
@@ -198,18 +192,20 @@
 					$('.tooltip').fadeOut();
 				}
 			});
-			
 
 			let { Engine, Render, Runner, World, Bodies, Body, Events, Composite } = Matter;
       let engine = Engine.create();
+      let world = engine.world;
 
-			function setup() {
 			const width = 569;
-      const height = 732;
+			const height = 732;
 			let isMoving = false;
 			var startX = width / 2;
 			var startY = height / 2 - 20;
 			
+			function setup() {
+			}
+			setup();
 			// create a renderer
 			let render = Render.create({
 				element: document.getElementById('app'),
@@ -227,61 +223,60 @@
 					window.requestAnimationFrame(update);
 				}
 				// for (let i = 0; i < 3; i++) {
-					var circleBall1 = Bodies.circle(startX, startY, 40, {
-							render: {
-								density: 1,
-                frictionAir: 1,
-                restitution: 1,
-                friction: 0.01,
-								sprite: {
-										texture: '../../images/drawing/ball-blue.svg',
+				var circleBall1 = Bodies.circle(startX, startY, 40, {
+						render: {
+							density: 1,
+							frictionAir: 1,
+							restitution: 1,
+							friction: 0.01,
+							sprite: {
+									texture: '../../images/drawing/ball-blue.svg',
+								xScale: 1.5,
+								yScale: 1.5,
+							},
+						},
+				});
+				var circleBall2 = Bodies.circle(startX, startY, 40, {
+						render: {
+							frictionAir: 1,
+							restitution: 1,
+							friction: 0.01,
+							sprite: {
+									texture: '../../images/drawing/ball-red.svg',
 									xScale: 1.5,
 									yScale: 1.5,
-								},
 							},
-					});
-					var circleBall2 = Bodies.circle(startX, startY, 40, {
-							render: {
-                frictionAir: 1,
-                restitution: 1,
-                friction: 0.01,
-								sprite: {
-										texture: '../../images/drawing/ball-red.svg',
-										xScale: 1.5,
-										yScale: 1.5,
-								},
+						},
+				});
+				var circleBall3 = Bodies.circle(startX, startY, 33, {
+						render: {
+							frictionAir: 1,
+							density: 1.0005,
+							frictionAir: 1.06,
+							restitution: 1.3,
+							friction: 1.01,
+							sprite: {
+									texture: '../../images/drawing/ball-green.svg',
+								xScale: 1.5,
+								yScale: 1.5,
 							},
-					});
-					var circleBall3 = Bodies.circle(startX, startY, 33, {
-							render: {
-                frictionAir: 1,
-								density: 1.0005,
-								frictionAir: 1.06,
-								restitution: 1.3,
-								friction: 1.01,
-								sprite: {
-										texture: '../../images/drawing/ball-green.svg',
-									xScale: 1.5,
-									yScale: 1.5,
-								},
+						},
+				});
+				var circleBall4 = Bodies.circle(startX, startY, 33, {
+						render: {
+							friction: 1,
+							density: 1.0005,
+							frictionAir: 1.06,
+							restitution: 1.3,
+							friction: 1.01,
+							sprite: {
+									texture: '../../images/drawing/ball-blue.svg',
+								xScale: 1.5,
+								yScale: 1.5,
 							},
-					});
-					// o
-					var circleBall4 = Bodies.circle(startX, startY, 33, {
-							render: {
-								friction: 1,
-								density: 1.0005,
-								frictionAir: 1.06,
-								restitution: 1.3,
-								friction: 1.01,
-								sprite: {
-										texture: '../../images/drawing/ball-blue.svg',
-									xScale: 1.5,
-									yScale: 1.5,
-								},
-							},
-					});
-					var circleBall5 = Bodies.circle(startX - 5, startY, 33, {
+						},
+				});
+				var circleBall5 = Bodies.circle(startX - 5, startY, 33, {
 							render: {
 								mass: 10,
 								density: 1.0005,
@@ -337,38 +332,8 @@
 							},
 						},
 					});
-				// var circleBall9 = Bodies.circle(startX, startY, 35, {
-				// 		render: {
-				// 			mass: 10,
-				// 			density: 1.0005,
-				// 			frictionAir: 1.06,
-				// 			restitution: 1.3,
-				// 			friction: 1.01,
-				// 			sprite: {
-				// 					texture: '../../images/drawing/ball-blue.svg',
-				// 					xScale: 1.5,
-				// 					yScale: 1.5,
-				// 			},
-				// 		},
-				// 	});
-				// var circleBall10 = Bodies.circle(startX, startY, 45, {
-				// 		render: {
-				// 				mass: 10,
-				// 			density: 0.0005,
-				// 			frictionAir: 0.06,
-				// 			restitution: 0.3,
-				// 			friction: 0.01,
-				// 			sprite: {
-				// 					texture: '../../images/drawing/ball-green.svg',
-				// 					xScale: 1.5,
-				// 					yScale: 1.5,
-				// 			},
-				// 		},
-				// 	});
 				World.add(engine.world, [circleBall1, circleBall2, circleBall3, circleBall4, circleBall5, circleBall6, circleBall7, circleBall8]);
 				
-				World.add(engine.world, []);
-
 			// 버튼 요소를 선택합니다.
 			const button = document.getElementById('move-button');
 
@@ -379,10 +344,12 @@
 				button.addEventListener('click', () => {
 					isMoving = !isMoving; // 움직임 상태를 토글합니다.
 					isPosition = 0;
-					setInterval(update, 500);
 					// 이동 함수 호출
 					moveCircle();
+					// 2초후 공 움직임 멈춤
+					buttonStart();
 				});
+				
 				// 공을 가둘 영역 생성
 				var groundTop = Bodies.rectangle(width / 2, height / 2 - 250, 350, 5, { isStatic: true, render: { fillStyle: 'transparet', strokeStyle: 'transparet' } });
 				var groundRight = Bodies.rectangle(width / 2 + 155, height / 2 - 10, 5, 600, { isStatic: true, render: { fillStyle: 'transparet', strokeStyle: 'transparet' } });
@@ -413,9 +380,6 @@
 					let { x6, y6 } = circleBall6.position;
 					let { x7, y7 } = circleBall7.position;
 					let { x9, y9 } = circleBall8.position;
-					// let { x8, y8 } = circleBall9.position;
-					// let { x10, y10 } = circleBall10.position;
-					console.log(x);
 					if (isMovingRight) {
 					Body.translate(circleBall1, { x: 0, y: -8 });
 					Body.translate(circleBall2, { x: 2, y: -8 });
@@ -425,8 +389,6 @@
 					Body.translate(circleBall6, { x: 0, y: -6 });
 					Body.translate(circleBall7, { x: -6, y: -4 });
 					Body.translate(circleBall8, { x: 0, y: -4 });
-					// Body.translate(circleBall9, { x: 0, y: -2 });
-					// Body.translate(circleBall10, { x: 0, y: -3 });
 					setTimeout(() => {
 						isMovingRight = false;
 					}, 420);
@@ -439,8 +401,6 @@
 					Body.translate(circleBall6, { x: -1, y: 0 });
 					Body.translate(circleBall7, { x: -2, y: 0 });
 					Body.translate(circleBall8, { x: 0, y: 0 });
-					// Body.translate(circleBall9, { x: 0, y: 1 });
-					// Body.translate(circleBall10, { x: 0, y: 0 });
 					setTimeout(() => {
 						isMovingRight = true;
 					}, 450);
@@ -448,8 +408,23 @@
 					// 다음 프레임에 이동 함수 호출
 					requestAnimationFrame(moveCircle);
 				}
+
+			const buttonReStart = document.getElementById('promptOk');
+			
+			buttonReStart.addEventListener('click', () => {
+				ReStart();
+			});
+
+			function buttonStart() {
+				setTimeout(() => {
+					Matter.Render.stop(render);
+				}, 2500);
 			}
-			setup();
+			function ReStart() {
+				Matter.Render.run(render);
+				buttonStart();
+			};
+			
 		</script>
   </body>
 </html>

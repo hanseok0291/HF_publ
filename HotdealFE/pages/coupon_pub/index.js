@@ -69,7 +69,7 @@ const Index = () => {
             <ReturnPoint />
             {/* 지금 가장 인기 있어요 */}
             <HundredDeal />
-            {/* <HotBrand /> */}
+            <HotBrand />
             {/* 혹시 이 상품 찾으세요? */}
             <MaybeCoupon
               pageTitle={[

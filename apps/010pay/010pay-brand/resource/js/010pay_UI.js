@@ -246,6 +246,16 @@ var positionCtl = {
       }
     });
 
+    $(".main-view .section").each(function () {
+      if (
+        !$(this).hasClass("animation") &&
+        $(this).data("offsetTop") < position
+      ) {
+        console.log($(this).data("offsetTop"));
+        $(this).addClass("animation");
+      }
+    });
+
     $(".tax .section").each(function () {
       if (
         !$(this).hasClass("animation") &&

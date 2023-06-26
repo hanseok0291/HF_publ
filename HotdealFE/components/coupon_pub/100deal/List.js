@@ -164,6 +164,11 @@ export default function List() {
           </div>
         </div>
       </div>
+      {/* 응모 내역 없을시 */}
+      <div className={styleHundredDeal.noList}>
+        <p>응모한 내역이 없어요.</p>
+        <button type="button">지금 응모하기</button>
+      </div>
     </div>
   );
 }

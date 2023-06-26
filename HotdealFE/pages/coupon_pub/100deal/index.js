@@ -21,7 +21,7 @@ import ModalHundredInfo from "../../../components/coupon_pub/common/Modal/ModalH
 const Index = () => {
   const router = useRouter();
   const [totalSlides, setTotalSlides] = useState(0); // 슬라이드 개수 상태
-  const [isEntryOpen, setIsEntryOpen] = useState(false);
+  const [isEntryOpen, setIsEntryOpen] = useState(true);
   const [isHundredOpen, setIsHundredOpen] = useState(false);
 
   const tabRef = useRef();

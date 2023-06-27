@@ -830,6 +830,10 @@
   }
 }
 /* 기본설정 */
+.main-view {
+  overflow: hidden;
+}
+
 .main-view .container {
   margin: 0 auto;
 }
@@ -848,14 +852,15 @@
 }
 .main-view .section .add-ani {
   opacity: 0;
-  transition: 0.3s;
+  transition: 0.5s;
 }
 .main-view .section.animation .add-ani {
   opacity: 1;
 }
 .main-view .section.top-visual {
   background-color: #fff;
-  height: 640px;
+  height: 716px;
+  padding-top: 76px;
 }
 .main-view .section.top-visual .container {
   display: flex;
@@ -866,14 +871,13 @@
   overflow: hidden;
   width: 100%;
   max-width: none;
-  height: 640px;
-  margin-top: 76px;
+  height: 716px;
   border-radius: 0 0 240px 240px;
   transition: 0.1s;
 }
 .main-view .section.top-visual .container.active {
   opacity: 1;
-  height: 640px;
+  height: 716px;
 }
 .main-view .section.top-visual .container .bg {
   overflow: hidden;
@@ -1033,13 +1037,15 @@
 .main-view .section.top-visual .scrollNav {
   position: absolute;
   left: 50%;
-  bottom: -16px;
+  bottom: -40px;
   transform: translateX(-50%);
   width: 34px;
   height: 54px;
   background: url(../images/main/icon-scroll.png) 0 0/cover no-repeat;
   text-indent: -9999px;
   opacity: 0;
+  -webkit-animation: scrollNavAni 1.8s 6s ease-in-out infinite backwards;
+          animation: scrollNavAni 1.8s 6s ease-in-out infinite backwards;
 }
 .main-view .section.top-visual .scrollNav.web {
   display: block;
@@ -1295,8 +1301,8 @@
 }
 .main-view .section.second-section.animation.on .second-slide .swiper-wrapper .swiper-slide.swiper-slide-active.slide1 .logoBox {
   opacity: 1;
-  transition: 0.5s;
-  transition-delay: 1.5s;
+  transition: 0.8s;
+  transition-delay: 1.7s;
 }
 .main-view .section.second-section.animation.on .second-slide .swiper-wrapper .swiper-slide.swiper-slide-active.slide2 .money {
   opacity: 1;
@@ -1515,6 +1521,9 @@
 }
 
 @media only screen and (max-width: 767px) {
+  .main-view header .logo, .main-view .hearder .logo {
+    background-position-y: -65px;
+  }
   .main-view .section {
     width: 100%;
   }
@@ -1546,7 +1555,12 @@
   .main-view .section .textWrap .subText i {
     font-style: italic;
   }
+  .main-view .section.top-visual {
+    height: 630px;
+    padding-top: 0;
+  }
   .main-view .section.top-visual .container {
+    height: 630px;
     margin-top: 61px;
     border-radius: 0 0 60px 60px;
   }
@@ -1621,6 +1635,7 @@
     border-radius: 32px;
     text-align: center;
     box-shadow: 1px 4px 8px 0px rgba(0, 0, 0, 0.2);
+    color: #151515;
   }
   .main-view .section.top-visual .container .moBtn::before {
     display: block;
@@ -1645,6 +1660,8 @@
     background: none;
     text-indent: 0;
     color: #fff;
+    -webkit-animation: scrollNavAni 1.8s 3.4s ease-in-out infinite backwards;
+            animation: scrollNavAni 1.8s 3.4s ease-in-out infinite backwards;
   }
   .main-view .section.top-visual .scrollNav.mo::before {
     display: none;
@@ -2129,5 +2146,33 @@
   }
   100% {
     opacity: 0;
+  }
+}
+@-webkit-keyframes scrollNavAni {
+  0% {
+    opacity: 0;
+    margin-bottom: 0;
+  }
+  15% {
+    opacity: 1;
+    margin-bottom: 0;
+  }
+  100% {
+    opacity: 0;
+    margin-bottom: -30px;
+  }
+}
+@keyframes scrollNavAni {
+  0% {
+    opacity: 0;
+    margin-bottom: 0;
+  }
+  15% {
+    opacity: 1;
+    margin-bottom: 0;
+  }
+  100% {
+    opacity: 0;
+    margin-bottom: -30px;
   }
 }/*# sourceMappingURL=main.css.map */

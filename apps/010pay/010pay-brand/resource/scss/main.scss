@@ -5,6 +5,7 @@
 @import "animation";
 
 /* 기본설정 */
+.main-view { overflow: hidden; }
 .main-view .container {
   margin: 0 auto;
 
@@ -23,7 +24,7 @@
   position: relative;
   .add-ani {
     opacity: 0;
-    transition: 0.3s;
+    transition: 0.5s;
   }
 
   &.animation {
@@ -33,7 +34,8 @@
   }
   &.top-visual {
     background-color: #fff;
-    height: 640px;
+    height: 716px;
+    padding-top: 76px;
 
     .container {
       display: flex;
@@ -44,14 +46,13 @@
       overflow: hidden;
       width: 100%;
       max-width: none;
-      height: 640px;
-      margin-top: 76px;
+      height: 716px;
       border-radius: 0 0 240px 240px;
       transition: 0.1s;
 
       &.active {
         opacity: 1;
-        height: 640px;
+        height: 716px;
       }
 
       .bg {
@@ -233,13 +234,14 @@
     .scrollNav {
       position: absolute;
       left: 50%;
-      bottom: -16px;
+      bottom: -40px;
       transform: translateX(-50%);
       width: 34px;
       height: 54px;
       background: url(../images/main/icon-scroll.png) 0 0 / cover no-repeat;
       text-indent: -9999px;
       opacity: 0;
+      animation: scrollNavAni 1.8s 6s ease-in-out infinite backwards;
 
       &.web {
         display: block;
@@ -556,8 +558,8 @@
                 &.slide1 {
                   .logoBox {
                     opacity: 1;
-                    transition: 0.5s;
-                    transition-delay: 1.5s;
+                    transition: 0.8s;
+                    transition-delay: 1.7s;
                   }
                 }
                 &.slide2 {
@@ -822,6 +824,9 @@
 }
 
 @media only screen and (max-width: 767px) {
+  .main-view header .logo, .main-view .hearder .logo {
+    background-position-y: -65px;
+  }
   .main-view .section {
     width: 100%;
 
@@ -859,7 +864,11 @@
     
 
     &.top-visual {
+      height: 630px;
+      padding-top: 0;
+
       .container {
+        height: 630px;
         margin-top: 61px;
         border-radius: 0 0 60px 60px;
 
@@ -946,6 +955,7 @@
           border-radius: 32px;
           text-align: center;
           box-shadow: 1px 4px 8px 0px rgba(0, 0, 0, 0.2);
+          color: #151515;
 
           &::before {
             display: block;
@@ -972,6 +982,7 @@
           background: none;
           text-indent: 0;
           color: #fff;
+          animation: scrollNavAni 1.8s 3.4s ease-in-out infinite backwards;
 
           &::before {
             display: none;
@@ -1458,5 +1469,20 @@
   }
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes scrollNavAni {
+  0% {
+    opacity: 0;
+    margin-bottom: 0;
+  }
+  15% {
+    opacity: 1;
+    margin-bottom: 0;
+  }
+  100% {
+    opacity: 0;
+    margin-bottom: -30px;
   }
 }

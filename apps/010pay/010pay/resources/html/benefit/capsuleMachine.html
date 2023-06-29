@@ -335,8 +335,8 @@
 				World.add(engine.world, [circleBall1, circleBall2, circleBall3, circleBall4, circleBall5, circleBall6, circleBall7, circleBall8]);
 				
 			// 버튼 요소를 선택합니다.
-			const button = document.getElementById('move-button');
-
+			const button = document.getElementById('move-button'); 
+			let btnToggle = true;
 				// 매 프레임마다 호출되는 함수
 				function update() {}
 				// 버튼 클릭 이벤트 핸들러를 정의합니다.
@@ -344,10 +344,15 @@
 				button.addEventListener('click', () => {
 					isMoving = !isMoving; // 움직임 상태를 토글합니다.
 					isPosition = 0;
-					// 이동 함수 호출
-					moveCircle();
-					// 2초후 공 움직임 멈춤
-					buttonStart();
+					if(btnToggle == true) {
+						// 이동 함수 호출
+						moveCircle();
+						// 2초후 공 움직임 멈춤
+						buttonStart();
+						btnToggle = false;
+					} else {
+						ReStart();
+					}
 				});
 				
 				// 공을 가둘 영역 생성
@@ -418,6 +423,7 @@
 			function buttonStart() {
 				setTimeout(() => {
 					Matter.Render.stop(render);
+				$('#move-button').attr("disabled",false);
 				}, 2500);
 			}
 			function ReStart() {

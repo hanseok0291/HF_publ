@@ -118,7 +118,7 @@ const CouponList = (props) => {
           </div>
         </div>
       </div>
-      {/* <ModalBarcode /> */}
+      <ModalBarcode />
     </>
   );
 };

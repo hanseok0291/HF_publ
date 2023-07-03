@@ -33,7 +33,7 @@ const Index = () => {
         <div
           className={`${styleDefaultLayout.wrap} ${styleGiftCoupon.conWrap}`}
         >
-          <BuyTab tabItem={["선물받은 쿠폰", "프로모션 쿠폰"]}/>
+          {/* <BuyTab tabItem={["선물받은 쿠폰", "프로모션 쿠폰"]}/> */}
           {/* <GiftCoupon /> 선물받은 쿠폰 */}
           <PromotionCoupon /> 프로모션 쿠폰
         </div>

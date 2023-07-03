@@ -132,7 +132,7 @@ export default function HundredDealDetail({setDeadlinFixed }) {
           ref={tabConRef}
         >
           <div
-            className={`${styleCouponDetail.TabContent} ${styleCouponDetail.TabContentOn}`}
+            className={`${styleCouponDetail.TabContent}`}
           >
             <div
               className={`${styleCommon.container} ${styleCouponDetail.InfoTabContent}`}
@@ -171,7 +171,7 @@ export default function HundredDealDetail({setDeadlinFixed }) {
               <br />- 본 쿠폰은 유효기간 연장 및 환불되지 않습니다
             </div>
           </div>
-          <div className={`${styleCouponDetail.TabContent}`}>
+          <div className={`${styleCouponDetail.TabContent}  ${styleCouponDetail.TabContentOn}`}>
             <div className={`${styleCommon.container}`}>
               <div className={`${styleCouponDetail.TabContentBox}`}>
                 <p className={`${styleCouponDetail.TabContentTitle}`}>
@@ -240,6 +240,55 @@ export default function HundredDealDetail({setDeadlinFixed }) {
                   <br />
                   별도 전달{" "}
                 </p>
+              </div>
+              <div className={`${styleCouponDetail.TabContentBox} ${styleCouponDetail.hundredDealBox}`}>
+                <p className={`${styleCouponDetail.TabContentTitle}`}>
+                  100원딜 유의사항
+                </p>
+                <p className={styleCouponDetail.noteStrong}>010PAY 회원 누구나 100원딜에 응모할 수 있습니다.</p>
+                <p className={styleCouponDetail.noteStrong}>당첨자는 추첨을 통해 선정됩니다.(독립시행 확률로 1차, 당첨 인원수만큼 무작위 2차 선정)</p>
+                <p className={styleCouponDetail.noteStrong}>당첨자 발표 소식은 앱 푸쉬를 통해 안내되며, 당첨 여부는 앱 내에서 개별적으로 확인할 수 있습니다.</p>
+                <p className={styleCouponDetail.noteStrong}>정가가 5만 원을 초과하는 상품은 당첨자 본인의 제세공과금 22%를 부담하며, 관련 안내를 위해 회원 정보로 연락드립니다.(미성년자의 경우 법정대리인 명의로만 납부 가능)</p>
+                <p className={styleCouponDetail.noteStrong}>100원딜은 당사 및 공급사의 사정에 따라 별도 고지없이 조기 종료되거나 상품 옵션이 변경될 수 있으며, 이에 따른 교환 및 환불은 불가합니다.</p>
+                <p className={styleCouponDetail.noteStrong}>모바일 상품권은 오전 10시 당첨자 발표와 동시에 [my] 선물함으로 지급됩니다.</p>
+                <p className={styleCouponDetail.noteStrong}>실물 상품은 배송정보 오입력/반송/분식/파손 시 재발송 및 환불되지 않습니다.</p>
+                <p className={styleCouponDetail.noteStrong}>다음의 경우 응모 대상에서 제외되거나 당첨이 취소될 수 있습니다.</p>
+                <p className={styleCouponDetail.noteNormal}>부정한 방법으로 응모한 경우</p>
+                <p className={styleCouponDetail.noteNormal}>클릭 수 조작 등을 통해 응모 횟수가 비정상적 방법으로 산정된 경우</p>
+                <p className={styleCouponDetail.noteNormal}>당첨자 개별 연락 시 부재 중이거나 상품 수령 의사가 불명확한 경우</p>
+                <p className={styleCouponDetail.noteNormal}>상품 지급 및 배송 전 010PAY 회원을 탈퇴한 경우</p>
+                <p className={styleCouponDetail.noteNormal}>안내된 기한 내 제세공과금 및 관련 서류를 미납입/미제출한 경우</p>
+                <p className={styleCouponDetail.noteNormal}>미성년자의 법정대리인이 상품 수령을 거부한 경우</p>
+                <p className={styleCouponDetail.noteStrong}>100원딜 당첨 확률을 높이는 방법은 아래를 참고해 주세요.</p>
+                <p className={styleCouponDetail.noteNormal}>추가 응모로 응모 횟수가 많을수록 당첨 확률 UP</p>
+                <p className={styleCouponDetail.noteNormal}>미션 응모권으로만(포인트 룰렛/100원딜 공유/선물하기 성공 시 획득) 추가 응모 가능</p>
+                <p className={styleCouponDetail.noteNormal}>자세한 미션별 성공 기준은 미션 응모권 페이지 및 FAQ(응모권 획득 방법) 참고</p>
+                <p className={styleCouponDetail.noteStrong}>첫 응모 미당첨 포인트 관련 내용은 아래를 참고해 주세요.</p>
+                <table className={styleCouponDetail.noteTable}>
+                  <tr>
+                    <th>지급액</th>
+                    <th>비중</th>
+                  </tr>
+                  <tr>
+                    <td>10,000P</td>
+                    <td>0.1%</td>
+                  </tr>
+                  <tr>
+                    <td>1,000P</td>
+                    <td>1%</td>
+                  </tr>
+                  <tr>
+                    <td>100P</td>
+                    <td>5%</td>
+                  </tr>
+                  <tr>
+                    <td>1~99P</td>
+                    <td>93.9%</td>
+                  </tr>
+                </table>
+                <p className={styleCouponDetail.noteNormal}>최초 미당첨자에게 010PAY 포인트 최대 10,000P 랜덤 지급(유효기간 30일)</p>
+                <p className={styleCouponDetail.noteNormal}>미당첨 발표일 오전 11시 자동 지급(머니&amp;포인트 이용 내역에서 지급 여부 확인)</p>
+                <p className={styleCouponDetail.noteNormal}>지급 예정 포인트 포함 포인트 보유 한도(200만원)초과 시 초과 분 미지급</p>
               </div>
             </div>
           </div>

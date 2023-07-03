@@ -8,7 +8,7 @@
 .CouponDetailWrap { position: relative; padding-bottom: 125px; background-color: #fff; } 
 .CouponDetailWrap .infoBox { padding: 36px 0 50px; } 
 .CouponDetailWrap .InfoWrap { border-bottom: 1px solid #ececec; background-color: #fff; } 
-.CouponDetailWrap .InfoWrap.fixed { position: fixed; top: 58px; width: 100%; } 
+.CouponDetailWrap .InfoWrap.fixed { position: fixed; top: 58px; width: 100%; z-index: 1; } 
 .CouponDetailWrap .InfoTab { display: flex; justify-content: space-around; } 
 .CouponDetailWrap .InfoTab li { text-align: center; } 
 .CouponDetailWrap .InfoTab li button { position: relative; line-height: 49px; font-size: 15px; font-weight: 400; color: #151515; } 
@@ -17,9 +17,20 @@
 .CouponDetailWrap .containerBorder { border-bottom: 10px solid #f1f1f1; } 
 
 .CouponDetailInfoWrap.fixed { padding-top: 50px; } 
-.CouponDetailInfoWrap .InfoTabContent { padding: 30px 20px; font-size: 13px; color: #575757; } 
-.CouponDetailInfoWrap .InfoTabContent p { position: relative; padding-left: 7px; line-height: 20px; } 
-.CouponDetailInfoWrap .InfoTabContent p::before { content: '-'; position: absolute; top: 0; left: 0; } 
+.CouponDetailInfoWrap .InfoTabContent { padding: 30px 20px; font-size: 13px; color: #151515; line-height: 20px; } 
+.CouponDetailInfoWrap .InfoTabContent p { position: relative; padding-left: 7px; } 
+.CouponDetailInfoWrap .TabContentBox p { position: relative; padding-left: 7px; } 
+.CouponDetailInfoWrap .TabContentBox .noteStrong { font-size: 13px; color: #151515; line-height: 20px; } 
+.CouponDetailInfoWrap .TabContentBox .noteNormal { font-size: 11px; color: #575757; margin-left: 7px; line-height: 17px; } 
+.CouponDetailInfoWrap .TabContentBox .noteNormal + .noteStrong { margin-top: 12px; } 
+.CouponDetailInfoWrap .TabContentBox .noteStrong + .noteNormal { margin-top: 6px; } 
+.CouponDetailInfoWrap .TabContentBox p::before { content: '-'; position: absolute; top: 0; left: 0; } 
+.CouponDetailInfoWrap .TabContentBox .noteStrong::before { content: '-'; position: absolute; top: 0; left: 0; } 
+.CouponDetailInfoWrap .TabContentBox .noteNormal::before { content: '·'; position: absolute; top: 0; left: 0; } 
+.CouponDetailInfoWrap .TabContentBox .noteTable { text-align: center; margin: 12px 0 12px; } 
+.CouponDetailInfoWrap .TabContentBox .noteTable tr th { width: 50%; border: 1px solid #ececec; background-color: #ececec; font-size: 10px; font-weight: bold; color: #575757; } 
+.CouponDetailInfoWrap .TabContentBox .noteTable tr th:first-child { border-right: 1px solid #fff; } 
+.CouponDetailInfoWrap .TabContentBox .noteTable tr td { width: 50%; border: 1px solid #e2e2e2; font-size: 13px; color: #575757; } 
 
 .CouponDetailWrap .card { display: flex; justify-content: center; position: relative; overflow: hidden; } 
 .CouponDetailWrap .imgLabelWrap { display: flex; position: absolute; left: 0; top: 0; z-index: 2; } 
@@ -38,7 +49,7 @@
 .CouponDetailWrap .alertInfo.fixed .colorText { min-width: 111px; } 
 .CouponDetailWrap .alertInfo p { display: flex; } 
 .CouponDetailWrap .alertInfo span { display: inline-block; width: 22px; margin: 0 2px; color: #ff2b00; font-weight: bold; } 
-.CouponDetailWrap .alertInfo span:first-child { width: auto;} 
+.CouponDetailWrap .alertInfo span:first-child { width: auto; } 
 .CouponDetailWrap .alertInfo em { position: relative; top: -1px; color: #ff2b00; font-weight: bold; } 
 .CouponDetailWrap .alertInfo i { display: block; content: ""; width: 1px; height: 15px; margin: 0 20px; background-color: #a2a2a2; } 
 .CouponDetailWrap .alertInfo::before { display: block; content: ""; width: 15px; height: 17px; margin-right: 4px; background: url('../../public/images/coupon/icon/mypage/icon-clock.png') left center / 15px 17px no-repeat; } 
@@ -82,7 +93,7 @@
 .CouponDetailWrap .priceDetailWrap dl dt > input[type="checkbox"] { position: absolute; top: 0; left: 0; width: 0; height: 0; border: 0; font-size: 0; box-shadow: none; } 
 .CouponDetailWrap .priceDetailWrap dl dt > input + label { position: relative; display: inline-block; padding-left: 20px; color: #151515; } 
 .CouponDetailWrap .priceDetailWrap dl dt > input + label:before { content: ''; display: block; position: absolute; top: 50%; left: 0px; transform: translateY(-50%); z-index: 1; width: 15px; height: 15px; background: url(../../public/images/coupon/icon/common/icon-check-square-off.svg) no-repeat center / cover; border-radius: 5px; } 
-.CouponDetailWrap .priceDetailWrap dl dt > input:checked + label:before { background-image: url(../../public/images/coupon/icon/common/icon-check-square-on.svg);} 
+.CouponDetailWrap .priceDetailWrap dl dt > input:checked + label:before { background-image: url(../../public/images/coupon/icon/common/icon-check-square-on.svg); } 
 .CouponDetailWrap .priceDetailWrap dl dd { text-align: right; font-size: 15px; color: #151515; } 
 .CouponDetailWrap .priceDetailWrap dl dt,
 .CouponDetailWrap .priceDetailWrap dl dd { margin-top: 12px; } 
@@ -163,11 +174,11 @@
 
 .TabContent { display: none; } 
 .TabContentOn { display: block; } 
-.TabContentBox { padding-bottom: 30px; border-bottom: 1px solid #ececec; } 
-.TabContentBox + .TabContentBox { border-bottom: 0; } 
+.TabContent > div > .TabContentBox:last-child { border-bottom: none; } 
+.TabContentBox { padding: 30px 0 30px; border-bottom: 1px solid #ececec; } 
 .TabContentBox > p { line-height: 20px; } 
-.TabContentBox .TabContentTitle { margin-top: 30px; margin-bottom: 20px; font-size: 14px; font-weight: 700; color: #151515; } 
-.TabContentBox .TabContentLeft { font-size: 13px; font-weight: 400; color: #575757; } 
+.TabContentBox .TabContentTitle { margin-bottom: 20px; font-size: 14px; font-weight: 700; color: #151515; } 
+.TabContentBox .TabContentLeft { font-size: 13px; font-weight: 400; color: #151515; line-height: 20px; } 
 .TabContentBox .TabContentRight { display: inline-block; font-size: 13px; font-weight: 400; color: #151515; vertical-align: top; } 
 .TabContentBox span.TabContentLeft { display: inline-block; width: 30%; } 
 

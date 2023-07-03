@@ -25,12 +25,18 @@ export default function PromotionCoupon() {
                     <p className={styleGiftPresent.topConText}>
                         공유받은 쿠폰 코드 입력 후 등록하기 버튼을 눌러 주세요.
                     </p>
-                    <input
-                        type="text"
-                        placeholder="쿠폰 코드를 입력해 주세요."
-                        className={styleGiftCoupon.input}
-                        onChange={handleChange}
-                    />
+                    <div className={`${styleCommon.inputWrap} ${styleGiftCoupon.inputWrap}`}>
+                        <input
+                            type="text"
+                            placeholder="쿠폰 코드를 입력해 주세요."
+                            className={styleGiftCoupon.input}
+                            onChange={handleChange}
+                        />
+                        <button
+                        type="button"
+                        className={`${styleCommon.btnIcon} ${styleCommon.btnDel}`}
+                        ></button>
+                    </div>
                 </div>
                 <div
                     className={`${styleModal.modalBottom} ${styleGiftCoupon.botCon}`}

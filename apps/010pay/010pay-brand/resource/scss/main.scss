@@ -17,24 +17,26 @@
     z-index:-1;
 
     /* load images */
-    content:url(../images/main/top-content-img-03.png) url(../images/main/top-content-img-04.png) url(../images/main/top-content-img-05.png) url(../images/main/top-content-img-06.png);
+    content:url(../images/main/top-content-img-03.png) url(../images/main/top-content-img-04.png) url(../images/main/top-content-img-05.png) url(../images/main/top-content-img-06.png) url(../images/main/top-content-img-02.png);
   }
 }
 .main-view .section {
   position: relative;
   .add-ani {
     opacity: 0;
-    transition: 0.5s;
+    margin-top: 30px;
+    transition: opacity 0.5s, margin-top 0.5s;
   }
 
   &.animation {
     .add-ani {
+      margin-top: 0;
       opacity: 1;
     }
   }
   &.top-visual {
     background-color: #fff;
-    height: 716px;
+    height: 868px;
     padding-top: 76px;
 
     .container {
@@ -46,7 +48,7 @@
       overflow: hidden;
       width: 100%;
       max-width: none;
-      height: 716px;
+      height: 792px;
       border-radius: 0 0 240px 240px;
       transition: 0.1s;
 
@@ -148,13 +150,13 @@
           width: 262px;
           height: 66px;
           margin: 0 28px;
-          background: url(../images/main/top-content-img-02.png) 0 0 / cover no-repeat;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: 0 0;
+          background-image: url(../images/main/top-content-img-02.png);
           text-align: center;
           opacity: 0;
-
-          &.light {
-            background-image: url(../images/main/top-content-img-01.png)
-          }
+          animation: bgChangeAni 0.3s 3.8s ease-in-out both;
 
           .result {
             position: absolute;
@@ -180,7 +182,7 @@
 
             &.active{
               opacity: 1;
-              animation: mainRolling 8s 0.5s both linear infinite;
+              animation: mainRolling 6s 0.5s both linear infinite;
             }
           }
         }
@@ -192,7 +194,7 @@
         z-index: 1;
         opacity: 0;
 
-        button {
+        a {
           display: flex;
           justify-content: center;
           align-items: center;
@@ -204,6 +206,7 @@
           font-size: 21px;
           font-weight: bold;
           background-color: #fff;
+          color: #151515;
           cursor: pointer;
           box-shadow: 2px 8px 16px 0px rgba(0, 0, 0, 0.2);
 
@@ -234,17 +237,43 @@
     .scrollNav {
       position: absolute;
       left: 50%;
-      bottom: -40px;
+      bottom: -18px;
       transform: translateX(-50%);
       width: 34px;
       height: 54px;
       background: url(../images/main/icon-scroll.png) 0 0 / cover no-repeat;
       text-indent: -9999px;
-      opacity: 0;
-      animation: scrollNavAni 1.8s 6s ease-in-out infinite backwards;
+      // opacity: 0;
 
       &.web {
         display: block;
+
+        .dotBox {
+          position: absolute;
+          left: 50%;
+          top: 10px;
+          transform: translateX(-50%);
+          animation: scrollNavAni2 1s 2s ease-in-out infinite both;
+
+          &::before {
+            content: "";
+            display: block;
+            width: 4px;
+            height: 13px;
+            border-radius: 2px;
+            background-color: #ff4600;
+          }
+
+          &::after {
+            content: "";
+            display: block;
+            width: 4px;
+            height: 4px;
+            margin-top: 3px;
+            border-radius: 2px;
+            background-color: #ff4600;
+          }
+        }
       }
 
       &.mo {
@@ -270,40 +299,38 @@
           height: 100%;
           opacity: 1;
           border-radius: 0;
-          transition: height 1s, opacity 1s;
-          transition-delay: 0.5s;
+          transition: height 0.5s, opacity 0.5s;
+          transition-delay: 0.3s;
           transition-timing-function: ease-in-out;
         }
         .circleBg {
           opacity: 1;
           transition: 0.3s;
-          transition-delay: 2s;
+          transition-delay: 0.7s;
         }
         .mainText {
           .textImg {
             opacity: 1;
             transition: opacity 1s;
-            transition-delay: 3s;
+            transition-delay: 1.5s;
           }
           .firstText, .lastText {
             span {
               opacity: 1;
               transform: translateX(0);
               transition: 1s;
-              transition-delay: 2s;
+              transition-delay: 1s;
             }
           }
         }
         .btnWrap {
           opacity: 1;
           transition: 0.5s;
-          transition-delay: 5s;
+          transition-delay: 1.5s;
         }
       }
       .scrollNav {
-        opacity: 1;
-        transition: 0.5s;
-        transition-delay: 6s;
+        // animation: scrollNavAni 1.8s 2.4s ease-in-out infinite backwards;
       }
     }
   }
@@ -319,12 +346,51 @@
   }
 
   .textWrap {
-    .topText {
+    .topText { 
+      display: flex;
+      align-items: center;
       font-size: 26px;
       font-weight: bold;
       color: #151515;
       letter-spacing: -0.05em;
       line-height: 1;
+
+      i {
+        font-style: italic;
+      }
+
+      &.icon-1::before {
+        display: block;
+        content: "";
+        width: 35px;
+        height: 23px;
+        margin-right: 10px;
+        background: url(../images/main/icon-1.png) 0 0 / cover no-repeat;
+      }
+      &.icon-2::before {
+        display: block;
+        content: "";
+        width: 34px;
+        height: 34px;
+        margin-right: 8px;
+        background: url(../images/main/icon-2.png) 0 0 / cover no-repeat;
+      }
+      &.icon-3::before {
+        display: block;
+        content: "";
+        width: 29px;
+        height: 33px;
+        margin-right: 8px;
+        background: url(../images/main/icon-3.png) 0 0 / cover no-repeat;
+      }
+      &.icon-4::before {
+        display: block;
+        content: "";
+        width: 34px;
+        height: 32px;
+        margin-right: 7px;
+        background: url(../images/main/icon-4.png) 0 0 / cover no-repeat;
+      }
     }
     .titleText {
       margin: 13px 0 26px;
@@ -348,7 +414,7 @@
   .phoneFrame {
     position: relative;
     overflow: hidden;
-    width: 282px;
+    width: 283px;
     height: 587px;
     border: 8px solid #151515;
     border-radius: 36px;
@@ -520,22 +586,22 @@
                 img {
                   top: 100%;
                   transform: translateY(-100%);
-                  transition: 0.5s;
+                  transition: 0.8s;
                   transition-delay: 1.5s;
                 }
               }
               &.slide1 {
                 .logoBox {
                   opacity: 1;
-                  transition: 0.3s;
-                  transition-delay: 2s;
+                  transition: 0.5s;
+                  transition-delay: 2.4s;
                 }
               }
               &.slide2 {
                 .money {
                   opacity: 1;
-                  transition: 0.3s;
-                  transition-delay: 2s;
+                  transition: 0.5s;
+                  transition-delay: 2.4s;
                 }
               }
             }
@@ -551,22 +617,22 @@
                   img {
                     top: 100%;
                     transform: translateY(-100%);
-                    transition: 0.5s;
+                    transition: 0.8s;
                     transition-delay: 1s;
                   }
                 }
                 &.slide1 {
                   .logoBox {
                     opacity: 1;
-                    transition: 0.8s;
-                    transition-delay: 1.7s;
+                    transition: 0.5s;
+                    transition-delay: 1.8s;
                   }
                 }
                 &.slide2 {
                   .money {
                     opacity: 1;
                     transition: 0.5s;
-                    transition-delay: 1.5s;
+                    transition-delay: 1.8s;
                   }
                 }
               }
@@ -615,22 +681,52 @@
         position: relative;
         padding-top: 72px;
 
+        .phoneFrame {
+          &::before {
+            display: block;
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 0;
+            padding-top: calc(70 / 267 * 100%);
+            background: url(../images/main/fourth-content-frame-1.png) 0 0 / cover no-repeat;
+            z-index: 1;
+          }
+          &::after {
+            display: block;
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 0;
+            padding-top: calc(55 / 267 * 100%);
+            background: url(../images/main/fourth-content-frame-2.png) 0 0 / cover no-repeat;
+            z-index: 1;
+          }
+        }
+
         img {
           position: absolute;
-
+          
           &.img1 {
             left: -180px;
             top: 292px;
+            animation: upDownAni 2s 3s ease-in-out infinite;
           }
 
           &.img2 {
             right: -120px;
             top: 258px;
+            animation: upDownAni 2.2s ease-in-out infinite;
           }
 
           &.img3 {
             right: -170px;
             top: 430px;
+            animation: upDownAni 2.4s ease-in-out infinite;
           }
 
           &.img4 {
@@ -645,10 +741,7 @@
     &.animation {
       .phoneFrame {
         img {
-          top: 100%;
-          transform: translateY(-100%);
-          transition: 0.8s;
-          transition-delay: 1.8s;
+          animation: frameScrolling 6s 2s ease-in-out infinite both;
         }
       }
 
@@ -674,8 +767,21 @@
         padding-top: 72px;
 
         .phoneFrame {
+          .frameBox {
+            position: absolute;
+            left: 0;
+            top: 0;
+            transform: translateY(0);
+            width: 100%;
+            height: auto;
+            .firstImg {
+              position: static;
+              width: 266px;
+            }
+          }
           .lastImg {
             transform: translateX(100%);
+            width: 264px;
           }
         }
         
@@ -688,44 +794,39 @@
 
         .button {
           position: absolute;
+          top: auto;
           left: 50%;
-          bottom: 94px;
+          bottom: 20px;
           z-index: 2;
-          opacity: 0;
-          transform: translateX(-50%) scale(1.3);
-          transition: opacity 0.5s, transform 0.5s;
-          transition-timing-function: cubic-bezier(0.93, -0.1, 0, 1.56);
-          transition-delay: 2.4s;
+          width: 260px;
+          transform: translateX(-50%) scale(1);
         }
       }
     }
 
     &.animation {
-      .phoneFrame {
-        .firstImg {
-          top: 100%;
-          transform: translateY(-100%);
-          transition: 0.8s;
-          transition-delay: 1.8s;
-        }
-
-        .lastImg {
-          transform: translateX(0) !important;
-          transition: 0.8s;
-          transition-delay: 4s;
+      .imgWrap {
+        .phoneFrame {
+          .frameBox {
+            animation: taxAni1 8s 1.5s ease-in-out backwards infinite;
+          }
+  
+          .lastImg {
+            animation: taxAni3 8s 4s ease-in-out backwards infinite;
+          }
         }
       }
 
       .money {
         opacity: 0;
         transition: 0.3s;
-        transition-delay: 1.8s;
+        transition-delay: 1.6s;
       }
 
       .container .imgWrap .button {
         opacity: 1;
         transform: translateX(-50%) scale(1);
-        animation: hideCon 0.5s 3.4s linear forwards;
+        animation: taxAni2 8s 3s linear forwards infinite;
       }
     }
   }
@@ -793,8 +894,13 @@
           height: 61px;
           padding: 0 21px;
           border-radius: 14px;
-          &.google-btn {
-            margin-right: 20px;
+          &.kakao-btn {
+            &.web {
+              display: inline-flex;
+            }
+            &.mo {
+              display: none;
+            }
           }
           &.kakao-btn::before {
             width: 32px;
@@ -824,6 +930,11 @@
 }
 
 @media only screen and (max-width: 767px) {
+  .main-view {
+    .btn_top.on {
+      bottom: 100px;
+    }
+  }
   .main-view header .logo, .main-view .hearder .logo {
     background-position-y: -65px;
   }
@@ -845,6 +956,31 @@
       padding: 0 25px;
       .topText {
         font-size: 19px;
+
+        &.icon-1::before {
+          width: 24px;
+          height: 16px;
+          margin-right: 6px;
+          background: url(../images/main/icon-1.png) 0 0/cover no-repeat;
+        }
+        &.icon-2::before {
+          width: 24px;
+          height: 24px;
+          margin-right: 5px;
+          background: url(../images/main/icon-2.png) 0 0/cover no-repeat;
+        }
+        &.icon-3::before {
+          width: 20px;
+          height: 23px;
+          margin-right: 6px;
+          background: url(../images/main/icon-3.png) 0 0/cover no-repeat;
+        }
+        &.icon-4::before {
+          width: 24px;
+          height: 23px;
+          margin-right: 5px;
+          background: url(../images/main/icon-4.png) 0 0/cover no-repeat;
+        }
       }
       .titleText {
         margin: 8px 0 22px;
@@ -864,11 +1000,11 @@
     
 
     &.top-visual {
-      height: 630px;
+      height: 580px;
       padding-top: 0;
 
       .container {
-        height: 630px;
+        height: 580px;
         margin-top: 61px;
         border-radius: 0 0 60px 60px;
 
@@ -966,6 +1102,20 @@
             margin-right: 8px;
             background-size: cover;
           }
+
+          &.fixed {
+            transition: none !important;
+            width: calc(100% - 50px);
+            bottom: 20px;
+            z-index: 1000;
+            border: 1px solid #fff;
+            color: #fff;
+            background: linear-gradient(105deg, rgba(255,70,0,1) 0%, rgba(255,122,0,1) 100%);
+
+            &::before {
+              background-image: url(../images/main/icon-app_fixed.png);
+            }
+          }
         }
       }
       .scrollNav {
@@ -982,7 +1132,7 @@
           background: none;
           text-indent: 0;
           color: #fff;
-          animation: scrollNavAni 1.8s 3.4s ease-in-out infinite backwards;
+          animation: scrollNavAni 1.8s 1.8s ease-in-out infinite backwards;
 
           &::before {
             display: none;
@@ -1000,10 +1150,11 @@
 
       &.animation {
         .container .mainText .textImg {
-          transition-delay: 2.4s;
+          transition-delay: 1s;
+          animation-delay: 1s;
         }
         .scrollNav {
-          transition-delay: 3.3s;
+          transition-delay: 2s;
         }
       }
     }
@@ -1169,8 +1320,9 @@
   
             &.img1 {
               width: 111px;
-              left: -116px;
+              left: -76px;
               top: 186px;
+              z-index: 2;
             }
   
             &.img2 {
@@ -1187,7 +1339,7 @@
   
             &.img4 {
               width: 180px;
-              right: 56px;
+              right: -38px;
               top: 76px;
               z-index: 2;
             }
@@ -1213,6 +1365,14 @@
 
           .phoneFrame {
             margin: auto;
+            .frameBox {
+              .firstImg {
+                width: 100%;
+              }
+            }
+            .lastImg {
+              width: 100%;
+            }
           }
 
           .money {
@@ -1222,8 +1382,8 @@
           }
 
           .button {
-            width: 210px;
-            bottom: 4px;
+            width: 172px;
+            bottom: 10px;
           }
         }
 
@@ -1251,6 +1411,15 @@
         .btn-wrap a {
           height: 50px;
           font-size: 18px;
+
+          &.kakao-btn {
+            &.web {
+              display: none;
+            }
+            &.mo {
+              display: inline-flex;
+            }
+          }
 
           &.kakao-btn::before {
             width: 27px;
@@ -1463,15 +1632,6 @@
 }
 
 
-@keyframes hideCon {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
 @keyframes scrollNavAni {
   0% {
     opacity: 0;
@@ -1484,5 +1644,118 @@
   100% {
     opacity: 0;
     margin-bottom: -30px;
+  }
+}
+
+@keyframes scrollNavAni2 {
+  0% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 8px);
+  }
+  100% {
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes taxAni1 {
+  0% {
+    top: 0;
+    transform: translateY(0);
+  }
+  10% {
+    top: 100%;
+    transform: translateY(-100%);
+  }
+  60% {
+    top: 100%;
+    transform: translateY(-100%);
+  }
+  61% {
+    top: 0;
+    transform: translateY(0);
+  }
+  100% {
+    top: 0;
+    transform: translateY(0);
+  }
+}
+
+@keyframes taxAni2 {
+  0% {
+    transform: translate(-50%) scale(1);
+  }
+  3% {
+    transform: translate(-50%) scale(1.1);
+  }
+  5% {
+    transform: translate(-50%) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%) scale(1);
+  }
+}
+
+@keyframes taxAni3 {
+  0% {
+    transform: translate(100%);
+  }
+  10% {
+    transform: translate(0);
+  }
+  40% {
+    transform: translate(0);
+  }
+  50% {
+    transform: translate(100%);
+  }
+  100% {
+    transform: translate(100%);
+  }
+}
+
+@keyframes upDownAni {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes bgChangeAni {
+  0% {
+    background-image: url(../images/main/top-content-img-01.png);
+  }
+  100% {
+    background-image: url(../images/main/top-content-img-02.png);
+  }
+}
+
+@keyframes frameScrolling {
+  0% {
+    top: 0;
+    transform: translateY(0);
+  }
+  20% {
+    top: 0;
+    transform: translateY(0);
+  }
+  50% {
+    top: 100%;
+    transform: translateY(-100%);
+  }
+  80% {
+    top: 100%;
+    transform: translateY(-100%);
+  }
+  100% {
+    top: 0;
+    transform: translateY(0);
   }
 }

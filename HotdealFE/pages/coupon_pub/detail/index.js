@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 //css
 import styleDefaultLayout from "../../../styles/coupon_pub/DefaultLayout.module.css";
-import styleCommon from "../../../styles/coupon_pub/Common.module.css";
+// import styleCommon from "../../../styles/coupon_pub/Common.module.css";
 // import styleFriend from "../../styles/referral/Friend.module.css";//react
 
 //css

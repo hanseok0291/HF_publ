@@ -1,0 +1,79 @@
+@charset "utf-8";
+
+/* 기본설정 */
+@import "variables";
+@import "animation";
+
+/* 기본설정 */
+.main-view { overflow: hidden; }
+.main-view .container {
+  margin: 0 auto;
+
+  &::after {
+    position:absolute; 
+    width:0; 
+    height:0; 
+    overflow:hidden; 
+    z-index:-1;
+
+    /* load images */
+    content:url(../images/main/top-content-img-03.png) url(../images/main/top-content-img-04.png) url(../images/main/top-content-img-05.png) url(../images/main/top-content-img-06.png) url(../images/main/top-content-img-02.png);
+  }
+}
+.main-view .section {
+  position: relative;
+  .add-ani {
+    opacity: 0;
+    margin-top: 30px;
+    transition: opacity 0.5s, margin-top 0.5s;
+  }
+
+  &.animation {
+    .add-ani {
+      margin-top: 0;
+      opacity: 1;
+    }
+  }
+  &.top-visual {
+    background-color: #fff;
+    height: 868px;
+    padding-top: 76px;
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: none;
+      height: 810px;
+      border-radius: 0 0 240px 240px;
+      transition: 0.1s;
+
+      &.active {
+        opacity: 1;
+        height: 716px;
+      }
+
+      .bg {
+        overflow: hidden;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translate(-50%, 0);
+        width: 100%;
+        height: 0;
+        // opacity: 0;
+        background: url(../images/100deal/top-content-bg.png) center center / cover no-repeat;
+      }
+		}
+	}
+}
+
+.content_wrap { width: 100%; }
+
+.deal100 {
+  overflow: hidden;
+}

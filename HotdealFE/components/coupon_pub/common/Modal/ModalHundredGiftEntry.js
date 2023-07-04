@@ -44,7 +44,7 @@ const ModalHundredGiftEntry = ({ show, onClose }) => {
                 <input type="text" className={styleModal.phone} placeholder="휴대폰 번호"/>
                 <div className={styleModal.HundredToastError}>
                   <span>휴대폰 번호를 확인해주세요<i>!</i></span>
-                  {/* <span>이름을 확인해주세요<i>!</i></span> */}
+                  {/* <span>010PAY 회원이 아니에요<i>!</i></span> */}
                 </div>
               </div>
            </div>

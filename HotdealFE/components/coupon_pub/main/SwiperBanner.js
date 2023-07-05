@@ -7,7 +7,6 @@ import 'swiper/css';
 // import required modules
 import { Pagination, Navigation } from "swiper";
 
-import styleCommon from "../../../styles/referral/Common.module.css";
 import styleSwiperBanner from "../../../styles/coupon_pub/SwiperBanner.module.css";
 
 function SwiperBannerWrap(props) {
@@ -41,6 +40,6 @@ function SwiperBannerWrap(props) {
 		</div>
 		</>
 	);
-};
+}
 
 export default SwiperBannerWrap;

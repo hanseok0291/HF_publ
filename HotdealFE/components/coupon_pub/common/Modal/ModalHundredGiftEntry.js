@@ -34,6 +34,7 @@ const ModalHundredGiftEntry = ({ show, onClose }) => {
           >
            <h4>선물 가능 응모권 도착</h4>
            <p>지금만 선물할 수 있어요. <br /> 선물 받은 친구는 1회 무료 응모<i>!</i></p>
+           <p className={styleModal.subText}>010PAY 회원에게만 선물할 수 있어요 :)</p>
            <div className={styleModal.formWrap}>
               <div className={styleModal.textWrap}>
                 <span>받는 사람</span>

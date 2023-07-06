@@ -124,6 +124,7 @@
     <script src="../../resource/library/jquery-1.8.3.min.js"></script>
     <script src="../../resource/js/slick.js"></script>
     <script src="../../resource/js/swiper.js"></script>
+    <script src="../../resource/js/modal.min.js"></script>
     
     <!--[if lt IE 9]>
       <script src="../../resource/js/html5shiv.js"></script>
@@ -201,6 +202,9 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="../support/support.html">고객 문의</a>
+              </li>
+              <li class="nav-item card btn-modal-main-qr">
+                <a href="https://app.adjust.com/108qppu2?engagement_type=fallback_click" id="gnb_btn" class="nav-link ga-tag" data-ga-tag="메뉴_앱 다운로드" title="새창열기">앱 다운로드</a>
               </li>
             </ul>
           </nav>
@@ -484,15 +488,12 @@
       </footer>
       <!-- Footer END -->
 
-      <a href="https://app.adjust.com/108qppu2?engagement_type=fallback_click" class="btn_top float-app-down btn-modal" title="앱 다운로드"
-      >앱 다운로드</a
-      >
       <a href="#Contents" class="btn_top" title="페이지 상단으로 이동">TOP</a>
     </div>
 
     
 
-    <div id="modal-qr" class="modal modal-main-qr">
+    <div id="modal-main-qr" class="modal modal-main-qr">
       <div class="modal-dialog">
         <div class="modal-content">
           <button class="modal-close modal-giftimall">닫기</button>
@@ -723,25 +724,6 @@
             modalOut();
           });
       }
-
-      // 레이어 팝업(모달) 닫기
-      function modalClose(obj) {
-        if (obj != null && obj != undefined && obj != "") {
-          var temp = $("#" + obj);
-          temp.fadeOut(300).removeClass("open");
-        } else {
-          $(".modal").fadeOut(300).removeClass("open");
-        }
-        scrollOn(); // 바디 스크롤 제거 해제
-      }
-
-      // 화면 너비에 따라 열리는 방식 지정
-      $(".btn-modal").click(function (e) {
-        if ($(window).width() > 738) {
-          e.preventDefault();
-          modalOpen("modal-qr");
-        }
-      });
     </script>
     <script src="../../resource/js/010pay_UI.js"></script>
   </body>

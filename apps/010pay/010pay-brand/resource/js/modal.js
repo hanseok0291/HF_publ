@@ -55,3 +55,14 @@ $(".btn-modal-hotdeal").click(function(){
         return false;
     }
 });
+
+$(document).ready(function(){
+    // 화면 너비에 따라 열리는 방식 지정
+    $(".btn-modal-main-qr").click(function (e) {
+        if ($(window).width() > 738) {
+            e.preventDefault();
+            modalOpen("modal-main-qr");
+        }
+    });
+});
+

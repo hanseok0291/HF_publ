@@ -192,7 +192,7 @@ var positionCtl = {
     var introH = $(".intro").outerHeight(), // 인트로 높이값
       tabH = $(".tab").outerHeight(), // Tab 높이
       gnbH = $(".GNB").outerHeight(), // GNB 높이
-      tabPos = introH - tabH - gnbH; // tab 좌표
+      tabPos = introH; // tab 좌표
 
     if ($(window).scrollTop() > tabPos) {
       $(".tab").addClass("fixed");

@@ -838,6 +838,10 @@ i {
   font-style: italic;
 }
 
+.main-view .btn_top.float-app-down {
+  background: url(../images/100deal/btn-appDown.png) 0/108px 105px no-repeat;
+}
+
 .main-view .container {
   margin: 0 auto;
 }
@@ -900,20 +904,26 @@ header, .header {
   background: url(../images/100deal/top-content-bg.png) center center/cover no-repeat;
 }
 .main-view .section.top-visual .container .mainText {
+  position: relative;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  flex-wrap: wrap;
   font-size: 78px;
   color: #fff;
   transition: 0.3s;
   z-index: 1;
+  margin-left: 21.35%;
 }
 .main-view .section.top-visual .container .mainText .firstText, .main-view .section.top-visual .container .mainText .lastText, .main-view .section.top-visual .container .mainText .dateText, .main-view .section.top-visual .container .mainText .leftBox, .main-view .section.top-visual .container .mainText .rightBox {
   display: block;
   position: relative;
+  white-space: nowrap;
+}
+.main-view .section.top-visual .container .mainText .firstText p, .main-view .section.top-visual .container .mainText .lastText p, .main-view .section.top-visual .container .mainText .dateText p, .main-view .section.top-visual .container .mainText .leftBox p, .main-view .section.top-visual .container .mainText .rightBox p {
+  opacity: 0;
+  display: block;
 }
 .main-view .section.top-visual .container .mainText .firstText span, .main-view .section.top-visual .container .mainText .lastText span, .main-view .section.top-visual .container .mainText .dateText span, .main-view .section.top-visual .container .mainText .leftBox span, .main-view .section.top-visual .container .mainText .rightBox span {
   opacity: 0;
@@ -928,10 +938,38 @@ header, .header {
   transition: 0.3s;
 }
 .main-view .section.top-visual .container .mainText .leftBox {
-  margin-right: 47px;
+  transform: translateX(-100%);
 }
 .main-view .section.top-visual .container .mainText .rightBox {
-  margin-left: 148px;
+  transform: translateX(100%);
+  width: 100%;
+}
+.main-view .section.top-visual .container .mainText .rightBox.pc {
+  display: flex;
+}
+.main-view .section.top-visual .container .mainText .rightBox.mo {
+  display: none;
+}
+.main-view .section.top-visual .container .mainText .firstText {
+  font-size: 34px;
+  color: #ff8000;
+  font-weight: 700;
+}
+.main-view .section.top-visual .container .mainText .lastText {
+  font-size: 50px;
+  color: #fff;
+  font-weight: 500;
+  margin-top: 28px;
+}
+.main-view .section.top-visual .container .mainText .dateText {
+  font-size: 26px;
+  color: #ddd;
+  font-weight: 700;
+  margin-top: 46px;
+}
+.main-view .section.top-visual .container .mainText .dateText p {
+  display: flex;
+  align-items: center;
 }
 .main-view .section.top-visual .container .mainText .textImg {
   position: relative;
@@ -946,32 +984,6 @@ header, .header {
   opacity: 0;
   -webkit-animation: bgChangeAni 0.3s 3.8s ease-in-out both;
           animation: bgChangeAni 0.3s 3.8s ease-in-out both;
-}
-.main-view .section.top-visual .container .mainText .textImg .result {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  color: #e6ff00;
-  font-weight: bold;
-}
-.main-view .section.top-visual .container .mainText .textImg .rollingImg {
-  opacity: 0;
-  position: absolute;
-  left: 50%;
-  top: -90px;
-  transform: translateX(-50%);
-  width: 262px;
-  height: 227px;
-  background-image: url(../images/main/top-content-img-03.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  transition: 0.3s;
-}
-.main-view .section.top-visual .container .mainText .textImg .rollingImg.active {
-  opacity: 1;
-  -webkit-animation: mainRolling 6s 0.5s both linear infinite;
-          animation: mainRolling 6s 0.5s both linear infinite;
 }
 .main-view .section.top-visual .container .btnWrap {
   display: flex;
@@ -1014,21 +1026,32 @@ header, .header {
   height: 70px;
   background: url(../images/100deal/btn-down.png) no-repeat center;
 }
+.main-view .section.top-visual .container .btnWrap a.btn-view {
+  width: 280px;
+  height: 70px;
+  background: url(../images/100deal/btn-view.png) no-repeat center;
+}
 .main-view .section.top-visual .container .moText, .main-view .section.top-visual .container .moBtn {
   display: none;
 }
 .main-view .section.top-visual .container .slideBox {
   width: 402px;
-  height: 530px;
   opacity: 0;
 }
-.main-view .section.top-visual .container .slideBox .slide-li {
-  display: flex;
-  width: 402px;
-  max-height: 530px;
-  background-color: #fff;
+.main-view .section.top-visual .container .slideBox .slick-list {
+  height: 100%;
   border-radius: 22px;
   overflow: hidden;
+  background-color: #fff;
+}
+.main-view .section.top-visual .container .slideBox .slide-li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 402px;
+  max-width: 402px;
+  max-height: 530px;
+  background-color: #fff;
 }
 .main-view .section.top-visual .container .slideBox .slide-li .topBox {
   height: 402px;
@@ -1036,7 +1059,7 @@ header, .header {
 }
 .main-view .section.top-visual .container .slideBox .slide-li .bottomBox {
   position: relative;
-  padding: 33.5px 36px;
+  padding: 31px 36px;
 }
 .main-view .section.top-visual .container .slideBox .slide-li .bottomBox .countBox {
   position: absolute;
@@ -1072,6 +1095,52 @@ header, .header {
   color: #ff7a00;
   font-weight: 700;
   margin-left: 7px;
+}
+.main-view .section.top-visual .container .slideBox .slick-dots {
+  position: absolute;
+  right: 14px;
+  bottom: 0;
+  width: auto;
+  font-size: initial;
+  text-align: right;
+  margin-bottom: 142px;
+}
+.main-view .section.top-visual .container .slideBox .slick-dots li {
+  display: inline-block;
+  margin: 0 3px;
+}
+.main-view .section.top-visual .container .slideBox .slick-dots li button {
+  font-size: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 100%;
+  background-color: #CBCBCB;
+  border: none;
+  padding: 0;
+}
+.main-view .section.top-visual .container .slideBox .slick-dots li.slick-active button {
+  background-color: #FF6C00;
+}
+.main-view .section.top-visual .container .slideBox.slideBoxSmall {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 450px;
+}
+.main-view .section.top-visual .container .slideBox.slideBoxSmall .bottomBox {
+  display: none;
+}
+.main-view .section.top-visual .container .slideBox.slideBoxSmall .slick-slide {
+  max-height: 402px;
+}
+.main-view .section.top-visual .container .slideBox.slideBoxSmall .slide-li::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
 }
 .main-view .section.top-visual .scrollNav {
   position: absolute;
@@ -1128,6 +1197,19 @@ header, .header {
 .main-view .section.top-visual.animation .container .leftBox, .main-view .section.top-visual.animation .container .rightBox {
   opacity: 1;
 }
+.main-view .section.top-visual.animation .container .leftBox .slick-slide img, .main-view .section.top-visual.animation .container .rightBox .slick-slide img {
+  width: 100%;
+  height: 100%;
+}
+.main-view .section.top-visual.animation .container .leftBox {
+  margin-right: auto;
+  transform: translateX(0);
+}
+.main-view .section.top-visual.animation .container .rightBox {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
 .main-view .section.top-visual.animation .container .bg {
   height: 100%;
   opacity: 1;
@@ -1146,28 +1228,7 @@ header, .header {
   transition: opacity 1s;
   transition-delay: 1.5s;
 }
-.main-view .section.top-visual.animation .container .mainText .firstText {
-  font-size: 34px;
-  color: #ff8000;
-  font-weight: 700;
-}
-.main-view .section.top-visual.animation .container .mainText .lastText {
-  font-size: 50px;
-  color: #fff;
-  font-weight: 500;
-  margin-top: 28px;
-}
-.main-view .section.top-visual.animation .container .mainText .dateText {
-  font-size: 26px;
-  color: #ddd;
-  font-weight: 700;
-  margin-top: 46px;
-}
-.main-view .section.top-visual.animation .container .mainText .dateText span {
-  display: flex;
-  align-items: center;
-}
-.main-view .section.top-visual.animation .container .mainText .firstText span, .main-view .section.top-visual.animation .container .mainText .lastText span, .main-view .section.top-visual.animation .container .mainText .dateText span, .main-view .section.top-visual.animation .container .mainText .leftBox span, .main-view .section.top-visual.animation .container .mainText .rightBox span {
+.main-view .section.top-visual.animation .container .mainText .firstText p, .main-view .section.top-visual.animation .container .mainText .firstText span, .main-view .section.top-visual.animation .container .mainText .lastText p, .main-view .section.top-visual.animation .container .mainText .lastText span, .main-view .section.top-visual.animation .container .mainText .dateText p, .main-view .section.top-visual.animation .container .mainText .dateText span, .main-view .section.top-visual.animation .container .mainText .leftBox p, .main-view .section.top-visual.animation .container .mainText .leftBox span, .main-view .section.top-visual.animation .container .mainText .rightBox p, .main-view .section.top-visual.animation .container .mainText .rightBox span {
   opacity: 1;
   transform: translateX(0);
   transition: 1s;
@@ -1192,7 +1253,6 @@ header, .header {
   transition-delay: 1.5s;
 }
 .main-view .section.line-up {
-  height: 919px;
   background: #151515 url("../images/100deal/line-up-text.png") no-repeat top 80px center/337px auto;
 }
 .main-view .section.line-up .container {
@@ -1200,10 +1260,14 @@ header, .header {
   max-width: none;
   flex-direction: column;
   overflow: hidden;
+  padding: 70px 0;
 }
 .main-view .section.line-up .container .main-title {
   text-align: center;
-  margin-top: 150px;
+  margin-top: 80px;
+  opacity: 0;
+  transition: 0.6s;
+  transform: translateY(100px);
 }
 .main-view .section.line-up .container .main-title .text-box span {
   font-size: 36px;
@@ -1216,7 +1280,17 @@ header, .header {
   font-weight: 700;
 }
 .main-view .section.line-up .container .lineup-slide {
-  margin-top: 60px;
+  padding-top: 60px;
+  opacity: 0;
+  transition: 0.8s;
+  transform: translateY(100px);
+  margin: 0 auto;
+}
+.main-view .section.line-up .container .lineup-slide .slick-list {
+  margin: 0 auto;
+}
+.main-view .section.line-up .container .lineup-slide .slick-list .slick-slide {
+  width: 394px;
 }
 .main-view .section.line-up .container .lineup-slide .slide-item .cont-wrap {
   display: flex;
@@ -1285,19 +1359,31 @@ header, .header {
 .main-view .section.line-up .container .lineup-slide::before, .main-view .section.line-up .container .lineup-slide::after {
   content: "";
   position: absolute;
-  top: -50%;
-  height: 1000px;
+  top: -100%;
+  height: 1700px;
   width: 220px;
   display: block;
   z-index: 1;
 }
 .main-view .section.line-up .container .lineup-slide::before {
-  left: -110px;
-  background: url("../images/100deal/bg-left.png") no-repeat;
+  left: 0;
+  background: linear-gradient(to right, #151515 25%, rgba(0, 0, 0, 0) 100%);
 }
 .main-view .section.line-up .container .lineup-slide::after {
-  right: -110px;
-  background: url("../images/100deal/bg-right.png") no-repeat;
+  right: 0;
+  background: linear-gradient(to left, #151515 25%, rgba(0, 0, 0, 0) 100%);
+}
+.main-view .section.line-up.animation .main-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+.main-view .section.line-up.animation .lineup-slide {
+  opacity: 1;
+  transform: translateY(0);
+}
+.main-view .section::after {
+  content: "";
+  display: block;
 }
 .main-view .section.third-section {
   height: 708px;
@@ -1335,6 +1421,7 @@ header, .header {
   position: relative;
   width: 427px;
   height: 306px;
+  padding: 48px 47px;
   border-radius: 30px;
   background-color: #fff;
 }
@@ -1342,20 +1429,24 @@ header, .header {
   content: "";
   position: absolute;
   top: 0;
-  right: 0;
+  right: -2.5px;
   display: block;
   width: 6px;
   height: 100%;
   background: url("../images/100deal/card-line.png") no-repeat center;
+  z-index: 1;
 }
 .main-view .section.third-section .container .card-wrap .card-item:nth-child(1) {
-  background: #fff url("../images/100deal/card-img1.png") no-repeat center;
+  background: #fff url("../images/100deal/card-img1.png") no-repeat right 25px bottom -30px;
 }
 .main-view .section.third-section .container .card-wrap .card-item:nth-child(2) {
-  background: #fff url("../images/100deal/card-img2.png") no-repeat center;
+  background: #fff url("../images/100deal/card-img2.png") no-repeat right 34px bottom 10px;
 }
 .main-view .section.third-section .container .card-wrap .card-item:nth-child(3) {
-  background: #fff url("../images/100deal/card-img3.png") no-repeat center;
+  background: #fff url("../images/100deal/card-img3.png") no-repeat right 20px bottom 20px;
+}
+.main-view .section.third-section .container .card-wrap .card-item:nth-child(3)::after {
+  display: none;
 }
 .main-view .section.third-section .container .card-wrap .card-item .card-title {
   font-size: 33px;
@@ -1365,6 +1456,7 @@ header, .header {
 .main-view .section.third-section .container .card-wrap .card-item .card-title p {
   font-weight: 500;
   color: #575757;
+  margin-bottom: 10px;
 }
 .main-view .section.third-section .container .imgWrap {
   position: relative;
@@ -1671,16 +1763,21 @@ header, .header {
     font-style: italic;
   }
   .main-view .section.top-visual {
-    height: 580px;
+    height: auto;
     padding-top: 0;
   }
   .main-view .section.top-visual .container {
-    height: 580px;
+    height: auto;
     margin-top: 61px;
     border-radius: 0 0 60px 60px;
+    padding-top: 45px;
+    padding-bottom: 75px;
   }
   .main-view .section.top-visual .container .bg {
-    background: url(../images/main/mo-top-content-bg.png) center center/cover no-repeat;
+    background: url(../images/100deal/mo-top-content-bg.png) center/cover no-repeat;
+  }
+  .main-view .section.top-visual .container .slideBox {
+    width: 212px;
   }
   .main-view .section.top-visual .container .circleBg.small {
     width: 472px;
@@ -1700,8 +1797,52 @@ header, .header {
   .main-view .section.top-visual .container .circleBg::after {
     right: -9px;
   }
-  .main-view .section.top-visual .container .mainText .firstText, .main-view .section.top-visual .container .mainText .lastText, .main-view .section.top-visual .container .mainText .dateText, .main-view .section.top-visual .container .mainText .leftBox, .main-view .section.top-visual .container .mainText .rightBox {
+  .main-view .section.top-visual .container .mainText {
+    margin-left: 0;
+    flex-direction: column;
+  }
+  .main-view .section.top-visual .container .mainText .firstText, .main-view .section.top-visual .container .mainText .lastText, .main-view .section.top-visual .container .mainText .dateText, .main-view .section.top-visual .container .mainText .leftBox {
+    display: block;
+  }
+  .main-view .section.top-visual .container .mainText .pc {
     display: none;
+  }
+  .main-view .section.top-visual .container .mainText .mo {
+    display: flex;
+  }
+  .main-view .section.top-visual .container .mainText .mo.rightBoxMo {
+    align-items: center;
+  }
+  .main-view .section.top-visual .container .mainText .leftBox {
+    margin: 0 auto;
+  }
+  .main-view .section.top-visual .container .mainText .rightBox {
+    transform: translateX(0%);
+    opacity: 0;
+  }
+  .main-view .section.top-visual .container .mainText .rightBox .slideBox.slideBoxSmall {
+    left: auto;
+  }
+  .main-view .section.top-visual .container .mainText .rightBox.pc {
+    display: none;
+  }
+  .main-view .section.top-visual .container .mainText .rightBox.mo {
+    display: flex;
+  }
+  .main-view .section.top-visual .container .mainText .firstText {
+    font-size: 17px;
+    text-align: center;
+  }
+  .main-view .section.top-visual .container .mainText .lastText {
+    font-size: 25px;
+    margin-top: 15px;
+  }
+  .main-view .section.top-visual .container .mainText .dateText {
+    font-size: 13px;
+    margin-top: 23px;
+  }
+  .main-view .section.top-visual .container .mainText .dateText p {
+    justify-content: center;
   }
   .main-view .section.top-visual .container .mainText .textImg {
     width: 187px;
@@ -1742,31 +1883,21 @@ header, .header {
     z-index: 2;
     width: 280px;
     height: 63px;
-    margin-top: 38px;
+    margin-top: 28px;
     font-size: 21px;
     font-weight: bold;
-    background-color: #fff;
     border: none;
     border-radius: 32px;
     text-align: center;
     box-shadow: 1px 4px 8px 0px rgba(0, 0, 0, 0.2);
-    color: #151515;
-  }
-  .main-view .section.top-visual .container .moBtn::before {
-    display: block;
-    content: "";
-    width: 18px;
-    height: 19px;
-    background-image: url(../images/main/icon-app.png);
-    margin-right: 8px;
-    background-size: cover;
+    color: #fff;
+    background: linear-gradient(90deg, rgb(255, 128, 0) 0%, rgb(255, 43, 0) 100%);
   }
   .main-view .section.top-visual .container .moBtn.fixed {
     transition: none !important;
     width: calc(100% - 50px);
     bottom: 20px;
     z-index: 1000;
-    border: 1px solid #fff;
     color: #fff;
     background: linear-gradient(105deg, rgb(255, 70, 0) 0%, rgb(255, 122, 0) 100%);
   }
@@ -1808,104 +1939,204 @@ header, .header {
   .main-view .section.top-visual.animation .scrollNav {
     transition-delay: 2s;
   }
-  .main-view .section.second-section {
-    height: auto;
-    padding: 69px 0;
+  .main-view .section.top-visual.animation .container .bg {
+    transition: none;
   }
-  .main-view .section.second-section .container {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
+  .main-view .section.top-visual.animation .container .mainText .slideBox {
+    opacity: 1;
+    transition: 0.3s;
+    transition-delay: 1s;
+    -webkit-animation-delay: 1s;
+            animation-delay: 1s;
+    margin-top: 22px;
   }
-  .main-view .section.second-section .container .textBox {
-    height: 168px;
+  .main-view .section.top-visual.animation .container .mainText .slideBox .slide-li {
+    width: 212px;
+    max-width: 212px;
+    float: left;
   }
-  .main-view .section.second-section .container .textBox .second-pagination {
-    left: 25px;
-  }
-  .main-view .section.second-section .container .textBox .second-pagination .swiper-pagination-bullet {
-    width: 20px;
-    height: 4px;
-    margin-right: 4px;
-  }
-  .main-view .section.second-section .container .second-slide {
-    position: static;
-    height: auto;
-  }
-  .main-view .section.second-section .container .second-slide .swiper-wrapper {
-    flex-direction: row;
-  }
-  .main-view .section.second-section .container .second-slide .swiper-wrapper .swiper-slide .imgWrap {
-    position: relative;
-    margin-top: 20px;
-  }
-  .main-view .section.second-section .container .second-slide .swiper-wrapper .swiper-slide.slide1 .logoBox {
-    position: absolute;
-    left: 0;
-    top: 0;
+  .main-view .section.top-visual.animation .container .mainText .slideBox .slide-li img {
     width: 100%;
     height: 100%;
-    opacity: 0;
   }
-  .main-view .section.second-section .container .second-slide .swiper-wrapper .swiper-slide.slide1 .logoBox img {
-    position: absolute;
+  .main-view .section.top-visual.animation .container .mainText .slideBox .slide-li .topBox {
+    height: 212px;
   }
-  .main-view .section.second-section .container .second-slide .swiper-wrapper .swiper-slide.slide1 .logoBox img:nth-child(1) {
-    left: -56%;
-    top: 44%;
-    width: 75px;
-    height: 14px;
+  .main-view .section.top-visual.animation .container .mainText .slideBox .slide-li .bottomBox {
+    padding: 17.5px 18px;
   }
-  .main-view .section.second-section .container .second-slide .swiper-wrapper .swiper-slide.slide1 .logoBox img:nth-child(2) {
-    left: -12%;
-    top: 26%;
-    width: 28px;
-    height: 17px;
+  .main-view .section.top-visual.animation .container .mainText .slideBox .slide-li .bottomBox .countBox {
+    top: -9.5px;
+    left: 18px;
+    width: 30px;
+    height: 16.5px;
+    border-radius: 4px;
+    font-size: 11px;
   }
-  .main-view .section.second-section .container .second-slide .swiper-wrapper .swiper-slide.slide1 .logoBox img:nth-child(3) {
-    right: -26%;
-    top: 34%;
-    width: 67px;
-    height: 12px;
+  .main-view .section.top-visual.animation .container .mainText .slideBox .slide-li .bottomBox .nameBox p {
+    font-size: 14px;
   }
-  .main-view .section.second-section .container .second-slide .swiper-wrapper .swiper-slide.slide1 .logoBox img:nth-child(4) {
-    right: -66%;
-    top: 58%;
-    width: 77px;
-    height: 8px;
+  .main-view .section.top-visual.animation .container .mainText .slideBox .slide-li .bottomBox .priceBox {
+    margin-top: 5px;
   }
-  .main-view .section.second-section .container .second-slide .swiper-wrapper .swiper-slide.slide1 .logoBox img:nth-child(5) {
-    left: -15%;
-    top: 66%;
-    width: 67px;
-    height: 9px;
+  .main-view .section.top-visual.animation .container .mainText .slideBox .slide-li .bottomBox .priceBox span:first-child {
+    font-size: 11.5px;
   }
-  .main-view .section.second-section .container .second-slide .swiper-wrapper .swiper-slide.slide1 .logoBox img:nth-child(6) {
-    right: -23%;
-    top: 72%;
-    width: 45px;
-    height: 16px;
+  .main-view .section.top-visual.animation .container .mainText .slideBox .slide-li .bottomBox .priceBox span:last-child {
+    font-size: 14px;
+    margin-left: 3.5px;
   }
-  .main-view .section.second-section .container .second-slide .swiper-wrapper .swiper-slide.slide2 .money.money1 {
-    left: -38%;
-    top: 26%;
-    width: 45px;
-    height: 105px;
-    background-size: cover;
+  .main-view .section.top-visual.animation .container .mainText .slideBox .slick-dots {
+    right: 7px;
+    margin-bottom: 75px;
   }
-  .main-view .section.second-section .container .second-slide .swiper-wrapper .swiper-slide.slide2 .money.money2 {
-    right: -32%;
-    top: 52%;
-    width: 72px;
-    height: 116px;
-    background-size: cover;
+  .main-view .section.top-visual.animation .container .mainText .slideBox .slick-dots li button {
+    width: 5px;
+    height: 5px;
+  }
+  .main-view .section.top-visual.animation .container .mainText .slideBox.slideBoxSmall {
+    left: calc(50% + 250px);
+    transform: translateX(-50%);
+  }
+  .main-view .section.top-visual.animation .container .mainText .icon-timer {
+    width: 13px;
+    height: 14.5px;
+    margin-right: 4.5px;
+  }
+  .main-view .section.top-visual.animation .container .mainText .rightBox {
+    transform: translateX(-50%);
+    opacity: 1;
+  }
+  .main-view .section.top-visual.animation .container .mainText .rightBox .slideBox {
+    width: 212px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .main-view .section.top-visual.animation .container .mainText .rightBox .slideBox .slide-li {
+    width: 212px;
+    max-width: 212px;
+    float: left;
+  }
+  .main-view .section.top-visual.animation .container .mainText .rightBox .slideBox .slide-li .topBox {
+    height: 212px;
+  }
+  .main-view .section.top-visual.animation .container .mainText .rightBox .slideBox .slide-li .bottomBox {
+    padding: 17.5px 18px;
+  }
+  .main-view .section.top-visual.animation .container .mainText .rightBox .slideBox .slide-li .bottomBox .countBox {
+    top: -9.5px;
+    left: 18px;
+    width: 30px;
+    height: 16.5px;
+    border-radius: 4px;
+    font-size: 11px;
+  }
+  .main-view .section.top-visual.animation .container .mainText .rightBox .slideBox .slide-li .bottomBox .nameBox p {
+    font-size: 14px;
+  }
+  .main-view .section.top-visual.animation .container .mainText .rightBox .slideBox .slide-li .bottomBox .priceBox {
+    margin-top: 5px;
+  }
+  .main-view .section.top-visual.animation .container .mainText .rightBox .slideBox .slide-li .bottomBox .priceBox span:first-child {
+    font-size: 11.5px;
+  }
+  .main-view .section.top-visual.animation .container .mainText .rightBox .slideBox .slide-li .bottomBox .priceBox span:last-child {
+    font-size: 14px;
+    margin-left: 3.5px;
+  }
+  .main-view .section.top-visual.animation .container .mainText .rightBox .slideBox.slideBoxBig {
+    margin-top: 22px;
+  }
+  .main-view .section.top-visual.animation .container .mainText .rightBox .slideBox.slideBoxBig .slide-li {
+    height: 278px;
+  }
+  .main-view .section.top-visual.animation .container .mainText .rightBox .slideBox.slideBoxSmall {
+    left: calc(50% + 250px);
+    transform: translateX(-50%);
+    margin-top: 22px;
+    z-index: -1;
+  }
+  .main-view .section.top-visual.animation .container .mainText .rightBox .slideBox .slick-dots {
+    right: 7px;
+    margin-bottom: 75px;
+  }
+  .main-view .section.top-visual.animation .container .mainText .rightBox .slideBox .slick-dots li button {
+    width: 5px;
+    height: 5px;
+  }
+  .main-view .section.line-up {
+    height: auto;
+    padding: 55px 0;
+    background-size: 125px auto;
+    background-position: top 38px center;
+  }
+  .main-view .section.line-up .container {
+    padding: 0;
+  }
+  .main-view .section.line-up .container .main-title {
+    margin-top: 10px;
+  }
+  .main-view .section.line-up .container .main-title p {
+    font-size: 20px;
+    margin-top: 5.5px;
+  }
+  .main-view .section.line-up .container .main-title .text-box span {
+    font-size: 18px;
+  }
+  .main-view .section.line-up .container .lineup-slide {
+    padding-top: 28px;
+  }
+  .main-view .section.line-up .container .lineup-slide .slick-list {
+    right: 0;
+  }
+  .main-view .section.line-up .container .lineup-slide .slick-list .slick-slide {
+    width: 142px;
+    padding: 0 8px;
+  }
+  .main-view .section.line-up .container .lineup-slide .slide-item .cont-wrap {
+    padding: 0;
+  }
+  .main-view .section.line-up .container .lineup-slide .slide-item .cont-wrap .text-wrap .date-alert {
+    font-size: 12px;
+    margin-top: 18px;
+    border-radius: 8px;
+    padding: 2px 8px;
+  }
+  .main-view .section.line-up .container .lineup-slide .slide-item .cont-wrap .text-wrap .brand-name {
+    font-size: 12px;
+    margin-top: 12px;
+  }
+  .main-view .section.line-up .container .lineup-slide .slide-item .cont-wrap .text-wrap .prod-name {
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  .main-view .section.line-up .container .lineup-slide::before, .main-view .section.line-up .container .lineup-slide::after {
+    display: none;
+  }
+  .main-view .section.line-up .container .lineup-slide .slick-prev {
+    margin-top: -55px;
+  }
+  .main-view .section.line-up .container .lineup-slide .slick-next {
+    margin-top: -55px;
   }
   .main-view .section.third-section {
     height: auto;
-    padding: 69px 0 54px;
+    padding: 35px 0 54px;
+    background-position: bottom center;
   }
   .main-view .section.third-section .container {
-    flex-direction: column-reverse;
+    background-size: 172px auto;
+    background-position: top center;
+  }
+  .main-view .section.third-section .container .main-title {
+    margin-top: 27px;
+  }
+  .main-view .section.third-section .container .main-title .text-box span {
+    font-size: 18px;
+  }
+  .main-view .section.third-section .container .main-title p {
+    margin-top: 6px;
+    font-size: 20px;
   }
   .main-view .section.third-section .container .imgWrap {
     width: -webkit-fit-content;
@@ -1928,6 +2159,43 @@ header, .header {
   }
   .main-view .section.third-section .container .textWrap {
     padding-top: 0;
+  }
+  .main-view .section.third-section .container .card-wrap {
+    flex-direction: column;
+    width: 325px;
+    margin: 28px auto 0;
+  }
+  .main-view .section.third-section .container .card-wrap .card-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 95px;
+    padding: 0;
+    padding-left: 24px;
+  }
+  .main-view .section.third-section .container .card-wrap .card-item:nth-child(1) {
+    background: #FFF url("../images/100deal/mo-card-img1.png") no-repeat right 25px bottom -15px/106px auto;
+  }
+  .main-view .section.third-section .container .card-wrap .card-item:nth-child(2) {
+    background: #FFF url("../images/100deal/mo-card-img2.png") no-repeat right 25px center/81px auto;
+  }
+  .main-view .section.third-section .container .card-wrap .card-item:nth-child(3) {
+    background: #FFF url("../images/100deal/mo-card-img3.png") no-repeat right 25px center/81px auto;
+  }
+  .main-view .section.third-section .container .card-wrap .card-item .card-title {
+    font-size: 17px;
+  }
+  .main-view .section.third-section .container .card-wrap .card-item .card-title p {
+    font-size: 15px;
+    margin-bottom: 5px;
+  }
+  .main-view .section.third-section .container .card-wrap .card-item::after {
+    width: 100%;
+    height: 3px;
+    background: url("../images/100deal/mo-card-line.png") no-repeat center;
+    background-size: contain;
+    top: auto;
+    bottom: -0.5px;
   }
   .main-view .section.app-down {
     text-align: center;

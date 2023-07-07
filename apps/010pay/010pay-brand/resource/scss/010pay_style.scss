@@ -1241,58 +1241,131 @@ header, .header {
 	}
 }
 .info_list {
+	&.web {
+		display: block;
+		li {
+			display: flex;
+			flex-direction: column;
+		}
+		.txt_cont, .tel_num {
+			display: inline-block;
+		}
+		.tel_num {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			text-align: center;
+			div.num {
+				color: #4c4c4c;
+				font-size: 35px;
+				font-weight: $font-weight-bold;
+			}
+			a {color: #4c4c4c; line-height: 1;}
+			img {
+				flex: 0 0 auto;
+				height: fit-content;
+
+				&.pay {
+					width: 91px;
+				}
+				&.card {
+					width: 120px;
+				}
+			}
+		}
+		.time {
+			color: #989797;
+			font-size: 16px;
+		}
+		.txt_cont {
+			display: flex;
+			align-items: center;
+			margin-bottom: 20px;
+			font-size: 16px;
+			line-height: 1;
+			img {
+				margin-top: -4px;
+				vertical-align: middle;
+			}
+			>span {position: relative;
+				margin-right: 16px;
+				padding-right: 18px;
+				color: $dark;
+				font-weight: $font-weight-bold;
+				&::after {
+					display: block;
+					content: "";
+					position: absolute;
+					right: 0;
+					top: 50%;
+					transform: translateY(-50%);
+					width: 2px;
+					height: 15px;
+					background-color: #ccc;
+				}
+			}
+			.txt {
+				color: #767676;
+			}
+		}
+	}
+	&.mo {
+		display: none;
+		.txt_cont, .tel_num {
+			display: inline-block;
+		}
+		.tel_num {
+			float: right;
+			padding: 18px 25px;
+			text-align: center;
+			background: $white;
+			border:2px solid #f4f5f5;
+			border-radius: 7px;
+			div.num {
+				color: $dark;
+				font-size: 32px;
+				font-weight: $font-weight-bold;
+			}
+			a {color: #4c4c4c}
+		}
+		.time {
+			color: #989797;
+			font-size: 16px;
+		}
+		.txt_cont {
+			padding: 20px 0 18px;
+			font-size: 18px;
+			img {
+				margin-top: -4px;
+				vertical-align: middle;
+			}
+			>span {
+				margin-left: 16px;
+				padding-left: 18px;
+				color: $dark;
+				font-size: 12px;
+				font-weight: $font-weight-bold;
+				background: url('../images/left_bar.png') no-repeat left center;
+			}
+			.txt {
+				font-size: 12px;
+				margin-top: 5px
+			}
+		}
+	}
 	li {
 		float: left;
 		width: 49%;
-		padding: 23px 40px;
+		padding: 40px;
 		background: #f9fafb;
 		border-radius: 8px;
-
 	}
 	&::after {
 		clear: both;
 		content: '';
 		display: block;
 	}
-	.txt_cont, .tel_num {
-		display: inline-block;
-	}
-	.tel_num {
-		float: right;
-		padding: 18px 25px;
-		text-align: center;
-		background: $white;
-		border:2px solid #f4f5f5;
-		border-radius: 7px;
-		div.num {
-			color: $dark;
-			font-size: 32px;
-			font-weight: $font-weight-bold;
-		}
-		a {color: #4c4c4c}
-	}
-	.time {
-		color: #989797;
-		font-size: 16px;
-	}
-	.txt_cont {
-		padding: 20px 0 18px;
-		font-size: 18px;
-		img {
-			margin-top: -4px;
-			vertical-align: middle;
-		}
-		>span {
-			margin-left: 16px;
-			padding-left: 18px;
-			color: $dark;
-			font-weight: $font-weight-bold;
-			background: url('../images/left_bar.png') no-repeat left center;
-		}
-		.txt {
-			margin-top: 5px
-		}
-	}
+	
 }
 
 .faq {
@@ -1325,6 +1398,7 @@ header, .header {
 			content: "";
 			position: absolute;
 			bottom: 0;
+			z-index: -1;
 			height: 1px;
 			width: 100%;
 			background-color: #e1e1e1;
@@ -1395,8 +1469,8 @@ header, .header {
 				}
 				.toggleBtn {
 					display: block;
-					width: 29px;
-					height: 30px;
+					width: 15px;
+					height: 9px;
 					margin-left: auto;
 					background: url(../images/common/icon-faq-down-arrow.png) center / 15px 9px no-repeat;
 					border: none;
@@ -1415,10 +1489,34 @@ header, .header {
 }
 
 .faq-telephone {
-	.sub_tit {
+	.sub_titWrap {
+		display: flex;
+		align-items: center;
 		margin-bottom: 27px;
-		line-height: 1;
-		font-size: 22px;
+		.sub_tit {
+			margin-bottom: 0;
+			line-height: 1;
+			font-size: 22px;
+		}
+		.timeInfo {
+			position: relative;
+			display: block;
+			margin-left: 20px;
+			padding-left: 20px;
+			font-size: 22px;
+			color: #222222;
+			&::before {
+				display: block;
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 50%;
+				transform: translateY(-50%);
+				width: 2px;
+				height: 20px;
+				background-color: #d6d6d6;
+			}
+		}
 	}
 	width: 1116px;
 	margin: 0 auto 100px;
@@ -2261,6 +2359,85 @@ address {
 @import "media";
 
 @media only screen and (max-width: 767px) {
+	.faq-telephone {
+		width: 100%;
+		padding: 0 25px;
+		.sub_titWrap .timeInfo {
+			display: none;
+		}
+	}
+	.faq-section {
+		.tabWrap {
+			width: 100%;
+			overflow: auto;
+			-ms-overflow-style: none;
+			scrollbar-width: none;
+			&::-webkit-scrollbar {
+				display: none;
+			}
+			.tabBox  {
+				display: block;
+				white-space: nowrap;
+				width: fit-content;
+				a {
+					display: inline-block;
+					width:  auto;
+					height: 46px;
+					font-size: 17px;
+					padding: 0 25px;
+					line-height: 46px;
+				}
+			}
+		}
+		.tabContentsWrap {
+			width: 100%;
+			padding: 9px 25px 30px;
+			li {
+				.topCon {
+					position: relative;
+					flex-direction: column;
+					align-items: baseline;
+					justify-content: center;
+					height: 74px;
+					padding-left: 20px;
+					.category {
+						margin-bottom: 7px;
+						font-size: 13px;
+					}
+					h4 {
+						font-size: 15px;
+					}
+					.toggleBtn {
+						position: absolute;
+						right: 20px;
+						top: 50%;
+						transform: translateY(-50%);
+					}
+				}
+				.botCon {
+					padding: 0 20px 35px;
+					font-size: 12px;
+				}
+				&.on {
+					.topCon .toggleBtn {
+						transform: translateY(-50%) rotate(180deg);
+					}
+				}
+			}
+		}
+	}
+	.info_list {
+		width: 100%;
+		&.web {
+			display: none;
+		} 
+		&.mo {
+			display: block;
+			.tel_num {
+				float: none;
+			}
+		} 
+	}
 	.animation {
 		&.card_bottom {
 			.txt_area {

@@ -2217,22 +2217,86 @@ header.fixed .nav-item > .nav-link.nav-giftimall.nav-giftimall-white .icon-nav-g
   background-position: center left 25px;
 }
 
-.info_list li {
-  float: left;
-  width: 49%;
-  padding: 23px 40px;
-  background: #f9fafb;
-  border-radius: 8px;
-}
-.info_list::after {
-  clear: both;
-  content: "";
+.info_list.web {
   display: block;
 }
-.info_list .txt_cont, .info_list .tel_num {
+.info_list.web li {
+  display: flex;
+  flex-direction: column;
+}
+.info_list.web .txt_cont, .info_list.web .tel_num {
   display: inline-block;
 }
-.info_list .tel_num {
+.info_list.web .tel_num {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+.info_list.web .tel_num div.num {
+  color: #4c4c4c;
+  font-size: 35px;
+  font-weight: 700;
+}
+.info_list.web .tel_num a {
+  color: #4c4c4c;
+  line-height: 1;
+}
+.info_list.web .tel_num img {
+  flex: 0 0 auto;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.info_list.web .tel_num img.pay {
+  width: 91px;
+}
+.info_list.web .tel_num img.card {
+  width: 120px;
+}
+.info_list.web .time {
+  color: #989797;
+  font-size: 16px;
+}
+.info_list.web .txt_cont {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 1;
+}
+.info_list.web .txt_cont img {
+  margin-top: -4px;
+  vertical-align: middle;
+}
+.info_list.web .txt_cont > span {
+  position: relative;
+  margin-right: 16px;
+  padding-right: 18px;
+  color: #222222;
+  font-weight: 700;
+}
+.info_list.web .txt_cont > span::after {
+  display: block;
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 15px;
+  background-color: #ccc;
+}
+.info_list.web .txt_cont .txt {
+  color: #767676;
+}
+.info_list.mo {
+  display: none;
+}
+.info_list.mo .txt_cont, .info_list.mo .tel_num {
+  display: inline-block;
+}
+.info_list.mo .tel_num {
   float: right;
   padding: 18px 25px;
   text-align: center;
@@ -2240,35 +2304,49 @@ header.fixed .nav-item > .nav-link.nav-giftimall.nav-giftimall-white .icon-nav-g
   border: 2px solid #f4f5f5;
   border-radius: 7px;
 }
-.info_list .tel_num div.num {
+.info_list.mo .tel_num div.num {
   color: #222222;
   font-size: 32px;
   font-weight: 700;
 }
-.info_list .tel_num a {
+.info_list.mo .tel_num a {
   color: #4c4c4c;
 }
-.info_list .time {
+.info_list.mo .time {
   color: #989797;
   font-size: 16px;
 }
-.info_list .txt_cont {
+.info_list.mo .txt_cont {
   padding: 20px 0 18px;
   font-size: 18px;
 }
-.info_list .txt_cont img {
+.info_list.mo .txt_cont img {
   margin-top: -4px;
   vertical-align: middle;
 }
-.info_list .txt_cont > span {
+.info_list.mo .txt_cont > span {
   margin-left: 16px;
   padding-left: 18px;
   color: #222222;
+  font-size: 12px;
   font-weight: 700;
   background: url("../images/left_bar.png") no-repeat left center;
 }
-.info_list .txt_cont .txt {
+.info_list.mo .txt_cont .txt {
+  font-size: 12px;
   margin-top: 5px;
+}
+.info_list li {
+  float: left;
+  width: 49%;
+  padding: 40px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+.info_list::after {
+  clear: both;
+  content: "";
+  display: block;
 }
 
 .faq {
@@ -2299,6 +2377,7 @@ header.fixed .nav-item > .nav-link.nav-giftimall.nav-giftimall-white .icon-nav-g
   content: "";
   position: absolute;
   bottom: 0;
+  z-index: -1;
   height: 1px;
   width: 100%;
   background-color: #e1e1e1;
@@ -2366,8 +2445,8 @@ header.fixed .nav-item > .nav-link.nav-giftimall.nav-giftimall-white .icon-nav-g
 }
 .faq-section .tabContentsWrap li .topCon .toggleBtn {
   display: block;
-  width: 29px;
-  height: 30px;
+  width: 15px;
+  height: 9px;
   margin-left: auto;
   background: url(../images/common/icon-faq-down-arrow.png) center/15px 9px no-repeat;
   border: none;
@@ -2386,10 +2465,34 @@ header.fixed .nav-item > .nav-link.nav-giftimall.nav-giftimall-white .icon-nav-g
   margin: 0 auto 100px;
   background: #fff !important;
 }
-.faq-telephone .sub_tit {
+.faq-telephone .sub_titWrap {
+  display: flex;
+  align-items: center;
   margin-bottom: 27px;
+}
+.faq-telephone .sub_titWrap .sub_tit {
+  margin-bottom: 0;
   line-height: 1;
   font-size: 22px;
+}
+.faq-telephone .sub_titWrap .timeInfo {
+  position: relative;
+  display: block;
+  margin-left: 20px;
+  padding-left: 20px;
+  font-size: 22px;
+  color: #222222;
+}
+.faq-telephone .sub_titWrap .timeInfo::before {
+  display: block;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 20px;
+  background-color: #d6d6d6;
 }
 
 /* 기타 */
@@ -3425,7 +3528,7 @@ address dt:after {
   }
   /* CONTENTS */
   .tab.fixed {
-    top: 74px;
+    top: 0;
   }
   .img_area img {
     position: absolute;
@@ -5655,6 +5758,81 @@ address dt:after {
   }
 }
 @media only screen and (max-width: 767px) {
+  .faq-telephone {
+    width: 100%;
+    padding: 0 25px;
+  }
+  .faq-telephone .sub_titWrap .timeInfo {
+    display: none;
+  }
+  .faq-section .tabWrap {
+    width: 100%;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .faq-section .tabWrap::-webkit-scrollbar {
+    display: none;
+  }
+  .faq-section .tabWrap .tabBox {
+    display: block;
+    white-space: nowrap;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .faq-section .tabWrap .tabBox a {
+    display: inline-block;
+    width: auto;
+    height: 46px;
+    font-size: 17px;
+    padding: 0 25px;
+    line-height: 46px;
+  }
+  .faq-section .tabContentsWrap {
+    width: 100%;
+    padding: 9px 25px 30px;
+  }
+  .faq-section .tabContentsWrap li .topCon {
+    position: relative;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+    height: 74px;
+    padding-left: 20px;
+  }
+  .faq-section .tabContentsWrap li .topCon .category {
+    margin-bottom: 7px;
+    font-size: 13px;
+  }
+  .faq-section .tabContentsWrap li .topCon h4 {
+    font-size: 15px;
+  }
+  .faq-section .tabContentsWrap li .topCon .toggleBtn {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .faq-section .tabContentsWrap li .botCon {
+    padding: 0 20px 35px;
+    font-size: 12px;
+  }
+  .faq-section .tabContentsWrap li.on .topCon .toggleBtn {
+    transform: translateY(-50%) rotate(180deg);
+  }
+  .info_list {
+    width: 100%;
+  }
+  .info_list.web {
+    display: none;
+  }
+  .info_list.mo {
+    display: block;
+  }
+  .info_list.mo .tel_num {
+    float: none;
+  }
   .animation.card_bottom .txt_area {
     position: initial;
   }

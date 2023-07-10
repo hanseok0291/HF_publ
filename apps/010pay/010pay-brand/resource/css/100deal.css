@@ -908,13 +908,12 @@ header, .header {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: row;
   font-size: 78px;
   color: #fff;
   transition: 0.3s;
   z-index: 1;
-  margin-left: 21.35%;
 }
 .main-view .section.top-visual .container .mainText .firstText, .main-view .section.top-visual .container .mainText .lastText, .main-view .section.top-visual .container .mainText .dateText, .main-view .section.top-visual .container .mainText .leftBox, .main-view .section.top-visual .container .mainText .rightBox {
   display: block;
@@ -946,8 +945,14 @@ header, .header {
 }
 .main-view .section.top-visual .container .mainText .rightBox.pc {
   display: flex;
+  margin-left: 194px;
+  transform: translateX(0);
+  left: auto;
 }
 .main-view .section.top-visual .container .mainText .rightBox.mo {
+  display: none;
+}
+.main-view .section.top-visual .container .mainText .rightBoxMo {
   display: none;
 }
 .main-view .section.top-visual .container .mainText .firstText {
@@ -957,8 +962,9 @@ header, .header {
 }
 .main-view .section.top-visual .container .mainText .lastText {
   font-size: 50px;
+  line-height: 60px;
   color: #fff;
-  font-weight: 500;
+  font-weight: 300;
   margin-top: 28px;
 }
 .main-view .section.top-visual .container .mainText .dateText {
@@ -1042,7 +1048,6 @@ header, .header {
   height: 100%;
   border-radius: 22px;
   overflow: hidden;
-  background-color: #fff;
 }
 .main-view .section.top-visual .container .slideBox .slide-li {
   position: relative;
@@ -1054,8 +1059,20 @@ header, .header {
   background-color: #fff;
 }
 .main-view .section.top-visual .container .slideBox .slide-li .topBox {
+  position: relative;
   height: 402px;
   background-color: #F7F7F7;
+}
+.main-view .section.top-visual .container .slideBox .slide-li .topBox::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.03;
 }
 .main-view .section.top-visual .container .slideBox .slide-li .bottomBox {
   position: relative;
@@ -1065,12 +1082,13 @@ header, .header {
   position: absolute;
   top: -19px;
   left: 36px;
-  width: 61px;
   height: 33px;
+  padding: 0 8px;
   border-radius: 8px;
   background-color: #FF6C00;
   color: #fff;
   font-size: 22px;
+  font-weight: 400;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1223,6 +1241,9 @@ header, .header {
   transition: 0.3s;
   transition-delay: 0.7s;
 }
+.main-view .section.top-visual.animation .container .mainText {
+  max-width: 1100px;
+}
 .main-view .section.top-visual.animation .container .mainText .textImg {
   opacity: 1;
   transition: opacity 1s;
@@ -1232,13 +1253,11 @@ header, .header {
   opacity: 1;
   transform: translateX(0);
   transition: 1s;
-  transition-delay: 1s;
 }
 .main-view .section.top-visual.animation .container .mainText .firstText .slideBox, .main-view .section.top-visual.animation .container .mainText .lastText .slideBox, .main-view .section.top-visual.animation .container .mainText .dateText .slideBox, .main-view .section.top-visual.animation .container .mainText .leftBox .slideBox, .main-view .section.top-visual.animation .container .mainText .rightBox .slideBox {
   opacity: 1;
   transform: translateX(0);
   transition: 1s;
-  transition-delay: 1s;
 }
 .main-view .section.top-visual.animation .container .mainText .icon-timer {
   display: inline-block;
@@ -1260,7 +1279,7 @@ header, .header {
   max-width: none;
   flex-direction: column;
   overflow: hidden;
-  padding: 70px 0;
+  padding: 70px 0 130px;
 }
 .main-view .section.line-up .container .main-title {
   text-align: center;
@@ -1271,6 +1290,7 @@ header, .header {
 }
 .main-view .section.line-up .container .main-title .text-box span {
   font-size: 36px;
+  font-weight: 400;
   color: #b1b1b1;
 }
 .main-view .section.line-up .container .main-title p {
@@ -1316,11 +1336,13 @@ header, .header {
 .main-view .section.line-up .container .lineup-slide .slide-item .cont-wrap .text-wrap .date-alert {
   display: inline-block;
   font-size: 23px;
+  font-weight: 500;
   color: #fff;
   border-radius: 16px;
   background-color: #FF3600;
-  padding: 5px 18px;
+  padding: 5px 16px 4px;
   margin-top: 40px;
+  letter-spacing: 1px;
 }
 .main-view .section.line-up .container .lineup-slide .slide-item .cont-wrap .text-wrap .brand-name {
   margin-top: 32px;
@@ -1361,17 +1383,28 @@ header, .header {
   position: absolute;
   top: -100%;
   height: 1700px;
-  width: 220px;
+  width: 25%;
   display: block;
   z-index: 1;
+  opacity: 1;
 }
 .main-view .section.line-up .container .lineup-slide::before {
   left: 0;
-  background: linear-gradient(to right, #151515 25%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(to right, #151515 0%, rgba(0, 0, 0, 0) 100%);
 }
 .main-view .section.line-up .container .lineup-slide::after {
   right: 0;
-  background: linear-gradient(to left, #151515 25%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(to left, #151515 0%, rgba(0, 0, 0, 0) 100%);
+}
+.main-view .section.line-up .container .lineup-slide.slide-type2 {
+  display: flex;
+  justify-content: center;
+}
+.main-view .section.line-up .container .lineup-slide.slide-type2 .slide-item .cont-wrap .img-wrap {
+  width: 354px;
+}
+.main-view .section.line-up .container .lineup-slide.slide-type2::before, .main-view .section.line-up .container .lineup-slide.slide-type2::after {
+  display: none;
 }
 .main-view .section.line-up.animation .main-title {
   opacity: 1;
@@ -1386,22 +1419,22 @@ header, .header {
   display: block;
 }
 .main-view .section.third-section {
-  height: 708px;
   background: #FF8C22 url("../images/100deal/third-section-bg.png") no-repeat top 0 left/384px auto;
 }
 .main-view .section.third-section .container {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 0;
+  padding: 70px 0 130px;
   background: url("../images/100deal/third-section-text.png") no-repeat top 64px center/384px auto;
 }
 .main-view .section.third-section .container .main-title {
   text-align: center;
-  margin-top: 130px;
+  margin-top: 55px;
 }
 .main-view .section.third-section .container .main-title .text-box span {
   font-size: 36px;
+  font-weight: 400;
   color: #ffffff;
 }
 .main-view .section.third-section .container .main-title p {
@@ -1414,7 +1447,7 @@ header, .header {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1276px;
+  width: auto;
   margin-top: 60px;
 }
 .main-view .section.third-section .container .card-wrap .card-item {
@@ -1422,7 +1455,7 @@ header, .header {
   width: 427px;
   height: 306px;
   padding: 48px 47px;
-  border-radius: 30px;
+  border-radius: 15px;
   background-color: #fff;
 }
 .main-view .section.third-section .container .card-wrap .card-item::after {
@@ -1763,11 +1796,11 @@ header, .header {
     font-style: italic;
   }
   .main-view .section.top-visual {
-    height: auto;
+    height: 630px;
     padding-top: 0;
   }
   .main-view .section.top-visual .container {
-    height: auto;
+    height: 630px;
     margin-top: 61px;
     border-radius: 0 0 60px 60px;
     padding-top: 45px;
@@ -1778,6 +1811,9 @@ header, .header {
   }
   .main-view .section.top-visual .container .slideBox {
     width: 212px;
+  }
+  .main-view .section.top-visual .container .slideBox .slick-list {
+    border-radius: 15px;
   }
   .main-view .section.top-visual .container .circleBg.small {
     width: 472px;
@@ -1836,6 +1872,8 @@ header, .header {
   .main-view .section.top-visual .container .mainText .lastText {
     font-size: 25px;
     margin-top: 15px;
+    line-height: 30px;
+    text-align: center;
   }
   .main-view .section.top-visual .container .mainText .dateText {
     font-size: 13px;
@@ -1883,6 +1921,8 @@ header, .header {
     z-index: 2;
     width: 280px;
     height: 63px;
+    left: 50%;
+    transform: translateX(-50%);
     margin-top: 28px;
     font-size: 21px;
     font-weight: bold;
@@ -1931,11 +1971,6 @@ header, .header {
     width: 14px;
     height: 6px;
   }
-  .main-view .section.top-visual.animation .container .mainText .textImg, .main-view .section.top-visual.animation .leftBox, .main-view .section.top-visual.animation .rightBox {
-    transition-delay: 1s;
-    -webkit-animation-delay: 1s;
-            animation-delay: 1s;
-  }
   .main-view .section.top-visual.animation .scrollNav {
     transition-delay: 2s;
   }
@@ -1968,10 +2003,10 @@ header, .header {
   .main-view .section.top-visual.animation .container .mainText .slideBox .slide-li .bottomBox .countBox {
     top: -9.5px;
     left: 18px;
-    width: 30px;
     height: 16.5px;
     border-radius: 4px;
     font-size: 11px;
+    padding: 0 4px;
   }
   .main-view .section.top-visual.animation .container .mainText .slideBox .slide-li .bottomBox .nameBox p {
     font-size: 14px;
@@ -2074,6 +2109,7 @@ header, .header {
     padding: 0;
   }
   .main-view .section.line-up .container .main-title {
+    font-weight: 400;
     margin-top: 10px;
   }
   .main-view .section.line-up .container .main-title p {
@@ -2100,7 +2136,8 @@ header, .header {
     font-size: 12px;
     margin-top: 18px;
     border-radius: 8px;
-    padding: 2px 8px;
+    padding: 3px 8px 2px;
+    letter-spacing: 0.5px;
   }
   .main-view .section.line-up .container .lineup-slide .slide-item .cont-wrap .text-wrap .brand-name {
     font-size: 12px;
@@ -2119,16 +2156,30 @@ header, .header {
   .main-view .section.line-up .container .lineup-slide .slick-next {
     margin-top: -55px;
   }
+  .main-view .section.line-up .container .lineup-slide.slide-type2 {
+    display: flex;
+    justify-content: center;
+  }
+  .main-view .section.line-up .container .lineup-slide.slide-type2 .slide-item .cont-wrap .img-wrap {
+    width: 142px;
+    margin: 0 8px;
+  }
+  .main-view .section.line-up .container .lineup-slide.slide-type2::before, .main-view .section.line-up .container .lineup-slide.slide-type2::after {
+    display: none;
+  }
   .main-view .section.third-section {
     height: auto;
-    padding: 35px 0 54px;
-    background-position: bottom center;
+    padding: 35px 0 55px;
+    background: #FF8C22 url("../images/100deal/mo-third-section-bg.png") no-repeat top 0 left/433px auto;
+    background-position: bottom -200px right -10px;
   }
   .main-view .section.third-section .container {
+    padding: 0;
     background-size: 172px auto;
     background-position: top center;
   }
   .main-view .section.third-section .container .main-title {
+    font-weight: 400;
     margin-top: 27px;
   }
   .main-view .section.third-section .container .main-title .text-box span {
@@ -2190,12 +2241,14 @@ header, .header {
     margin-bottom: 5px;
   }
   .main-view .section.third-section .container .card-wrap .card-item::after {
-    width: 100%;
+    width: 90%;
     height: 3px;
-    background: url("../images/100deal/mo-card-line.png") no-repeat center;
-    background-size: contain;
+    background: url("../images/100deal/mo-card-line.png") repeat-x;
+    background-size: cover;
     top: auto;
-    bottom: -0.5px;
+    left: 50%;
+    bottom: -1px;
+    transform: translateX(-50%);
   }
   .main-view .section.app-down {
     text-align: center;

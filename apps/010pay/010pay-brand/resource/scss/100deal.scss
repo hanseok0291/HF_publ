@@ -81,13 +81,13 @@ header, .header { background-color: #fff; }
 				width: 100%;
         display: flex;
         align-items: center;
-				justify-content: center;
+				justify-content: space-between;
 				flex-direction: row;
         font-size: 78px;
         color: #fff;
         transition: 0.3s;
         z-index: 1;
-				margin-left: 21.35%;
+				// margin-left: 21.35%;
         .firstText, .lastText, .dateText, .leftBox, .rightBox {
           display: block;
           position: relative;
@@ -122,10 +122,16 @@ header, .header { background-color: #fff; }
 					width: 100%;
 					&.pc {
 						display: flex;
+						margin-left: 194px;
+						transform: translateX(0);
+						left: auto;
 					}
 					&.mo {
 						display: none;
 					}
+				}
+				.rightBoxMo {
+					display: none;
 				}
 
         .firstText span {
@@ -144,8 +150,9 @@ header, .header { background-color: #fff; }
 				}
 				.lastText {
 					font-size: 50px;
+					line-height: 60px;
 					color: #fff;
-					font-weight: 500;
+					font-weight: 300;
 					margin-top: 28px;
 				}
 				.dateText {
@@ -235,7 +242,7 @@ header, .header { background-color: #fff; }
 					height: 100%;
 					border-radius: 22px;
 					overflow: hidden;
-					background-color: #fff;
+					// background-color: #fff;
 				}
 				.slide-li {
 					position: relative;
@@ -247,8 +254,20 @@ header, .header { background-color: #fff; }
 					background-color: #fff;
 					// overflow: hidden;
 					.topBox {
+						position: relative;
 						height: 402px;
 						background-color: #F7F7F7;
+						&::after {
+							content: '';
+							display: block;
+							position: absolute;
+							top: 0;
+							right: 0;
+							bottom: 0;
+							left: 0;
+							background: #000;
+							opacity: .03;
+						}
 					}
 					.bottomBox {
 						position: relative;
@@ -257,12 +276,13 @@ header, .header { background-color: #fff; }
 							position: absolute;
 							top: -19px;
 							left: 36px;
-							width: 61px;
 							height: 33px;
+							padding: 0 8px;
 							border-radius: 8px;
 							background-color: #FF6C00;
 							color: #fff;
 							font-size: 22px;
+							font-weight: 400;
 							display: flex;
 							justify-content: center;
 							align-items: center;
@@ -440,6 +460,7 @@ header, .header { background-color: #fff; }
           transition-delay: 0.7s;
         }
         .mainText {
+					max-width: 1100px;
           .textImg {
             opacity: 1;
             transition: opacity 1s;
@@ -450,13 +471,13 @@ header, .header { background-color: #fff; }
               opacity: 1;
               transform: translateX(0);
               transition: 1s;
-              transition-delay: 1s;
+              // transition-delay: 1s;
             }
 						.slideBox {
               opacity: 1;
               transform: translateX(0);
               transition: 1s;
-              transition-delay: 1s;
+              // transition-delay: 1s;
 						}
           }
 
@@ -488,7 +509,7 @@ header, .header { background-color: #fff; }
 			max-width: none;
 			flex-direction: column;
 			overflow: hidden;
-			padding: 70px 0;
+			padding: 70px 0 130px;
 			.main-title {
 				text-align: center;
 				margin-top: 80px;
@@ -496,7 +517,7 @@ header, .header { background-color: #fff; }
         transition: 0.6s;
 				transform: translateY(100px);
 				.text-box {
-					span { font-size: 36px; color: #b1b1b1; }
+					span { font-size: 36px; font-weight: 400; color: #b1b1b1; }
 				}
 				p { margin-top: 11px; font-size: 40px; color: #ffffff; font-weight: 700;}
 			}
@@ -536,11 +557,13 @@ header, .header { background-color: #fff; }
 							.date-alert {
 								display: inline-block;
 								font-size: 23px;
+								font-weight: 500;
 								color: #fff;
 								border-radius: 16px;
 								background-color: #FF3600;
-								padding: 5px 18px;
+								padding: 5px 16px 4px;
 								margin-top: 40px;
+								letter-spacing: 1px;
 							}
 							// date-alert
 							.brand-name {
@@ -586,19 +609,32 @@ header, .header { background-color: #fff; }
 					position: absolute;
 					top: -100%;
 					height: 1700px;
-					width: 220px;
+					width: 25%;
 					display: block;
 					z-index: 1;
+					opacity: 1;
 				}
 				&::before {
 					left: 0;
-					// background: url('../images/100deal/bg-left.png') no-repeat center / contain;
-					background: linear-gradient(to right, #151515 25%, rgba(0, 0, 0, 0) 100%);
+					background: linear-gradient(to right, #151515 0%, rgba(0, 0, 0, 0) 100%);
 				}
 				&::after {
 					right: 0;
-					// background: url('../images/100deal/bg-right.png') no-repeat center / contain;
-					background: linear-gradient(to left, #151515 25%, rgba(0, 0, 0, 0) 100%);
+					background: linear-gradient(to left, #151515 0%, rgba(0, 0, 0, 0) 100%);
+				}
+				&.slide-type2 {
+					display: flex;
+					justify-content: center;
+					.slide-item {
+						.cont-wrap {
+							.img-wrap {
+								width: 354px;
+							}
+						}
+					}
+					&::before, &::after {
+						display: none;
+					}
 				}
 			}
 			// lineup-slide
@@ -622,21 +658,20 @@ header, .header { background-color: #fff; }
 	//line-up
 
 &.third-section {
-	height: 708px;
 	background: #FF8C22 url("../images/100deal/third-section-bg.png") no-repeat top 0 left /384px auto;
 
 	.container {
 		display: flex;
 		justify-content: center;
 		flex-direction: column;
-		padding: 0;
+		padding: 70px 0 130px;
 		background: url('../images/100deal/third-section-text.png') no-repeat top 64px center / 384px auto;
 
 		.main-title {
 			text-align: center;
-			margin-top: 130px;
+			margin-top: 55px;
 			.text-box {
-				span { font-size: 36px; color: #ffffff; }
+				span { font-size: 36px; font-weight: 400; color: #ffffff; }
 			}
 			p { margin-top: 11px; font-size: 40px; color: #ffffff; font-weight: 700;}
 		}
@@ -646,14 +681,14 @@ header, .header { background-color: #fff; }
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			width: 1276px;
+			width: auto;
 			margin-top: 60px;
 			.card-item {
 				position: relative;
 				width: 427px;
 				height: 306px;
 				padding: 48px 47px;
-				border-radius: 30px;
+				border-radius: 15px;
 				background-color: #fff;
 				&::after {
 					content: '';
@@ -1041,11 +1076,11 @@ header, .header { background-color: #fff; }
     
 
     &.top-visual {
-      height: auto;
+      height: 630px;
       padding-top: 0;
 
       .container {
-        height: auto;
+        height: 630px;
         margin-top: 61px;
         border-radius: 0 0 60px 60px;
 				padding-top: 45px;
@@ -1055,6 +1090,9 @@ header, .header { background-color: #fff; }
         }
 				.slideBox {
 					width: 212px;
+					.slick-list {
+						border-radius: 15px;
+					}
 				}
         
         .circleBg {
@@ -1120,6 +1158,8 @@ header, .header { background-color: #fff; }
 					.lastText {
 						font-size: 25px;
 						margin-top: 15px;
+						line-height: 30px;
+						text-align: center;
 					}
 					.dateText {
 						font-size: 13px;
@@ -1172,6 +1212,8 @@ header, .header { background-color: #fff; }
           z-index: 2;
           width: 280px;
           height: 63px;
+					left: 50%;
+					transform: translateX(-50%);
           margin-top: 28px;
           font-size: 21px;
           font-weight: bold;
@@ -1189,7 +1231,6 @@ header, .header { background-color: #fff; }
             z-index: 1000;
             color: #fff;
             background: linear-gradient(105deg, rgba(255,70,0,1) 0%, rgba(255,122,0,1) 100%);
-
             &::before {
               background-image: url(../images/main/icon-app_fixed.png);
             }
@@ -1228,8 +1269,8 @@ header, .header { background-color: #fff; }
 
       &.animation {
         .container .mainText .textImg, .leftBox, .rightBox {
-          transition-delay: 1s;
-          animation-delay: 1s;
+          // transition-delay: 1s;
+          // animation-delay: 1s;
         }
         .scrollNav {
           transition-delay: 2s;
@@ -1261,10 +1302,10 @@ header, .header { background-color: #fff; }
 									.countBox {
 										top: -9.5px;
 										left: 18px;
-										width: 30px;
 										height: 16.5px;
 										border-radius: 4px;
 										font-size: 11px;
+										padding: 0 4px;
 									}
 									.nameBox {
 										p { font-size: 14px; }
@@ -1381,6 +1422,7 @@ header, .header { background-color: #fff; }
 			.container {
 				padding: 0;
 				.main-title {
+					font-weight: 400;
 					margin-top: 10px;
 					p {
 						font-size: 20px;
@@ -1409,7 +1451,8 @@ header, .header { background-color: #fff; }
 									font-size: 12px;
 									margin-top: 18px;
 									border-radius: 8px;
-									padding: 2px 8px;
+									padding: 3px 8px 2px;
+									letter-spacing: .5px;
 								}
 								.brand-name {
 									font-size: 12px;
@@ -1431,17 +1474,35 @@ header, .header { background-color: #fff; }
 					.slick-next {
 						margin-top: -55px;
 					}
+					&.slide-type2 {
+						display: flex;
+						justify-content: center;
+						.slide-item {
+							.cont-wrap {
+								.img-wrap {
+									width: 142px;
+									margin: 0 8px;
+								}
+							}
+						}
+						&::before, &::after {
+							display: none;
+						}
+					}
 				}
 			}
 		}
     &.third-section {
       height: auto;
-      padding: 35px 0 54px;
-			background-position: bottom center;
+      padding: 35px 0 55px;
+			background: #FF8C22 url("../images/100deal/mo-third-section-bg.png") no-repeat top 0 left/433px auto;
+			background-position: bottom -200px right -10px;
       .container {
+				padding: 0;
 				background-size: 172px auto;
 				background-position: top center;
 				.main-title {
+					font-weight: 400;
 					margin-top: 27px;
 					.text-box {
 						span {
@@ -1502,12 +1563,14 @@ header, .header { background-color: #fff; }
 							}
 						}
 						&::after {
-							width: 100%;
+							width: 90%;
 							height: 3px;
-							background: url("../images/100deal/mo-card-line.png") no-repeat center;
-							background-size: contain;
+							background: url("../images/100deal/mo-card-line.png") repeat-x;
+							background-size: cover;
 							top: auto;
-							bottom: -.5px;
+							left: 50%;
+							bottom: -1px;
+							transform: translateX(-50%);
 						}
 					}
 				}

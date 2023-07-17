@@ -1316,38 +1316,58 @@ header, .header {
 		}
 		.tel_num {
 			float: right;
-			padding: 18px 25px;
+			padding: 14px 25px 17px;
 			text-align: center;
 			background: $white;
 			border:2px solid #f4f5f5;
 			border-radius: 7px;
 			div.num {
 				color: $dark;
-				font-size: 32px;
 				font-weight: $font-weight-bold;
+				margin-bottom: 2px;
 			}
-			a {color: #4c4c4c}
+			a {
+				color: #4c4c4c;
+				font-size: 19px;
+			}
 		}
 		.time {
 			color: #989797;
 			font-size: 16px;
 		}
 		.txt_cont {
-			padding: 20px 0 18px;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: center;
+			padding: 0 0 18px;
 			font-size: 18px;
-			img {
-				margin-top: -4px;
-				vertical-align: middle;
+			.textWrap {
+				display: flex;
+				align-items: center;
 			}
-			>span {
+			img {
+				&.pay {
+					width: 45px;
+					height: auto;
+				}
+				&.card {
+					width: 56px;
+					height: auto;
+				}
+			}
+			span {
+				height: 20px;
+				line-height: 20px;
 				margin-left: 16px;
-				padding-left: 18px;
+				padding-left: 17px;
 				color: $dark;
 				font-size: 12px;
 				font-weight: $font-weight-bold;
-				background: url('../images/left_bar.png') no-repeat left center;
+				background: url('../images/left_bar.png') no-repeat left center / 1px 10px;
 			}
 			.txt {
+				width: 100%;
 				font-size: 12px;
 				margin-top: 5px
 			}
@@ -1357,8 +1377,8 @@ header, .header {
 		float: left;
 		width: 49%;
 		padding: 40px;
-		background: #f9fafb;
-		border-radius: 8px;
+		background: #fafafa;
+		border-radius: 10px;
 	}
 	&::after {
 		clear: both;
@@ -1391,6 +1411,7 @@ header, .header {
  */
 
 .faq-section {
+	margin-bottom: 70px;
 	.tabWrap {
 		position: relative;
 		&::after {
@@ -1420,6 +1441,7 @@ header, .header {
 				text-align: center;
 				line-height: 68px;
 				cursor: pointer;
+				-webkit-tap-highlight-color : transparent;
 
 				&.on {
 					border-bottom: 2px solid #ff4600;
@@ -1432,7 +1454,7 @@ header, .header {
 	.tabContentsWrap {
 		width: 1116px;
 		margin: auto;
-		padding: 50px 0 70px;
+		padding: 50px 0 0;
 		li {
 			border-bottom: 1px solid #e1e1e1;
 			transition: 0.3s;
@@ -1461,6 +1483,7 @@ header, .header {
 				height: 58px;
 				font-size: 18px;
 				padding-right: 20px;
+				cursor: pointer;
 				.category {
 					width: 150px;
 				}
@@ -1474,16 +1497,24 @@ header, .header {
 					margin-left: auto;
 					background: url(../images/common/icon-faq-down-arrow.png) center / 15px 9px no-repeat;
 					border: none;
+					-webkit-tap-highlight-color : transparent;
 				}
 			}
 			.botCon {
 				display: none;
-				padding: 17px 0 35px 180px;
+				padding: 17px 0 25px 180px;
 				font-size: 16px;
 				p {
 					line-height: 1.5;
 				}
 			}
+		}
+	}
+	.addViewWrap {
+		width: 100%;
+		text-align: center;
+		.addViewBtn {
+			margin: auto;
 		}
 	}
 }
@@ -2362,17 +2393,29 @@ address {
 	.faq-telephone {
 		width: 100%;
 		padding: 0 25px;
-		.sub_titWrap .timeInfo {
-			display: none;
-		}
+		margin-bottom: 45px;
+		.sub_titWrap {
+			margin-bottom: 16px;
+			.sub_tit {
+				font-size: 18px
+			}
+			.timeInfo {
+				display: none;
+			}
+		} 
 	}
 	.faq-section {
+		margin-bottom: 30px;
 		.tabWrap {
 			width: 100%;
 			overflow: auto;
 			-ms-overflow-style: none;
 			scrollbar-width: none;
+			border-bottom: 1px solid #e1e1e1;
 			&::-webkit-scrollbar {
+				display: none;
+			}
+			&::after {
 				display: none;
 			}
 			.tabBox  {
@@ -2391,7 +2434,7 @@ address {
 		}
 		.tabContentsWrap {
 			width: 100%;
-			padding: 9px 25px 30px;
+			padding: 25px 25px 0;
 			li {
 				.topCon {
 					position: relative;
@@ -2415,7 +2458,7 @@ address {
 					}
 				}
 				.botCon {
-					padding: 0 20px 35px;
+					padding: 0 20px 18px;
 					font-size: 12px;
 				}
 				&.on {
@@ -2435,6 +2478,7 @@ address {
 			display: block;
 			.tel_num {
 				float: none;
+				width: 100%;
 			}
 		} 
 	}

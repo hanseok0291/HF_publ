@@ -156,6 +156,7 @@
           <a>세금환급</a>
           <a>머니&포인트</a>
           <a>기타</a>
+          <a>기타1</a>
         </div>
       </div>
       
@@ -180,11 +181,11 @@
             <p>
               현재 기프티몰에서 선물할 수 있는 상품의 종류는 다음과 같으며, 상품은 지속적으로 추가될 예정입니다.
               <br><br>
-              1. 일반 쿠폰 <br>
+              <strong>1. 일반 쿠폰</strong> <br>
               - 온/오프라인 교환처에서 실물 상품으로 교환할 수 있는 모바일 상품권 <br>
               - 나를 포함한 누구에게나 선물 가능
               <br><br>
-              2. PAY쿠폰 <br>
+              <strong>2. PAY쿠폰</strong> <br>
               - 해당 브랜드에서 '내통장결제'로 결제 시 사용할 수 있는 할인형 쿠폰 <br>
               - 나에게만 선물 가능
             </p>
@@ -222,11 +223,11 @@
               <br><br>
               고객센터 운영 시간은 평일 오전 9시 ~ 오후 6시입니다. (주말:공휴일 제외)
               <br><br>
-              1. 일반 쿠폰<br>
+              <strong>1. 일반 쿠폰</strong><br>
               - 결제·취소 문의: 010PAY 고객센터(1600-5220)<br>
               - 사용·환불 문의: kt alpha 고객센터(1588-6474)
               <br><br>
-              2. PAY<br>
+              <strong>2. PAY</strong><br>
               - 결제·취소·사용·환불 관련 문의: 010PAY 고객센터(1600-5220)
               <br><br>
               카카오톡을 통해서도 간편하게 문의하실 수 있습니다.<br>
@@ -235,6 +236,9 @@
           </div>
         </li>
       </ul>
+      <div class="addViewWrap">
+        <button type="button" class="addViewBtn">더보기</button>
+      </div>
 		</section>
 
     <section class="faq-telephone">
@@ -267,7 +271,7 @@
       <ul class="info_list mo">
         <li>
           <div class="txt_cont">
-            <img src="../../resource/images/ic_010pay.png" alt="010PAY">
+            <img class="pay" src="../../resource/images/ic_010pay.png" alt="010PAY">
             <span>앱 관련 문의</span>
             <div class="txt">결제, 충전, 환불, 리워드 등</div>
           </div>
@@ -280,7 +284,7 @@
         </li>
         <li>
           <div class="txt_cont">
-            <img src="../../resource/images/ic_woori.png" alt="우리카드">
+            <img class="card" src="../../resource/images/ic_woori.png" alt="우리카드">
             <span>카드 관련 문의</span>
             <div class="txt">체크카드 신청, 배송, 사용, 분실 등</div>
           </div>
@@ -353,7 +357,13 @@
   <a href="#Contents" class="btn_top" title="페이지 상단으로 이동">TOP</a>
 
   <script>
+    var navLeft = [];
+    var $conHeight = 0;
     $(".tabContentsWrap .topCon").on("click", function(){
+      var $this = $(this);
+      var $conTop = $(this).offset().top;
+      var $winHeight = $(window).height();
+      var scrollPos = $conTop - $conHeight - ($winHeight / 3)
       if($(this).closest("li").hasClass("on")){
         $(this).closest("li").removeClass("on");
         $(this).closest("li").find(".botCon").slideUp();
@@ -362,12 +372,26 @@
         $(".tabContentsWrap li").removeClass("on");
         $(this).closest("li").addClass("on");
         $(this).closest("li").find(".botCon").slideDown();
+        if($(window).width() < 768){
+          $("html").stop().animate({scrollTop: scrollPos}, function(){
+            $conHeight = $this.next().height();
+          });
+        }
       }
+    });
+
+    $(".tabWrap .tabBox a").each(function(i, e){
+      var leftVal = parseInt($(this).offset().left);
+      navLeft.push(leftVal)
     });
  
     $(".tabWrap .tabBox a").on("click", function(){
+      var idx = $(this).index() + 1;
       $(".tabWrap .tabBox a").removeClass("on");
       $(this).addClass("on");
+      console.log($(this).offset().left);
+      // $(".tabWrap").scrollLeft(navLeft[idx-1]);
+      // $(".tabWrap").stop().animate({scrollLeft: navLeft[idx-1]});
     });
   </script>
 </body>

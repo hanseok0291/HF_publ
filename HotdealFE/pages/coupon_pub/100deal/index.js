@@ -23,6 +23,7 @@ const Index = () => {
   const [totalSlides, setTotalSlides] = useState(0); // 슬라이드 개수 상태
   const [isEntryOpen, setIsEntryOpen] = useState(true);
   const [isHundredOpen, setIsHundredOpen] = useState(false);
+  const [navFixed, setNavFixed] = useState(false);
 
   const tabRef = useRef();
   const firstConRef = useRef();
@@ -56,9 +57,12 @@ const Index = () => {
 
     if (firstConRef.current !== null) {
       if(firstCon < 0){
+        setNavFixed(true);
         for(let i = 0; i < tabRef.current.childElementCount ; i++) {
           tabRef.current.children[i].classList.remove("on");
         }
+      } else {
+        setNavFixed(false);
       }
       if (firstCon < 0 && secondCon > 0) {
         tabRef.current.children[0].classList.add('on');
@@ -107,7 +111,7 @@ const Index = () => {
             <span>100원 득템 찬스<i>!</i></span>
           </p>
         </div>
-        <div className={styleHundredDeal.tabBtnWrap} ref={tabRef}>
+        <div className={`${styleHundredDeal.tabBtnWrap} ${navFixed && styleHundredDeal.fixed}`} ref={tabRef}>
           <button type="button" className="on" onClick={() => handleScrollToContent(firstConRef)}>오늘의 딜</button>
           <button type="button" onClick={() => handleScrollToContent(secondConRef)}>미션 응모권</button>
           <button type="button" onClick={() => handleScrollToContent(thirdConRef)}>라인업</button>

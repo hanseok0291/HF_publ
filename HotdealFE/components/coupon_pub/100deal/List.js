@@ -5,7 +5,7 @@ import styleBuyMain from "../../../styles/coupon_pub/BuyMain.module.css";
 import styleHundredDeal from "../../../styles/coupon_pub/HundredDeal.module.css";
 import BuyTab from "../mypage/BuyTab";
 
-export default function List() {
+export default function List({openResultPopup}) {
   return (
     <div className={`${styleBuyMain.styleBuyMainWrap} ${styleHundredDeal.entryList}`}>
       <BuyTab tabItem={["전체", "당첨", "미당첨"]} />
@@ -24,7 +24,7 @@ export default function List() {
             </div>
             <div className={styleHundredDeal.infoBox}>
               <p className={styleHundredDeal.infoBrand}>스타벅스 시원하게 함께 세트 </p>
-              <a href="#" className={styleHundredDeal.locate}>추첨 결과 확인</a>
+              <a href="#" className={styleHundredDeal.locate} onClick={openResultPopup}>추첨 결과 확인</a>
             </div>
           </div>
           <div className={`${styleHundredDeal.listBox} ${styleHundredDeal.shadow}`}>

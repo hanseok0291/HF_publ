@@ -10,6 +10,7 @@ const CouponListItem = (
       infoPrice, // 할인 전 가격
       infoDcPercent, // 할인율
       infoDcPrice, // 할인 가격
+      saving, // 적립
       addInfo1, // 종료임박
       addInfo2, //포인트 적립
       addInfo3, //구매 찬스
@@ -29,15 +30,15 @@ const CouponListItem = (
         <div className={styleCouponList.infoBox}>
           <p className={styleCouponList.infoBrand}>{infoBrand}</p>
           <p className={styleCouponList.infoProduct}>{infoProduct}</p>
-          <div className={styleCouponList.infoPriceWrap}>
+          <div className={`${styleCouponList.infoPriceWrap} ${saving && styleCouponList.saving}`}>
             <p className={styleCouponList.infoPrice}>{infoPrice}</p>
-            <p className={styleCouponList.infoDcPrice}>
+            <p className={`${styleCouponList.infoDcPrice}`}>
               {infoDcPercent && (
                 <span className={styleCouponList.infoDcPercent}>
                   {infoDcPercent}
                 </span>
               )}
-              {infoDcPrice}<span className={styleCouponList.unitText}>원</span>
+              {saving ? "적립" : <>{infoDcPrice}<span className={styleCouponList.unitText}>{}원</span></>}
             </p>
           </div>
           <div className={styleCouponList.addInfoWrap}>

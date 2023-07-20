@@ -11,7 +11,6 @@ import styleToast from "../../styles/coupon_pub/Toast.module.css";
 import Layout from "../../components/common/Layout";
 import Header from "../../components/coupon_pub/common/Header";
 import Footer from "../../components/coupon_pub/common/Footer";
-import Search from "../../components/coupon_pub/main/Search";
 import Category from "../../components/coupon_pub/main/Category";
 import RollingCoupon from "../../components/coupon_pub/main/RollingCoupon";
 import HotBrand from "../../components/coupon_pub/main/HotBrand";
@@ -61,21 +60,16 @@ const Index = () => {
           <div className={`${styleCommon.containerWrap} ${styleCommon.main}`}>
             {/* 요즘 잘 나가는 상품 */}
             <PopularCoupon />
-            {/* 자동 롤링 배너 */}
-            {/* <RollingCoupon /> */}
             {/* 적립 프로모션 배너 */}
             <RewardBanner />
-            {/* 특별한 혜택 놓치지 마세요 */}
-            <ReturnPoint />
             {/* 지금 가장 인기 있어요 */}
-            <HundredDeal />
             <HotBrand />
-            {/* 혹시 이 상품 찾으세요? */}
-            <MaybeCoupon
-              pageTitle={[
-                "혹시 이 상품 찾으세요?", <span key="123" className="titleEmoticon">🔍</span>,
-              ]}
-            />
+            {/* 사용하면 적립받아요 */}
+            <ReturnPoint />
+            {/* 100원딜 */}
+            <HundredDeal />
+            {/* 카페는 역시 별다방 */}
+            <MaybeCoupon />
             {/* 프로모션 배너 */}
             {/* <PromotionBanner /> */}
             {/* 지금만 이 가격 선착순 특가 */}

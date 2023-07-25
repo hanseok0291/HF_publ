@@ -21,7 +21,7 @@ export default function GiftCoupon() {
                 className={`${styleGiftPresent.topCon} ${styleGiftCoupon.topCon}`}
             >
                 <p className={styleGiftPresent.topConText}>
-                    선물받은 쿠폰 코드 입력 후 등록하기 버튼을 눌러 주세요.
+                    쿠폰 코드 입력 후 등록하기 버튼을 눌러 주세요.
                 </p>
                 <div className={`${styleCommon.inputWrap} ${styleGiftCoupon.inputWrap}`}>
                     <input
@@ -56,6 +56,11 @@ export default function GiftCoupon() {
                         >
                             등록한 쿠폰은 <span>선물함 &gt; 보유</span>에서
                             확인할 수 있습니다.
+                        </p>
+                        <p
+                            className={`${styleCommon.infoText} ${styleGiftCoupon.infoText}`}
+                        >
+                            이벤트 코드는 쿠폰별로 등록 및 사용 기간이 상이할 수 있습니다.
                         </p>
                     </div>
                 </div>

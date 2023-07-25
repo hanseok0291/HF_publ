@@ -15,7 +15,7 @@ function SwiperWrap(props) {
     <>
 			<div
 					className={`${styleSwiper.SwiperWrap} ${styleBrandList.SwiperWrap}`}
-          style={{paddingTop: props.paddingTop}}
+          style={{paddingTop: props.paddingTop, paddingBottom: props.paddingBottom, backgroundColor: props.bgColor}}
 				>
         <div>
           <div className={styleSwiper.SwiperTitleWrap}>

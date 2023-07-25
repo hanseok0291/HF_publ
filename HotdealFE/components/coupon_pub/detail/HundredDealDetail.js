@@ -103,11 +103,13 @@ export default function HundredDealDetail({setDeadlinFixed }) {
             </div>
           </div>
         </div>
-        <MaybeCouponWrap
-          pageTitle={[
-            "당첨을 기다리며 구매했어요", <span key="1" className="titleEmoticon">💘</span>,
-          ]}
-        />
+        <div className={styleCouponDetail.borderBottom}>
+          <MaybeCouponWrap
+            pageTitle={[
+              "당첨을 기다리며 구매했어요", <span key="1" className="titleEmoticon">💘</span>,
+            ]}
+          />
+        </div>
         <div
           className={`${styleCouponDetail.InfoWrap} ${
             isTabTop && styleCouponDetail.fixed

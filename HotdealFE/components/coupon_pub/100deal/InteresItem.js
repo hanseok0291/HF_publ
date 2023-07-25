@@ -60,7 +60,7 @@ function InteresItem(props) {
   return (
     <>
 			<div
-					className={props.moreBtnShow ? `${styleSwiper.SwiperWrap} ${styleBrandList.SwiperWrap}` : `${styleSwiper.SwiperWrap} ${styleSwiper.paddingBottomOff} ${styleSwiper.hundredDeal}`}
+					className={props.moreBtnShow ? `${styleSwiper.SwiperWrap} ${styleBrandList.SwiperWrap}` : `${styleSwiper.SwiperWrap} ${styleSwiper.paddingBottomOn} ${styleSwiper.hundredDeal}`}
 					style={{ backgroundColor: props.bgColor }}
 				>
         <div>

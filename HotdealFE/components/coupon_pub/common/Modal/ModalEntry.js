@@ -16,13 +16,16 @@ const ModalEntry = ({ isEntryOpen, closeEntryPopup }) => {
       open={isEntryOpen}
       onDismiss={closeEntryPopup}
       snapPoints={({ minHeight }) => minHeight}
+      blocking={false}
+      sibling={
+        <div className={styleModal.bottomSheetDim}  onClick={closeEntryPopup}></div>
+      }
+      className={styleModal.bottomSheet}
       header={
         <div className={`${styleModal.modalHeader}`}>
           <button type="button" className={styleModal.slideCloseBtn} onClick={closeEntryPopup}></button>
         </div>
       }
-      className={styleModal.bottomSheet}
-      style={{position: 'relative', zIndex: 1000}}
     >
       <div className={`${styleModal.modalBody} ${styleModal.hundredDeal}`}>
         <div className={styleModal.titleText}>

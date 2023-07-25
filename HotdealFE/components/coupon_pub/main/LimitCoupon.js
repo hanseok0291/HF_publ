@@ -10,9 +10,12 @@ const LimitCoupon = () => {
     <>
       <div className={styleLimitCoupon.LimitCouponWrap}>
         <div className={`${styleCommon.container}`}>
-          <h2 className={styleLimitCoupon.LimitCouponTitle}>
-            지금만 이 가격, 선착순 특가<span className="titleEmoticon">⏰</span>
-          </h2>
+          <div className={styleLimitCoupon.LimitCouponWrap}>
+            <h2 className={styleLimitCoupon.LimitCouponTitle}>
+              지금만 이 가격, 선착순 특가
+            </h2>
+            <button type="button" className={styleLimitCoupon.LimitCouponAddview}>더보기</button>
+          </div>
           <ul className={styleLimitCoupon.LimitCouponList}>
             <li className={styleLimitCoupon.LimitCouponItem}>
               <button href={`/coupon_pub/`}>
@@ -38,7 +41,7 @@ const LimitCoupon = () => {
                 </div>
               </button>
             </li>
-            {/* <li className={styleLimitCoupon.LimitCouponItem}>
+            <li className={styleLimitCoupon.LimitCouponItem}>
               <button href={`/coupon_pub/`}>
                 <div className={styleLimitCoupon.imgBox}>
                   <img
@@ -63,7 +66,7 @@ const LimitCoupon = () => {
                   </p>
                 </div>
               </button>
-            </li> */}
+            </li>
           </ul>
         </div>
       </div>

@@ -21,6 +21,15 @@ const Index = () => {
   const [isShowMypageBtn, setShowMypageBtn] = useState(false);
   const [isFixedTop, setFixedTop] = useState(false);
   const [isFixedBottom, setFixedBottom] = useState(true);
+  const [isResultOpen, setResultOpen] = useState(false);
+
+  const closeResultPopup = () => {
+    setResultOpen(false);
+  }
+
+  const openResultPopup = () => {
+    setResultOpen(true);
+  }
 
   return (
     <>
@@ -34,11 +43,11 @@ const Index = () => {
         <div
           className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap} ${styleDefaultLayout.footerWrap}`}
         >
-          <List />
+          <List openResultPopup={openResultPopup}/>
           <Footer />
         </div>
         {/* 응모 결과 팝업 */}
-        {/* <ModalHundredResult/> */}
+        <ModalHundredResult isResultOpen={isResultOpen} closeResultPopup={closeResultPopup}/>
         {/* <ModalHundredWinner /> */}
       </Layout>
     </>

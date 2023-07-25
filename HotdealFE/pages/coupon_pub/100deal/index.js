@@ -2,12 +2,15 @@
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { BottomSheet } from 'react-spring-bottom-sheet';
+import 'react-spring-bottom-sheet/dist/style.css';
 
 
 //css
 import 'swiper/css';
 import "slick-carousel/slick/slick.css";
 import styleHundredDeal from "../../../styles/coupon_pub/HundredDeal.module.css";
+import styleModal from "../../../styles/coupon_pub/Modal.module.css";
 
 //components
 import Slider from "react-slick";
@@ -21,7 +24,7 @@ import ModalHundredInfo from "../../../components/coupon_pub/common/Modal/ModalH
 const Index = () => {
   const router = useRouter();
   const [totalSlides, setTotalSlides] = useState(0); // 슬라이드 개수 상태
-  const [isEntryOpen, setIsEntryOpen] = useState(true);
+  const [isEntryOpen, setIsEntryOpen] = useState(false);
   const [isHundredOpen, setIsHundredOpen] = useState(false);
   const [navFixed, setNavFixed] = useState(false);
 
@@ -30,12 +33,12 @@ const Index = () => {
   const secondConRef = useRef();
   const thirdConRef = useRef();
 
-  const openHundredPopup = () => {
-    setIsHundredOpen(true);
-  }
-
   const closeHundredPopup = () => {
     setIsHundredOpen(false);
+  }
+
+  const openHundredPopup = () => {
+    setIsHundredOpen(true);
   }
 
   const openEntryPopup = () => {
@@ -48,6 +51,10 @@ const Index = () => {
 
   const handleSlideChange = (swiper) => {
     setTotalSlides(swiper.slides.length); // 슬라이드 개수 업데이트
+  };
+
+  const handleSheetDismiss = () => {
+    console.log('바텀 시트 닫힘');
   };
 
   const handleScroll = () => {
@@ -100,7 +107,7 @@ const Index = () => {
 
   return (
     <Layout>
-      <Header isHundredOpen={isHundredOpen} openHundredPopup={openHundredPopup} />
+      <Header openHundredPopup={openHundredPopup} />
       <div className={styleHundredDeal.hundredDeal}>
         <div className={styleHundredDeal.topBanner}>
           첫 응모는 미당첨 시 <b>최대 1만 포인트 드려요</b><i>!</i>
@@ -300,9 +307,9 @@ const Index = () => {
         </div>
       </div>
       {/* 응모하기 */}
-      {isEntryOpen && <ModalEntry isEntryOpen={isEntryOpen} openEntryPopup={openEntryPopup} closeEntryPopup={closeEntryPopup} />}
+      <ModalEntry isEntryOpen={isEntryOpen} openEntryPopup={openEntryPopup} closeEntryPopup={closeEntryPopup} />
       {/* 100원딜? */}
-      {isHundredOpen && <ModalHundredInfo isHundredOpen={isHundredOpen} openHundredPopup={openHundredPopup} closeHundredPopup={closeHundredPopup} />}
+      <ModalHundredInfo isHundredOpen={isHundredOpen} openHundredPopup={openHundredPopup} closeHundredPopup={closeHundredPopup} />
       {/* 응모권 도착 */}
       {/* <ModalHundredArrival /> */}
     </Layout>

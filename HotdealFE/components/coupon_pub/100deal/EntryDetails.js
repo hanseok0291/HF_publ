@@ -116,6 +116,7 @@ export default function EntryDetails() {
         <div
           className={`${styleGiftPresent.bottomBtn} ${styleCommon.bottomFixedWrap}`}
         >
+          <p className={styleHundredDeal.toastText}><span>응모하려면 100P가 필요해요<i>!</i></span></p>
           <div className={`${styleCommon.btnWrap}`}>
             <button className={`${styleCommon.btnGift} ${styleCommon.btn} ${styleHundredDeal.botBtn}`} disabled>
               결제하고 응모하기

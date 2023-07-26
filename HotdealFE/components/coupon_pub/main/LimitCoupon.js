@@ -70,13 +70,6 @@ const LimitCoupon = () => {
           </ul>
         </div>
       </div>
-      <div
-        style={{
-          width: "100%",
-          height: "15px",
-          background: "#f1f1f1",
-        }}
-      ></div>
     </>
   );
 };

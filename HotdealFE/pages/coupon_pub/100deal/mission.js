@@ -73,7 +73,7 @@ const Index = () => {
  
   return (
     <>
-      <Layout>
+      <div className={styleHundredDeal.missionWrap}>
         <div
         className={`${styleDefaultLayout.pageHeader} ${styleDefaultLayout.defaultHeader} ${styleDefaultLayout.hundredDealMissionHeader}`}
         >
@@ -175,72 +175,74 @@ const Index = () => {
           }
           {activeTab === 2 &&
             <div className={`${styleHundredDeal.tab} ${styleHundredDeal.tab3}`}>
-              <div className={styleHundredDeal.titleWrap}>
-                <h4>선물의 기쁨을 나눠요<br />기프티몰에서 선물하기</h4>
-                <p>친구가 선물을 확인하면 <span>응모권 5개</span></p>
-              </div>
-              <ul className={styleHundredDeal.giftList}>
-                <li>
-                  <div className={styleHundredDeal.textWrap}>
-                    <h4 className={styleHundredDeal.brand}>BHC</h4>
-                    <p className={styleHundredDeal.product}>핫후라이드+콜라1.25L</p>
-                    <div className={styleHundredDeal.priceWrap}>
-                      <p className={styleHundredDeal.discountPrice}>17,600원</p>
+              <div className={styleHundredDeal.tablConWrap}>
+                <div className={styleHundredDeal.titleWrap}>
+                  <h4>선물의 기쁨을 나눠요<br />기프티몰에서 선물하기</h4>
+                  <p>친구가 선물을 확인하면 <span>응모권 5개</span></p>
+                </div>
+                <ul className={styleHundredDeal.giftList}>
+                  <li>
+                    <div className={styleHundredDeal.textWrap}>
+                      <h4 className={styleHundredDeal.brand}>BHC</h4>
+                      <p className={styleHundredDeal.product}>핫후라이드+콜라1.25L</p>
+                      <div className={styleHundredDeal.priceWrap}>
+                        <p className={styleHundredDeal.discountPrice}>17,600원</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className={styleHundredDeal.imgWrap}>
-                    <img src="../../../images/100deal/sample/img-01.png" alt="" />
-                  </div>
-                  <a className={styleHundredDeal.btn} href="#">선물하기</a>
-                </li>
-                <li>
-                  <div className={styleHundredDeal.textWrap}>
-                    <h4 className={styleHundredDeal.brand}>BHC</h4>
-                    <p className={styleHundredDeal.product}>핫후라이드+콜라1.25L</p>
-                    <div className={styleHundredDeal.priceWrap}>
-                      <p className={styleHundredDeal.price}>22,000원</p>
-                      <p className={styleHundredDeal.discountPrice}><span className={styleHundredDeal.percent}>25%</span>17,600원</p>
+                    <div className={styleHundredDeal.imgWrap}>
+                      <img src="../../../images/100deal/sample/img-01.png" alt="" />
                     </div>
-                  </div>
-                  <div className={styleHundredDeal.imgWrap}>
-                    <img src="../../../images/100deal/sample/img-01.png" alt="" />
-                  </div>
-                  <a className={styleHundredDeal.btn} href="#">선물하기</a>
-                </li>
-                <li>
-                  <div className={styleHundredDeal.textWrap}>
-                    <h4 className={styleHundredDeal.brand}>BHC</h4>
-                    <p className={styleHundredDeal.product}>핫후라이드+콜라1.25L</p>
-                    <div className={styleHundredDeal.priceWrap}>
-                      <p className={styleHundredDeal.price}>22,000원</p>
-                      <p className={styleHundredDeal.discountPrice}><span className={styleHundredDeal.percent}>25%</span>17,600원</p>
+                    <a className={styleHundredDeal.btn} href="#">선물하기</a>
+                  </li>
+                  <li>
+                    <div className={styleHundredDeal.textWrap}>
+                      <h4 className={styleHundredDeal.brand}>BHC</h4>
+                      <p className={styleHundredDeal.product}>핫후라이드+콜라1.25L</p>
+                      <div className={styleHundredDeal.priceWrap}>
+                        <p className={styleHundredDeal.price}>22,000원</p>
+                        <p className={styleHundredDeal.discountPrice}><span className={styleHundredDeal.percent}>25%</span>17,600원</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className={styleHundredDeal.imgWrap}>
-                    <img src="../../../images/100deal/sample/img-01.png" alt="" />
-                  </div>
-                  <a className={styleHundredDeal.btn} href="#">선물하기</a>
-                </li>
-                <li>
-                  <div className={styleHundredDeal.textWrap}>
-                    <h4 className={styleHundredDeal.brand}>BHC</h4>
-                    <p className={styleHundredDeal.product}>핫후라이드+콜라1.25L</p>
-                    <div className={styleHundredDeal.priceWrap}>
-                      <p className={styleHundredDeal.price}>22,000원</p>
-                      <p className={styleHundredDeal.discountPrice}><span className={styleHundredDeal.percent}>25%</span>17,600원</p>
+                    <div className={styleHundredDeal.imgWrap}>
+                      <img src="../../../images/100deal/sample/img-01.png" alt="" />
                     </div>
-                  </div>
-                  <div className={styleHundredDeal.imgWrap}>
-                    <img src="../../../images/100deal/sample/img-01.png" alt="" />
-                  </div>
-                  <a className={styleHundredDeal.btn} href="#">선물하기</a>
-                </li>
-              </ul>
-              <div className={styleHundredDeal.otherProduct}>
-                <a href="#">
-                  친구 취향 저격할 <br />
-                  <b>다른 상품도 보고싶다면?</b>
-                </a>
+                    <a className={styleHundredDeal.btn} href="#">선물하기</a>
+                  </li>
+                  <li>
+                    <div className={styleHundredDeal.textWrap}>
+                      <h4 className={styleHundredDeal.brand}>BHC</h4>
+                      <p className={styleHundredDeal.product}>핫후라이드+콜라1.25L</p>
+                      <div className={styleHundredDeal.priceWrap}>
+                        <p className={styleHundredDeal.price}>22,000원</p>
+                        <p className={styleHundredDeal.discountPrice}><span className={styleHundredDeal.percent}>25%</span>17,600원</p>
+                      </div>
+                    </div>
+                    <div className={styleHundredDeal.imgWrap}>
+                      <img src="../../../images/100deal/sample/img-01.png" alt="" />
+                    </div>
+                    <a className={styleHundredDeal.btn} href="#">선물하기</a>
+                  </li>
+                  <li>
+                    <div className={styleHundredDeal.textWrap}>
+                      <h4 className={styleHundredDeal.brand}>BHC</h4>
+                      <p className={styleHundredDeal.product}>핫후라이드+콜라1.25L</p>
+                      <div className={styleHundredDeal.priceWrap}>
+                        <p className={styleHundredDeal.price}>22,000원</p>
+                        <p className={styleHundredDeal.discountPrice}><span className={styleHundredDeal.percent}>25%</span>17,600원</p>
+                      </div>
+                    </div>
+                    <div className={styleHundredDeal.imgWrap}>
+                      <img src="../../../images/100deal/sample/img-01.png" alt="" />
+                    </div>
+                    <a className={styleHundredDeal.btn} href="#">선물하기</a>
+                  </li>
+                </ul>
+                <div className={styleHundredDeal.otherProduct}>
+                  <a href="#">
+                    친구 취향 저격할 <br />
+                    <b>다른 상품도 보고싶다면?</b>
+                  </a>
+                </div>
               </div>
               <div className={styleHundredDeal.noteWrap}>
                 <h4>안내드려요</h4>
@@ -257,14 +259,14 @@ const Index = () => {
             </div>
           }
         </div>
+      </div>
 
-        {/* <Footer isfixedBottom={isFixedBottom} isDeadlinFixed={isDeadlinFixed}/> */}
-        {/* 응모권 획득 */}
-        {/* <ModalHundredArrival /> */}
-        {/* <ModalEntryComplete /> */}
-        {/* <ModalAlert message={`오늘의 참여 기회를 모두 사용하였습니다.\n내일 다시 이용해 주세요.`} />
-        <ModalAlert message={`룰렛 1회당 100P가 필요합니다.\n부족한 포인트를 모아 다시 이용해 주세요.`} /> */}
-      </Layout>
+      {/* <Footer isfixedBottom={isFixedBottom} isDeadlinFixed={isDeadlinFixed}/> */}
+      {/* 응모권 획득 */}
+      {/* <ModalHundredArrival /> */}
+      {/* <ModalEntryComplete /> */}
+      {/* <ModalAlert message={`오늘의 참여 기회를 모두 사용하였습니다.\n내일 다시 이용해 주세요.`} />
+      <ModalAlert message={`룰렛 1회당 100P가 필요합니다.\n부족한 포인트를 모아 다시 이용해 주세요.`} /> */}
     </>
   );
 };

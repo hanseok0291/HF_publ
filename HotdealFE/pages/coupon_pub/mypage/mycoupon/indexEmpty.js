@@ -27,20 +27,14 @@ const Index = () => {
         >
           <CouponMain />
 
-          <div style={{ marginBottom: "20px" }}>
-            {/* 카테고리 상품리스트 */}
-            <div style={{ marginBottom: "20px" }}>
-              {/* 카테고리 상품리스트 */}
-              <CouponListEmpty
-                pageType="result"
-                innerText="사용 가능한 쿠폰이 없어요"
-              />
-            </div>
-            <div style={{ marginBottom: "20px" }}>
-              {/* 이런 상품은 어떠세요? */}
-              <MayCoupon />
-            </div>
-          </div>
+          {/* 카테고리 상품리스트 */}
+          {/* 카테고리 상품리스트 */}
+          <CouponListEmpty
+            pageType="result"
+            innerText="사용 가능한 쿠폰이 없어요"
+          />
+          {/* 이런 상품은 어떠세요? */}
+          <MayCoupon />
         </div>
       </Layout>
     </>

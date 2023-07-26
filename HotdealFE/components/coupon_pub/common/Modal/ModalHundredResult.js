@@ -48,13 +48,17 @@ const ModalHundredResult = ({ isResultOpen, closeResultPopup }) => {
     open={isResultOpen}
       onDismiss={closeResultPopup}
       snapPoints={({ minHeight }) => minHeight}
+      blocking={false}
+      sibling={
+        <div className={styleModal.bottomSheetDim}  onClick={closeResultPopup}></div>
+      }
+      className={styleModal.bottomSheet}
+      style={{position: 'relative', zIndex: 1000}}
       header={
         <div className={`${styleModal.modalHeader}`}>
           <button type="button" className={styleModal.slideCloseBtn} onClick={closeResultPopup}></button>
         </div>
       }
-      className={styleModal.bottomSheet}
-      style={{position: 'relative', zIndex: 1000}}
     >
       <div className={`${styleModal.modalBody} ${styleModal.resultWrap}`}>
         <div className={`${styleModal.titleText} ${styleModal.fail}`}>

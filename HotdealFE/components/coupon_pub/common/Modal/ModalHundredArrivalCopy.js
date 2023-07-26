@@ -8,11 +8,11 @@ import styleCommon from "../../../../styles/coupon_pub/Common.module.css";
 import styleModal from "../../../../styles/coupon_pub/Modal.module.css";
 import styleSlick from "../../../../styles/coupon_pub/Slick.module.css";
 
-const ModalHundredArrival = () => {
+const ModalHundredArrivalCopy = () => {
   return (
     <>
       {/* 응모권 도착 */}
-      <div
+      {/* <div
         className={`${styleModal.modal} ${styleModal.modalCommon} ${styleModal.hundredDealArrival} ${styleModal.open}`}
       >
         <div className={styleModal.modalDialog}>
@@ -25,7 +25,7 @@ const ModalHundredArrival = () => {
             <button type="button" className={styleModal.defaultBtn}>확인</button> 
           </div>
         </div>
-      </div>
+      </div> */}
       {/* 선물하기 미션 성공 */}
       {/* <div
         className={`${styleModal.modal} ${styleModal.modalCommon} ${styleModal.hundredDealArrival} ${styleModal.open}`}
@@ -42,7 +42,7 @@ const ModalHundredArrival = () => {
         </div>
       </div> */}
       {/* 미션응모권 룰렛 획득 */}
-      {/* <div
+      <div
         className={`${styleModal.modal} ${styleModal.modalCommon} ${styleModal.hundredDealArrival} ${styleModal.open}`}
       >
         <div className={styleModal.modalDialog}>
@@ -56,7 +56,7 @@ const ModalHundredArrival = () => {
             <button type="button" className={styleModal.nextBtn}>다음에 하기</button> 
           </div>
         </div>
-      </div> */}
+      </div>
       {/* 미션응모권 룰렛 획득 상품 1개 */}
       {/* <div
         className={`${styleModal.modal} ${styleModal.modalCommon} ${styleModal.hundredDealArrival} ${styleModal.open}`}
@@ -73,8 +73,7 @@ const ModalHundredArrival = () => {
         </div>
       </div> */}
     </>
-    
   );
 };
 
-export default ModalHundredArrival;
+export default ModalHundredArrivalCopy;

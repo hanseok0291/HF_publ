@@ -57,7 +57,7 @@ const Index = () => {
         </div>
         <InterestList />
         {/* 선물 가능 응모권 도착 팝업 */}
-        <ModalHundredGiftEntry />
+        {/* <ModalHundredGiftEntry /> */}
       </Layout>
     </>
   );

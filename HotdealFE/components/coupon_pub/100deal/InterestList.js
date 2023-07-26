@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-import SwiperItem from "../main/SwiperItem";
 import InteresItem from "./InteresItem";
 
 const InterestList = (props) => {
@@ -11,13 +10,6 @@ const InterestList = (props) => {
         title={props.pageTitle}
         labelShow="true"
       />
-      <div
-        style={{
-          width: "100%", 
-          height: "15px",
-          background: "#f1f1f1",
-        }}
-      ></div>
     </>
   );
 };

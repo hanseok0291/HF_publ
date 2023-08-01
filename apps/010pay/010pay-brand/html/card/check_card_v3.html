@@ -510,36 +510,37 @@
     </div>
 
     <script>
-      $(window).on("load", function () {
-        var is_action = false;
+      $(window).on('load', function() {
+			var is_action = false;
+			//DOM 생성 후
+			function rollerArea() {
+				if (is_action === true) { return false; }
+				is_action = true;
+				var baseRoller = document.querySelector(".roller_list");
+				var roller = document.querySelector('.roller');
 
-        //DOM 생성 후
-        function rollerArea() {
-          if (is_action === true) {
-            return false;
-          }
-          is_action = true;
-          var baseRoller = document.querySelector(".roller_list");
-          var roller = document.querySelector(".roller");
-          roller.appendChild(baseRoller.cloneNode(true));
-          roller.id = "roller1";
-          var clone = roller.cloneNode(true);
-          clone.id = "roller2";
-          document.querySelector(".rollingbanner .wrap").appendChild(clone);
+				if($(window).width() > 768){
+					roller.appendChild(baseRoller.cloneNode(true));
+				}
+				
+				roller.id = 'roller1';
 
-          document.querySelector("#roller1").style.left = "0px";
-          document.querySelector("#roller2").style.left = roller.offsetWidth+"px";
+				var clone = roller.cloneNode(true);
+				clone.id = 'roller2';
+				document.querySelector('.rollingbanner .wrap').appendChild(clone);
 
-          $("#roller1").addClass("original");
-          $("#roller2").addClass("clone");
-        }
-        rollerArea();
+				document.querySelector('#roller1').style.left = '0px';
+				document.querySelector("#roller2").style.left = roller.offsetWidth+"px";
 
-        // 리사이즈
-        $(window).resize(function () {
-          rollerArea();
-        });
-      });
+				$('#roller1').addClass('original');
+				$('#roller2').addClass('clone');
+			}
+			rollerArea();
+			// 리사이즈
+			$(window).resize(function(){
+				rollerArea();
+			});
+		});
 
 			// 바디 스크롤 제거/해제
       var scrollHeight = 0;

@@ -12,7 +12,6 @@ import styleSearch from "../../styles/coupon_pub/Search.module.css";
 import Layout from "../../components/common/Layout";
 import Header from "../../components/coupon_pub/common/Header";
 import Footer from "../../components/coupon_pub/common/Footer";
-import Search from "../../components/coupon_pub/main/Search";
 import SearchKeywords from "../../components/coupon_pub/search/SearchKeywords";
 import InterestKeywords from "../../components/coupon_pub/search/InterestKeywords";
 import BuyAgainCoupon from "../../components/coupon_pub/search/BuyAgainCoupon";

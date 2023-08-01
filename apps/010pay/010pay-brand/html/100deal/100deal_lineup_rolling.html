@@ -440,9 +440,9 @@
 							<div class="text-box"><span>놓치기 아쉬운</span></div> 
 							<p>다음 100원딜을 소개해요<i>!</i></p>
 						</div>
-						<div class="">
-							<div class="lineup-slide">
-								<div class="slide-item">
+						<div class="swiper lineup-slide">
+							<div class="swiper-wrapper">
+								<div class="slide-item swiper-slide">
 									<div class="cont-wrap">
 										<div class="img-wrap">
 											<img src="../../resource/images/hotdeal/sample/product-06.png" alt="">
@@ -454,7 +454,19 @@
 										</div>
 									</div>
 								</div>
-								<div class="slide-item">
+								<div class="slide-item swiper-slide">
+									<div class="cont-wrap">
+										<div class="img-wrap">
+											<img src="../../resource/images/hotdeal/sample/product-06.png" alt="">
+										</div>
+										<div class="text-wrap">
+											<p class="date-alert">7.19</p>
+											<p class="brand-name">할리스 눈꽃 팥빙수</p>
+											<p class="prod-name">할리스 눈꽃 팥빙수</p>
+										</div>
+									</div>
+								</div>
+								<div class="slide-item swiper-slide">
 									<div class="cont-wrap">
 										<div class="img-wrap">
 											<img src="https://www.naummall.com/data/hanguoshopping/goods/hecto/Middle/idx_test.jpg" alt="">
@@ -466,7 +478,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="slide-item">
+								<div class="slide-item swiper-slide">
 									<div class="cont-wrap">
 										<div class="img-wrap">
 											<img src="../../resource/images/hotdeal/sample/product-05.png" alt="">
@@ -478,7 +490,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="slide-item">
+								<div class="slide-item swiper-slide">
 									<div class="cont-wrap">
 										<div class="img-wrap">
 											<img src="../../resource/images/hotdeal/sample/product-05.png" alt="">
@@ -490,7 +502,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="slide-item">
+								<div class="slide-item swiper-slide">
 									<div class="cont-wrap">
 										<div class="img-wrap">
 											<img src="../../resource/images/hotdeal/sample/product-05.png" alt="">
@@ -502,19 +514,21 @@
 										</div>
 									</div>
 								</div>
-								<div class="slide-item">
+								<div class="slide-item swiper-slide">
 									<div class="cont-wrap">
 										<div class="img-wrap">
-											<img src="../../resource/images/hotdeal/sample/product-05.png" alt="">
+											<img src="../../resource/images/hotdeal/sample/product-06.png" alt="">
 										</div>
 										<div class="text-wrap">
 											<p class="date-alert">7.23</p>
-											<p class="brand-name">투썸플레이스</p>
-											<p class="prod-name">딸기 생크림 피스</p>
+											<p class="brand-name">할리스 눈꽃 팥빙수</p>
+											<p class="prod-name">할리스 눈꽃 팥빙수 할리스 눈꽃 팥빙수 할리스 눈꽃 팥빙수 할리스 눈꽃 팥빙수 할리스 눈꽃 팥빙수 할리스 눈꽃 팥빙수 할리스 눈꽃 팥빙수 할리스 눈꽃 팥빙수</p>
 										</div>
 									</div>
 								</div>
 							</div>
+							<div class="swiper-button-prev"></div>
+							<div class="swiper-button-next"></div>
 						</div>
 					</div>
 				</section>
@@ -550,7 +564,6 @@
           </div>
         </section>
 				<!-- //third-section -->
-
       </div>
       <!-- 본문 END -->
 
@@ -718,16 +731,6 @@
       }
     });
 
-		// var second_state = false;
-		// $(window).on("scroll load", function(){
-		// 	if($(".second-section").hasClass("animation") && !second_state){
-		// 		setTimeout(function(){
-		// 			secondSlide.autoplay.start();
-		// 		}, 100);
-		// 		second_state = true;
-		// 	}
-		// });
-
       $(".add-ani").each(function(i, e){
         var $delay = $(e).attr("delay");
         $(e).css("transition-delay", $delay+"s");
@@ -789,8 +792,7 @@
           e.preventDefault();
           modalOpen("modal-qr");
         }
-      });
-		
+      });		
 		// 라인업 슬라이드
 		// slide		
 		var length = $(".lineup-slide .slide-item").length;
@@ -798,87 +800,126 @@
 			if(length <= 4) {
 				$('.lineup-slide').addClass('slide-type2');
 			} else {
-			$(".lineup-slide").slick({
-					infinite : true,
-					dots: false,
-					speed: 600,
-					slidesToScroll : 1,
-					arrows : true,
-					autoplay: true,
-					autoplaySpeed: 3000,
-					variableWidth: true,
-					centerPadding: '40px',
-					centerMode: true,
-					responsive: [
-						{
-							breakpoint: 768,
-							settings: {
-							centerPadding: '100px',
-							arrows : false
-							}
+				var swiper = new Swiper(".lineup-slide", {
+					slidesPerView: 'auto',
+					spaceBetween: 20,
+					loop : true,
+					centeredSlides: true,
+					slidesOffsetBefore: -465,
+					autoplay: {     //자동슬라이드 (false-비활성화)
+						delay: 2500, // 시간 설정
+						disableOnInteraction: false, // false-스와이프 후 자동 재생
+					},
+					breakpoints: {
+						320: {
+							spaceBetween: 16,
+							slidesOffsetBefore: -100,
+							centeredSlides: true,
 						},
-					]
-			});
+						768: {
+							slidesOffsetBefore: -465,
+						},
+						1024: {
+							spaceBetween: 20,
+						}
+					},
+					navigation: {   // 버튼
+							nextEl: ".swiper-button-next",
+							prevEl: ".swiper-button-prev",
+						},
+				});
 		}
 	} else {
 		if(length <= 2) {
 				$('.lineup-slide').addClass('slide-type2');
 			} else {
-			$(".lineup-slide").slick({
-					infinite : true,
-					dots: false,
-					speed: 600,
-					slidesToScroll : 1,
-					arrows : true,
-					autoplay: true,
-					autoplaySpeed: 3000,
-					variableWidth: true,
-					centerMode: true,
-					centerPadding: '40px',
-					responsive: [
-						{
-							breakpoint: 768,
-							settings: {
-							centerPadding: '100px',
-							arrows : false
-							}
+				var swiper = new Swiper(".lineup-slide", {
+					slidesPerView: 'auto',
+					spaceBetween: 20,
+					loop : true,
+					centeredSlides: true,
+					slidesOffsetBefore: -465,
+					autoplay: {     //자동슬라이드 (false-비활성화)
+						delay: 2500, // 시간 설정
+						disableOnInteraction: false, // false-스와이프 후 자동 재생
+					},
+					breakpoints: {
+						320: {
+							spaceBetween: 16,
+							slidesOffsetBefore: -100,
+							centeredSlides: true,
 						},
-					]
-			});
+						768: {
+							slidesOffsetBefore: -465,
+						},
+						1024: {
+							spaceBetween: 20,
+						}
+					},
+					navigation: {   // 버튼
+							nextEl: ".swiper-button-next",
+							prevEl: ".swiper-button-prev",
+						},
+				});
 		}
 	}
 	// 라인업 슬라이드 END
-		$(".slideBoxBig").slick({
+    $(".pc .slideBoxBig").slick({
         infinite : true,
         dots: true,
         speed: 600,
-				slidesToShow : 1,
+        slidesToShow : 1,
         arrows : false,
         autoplay: true,
-        autoplaySpeed: 2000,
-				variableWidth: true,
-				pauseOnHover: false,
-				pauseOnFocus: false,
-				touchMove: false,
-				swipe: false,
-				// speed: 200,
-				asNavFor: '.slideBoxSmall'
+        autoplaySpeed: 2500,
+        variableWidth: true,
+        pauseOnHover: false,
+        pauseOnFocus: false,
+        asNavFor: '.pc .slideBoxSmall'
     });
-		$(".slideBoxSmall").slick({
+    $(".pc .slideBoxSmall").slick({
         infinite : true,
         dots: false,
         speed: 600,
-				slidesToShow : 1,
+        slidesToShow : 1,
         arrows : false,
         autoplay: true,
-        autoplaySpeed: 2000,
-				variableWidth: true,
-				pauseOnHover: false,
-				pauseOnFocus: false,
-				touchMove: false,
-				swipe: false,
-				// speed: 200,
-				asNavFor: '.slideBoxBig'
+        autoplaySpeed: 2500,
+        variableWidth: true,
+        pauseOnHover: false,
+        pauseOnFocus: false,
+        touchMove: false,
+        swipe: false,
+        asNavFor: '.pc .slideBoxBig'
+    });
+
+    $(".mo .slideBoxBig").slick({
+        infinite : true,
+        dots: true,
+        speed: 600,
+        slidesToShow : 1,
+        arrows : false,
+        autoplay: true,
+        autoplaySpeed: 2500,
+        variableWidth: true,
+        pauseOnHover: false,
+        pauseOnFocus: false,
+        asNavFor: '.mo .slideBoxSmall'
+    });
+    $(".mo .slideBoxSmall").slick({
+        infinite : true,
+        dots: false,
+        speed: 600,
+        slidesToShow : 1,
+        arrows : false,
+        autoplay: true,
+        autoplaySpeed: 2500,
+        variableWidth: true,
+        pauseOnHover: false,
+        pauseOnFocus: false,
+        touchMove: false,
+        swipe: false,
+        asNavFor: '.mo .slideBoxBig'
     });
 		
     </script>

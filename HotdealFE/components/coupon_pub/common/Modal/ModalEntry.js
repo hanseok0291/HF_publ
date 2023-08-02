@@ -21,6 +21,7 @@ const ModalEntry = ({ isEntryOpen, closeEntryPopup }) => {
         <div className={styleModal.bottomSheetDim}  onClick={closeEntryPopup}></div>
       }
       className={styleModal.bottomSheet}
+      style={{position: 'relative', zIndex: 997}}
       header={
         <div className={`${styleModal.modalHeader}`}>
           <button type="button" className={styleModal.slideCloseBtn} onClick={closeEntryPopup}></button>

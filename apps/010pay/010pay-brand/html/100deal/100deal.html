@@ -440,9 +440,9 @@
 							<div class="text-box"><span>놓치기 아쉬운</span></div> 
 							<p>다음 100원딜을 소개해요<i>!</i></p>
 						</div>
-						<div class="">
-							<div class="lineup-slide">
-								<div class="slide-item">
+						<div class="swiper lineup-slide">
+							<div class="swiper-wrapper">
+								<div class="slide-item swiper-slide">
 									<div class="cont-wrap">
 										<div class="img-wrap">
 											<img src="../../resource/images/hotdeal/sample/product-06.png" alt="">
@@ -454,15 +454,15 @@
 										</div>
 									</div>
 								</div>
-								<div class="slide-item">
+								<div class="slide-item swiper-slide">
 									<div class="cont-wrap">
 										<div class="img-wrap">
-											<img src="../../resource/images/hotdeal/sample/product-05.png" alt="">
+											<img src="../../resource/images/hotdeal/sample/product-06.png" alt="">
 										</div>
 										<div class="text-wrap">
 											<p class="date-alert">7.19</p>
-											<p class="brand-name">투썸플레이스</p>
-											<p class="prod-name">딸기 생크림 피스</p>
+											<p class="brand-name">할리스 눈꽃 팥빙수</p>
+											<p class="prod-name">할리스 눈꽃 팥빙수 할리스 눈꽃 팥빙수 할리스 눈꽃 팥빙수 할리스 눈꽃 팥빙수 할리스 눈꽃 팥빙수 할리스 눈꽃 팥빙수 할리스 눈꽃 팥빙수 할리스 눈꽃 팥빙수</p>
 										</div>
 									</div>
 								</div>
@@ -651,174 +651,235 @@
     </div>
 
     <script>
-    var moAppDownbtn = $(".line-up.second-section").offset().top - 150;
-    $(window).on("scroll",function(){
-      var $scroll = $(window).scrollTop();
-      var $topConPos = $(".top-visual").scrollTop() + $(".top-visual").height() / 2;
-      var winWidth = $(window).width() > 767 ? 240 : 60;
-      var radius = winWidth - $scroll / $topConPos * 100 * (winWidth / 100);
-      console.log(moAppDownbtn);
-      if($scroll > moAppDownbtn){
-        $("#moAppDownbtn").addClass("fixed");
-      } else {
-        $("#moAppDownbtn").removeClass("fixed");
-      }
-    });
-
-      $(".add-ani").each(function(i, e){
-        var $delay = $(e).attr("delay");
-        $(e).css("transition-delay", $delay+"s");
-      });
-
-      // 바디 스크롤 제거/해제
-      var scrollHeight = 0;
-      function scrollOff() {
-        scrollHeight = $(document).scrollTop();
-        $("body").addClass("modal-open");
-        $(".content_wrap").css("position", "fixed");
-        $(".content_wrap").css("top", -scrollHeight);
-      }
-      function scrollOn() {
-        $("body").removeClass("modal-open");
-        $(".content_wrap").css("top", 0);
-        $(".content_wrap").css("position", "relative");
-        $(document).scrollTop(scrollHeight);
-      }
-
-      // 레이어 팝업(모달) 열기
-      function modalOpen(obj) {
-        var temp = $("#" + obj);
-        temp.fadeIn(100).addClass("open");
-        scrollOff(); // 바디 스크롤 제거
-
-        // 슬라이드 모달 닫기
-        function modalOut() {
-          temp.fadeOut(300).removeClass("open");
-
-          // 이중 모달이 아닌 경우
-          if (!$(temp).hasClass("depth2")) {
-            scrollOn(); // 바디 스크롤 제거 해제
-          }
-        }
-
-        // 팝업 내 닫기 버튼 클릭 시 팝업 닫기
-        $(temp)
-          .find(".modal-close")
-          .click(function () {
-            modalOut();
-          });
-      }
-
-      // 레이어 팝업(모달) 닫기
-      function modalClose(obj) {
-        if (obj != null && obj != undefined && obj != "") {
-          var temp = $("#" + obj);
-          temp.fadeOut(300).removeClass("open");
-        } else {
-          $(".modal").fadeOut(300).removeClass("open");
-        }
-        scrollOn(); // 바디 스크롤 제거 해제
-      }
-
-      // 화면 너비에 따라 열리는 방식 지정
-      $(".btn-modal").click(function (e) {
-        if ($(window).width() > 738) {
-          e.preventDefault();
-          modalOpen("modal-qr");
-        }
-      });
-		
-		// 라인업 슬라이드
-		// slide		
-		var length = $(".lineup-slide .slide-item").length;
-		if ($(window).width() > 767) {
-			if(length <= 4) {
-				$('.lineup-slide').addClass('slide-type2');
-			} else {
-			$(".lineup-slide").slick({
+			var moAppDownbtn = $(".line-up.second-section").offset().top - 150;
+			$(window).on("scroll",function(){
+				var $scroll = $(window).scrollTop();
+				var $topConPos = $(".top-visual").scrollTop() + $(".top-visual").height() / 2;
+				var winWidth = $(window).width() > 767 ? 240 : 60;
+				var radius = winWidth - $scroll / $topConPos * 100 * (winWidth / 100);
+				console.log(moAppDownbtn);
+				if($scroll > moAppDownbtn){
+					$("#moAppDownbtn").addClass("fixed");
+				} else {
+					$("#moAppDownbtn").removeClass("fixed");
+				}
+			});
+	
+				$(".add-ani").each(function(i, e){
+					var $delay = $(e).attr("delay");
+					$(e).css("transition-delay", $delay+"s");
+				});
+	
+				// 바디 스크롤 제거/해제
+				var scrollHeight = 0;
+				function scrollOff() {
+					scrollHeight = $(document).scrollTop();
+					$("body").addClass("modal-open");
+					$(".content_wrap").css("position", "fixed");
+					$(".content_wrap").css("top", -scrollHeight);
+				}
+				function scrollOn() {
+					$("body").removeClass("modal-open");
+					$(".content_wrap").css("top", 0);
+					$(".content_wrap").css("position", "relative");
+					$(document).scrollTop(scrollHeight);
+				}
+	
+				// 레이어 팝업(모달) 열기
+				function modalOpen(obj) {
+					var temp = $("#" + obj);
+					temp.fadeIn(100).addClass("open");
+					scrollOff(); // 바디 스크롤 제거
+	
+					// 슬라이드 모달 닫기
+					function modalOut() {
+						temp.fadeOut(300).removeClass("open");
+	
+						// 이중 모달이 아닌 경우
+						if (!$(temp).hasClass("depth2")) {
+							scrollOn(); // 바디 스크롤 제거 해제
+						}
+					}
+	
+					// 팝업 내 닫기 버튼 클릭 시 팝업 닫기
+					$(temp)
+						.find(".modal-close")
+						.click(function () {
+							modalOut();
+						});
+				}
+	
+				// 레이어 팝업(모달) 닫기
+				function modalClose(obj) {
+					if (obj != null && obj != undefined && obj != "") {
+						var temp = $("#" + obj);
+						temp.fadeOut(300).removeClass("open");
+					} else {
+						$(".modal").fadeOut(300).removeClass("open");
+					}
+					scrollOn(); // 바디 스크롤 제거 해제
+				}
+	
+				// 화면 너비에 따라 열리는 방식 지정
+				$(".btn-modal").click(function (e) {
+					if ($(window).width() > 738) {
+						e.preventDefault();
+						modalOpen("modal-qr");
+					}
+				});		
+			// 라인업 슬라이드
+			// slide		
+			var length = $(".lineup-slide .slide-item").length;
+			if ($(window).width() > 767) {
+				if(length <= 4) {
+					$('.lineup-slide').addClass('slide-type2');
+				} else {
+					var swiper = new Swiper(".lineup-slide", {
+						slidesPerView: 'auto',
+						spaceBetween: 20,
+						// loop : true,
+						centeredSlides: true,
+						slidesOffsetBefore: -483,
+						autoplay: {     //자동슬라이드 (false-비활성화)
+							delay: 2500, // 시간 설정
+							disableOnInteraction: false, // false-스와이프 후 자동 재생
+						},
+						on: {
+								slideChangeTransitionEnd: function(){
+									setTimeout(() => {
+									}, 2500);
+								},
+								activeIndexChange: function(){
+									var realIndex = swiper.realIndex;
+									var checkIndex = length - 4;
+									console.log(checkIndex);
+									if(length >= 5) {
+										if(realIndex >= checkIndex) {
+											swiper.autoplay.stop();
+											$('.swiper-button-next').addClass('swiper-button-disabled');
+										} else {
+											$('.swiper-button-next').removeClass('swiper-button-disabled');
+										}
+									} else {
+										if(realIndex >= 2) {
+											swiper.autoplay.stop();
+											$('.swiper-button-next').addClass('swiper-button-disabled');
+										} else {
+											$('.swiper-button-next').removeClass('swiper-button-disabled');
+										}
+									}
+								}
+						},
+						breakpoints: {
+							320: {
+								spaceBetween: 16,
+								slidesOffsetBefore: -100,
+								centeredSlides: true,
+							},
+							768: {
+								slidesOffsetBefore: -450,
+								centeredSlides: true,
+							},
+							1024: {
+								spaceBetween: 20,
+							}
+						},
+						navigation: {   // 버튼
+								nextEl: ".swiper-button-next",
+								prevEl: ".swiper-button-prev",
+							},
+					});
+			}
+		} else {
+			if(length <= 2) {
+					$('.lineup-slide').addClass('slide-type2');
+				} else {
+					var swiper = new Swiper(".lineup-slide", {
+						slidesPerView: 'auto',
+						spaceBetween: 20,
+						loop : true,
+						centeredSlides: true,
+						slidesOffsetBefore: -465,
+						autoplay: {     //자동슬라이드 (false-비활성화)
+							delay: 2500, // 시간 설정
+							disableOnInteraction: false, // false-스와이프 후 자동 재생
+						},
+						breakpoints: {
+							320: {
+								spaceBetween: 16,
+								slidesOffsetBefore: 0,
+								centeredSlides: true,
+							},
+							1024: {
+								spaceBetween: 20,
+							}
+						},
+						navigation: {   // 버튼
+								nextEl: ".swiper-button-next",
+								prevEl: ".swiper-button-prev",
+							},
+					});
+			}
+		}
+		// 라인업 슬라이드 END
+			$(".pc .slideBoxBig").slick({
+					infinite : true,
+					dots: true,
+					speed: 600,
+					slidesToShow : 1,
+					arrows : false,
+					autoplay: true,
+					autoplaySpeed: 2500,
+					variableWidth: true,
+					pauseOnHover: false,
+					pauseOnFocus: false,
+					asNavFor: '.pc .slideBoxSmall'
+			});
+			$(".pc .slideBoxSmall").slick({
 					infinite : true,
 					dots: false,
 					speed: 600,
-					slidesToScroll : 1,
-					arrows : true,
+					slidesToShow : 1,
+					arrows : false,
 					autoplay: true,
-					autoplaySpeed: 3000,
+					autoplaySpeed: 2500,
 					variableWidth: true,
-					centerPadding: '40px',
-					centerMode: true,
-					responsive: [
-						{
-							breakpoint: 768,
-							settings: {
-							centerPadding: '100px',
-							arrows : false
-							}
-						},
-					]
+					pauseOnHover: false,
+					pauseOnFocus: false,
+					touchMove: false,
+					swipe: false,
+					asNavFor: '.pc .slideBoxBig'
 			});
-		}
-	} else {
-		if(length <= 2) {
-				$('.lineup-slide').addClass('slide-type2');
-			} else {
-			$(".lineup-slide").slick({
+	
+			$(".mo .slideBoxBig").slick({
+					infinite : true,
+					dots: true,
+					speed: 600,
+					slidesToShow : 1,
+					arrows : false,
+					autoplay: true,
+					autoplaySpeed: 2500,
+					variableWidth: true,
+					pauseOnHover: false,
+					pauseOnFocus: false,
+					asNavFor: '.mo .slideBoxSmall'
+			});
+			$(".mo .slideBoxSmall").slick({
 					infinite : true,
 					dots: false,
 					speed: 600,
-					slidesToScroll : 1,
-					arrows : true,
+					slidesToShow : 1,
+					arrows : false,
 					autoplay: true,
-					autoplaySpeed: 3000,
+					autoplaySpeed: 2500,
 					variableWidth: true,
-					centerPadding: '40px',
-					centerMode: true,
-					responsive: [
-						{
-							breakpoint: 768,
-							settings: {
-							centerPadding: '100px',
-							arrows : false
-							}
-						},
-					]
+					pauseOnHover: false,
+					pauseOnFocus: false,
+					touchMove: false,
+					swipe: false,
+					asNavFor: '.mo .slideBoxBig'
 			});
-		}
-	}
-	// 라인업 슬라이드 END
-		$(".slideBoxBig").slick({
-        infinite : true,
-        dots: true,
-        speed: 600,
-				slidesToShow : 1,
-        arrows : false,
-        autoplay: true,
-        autoplaySpeed: 2000,
-				variableWidth: true,
-				pauseOnHover: false,
-				pauseOnFocus: false,
-				touchMove: false,
-				swipe: false,
-				// speed: 200,
-				asNavFor: '.slideBoxSmall'
-    });
-		$(".slideBoxSmall").slick({
-        infinite : true,
-        dots: false,
-        speed: 600,
-				slidesToShow : 1,
-        arrows : false,
-        autoplay: true,
-        autoplaySpeed: 2000,
-				variableWidth: true,
-				pauseOnHover: false,
-				pauseOnFocus: false,
-				touchMove: false,
-				swipe: false,
-				// speed: 200,
-				asNavFor: '.slideBoxBig'
-    });
-		
-    </script>
+			</script>
     <script src="../../resource/js/010pay_UI.js"></script>
   </body>
 </html>

@@ -658,11 +658,6 @@
 				var winWidth = $(window).width() > 767 ? 240 : 60;
 				var radius = winWidth - $scroll / $topConPos * 100 * (winWidth / 100);
 				console.log(moAppDownbtn);
-				// if(radius < 0){
-				//   $(".top-visual .container").css({"border-bottom-left-radius": 0, "border-bottom-right-radius": 0} );
-				// } else {
-				//   $(".top-visual .container").css({"border-bottom-left-radius": radius, "border-bottom-right-radius": radius} );
-				// }
 				if($scroll > moAppDownbtn){
 					$("#moAppDownbtn").addClass("fixed");
 				} else {
@@ -742,12 +737,38 @@
 					var swiper = new Swiper(".lineup-slide", {
 						slidesPerView: 'auto',
 						spaceBetween: 20,
-						loop : true,
+						// loop : true,
 						centeredSlides: true,
-						slidesOffsetBefore: -465,
+						slidesOffsetBefore: -483,
 						autoplay: {     //자동슬라이드 (false-비활성화)
 							delay: 2500, // 시간 설정
 							disableOnInteraction: false, // false-스와이프 후 자동 재생
+						},
+						on: {
+								slideChangeTransitionEnd: function(){
+									setTimeout(() => {
+									}, 2500);
+								},
+								activeIndexChange: function(){
+									var realIndex = swiper.realIndex;
+									var checkIndex = length - 4;
+									console.log(checkIndex);
+									if(length >= 5) {
+										if(realIndex >= checkIndex) {
+											swiper.autoplay.stop();
+											$('.swiper-button-next').addClass('swiper-button-disabled');
+										} else {
+											$('.swiper-button-next').removeClass('swiper-button-disabled');
+										}
+									} else {
+										if(realIndex >= 2) {
+											swiper.autoplay.stop();
+											$('.swiper-button-next').addClass('swiper-button-disabled');
+										} else {
+											$('.swiper-button-next').removeClass('swiper-button-disabled');
+										}
+									}
+								}
 						},
 						breakpoints: {
 							320: {
@@ -756,7 +777,8 @@
 								centeredSlides: true,
 							},
 							768: {
-								slidesOffsetBefore: -465,
+								slidesOffsetBefore: -450,
+								centeredSlides: true,
 							},
 							1024: {
 								spaceBetween: 20,
@@ -785,11 +807,8 @@
 						breakpoints: {
 							320: {
 								spaceBetween: 16,
-								slidesOffsetBefore: -100,
+								slidesOffsetBefore: 0,
 								centeredSlides: true,
-							},
-							768: {
-								slidesOffsetBefore: -465,
 							},
 							1024: {
 								spaceBetween: 20,
@@ -860,7 +879,6 @@
 					swipe: false,
 					asNavFor: '.mo .slideBoxBig'
 			});
-			
 			</script>
     <script src="../../resource/js/010pay_UI.js"></script>
   </body>

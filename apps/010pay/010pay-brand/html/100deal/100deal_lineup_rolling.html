@@ -469,6 +469,18 @@
 								<div class="slide-item swiper-slide">
 									<div class="cont-wrap">
 										<div class="img-wrap">
+											<img src="../../resource/images/hotdeal/sample/product-06.png" alt="">
+										</div>
+										<div class="text-wrap">
+											<p class="date-alert">7.19</p>
+											<p class="brand-name">할리스 눈꽃 팥빙수</p>
+											<p class="prod-name">할리스 눈꽃 팥빙수</p>
+										</div>
+									</div>
+								</div>
+								<div class="slide-item swiper-slide">
+									<div class="cont-wrap">
+										<div class="img-wrap">
 											<img src="https://www.naummall.com/data/hanguoshopping/goods/hecto/Middle/idx_test.jpg" alt="">
 										</div>
 										<div class="text-wrap">
@@ -493,30 +505,6 @@
 								<div class="slide-item swiper-slide">
 									<div class="cont-wrap">
 										<div class="img-wrap">
-											<img src="../../resource/images/hotdeal/sample/product-05.png" alt="">
-										</div>
-										<div class="text-wrap">
-											<p class="date-alert">7.21</p>
-											<p class="brand-name">투썸플레이스</p>
-											<p class="prod-name">딸기 생크림 피스</p>
-										</div>
-									</div>
-								</div>
-								<div class="slide-item swiper-slide">
-									<div class="cont-wrap">
-										<div class="img-wrap">
-											<img src="../../resource/images/hotdeal/sample/product-05.png" alt="">
-										</div>
-										<div class="text-wrap">
-											<p class="date-alert">7.23</p>
-											<p class="brand-name">투썸플레이스</p>
-											<p class="prod-name">딸기 생크림 피스</p>
-										</div>
-									</div>
-								</div>
-								<div class="slide-item swiper-slide">
-									<div class="cont-wrap">
-										<div class="img-wrap">
 											<img src="../../resource/images/hotdeal/sample/product-06.png" alt="">
 										</div>
 										<div class="text-wrap">
@@ -527,9 +515,9 @@
 									</div>
 								</div>
 							</div>
-							<div class="swiper-button-prev"></div>
-							<div class="swiper-button-next"></div>
 						</div>
+						<div class="swiper-button-prev"></div>
+						<div class="swiper-button-next"></div>
 					</div>
 				</section>
 				<!-- //lineUp section -->
@@ -719,11 +707,6 @@
       var winWidth = $(window).width() > 767 ? 240 : 60;
       var radius = winWidth - $scroll / $topConPos * 100 * (winWidth / 100);
       console.log(moAppDownbtn);
-      // if(radius < 0){
-      //   $(".top-visual .container").css({"border-bottom-left-radius": 0, "border-bottom-right-radius": 0} );
-      // } else {
-      //   $(".top-visual .container").css({"border-bottom-left-radius": radius, "border-bottom-right-radius": radius} );
-      // }
       if($scroll > moAppDownbtn){
         $("#moAppDownbtn").addClass("fixed");
       } else {
@@ -803,12 +786,42 @@
 				var swiper = new Swiper(".lineup-slide", {
 					slidesPerView: 'auto',
 					spaceBetween: 20,
-					loop : true,
 					centeredSlides: true,
-					slidesOffsetBefore: -465,
+					slidesOffsetBefore: -483,
+					// allowTouchMove: false,
 					autoplay: {     //자동슬라이드 (false-비활성화)
 						delay: 2500, // 시간 설정
 						disableOnInteraction: false, // false-스와이프 후 자동 재생
+					},
+					on: {
+							slideChangeTransitionEnd: function(){
+								setTimeout(() => {
+								}, 2500);
+							},
+							activeIndexChange: function(){
+								var realIndex = swiper.realIndex;
+								var checkIndex = length - 4;
+								console.log(checkIndex);
+								if(length >= 5) {
+									if(realIndex >= checkIndex) {
+										swiper.autoplay.stop();
+										swiper.allowTouchMove = false;
+										$('.swiper-button-next').addClass('swiper-button-disabled');
+									} else {
+										swiper.allowTouchMove = true;
+										$('.swiper-button-next').removeClass('swiper-button-disabled');
+									}
+								} else {
+									if(realIndex >= 2) {
+										swiper.autoplay.stop();
+										swiper.allowTouchMove = false;
+										$('.swiper-button-next').addClass('swiper-button-disabled');
+									} else {
+										swiper.allowTouchMove = true;
+										$('.swiper-button-next').removeClass('swiper-button-disabled');
+									}
+								}
+							}
 					},
 					breakpoints: {
 						320: {
@@ -817,7 +830,8 @@
 							centeredSlides: true,
 						},
 						768: {
-							slidesOffsetBefore: -465,
+							slidesOffsetBefore: -450,
+							centeredSlides: true,
 						},
 						1024: {
 							spaceBetween: 20,
@@ -846,11 +860,8 @@
 					breakpoints: {
 						320: {
 							spaceBetween: 16,
-							slidesOffsetBefore: -100,
+							slidesOffsetBefore: 0,
 							centeredSlides: true,
-						},
-						768: {
-							slidesOffsetBefore: -465,
 						},
 						1024: {
 							spaceBetween: 20,
@@ -921,7 +932,6 @@
         swipe: false,
         asNavFor: '.mo .slideBoxBig'
     });
-		
     </script>
     <script src="../../resource/js/010pay_UI.js"></script>
   </body>

@@ -9,19 +9,22 @@ import 'react-spring-bottom-sheet/dist/style.css';
 const radioEx = [
   {
     id: 1,
-    productName: "메가박스 2인 관람권 팝콘 세트",
+    brand: "메가박스",
+    productName: "2인 관람권 팝콘 세트",
     imgSrc: '../../images/100deal/sample/img-01.png',
     checked: false,
   },
   {
     id: 2,
-    productName: "CU모바일 상품권 1만원권",
+    brand: "CU",
+    productName: "모바일 상품권 1만원권",
     imgSrc: '../../images/100deal/sample/img-01.png',
     checked: false,
   },
   {
     id: 3,
-    productName: "죠스떡볶이 2인 세트",
+    brand: "죠스떡볶이",
+    productName: "2인 세트",
     imgSrc: '../../images/100deal/sample/img-01.png',
     checked: false,
   },
@@ -72,12 +75,13 @@ const ModalEntryAdd = ({ isEntryAddOpen, closeEntryAddPopup }) => {
                   className={`${styleModal.radioBox}`}
                 >
                   <label className={item.checked ? styleModal.on : ''}>
+                    <img
+                      src={item.imgSrc}
+                      alt={item.productName}
+                      className={styleModal.logoImg}
+                    />
                     <div className={styleModal.textBox}>
-                      <img
-                        src={item.imgSrc}
-                        alt={item.productName}
-                        className={styleModal.logoImg}
-                      />
+                      <span className={styleModal.brand}>{item.brand}</span>
                       <span className={styleModal.productName}>{item.productName}</span>
                     </div>
                     <input

@@ -51,7 +51,7 @@
           <dt class="ani-slide-1">기간</dt>
           <dd class="ani-slide-1">2023년 8월 31일까지</dd>
           <dt class="ani-slide-2">대상</dt>
-          <dd class="ani-slide-2">본 이벤트 참여가 처음인 <b>KT 고객</b></dd>
+          <dd class="ani-slide-2">휴대폰 충전이 처음인 <b>KT 고객</b></dd>
           <dt class="ani-slide-3">참여 방법</dt>
           <dd class="ani-slide-3">
             기간 내 <b>휴대폰 결제</b>로 <br>
@@ -94,7 +94,7 @@
           </div>
           <div class="text text-3">
             <p>
-              <span>내 통장 결제로</span><br>
+              <span>내통장결제로</span><br>
               <b>다양한 제휴 가맹점에서 결제 가능</b>
             </p>
           </div>
@@ -330,11 +330,12 @@
 // 퍼블 확인용 팝업 노출
 $('#commonPrompt').show();
 
-window.onload = function() {
-  setTimeout(function() {
-    window.scrollTo(0,0);
-  }, 10)
-}
+// window.onload = function() {
+//   setTimeout(function() {
+//     window.scrollTo(0,0);
+//   }, 10)
+// }
+
 $(document).ready(function(){
   // rolling banner(logo)
 	var roller = $(".rolling-list");
@@ -342,7 +343,7 @@ $(document).ready(function(){
 	$(".rolling-banner").append(clone);
 	var rollerWidth = roller.outerWidth();
 	roller.addClass("original");
-	clone.addClass("clone").css("left", rollerWidth);
+	clone.addClass("clone");
 
 	function sectionAni(){
 		var winHeight = $(window).height();
@@ -355,7 +356,7 @@ $(document).ready(function(){
 			for(var i = 0; i < $(".section").length; i++) {
 				var section = $(".section").eq(i);
 				var sectionTop = $(".section").eq(i).offset().top;
-				if (scrollTop > sectionTop - winHeight + winHeight/4) {
+				if (scrollTop > sectionTop - winHeight/1.5) {
 					$(section).addClass("active");
 				}
 			}
@@ -365,81 +366,12 @@ $(document).ready(function(){
 		for(var i = 0; i < $(".section").length; i++) {
 			var section = $(".section").eq(i);
 			var sectionTop = $(".section").eq(i).offset().top;
-			if (scrollTop > sectionTop - winHeight + winHeight/4) {
+			if (scrollTop > sectionTop - winHeight/1.5) {
 				$(section).addClass("active");
 			}
 		}
 	}
 	sectionAni();
-
-	// 약관 모달
-  $(".fixed-btn .btn").on("click", function(){
-		modalOpenSlide('modalAgree');
-	});
-
-  $(window).on('scroll', function(){
-    var scrollTop = $(window).scrollTop();
-    if(scrollTop > 0) {
-      $(".fixed-btn.bgNone").addClass("bottom");
-    } else {
-      $(".fixed-btn.bgNone").removeClass("bottom");
-    }
-  });
-
-	$('#btnAgree').click(function() {
-		var $termsModal = $('#termsDetail');
-		$termsModal.show();
-		$termsModal.find('.btn-close').click(function(){
-			$termsModal.hide();
-		});
-	});
-
-  // 약관 동의 체크 박스
-  $(".join-agree .checkbox > input").change("change", function(){
-    if($(this).is(":checked")){
-      $(this).closest(".join-agree").find(".inner-agree input").prop("checked", true);
-    } else {
-      $(this).closest(".join-agree").find(".inner-agree input").prop("checked", false);
-    }
-  });
-
-  // 내부 약관 동의 체크
-  $(".inner-agree input").change(function(){
-    var checkLength = 0;
-    var $innerInput = $(this).closest(".inner-agree").find("input")
-    $innerInput.each(function(i, e){
-      if($(this).is(":checked")){
-        checkLength++;
-      }
-    });
-    if(checkLength === $innerInput.length){
-      $(this).closest(".join-agree").find(".checkbox input").prop("checked", true);
-    } else {
-      $(this).closest(".join-agree").find(".checkbox input").prop("checked", false);
-    }
-  });
-
-  // 약관 동의 체크 확인
-  $(".join-agree input").on("change", function(){
-    var checkLength = 0;
-    $(".join-agree input").each(function(i, e){
-      if($(this).is(":checked")){
-        checkLength++;
-      }
-    });
-    if(checkLength === $(".join-agree input").length){
-      $("#btnAgree").attr("disabled", false);
-    } else {
-      $("#btnAgree").attr("disabled", true);
-    }
-  });
-
-  // 금액 선택
-  $(".ktAutoChargeTerms .buttonWrap button").on("click", function(){
-    $(this).closest(".modal-body").find(".btn").attr("disabled", false);
-    $(".ktAutoChargeTerms .buttonWrap button").removeClass("active");
-    $(this).addClass("active");
-  });
 });
 </script>
 </body>

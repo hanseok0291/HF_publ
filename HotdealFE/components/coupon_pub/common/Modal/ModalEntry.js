@@ -15,7 +15,7 @@ const ModalEntry = ({ isEntryOpen, closeEntryPopup }) => {
     <BottomSheet 
       open={isEntryOpen}
       onDismiss={closeEntryPopup}
-      snapPoints={({ minHeight }) => minHeight}
+      snapPoints={({ minHeight, maxHeight }) => [minHeight, maxHeight * 0.9]}
       blocking={false}
       sibling={
         <div className={styleModal.bottomSheetDim}  onClick={closeEntryPopup}></div>

@@ -21,7 +21,7 @@ const Index = () => {
   const [isShowMypageBtn, setShowMypageBtn] = useState(false);
   const [isFixedTop, setFixedTop] = useState(false);
   const [isFixedBottom, setFixedBottom] = useState(true);
-  const [isResultOpen, setResultOpen] = useState(false);
+  const [isResultOpen, setResultOpen] = useState(true);
 
   const closeResultPopup = () => {
     setResultOpen(false);
@@ -47,7 +47,7 @@ const Index = () => {
           <Footer />
         </div>
         {/* 응모 결과 팝업 */}
-        <ModalHundredResult isResultOpen={isResultOpen} closeResultPopup={closeResultPopup}/>
+        {/* <ModalHundredResult isResultOpen={isResultOpen} closeResultPopup={closeResultPopup}/> */}
         <ModalHundredWinner />
       </Layout>
     </>

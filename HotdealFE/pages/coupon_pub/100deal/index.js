@@ -154,7 +154,8 @@ const Index = () => {
               </div>
               <div className="textWrap">
                 <span className="people">50명</span>
-                <p className="product">메가박스 2인 관람권 팝콘 세트</p>
+                <p className="brand">노보텔 앰베서더 서울 동대문 앰베서더 서울 앰베서더 서울 </p>
+                <p className="product">2인 관람권 팝콘 관람권 팝콘 세트</p>
                 <p className="price"><span className="before">36,000</span><span className="after">100원</span></p>
                 <button type="button" onClick={openEntryPopup}>응모하기</button>
               </div>
@@ -166,6 +167,7 @@ const Index = () => {
               </div>
               <div className="textWrap">
                 <span className="people">50명</span>
+                <p className="brand">메가박스</p>
                 <p className="product">메가박스 2인 관람권 팝콘 세트</p>
                 <p className="price"><span className="before">36,000</span><span className="after">100원</span></p>
                 <button type="button" disabled>내일 10시 당첨자 발표</button>
@@ -178,7 +180,8 @@ const Index = () => {
               </div>
               <div className="textWrap">
                 <span className="people">50명</span>
-                <p className="product">메가박스 2인 관람권 팝콘 세트</p>
+                <p className="brand">메가박스</p>
+                <p className="product">2인 관람권 팝콘 세트</p>
                 <p className="price"><span className="before">36,000</span><span className="after">100원</span></p>
                 <button type="button" disabled>Coming Soon</button> 
                 {/* <button type="button" onClick={openEntryPopup}>응모하기</button> */}
@@ -245,7 +248,8 @@ const Index = () => {
                   </div>
                   <div className="textWrap">
                     <span className="people">50명</span>
-                    <p className="product">메가박스 2인 관람권 팝콘 세트</p>
+                    <p className="brand">올리브영</p>
+                    <p className="product">올리브영 모바일 상품권 올리브영 모바일 상품권 올리브영 모바일 상품권 올리브영 모바일 상품권</p>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -254,7 +258,8 @@ const Index = () => {
                   </div>
                   <div className="textWrap">
                     <span className="people">50명</span>
-                    <p className="product">메가박스 2인 관람권 팝콘 세트</p>
+                    <p className="brand">메가박스</p>
+                    <p className="product">2인 관람권 팝콘 세트</p>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -263,7 +268,8 @@ const Index = () => {
                   </div>
                   <div className="textWrap">
                     <span className="people">50명</span>
-                    <p className="product">메가박스 2인 관람권 팝콘 세트</p>
+                    <p className="brand">메가박스</p>
+                    <p className="product">2인 관람권 팝콘 세트</p>
                   </div>
                 </SwiperSlide>
               </Swiper>
@@ -277,7 +283,8 @@ const Index = () => {
                   </div>
                   <div className="textWrap">
                     <span className="people">50명</span>
-                    <p className="product">메가박스 2인 관람권 팝콘 세트</p>
+                    <p className="brand">메가박스</p>
+                    <p className="product">2인 관람권 팝콘 세트</p>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -286,7 +293,8 @@ const Index = () => {
                   </div>
                   <div className="textWrap">
                     <span className="people">50명</span>
-                    <p className="product">메가박스 2인 관람권 팝콘 세트</p>
+                    <p className="brand">메가박스</p>
+                    <p className="product">2인 관람권 팝콘 세트</p>
                   </div>
                 </SwiperSlide>
               </Swiper>
@@ -300,7 +308,8 @@ const Index = () => {
                   </div>
                   <div className="textWrap">
                     <span className="people">50명</span>
-                    <p className="product">메가박스 2인 관람권 팝콘 세트</p>
+                    <p className="brand">메가박스</p>
+                    <p className="product">2인 관람권 팝콘 세트</p>
                   </div>
                 </SwiperSlide>
               </Swiper>

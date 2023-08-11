@@ -62,6 +62,15 @@ export default function GiftCoupon() {
                         >
                             이벤트 코드는 쿠폰별로 등록 및 사용 기간이 상이할 수 있습니다.
                         </p>
+                        <p className={`${styleCommon.infoText} ${styleGiftCoupon.infoText}`}>
+                            다음의 경우 유효하지 않은 코드로 안내됩니다.
+                            <span className={styleGiftCoupon.other}>
+                                - 당일 선착순 수량이 마감된 경우 <br />
+                                - 존재하지 않는 코드인 경우 <br />
+                                - 코드를 잘못 입력한 경우 <br />
+                                - 입력 기한이 만료된 코드인 경우
+                            </span>
+                        </p>
                     </div>
                 </div>
             </div>

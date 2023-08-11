@@ -47,8 +47,8 @@ const Index = () => {
           <Footer />
         </div>
         {/* 응모 결과 팝업 */}
-        {/* <ModalHundredResult isResultOpen={isResultOpen} closeResultPopup={closeResultPopup}/> */}
-        <ModalHundredWinner />
+        <ModalHundredResult isResultOpen={isResultOpen} closeResultPopup={closeResultPopup}/>
+        {/* <ModalHundredWinner /> */}
       </Layout>
     </>
   );

@@ -66,19 +66,29 @@ export default function CouponDetail({setDeadlinFixed }) {
           >
             <p className={`${styleCouponDetail.imgLabel}`}>포인트 적립</p>
             <p
-              className={`${styleCouponDetail.imgLabel} ${styleCouponDetail.type1}`}
+              className={`${styleCouponDetail.imgLabel} ${styleCouponDetail.type4}`}
             >
               기간 한정 특가
             </p>
-            <p
+            <p 
               className={`${styleCouponDetail.imgLabel} ${styleCouponDetail.type2}`}
             >
               보유 포인트로 0원
             </p>
             <p
+              className={`${styleCouponDetail.imgLabel} ${styleCouponDetail.type4}`}
+            >
+              추가 할인
+            </p>
+            <p
               className={`${styleCouponDetail.imgLabel} ${styleCouponDetail.type3}`}
             >
               최저가 선물전
+            </p>
+            <p
+              className={`${styleCouponDetail.imgLabel} ${styleCouponDetail.type4}`}
+            >
+              선물 한정 특가
             </p>
           </div>
           <div
@@ -154,12 +164,28 @@ export default function CouponDetail({setDeadlinFixed }) {
                 </dt>
                 <dd>2,160<em>원</em></dd>
                 <dt>
+                  <input type="checkbox"  name="checkbox" id="checkbox_3"/>
+                  <label htmlFor="checkbox_3">선물 한정 할인 <span>6%</span></label>
+                </dt>
+                <dd>1,440<em>원</em></dd>
+                {/* soldout 추가 시 라인 추가 */}
+                <dt className={styleCouponDetail.soldout}>
+                  <input type="checkbox"  name="checkbox" id="checkbox_3"/>
+                  <label htmlFor="checkbox_3">선물 한정 할인 <span>6%</span></label>
+                  {/* disabled 추가 시 체크박스 비활성화 */}
+                  <label htmlFor="checkbox_3" className={styleCouponDetail.disabled}>선물 한정 할인 <span>6%</span></label>
+                </dt>
+                {/* 미반복 */}
+                <dd className={styleCouponDetail.soldout}>아쉽지만 <em>품절이에요!</em></dd>
+                {/* 반복 */}
+                <dd className={styleCouponDetail.soldout}><em>내일 재오픈</em>돼요!</dd>
+                <dt>
                   기간 한정 할인<span>4%</span>
                 </dt>
                 <dd>1,080<em>원</em></dd>
                 <dt>
-                  <input type="checkbox"  name="checkbox" id="checkbox_3"/>
-                  <label htmlFor="checkbox_3">사용 후 적립 <span className={styleCouponDetail.benefitAlert}>(23. 1. 2 까지 사용 시)</span></label>
+                  <input type="checkbox"  name="checkbox" id="checkbox_2"/>
+                  <label htmlFor="checkbox_2">사용 후 적립 <span className={styleCouponDetail.benefitAlert}>(23. 1. 2 까지 사용 시)</span></label>
                 </dt>
                 <dd className={styleCouponDetail.mainColor}>1,080<em>원</em></dd>
               </dl>
@@ -337,7 +363,11 @@ export default function CouponDetail({setDeadlinFixed }) {
           <div className={`${styleCouponDetail.nowViewWrap}`}>
             <span>10,000명</span>이 기분 전환 중 <span>🎵</span>
           </div>
-          <div className={`${styleCommon.container} ${styleCommon.flexWrap}`}>
+          <div className={`${styleCouponDetail.selfGift}`}>
+            <p>나에게도 선물하고 싶다면?</p>
+            <a className={styleCouponDetail.rightArrow} href="#"><span>NN%</span> 36,000원에 구매</a>
+          </div>
+          <div className={`${styleCommon.container} ${styleCommon.flexWrap} ${styleCouponDetail.bottomBtnWrap}`}>
             <p className={`${styleCommon.floatLeft}`}>
               <button
                 className={`${styleCommon.btnIcon} ${styleCommon.btnWish} ${styleCommon.active} ${styleCouponDetail.btnWish}`}
@@ -353,9 +383,15 @@ export default function CouponDetail({setDeadlinFixed }) {
             <p
               className={`${styleCommon.marginLeft} ${styleCommon.flexWrap} ${styleCommon.alignCenter}`}
             >
-              <button className={`${styleCommon.btnGift}`}>선물하기</button>
-              <span className={`${styleCommon.bar}`}></span>
-              <button className={`${styleCommon.btnGiftMe}`}>나에게 선물하기</button>
+              <button className={`${styleCommon.btnGift}`}>
+                선물하기
+                {/* 상품 상세 선물 상품(동일 상품) 아래 말풍선 노출 */}
+                <span className={styleCouponDetail.addInfo} style={{width: 118, right: -38}}><span><em>NN%</em> 더 할인 받아요<i>!</i></span></span>
+              </button>
+              {/* 상품 할인중 (품절x) 선물하기 버튼만 노출 */}
+              {/* <span className={`${styleCommon.bar}`}></span>
+              <button className={`${styleCommon.btnGiftMe}`}>나에게 선물하기</button> */}
+              {/* 상품 할인중 (품절x) */}
             </p>
           </div>
         </div>

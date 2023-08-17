@@ -105,6 +105,14 @@ const CouponList = (props) => {
       infoDcPercent: "25%",
       addInfo1: true,
       addInfo2: true,
+      addInfo3: true,
+      addInfo4: true,
+      addInfo5: true,
+      addInfo6: true,
+      addInfo7: true,
+      addInfo8: true,
+      addInfo9: true,
+      soldOut1: true,
     },
     {
       labelType1: true,
@@ -117,6 +125,7 @@ const CouponList = (props) => {
       infoDcPercent: "25%",
       addInfo1: true,
       addInfo2: true,
+      soldOut2: true,
     },
     {
       labelType1: false,

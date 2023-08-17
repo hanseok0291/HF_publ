@@ -33,11 +33,11 @@
 .CouponDetailInfoWrap .TabContentBox .noteTable tr td { width: 50%; border: 1px solid #e2e2e2; font-size: 13px; color: #575757; } 
 
 .CouponDetailWrap .card { display: flex; justify-content: center; position: relative; overflow: hidden; } 
-.CouponDetailWrap .imgLabelWrap { display: flex; position: absolute; left: 0; top: 0; z-index: 2; } 
-.CouponDetailWrap .imgLabelWrap .imgLabel { display: flex; align-items: center; justify-content: center; height: 35px; padding: 0 17px; color: #e6ff00; font-size: 13px; font-weight: 700; background-color: #151515; } 
-.CouponDetailWrap .imgLabelWrap .imgLabel.type1 { background-color: #ff2b00; } 
+.CouponDetailWrap .imgLabelWrap { display: flex; flex-wrap: wrap; position: absolute; left: 0; top: 0; z-index: 2; } 
+.CouponDetailWrap .imgLabelWrap .imgLabel { display: flex; align-items: center; justify-content: center; height: 35px; padding: 0 17px; color: #fff; font-size: 13px; font-weight: 700; background-color: #151515; } 
 .CouponDetailWrap .imgLabelWrap .imgLabel.type2 { background-color: #007271; } 
 .CouponDetailWrap .imgLabelWrap .imgLabel.type3 { background-color: #132d4a; } 
+.CouponDetailWrap .imgLabelWrap .imgLabel.type4 { background-color: #FF6711; } 
 .CouponDetailWrap .imgBox { background-color: transparent; max-width: none; border: none; } 
 .CouponDetailWrap :global .slick-dots { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); } 
 .CouponDetailWrap :global .slick-dots li { display: inline-block; margin: 0 5px } 
@@ -90,13 +90,20 @@
 .CouponDetailWrap .priceDetailWrap dl span.benefitAlert { color: #a2a2a2; } 
 .CouponDetailWrap .priceDetailWrap dl dt { font-size: 13px; } 
 .CouponDetailWrap .priceDetailWrap dl dt { position: relative; display: block; } 
+.CouponDetailWrap .priceDetailWrap dl dt.soldout label span { color: #575757; } 
+.CouponDetailWrap .priceDetailWrap dl dt.soldout label::after { display: block; content: ""; position: absolute; left: auto; top: 54%; transform: translateY(-50%); width: calc(100% - 20px); height: 1px; background-color: #FF2B00; } 
 .CouponDetailWrap .priceDetailWrap dl dt > input[type="checkbox"] { position: absolute; top: 0; left: 0; width: 0; height: 0; border: 0; font-size: 0; box-shadow: none; } 
-.CouponDetailWrap .priceDetailWrap dl dt > input + label { position: relative; display: inline-block; padding-left: 20px; color: #151515; } 
-.CouponDetailWrap .priceDetailWrap dl dt > input + label:before { content: ''; display: block; position: absolute; top: 50%; left: 0px; transform: translateY(-50%); z-index: 1; width: 15px; height: 15px; background: url(../../public/images/coupon/icon/common/icon-check-square-off.svg) no-repeat center / cover; border-radius: 5px; } 
-.CouponDetailWrap .priceDetailWrap dl dt > input:checked + label:before { background-image: url(../../public/images/coupon/icon/common/icon-check-square-on.svg); } 
+.CouponDetailWrap .priceDetailWrap dl dt > input + label { position: relative; display: inline-block; padding-left: 19px; color: #151515; } 
+.CouponDetailWrap .priceDetailWrap dl dt > input + label:before { content: ''; display: block; position: absolute; top: 54%; left: 0px; transform: translateY(-50%); z-index: 1; width: 13px; height: 13px; border: 1px solid #151515; border-radius: 2px; } 
+.CouponDetailWrap .priceDetailWrap dl dt > input + label.disabled { pointer-events: none; } 
+.CouponDetailWrap .priceDetailWrap dl dt > input + label.disabled:before { border: 1px solid #f1f1f1; background-color: #f9f9f9; } 
+/* .CouponDetailWrap .priceDetailWrap dl dt > input + label:before { content: ''; display: block; position: absolute; top: 50%; left: 0px; transform: translateY(-50%); z-index: 1; width: 15px; height: 15px; background: url(../../public/images/coupon/icon/common/icon-check-square-off.svg) no-repeat center / cover; border-radius: 5px; }  */
+.CouponDetailWrap .priceDetailWrap dl dt > input:checked + label:before { background: #151515 url(../../public/images/coupon/icon/common/icon-check-square-on.svg) center center / 13px 13px no-repeat; border: 1px solid #151515; } 
 .CouponDetailWrap .priceDetailWrap dl dd { text-align: right; font-size: 15px; color: #151515; } 
 .CouponDetailWrap .priceDetailWrap dl dt,
 .CouponDetailWrap .priceDetailWrap dl dd { margin-top: 12px; } 
+.CouponDetailWrap .priceDetailWrap dl dd.soldout { font-weight: bold; font-size: 13px; letter-spacing: 0; } 
+.CouponDetailWrap .priceDetailWrap dl dd.soldout em { position: static; color: #FF2B00; margin: 0; } 
 .CouponDetailWrap .priceDetailWrap dl dd em { position: relative; top: -1px; margin-left: 3px; font-size: 13px; } 
 .CouponDetailWrap .priceDetailWrap dl dd .pointCheck { display: inline-flex; align-items: center; font-size: 12px; } 
 .CouponDetailWrap .priceDetailWrap dl dd .pointCheck i { margin-left: 6px; } 
@@ -189,6 +196,21 @@
 
 .nowViewWrap { line-height: 30px; text-align: center; background-color: #ffe5e0; font-size: 13px; } 
 .nowViewWrap span { color: #ff2b00; } 
+.selfGift { display: flex; justify-content: space-between; align-items: center; position: absolute; top: 56px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); padding: 12px 12px 12px 16px; background-color: #FFFBC9; font-size: 13px; font-weight: 700; border-radius: 10px; animation: giftShow 1s 2s forwards; z-index: -1; } 
+@keyframes giftShow {
+  0% {
+    top: 56px;
+  }
+  100% {
+    top: -60px;
+  }
+}
+.bottomBtnWrap {background-color: #151515;}
+.selfGift p { line-height: 15.6px; } 
+.selfGift a { position: relative; line-height: 1; } 
+.selfGift a span { margin-right: 2px; color: #FF2B00; } 
+.selfGift a.rightArrow { padding-right: 16px; }
+.selfGift a.rightArrow::after { position: absolute; right: 0; top: 50%; transform: translateY(-50%); display: block; content: ""; width: 16px; height: 16px; background: url('../../public/images/coupon/icon/common/icon-arrow-round-right.png') 0 0 / cover no-repeat; }
 
 .CouponDetailWrap.barcode .card { display: flex; justify-content: center; } 
 .CouponDetailWrap.barcode .imgBox { background-color: transparent; max-width: 250px; border: none; margin-top: 20px; } 
@@ -233,8 +255,11 @@
 
 /* 하단 버튼 영역 */
 .CouponDetailBottomWrap { line-height: 65px; background-color: #151515; } 
-.CouponDetailBottomWrap button { position: relative; height: 100%; font-size: 18px; font-weight: 700; color: #fff; } 
+.CouponDetailBottomWrap button { overflow: visible; position: relative; height: 100%; font-size: 18px; font-weight: 700; color: #fff; } 
 .CouponDetailBottomWrap .btnWish { width: 20px; margin-right: 20px; background-size: contain; } 
 .CouponDetailBottomWrap .btnShare { width: 20px; } 
+.addInfo { position: absolute; top: -18px; height: 30px; padding: 0 8px; z-index: 1; font-size: 12px; font-weight: bold; line-height: 30px; background-color: #ff2b00; color: #fff; border-radius: 10px; }
+.addInfo em { color: #e6ff00; } 
+.addInfo::after { display: block; content: ""; position: absolute; bottom: -5px; right: 30px; width: 6px; height: 6px; background: url('../../public/images/coupon/icon/common/text-box-arrow-1.png') 0 / cover no-repeat; } 
 
 .bar { display: inline-block; width: 1px; height: 11px; margin: 0 20px; background-color: #575757; } 

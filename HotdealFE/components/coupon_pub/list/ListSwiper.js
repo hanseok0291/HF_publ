@@ -51,7 +51,7 @@ const ListSwiper = () => {
 
 	return (
 		<>
-			<SwiperItem title={["박혜빈님께 추천해요", <span>🍰</span>]} moreBtnShow="false" labelShow="true" listItem={listItem}/>
+			<SwiperItem title={["박혜빈님께 추천해요", <span key="1">🍰</span>]} moreBtnShow="false" labelShow="true" listItem={listItem}/>
 		</>
 	);
 };

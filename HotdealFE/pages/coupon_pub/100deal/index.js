@@ -19,12 +19,14 @@ import Header from "../../../components/coupon_pub/100deal/Header";
 import ModalEntry from "../../../components/coupon_pub/common/Modal/ModalEntry";
 import ModalHundredArrival from "../../../components/coupon_pub/common/Modal/ModalHundredArrival";
 import ModalHundredInfo from "../../../components/coupon_pub/common/Modal/ModalHundredInfo";
+import ModalEntryAdd from "../../../components/coupon_pub/common/Modal/ModalEntryAdd";
 
 
 const Index = () => {
   const router = useRouter();
   const [totalSlides, setTotalSlides] = useState(0); // 슬라이드 개수 상태
   const [isEntryOpen, setIsEntryOpen] = useState(false);
+  const [isEntryAddOpen, setIsEntryAddOpen] = useState(false);
   const [isHundredOpen, setIsHundredOpen] = useState(false);
   const [navFixed, setNavFixed] = useState(false);
 
@@ -32,6 +34,7 @@ const Index = () => {
   const firstConRef = useRef();
   const secondConRef = useRef();
   const thirdConRef = useRef();
+  const botConRef = useRef();
 
   const closeHundredPopup = () => {
     setIsHundredOpen(false);
@@ -49,6 +52,14 @@ const Index = () => {
     setIsEntryOpen(false);
   }
 
+  const openEntryAddPopup = () => {
+    setIsEntryAddOpen(true);
+  }
+
+  const closeEntryAddPopup = () => {
+    setIsEntryAddOpen(false);
+  }
+
   const handleSlideChange = (swiper) => {
     setTotalSlides(swiper.slides.length); // 슬라이드 개수 업데이트
   };
@@ -61,6 +72,7 @@ const Index = () => {
     let firstCon = firstConRef.current.getBoundingClientRect().top - 112;
     let secondCon = secondConRef.current.getBoundingClientRect().top - 112;
     let thirdCon = thirdConRef.current.getBoundingClientRect().top - 112;
+    let botCon = botConRef.current.getBoundingClientRect().bottom - document.body.getBoundingClientRect().height;
 
     if (firstConRef.current !== null) {
       if(firstCon < 0){
@@ -73,10 +85,10 @@ const Index = () => {
       }
       if (firstCon < 0 && secondCon > 0) {
         tabRef.current.children[0].classList.add('on');
+      } else if(thirdCon < 0 || botCon < 1) {
+        tabRef.current.children[2].classList.add('on');
       } else if(secondCon < 0 && thirdCon > 0) {
         tabRef.current.children[1].classList.add('on');
-      } else if(thirdCon < 0) {
-        tabRef.current.children[2].classList.add('on');
       }
     }
   };
@@ -142,7 +154,8 @@ const Index = () => {
               </div>
               <div className="textWrap">
                 <span className="people">50명</span>
-                <p className="product">메가박스 2인 관람권 팝콘 세트</p>
+                <p className="brand">노보텔 앰베서더 서울 동대문 앰베서더 서울 앰베서더 서울 </p>
+                <p className="product">2인 관람권 팝콘 관람권 팝콘 세트</p>
                 <p className="price"><span className="before">36,000</span><span className="after">100원</span></p>
                 <button type="button" onClick={openEntryPopup}>응모하기</button>
               </div>
@@ -154,6 +167,7 @@ const Index = () => {
               </div>
               <div className="textWrap">
                 <span className="people">50명</span>
+                <p className="brand">메가박스</p>
                 <p className="product">메가박스 2인 관람권 팝콘 세트</p>
                 <p className="price"><span className="before">36,000</span><span className="after">100원</span></p>
                 <button type="button" disabled>내일 10시 당첨자 발표</button>
@@ -166,7 +180,8 @@ const Index = () => {
               </div>
               <div className="textWrap">
                 <span className="people">50명</span>
-                <p className="product">메가박스 2인 관람권 팝콘 세트</p>
+                <p className="brand">메가박스</p>
+                <p className="product">2인 관람권 팝콘 세트</p>
                 <p className="price"><span className="before">36,000</span><span className="after">100원</span></p>
                 <button type="button" disabled>Coming Soon</button> 
                 {/* <button type="button" onClick={openEntryPopup}>응모하기</button> */}
@@ -180,7 +195,7 @@ const Index = () => {
             <b>100원딜 추첨 결과는?</b>
           </p>
         </a>
-        <div className={`${styleHundredDeal.borderContent} ${styleHundredDeal.restContent}`}>
+        <div ref={botConRef} className={`${styleHundredDeal.borderContent} ${styleHundredDeal.restContent}`}>
           <h4 ref={secondConRef}>
             추가 응모하면 당첨 확률 UP <br />
             <strong>미션하고 응모권 받아요<i>!</i></strong>
@@ -233,7 +248,8 @@ const Index = () => {
                   </div>
                   <div className="textWrap">
                     <span className="people">50명</span>
-                    <p className="product">메가박스 2인 관람권 팝콘 세트</p>
+                    <p className="brand">올리브영</p>
+                    <p className="product">올리브영 모바일 상품권 올리브영 모바일 상품권 올리브영 모바일 상품권 올리브영 모바일 상품권</p>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -242,7 +258,8 @@ const Index = () => {
                   </div>
                   <div className="textWrap">
                     <span className="people">50명</span>
-                    <p className="product">메가박스 2인 관람권 팝콘 세트</p>
+                    <p className="brand">메가박스</p>
+                    <p className="product">2인 관람권 팝콘 세트</p>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -251,7 +268,8 @@ const Index = () => {
                   </div>
                   <div className="textWrap">
                     <span className="people">50명</span>
-                    <p className="product">메가박스 2인 관람권 팝콘 세트</p>
+                    <p className="brand">메가박스</p>
+                    <p className="product">2인 관람권 팝콘 세트</p>
                   </div>
                 </SwiperSlide>
               </Swiper>
@@ -265,7 +283,8 @@ const Index = () => {
                   </div>
                   <div className="textWrap">
                     <span className="people">50명</span>
-                    <p className="product">메가박스 2인 관람권 팝콘 세트</p>
+                    <p className="brand">메가박스</p>
+                    <p className="product">2인 관람권 팝콘 세트</p>
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -274,7 +293,8 @@ const Index = () => {
                   </div>
                   <div className="textWrap">
                     <span className="people">50명</span>
-                    <p className="product">메가박스 2인 관람권 팝콘 세트</p>
+                    <p className="brand">메가박스</p>
+                    <p className="product">2인 관람권 팝콘 세트</p>
                   </div>
                 </SwiperSlide>
               </Swiper>
@@ -288,7 +308,8 @@ const Index = () => {
                   </div>
                   <div className="textWrap">
                     <span className="people">50명</span>
-                    <p className="product">메가박스 2인 관람권 팝콘 세트</p>
+                    <p className="brand">메가박스</p>
+                    <p className="product">2인 관람권 팝콘 세트</p>
                   </div>
                 </SwiperSlide>
               </Swiper>
@@ -300,15 +321,18 @@ const Index = () => {
         </div>
         <div className={styleHundredDeal.botBtnWrap}>
           <div className={styleHundredDeal.btnBox}>
-            <div>보유 응모권 <span>0</span></div>
-            <button type="button">응모권 받기</button>
+            <div>보유 응모권 <span>1</span></div>
+            {/* <button type="button">응모권 받기</button> */}
             {/* <button type="button">추가 응모에 사용 </button> */}
+            <button type="button" onClick={openEntryAddPopup}>첫 응모에 사용 </button>
           </div>
         </div>
       </div>
       {/* 응모하기 */}
       <ModalEntry isEntryOpen={isEntryOpen} openEntryPopup={openEntryPopup} closeEntryPopup={closeEntryPopup} />
       {/* 100원딜? */}
+      <ModalEntryAdd isEntryAddOpen={isEntryAddOpen} openEntryAddPopup={openEntryAddPopup} closeEntryAddPopup={closeEntryAddPopup} />
+      {/* 추가 응모 */}
       <ModalHundredInfo isHundredOpen={isHundredOpen} openHundredPopup={openHundredPopup} closeHundredPopup={closeHundredPopup} />
       {/* 응모권 도착 */}
       {/* <ModalHundredArrival /> */}

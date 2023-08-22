@@ -21,7 +21,7 @@ const Index = () => {
   const [isShowMypageBtn, setShowMypageBtn] = useState(false);
   const [isFixedTop, setFixedTop] = useState(false);
   const [isFixedBottom, setFixedBottom] = useState(true);
-  const [isResultOpen, setResultOpen] = useState(false);
+  const [isResultOpen, setResultOpen] = useState(true);
 
   const closeResultPopup = () => {
     setResultOpen(false);

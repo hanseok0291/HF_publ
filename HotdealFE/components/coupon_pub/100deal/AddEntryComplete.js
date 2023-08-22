@@ -18,7 +18,8 @@ const AddEntryComplete = ({ defaultCount, src, alt, disabled}) => {
         <img src={src} alt={alt} />
       </div>
       <div className={styleModal.textWrap}>
-        <p className={styleModal.product}>메가박스 2인 관람권 팝콘 세트</p>
+        <p className={styleModal.brand}>메가박스</p>
+        <p className={styleModal.product}>2인 관람권 팝콘 세트</p>
         <div className={styleModal.botCon}>
           <span>{defaultCount + count}회 응모</span>
         </div>

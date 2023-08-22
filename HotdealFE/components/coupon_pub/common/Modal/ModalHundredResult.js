@@ -45,9 +45,9 @@ const ModalHundredResult = ({ isResultOpen, closeResultPopup }) => {
     //   </div>
     // </BottomSheet>
     <BottomSheet
-    open={isResultOpen}
+      open={isResultOpen}
       onDismiss={closeResultPopup}
-      snapPoints={({ minHeight }) => minHeight}
+      snapPoints={({ minHeight, maxHeight }) => [minHeight, maxHeight * 0.9]}
       blocking={false}
       sibling={
         <div className={styleModal.bottomSheetDim}  onClick={closeResultPopup}></div>

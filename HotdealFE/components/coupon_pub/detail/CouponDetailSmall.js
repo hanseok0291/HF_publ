@@ -190,9 +190,9 @@ export default function CouponDetailSmall({ isfixedTop }) {
                 <p
                   className={`${styleCommon.marginLeft} ${styleCommon.flexWrap} ${styleCommon.alignCenter}`}
                 >
-                  <button class="btnIcon btnGift">선물하기</button>
+                  <button className="btnIcon btnGift">선물하기</button>
                   <span className={`${styleCommon.bar}`}></span>
-                  <button class="btnIcon btnGiftMe">나에게 선물하기</button>
+                  <button className="btnIcon btnGiftMe">나에게 선물하기</button>
                 </p>
               </div>
             </div>

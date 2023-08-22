@@ -61,7 +61,7 @@ function ResultItem(props) {
     <>
 			<div
 					className={props.moreBtnShow ? `${styleSwiper.SwiperWrap} ${styleBrandList.SwiperWrap}` : `${styleSwiper.SwiperWrap} ${styleSwiper.paddingBottomOff} ${styleSwiper.hundredDeal}`}
-					style={{ backgroundColor: props.bgColor, paddingTop: 28, paddingBottom: 10}}
+					style={{ backgroundColor: props.bgColor, paddingTop: 28, paddingBottom: 40}}
 				>
         <div>
           <h2

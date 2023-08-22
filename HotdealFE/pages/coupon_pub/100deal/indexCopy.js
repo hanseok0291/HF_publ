@@ -311,6 +311,7 @@ const Index = () => {
       {/* 100원딜? */}
       <ModalHundredInfo isHundredOpen={isHundredOpen} openHundredPopup={openHundredPopup} closeHundredPopup={closeHundredPopup} />
       {/* 응모권 도착 */}
+      <ModalHundredArrival />
     </Layout>
   );
 };

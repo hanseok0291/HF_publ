@@ -4,8 +4,35 @@ import { useState } from "react";
 import styleCommon from "../../../../styles/coupon_pub/Common.module.css";
 import styleModal from "../../../../styles/coupon_pub/Modal.module.css";
 import styleFilter from "../../../../styles/coupon_pub/Filter.module.css";
+import { useRef } from "react";
+import { useEffect } from "react";
 
 const ModalHundredWinner = ({ show, onClose }) => {
+  const [isBlur, setIsBlur] = useState(false);
+  const winnerBodyRef = useRef();
+  
+  const handleScroll = () => {
+    const { scrollTop, clientHeight, scrollHeight } = winnerBodyRef.current;
+    if(scrollTop + clientHeight === scrollHeight){
+      setIsBlur(false);
+    } else {
+      setIsBlur(true);
+    }
+  };
+  
+  useEffect(() => {
+    if (process.browser) {
+      const { clientHeight, scrollHeight } = winnerBodyRef.current;
+      console.log(clientHeight, scrollHeight)
+      if(scrollHeight === clientHeight){
+        setIsBlur(false);
+      } else {
+        setIsBlur(true);
+      }
+      winnerBodyRef.current.addEventListener("scroll", handleScroll);
+    }
+  }, []);
+  
   return (
     <div
       className={`${styleModal.modal} ${styleModal.modalInfo} ${styleModal.open}`}
@@ -29,9 +56,51 @@ const ModalHundredWinner = ({ show, onClose }) => {
             </h3>
           </div>
           <div
-            className={`${styleModal.modalBody} ${styleFilter.modalBody} ${styleFilter.modalBodyScroll} ${styleFilter.winnerBody}`}
+            className={`${styleModal.modalBody} ${styleFilter.modalBody} ${styleFilter.modalBodyScroll} ${styleFilter.winnerBody} ${isBlur ? styleFilter.blur : ''}`}
+            ref={winnerBodyRef}
           >
             <ul className={styleFilter.winnerList}>
+              <li>
+                <strong>안*****지</strong>
+                (1234)
+              </li>
+              <li>
+                <strong>안*****지</strong>
+                (1234)
+              </li>
+              <li>
+                <strong>안*****지</strong>
+                (1234)
+              </li>
+              <li>
+                <strong>안*****지</strong>
+                (1234)
+              </li>
+
+              <li>
+                <strong>안*****지</strong>
+                (1234)
+              </li>
+              <li>
+                <strong>안*****지</strong>
+                (1234)
+              </li>
+              <li>
+                <strong>안*****지</strong>
+                (1234)
+              </li>
+              <li>
+                <strong>안*****지</strong>
+                (1234)
+              </li>
+              <li>
+                <strong>안*****지</strong>
+                (1234)
+              </li>
+              <li>
+                <strong>안*****지</strong>
+                (1234)
+              </li>
               <li>
                 <strong>안*****지</strong>
                 (1234)

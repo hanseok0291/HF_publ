@@ -100,7 +100,7 @@ const Index = () => {
               </div>
             </div>
           </div>
-          {showMainPopup && (
+          {/* {showMainPopup && (
             // <ModalEnter
             // />
             // <ModalLoading />
@@ -109,7 +109,7 @@ const Index = () => {
 								setShowMainPopup(!showMainPopup);
 							}}
 						/>
-          )}
+          )} */}
           <Footer />
         </div>
       </Layout>

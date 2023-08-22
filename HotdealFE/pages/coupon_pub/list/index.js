@@ -13,6 +13,7 @@ import Footer from "../../../components/coupon_pub/common/Footer";
 import Category from "../../../components/coupon_pub/main/Category";
 import CategoryList from "../../../components/coupon_pub/list/CategoryList";
 import CouponList from "../../../components/coupon_pub/list/CouponList";
+import ModalLimitedSale from "../../../components/coupon_pub/common/Modal/ModalLimitedSale";
 
 const Index = () => {
   //헤더 아이콘 디폴트 세팅
@@ -42,6 +43,8 @@ const Index = () => {
           </div>
           <Footer />
         </div>
+        {/* 품절 안내 모달 */}
+        <ModalLimitedSale repeat={false}/>
       </Layout>
     </>
   );

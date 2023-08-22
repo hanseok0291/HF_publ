@@ -44,8 +44,9 @@ const HundredDeal = () => {
               <div className={styleHundredDeal.textWrap}>
                 <p className={styleHundredDeal.productName}>
                   <span className={styleHundredDeal.peopleLimit}>50명</span>
-                  <span className={styleHundredDeal.name}>메가박스 2인 관람권 팝콘 세트</span>
+                  <span className={styleHundredDeal.brand}>메가박스</span>
                 </p>
+                <span className={styleHundredDeal.name}>2인 관람권 팝콘 세트</span>
                 <p className={styleHundredDeal.price}>
                   <span className={styleHundredDeal.beforePrice}>36,000</span>
                   <span className={styleHundredDeal.afterPrice}>100원</span>
@@ -57,10 +58,11 @@ const HundredDeal = () => {
                 <img src="../images/100deal/sample/main-100deal-01.png" alt="메가박스" />
               </div>
               <div className={styleHundredDeal.textWrap}>
-              <p className={styleHundredDeal.productName}>
+                <p className={styleHundredDeal.productName}>
                   <span className={styleHundredDeal.peopleLimit}>50명</span>
-                  <span className={styleHundredDeal.name}>메가박스 2인 관람권 팝콘 세트</span>
+                  <span className={styleHundredDeal.brand}>메가박스</span>
                 </p>
+                <span className={styleHundredDeal.name}>2인 관람권 팝콘 세트</span>
                 <p className={styleHundredDeal.price}>
                   <span className={styleHundredDeal.beforePrice}>36,000</span>
                   <span className={styleHundredDeal.afterPrice}>100원</span>

@@ -12,7 +12,6 @@ import styleCommon from "../../../styles/coupon_pub/Common.module.css";
 import Layout from "../../../components/common/Layout";
 import Header from "../../../components/coupon_pub/common/Header";
 import Footer from "../../../components/coupon_pub/common/Footer";
-// import Search from "../../components/coupon_pub/main/Search";
 import Category from "../../../components/coupon_pub/main/Category";
 // import RollingCoupon from "../../components/coupon_pub/main/RollingCoupon";
 // import HotBrand from "../../components/coupon_pub/main/HotBrand";

@@ -33,8 +33,9 @@ const Index = () => {
                 <ul className={styleHundredDeal.listWrap}>
                   <li>
                     <div className={styleHundredDeal.textWrap}>
-                      <span className={styleHundredDeal.people}>50명</span>
-                      <p className={styleHundredDeal.product}>메가박스 2인 관람권 팝콘 세트</p>
+                        <span className={styleHundredDeal.people}>50명</span>
+                        <p className={styleHundredDeal.brand}>메가박스</p>
+                        <p className={styleHundredDeal.product}>2인 관람권 팝콘 세트</p>
                     </div>
                     <div className={styleHundredDeal.imgWrap}>
                       <img src="../../../images/100deal/sample/img-01.png" alt="메가박스 2인 관람권 팝콘 세트" />
@@ -43,7 +44,8 @@ const Index = () => {
                   <li>
                     <div className={styleHundredDeal.textWrap}>
                       <span className={styleHundredDeal.people}>50명</span>
-                      <p className={styleHundredDeal.product}>CU편의점 모바일 상품권 1만원권</p>
+                      <p className={styleHundredDeal.brand}>CU편의점</p>
+                      <p className={styleHundredDeal.product}>모바일 상품권 1만원권</p>
                     </div>
                     <div className={styleHundredDeal.imgWrap}>
                       <img src="../../../images/100deal/sample/img-03.png" alt="CU편의점 모바일 상품권 1만원권" />
@@ -52,7 +54,8 @@ const Index = () => {
                   <li>
                     <div className={styleHundredDeal.textWrap}>
                       <span className={styleHundredDeal.people}>50명</span>
-                      <p className={styleHundredDeal.product}>해피머니 상품권 1만원권</p>
+                      <p className={styleHundredDeal.brand}>해피머니</p>
+                      <p className={styleHundredDeal.product}>상품권 1만원권</p>
                     </div>
                     <div className={styleHundredDeal.imgWrap}>
                       <img src="../../../images/100deal/sample/img-04.png" alt="해피머니 상품권 1만원권" />
@@ -66,7 +69,8 @@ const Index = () => {
                   <li>
                     <div className={styleHundredDeal.textWrap}>
                       <span className={styleHundredDeal.people}>50명</span>
-                      <p className={styleHundredDeal.product}>이디야 커피 달고나 라떼</p>
+                      <p className={styleHundredDeal.brand}>이디야</p>
+                      <p className={styleHundredDeal.product}>커피 달고나 라떼</p>
                     </div>
                     <div className={styleHundredDeal.imgWrap}>
                       <img src="../../../images/100deal/sample/img-05.png" alt="이디야 커피 달고나 라떼" />
@@ -75,7 +79,8 @@ const Index = () => {
                   <li>
                     <div className={styleHundredDeal.textWrap}>
                       <span className={styleHundredDeal.people}>50명</span>
-                      <p className={styleHundredDeal.product}>올리브영 모바일 상품권 3만원권</p>
+                      <p className={styleHundredDeal.brand}>올리브영</p>
+                      <p className={styleHundredDeal.product}>모바일 상품권 3만원권</p>
                     </div>
                     <div className={styleHundredDeal.imgWrap}>
                       <img src="../../../images/100deal/sample/img-06.png" alt="올리브영 모바일 상품권 3만원권" />
@@ -89,7 +94,8 @@ const Index = () => {
                   <li>
                     <div className={styleHundredDeal.textWrap}>
                       <span className={styleHundredDeal.people}>50명</span>
-                      <p className={styleHundredDeal.product}>버거킹 통새우 와퍼 세트</p>
+                      <p className={styleHundredDeal.brand}>버거킹</p>
+                      <p className={styleHundredDeal.product}>통새우 와퍼 세트</p>
                     </div>
                     <div className={styleHundredDeal.imgWrap}>
                       <img src="../../../images/100deal/sample/img-07.png" alt="버거킹 통새우 와퍼 세트" />

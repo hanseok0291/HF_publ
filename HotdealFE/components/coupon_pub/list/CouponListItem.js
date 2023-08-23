@@ -1,5 +1,6 @@
 import styleCommon from "../../../styles/coupon_pub/Common.module.css";
 import styleCouponList from "../../../styles/coupon_pub/CouponList.module.css";
+import styleSwiper from "../../../styles/coupon_pub/Swiper.module.css";
 
 const CouponListItem = (
   {
@@ -29,7 +30,7 @@ const CouponListItem = (
   return (
     <>
       <button href={`/coupon_pub/`}>
-        <div className={`${styleCouponList.imgBox} ${slideType ? styleCouponList.slideBox : ""}`}>
+        <div className={`${styleCouponList.imgBox} ${slideType ? styleCouponList.slideBox : ""} ${styleSwiper.imgBox}`}>
           <img src={infoImg} alt="핫딜 TEST"></img>
           {soldOut1 && <span className={styleCouponList.soldout}>내일 재오픈</span>}
           {soldOut2 && <span className={styleCouponList.soldout}>SOLD OUT</span>}
@@ -45,7 +46,7 @@ const CouponListItem = (
                   {infoDcPercent}
                 </span>
               )}
-              {saving ? "적립" : <>{infoDcPrice}<span className={styleCouponList.unitText}>{}원</span></>}
+              {saving ? "적립" : <>{infoDcPrice}<span className={styleCouponList.unitText}></span></>}
             </p>
           </div>
           <div className={styleCouponList.addInfoWrap}>

@@ -44,7 +44,7 @@ const Index = () => {
           <Footer />
         </div>
         {/* 품절 안내 모달 */}
-        <ModalLimitedSale repeat={false}/>
+        {/* <ModalLimitedSale repeat={false}/> */}
       </Layout>
     </>
   );

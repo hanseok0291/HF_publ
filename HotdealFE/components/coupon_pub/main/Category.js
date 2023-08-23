@@ -3,79 +3,73 @@ import { useRouter } from "next/router";
 
 import styleDefaultLayout from "../../../styles/common/DefaultLayout.module.css";
 import styleCommon from "../../../styles/coupon_pub/Common.module.css";
-import styleNav from "../../../styles/coupon_pub/Nav.module.css";
+import styleCategory from "../../../styles/coupon_pub/Category.module.css";
 
 const Category = () => {
-  const handleHomeClick = () => {
-    handleMainURL(router);
-  };
+  const data = [
+    {
+      src: '../images/coupon/sample/icon-main-category-1.png',
+      name: '100원딜'
+    },
+    {
+      src: '../images/coupon/sample/icon-main-category-2.png',
+      name: '20% 특가'
+    },
+    {
+      src: '../images/coupon/sample/icon-main-category-3.png',
+      name: '한강 수영장'
+    },
+    {
+      src: '../images/coupon/sample/icon-main-category-4.png',
+      name: '포인트 적립'
+    },
+    {
+      src: '../images/coupon/sample/icon-main-category-5.png',
+      name: 'PAY쿠폰'
+    },
+    {
+      src: '../images/coupon/sample/icon-main-category-6.png',
+      name: '상품권'
+    },
+    {
+      src: '../images/coupon/sample/icon-main-category-7.png',
+      name: '편의점·마트'
+    },
+    {
+      src: '../images/coupon/sample/icon-main-category-8.png',
+      name: '카페·베이커리'
+    },
+    {
+      src: '../images/coupon/sample/icon-main-category-9.png',
+      name: '아이스크림'
+    },
+    {
+      src: '../images/coupon/sample/icon-main-category-10.png',
+      name: '패스트푸드'
+    },
+    {
+      src: '../images/coupon/sample/icon-main-category-11.png',
+      name: '외식'
+    },
+    {
+      src: '../images/coupon/sample/icon-main-category-12.png',
+      name: '문화생활'
+    }
+  ]
 
   return (
-    <>
-      <div className={styleNav.navWrap}>
-        {/* 카테고리 메뉴 */}
-        <div className={`${styleCommon.container} ${styleNav.container}`}>
-          <ul className={styleNav.nav}>
-            <li className={styleNav.active}>
-              <button href={`/coupon/`} className={styleCommon.btn}>
-                <span>HOME</span>
-              </button>
-            </li>
-            <li>
-              <button href={`/list/`} className={styleCommon.btn}>
-                <span>
-                  <span className="titleEmoticonR">⚡</span>핫딜
-                </span>
-              </button>
-            </li>
-            <li>
-              <button href={`/list/`} className={styleCommon.btn}>
-                <span>
-                  <span className="titleEmoticonR">⏰</span>선착순 특가
-                </span>
-              </button>
-            </li>
-            <li>
-              <button href={`/list/`} className={styleCommon.btn}>
-                <span>
-                  <span className="titleEmoticonR">🎁</span>최저가 선물전
-                </span>
-              </button>
-            </li>
-            <li>
-              <button href={`/list/`} className={styleCommon.btn}>
-                <span>편의점·마트</span>
-              </button>
-            </li>
-            <li>
-              <button href={`/list/`} className={styleCommon.btn}>
-                <span>카페·베이커리</span>
-              </button>
-            </li>
-            <li>
-              <button href={`/list/`} className={styleCommon.btn}>
-                <span>아이스크림</span>
-              </button>
-            </li>
-            <li>
-              <button href={`/list/`} className={styleCommon.btn}>
-                <span>패스트푸드</span>
-              </button>
-            </li>
-            <li>
-              <button href={`/list/`} className={styleCommon.btn}>
-                <span>외식·문화생활</span>
-              </button>
-            </li>
-            <li>
-              <button href={`/list/`} className={styleCommon.btn}>
-                <span>브랜드</span>
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </>
+    <ul className={styleCategory.wrap}>
+      {data.map((item, index) => (
+        <li key={index}>
+          <a href="#">
+            <div className={styleCategory.imgWrap}>
+              <img src={item.src} alt={item.name} />
+            </div>
+            <span className={styleCategory.name}>{item.name}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
   );
 };
 

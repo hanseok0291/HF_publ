@@ -115,19 +115,63 @@
 							<div class="accodian-header">
 								<button type="button" class="accodian-button">header</button>
 							</div>
-							<div class="accodian-content collapse show">content</div>
+							<div class="accodian-content collapse show">
+								<div class="input input-credit">
+									<div class="input-wrap">
+										<input type="tel" class="input" maxlength="4" placeholder="카드번호">
+										<span class="dash">-</span>
+										<input type="tel" class="input" maxlength="4">
+										<span class="dash dash2">-</span>
+										<input type="password" class="input" maxlength="4">
+										<span class="dash dash3">-</span>
+										<input type="password" class="input" maxlength="4">
+									</div>
+								</div>
+								<div class="text-error"></div>
+								<div>asd</div>
+							</div>
 						</div>
 						<div class="accodian-item collapse">
 							<div class="accodian-header">
 								<button type="button" class="accodian-button">header</button>
 							</div>
-							<div class="accodian-content">content</div>
+							<div class="accodian-content">
+								<div class="accodian-content collapse show">
+									<div class="input input-credit">
+										<div class="input-wrap">
+											<input type="tel" class="input" maxlength="4" placeholder="카드번호">
+											<span class="dash">-</span>
+											<input type="tel" class="input" maxlength="4">
+											<span class="dash dash2">-</span>
+											<input type="password" class="input" maxlength="4">
+											<span class="dash dash3">-</span>
+											<input type="password" class="input" maxlength="4">
+										</div>
+									</div>
+									<div class="text-error"></div>
+									<div>asd</div>
+								</div>
+							</div>
 						</div>
 						<div class="accodian-item collapse">
 							<div class="accodian-header">
 								<button type="button" class="accodian-button">header</button>
 							</div>
-							<div class="accodian-content">content</div>
+							<div class="accodian-content">
+								<div class="input input-credit">
+									<div class="input-wrap">
+										<input type="tel" class="input" maxlength="4" placeholder="카드번호">
+										<span class="dash">-</span>
+										<input type="tel" class="input" maxlength="4">
+										<span class="dash dash2">-</span>
+										<input type="password" class="input" maxlength="4">
+										<span class="dash dash3">-</span>
+										<input type="password" class="input" maxlength="4">
+									</div>
+								</div>
+								<div class="text-error"></div>
+								<div>asd</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -473,15 +517,24 @@
 
 		// 아코디언 
 		$(".accodian-item").click(function(){
-			$('.accodian-content').slideUp();
-			$(this).find('.accodian-content').slideDown();
-			$(this).toggleClass('open');
+			if($(this).hasClass('open')) {
+				$(".accodian-item").removeClass('open');
+				$(this).find('.accodian-content').slideUp();
+			} else {
+				$(".accodian-item").removeClass('open');
+				$('.accodian-item .accodian-content').slideUp();
+				$(this).addClass('open');
+				$(this).find('.accodian-content').slideDown();
+			}
+			// $('.accodian-content').slideUp();
+			// $(this).toggleClass('open');
 			// $(this).find('.accodian-button').addClass('collapse');
 			// if($(this).children('.accodian-content').is(':visible')) {
 			// 	$(this).children('.accodian-content').slideUp();
 			// } else {
 			// 	$('.accodian-content').slideDown();
 			// }
+			return false;
 		});
 		
 		// 카드 정보 입력 추가
@@ -489,6 +542,8 @@
 		$(".btn-add").click(function(){
 			if(btnCount == 0) {
 				console.log('0');
+				$(".accodian-item").eq(0).removeClass('open');
+				$(".accodian-item").eq(1).addClass('open');
 				setTimeout(() => {
 					$('.accodian .accodian-item').eq(0).children('.accodian-content').slideUp();
 				}, 100);
@@ -497,6 +552,8 @@
 				}, 250);
 			} else if(btnCount == 1) {
 				console.log('1');
+				$(".accodian-item").eq(1).removeClass('open');
+				$(".accodian-item").eq(2).addClass('open');
 				setTimeout(() => {
 					$('.accodian .accodian-item').eq(1).children('.accodian-content').slideUp();
 				}, 100);
@@ -535,8 +592,6 @@
 				// 	// $(this).siblings().removeClass('collapse');
 				// 	console.log('2');
 				// }
-			$('.accodian .accodian-item').each(function (index, item) {
-			});
 			// if($('.accodian-item').hasClass('collapsed')) {
 			// 	alert('a');
 			// } else {

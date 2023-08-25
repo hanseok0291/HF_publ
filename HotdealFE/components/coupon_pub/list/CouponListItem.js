@@ -24,7 +24,8 @@ const CouponListItem = (
       soldOut1, // 내일 재오픈
       soldOut2, // SOLD OUT
     },
-    slideType // 홈 슬라이드에서 사용시 추가
+    slideType, // 홈 슬라이드에서 사용시 추가
+    isWon //메인 지금만 20% 특가 세일에서만 원 표시 제거
   },
 ) => {
   return (
@@ -39,7 +40,7 @@ const CouponListItem = (
           <p className={styleCouponList.infoBrand}>{infoBrand}</p>
           <p className={styleCouponList.infoProduct}>{infoProduct}</p>
           <div className={`${styleCouponList.infoPriceWrap} ${saving && styleCouponList.saving}`}>
-            <p className={styleCouponList.infoPrice}>{infoPrice}</p>
+            {infoPrice && <p className={styleCouponList.infoPrice}>{infoPrice}원</p>}
             <p className={`${styleCouponList.infoDcPrice}`}>
               {infoDcPercent && (
                 <span className={styleCouponList.infoDcPercent}>

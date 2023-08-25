@@ -5,7 +5,14 @@ import styleCommon from "../../../../styles/coupon_pub/Common.module.css";
 import styleModal from "../../../../styles/coupon_pub/Modal.module.css";
 import styleFilter from "../../../../styles/coupon_pub/Filter.module.css";
 
-const ModalFilter = ({ show, onClose }) => {
+const ModalFilter = ({ title, list, closeModal }) => {
+  const [countIndex, setCountIndex] = useState(0);
+
+  const handleClick = (index) => {
+    setCountIndex(index);
+  }
+
+
   return (
     <div
       className={`${styleModal.modal} ${styleModal.modalInfo} ${styleModal.open}`}
@@ -19,10 +26,11 @@ const ModalFilter = ({ show, onClose }) => {
             <h3
               className={`${styleModal.modalTitle} ${styleFilter.modalTitle}`}
             >
-              정렬 필터
+              {title}
               <button
                 type="button"
                 className={`${styleCommon.btnIcon} ${styleModal.btnClose} ${styleModal.modalClose}`}
+                onClick={closeModal}
               >
                 닫기
               </button>
@@ -30,18 +38,11 @@ const ModalFilter = ({ show, onClose }) => {
           </div>
           <div className={`${styleModal.modalBody} ${styleFilter.modalBody}`}>
             <div className={`${styleFilter.filterWrap}`}>
-              <p className={`${styleFilter.btn} ${styleFilter.active}`}>
-                <button type="button">인기순</button>
-              </p>
-              <p className={`${styleFilter.btn}`}>
-                <button type="button">할인율순</button>
-              </p>
-              <p className={`${styleFilter.btn}`}>
-                <button type="button">낮은 가격순</button>
-              </p>
-              <p className={`${styleFilter.btn}`}>
-                <button type="button">높은 가격순</button>
-              </p>
+              {list.map((item, index) => (
+                <p className={`${styleFilter.btn} ${countIndex === index && styleFilter.active}`} onClick={() => handleClick(index)} key={index}>
+                  <button type="button">{item}</button>
+                </p>
+              ))}
             </div>
           </div>
         </div>

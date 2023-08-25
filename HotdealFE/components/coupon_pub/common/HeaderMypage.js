@@ -27,10 +27,6 @@ export default function HeaderMypage({
             >
               쿠폰 코드 등록
             </button>
-            <span className={`${styleCommon.tooltip}`}>
-              등록 후 바로 사용 가능해요
-              <i className={`${styleCommon.italic}`}>!</i>
-            </span>
           </>
         ) : (
           <></>

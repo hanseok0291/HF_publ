@@ -28,6 +28,7 @@ import HundredDeal from "../../components/coupon_pub/main/HundredDeal";
 import Navigation from "../../components/coupon_pub/main/Navigation";
 import SwiperItem from "../../components/coupon_pub/main/SwiperItem";
 import TimeSale from "../../components/coupon_pub/main/TimeSale";
+import TopBanner from "../../components/coupon_pub/main/TopBanner";
 
 const listItem = [
   {
@@ -131,7 +132,7 @@ const Index = () => {
         >
           {/* 카테고리 메뉴 */}
           <Navigation />
-          <RewardBanner />
+          <TopBanner />
           <Category />
           <TimeSale
             title={
@@ -140,7 +141,9 @@ const Index = () => {
             addView={true}
             listItem={listItem2}
             paddingTop={40}
+            isWon={false}
           />
+          <HundredDeal />
           <SwiperItem
             title={
               "특별한 혜택 놓치지 마세요"
@@ -149,9 +152,19 @@ const Index = () => {
             listItem={listItem}
             paddingTop={40}
           />
+          <HotBrand />
           <SwiperItem
             title={
               "할인할 때 쟁여두세요"
+            }
+            addView={true}
+            listItem={listItem}
+            paddingTop={40}
+          />
+          <RewardBanner />
+          <SwiperItem
+            title={
+              "요즘 잘 나가는 상품"
             }
             addView={true}
             listItem={listItem}

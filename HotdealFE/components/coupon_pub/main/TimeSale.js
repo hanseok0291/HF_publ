@@ -9,7 +9,6 @@ import styleSwiper from "../../../styles/coupon_pub/Swiper.module.css";
 import CouponListItem from "../list/CouponListItem";
 
 function TimeSale(props) {
-
   return (
     <>
 			<div
@@ -39,7 +38,7 @@ function TimeSale(props) {
               {props.listItem.map((item, idx) => {
                 return (
                   <SwiperSlide key={idx}>
-                    <CouponListItem listItem={item}/>
+                    <CouponListItem listItem={item} isWon={props.isWon}/>
                   </SwiperSlide>
                 )
               })}

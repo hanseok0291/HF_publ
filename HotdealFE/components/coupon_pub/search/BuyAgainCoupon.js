@@ -63,6 +63,7 @@ const BuyAgainCoupon = ({ BuyAgainCoupon, inSearch }) => {
         labelShow="true"
         bgColor="#fbfbfb"
         fontSize="17px"
+        paddingBottom={60}
         listItem={listItem}
       />
     </>

@@ -5,14 +5,25 @@ import { useEffect, useRef, useState } from "react";
 //css
 import styleDefaultLayout from "../../../styles/coupon_pub/DefaultLayout.module.css";
 import styleCommon from "../../../styles/coupon_pub/Common.module.css";
+// import styleFriend from "../../styles/referral/Friend.module.css";//react
 
+//css
 // //components
 import Layout from "../../../components/common/Layout";
 import Header from "../../../components/coupon_pub/common/Header";
 import Footer from "../../../components/coupon_pub/common/Footer";
 import Category from "../../../components/coupon_pub/main/Category";
-import CategoryList from "../../../components/coupon_pub/list/CategoryList";
-import CouponList from "../../../components/coupon_pub/list/CouponList";
+// import RollingCoupon from "../../components/coupon_pub/main/RollingCoupon";
+// import HotBrand from "../../components/coupon_pub/main/HotBrand";
+import ReturnPoint from "../../../components/coupon_pub/main/ReturnPoint";
+// import MaybeCoupon from "../../components/coupon_pub/main/MaybeCoupon";
+// import PopularCoupon from "../../components/coupon_pub/main/PopularCoupon";
+// import PromotionBanner from "../../components/coupon_pub/main/PromotionBanner";
+/*
+import LimitCoupon from "../../components/coupon_pub/main/LimitCoupon";
+ */
+import Brand from "../../../components/coupon_pub/list/Brand";
+import ListSwiper from "../../../components/coupon_pub/list/ListSwiper";
 
 const Index = () => {
   //헤더 아이콘 디폴트 세팅
@@ -34,11 +45,19 @@ const Index = () => {
         >
           {/* 카테고리 메뉴 */}
           <Category />
-          <div className={`${styleCommon.containerWrap}`}>
-            {/* 카테고리 리스트 */}
-            <CategoryList />
+          <div className={`${styleCommon.containerWrap} ${styleCommon.brand}`}>
+            {/* Brand 리스트 */}
+            <Brand />
             {/* 카테고리 상품리스트 */}
-            <CouponList />
+            <ListSwiper />
+            {/* Brand 리스트 */}
+            <Brand />
+            {/* 카테고리 상품리스트 */}
+            <ListSwiper />
+            {/* Brand 리스트 */}
+            <Brand />
+            {/* 카테고리 상품리스트 */}
+            <ListSwiper />
           </div>
           <Footer />
         </div>

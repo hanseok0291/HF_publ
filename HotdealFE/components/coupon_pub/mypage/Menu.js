@@ -29,6 +29,9 @@ const Menu = () => {
           <li className={`${styleMenu.menuDraw}`}>
             <a href="#">응모</a>
           </li>
+          <li className={`${styleMenu.menuCoupon}`}>
+            <a href="#">쿠폰 등록</a>
+          </li>
           <li className={`${styleMenu.menuLike}`}>
             <a href="#">좋아요</a>
           </li>

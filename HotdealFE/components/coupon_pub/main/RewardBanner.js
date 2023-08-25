@@ -1,44 +1,24 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper";
-
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 // css
 import styleRewardBanner from "../../../styles/coupon_pub/RewardBanner.module.css";
 
-const data = [
-  {
-    src: '../images/coupon/sample/banner-main-1.png',
-    name: '기프티몰 배너'
-  },
-  {
-    src: '../images/coupon/sample/banner-main-1.png',
-    name: '기프티몰 배너'
-  },
-]
 const RewardBanner = () => {
-  const swiperParams = {
-    centeredSlides: true,
-    slidesPerView: 1,
-    modules: [Autoplay, Pagination],
-    // autoplay: {
-    //   delay: 2000
-    // },
-    loop: true,
-    pagination: {
-      type: 'fraction',
-    }
-  };
-
   return (
     <>
-      <Swiper {...swiperParams} className={styleRewardBanner.rewardBannerWrap}>
-        {data.map((item, index) => (
-          <SwiperSlide key={index}>
-            <a href="#" className={styleRewardBanner.linkBox}>
-              <img src={item.src} alt={item.name} />
-            </a>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className={`${styleRewardBanner.rewardBannerWrap}`}>
+        <a href="#" className={styleRewardBanner.linkBox}>
+          <div className={styleRewardBanner.textWrap}>
+            <p>오직 기프티몰에서만</p>
+            <p>
+              최대 N% 최저가 혜택 <i>!</i>
+              <span className={styleRewardBanner.checkBtn}>
+                지금 확인
+              </span>
+            </p>
+          </div>
+        </a>
+      </div>
     </>
   );
 };

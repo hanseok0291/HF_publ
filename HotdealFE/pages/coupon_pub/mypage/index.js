@@ -8,8 +8,12 @@ import HeaderMypage from "../../../components/coupon_pub/common/HeaderMypage";
 import styleCommon from "../../../styles/coupon_pub/Common.module.css";
 import Menu from "../../../components/coupon_pub/mypage/Menu";
 import Footer from "../../../components/coupon_pub/common/Footer";
+import Header from "../../../components/coupon_pub/common/Header";
+import Navigation from "../../../components/coupon_pub/main/Navigation";
 
 const Index = () => {
+  const [isShowBackBtn, setShowBackBtn] = useState(false);
+  const [isShowSearchBtn, setShowSearchBtn] = useState(true);
   const [useTitle, setUseTitle] = useState(false);
   const router = useRouter();
   const wrapRef = useRef();
@@ -24,12 +28,14 @@ const Index = () => {
   return (
     <>
       <Layout>
-        <HeaderMypage
-          pageTitle={useTitle && "선물함"}
-          isShowRegCodeBtn={true}
-        />
+        <Header
+          pageTitle="기프티몰"
+          isShowBackBtn={isShowBackBtn}
+          isShowSearchBtn={isShowSearchBtn}
+          />
         <div className={styleCommon.myPageWrap}>
-          <Menu />
+        <Navigation />
+        <Menu />
         </div>
         <Footer />
       </Layout>

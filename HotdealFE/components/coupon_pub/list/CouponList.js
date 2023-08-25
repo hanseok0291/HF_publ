@@ -90,88 +90,90 @@ const CategoryListWrap = () => {
   );
 };
 
-const CouponList = (props) => {
-  const [visible, setVisible] = useState(false);
 
-  const listItem = [
-    {
-      labelType1: true,
-      labelType2: false,
-      infoImg: "https://tbezauth.settlebank.co.kr/theme/cm/product/PB00145_20221006133121119.jpg",
-      infoBrand: "스타벅스",
-      infoProduct: "따뜻한 카페라떼 커플세트",
-      infoPrice: "10,000",
-      infoDcPrice: "7,500",
-      infoDcPercent: "25%",
-      addInfo1: true,
-      addInfo2: true,
-      addInfo3: true,
-      addInfo4: true,
-      addInfo5: true,
-      addInfo6: true,
-      addInfo7: true,
-      addInfo8: true,
-      addInfo9: true,
-      soldOut1: true,
-    },
-    {
-      labelType1: true,
-      labelType2: false,
-      infoImg: "https://tbezauth.settlebank.co.kr/theme/cm/product/PB00145_20221006134857069.png",
-      infoBrand: "스타벅스",
-      infoProduct: "따뜻한 카페라떼 커플세트 따뜻한 카페라떼",
-      infoPrice: "10,000",
-      infoDcPrice: "7,500",
-      infoDcPercent: "25%",
-      addInfo1: true,
-      addInfo2: true,
-      soldOut2: true,
-    },
-    {
-      labelType1: false,
-      labelType2: false,
-      infoImg: "https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png",
-      infoBrand: "스타벅스",
-      infoProduct: "시원하게 함께 세트",
-      infoDcPrice: "6,300",
-      addInfo1: false,
-      addInfo2: false,
-    },
-    {
-      labelType1: false,
-      labelType2: true,
-      infoImg: "https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png",
-      infoBrand: "스타벅스",
-      infoProduct: "시원하게 함께 세트 시원하 함께 세트",
-      infoDcPrice: "6,300",
-      addInfo1: false,
-      addInfo2: false,
-    },
-    {
-      labelType1: false,
-      labelType2: false,
-      infoImg: "https://tbezauth.settlebank.co.kr/theme/cm/product/PB00129_20220923100052926.png",
-      infoBrand: "스타벅스",
-      infoProduct: "따뜻한 카페라떼 커플세트",
-      infoDcPercent: "25%",
-      infoPrice: "10,000",
-      infoDcPrice: "6,300",
-      addInfo1: false,
-      addInfo2: false,
-    },
-    {
-      labelType1: false,
-      labelType2: false,
-      infoImg: "https://tbezauth.settlebank.co.kr/theme/cm/product/PB00129_20220923100052926.png",
-      infoBrand: "스타벅스",
-      infoProduct: "따뜻한 카페라떼 커플세트 따뜻한 카페라떼 커플세트",
-      infoDcPercent: "25%",
-      infoPrice: "10,000원",
-      infoDcPrice: "6,300원",
-      addInfo1: false,
-      addInfo2: false,
-    },
-  ];
+const listItem = [
+  {
+    labelType1: true,
+    labelType2: false,
+    infoImg: "https://tbezauth.settlebank.co.kr/theme/cm/product/PB00145_20221006133121119.jpg",
+    infoBrand: "스타벅스",
+    infoProduct: "따뜻한 카페라떼 커플세트",
+    infoPrice: "10,000",
+    infoDcPrice: "7,500",
+    infoDcPercent: "25%",
+    addInfo1: true,
+    addInfo2: true,
+    addInfo3: true,
+    addInfo4: true,
+    addInfo5: true,
+    addInfo6: true,
+    addInfo7: true,
+    addInfo8: true,
+    addInfo9: true,
+    soldOut1: true,
+  },
+  {
+    labelType1: true,
+    labelType2: false,
+    infoImg: "https://tbezauth.settlebank.co.kr/theme/cm/product/PB00145_20221006134857069.png",
+    infoBrand: "스타벅스",
+    infoProduct: "따뜻한 카페라떼 커플세트 따뜻한 카페라떼",
+    infoPrice: "10,000",
+    infoDcPrice: "7,500",
+    infoDcPercent: "25%",
+    addInfo1: true,
+    addInfo2: true,
+    soldOut2: true,
+  },
+  {
+    labelType1: false,
+    labelType2: false,
+    infoImg: "https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png",
+    infoBrand: "스타벅스",
+    infoProduct: "시원하게 함께 세트",
+    infoDcPrice: "6,300",
+    addInfo1: false,
+    addInfo2: false,
+  },
+  {
+    labelType1: false,
+    labelType2: true,
+    infoImg: "https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png",
+    infoBrand: "스타벅스",
+    infoProduct: "시원하게 함께 세트 시원하 함께 세트",
+    infoDcPrice: "6,300",
+    addInfo1: false,
+    addInfo2: false,
+  },
+  {
+    labelType1: false,
+    labelType2: false,
+    infoImg: "https://tbezauth.settlebank.co.kr/theme/cm/product/PB00129_20220923100052926.png",
+    infoBrand: "스타벅스",
+    infoProduct: "따뜻한 카페라떼 커플세트",
+    infoDcPercent: "25%",
+    infoPrice: "10,000",
+    infoDcPrice: "6,300",
+    addInfo1: false,
+    addInfo2: false,
+  },
+  {
+    labelType1: false,
+    labelType2: false,
+    infoImg: "https://tbezauth.settlebank.co.kr/theme/cm/product/PB00129_20220923100052926.png",
+    infoBrand: "스타벅스",
+    infoProduct: "따뜻한 카페라떼 커플세트 따뜻한 카페라떼 커플세트",
+    infoDcPercent: "25%",
+    infoPrice: "10,000",
+    infoDcPrice: "6,300",
+    addInfo1: false,
+    addInfo2: false,
+  },
+];
+
+// filter1 인기순 filter2 정렬 유형
+const CouponList = ({filter1, filter2, setIsFilter1, setIsFilter2}) => {
+  const [visible, setVisible] = useState(false);
 
   return (
     <>
@@ -189,57 +191,29 @@ const CouponList = (props) => {
             <div
               className={`${styleCommon.container} ${styleCategoryList.container}`}
             >
-              {props.pageType == "result" ? (
-                <>
-                  <p
-                    className={`${styleCommon.btn} ${styleCategoryList.CategoryListName}`}
-                  >
-                    <span className={`${styleCategoryList.searchText}`}>
-                      에이드
-                    </span>
-                    &nbsp;검색 결과 4건
-                  </p>
-                  <button
-                    type="button"
-                    className={`${styleCommon.btn} ${styleCategoryList.CategoryListName} ${styleCategoryList.CategoryListNameRight}`}
-                  >
-                    <i
-                      className={`${styleCommon.iconSort} ${styleCommon.iconSortPopular}`}
-                    ></i>
-                    인기순
-                  </button>
-                </>
-              ) : (
-                <>
-                  <button
-                    type="button"
-                    className={`${styleCommon.btn} ${styleCategoryList.CategoryListName}`}
-                    onClick={() => {
-                      setVisible(!visible);
-                    }}
-                  >
-                    <i className={`${styleCommon.iconSm}`}>
-                      <img
-                        src="../../images/coupon/icon/brand/icon-bakery-sm.png"
-                        alt="카테고리"
-                      ></img>
-                    </i>
-                    전체
-                    <i
-                      className={`${styleCommon.iconArrow} ${styleCommon.iconArrowRoundDown}`}
-                    ></i>
-                  </button>
-                  <button
-                    type="button"
-                    className={`${styleCommon.btn} ${styleCategoryList.CategoryListName} ${styleCategoryList.CategoryListNameRight}`}
-                  >
-                    <i
-                      className={`${styleCommon.iconSort} ${styleCommon.iconSortPopular}`}
-                    ></i>
-                    인기순
-                  </button>
-                </>
-              )}
+              {filter1 && 
+                <button
+                  type="button"
+                  className={`${styleCommon.btn} ${styleCategoryList.CategoryListName}`}
+                  onClick={() => setIsFilter2(true)}
+                >
+                  인기순
+                  <i
+                    className={`${styleCommon.iconArrow} ${styleCommon.iconPlusRound}`}
+                  ></i>
+                </button>}
+
+              {filter2 && 
+                <button
+                type="button"
+                className={`${styleCommon.btn} ${styleCategoryList.CategoryListName} ${styleCategoryList.on}`}// 유형 체크 시 on class 추가
+                  onClick={() => setIsFilter1(true)}
+                >
+                  할인 유형
+                  <i
+                    className={`${styleCommon.iconFilter} ${styleCategoryList.iconFilter}`}
+                  ></i>
+                </button>}
             </div>
           </div>
           {/* //브랜드 드롭박스 */}

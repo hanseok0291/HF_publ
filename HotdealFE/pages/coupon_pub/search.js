@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from "react";
 //css
 import styleDefaultLayout from "../../styles/coupon_pub/DefaultLayout.module.css";
 import styleCommon from "../../styles/coupon_pub/Common.module.css";
-import styleToast from "../../styles/coupon_pub/Toast.module.css";
 import styleSearch from "../../styles/coupon_pub/Search.module.css";
 
 //components
@@ -58,7 +57,7 @@ const Index = () => {
             </h1>
           </div>
         </div>
-        <div style={{ paddingTop: "58px" }}>
+        <div>
           <div style={{ marginBottom: "20px" }}>
             <SearchKeywords />
           </div>

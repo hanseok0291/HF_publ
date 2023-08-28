@@ -46,7 +46,7 @@
 
 <body>
 <!-- wrap -->
-<div id="wrap" class="wrap">
+<div id="wrap" class="wrap krc">
 	<!-- form -->
 	<form class="wrap" autocomplete="off">
 		<!-- header -->
@@ -57,6 +57,7 @@
 				<button type="button" class="btn-notice" data-toggle="modal" data-target="#noticeDetail"><i class="icon icon-bell">알림</i></button>
 				<button type="button" id="closeWindow" class="btn-close" data-toggle="modal" data-target="#commonConfirm"><i class="icon-times">창 닫기</i></button>
 			</div>
+			<div class="time-count"><span class="icon icon-timer"></span> 결제창 유효시간 <span>10:00</span></div>
 		</div>
 		<!-- //header -->
 
@@ -70,23 +71,23 @@
 				<div class="order-info">
 					<p class="prd-goods">드시모네 키즈 세트 afghjlmoprqyz 12345678901234567890</p>
 					<p class="prd-price"><strong class="price text-primary"><em class="value">287,000</em>원</strong> 결제합니다.</p>
-					<div class="calc">
+					<div class="calc" style="display: none;">
 						<p class="total text-primary"><em>298,000</em>원</p>
 						<p class="sub-area">
 							<!-- <span class="sub"><span class="label">포인트</span> <em>-1,000</em>원</span> -->
 							<span class="sub"><span class="label">즉시할인</span> <em>-11,000</em>원</span>
 						</p>
 					</div>
-					<p class="prd-period">별도 제공기간 없음</p>
+					<p class="prd-period">결제일자 : 2023.07.12</p>
 				</div>
 				<!-- //주문정보 -->
 
 				<!-- 농어촌공사 커스터마이징 노출 -->
-				<div class="info-area text-danger mgt10">
+				<!-- <div class="info-area text-danger mgt10">
 					<p class="info-title"><i class="icon-info text-primary border-primary">!</i>
 						10억 이상 거래금액은 삼성카드만 결제 가능합니다.<br>
 						결제 완료 후 취소 및 변경(일시불/할부/할부개월)은 불가합니다.</p>
-				</div>
+				</div> -->
 				<!-- //농어촌공사 커스터마이징 노출 -->
 
 				<!-- 카드사 선택 상단 섹션 -->
@@ -99,89 +100,220 @@
 					<!-- //포인트 수정 버튼 -->
 
 					<!-- 공지사항 배너 -->
-					<div class="banner-notice">
+					<!-- <div class="banner-notice">
 						<span class="title">공지</span>
 						<span class="subject">롯데카드 시스템 작업으로 인한 결제서비스 중단 안내드립니다.</span>
 						<button type="button" class="btn btn-icon" data-toggle="modal" data-target="#noticeDetail"><i class="icon-angle-right-sm">자세히 보기</i></button>
-					</div>
+					</div> -->
 					<!-- //공지사항 배너 -->
 				</div>
 				<!-- //카드사 선택 상단 섹션 -->
 
-				<!-- 카드사 선택 -->
-				<div class="section section-accodian">
-					<div class="accodian">
-						<div class="accodian-item open">
-							<div class="accodian-header">
-								<button type="button" class="accodian-button">header</button>
-							</div>
-							<div class="accodian-content collapse show">
-								<div class="input input-credit">
-									<div class="input-wrap">
-										<input type="tel" class="input" maxlength="4" placeholder="카드번호">
-										<span class="dash">-</span>
-										<input type="tel" class="input" maxlength="4">
-										<span class="dash dash2">-</span>
-										<input type="password" class="input" maxlength="4">
-										<span class="dash dash3">-</span>
-										<input type="password" class="input" maxlength="4">
-									</div>
-								</div>
-								<div class="text-error"></div>
-								<div>asd</div>
-							</div>
+				<!-- 금액 계산 -->
+				<div class="section section-cal">
+					<div class="cal-wrap">
+						<div>
+							<span>입력 가능한 금액 </span>
 						</div>
-						<div class="accodian-item collapse">
-							<div class="accodian-header">
-								<button type="button" class="accodian-button">header</button>
-							</div>
-							<div class="accodian-content">
-								<div class="accodian-content collapse show">
-									<div class="input input-credit">
-										<div class="input-wrap">
-											<input type="tel" class="input" maxlength="4" placeholder="카드번호">
-											<span class="dash">-</span>
-											<input type="tel" class="input" maxlength="4">
-											<span class="dash dash2">-</span>
-											<input type="password" class="input" maxlength="4">
-											<span class="dash dash3">-</span>
-											<input type="password" class="input" maxlength="4">
-										</div>
+						<div class="price">
+							<span class="total-money">
+								<input type="text" class="num_only num_comma num_sum" id="totalMoney" name="totalMoney" value="5000000" readonly style="display: none;">
+							</span>
+							<span id="result" class="value">5000000</span>
+							<span class="won">원</span>
+							<button type="button" class="btn-tooltip"></button>
+							<div class="popover">
+								<div class="popover-content">
+									<div class="popover-header">
+										<h3 class="popover-title">고객님이 현재 입력 가능한 결제금액</h3>
+										<button type="button" class="btn btn-close" data-dismiss="popover"></button>
 									</div>
-									<div class="text-error"></div>
-									<div>asd</div>
-								</div>
-							</div>
-						</div>
-						<div class="accodian-item collapse">
-							<div class="accodian-header">
-								<button type="button" class="accodian-button">header</button>
-							</div>
-							<div class="accodian-content">
-								<div class="input input-credit">
-									<div class="input-wrap">
-										<input type="tel" class="input" maxlength="4" placeholder="카드번호">
-										<span class="dash">-</span>
-										<input type="tel" class="input" maxlength="4">
-										<span class="dash dash2">-</span>
-										<input type="password" class="input" maxlength="4">
-										<span class="dash dash3">-</span>
-										<input type="password" class="input" maxlength="4">
+									<div class="popover-body">
+										‘총결제 금액 - 입력한 금액의 합계’
 									</div>
 								</div>
-								<div class="text-error"></div>
-								<div>asd</div>
+							</div>
+							<div class="position-relative">
 							</div>
 						</div>
 					</div>
 				</div>
-				<div>
-					<button type="button" class="btn btn-lg btn-add">카드 정보 입력 추가</button>
+				<!-- //금액 계산 -->
+
+				<!-- 카드정보 입력 -->
+				<div class="section section-accodian">
+					<div class="accodian">
+						<div class="accodian-item open">
+							<div class="accodian-header">
+								<button type="button" class="accodian-button">카드정보 입력 <span class="label label-fail">실패</span></button>
+							</div>
+							<div class="accodian-content collapse show">
+								<div class="input">
+									<input type="tel" id="num1" class="input num-only num-sum" placeholder="금액을 입력해주세요" oninput="formatNumberInput(this); calculate()" >
+									<span class="won">원</span>
+								</div>
+								<div class="input input-credit">
+									<div class="">
+										<input type="tel" class="input" maxlength="4" placeholder="카드번호">
+										<span class="dash">-</span>
+										<input type="tel" class="input" maxlength="4">
+										<span class="dash dash2">-</span>
+										<input type="password" class="input" maxlength="4">
+										<span class="dash dash3">-</span>
+										<input type="password" class="input" maxlength="4">
+									</div>
+								</div>
+								<div class="input">
+									<div class="pull-type pull-type2">
+										<select class="pull-left">
+											<option value="">유효 기간 (MM)</option>
+											<option value="">01</option>
+										</select>
+										<select class="pull-right">
+											<option value="">유효 기간 (YY)</option>
+											<option value="">20</option>
+										</select>
+									</div>
+								</div>
+								<div class="input">
+									<div class="">
+										<input type="tel" class="input" placeholder="생년월일(6자리) 또는 사업자등록번호">
+									</div>
+								</div>
+								<div class="input">
+									<div class="">
+										<input type="password" class="input" maxlength="2" placeholder="비밀번호(앞 2자리)">
+									</div>
+								</div>
+								<div class="input">
+									<div class="pull-type pull">
+										<select class="pull-con pull-left">
+											<option value="">할부를 선택해 주세요</option>
+											<option value="">01</option>
+										</select>
+									</div>
+								</div>
+								<div class="text-error">카드 유효기간이 유효하지 않습니다.</div>
+							</div>
+						</div>
+						<div class="accodian-item collapse">
+							<div class="accodian-header">
+								<button type="button" class="accodian-button">카드정보 입력 <span class="label label-wait">대기</span></button>
+							</div>
+							<div class="accodian-content">
+								<div class="input">
+									<input type="tel" id="num2" class="input num-only num-sum" placeholder="금액을 입력해주세요" oninput="formatNumberInput(this); calculate()" >
+									<span class="won">원</span>
+								</div>
+								<div class="input input-credit">
+									<div class="">
+										<input type="tel" class="input" maxlength="4" placeholder="카드번호">
+										<span class="dash">-</span>
+										<input type="tel" class="input" maxlength="4">
+										<span class="dash dash2">-</span>
+										<input type="password" class="input" maxlength="4">
+										<span class="dash dash3">-</span>
+										<input type="password" class="input" maxlength="4">
+									</div>
+								</div>
+								<div class="input">
+									<div class="pull-type pull-type2">
+										<select class="pull-left">
+											<option value="">유효 기간 (MM)</option>
+											<option value="">01</option>
+										</select>
+										<select class="pull-right">
+											<option value="">유효 기간 (YY)</option>
+											<option value="">20</option>
+										</select>
+									</div>
+								</div>
+								<div class="input">
+									<div class="">
+										<input type="tel" class="input" placeholder="생년월일(6자리) 또는 사업자등록번호">
+									</div>
+									<div class="text-error"></div>
+								</div>
+								<div class="input">
+									<div class="">
+										<input type="password" class="input" maxlength="2" placeholder="비밀번호(앞 2자리)">
+									</div>
+								</div>
+								<div class="input">
+									<div class="pull-type pull">
+										<select class="pull-con pull-left">
+											<option value="">할부를 선택해 주세요</option>
+											<option value="">01</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="accodian-item collapse">
+							<div class="accodian-header">
+								<button type="button" class="accodian-button">카드정보 입력</button>
+							</div>
+							<div class="accodian-content">
+								<div class="input">
+									<input type="tel" id="num3" class="input num-only num-sum" placeholder="금액을 입력해주세요" oninput="formatNumberInput(this); calculate()" >
+									<span class="won">원</span>
+								</div>
+								<div class="input input-credit">
+									<div class="">
+										<input type="tel" class="input" maxlength="4" placeholder="카드번호">
+										<span class="dash">-</span>
+										<input type="tel" class="input" maxlength="4">
+										<span class="dash dash2">-</span>
+										<input type="password" class="input" maxlength="4">
+										<span class="dash dash3">-</span>
+										<input type="password" class="input" maxlength="4">
+									</div>
+								</div>
+								<div class="input">
+									<div class="pull-type pull-type2">
+										<select class="pull-left">
+											<option value="">유효 기간 (MM)</option>
+											<option value="">01</option>
+										</select>
+										<select class="pull-right">
+											<option value="">유효 기간 (YY)</option>
+											<option value="">20</option>
+										</select>
+									</div>
+								</div>
+								<div class="input">
+									<div class="">
+										<input type="tel" class="input" placeholder="생년월일(6자리) 또는 사업자등록번호">
+									</div>
+									<div class="text-error"></div>
+								</div>
+								<div class="input">
+									<div class="">
+										<input type="password" class="input" maxlength="2" placeholder="비밀번호(앞 2자리)">
+									</div>
+								</div>
+								<div class="input">
+									<div class="pull-type pull">
+										<select class="pull-con pull-left">
+											<option value="">할부를 선택해 주세요</option>
+											<option value="">01</option>
+										</select>
+									</div>
+								</div>
+								<div class="text-error">카드 유효기간이 유효하지 않습니다.</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<!-- //카드사 선택 -->
+				<div class="btn-wrap">
+					<button type="button" class="btn btn-lg btn-add"><i class="icon icon-add"></i> 카드 추가</button>
+				</div>
+				
+				<div class="text-info guide-free">무이자 할부 안내 <button type="button" class="btn btn-xs btn-icon btn-help" data-toggle="modal" data-target="#infoFree"><i class="icon-help shadow">?</i><span class="sr-only">도움말</span></button></div>
+				<!-- //카드정보 입력 -->
 
 				<!-- 결제 정보 메일 -->
-				<div class="section selected-bank hidden">
+				<div class="section selected-bank">
 					<div class="form-type">
 						<div class="checkbox square">
 							<input type="checkbox" name="emailSend" id="emailSend">
@@ -201,7 +333,7 @@
 		<div id="footer">
 			<!-- container -->
 			<div class="container">
-				<button type="button" id="send" class="btn btn-xl btn-primary" disabled>결제하기</button>
+				<button type="button" id="send" class="btn btn-xl btn-primary" data-toggle="modal" data-target="#commonAlert" disabled>결제하기</button>
 			</div>
 			<!-- //container -->
 		</div>
@@ -210,6 +342,7 @@
 	<!-- //form -->
 </div>
 <!-- //wrap -->
+
 
 <!-- modal - 무이자 할부 안내 -->
 <div id="infoFree" class="modal modal-full" tabindex="-1" role="dialog">
@@ -439,7 +572,169 @@
 <div class="loading hidden">로딩 중</div>
 <!-- //loading -->
 
+<!-- slide modal -->
+<div id="modalSlideType1" class="modal modal-slide modal-info">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<button type="button" class="btn btn-close">취소</button>
+				<div class="container">
+					<h4>슬라이드 모달 기본형</h4>
+					<p>&nbsp;</p>
+					<p>상단 취소(-) 버튼과 딤 영역 클릭하여 닫기</p>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //slide modal -->
+
 <script>
+// 바디 스크롤 제거/해제
+var scrollHeight = 0;
+function scrollOff() {
+  scrollHeight = $(document).scrollTop();
+  $("body").addClass("modal-open");
+  $("#wrap").css("position", "fixed");
+  $("#wrap").css("top", -scrollHeight);
+  // $("#header").css("top", "-0.9px");
+}
+function scrollOn() {
+  $("body").removeClass("modal-open");
+  $("#wrap").css("top", 0);
+  $("#wrap").css("position", "relative");
+  $("#header").css("top", "-1px");
+  $(document).scrollTop(scrollHeight);
+}
+
+// 레이어 팝업(모달) 열기
+function modalOpen(obj) {
+  var temp = $("#" + obj);
+  temp.show();
+  scrollOff(); // 바디 스크롤 제거
+
+  // 위치
+  var thisDialog = temp.children(".modal-dialog");
+  var marginValue = thisDialog.outerHeight() / 2;
+  $(thisDialog).css("margin-top", "-" + marginValue + "px");
+}
+
+// 하단 레이어 팝업(슬라이드 모달) 기본 세팅
+var modalCont = $(".modal-info .modal-content");
+var modalH = $(window).height();
+modalH = modalH * -1;
+$(modalCont).css("bottom", modalH); // 팝업들 bottom 값 setting
+
+// 하단 레이어 팝업(슬라이드 모달) 열기
+function modalOpenSlide(obj) {
+  var temp = $("#" + obj);
+  var modalCont = $(temp).find(".modal-content");
+
+	temp.show();
+	$(modalCont).animate({bottom: 0}, 200);
+	// 이중 모달이 아닌 경우
+	if (obj === 'modal-useCoupon') {
+		$("body").addClass("modal-open");
+	} else 
+	if(!$(this).hasClass("depth2")) {
+		scrollOff(); // 바디 스크롤 제거
+	} else {
+
+	}
+  // 팝업 내 하단 버튼 클릭 시 팝업 닫힘
+  $(temp)
+    .find(".modal-footer .btn")
+    .on("click", function (e) {
+      if (!$(this).hasClass("not-close")) {
+        modalCloseSlide();
+      } else {
+			}
+    });
+
+  // bottom modal 닫기
+  function modalCloseSlide() {
+    temp.fadeOut(200);
+    $(temp).find(".modal-content").animate({ bottom: modalH }, 200);
+
+    // 이중 모달이 아닌 경우
+    if (!$(temp).hasClass("depth2")) {
+      scrollOn(); // 바디 스크롤 제거 해제
+    }
+  }
+
+  // 모달 높이가 큰 경우 포지션 변경
+  function modalContPos() {
+    var modalContent = temp.find(".modal-content");
+    var modalContentH = temp.find(".modal-content").height();
+    var modalDialogH = temp.find(".modal-dialog").height();
+    var gap = modalDialogH - modalContentH;
+    if (gap < 0) {
+      modalContent.css("position", "relative");
+    } else {
+      modalContent.css("position", "fixed");
+    }
+  }
+  modalContPos();
+
+  // 리사이즈
+  $(window).resize(function () {
+    modalContPos();
+  });
+}
+
+// 입력 가능 금액 계산
+var totalMoney = parseFloat(document.getElementById('totalMoney').value);
+var formatResult = formatNumber(totalMoney);
+var resultEle = document.getElementById('result');
+
+resultEle.textContent = formatResult;
+
+function formatNumber(number) {
+	return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function formatNumberInput(inputEl) {
+	var value = inputEl.value.replace(/,/g, '');
+	inputEl.value = formatNumber(value);
+}
+
+function calculate() {
+	var totalMoney = parseFloat(document.getElementById('totalMoney').value);
+	var num1 = parseFloat(document.getElementById('num1').value.replace(/,/g, ''));
+	var num2 = parseFloat(document.getElementById('num2').value.replace(/,/g, ''));
+	var num3 = parseFloat(document.getElementById('num3').value.replace(/,/g, ''));
+	var resultEle = document.getElementById('result');
+
+	//빈 값일 경우 0으로 대체하여 계산
+	num1 = isNaN(num1) ? 0 : num1;
+	num2 = isNaN(num2) ? 0 : num2;
+	num3 = isNaN(num3) ? 0 : num3;
+
+	var result = totalMoney - num1 - num2 - num3;
+	var formatResult = formatNumber(result);
+	resultEle.textContent = formatResult;
+}
+
+// 초기화 함수
+function resetCal() {
+	document.getElementById('num1').value = '';
+	calculate();
+}
+
+// 카드정보 입력 1000단위 콤마
+	$("input.num-only").change(function() {
+		var num1 = parseFloat(document.getElementById('num1').value);
+		var num2 = parseFloat(document.getElementById('num2').value);
+		var num3 = parseFloat(document.getElementById('num3').value);
+
+		var formatResult1 = formatNumber(num1);
+		var formatResult2 = formatNumber(num2);
+		var formatResult3 = formatNumber(num3);
+	});
+
 	$(document).ready(function(){
 		// 푸터 고정 토글
 		function fixedFooter(){
@@ -505,6 +800,16 @@
 			}
 		});
 
+		// 입력 가능금액 툴팁 버튼
+		$(".btn-tooltip").click(function(){
+			$(".popover").toggle();
+		});
+		
+		// 결제하기 모달1
+		$("#send").click(function(){
+			$.alertMessage("결제금액 입력 안내", "고객님의 입력하신 결제금액의 합계가 총 결제금액을 초과하였습니다. <br><br>입력한 결제금액 수정 후 재시도 해주세요.", "");
+		});
+
 		// 배너 슬라이드
 		$(".slide-banner").slick({
 			arrows: false,
@@ -516,31 +821,26 @@
 		});
 
 		// 아코디언 
-		$(".accodian-item").click(function(){
-			if($(this).hasClass('open')) {
+		$(".accodian-header").click(function(){
+			var selItem = $(this).parent('.accodian-item');
+			if(selItem.hasClass('open')) {
 				$(".accodian-item").removeClass('open');
-				$(this).find('.accodian-content').slideUp();
+				selItem.find('.accodian-content').slideUp();
 			} else {
 				$(".accodian-item").removeClass('open');
 				$('.accodian-item .accodian-content').slideUp();
-				$(this).addClass('open');
-				$(this).find('.accodian-content').slideDown();
+				selItem.addClass('open');
+				selItem.find('.accodian-content').slideDown();
 			}
-			// $('.accodian-content').slideUp();
-			// $(this).toggleClass('open');
-			// $(this).find('.accodian-button').addClass('collapse');
-			// if($(this).children('.accodian-content').is(':visible')) {
-			// 	$(this).children('.accodian-content').slideUp();
-			// } else {
-			// 	$('.accodian-content').slideDown();
-			// }
 			return false;
 		});
 		
 		// 카드 정보 입력 추가
 		var btnCount = 0;
+		var successCheck = true;
 		$(".btn-add").click(function(){
 			if(btnCount == 0) {
+				successCheck = false;
 				console.log('0');
 				$(".accodian-item").eq(0).removeClass('open');
 				$(".accodian-item").eq(1).addClass('open');
@@ -549,58 +849,39 @@
 				}, 100);
 				setTimeout(() => {
 					$('.accodian .accodian-item').eq(1).slideDown();
-				}, 250);
+					$('.accodian .accodian-item').eq(1).children('.accodian-content').slideDown();
+				}, 350);
+				// 카드 정보 체크 후
+				if(successCheck) {
+				} else {
+					$(".accodian-item").eq(0).find('.label').show();
+					$(".accodian-item").eq(0).find('.text-error').show();
+				}
 			} else if(btnCount == 1) {
 				console.log('1');
+				$(".accodian-item").eq(0).removeClass('open');
 				$(".accodian-item").eq(1).removeClass('open');
+				$(".accodian-item").eq(1).find('.label').show();
+				$(".accodian-item").eq(1).find('.text-error').show();
 				$(".accodian-item").eq(2).addClass('open');
+				$('#send').attr('disabled', false);
 				setTimeout(() => {
+					$('.accodian .accodian-item').eq(0).children('.accodian-content').slideUp();
 					$('.accodian .accodian-item').eq(1).children('.accodian-content').slideUp();
 				}, 100);
 				setTimeout(() => {
 					$('.accodian .accodian-item').eq(2).slideDown();
-				}, 250);
+					$('.accodian .accodian-item').eq(2).children('.accodian-content').slideDown();
+					$('.btn-add').hide();
+				}, 350);
 			} else if(btnCount == 2) {
 				console.log('2');
 			}
 			btnCount++;
-			// if($('.accodian .accodian-item').eq(0).hasClass('collapse')) {
-			// 	console.log('0');
-			// } else if($('.accodian .accodian-item').eq(1).hasClass('collapse')) {
-			// 	console.log('1');
-			// 	setTimeout(() => {
-			// 		$('.accodian .accodian-item').eq(0).children('.accodian-content').slideUp();
-			// 	}, 100);
-			// 	setTimeout(() => {
-			// 		$('.accodian .accodian-item').eq(1).slideDown();
-			// 	}, 250);
-			// } else if($('.accodian .accodian-item').eq(2).hasClass('collapse')) {
-			// 	console.log('2');
-			// 	setTimeout(() => {
-			// 		$('.accodian .accodian-item').eq(1).children('.accodian-content').slideUp();
-			// 	}, 100);
-			// 	setTimeout(() => {
-			// 		$('.accodian .accodian-item').eq(2).slideDown();
-			// 	}, 250);
-			// }
-			
-				// if($('.accodian .accodian-item').hasClass('collapse')) {
-				// 	// $(this).removeClass('collapse');
-				// 	console.log('1');
-				// } else {
-				// 	// $(this).next().addClass('collapse');
-				// 	// $(this).siblings().removeClass('collapse');
-				// 	console.log('2');
-				// }
-			// if($('.accodian-item').hasClass('collapsed')) {
-			// 	alert('a');
-			// } else {
-			// 	alert('b');
-			// }
 		});
 
 		// 카드 정보 입력 삭제 버튼
-
+		
 	});
 </script>
 </body>

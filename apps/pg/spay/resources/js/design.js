@@ -29,10 +29,12 @@ function hasScrolled() {
 	if (st > lastScrollTop && st > headerHeight){
 		// Scroll Down
 		$("#header").removeClass("header-down").addClass("header-up");
+		$(".krc .time-count").removeClass("time-count-down").addClass("time-count-up");
 	} else {
 		// Scroll Up
 		if(st + $(window).height() < $(document).height()) {
 			$("#header").removeClass("header-up").addClass("header-down");
+			$(".krc .time-count").removeClass("time-count-up").addClass("time-count-down");
 		}
 	}
 	lastScrollTop = st;

@@ -6,11 +6,12 @@ export default function Header({
   isShowSearchBtn,
   isShowMypageBtn,
   isShowCloseBtn,
-  pageTitle
+  pageTitle,
+  noFixed
 }) {
   return (
     <div
-      className={`${styleDefaultLayout.pageHeader} ${styleDefaultLayout.defaultHeader}`}
+      className={`${styleDefaultLayout.pageHeader} ${styleDefaultLayout.defaultHeader} ${noFixed && styleDefaultLayout.noFixed}`}
     >
       <div
         className={`${styleDefaultLayout.container} ${styleCommon.pageHeader}`}

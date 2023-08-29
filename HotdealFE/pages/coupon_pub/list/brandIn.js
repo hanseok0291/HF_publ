@@ -16,6 +16,7 @@ import Footer from "../../../components/coupon_pub/common/Footer";
 import Category from "../../../components/coupon_pub/main/Category";
 import BrandIn from "../../../components/coupon_pub/list/BrandIn";
 import CouponList from "../../../components/coupon_pub/list/CouponList";
+import BrandHeader from "../../../components/coupon_pub/list/BrandHeader";
 
 const categoryList = [
   {
@@ -93,6 +94,7 @@ const Index = () => {
   const [brandOpen, setBrandOpen] = useState(false); 
   const [categoryOpen, setCategoryOpen] = useState(false); 
   const [priceActive, setPriceActive] = useState(0);
+  const [brandActive, setBrandActive] = useState(0);
 
   const handleBrandOpenClick = () => {
     setBrandOpen(!brandOpen);
@@ -108,37 +110,14 @@ const Index = () => {
     setPriceActive(index);
   }
 
+  const handleBrandActiveClick = (index) => {
+    setBrandActive(index);
+  }
+
   return (
     <>
       <Layout>
-        <div
-            className={`${styleDefaultLayout.pageHeader} ${styleDefaultLayout.defaultHeader} ${styleSearch.pageHeader}`}
-          >
-          <div className={`${styleDefaultLayout.container}`}>
-            <button
-              type="button"
-              className={`${styleDefaultLayout.btnIcon} ${styleDefaultLayout.btnBack}`}
-            >
-              뒤로가기
-            </button>
-            <h1
-              className={`${styleBrandList.searchArea}`}
-            >
-              <input
-                type="text"
-                placeholder="20% 할인전"
-              ></input>
-              <button
-                type="button"
-                className={`${styleCommon.iconSearch} ${styleBrandList.searchBtn}`}
-              ></button>
-            </h1>
-            <button
-                type="button"
-                className={`${styleCommon.icon} ${styleCommon.iconGiftSvg} ${styleBrandList.giftBtn}`}
-              ></button>
-          </div>
-        </div>
+        <BrandHeader />
         <div
           className={`${styleDefaultLayout.wrap}`}
         >
@@ -162,12 +141,17 @@ const Index = () => {
             
           </div>
           <div className={`${styleBrandList.brandListWrap} ${brandOpen && styleBrandList.open}`}>
+            <div className={styleBrandList.areaBox}>
+              <div></div>
+            </div>
             <div className={styleBrandList.brandListBox}>
               <ul>
                 {brandList.map((brand, index) => (
-                  <li key={index}>
+                  <li key={index} className={brandActive === index && styleBrandList.active} onClick={() => handleBrandActiveClick(index)}>
                     <a href="#">
-                      <img src={brand.src} alt={brand.name} />
+                      <div className={styleBrandList.imgWrap}>
+                        <img src={brand.src} alt={brand.name} />
+                      </div>
                       <span>{brand.name}</span>
                     </a>
                   </li>
@@ -183,10 +167,10 @@ const Index = () => {
           <ul className={styleBrandList.priceListWrap}>
             {priceList.map((price, index) => (
               <li key={index}>
-              <button type="button" className={priceActive === index && styleBrandList.active} onClick={() => handlePriceActiveClick(index)}>
-                {price}
-              </button>
-            </li>
+                <button type="button" className={priceActive === index && styleBrandList.active} onClick={() => handlePriceActiveClick(index)}>
+                  {price}
+                </button>
+              </li>
             ))}
           </ul>
           <CouponList filter1={true}/>

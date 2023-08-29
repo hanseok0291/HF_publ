@@ -10,10 +10,7 @@ import styleCommon from "../../../styles/coupon_pub/Common.module.css";
 import Layout from "../../../components/common/Layout";
 import Header from "../../../components/coupon_pub/common/Header";
 import Footer from "../../../components/coupon_pub/common/Footer";
-import Category from "../../../components/coupon_pub/main/Category";
-import CategoryList from "../../../components/coupon_pub/list/CategoryList";
 import CouponList from "../../../components/coupon_pub/list/CouponList";
-import ModalLimitedSale from "../../../components/coupon_pub/common/Modal/ModalLimitedSale";
 import Navigation from "../../../components/coupon_pub/main/Navigation";
 import ModalFilter from "../../../components/coupon_pub/common/modal/ModalFilter";
 
@@ -23,7 +20,6 @@ const Index = () => {
   const [isShowSearchBtn, setShowSearchBtn] = useState(true);
   const [isFilter1, setIsFilter1] = useState(false);
   const [isFilter2, setIsFilter2] = useState(false);
-  const [filter1Arr, setFilter1Arr] = useState();
 
   const closeModal = () => {
     setIsFilter1(false);
@@ -37,6 +33,7 @@ const Index = () => {
           pageTitle="기프티몰"
           isShowBackBtn={isShowBackBtn}
           isShowSearchBtn={isShowSearchBtn}
+          noFixed={true}
         />
         <Navigation />
         <div className={`${styleCommon.containerWrap}`}>

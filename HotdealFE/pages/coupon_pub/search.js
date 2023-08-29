@@ -57,7 +57,7 @@ const Index = () => {
             </h1>
           </div>
         </div>
-        <div>
+        <div style={{ paddingTop: 55 }}>
           <div style={{ marginBottom: "20px" }}>
             <SearchKeywords />
           </div>

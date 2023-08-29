@@ -11,11 +11,9 @@ import styleBrandList from "../../../styles/coupon_pub/BrandList.module.css";
 
 // //components
 import Layout from "../../../components/common/Layout";
-import Header from "../../../components/coupon_pub/common/Header";
 import Footer from "../../../components/coupon_pub/common/Footer";
-import Category from "../../../components/coupon_pub/main/Category";
-import BrandIn from "../../../components/coupon_pub/list/BrandIn";
-import CouponList from "../../../components/coupon_pub/list/CouponList";
+import SwiperItem from "../../../components/coupon_pub/main/SwiperItem";
+import BrandHeader from "../../../components/coupon_pub/list/BrandHeader";
 
 const categoryList = [
   {
@@ -52,42 +50,50 @@ const categoryList = [
   }
 ]
 
-const brandList = [
+const listItem = [
   {
-    src: "../../../images/coupon/brand/logo-brand-small-1.png",
-    name: "전체"
+    infoImg: "https://tbezauth.settlebank.co.kr/theme/cm/product/BR00007_G00000117178.jpg",
+    infoBrand: "스타벅스",
+    infoProduct: "따뜻한 카페라떼 커플세트",
+    infoPrice: "10,000",
+    infoDcPercent: "25%",
+    infoDcPrice: "7,500",
+    infoBox1: false,
+    infoBox2: false,
+    addInfo1: true,
+    addInfo2: true
   },
   {
-    src: "../../../images/coupon/brand/logo-brand-small-2.png",
-    name: "전체"
+    infoImg: "https://tbezauth.settlebank.co.kr/theme/cm/product/PB00145_20221006153424285.jpg",
+    infoBrand: "스타벅스",
+    infoProduct: "따뜻한 카페라떼 커플세트 따뜻한 카페라떼",
+    infoPrice: "10,000",
+    infoDcPercent: "25%",
+    infoDcPrice: "7,500",
+    infoBox1: false,
+    infoBox2: false,
+    addInfo3: true,
+    addInfo4: true,
   },
   {
-    src: "../../../images/coupon/brand/logo-brand-small-1.png",
-    name: "전체"
+    infoImg: "https://tbezauth.settlebank.co.kr/theme/cm/product/PB00145_20221006133121119.jpg",
+    infoBrand: "스타벅스",
+    infoProduct: "시원하게 함께 세트",
+    infoDcPrice: "6,300",
+    infoBox1: false,
+    infoBox2: false,
+    addInfo5: true,
+    addInfo6: true,
   },
   {
-    src: "../../../images/coupon/brand/logo-brand-small-2.png",
-    name: "전체"
-  },
-  {
-    src: "../../../images/coupon/brand/logo-brand-small-1.png",
-    name: "전체"
-  },
-  {
-    src: "../../../images/coupon/brand/logo-brand-small-2.png",
-    name: "전체"
-  },
-  {
-    src: "../../../images/coupon/brand/logo-brand-small-2.png",
-    name: "전체"
-  },
-  {
-    src: "../../../images/coupon/brand/logo-brand-small-2.png",
-    name: "전체"
+    infoImg: "https://tbezauth.settlebank.co.kr/theme/cm/product/PB00145_20221006134857069.png",
+    infoBrand: "스타벅스",
+    infoProduct: "시원하게 함께 세트 시원하 함께 세트",
+    infoDcPrice: "6,300",
+    infoBox1: false,
+    infoBox2: false,
   },
 ];
-
-const priceList = ["전체", "1만원대", "2만원대", "3만원대", "4만원대", "5~9만원대", "10만원 이상"];
 
 const Index = () => {
   const [brandOpen, setBrandOpen] = useState(false); 
@@ -111,37 +117,8 @@ const Index = () => {
   return (
     <>
       <Layout>
-        <div
-            className={`${styleDefaultLayout.pageHeader} ${styleDefaultLayout.defaultHeader} ${styleSearch.pageHeader}`}
-          >
-          <div className={`${styleDefaultLayout.container}`}>
-            <button
-              type="button"
-              className={`${styleDefaultLayout.btnIcon} ${styleDefaultLayout.btnBack}`}
-            >
-              뒤로가기
-            </button>
-            <h1
-              className={`${styleBrandList.searchArea}`}
-            >
-              <input
-                type="text"
-                placeholder="20% 할인전"
-              ></input>
-              <button
-                type="button"
-                className={`${styleCommon.iconSearch} ${styleBrandList.searchBtn}`}
-              ></button>
-            </h1>
-            <button
-                type="button"
-                className={`${styleCommon.icon} ${styleCommon.iconGiftSvg} ${styleBrandList.giftBtn}`}
-              ></button>
-          </div>
-        </div>
-        <div
-          className={`${styleDefaultLayout.wrap}`}
-        >
+        <BrandHeader />
+        <div className={`${styleDefaultLayout.wrap}`}>
           <div className={styleBrandList.brandTitleArea}>
             <button type="button" className={styleBrandList.brandTitle} onClick={handleCategoryOpenClick}>
               카페·베이커리
@@ -159,37 +136,20 @@ const Index = () => {
                 ))}
               </ul>
             }
-            
           </div>
-          <div className={`${styleBrandList.brandListWrap} ${brandOpen && styleBrandList.open}`}>
-            <div className={styleBrandList.brandListBox}>
-              <ul>
-                {brandList.map((brand, index) => (
-                  <li key={index}>
-                    <a href="#">
-                      <img src={brand.src} alt={brand.name} />
-                      <span>{brand.name}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-              <div className={styleBrandList.openBtnWrap}>
-                <button type="button" className={styleBrandList.openBtn} onClick={handleBrandOpenClick}>
-                  펼치기
-                </button>
-              </div>
-            </div>
+          <div className={styleBrandList.noItem}>
+            <p>관련 상품을 찾지 못했어요</p>
           </div>
-          <ul className={styleBrandList.priceListWrap}>
-            {priceList.map((price, index) => (
-              <li key={index}>
-              <button type="button" className={priceActive === index && styleBrandList.active} onClick={() => handlePriceActiveClick(index)}>
-                {price}
-              </button>
-            </li>
-            ))}
-          </ul>
-          <CouponList filter1={true}/>
+          <SwiperItem
+            title={["이런 상품은 어때요?"]}
+            moreBtnShow="false"
+            labelShow="true"
+            bgColor="#ffffff"
+            fontSize="17px"
+            paddingTop={0}
+            paddingBottom={50}
+            listItem={listItem}
+          />
           <Footer />
         </div>
       </Layout>

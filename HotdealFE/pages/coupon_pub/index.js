@@ -125,6 +125,7 @@ const Index = () => {
           pageTitle="기프티몰"
           isShowBackBtn={isShowBackBtn}
           isShowSearchBtn={isShowSearchBtn}
+          noFixed={true}
         />
         <div
           className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap}`}

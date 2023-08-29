@@ -3,7 +3,7 @@
 * BrandList : 브랜드 리스트
 * ============================================================
 */
-
+.header { position: relative !important; } 
 div.BrandListWrap { background-color: #fff; } 
 div.BrandListWrap:first-child { margin-top: 0; } 
 .BrandListWrap .HotBrandTitle { font-size: 22px; font-weight: 700; } 
@@ -54,7 +54,7 @@ div.BrandListWrap:first-child { margin-top: 0; }
 .brandMain .brandTabWrap li button img { display: block; width: auto; height: 28px; margin-bottom: 7px; } 
 .brandMain .brandTabWrap li button span { font-size: 13px; } 
 
-.brandMain .brandListWrap { width: 100%; } 
+.brandMain .brandListWrap { width: 100%; height: auto; overflow: auto; } 
 .brandMain .brandListWrap li { display: flex; justify-content: center; align-items: center; float: left; width: 50%; height: 89px; } 
 .brandMain .brandListWrap li a { display: flex; justify-content: center; align-items: center; flex-direction: column; } 
 .brandMain .brandListWrap li a img { width: 60px; } 
@@ -63,7 +63,7 @@ div.BrandListWrap:first-child { margin-top: 0; }
 /* 브랜드 상세 */
 .searchArea { float: left; font-size: 18px; line-height: 58px; position: relative; width: calc(100% - 52px); margin-left: 2px; } 
 .searchArea input { height: 40px; line-height: 40px; margin-top: 10px; border-width: 1px; font-size: 15px; font-weight: 400; background-color: #f1f1f1; color: #a2a2a2; border-radius: 17px; } 
-.searchArea input::placeholder { color: #a2a2a2; height: auto; } 
+.searchArea input::placeholder { color: #a2a2a2; height: auto; font-weight: 400; } 
 .searchBtn { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); } 
 .giftBtn { float: right; margin-top: 16px; } 
 .brandTitleArea { display: flex; align-items: center; justify-content: center; position: relative; width: 100%; height: 42px; color: #fff; text-align: center; border-bottom: 5px solid #f1f1f1; } 
@@ -75,22 +75,35 @@ div.BrandListWrap:first-child { margin-top: 0; }
 .brandTitle { display: inline-flex; align-items: center; font-size: 18px; font-weight: 700; } 
 .iconDown { display: block; width: 11px; height: 11px; margin-left: 8px; background: url("../../public/images/coupon/icon/common/icon-brand-down.svg") 0 0 / cover no-repeat; } 
 .iconDown.open { transform: rotate(180deg); } 
-.brandListWrap { position: relative; height: 93px; } 
-.brandListWrap .brandListBox { position: absolute; top: 0; left:0; z-index: 1; overflow: hidden; border-radius: 0 0 20px 20px; box-shadow: 0px 20px 48px 0px #22222214; } 
-.brandListWrap.open ul { height: auto; padding-bottom: 68px; } 
+.brandListWrap { position: relative; } 
+.brandListWrap .brandListBox { position: absolute; top: 0; left:0; z-index: 1; overflow: hidden; width: 100%; height: 100%; border-radius: 0 0 20px 20px; } 
+.brandListWrap.open .brandListBox { height: auto; box-shadow: 0px 20px 48px 0px #22222214; } 
+.brandListWrap.open ul { position: relative; height: auto !important; padding-bottom: 68px; z-index: 1; } 
 .brandListWrap.open .openBtnWrap { bottom: 0; top: auto; } 
 .brandListWrap.open .openBtnWrap::before { display: none; } 
 .brandListWrap.open .openBtnWrap .openBtn { bottom: 20px; top: auto; transform: rotate(180deg); } 
-.brandListWrap ul { display: flex; flex-wrap: wrap; height: 93px; padding: 20px 15px; background-color: #fff; } 
+.brandListWrap .areaBox { width: 100%; padding: 20px 15px; } 
+.brandListWrap .areaBox div { width: 20%; } 
+.brandListWrap .areaBox div::after { display: block; content: ""; padding-bottom: 67%; } 
+.brandListWrap ul { display: flex; flex-wrap: wrap; height: 100%; padding: 20px 15px; background-color: #fff; } 
 .brandListWrap ul li { width: 20%; margin: 0 0 15px; text-align: center; } 
-.brandListWrap ul li img { width: 56%; } 
+.brandListWrap ul li .imgWrap { overflow: hidden; position: relative; width: 56%; margin: auto; border: 1px solid #f1f1f1; border-radius: 13px; background-color: #fafafa; } 
+.brandListWrap ul li.active .imgWrap { border: 1px solid #151515; } 
+.brandListWrap ul li .imgWrap::after { display: block; content: ""; width: 100%; padding-bottom: 100% } 
+.brandListWrap ul li img { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 100%; } 
 .brandListWrap ul li span { display: block; margin-top: 5px; font-size: 12px; line-height: 14px; } 
 .brandListWrap ul li:nth-last-child(-n+5) { margin-bottom: 0; } 
-.brandListWrap .openBtnWrap { position: absolute; top: 0; right: 0; width: 120px; height: 98px; } 
-.brandListWrap .openBtnWrap::before { position: absolute; top: 0; right: 0; display: block; content: ""; width: 120px; height: 93px; background: linear-gradient(90deg, rgba(255,255,255, 0) 0%, rgba(255,255,255,0.95) 20%); } 
-.brandListWrap .openBtnWrap .openBtn { position: absolute; top: 32px; right: 20px; z-index: 1; width: 28px; height: 29px; background: url("../../public/images/coupon/icon/common/icon-brand-down2.svg") 0 0 / cover no-repeat; text-indent: -9999px; font-size: 0; } 
-.priceListWrap { display: flex; overflow: auto; height: 48px; padding: 0 20px; background-color: #f9f9f9; white-space: nowrap; } 
+.brandListWrap .openBtnWrap { position: absolute; top: 0; right: 0; width: 30%; height: 100%; } 
+.brandListWrap .openBtnWrap::before { position: absolute; top: 0; right: 0; display: block; content: ""; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(255,255,255, 0) 0%, rgba(255,255,255,0.95) 20%); } 
+.brandListWrap .openBtnWrap .openBtn { position: absolute; top: 50%; right: 20px; transform: translateY(-50%); z-index: 1; width: 28px; height: 29px; background: url("../../public/images/coupon/icon/common/icon-brand-down2.svg") 0 0 / cover no-repeat; text-indent: -9999px; font-size: 0; } 
+.priceListWrap { display: flex; overflow-x: auto; overflow-y: hidden; height: 48px; padding: 0 20px; background-color: #f9f9f9; white-space: nowrap; -ms-overflow-style: none; scrollbar-width: none; } 
+.priceListWrap::-webkit-scrollbar { display: none; } 
 .priceListWrap li { height: 48px; margin-right: 20px; } 
 .priceListWrap li:last-child { margin-right: 0; } 
 .priceListWrap li button { height: 48px; font-size: 15px; color: #7d7d7d; } 
 .priceListWrap li button.active { font-weight: 700; color: #151515; } 
+
+.noItem { padding: 85px 0 100px; font-size: 14px; color: #575757; line-height: 17px; text-align: center; } 
+.noItem::before { display: block; content: ""; width: 40px; height: 40px; margin: 0 auto 10px; background: url('../../public/images/coupon/icon/common/icon-noResult.svg') 0 0 / cover no-repeat } 
+
+.specialSaleTitle { font-size: 18px; text-align: center; height: 42px; line-height: 42px; } 

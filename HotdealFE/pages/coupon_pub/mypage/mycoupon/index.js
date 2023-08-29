@@ -26,7 +26,7 @@ const Index = () => {
         >
           <CouponMain />
 
-          <div style={{ marginBottom: "20px" }}>
+          <div style={{ paddingTop: "80px" }}>
             {/* 카테고리 상품리스트 */}
             <CouponList pageType="result" />
           </div>

@@ -30,7 +30,7 @@
 
 <link rel="stylesheet" href="../../css/owl.carousel.min.css">
 <link rel="stylesheet" href="../../css/slick.min.css">
-<link rel="stylesheet" href="../../css/common.css">
+<link rel="stylesheet" href="../../css/common.css?ver=230831">
 <!--[if lt IE 9]>
 <script type="text/javascript" src="../../js/html5shiv.js"></script>
 <script type="text/javascript" src="../../js/respond.min.js"></script>
@@ -46,7 +46,7 @@
 
 <body>
 <!-- wrap -->
-<div id="wrap" class="wrap">
+<div id="wrap" class="wrap krc">
 	<!-- form -->
 	<form class="wrap" autocomplete="off">
 		<!-- header -->
@@ -54,7 +54,6 @@
 			<div class="container">
 				<button type="button" id="btnBack" class="btn-back hidden"><i class="icon-angle-left">뒤로 가기</i></button>
 				<h1 class="brand-name"><span class="my-logo"><img src="../../images/logo-hecto.png?ver=1.0" alt="헥토파이낸셜"></span></h1>
-				<button type="button" class="btn-notice" data-toggle="modal" data-target="#noticeDetail"><i class="icon icon-bell">알림</i></button>
 				<button type="button" id="closeWindow" class="btn-close" data-toggle="modal" data-target="#commonConfirm"><i class="icon-times">창 닫기</i></button>
 			</div>
 		</div>
@@ -68,9 +67,9 @@
 
 				<!-- 주문정보 -->
 				<div class="order-info">
-					<p class="prd-goods">드시모네 키즈 세트 afghjlmoprqyz 12345678901234567890</p>
-					<p class="prd-price"><strong class="price text-primary"><em class="value">298,000</em>원</strong> 결제합니다.</p>
-					<p class="prd-period">별도 제공기간 없음</p>
+					<p class="prd-goods">농어촌상품명</p>
+					<p class="prd-price"><strong class="price text-primary"><em class="value">70,000,000</em>원</strong> 결제합니다.</p>
+					<p class="prd-period">결제일자 : 2023.07.12</p>
 				</div>
 				<!-- //주문정보 -->
 
@@ -107,7 +106,6 @@
 					</div>
 				</div>
 				<!-- //약관 동의 -->
-
 			</div>
 			<!-- //container -->
 		</div>
@@ -238,12 +236,13 @@
 <!-- //modal - common confirm -->
 
 <!-- slide modal -->
-<div id="modalSlideType1" class="modal modal-slide modal-info modal-slide-new">
+<div id="modalSlideType1" class="modal modal-slide modal-info modal-slide-new" style="display: block;">
 	<div class="modal-dialog">
-		<div class="modal-content">
+		<div class="modal-content" style="bottom: 0px; position: fixed;">
 			<div class="modal-body">
+				<!-- <button type="button" class="btn btn-close">취소</button> -->
 				<div class="container">
-					<h4>이용 시 유의사항 안내</h4>
+					<h4>이용 시<br>유의사항 안내</h4>
 					<ul class="new-list">
 						<li>
 							<p class="list-title">여러 개 카드로 나눠서 결제</p>
@@ -266,6 +265,36 @@
 		</div>
 	</div>
 </div>
+<!-- 
+<div id="modalSlideType1" class="modal modal-slide modal-info modal-slide-new">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="container">
+					<h4>이용 시 유의사항 안내</h4>
+					<p>&nbsp;</p>
+					<ul class="new-list">
+						<li>
+							<p class="list-title">여러 개 카드로 나눠서 결제</p>
+							<p class="list-content"><span class="highlight">최대 3개</span>까지의 각기 다른 카드로, 나눠서 결제가 가능합니다.</p>
+						</li>
+						<li>
+							<p class="list-title">총 결제금액 도달 후 결제하기 기능</p>
+							<p class="list-content">원하는 대로 입력 가능하며, 결제금액 도달해야 결제가 가능합니다.</p>
+						</li>
+						<li>
+							<p class="list-title">1건이라도 카드결제 실패 시 승인 취소</p>
+							<p class="list-content">여러 개 카드로 결제요청 후, <span class="highlight">1건이라도</span> 카드결제 승인 실패 시 이전에 승인된 결제 건은 취소됩니다.</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn">확인</button>
+			</div>
+		</div>
+	</div>
+</div> -->
 <!-- //slide modal -->
 
 <!-- loading -->
@@ -352,7 +381,7 @@ function modalOpenSlide(obj) {
     var modalDialogH = temp.find(".modal-dialog").height();
     var gap = modalDialogH - modalContentH;
     if (gap < 0) {
-      modalContent.css("position", "relative");
+      modalContent.css("position", "fixed");
     } else {
       modalContent.css("position", "fixed");
     }

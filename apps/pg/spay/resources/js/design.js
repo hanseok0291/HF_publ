@@ -178,6 +178,69 @@ $(function(){
 
 // 레이아웃, 토글, 슬라이드
 $(function(){
+	
+// 약관 페이지일때만 실행
+			
+
+// 레이어 팝업(모달) 열기
+function modalOpen(obj) {
+  var temp = $("#" + obj);
+  temp.show();
+  scrollOff(); // 바디 스크롤 제거
+
+  // 위치
+  var thisDialog = temp.children(".modal-dialog");
+  var marginValue = thisDialog.outerHeight() / 2;
+  $(thisDialog).css("margin-top", "-" + marginValue + "px");
+}
+
+// 하단 레이어 팝업(슬라이드 모달) 기본 세팅
+var modalCont = $(".modal-info .modal-content");
+var modalH = $(window).height();
+modalH = modalH * -1;
+$(modalCont).css("bottom", modalH); // 팝업들 bottom 값 setting
+
+// 하단 레이어 팝업(슬라이드 모달) 열기
+function modalOpenSlide(obj) {
+  var temp = $("#" + obj);
+  var modalCont = $(temp).find(".modal-content");
+
+	temp.show();
+	$(modalCont).animate({bottom: 0}, 200);
+	// 이중 모달이 아닌 경우
+	if (obj === 'modal-useCoupon') {
+		$("body").addClass("modal-open");
+	} else 
+	if(!$(this).hasClass("depth2")) {
+		scrollOff(); // 바디 스크롤 제거
+	} else {
+
+	}
+  // 팝업 내 하단 버튼 클릭 시 팝업 닫힘
+  $(temp)
+    .find(".modal-footer .btn")
+    .on("click", function (e) {
+      if (!$(this).hasClass("not-close")) {
+        modalCloseSlide();
+      } else {
+			}
+    });
+
+  // bottom modal 닫기
+  function modalCloseSlide() {
+    temp.fadeOut(200);
+    $(temp).find(".modal-content").animate({ bottom: modalH }, 200);
+
+    // 이중 모달이 아닌 경우
+    if (!$(temp).hasClass("depth2")) {
+      scrollOn(); // 바디 스크롤 제거 해제
+    }
+  }
+}
+
+// 농어촌공사 약관페이지 일때만 실행
+modalOpenSlide('modalSlideType1');
+
 	// 푸터 고정 토글
 	function fixedFooter(){
 		// 짧은 화면 푸터 고정
@@ -227,82 +290,6 @@ $(function(){
 });
 
 // 농어촌공사 커스텀
-
-	// 레이어 팝업(모달) 열기
-	function modalOpen(obj) {
-		var temp = $("#" + obj);
-		temp.show();
-		scrollOff(); // 바디 스크롤 제거
-	
-		// 위치
-		var thisDialog = temp.children(".modal-dialog");
-		var marginValue = thisDialog.outerHeight() / 2;
-		$(thisDialog).css("margin-top", "-" + marginValue + "px");
-	}
-	
-	// 하단 레이어 팝업(슬라이드 모달) 기본 세팅
-	var modalCont = $(".modal-info .modal-content");
-	var modalH = $(window).height();
-	modalH = modalH * -1;
-	$(modalCont).css("bottom", modalH); // 팝업들 bottom 값 setting
-	
-	// 하단 레이어 팝업(슬라이드 모달) 열기
-	function modalOpenSlide(obj) {
-		var temp = $("#" + obj);
-		var modalCont = $(temp).find(".modal-content");
-	
-		temp.show();
-		$(modalCont).animate({bottom: 0}, 200);
-		// 이중 모달이 아닌 경우
-		if (obj === 'modal-useCoupon') {
-			$("body").addClass("modal-open");
-		} else 
-		if(!$(this).hasClass("depth2")) {
-			scrollOff(); // 바디 스크롤 제거
-		} else {
-	
-		}
-		// 팝업 내 하단 버튼 클릭 시 팝업 닫힘
-		$(temp)
-			.find(".modal-footer .btn")
-			.on("click", function (e) {
-				if (!$(this).hasClass("not-close")) {
-					modalCloseSlide();
-				} else {
-				}
-			});
-	
-		// bottom modal 닫기
-		function modalCloseSlide() {
-			temp.fadeOut(200);
-			$(temp).find(".modal-content").animate({ bottom: modalH }, 200);
-	
-			// 이중 모달이 아닌 경우
-			if (!$(temp).hasClass("depth2")) {
-				scrollOn(); // 바디 스크롤 제거 해제
-			}
-		}
-	
-		// 모달 높이가 큰 경우 포지션 변경
-		function modalContPos() {
-			var modalContent = temp.find(".modal-content");
-			var modalContentH = temp.find(".modal-content").height();
-			var modalDialogH = temp.find(".modal-dialog").height();
-			var gap = modalDialogH - modalContentH;
-			if (gap < 0) {
-				modalContent.css("position", "relative");
-			} else {
-				modalContent.css("position", "fixed");
-			}
-		}
-		modalContPos();
-	
-		// 리사이즈
-		$(window).resize(function () {
-			modalContPos();
-		});
-	}
-	
 	// 결제해야할 금액
 	var payMoney = document.getElementById("payMoney").value;
 	var element = document.getElementById('payMoney').innerText;
@@ -363,7 +350,6 @@ $(function(){
 			var formatResult3 = formatNumber(num3);
 		});
 	
-		$(document).ready(function(){
 			// 푸터 고정 토글
 			function fixedFooter(){
 				// 짧은 화면 푸터 고정
@@ -518,6 +504,4 @@ $(function(){
 							$('.accodian .accodian-item').eq(nextIndex).children('.accodian-content').slideDown();
 					}, 350);
 			}
-			
-		});
 // 농어촌공사 커스텀

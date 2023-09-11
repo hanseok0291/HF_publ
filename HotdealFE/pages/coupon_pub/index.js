@@ -25,6 +25,7 @@ import ModalLoading from "../../components/coupon_pub/common/Modal/ModalLoading"
 import ModalEnter from "../../components/coupon_pub/common/modal/ModalEnter";
 import ModalHundredComing from "../../components/coupon_pub/common/Modal/ModalHundredComing";
 import HundredDeal from "../../components/coupon_pub/main/HundredDeal";
+import ModalCommon from "../../components/coupon_pub/common/Modal/ModalCommon";
 
 const Index = () => {
   const router = useRouter();
@@ -110,6 +111,16 @@ const Index = () => {
 							}}
 						/>
           )} */}
+          {showMainPopup && (
+            // <ModalEnter
+            // />
+            // <ModalLoading />
+            <ModalCommon
+							onClose={() => {
+								setShowMainPopup(!showMainPopup);
+							}}
+						/>
+          )}
           <Footer />
         </div>
       </Layout>

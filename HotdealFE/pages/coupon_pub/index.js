@@ -181,6 +181,20 @@ const Index = () => {
 							}}
 						/>
           )} */}
+<<<<<<< HEAD
+=======
+          {showMainPopup && (
+            // <ModalEnter
+            // />
+            // <ModalLoading />
+            <ModalCommon
+							onClose={() => {
+								setShowMainPopup(!showMainPopup);
+							}}
+						/>
+          )}
+          <Footer />
+>>>>>>> hslee
         </div>
         <Footer />
       </Layout>

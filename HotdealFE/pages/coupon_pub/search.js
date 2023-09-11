@@ -14,6 +14,7 @@ import Footer from "../../components/coupon_pub/common/Footer";
 import SearchKeywords from "../../components/coupon_pub/search/SearchKeywords";
 import InterestKeywords from "../../components/coupon_pub/search/InterestKeywords";
 import BuyAgainCoupon from "../../components/coupon_pub/search/BuyAgainCoupon";
+import ModalHundredComing from "../../components/coupon_pub/common/Modal/ModalHundredComing";
 
 const Index = () => {
   const router = useRouter();
@@ -24,6 +25,7 @@ const Index = () => {
   const [isShowSearchBtn, setShowSearchBtn] = useState(true);
   const [isShowMypageBtn, setShowMypageBtn] = useState(true);
 
+  const [showMainPopup, setShowMainPopup] = useState(true);
   // useEffect(() => {
   // 	if (termsYn === "N") {
   // 		//기프티몰 이용을 위해 동의 팝업
@@ -68,6 +70,16 @@ const Index = () => {
         <div style={{ marginBottom: "20px" }}>
           <BuyAgainCoupon />
         </div>
+          {showMainPopup && (
+            // <ModalEnter
+            // />
+            // <ModalLoading />
+            <ModalHundredComing
+							onClose={() => {
+								setShowMainPopup(!showMainPopup);
+							}}
+						/>
+          )}
       </Layout>
     </>
   );

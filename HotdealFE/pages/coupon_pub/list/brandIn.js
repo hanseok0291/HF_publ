@@ -95,6 +95,17 @@ const Index = () => {
   const [categoryOpen, setCategoryOpen] = useState(false); 
   const [priceActive, setPriceActive] = useState(0);
   const [brandActive, setBrandActive] = useState(0);
+  const [priceListBlur, setPriceListBlur] = useState(true);
+  const priceListRef = useRef();
+
+  const handlePriceScroll = () => {
+    const  scrollRight = priceListRef.current.scrollWidth - priceListRef.current.clientWidth - priceListRef.current.scrollLeft;
+    if(scrollRight < 60){
+      setPriceListBlur(false);
+    } else {
+      setPriceListBlur(true);
+    }
+  };
 
   const handleBrandOpenClick = () => {
     setBrandOpen(!brandOpen);
@@ -164,15 +175,17 @@ const Index = () => {
               </div>
             </div>
           </div>
-          <ul className={styleBrandList.priceListWrap}>
-            {priceList.map((price, index) => (
-              <li key={index}>
-                <button type="button" className={priceActive === index && styleBrandList.active} onClick={() => handlePriceActiveClick(index)}>
-                  {price}
-                </button>
-              </li>
-            ))}
-          </ul>
+          <div className={`${styleBrandList.priceListContainer} ${priceListBlur && styleBrandList.blur}`}>
+            <ul className={styleBrandList.priceListWrap} ref={priceListRef} onScroll={() => handlePriceScroll()}>
+              {priceList.map((price, index) => (
+                <li key={index}>
+                  <button type="button" className={priceActive === index && styleBrandList.active} onClick={() => handlePriceActiveClick(index)}>
+                    {price}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
           <CouponList filter1={true}/>
           <Footer />
         </div>

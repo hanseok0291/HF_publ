@@ -92,7 +92,7 @@ const Index = () => {
 
   useEffect(() => {
     if (headerRef.current) {
-      setHeaderHeight(window.innerHeight - headerRef.current.clientHeight);
+      setHeaderHeight(headerRef.current.clientHeight);
     }
   }, []);
 
@@ -109,7 +109,8 @@ const Index = () => {
         </div>
         <Navigation />
         {/* 카테고리 메뉴 */}
-        <div className={`${styleCommon.containerWrap} ${styleBrandList.brandMain}`} style={{height: headerHeight}}>
+        <div className={`${styleCommon.containerWrap} ${styleBrandList.brandMain}`}>
+        {/* <div className={`${styleCommon.containerWrap} ${styleBrandList.brandMain}`}> */}
           <ul className={styleBrandList.brandTabWrap}>
             {tabList.map((item, index) => (
               <li key={index} className={onTab === index && styleBrandList.active} onClick={() => handleClick(index) }>
@@ -131,7 +132,7 @@ const Index = () => {
             ))}
           </ul>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </Layout>
     </>
   );

@@ -1,14 +1,21 @@
+import { useRef } from 'react';
 // Import Swiper React components
+import SwiperCore, { Controller } from 'swiper';
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
+
+SwiperCore.use([Controller]);
 
 import styleCommon from "../../../styles/coupon_pub/Common.module.css";
 import styleSwiper from "../../../styles/coupon_pub/Swiper.module.css";
 import CouponListItem from "../list/CouponListItem";
 
 function TimeSale(props) {
+  const swiper1 = useRef(null);
+  const swiper2 = useRef(null);
+
   return (
     <>
 			<div
@@ -28,12 +35,15 @@ function TimeSale(props) {
           <div className={`${styleCommon.container} ${styleSwiper.container}`}>
             {/* 이미지를 작게 하기 위한 styleSwiper.sm */}
             <Swiper
+              ref={swiper1}
               spaceBetween={9}
               freeMode={true}
               grabCursor={true}
               slidesPerView={"auto"}
               slidesOffsetAfter={40}
               className={styleSwiper.sm}
+              onSwiper={(swiper) => (swiper1.current = swiper)}
+              controller={{ control: swiper2.current }}
             >
               {props.listItem.map((item, idx) => {
                 return (
@@ -44,12 +54,15 @@ function TimeSale(props) {
               })}
             </Swiper>
             <Swiper
+              ref={swiper2}
               spaceBetween={9}
               freeMode={true}
               grabCursor={true}
               slidesPerView={"auto"}
               slidesOffsetAfter={40}
               className={styleSwiper.sm}
+              onSwiper={(swiper) => (swiper2.current = swiper)}
+              controller={{ control: swiper1.current }}
             >
               {props.listItem.map((item, idx) => {
                 return (

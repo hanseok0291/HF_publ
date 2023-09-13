@@ -124,12 +124,15 @@ const Stamp = () => {
                   <span className="stack stack5"></span>
                 </div>
               </li>
-              <li className="starbucks coupon">
+              <li className="coupon">
                 <div>
                   <span className="circle"></span>
                   <p>10주차</p>
                   <span className="stack stack5"></span>
                   <button type="button">띵동~선물 도착</button>
+                  {/* <button type="button" className="disabled">선물이 사라졌어요</button> */}
+                  {/* <img src="../../images/retto/stamp-starbucks.png" alt="스타벅스" /> */}
+                  <img src="../../images/retto/stamp-cu.png" alt="cu" />
                 </div>
               </li>
               <li className="emerald">

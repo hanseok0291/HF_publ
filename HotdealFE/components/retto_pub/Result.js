@@ -10,12 +10,32 @@ import BottomSheetMissionFail from "./common/modal/BottomSheetMissionSuccess";
 const Result = () => {
   const rettoNumber = [1, 4, 14, 20, 40, 43, 27]
   return (
-    <>
+    // <div className={`${styleResult.resultWrap} ${styleResult.fail}`}> 미당첨시 fail 추가
+    <div className={`${styleResult.resultWrap} ${styleResult.fail}`}>
+      <div className={styleResult.partyWrap}>
+        <span className={styleResult.item}></span>
+        <span className={styleResult.item}></span>
+        <span className={styleResult.item}></span>
+        <span className={styleResult.item}></span>
+        <span className={styleResult.item}></span>
+        <span className={styleResult.item}></span>
+        <span className={styleResult.item}></span>
+        <span className={styleResult.item}></span>
+        <span className={styleResult.item}></span>
+        <span className={styleResult.item}></span>
+        <span className={styleResult.item}></span>
+        <span className={styleResult.item}></span>
+        <span className={styleResult.item}></span>
+        <span className={styleResult.item}></span>
+        <span className={styleResult.item}></span>
+      </div>
       <div className={`${styleCommon.titleWrap} ${styleResult.titleWrap}`}>
         <span className={styleResult.turn}>1070회차</span>
         <h2 className={styleResult.title}>세상에나, <em className={styleCommon.highlightBg}>1등 당첨</em>이에요 <br />저희가 다 기뻐요!</h2>
+        {/* <h2 className={styleResult.title}><em className={styleCommon.highlightBg}>보너스 미션 성공!</em> 소소한 행운이 찾아왔어요</h2> */}
+        {/* <h2 className={styleResult.title}>다음 기회가 있어요...!</h2> */}
       </div>
-      <div className={styleResult.rettoWrap}>
+      <div className={`${styleResult.rettoWrap}`}>
         <div className={styleResult.bgBox}></div>
         <ul className={`${styleResult.ballWrap}`}>
           {rettoNumber.map((item, index) => {
@@ -68,9 +88,11 @@ const Result = () => {
           </a>
         </div>
       </div>
+      {/* 미션 성곰 */}
       {/* <BottomSheetMissionSuccess /> */}
+      {/* 미션 실패 */}
       {/* <BottomSheetMissionFail /> */}
-    </>
+    </div>
   );
 };
 

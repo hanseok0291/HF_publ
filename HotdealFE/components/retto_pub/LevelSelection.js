@@ -160,7 +160,7 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
               <>
                 <b>{jewel.cash}만원까지 이미 채워져 있네요.</b> <br />
                 <span className='jewelColor'>{jewel.kor}</span> 리또 받을 준비 끝 !
-                <p className={styleCommon.priceMoney}><span>최대 {jewel.prize} 당첨</span> 가능해요.</p>
+                <span className={styleCommon.priceMoney}><span>최대 {jewel.prize} 당첨</span> 가능해요.</span>
               </>
             )}
           </p>
@@ -195,7 +195,7 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
             handle={handle}
             handleStyle={{animation: value === 26 && 'heartbeat 1.5s ease-in-out infinite both'}}
             step={22}
-            className={styleCommon.slider}
+            className={value === 26 && 'addAni'}
           />
         </div>
         <Button margin="20px 0 18px" disabled={snapPoints[0] < value ? false : true} handleModalToggle={handleModalToggle}>{buttonText}</Button>

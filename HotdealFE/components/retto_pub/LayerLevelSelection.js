@@ -8,7 +8,7 @@ import LevelSelection from './LevelSelection';
 
 // 레벨 변경 레이어 팝업
 // change true일 경우 선택하기 단계로 안감
-const LayerLevelSelection = () => {
+const LayerLevelSelection = ({defalutValue}) => {
   const [jewel, setJewel] = useState(); // 보석 상태
   const [isModal, setIsModal] = useState(false);
 
@@ -31,7 +31,7 @@ const LayerLevelSelection = () => {
           jewel={jewel}
           setJewel={setJewel}
           handleModalToggle={handleModalToggle}
-          full={false}
+          full={true} 
         />
       </div>
     </div>

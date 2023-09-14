@@ -206,7 +206,7 @@ const CouponList = ({filter1, filter2, setIsFilter1, setIsFilter2}) => {
               {filter2 && 
                 <button
                 type="button"
-                className={`${styleCommon.btn} ${styleCategoryList.CategoryListName} ${styleCategoryList.on}`}// 유형 체크 시 on class 추가
+                className={`${styleCommon.btn} ${styleCategoryList.CategoryListName}`}// 유형 체크 시 on class 추가
                   onClick={() => setIsFilter1(true)}
                 >
                   할인 유형

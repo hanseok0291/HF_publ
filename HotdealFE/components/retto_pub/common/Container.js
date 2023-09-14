@@ -4,7 +4,7 @@ import { useState } from 'react';
 //style
 import styleCommon from '../../../styles/retto_pub/Common.module.css';
 
-function Container({children, backgroundColor="#F9F9F9", padding="34px 20px 48px"}) {
+function Container({children, backgroundColor="#F9F9F9", padding="30px 20px 48px"}) {
   const [winHeight, setWinHeight] = useState(null);
   const style = {
     backgroundColor: backgroundColor,

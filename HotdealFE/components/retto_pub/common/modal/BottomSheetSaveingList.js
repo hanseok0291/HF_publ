@@ -35,7 +35,7 @@ const stampProgress = [
   {
     week: "금요일",
     success: true,
-    emergency: true,
+    emergency: false,
   },
   {
     week: "토요일",
@@ -88,7 +88,7 @@ const BottomSheetSaveingList = ({ isHundredOpen, closeHundredPopup }) => {
             <div>
               {/* <p className={styleRettoModal.boxText}>한 걸음씩~</p> */}
               {/* <p className={styleRettoModal.boxText}>반짝반짝★</p> */}
-              <p className={`${styleRettoModal.boxText} ${styleRettoModal.red}`}><b>195,212원</b> 더 채워져야 해요</p>{/* styleRettoModal.red  추가 시 안내 배경 빨간색 */}
+              <p className={`${styleRettoModal.boxText}`}><b>195,212원</b> 더 채워져야 해요</p>{/* styleRettoModal.red  추가 시 안내 배경 빨간색 */}
               <div className={`${styleRettoModal.imgWrap} diamond`}>
                 <span className={`${styleRettoModal.jewelImg} jewelImg`}></span>
                 <span className={`${styleRettoModal.jewelShadow}`}></span>

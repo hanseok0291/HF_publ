@@ -42,19 +42,19 @@ const BottomSheetBanner = ({ isHundredOpen, closeHundredPopup }) => {
           나머지 하나는 이후에도 선택 가능해요!
         </p>
         <div className={styleMyretto.bannerWrap}>
-        <div className={`${styleMyretto.bottomBox} ${styleMyretto.type1}`}>
-          <a href="#">
-            <p>결제할 때마다 쌓이는 리또</p>
-            <h4 className={styleMyretto.addArrowBlack}>신용카드 결제로 받기</h4>
-          </a>
+          <div className={`${styleMyretto.bottomBox} ${styleMyretto.type1}`}>
+            <a href="#">
+              <p>결제할 때마다 쌓이는 리또</p>
+              <h4 className={styleMyretto.addArrowBlack}>신용카드 결제로 받기</h4>
+            </a>
+          </div>
+          <div className={`${styleMyretto.bottomBox} ${styleMyretto.type2}`}>
+            <a href="#">
+              <p>채워만 둬도 쌓이는 리또</p>
+              <h4 className={styleMyretto.addArrowBlack}>머니 채우기로 받기</h4>
+            </a>
+          </div>
         </div>
-        <div className={`${styleMyretto.bottomBox} ${styleMyretto.type2}`}>
-          <a href="#">
-            <p>채워만 둬도 쌓이는 리또</p>
-            <h4 className={styleMyretto.addArrowBlack}>머니 채우기로 받기</h4>
-          </a>
-        </div>
-      </div>
       </div>
     </BottomSheet>
   );

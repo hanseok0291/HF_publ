@@ -1,4 +1,5 @@
 import { useState } from "react";
+import FadeIn from 'react-fade-in';
 
 //slick
 import "slick-carousel/slick/slick.css";

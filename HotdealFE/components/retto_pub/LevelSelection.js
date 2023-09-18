@@ -5,6 +5,7 @@ import Button from './common/Button';
 
 //style
 import styleCommon from '../../styles/retto_pub/Common.module.css';
+import { useEffect } from 'react';
 
 const { Handle } = Slider;
 
@@ -24,7 +25,7 @@ const handle = (props) => {
 // change true일 경우 선택하기 단계로 안감
 const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalToggle}) => {
   const [value, setValue] = useState(26); // 단계별로 26, 48, 70, 92
-  const [handleText, setHandelText] = useState(<span>움직여서 선택하기</span>);
+  const [handleText, setHandelText] = useState(<p className={`${styleCommon.textBox} ${styleCommon.first}`} style={{left: `${value-2}%`}}>움직여서 선택하기</p>);
   const snapPoints = [26, 48, 70, 92];
 
   const handleSliderChange = (newValue) => {
@@ -59,6 +60,7 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
     } else if(newValue > snapPoints[3]) {
       newValue = snapPoints[3];
     } else {
+      console.log(1)
       setValue(newValue);
     }
     
@@ -66,14 +68,18 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
     const price = snapPoints.map((item, index) => {
       if(newValue === snapPoints[0] && index === 0){
         setJewel(null);
-        return "움직여서 선택하기";
+        return (
+          <p key={index} className={styleCommon.textBox} style={{left: `${item-2}%`}}>움직여서 선택하기</p>
+        );
       } else if(newValue === item) {
         setJewel(jewelCase[index-1]);
         return (
-          <span key={index}>
-            <em>{`${snapPrice[index - 1]}만원까지`}</em><br />
-            채우기
-          </span>
+          <p key={index} className={styleCommon.textBox} style={{left: `${item-2}%`}}>
+            <span>
+              <em>{`${snapPrice[index - 1]}만원까지`}</em><br />
+              채우기
+            </span>
+          </p>
         );
       }
     });
@@ -185,7 +191,7 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
         
         <div className={`${styleCommon.dragButtonWrap} ${value <= snapPoints[0] ? styleCommon.min : ''} ${snapPoints[3] <= value ? styleCommon.max : ''}`}>
           <div className={styleCommon.textBoxWrap}>
-            <p className={styleCommon.textBox} style={{left: `${value-2}%`}}>{handleText}</p>
+            {handleText}
           </div>
           <Slider
             min={4}
@@ -193,7 +199,7 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
             value={value}
             onChange={handleSliderChange}
             handle={handle}
-            handleStyle={{animation: value === 26 && 'heartbeat 1.5s ease-in-out infinite both'}}
+            handleStyle={{animation: 'heartbeat 0.6s ease-in-out infinite both'}}
             step={22}
             className={value === 26 && 'addAni'}
           />

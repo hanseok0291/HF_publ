@@ -3,11 +3,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
-
-import styleCommon from "../../../styles/coupon_pub/Common.module.css";
+import styleCouponList from "../../../styles/coupon_pub/CouponList.module.css";
 import styleSwiper from "../../../styles/coupon_pub/Swiper.module.css";
-import styleBrandList from "../../../styles/coupon_pub/BrandList.module.css";
-import CouponListItem from "../../coupon_pub/list/CouponListItem";
+import styleCommon from "../../../styles/coupon_pub/Common.module.css";
+import styleRettoModal from "../../../styles/retto_pub/Modal.module.css";
 
 const listItem = [
   {
@@ -30,13 +29,9 @@ const listItem = [
     infoImg: "https://tbezauth.settlebank.co.kr/theme/cm/product/PB00145_20221006133121119.jpg",
     infoBrand: "스타벅스",
     infoProduct: "시원하게 함께 세트",
-    infoDcPrice: "6,300",
-  },
-  {
-    infoImg: "https://tbezauth.settlebank.co.kr/theme/cm/product/PB00145_20221006134857069.png",
-    infoBrand: "스타벅스",
-    infoProduct: "시원하게 함께 세트 시원하 함께 세트",
-    infoDcPrice: "6,300",
+    infoPrice: "10,000",
+    infoDcPercent: "25%",
+    infoDcPrice: "7,500",
   },
 ];
 
@@ -44,29 +39,31 @@ function RettoSwiperItem(props) {
 
   return (
     <>
-			<div
-					className={`${styleSwiper.SwiperWrap} ${styleBrandList.SwiperWrap}`}
-          style={{paddingTop: props.paddingTop, paddingBottom: props.paddingBottom, backgroundColor: props.bgColor}}
-				>
-        <div>
-          <div className={`${styleCommon.container} ${styleSwiper.container}`}>
-            <Swiper
-              spaceBetween={11}
-              freeMode={true}
-              grabCursor={true}
-              slidesPerView={"auto"}
-              slidesOffsetAfter={40}
-            >
-              {listItem.map((item, idx) => {
-                return (
-                  <SwiperSlide key={idx}>
-                    <CouponListItem listItem={item} slideType/>
-                  </SwiperSlide>
-                )
-              })}
-            </Swiper>
-          </div>
-        </div>
+      <div className={`${styleSwiper.container} ${styleRettoModal.giftimallList}`}>
+        {listItem.map((item, idx) => {
+          return (
+            <button href={`/coupon_pub/`} key={idx} className={styleRettoModal.giftimallListItem}>
+              <div className={`${styleCouponList.imgBox} ${styleRettoModal.missionImgBox}`}>
+                <img src={item.infoImg} alt="핫딜 TEST"></img>
+              </div>
+              <div className={styleCouponList.infoBox}>
+                <p className={styleCouponList.infoBrand}>{item.infoBrand}</p>
+                <p className={styleCouponList.infoProduct}>{item.infoProduct}</p>
+                <div className={`${styleCouponList.infoPriceWrap}`}>
+                  {item.infoPrice && <p className={styleCouponList.infoPrice}>{item.infoPrice}원</p>}
+                  <p className={`${styleCouponList.infoDcPrice}`}>
+                    {item.infoDcPercent && (
+                      <span className={styleCouponList.infoDcPercent}>
+                        {item.infoDcPercent}
+                      </span>
+                    )}
+                    { <>{item.infoDcPrice}</>}
+                  </p>
+                </div>
+              </div>
+            </button>
+          )
+        })}
       </div>
     </>
   );

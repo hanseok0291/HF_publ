@@ -59,7 +59,7 @@ const index = () => {
           <ModalApply jewel={jewel} handleModalToggle={handleModalToggle} />
         )}
         {/* <ApplyComplete jewel={jewel}/> */}
-        <BottomSheetRettoInfo />
+        {/* <BottomSheetRettoInfo /> */}
         {/* <BottomSheetAccount /> */}
         {/* 계좌 없음 */}
         {/* <ModalApplyAccount /> */}

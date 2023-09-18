@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { BottomSheet } from "react-spring-bottom-sheet";
+import RettoSwiperItem from "../RettoSwiperItem";
 
 //css
 import styleModal from "../../../../styles/coupon_pub/Modal.module.css";
 import styleRettoModal from "../../../../styles/retto_pub/Modal.module.css";
 import "react-spring-bottom-sheet/dist/style.css";
-import RettoSwiperItem from "../RettoSwiperItem";
 
 
 // 당첨 바텀 시트
@@ -53,10 +53,7 @@ const BottomSheetMission = ({ open, close }) => {
             5천원 이상인 이런 상품들을 추천해요!
           </p>
         </div>
-        <RettoSwiperItem 
-          paddingTop={25}
-          paddingBottom={10}
-        />
+        <RettoSwiperItem />
         {!dropdown && <button type="butotn" className={styleRettoModal.detailView} onClick={handleDropdown}>자세한 내용 보기</button>}
         {dropdown &&
           <div className={styleRettoModal.dropBox}>

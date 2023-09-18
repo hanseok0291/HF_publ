@@ -70,13 +70,13 @@ const Apply = () => {
         {/* 리또란? */}
         {/* <BottomSheetRettoInfo /> */}
         {/* 계좌 변경 등록 */}
-        {/* <BottomSheetAccount /> */}
+        {/* <BottomSheetAccount />  */}
         {/* 계좌 없음 */}
         {/* <ModalApplyAccount /> */}
         {/* 신청 불가 */}
         {/* <ModalApplyReady /> */}
         {/* 신청 실패 */}
-        {/* <LayerApplyFail /> */}
+        <LayerApplyFail />
       </Container>
   </div>
   )

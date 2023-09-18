@@ -32,7 +32,7 @@ const index = () => {
       <Container>
         {/* <MyPage case1 case2 case3 case4 case5 case6 case7/> */}
         {/* <Stamp case1/> */}
-        <Result case1 case2/> 
+        {/* <Result case1 case2/>  */}
       </Container>
       {/* 리또 신청 */}
       <Apply />
@@ -52,6 +52,7 @@ const index = () => {
       {/* <BottomSheetPresent case1 /> */}
       {/* 보너스 미션 바텀 시트 */}
       {/* <BottomSheetMission /> */}
+
     </>
   );
 };

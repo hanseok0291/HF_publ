@@ -46,7 +46,7 @@ const ApplyComplete = ({
         <div className={styleApply.tipWrap}>
           <p className={styleApply.tipTitle}>리또 받기 꿀TIP</p>
           <p className={styleApply.tipsubText}>
-            <b>매일 밤 9시 전</b>까지만 채워두면 OK ! <br />
+            <b>매일 밤 11시 전</b>까지만 채워두면 OK ! <br />
             줄어든 만큼 <b>알아서 채워주는 자동 충전</b>은 어때요?
           </p>
           <button type="button">자동 충전 설정</button>

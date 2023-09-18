@@ -32,7 +32,7 @@
 .modalCommon .modalTitleLine { line-height: 1; } 
 .modalCommon .underBarTitle { padding-top: 30px; padding-bottom: 17px; line-height: 1; font-size: 18px; border-bottom: 1px solid #f1f1f1; } 
 .modalCommon .modalBody { padding: 25px 30px; } 
-.modalCommon .modalDialog { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 335px; max-width: 335px; height: fit-content; border-radius: 16px; } 
+.modalCommon .modalDialog { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 335px; max-width: 335px; height: fit-content; border-radius: 16px; animation: modalOpen 0.2s backwards; } 
 .modalCommon .modalContent { padding: 0; height: auto; } 
 .modalCommon .modalFooter { overflow: hidden; padding: 0; } 
 .modalCommon .modalFooter .btn { display: inline-block; padding: 0 30px; width: 50%; height: 70px; border-radius: 0; background-color: #fff; font-size: 18px; line-height: 70px; } 
@@ -91,9 +91,9 @@
 /* 동작 */
 /* .modal:not(.open) { display: none; } */
 /* .modal:not(.open) { opacity: 0; } */
-.modal.open:before { content: ''; display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,.5); } 
+.modal.open:before { content: ''; display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,.5); backdrop-filter: blur(2px); } 
 .modalDialog.slideDialog { bottom: -100%; -webkit-transition: bottom .5s; transition: bottom .5s; } 
-.modal.open .modalDialog.slideDialog { left: 50%; bottom: 0; ;transform: translateX(-50%); -webkit-transition: bottom .2s; transition: bottom .2s; } 
+.modal.open .modalDialog.slideDialog { left: 50%; bottom: 0;; transform: translateX(-50%); -webkit-transition: bottom .2s; transition: bottom .2s; } 
 
 .modal .slideModal { transform: translateY(100%); animation-duration: 0.3s; animation-fill-mode: forwards; } 
 
@@ -350,3 +350,7 @@
 .hundredDeal .radioWrap .radioBox label input { display: none; } 
 .hundredDeal .radioWrap .radioBox label input:checked + .radioCircle { background-color: #ff6c00; box-shadow: 0 0 0 1px #ff6c00; } 
 
+@keyframes modalOpen { 
+ 0% { opacity: 0.5; top: 70%; } 
+ 100% { opacity: 1; top: 50%; } 
+ }

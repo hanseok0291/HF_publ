@@ -7,32 +7,30 @@ import styleMyretto from "../../styles/retto_pub/Myretto.module.css";
 
 // component
 import Header from "../../components/retto_pub/common/Header";
-import MyPage from "../../components/retto_pub/MyPage";
-import Apply from "../../components/retto_pub/Apply";
-import BottomSheetPrize from "../../components/retto_pub/common/modal/BottomSheetPrize";
-import LayerLevelSelection from "../../components/retto_pub/LayerLevelSelection";
-import BottomSheetAlarm from "../../components/retto_pub/common/modal/BottomSheetAlarm";
-import ModalLevelChange from "../../components/retto_pub/common/modal/ModalLevelChange";
-import BottomSheetBanner from "../../components/retto_pub/common/modal/BottomSheetBanner";
-import Stamp from "../../components/retto_pub/Stamp";
-import BottomSheetSaveingList from "../../components/retto_pub/common/modal/BottomSheetSaveingList";
-import BottomSheetPresent from "../../components/retto_pub/common/modal/BottomSheetPresent";
-import BottomSheetMission from "../../components/retto_pub/common/modal/BottomSheetMission";
-import Result from "../../components/retto_pub/Result";
 import ListProgress from "../../components/retto_pub/ListProgress";
+import ListWin from "../../components/retto_pub/ListWin";
+import ListFail from "../../components/retto_pub/ListFail";
+import BottomSheetMoneyGive from "../../components/retto_pub/common/modal/BottomSheetMoneyGive";
+import LayerWinInfo from "../../components/retto_pub/LayerWinInfo";
 
 const index = () => {
   return (
     <>
-      <Header title="리또 보유 리스트"/>
+      <Header title="내 리또 리스트" sideBtn="당첨 안내" />
       <ul className={styleMyretto.tabWrap}>
         <li className={styleMyretto.active}>진행중</li>
         <li>당첨</li>
         <li>미당첨</li>
       </ul>
-      <Container>
-        <ListProgress />
+      <Container padding="0" isTab>
+        {/* <ListProgress /> */}
+        <ListWin />
+        {/* <ListFail /> */}
       </Container>
+      {/* 포인트 당첨, 대기 바텀 시트 */}
+      {/* <BottomSheetMoneyGive /> */}
+      {/* 당첨 안내 */}
+      {/* <LayerWinInfo/>  */}
     </>
   );
 };

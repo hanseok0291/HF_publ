@@ -9,8 +9,8 @@ import styleReceive from "../../styles/retto_pub/Receive.module.css";
 import Header from "../../components/retto_pub/common/Header";
 import Button from "../../components/retto_pub/common/Button";
 import LayerRettoInfo from "../../components/retto_pub/LayerRettoInfo";
-import BottomSheetNeedAccount from "../../components/retto_pub/common/modal/BottomSheetNeedAccount";
 import LayerRettoMoneyGet from "../../components/retto_pub/LayerRettoMoneyGet";
+import LayerReceive from "../../components/retto_pub/LayerReceive";
 
 const index = () => {
   return (
@@ -85,7 +85,7 @@ const index = () => {
         </div>
       </Container>
       {/* 내 당첨금 찾기 바텀 시트 */}
-      {/* <BottomSheetNeedAccount /> */}
+      <LayerReceive />
       {/* 신청 완료 레이어 */}
       {/* <LayerRettoMoneyGet /> */}
     </>

@@ -76,7 +76,7 @@ const Apply = () => {
         {/* 신청 불가 */}
         {/* <ModalApplyReady /> */}
         {/* 신청 실패 */}
-        <LayerApplyFail />
+        {/* <LayerApplyFail /> */}
       </Container>
   </div>
   )

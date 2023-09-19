@@ -44,14 +44,20 @@ const BottomSheetMission = ({ open, close }) => {
     >
       <div className={`${styleModal.modalBody} ${styleRettoModal.bottomSheetBody} ${styleRettoModal.rettoMission}`}>
         <h2>아직은 구매 금액이 부족해요</h2>
-        <p>
-          이번 주엔 <b>3,000원 구매</b>했네요
-        </p>
+        <p>이번 주엔 <b>3,000원 구매</b>했네요</p>
+        {/* 보너스 미션 참여 가능 */}
+        {/* <h2>보너스 미션 기회가 왔어요</h2> */}
+        {/* <p>기프티몰에서 <b>5,000원 이상 구매</b> 성공</p> */}
         <div>
           <p className={styleRettoModal.bodyText}>
             <em className={styleRettoModal.highlightBg}>1072회차 보너스 미션 참여</em>를 원한다면? <br />
             5천원 이상인 이런 상품들을 추천해요!
           </p>
+          {/* 보너스 미션 참여 가능 */}
+          {/* <p className={styleRettoModal.bodyText}>
+            1072회차는 번호 3개만 맞혀도
+            <em className={styleRettoModal.highlightBg}>최대 1만 포인트</em>가 와르르~
+          </p> */}
         </div>
         <RettoSwiperItem />
         {!dropdown && <button type="butotn" className={styleRettoModal.detailView} onClick={handleDropdown}>자세한 내용 보기</button>}

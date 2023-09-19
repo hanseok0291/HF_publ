@@ -33,7 +33,7 @@ const LayerRettoMoneyGet = () => {
             </p>
           </div>
         </div>
-        <div className={`${styleReceive.borderBox} ${styleReceive.botCon}`}>
+        <div className={`${styleReceive.borderBox} ${styleReceive.botCon} ${styleReceive.addTopDot}`}>
           <dl>
             <dt>포인트</dt>
             <dd>11,000원</dd>

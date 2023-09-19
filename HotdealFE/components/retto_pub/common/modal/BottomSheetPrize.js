@@ -1,14 +1,16 @@
 import { BottomSheet } from "react-spring-bottom-sheet";
+import GiftBox from "../../../../public/lotties/giftbox.json";
 
 //css
+import "react-spring-bottom-sheet/dist/style.css";
 import styleModal from "../../../../styles/coupon_pub/Modal.module.css";
 import styleRettoModal from "../../../../styles/retto_pub/Modal.module.css";
-import "react-spring-bottom-sheet/dist/style.css";
 import Button from "../Button";
+import LottieComponent from "../../LottieComponent";
 
 
 // 당첨 바텀 시트
-const BottomSheetPrize = ({ isHundredOpen, closeHundredPopup }) => {
+const BottomSheetPrize = ({ closeHundredPopup }) => {
 
   return (
     <BottomSheet
@@ -42,6 +44,7 @@ const BottomSheetPrize = ({ isHundredOpen, closeHundredPopup }) => {
           1등 당첨이네요! <br />
           지금 당첨금을 찾아가세요.
         </p>
+        <LottieComponent animationData={GiftBox} isPaused delay={500} speed={2} />
         <Button>바로 달려가기</Button>
       </div>
     </BottomSheet>

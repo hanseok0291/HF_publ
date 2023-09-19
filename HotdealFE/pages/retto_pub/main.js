@@ -32,10 +32,10 @@ const index = () => {
       <Container>
         {/* <MyPage case1 case2 case3 case4 case5 case6 case7/> */}
         {/* <Stamp case1/> */}
-        {/* <Result case1 case2/>  */}
+        <Result case1 case2/> 
       </Container>
       {/* 리또 신청 */}
-      <Apply />
+      {/* <Apply /> */}
       {/* 당첨 */}
       {/* <BottomSheetPrize /> */}
       {/* 미참여자 */}
@@ -49,7 +49,7 @@ const index = () => {
       {/* 스탬프 주차 확인 바텀 시트 */}
       {/* <BottomSheetSaveingList /> */}
       {/* 스탬프 10주차 유지 성공 바텀 시트 */}
-      {/* <BottomSheetPresent case1 /> */}
+      {/* <BottomSheetPresent /> */}
       {/* 보너스 미션 바텀 시트 */}
       {/* <BottomSheetMission /> */}
 

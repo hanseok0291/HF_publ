@@ -9,7 +9,7 @@ import BottomSheetMissionFail from "./common/modal/BottomSheetMissionFail";
 
 const Result = ({case1, case2}) => {
   const rettoNumber = [1, 4, 14, 20, 40, 43, 27];
-  
+
   return (
     // <div className={`${styleResult.resultWrap} ${styleResult.fail}`}> 미당첨시 styleResult.fail 추가
     <div className={`${styleResult.resultWrap} ${case1 ? styleResult.fail : ''}`}>
@@ -100,7 +100,7 @@ const Result = ({case1, case2}) => {
       {/* 미션 성곰 */}
       {/* <BottomSheetMissionSuccess /> */}
       {/* 미션 실패 */}
-      <BottomSheetMissionFail />
+      {/* <BottomSheetMissionFail /> */}
     </div>
   );
 };

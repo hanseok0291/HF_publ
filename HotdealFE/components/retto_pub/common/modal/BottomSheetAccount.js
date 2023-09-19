@@ -5,7 +5,7 @@ import styleModal from "../../../../styles/coupon_pub/Modal.module.css";
 import styleRettoModal from "../../../../styles/retto_pub/Modal.module.css";
 import "react-spring-bottom-sheet/dist/style.css";
 
-const BottomSheetAccount = ({ isHundredOpen, closeHundredPopup }) => {
+const BottomSheetAccount = ({ closeHundredPopup, title="충전 계좌 선택" }) => {
 
   return (
     <BottomSheet
@@ -34,7 +34,7 @@ const BottomSheetAccount = ({ isHundredOpen, closeHundredPopup }) => {
       }
     >
       <div className={`${styleModal.modalBody} ${styleRettoModal.bottomSheetBody} ${styleRettoModal.account}`}>
-        <h2>충전 계좌 선택</h2>
+        <h2>{title}</h2>
         <ul className={styleRettoModal.accountListWrap}>
           {/* default 대표 계좌 */}
           <li className={`${styleRettoModal.active} ${styleRettoModal.default}`}><img src="../../images/coupon/logo/brand/bank1.png" alt="" /> 신한</li>

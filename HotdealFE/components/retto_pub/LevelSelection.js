@@ -60,7 +60,6 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
     } else if(newValue > snapPoints[3]) {
       newValue = snapPoints[3];
     } else {
-      console.log(1)
       setValue(newValue);
     }
     
@@ -166,7 +165,7 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
               <>
                 <b>{jewel.cash}만원까지 이미 채워져 있네요.</b> <br />
                 <span className='jewelColor'>{jewel.kor}</span> 리또 받을 준비 끝 !
-                <span className={styleCommon.priceMoney}><span>최대 {jewel.prize} 당첨</span> 가능해요.</span>
+                {/* <span className={styleCommon.priceMoney}><span>최대 {jewel.prize} 당첨</span> 가능해요.</span> */}
               </>
             )}
           </p>
@@ -185,6 +184,11 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
                 <dd><span className='jewelColor'>15,000원</span></dd>
               </dl>
             )}
+            {/* 레벨 변경 레이어 팝업으로 사용 될 때 노출 됨 */}
+            {/* <div className={styleCommon.changeText}>
+              <p><b>변경된 레벨은 다음주 월요일부터 적용</b></p>
+              <p>부족한 머니도 그때 충전해서 채울게요.</p>
+            </div> */}
           </div>
         </div>
       )}

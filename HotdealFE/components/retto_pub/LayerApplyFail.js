@@ -26,7 +26,7 @@ const LayerApplyFail = () => {
         {/* <p className={`${styleApply.mainText}`}>
           <b>앗, 신청이 완료되지 않았어요!</b> <br />
           도중에 신청 불가 시간과 겹쳤어요.
-        </p>
+        </p> 
         <p className={styleApply.subText}><b>00시 30분 이후</b>에 다시 신청해 주세요.</p> */}
         <div className={styleApply.infoBox}>
           <strong>이런 경우일 수 있어요!</strong>

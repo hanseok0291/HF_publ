@@ -125,7 +125,9 @@ const Index = () => {
             {brandList.map((item, index) => (
               <li key={index}>
                 <a href="#">
-                  <img src={item.src} alt={item.brand} />
+                  <div className={styleBrandList.imgWrap}>
+                    <img src={item.src} alt={item.brand} />
+                  </div>
                   <span>{item.brand}</span>
                 </a>
               </li>

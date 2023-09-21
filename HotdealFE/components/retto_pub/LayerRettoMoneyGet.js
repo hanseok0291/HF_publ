@@ -38,7 +38,8 @@ const LayerRettoMoneyGet = () => {
             <dt>포인트</dt>
             <dd>11,000원</dd>
           </dl>
-          <p className={styleReceive.subText}>지금 바로 들어왔어요!</p>
+          {/* <p className={styleReceive.subText}>지금 바로 들어왔어요!</p> */}
+          <p className={styleReceive.subText}><b>보유 한도를 초과</b>해서 <span>적립 대기로 보관</span>됐어요!</p>
         </div>
         <div className={styleReceive.grayBox}>
           <p><span>제세공과금 처리를 위해</span><b>신분증 사본을 꼭 제출해 주세요!</b></p>

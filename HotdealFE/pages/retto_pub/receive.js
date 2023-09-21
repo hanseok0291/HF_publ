@@ -84,10 +84,10 @@ const index = () => {
           <Button>찾으러 가기</Button>
         </div>
       </Container>
-      {/* 내 당첨금 찾기 바텀 시트 */}
-      <LayerReceive />
+      {/* 내 당첨금 찾기 */}
+      {/* <LayerReceive /> */}
       {/* 신청 완료 레이어 */}
-      {/* <LayerRettoMoneyGet /> */}
+      <LayerRettoMoneyGet />
     </>
   );
 };

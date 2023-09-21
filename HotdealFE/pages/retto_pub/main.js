@@ -32,10 +32,10 @@ const index = () => {
       <Container>
         {/* <MyPage case1 case2 case3 case4 case5 case6 case7/> */}
         {/* <Stamp case1/> */}
-        <Result case1 case2/> 
+        {/* <Result case1/>  */}
       </Container>
       {/* 리또 신청 */}
-      {/* <Apply /> */}
+      <Apply />
       {/* 당첨 */}
       {/* <BottomSheetPrize /> */}
       {/* 미참여자 */}

@@ -6,18 +6,18 @@
 .resultWrap.fail .rettoWrap { position: static; height: auto; } 
 .resultWrap.fail .partyWrap { display: none; } 
 .resultWrap.fail .rettoWrap .bgBox { display: none; } 
-.resultWrap.fail .rettoWrap .ballWrap { display: flex; flex-wrap: wrap; justify-content: center; height: auto; margin: 23px auto; } 
-.resultWrap.fail .rettoWrap .ballWrap .ball { position: static; transform: rotate(0) !important; margin: 0 -4px } 
+.resultWrap.fail .rettoWrap .ballWrap { display: flex; flex-wrap: wrap; justify-content: center; overflow: visible; height: auto; margin: 23px auto; } 
+.resultWrap.fail .rettoWrap .ballWrap .ball { position: relative; transform: rotate(0) !important; margin: 0 -4px } 
 .resultWrap .rettoWrap .bgBox { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 100vw; height: 91px; background: url('../../public/images/retto/result-box.png') center 0 / 363px 91px no-repeat; } 
 .resultWrap .rettoWrap .ballWrap { overflow: hidden; position: relative; width: 100%; max-width: 375px; height: 232px; margin: auto; } 
-.resultWrap .rettoWrap .ballWrap .ball { display: flex; justify-content: center; align-items: center; position: absolute; left: 50%; top: 240px; width: 84px; height: 84px; color: #151515; font-size: 15px; font-weight: 700; background-size: 84px 84px; background-repeat: no-repeat; background-position: 0 0; transition: 0.3s ease-in-out; } 
+.resultWrap .rettoWrap .ballWrap .ball { display: flex; justify-content: center; align-items: center; position: absolute; width: 84px; height: 84px; color: #151515; font-size: 15px; font-weight: 700; background-size: 84px 84px; background-repeat: no-repeat; background-position: 0 0; transition: 0.3s ease-in-out; } 
 .resultWrap .rettoWrap .ballWrap .ball:global.type1 { background-image: url('../../public/images/retto/result-ball-type-01.png'); } 
 .resultWrap .rettoWrap .ballWrap .ball:global.type2 { background-image: url('../../public/images/retto/result-ball-type-02.png'); } 
 .resultWrap .rettoWrap .ballWrap .ball:global.type3 { background-image: url('../../public/images/retto/result-ball-type-03.png'); } 
 .resultWrap .rettoWrap .ballWrap .ball:global.type4 { background-image: url('../../public/images/retto/result-ball-type-04.png'); } 
 .resultWrap .rettoWrap .ballWrap .ball:global.type5 { background-image: url('../../public/images/retto/result-ball-type-05.png'); } 
-.resultWrap .rettoWrap .ballWrap .ball:nth-child(7)::before { display: block; content: ""; position: absolute; left: 2px; top: 2px; width: 30px; height: 30px; background: url('../../public/images/retto/result-ball-plus1.svg') 0 0 /100% auto no-repeat; } 
-.resultWrap.fail .rettoWrap .ballWrap .ball:nth-child(7) { margin-left: 12px; }
+.resultWrap .rettoWrap .ballWrap .ball:nth-child(7)::before { display: block; content: ""; position: absolute; left: 2px; top: 2px; width: 30px; height: 30px; background: url('../../public/images/retto/result-ball-plus1.svg') 0 0 /100% auto no-repeat; animation: fade 0.2s 1s backwards; } 
+.resultWrap.fail .rettoWrap .ballWrap .ball:nth-child(7) { margin-left: 12px; } 
 .resultWrap.fail .rettoWrap .ballWrap .ball:nth-child(7)::before { display: block; content: ""; position: absolute; left: -10px; top: 50%; transform: translateY(-50%); width: 12px; height: 12px; background: url('../../public/images/retto/result-ball-plus2.svg') 0 0 /100% auto no-repeat; } 
 .resultWrap .rettoWrap .ballWrap.active .ball:nth-child(1) { left: 2px; top: 17px; transform: translateX(0) rotate(-20deg); } 
 .resultWrap .rettoWrap .ballWrap.active .ball:nth-child(2) { left: 78px; top: 44px; transform: translateX(0) rotate(10deg); } 
@@ -26,16 +26,34 @@
 .resultWrap .rettoWrap .ballWrap.active .ball:nth-child(5) { left: 18px; top: 115px; transform: translateX(0) rotate(-20deg); } 
 .resultWrap .rettoWrap .ballWrap.active .ball:nth-child(6) { left: 99px; top: 140px; transform: translateX(0) rotate(-40deg); } 
 .resultWrap .rettoWrap .ballWrap.active .ball:nth-child(7) { left: 183px; top: 128px; transform: translateX(0) rotate(0); } 
-.resultWrap .rettoWrap .ballWrap .ball:nth-child(1) { animation: ballShow1 0.5s 0.5s ease-in-out both; } 
-.resultWrap .rettoWrap .ballWrap .ball:nth-child(2) { animation: ballShow2 0.5s 0.5s ease-in-out both; } 
-.resultWrap .rettoWrap .ballWrap .ball:nth-child(3) { animation: ballShow3 0.5s 0.5s ease-in-out both; } 
-.resultWrap .rettoWrap .ballWrap .ball:nth-child(4) { animation: ballShow4 0.5s 0.5s ease-in-out both; } 
-.resultWrap .rettoWrap .ballWrap .ball:nth-child(5) { animation: ballShow5 0.5s 0.5s ease-in-out both; } 
-.resultWrap .rettoWrap .ballWrap .ball:nth-child(6) { animation: ballShow6 0.5s 0.5s ease-in-out both; } 
-.resultWrap .rettoWrap .ballWrap .ball:nth-child(7) { animation: ballShow7 0.5s 0.5s ease-in-out both; } 
+.resultWrap .rettoWrap .ballWrap .ball:nth-child(1) { animation: ballShow1 0.4s 0.5s ease-in-out both; } 
+.resultWrap .rettoWrap .ballWrap .ball:nth-child(2) { animation: ballShow2 0.4s 0.5s ease-in-out both; } 
+.resultWrap .rettoWrap .ballWrap .ball:nth-child(3) { animation: ballShow3 0.4s 0.5s ease-in-out both; } 
+.resultWrap .rettoWrap .ballWrap .ball:nth-child(4) { animation: ballShow4 0.4s 0.5s ease-in-out both; } 
+.resultWrap .rettoWrap .ballWrap .ball:nth-child(5) { animation: ballShow5 0.4s 0.5s ease-in-out both; } 
+.resultWrap .rettoWrap .ballWrap .ball:nth-child(6) { animation: ballShow6 0.4s 0.5s ease-in-out both; } 
+.resultWrap .rettoWrap .ballWrap .ball:nth-child(7) { animation: ballShow7 0.4s 0.5s ease-in-out both; } 
+.resultWrap.fail .rettoWrap .ballWrap .ball:nth-child(1) { animation: ballFade1 0.4s 0.4s ease-in-out both; } 
+.resultWrap.fail .rettoWrap .ballWrap .ball:nth-child(2) { animation: ballFade1 0.4s 0.42s ease-in-out both; } 
+.resultWrap.fail .rettoWrap .ballWrap .ball:nth-child(3) { animation: ballFade1 0.4s 0.44s ease-in-out both; } 
+.resultWrap.fail .rettoWrap .ballWrap .ball:nth-child(4) { animation: ballFade1 0.4s 0.46s ease-in-out both; } 
+.resultWrap.fail .rettoWrap .ballWrap .ball:nth-child(5) { animation: ballFade1 0.4s 0.48s ease-in-out both; } 
+.resultWrap.fail .rettoWrap .ballWrap .ball:nth-child(6) { animation: ballFade1 0.4s 0.5s ease-in-out both; } 
+.resultWrap.fail .rettoWrap .ballWrap .ball:nth-child(7) { animation: ballFade1 0.4s 0.52s ease-in-out both; } 
+.resultWrap .rettoWrap > span { position: absolute; background-size: contain; background-repeat: no-repeat; background-position: 0 0; } 
+.resultWrap .rettoWrap .coinWrap { overflow: hidden; position: absolute; left: 0; top: 0; width: 100%; height: 232px; } 
+.resultWrap .rettoWrap .coinWrap span { position: absolute; display: block; } 
+.resultWrap .rettoWrap .coinWrap .coin1 { width: 24px; height: 24px; background-image: url('../../public/images/retto/result-party-07.svg'); animation: ballShow8 0.4s 0.5s ease-in-out both; } 
+.resultWrap .rettoWrap .coinWrap .coin2 { width: 32px; height: 32px; background-image: url('../../public/images/retto/result-party-08.svg'); animation: ballShow9 0.4s 0.5s ease-in-out both; } 
+.resultWrap .rettoWrap .coinWrap .coin3 { width: 26px; height: 26px; background-image: url('../../public/images/retto/result-party-09.svg'); animation: ballShow10 0.4s 0.5s ease-in-out both; } 
 
 .resultWrap .borderBox { margin-top: 0; } 
-.resultWrap .bonusMission { height: 49px; margin: 10px 0; padding: 0 20px; border-radius: 12px; color: #222; font-size: 14px; line-height: 49px; background: #FFF2C2 url('../../public/images/retto/myretto-visual-03.png') right 20px center / 22px 22px no-repeat; } 
+.resultWrap .bonusMission { height: 49px; margin: 10px 0; padding: 0 20px; border-radius: 12px; color: #222; font-size: 14px; line-height: 49px; background: #FFF2C2 url('../../public/images/retto/icon-emo-07.svg') right 20px center / 18px 18px no-repeat; } 
+
+@keyframes fade { 
+ 0% { opacity: 0; } 
+ 100% { opacity: 1; } 
+ }
 
 @keyframes ballShow1 { 
  0% { left: 50%; top: 240px; transform: translateX(-50%) rotate(0); } 
@@ -79,6 +97,30 @@
  100% { left: 183px; top: 128px; transform: translateX(0) rotate(0); } 
  }
 
+ @keyframes ballShow8 { 
+ 0% { left: 50%; top: 240px; transform: translateX(-50%) rotate(0); } 
+ 70% { top: 96px; } 
+ 100% { left: 22px; top: 116px; transform: translateX(0) rotate(0); } 
+ }
+
+ @keyframes ballShow9 { 
+ 0% { left: 50%; top: 240px; transform: translateX(-50%) rotate(0); } 
+ 70% { top: 10px; } 
+ 100% { left: 300px; top: 30px; transform: translateX(0) rotate(0); } 
+ }
+
+ @keyframes ballShow10 { 
+ 0% { left: 50%; top: 240px; transform: translateX(-50%) rotate(0); } 
+ 70% { top: 180px; } 
+ 100% { left: 180px; top: 200px; transform: translateX(0) rotate(0); } 
+ }
+
+ @keyframes ballFade1 { 
+  0% { top: -20px; opacity: 0; } 
+  100% { top: 0; opacity: 1; } 
+  }
+
+
  .partyWrap { overflow: hidden; position: absolute; left: 0; top: 0; z-index: 10; width: 100%; height: 346px; pointer-events: none; } 
  .partyWrap .item { display: block; position: absolute; top: 0; opacity: 0; background-position: 0 0; background-size: contain; background-repeat: no-repeat; } 
 
@@ -88,9 +130,9 @@
  .partyWrap .item:nth-child(4) { left: 28%; width: 24px; height: 30px; background-image: url('../../public/images/retto/result-party-04.svg'); -webkit-transform: rotate(61deg); -webkit-animation: makeItRain 1000ms ease-in-out; -webkit-animation-delay: 1334ms; -webkit-animation-duration: 1468ms; } 
  .partyWrap .item:nth-child(5) { left: 35%; width: 22px; height: 30px; background-image: url('../../public/images/retto/result-party-05.svg'); -webkit-transform: rotate(-52deg); -webkit-animation: makeItRain 1000ms ease-in-out; -webkit-animation-delay: 902ms; -webkit-animation-duration: 1468ms; } 
  .partyWrap .item:nth-child(6) { left: 42%; width: 21px; height: 30px; background-image: url('../../public/images/retto/result-party-06.svg'); -webkit-transform: rotate(38deg); -webkit-animation: makeItRain 1000ms ease-in-out; -webkit-animation-delay: 1280ms; -webkit-animation-duration: 1468ms; } 
- .partyWrap .item:nth-child(7) { left: 29%; width: 24px; height: 30px; background-image: url('../../public/images/retto/result-party-07.svg'); -webkit-transform: rotate(11deg); -webkit-animation: makeItRain 1000ms ease-in-out; -webkit-animation-delay: 795ms; -webkit-animation-duration: 1468ms; } 
- .partyWrap .item:nth-child(8) { left: 56%; width: 26px; height: 30px; background-image: url('../../public/images/retto/result-party-08.svg'); -webkit-transform: rotate(49deg); -webkit-animation: makeItRain 1000ms ease-in-out; -webkit-animation-delay: 1714ms; -webkit-animation-duration: 1468ms; } 
- .partyWrap .item:nth-child(9) { left: 93%; width: 32px; height: 32px; background-image: url('../../public/images/retto/result-party-09.svg'); -webkit-transform: rotate(-72deg); -webkit-animation: makeItRain 1000ms ease-in-out; -webkit-animation-delay: 1145ms; -webkit-animation-duration: 1468ms; } 
+ .partyWrap .item:nth-child(7) { left: 29%; width: 24px; height: 30px; background-image: url('../../public/images/retto/result-party-01.svg'); -webkit-transform: rotate(11deg); -webkit-animation: makeItRain 1000ms ease-in-out; -webkit-animation-delay: 795ms; -webkit-animation-duration: 1468ms; } 
+ .partyWrap .item:nth-child(8) { left: 56%; width: 26px; height: 30px; background-image: url('../../public/images/retto/result-party-02.svg'); -webkit-transform: rotate(49deg); -webkit-animation: makeItRain 1000ms ease-in-out; -webkit-animation-delay: 1714ms; -webkit-animation-duration: 1468ms; } 
+ .partyWrap .item:nth-child(9) { left: 93%; width: 32px; height: 32px; background-image: url('../../public/images/retto/result-party-03.svg'); -webkit-transform: rotate(-72deg); -webkit-animation: makeItRain 1000ms ease-in-out; -webkit-animation-delay: 1145ms; -webkit-animation-duration: 1468ms; } 
  .partyWrap .item:nth-child(10) { left: 70%; width: 32px; height: 32px; background-image: url('../../public/images/retto/result-party-01.svg'); -webkit-transform: rotate(-72deg); -webkit-animation: makeItRain 1000ms ease-in-out; -webkit-animation-delay: 1545ms; -webkit-animation-duration: 1468ms; } 
  .partyWrap .item:nth-child(11) { left: 78%; width: 18px; height: 32px; background-image: url('../../public/images/retto/result-party-02.svg'); -webkit-transform: rotate(-72deg); -webkit-animation: makeItRain 1000ms ease-in-out; -webkit-animation-delay: 819ms; -webkit-animation-duration: 1468ms; } 
  .partyWrap .item:nth-child(12) { left: 84%; width: 16px; height: 32px; background-image: url('../../public/images/retto/result-party-03.svg'); -webkit-transform: rotate(-72deg); -webkit-animation: makeItRain 1000ms ease-in-out; -webkit-animation-delay: 1246ms; -webkit-animation-duration: 1468ms; } 

@@ -24,7 +24,7 @@ const MyPage = ({case1, case2, case3, case4, case5, case6, case7}) => {
           }
         </div>
       </FadeIn>
-      <FadeIn delay={150} transitionDuration={duration}>
+      <FadeIn delay={100} transitionDuration={duration}>
         {case5 && 
           <div className={styleMyretto.celebrationWrap}>
             <p className={styleMyretto.title}>당첨금 찾아가세요 !</p>
@@ -33,7 +33,7 @@ const MyPage = ({case1, case2, case3, case4, case5, case6, case7}) => {
           </div>
         }
       </FadeIn>
-      <FadeIn delay={300} transitionDuration={duration}>
+      <FadeIn delay={200} transitionDuration={duration}>
         <div>
           <dl className={styleMyretto.borderBox}>
             <dt className={styleMyretto.icon1}>
@@ -49,7 +49,7 @@ const MyPage = ({case1, case2, case3, case4, case5, case6, case7}) => {
           }
         </div>
       </FadeIn>
-      <FadeIn delay={450} transitionDuration={duration}>
+      <FadeIn delay={300} transitionDuration={duration}>
         <div>
           {case2 && 
             <div className={`${styleMyretto.bottomBox} ${styleMyretto.bonusMission}`}>
@@ -67,13 +67,13 @@ const MyPage = ({case1, case2, case3, case4, case5, case6, case7}) => {
           }
         </div>
       </FadeIn>
-      <FadeIn delay={600} transitionDuration={duration}>
+      <FadeIn delay={400} transitionDuration={duration}>
         <dl className={`${styleMyretto.borderBox}`}>
           <dt className={styleMyretto.icon2}>내 당첨금</dt>
           <dd><button type="button" className={`${!case7 ? styleMyretto.off : ''}`}>0원</button></dd>
         </dl>
       </FadeIn>
-      <FadeIn delay={750} transitionDuration={duration}>
+      <FadeIn delay={500} transitionDuration={duration}>
         {case1 && 
           <div className={`${styleMyretto.jewelBox}`}>
             <div className={`${styleMyretto.topCon} diamond`}>{/* ruby emerald diamond className 추가 시 스타일 변경*/}
@@ -98,7 +98,7 @@ const MyPage = ({case1, case2, case3, case4, case5, case6, case7}) => {
           </div>
         }
       </FadeIn>
-      <FadeIn delay={900} transitionDuration={duration}>
+      <FadeIn delay={600} transitionDuration={duration}>
         <div className={styleMyretto.bannerWrap}>
           <div className={`${styleMyretto.bottomBox} ${styleMyretto.type1}`}>
             <a href="#">

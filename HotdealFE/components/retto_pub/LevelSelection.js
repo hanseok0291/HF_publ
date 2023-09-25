@@ -174,10 +174,10 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
             <span>루비</span> 리또 받을 준비 끝 !
           </p> */}
           <div className={styleCommon.moneyWrap}>
-            <dl>
+            {/* <dl>
               <dt>내 보유 머니</dt>
               <dd>15,000원</dd>
-            </dl>
+            </dl> */}
             {!full && (
               <dl>
                 <dt>채우기 <button type='button' className={styleCommon.accountButton}><img src="../../images/coupon/logo/brand/bank1.png" alt="" />신한789</button></dt>
@@ -185,10 +185,10 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
               </dl>
             )}
             {/* 레벨 변경 레이어 팝업으로 사용 될 때 노출 됨 */}
-            {/* <div className={styleCommon.changeText}>
+            <div className={styleCommon.changeText}>
               <p><b>변경된 레벨은 다음주 월요일부터 적용</b></p>
               <p>부족한 머니도 그때 충전해서 채울게요.</p>
-            </div> */}
+            </div>
           </div>
         </div>
       )}

@@ -47,8 +47,8 @@ const LayerRettoMoneyGet = () => {
             <button type='button' className={styleReceive.email}>010pay_event@hecto.co.kr</button>
           </CopyToClipboard>
           <ul>
-            <li>제출 기한은 당첨일로 부터 91일이며, <b>미제출 시 당첨 이 취소</b>돼요.</li>
-            <li>제출일 기준 다음 달 15일 안에 당첨금이 지급돼요.</li>
+            <li>당첨일로부터 91일 내 <b>미제출 시 당첨이 취소</b>돼요.</li>
+            <li>당첨금은 제출일 기준 다음 달 15일 안에 지급돼요.</li>
             <li>신분증 사본은 제세공과금 처리를 위해서만 사용돼요.</li>
             <li>이메일 주소는 [내 리또 리스트] &gt; [당첨 안내]에서 다시 볼 수 있어요.</li>
           </ul>

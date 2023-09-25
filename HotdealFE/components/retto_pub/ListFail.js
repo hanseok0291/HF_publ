@@ -8,7 +8,7 @@ import BottomSheetTurnChoice from './common/modal/BottomSheetTurnChoice';
 
 const rettoNumber = [1, 6, 25, 29, 40, 43, 44];
 
-const myRettoNumber = [[1, 6, 25, 29, 40, 43], [22, 24, 25, 29, 39, 43]]
+const myRettoNumber = [[1, 6, 25, 29, 40, 43], [22, 24, 25, 29, 39, 42], [1, 24, 25, 29, 39, 42],]
 
 const ListFail = () => {
 
@@ -47,42 +47,45 @@ const ListFail = () => {
           </div>
           <div>
             <div className={`${styleRettoList.borderBox} ${styleRettoList.botCon}`}>
-              <dl>
-                <dt>리또 번호</dt>
-                <dd>
-                  <ul className={styleRettoList.myBallWrap}>
-                    {myRettoNumber[0].map((item, index) => {
-                      let styleBall;
-                      let discord;
-                      if( 0 < item && item < 11){
-                        styleBall = "type1";
-                      } else if( 10 < item && item < 21 ) {
-                        styleBall = "type2";
-                      } else if( 20 < item && item < 31 ) {
-                        styleBall = "type3";
-                      } else if( 30 < item && item < 41 ) {
-                        styleBall = "type4";
-                      } else {
-                        styleBall = "type5";
-                      }
+              {myRettoNumber.map((item, index) => (
+                <dl key={index}>
+                  <dt>리또 번호</dt>
+                  <dd>
+                    <ul className={styleRettoList.myBallWrap}>
+                      {item.map((numberItem, numberIndex) => {
+                        let styleBall;
+                        let discord;
+                        if( 0 < numberItem && numberItem < 11){
+                          styleBall = "type1";
+                        } else if( 10 < numberItem && numberItem < 21 ) {
+                          styleBall = "type2";
+                        } else if( 20 < numberItem && numberItem < 31 ) {
+                          styleBall = "type3";
+                        } else if( 30 < numberItem && numberItem < 41 ) {
+                          styleBall = "type4";
+                        } else {
+                          styleBall = "type5";
+                        }
 
-                      if(rettoNumber[index] === item){
-                        discord = ""
-                      } else {
-                        discord = "discord"
-                      }
+                        if(rettoNumber[numberIndex] === numberItem){
+                          discord = ""
+                        } else {
+                          discord = "discord"
+                        }
 
-                      return (
-                        <li key={index} className={`${styleRettoList.ball} ${styleBall}  ${discord}`}><span>{item}</span></li>
-                      )
-                    })}
-                  </ul>
-                </dd>
-                <dt>지급 일시</dt>
-                <dd>2023.11.21 20:20:20</dd>
-                <dt>레벨</dt>
-                <dd>루비</dd>
-              </dl>
+                        return (
+                          <li key={numberIndex} className={`${styleRettoList.ball} ${styleBall}  ${discord}`}><span>{numberItem}</span></li>
+                        )
+                      })}
+                    </ul>
+                  </dd>
+                  <dt>지급 일시</dt>
+                  <dd>2023.11.21 20:20:20</dd>
+                  <dt>레벨</dt>
+                  <dd><span className='jewelImg fail ruby'></span></dd>{/* 보석 이미지 ruby, emerald, diamond className 추가 */}
+                </dl>
+              ))}
+              
             </div>
           </div>
         </div>

@@ -88,15 +88,18 @@ const ListProgress = () => {
             </SwiperSlide>
           </Swiper>
         </div>
+        {/* 리또 없을때 노출 되는 텍스트 */}
+        <p className={styleRettoList.noList}>아직은 리또가 없어요!</p> 
         <div className={styleRettoList.lineImgBox}>
           <div className={`${styleRettoList.borderBox} ${styleRettoList.botCon}`}>
             {myRettoNumber.map((item,index) => (
-                <dl key={index} className={styleRettoList.progressRettoWrap}>
+                <dl key={index} className={`${styleRettoList.progressRettoWrap}`}>
                   <dt>
                     <p className={styleRettoList.topText}>지급 일시</p>
-                    <p className={styleRettoList.botText}>2023.11.21 20:20:20</p>
+                    <p className={styleRettoList.botText}>23.11.21 20:20:20</p>
                   </dt>
                   <dd>
+                    <span className='jewelImg diamond'></span>{/* 보석 이미지 ruby, diamond, diamond className 추가 */}
                     <ul className={styleRettoList.myBallWrap}>
                       {item.map((rettoItem, rettoIndex) => {
                         let styleBall;
@@ -127,9 +130,9 @@ const ListProgress = () => {
                   </dd>
                 </dl>
             ))}
+            {/* 11개 부터 더 보기 버튼 생성 */}
+            <button type='button' className={styleRettoList.addView}>더 보기</button>
           </div>  
-          {/* 11개 부터 더 보기 버튼 생성 */}
-          <button type='button' className={styleRettoList.addView}>더 보기</button>
         </div>
       </div> 
     </>

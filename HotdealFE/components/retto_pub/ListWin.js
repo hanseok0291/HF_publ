@@ -85,7 +85,8 @@ const ListWin = () => {
                 <dt>당첨금</dt>
                 <dd className={styleRettoList.cash}>100,000,000원</dd>
                 <dt>당첨 결과</dt>
-                <dd>다이아<span className={styleRettoList.dot}></span>1등 당첨</dd>
+                {/* 보석 이미지 ruby, emerald, diamond className 추가 */}
+                <dd><span className='jewelImg diamond'></span><span className={styleRettoList.dot}></span>1등 당첨</dd>
                 <dt>지급 일시</dt>
                 <dd>2023.11.21 20:20:20</dd>
                 <dt>수령 기한</dt>
@@ -130,7 +131,8 @@ const ListWin = () => {
                 <dt>당첨금</dt>
                 <dd className={styleRettoList.cash}>5,000원</dd>
                 <dt>당첨 결과</dt>
-                <dd>다이아<span className={styleRettoList.dot}></span>3등 당첨</dd>
+                {/* 보석 이미지 ruby, emerald, diamond className 추가 */}
+                <dd><span className='jewelImg ruby'></span><span className={styleRettoList.dot}></span>1등 당첨</dd>
                 <dt>지급 일시</dt>
                 <dd>2023.11.21 20:20:20</dd>
                 <dt>수령 기한</dt>
@@ -177,7 +179,8 @@ const ListWin = () => {
                 <dt>당첨금</dt>
                 <dd className={styleRettoList.cash}>5,000원</dd>
                 <dt>당첨 결과</dt>
-                <dd>다이아<span className={styleRettoList.dot}></span>3등 당첨</dd>
+                {/* 보석 이미지 ruby, emerald, diamond className 추가 */}
+                <dd><span className='jewelImg emerald'></span><span className={styleRettoList.dot}></span>보너스 미션</dd>
                 <dt>지급 일시</dt>
                 <dd>2023.11.21 20:20:20</dd>
                 <dt>수령 기한</dt>

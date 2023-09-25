@@ -7,7 +7,7 @@ import "react-spring-bottom-sheet/dist/style.css";
 import Button from "../Button";
 
 // 기기알림 바텀 시트
-const BottomSheetMoneyGive = ({ isHundredOpen, closeHundredPopup }) => {
+const BottomSheetMoneyGive = ({ closeHundredPopup }) => {
 
   return (
     <BottomSheet

@@ -67,11 +67,13 @@ const Result = ({case1, case2}) => {
           })}
         </ul>
         {/* 3등일때만 노출 */}
-        {/* <div className={styleResult.coinWrap}>
-          <span className={styleResult.coin1}></span>
-          <span className={styleResult.coin2}></span>
-          <span className={styleResult.coin3}></span> 
-        </div> */}
+        {case2 && 
+          <div className={styleResult.coinWrap}>
+            <span className={styleResult.coin1}></span>
+            <span className={styleResult.coin2}></span>
+            <span className={styleResult.coin3}></span> 
+          </div>
+        }
       </div>
       <dl className={`${styleMyretto.borderBox} ${styleResult.borderBox}`}>
         <dt className={styleMyretto.icon1}>

@@ -1,11 +1,14 @@
 .subTitle { margin-top: 4px; font-size: 14px; line-height: 17px; color: #575757; } 
 
+.topConWrap { position: relative; }
 .borderBox { position: relative; padding: 20px; border: 1px solid #CCCCCC; background-color: #fff; border-radius: 12px; } 
-.borderBox.topCon { overflow: auto; max-height: 364px; } 
+.topConWrap::after { display: block; content: ""; position: absolute; left: 50%; bottom: 0; transform:translateX(-50%); width: calc(100% - 40px); height: 40px; padding: 0 20px; background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%);; } 
+.borderBox.topCon { position: relative; overflow: auto; max-height: 364px; font-size: 15px; } 
 .borderBox .turnText { display: block; margin-bottom: 9px; font-size: 13px; color: #575757; line-height: 16px; } 
 .borderBox .lineBox { border-top: 1px solid #E2E2E2; padding: 10px 0 5px; } 
 .borderBox .lineBox:first-child { border-top: none; padding-top: 4px; } 
 .borderBox .lineBox:last-child { padding-bottom: 0; } 
+.borderBox .lineBox:last-child :last-child { margin-bottom: 0; } 
 .borderBox dl { display: flex; flex-wrap: wrap; align-items: center; margin-bottom: 8px; } 
 .borderBox dl:last-child { margin-bottom: 5px; } 
 .borderBox dl dt { display: flex; width: 100px; color: #151515; font-size: 13px; font-weight: 500; line-height: 16px; } 
@@ -17,12 +20,24 @@
 .borderBox dl.large dd { font-size: 16px; font-weight: 700; line-height: 19px; color: #FF2B00; } 
 .borderBox dl dt.addicon { position: relative; padding-left: 10px; color: #575757; } 
 .borderBox dl dt.addicon::before { display: block; content: ""; position: absolute; left: 0; top: 2px; width: 6px; height: 6px; border: 1px solid #ccc; border-width: 0 0 1px 1px; } 
-.borderBox dl .icon1 { display: block; width: 13px; height: 16px; margin-left: 4px; background: url('../../public/images/retto/icon-receive-01.svg') 0 0 / cover no-repeat; } 
+.borderBox dl .icon1 { position: relative; display: block; width: 13px; height: 16px; margin-left: 4px; background: url('../../public/images/retto/icon-receive-01.svg') 0 0 / cover no-repeat; } 
+.borderBox dl .icon2 { position: relative; display: block; width: 16px; height: 16px; margin-left: 2px; background: url('../../public/images/retto/icon-question2.svg') 0 0 / cover no-repeat; } 
+ 
+.toopTopWrap {position: relative;}
+.toopTopWrap .tooltip { position: absolute; left: -70px; top: -150px; width: 188px; min-width: auto; padding: 20px 14px; color: #575757; background-color: #fff; border: 1px solid #CCCCCC; border-radius: 12px; box-shadow: 0px 0px 4px 0px #00000026; } 
+.toopTopWrap .tooltip.reverse { top: 20px; } 
+.toopTopWrap .tooltip h4 { display: flex; align-items: center; font-size: 12px; line-height: 18px; letter-spacing: -0.04em; } 
+.toopTopWrap .tooltip h4::before { position: relative; display: block; content: ""; width: 13px; height: 16px; margin-right: 4px; background: url('../../public/images/retto/icon-receive-01.svg') 0 0 / cover no-repeat; } 
+.toopTopWrap .tooltip p { margin: 8px 0 6px; padding-left: 2px; font-size: 12px; line-height: 18px; letter-spacing: -0.04em; } 
+.toopTopWrap .tooltip span { display: block; position: relative; padding-left: 9px; font-size: 11px; line-height: 18px; letter-spacing: -0.04em; } 
+.toopTopWrap .tooltip span::before { display: block; content: "*"; position: absolute; left: 2px; top: 2px; } 
+.toopTopWrap .tooltip .closeBtn { display: block; position: absolute; right: 0; top: 0; width: 38px; height: 38px; background: url('../../public/images/retto/icon-small-close.svg') center center / 12px auto no-repeat; } 
+
 .borderBox .divider { position: absolute; top: -5px; left: 50%; transform: translateX(-50%); width: calc(100% - 24px); height: 9px; background: #fff; } 
 .borderBox .divider::before { display: block; content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: calc(100% - 12px); height: 1px; background: #151515; } 
 .btnWrap { position: fixed; left: 0; bottom: 34px; width: 100%; padding: 0 20px; } 
 
-.moneyGetWrap { padding: 30px 20px 60px; } 
+.moneyGetWrap { padding: 30px 20px; } 
 .moneyGetWrap .titleWrap { margin-bottom: 30px; text-align: center; } 
 .moneyGetWrap .titleWrap h2 { font-size: 24px; line-height: 29px; } 
 .moneyGetWrap .titleWrap p { margin-top: 2px; font-size: 14px; line-height: 17px; } 
@@ -48,8 +63,8 @@
 .moneyGetWrap .grayBox p span { display: flex; justify-content: center; position: relative; } 
 .moneyGetWrap .grayBox p span::before { display: block; content: ""; width: 13px; height: 16px; margin-right: 3px; background: url('../../public/images/retto/icon-receive-01.svg') 0 0 / 13px auto no-repeat; } 
 .moneyGetWrap .grayBox .email { margin: 12px 0 18px; color: #151515; font-size: 12px; border-bottom: 1px solid #151515; line-height: 1; } 
-.moneyGetWrap .grayBox li { position: relative; margin-bottom: 4px; padding-left: 5px; color: #575757; font-size: 11px; text-align: left; } 
-.moneyGetWrap .grayBox li::before { display: block; content: "·"; position: absolute; left: 0; top: 0; } 
+.moneyGetWrap .grayBox li { position: relative; margin-bottom: 4px; padding-left: 7px; color: #575757; font-size: 11px; text-align: left; } 
+.moneyGetWrap .grayBox li::after { display: block; content: ""; position: absolute; left: 0; top: 6px; width: 2px; height: 2px; background-color: #575757; } 
 
 .needAccount { padding: 0; height: 100%; } 
 .needAccount h2 { display: flex; justify-content: center; align-items: center; } 
@@ -62,11 +77,11 @@
 .needAccount .bankWrap dd img { flex: 0 0 auto; width: 15px; height: 15px; margin-right: 4px; } 
 .needAccount .bankWrap dd button { display: flex; align-items: center; color: #222; font-size: 13px; } 
 .needAccount .bankWrap dd button::after { display: block; content: ""; width: 8px; height: 8px; margin-left: 5px; background: url('../../public/images/retto/icon-textbox-arrow2.svg') 0 0 / 8px auto no-repeat; } 
-.needAccount .bankWrap dd button.enter::after { width: 5px; height: 15px; margin-left: 7px; background: url('../../public/images/retto/icon-arrow-black.png') center center / 6px auto no-repeat; }
-.noticeWrap { position: fixed; left: 0; bottom: 0; width: 100%; padding: 0 20px 34px; background-color: #F9F9F9; } 
+.needAccount .bankWrap dd button.enter::after { width: 5px; height: 15px; margin-left: 7px; background: url('../../public/images/retto/icon-arrow-black.png') center center / 6px auto no-repeat; } 
+.noticeWrap { width: 100%; margin-top: 30px; padding: 0; background-color: #F9F9F9; } 
 .noticeWrap h4 { padding: 0 10px; color: #151515; font-size: 13px; line-height: 18px; } 
 .noticeWrap ul { margin: 5px 0 13px; padding: 0 10px; } 
-.noticeWrap li { position: relative; margin-bottom: 4px; padding-left: 5px; color: #575757; font-size: 11px; line-height: 16px; letter-spacing: -0.04em; } 
+.noticeWrap li { position: relative; margin-bottom: 5px; padding-left: 7px; color: #575757; font-size: 11px; line-height: 16px; letter-spacing: -0.04em; } 
 .noticeWrap li:last-child { margin-bottom: 0; } 
-.noticeWrap li::after { display: block; content: "·"; position: absolute; left: 0; top: 0; } 
+.noticeWrap li::after { display: block; content: ""; position: absolute; left: 0; top: 6px; width: 2px; height: 2px; background-color: #575757; } 
 .noticeWrap .btnWrap { position: static; margin-top: 40px; padding: 0; } 

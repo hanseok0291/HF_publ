@@ -80,7 +80,7 @@ const ListFail = () => {
                     </ul>
                   </dd>
                   <dt>지급 일시</dt>
-                  <dd>2023.11.21 20:20:20</dd>
+                  <dd>23.11.21 20:20:20</dd>
                   <dt>레벨</dt>
                   <dd><span className='jewelImg fail ruby'></span></dd>{/* 보석 이미지 ruby, emerald, diamond className 추가 */}
                 </dl>

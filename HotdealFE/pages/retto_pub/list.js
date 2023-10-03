@@ -23,14 +23,14 @@ const index = () => {
         <li>미당첨</li>
       </ul>
       <Container padding="0" isTab>
-        <ListProgress />
-        {/* <ListWin /> */}
+        {/* <ListProgress /> */}
+        <ListWin />
         {/* <ListFail /> */}
       </Container>
       {/* 포인트 당첨, 대기 바텀 시트 */}
-      {/* <BottomSheetMoneyGive /> */}
+      <BottomSheetMoneyGive />
       {/* 당첨 안내 */}
-      {/* <LayerWinInfo/>  */}
+      <LayerWinInfo/> 
     </>
   );
 };

@@ -3,6 +3,8 @@ import React, { useState } from "react";
 // style
 import styleCommon from "../../styles/retto_pub/Common.module.css";
 import styleReceive from "../../styles/retto_pub/Receive.module.css";
+import styleApply from "../../styles/coupon_pub/Apply.module.css";
+import styleModal from "../../styles/coupon_pub/Modal.module.css";
 
 // component
 import Container from "./common/Container";
@@ -15,17 +17,18 @@ const LayerReceive = () => {
   return (
     <div className={styleCommon.layer}>
       <Header title="내 당첨금 찾기" sideBtn=""/>
-      <Container>
+      <Container className={styleCommon.layerContainer}>
         <div className={`${styleReceive.needAccount}`}>
           <h2>입금 계좌가 필요해요</h2>
           <p className={styleReceive.subTitle}>
+            <b>5만원 초과하는 당첨금</b> 또는 <br />
             <b>머니 보유 한도(200만원) 초과</b> 시 <span>계좌로 입금</span>돼요.
           </p>
           
           <dl className={styleReceive.bankWrap}>
             <dt>입금 계좌</dt>
-            {/* <dd><button type="button"><img src="../../images/coupon/logo/brand/bank1.png" alt="" />카카오뱅크789</button></dd> */}
-            <dd><button type="button" className={styleReceive.enter}>계좌 등록</button></dd>
+            <dd><button type="button"><img src="../../images/coupon/logo/brand/bank1.png" alt="" />카카오뱅크789</button></dd>
+            {/* <dd><button type="button" className={styleReceive.enter}>계좌 등록</button></dd> */}
           </dl>
         </div>
         <div className={styleReceive.noticeWrap}>
@@ -40,6 +43,18 @@ const LayerReceive = () => {
           </ul>
         </div>
         <div className={styleReceive.btnWrap}>
+          <ul className={`${styleReceive.agreeList}`}>
+            <li>
+              <input type="checkbox" name="agree_01" id="agree_03_01" />
+              <label htmlFor="agree_03_01">개인 정보 수집 이용 동의(필수)</label>
+              <button type="button"></button>
+            </li>
+            <li>
+              <input type="checkbox" name="agree_02" id="agree_03_02" />
+              <label htmlFor="agree_03_02">고유 식별 정보 수집 및 이용 동의(필수)</label>
+              <button type="button"></button>
+            </li>
+          </ul>
           <Button>모두 동의 후 신청 마치기</Button>
         </div>
       </Container>

@@ -19,6 +19,7 @@ import BottomSheetSaveingList from "../../components/retto_pub/common/modal/Bott
 import BottomSheetPresent from "../../components/retto_pub/common/modal/BottomSheetPresent";
 import BottomSheetMission from "../../components/retto_pub/common/modal/BottomSheetMission";
 import Result from "../../components/retto_pub/Result";
+import BottomSheetMissionFail from "../../components/retto_pub/common/modal/BottomSheetMissionFail";
 
 const index = () => {
   return (
@@ -29,10 +30,10 @@ const index = () => {
         <li>리또 스탬프</li>
         <li>당첨 리또</li>
       </ul>
-      <Container>
+      <Container isTab>
         {/* <MyPage case1 case2 case3 case4 case5 case6 case7/> */}
-        <Stamp case1/>
-        {/* <Result />  */}
+        {/* <Stamp case1/> */}
+        <Result/> 
       </Container>
       {/* 리또 신청 */}
       {/* <Apply /> */}
@@ -52,7 +53,6 @@ const index = () => {
       {/* <BottomSheetPresent /> */}
       {/* 보너스 미션 바텀 시트 */}
       {/* <BottomSheetMission /> */}
-
     </>
   );
 };

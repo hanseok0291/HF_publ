@@ -33,7 +33,7 @@ const Navigation = () => {
       <div className={`${styleNav.navWrap}`} ref={navRef}>
         <ul className={`${styleNav.nav} ${isFixed && styleNav.fixed}`}>
           {navigationList.map((item, index) => (
-            <li className={onNavIndex === index && styleNav.active}key={index}>
+            <li className={onNavIndex === index ? styleNav.active : ""} key={index}>
             <a href={`/coupon/`} className={styleCommon.btn} onClick={() => handleClick(index)}>
               {item}
             </a>

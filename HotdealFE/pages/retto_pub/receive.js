@@ -139,7 +139,7 @@ const index = () => {
         </div>
       </Container>
       {/* 내 당첨금 찾기 */}
-      {/* <LayerReceive /> */}
+      <LayerReceive />
       {/* 신청 완료 레이어 */}
       {/* <LayerRettoMoneyGet /> */}
       {/* 제세공과금 설명 */}

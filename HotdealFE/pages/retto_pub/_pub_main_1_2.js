@@ -26,7 +26,7 @@ const index = () => {
         <li>리또 스탬프</li>
         <li>당첨 리또</li>
       </ul>
-      <Container>
+      <Container isTab>
         <MyPage case1={true} case3={true} case6={true}/>
         {/* <Stamp /> */}
       </Container>

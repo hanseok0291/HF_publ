@@ -28,7 +28,7 @@ const Apply = () => {
   return (
     <div className={styleCommon.layer}>
       <Header title="리또 신청"/>
-      <Container>
+      <Container className={styleCommon.layerContainer}>
         <span className={styleApply.visualImg1}></span>
         <span className={styleApply.visualImg2}></span>
         <FadeIn> 

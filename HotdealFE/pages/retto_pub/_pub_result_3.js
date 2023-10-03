@@ -31,7 +31,7 @@ const index = () => {
         <li>리또 스탬프</li>
         <li className={styleMyretto.active}>당첨 리또</li>
       </ul>
-      <Container> 
+      <Container isTab> 
         {/* <MyPage /> */}
         {/* <Stamp /> */}
         <Result case1 /> 

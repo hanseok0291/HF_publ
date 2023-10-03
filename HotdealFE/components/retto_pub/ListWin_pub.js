@@ -15,7 +15,7 @@ const ListWin_pub = () => {
     <>
       <Container padding="0" isTab>
         <div className={`${styleRettoList.noResult}`}>
-          <p>아직은 당첨된 리또가 없어요.</p>
+          <p>당첨된 리또가 없어요.</p>
         </div>
         <div className={styleRettoList.turnNavWrap}>
           <div className={styleRettoList.turnNavBox}>

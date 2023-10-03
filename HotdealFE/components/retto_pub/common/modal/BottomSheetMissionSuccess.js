@@ -55,7 +55,7 @@ const BottomSheetMissionSuccess = ({ open, close }) => {
         {dropdown &&
           <div className={styleRettoModal.dropBox}>
             <h4>보너스 미션이란?</h4>
-            <p><b>1등 당첨 번호 3개만 맞히면</b> 최대 1만 포인트 랜덤 지급!</p>
+            <p><b>1등 당첨 번호 중 3개만 맞히면</b> 최대 1만 포인트 랜덤 지급!</p>
             <h4>참여 대상은?</h4>
             <p className={styleRettoModal.midText}>
               당첨 결과 발표 회차 직전 1주(월~일) 동안 <br />

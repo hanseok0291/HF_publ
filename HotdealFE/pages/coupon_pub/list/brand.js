@@ -11,6 +11,7 @@ import Layout from "../../../components/common/Layout";
 import Header from "../../../components/coupon_pub/common/Header";
 import Footer from "../../../components/coupon_pub/common/Footer";
 import Navigation from "../../../components/coupon_pub/main/Navigation";
+import ModalBrandIn from "../../../components/coupon_pub/common/Modal/ModalBrandIn";
 
 const tabList = [
   {
@@ -113,7 +114,7 @@ const Index = () => {
         {/* <div className={`${styleCommon.containerWrap} ${styleBrandList.brandMain}`}> */}
           <ul className={styleBrandList.brandTabWrap}>
             {tabList.map((item, index) => (
-              <li key={index} className={onTab === index && styleBrandList.active} onClick={() => handleClick(index) }>
+              <li key={index} className={onTab === index ? styleBrandList.active : ""} onClick={() => handleClick(index) }>
                 <button type="button">
                   <img src={item.src} alt={item.name} />
                   <span>{item.name}</span>
@@ -134,7 +135,7 @@ const Index = () => {
             ))}
           </ul>
         </div>
-        {/* <Footer /> */}
+        {/* <ModalBrandIn /> */}
       </Layout>
     </>
   );

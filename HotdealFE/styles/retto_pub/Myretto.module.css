@@ -3,7 +3,7 @@
 .titleWrap h2 { margin-top: 2px; color: #151515; font-size: 22px; line-height: 26.4px; font-weight: 700; } 
 .titleWrap .prizeWrap { display: inline-block; margin-top: 10px; padding: 10px 42px; font-size: 13px; line-height: 15.6px; border-radius: 50px; background-color: #F0F0F0; color: #575757; } 
 .titleWrap .prizeWrap span { margin-left: 4px; color: #FF2B00; font-weight: 400; } 
-.tabWrap { display: flex; height: 47px; padding: 0 20px; border-bottom: 1px solid #D9D9D9; } 
+.tabWrap { display: flex; position: fixed; left: 0; top: 44px; z-index: 10; width: 100%; height: 47px; padding: 0 20px; border-bottom: 1px solid #D9D9D9; background-color: #fff; } 
 .tabWrap li { position: relative; margin-right: 25px; font-size: 15px; line-height: 47px; } 
 .tabWrap li.active::after { display: block; content: ""; position: absolute; left: 0; bottom: -1px; width: 100%; height: 2px; background-color: #151515; } 
 
@@ -60,7 +60,7 @@
 .jewelBox .topCon:global.diamond .jewelColor { color: #1A75FF; } 
 .jewelBox .topCon .jewelName { font-size: 18px; font-weight: 700; line-height: 21px; } 
 .jewelBox .topCon .jewelInfo { margin-top: 4px; font-size: 16px; font-weight: 400; line-height: 19px; } 
-.jewelBox .topCon .alertBox { position: absolute; left: 14px; top: -4px; height: 30px; padding: 6px 7.5px 0; color: #fff; font-weight: 700; font-size: 11px; line-height: 13px; background: url('../../public/images/retto/main-noti-box.png') 0 0 / 100% 100% no-repeat; animation: expand 0.3s backwards; } 
+.jewelBox .topCon .alertBox { position: absolute; left: 14px; top: -4px; height: 30px; padding: 6px 7.5px 0; color: #fff; font-weight: 700; font-size: 11px; line-height: 13px; background: url('../../public/images/retto/main-noti-box.png') 0 0 / 100% 100% no-repeat; animation: expand 0.3s 0.8s backwards; } 
 .jewelBox .topCon .alertBox.blue { background: url('../../public/images/retto/main-noti-box2.png') 0 0 / 100% 100% no-repeat; } 
 .jewelBox .botCon { display: flex; } 
 .jewelBox .botCon .button { flex: 1; display: flex; justify-content: center; position: relative; width: 50%; padding: 12px; text-align: center; color: #222222; font-size: 14px; line-height: 16.8px; } 
@@ -82,12 +82,13 @@
 .stampBorderBox .stampWrap li:global.coupon div button { position: absolute; left: 50%; bottom: -3px; z-index: 1; transform: translateX(-50%); width: 92px; height: 22px; padding-right: 5px; border-radius: 30px; color: #fff; font-size: 11px; font-weight: 700; background: #151515 url('../../public/images/retto/icon-arrow-white.png') right 7px center / 5px auto no-repeat; } 
 .stampBorderBox .stampWrap li:global.coupon div button.disabled { width: 102px; pointer-events: none; background-color: #CCCCCC; } 
 .stampBorderBox .stampWrap li:global.coupon div p::after { display: block; content: ""; width: 20px; height: 15px; margin-top: 3px; background: url('../../public/images/retto/stamp-coupon.png') 0 0 / cover no-repeat; } 
-.stampBorderBox li:global.ruby div::after { display: block; content: ""; position: absolute; left: 50%; top:50%; transform: translate(-50%,-50%); width: 75px; height: 75px; margin-top: 0; background: url('../../public/images/retto/stamp-jewel-01.png') 0 0 / cover no-repeat; } 
-.stampBorderBox li:global.emerald div::after { display: block; content: ""; position: absolute; left: 50%; top:50%; transform: translate(-50%,-50%); width: 75px; height: 75px; margin-top: 0; background: url('../../public/images/retto/stamp-jewel-02.png') 0 0 / cover no-repeat; } 
-.stampBorderBox li:global.diamond div::after { display: block; content: ""; position: absolute; left: 50%; top:50%; transform: translate(-50%,-50%); width: 75px; height: 75px; margin-top: 0; background: url('../../public/images/retto/stamp-jewel-03.png') 0 0 / cover no-repeat; } 
-.stampBorderBox li:global.fail div::after { display: block; content: ""; position: absolute; left: 50%; top:50%; transform: translate(-50%,-50%); width: 75px; height: 75px; margin-top: 0; background: url('../../public/images/retto/stamp-jewel-04.png') 0 0 / cover no-repeat; } 
-.stampBorderBox li:global.starbucks div::after { display: block; content: ""; position: absolute; left: 50%; top:50%; transform: translate(-50%,-50%); width: 75px; height: 75px; margin-top: 0; background: url('../../public/images/retto/stamp-starbucks.png') 0 0 / cover no-repeat; } 
-.stampBorderBox li:global.cu div::after { display: block; content: ""; position: absolute; left: 50%; top:50%; transform: translate(-50%,-50%); width: 75px; height: 75px; margin-top: 0; background: url('../../public/images/retto/stamp-cu.png') 0 0 / cover no-repeat; } 
+.stampBorderBox li div::after { width: 75px; height: 76px; } 
+.stampBorderBox li:global.ruby div::after { display: block; content: ""; position: absolute; left: 50%; top:50%; transform: translate(-50%,-50%); margin-top: 0; background: url('../../public/images/retto/stamp-jewel-01.png') 0 0 / 100% auto no-repeat; } 
+.stampBorderBox li:global.emerald div::after { display: block; content: ""; position: absolute; left: 50%; top:50%; transform: translate(-50%,-50%); margin-top: 0; background: url('../../public/images/retto/stamp-jewel-02.png') 0 0 / 100% auto no-repeat; } 
+.stampBorderBox li:global.diamond div::after { display: block; content: ""; position: absolute; left: 50%; top:50%; transform: translate(-50%,-50%); margin-top: 0; background: url('../../public/images/retto/stamp-jewel-03.png') 0 0 / 100% auto no-repeat; } 
+.stampBorderBox li:global.fail div::after { display: block; content: ""; position: absolute; left: 50%; top:50%; transform: translate(-50%,-50%); margin-top: 0; background: url('../../public/images/retto/stamp-jewel-04.png') 0 0 / 100% auto no-repeat; } 
+.stampBorderBox li:global.starbucks div::after { display: block; content: ""; position: absolute; left: 50%; top:50%; transform: translate(-50%,-50%); margin-top: 0; background: url('../../public/images/retto/stamp-starbucks.png') 0 0 / 100% auto no-repeat; } 
+.stampBorderBox li:global.cu div::after { display: block; content: ""; position: absolute; left: 50%; top:50%; transform: translate(-50%,-50%); margin-top: 0; background: url('../../public/images/retto/stamp-cu.png') 0 0 / 100% auto no-repeat; } 
 .stampBorderBox .stampScrollWrap { position: relative; } 
 .stampBorderBox .stampScrollWrap:global.initial ul { margin-top: 0; padding-top: 30px; } 
 .stampBorderBox .stampScrollWrap:global.initial::before, 
@@ -143,7 +144,7 @@
 .stampBorderBox .botCon .button.on span { background-color: #FED8CC; color: #F93B00; } 
 .stampBorderBox .botCon .button.off span { background-color: #F0F0F0; color: #CCCCCC; } 
 
-@keyframes expand {
-  0% { transform: scale(0); }
-  100% { transform: scale(1); }
-}
+@keyframes expand { 
+ 0% { transform: scale(0); } 
+ 100% { transform: scale(1); } 
+ }

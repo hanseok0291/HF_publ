@@ -16,7 +16,7 @@ const LayerWinInfo = () => {
         </button>
       </div>
       <div className={`${styleRettoList.winInfoWrap}`}>
-        <h4><span>1</span>1, 2등 당첨금 관련 안내드려요.</h4>
+        <h4><span className={`${styleRettoList.number} ${styleRettoList.number1}`}></span>1, 2등 당첨금 관련 안내드려요.</h4>
         <ul className={styleRettoList.firstCon}>
           <li>
             <strong>5만원 이하</strong>
@@ -31,7 +31,7 @@ const LayerWinInfo = () => {
             <p>다음 달 15일 내 <br /> <b>계좌로 지급</b></p>
           </li>
         </ul>
-        <h4><span>2</span> 보너스 미션 관련 안내드려요.</h4>
+        <h4><span className={`${styleRettoList.number} ${styleRettoList.number2}`}></span> 보너스 미션 관련 안내드려요.</h4>
         <div className={styleRettoList.secondCon}>
           <p>미션 성공 시 <br /><b>최대 1만 포인트 랜덤 지급</b></p>
           <ul>
@@ -43,13 +43,13 @@ const LayerWinInfo = () => {
             </li>
           </ul>
         </div>
-        <h4><span>3</span>제세공과금 관련 안내드려요.</h4>
+        <h4><span className={`${styleRettoList.number} ${styleRettoList.number3}`}></span>제세공과금 관련 안내드려요.</h4>
         <div className={`${styleRettoList.secondCon} ${styleRettoList.type2}`}>
           <p>5만원 초과 당첨금은 <br /> 제세공과금 처리를 위해 <br /><b>신분증 사본 제출 필수</b></p>
           <ul>
             <li>
-              <CopyToClipboard text={"010pay_event@hecto.co.kr"}>
-              <button type='button' className={styleRettoList.email}>010pay_event@hecto.co.kr</button>
+              <CopyToClipboard text={"010pay_event@hecto.co.kr"} onCopy={() => alert("이메일 주소가 복사되었습니다.")}>
+                <button type='button' className={styleRettoList.email}>010pay_event@hecto.co.kr</button>
               </CopyToClipboard>
             </li>
             <li>
@@ -69,7 +69,7 @@ const LayerWinInfo = () => {
           <thead>
             <tr>
               <th rowSpan="2">등수</th>
-              <th rowSpan="2">실제 리또 <br/> 당첨 번호 일치</th>
+              <th rowSpan="2">실제 로또 <br/> 당첨 번호 일치</th>
               <th rowSpan="2">실제 로또 <br /> 당첨금</th>
               <th colSpan="3">리또 레벨별 당첨금</th>
             </tr>

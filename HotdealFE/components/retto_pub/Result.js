@@ -62,7 +62,10 @@ const Result = ({case1, case2}) => {
             }
             
             return (
-              <li key={index} className={`${styleResult.ball} ${styleBall}`}><span>{item}</span></li>
+              <li key={index} className={`${styleResult.ball} ${styleBall}`}>
+                <span>{item}</span>
+                {index === 6 && <div className={styleResult.plusIcon}></div> }
+              </li>
             )
           })}
         </ul>

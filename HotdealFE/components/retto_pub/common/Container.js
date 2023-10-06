@@ -9,7 +9,6 @@ function Container({children, backgroundColor="#F9F9F9", padding="30px 20px", is
   const style = {
     backgroundColor: backgroundColor,
     padding: padding,
-    marginTop: `${isTab ? '91px': "44px"}`,
     minHeight: winHeight
   }
   useEffect(() => {
@@ -17,8 +16,10 @@ function Container({children, backgroundColor="#F9F9F9", padding="30px 20px", is
   }, [])
 
   return (
-    <div className={`${styleCommon.container} ${className}`} style={style}>
-      {children}
+    <div className={className} style={{paddingTop: isTab ? '91px': "44px"}}>
+      <div className={`${styleCommon.container}`} style={style}>
+        {children}
+      </div>
     </div>
   )
 }

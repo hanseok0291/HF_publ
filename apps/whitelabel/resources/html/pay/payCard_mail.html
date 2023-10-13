@@ -34,7 +34,7 @@
 <!-- //IE 브라우저 지원 안내 -->
 
 <!-- wrap -->
-<div id="wrap" class="wrap">
+<div id="wrap" class="wrap new">
 	<!-- form -->
 	<form class="wrap" autocomplete="off">
 		<!-- header -->
@@ -71,7 +71,7 @@
 									<div class="img-area"><img src="../../images/pay/credit/wri.png" alt="우리카드"> <span class="label">카드</span></div>
 									<div class="info-area">
 										<div class="name">우리카드</div>
-										<div class="number"><span class="label">신용</span> 9842 86** **** 949*</div>
+										<div class="number"><span class="label promotion">프로모션</span> <span class="label">신용</span> 9842 86** **** 949*</div>
 									</div>
 								</div>
 								<div class="item" data-mail-type="mail">
@@ -92,6 +92,25 @@
 
 						<!-- option -->
 						<div class="pay-option">
+							
+							<!-- 결제 혜택 -->
+							<div id="optionBenefit" class="option option-benefit">
+								<div class="form-group">
+									<label class="form-label">결제 혜택</label>
+									<div class="form-group">
+										<span class="checkbox">
+											<input type="checkbox" name="benefitYn" id="benefitYn">
+											<label for="benefitYn">4,000원 할인쿠폰 적용
+												<p>삼성카드 최대 2만원 즉시 할인</p>
+											</label>
+											<button type="button" class="btn arrow-right" data-toggle="modal" data-target="#benefitAlert"></button>
+										</span>
+										<div class="text-error"></div>
+									</div>
+								</div>
+							</div>
+							<!-- //결제 혜택 -->
+
 							<!-- 할부 -->
 							<div id="optionCredit" class="option">
 								<div class="form-group">
@@ -367,6 +386,69 @@
 </div>
 <!-- //modal - 무이자 할부 안내 -->
 
+<!-- modal - 즉시 할인 모달 -->
+<div id="benefitAlert" class="modal fade common benefit" tabindex="-1" role="dialog" data-backdrop="static">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 id="alertTitle" class="modal-title">삼성카드 즉시 할인</h3>
+			</div>
+			<div class="modal-body">
+				<div id="alertContents">
+					<dl>
+						<dt>기간</dt>
+						<dd>2023년 6월 1일(목) ~ 6월 30일(금)</dd>
+					</dl>
+					<dl>
+						<dt>혜택</dt>
+						<dd>최대 2만원까지 즉시 할인</dd>
+					</dl>
+					<div class="table-wrap">
+						<table class="table">
+							<colgroup>
+								<col style="width: 50%">
+								<col>
+							</colgroup>
+							<thead>
+								<tr>
+									<th>결제금액</th>
+									<th>즉시할인금액</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>20만원 이상</th>
+									<td>4,000원</td>
+								</tr>
+								<tr>
+									<td>40만원 이상</th>
+									<td>8,000원</td>
+								</tr>
+								<tr>
+									<td>60만원 이상</th>
+									<td>12,000원</td>
+								</tr>
+								<tr>
+									<td>80만원 이상</th>
+									<td>16,000원</td>
+								</tr>
+								<tr>
+									<td>100만원 이상</th>
+									<td>20,000원</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //modal - common -->
+
 <!-- modal - common -->
 <div id="commonAlert" class="modal fade common" tabindex="-1" role="dialog" data-backdrop="static">
 	<div class="modal-dialog modal-dialog-centered">
@@ -425,9 +507,11 @@ $(document).ready(function(){
 	function payOption(){
 		var thisType = $('.slick-current').attr('data-pay-type');
 		var thisTypeMail = $('.slick-current').attr('data-mail-type');
+		var $optionBenefit = $('#optionBenefit'); 	// 결제 혜택 옵션
 		var $optionCredit = $('#optionCredit'); 	// 신용카드 옵션(할부)
 		var $optionAccount = $('#optionAccount'); 	// 계좌 옵션(현금영수증)
 		var $optionMail = $('#optionMail'); 	// 메일 수신
+		$optionBenefit.show();
 		if(thisType == 'credit'){ 					// current slide가 신용카드일 경우
 			$optionCredit.fadeIn(200);
 			$optionAccount.hide();
@@ -471,6 +555,15 @@ $(document).ready(function(){
 		} else {
 			$('#optionMail .form-control').attr("disabled",true); 
 			$('#optionMail .form-control').val('');
+		}
+	});
+
+	// 결제 혜택 선택
+	$('#benefitYn').click(function(){
+		if($(this).is(':checked') == true) {
+			$('.option-benefit').addClass('on');
+		} else {
+			$('.option-benefit').removeClass('on');
 		}
 	});
 	

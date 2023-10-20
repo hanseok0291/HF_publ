@@ -56,7 +56,6 @@ const index = () => {
       {/* <BottomSheetMission /> */}
       {/* 튜토리얼 */}
       <LayerTutorial type="mypage"/>
-      {/* <LayerTutorial type="stamp"/> */}
     </>
   );
 };

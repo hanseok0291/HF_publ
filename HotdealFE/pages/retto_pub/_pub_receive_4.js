@@ -11,7 +11,6 @@ import Button from "../../components/retto_pub/common/Button";
 import LayerRettoInfo from "../../components/retto_pub/LayerRettoInfo";
 import LayerRettoMoneyGet from "../../components/retto_pub/LayerRettoMoneyGet";
 import LayerReceive from "../../components/retto_pub/LayerReceive";
-import ModaladdMoney from "../../components/retto_pub/common/modal/ModaladdMoney";
 import BottomSheetAccount from "../../components/retto_pub/common/modal/BottomSheetAccount";
 
 

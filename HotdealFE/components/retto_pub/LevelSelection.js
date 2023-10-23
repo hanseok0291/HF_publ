@@ -33,7 +33,7 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
     const jewelCase = [{
         eng: 'ruby',
         kor: '루비',
-        cash: '10',
+        cash: '30',
         prize: '1백만원',
         level: "Lv. 1"
       },
@@ -170,7 +170,7 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
             )}
           </p>
           {/* <p>
-            <b>10만원까지 이미 채워져 있네요.</b> <br /> 
+            <b>30만원까지 이미 채워져 있네요.</b> <br /> 
             <span>루비</span> 리또 받을 준비 끝 !
           </p> */}
           <div className={styleCommon.moneyWrap}>

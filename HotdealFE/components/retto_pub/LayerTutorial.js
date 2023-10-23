@@ -10,14 +10,12 @@ import 'swiper/css/pagination';
 import styleCommon from '../../styles/retto_pub/Common.module.css';
 import styleTutorial from '../../styles/retto_pub/Tutorial.module.css';
 import Button from './common/Button';
-import { useState } from 'react';
 
-const LayerTutorial = () => {
-  const [nextStep, setNextStep] = useState(false);
+const LayerTutorial = ({type}) => {
 
   return (
     <div className={`${styleCommon.layer} ${styleTutorial.tutorial}`}>
-      { !nextStep ? 
+      { type === "mypage" ? 
         <Swiper className={`${styleTutorial.slide} ${styleTutorial.slideWrap1}`} modules={[Pagination]} pagination={{clickable: true}} key="swiper1">
           <SwiperSlide className={styleTutorial.slide1}>
             <div className={styleTutorial.slideWrap}>
@@ -69,7 +67,7 @@ const LayerTutorial = () => {
               <div className={styleTutorial.imgBox}></div>
             </div>
             <div className={styleTutorial.btnWrap}>
-              <Button onClick={() => setNextStep(true)}>이해했어요</Button>
+              <Button>이해했어요</Button>
             </div>
           </SwiperSlide>
         </Swiper> :

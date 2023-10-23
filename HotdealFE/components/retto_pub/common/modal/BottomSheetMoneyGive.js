@@ -40,7 +40,7 @@ const BottomSheetMoneyGive = ({ closeHundredPopup }) => {
         {/* <h2>당첨금을 받았어요!</h2> */}
         <h2>앗, 보유 한도를 초과했어요!</h2>
         {/* <p><span>포인트 15,000원</span>이 지금 바로 들어왔어요.</p> */}
-        <p>당첨금을 포함 포인트가 200만원이 넘었네요. <br />
+        <p>당첨금 포함 포인트가 200만원이 넘네요. <br />
           <span>당첨금은 적립 대기로 보관</span>해 둘게요.</p> 
         <Button>확인</Button>
       </div>

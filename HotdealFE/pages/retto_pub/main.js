@@ -32,8 +32,8 @@ const index = () => {
         <li>당첨 리또</li>
       </ul>
       <Container isTab>
-        <MyPage case1 case2 case3 case4 case5 case6 case7/>
-        {/* <Stamp case1/> */}
+        {/* <MyPage case1 case2 case3 case4 case5 case6 case7/> */}
+        <Stamp case1/>
         {/* <Result/>  */}
       </Container>
       {/* 리또 신청 */}
@@ -49,13 +49,13 @@ const index = () => {
       {/* 레벨 변경 확인 */}
       {/* <ModalLevelChange /> */}
       {/* 스탬프 주차 확인 바텀 시트 */}
-      {/* <BottomSheetSaveingList /> */}
+      <BottomSheetSaveingList />
       {/* 스탬프 10주차 유지 성공 바텀 시트 */}
       {/* <BottomSheetPresent /> */}
       {/* 보너스 미션 바텀 시트 */}
       {/* <BottomSheetMission /> */}
       {/* 튜토리얼 */}
-      <LayerTutorial type="mypage"/>
+      {/* <LayerTutorial type="mypage"/> */}
       {/* <LayerTutorial type="stamp"/> */}
     </>
   );

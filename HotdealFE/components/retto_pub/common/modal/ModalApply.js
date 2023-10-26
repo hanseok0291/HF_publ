@@ -27,7 +27,7 @@ const ModalApply = ({jewel, handleModalToggle}) => {
             <b>{jewel.cash}만원까지</b> 채우면 <br /> 
             <b>{jewel.level} <span className="jewelColor">{jewel.kor} 리또</span></b> 받을 준비 끝!
           </p>
-          <p className={styleRettoModal.subText}>부족한 머니는 충전해서 채울게요.</p>
+          <p className={styleRettoModal.subText}>부족한 머니는 충전 후 <br />채우기 상자에 따로 넣어둘게요.</p>
           <div className={styleRettoModal.grayBox}>
             <dl>
               <dt>내 보유 머니</dt>
@@ -41,6 +41,7 @@ const ModalApply = ({jewel, handleModalToggle}) => {
               <dd className="jewelColor">85,000원</dd>
             </dl>
           </div>
+          {/* 동의 미노출 영역 */}
           <div className={styleRettoModal.benefitAlertWrap}>
             <div className={styleRettoModal.text}>
               혜택 알림 동의
@@ -50,6 +51,7 @@ const ModalApply = ({jewel, handleModalToggle}) => {
               <button type="button"></button>
             </div>
           </div>
+          {/* 동의 미노출 영역 end */}
           <Button disabled={!agree}>좋아요</Button>
         </div>
       </div>

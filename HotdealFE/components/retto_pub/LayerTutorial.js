@@ -22,7 +22,7 @@ const LayerTutorial = ({type}) => {
               <h2>회차 진행 기간</h2>
               <p className={styleTutorial.period}>10. 09<span>-</span>10 .15</p>
               <p className={styleTutorial.subText}>
-                이번주 토요일 추첨하는 <br />
+                다음주 토요일 추첨하는 <br />
                 진행 회차의 기간이 표시돼요!
               </p>
               <p className={styleTutorial.addInfo}>1주(월요일~일요일)를 기준으로 해요!</p>
@@ -63,7 +63,7 @@ const LayerTutorial = ({type}) => {
                 원하는 레벨로 언제든 <br />
                 편하게 변경할 수 있어요
               </p>
-              <p className={styleTutorial.addInfo}>리또를 쉽게 받는 꿀 Tip이에요!</p>
+              {/* <p className={styleTutorial.addInfo}>리또를 쉽게 받는 꿀 Tip이에요!</p> */}
               <div className={styleTutorial.imgBox}></div>
             </div>
             <div className={styleTutorial.btnWrap}>

@@ -27,8 +27,8 @@ const ApplyComplete = ({
             {jewel.level}<button type="button"></button>
           </p>
           <p className={styleApply.subText}>
-            <b>1주일 동안</b> 잘 관리해 주세요. <br />
-            <b>매일 {jewel.cash}만원</b>은 채워져 있어야 해요.
+            <b>{jewel.cash}만원</b>을 채우기 상자에 넣어뒀어요. <br />
+            <b>1주일 동안</b> 잘 보관해 주세요.
           </p>
           <ul className={`${styleApply.weekListWrap}`}>
             <li className={`${styleApply.checked}`}><span>월</span></li>
@@ -44,12 +44,12 @@ const ApplyComplete = ({
           </div>
         </div>
         <div className={styleApply.tipWrap}>
-          <p className={styleApply.tipTitle}>리또 받기 꿀TIP</p>
+          <p className={styleApply.tipTitle}>채우기 상자가 뭐에요?</p>
           <p className={styleApply.tipsubText}>
-            <b>매일 밤 11시 전</b>까지만 채워두면 OK ! <br />
-            줄어든 만큼 <b>알아서 채워주는 자동 충전</b>은 어때요?
+            리또를 받기 위해 채운 머니를 <br />
+            <b>보유 금액과 분리하여 별도 보관하는 상자예요!</b> <br />
+            상자 속 금액은 결제할 때 사용할 수 없어요. 
           </p>
-          <button type="button">자동 충전 설정</button>
         </div>
       </div>
     </div>

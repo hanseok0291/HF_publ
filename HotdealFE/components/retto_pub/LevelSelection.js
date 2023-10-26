@@ -161,11 +161,19 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
                 나도 <b>최대 1억원의 주인공?!</b>
               </>
             )}
+            {!full && (
+              <span className={styleCommon.priceMoney}>
+                채운 금액은 상자에 따로 보관돼요.
+              </span>
+            )}
             {full && (
               <>
                 <b>{jewel.cash}만원까지 이미 채워져 있네요.</b> <br />
                 <span className='jewelColor'>{jewel.kor}</span> 리또 받을 준비 끝 !
-                {/* <span className={styleCommon.priceMoney}><span>최대 {jewel.prize} 당첨</span> 가능해요.</span> */}
+                <span className={styleCommon.priceMoney}>
+                  <span>최대 {jewel.prize} 당첨</span> 가능해요. <br />
+                  채운 금액은 상자에 따로 보관돼요.
+                </span>
               </>
             )}
           </p>

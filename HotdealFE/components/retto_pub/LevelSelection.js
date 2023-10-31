@@ -85,30 +85,6 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
     setHandelText(price);
   };
 
-  // const handleSnap = (value) => {
-  //   const snapPoints = [26, 41, 58, 75, 92];
-  //   const snapPrice = [10, 50, 100];
-  //   const nearestSnap = snapPoints.reduce((prev, curr) =>
-  //     Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev
-  //   );
-  //   // const price = snapPoints.map((item, index) => (
-  //   //   nearestSnap === 25 ? "움직여서 선택하기" : snapPrice[index + 2]
-  //   // ));
-  //   const price = snapPoints.map((item, index) => {
-  //     if(nearestSnap === 25 && index === 0){
-  //       return "움직여서 선택하기";
-  //     } else if(nearestSnap === item && index !== 1) {
-  //       return (
-  //         <span key={index}>
-  //           <em>{`${snapPrice[index - 2]}만원까지`}</em><br />
-  //           채우기
-  //         </span>
-  //       );
-  //     }
-  //   });
-  //   setHandelText(price);
-  // };
-
   return (
     <>
       {!jewel ? (
@@ -182,6 +158,10 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
             <span>루비</span> 리또 받을 준비 끝 !
           </p> */}
           <div className={styleCommon.moneyWrap}>
+            <dl>
+              <dt>채우기 상자</dt>
+              <dd>100,000원</dd>
+            </dl>
             <dl>
               <dt>내 보유 머니</dt>
               <dd>15,000원</dd>

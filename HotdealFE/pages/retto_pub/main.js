@@ -32,7 +32,7 @@ const index = () => {
         <li>당첨 리또</li>
       </ul>
       <Container isTab>
-        <MyPage case1 case2 case3 case4 case5 case6 case7/>
+        {/* <MyPage case1 case2 case3 case4 case5 case6 case7/> */}
         {/* <Stamp case1/> */}
         {/* <Result/>  */}
       </Container>

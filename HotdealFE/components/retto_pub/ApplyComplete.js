@@ -44,7 +44,7 @@ const ApplyComplete = ({
           </div>
         </div>
         <div className={styleApply.tipWrap}>
-          <p className={styleApply.tipTitle}>채우기 상자가 뭐에요?</p>
+          <p className={styleApply.tipTitle}>채우기 상자가 뭐에요?</p> 
           <p className={styleApply.tipsubText}>
             리또를 받기 위해 채운 머니를 <br />
             <b>보유 금액과 분리하여 별도 보관하는 상자예요!</b> <br />

@@ -3,10 +3,10 @@ import React from 'react';
 //style
 import styleCommon from '../../../styles/retto_pub/Common.module.css';
 
-const Header = ({title = "리또", sideBtn="리또란?"}) => {
+const Header = ({title = "리또", sideBtn="리또란?", isborder=false}) => {
   
   return (
-    <div className={styleCommon.header}> 
+    <div className={`${styleCommon.header} ${isborder ? styleCommon.headerBorder : ""}`}> 
       <button type='button' className={styleCommon.backButton}>뒤로가기</button>
       <h1>{title}</h1> 
       {sideBtn !== "" && <button type='button' className={styleCommon.openBottomSheet}>{sideBtn}</button>}

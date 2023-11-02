@@ -19,7 +19,7 @@ const FillBox = ({case1, case2}) => {
 
   return (
     <div className={`${styleCommon.layer} ${styleFillBox.fillBoxWrap}`}>
-      <Header title="채우기 상자" isborder sideBtn="비우기"/>
+      <Header title="리또 머니함" isborder sideBtn="비우기"/>
       <Container className={styleCommon.layerContainer} backgroundColor="#fff" padding="0">
         <div className={styleFillBox.topConWrap}>
           <div className={`${styleCommon.borderBox} ${styleApply.borderBox}`}>
@@ -51,12 +51,12 @@ const FillBox = ({case1, case2}) => {
         <div className={styleFillBox.noteWrap}>
           <p>안내사항</p>
           <ul>
-            <li>리또를 받기 위해 채운 머니는 <b>채우기 상자로 별도 보관</b>됩니다.</li>
-            <li>상자 속 금액은 사용 가능 금액에서 제외되어 <b>결제 시 사용할 수 없습니다.</b> <br />(010PAY 기프티몰, 내통장결제 및 카드 결제 등)</li>
-            <li>리또 레벨별 채우기 금액만큼만 상자에 넣어둘 수 있습니다.</li>
-            <li>상자 비우기 선택 시 상자 속 금액은 보유 금액으로 자동 전환됩니다.</li>
-            <li>상자 속 금액을 포함한 보유 머니가 200만원을 초과하는 경우,<br />여유 공간을 확보하기 전까지 상자를 비울 수 없습니다.</li>
-            <li>상자가 비어있다면 다시 채우기 전까지 리또를 받을 수 없습니다.</li>
+            <li>리또를 받기 위해 채운 머니는 <b>리또 머니함에 별도 보관</b>됩니다.</li>
+            <li>머니함 속 금액은 보유 금액에서 제외되어 <b>결제 시 사용할 수 없습니다.</b> <br />(010PAY 기프티몰, 내통장결제 및 카드 결제 등)</li>
+            <li>리또 레벨별 채우기 금액만큼만 머니함에 넣어둘 수 있습니다.</li>
+            <li>비우기 선택 시 머니함 속 금액은 보유 금액으로 자동 전환됩니다.</li>
+            <li>머니함 속 금액을 포함한 보유 머니가 200만원을 초과하는 경우,<br />여유 공간을 확보하기 전까지 머니함을 비울 수 없습니다.</li>
+            <li>머니함이 비어있다면 다시 채우기 전까지 리또를 받을 수 없습니다.</li>
           </ul>
         </div>
       </Container>

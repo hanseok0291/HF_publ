@@ -137,18 +137,18 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
                 나도 <b>최대 1억원의 주인공?!</b>
               </>
             )}
-            {!full && (
+            {/* {!full && (
               <span className={styleCommon.priceMoney}>
-                채운 금액은 상자에 따로 보관돼요.
+                채운 금액은 리또 머니함에 보관돼요.
               </span>
-            )}
+            )} */}
             {full && (
               <>
                 <b>{jewel.cash}만원까지 이미 채워져 있네요.</b> <br />
                 <span className='jewelColor'>{jewel.kor}</span> 리또 받을 준비 끝 !
                 <span className={styleCommon.priceMoney}>
                   <span>최대 {jewel.prize} 당첨</span> 가능해요. <br />
-                  채운 금액은 상자에 따로 보관돼요.
+                  채운 금액은 리또 머니함에 보관돼요.
                 </span>
               </>
             )}
@@ -159,25 +159,26 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
           </p> */}
           <div className={styleCommon.moneyWrap}>
             <dl>
-              <dt>채우기 상자</dt>
+              <dt>리또 머니함</dt>
               <dd>100,000원</dd>
             </dl>
-            <dl>
+            {/* <dl>
               <dt>내 보유 머니</dt>
               <dd>15,000원</dd>
-            </dl>
-            {!full && (
+            </dl> */}
+            {/* {!full && (
               <dl>
                 <dt>채우기 <button type='button' className={styleCommon.accountButton}><img src="../../images/coupon/logo/brand/bank1.png" alt="" />신한789</button></dt>
                 <dd><span className='jewelColor'>15,000원</span></dd>
               </dl>
-            )}
-            {/* 레벨 변경 레이어 팝업으로 사용 될 때 노출 됨 */}
-            {/* <div className={styleCommon.changeText}>
-              <p><b>변경된 레벨은 다음주 월요일부터 적용</b></p>
-              <p>부족한 머니도 그때 충전해서 채울게요.</p>
-            </div> */}
+            )} */}
+            
           </div>
+          {/* 레벨 변경 시 남은 금액 이동 문구 */}
+          <p className={styleCommon.changeText}>
+            10만원을 제외한 기존 머니함 속 금액은 <br />
+            <b>보유 머니로 이동</b>돼요. 
+          </p>
         </div>
       )}
         

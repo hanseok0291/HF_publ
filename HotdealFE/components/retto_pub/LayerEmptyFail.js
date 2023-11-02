@@ -19,7 +19,7 @@ const LayerEmptyFail = () => {
       <div className={`${styleApply.applyFailWrap}`}>
         <p className={styleApply.mainText}>
           <b>앗, 머니 보유 한도를 초과했어요!</b> <br />
-          상자 속 금액을 옮길 공간이 부족해요.
+          머니함 속 금액을 옮길 공간이 부족해요.
         </p>
         <div className={styleFillBox.emptyFailBox}>
           <dl>

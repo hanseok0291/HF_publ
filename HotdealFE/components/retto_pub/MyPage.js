@@ -79,9 +79,11 @@ const MyPage = ({case1, case2, case3, case4, case5, case6, case7}) => {
             <div className={`${styleMyretto.topCon} diamond`}>{/* ruby emerald diamond className 추가 시 스타일 변경*/}
               {/* <span className={styleMyretto.alertBox}>100만원에서 줄어들었어요!</span> */}
               {/* <span className={styleMyretto.alertBox}>이번 기회는 아쉽게 놓쳤어요!</span> */}{/* 스탬프 받기 이번주 실패 */}
-              {/* <span cla ssName={styleMyretto.alertBox}>혜택 알림이 꺼져있어요!</span> */}{/* 혜택 알림 미동의 */}
-              {/* <span cla ssName={styleMyretto.alertBox}>채우기 상자가 비어 있어요!</span> */}{/* 채우기상자 off  */}
-              <span className={`${styleMyretto.alertBox} ${styleMyretto.blue}`}>변경된 레벨은 월요일부터 적용!</span>{/* 혜택 알림 미동의 */}
+              {/* <span className={styleMyretto.alertBox}>혜택 알림이 꺼져있어요!</span> */}{/* 혜택 알림 미동의 */}
+              <span className={styleMyretto.alertBox}>리또 머니함이 비어 있어요!</span>
+              {/* 채우기상자 off  */}
+              {/* <span className={`${styleMyretto.alertBox} ${styleMyretto.blue}`}>변경된 레벨은 월요일부터 적용!</span> */}
+              {/* 혜택 알림 미동의 */}
               <span className="jewelImg"></span>
               <div>
                 <p className={styleMyretto.jewelName}>MAX. <span  className="jewelColor">다이아</span></p>
@@ -93,7 +95,7 @@ const MyPage = ({case1, case2, case3, case4, case5, case6, case7}) => {
             </div>
             <div className={styleMyretto.botCon}>
               <a href="#" className={styleMyretto.button}>리또 레벨 변경</a>
-              <a href="#" className={`${styleMyretto.button} ${styleMyretto.on}`}>채우기 상자</a>{/* OFF 일때 styleMyretto.off로 변경 */}
+              <a href="#" className={`${styleMyretto.button} ${styleMyretto.off}`}>리또 머니함</a>{/* OFF 일때 styleMyretto.off로 변경 */}
               {/* <a href="#" className={styleMyretto.button}>혜택 알림 켜기</a> */}{/* 혜택 알림 미동의 */}
             </div>
           </div>

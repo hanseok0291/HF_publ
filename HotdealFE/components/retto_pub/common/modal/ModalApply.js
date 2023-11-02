@@ -27,7 +27,7 @@ const ModalApply = ({jewel, handleModalToggle}) => {
             <b>{jewel.cash}만원까지</b> 채우면 <br /> 
             <b>{jewel.level} <span className="jewelColor">{jewel.kor} 리또</span></b> 받을 준비 끝!
           </p>
-          <p className={styleRettoModal.subText}>부족한 머니는 충전 후 <br />채우기 상자에 따로 넣어둘게요.</p>
+          <p className={styleRettoModal.subText}>부족한 머니는 충전 후 <br />리또 머니함에 따로 넣어둘게요.</p>
           <div className={styleRettoModal.grayBox}>
             <dl>
               <dt>내 보유 머니</dt>

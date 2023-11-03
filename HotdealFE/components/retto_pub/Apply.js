@@ -74,7 +74,7 @@ const Apply = () => {
         {/* 계좌 없음 */}
         {/* <ModalApplyAccount /> */}
         {/* 신청 불가 */}
-        {/* <ModalApplyReady /> */}
+        <ModalApplyReady />
         {/* 신청 실패 */}
         {/* <LayerApplyFail /> */}
       </Container>

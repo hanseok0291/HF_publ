@@ -6,13 +6,14 @@
 	<title>헥토파이낸셜 지불서비스</title>
 	<link rel="stylesheet" type="text/css" href="https://pay.pmang.com/Crusader/css/pmang_new.css">
 	<link rel="stylesheet" type="text/css" href="https://pay.pmang.com/Crusader/css/pmang_payment.css">
+	<link rel="stylesheet" type="text/css" href="../../css/pmang_new.css">
+	<link rel="stylesheet" type="text/css" href="../../css/pmang_payment.css">
 </head>
 
 <body class="body_pay" oncontextmenu="return false" onselectstart="return false" ondragstart="return false"
 	marginwidth="0" marginheight="0">
-	<img src="https://pay.pmang.com/Crusader/image/box_type01_top.gif" border="0" style="margin-top:5px;"><br>
-	<div class="pay_box_type01">
-		<table cellpadding="0" cellspacing="0" border="0" width="100%" class="fixed" style="display:block;">
+	<img src="https://pay.pmang.com/Crusader/image/box_type01_top.gif" border="0" style="margin-top:5px;vertical-align: bottom;"><br>
+	<div class="pay_box_type01"><table cellpadding="0" cellspacing="0" border="0" width="100%" class="fixed" style="display:block;">
 			<input type="hidden" name="hidagreeurl" value="">
 			<colgroup>
 				<col width="15" valign="top" style="padding-top:1px;">
@@ -77,6 +78,15 @@
 						</div>
 					</td>
 				</tr>
+				
+				<tr style="padding-top:5px; display: none;" id="trCpinFlag">
+					<td></td>
+					<td class="black">결제방법</td>
+					<td class="gray_01">
+							<div style="float:left;"><input type="radio" onclick="javascript:toggleCpinFlag('N')" name="CpinFlag" id="CpinFlagN" value="N" checked="">일반결제</div>
+							<div style="float:left;padding-left:10px"><input type="radio" onclick="javascript:toggleCpinFlag('Y')" name="CpinFlag" id="CpinFlagY" value="Y">휴대폰결제 비밀번호 사용</div>
+					</td>
+			</tr>
 
 				<tr style="padding-top:5px;" class="inputSocialTypeB socialNoView">
 					<td></td>
@@ -95,6 +105,20 @@
 						</div>
 					</td>
 				</tr>
+				
+				<tr style="padding-top: 5px; display: none;" id="trCarryPin">
+					<td></td>
+					<td class="black" style="letter-spacing:-1pt;">휴대폰결제비밀번호</td>
+					<td class="gray_01">
+							<div style="float:left;">
+									<input type="password" name="carryPin" id="carryPin" value="" title="SKT 휴대폰결제 비밀번호 입력창" class="input_payment numberOnly" style="width:85px;" maxlength="6">
+							</div>
+							<div style="float:left; padding:3 0 0 10;"> 
+							<!-- <img src="https://pay.pmang.com/Crusader/image/btn_desc_hppwd.gif" border="0" style="cursor:hand;" onClick="linkCarrier();" />-->
+									<!--<img src="https://test.mobilians.co.kr/new/images/btn_pwd_info.gif" border="0" style="cursor:hand;" onclick="linkCarrier();">-->
+							</div>
+					</td>
+			</tr>
 
 				<tr style="padding-top:10px;">
 					<td></td>
@@ -106,7 +130,7 @@
 			</tbody>
 		</table>
 	</div>
-	<img src="https://pay.pmang.com/Crusader/image/box_type01_bottom.gif" border="0"><br>
+	<img src="https://pay.pmang.com/Crusader/image/box_type01_bottom.gif" border="0" style="vertical-align: top;"><br>
 	<div class="check_all">
 		<label class="li1"><input type="checkbox" name="agreelist" id="all-agree" tabindex="0">
 			<strong>전체약관동의</strong></label>
@@ -131,6 +155,85 @@
 		<img src="https://pay.pmang.com/Crusader/image/btn_payment_cancel.gif" border="0" style="cursor:hand;"
 			onclick="pay_close();">
 	</div>
+
+	<script>
+    // 전체약관동의 체크박스
+  const allAgreeCheckbox = document.getElementById('all-agree');
+  // 나머지 체크박스들
+  const otherCheckboxes = document.querySelectorAll('.checkSelect');
+
+  // selCarrier 선택 상자
+  const selCarrier = document.querySelector('select[name="selCarrier"]');
+
+  // trCpinFlag 요소
+  const trCpinFlag = document.getElementById('trCpinFlag');
+
+  // CpinFlag 라디오 버튼
+  const cpinFlagN = document.getElementById('CpinFlagN');
+  const cpinFlagY = document.getElementById('CpinFlagY');
+
+  // trCarryPin 요소
+  const trCarryPin = document.getElementById('trCarryPin');
+
+	// "check-all" 체크박스의 변경 이벤트를 감지합니다.
+	allAgreeCheckbox.addEventListener('change', function() {
+		if (allAgreeCheckbox.checked) {
+			// "check-all" 체크박스가 체크되어 있을 때
+			otherCheckboxes.forEach(function(checkbox) {
+				checkbox.checked = true;
+			});
+		} else {
+			// "check-all" 체크박스가 체크되어 있지 않을 때
+			// 모든 "otherCheckboxes"도 체크 해제
+			otherCheckboxes.forEach(function(checkbox) {
+				checkbox.checked = false;
+			});
+		}
+	});
+
+	// 다른 체크박스의 변경 이벤트를 감지하여 "check-all" 체크박스의 상태를 업데이트합니다.
+	otherCheckboxes.forEach(function(checkbox) {
+		checkbox.addEventListener('change', function() {
+			// 모든 "otherCheckboxes"가 체크되어 있으면 "check-all" 체크박스도 체크합니다.
+			if ([...otherCheckboxes].every(cb => cb.checked)) {
+				allAgreeCheckbox.checked = true;
+			} else {
+				// 하나라도 체크가 해제되어 있으면 "check-all" 체크박스도 해제합니다.
+				allAgreeCheckbox.checked = false;
+			}
+		});
+	});
+
+  selCarrier.addEventListener('change', function () {
+	// 선택된 값을 가져오기
+	const selectedValue = selCarrier.value;
+
+		// "헬로모바일", "SK7mobile", "KCT"인 경우에 trCpinFlag를 보여주기
+		if (selectedValue === "CJH" || selectedValue === "SKL" || selectedValue === "KCT") {
+			trCpinFlag.style.display = 'table-row';
+			// CpinFlag이 선택되어 있을 경우 trCarryPin 보이기
+			if (cpinFlagY.checked) {
+				trCarryPin.style.display = 'table-row';
+			} else {
+				trCarryPin.style.display = 'none';
+			}
+		} else {
+			trCpinFlag.style.display = 'none';
+			trCarryPin.style.display = 'none';
+		}
+  });
+
+  // CpinFlag 라디오 버튼 변경 이벤트
+  cpinFlagN.addEventListener('change', function () {
+    // CpinFlagN 선택 시 trCarryPin을 숨김
+    trCarryPin.style.display = 'none';
+  });
+
+  cpinFlagY.addEventListener('change', function () {
+    // CpinFlagY 선택 시 trCarryPin을 보임
+    trCarryPin.style.display = 'table-row';
+  });
+	</script>
 
 </body>
 

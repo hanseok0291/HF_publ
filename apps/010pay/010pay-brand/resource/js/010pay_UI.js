@@ -246,6 +246,20 @@ var positionCtl = {
       }
     });
 
+    $(".retto-wrap .section").each(function () {
+      if (
+        !$(this).hasClass("animation") &&
+        $(this).data("offsetTop") < position
+      ) {
+        $(this).addClass("animation");
+      } else if (
+        $(this).hasClass("animation") && $(this).hasClass("message") &&
+        ($(this).data("offsetTop") + $(this).data("outerHeight") + (delayPosition * 2) < position || $(this).data("offsetTop") > position)
+      ) {
+        $(this).removeClass("animation");
+      }
+    });
+
     $(".main-view .section").each(function () {
       if (
         !$(this).hasClass("animation") &&

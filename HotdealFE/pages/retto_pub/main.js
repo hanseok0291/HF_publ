@@ -47,7 +47,7 @@ const index = () => {
       {/* 레벨 변경 */}
       {/* <LayerLevelSelection /> */}
       {/* 레벨 변경 확인 */}
-      <ModalLevelChange />
+      {/* <ModalLevelChange /> */}
       {/* 스탬프 주차 확인 바텀 시트 */}
       {/* <BottomSheetSaveingList /> */}
       {/* 스탬프 10주차 유지 성공 바텀 시트 */}

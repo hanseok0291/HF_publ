@@ -48,6 +48,10 @@ const Stamp = ({case1}) => {
               1억 행운 리또 받기
             </button>
           }
+          {/* 재신청자 > 다음주부터 다시 시작 */}
+          <div className={styleMyretto.nextMondayText}>
+            <span>다음주 월요일</span>부터 시작돼요
+          </div>
           {/* 미참여자 */}
         </div>
       </FadeIn>

@@ -30,11 +30,11 @@ const ModalLevelChange = () => {
             <p className={styleRettoModal.mainText}>
               레벨 변경을 취소하고<br />
               <b>MAX. <span className="diamond">다이아 리또</span></b>를 유지할까요?{/* ruby emerald diamond className 추가 시 스타일 변경*/}
-              <p className={styleRettoModal.subText}>리또 머니함 속 금액도 그대로 둘게요.</p>
+              {/* <p className={styleRettoModal.subText}>리또 머니함 속 금액도 그대로 둘게요.</p> */}
             </p>
-            {/* <p className={styleRettoModal.subText}>그래도 <span>Lv2.에메랄드 리또로 변경</span>할까요?</p> */}
+            <p className={styleRettoModal.subText}>그래도 <span>Lv2.에메랄드 리또로 변경</span>할까요?</p>
             {/* <p className={styleRettoModal.infoText}>머니함 속 금액을 옮길 수 없다면 변경이 취소돼요.</p> */}{/* 하향 시 문구 */}
-            {/* <p className={styleRettoModal.infoText}>부족한 머니 충전을 실패한다면 변경이 취소돼요.</p> */}{/* 상향 시 문구 */}
+            <p className={styleRettoModal.infoText}>머니 부족으로 채우기 실패 시 변경이 취소돼요.</p>{/* 상향 시 문구 1113 수정 */}
           </div>
           {/* <Button>변경하기</Button> */}
           <Button>네, 좋아요</Button>{/* 월요일 이전 원복 시 문구 */}

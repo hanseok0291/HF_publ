@@ -80,7 +80,8 @@ const MyPage = ({case1, case2, case3, case4, case5, case6, case7}) => {
               {/* <span className={styleMyretto.alertBox}>100만원에서 줄어들었어요!</span> */}
               {/* <span className={styleMyretto.alertBox}>이번 기회는 아쉽게 놓쳤어요!</span> */}{/* 스탬프 받기 이번주 실패 */}
               {/* <span className={styleMyretto.alertBox}>혜택 알림이 꺼져있어요!</span> */}{/* 혜택 알림 미동의 */}
-              <span className={styleMyretto.alertBox}>리또 머니함이 비어 있어요!</span>
+              {/* <span className={styleMyretto.alertBox}>리또 머니함이 비어 있어요!</span> */}
+              <span className={`${styleMyretto.alertBox} ${styleMyretto.blue}`}>1주 보관은 월요일부터 시작!</span>{/* 재신청 > 월요일 시작 전이라 보관은 미시작 상태 */}
               {/* 채우기상자 off  */}
               {/* <span className={`${styleMyretto.alertBox} ${styleMyretto.blue}`}>변경된 레벨은 월요일부터 적용!</span> */}
               {/* 혜택 알림 미동의 */}
@@ -91,6 +92,8 @@ const MyPage = ({case1, case2, case3, case4, case5, case6, case7}) => {
                 {/* <p className={styleMyretto.jewelInfo}>오늘밤 11시까지 다시 채워주세요</p> */}{/* 스탬프 당일 받기 실패 */}
                 {/* <p className={styleMyretto.jewelInfo}>월요일이 되기 전 다시 채워주세요</p> */}{/* 스탬프 받기 이번주 실패 */}
                 {/* <p className={styleMyretto.jewelInfo}>리또를 받으려면 알림을 꼭 켜주세요</p> */}{/* 혜택 알림 미동의 */}
+                {/* <p className={styleMyretto.jewelInfo}>월요일 전까지 50만원을 채워주세요</p> */}{/* 재신청 > 머니함 채운후 월요일 전에 다시 비웠을 때 */}
+                {/* <p className={styleMyretto.jewelInfo}>머니함에 50만원을 넣어뒀어요</p> */}{/* 재신청 > 월요일 시작 전이라 보관은 미시작 상태 */}
               </div>
             </div>
             <div className={styleMyretto.botCon}>

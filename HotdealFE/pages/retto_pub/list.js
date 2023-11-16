@@ -18,19 +18,19 @@ const index = () => {
     <>
       <Header title="내 리또 리스트" sideBtn="당첨 안내" />
       <ul className={styleMyretto.tabWrap}>
-        <li className={styleMyretto.active}>진행중</li>
+        <li className={styleMyretto.active}>추첨예정</li>
         <li>당첨</li>
         <li>미당첨</li>
       </ul>
       <Container padding="0" isTab>
-        {/* <ListProgress /> */}
-        <ListWin />
+        <ListProgress />
+        {/* <ListWin /> */}
         {/* <ListFail /> */}
       </Container>
       {/* 포인트 당첨, 대기 바텀 시트 */}
-      <BottomSheetMoneyGive />
+      {/* <BottomSheetMoneyGive /> */}
       {/* 당첨 안내 */}
-      <LayerWinInfo/> 
+      {/* <LayerWinInfo/>  */}
     </>
   );
 };

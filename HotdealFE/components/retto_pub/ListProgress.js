@@ -90,6 +90,8 @@ const ListProgress = () => {
         </div>
         {/* 리또 없을때 노출 되는 텍스트 */}
         {/* <p className={styleRettoList.noList}>아직은 리또가 없어요!</p>  */}
+        {/* 진행중 리또가 없을때 */}
+        {/* <p className={styleRettoList.noList}>이번 주에 쌓인 리또는 내일 들어와요!</p>  */}
         <div className={styleRettoList.lineImgBox}>
           <div className={`${styleRettoList.borderBox} ${styleRettoList.botCon}`}>
             {myRettoNumber.map((item,index) => (

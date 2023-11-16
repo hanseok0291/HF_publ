@@ -66,7 +66,7 @@ const Apply = () => {
           <ModalApply jewel={jewel} handleModalToggle={handleModalToggle} />
         )}
         {/* 신청 완료 */}
-        {/* <ApplyComplete jewel={jewel}/> */}
+        <ApplyComplete jewel={jewel}/>
         {/* 리또란? */}
         {/* <BottomSheetRettoInfo /> */}
         {/* 계좌 변경 등록 */}
@@ -74,7 +74,7 @@ const Apply = () => {
         {/* 계좌 없음 */}
         {/* <ModalApplyAccount /> */}
         {/* 신청 불가 */}
-        <ModalApplyReady />
+        {/* <ModalApplyReady /> */}
         {/* 신청 실패 */}
         {/* <LayerApplyFail /> */}
       </Container>

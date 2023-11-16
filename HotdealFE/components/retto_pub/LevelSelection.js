@@ -158,10 +158,10 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
             <span>루비</span> 리또 받을 준비 끝 !
           </p> */}
           <div className={styleCommon.moneyWrap}>
-            <dl>
+            {/* <dl>
               <dt>리또 머니함</dt>
               <dd>100,000원</dd>
-            </dl>
+            </dl> */}
             {/* <dl>
               <dt>내 보유 머니</dt>
               <dd>15,000원</dd>
@@ -172,7 +172,14 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
                 <dd><span className='jewelColor'>15,000원</span></dd>
               </dl>
             )} */}
-            
+            {/* 레벨 변경 추가 문구 */}
+            <div className={styleCommon.moneyText}>
+              <h4>변경된 레벨은 다음주 월요일부터 적용!</h4>
+              <p>
+                부족한 금액도 그때 보유머니에서 채울게요. <br />
+                <b>월요일엔 보유 머니</b>가 <span>40만원</span>은 있어야 해요!
+              </p>
+            </div>
           </div>
           {/* 레벨 변경 시 남은 금액 이동 문구 */}
           <p className={styleCommon.changeText}>

@@ -29,6 +29,8 @@ const ApplyComplete = ({
           <p className={styleApply.subText}>
             <b>{jewel.cash}만원</b>을 리또 머니함에 넣어뒀어요. <br />
             <b>1주일 동안</b> 잘 보관해 주세요.
+            {/* 해지 => 다시신청 */}
+            {/* <b>다음주 월요일</b>에 보관이 시작돼요! */}
           </p>
           <ul className={`${styleApply.weekListWrap}`}>
             <li className={`${styleApply.checked}`}><span>월</span></li>
@@ -41,6 +43,8 @@ const ApplyComplete = ({
           </ul>
           <div className={styleApply.bottomBox}>
             다음 주 월요일 <b className="jewelColor">리또 GET</b>
+            {/* 해지 > 다시 신청 */}
+            {/* 1주일 잘 보관하면 매주 월요일 <b className="jewelColor">리또 GET</b> */}
           </div>
         </div>
         <div className={styleApply.tipWrap}>

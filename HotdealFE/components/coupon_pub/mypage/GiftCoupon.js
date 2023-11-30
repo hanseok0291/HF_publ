@@ -9,9 +9,16 @@ import styleModal from "../../../styles/coupon_pub/Modal.module.css";
 
 export default function GiftCoupon() {
     const [inputValue, setInputValue] = useState("");
+		const [isFocused, setIsFocused] = useState(false);
     const handleChange = (e) => {
-        setInputValue(e.target.value);
+			setInputValue(e.target.value);
     };
+		const handleFocus = () => {
+			setIsFocused(true);
+		};
+		const handleBlur = () => {
+			setIsFocused(false);
+		};
 
     return (
         <div
@@ -21,19 +28,23 @@ export default function GiftCoupon() {
                 className={`${styleGiftPresent.topCon} ${styleGiftCoupon.topCon}`}
             >
                 <p className={styleGiftPresent.topConText}>
-                    쿠폰 코드 입력 후 등록하기 버튼을 눌러 주세요.
+									선물받은 쿠폰 코드 입력 후 등록하기 버튼을 눌러 주세요.
                 </p>
                 <div className={`${styleCommon.inputWrap} ${styleGiftCoupon.inputWrap}`}>
                     <input
                         type="text"
-                        placeholder="쿠폰 코드를 입력해 주세요."
+                        placeholder="쿠폰 코드를 입력하세요"
                         className={styleGiftCoupon.input}
                         onChange={handleChange}
+                        onFocus={handleFocus}
+                        onBlur={handleBlur}
                     />
-                    <button
-                    type="button"
-                    className={`${styleCommon.btnIcon} ${styleCommon.btnDel}`}
-                    ></button>
+										{isFocused && (
+                        <button
+                            type="button"
+                            className={`${styleCommon.btnIcon} ${styleCommon.btnDel} ${styleGiftPresent.btnDel}`}
+                        ></button>
+                    )}
                 </div>
             </div>
             <div

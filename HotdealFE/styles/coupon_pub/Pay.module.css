@@ -1,48 +1,138 @@
 .payWrap { position: relative; padding: 20px 0; } 
-.forMe { background-color: #fffbc9; background-image: url("../../public/images/coupon/bg/bg-forme.png"); background-repeat: no-repeat; background-size: 285px auto; background-position: center 9px; } 
-.forYou { background-color: #c9e9ff; background-image: url("../../public/images/coupon/bg/bg-foryou.png"); background-repeat: no-repeat; background-size: 285px auto; background-position: center 9px; } 
+.forMe { border-bottom: 10px solid #f1f1f1; } 
+.forMe::before { content: ''; display: block; background-image: url("../../public/images/coupon/bg/bg-forme-v2.png"); background-repeat: no-repeat; width: calc(100% - 40px); height: 170px;max-width: 700px;background-size: contain;background-position: center;margin: 0 auto;background-color: #FFB0A6;border-radius: 10px;}
+.forYou { border-bottom: 10px solid #f1f1f1; } 
+.forYou::before { content: ''; display: block; background-image: url("../../public/images/coupon/bg/bg-foryou-v2.png"); background-repeat: no-repeat; width: calc(100% - 40px); height: 170px;max-width: 700px;background-size: auto 156px;background-position: center;margin: 0 auto;background-color: #F8F3C1;border-radius: 10px;}
 
 .btnMsg { display: flex; width: 200px; line-height: 43px; margin: 0 auto; font-size: 15px; font-weight: 500; color: #fff; background-color: #ee9958; border-radius: 21px; justify-content: center; align-items: center; } 
 
 .btnOpen { background-color: transparent; color: #ee9958; } 
-.btn { padding: 8px; color: #fff; font-size: 13px; font-weight: 500; border-radius: 13px; background-color: #4e90ff; } 
-.btn + .btn { margin-left: 5px; } 
+.btn { padding: 4px 8px; color: #222; font-size: 13px; font-weight: 400; line-height: 18px; border-radius: 8px; background-color: #f1f1f1; } 
+.btn + .btn { margin-left: 6px; } 
 
 /* 결제정보 */
-.msgWrap { margin-top: 167px; } 
+.msgWrap { margin-top: 10px; } 
 
 .textBox { position: relative; } 
-.textBox .textCounter { position: absolute; right: 10px; bottom: 10px; font-size: 15px; color: #d4d4d4; } 
-.textArea { min-height: 150px; width: 100%; padding: 19px 15px; font-size: 15px; font-weight: 400; border: 1px solid #ddd; border-radius: 10px; background-color: #fff; resize: none; } 
-.textArea::placeholder { font-size: 15px; font-weight: 400; } 
+.textBox .textCounter { position: absolute; right: 10px; bottom: 10px; font-size: 15px; color: #acacac; } 
+.textArea { min-height: 110px; width: 100%; padding: 19px 15px; font-size: 15px; font-weight: 400; border: 1px solid #ddd; border-radius: 10px; background-color: #fff; resize: none; } 
+.textArea::placeholder { font-size: 15px; font-weight: 400; color: #acacac; } 
 
 /* payInfoWrap */
 .payInfoContent { padding-bottom: 120px; } 
-.payInfoWrap { padding-bottom: 140px; } 
-.listTitle { margin-top: 40px; border-bottom: 2px solid #151515; padding-bottom: 15px; font-size: 15px; font-weight: 700; color: #151515; } 
+/* .payInfoWrap { padding-bottom: 140px; }  */
+.payInfoWrap { border-bottom: 10px solid #f1f1f1; } 
+.payInfoWrap:last-of-type { border-bottom: 0;}
+/* .payInfoWrap.last { border-bottom: 0;} */
+/* 상세 금액 */
+.payInfoWrap .priceDetailWrap { padding: 17px 0; border-bottom: 1px solid #e2e2e2; border-width: 1px 0; } 
+.payInfoWrap .priceDetailWrap dl { display: grid; grid-template-columns: 2fr auto; color: #575757; line-height: 1; letter-spacing: -0.05em; } 
+.payInfoWrap .priceDetailWrap dl dt:first-of-type { font-size: 14px;}
+.payInfoWrap .priceDetailWrap dl dd:first-of-type {font-weight: 700;}
+.payInfoWrap .priceDetailWrap dl :nth-child(-n+2) { margin-top: 0; } 
+.payInfoWrap .priceDetailWrap dl:first-child.addBenefit { margin-top: 0; padding: 0; border-top: none; } 
+.payInfoWrap .priceDetailWrap dl.addBenefit { margin-top: 19px; padding: 19px 0 0; border-top: 1px solid #cacaca; } 
+.payInfoWrap .priceDetailWrap dl.addBenefit dt { display: flex; align-items: center; color: #575757; font-weight: bold; } 
+.payInfoWrap .priceDetailWrap dl.addBenefit dt::after { display: block; content: ""; width: 14px; height: 14px; margin-left: 5px; background: url('../../public/images/coupon/icon/detail/icon-point.png') center / cover no-repeat; } 
+.payInfoWrap .priceDetailWrap dl.addBenefit dd button { display: block; position: relative; float: right; width: 18px; height: 18px; border: 1px solid #151515; border-radius: 50%; } 
+.payInfoWrap .priceDetailWrap dl.addBenefit dd button::before,
+.payInfoWrap .priceDetailWrap dl.addBenefit dd button::after { display: block; position: absolute; left: 50%; top: 50%; transform:translate(-50%, -50%); content: ""; width: 9px; height: 2px; background-color: #151515; border-radius: 1px; transition: 0.5s; } 
+.payInfoWrap .priceDetailWrap dl.addBenefit dd button::before { transform: translate(-50%, -50%) rotate(90deg); } 
+.payInfoWrap .priceDetailWrap dl.addBenefit dd button.on::before { transform: translate(-50%, -50%) rotate(135deg); } 
+.payInfoWrap .priceDetailWrap dl.addBenefit dd button.on::after { transform: translate(-50%, -50%) 
+ rotate(45deg); } 
+.payInfoWrap .priceDetailWrap dl.pointWrap { margin-top: 12px; } 
+.payInfoWrap .priceDetailWrap dl span { margin-left: 4px; color: #575757; font-size: 13px; } 
+.payInfoWrap .priceDetailWrap dl span.benefitAlert { color: #a2a2a2; } 
+.payInfoWrap .priceDetailWrap dl dt { font-size: 13px; color: #151515; } 
+.payInfoWrap .priceDetailWrap dl dt { position: relative; display: flex; align-items: flex-start; } 
+.payInfoWrap .priceDetailWrap dl dt.soldout label span { color: #575757; }
+.payInfoWrap .priceDetailWrap dl dt.soldout label::after { display: block; content: ""; position: absolute; left: auto; top: 54%; transform: translateY(-50%); width: calc(100% - 20px); height: 1px; background-color: #FF2B00; } 
+.payInfoWrap .priceDetailWrap dl dt > input[type="checkbox"] { position: absolute; top: 0; left: 0; width: 0; height: 0; border: 0; font-size: 0; box-shadow: none; } 
+.payInfoWrap .priceDetailWrap dl dt > input + label { position: relative; display: inline-block; padding-left: 19px; color: #151515; } 
+.payInfoWrap .priceDetailWrap dl dt > input + label:before { content: ''; display: block; position: absolute; top: 54%; left: 0px; transform: translateY(-50%); z-index: 1; width: 13px; height: 13px; border: 1px solid #151515; border-radius: 2px; } 
+.payInfoWrap .priceDetailWrap dl dt > input + label.disabled { pointer-events: none; } 
+.payInfoWrap .priceDetailWrap dl dt > input + label.disabled:before { border: 1px solid #f1f1f1; background-color: #f9f9f9; } 
+.payInfoWrap .priceDetailWrap dl dt > input:checked + label:before { background: #151515 url(../../public/images/coupon/icon/common/icon-check-square-on.svg) center center / 13px 13px no-repeat; border: 1px solid #151515; } 
+.payInfoWrap .priceDetailWrap dl dd { text-align: right; font-size: 15px; color: #151515; } 
+.payInfoWrap .priceDetailWrap dl dt,
+.payInfoWrap .priceDetailWrap dl dd { margin-top: 8px; } 
+
+.payInfoWrap .priceDetailWrap dl dt:not(:first-of-type)::before { content: '';display: block;width: 6px;height: 6px;background: url("../../public/images/coupon/icon/common/icon-arrow-sub.png") no-repeat center / contain;margin-right: 4px;}
+.payInfoWrap .priceDetailWrap dl dd.soldout { font-weight: bold; font-size: 13px; letter-spacing: 0; } 
+.payInfoWrap .priceDetailWrap dl dd.soldout em { position: static; color: #FF2B00; margin: 0; } 
+.payInfoWrap .priceDetailWrap dl dd:first-of-type em { font-size: 12px;}
+.payInfoWrap .priceDetailWrap dl dd em { position: relative; top: -1px; margin-left: 1px; font-size: 15px; } 
+.payInfoWrap .priceDetailWrap dl dd .pointCheck { display: inline-flex; align-items: center; font-size: 12px; } 
+.payInfoWrap .priceDetailWrap dl dd .pointCheck i { margin-left: 6px; } 
+.payInfoWrap.last .bottomList { margin-top: 12px; font-size: 11px; } 
+.payInfoWrap.last .bottomList li { color: #575757;margin-bottom: 5px;}
+/* //상세 금액 */
+.listTitle { margin-top: 20px; font-size: 16px; font-weight: 700; color: #151515; } 
 .listTitle.first { margin-top: 20px; } 
-.listTitle.last { display: flex; justify-content: space-between; align-items: center; font-size: 18px; } 
-.listTitle.last span + span { color: #ff2b00; } 
-.listTitle.last .unitText { position: relative; top: -1px; font-size: 16px; } 
+.listTitle.last { display: flex; justify-content: space-between; align-items: center; font-size: 16px; border-bottom: 1px solid #e2e2e2; padding-bottom: 19px; } 
+.listTitle.last span + span { font-size: 18px; color: #ff2b00; } 
+.listTitle.last .unitText { position: relative; top: -1px; font-size: 18px; } 
+.listTitle.last .arrow {width: 16px;
+	height: 16px;
+	background: url("../../public/images/coupon/icon/common/icon-top.png") center / cover no-repeat;
+	margin-top: 2px;
+	margin-left: 4px;}
+.listTitle.last .arrow { transform: rotate(-180deg);transition: .3s;}
+.listTitle.last .arrow.on { transform: rotate(0deg);}
+
 .infoProduct { white-space: nowrap; max-height: 17px; } 
 .infoBox { overflow: hidden; display: flex; flex-direction: column; margin-left: 15px; } 
-.priceBox { display: flex; flex-direction: column; margin-top: auto; } 
+.priceBox { display: flex; flex-direction: column; margin-top: auto; margin-bottom: 6px; } 
 .priceBox .price { font-size: 13px; color: #575757; } 
 .priceBox .price .unitText { position: relative; top: -1px; font-size: 12px; color: #151515; } 
 .priceBox .price span { width: 10%; font-size: 13px; color: #575757; } 
 .priceBox .price span + span { margin-left: 20px; font-size: 14px; color: #151515; } 
 
-.CouponDetaiSmalllWrap { border-bottom: 1px solid #ececec; } 
+.priceBox .dcPercent {font-family: Pretendard;
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 21px;
+	letter-spacing: 0px;
+	text-align: left;
+	color: rgba(255, 43, 0, 1);
+	margin-right: 2px;
+	}
+.priceBox .price {
+font-size: 15px;
+font-weight: 700;
+line-height: 21px;
+letter-spacing: 0px;
+margin-right: 2px;
+color: #151515;
+}
+.priceBox .originPrice {
+font-size: 15px;
+font-weight: 400;
+line-height: 18px;
+letter-spacing: 0em;
+text-decoration: line-through;
+color: rgba(162, 162, 162, 1);
+}
+.priceBox .line {display: inline-block;width: 1px; height: 10px; margin: 0 5px; background-color: #E2E2E2;}
+.priceBox .count {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 20px;
+	letter-spacing: 0em;
+	}
+
+/* .CouponDetaiSmalllWrap { border-bottom: 1px solid #ececec; }  */
 /* //payInfoWrap */
 
 /* cardPointWrap */
-.cardPointWrap { padding-top: 25px; } 
+.cardPointWrap { padding: 20px 0; } 
 .cardPointWrap dl { display: flex; justify-content: space-between; } 
-.cardPointWrap dl dt { font-size: 14px; font-weight: 700; } 
-.cardPointWrap dl dt span { margin-left: 8px; color: #a2a2a2; font-size: 12px; font-weight: 500; } 
+.cardPointWrap dl dt { font-size: 16px; font-weight: 700; } 
+.cardPointWrap dl dt span { color: #FF4600; } 
 .cardPointWrap dl dd { color: #575757; font-size: 13px; } 
 .cardPointWrap dl i { margin-left: 10px; } 
-.logoWrap { position: relative; width: 100%; height: 40px; margin-top: 20px; overflow: hidden; white-space: nowrap; background-color: #f1f1f1; border-radius: 10px; } 
+.logoWrap { position: relative; width: 100%; height: 42px; margin-top: 14px; overflow: hidden; white-space: nowrap; background-color: #f9f9f9; border-radius: 10px; } 
 .logoWrap .logoBox { display: flex; position: absolute; left: 15px; top: 50%; transform: translateY(-50%); animation: imgmove 20s linear infinite; } 
 .logoWrap img { height: 18px; width: auto; margin-right: 14px; } 
 .bottomList { margin-top: 20px; font-size: 13px; letter-spacing: -0.05em; } 
@@ -56,40 +146,54 @@
 /* //cardPointWrap */
 
 /* inputBox */
-.addBorderBottom { padding-bottom: 20px; border-bottom: 1px solid #ececec; } 
+.addBorderBottom { padding-bottom: 12px; border-bottom: 1px solid #151515; } 
 .inputBox input:focus { padding: 0; } 
-.inputBox input[type="text"], .inputBox input[type="tel"], .inputBox input[type="number"] { height: 55px; line-height: 55px; padding: 0 15px; } 
+.inputBox input[type="text"], .inputBox input[type="tel"], .inputBox input[type="number"] { height: 43px; line-height: 43px; padding: 0 15px; } 
 .inputBox .inputArea { position: relative; z-index: 1; } 
-.inputBox .inputArea input { padding: 0 26px; } 
+.inputBox .inputArea input { padding: 0 30px; } 
 .inputBox .inputArea input:focus { border: none; outline: 2px solid #505050; } 
-.inputBox .inputArea .unitText { position: absolute; top: 50%; right: 15px; transform: translateY(-50%); font-size: 14px; color: #575757; } 
+.inputBox .inputArea .unitText { position: absolute; top: 50%; right: 15px; transform: translateY(-50%); font-size: 16px; color: #151515; } 
 .inputBox .input { position: relative; text-align: right; } 
-.inputBox .input::placeholder { font-size: 16px; height: auto; line-height: 55px; font-weight: 400; } 
-.inputBox { margin-top: 24px; } 
+.inputBox .input::placeholder { font-size: 15px; height: auto; line-height: 43px; font-weight: 400; color: #acacac;} 
+.inputBox { margin-top: 20px; margin-bottom: 20px;} 
+.inputBox.inputDouble { margin-top: 12px; margin-bottom: 0; } 
+/* .inputBox.inputDouble + .inputDouble { margin-bottom: 32px; }  */
+.inputBox.inputDoubleContent { margin-top: 12px; } 
+.inputBox.last { margin-top: 12px; margin-bottom: 12px; } 
 .inputBox.inputBoxMt0 { margin-top: 0; } 
+.inputBox.inputGiftBox { margin-bottom: 0; } 
+.inputBox.agreeBox { margin-top: 12px; } 
+.inputBox.moneyLoadBox { margin-top: 32px; padding-bottom: 20px; }
+.inputBox.moneyLoadBox .inputInfoBox {padding-bottom: 12px;border-bottom: 1px solid #000; }
+.inputBox.moneyLoadBox .inputTop {height: 43px;}
 .inputBox .inputInfoBox { display: flex; justify-content: space-between; align-items: center; position: relative; } 
-.inputBox .inputInfoBox > p { font-size: 13px; color: #151515; } 
+.inputBox .inputInfoBox > p { font-size: 13px; color: #575757; } 
 .inputBox .inputInfoBox > p > strong { margin-right: 6px; } 
-.inputBox .inputInfoBox .labelTitle { font-size: 15px; } 
+.inputBox .inputInfoBox .labelTitle { font-size: 16px; color: #151515; } 
 .inputBox .checkbox { position: relative; display: block; } 
 .inputBox .checkbox > input[type="checkbox"] { position: absolute; top: 0; left: 0; width: 0; height: 0; border: 0; font-size: 0; } 
-.inputBox .checkbox > input + label { position: relative; display: inline-block; padding: 0 0 0 20px; font-size: 14px; font-weight: 400; line-height: 20px; } 
+.inputBox .checkbox > input + label { position: relative; display: inline-block; padding: 0 0 0 20px; font-size: 14px; font-weight: 400; line-height: 20px; color: #222; } 
 .inputBox .checkbox > input + label::before { content: ''; display: block; position: absolute; top: 50%; left: 0; transform: translateY(-50%); z-index: 1; width: 15px; height: 15px; background-image: url(../../public/images/coupon/icon/common/icon-check-square-off.svg); background-size: cover; background-repeat: no-repeat; } 
 .inputBox .checkbox > input:checked + label:before { background-image: url(../../public/images/coupon/icon/common/icon-check-square-on.svg); } 
 .inputBox.inputDouble .inputInfoBox { flex-direction: column; align-items: start; } 
-.inputBox.inputDouble .inputInfoBox > p { color: #575757; } 
-.inputBox.inputDouble .inputDoubleBox { position: relative; margin-top: -8px; padding-top: 8px; border-radius: 0 0 10px 10px; background-color: #f1f1f1; } 
-.inputBox.inputDouble .inputTop { position: relative; z-index: 1; padding: 0 15px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center; width: 100%; height: 55px; border: 1px solid #f1f1f1; border-radius: 10px; color: #575757; background-color: #fff; } 
-.inputBox.inputDouble .inputDoubleBox > span { position: absolute; top: 50%; left: 14px; transform: translateY(calc(-50% + 4px)); z-index: 2; color: #575757; } 
-.inputBox.inputDouble .inputTop .input { padding-right: 10px; } 
+.inputBox.inputDouble .inputInfoBox > strong { font-size: 15px;} 
+.inputBox.inputDouble .inputInfoBox .inputInfoBoxSubTit { font-size: 12px; color: #575757; } 
+.inputBox.inputDouble .inputDoubleBox { position: relative; margin-top: -8px; padding-top: 8px; } 
+.inputBox.inputDouble .inputTop { position: relative; z-index: 1; padding: 0 15px; margin-top: 0; display: flex; justify-content: space-between; align-items: center; width: 100%; height: 43px; color: #151515; background-color: #fff; font-size: 13px; } 
+.inputBox.inputDouble .inputDoubleBox > span { position: absolute; top: 50%; left: 14px; transform: translateY(calc(-50% + 4px)); z-index: 2; color: #151515; font-size: 13px; } 
+.inputBox.inputDouble .inputTop .input { padding-right: 7px; } 
 .inputBox.inputDouble .inputTop .loadMoney { font-size: 16px; font-weight: 700; color: #151515; } 
 .inputBox.inputDouble .inputTop .loadMoney .unitText { position: relative; top: -1px; font-size: 14px; } 
-.inputBox.inputDouble .inputBottom .input { position: relative; margin-top: 0; background-color: #f1f1f1; } 
-.inputBox.inputDouble .inputBottom .input { color: #575757; font-size: 16px; font-weight: 400; } 
+.inputBox.inputDouble .inputTop.error .loadMoney { color: #ccc;}
+.inputBox.inputDouble .inputBottom .input { position: relative; margin-top: 0; background-color: #f8f8f8; border-radius: 0; border: 0; } 
+.inputBox.inputDouble .inputBottom .input { color: #151515; font-size: 16px; font-weight: 400; } 
 .inputBox.inputDouble .errorText { opacity: 0; display: flex; align-items: center; padding-right: 8px; color: #fb3636; font-size: 13px; z-index: 1; } 
 .inputBox.inputDouble.error .inputTop .input { position: relative; } 
+.inputBox.inputDouble.error .inputTop .loadMoney { color: #ccc; }
+.inputBox.inputDouble.error .inputBottom .input { color: #fb3636; } 
 .inputBox.inputDouble.error .inputBottom .input { color: #fb3636; } 
 .inputBox.inputDouble.error .inputBottom .unitText { color: #fb3636; } 
+.inputBox.inputDouble.error .inputBottom .errorText { font-size: 12px; font-weight: 700; color: #fb3636; } 
 .inputBox.inputDouble.error .errorText { opacity: 1; } 
 /* .inputBox.inputDouble .iconArrowRoundDown { position: absolute; top: 50%; right: 18px; } */
 .forYou .inputBox .input { text-align: left; } 
@@ -97,43 +201,69 @@
 .forYou .inputGiftBox .number { margin-left: 10px; } 
 .forYou .inputGiftBox .textArea { margin-top: 10px; } 
 .forYou input, .forYou textarea { font-weight: 500; } 
+.forYou input[type="text"], .forYou input[type="tel"], .forYou input[type="number"] { height: 52px;line-height: 52px;border: 1px solid #ccc;margin-top: 8px;font-size: 15px;}
+.forYou .msgWrap { margin-top: 20px;}
 
 .inputBox .subTitle { font-size: 13px; } 
 .inputBox .inputInfoBox + .subTitle { margin-top: 24px; } 
+.inputBox.agreeBox .inputInfoBox + .bottomList { margin-top: 12px; font-size: 11px; } 
+.inputBox.agreeBox .inputInfoBox + .bottomList li { color: #575757;margin-bottom: 5px;}
 
 /* 충전 */
 .load .inputBox .input { text-align: left; } 
-.load .inputBox .inputInfoBox > p, .load .inputBox .inputInfoBox .title { font-size: 15px; } 
+.load .inputBox .inputInfoBox > p, .load .inputBox .inputInfoBox .title { font-size: 15px; color: #151515; } 
 .load .loadOptionBox { display: flex; margin-top: 10px; } 
-.load .loadOptionBox button { width: 25%; background-color: #f1f1f1; font-size: 14px; color: #151515; } 
+.load .loadOptionBox button { width: 25%; background-color: #f1f1f1; font-size: 14px; color: #151515; border-radius: 16px; padding: 8px; } 
 .load .accountBox .subTitle { font-size: 13px; color: #575757; } 
 .load .loadBtnBox { margin-top: 10px; } 
 .load .btnAdd { display: flex; justify-content: center; align-items: center; width: 100%; line-height: 53px; padding: 0; border: 1px dashed #e1e1e1; background-color: #fff; font-size: 16px; color: #151515; } 
-.load .btnAdd i { margin-right: 7px; } 
+.load .btnAdd i { margin-right: 7px; }
 
 .load .inputBox .highlightText { margin-top: 20px; font-size: 15px; font-weight: 700; color: #151515; text-align: center; } 
 .load .inputBox .inputLoadBox { position: relative; height: 90px; margin-top: 10px; border: 1px solid #f1f1f1; border-radius: 10px; } 
-.load .inputBox .inputLoadBox.focus { box-shadow: 4px 4px 5px rgb(6 0 0 / 15%); border: 2px solid #505050; } 
+.load .inputBox .inputLoadBox.focus { border: 1px solid #151515; } 
 .load .inputBox .inputLoadBox.focus.error { border: 1px solid #fb3636; } 
 .load .inputBox .inputLoadBox .floatText { position: absolute; top: 16px; left: 15px; z-index: 1; font-size: 14px; font-weight: 500; opacity: 0; } 
 .load .inputBox .inputLoadBox .btnDel { opacity: 0; } 
-.load .inputBox .inputLoad { position: relative; top: 34px; height: 32px; line-height: 32px; font-size: 28px; margin-top: 0; border: none; background-color: transparent; } 
-.load .inputBox .inputLoad:focus { box-shadow: none; } 
+.load .inputBox .inputLoad { position: relative; top: 27px; height: 32px; line-height: 32px; font-size: 28px; margin-top: 0; border: none; background-color: transparent; } 
+.load .inputBox .inputLoad:focus { box-shadow: none; top: 28px; } 
 .load .inputBox .inputLoad::placeholder { font-size: 28px; font-weight: 700; margin-top: 10px; } 
 /* .load .inputBox .inputLoadBox.focus .inputLoad { padding-top: 21.5px; } */
 .load .inputBox .inputLoadBox.focus .floatText { opacity: 1; } 
-.load .inputBox .inputLoadBox.focus .btnDel { opacity: 1; top: auto; bottom: 19px; right: 7px; } 
+.load .inputBox .inputLoadBox.focus .btnDel { opacity: 1; top: auto; bottom: 19px; right: 20px; background-image: url('../../public/images/coupon/icon/common/icon-close-new.png'); width: 16px; height: 16px;} 
 .load .inputBox .inputLoadBox.focus.error input[type="tel"] { color: #fb3636; } 
 .load .inputBox .inputLoadBox.focus.error .floatText { color: #fb3636; } 
 .load .inputBox .inputLoadBox.focus .inputLoad { top: 38px; } 
 
 .inputBox.inputDouble .moneyInfoBox { display: flex; flex-direction: row; justify-content: space-between; margin-top: 6px; } 
 .inputBox.inputDouble .moneyInfoBox > p span { color: #151515; } 
-.inputBox.inputDouble .moneyInfoBox .right { font-size: 16px; font-weight: 700; color: #151515; } 
-.inputBox.inputDouble .moneyInfoBox .right .unitText { position: relative; top: -1px; font-size: 14px; } 
-.load .inputBox .placeholderText { position: absolute; top: 38px; left: 15px; height: 32px; line-height: 32px; font-size: 28px; font-weight: 700; color: #d5d5d5; } 
-.load .inputBox .inputLoadBox.focus .placeholderText { display: none; } 
+.inputBox.inputDouble .moneyInfoBox .right { font-size: 16px; font-weight: 700; color: #FF2B00; } 
+.inputBox.inputDouble .moneyInfoBox .right .unitText { position: relative; top: -1px; font-size: 14px; color: #FF2B00; } 
+.load .inputBox .placeholderText { position: absolute; top: 28px; left: 15px; height: 32px; line-height: 32px; font-size: 28px; font-weight: 700; color: #d5d5d5; } 
+.load .inputBox .inputLoadBox.focus .placeholderText { display: none;top: 38px; } 
 .load .inputBox .inputLoadBox.focus .placeholderText.show { display: block; } 
+.load .inputBox .moneyHoldBox { 
+	display: flex; align-items: center;justify-content: center;
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 14px;
+	letter-spacing: -0.04em;
+	text-align: left;
+	margin-top: 25px;
+	color: #818181;
+	}
+.load .inputBox .moneyLoadBox { display: flex; align-items: center;justify-content: center;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 19px;
+	letter-spacing: 0em;
+	text-align: left;
+	margin-top: 5px;
+	}
+.load .inputBox .moneyLoadBox i { margin-right: 5px; background: url('../../public/images/coupon/icon/common/icon-retto.png') no-repeat center / contain; width: 18px; height: 18px;}
+.load .inputBox .moneyLoadBox p { margin-right: 5px;}
+.load .inputBox .moneyLoadBox .boldText { font-weight: 700;}
+
 /* //inputBox */
 
 /* 구매 완료 */

@@ -23,7 +23,10 @@ const Index = () => {
   const [isShowBackBtn, setShowBackBtn] = useState(true);
   const [isShowSearchBtn, setShowSearchBtn] = useState(false);
   const [isShowMypageBtn, setShowMypageBtn] = useState(false);
+  const [dropDown, setDropDown] = useState(false);
   
+  const dropDownRef = useRef();
+
   return (
     <>
       <Layout>
@@ -34,10 +37,11 @@ const Index = () => {
           isShowMypageBtn={isShowMypageBtn}
         />
         <div
-          className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap}`}
+          className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap} ${stylePay.payInfoContent}`}
         >
           <div className={`${stylePay.payWrap} ${stylePay.forMe}`}>
             {/* 닫힌 상태 */}
+						{/*}
             <div
               className={`${styleCommon.container} ${styleCommon.textCenter} ${stylePay.msgWrap}`}
             >
@@ -52,9 +56,10 @@ const Index = () => {
                 <i className={`${styleCommon.iconArrowDownWhite}`}></i>
               </button>
             </div>
+						*/}
             {/* //닫힌 상태 */}
             {/* 열린 상태 */}
-            {/* <div
+            <div
               className={`${styleCommon.container} ${styleCommon.textCenter} ${stylePay.msgWrap}`}
             >
               <div className={`${stylePay.textBox}`}>
@@ -65,17 +70,7 @@ const Index = () => {
                 ></textarea>
                 <span className={`${stylePay.textCounter}`}>0/100</span>
               </div>
-              <button
-                type="button"
-                className={`${stylePay.btnMsg} ${stylePay.btnOpen}`}
-                onClick={() => {
-                  setVisible(!visible);
-                }}
-              >
-                메세지 접기&nbsp;
-                <i className={`${styleCommon.iconArrowUpOrange}`}></i>
-              </button>
-            </div> */}
+            </div>
             {/* //열린 상태 */}
           </div>
           <div className={`${stylePay.payInfoWrap}`}>
@@ -99,10 +94,19 @@ const Index = () => {
                     <p
                       className={`${styleCouponDetail.infoProduct} ${stylePay.infoProduct}`}
                     >
-                      시원하게 함께 세트
+                      시원하게 함께 세트시원하게 함께 세트시원하게 함께 세트시원하게 함께 세트시원하게 함께 세트시원하게 함께 세트시원하게 함께 세트시원하게 함께 세트시원하게 함께 세트시원하게 함께 세트
                     </p>
                     {/* 가격 */}
                     <div className={`${stylePay.priceBox}`}>
+											<p className={`${stylePay.priceInfo}`}>
+												<span className={`${stylePay.dcPercent}`}>10%</span>
+												<span className={`${stylePay.price}`}>900원</span>
+												<span className={`${stylePay.originPrice}`}>1,000</span>
+												<span className={`${stylePay.line}`}></span>
+                        <span className={`${stylePay.count}`}>1개</span>
+											</p>
+											{/* <p className={`${stylePay.dcWrap}`}></p>
+											<p className={`${stylePay.dcWrap}`}></p>
                       <p className={`${stylePay.price}`}>
                         <span>수량</span>
                         <span className={`${stylePay.count}`}>1개</span>
@@ -112,134 +116,200 @@ const Index = () => {
                         <span>
                           <strong>6,300<span className={stylePay.unitText}>원</span></strong>
                         </span>
-                      </p>
+                      </p> */}
                     </div>
                     {/* //가격 */}
                   </div>
                 </div>
               </div>
-              <div>
-                <p className={`${stylePay.listTitle}`}>결제 수단</p>
-                <div
-                  className={`${stylePay.inputBox} ${stylePay.inputDouble} ${stylePay.addBorderBottom}`}
-                >
-                  <div className={`${stylePay.inputInfoBox}`}>
-                    <strong>머니 &amp; 포인트</strong>
-                    <p>보유 금액 중 포인트부터 자동 사용됩니다.</p>
-                  </div>
-                </div>
-                <div
-                  className={`${stylePay.inputBox} ${stylePay.inputDouble} ${stylePay.addBorderBottom}`}
-                >
-                  <div
-                    className={`${stylePay.inputInfoBox} ${stylePay.moneyInfoBox}`}
-                  >
-                    <p className={`${stylePay.left}`}>
-                      <span>포인트</span>
-                      <span className={`${styleCommon.textGray}`}>
-                        &nbsp;(보유 : 1,000원)
-                      </span>
-                    </p>
-                    <p className={`${stylePay.right}`}>1,000<span className={stylePay.unitText}>원</span></p>
-                  </div>
-                  <div
-                    className={`${stylePay.inputInfoBox} ${stylePay.moneyInfoBox}`}
-                  >
-                    <p className={`${stylePay.left}`}>
-                      <span>머니</span>
-                      <span className={`${styleCommon.textGray}`}>
-                        &nbsp;(보유 : 0원)
-                      </span>
-                    </p>
-                    <p className={`${stylePay.right}`}>0<span className={stylePay.unitText}>원</span></p>
-                  </div>
-                </div>
-                {/* 충전 금액 부족 시 ${stylePay.error} 클래스 추가 */}
-                <div
-                  className={`${stylePay.inputBox} ${stylePay.inputDouble} ${stylePay.addBorderBottom}`}
-                >
-                  <div className={`${stylePay.inputInfoBox}`}>
-                    <strong>머니 충전 결제</strong>
-                    <p>부족한 금액은 자동 충전 후 머니로 결제됩니다.</p>
-                  </div>
-                  {/* 충전 */}
-                  <div
-                    className={`${stylePay.inputDoubleBox} ${stylePay.inputTop}`}
-                  >
-                    <div>
-                      <span>충전</span>
-                    </div>
-                    <div
-                      className={`${styleCommon.flexWrap} ${styleCommon.alignCenter}`}
-                    >
-                      <p className={`${stylePay.errorText}`}>
-                        <i className={`${styleCommon.iconErrorRed}`}></i>
-                        &nbsp;충전 금액 부족
-                      </p>
-                      <span
-                        className={`${stylePay.input} ${stylePay.loadMoney}`}
-                      >
-                        10,000<span className={stylePay.unitText}>원</span>
-                      </span>
-                      <i
-                        className={`${styleCommon.iconArrow} ${styleCommon.iconArrowRoundDown} ${stylePay.iconArrowRoundDown}`}
-                      ></i>
-                    </div>
-                  </div>
-                  {/* //충전 */}
-                  <div
-                    className={`${stylePay.inputDoubleBox} ${stylePay.inputBottom}`}
-                  >
-                    <span>사용</span>
-                    <div className={stylePay.inputArea}>
-                      <input
-                        type="text"
-                        defaultValue="5,300"
-                        className={`${stylePay.input}`}
-                        readOnly
-                      ></input>
-                      <span className={stylePay.unitText}>원</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className={stylePay.cardPointWrap}>
-                <dl>
-                  {/* 약관 동의 전 */}
-                  <dt>숨은 내 카드 포인트를 010PAY머니로 전환하세요<i className={styleCommon.iconArrowRight}></i></dt>
-                  {/* 약관 동의 후 */}
-                  {/* <dt>카드 포인트 <span>(전환 가능 : 50,000원)</span></dt>
-                  <dd>전환하기<i className={styleCommon.iconArrowRight}></i></dd> */}
-                </dl>
-                <div className={stylePay.logoWrap}>
-                  <div className={stylePay.logoBox}>
-                    <ImgBox/>
-                    <ImgBox/>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <p className={`${stylePay.listTitle} ${stylePay.last}`}>
-                  <span>총 결제 금액</span>
-                  <span>6,300<span className={stylePay.unitText}>원</span></span>
-                </p>
-                <ul className={stylePay.bottomList}>
-                  <li>위 주문 내용 및 결제조건을 확인하였으며, 결제진행에 동의합니다.</li>
-                  <li>사용 가능 쿠폰 보유 시 010PAY 회원을 탈퇴할 수 없습니다.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+							</div>
+							</div>
+							{/* payInfoWrap */}
+							<div className={`${stylePay.payInfoWrap}`}>
+								<div className={`${styleCommon.container}`}>
+									<div>
+										<p className={`${stylePay.listTitle}`}>결제 수단</p>
+										<div
+											className={`${stylePay.inputBox} ${stylePay.inputDouble} ${stylePay.addBorderBottom}`}
+										>
+											<div className={`${stylePay.inputInfoBox}`}>
+												<strong>머니&amp;포인트</strong>
+												<p className={`${stylePay.inputInfoBoxSubTit}`}>포인트부터 자동 사용됩니다.</p>
+											</div>
+										</div>
+										<div
+											className={`${stylePay.inputBox} ${stylePay.inputDouble} ${stylePay.inputDoubleContent}`}
+										>
+											<div
+												className={`${stylePay.inputInfoBox} ${stylePay.moneyInfoBox}`}
+											>
+												<p className={`${stylePay.left}`}>
+													<span>포인트</span>
+													<span className={`${styleCommon.textGray}`}>
+														&nbsp;(사용 가능: 1,000원)
+													</span>
+												</p>
+												<p className={`${stylePay.right}`}>100<span className={stylePay.unitText}>원</span></p>
+											</div>
+											<div
+												className={`${stylePay.inputInfoBox} ${stylePay.moneyInfoBox}`}
+											>
+												<p className={`${stylePay.left}`}>
+													<span>머니</span>
+													<span className={`${styleCommon.textGray}`}>
+														&nbsp;(사용 가능: 1,000원)
+													</span>
+												</p>
+												<p className={`${stylePay.right}`}>800<span className={stylePay.unitText}>원</span></p>
+											</div>
+										</div>
+										{/* 충전 금액 부족 시 ${stylePay.error} 클래스 추가 */}
+										<div
+											className={`${stylePay.inputBox} ${stylePay.inputDouble} ${stylePay.moneyLoadBox}`}
+										>
+											<div className={`${stylePay.inputInfoBox}`}>
+												<strong>머니 충전 결제</strong>
+												<p className={`${stylePay.inputInfoBoxSubTit}`}>부족한 금액은 자동 충전 후 결제됩니다.</p>
+											</div>
+											{/* 충전 */}
+											<div
+												className={`${stylePay.inputDoubleBox} ${stylePay.inputTop} `}
+											>
+												<div>
+													<span>충전</span>
+												</div>
+												<div
+													className={`${styleCommon.flexWrap} ${styleCommon.alignCenter}`}
+												>
+													<p className={`${stylePay.errorText}`}>
+														<i className={`${styleCommon.iconErrorRed}`}></i>
+														&nbsp;충전 금액 부족
+													</p>
+													<span
+														className={`${stylePay.input} ${stylePay.loadMoney}`}
+													>
+														10,000<span className={stylePay.unitText}>원</span>
+													</span>
+													<i className={styleCommon.iconArrowRight}></i>
+												</div>
+											</div>
+											{/* //충전 */}
+											<div
+												className={`${stylePay.inputDoubleBox} ${stylePay.inputBottom}`}
+											>
+												<span>사용</span>
+												<div className={stylePay.inputArea}>
+													<input
+														type="text"
+														defaultValue="5,300"
+														className={`${stylePay.input}`}
+														readOnly
+													></input>
+													<span className={stylePay.unitText}>원</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							{/* //payInfoWrap */}
+					
+							{/* payInfoWrap */}
+							<div className={`${stylePay.payInfoWrap}`}>
+								<div className={`${styleCommon.container}`}>
+									<div className={stylePay.cardPointWrap}>
+										<dl>
+											{/* 약관 동의 전 */}
+											{/* <dt>숨은 내 카드 포인트를 010PAY머니로 전환해요!<i className={styleCommon.iconArrowRight}></i></dt> */}
+											{/* 약관 동의 후 */}
+											<dt>전환 가능한 카드 포인트 <span>200,000,000</span>이 있어요!<i className={styleCommon.iconArrowRight}></i></dt>
+											{/* <dd>전환하기</dd> */}
+										</dl>
+										<div className={stylePay.logoWrap}>
+											<div className={stylePay.logoBox}>
+												<ImgBox/>
+												<ImgBox/>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							{/* //payInfoWrap */}
+					
+						{/* payInfoWrap */}
+						<div className={`${stylePay.payInfoWrap} ${stylePay.last}`}>
+							<div className={`${styleCommon.container}`}>
+								<div>
+									<p className={`${stylePay.listTitle} ${stylePay.last}`}>
+										<span>총 결제 금액</span>
+										<span>0<span className={stylePay.unitText}>원</span>
+										<button ref={dropDownRef} className={`${ dropDown && stylePay.on} ${stylePay.arrow}`} onClick={() => setDropDown(!dropDown)}></button>
+										</span>
+									</p>
+									{ 
+									dropDown && 
+									<div className={stylePay.priceDetailWrap}>
+										<dl>
+											<dt>상품 금액</dt>
+											<dd>1,000<em>원</em></dd>
+											<dt>
+												기본 할인 <span>6%</span>
+											</dt>
+											<dd>-60<em>원</em></dd>
+											<dt>
+											기간 한정 할인 <span>6%</span>
+											</dt>
+											<dd>-40<em>원</em></dd>
+											<dt>
+											선물 한정 할인 <span>6%</span>
+											</dt>
+											<dd>-40<em>원</em></dd>
+											{/* 상세 개편 */}
+											<dt>
+											포인트 사용 <span className={styleCouponDetail.benefitAlert}>(보유 : 0원)</span>
+											</dt>
+											<dd>2,000<em>원</em></dd>
+											{/* 상세 개편 */}
+										</dl>
+									</div>
+									}
+									{/* <div className={`${stylePay.inputBox} ${stylePay.last}`}>
+										<p className={`${stylePay.inputInfoBox}`}>
+											<span
+												className={`${stylePay.checkbox} ${styleApply.checkbox} ${styleApply.parents}`}
+											>
+												<input type="checkbox" name="agreeAll" id="agreeAll_03" />
+												<label for="agreeAll_03">개인정보 수집이용 동의</label>
+											</span>
+											<button
+												type="button"
+												className={`${styleCommon.btnIcon} ${styleApply.agreeBtn}`}
+											>
+												보기{" "}
+												<i
+													className={`${styleApply.icon} ${styleApply.iconArrowRight}`}
+												></i>
+											</button>
+										</p>
+									</div> */}
+									<ul className={stylePay.bottomList}>
+										<li>위 주문 내용 및 결제조건을 확인하였으며, 결제진행에 동의합니다.</li>
+										<li>사용 가능 쿠폰 보유 시 010PAY 회원을 탈퇴할 수 없습니다.</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						{/* //payInfoWrap */}
         </div>
         <div className={`${styleCommon.bottomFixed} ${stylePay.bottomFixed}`}>
           {/* 에러 토스트 */}
           {/* <ToastError /> */}
           {/* //에러 토스트 */}
           {/* 비활성 버튼 */}
-          <button className={`${styleCommon.btnGray}`}>결제하기</button>
+          <button className={`${styleCommon.btnGray}`}><span>0원</span> 결제하기</button>
           {/* //비활성 버튼 */}
           {/* 활성 버튼 */}
-          {/* <button>결제하기</button> */}
+          {/* <button><span>0원</span> 결제하기</button> */}
           {/* //활성 버튼 */}
         </div>
         {/* <ModalTerms /> */}

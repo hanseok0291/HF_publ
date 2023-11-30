@@ -270,6 +270,16 @@ var positionCtl = {
       }
     });
 
+    $(".rettoBridge-wrap .section").each(function () {
+      if (
+        !$(this).hasClass("animation") &&
+        $(this).data("offsetTop") < position
+      ) {
+        console.log($(this).data("offsetTop"));
+        $(this).addClass("animation");
+      }
+    });
+
     $(".tax .section").each(function () {
       if (
         !$(this).hasClass("animation") &&

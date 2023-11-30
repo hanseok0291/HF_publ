@@ -252,7 +252,6 @@ $(function () {
       $(".bottom-area").addClass("fixed");
     } else {
       $(".bottom-area").removeClass("fixed");
-			console.log('1');
     }
 
   }

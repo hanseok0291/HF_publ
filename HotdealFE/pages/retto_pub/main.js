@@ -21,6 +21,8 @@ import BottomSheetMission from "../../components/retto_pub/common/modal/BottomSh
 import Result from "../../components/retto_pub/Result";
 import BottomSheetMissionFail from "../../components/retto_pub/common/modal/BottomSheetMissionFail";
 import LayerTutorial from "../../components/retto_pub/LayerTutorial";
+import ModalmembershipOut1 from "../../components/retto_pub/common/modal/ModalmembershipOut1";
+import ModalmembershipOut2 from "../../components/retto_pub/common/modal/ModalmembershipOut2";
 
 const index = () => {
   return (

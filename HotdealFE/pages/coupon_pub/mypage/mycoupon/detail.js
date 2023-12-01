@@ -72,7 +72,7 @@ const Index = () => {
         {/* 사용가능처 토스트 */}
         {/* <ModalAvailable /> */}
         {/* 메시지 팝업 */}
-        {/* <ModalMessage /> */}
+        <ModalMessage />
         {/* 취소 팝업 */}
         {/* <ModalCancle /> */}
         {/* 결체 취소 안내 팝업 */}

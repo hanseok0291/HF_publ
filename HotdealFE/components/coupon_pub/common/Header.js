@@ -6,6 +6,7 @@ export default function Header({
   isShowSearchBtn,
   isShowMypageBtn,
   isShowCloseBtn,
+  isShowShareBtn,
   pageTitle,
   noFixed
 }) {
@@ -33,6 +34,14 @@ export default function Header({
           >
             닫기
           </button>
+        )}
+
+				{isShowShareBtn && (
+          <button
+					className={`${styleCommon.btnIcon} ${styleCommon.btnShareFill}`}
+				>
+					공유하기
+				</button>
         )}
         {isShowSearchBtn && (
           <button

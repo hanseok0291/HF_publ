@@ -24,7 +24,7 @@ import LimitCoupon from "../../components/coupon_pub/main/LimitCoupon";
  */
 import CategoryList from "../../../components/coupon_pub/list/CategoryList";
 import ListSwiper from "../../../components/coupon_pub/list/ListSwiper";
-import CouponDetail from "../../../components/coupon_pub/detail/CouponDetail";
+import CouponDetailType2 from "../../../components/coupon_pub/detail/CouponDetailType2";
 
 const Index = () => {
   //헤더 아이콘 디폴트 세팅
@@ -49,7 +49,7 @@ const Index = () => {
         <div
           className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap}`}
         >
-          <CouponDetail isFixedTop={isFixedTop} isDeadlinFixed={isDeadlinFixed} setDeadlinFixed={setDeadlinFixed}/>
+          <CouponDetailType2 isFixedTop={isFixedTop} isDeadlinFixed={isDeadlinFixed} setDeadlinFixed={setDeadlinFixed}/>
         </div>
         <Footer isfixedBottom={isFixedBottom} isDeadlinFixed={isDeadlinFixed}/>
       </Layout>

@@ -70,7 +70,7 @@ const ModalFaild = ({ show, onClose }) => {
           {/* modalBody */}
           <div className={`${styleModal.modalBody} ${styleFilter.modalBody}`}>
             <div
-              className={`${stylePay.payInfoWrap} ${stylePay.successWrap} ${styleCommon.container}`}
+              className={`${stylePay.payInfoWrap} ${stylePay.payInfoWrapNew} ${stylePay.successWrap} ${styleCommon.container}`}
             >
               {/* 결제완료 기본 */}
               <div style={{ display: "block" }}>
@@ -138,7 +138,7 @@ const ModalFaild = ({ show, onClose }) => {
                 </div>
                 {/* 받는 사람 */}
                 {/* <div
-                  className={`${styleCouponDetail.CouponDetaiSmalllWrap} ${stylePay.CouponDetaiSmalllWrap} ${styleCommon.betweenWrap} ${styleCommon.alignCenter}`}
+                  className={`${styleCouponDetail.CouponDetaiSmalllWrap} ${stylePay.CouponDetaiSmalllWrap} ${stylePay.borderBold} ${styleCommon.betweenWrap} ${styleCommon.alignCenter}`}
                 >
                   <div
                     className={`${stylePay.inputBox} ${stylePay.inputBoxMt0}`}

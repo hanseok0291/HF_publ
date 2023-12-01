@@ -38,7 +38,7 @@ const Index = () => {
         <div
           className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap} ${stylePay.payInfoContent}`}
         >
-          <div className={`${stylePay.payInfoWrap} ${stylePay.load}`}>
+          <div className={`${stylePay.payInfoWrap} ${stylePay.load} `}>
             <div className={`${styleCommon.container}`}>
               <div>
                 <div className={`${stylePay.inputBox} ${stylePay.accountBox}`}>
@@ -120,12 +120,13 @@ const Index = () => {
                       + 50만원
                     </button>
                   </p>
-                  <p className={`${stylePay.highlightText}`}>
-                    충전 가능 금액{" "}
-                    <span className={`${styleCommon.highlight}`}>
-                      180,000원
-                    </span>
-                  </p>
+									<div className={`${stylePay.moneyHoldBox}`}>
+									<p>보유 머니: <span>1,000,000</span>원 (리또 머니함 포함)</p> 
+									</div>
+									<div className={`${stylePay.moneyLoadBox}`}>
+									<i className={`${styleCommon.icon} ${styleCommon.iconRetto}`}></i>
+									<p>충전 가능 금액</p> <strong><span className={`${stylePay.boldText}`}>500,000</span>원</strong>
+									</div>
                 </div>
               </div>
             </div>

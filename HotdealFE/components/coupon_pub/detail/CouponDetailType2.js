@@ -129,7 +129,7 @@ export default function CouponDetail({setDeadlinFixed }) {
             <div className={styleCouponDetail.priceWrap}>
               <span className={styleCouponDetail.infoDcPrice}>1,000</span>
               <span className={styleCouponDetail.infoPrice}>
-                <span>10%</span> <strong>900원</strong>
+                <span>10%</span> <strong>900</strong>
               </span>
             </div>
             <dl className={`${ dropDown && styleCouponDetail.finalPriceOn} ${styleCouponDetail.finalPrice}`}>
@@ -195,24 +195,24 @@ export default function CouponDetail({setDeadlinFixed }) {
 								</dt>
 								<dd>0<em>원</em></dd>
               </dl>
-								<div className={styleCouponDetail.addBenefit}>
+								{/* <div className={styleCouponDetail.addBenefit}>
 										<p>23. 11. 30까지 사용하면 <span className={styleCouponDetail.benefitAlert}>168원 적립!</span></p>
-								</div>
+								</div> */}
             </div>
 						}
 						{/* 카드포인트 전환X */}
-            <div className={styleCouponDetail.bannerWrap}>
+            {/* <div className={styleCouponDetail.bannerWrap}>
 							<p className={styleCouponDetail.txt}>숨은 카드 포인트 찾고<br></br><strong>기프티몰에서 구매해요!</strong>
               <i className={`${styleCommon.iconArrowRight} ${styleCouponDetail.arrow}`}></i>
 							</p>
-            </div>
+            </div> */}
 						{/* //카드포인트 전환X */}
 						{/* 카드포인트 전환o */}
-            {/* <div className={styleCouponDetail.bannerWrap}>
+            <div className={styleCouponDetail.bannerWrap}>
 							<p className={styleCouponDetail.txt}>전환 가능 포인트<br></br><strong>2,000,000,000이 있어요!</strong>
               <i className={`${styleCommon.iconArrowRight} ${styleCouponDetail.arrow}`}></i>
 							</p>
-            </div> */}
+            </div>
 						{/* //카드포인트 전환o */}
           </div>
         </div>

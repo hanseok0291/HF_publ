@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="../../../css/jquery-ui.css">
 <link rel="stylesheet" href="../../../css/owl.carousel.min.css">
 <link rel="stylesheet" href="../../../css/slick.min.css">
-<link rel="stylesheet" href="../../../css/common.css?ver=1.2">
+<link rel="stylesheet" href="../../../css/common.css?ver=1.6">
 <link rel="stylesheet" href="../../../css/card.css">
 <!--[if lt IE 9]>
 <script type="text/javascript" src="../../../js/html5shiv.js"></script>
@@ -55,15 +55,26 @@
 	<!-- content -->
 	<div id="content" class="content-promotion animation-section">
 		<!-- section - visual -->
-		<div class="section section-visual">
+		<div id="aniWrap" class="section section-visual ani1">
 			<div class="container">
-				<div class="section-content">
+				<div class="section-content section-content1">
 					<h3 class="title ani-slide-1">010PAY 우리카드</h3>
-					<p class="sub-title ani-slide-2">결제할 때마다,<br>놀라운 행운!</p>
+					<p class="sub-title ani-slide-1">결제할 때마다,<br>놀라운 행운!</p>
 				</div>
 			</div>
+			<p class="card-shadow"></p>
 		</div>
 		<!-- //section - visual -->
+
+		<div class="juwel-wrap">
+			<p class="juwel juwel1 ani-slide-1"></p>
+			<p class="juwel juwel2 ani-slide-1"></p>
+			<p class="juwel juwel3 ani-slide-1"></p>
+		</div>
+
+		<div class="slideUp">
+			<img class="" src="../../../images/card/credit-modal.png" alt="티케 그리스 신화에나오는 행운의 여신이에요!">
+		</div>
 
 		<!-- section - notice -->
 		<div class="section last section-notice">
@@ -187,7 +198,7 @@
 										<dd>1577-9000</dd>
 										<dt>SMS 신청</dt>
 										<dd>1588-9955</dd>
-										<dt class="full">담당부서: 제휴영업부 / 여신금융협회 심의필 제2023</dt>
+										<!-- <dt class="full">담당부서: 제휴영업부 / 여신금융협회 심의필 제2023</dt> -->
 									</dl>
 								</li>
 							</ul>
@@ -203,12 +214,13 @@
 		<!-- //section - notice -->
 
 		<!-- footer button area -->
-		<div id="btnWrap" class="button-wrap">
+		<div class="fix-bottom">
 			<div class="container">
-				<button type="button" class="btn btn-round">신용카드 신청하기</button>
+				<button type="button" class="btn">신용카드 신청하기</button>
 			</div>
 		</div>
 		<!-- //footer button area -->
+
 	</div>
 	<!-- //content -->
 </div>
@@ -328,17 +340,18 @@ $(window).load(function(){
 			scrollTop = $(this).scrollTop();
 
 			// 스크롤 시 하단 버튼 토글
-			if (scrollTop > 50) {
-				// $("body:not(.modal-open) .button-wrap").addClass("aa");
+			if (scrollTop > 30) {
+				$("body:not(.modal-open) .fix-bottom").addClass("active");
+				$("body:not(.modal-open) .slideUp").removeClass("up");
 			} else {
-				// $("body:not(.modal-open) .button-wrap").removeClass("aa");
+				$("body:not(.modal-open) .fix-bottom").removeClass("active");
 			}
 
 			sectionActive();
 		});
 	}
 
-	sectionAni();  // 섹션 애니메이션
+	sectionAni(); // 섹션 애니메이션
 
 	$(window).resize(function(){
 		sectionAni(); // 섹션 애니메이션
@@ -362,6 +375,28 @@ var section02 = $('html').offset().top;
   });
 
 });
+
+// JavaScript를 사용하여 애니메이션이 끝난 후에 다른 애니메이션으로 변경
+var modalElement = document.getElementById('aniWrap');
+
+modalElement.addEventListener('animationend', function() {
+	setTimeout(() => {
+		this.classList.remove('ani1');
+		this.classList.add('ani2');
+		$('.slideUp').css('z-index', '-1');
+		$('#wrap.card-credit .slideUp').removeClass('up')
+  }, 4500); // 4500 밀리초(4.5초) 후에 클래스 변경
+});
+
+setTimeout(() => {
+	$('#wrap.card-credit .fix-bottom').css('opacity', '1');
+	$('#wrap.card-credit .slideUp').addClass('up')
+}, 1800); // 1500 밀리초(1.5초) 후에 클래스 변경
+
+// JavaScript를 사용하여 iOS 감지 후 body에 클래스 추가
+if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+	document.body.classList.add('ios');
+}
 </script>
 </body>
 </html>

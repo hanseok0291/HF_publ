@@ -70,7 +70,7 @@ const ModalSuccessFriend = ({ show, onClose }) => {
           {/* modalBody */}
           <div className={`${styleModal.modalBody} ${styleFilter.modalBody}`}>
             <div
-              className={`${stylePay.payInfoWrap} ${stylePay.successWrap} ${styleCommon.container}`}
+              className={`${stylePay.payInfoWrap} ${stylePay.payInfoWrapNew} ${stylePay.successWrap} ${styleCommon.container}`}
             >
               {/* 결제완료 기본 */}
               <div style={{ display: "block" }}>
@@ -89,7 +89,7 @@ const ModalSuccessFriend = ({ show, onClose }) => {
                   </div>
                 </div>
                 <div
-                  className={`${styleCouponDetail.CouponDetaiSmalllWrap} ${stylePay.CouponDetaiSmalllWrap} ${stylePay.borderBold}`}
+                  className={`${styleCouponDetail.CouponDetaiSmalllWrap} ${stylePay.CouponDetaiSmalllWrap}`}
                 >
                   <div className={styleCouponDetail.imgBox}>
                     <img
@@ -139,10 +139,10 @@ const ModalSuccessFriend = ({ show, onClose }) => {
                 </div>
                 {/* 받는 사람 */}
                 <div
-                  className={`${styleCouponDetail.CouponDetaiSmalllWrap} ${stylePay.CouponDetaiSmalllWrap} ${styleCommon.betweenWrap} ${styleCommon.alignCenter}`}
+                  className={`${styleCouponDetail.CouponDetaiSmalllWrap} ${stylePay.CouponDetaiSmalllWrap} ${stylePay.borderBold} ${styleCommon.betweenWrap} ${styleCommon.alignCenter}`}
                 >
                   <div
-                    className={`${stylePay.inputBox} ${stylePay.inputBoxMt0}`}
+                    className={`${stylePay.inputBox} ${stylePay.inputBoxMt0} ${stylePay.inputBoxMb0}`}
                   >
                     <div className={`${stylePay.inputInfoBox}`}>
                       <strong className={`${stylePay.title}`}>받는 사람</strong>
@@ -153,7 +153,7 @@ const ModalSuccessFriend = ({ show, onClose }) => {
                     </p>
                   </div>
                   <div
-                    className={`${styleCommon.textBox} ${styleCommon.mtAuto}`}
+                    className={`${styleCommon.textBox} `}
                   >
                     알려주기
                   </div>

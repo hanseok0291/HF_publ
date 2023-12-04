@@ -18,12 +18,14 @@ const ModalAlert = ({ title, cancle = "취소", confirm = "확인", content }) =
             </button>
           </div>
           <div className={styleModal.modalBody}>
+            <div className={styleModal.messageBox}>
             <p className={styleModal.toText}>To. 헥토파이낸셜</p>
-            <p className={styleModal.messageBox}>
-              한 잔은 내꺼야. <br />
+						<p className={styleModal.modalText}>
+							한 잔은 내꺼야. <br />
               같이먹게 저녁에 나와!
-            </p>
-            <p className={styleModal.fromText}>From. 010PAY</p>
+						</p>
+						<p className={styleModal.fromText}>From. 010PAY</p>
+            </div>
           </div>
         </div>
       </div>

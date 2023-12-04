@@ -93,7 +93,9 @@ export default function CouponDetailSmall({ isfixedTop }) {
               <div
                 className={`${styleCouponDetail.TabContent} ${styleCouponDetail.TabContentOn}`}
               >
-                <div className={`${styleCommon.container}`}>
+								<div
+									className={`${styleCommon.container} ${styleCouponDetail.InfoTabContent}`}
+								>
                   <div className={`${styleCouponDetail.TabContentBox}`}>
                     <p className={`${styleCouponDetail.TabContentTitle}`}>
                       상품 고시 정보

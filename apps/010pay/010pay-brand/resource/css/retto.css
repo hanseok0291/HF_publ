@@ -839,8 +839,6 @@ body::after {
   height: 0;
   overflow: hidden;
   z-index: -1;
-  /* load images */
-  content: url("../images/retto/third-img-01.png") url("../images/retto/third-img-02.png") url("../images/retto/third-img-03.png") url("../images/retto/third-img-04.png") url("../images/retto/m-third-img-01.png") url("../images/retto/m-third-img-02.png") url("../images/retto/m-third-img-03.png") url("../images/retto/m-third-img-04.png") url("../images/retto/fifth-img-03.png"); /* 필요한 이미지 소스들 다운 */
 }
 
 .section .add-ani {
@@ -864,7 +862,6 @@ body::after {
 
 .retto-wrap {
   padding-top: 76px;
-  background-color: #222222;
 }
 .retto-wrap .section .container {
   display: flex;
@@ -880,6 +877,7 @@ body::after {
 .retto-wrap .top-visual {
   overflow: hidden;
   position: relative;
+  z-index: 11;
   height: 700px;
   border-radius: 0 0 100px 100px;
   background-color: #fff;
@@ -951,7 +949,10 @@ body::after {
   background: url("../images/retto/top-visual-img.png") 0 0/contain no-repeat;
 }
 .retto-wrap .second-section {
-  height: 524px;
+  height: 499px;
+}
+.retto-wrap .second-section.animation .container .sub-title-wrap h3::before {
+  width: 100%;
 }
 .retto-wrap .second-section.animation .container .compati-wrap .compati {
   opacity: 1;
@@ -959,163 +960,113 @@ body::after {
           animation: compati 1s 1s backwards ease-in-out;
 }
 .retto-wrap .second-section .container {
-  display: flex;
+  display: block;
   height: 100%;
+  padding: 145px 0 0;
+}
+.retto-wrap .second-section .container .sub-title-wrap {
   padding: 0;
-}
-.retto-wrap .second-section .container .frame-wrap {
-  width: 454px;
-  height: 424px;
-  margin: auto auto 0;
-  padding-top: 91px;
-  text-align: center;
-  background: url("../images/retto/second-img-01.png") 0 0/cover no-repeat;
-}
-.retto-wrap .second-section .container .frame-wrap .text-wrap {
-  display: inline-block;
-  position: relative;
-  margin-bottom: 75px;
   text-align: center;
 }
-.retto-wrap .second-section .container .frame-wrap .text-wrap p {
-  color: #CCCCCC;
-  font-size: 21px;
-  line-height: 28.35px;
-}
-.retto-wrap .second-section .container .frame-wrap .text-wrap h4 {
-  color: #fff;
-  font-size: 36px;
-  line-height: 46.8px;
-  font-weight: 700;
-}
-.retto-wrap .second-section .container .frame-wrap .text-wrap span {
-  position: absolute;
-  right: 5px;
-  bottom: -14px;
-  font-size: 16px;
-  line-height: 21.6px;
-  opacity: 0.8;
-}
-.retto-wrap .second-section .container .frame-wrap .text-wrap span em {
-  color: #EEEEEE;
-}
-.retto-wrap .second-section .container .frame-wrap .jewel-img {
-  position: absolute;
+.retto-wrap .second-section .container .sub-title-wrap::before {
   left: 50%;
-  top: -41px;
-  z-index: 1;
+  top: -45px;
   transform: translateX(-50%);
-  width: 130px;
-  height: 78px;
-  background: url("../images/retto/second-img-02.png") 0 0/cover no-repeat;
+  width: 40px;
+  height: 40px;
+  background: url("../images/retto/second-title-icon.svg") 0 0/cover no-repeat;
 }
-.retto-wrap .second-section .container .frame-wrap .bottom-wrap {
+.retto-wrap .second-section .container .sub-title-wrap h3 {
   position: relative;
-  width: 375px;
-  height: 150px;
-  margin: auto;
-}
-.retto-wrap .second-section .container .frame-wrap .bottom-wrap .text-wrap {
-  width: 375px;
-  height: 150px;
-  padding-top: 54px;
-  background: url("../images/retto/second-img-03.png") 0 0/cover no-repeat;
-}
-.retto-wrap .second-section .container .frame-wrap .bottom-wrap .text-wrap p {
-  color: #585858;
-  font-size: 20px;
-  line-height: 27px;
-}
-.retto-wrap .second-section .container .frame-wrap .bottom-wrap .text-wrap h4 {
+  display: inline-block;
   color: #151515;
-  font-size: 24px;
+  font-size: 40px;
+  text-align: center;
   font-weight: 700;
-  line-height: 32.4px;
+  line-height: 54px;
 }
-.retto-wrap .second-section .container .compati-wrap {
+.retto-wrap .second-section .container .sub-title-wrap h3::before {
+  display: block;
+  content: "";
   position: absolute;
+  z-index: -1;
   left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+  bottom: 0;
+  width: 0;
+  height: 38%;
+  background-color: rgba(230, 255, 0, 0.8);
+  transition: 0.5s;
+  transition-delay: 0.5s;
 }
-.retto-wrap .second-section .container .compati-wrap .compati {
+.retto-wrap .second-section .container .jewel {
   display: block;
   position: absolute;
-  opacity: 0;
 }
-.retto-wrap .second-section .container .compati-wrap .compati.compati-01 {
-  width: 18px;
-  height: 18px;
-  left: 210px;
-  top: 120px;
-  background: url("../images/retto/compati-img-01.png") 0 0/cover no-repeat;
-  -webkit-animation-delay: 0.4s;
-          animation-delay: 0.4s;
+.retto-wrap .second-section .container .jewel.jewel-1 {
+  left: 0;
+  top: 125px;
+  width: 153px;
+  height: 153px;
+  background: url("../images/retto/jewel-1.svg") 0 0/cover no-repeat;
+  -webkit-animation: downUp 2s infinite ease-in-out;
+          animation: downUp 2s infinite ease-in-out;
 }
-.retto-wrap .second-section .container .compati-wrap .compati.compati-02 {
-  width: 38px;
-  height: 52px;
-  left: 104px;
-  top: 206px;
-  background: url("../images/retto/compati-img-02.png") 0 0/cover no-repeat;
-  -webkit-animation-delay: 0.3s;
-          animation-delay: 0.3s;
+.retto-wrap .second-section .container .jewel.jewel-2 {
+  right: 140px;
+  top: 31px;
+  width: 219px;
+  height: 216px;
+  background: url("../images/retto/jewel-2.svg") 0 0/cover no-repeat;
+  -webkit-animation: downUp 2s 0.2s infinite ease-in-out;
+          animation: downUp 2s 0.2s infinite ease-in-out;
 }
-.retto-wrap .second-section .container .compati-wrap .compati.compati-03 {
-  width: 34px;
-  height: 34px;
-  left: 237px;
-  top: 252px;
-  background: url("../images/retto/compati-img-03.png") 0 0/cover no-repeat;
-  -webkit-animation-delay: 0.2s;
-          animation-delay: 0.2s;
+.retto-wrap .second-section .container .jewel.jewel-3 {
+  right: 60px;
+  top: 285px;
+  width: 144px;
+  height: 144px;
+  background: url("../images/retto/jewel-3.svg") 0 0/cover no-repeat;
+  -webkit-animation: downUp 2s 0.4s infinite ease-in-out;
+          animation: downUp 2s 0.4s infinite ease-in-out;
 }
-.retto-wrap .second-section .container .compati-wrap .compati.compati-04 {
-  width: 36px;
-  height: 30px;
-  left: 168px;
-  top: 388px;
-  background: url("../images/retto/compati-img-04.png") 0 0/cover no-repeat;
-  -webkit-animation-delay: 0.1s;
-          animation-delay: 0.1s;
+.retto-wrap .second-section .container .content-wrap {
+  position: relative;
+  margin: 82px auto 0;
 }
-.retto-wrap .second-section .container .compati-wrap .compati.compati-05 {
-  width: 46px;
-  height: 33px;
-  right: 135px;
-  top: 63px;
-  background: url("../images/retto/compati-img-05.png") 0 0/cover no-repeat;
-  -webkit-animation-delay: 0.4s;
-          animation-delay: 0.4s;
+.retto-wrap .second-section .container .content-wrap .jewel-img {
+  position: absolute;
+  left: 50%;
+  top: -56px;
+  z-index: 1;
+  transform: translateX(-50%);
+  width: 164px;
+  height: 98px;
+  background: url("../images/retto/second-img-02.png") 0 0/cover no-repeat;
 }
-.retto-wrap .second-section .container .compati-wrap .compati.compati-06 {
-  width: 26px;
-  height: 20px;
-  right: 210px;
-  top: 182px;
-  background: url("../images/retto/compati-img-06.png") 0 0/cover no-repeat;
-  -webkit-animation-delay: 0.3s;
-          animation-delay: 0.3s;
+.retto-wrap .second-section .container .content-wrap .content-box {
+  width: 630px;
+  height: 218px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 60px;
+  border-radius: 20px;
+  background: #F9F9F9;
+  text-align: center;
 }
-.retto-wrap .second-section .container .compati-wrap .compati.compati-07 {
-  width: 18px;
-  height: 18px;
-  right: 117px;
-  top: 300px;
-  background: url("../images/retto/compati-img-07.png") 0 0/cover no-repeat;
-  -webkit-animation-delay: 0.2s;
-          animation-delay: 0.2s;
+.retto-wrap .second-section .container .content-wrap .text-1 {
+  color: #FF4600;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
 }
-.retto-wrap .second-section .container .compati-wrap .compati.compati-08 {
-  width: 32px;
-  height: 30px;
-  right: 249px;
-  top: 396px;
-  background: url("../images/retto/compati-img-08.png") 0 0/cover no-repeat;
-  -webkit-animation-delay: 0.1s;
-          animation-delay: 0.1s;
+.retto-wrap .second-section .container .content-wrap .text-2 {
+  margin-top: 12px;
+  color: #222;
+  font-size: 24px;
+  line-height: 32px;
+}
+.retto-wrap .second-section .container .content-wrap .text-2 b {
+  font-weight: 700;
 }
 .retto-wrap .sub-title-wrap {
   position: relative;
@@ -1161,155 +1112,251 @@ body::after {
   line-height: 32.4px;
 }
 .retto-wrap .third-section {
-  height: 800px;
-  background-color: #FFF;
+  height: 363px;
+  background-color: transparent;
+}
+.retto-wrap .third-section.animation .container .sub-title-wrap h3::before {
+  width: 100%;
 }
 .retto-wrap .third-section.animation .container .img-wrap {
   -webkit-animation: imgChange 5s 1s ease-in-out forwards;
           animation: imgChange 5s 1s ease-in-out forwards;
 }
-.retto-wrap .third-section.animation .container .finish-img {
-  -webkit-animation: opacityUp 0.6s 5.6s ease-in-out backwards;
-          animation: opacityUp 0.6s 5.6s ease-in-out backwards;
-}
 .retto-wrap .third-section .container {
-  align-items: center;
+  display: block;
+  height: 100%;
+  padding: 145px 0 80px;
+}
+.retto-wrap .third-section .container .sub-title-wrap {
+  padding: 0;
+  text-align: center;
 }
 .retto-wrap .third-section .container .sub-title-wrap::before {
+  left: 50%;
+  top: -45px;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
   background: url("../images/retto/third-title-icon.svg") 0 0/cover no-repeat;
 }
-.retto-wrap .third-section .container .img-wrap {
+.retto-wrap .third-section .container .sub-title-wrap h3 {
+  display: inline-block;
   position: relative;
-  width: 300px;
-  height: 600px;
-  margin-right: 140px;
-  border-radius: 36px;
-  box-shadow: 20px 20px 40px 0px rgba(0, 0, 0, 0.1607843137);
-  background-image: url("../images/retto/third-img-01.png");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  color: #151515;
+  font-size: 40px;
+  text-align: center;
+  font-weight: 700;
+  line-height: 54px;
 }
-.retto-wrap .third-section .container .img-wrap .frame-wrap {
+.retto-wrap .third-section .container .sub-title-wrap h3::before {
+  display: block;
+  content: "";
   position: absolute;
+  z-index: -1;
   left: 0;
-  top: 0;
-  width: 300px;
-  height: 600px;
-  border: 8px solid #151515;
-  border-radius: 36px;
+  bottom: 0;
+  width: 0;
+  height: 38%;
+  background-color: rgba(230, 255, 0, 0.8);
+  transition: 0.5s;
+  transition-delay: 0.5s;
 }
-.retto-wrap .third-section .container .img-wrap .finish-img {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 36px;
-  background: rgba(0, 0, 0, 0.5019607843);
+.retto-wrap .third-section .container .sub-title-wrap p {
+  margin-top: 20px;
+  color: #222;
+  font-size: 24px;
+  line-height: 32px;
+  text-align: center;
 }
-.retto-wrap .third-section .container .img-wrap .finish-img::before {
+.retto-wrap .fourth-section {
+  height: 881px;
+  background-color: #fff;
+}
+.retto-wrap .fourth-section::before {
   display: block;
   content: "";
   position: absolute;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 386px;
-  height: 170px;
-  border-radius: 15px;
-  background: url("../images/retto/third-img-05.png") 0 0/100% 100% no-repeat;
-  box-shadow: 14.9019603729px 14.9019603729px 29.8039207458px 0px rgba(0, 0, 0, 0.0784313725);
+  top: 191px;
+  transform: translateX(-50%);
+  z-index: 0;
+  width: 100%;
+  height: 400px;
+  background-color: #F9F9F9;
 }
-.retto-wrap .fourth-section {
-  height: 800px;
-  background-color: #F1F1F1;
+.retto-wrap .fourth-section.animation .content-box-2 .img-01 {
+  -webkit-animation: opacityUp 1s;
+          animation: opacityUp 1s;
 }
-.retto-wrap .fourth-section.animation .img-01 {
+.retto-wrap .fourth-section.animation .content-box-2 .img-01 {
   -webkit-animation: showRight1 0.6s 1s backwards;
           animation: showRight1 0.6s 1s backwards;
 }
-.retto-wrap .fourth-section.animation .img-02 {
+.retto-wrap .fourth-section.animation .content-box-2 .img-02 {
   -webkit-animation: showRight2 0.4s 1.6s backwards;
           animation: showRight2 0.4s 1.6s backwards;
 }
-.retto-wrap .fourth-section.animation .img-03 {
+.retto-wrap .fourth-section.animation .content-box-2 .img-03 {
   -webkit-animation: opacityUp 0.4s 2.4s backwards;
           animation: opacityUp 0.4s 2.4s backwards;
 }
-.retto-wrap .fourth-section.animation .img-04 {
+.retto-wrap .fourth-section.animation .content-box-2 .img-04 {
   -webkit-animation: opacityUp 0.4s 3.2s backwards;
           animation: opacityUp 0.4s 3.2s backwards;
 }
-.retto-wrap .fourth-section.animation .img-05 {
+.retto-wrap .fourth-section.animation .content-box-2 .img-05 {
   -webkit-animation: circleTransform 0.4s 2s both;
           animation: circleTransform 0.4s 2s both;
 }
-.retto-wrap .fourth-section.animation .img-06 {
+.retto-wrap .fourth-section.animation .content-box-2 .img-06 {
   -webkit-animation: circleTransform 0.4s 2.8s both;
           animation: circleTransform 0.4s 2.8s both;
 }
 .retto-wrap .fourth-section .container {
-  align-items: center;
+  display: block;
+  overflow: visible;
+  width: 886px;
+  height: 100%;
+  margin: auto;
+  padding: 0;
 }
 .retto-wrap .fourth-section .container .sub-title-wrap::before {
   background: url("../images/retto/fourth-title-icon.svg") 0 0/cover no-repeat;
 }
-.retto-wrap .fourth-section .container .img-wrap {
+.retto-wrap .fourth-section .container .content-box {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.retto-wrap .fourth-section .container .content-box .img-wrap {
   position: relative;
+  z-index: 1;
   width: 380px;
-  height: 194px;
-  margin-right: 97px;
-  border-radius: 20px;
+  height: 227px;
+  margin-right: 73px;
+  border-radius: 12px;
   box-shadow: 20px 20px 40px 0px rgba(0, 0, 0, 0.0784313725);
+  background-color: #fff;
+}
+.retto-wrap .fourth-section .container .content-box .text-wrap {
+  z-index: 1;
+}
+.retto-wrap .fourth-section .container .content-box .text-wrap span {
+  display: block;
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 700;
+  text-align: center;
+  color: #575757;
+  background-color: #E2E2E2;
+  border-radius: 50%;
+}
+.retto-wrap .fourth-section .container .content-box .text-wrap p {
+  margin-top: 4px;
+  color: #222;
+  font-size: 24px;
+  line-height: 32px;
+}
+.retto-wrap .fourth-section .container .content-box .text-wrap p b {
+  font-weight: 700;
+}
+.retto-wrap .fourth-section .container .content-box.content-box-1 .img-wrap .img-box {
+  margin-left: auto;
+  margin-right: auto;
+}
+.retto-wrap .fourth-section .container .content-box.content-box-1 .img-wrap .img-box.img-01 {
+  width: 344px;
+  height: 127px;
+  background: url("../images/retto/third-img-01-1.png") 0 0/cover no-repeat;
+}
+.retto-wrap .fourth-section .container .content-box.content-box-1 .img-wrap .img-box.img-02 {
+  width: 344px;
+  height: 75px;
+  background: url("../images/retto/third-img-01-2.png") 0 0/cover no-repeat;
+}
+.retto-wrap .fourth-section .container .content-box.content-box-2 {
+  position: static;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 20px;
+}
+.retto-wrap .fourth-section .container .content-box.content-box-2 .img-wrap {
+  margin-right: 0;
   background: #fff url("../images/retto/fourth-img-01.png") center center/335px 149px no-repeat;
 }
-.retto-wrap .fourth-section .container .img-wrap .img-box {
+.retto-wrap .fourth-section .container .content-box.content-box-2 .img-wrap .img-box {
   position: absolute;
 }
-.retto-wrap .fourth-section .container .img-wrap .img-box.img-01 {
-  left: 82px;
-  top: 70px;
+.retto-wrap .fourth-section .container .content-box.content-box-2 .img-wrap .img-box.img-01 {
+  left: 83px;
+  top: 86px;
   width: 275px;
   height: 30px;
   background: url("../images/retto/fourth-img-02.png") 0 0/cover no-repeat;
 }
-.retto-wrap .fourth-section .container .img-wrap .img-box.img-02 {
-  left: 22px;
-  top: 103px;
+.retto-wrap .fourth-section .container .content-box.content-box-2 .img-wrap .img-box.img-02 {
+  left: 23px;
+  top: 119px;
   width: 60px;
   height: 30px;
   background: url("../images/retto/fourth-img-03.png") 0 0/cover no-repeat;
 }
-.retto-wrap .fourth-section .container .img-wrap .img-box.img-03 {
-  left: 88px;
-  top: 103px;
+.retto-wrap .fourth-section .container .content-box.content-box-2 .img-wrap .img-box.img-03 {
+  left: 89px;
+  top: 119px;
   width: 30px;
   height: 30px;
   background: url("../images/retto/fourth-img-04.png") 0 0/cover no-repeat;
 }
-.retto-wrap .fourth-section .container .img-wrap .img-box.img-04 {
-  left: 303px;
-  top: 103px;
+.retto-wrap .fourth-section .container .content-box.content-box-2 .img-wrap .img-box.img-04 {
+  left: 304px;
+  top: 119px;
   width: 30px;
   height: 30px;
   background: url("../images/retto/fourth-img-05.png") 0 0/cover no-repeat;
 }
-.retto-wrap .fourth-section .container .img-wrap .img-box.img-05 {
-  left: 113px;
-  top: 158px;
+.retto-wrap .fourth-section .container .content-box.content-box-2 .img-wrap .img-box.img-05 {
+  left: 114px;
+  top: 174px;
   width: 12px;
   height: 12px;
   border-radius: 50%;
   background: #1975FF;
 }
-.retto-wrap .fourth-section .container .img-wrap .img-box.img-06 {
-  left: 204px;
-  top: 158px;
+.retto-wrap .fourth-section .container .content-box.content-box-2 .img-wrap .img-box.img-06 {
+  left: 205px;
+  top: 174px;
   width: 12px;
   height: 12px;
   border-radius: 50%;
   background: #FF6C00;
+}
+.retto-wrap .fourth-section .container .content-box.content-box-3 .img-wrap .img-bg {
+  width: 344px;
+  height: 147px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+}
+.retto-wrap .fourth-section .container .content-box.content-box-3 .img-wrap .img-box {
+  margin-left: auto;
+  margin-right: auto;
+}
+.retto-wrap .fourth-section .container .content-box.content-box-3 .img-wrap .img-box.img-01 {
+  width: 289px;
+  height: 38px;
+  margin-bottom: 14px;
+  background: url("../images/retto/third-img-01-3.png") 0 0/cover no-repeat;
+}
+.retto-wrap .fourth-section .container .content-box.content-box-3 .img-wrap .img-box.img-02 {
+  width: 238px;
+  height: 51px;
+  background: url("../images/retto/third-img-01-4.png") 0 0/cover no-repeat;
 }
 .retto-wrap .fifth-section {
   height: 700px;
@@ -1341,8 +1388,8 @@ body::after {
 }
 .retto-wrap .fifth-section .container .img-wrap {
   position: relative;
-  width: 380px;
-  height: 442px;
+  width: 320px;
+  height: 372px;
   margin-right: 97px;
   background: url("../images/retto/fifth-img-01.png") 0 0/cover no-repeat;
 }
@@ -1350,8 +1397,8 @@ body::after {
   display: block;
   position: absolute;
   left: 0;
-  width: 105px;
-  height: 105px;
+  width: 90px;
+  height: 90px;
   background: url("../images/retto/fifth-img-02.png") 0 0/cover no-repeat;
   opacity: 0;
   transform: scale(1.3);
@@ -1359,53 +1406,53 @@ body::after {
   transition-timing-function: cubic-bezier(0.93, -0.1, 0, 1.56);
 }
 .retto-wrap .fifth-section .container .img-wrap span:nth-child(1) {
-  left: 1px;
+  left: 0px;
   top: 0px;
   transition-delay: 1s;
 }
 .retto-wrap .fifth-section .container .img-wrap span:nth-child(2) {
-  left: 132px;
+  left: 111px;
   top: 0px;
   transition-delay: 1.1s;
 }
 .retto-wrap .fifth-section .container .img-wrap span:nth-child(3) {
-  left: 265px;
+  left: 223px;
   top: 0px;
   transition-delay: 1.2s;
 }
 .retto-wrap .fifth-section .container .img-wrap span:nth-child(4) {
-  left: 199px;
-  top: 112px;
+  left: 167px;
+  top: 94px;
   transition-delay: 1.3s;
 }
 .retto-wrap .fifth-section .container .img-wrap span:nth-child(5) {
-  left: 66px;
-  top: 112px;
+  left: 55px;
+  top: 94px;
   transition-delay: 1.4s;
 }
 .retto-wrap .fifth-section .container .img-wrap span:nth-child(6) {
-  left: 1px;
-  top: 224px;
+  left: 0px;
+  top: 188px;
   transition-delay: 1.5s;
 }
 .retto-wrap .fifth-section .container .img-wrap span:nth-child(7) {
-  left: 132px;
-  top: 224px;
+  left: 111px;
+  top: 188px;
   transition-delay: 1.6s;
 }
 .retto-wrap .fifth-section .container .img-wrap span:nth-child(8) {
-  left: 265px;
-  top: 224px;
+  left: 223px;
+  top: 188px;
   transition-delay: 1.7s;
 }
 .retto-wrap .fifth-section .container .img-wrap span:nth-child(9) {
-  left: 199px;
-  top: 337px;
+  left: 167px;
+  top: 283px;
   transition-delay: 1.8s;
 }
 .retto-wrap .fifth-section .container .img-wrap span:nth-child(10) {
-  left: 66px;
-  top: 337px;
+  left: 55px;
+  top: 283px;
   transition-delay: 1.9s;
 }
 .retto-wrap .fifth-section .container .img-wrap span:nth-child(10)::after {
@@ -1512,10 +1559,12 @@ body::after {
     padding-bottom: 120px;
   }
   .retto-wrap .top-visual {
+    overflow: visible;
     height: 600px;
     border-radius: 0 0 60px 60px;
   }
   .retto-wrap .top-visual .container {
+    overflow: visible;
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
@@ -1559,119 +1608,72 @@ body::after {
   }
   .retto-wrap .second-section .container {
     width: 100%;
-    height: 350px;
+    height: 331px;
+    padding: 50px 0 0;
   }
-  .retto-wrap .second-section .container .frame-wrap {
-    width: 300px;
-    height: 300px;
-    padding-top: 60px;
-    background: url("../images/retto/m-second-img-01.png") 0 0/cover no-repeat;
+  .retto-wrap .second-section .container .sub-title-wrap::before {
+    transform: translateX(0);
+    margin-bottom: 16px;
   }
-  .retto-wrap .second-section .container .frame-wrap .text-wrap {
-    margin-bottom: 45px;
-  }
-  .retto-wrap .second-section .container .frame-wrap .text-wrap p {
-    font-size: 16px;
-    line-height: 21.6px;
-  }
-  .retto-wrap .second-section .container .frame-wrap .text-wrap h4 {
+  .retto-wrap .second-section .container .sub-title-wrap h3 {
     font-size: 26px;
-    line-height: 33.8px;
+    line-height: 35px;
   }
-  .retto-wrap .second-section .container .frame-wrap .text-wrap span {
-    right: 0;
-    bottom: -12px;
-    font-size: 12px;
-    line-height: 16.2px;
-  }
-  .retto-wrap .second-section .container .frame-wrap .bottom-wrap {
-    width: 248px;
-    height: 109px;
-  }
-  .retto-wrap .second-section .container .frame-wrap .bottom-wrap .jewel-img {
-    top: -20px;
-    width: 98px;
-    height: 59px;
-  }
-  .retto-wrap .second-section .container .frame-wrap .bottom-wrap .text-wrap {
-    width: 248px;
-    height: 109px;
-    background: url("../images/retto/m-second-img-03.png") 0 0/cover no-repeat;
-  }
-  .retto-wrap .second-section .container .frame-wrap .bottom-wrap .text-wrap p {
-    font-size: 14px;
-    line-height: 18.9px;
-  }
-  .retto-wrap .second-section .container .frame-wrap .bottom-wrap .text-wrap h4 {
-    font-size: 18px;
-    line-height: 24.3px;
-  }
-  .retto-wrap .second-section .container .frame-wrap .bottom-wrap .text-wrap h4 .highlight {
-    position: relative;
-    bottom: auto;
-    right: auto;
-    font-size: inherit;
-    opacity: 1;
-    z-index: 0;
-  }
-  .retto-wrap .second-section .container .frame-wrap .bottom-wrap .text-wrap h4 .highlight::before {
+  .retto-wrap .second-section .container .jewel {
     display: block;
-    content: "";
     position: absolute;
+  }
+  .retto-wrap .second-section .container .jewel.jewel-1 {
     left: 0;
-    bottom: 0;
-    z-index: -1;
-    width: 100%;
-    height: 41%;
-    background: #E6FF00;
+    top: 87px;
+    width: 66px;
+    height: 98px;
+    background: url("../images/retto/m-jewel-1.svg") 0 0/cover no-repeat;
+    -webkit-animation: downUp 2s infinite ease-in-out;
+            animation: downUp 2s infinite ease-in-out;
   }
-  .retto-wrap .second-section .container .compati-wrap .compati.compati-01 {
-    left: 79px;
-    top: 29px;
-    width: 8px;
-    height: 8px;
+  .retto-wrap .second-section .container .jewel.jewel-2 {
+    right: 10px;
+    top: 10px;
+    width: 98px;
+    height: 97px;
+    background: url("../images/retto/m-jewel-2.svg") 0 0/cover no-repeat;
+    -webkit-animation: downUp 2s 0.2s infinite ease-in-out;
+            animation: downUp 2s 0.2s infinite ease-in-out;
   }
-  .retto-wrap .second-section .container .compati-wrap .compati.compati-02 {
-    left: 10px;
-    top: 65px;
-    width: 15px;
-    height: 21px;
+  .retto-wrap .second-section .container .jewel.jewel-3 {
+    right: 0;
+    top: 80px;
+    width: 38px;
+    height: 52px;
+    background: url("../images/retto/m-jewel-3.svg") 0 0/cover no-repeat;
+    -webkit-animation: downUp 2s 0.4s infinite ease-in-out;
+            animation: downUp 2s 0.4s infinite ease-in-out;
   }
-  .retto-wrap .second-section .container .compati-wrap .compati.compati-03 {
-    left: 66px;
-    top: 84px;
-    width: 17px;
-    height: 17px;
+  .retto-wrap .second-section .container .content-wrap {
+    margin-top: 45px;
   }
-  .retto-wrap .second-section .container .compati-wrap .compati.compati-04 {
-    left: 37px;
-    top: 142px;
-    width: 15px;
-    height: 13px;
+  .retto-wrap .second-section .container .content-wrap .jewel-img {
+    top: -26px;
+    width: 72px;
+    height: 43px;
   }
-  .retto-wrap .second-section .container .compati-wrap .compati.compati-05 {
-    right: 26px;
-    top: 14px;
-    width: 23px;
-    height: 16px;
+  .retto-wrap .second-section .container .content-wrap .text-1 {
+    font-size: 16px;
+    line-height: 22px;
   }
-  .retto-wrap .second-section .container .compati-wrap .compati.compati-06 {
-    right: 71px;
-    top: 85px;
-    width: 15px;
-    height: 12px;
+  .retto-wrap .second-section .container .content-wrap .text-2 {
+    font-size: 16px;
+    line-height: 22px;
   }
-  .retto-wrap .second-section .container .compati-wrap .compati.compati-07 {
-    right: 16px;
-    top: 117px;
-    width: 11px;
-    height: 11px;
+  .retto-wrap .second-section .container .content-wrap .text-2 b {
+    font-size: 18px;
   }
-  .retto-wrap .second-section .container .compati-wrap .compati.compati-08 {
-    right: 50px;
-    top: 172px;
-    width: 21px;
-    height: 20px;
+  .retto-wrap .second-section .container .content-wrap .content-box {
+    width: 335px;
+    height: auto;
+    padding: 26px 0 20px;
+    border-radius: 10px;
   }
   .retto-wrap .sub-title-wrap {
     margin-bottom: 40px;
@@ -1695,7 +1697,7 @@ body::after {
     line-height: 21.6px;
   }
   .retto-wrap .third-section {
-    height: 585px;
+    height: auto;
   }
   .retto-wrap .third-section.animation .container .img-wrap {
     -webkit-animation: mImgChange 5s 1s ease-in-out forwards;
@@ -1704,6 +1706,20 @@ body::after {
   .retto-wrap .third-section .container {
     flex-direction: column;
     width: 100%;
+    padding: 50px 0 0;
+  }
+  .retto-wrap .third-section .container .sub-title-wrap::before {
+    transform: translateX(0);
+    margin-bottom: 16px;
+  }
+  .retto-wrap .third-section .container .sub-title-wrap h3 {
+    font-size: 26px;
+    line-height: 35px;
+  }
+  .retto-wrap .third-section .container .sub-title-wrap p {
+    margin-top: 8px;
+    font-size: 16px;
+    line-height: 22px;
   }
   .retto-wrap .third-section .container .img-wrap {
     width: 300px;
@@ -1724,62 +1740,46 @@ body::after {
     box-shadow: none;
   }
   .retto-wrap .fourth-section {
-    height: 439px;
+    height: auto;
+    background-color: #fff;
   }
-  .retto-wrap .fourth-section.animation .container .img-wrap .img-box.img-01 {
-    -webkit-animation: mShowRight1 0.6s 1s backwards;
-            animation: mShowRight1 0.6s 1s backwards;
-  }
-  .retto-wrap .fourth-section.animation .container .img-wrap .img-box.img-02 {
-    -webkit-animation: mShowRight2 0.4s 1.6s backwards;
-            animation: mShowRight2 0.4s 1.6s backwards;
+  .retto-wrap .fourth-section::before {
+    bottom: 0;
+    top: auto;
+    height: 800px;
   }
   .retto-wrap .fourth-section .container {
     flex-direction: column;
     width: 100%;
+    height: 1085px;
     padding-bottom: 50px;
   }
-  .retto-wrap .fourth-section .container .img-wrap {
-    width: 300px;
-    height: 154px;
-    margin-right: 0;
-    background: #fff url("../images/retto/fourth-img-01.png") center center/264px 117px no-repeat;
+  .retto-wrap .fourth-section .container .content-box {
+    flex-direction: column;
   }
-  .retto-wrap .fourth-section .container .img-wrap .img-box.img-01 {
-    left: 65px;
-    top: 55px;
-    width: 218px;
-    height: 24px;
+  .retto-wrap .fourth-section .container .content-box.content-box-2 {
+    flex-direction: column;
+    padding-left: 0;
   }
-  .retto-wrap .fourth-section .container .img-wrap .img-box.img-02 {
-    left: 18px;
-    top: 81px;
-    width: 48px;
-    height: 24px;
+  .retto-wrap .fourth-section .container .content-box.content-box-2 .img-wrap {
+    margin: 20px auto 0;
   }
-  .retto-wrap .fourth-section .container .img-wrap .img-box.img-03 {
-    left: 70px;
-    top: 81px;
-    width: 24px;
-    height: 24px;
+  .retto-wrap .fourth-section .container .content-box.content-box-3 {
+    margin-bottom: 0;
   }
-  .retto-wrap .fourth-section .container .img-wrap .img-box.img-04 {
-    left: 240px;
-    top: 81px;
-    width: 24px;
-    height: 24px;
+  .retto-wrap .fourth-section .container .content-box .text-wrap {
+    text-align: center;
   }
-  .retto-wrap .fourth-section .container .img-wrap .img-box.img-05 {
-    left: 89px;
-    top: 125px;
-    width: 10px;
-    height: 10px;
+  .retto-wrap .fourth-section .container .content-box .text-wrap span {
+    margin: auto;
   }
-  .retto-wrap .fourth-section .container .img-wrap .img-box.img-06 {
-    left: 161px;
-    top: 125px;
-    width: 10px;
-    height: 10px;
+  .retto-wrap .fourth-section .container .content-box .text-wrap p {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .retto-wrap .fourth-section .container .content-box .img-wrap {
+    margin: 20px auto 0;
+    box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.1019607843);
   }
   .retto-wrap .fifth-section {
     height: 600px;
@@ -2015,111 +2015,6 @@ body::after {
   height: 30px;
 }
 
-@-webkit-keyframes imgChange {
-  0% {
-    background-image: url("../images/retto/third-img-01.png");
-  }
-  22% {
-    background-image: url("../images/retto/third-img-01.png");
-  }
-  25% {
-    background-image: url("../images/retto/third-img-02.png");
-  }
-  47% {
-    background-image: url("../images/retto/third-img-02.png");
-  }
-  50% {
-    background-image: url("../images/retto/third-img-03.png");
-  }
-  72% {
-    background-image: url("../images/retto/third-img-03.png");
-  }
-  75% {
-    background-image: url("../images/retto/third-img-04.png");
-  }
-  100% {
-    background-image: url("../images/retto/third-img-04.png");
-  }
-}
-
-@keyframes imgChange {
-  0% {
-    background-image: url("../images/retto/third-img-01.png");
-  }
-  22% {
-    background-image: url("../images/retto/third-img-01.png");
-  }
-  25% {
-    background-image: url("../images/retto/third-img-02.png");
-  }
-  47% {
-    background-image: url("../images/retto/third-img-02.png");
-  }
-  50% {
-    background-image: url("../images/retto/third-img-03.png");
-  }
-  72% {
-    background-image: url("../images/retto/third-img-03.png");
-  }
-  75% {
-    background-image: url("../images/retto/third-img-04.png");
-  }
-  100% {
-    background-image: url("../images/retto/third-img-04.png");
-  }
-}
-@-webkit-keyframes mImgChange {
-  0% {
-    background-image: url("../images/retto/m-third-img-01.png");
-  }
-  22% {
-    background-image: url("../images/retto/m-third-img-01.png");
-  }
-  25% {
-    background-image: url("../images/retto/m-third-img-02.png");
-  }
-  47% {
-    background-image: url("../images/retto/m-third-img-02.png");
-  }
-  50% {
-    background-image: url("../images/retto/m-third-img-03.png");
-  }
-  72% {
-    background-image: url("../images/retto/m-third-img-03.png");
-  }
-  75% {
-    background-image: url("../images/retto/m-third-img-04.png");
-  }
-  100% {
-    background-image: url("../images/retto/m-third-img-04.png");
-  }
-}
-@keyframes mImgChange {
-  0% {
-    background-image: url("../images/retto/m-third-img-01.png");
-  }
-  22% {
-    background-image: url("../images/retto/m-third-img-01.png");
-  }
-  25% {
-    background-image: url("../images/retto/m-third-img-02.png");
-  }
-  47% {
-    background-image: url("../images/retto/m-third-img-02.png");
-  }
-  50% {
-    background-image: url("../images/retto/m-third-img-03.png");
-  }
-  72% {
-    background-image: url("../images/retto/m-third-img-03.png");
-  }
-  75% {
-    background-image: url("../images/retto/m-third-img-04.png");
-  }
-  100% {
-    background-image: url("../images/retto/m-third-img-04.png");
-  }
-}
 @-webkit-keyframes imgChange2 {
   0% {
     background: url("../images/retto/fifth-img-02.png") 0 0/cover no-repeat;
@@ -2148,6 +2043,7 @@ body::after {
     transform: scale(1);
   }
 }
+
 @keyframes imgChange2 {
   0% {
     background: url("../images/retto/fifth-img-02.png") 0 0/cover no-repeat;
@@ -2370,5 +2266,27 @@ body::after {
   }
   100% {
     transform: scale(1);
+  }
+}
+@-webkit-keyframes downUp {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes downUp {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }/*# sourceMappingURL=retto.css.map */

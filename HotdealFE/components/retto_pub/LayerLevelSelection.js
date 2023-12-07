@@ -31,7 +31,7 @@ const LayerLevelSelection = ({defalutValue}) => {
           jewel={jewel}
           setJewel={setJewel}
           handleModalToggle={handleModalToggle}
-          full={false} 
+          full={true} 
         />
       </div>
     </div>

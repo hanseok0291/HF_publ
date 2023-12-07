@@ -139,16 +139,20 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
             )}
             {/* {!full && (
               <span className={styleCommon.priceMoney}>
-                채운 금액은 리또 머니함에 보관돼요.
+                채운 금액은 리또 머니함에 보관할게요.
               </span>
             )} */}
             {full && (
               <>
                 <b>{jewel.cash}만원까지 이미 채워져 있네요.</b> <br />
                 <span className='jewelColor'>{jewel.kor}</span> 리또 받을 준비 끝 !
-                <span className={styleCommon.priceMoney}>
+                {/* <span className={styleCommon.priceMoney}>
                   <span>최대 {jewel.prize} 당첨</span> 가능해요. <br />
-                  채운 금액은 리또 머니함에 보관돼요.
+                  채운 금액은 리또 머니함에 보관할게요.
+                </span> */}
+                <span className={styleCommon.priceMoney}>
+                  <span>최소 1천원부터 충전 가능</span>해요. <br />
+                  채운 금액은 리또 머니함에 보관할게요.
                 </span>
               </>
             )}

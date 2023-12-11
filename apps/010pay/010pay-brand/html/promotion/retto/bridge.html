@@ -12,6 +12,7 @@
 <!-- script -->
 <script src="../../../resource/library/jquery-1.8.3.min.js"></script>
 <script src="../../../resource/js/swiper.js"></script>
+<script src="../../../resource/js/modal.min.js"></script>
 </head>
 
 <body>
@@ -26,7 +27,7 @@
           <div class="visual-1 add-ani" delay="0.4">
             <dl>
               <dt>이벤트 기간</dt>
-              <dd>23. 12. 12 (화) ~ 24. 01. 31 (수)</dd>
+              <dd>23. 12. 13 (화) ~ 24. 01. 31 (수)</dd>
               <dt>당첨자 발표</dt>
               <dd>24. 02. 07 (수)</dd>
             </dl>
@@ -140,7 +141,7 @@
             Tip 1 이벤트를 모두 참여하면 당첨 확률이 더 높아져요! <br>
             Tip 2 자세한 이벤트 내용은 010PAY 앱을 통해 확인하세요.
           </div>
-          <button type="button">이벤트 참여하기</button>
+          <a href="https://app.adjust.com/17htwaar?engagement_type=fallback_click" class="btn-modal-qr">이벤트 참여하기</a>
         </div>
       </div>
 			<!-- //container-->
@@ -149,33 +150,25 @@
 	</div>
 	<!-- //wrap -->
 
-  <div id="modal-qr" class="modal modal-main-qr">
+  <div id="modal-qr" class="modal modal-main-qr modal-retto-bridge">
     <div class="modal-dialog">
       <div class="modal-content">
         <button class="modal-close modal-giftimall">닫기</button>
         <div class="modal-body">
-          <div>
-            <h4 class="modal-title-sub">
-              QR찍고 편하게 다운로드하세요! <i class="icon-arrow-pop"></i>
-            </h4>
-            <ul class="qr-list">
-              <li>
-                <!-- <a
-                  href="https://bit.ly/3fucxw7"
-                  target="_blank"
-                > 221031_수정 -->
-                  <img
-                    src="../../resource/images/retto/modal-qr-img.png"
-                    alt="QR코드"
-                  />
-                  <div class="btn-wrap">
-                    <h3><i class="icon-qr-google"></i>구글 플레이</h3>
-                    <h3><i class="icon-qr-app"></i>앱 스토어</h3>
-                  </div>
-                <!-- </a> -->
-              </li>
+          <h4 class="modal-title-sub">
+            010PAY 앱에서 <br>
+            <b>지금 바로 응모해 보세요!</b>
+          </h4>
+          <div class="gray-box">
+            <div class="img-wrap">
+              <img class="qr-img" src="../../../resource/images/retto/qr-retto.png" alt="QR코드" />
+            </div>
+            <ul>
+              <li>구글 플레이</li>
+              <li>앱 스토어</li>
             </ul>
           </div>
+          <p>QR찍고 편하게 다운로드</p>
         </div>
       </div>
     </div>
@@ -197,6 +190,38 @@
         },
     });
 
+    // 레이어 팝업(모달) 열기
+    function modalOpen(obj) {
+      var temp = $("#" + obj);
+      temp.fadeIn(100).addClass("open");
+      scrollOff(); // 바디 스크롤 제거
+
+      // 슬라이드 모달 닫기
+      function modalOut() {
+        temp.fadeOut(300).removeClass("open");
+
+        // 이중 모달이 아닌 경우
+        if (!$(temp).hasClass("depth2")) {
+          scrollOn(); // 바디 스크롤 제거 해제
+        }
+      }
+
+      // 팝업 내 닫기 버튼 클릭 시 팝업 닫기
+      $(temp)
+        .find(".modal-close")
+        .click(function () {
+          modalOut();
+        });
+    }
+
+    // 화면 너비에 따라 열리는 방식 지정
+    $(".btn-modal-qr").click(function (e) {
+      if ($(window).width() > 738) {
+        e.preventDefault();
+        modalOpen("modal-qr");
+      }
+    });
   </script>
+  <script src="../../../resource/js/010pay_UI.js"></script>
 </body>
 </html>

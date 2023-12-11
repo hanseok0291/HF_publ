@@ -66,7 +66,7 @@ const Apply = () => {
           <ModalApply jewel={jewel} handleModalToggle={handleModalToggle} />
         )}
         {/* 신청 완료 */}
-        <ApplyComplete jewel={jewel}/>
+        {/* <ApplyComplete jewel={jewel}/> */}
         {/* 리또란? */}
         {/* <BottomSheetRettoInfo /> */}
         {/* 계좌 변경 등록 */}

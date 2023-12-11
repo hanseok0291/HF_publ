@@ -119,6 +119,24 @@ var modalH = $(window).height();
 modalH = modalH * -1;
 $(modalCont).css('bottom', modalH); // 팝업들 bottom 값 setting
 
+// 레이어 팝업(모달) 열기
+function modalOpen(obj) {
+  var temp = $("#" + obj);
+  temp.show();
+  scrollOff(); // 바디 스크롤 제거
+
+  // 위치
+  var thisDialog = temp.children(".modal-dialog");
+  var marginValue = thisDialog.outerHeight() / 2;
+  $(thisDialog).css("margin-top", "-" + marginValue + "px");
+}
+
+// 레이어 팝업(모달) 닫기
+function modalClose(){
+	$('.modal').hide();
+	scrollOn(); // 바디 스크롤 제거 해제
+}
+
 // 하단 레이어 팝업(슬라이드 모달) 열기
 function modalOpenSlide(obj){
 	var temp = $("#" + obj);
@@ -199,4 +217,15 @@ $.toastMessage = function(title, contents, callbackFunc) {
 	setTimeout(() => {
 		$(target).fadeOut(200);
 	}, 2000);
+}
+
+$.promptMessage = function(title, contents, promptObj, promptOkObj, callbackFunc) {
+	$('#promptTitle').html(title);
+	$('#promptContents').html(contents);
+
+	var clickEvent = new Function(callbackFunc);
+	promptOkObj.prop('onclick', null).off('click'); 	//기존에 등록된 함수가 반복 실행을 막음. reset
+	promptOkObj.prop('onclick', '').click(clickEvent); 	//callback 함수 등록
+
+    modalOpen(promptObj.attr("id"));
 }

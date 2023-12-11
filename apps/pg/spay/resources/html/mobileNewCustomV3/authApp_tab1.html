@@ -371,22 +371,6 @@
 </div>
 <!-- //wrap -->
 
-<!-- modal - 알뜰폰 통신사 목록 -->
-<div id="telecomEtcList" class="modal modal-btn-list" tabindex="-1" role="dialog">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-body no-padding">
-				<ul class="btn-list">
-					<li><button type="button" class="btn">KCT</button></li>
-					<li><button type="button" class="btn">SK 7mobile</button></li>
-					<li><button type="button" class="btn">헬로모바일<p class="subject">(LGU+망 고객은 LGU+통신사 선택 후 이용)</p></button></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- //modal - 알뜰폰 통신사 목록 -->
-
 <!-- modal - 공지사항 상세 -->
 <div id="noticeDetail" class="modal modal-full" tabindex="-1" role="dialog">
 
@@ -450,24 +434,8 @@
 </div>
 <!-- //modal - common alert -->
 
-<!-- modal - common confirm -->
-<div id="commonConfirm" class="modal" tabindex="-1" role="dialog">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-body">
-				<div id="confirmContents"></div>
-			</div>
-			<div class="modal-footer type2">
-				<button type="button" id="confirmOk" class="btn" data-dismiss="modal">예</button>
-				<button type="button" class="btn btn-cancel" data-dismiss="modal">아니오</button>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- //modal - common confirm -->
-
 <!-- common prompt -->
-<div id="commonPrompt1" class="modal new modal-prompt">
+<div id="commonPrompt" class="modal modal-new new modal-prompt">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-body">
@@ -477,40 +445,6 @@
 			<div class="modal-footer type2">
 				<button type="button" onclick="modalClose();" class="btn btn-cancel">취소</button>
 				<button type="button" id="promptOk" onclick="modalClose();" class="btn btn-confirm">이용동의(T월드)</button>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- //common prompt -->
-
-<!-- common prompt -->
-<div id="commonPrompt2" class="modal new modal-prompt">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-body">
-				<h3 id="promptTitle">휴대폰결제 이용동의가 필요합니다.</h3>
-				<p id="promptContents" class="">kt.com(마이페이지>요금조회>소액결제 내역)에서 이용동의 후 다시 결제를 시도해주세요. </p>
-			</div>
-			<div class="modal-footer type2">
-				<button type="button" onclick="modalClose();" class="btn btn-cancel">취소</button>
-				<button type="button" id="promptOk" onclick="modalClose();" class="btn btn-confirm">이용동의하기</button>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- //common prompt -->
-
-<!-- common prompt -->
-<div id="commonPrompt3" class="modal new modal-prompt">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-body">
-				<h3 id="promptTitle"></h3>
-				<p id="promptContents" class="big">PASS 앱 설치가 필요합니다.</p>
-			</div>
-			<div class="modal-footer type2">
-				<button type="button" onclick="modalClose();" class="btn btn-cancel">취소</button>
-				<button type="button" id="promptOk" onclick="modalClose();" class="btn btn-confirm text-red">PASS APP설치</button>
 			</div>
 		</div>
 	</div>
@@ -647,46 +581,14 @@ $('#send').click(function() {
 		} else {
 			// "check-all" 체크박스가 체크되어 있지 않을 때
 			$.alertMessage("", "휴대폰결제 이용을 위해<br>필수 약관 전체 동의가 필요합니다.", $("#commonAlert"));
-			// $.promptMessage("휴대폰결제 이용동의가 필요합니다.", "[이용동의(T월드)]를 통해 T월드에서<br>간편하게 동의한 뒤 다시 결제를 시도해주세요.<br><br>ARS로 휴대폰결제 이용동의:<br>명의자 본인의 휴대폰으로 1509로 통화 ", $('#commonPrompt1'), $("#promptOk"), "modalClose();");
-			// $.alertMessage("", "휴대폰결제 이용동의가 필요합니다. <br><br>kt.com(마이페이지>요금조회>소액결제 내역)에서 이용동의 후 다시 결제를 시도해주세요. ", $("#commonAlert"));
-			// $.promptMessage("휴대폰결제 이용동의가 필요합니다.", "[이용동의(T월드)]를 통해 T월드에서<br>간편하게 동의한 뒤 다시 결제를 시도해주세요.<br><br>ARS로 휴대폰결제 이용동의:<br>명의자 본인의 휴대폰으로 1509로 통화 ", $('#commonPrompt2'), $("#promptOk"), "modalClose();");
-			// $.promptMessage("휴대폰결제 이용동의가 필요합니다.", "[이용동의(T월드)]를 통해 T월드에서<br>간편하게 동의한 뒤 다시 결제를 시도해주세요.<br><br>ARS로 휴대폰결제 이용동의:<br>명의자 본인의 휴대폰으로 1509로 통화 ", $('#commonPrompt3'), $("#promptOk"), "modalClose();");
 		}
-		
 		// step2 일때 다음 버튼 비활성화
 		if (isStep1Visible) {
 			$('#send').removeClass('btn-next');
 			$('#send').prop('disabled', true);
 		}
 	});
-
 });
-
-// 탭 선택
-// $('input[type="radio"][name="authType"]').change(function() {
-// 		var selectedOption = $(this).attr('id');
-// 		// 모든 클래스 숨김
-// 		// $('.pass-app-wrap, .auth-sms-wrap, .auth-easy-wrap').hide();
-
-// 		// 선택한 옵션에 따라 해당 클래스를 보이도록 토글
-// 		if (selectedOption === "authTypePass") {
-// 			console.log('authTypePass');
-// 				$('.tab1').show();
-// 				$('.tab2').hide();
-// 				$('.tab3').hide();
-// 		} else if (selectedOption === "authTypeSms") {
-// 			console.log('authTypeSms');
-// 				$('.tab1').hide();
-// 				$('.tab2').show();
-// 				$('.tab3').hide();
-// 		} else if (selectedOption === "authTypeEasy") {
-// 			console.log('authTypeEasy');
-// 				$('.tab1').hide();
-// 				$('.tab2').hide();
-// 				$('.tab3').show();
-// 		}
-// });
-// 탭 선택
 
 $(".select-input > .select").on("click", function () {
 	modalOpenSlide("modalSlide");

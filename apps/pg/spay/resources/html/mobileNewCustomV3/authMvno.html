@@ -393,6 +393,23 @@
 </div>
 <!-- //modal - common alert -->
 
+<!-- common prompt -->
+<div id="commonPrompt" class="modal new modal-prompt">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3 id="promptTitle"></h3>
+				<p id="promptContents"></p>
+			</div>
+			<div class="modal-footer type2">
+				<button type="button" onclick="modalClose();" class="btn btn-cancel">취소</button>
+				<button type="button" id="promptOk" onclick="modalClose();" class="btn btn-confirm">이용동의(T월드)</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //common prompt -->
+
 <!-- modal - common confirm -->
 <div id="commonConfirm" class="modal" tabindex="-1" role="dialog">
 	<div class="modal-dialog">
@@ -512,17 +529,12 @@ $('#send').click(function() {
 		const allAgreeCheckbox = document.getElementById('check-all');
 		if (allAgreeCheckbox.checked) {
 			// "check-all" 체크박스가 체크되어 있을 때
-			// $('.select-auth').hide();
 			$('.step1').hide();
 			$('.step2').show();
 			$('#send').text('결제완료');
 		} else {
 			// "check-all" 체크박스가 체크되어 있지 않을 때
-			// $.alertMessage("", "휴대폰결제 이용동의가 필요합니다. <br>필수 약관 전체 동의가 필요합니다.", $("#commonAlert"));
-			$.promptMessage("휴대폰결제 이용동의가 필요합니다.", "[이용동의(T월드)]를 통해 T월드에서<br>간편하게 동의한 뒤 다시 결제를 시도해주세요.<br><br>ARS로 휴대폰결제 이용동의:<br>명의자 본인의 휴대폰으로 1509로 통화 ", $('#commonPrompt1'), $("#promptOk"), "modalClose();");
-			// $.alertMessage("", "휴대폰결제 이용동의가 필요합니다. <br><br>kt.com(마이페이지>요금조회>소액결제 내역)에서 이용동의 후 다시 결제를 시도해주세요. ", $("#commonAlert"));
-			// $.promptMessage("휴대폰결제 이용동의가 필요합니다.", "[이용동의(T월드)]를 통해 T월드에서<br>간편하게 동의한 뒤 다시 결제를 시도해주세요.<br><br>ARS로 휴대폰결제 이용동의:<br>명의자 본인의 휴대폰으로 1509로 통화 ", $('#commonPrompt2'), $("#promptOk"), "modalClose();");
-			// $.promptMessage("휴대폰결제 이용동의가 필요합니다.", "[이용동의(T월드)]를 통해 T월드에서<br>간편하게 동의한 뒤 다시 결제를 시도해주세요.<br><br>ARS로 휴대폰결제 이용동의:<br>명의자 본인의 휴대폰으로 1509로 통화 ", $('#commonPrompt3'), $("#promptOk"), "modalClose();");
+			$.promptMessage("휴대폰결제 이용동의가 필요합니다.", "[이용동의(T월드)]를 통해 T월드에서<br>간편하게 동의한 뒤 다시 결제를 시도해주세요.<br><br>ARS로 휴대폰결제 이용동의:<br>명의자 본인의 휴대폰으로 1509로 통화 ", $('#commonPrompt'), $("#promptOk"), "modalClose();");
 		}
 		
 		// step2 일때 다음 버튼 비활성화
@@ -530,34 +542,7 @@ $('#send').click(function() {
 			$('#send').removeClass('btn-next');
 		}
 	});
-
 });
-
-	// 탭 선택
-	// $('input[type="radio"][name="authType"]').change(function() {
-	// 		var selectedOption = $(this).attr('id');
-	// 		// 모든 클래스 숨김
-	// 		// $('.pass-app-wrap, .auth-sms-wrap, .auth-easy-wrap').hide();
-
-	// 		// 선택한 옵션에 따라 해당 클래스를 보이도록 토글
-	// 		if (selectedOption === "authTypePass") {
-	// 			console.log('authTypePass');
-	// 				$('.tab1').show();
-	// 				$('.tab2').hide();
-	// 				$('.tab3').hide();
-	// 		} else if (selectedOption === "authTypeSms") {
-	// 			console.log('authTypeSms');
-	// 				$('.tab1').hide();
-	// 				$('.tab2').show();
-	// 				$('.tab3').hide();
-	// 		} else if (selectedOption === "authTypeEasy") {
-	// 			console.log('authTypeEasy');
-	// 				$('.tab1').hide();
-	// 				$('.tab2').hide();
-	// 				$('.tab3').show();
-	// 		}
-	// });
-	// 탭 선택
 
 $(".select-input > .select").on("click", function () {
 	modalOpenSlide("modalSlide");

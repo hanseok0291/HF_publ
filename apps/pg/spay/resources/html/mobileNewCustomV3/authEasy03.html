@@ -334,6 +334,23 @@
 </div>
 <!-- //modal - common alert -->
 
+<!-- common prompt -->
+<div id="commonPrompt" class="modal new modal-prompt">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h3 id="promptTitle"></h3>
+				<p id="promptContents"></p>
+			</div>
+			<div class="modal-footer type2">
+				<button type="button" onclick="modalClose();" class="btn btn-cancel">취소</button>
+				<button type="button" id="promptOk" onclick="modalClose();" class="btn btn-confirm">이용동의(T월드)</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //common prompt -->
+
 <!-- modal - common confirm -->
 <div id="commonConfirm" class="modal" tabindex="-1" role="dialog">
 	<div class="modal-dialog">
@@ -368,7 +385,7 @@
 			<div class="modal-body">
 				<div class="container">
 					<ul class="select-list">
-						<li>SKT</li>
+						<li class="bold">SKT</li>
 						<li>KT</li>
 						<li>LG U+</li>
 						<li>KCT</li>
@@ -490,11 +507,6 @@
     // 결제 확인 체크박스
     const checkPay = document.getElementById('check-pay');
 
-/* 		if (checkCount == 0) {
-			$.alertMessage("", "<strong>간편 인증 미가입 고객입니다.</strong><br><br>간편 인증 비밀번호 등록을 위해<br>SMS인증을 진행합니다. ", $("#commonAlert"));
-			checkCount = 1;
-		}  */
-
 		if (allAgreeCheckbox.checked && !checkPay.checked) {
 			$('.auth-sms-wrap').show();
 			// 인증번호 체크
@@ -512,7 +524,6 @@
 					}
 			});
 		} else {
-			$.promptMessage("휴대폰결제 이용동의가 필요합니다.", "[이용동의(T월드)]를 통해 T월드에서<br>간편하게 동의한 뒤 다시 결제를 시도해주세요.<br><br>ARS로 휴대폰결제 이용동의:<br>명의자 본인의 휴대폰으로 1509로 통화 ", $('#commonPrompt2'), $("#promptOk"), "modalClose();");
 		}
 		if (checkPay.checked) {
 			$('#passAlert').show();

@@ -379,22 +379,6 @@
 </div>
 <!-- //wrap -->
 
-<!-- modal - 알뜰폰 통신사 목록 -->
-<div id="telecomEtcList" class="modal modal-btn-list" tabindex="-1" role="dialog">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-body no-padding">
-				<ul class="btn-list">
-					<li><button type="button" class="btn">KCT</button></li>
-					<li><button type="button" class="btn">SK 7mobile</button></li>
-					<li><button type="button" class="btn">헬로모바일<p class="subject">(LGU+망 고객은 LGU+통신사 선택 후 이용)</p></button></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- //modal - 알뜰폰 통신사 목록 -->
-
 <!-- modal - 공지사항 상세 -->
 <div id="noticeDetail" class="modal modal-full" tabindex="-1" role="dialog">
 
@@ -597,6 +581,7 @@
             // "step1" 클래스가 보이는 상태에서 "check-all" 체크박스가 체크되어 있을 때
             if (allAgreeCheckbox.checked) {
                 sendButton.classList.add('btn-next');
+								$("#send").prop('disabled', false);
             } else {
                 sendButton.classList.remove('btn-next');
             }
@@ -667,34 +652,7 @@ $('#send').click(function() {
 			$('#send').prop('disabled', true);
 		}
 	});
-
 });
-
-// 탭 선택
-// $('input[type="radio"][name="authType"]').change(function() {
-// 		var selectedOption = $(this).attr('id');
-// 		// 모든 클래스 숨김
-// 		// $('.pass-app-wrap, .auth-sms-wrap, .auth-easy-wrap').hide();
-
-// 		// 선택한 옵션에 따라 해당 클래스를 보이도록 토글
-// 		if (selectedOption === "authTypePass") {
-// 			console.log('authTypePass');
-// 				$('.tab1').show();
-// 				$('.tab2').hide();
-// 				$('.tab3').hide();
-// 		} else if (selectedOption === "authTypeSms") {
-// 			console.log('authTypeSms');
-// 				$('.tab1').hide();
-// 				$('.tab2').show();
-// 				$('.tab3').hide();
-// 		} else if (selectedOption === "authTypeEasy") {
-// 			console.log('authTypeEasy');
-// 				$('.tab1').hide();
-// 				$('.tab2').hide();
-// 				$('.tab3').show();
-// 		}
-// });
-// 탭 선택
 
 $(".select-input > .select").on("click", function () {
 	modalOpenSlide("modalSlide");
@@ -713,10 +671,24 @@ $(".select-list li").on("click", function () {
 	// 만약 SKT가 선택되었을 때
 	if (selectedText === 'SKT') {
 		$('.tab2 .skt').show();
+		$("#authTypePass").prop('disabled', false);
+		$("#authTypeEasy").prop('disabled', false);
+	} else if(selectedText === '헬로모바일') {
+		$.alertMessage("", "LG U+망 고객은 LG U+를 선택한 후<br>이용을 부탁드립니다.", $("#commonAlert"));
+		$("#authTypePass").prop('disabled', true);
+		$("#authTypeSms").prop('checked', true);
+		$("#authTypeEasy").prop('disabled', true);
 	} else {
 		// 다른 옵션이 선택되었을 때
 		$('.tab2 .skt').hide();
+		$("#authTypePass").prop('disabled', false);
+		$("#authTypeEasy").prop('disabled', false);
 	}
+	
+	// 기존에 bold 클래스가 추가된 요소가 있으면 제거
+	$(".select-list li").removeClass("bold");
+	// 현재 선택된 li에 bold 클래스 추가
+	$(this).addClass("bold");
 	
 	$('#modalSlide').fadeOut(200);
 	$('#modalSlide').find('.modal-content').animate({bottom: modalH}, 200);
@@ -724,28 +696,6 @@ $(".select-list li").on("click", function () {
 	$("#wrap").css("top", 0);
 	$("#wrap").css("position", "relative");
 });
-
-// 만약 SKT가 선택되었을 때
-if (selectedText === 'SKT') {
-	$('.tab2 .skt').show();
-	$("#authTypePass").prop('disabled', false);
-	$("#authTypeEasy").prop('disabled', false);
-} else if(selectedText === '헬로모바일') {
-	$.alertMessage("", "LG U+망 고객은 LG U+를 선택한 후<br>이용을 부탁드립니다.", $("#commonAlert"));
-	$("#authTypePass").prop('disabled', true);
-	$("#authTypeSms").prop('checked', true);
-	$("#authTypeEasy").prop('disabled', true);
-} else {
-	// 다른 옵션이 선택되었을 때
-	$('.tab2 .skt').hide();
-	$("#authTypePass").prop('disabled', false);
-	$("#authTypeEasy").prop('disabled', false);
-}
-
-// 기존에 bold 클래스가 추가된 요소가 있으면 제거
-$(".select-list li").removeClass("bold");
-// 현재 선택된 li에 bold 클래스 추가
-$(this).addClass("bold");
 
 // 주민번호 뒷자리 입력시 클래스 추가
 $('.last-input').on('input', function () {

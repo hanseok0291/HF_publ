@@ -146,7 +146,7 @@ const index = () => {
             발표됩니다!
           </h3>
         </div>
-        <div className={styleRanking.turnNavWrap}>
+        <div className={`${styleRanking.turnNavWrap} ${styleRanking.lateShow}`}>
           <div className={styleRanking.turnNavBox}>
             <button type="button" className={`${styleRanking.moveBtn} ${styleRanking.leftBtn}`}></button>
             <button type="button">

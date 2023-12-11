@@ -109,7 +109,6 @@ const LayerRankingReceive = () => {
           <Button disabled={true}>상금 수령 신청하기</Button>
         </div>
       </Container>
-      {/* <BottomSheetAccount title="입금 계좌 선택" /> */}
   </div>
   )
 }

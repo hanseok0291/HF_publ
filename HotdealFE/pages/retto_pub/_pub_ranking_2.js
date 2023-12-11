@@ -179,7 +179,7 @@ const index = () => {
                   </div> */}
                 </div>
               </div>
-              <div className={styleRanking.tierWrap}>
+              <div className={`${styleRanking.tierWrap}  ${styleRanking.noData}`}>
                 <div className={`${styleRanking.tierBox} ${styleRanking.second}`}>
                   <div className={styleRanking.imgBox}></div>
                 </div>

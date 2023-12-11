@@ -22,8 +22,8 @@ const LayerRankingMoneyGet = () => {
         </div>
         <div className={styleReceive.borderBox}>
           <dl>
-            <dt>머니</dt>
-            <dd>11,000원</dd>
+            <dt>포인트</dt>
+            <dd>390,000원</dd>
           </dl>
           <div className={`${styleReceive.infoText} ${styleReceive.ranking}`}>
             <p className={styleReceive.topText}>5만원을 초과하는 상금은 22% 제외 후 지급해 드려요.</p>

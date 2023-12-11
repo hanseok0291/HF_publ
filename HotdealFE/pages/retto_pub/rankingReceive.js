@@ -78,11 +78,11 @@ const index = () => {
       {/* 당첨 모달 */}
       {/* <BottomSheetRankingGive /> */}
       {/* 당첨 소감 */}
-      <BottomSheetRankingOpinion />
-      {/* 신청 완료 */}
-      {/* <LayerRankingMoneyGet /> */}
+      {/* <BottomSheetRankingOpinion /> */}
       {/* 랭킹 상금 찾기 */}
       {/* <LayerRankingReceive /> */}
+      {/* 신청 완료 */}
+      <LayerRankingMoneyGet />
     </>
   );
 };

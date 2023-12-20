@@ -70,9 +70,9 @@ export default function HundredDealDetail({setDeadlinFixed }) {
           </div>
         </div>
         <div
-          className={`${styleCommon.container} ${styleCouponDetail.containerBorder}`}
+          className={`${styleCommon.container} ${styleCouponDetail.containerBorder} ${styleHundredDeal.containerBorder}`}
         >
-          <div className={`${styleSlick.infoBox} ${styleCouponDetail.infoBox}`}>
+          <div className={`${styleSlick.infoBox} ${styleCouponDetail.infoBox} ${styleHundredDeal.infoBox}`}>
             <p
               className={`${styleCouponDetail.infoBrand} ${styleCommon.flexWrap} ${styleCommon.alignCenter}`}
             >

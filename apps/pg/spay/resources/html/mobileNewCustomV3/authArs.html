@@ -188,8 +188,69 @@
 								</div>
 								<!-- //select-type -->
 
-								<!-- tab1 -->
-								<div class="tab1">
+							<!-- tab1 -->
+							<div class="tab1">
+								<div class="step1"></div>
+							</div>
+							<!-- //tab1 -->
+							<!-- tab2 -->
+							<div class="tab2">
+								<!-- step2 -->
+								<div class="step2" style="display: none;">
+									<!-- sms-wrap -->
+									<div class="auth-sms-wrap" style="display: none">
+										<div class="form-type form-type-top auth-number-wrap">
+											<div class="form-col2 auth-number-box">
+												<div class="form-item input-btn reg-number-wrap">
+													<input type="text" placeholder="인증번호 입력">
+													<span class="count">02:59</span>
+												</div>
+												<div class="auth-btn-box">
+													<button type="button" class="btn">인증번호 받기</button>
+												</div>
+											</div>
+										</div>
+										<div class="form-type form-type-top skt">
+											<div class="form-col2">
+												<div class="form-item input-btn reg-number-wrap">
+													<input type="password" placeholder="결제 비밀번호 입력(등록자)">
+												</div>
+											</div>
+										</div>
+										<div class="form-type form-type-top email">
+											<div class="form-col2">
+												<div class="form-item input-btn reg-number-wrap">
+													<input type="text" placeholder="이메일 주소 입력 (선택)">
+												</div>
+											</div>
+										</div>
+										<ul class="accordion-list">
+											<li>
+												<div class="list-header accordion-title">
+													<button type="button">
+														<h3 class="subject">
+															<div class="check-box check-all">
+																<input type="checkbox" id="check-pay" name="check-pay">
+																<label for="check-pay">결제 내역을 모두 확인했습니다.</label>
+															</div>
+														</h3>
+													</button>
+												</div>
+											</li>
+										</ul>
+										<div class="info-text-wrap">
+											<p class="title">문의처 안내</p>
+											<p class="text">이용사이트: www.qoo10.com (문의 help@qoo10.com)</p>
+											<p class="text">결제대행사: ㈜헥토파이낸셜 (문의 1600-5200)</p>
+										</div>
+									</div>
+									<!-- //sms-wrap -->
+								</div>
+								<!-- //step2 -->
+							</div>
+							<!-- //tab2 -->
+								<!-- tab3 -->
+								<div class="tab3">
 									<!-- pass step1 -->
 									<div class="select-auth step1">
 										<!-- sms-wrap -->
@@ -209,7 +270,7 @@
 													<!-- <p id="passAlert" class="alert-msg">비밀번호가 일치하지 않습니다. (1/5) <br>5회 이상 실패 시 비밀번호는 초기화 됩니다. </p> -->
 												</div>
 											</div>
-											<div class="form-type form-type-top">
+											<div class="form-type form-type-top email">
 												<div class="form-col2 auth-number-box">
 													<div class="form-item input-btn reg-number-wrap">
 														<input type="text" placeholder="이메일 주소 입력 (선택)" id="inputChk3">
@@ -239,7 +300,7 @@
 										</div>
 									</div>
 									<!-- //pass step1 -->
-								<!-- //tab1 -->
+								<!-- //tab3 -->
 								</div>
 
 							</div>
@@ -398,19 +459,32 @@
 		// 통신사 선택
 		$('.form-type-top .mypass').hide();
 		$('.select-auth li').show();
-		$('.check-group input:radio[name=telecomCd]').click(function() {
+		$('.check-group input').click(function() {
 			var chkVal = $(this).attr('id');
-
-			if (chkVal == "telecomEtc") {
-				$('.select-auth li').show();
-				$('.select-auth').hide();
-				$('.form-type-top .mypass').show();
-				$('.form-type-bottom .mypass').hide();
-			} else {
-				$('.select-auth li').show();
-				$('.select-auth').show();
-				$('.form-type-top .mypass').hide();
-				$('.form-type-bottom .mypass').show();
+			console.log(chkVal);
+			// if (chkVal == "telecomEtc") {
+			// 	$('.select-auth li').show();
+			// 	$('.select-auth').hide();
+			// 	$('.form-type-top .mypass').show();
+			// 	$('.form-type-bottom .mypass').hide();
+			// } else {
+			// 	$('.select-auth li').show();
+			// 	$('.select-auth').show();
+			// 	$('.form-type-top .mypass').hide();
+			// 	$('.form-type-bottom .mypass').show();
+			// }
+			if (chkVal == "authTypePass") {
+				$('.tab1').show();
+				$('.tab2').hide();
+				$('.tab3').hide();
+			} else if (chkVal == "authTypeSms") {
+				$('.tab2').show();
+				$('.tab1').hide();
+				$('.tab3').hide();
+			} else if (chkVal == "authTypeEasy") {
+				$('.tab3').show();
+				$('.tab1').hide();
+				$('.tab2').hide();
 			}
 		});
 		// 결제하기 버튼 활성화
@@ -549,17 +623,6 @@ $("#passReset").on("click", function () {
 	$.alertMessage("", "간편 비밀번호 인증 초기화를 위해 <br>SMS인증을 진행합니다.", $("#commonAlert"));
 });
 
-// 주민번호 뒷자리 입력시 클래스 추가
-$('.last-input').on('input', function () {
-		var inputValue = $(this).val();
-		var $inputDot = $(this).siblings('.input-dot').find('span');
-
-		if (inputValue.trim() !== '') {
-				$inputDot.addClass('fill');
-		} else {
-				$inputDot.removeClass('fill');
-		}
-});
 </script>
 </body>
 </html>

@@ -19,7 +19,7 @@ const FillBox = ({case1, case2}) => {
 
   return (
     <div className={`${styleCommon.layer} ${styleFillBox.fillBoxWrap}`}>
-      <Header title="리또 머니함" isborder sideBtn="비우기"/>
+      <Header title="리또 머니함" isborder sideBtn=""/>
       <Container className={styleCommon.layerContainer} backgroundColor="#fff" padding="0">
         <div className={styleFillBox.topConWrap}>
           <div className={`${styleCommon.borderBox} ${styleApply.borderBox}`}>
@@ -27,8 +27,8 @@ const FillBox = ({case1, case2}) => {
               <div className="jewelImg"></div>
               <p className={`${styleCommon.levelText}`}>Lv. 2&nbsp;<span className="jewelColor">에메랄드</span><button type='button'></button></p>
               <p className={styleCommon.subText}>
-                <b>1주일 동안</b> 잘 보관하면 <br />
-                매주 월요일 리또를 받아요!
+                보관만 하면 <br />
+                매주 월요일 <b>리또를 받아요!</b>
               </p>
               {/* 실패 */}
               {/* <p className={styleCommon.subText}>
@@ -36,7 +36,14 @@ const FillBox = ({case1, case2}) => {
                 <b>50만원을 다시 채워주세요.</b>
               </p> */}
             </div>
-            <div className={styleFillBox.priceWrap}><b>500,000</b>원</div>
+            <div className={styleFillBox.priceWrap}>
+              <b>500,000</b>원
+              {/* 비우기 했을 때 */}
+              {/* <span className={styleFillBox.timerText}>머니 채우기 리또를 다시 시작헤요</span> */}
+              {/* 실패 위기(시간 지나지 않은 시점) */}
+              {/* <span className={styleFillBox.timerText}>15:24:41 안에 머니를 채워주세요!</span> */}
+              <span className={styleFillBox.timerText}>채우지 않으면 다음주 리또 지급이 어려워요</span>
+            </div>
             <Button>머니 채우기</Button>
           </div>
           <div className={styleFillBox.bannerWrap}>
@@ -57,7 +64,7 @@ const FillBox = ({case1, case2}) => {
               (010PAY 기프티몰, 내통장결제 및 카드 결제 등에서 사용 불가)
             </li>
             <li>
-              [비우기] 선택 시 머니함 속 금액은 일반 머니로 자동 전환되며, <br />
+              <em>비우기</em> 선택 시 머니함 속 금액은 일반 머니로 자동 전환되며, <br />
               전환된 일반 머니는 언제든 결제 시 사용하거나 출금할 수 있습니다.
             </li>
             <li>

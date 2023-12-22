@@ -17,7 +17,7 @@ const index = () => {
     {
       rank: 4,
       rankChange: 50,
-      state: 'up',
+      state: 'null',
       name: '헥토파이낸셜',
       score: 4244
     },
@@ -219,6 +219,8 @@ const index = () => {
               </div>
             </div>
           </div>
+          {/* 랭킹 데이터 없을 시 styleRanking.listEmptyWrap className 추가 */}
+          {/* <div className={`${styleRanking.listWrap} ${isBottom ? styleRanking.bottom : ''} ${styleRanking.listEmptyWrap}`} ref={listWrapRef}> */}
           <div className={`${styleRanking.listWrap} ${isBottom ? styleRanking.bottom : ''}`} ref={listWrapRef}>
             {/* 데이터 없음 */}
             {/* <div className={styleRanking.listEmpty}>
@@ -228,7 +230,7 @@ const index = () => {
               {/* 랭킹 발표 리또 미보유 */}
               {/* <p className={styleRanking.completeText}>리또 받고 <b>랭킹 참여하자!</b></p> */}
               {/* 랭킹 발표 리또 x등 */}
-              {/* <p className={styleRanking.completeText}>축하해요! <b>x등이에요.</b></p> */}
+              <p className={styleRanking.completeText}>축하해요! <b>x등이에요.</b></p>
               {/* <>
                 <span className={styleRanking.number}>50</span>
                 <span className={`${styleRanking.state} ${styleRanking.new}`}>NEW</span>
@@ -241,12 +243,12 @@ const index = () => {
                 <span className={styleRanking.score}>5점</span>
               </> */}
               {/* 리또 보유 순위권 */}
-              <>
+              {/* <>
                 <span className={styleRanking.number}>50</span>
                 <span className={`${styleRanking.state} ${styleRanking.null}`}></span>
                 <span className={styleRanking.name}>김헥토</span>
                 <span className={styleRanking.score}>5점</span>
-              </>
+              </> */}
             </div>
             <ul className={styleRanking.listBox} ref={listBoxRef}>
               {
@@ -262,7 +264,7 @@ const index = () => {
                   return (
                     <li key={index} style={{animationDelay: `${(index + 1) * 0.25}s`}}>
                       <span className={styleRanking.number}>{index + 4}</span>
-                      <span className={`${styleRanking.state} ${state === 'up' ? styleRanking.up : '' } ${state === 'down' ? styleRanking.down : '' } ${state === 'new' ? styleRanking.new : '' } ${state === 'none' ? styleRanking.none : '' }`}>{rankChange}</span>
+                      <span className={`${styleRanking.state} ${state === 'up' ? styleRanking.up : '' } ${state === 'down' ? styleRanking.down : '' } ${state === 'new' ? styleRanking.new : '' } ${state === 'none' ? styleRanking.none : '' } ${state === 'null' ? styleRanking.null : '' }`}>{rankChange}</span>
                       <span className={styleRanking.name}>{finalChar}</span>
                       <span className={styleRanking.score}>{score}점</span>
                     </li>

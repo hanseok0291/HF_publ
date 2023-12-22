@@ -17,7 +17,7 @@ const index = () => {
     {
       rank: 4,
       rankChange: 50,
-      state: 'up',
+      state: 'null',
       name: '헥토파이낸셜',
       score: 4244
     },
@@ -247,7 +247,7 @@ const index = () => {
                     return (
                       <li key={index} style={{animationDelay: `${(index + 1) * 0.25}s`}}>
                         <span className={styleRanking.number}>{index + 4}</span>
-                        <span className={`${styleRanking.state} ${state === 'up' ? styleRanking.up : '' } ${state === 'down' ? styleRanking.down : '' } ${state === 'new' ? styleRanking.new : '' } ${state === 'none' ? styleRanking.none : '' }`}>{rankChange}</span>
+                        <span className={`${styleRanking.state} ${state === 'up' ? styleRanking.up : '' } ${state === 'down' ? styleRanking.down : '' } ${state === 'new' ? styleRanking.new : '' } ${state === 'none' ? styleRanking.none : '' } ${state === 'null' ? styleRanking.null : '' }`}>{rankChange}</span>
                         <span className={styleRanking.name}>{finalChar}</span>
                         <span className={styleRanking.score}>{score}점</span>
                       </li>

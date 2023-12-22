@@ -16,25 +16,36 @@ const ModalLevelChange = () => {
     >
       <div className={styleModal.modalDialog}>
         <div className={`${styleModal.modalContent} ${styleRettoModal.modalContent}`}>
-          <div className={`${styleRettoModal.jewelWrap}`}>
-            <span className="jewelImg diamond"></span>{/* ruby emerald diamond className 추가 시 스타일 변경*/}
-            {/* <span className={styleRettoModal.arrow}></span> */}
-            {/* <span className="jewelImg emerald"></span> */}{/* ruby emerald diamond className 추가 시 스타일 변경*/}
+          {/* 레벨 하향 시 styleRettoModal.leveldrop className 추가 */}
+          {/* <div className={`${styleRettoModal.jewelWrap} ${styleRettoModal.leveldrop}`}> */}
+          {/* 원복 시 styleRettoModal.noChange className 추가 */}
+          <div className={`${styleRettoModal.jewelWrap} ${styleRettoModal.noChange}`}>
+            <span className="jewelImg diamond">{/* ruby emerald diamond className 추가 시 스타일 변경*/}
+              {/* 레벨 하향시 나타나는 문구 */}
+              <span className={styleRettoModal.dropText}>최대 <b>1천만원</b></span>  
+            </span>
+            <span className={styleRettoModal.arrow}></span>
+            <span className="jewelImg emerald">{/* ruby emerald diamond className 추가 시 스타일 변경*/}
+              {/* 레벨 하향시 나타나는 문구 */}
+              <span className={styleRettoModal.dropText}>최대 <b>1백만원</b></span>
+            </span>
           </div>
           <div className={styleRettoModal.textWrap}>
             {/* <p className={styleRettoModal.mainText}>
               <b>다음주 월요일부터</b> <br />
               변경된 레벨의 첫 스탬프가 찍혀요!
             </p> */}
+            {/* 하향시 문구 */}
+            <p className={styleRettoModal.mainText}>
+              루비 리또로 변경하면 <br /> 받을 수 있는 <b>당첨금이 줄어요</b>
+            </p>
             {/* 월요일 이전 원복 시 문구 */}
             <p className={styleRettoModal.mainText}>
               레벨 변경을 취소하고<br />
-              <b>MAX. <span className="diamond">다이아 리또</span></b>를 유지할까요?{/* ruby emerald diamond className 추가 시 스타일 변경*/}
-              {/* <p className={styleRettoModal.subText}>리또 머니함 속 금액도 그대로 둘게요.</p> */}
+              {/* ruby emerald diamond className 추가 시 스타일 변경*/}
+              <b><span className="diamond">다이아 리또</span></b>를 유지할까요?
             </p>
-            <p className={styleRettoModal.subText}>그래도 <span>Lv2.에메랄드 리또로 변경</span>할까요?</p>
-            {/* <p className={styleRettoModal.infoText}>머니함 속 금액을 옮길 수 없다면 변경이 취소돼요.</p> */}{/* 하향 시 문구 */}
-            <p className={styleRettoModal.infoText}>머니 부족으로 채우기 실패 시 변경이 취소돼요.</p>{/* 상향 시 문구 1113 수정 */}
+            <p className={styleRettoModal.subText}>그래도 <span>에메랄드 리또로 변경</span>할까요?</p>
           </div>
           {/* <Button>변경하기</Button> */}
           <Button>네, 좋아요</Button>{/* 월요일 이전 원복 시 문구 */}

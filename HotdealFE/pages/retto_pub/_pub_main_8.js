@@ -16,6 +16,13 @@ import ModalLevelChange from "../../components/retto_pub/common/modal/ModalLevel
 import BottomSheetBanner from "../../components/retto_pub/common/modal/BottomSheetBanner";
 import Stamp from "../../components/retto_pub/Stamp";
 import BottomSheetSaveingList from "../../components/retto_pub/common/modal/BottomSheetSaveingList";
+import BottomSheetPresent from "../../components/retto_pub/common/modal/BottomSheetPresent";
+import BottomSheetMission from "../../components/retto_pub/common/modal/BottomSheetMission";
+import Result from "../../components/retto_pub/Result";
+import BottomSheetMissionFail from "../../components/retto_pub/common/modal/BottomSheetMissionFail";
+import LayerTutorial from "../../components/retto_pub/LayerTutorial";
+import ModalmembershipOut1 from "../../components/retto_pub/common/modal/ModalmembershipOut1";
+import ModalmembershipOut2 from "../../components/retto_pub/common/modal/ModalmembershipOut2";
 
 const index = () => {
   return (
@@ -27,11 +34,12 @@ const index = () => {
         <li>당첨 리또</li>
       </ul>
       <Container isTab>
-        <MyPage />
-        {/* <Stamp /> */}
+        <MyPage case1 />
+        {/* <Stamp case1/> */}
+        {/* <Result case1/>  */}
       </Container>
       {/* 리또 신청 */}
-      {/* <Apply /> */} 
+      {/* <Apply /> */}
       {/* 당첨 */}
       {/* <BottomSheetPrize /> */}
       {/* 미참여자 */}
@@ -39,10 +47,18 @@ const index = () => {
       {/* 기기알림 */}
       {/* <BottomSheetAlarm /> */}
       {/* 레벨 변경 */}
-      <LayerLevelSelection />
+      {/* <LayerLevelSelection /> */}
       {/* 레벨 변경 확인 */}
       {/* <ModalLevelChange /> */}
+      {/* 스탬프 주차 확인 바텀 시트 */}
       {/* <BottomSheetSaveingList /> */}
+      {/* 스탬프 10주차 유지 성공 바텀 시트 */}
+      {/* <BottomSheetPresent /> */}
+      {/* 보너스 미션 바텀 시트 */}
+      {/* <BottomSheetMission /> */}
+      {/* 튜토리얼 */}
+      {/* <LayerTutorial type="mypage"/> */}
+      {/* <LayerTutorial type="stamp"/> */}
     </>
   );
 };

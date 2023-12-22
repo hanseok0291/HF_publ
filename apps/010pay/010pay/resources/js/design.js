@@ -90,7 +90,7 @@ function scrollOn() {
   $("#wrap").css("top", 0);
   $("#wrap").css("position", "relative");
   $("#header").css("top", "-1px");
-  $(document).scrollTop(scrollHeight);
+  // $(document).scrollTop(scrollHeight);
 }
 
 // 레이어 팝업(모달) 열기
@@ -111,6 +111,11 @@ function modalClose() {
   scrollOn(); // 바디 스크롤 제거 해제
 }
 
+function modalCloseNoMove() {
+  $(".modal").hide();
+  // scrollOn(); // 바디 스크롤 제거 해제
+}
+
 function modalClose(obj) {
   if (obj != null && obj != undefined && obj != "") {
     var temp = $("#" + obj);
@@ -118,8 +123,16 @@ function modalClose(obj) {
   } else {
     $(".modal").hide();
   }
-
   scrollOn(); // 바디 스크롤 제거 해제
+}
+function modalCloseNoMove(obj) {
+  if (obj != null && obj != undefined && obj != "") {
+    var temp = $("#" + obj);
+    temp.hide();
+  } else {
+    $(".modal").hide();
+  }
+  // scrollOn(); // 바디 스크롤 제거 해제
 }
 
 // 레이어 팝업(모달) 닫기 (오류 페이지 외)
@@ -460,6 +473,51 @@ function modalOpenSlide(obj) {
   $(window).resize(function () {
     modalContPos();
   });
+}
+
+// 하단 레이어 팝업(슬라이드 모달) 열기 + 상단 이동 막기
+function modalOpenSlideNoMove(obj) {
+  var temp = $("#" + obj);
+  var modalCont = $(temp).find(".modal-content");
+
+	temp.show();
+	$(modalCont).animate({bottom: 0}, 200);
+	// 이중 모달이 아닌 경우
+	if (obj === 'retto') {
+		$("body").addClass("modal-open");
+	} else 
+	if(!$(this).hasClass("depth2")) {
+		// scrollOff(); // 바디 스크롤 제거
+	} else 
+
+  // 팝업 내 하단 버튼 클릭 시 팝업 닫힘
+  $(temp)
+    .find(".modal-footer .btn")
+    .on("click", function (e) {
+      if (!$(this).hasClass("not-close")) {
+        modalCloseSlide();
+      }
+    });
+
+  // bottom modal 닫기
+	function modalCloseSlide() {
+		var temp = $("#" + obj);
+		temp.fadeOut(200);
+		var modalContent = $(temp).find(".modal-content");
+	
+		// $(modalContent).animate({ bottom: modalH }, 200, function () {
+		// 	// 애니메이션 완료 후 실행될 코드
+		// 	if (!$(temp).hasClass("depth2")) {
+		// 		scrollOn(); // 바디 스크롤 제거 해제
+		// 	}
+		// });
+	}
+
+  // 리사이즈
+  $(window).resize(function () {
+    modalContPos();
+  });
+
 }
 
 // 충전하기 이벤트

@@ -31,7 +31,7 @@
 
 	<link rel="stylesheet" href="../../css/owl.carousel.min.css">
 	<link rel="stylesheet" href="../../css/slick.min.css">
-	<link rel="stylesheet" href="../../css/common_monotone.css?ver=231120">
+	<link rel="stylesheet" href="../../css/common_monotone.css">
 	<!--[if lt IE 9]>
 <script type="text/javascript" src="../../js/html5shiv.js"></script>
 <script type="text/javascript" src="../../js/respond.min.js"></script>
@@ -196,7 +196,7 @@
 							<!-- //select-type -->
 
 							<!-- pass step1 -->
-							<div class="select-auth ">
+							<div class="select-auth">
 								<!-- select-telecom -->
 								<div class="select-telecom col-2">
 									<div class="input select-input">
@@ -207,7 +207,7 @@
 										</div>
 									</div>
 									<div class="input select-input">
-										<input type="tel" name="PSocId" id="PSocId" maxlength="11" placeholder="휴대폰 번호">
+										<input type="tel" name="PSocId" id="PSocId" maxlength="13" placeholder="휴대폰 번호">
 									</div>
 								</div>
 								<!-- //select-telecom -->
@@ -218,7 +218,7 @@
 												<input type="tel" maxlength="6" placeholder="생년월일(6자리)" class="birth-wrap">
 												<span class="text-dash">-</span>
 												<div class="last-input-wrap">
-													<input class="last-input" type="number" maxlength="7" />
+													<input class="last-input" type="tel" maxlength="1" pattern="[0-9]*" />
 													<div class="input-dot">
 														<!-- span에 fill Class 추가 시 입력 -->
 														<span></span>
@@ -605,17 +605,43 @@
 			});
 		});
 
-		// 주민번호 뒷자리 입력시 클래스 추가
-		$('.last-input').on('input', function () {
-			var inputValue = $(this).val();
-			var $inputDot = $(this).siblings('.input-dot').find('span');
+		document.getElementById('PSocId').addEventListener('input', function () {
+  // 현재 입력된 값 가져오기
+  let phoneNumber = this.value;
 
-			if (inputValue.trim() !== '') {
-				$inputDot.addClass('fill');
-			} else {
-				$inputDot.removeClass('fill');
-			}
-		});
+  // 숫자만 추출
+  const digits = phoneNumber.replace(/\D/g, '');
+
+  // 숫자를 배열로 변환
+  const numberArray = digits.split('');
+
+  // Adjust hyphen placement based on the length of entered digits
+  if (numberArray.length >= 8) {
+    numberArray.splice(3, 0, '-'); // Insert hyphen after the 3rd digit
+  }
+  if (numberArray.length >= 9) {
+    numberArray.splice(5, 0, '-'); // Insert hyphen after the 7th digit
+  }
+	if (numberArray.length >= 11) {
+    const seventhDigit = numberArray.splice(6, 1)[0]; // Remove the 7th digit
+    numberArray.splice(5, 0, seventhDigit); // Insert the 7th digit after the 5th digit
+  }
+	if (numberArray.length >= 12) {
+    const seventhDigit = numberArray.splice(7, 1)[0]; // Remove the 7th digit
+    numberArray.splice(6, 0, seventhDigit); // Insert the 7th digit after the 5th digit
+  }
+	if (numberArray.length >= 13) {
+    const seventhDigit = numberArray.splice(8, 1)[0]; // Remove the 7th digit
+    numberArray.splice(7, 0, seventhDigit); // Insert the 7th digit after the 5th digit
+  }
+
+  // 배열을 다시 문자열로 변환
+  const formattedNumber = numberArray.join('');
+
+  // 변환된 값을 다시 입력란에 설정
+  this.value = formattedNumber;
+});
+
 	</script>
 </body>
 

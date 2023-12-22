@@ -162,7 +162,7 @@ const index = () => {
           <div>
             {/* 데이터 없음 type1 진행중 type2 랭킹발표 폭죽 type3 랭킹 발표 폭죽 x type4 */}
             <div className={`${styleRanking.topCon}`}>
-              <div className={`${styleRanking.characterImg} ${styleRanking.type2}`}>
+              <div className={`${styleRanking.characterImg} ${styleRanking.type3}`}>
                 <span className={styleRanking.deco1}></span>
                 <span className={styleRanking.deco2}></span>
                 <span className={styleRanking.deco3}></span>
@@ -172,18 +172,18 @@ const index = () => {
               </div>
               <div className={styleRanking.titleWrap}>
                 {/* 진행중 */}
-                <h2>
+                {/* <h2>
                   리또만 있다면 <br />
                   <b>포인트 최대 100만원!</b>
                 </h2>
                 <div className={styleRanking.deadline}>
                   마감까지 <span>7일 07 : 00 : 00</span>
-                </div>
+                </div> */}
                 {/* 발표 */}
-                {/* <h2>
+                <h2>
                   축하해요 <br />
                   <b>이달의 랭킹왕!</b>
-                </h2> */}
+                </h2>
                 <div className={styleRanking.deadline}>
                   리또만 있다면 누구나 도전!
                 </div>

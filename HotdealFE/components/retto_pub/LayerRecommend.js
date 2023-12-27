@@ -36,7 +36,9 @@ const LayerRecommend = () => {
         <p className={styleRecommend.infoText}>
           추천 코드는 010PAY앱에서 <br /><b><span>카드 배송 전 단계까지</span> 입력할 수 있어요.</b>
         </p>
-      <Button disabled>다음</Button>
+        <div className={styleRecommend.footerBtnWrap}>
+          <Button disabled>다음</Button>
+        </div>
       </div>
     </div>
   )

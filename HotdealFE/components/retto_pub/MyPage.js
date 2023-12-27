@@ -6,6 +6,7 @@ import FadeIn from 'react-fade-in';
 // style
 import styleCommon from "../../styles/retto_pub/Common.module.css";
 import styleMyretto from "../../styles/retto_pub/Myretto.module.css";
+import styleNotJoin from "../../styles/retto_pub/NotJoin.module.css";
 import Toast from './common/Toast';
 
 const MyPage = ({case1, case2, case3, case4, case5, case6, case7, case8}) => {
@@ -19,8 +20,11 @@ const MyPage = ({case1, case2, case3, case4, case5, case6, case7, case8}) => {
   return (
     <>
       <a href='#' className={styleMyretto.topLineBanner}>
-        카드 추천인 적고 다이아 리또 받아요!
+        {/* 추천하기 */}
+        {/* 카드 추천인 적고 다이아 리또 받아요! */}
         {/* 카드 추천하고 친구랑 다이아 리또 받아요! */}
+        {/* 선물하기 */}
+        리또 선물하고 친구랑 같이 받아요!
       </a>
       <FadeIn transitionDuration={duration}>
         <div className={`${styleCommon.titleWrap} ${styleMyretto.titleWrap} ${styleMyretto.isTopBanner}`}>
@@ -43,21 +47,80 @@ const MyPage = ({case1, case2, case3, case4, case5, case6, case7, case8}) => {
       </FadeIn>
       <FadeIn delay={200} transitionDuration={duration}>
         <div>
-          <dl className={styleMyretto.borderBox}>
-            <dt className={styleMyretto.icon1}>
-              <p className={styleMyretto.topTextBox}>내 보유 리또 <span className={styleMyretto.dday}>추첨 D-2</span></p> <span>이번 주 토요일에 추첨해요</span>
+          <dl className={styleMyretto.borderBox}> 
+            <dt className={styleMyretto.icon1}> 
+              <p className={styleMyretto.topTextBox}>내 보유 리또 <span className={styleMyretto.dday}>추첨 D-2</span></p>
             </dt>
+            {/* 비활성화 */}
+            {/* <dd><button type="button" className={styleMyretto.off}>1개</button></dd> */}
             <dd><button type="button">1개</button></dd>
           </dl>
-          {case6 &&
-            <dl className={styleMyretto.nextRetto}>
-              <dt>다음주에 받을 리또</dt>
-              <dd>26개</dd>
-            </dl>
-          }
+          <div className={`${styleMyretto.nextRetto} ${styleNotJoin.rettoListWrap}`}>
+            <ul className={styleNotJoin.rettoList}>
+              <li>
+                <span className={styleNotJoin.ruby}></span>
+                <ul className={styleNotJoin.rettoNumberWrap}>
+                  <li>6</li>
+                  <li>12</li>
+                  <li>14</li>
+                  <li>26</li>
+                  <li>40</li>
+                  <li>45</li>
+                </ul>
+              </li>
+              <li>
+                <span className={styleNotJoin.emerald}></span>
+                <ul className={styleNotJoin.rettoNumberWrap}>
+                  <li>6</li>
+                  <li>12</li>
+                  <li>14</li>
+                  <li>26</li>
+                  <li>40</li>
+                  <li>45</li>
+                </ul>
+              </li>
+              <li>
+                <span className={styleNotJoin.diamond}></span>
+                <ul className={styleNotJoin.rettoNumberWrap}>
+                  <li>6</li>
+                  <li>12</li>
+                  <li>14</li>
+                  <li>26</li>
+                  <li>40</li>
+                  <li>45</li>
+                </ul>
+              </li>
+            </ul>
+            <button type='button' className={styleNotJoin.moreViewBtn}>더 많은 리또 보러가기</button>
+          </div>
         </div>
       </FadeIn>
-      <FadeIn delay={200} transitionDuration={duration}>
+      <FadeIn delay={300} transitionDuration={duration}>
+        <div>
+          <dl className={styleMyretto.borderBox}> 
+            <dt className={styleMyretto.icon4}> 
+              <p className={styleMyretto.topTextBox}>다음주에 받을 리또</p>
+            </dt>
+            <dd><button type="button" className={styleMyretto.noArrow}>2개</button></dd>
+          </dl>
+          <div className={`${styleMyretto.nextRetto} ${styleNotJoin.rettoListWrap}`}>
+            <ul className={styleNotJoin.rettoList}>
+              <li>
+                <span className={styleNotJoin.diamond}></span>
+                <ul className={styleNotJoin.rettoNumberWrap}>
+                  <li>?</li>
+                  <li>?</li>
+                  <li>?</li>
+                  <li>?</li>
+                  <li>?</li>
+                  <li>?</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </FadeIn>
+      <FadeIn delay={400} transitionDuration={duration}>
         <div>
           <dl className={`${styleMyretto.borderBox} ${styleMyretto.friendRetto} ${ isConOpen ? styleMyretto.open : styleMyretto.close}`}>
             <dt className={`${styleMyretto.icon3}`} onClick={handleClickIsCon}>
@@ -83,16 +146,16 @@ const MyPage = ({case1, case2, case3, case4, case5, case6, case7, case8}) => {
           </dl>
         </div>
       </FadeIn>
-      <FadeIn delay={400} transitionDuration={duration}>
+      <FadeIn delay={500} transitionDuration={duration}>
         <dl className={`${styleMyretto.borderBox}`}>
           <dt className={styleMyretto.icon2}>내 당첨금</dt>
           <dd><button type="button" className={`${!case7 ? styleMyretto.off : ''}`}>0원</button></dd>
         </dl>
       </FadeIn>
-      <FadeIn delay={500} transitionDuration={duration}>
+      <FadeIn delay={600} transitionDuration={duration}>
         {case1 && 
           <div className={`${styleMyretto.jewelBox}`}>
-            <div className={`${styleMyretto.topCon} emerald`}>{/* ruby emerald diamond className 추가 시 스타일 변경*/}
+            <div className={`${styleMyretto.topCon} diamond`}>{/* ruby emerald diamond className 추가 시 스타일 변경*/}
               {/* <span className={styleMyretto.alertBox}>100만원에서 줄어들었어요!</span> */}
               {/* <span className={styleMyretto.alertBox}>이번 기회는 아쉽게 놓쳤어요!</span> */}{/* 스탬프 받기 이번주 실패 */}
               {/* <span className={styleMyretto.alertBox}>혜택 알림이 꺼져있어요!</span> */}{/* 혜택 알림 미동의 */}
@@ -113,31 +176,28 @@ const MyPage = ({case1, case2, case3, case4, case5, case6, case7, case8}) => {
               </div>
             </div>
             {/* 다이아일 때 리또 레벨 변경 영역 미노출 */}
-            <div className={styleMyretto.botCon}>
+            {/* <div className={styleMyretto.botCon}>
               <a href="#" className={styleMyretto.button}>리또 레벨 변경</a>
-            </div>
+            </div> */}
           </div>
         }
       </FadeIn>
-      {case8 && 
-        <FadeIn delay={600} transitionDuration={duration}>
-          <div className={styleMyretto.bannerWrap}>
-            <div className={`${styleMyretto.bottomBox} ${styleMyretto.type1}`}>
-              <a href="#">
-                <p>결제할 때마다 쌓이는 리또</p>
-                <h4 className={styleMyretto.addArrowBlack}>신용카드 결제로 받기</h4>
-              </a>
-            </div>
-            <div className={`${styleMyretto.bottomBox} ${styleMyretto.type2}`}>
+      <FadeIn delay={700} transitionDuration={duration}>
+        <div className={styleMyretto.bannerWrap}>
+          <div className={`${styleMyretto.bottomBox} ${styleMyretto.type1}`}>
+            <a href="#">
+              <p>결제할 때마다 쌓이는 리또</p>
+              <h4 className={styleMyretto.addArrowBlack}>신용카드 결제로 받기</h4>
+            </a>
+          </div>
+          <div className={`${styleMyretto.bottomBox} ${styleMyretto.type2}`}>
               <a href="#">
                 <p>채워만 둬도 쌓이는 리또</p>
                 <h4 className={styleMyretto.addArrowBlack}>머니 채우기로 받기</h4>
               </a>
             </div>
-          </div>
-        </FadeIn>
-      }
-      
+        </div>
+      </FadeIn>
       
       {/* <Toast>
         2023.08.31 <br /> 

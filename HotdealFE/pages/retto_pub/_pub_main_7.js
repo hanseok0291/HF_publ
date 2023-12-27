@@ -29,7 +29,7 @@ const index = () => {
       <ul className={styleMyretto.tabWrap}>
         <li className={styleMyretto.active}>나의 리또 현황</li>
         <li>리또 스탬프</li>
-        <li>당첨 리또</li>
+        <li>당첨 결과</li>
       </ul>
       <Container isTab>
         <MyPage case1 case2 case3 case4 case5 case6 case7/>

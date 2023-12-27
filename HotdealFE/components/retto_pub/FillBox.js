@@ -38,11 +38,8 @@ const FillBox = ({case1, case2}) => {
             </div>
             <div className={styleFillBox.priceWrap}>
               <b>500,000</b>원
-              {/* 비우기 했을 때 */}
-              {/* <span className={styleFillBox.timerText}>머니 채우기 리또를 다시 시작헤요</span> */}
               {/* 실패 위기(시간 지나지 않은 시점) */}
-              {/* <span className={styleFillBox.timerText}>15:24:41 안에 머니를 채워주세요!</span> */}
-              <span className={styleFillBox.timerText}>채우지 않으면 다음주 리또 지급이 어려워요</span>
+              <span className={styleFillBox.timerText}>7일 15시간 24분 41초 안에 머니를 채워주세요!</span>
             </div>
             <Button>머니 채우기</Button>
           </div>

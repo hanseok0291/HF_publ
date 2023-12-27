@@ -225,12 +225,24 @@ const Stamp = ({case1}) => {
               </ul>
             </div>
           </div>
+          {case1 && 
+            <div className={styleMyretto.botCon}>
+              <a href="#" className={styleMyretto.button}>
+                리또 레벨 변경
+              </a>
+              <a href="#" className={`${styleMyretto.button} ${styleMyretto.on}`}>
+                자동 충전<span>ON</span>
+              </a>
+              {/* <a href="#" className={styleMyretto.button}>혜택 알림 켜기</a> */}
+              {/* 혜택 알림 미동의 */}
+            </div>
+          }
         </div>
       </FadeIn>
       {case1 && 
         <div className={styleMyretto.bannerWrap} style={{ marginTop: 10 }}>
           <div className={`${styleMyretto.bottomBox} ${styleMyretto.type1}`}>
-            <a href="#"> 
+            <a href="#">
               <p>결제할 때마다 쌓이는 리또</p>
               <h4 className={styleMyretto.addArrowBlack}>신용카드 결제로 받기</h4>
             </a>

@@ -42,7 +42,7 @@ const ApplyComplete = ({
             <li><span>일</span></li>
           </ul>
           <div className={styleApply.bottomBox}>
-            다음 주 월요일 <b className="jewelColor">리또 GET</b>
+            다음 주 월요일 <b className="jewelColor">리또 GET</b><span className={styleApply.ddayText}>D-3</span>
             {/* 해지 > 다시 신청 */}
             {/* 1주일 잘 보관하면 매주 월요일 <b className="jewelColor">리또 GET</b> */}
           </div>

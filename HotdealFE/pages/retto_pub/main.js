@@ -40,9 +40,9 @@ const index = () => {
       </ul>
       <Container isTab>
         <MyPage case1 case2 case3 case4 case5 case6 case7/>
-        {/* <MyPageNotJoin /> */}
+        {/* <MyPageNotJoin case1 case2 /> */}
         {/* <Stamp case1/> */}
-        {/* <Result case1/>  */}
+        {/* <Result case1/> */}
       </Container>
       {/* 리또 신청 */}
       {/* <Apply /> */}
@@ -64,9 +64,9 @@ const index = () => {
       {/* <BottomSheetMission /> */}
       {/* 튜토리얼 */}
       {/* <LayerTutorial type="mypage" /> */}
-      <LayerTutorial type="stamp" />
+      {/* <LayerTutorial type="stamp" /> */}
       {/* 추천 코드 입력하기 */}
-      {/* <LayerRecommend /> */}
+      <LayerRecommend />
       {/* 추천 코드 입력 마감 */}
       {/* <ModalRecommendEnd /> */}
       {/* 추천 코드 입력 완료 토스트 */}

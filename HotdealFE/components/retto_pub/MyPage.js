@@ -31,7 +31,7 @@ const MyPage = ({case1, case2, case3, case4, case5, case6, case7, case8}) => {
           <h2>매주 최대 1억 행운 리또</h2>
           {case4 && 
             <div className={styleMyretto.prizeWrap}>
-              김*틀  <span>5,000원 당첨</span>
+              김*틀 <span>5,000원 당첨</span>
             </div>
           }
         </div>

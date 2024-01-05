@@ -10,9 +10,9 @@ import Button from './common/Button';
 const LayerRecommend = () => {
 
   return (
-    <div className={styleCommon.layer}>
+    <div className={styleCommon.notLayer}>
       <div className={`${styleCommon.layerHeader} ${styleCommon.borderNone}`}>
-        <h2>내 당첨금 찾기</h2>
+        <h2>카드 추천 코드 입력하기</h2>
         <button type="button" className={styleCommon.closeBtn}>
           닫기
         </button>

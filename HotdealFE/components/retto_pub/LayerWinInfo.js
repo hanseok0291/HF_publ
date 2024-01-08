@@ -16,7 +16,7 @@ const LayerWinInfo = () => {
         </button>
       </div>
       <div className={`${styleRettoList.winInfoWrap}`}>
-        <h4><span className={`${styleRettoList.number} ${styleRettoList.number1}`}></span>1, 2등 당첨금 관련 안내드려요.</h4>
+        <h4><span className={`${styleRettoList.number} ${styleRettoList.number1}`}></span>1, 2등 당첨금</h4>
         <ul className={styleRettoList.firstCon}>
           <li>
             <strong>5만원 이하</strong>
@@ -27,23 +27,10 @@ const LayerWinInfo = () => {
             <p>다음 달 15일 내 <br /> <b>계좌로 지급</b></p>
           </li>
           <li>
-            <strong>보유 한도 초과 <br /><span>(머니 200만원 기준)</span></strong>
+            <strong>보유 한도 초과<span>(머니 200만원 기준)</span></strong>
             <p>다음 달 15일 내 <br /> <b>계좌로 지급</b></p>
           </li>
         </ul>
-        <h4><span className={`${styleRettoList.number} ${styleRettoList.number2}`}></span> 보너스 미션 관련 안내드려요.</h4>
-        <div className={styleRettoList.secondCon}>
-          <p>미션 성공 시 <br /><b>최대 1만 포인트 랜덤 지급</b></p>
-          <ul>
-            <li>
-              <span className={styleRettoList.left}>참여 대상:</span><span className={styleRettoList.right}>당첨 회차 직전 1주(월~일) 동안 <br /> 기프티몰에서 5천원 이상 구매한 고객</span>
-            </li>
-            <li>
-              성공 기준: 번호 3개 일치
-            </li>
-          </ul>
-        </div>
-        <h4><span className={`${styleRettoList.number} ${styleRettoList.number3}`}></span>제세공과금 관련 안내드려요.</h4>
         <div className={`${styleRettoList.secondCon} ${styleRettoList.type2}`}>
           <p>5만원 초과 당첨금은 <br /> 제세공과금 처리를 위해 <br /><b>신분증 사본 제출 필수</b></p>
           <ul>
@@ -57,6 +44,12 @@ const LayerWinInfo = () => {
             </li>
           </ul>
         </div>
+        <h4><span className={`${styleRettoList.number} ${styleRettoList.number2}`}></span> 3등 당첨금</h4>
+        <div className={styleRettoList.secondCon}>
+          <p>당첨금 확인 즉시 <br /><b>최대 1만 포인트 랜덤 지급</b></p>
+        </div>
+        <h4><span className={`${styleRettoList.number} ${styleRettoList.number3}`}></span>당첨금 정보</h4>
+        
         <table className={styleRettoList.table}>
           <colgroup>
             <col width="11%"/>
@@ -190,6 +183,14 @@ const LayerWinInfo = () => {
                 1만원</td>
               <td>
                 1천원</td>
+            </tr>
+            <tr>
+              <td style={{verticalAlign: 'baseline'}}>3등</td>
+              <td style={{verticalAlign: 'baseline'}}>3 ~ 5개</td>
+              <td style={{textAlign: 'center'}}>-</td>
+              <td colSpan={3}>
+                최대 1만 포인트
+              </td>
             </tr>
           </tbody>
         </table>

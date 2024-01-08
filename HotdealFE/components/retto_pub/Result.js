@@ -37,7 +37,7 @@ const Result = ({case1, case2}) => {
             {!case2 ?
               <h2 className={styleResult.title}>세상에나, <em className={styleCommon.highlightBg}>1등 당첨</em>이에요 <br />저희가 다 기뻐요!</h2>
               :
-              <h2 className={styleResult.title}><em className={styleCommon.highlightBg}>보너스 미션 성공!</em><br /> 소소한 행운이 찾아왔어요</h2>
+              <h2 className={styleResult.title}><em className={styleCommon.highlightBg}>3등 당첨</em>이에요<br /> 소소한 행운이 찾아왔어요</h2>
             }
           </>
           :

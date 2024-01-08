@@ -30,7 +30,7 @@ const index = () => {
       {/* 포인트 당첨, 대기 바텀 시트 */}
       {/* <BottomSheetMoneyGive /> */}
       {/* 당첨 안내 */}
-      {/* <LayerWinInfo/>  */}
+      <LayerWinInfo/> 
     </>
   );
 };

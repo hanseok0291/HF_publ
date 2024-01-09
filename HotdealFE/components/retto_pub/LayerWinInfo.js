@@ -44,9 +44,14 @@ const LayerWinInfo = () => {
             </li>
           </ul>
         </div>
-        <h4><span className={`${styleRettoList.number} ${styleRettoList.number2}`}></span> 3등 당첨금</h4>
+        <h4><span className={`${styleRettoList.number} ${styleRettoList.number2}`}></span>보너스 당첨</h4>
         <div className={styleRettoList.secondCon}>
           <p>당첨금 확인 즉시 <br /><b>최대 1만 포인트 랜덤 지급</b></p>
+          <ul>
+            <li className={styleRettoList.noDot}>
+              당첨 기준: 실제 로또 당첨 번호 3개 ~ 5개 일치
+            </li>
+          </ul>
         </div>
         <h4><span className={`${styleRettoList.number} ${styleRettoList.number3}`}></span>당첨금 정보</h4>
         
@@ -54,7 +59,7 @@ const LayerWinInfo = () => {
           <colgroup>
             <col width="11%"/>
             <col />
-            <col width="72px"/>
+            <col width="70px"/>
             <col width="48px" />
             <col width="48px" />
             <col width="48px" />
@@ -115,7 +120,7 @@ const LayerWinInfo = () => {
                 10만원</td>
             </tr>
             <tr>
-              <td>5억 이상 ~
+              <td>5억 이상 ~ 
                 10억 미만</td>
               <td>
                 5백만원</td>
@@ -183,14 +188,6 @@ const LayerWinInfo = () => {
                 1만원</td>
               <td>
                 1천원</td>
-            </tr>
-            <tr>
-              <td style={{verticalAlign: 'baseline'}}>3등</td>
-              <td style={{verticalAlign: 'baseline'}}>3 ~ 5개</td>
-              <td style={{textAlign: 'center'}}>-</td>
-              <td colSpan={3}>
-                최대 1만 포인트
-              </td>
             </tr>
           </tbody>
         </table>

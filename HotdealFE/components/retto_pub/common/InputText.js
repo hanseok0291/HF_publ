@@ -15,9 +15,9 @@ const InputText = ({ label, placeholder, errorMsg, error }) => {
   // 입력 필드에서 포커스가 벗어났을 때
   const handleBlur = () => {
     // 입력 값이 비어있으면 isFocused를 false로 설정
-    if (!inputValue) {
-      setIsFocused(false);
-    }
+    setTimeout(() => {
+        setIsFocused(false);
+    }, 0);
   };
 
   // 입력 값 변경 처리
@@ -26,10 +26,12 @@ const InputText = ({ label, placeholder, errorMsg, error }) => {
   };
 
   // 닫기 버튼 클릭 처리
-  const handleClose = () => {
+  const handleClose = (event) => {
     setInputValue('');
     setIsError(false);
-    inputRef.current.focus();
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 0);
   };
 
 
@@ -42,7 +44,7 @@ const InputText = ({ label, placeholder, errorMsg, error }) => {
 
   return (
     <div className={`${styleCommon.inputTextWrap} ${wrapperClass}`}>
-      {isFocused && <span className={styleCommon.inputlabel}>{isError ? errorMsg : label}</span>}
+      {(isFocused || inputValue) && <span className={styleCommon.inputlabel}>{isError ? errorMsg : label}</span>}
       <input
         ref={inputRef}
         type="text"
@@ -52,7 +54,7 @@ const InputText = ({ label, placeholder, errorMsg, error }) => {
         onFocus={handleFocus}
         onBlur={handleBlur}
       />
-      {inputValue && <button type="button" className={styleCommon.closeBtn} onClick={handleClose}></button>}
+      {inputValue && isFocused && <button type="button" className={styleCommon.closeBtn} onClick={handleClose}></button>}
     </div>
   );
 }

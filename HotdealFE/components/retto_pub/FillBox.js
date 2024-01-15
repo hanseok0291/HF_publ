@@ -39,7 +39,9 @@ const FillBox = ({case1, case2}) => {
             <div className={styleFillBox.priceWrap}>
               <b>500,000</b>원
               {/* 실패 위기(시간 지나지 않은 시점) */}
-              <span className={styleFillBox.timerText}>7일 15시간 24분 41초 안에 머니를 채워주세요!</span>
+              <div className={styleFillBox.timerTextWrap}>
+                <span className={styleFillBox.timerText}>7일 15시간 24분 41초 안에 머니를 채워주세요!</span>
+              </div>
             </div>
             <Button>머니 채우기</Button>
           </div>

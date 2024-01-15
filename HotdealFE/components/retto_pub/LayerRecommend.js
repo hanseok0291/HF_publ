@@ -22,7 +22,7 @@ const LayerRecommend = () => {
           <p className={styleRecommend.date}>2. 1 - 2. 29</p>
           <h2>카드 추천 코드를 받으셨나요?</h2>
         </div>
-        <InputText label="추천 코드" placeholder="추천 코드를 입력하세요" errorMsg="일치하는 추천 코드를 찾지 못했어요." error={false} />
+        <InputText label="추천 코드" placeholder="추천 코드를 입력하세요" error={false} />
         <div className={styleRecommend.rettoInfoWrap}>
           <div className={styleRecommend.topCon}>
             <div className={styleRecommend.textWrap}>

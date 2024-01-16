@@ -111,7 +111,7 @@ $(function(){
 		$(otherItem).removeClass("active").find(".list-body").slideUp(300);
 	});
 
-	});
+});
 	
 	// 하단 레이어 팝업(슬라이드 모달) 기본 세팅
 var modalCont = $('.modal-info .modal-content');

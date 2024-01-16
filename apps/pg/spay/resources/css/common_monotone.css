@@ -126,7 +126,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
 .table,
 .terms table { border-collapse: collapse; table-layout: fixed; border-spacing: 0; width: 100%; color: #757575; }
 .table th, .table td,
-.terms table th, .terms table td { height: 31px; border: 1px solid #ececec; padding: 5px; text-align: center; vertical-align: middle; }
+.terms table th, .terms table td { height: 31px; border: 1px solid #ececec; padding: 5px; text-align: center; vertical-align: middle; word-break: break-all; }
 .table th,
 .terms table th { background: #f8f9fa; font-weight: 400; color: #444; }
 .table thead th,
@@ -304,6 +304,7 @@ h5 { font-size: 13px; }
 .modal-full .modal-body .terms-title { font-size: 22px;font-weight: 700; color: #2b2b2b; margin-bottom: 20px; }
 .modal-full .modal-body .terms-title-sub { font-size: 14px;font-weight: 700; color: #2A2A2A; }
 .modal-full .modal-body .terms-title-sub + p { margin-bottom: 20px; }
+.modal-full .modal-body .container { height: 100%; }
 .modal-full .modal-footer {position:fixed;width:100%;height:116px;bottom:0;display:flex;justify-content:center;align-items:center; border-top: 0;}
 .modal-full .modal-footer .btn-wrap {
 	width: 100%;
@@ -387,12 +388,13 @@ h5 { font-size: 13px; }
 /* 커스텀 전결협 UI */
 body.custom-new .line {height: 4px;background-color: #F6F6F6;}
 body.pc .container { max-width: 360px; }
+body.pc .modal .container { max-width: inherit; }
 body.custom-new { background-color: #fff; font-family: 'Pretendard', 'Nanum Square Round', 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; }
 body.custom-new label, body.custom-new input, body.custom-new select, body.custom-new textarea, body.custom-new button { font-family: 'Pretendard', 'Nanum Square Round', 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; }
 body.custom-new input[type="text"], body.custom-new input[type="password"], body.custom-new input[type="number"], body.custom-new input[type="email"], body.custom-new input[type="tel"], body.custom-new .input, select, body.custom-new .select { height: auto; border: 0; }
 body.custom-new input::placeholder { font-size: 14px; }
 
-body.custom-new .order-wrap .prod-name { font-size: 24px; font-weight: 700; color: #2b2b2b; margin-top: 0px;}
+body.custom-new .order-wrap .prod-name { font-size: 24px; font-weight: 700; color: #2b2b2b; margin-top: 0px; text-overflow: ellipsis;overflow: hidden;}
 body.custom-new .order-wrap .list-table { margin-top: 18px;}
 body.custom-new .order-wrap .list-table li { display: flex; justify-content: space-between; font-size: 14px; color: #6a6a6a; line-height: 17px; margin-bottom: 10px;}
 body.custom-new .order-wrap .list-table .price { color: #2B2B2B;font-size: 18px;font-weight: 700;}
@@ -435,7 +437,7 @@ body.custom-new .form-type-top.auth-number-wrap .auth-number-box { display: flex
 body.custom-new .form-type-top.auth-number-wrap .auth-number-box .reg-number-wrap { width: 100%; margin-right: 10px;}
 body.custom-new .form-type-top.auth-number-wrap .auth-number-box .reg-number-wrap .count {color: #FF5656; font-size: 14px; font-weight: 400;}
 body.custom-new .form-type-top.auth-number-wrap .auth-btn-box { margin-left: auto;}
-body.custom-new .form-type .form-item.reg-number-wrap { position: relative; font-size: 16px; width: 100%;height: 50px;}
+body.custom-new .form-type .form-item.reg-number-wrap, body.custom-new .pay-password { position: relative; font-size: 16px; width: 100%;height: 50px;} 
 body.custom-new .form-type .form-item.reg-number-wrap .birth-wrap { width: 78%;}
 body.custom-new .form-type .form-item.reg-number-wrap .text-dash { margin: 0;}
 body.custom-new .form-type .form-item.reg-number-wrap .last-input-wrap { position: relative;width: 100%;height: 30px;}
@@ -469,7 +471,9 @@ body.custom-new #footer .btn { background-color: #2b2b2b; color: #fff;}
 .modal {}
 .modal-head .subject { font-size: 15px; font-weight: 700; color: #151515; line-height: 52px; }
 .modal-dialog {}
-body.pc .modal-terms .container, .modal-terms .container { padding: 0 24px; max-width: 700px; }
+.modal-full .modal-body, body.pc .modal-full .modal-body > .container {height: 100%;align-items: start;}
+.modal .terms.scroll {overflow-y: scroll;text-align: left;height: calc(100% - 150px);}
+.modal-terms .container, .modal-terms .container { padding: 0 24px; max-width: 700px; }
 .modal-terms .modal-content { position: relative; overflow: hidden; }
 .modal-terms .modal-body { max-height: 50vh; overflow-y: scroll; padding: 18px 0 100px; border-top: 1px solid #e2e2e2; font-size: 12px; color: #151515; }
 .modal-terms .modal-footer { position: absolute; bottom: 0; width: 100%; height: 62px; padding: 0 14px 14px; border-radius: 0 0 10px 10px; background-color: #fff; }
@@ -606,7 +610,7 @@ body.pc .modal-terms .container, .modal-terms .container { padding: 0 24px; max-
 .modal-prompt.modal.new .text-red {color: #FF5656 !important}
 
 .modal.new.modal-slide .modal-body { padding: 40px 0 20px;}
-.modal.new.modal-slide .modal-content {position: fixed !important;left: 50%;transform: translateX(-50%);border-radius: 20px 20px 0 0;max-width: none;}
+.modal.new.modal-slide .modal-content {position: fixed !important;left: 50%;transform: translateX(-50%);border-radius: 20px 20px 0 0;max-width: none;bottom: -100%;}
 .modal.new.modal-slide .select-list li { font-size: 16px; margin-bottom: 10px; }
 .modal.new.modal-slide .select-list li.bold { font-weight: 700;}
 
@@ -619,6 +623,8 @@ body.custom-new .select-type .check-group input:disabled + label { background: #
 .info-text-wrap .title {font-size: 13px;font-weight: 700;color: #959595;margin-bottom: 6px;}
 .info-text-wrap .text {font-size: 12px;font-weight: 400;color: #a5a5a5;}
 
-#content .container-wrap .select-type, #content .container-wrap .select-auth {position: relative;}
-#content .container-wrap .select-type::after, #content .container-wrap .select-auth::after { content: '';width: 100%;height: 100%;position: absolute;top: 0;left: 0;z-index: -1;}
-#content.next .container-wrap .select-type::after, #content.next .container-wrap .select-auth::after { z-index: 10;}
+#content .container-wrap .select-type, #content .container-wrap .select-auth, #content .pay-password {position: relative;}
+#content .pay-password { width: 100%; display: flex; align-items: center; border-bottom: 1px solid #ebebeb;}
+#content .pay-password .reg-number-wrap, #content .pay-password input[type="password"] { height: 100%;}
+#content .container-wrap .select-type::after, #content .container-wrap .select-auth::after, #content .pay-password::after { content: '';width: 100%;height: 100%;position: absolute;top: 0;left: 0;z-index: -1;}
+#content.next .container-wrap .select-type::after, #content.next .container-wrap .select-auth::after, #content.next .pay-password::after { z-index: 10;}

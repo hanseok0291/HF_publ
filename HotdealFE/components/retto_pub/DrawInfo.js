@@ -155,7 +155,7 @@ const DrawInfo = ({case1, case2, case3, case4, case5, case6, case7}) => {
           </a>
         </div>
       }
-      <div className={`${styleRettoList.drawInfoContainer} ${case1 && styleRettoList.noRetto}`} ref={firstObserveRef}>
+      <div className={`${styleRettoList.drawInfoContainer} ${case1 ? styleRettoList.noRetto : styleRettoList.isRetto}`} ref={firstObserveRef}>
         <div className={`${styleRettoList.turnNavWrap} ${isFirstFixed ? styleRettoList.fixed : ''}`}>
           <div className={styleRettoList.turnNavBox}>
             <button type="button" className={`${styleRettoList.moveBtn} ${styleRettoList.leftBtn}`}></button>

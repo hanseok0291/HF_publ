@@ -18,8 +18,8 @@ const Home = () => {
     },
     {
       indexText: '두 번째',
-      titleText: ['리또 머니함에 머니 보관', '머니만 채워두면', '최대 1억 당첨 리또 자동 지급'],
-      imgClass: ['vault', 'present', 'money']
+      titleText: ['리또 머니함에 머니 보관', '최대 1억 당첨 가능한', '리또 자동 지급'],
+      imgClass: ['vault', 'money', 'present']
     },
     {
       indexText: '세 번째',
@@ -115,11 +115,11 @@ const HomeSwiper = ({content: {indexText, titleText, imgClass}}) => {
   const handleSlideChange = (swiper) => {
     setCurrentIndex(swiper.realIndex);
   };
-
+  
   // 특정 슬라이드로 이동하는 함수
   const goToSlide = (index) => {
     if (swiper) {
-      swiper.slideTo(index);
+      swiper.slideToLoop(index);
     }
   };
 

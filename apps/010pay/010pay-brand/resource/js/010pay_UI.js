@@ -206,11 +206,9 @@ var positionCtl = {
     var windowH = $(window).height(), //화면 세로 사이즈
       delayPosition = windowH / 4; // 다음 섹션이 브라우저 하단으로부터 1/4 만큼 보여질때
 
-    var position = $(window).scrollTop() + windowH - delayPosition;
+		var position = $(window).scrollTop() + windowH - delayPosition;
     var position_top = $(window).scrollTop();
     // 현재의 위치 = 스크롤이 이동한 값 + 윈도우 높이 - 처음에 선언한 지연 위치값(200);
-
-    
 
     $(".section.ready").each(function () {
       if (
@@ -288,6 +286,23 @@ var positionCtl = {
         console.log($(this).data("offsetTop"));
         $(this).addClass("animation");
       }
+    });
+
+    $(".credit_card .section").each(function () {
+			var $section = $(this);
+			var sectionOffsetTop = $section.offset().top;
+			var sectionHeight = $section.outerHeight();
+			if (
+				!$section.hasClass("animation") &&
+				sectionOffsetTop < position &&
+				position < sectionOffsetTop + sectionHeight) {
+				$section.addClass("animation");
+				// 높이가 변경되었을 때 갱신
+				$section.data("offsetTop", sectionOffsetTop);
+				$section.data("outerHeight", sectionHeight);
+				$(".section01").addClass("animation");
+			}
+
     });
   },
 

@@ -42,7 +42,7 @@ const index = () => {
         <Result case1/> 
       </Container>
       {/* 리또 신청 */}
-      <Apply />
+      {/* <Apply /> */}
       {/* 당첨 */}
       {/* <BottomSheetPrize /> */}
       {/* 미참여자 */}

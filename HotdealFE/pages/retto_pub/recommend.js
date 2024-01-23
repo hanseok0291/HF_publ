@@ -16,8 +16,8 @@ const index = () => {
       {/* 추천 코드 입력 완료 토스트 */}
       {/* <Toast width={250}>카드 발급 선물 신청이 완료되었어요!</Toast> */}
       {/* 리또 선물 코드 입력하기 Error */}
-      <ModalAlert cancle={false} message="일치하는 선물 코드를 찾지 못했어요." />
-      <ModalAlert message={`추천 코드는 카드 배송 전까지\n010PAY 앱에서 입력 가능해요.`} />
+      {/* <ModalAlert cancle={false} message="일치하는 선물 코드를 찾지 못했어요." /> */}
+      {/* <ModalAlert message={`추천 코드는 카드 배송 전까지\n010PAY 앱에서 입력 가능해요.`} /> */}
     </>
   );
 };

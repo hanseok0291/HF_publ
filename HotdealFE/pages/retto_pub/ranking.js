@@ -262,7 +262,7 @@ const index = () => {
 
                   const finalChar =  firstChar + masked + lastChar;
                   return (
-                    <li key={index} style={{animationDelay: `${(index + 1) * 0.25}s`}}>
+                    <li key={index} style={{animationDelay: `${(index + 1) * 0.14}s`}}>
                       <span className={styleRanking.number}>{index + 4}</span>
                       <span className={`${styleRanking.state} ${state === 'up' ? styleRanking.up : '' } ${state === 'down' ? styleRanking.down : '' } ${state === 'new' ? styleRanking.new : '' } ${state === 'none' ? styleRanking.none : '' } ${state === 'null' ? styleRanking.null : '' }`}>{rankChange}</span>
                       <span className={styleRanking.name}>{finalChar}</span>
@@ -290,7 +290,7 @@ const index = () => {
       {/* 회차 선택 */}
       {/* <BottomSheetRankingTurn /> */}
       {/* 랭킹 안내 */}
-      <LayerRankingInfo />
+      {/* <LayerRankingInfo /> */}
     </>
   )
 }

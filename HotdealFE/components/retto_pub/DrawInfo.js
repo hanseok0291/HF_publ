@@ -112,8 +112,8 @@ const DrawInfo = ({case1, case2, case3, case4, case5, case6, case7}) => {
           jewel: 'diamond',
           number: [],
           info: [
-            ['지급', '신용카드 결제', '2024.01.01 오전 09:00'],
-            ['회수', '신용카드 결제', '2024.01.01 오전 09:00']
+            ['회수', '결제 취소', '2024.01.01 오전 09:00'],
+            ['지급', '신용카드 결제', '2024.01.01 오전 09:00']
           ],
         }
       ]
@@ -372,18 +372,21 @@ const ResultListItem = ({list}) => {
               {
                 openIndex === index &&
                 <dl className={styleRettoList.resultInfoWrap}>
-                  {info.map((infoItem) => (
-                    <>
-                      <dt className={styleRettoList.dashDot}></dt>
-                      <dd className={styleRettoList.resultInfo}>
-                        <span className={styleRettoList.addText}>{infoItem[0]}</span>
-                        <div className={styleRettoList.infoBox}>
-                          <p className={styleRettoList.titleText}>{infoItem[1]}</p>
-                          <p className={styleRettoList.dateText}>{infoItem[2]}</p>
-                        </div>
-                      </dd>
-                    </>
-                  ))}
+                  {info.map((infoItem) => {
+                    const titleText = infoItem[1] === '결제 취소' ? <span className={styleRettoList.cancelText}>{infoItem[1]}</span> : infoItem[1] ;
+                    return (
+                      <>
+                        <dt className={styleRettoList.dashDot}></dt>
+                        <dd className={styleRettoList.resultInfo}>
+                          <span className={styleRettoList.addText}>{infoItem[0]}</span>
+                          <div className={styleRettoList.infoBox}>
+                            <p className={styleRettoList.titleText}>{titleText}</p>
+                            <p className={styleRettoList.dateText}>{infoItem[2]}</p>
+                          </div>
+                        </dd>
+                      </>
+                    )
+                  })}
                 </dl>
               }
               {

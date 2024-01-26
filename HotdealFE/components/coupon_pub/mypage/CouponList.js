@@ -31,6 +31,7 @@ const CouponList = (props) => {
                     >
                       D-30
                     </span>
+                    <span className={`${styleCouponList.barcode}`}></span>
                   </div>
                   <div className={styleCouponList.infoBox}>
                     <p className={styleCouponList.infoBrand}>투썸플레이스</p>
@@ -59,6 +60,7 @@ const CouponList = (props) => {
                     >
                       D-30
                     </span>
+                    <span className={`${styleCouponList.barcode}`}></span>
                   </div>
                   <div className={styleCouponList.infoBox}>
                     <p className={styleCouponList.infoBrand}>투썸플레이스</p>
@@ -85,9 +87,9 @@ const CouponList = (props) => {
                     >
                       D-30
                     </span>
+                    <span className={`${styleCouponList.barcode}`}></span>
                   </div>
                   <div className={styleCouponList.infoBox}>
-                    <span className={`${styleCouponList.barcode}`}></span>
                     <p className={styleCouponList.infoBrand}>투썸플레이스</p>
                     <p className={styleCouponList.infoProduct}>오렌지에이드</p>
                     <p className={styleCouponList.infoFrom}>From.이헥토</p>
@@ -106,6 +108,7 @@ const CouponList = (props) => {
                     >
                       D-30
                     </span>
+                    <span className={`${styleCouponList.barcode}`}></span>
                   </div>
                   <div className={styleCouponList.infoBox}>
                     <p className={styleCouponList.infoBrand}>투썸플레이스</p>
@@ -118,7 +121,7 @@ const CouponList = (props) => {
           </div>
         </div>
       </div>
-      <ModalBarcode />
+      {/* <ModalBarcode /> */}
     </>
   );
 };

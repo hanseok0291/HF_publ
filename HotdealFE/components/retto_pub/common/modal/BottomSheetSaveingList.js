@@ -88,13 +88,14 @@ const BottomSheetSaveingList = ({ isHundredOpen, closeHundredPopup }) => {
             {/* <p>1주일 다 채우면 다이아 리또 1개!</p> */}
             {/* <p>다이아 리또 1개가 쌓였어요.</p> */}{/* 성공 */}
             {/* <p>다이아 리또가 사라지고 있어요.</p> */}{/* 실패중 */}
-            {/* <p>다음주 월요일 적립 현황이 리셋돼요.</p> */}{/* 실패 */}
-            <div>
+            <p>다음주 월요일 적립 현황이 리셋돼요.</p>{/* 실패 */}
+            <div className={styleRettoModal.botContWrap}>
               {/* <p className={styleRettoModal.boxText}>한 걸음씩~</p> */}{/* 성공 직전주차 없을떄 */}
               {/* <p className={styleRettoModal.boxText}>반짝반짝★</p> */} {/* 성공 과거 */}
               {/* <p className={`${styleRettoModal.boxText}`}><b>195,212원</b> 더 채워져야 해요</p> */}{/* 실패 styleRettoModal.red  추가 시 안내 배경 빨간색 */}
               {/* <p className={`${styleRettoModal.boxText}`}><b>195,212원</b>이 부족했어요</p> */}{/* 실패 styleRettoModal.red  추가 시 안내 배경 빨간색 */}
-              <p className={`${styleRettoModal.boxText} ${styleRettoModal.red}`}><b>혜택 알림을 다시 ON</b> 해주세요.</p>{/* 실패중 혜택 알림 꺼짐 styleRettoModal.red  추가 시 안내 배경 빨간색 */}
+              <p className={`${styleRettoModal.boxText} ${styleRettoModal.red}`}><b>혜택 알림을 다시 ON</b> 해주세요.</p>
+              {/* 실패중 혜택 알림 꺼짐 styleRettoModal.red  추가 시 안내 배경 빨간색 */}
               {/* <p className={`${styleRettoModal.boxText} ${styleRettoModal.red}`}><b>혜택 알림을 다시 OFF</b> 상태였어요.</p> */}{/* 실패 혜택 알림 꺼짐 styleRettoModal.red  추가 시 안내 배경 빨간색 */}
               <div className={`${styleRettoModal.imgWrap} diamond`}>
                 <span className={`${styleRettoModal.jewelImg} jewelImg`}></span>
@@ -120,7 +121,7 @@ const BottomSheetSaveingList = ({ isHundredOpen, closeHundredPopup }) => {
             {/* <h2>적립에 성공했네요</h2> */}
             <p>1주일 다 채우면 다이아 리또 1개!</p>
             {/* <p>다이아 리또 1개가 쌓였어요.!</p> */}
-            <div>
+            <div className={styleRettoModal.botContWrap}>
               {/* <p className={styleRettoModal.boxText}>한 걸음씩~</p> */}
               {/* <p className={styleRettoModal.boxText}>반짝반짝★</p> */}
               <p className={`${styleRettoModal.boxText} ${styleRettoModal.red}`}><b>195,212원</b> 더 채워져야 해요</p>

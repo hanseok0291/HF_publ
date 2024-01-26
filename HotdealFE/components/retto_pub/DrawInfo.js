@@ -3,6 +3,7 @@ import BottomSheetTurnChoice from './common/modal/BottomSheetTurnChoice';
 
 // style
 import styleRettoList from "../../styles/retto_pub/RettoList.module.css";
+import FadeIn from 'react-fade-in/lib/FadeIn';
 
 const rettoNumber = [1, 6, 25, 29, 40, 43, 44];
 
@@ -174,6 +175,7 @@ const DrawInfo = ({case1, case2, case3, case4, case5, case6, case7}) => {
           </div>
         </div>
         <div className={styleRettoList.listWinWrap}>
+          <FadeIn>
           <div className={styleRettoList.drawResultWrap}>
             <ul className={`${styleRettoList.ballWrap}`}> 
             {/* <ul className={`${styleRettoList.ballWrap} ${styleRettoList.off}`}>  */}
@@ -270,6 +272,7 @@ const DrawInfo = ({case1, case2, case3, case4, case5, case6, case7}) => {
           {case4 &&
             <ResultList data={results.standby} />
           }
+          </FadeIn>
         </div>
       </div>
       
@@ -282,7 +285,7 @@ const ResultList = ({data: {winState, size, list}}) => {
   const [openList, setOpenList] = useState(true);
 
   const toggleList = () => {
-    setOpenList(!openList)
+    setOpenList(!openList);
   }
 
   return (

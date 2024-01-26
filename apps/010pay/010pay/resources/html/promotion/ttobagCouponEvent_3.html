@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<title>또박케어 할인쿠폰 발급 프로모션</title>
+<title>또박케어 할인쿠폰 발급</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
 <meta name="format-detection" content="telephone=no, address=no, email=no">
@@ -49,11 +49,14 @@
             <div class="bg-03"></div>
             <div class="textbox-01">선착순 지급</div>
             <div class="btn-wrap">
-              <!-- <button type="button">쿠폰 받기</button> -->
+              <!-- 기본 -->
+              <!-- <button type="button" id="couponGet">쿠폰 받기</button> -->
+              <!-- 쿠폰 발급 -->
               <!-- <div class="copy-wrap">
                 <span id="couponText">1234ABCD5678EFGH</span>
                 <button type="button" class="btn-copy">복사</button>
               </div> -->
+              <!-- 쿠폰 소진 -->
               <button type="button" class="disabled">쿠폰이 모두 소진되었어요.</button>
             </div>
           </div>
@@ -77,13 +80,19 @@
         </div>
       </div>
 
+      <div class="section section-dmp">
+        <img src="../../images/promotion/ttobagCouponEvent/dmp-img-01.jpg" alt="식전또박템 맞춤 설계 MIX">
+        <img src="../../images/promotion/ttobagCouponEvent/dmp-img-02.jpg" alt="이런 분에게 추천합니다">
+      </div>
+
       <div class="section section3">
         <div class="contentWrap">
           <div class="img-01 ani-slide-1">
             또박케어 쿠폰 이렇게 사용하세요!
           </div>
           <div class="img-02 ani-slide-2">
-            또박케어 APP 하단의 스토어에 접속해 주세요.
+            또박케어 APP 하단의 스토어 또는 홈페이지에 접속해 주세요. <br>
+            * 모바일과 PC에서 모두 사용 가능합니다.
           </div>
         </div>
       </div>
@@ -121,19 +130,19 @@
 							<li>
 								99% 할인은 상품(정상가 99,000원)에 적용되며, 배송비는 할인 적용되지 않습니다.
 							</li>
-							<li>또박케어 앱에 등록된 쿠폰은 30일간 사용 가능합니다.</li>
+							<li>등록된 쿠폰은 30일간 사용 가능합니다.</li>
 							<li>다른 상품과 함께 장바구니 구매는 불가능하며, 단독 사용 및 구매 가능합니다.</li>
               <li>최종 결제 페이지에서 쿠폰을 적용하고 할인된 최종 금액을 꼭 확인해 주세요.</li>
             </ul>
             <h4>이벤트 유의사항</h4>
             <ul>
 							<li>
-								본 이벤트로 발행된 쿠폰은 또박케어 앱 전용 쿠폰으로, 일반 웹 환경에서는 사용이 불가합니다.
+								본 이벤트로 발행된 쿠폰은 또박케어 앱 또는 웹에서 사용이 가능합니다.
 							</li>
 							<li>
-								발급 받은 99% 할인 쿠폰은 반드시 또박케어 앱 하단 메뉴의 스토어 접속 후 스토어 마이페이지에서 등록 후 사용해 주세요.
+								쿠폰을 사용하기 위해 또박케어 회원가입 및 로그인이 필요합니다.
 							</li>
-							<li>또박케어 앱 설치 후 회원가입과 로그인, 본인인증이 완료된 회원에 한 해 사용 가능합니다.</li>
+							<li>또박케어 접속 후, 마이페이지에서 쿠폰을 등록할 수 있습니다.</li>
 							<li>쿠폰 적용이 가능한 상품은 한정 수량으로 조기 품절될 수 있습니다.</li>
               <li>본 이벤트는 사전 공지 없이 변경 또는 조기 종료될 수 있습니다.</li>
               <li>본 이벤트는 (주)헥토파이낸셜이 주관하며 애플과는 무관합니다.</li>
@@ -151,7 +160,7 @@
     </div>
     <!-- footer button area -->
     <div class="fixed-btn hide">
-      <!-- <button type="button" class="btn">쿠폰 사용하러 가기</button> -->
+      <!-- <button type="button" class="btn">상품 구매 바로가기</button> -->
       <button type="button" class="btn">제품 구매하기</button>
       <!-- <button type="button" class="btn disabled">이벤트가 종료되었습니다.</button> -->
     </div>
@@ -243,6 +252,11 @@ $(document).ready(function(){
 	$(".btn-copy").on("click", function(){
     copyTextToClipboard(textToCopy);
 	});
+
+  $("#couponGet").on("click", function(){
+    $(this).hide();
+    $(".copy-wrap").addClass("show");
+  });
 });
 </script>
 </body>

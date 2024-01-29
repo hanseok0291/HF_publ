@@ -24,7 +24,7 @@ const Home = () => {
     {
       indexText: '세 번째',
       titleText: ['친구에게 리또 선물하기', '친구가 내 선물코드 입력하면', '친구와 나, 모두 리또 받기'],
-      imgClass: ['letter', 'code', 'present']
+      imgClass: ['letter', 'code', 'present2']
     }
   ]
   const duration = 300;

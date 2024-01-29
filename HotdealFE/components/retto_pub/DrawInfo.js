@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import BottomSheetTurnChoice from './common/modal/BottomSheetTurnChoice';
+import SlotCounter from 'react-slot-counter';
 
 // style
 import styleRettoList from "../../styles/retto_pub/RettoList.module.css";
@@ -7,7 +8,7 @@ import FadeIn from 'react-fade-in/lib/FadeIn';
 
 const rettoNumber = [1, 6, 25, 29, 40, 43, 44];
 
-const DrawInfo = ({case1, case2, case3, case4, case5, case6, case7}) => {
+const DrawInfo = ({case1, case2, case3, case4, case5, case6, case7, case8 = false}) => {
   const results = {
     win : {
       winState: true,
@@ -123,9 +124,21 @@ const DrawInfo = ({case1, case2, case3, case4, case5, case6, case7}) => {
 
   const [isFirstFixed, setIsFirstFixed] = useState(false);
   const [isSecondFixed, setIsSecondFixed] = useState(false);
+  const [numbers, setNumbers] = useState([]);
 
   const firstObserveRef = useRef(null);
   const secondObserveRef = useRef(null);
+
+  // 랜덤한 숫자 배열 만들기 함수
+  function generateRandomNumbers() {
+    let nums = new Set();
+    let numsArray;
+    while (nums.size < 8) {
+        nums.add(Math.floor(Math.random() * 45) + 1);
+    }
+    numsArray = Array.from(nums).sort((a,b) => a - b);
+    return numsArray;
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -142,8 +155,14 @@ const DrawInfo = ({case1, case2, case3, case4, case5, case6, case7}) => {
 
     window.addEventListener('scroll', handleScroll);
 
+    setNumbers(generateRandomNumbers());
+    const intervalId = setInterval(() => {
+        setNumbers(generateRandomNumbers());
+    }, 2000);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      clearInterval(intervalId);
     };
   }, []);
 
@@ -177,36 +196,49 @@ const DrawInfo = ({case1, case2, case3, case4, case5, case6, case7}) => {
         <div className={styleRettoList.listWinWrap}>
           <FadeIn>
           <div className={styleRettoList.drawResultWrap}>
-            <ul className={`${styleRettoList.ballWrap}`}> 
-            {/* <ul className={`${styleRettoList.ballWrap} ${styleRettoList.off}`}>  */}
-              {rettoNumber.map((item, index) => {
-                let styleBall;
-                if( 0 < item && item < 11){
-                  styleBall = "type1";
-                } else if( 10 < item && item < 21 ) {
-                  styleBall = "type2";
-                } else if( 20 < item && item < 31 ) {
-                  styleBall = "type3";
-                } else if( 30 < item && item < 41 ) {
-                  styleBall = "type4";
-                } else {
-                  styleBall = "type5";
-                }
+            {case8 ? (
+              <ul className={`${styleRettoList.ballWrap}`}> 
+                {rettoNumber.map((item, index) => {
+                  let styleBall;
+                  if( 0 < item && item < 11){
+                    styleBall = "type1";
+                  } else if( 10 < item && item < 21 ) {
+                    styleBall = "type2";
+                  } else if( 20 < item && item < 31 ) {
+                    styleBall = "type3";
+                  } else if( 30 < item && item < 41 ) {
+                    styleBall = "type4";
+                  } else {
+                    styleBall = "type5";
+                  }
 
-                if(index === 6 ) {
-                  return (
-                    <>
-                      <li key={index} className={`${styleRettoList.plus}`}><span></span></li>
-                      <li key={index + 1} className={`${styleRettoList.ball} ${styleBall}`}><span>{item}</span></li>
-                    </>
-                  )
-                } else {
-                  return (
-                    <li key={index} className={`${styleRettoList.ball} ${styleBall}`}><span>{item}</span></li>
-                  )
-                }
-              })}
-            </ul>
+                  if(index === 6 ) {
+                    return (
+                      <>
+                        <li key={index} className={`${styleRettoList.plus}`}><span></span></li>
+                        <li key={index + 1} className={`${styleRettoList.ball} ${styleBall}`}><span>{item}</span></li>
+                      </>
+                    )
+                  } else {
+                    return (
+                      <li key={index} className={`${styleRettoList.ball} ${styleBall}`}><span>{item}</span></li>
+                    )
+                  }
+                })}
+              </ul>
+            ) : (
+              <div className={styleRettoList.slotCounterWrap}>
+                <SlotCounter
+                  startValue={rettoNumber}
+                  startValueOnce
+                  value={numbers}
+                  animateUnchanged
+                  direction="bottom-up"
+                  autoAnimationStart={true}
+                  charClassName="char"
+                />
+              </div>
+            )}
             <div className={styleRettoList.drawResultText}>
               <p>추첨일 2023.12.02 <span className={styleRettoList.dDay}>D-2</span></p>
               {/* 당첨 있을때 */}

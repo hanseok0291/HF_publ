@@ -18,6 +18,7 @@ const index = () => {
       {/* 리또 선물 코드 입력하기 Error */}
       {/* <ModalAlert cancle={false} message="일치하는 선물 코드를 찾지 못했어요." /> */}
       {/* <ModalAlert message={`추천 코드는 카드 배송 전까지\n010PAY 앱에서 입력 가능해요.`} /> */}
+      <ModalAlert cancle={false} subTitle={"이미 선물 받아 이번 리또는 못받아요."} message="친구에게 리또 선물하고 리또 더 받아요." />
     </>
   );
 };

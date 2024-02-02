@@ -3,20 +3,23 @@
 @media screen and (min-width: 720px){
  .container .visualSection { max-height: 620px; } 
  }
-.container .visualSection .prizeWrap { display: inline-block; margin-bottom: 24px; padding: 6px 24px; border-radius: 20px; color: #fff; font-size: 13px; line-height: 18px; background: #00000033; } 
+.container .visualSection .prizeWrap { display: inline-block; margin-bottom: 15px; padding: 6px 24px; border-radius: 20px; color: #fff; font-size: 13px; line-height: 18px; background: #00000033; } 
 .container .visualSection .prizeWrap span { color: #E6FF00; } 
 .container .visualSection .titleWrap h2 { color: #fff; font-size: 32px; letter-spacing: -0.025em; line-height: 38.4px; } 
 .container .visualSection .titleWrap h2 span { display: block; margin-bottom: 4px; color: #E6FF00; font-size: 20px; line-height: 27px; } 
 .container .visualSection .titleWrap p { margin-top: 8px; color: #fff; font-size: 16px; line-height: 21.6px; } 
+.container .visualSection .checkBtnWrap { position: absolute; position: absolute; left: 50%; bottom: -60px; transform: translateX(-50%); animation: btnUp 0.3s 0.8s forwards; } 
+.container .visualSection .checkBtnWrap .checkBtn { display: flex; justify-content: center; align-items: center; width: 124px; height: 42px; border-radius: 30px; border: 1px solid var(--gray-100, #F9F9F9); box-shadow: 0px 4px 4px 0px rgba(21, 21, 21, 0.1); font-size: 12px; line-height: 18px; letter-spacing: -0.048em; color: #fff; transition: 1s; transition-delay: 2s; } 
+.container .visualSection .checkBtnWrap.bounce .checkBtn { animation: bounce 0.4s infinite; } 
+.container .visualSection .checkBtnWrap .checkBtn::after { display: block; content: ""; width: 16px; height: 16px; margin-left: 5px; background: url(../../public/images/retto/icon-arrow-down2.svg) 0 0 / cover no-repeat; } 
 .container .visualSection .character { position: relative; width: 260px; height: 260px; margin: 25px auto 0; border-radius: 50%; background-color: #FF994A; } 
 .container .visualSection .characterBox { position: relative; overflow: hidden; width: 260px; height: 260px; border-radius: 50%; } 
 .container .visualSection .itemBox { position: absolute; left: 50%; transform: translateX(-50%); top: 30px; width: 336px; height: 260px; } 
 .container .visualSection .character .img1,
-.container .visualSection .character .itemBox { animation: characterUp 1s forwards cubic-bezier(0.47, -0.02, 0.73, -0.08); } 
+.container .visualSection .character .itemBox { animation: characterUp 0.5s 0.3s forwards cubic-bezier(0.47, -0.02, 0.73, -0.08); } 
 .container .visualSection .character .img1 { position: absolute; left: 50%; top: 30px; transform: translateX(-50%); width: 336px; height: 260px; background: url(../../public/images/retto/home-main-01.png) 0 0 / cover no-repeat; } 
 .container .visualSection .character .img2 { position: absolute; left: 0; top: 0; width: 336px; height: 260px; background: url(../../public/images/retto/home-main-03.png) 0 0 / cover no-repeat; } 
 .container .visualSection .character .img3 { position: absolute; left: 0; top: 0; width: 336px; height: 260px; background: url(../../public/images/retto/home-main-02.png) 0 0 / cover no-repeat; transform-origin: 34% 80%; animation: leafWave 1s 1s infinite alternate ease-in-out; } 
-.container .visualSection .character::after { position: absolute; left: 50%; bottom: -36px; transform: translateX(-50%); display: block; content: ""; width: 16px; height: 16px; background: url(../../public/images/retto/icon-arrow-down.svg) 0 0 / cover no-repeat; animation-iteration-count: infinite; animation: bounce 2s ease infinite; transform-origin: 50% 50%; } 
 .container .mainSection { padding: 80px 0 0; text-align: left; } 
 .container .mainSection .topBox { display: inline-block; margin-left: 20px; padding: 8px 16px; border-radius: 20px; color: #fff; font-size: 14px; line-height: 19.6px; background-color: #222222; } 
 .container .mainSection h4 { margin: 16px 0 14px; padding: 0 20px; font-size: 26px; line-height: 35.1px; text-align: left; } 
@@ -45,7 +48,9 @@
 .container .mainSection .secondContent li strong { display: block; font-size: 16px; line-height: 21.6px; } 
 .container .mainSection .secondContent li p { margin-top: 4px; color: #393939; font-size: 15px; line-height: 21px; } 
 .container .mainSection button { display: block; width: calc(100% - 40px); margin: auto; } 
-.container .buttonWrap { position: fixed; left: 0; bottom: 0; width: 100%; padding: 0 20px 20px; z-index: 1; } 
+.container .buttonWrap { position: fixed; left: 0; bottom: 0; width: 100%; padding: 0 20px 20px; z-index: 1; transition: 0.3s; } 
+.container .buttonWrap:global.in { opacity: 1; } 
+.container .buttonWrap:global.out { opacity: 0; pointer-events: none; } 
 
 @keyframes characterUp { 
  0% { top: 30px; } 
@@ -57,14 +62,15 @@
  100% { transform: rotate(-15deg); } 
  }
 
+ @keyframes btnUp { 
+ 0% { bottom: -60px; } 
+ 100% { bottom: 50px; } 
+ }
+
 @keyframes bounce { 
  0% { margin-bottom: 0; } 
- 20% { margin-bottom: 0; } 
- 40% { margin-bottom: -8px; } 
- 50% { margin-bottom: 0; } 
- 60% { margin-bottom: -8px; } 
- 80% { margin-bottom: 0; } 
- 100% { margin-bottom: 0; } 
+ 50% { margin-bottom: -8px; } 
+ 100% { margin-bottom: 0px; } 
  }
 
  @media screen and (max-width: 320px){

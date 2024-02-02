@@ -27,7 +27,40 @@ const Home = () => {
       imgClass: ['letter', 'code', 'present2']
     }
   ]
-  const duration = 300;
+  const checkBtnRef = useRef(null);
+  const bottomBtnRef = useRef(null);
+  const mainSectionRef = useRef(null);
+
+  const [isBounce, setIsBounce] = useState(true);
+  const [isBottomBtn, setIsBottomBtn] = useState(false);
+
+  const handleScroll = () => {
+    // 스크롤 위치가 0보다 크면 로직 실행
+    if (window.scrollY > 0) {
+      setIsBounce(false);
+    } else {
+      setIsBounce(true);
+    }
+
+    if (window.scrollY > innerHeight / 2) {
+      setIsBottomBtn(true);
+    } else {
+      setIsBottomBtn(false);
+    }
+  };
+  
+  const scrollToTarget = () => {
+    if (mainSectionRef.current) {
+      const mainSectionPos = mainSectionRef.current.getBoundingClientRect().top + window.scrollY - 97
+      window.scrollTo({
+        top: mainSectionPos,
+        behavior: 'smooth',
+      });
+    }
+  }
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className={styleHome.container}>
@@ -56,8 +89,11 @@ const Home = () => {
             <span className={styleHome.img2}></span>
           </div>
         </div>
+        <div className={`${styleHome.checkBtnWrap} ${isBounce ? styleHome.bounce : ''}`}>
+          <button type="button" className={`${styleHome.checkBtn}`} ref={checkBtnRef} onClick={scrollToTarget}>혜택 확인하기</button>
+        </div>
       </div>
-      <div className={styleHome.mainSection}>
+      <div className={styleHome.mainSection} ref={mainSectionRef}>
         <HomeSwiper content={contents[0]}/>
         <div className={styleHome.firstContent}>
           <span className={styleHome.tip}>TIP</span>
@@ -91,7 +127,7 @@ const Home = () => {
         <HomeSwiper content={contents[2]}/>
         <Button white large>리또 선물하고 리또 받기</Button>
       </div>
-      <div className={styleHome.buttonWrap}>
+      <div className={`${styleHome.buttonWrap} ${isBottomBtn ? 'in' : 'out'}`} ref={bottomBtnRef}>
         <Button large>리또 받기</Button>
       </div>
     </div>

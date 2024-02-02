@@ -337,8 +337,6 @@ const ResultList = ({data: {winState, size, list}}) => {
             </dl>
           )
         }
-        
-        
       </div>
       {
         openList &&

@@ -12,7 +12,7 @@ var positionCtl = {
   //애니메이션
   aniActive: function (obj) {
     var windowH = $(window).height(), //화면 세로 사이즈
-      delayPosition = windowH / 4; // 다음 섹션이 브라우저 하단으로부터 1/4 만큼 보여질때
+      delayPosition = windowH / 10; // 다음 섹션이 브라우저 하단으로부터 1/10 만큼 보여질때
 
     var position = $(window).scrollTop() + windowH - delayPosition;
     var position_top = $(window).scrollTop();

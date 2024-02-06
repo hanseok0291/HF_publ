@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper';
 import FadeIn from 'react-fade-in';
+import NewsTicker from 'react-advanced-news-ticker'
 
 // style
 import "swiper/css/pagination";
@@ -68,7 +69,12 @@ const Home = () => {
         <div className={styleHome.titleWrap}>
           <FadeIn delay={150}>
             <div className={styleHome.prizeWrap}>
-              1099회 <span>4,567명 1등 당첨!</span>
+              <NewsTicker maxRows={1} rowHeight={18}>
+                <div>1099회 <span>4,567명 1등 당첨!</span></div>
+                <div>1099회 <span>4,567명 1등 당첨!</span></div>
+                <div>1099회 <span>4,567명 1등 당첨!</span></div>
+                <div>1099회 <span>4,567명 1등 당첨!</span></div>
+              </NewsTicker>
             </div>
             <h2>
               <span>자동으로 응모되는 리워드 로또</span>

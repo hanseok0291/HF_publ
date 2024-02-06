@@ -1,5 +1,5 @@
 import Head from "next/head";
-
+import 'regenerator-runtime';
 
 import "../styles/globals.css";
 import "../styles/animation.css";

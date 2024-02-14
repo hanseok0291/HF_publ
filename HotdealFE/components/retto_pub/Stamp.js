@@ -9,9 +9,15 @@ import styleCommon from "../../styles/retto_pub/Common.module.css";
 import styleRettoList from "../../styles/retto_pub/RettoList.module.css";
 import styleMyretto from "../../styles/retto_pub/Myretto.module.css";
 
+//나의 리또 case1 미신청자 case2 스탬프 10주까지만
 const Stamp = ({case1, case2}) => {
   const [scrollState, setScrollState] = useState("top");
+  const [isInfo, setIsInfo] = useState(false);
   const stampContainerRef = useRef();
+
+  const infoBtnhandleClick = () => (
+      setIsInfo(!isInfo)
+  );
 
   const stampContainerhandleScroll = () => {
     const scrollTop = stampContainerRef.current.scrollTop;
@@ -74,7 +80,7 @@ const Stamp = ({case1, case2}) => {
         <FadeIn delay={300}>
           <div className={`${styleMyretto.stampBorderBox}`}>
             {
-              case1 &&(
+              case1 && (
                 <div className={styleMyretto.noApply}>
                   <div className={`${styleCommon.titleWrap} ${styleMyretto.titleWrap}`}>
                     <h2 className={styleMyretto.stampTitle}>도전~연속 리또 받기<i>!</i></h2>
@@ -302,11 +308,15 @@ const Stamp = ({case1, case2}) => {
             
             {!case1 && 
               <div className={styleMyretto.botCon}>
-                <a href="#" className={styleMyretto.button}>
+                {/* <a href="#" className={styleMyretto.button}>
                   리또 레벨 변경
-                </a>
-                {/* <a href="#" className={styleMyretto.button}>혜택 알림 켜기</a> */}
-                {/* 혜택 알림 미동의 */}
+                </a> */}
+                <p className={styleMyretto.button}>
+                  <b>2.11(수)</b>부터 레벨 변경 가능
+                  <button type="button" className={styleMyretto.infoBtn} onClick={infoBtnhandleClick}>
+                    {isInfo && <span>레벨 변경 후 <b>10일동안</b> 다른 레벨로 <br /> 변경할 수 없어요.</span>}
+                  </button>
+                </p>
               </div>
             }
           </div>

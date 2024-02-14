@@ -7,18 +7,17 @@ import styleModal from "../../../../styles/coupon_pub/Modal.module.css";
 import styleRettoModal from "../../../../styles/retto_pub/Modal.module.css";
 import Button from "../Button";
 
-const ModalApplyReady = () => {
+const ModalLevelChangeBan = () => {
   return (
     <div
       className={`${styleModal.modal} ${styleModal.modalCommon} ${styleModal.open} ${styleRettoModal.retto} ${styleRettoModal.applyReady}`}
     >
       <div className={styleModal.modalDialog}>
-        {/* <button type="button" className={styleRettoModal.modalClose}>닫기</button> */}
-        <div className={`${styleModal.modalContent} ${styleRettoModal.modalContent}`}>{/* ruby emerald diamond className 추가 시 스타일 변경*/}
+        <div className={`${styleModal.modalContent} ${styleRettoModal.modalContent}`}>
           <p className={styleRettoModal.mainText}>
-            <b>잠시 후 오전 00시 30분부터</b><br />리또 신청을 도와드릴게요!
+            <b>오전 01시 부터<br />레벨 변경을 도와드릴게요!</b>
           </p>
-          <p className={styleRettoModal.subText}>지금은 다음주 진행을 준비하고 있어요.</p>
+          <p className={styleRettoModal.subText}>나중에 다시 시도해 주세요!</p>
           <Button>다시 올게요</Button>
         </div>
       </div>
@@ -26,4 +25,4 @@ const ModalApplyReady = () => {
   )
 }
 
-export default ModalApplyReady;
+export default ModalLevelChangeBan;

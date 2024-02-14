@@ -9,7 +9,7 @@ import Button from "../Button";
 import Toast from "../Toast";
 
 // 레벨 변경 확인 모달
-const ModalLevelChange = () => {
+const ModalLevelChange = ({case1, case2}) => {
   return (
     <div
       className={`${styleModal.modal} ${styleModal.modalCommon} ${styleModal.open} ${styleRettoModal.retto} ${styleRettoModal.levelChange}`}
@@ -17,38 +17,40 @@ const ModalLevelChange = () => {
       <div className={styleModal.modalDialog}>
         <div className={`${styleModal.modalContent} ${styleRettoModal.modalContent}`}>
           {/* 레벨 하향 시 styleRettoModal.leveldrop className 추가 */}
-          {/* <div className={`${styleRettoModal.jewelWrap} ${styleRettoModal.leveldrop}`}> */}
-          {/* 원복 시 styleRettoModal.noChange className 추가 */}
-          <div className={`${styleRettoModal.jewelWrap} ${styleRettoModal.noChange}`}>
+          <div className={`${styleRettoModal.jewelWrap} ${case1 ? styleRettoModal.leveldrop : styleRettoModal.noChange}`}>
+          {/* 레벨 상향 시 styleRettoModal.noChange className 추가 */}
+          {/* <div className={`${styleRettoModal.jewelWrap} ${styleRettoModal.noChange}`}> */}
             <span className="jewelImg diamond">{/* ruby emerald diamond className 추가 시 스타일 변경*/}
               {/* 레벨 하향시 나타나는 문구 */}
-              <span className={styleRettoModal.dropText}>최대 <b>1천만원</b></span>  
+              {case1 && <span className={styleRettoModal.dropText}>최대 <b>1천만원</b></span>}
             </span>
             <span className={styleRettoModal.arrow}></span>
             <span className="jewelImg emerald">{/* ruby emerald diamond className 추가 시 스타일 변경*/}
               {/* 레벨 하향시 나타나는 문구 */}
-              <span className={styleRettoModal.dropText}>최대 <b>1백만원</b></span>
+              {case1 && <span className={styleRettoModal.dropText}>최대 <b>1백만원</b></span>}
             </span>
           </div>
           <div className={styleRettoModal.textWrap}>
-            {/* <p className={styleRettoModal.mainText}>
-              <b>다음주 월요일부터</b> <br />
-              변경된 레벨의 첫 스탬프가 찍혀요!
-            </p> */}
             {/* 하향시 문구 */}
-            <p className={styleRettoModal.mainText}>
-              루비 리또로 변경하면 <br /> 받을 수 있는 <b>당첨금이 줄어요</b>
-            </p>
-            {/* 월요일 이전 원복 시 문구 */}
-            <p className={styleRettoModal.mainText}>
-              레벨 변경을 취소하고<br />
-              {/* ruby emerald diamond className 추가 시 스타일 변경*/}
-              <b><span className="diamond">다이아 리또</span></b>를 유지할까요?
-            </p>
-            <p className={styleRettoModal.subText}>그래도 <span>에메랄드 리또로 변경</span>할까요?</p>
+            {case1 && 
+              <>
+                <p className={styleRettoModal.mainText}>
+                  루비 리또로 변경하면 <br /> 받을 수 있는 <b>당첨금이 줄어요</b>
+                </p>
+                <p className={styleRettoModal.subText}>그래도 <span>에메랄드 리또로 변경</span>할까요?</p>
+              </>
+            }
+            {/* 상향시 문구 */}
+            {case2 && 
+              <>
+                <p className={styleRettoModal.mainText}>
+                  지금까지 진행한 레벨이 초기화되고 <br /> <b>다이아로 첫 스탬프가 </b> 찍혀요. 
+                </p>
+                <p className={styleRettoModal.subText}><span>10일 동안</span> 다른 레벨로 변경할 수 없어요.</p>
+              </>
+            }
           </div>
-          {/* <Button>변경하기</Button> */}
-          <Button>네, 좋아요</Button>{/* 월요일 이전 원복 시 문구 */}
+          <Button>변경하기</Button>
           <button type="button" className={styleRettoModal.bottomBtn}>닫기</button>
         </div>
       </div>

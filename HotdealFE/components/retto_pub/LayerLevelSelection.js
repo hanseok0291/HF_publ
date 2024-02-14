@@ -4,12 +4,20 @@ import { useState } from 'react';
 //style
 import styleCommon from '../../styles/retto_pub/Common.module.css';
 import LevelSelection from './LevelSelection';
-import styleFillBox from "../../styles/retto_pub/FillBox.module.css";
 
 // 레벨 변경 레이어 팝업
 // change true일 경우 선택하기 단계로 안감
-const LayerLevelSelection = ({defalutValue}) => {
-  const [jewel, setJewel] = useState(); // 보석 상태
+// full true 시 채우기 금액 충족
+// case1 레벨 동일 시
+const LayerLevelSelection = ({full,rettoLevel=26, initial, case1, case2, case3, case4, case5}) => {
+  const initialJewel = {
+    eng: 'emerald',
+    kor: '에메랄드',
+    cash: '50',
+    prize: '1천만원',
+    level: "Lv. 2"
+  }
+  const [jewel, setJewel] = useState(initialJewel); // 보석 상태
   const [isModal, setIsModal] = useState(false);
 
   const handleModalToggle = () => {
@@ -31,15 +39,22 @@ const LayerLevelSelection = ({defalutValue}) => {
           jewel={jewel}
           setJewel={setJewel}
           handleModalToggle={handleModalToggle}
-          full={true} 
+          rettoLevel={rettoLevel}
+          full={full} 
+          initial={initialJewel}
+          case1={case1}
+          case2={case2}
+          case3={case3}
+          case4={case4}
+          case5={case5}
         />
       </div>
 
     <div className={styleCommon.noteWrap}>
         <ul>
-          <li>- <b>다음주 월요일</b>부터 변경된 레벨의 첫 스탬프가 찍혀요!</li>
+          <li>- <b>진행 중인 레벨이 초기화</b>되고 변경된 레벨로 새로 시작해요.</li>
           <li>
-            - 머니함 속 금액을 옮길 수 없으면 변경이 취소돼요.
+            - 레벨 변경 후 <b>10일 동안</b> 다른 레벨로 변경할 수 없어요. 
           </li>
         </ul>
       </div>

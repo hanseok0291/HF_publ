@@ -29,7 +29,6 @@ import MyPageNotJoin from "../../components/retto_pub/MyPageNotJoin";
 import Home from "../../components/retto_pub/Home";
 import DrawInfo from "../../components/retto_pub/DrawInfo";
 import ModalLevelChangeBan from "../../components/retto_pub/common/modal/ModalLevelChangeBan";
-import ModalApplyReady from "../../components/retto_pub/common/modal/ModalApplyReady";
 
 const index = () => {
   return (
@@ -46,12 +45,10 @@ const index = () => {
         {/* 추첨 정보 case1 리또 없음 case2 당첨 case3 미당첨 case4 추첨예정 case5 이번,다음 회차 case6 미신청자 case7 당첨금 배너 */}
         {/* <DrawInfo case1 /> */}
         {/* 나의 리또 case1 미신청자 case2 스탬프 10주까지만 */}
-        <Stamp />
+        {/* <Stamp /> */}
       </Container>
       {/* 리또 신청 */}
-      {/* <Apply /> */}
-      {/* 신청 불가 */}
-      {/* <ModalApplyReady /> */}
+      <Apply />
       {/* 당첨 */}
       {/* <BottomSheetPrize /> */}
       {/* 미참여자 */}
@@ -59,7 +56,7 @@ const index = () => {
       {/* 기기알림 */}
       {/* <BottomSheetAlarm /> */}
       {/* 레벨 변경 */}
-      {/* <LayerLevelSelection full rettoLevel={70} case5 case6 /> */}
+      <LayerLevelSelection full rettoLevel={70} case2 />
       {/* 레벨 변경 확인 */}
       {/* <ModalLevelChange /> */}
       {/* 레벨 변경 불가 */}

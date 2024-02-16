@@ -112,9 +112,9 @@ $(function(){
 var scrollHeight = 0;
 function scrollOff(){
 	scrollHeight = $(document).scrollTop();
-	$("body").addClass("modal-open");
-	$("#wrap").css("position", "fixed");
-	$("#wrap").css("top", - scrollHeight);
+	// $("body").addClass("modal-open");
+	// $("#wrap").css("position", "fixed");
+	// $("#wrap").css("top", - scrollHeight);
 }
 function scrollOn(){
 	$("body").removeClass("modal-open");
@@ -239,7 +239,7 @@ function modalOpenSlide(obj) {
 }
 
 // 농어촌공사 약관페이지 일때만 실행
-modalOpenSlide('modalSlideType1');
+// modalOpenSlide('modalSlideType1');
 
 	// 푸터 고정 토글
 	function fixedFooter(){

@@ -55,11 +55,8 @@ const ModalLevelChange = ({case1, case2}) => {
         </div>
       </div>
       <Toast>
-        리또 레벨 변경을 신청했어요!
+        리또 레벨 변경을 완료했어요!
       </Toast>
-      {/* <Toast>
-        리또 레벨 변경이 취소됐어요!
-      </Toast> */}
     </div>
   )
 }

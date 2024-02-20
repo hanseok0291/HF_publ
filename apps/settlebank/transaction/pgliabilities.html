@@ -44,7 +44,24 @@
 					</div>
 					<h5 class="mt40 mb10">개인정보의 수집 및 이용안내</h5>
 					<div class="privacy_agree mb10">
-						<iframe src="privacy_agree_i.html" height="143px" width="100%" frameborder="0"></iframe>
+						<div class="privacy_agree_i liabilities_agree"> 헥토파이낸셜 주식회사(이하 “헥토파이낸셜”)는 고객(이하 “고객”)의 개인정보를 중요시하며 개인정보 보호법, 정보통신망 이용촉진 및 정보보호 등에 관한 법률 등 관계법령을 준수하고 있습니다. “헥토파이낸셜”은 개인정보처리방침을 통하여 “고객”의 개인정보가 어떠한 용도와 방식으로 이용되고 있으며 개인정보 보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다.<br />
+							<br />
+							<strong>1. 개인정보의 수집∙이용목적</strong><br />
+							“헥토파이낸셜”은 다음과 같은 목적으로 “고객”의 개인정보 항목을 수집 및 이용하고 있습니다.<br />
+							- 부채증명서 발급/조회 신청자의 본인확인<br />
+							- 휴대폰결제 미납내역에 대한 조회 및 미납금액 조회 <br />
+							- 부채증명서 발급 내역에 대한 조회 및 증명서 진위여부 확인 <br />
+							<br />
+							<strong>2. 수집하는 개인정보의 항목</strong><br />
+							“헥토파이낸셜”은 개인정보의 수집 및 이용목적을 달성하기 위하여 아래와 같은 개인정보를 수집합니다.<br />
+							- 휴대폰번호, 주문자명(명의자 이름), 성별, 생년월일(+내/외국인), CI, DI <br />
+							<br />
+							<strong>3. 개인정보의 보유 및 이용기간</strong><br />
+							개인정보는 개인정보의 수집∙이용목적이 달성되면 지체 없이 파기 합니다. 단, 관계법령에서 보존의무를 부과하고 있는 경우는 예외로 합니다.<br />
+							<br />
+							<strong>4. 이용자의 개인정보의 수집 및 이용 거부</strong><br />
+							“고객”은 ”헥토파이낸셜”의 개인정보 수집∙이용 동의를 거부할 수 있습니다. 단, 동의를 거부하는 경우 부채증명서 발급∙조회가 정상적으로 완료되지 않을 수 있음을 알려드립니다.
+						</div>
 					</div>
 					<div class="check_group mb20">
 						<label>
@@ -52,7 +69,7 @@
 							개인정보 수집 및 이용 내용에 동의합니다.</label>
 					</div>
 					<!-- //개인정보 동의 --> 
-					<div class="tc"><a href="#" class="btn_txt main st01">조회</a></div>
+					<div class="tc"><button type="button" class="btn_txt main st01" onclick="openPopup1()">조회</button></div>
 					<!-- //조회 --> 
 					<!-- 휴대폰결제 조회결과 -->
 					<h5 class=" mt50 mb20">발급내역</h5>
@@ -77,7 +94,19 @@
 									<th>발급일자</th>
 									<th>결제상태</th>
 									<th>발급유효기간</th>
-									<th class="nrl">발급</th>
+									<th class="nrl">
+										발급 
+										<button id="info_btn" type="button" class="info_btn">
+											<div id="infobox_wrap" class="infobox_wrap">
+												<p>부채증명서 발급 참고사항</p>
+												<ul>
+													<li>ㆍ 발급 용도, 제출처 변경이 필요한 경우 신규 발급이 필요합니다.</li>
+													<li>ㆍ 발급 내역을 클릭하시면 상세보기 및 신규 발급이 가능합니다.</li>
+													<li>ㆍ 발급 후 24시간 : 무료 / 24시간 이후 ~ 만료 : 3000원</li>
+												</ul>
+											</div>
+										</button>
+									</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -91,7 +120,7 @@
 									<td></td>
 									<td class="nrl">발급 대기중</td>
 								</tr>
-								<!-- <tr>
+								<tr>
 									<td>2</td>
 									<td>2022-11-20</td>
 									<td>개인 회생 신청</td>
@@ -140,17 +169,9 @@
 									<td>결제 완료</td>
 									<td>기간 만료</td>
 									<td class="nrl">기간 만료</td>
-								</tr> -->
+								</tr>
 							</tbody>
 						</table>
-						<div class="infobox_wrap">
-							<p>부채증명서 발급 참고사항</p>
-							<ul>
-								<li>ㆍ 발급 용도, 제출처 변경이 필요한 경우 신규 발급이 필요합니다.</li>
-								<li>ㆍ 발급 내역을 클릭하시면 상세보기 및 신규 발급이 가능합니다.</li>
-								<li>ㆍ 발급 후 24시간 : 무료 / 24시간 이후 ~ 만료 : 3000원</li>
-							</ul>
-						</div>
 					</div>
 					<!-- //휴대폰결제 조회결과 --> 
 					<!-- 테이블하단 영역-->
@@ -167,5 +188,21 @@
 	<!-- //contents --> 
 </div>
 <!-- //wrap -->
+<script>
+	var infoState = false;
+	document.getElementById("info_btn").addEventListener('click', function(){
+		if(infoState){
+			document.getElementById("infobox_wrap").style.display = 'none';
+			infoState = false;
+		} else {
+			document.getElementById("infobox_wrap").style.display = 'block';
+			infoState = true;
+		}
+	});
+
+	function openPopup1(e) {
+		openCenteredPopup('pgliabilities_list.html', 'pgliabilities_list',902,810);
+	}
+</script>
 </body>
 </html>

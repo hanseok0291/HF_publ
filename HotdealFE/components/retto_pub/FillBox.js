@@ -45,14 +45,7 @@ const FillBox = ({case1, case2}) => {
             </div>
             <Button>머니 채우기</Button>
           </div>
-          <div className={styleFillBox.bannerWrap}>
-            <div className={`${styleFillBox.bannerBox} ${styleFillBox.ruby}`}>{/* styleFillBox.ruby styleFillBox.emerald styleFillBox.diamond className 추가 */}
-              <a href="#">
-                <p className={styleFillBox.text1}>변경 신청한 <span className={styleFillBox.colorText}>루비</span>는 채우기 <b>10만원<i>!</i></b></p>
-                <p className={styleFillBox.text2}>레벨 변경</p>
-              </a>
-            </div>
-          </div>
+
         </div>
         <div className={styleFillBox.noteWrap}>
           <p>안내사항</p>

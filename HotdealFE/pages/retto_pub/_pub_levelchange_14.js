@@ -29,10 +29,9 @@ import MyPageNotJoin from "../../components/retto_pub/MyPageNotJoin";
 import Home from "../../components/retto_pub/Home";
 import DrawInfo from "../../components/retto_pub/DrawInfo";
 import ModalLevelChangeBan from "../../components/retto_pub/common/modal/ModalLevelChangeBan";
+import LayerApplyFail from "../../components/retto_pub/LayerApplyFail";
 import ModalApplyReady from "../../components/retto_pub/common/modal/ModalApplyReady";
-import LayerTutorialMypage from "../../components/retto_pub/LayerTutorialMypage";
-import LayerTutorialStamp from "../../components/retto_pub/LayerTutorialStamp";
-import ModalMoneyGive from "../../components/retto_pub/common/modal/ModalMoneyGive";
+import ModalApplyAccount from "../../components/retto_pub/common/modal/ModalApplyAccount";
 
 const index = () => {
   return (
@@ -45,7 +44,7 @@ const index = () => {
       </ul>
       <Container isTab padding="0" backgroundColor="#fff">
         {/* HOME */}
-        <Home /> 
+        {/* <Home />  */}
         {/* 추첨 정보 case1 리또 없음 case2 당첨 case3 미당첨 case4 추첨예정 case5 이번,다음 회차 case6 미신청자 case7 당첨금 배너 */}
         {/* <DrawInfo case1 /> */}
         {/* 나의 리또 case1 미신청자 case2 스탬프 10주까지만 */}
@@ -55,6 +54,8 @@ const index = () => {
       {/* <Apply /> */}
       {/* 신청 불가 */}
       {/* <ModalApplyReady /> */}
+      {/* 계좌 없음 */}
+      <ModalApplyAccount />
       {/* 당첨 */}
       {/* <BottomSheetPrize /> */}
       {/* 미참여자 */}
@@ -62,11 +63,13 @@ const index = () => {
       {/* 기기알림 */}
       {/* <BottomSheetAlarm /> */}
       {/* 레벨 변경 */}
-      {/* <LayerLevelSelection full rettoLevel={70} case5 case6 /> */}
+      {/* <LayerLevelSelection full rettoLevel={70} case5 /> */}
       {/* 레벨 변경 확인 */}
       {/* <ModalLevelChange /> */}
       {/* 레벨 변경 불가 */}
-       {/* <ModalLevelChangeBan /> */}
+      {/* <ModalLevelChangeBan /> */}
+      {/* 레벨 변경 실패 */}
+      {/* <LayerApplyFail type="fail" case1 /> */}
       {/* 스탬프 주차 확인 바텀 시트 */}
       {/* <BottomSheetSaveingList /> */}
       {/* 스탬프 10주차 유지 성공 바텀 시트 */}
@@ -77,10 +80,8 @@ const index = () => {
       {/* <LayerRecommend /> */}
       {/* 추천 코드 입력 마감 */}
       {/* <ModalRecommendEnd /> */}
-      {/* <LayerTutorialStamp /> */}
       {/* 추천 코드 입력 완료 토스트 */}
       {/* <Toast width={250}>카드 발급 선물 신청이 완료되었어요!</Toast> */}
-      <ModalMoneyGive />
     </>
   );
 };

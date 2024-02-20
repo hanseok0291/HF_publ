@@ -122,8 +122,8 @@ const Home = () => {
           <li>
             <strong>추가 혜택 2</strong>
             <p>
-              연속 10주 성공할 때마다 <br />
-              쿠폰 선물까지
+              에메랄드, 다이아 레벨 연속 10주 <br className={styleHome.foldSize} />
+              성공할 때마다 쿠폰 선물
             </p>
           </li>
         </ul>

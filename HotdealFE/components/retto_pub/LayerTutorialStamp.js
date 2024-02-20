@@ -22,56 +22,32 @@ const LayerTutorialStamp = ({type}) => {
       <div className={styleTutorial.background}>
         <Header />
         <ul className={styleMyretto.tabWrap}>
-          <li>나의 리또 현황</li>
-          <li className={styleMyretto.active}>리또 스탬프</li>
-          <li>당첨 결과</li>
+          <li>HOME</li>
+          <li>추첨 정보</li>
+          <li className={styleMyretto.active}>나의 리또</li>
         </ul>
-        <Container>
-          <div className={`${styleCommon.titleWrap} ${styleMyretto.titleWrap}`}>
-            <h2 className={styleMyretto.stampTitle}>도전~연속 리또 받기!</h2>
-            <p className={styleMyretto.stampSubText}>
-              머니 채우기로 매주 늘어가는 스탬프, <br />
-              스탬프만큼 쌓여가는 리또와 쿠폰 선물!
-            </p>
-            <div className={styleMyretto.nextMondayText}>
-              <span>다음주 월요일</span>부터 시작돼요
+        <Container padding="0">
+          <div className={styleMyretto.stampBackground}>
+            <div className={styleMyretto.rewardContentWrap}>
+              <h4>친구와 리또해요</h4>
+              <div className={styleMyretto.textWrap}>
+                <p className={styleMyretto.leftCon}><em className={styleMyretto.iconGift}></em><strong>0명</strong><span>리또 선물 성공</span></p>
+                <p className={styleMyretto.rightCon}><span>보상 리또</span><strong>0개</strong></p>
+              </div>
             </div>
-          </div>
-          <div className={`${styleMyretto.stampBorderBox} diamond`}>
-            <div className={styleMyretto.titleWrap}>
-              <h4>
-                MAX. <span className="jewelColor">다이아 리또</span>
-              </h4>
-              <button type="button">1주차</button>
-            </div>
-            <div className={`${styleMyretto.stampScrollWrap} tutorial`}>
-              <div
-                className={`${styleMyretto.stampContainer}`}
-              >
-                {/* <p className={styleMyretto.stampInfo}>최대 50주차까지만 보여요</p> */}
+            <div className={`${styleMyretto.stampBorderBox}`}>
+            <div className={styleMyretto.noApply}>
+              <div className={`${styleCommon.titleWrap} ${styleMyretto.titleWrap}`}>
+                <h2 className={styleMyretto.stampTitle}>도전~연속 리또 받기<i>!</i></h2>
+                <p className={styleMyretto.stampSubText}>
+                  머니 채우기로 매주 늘어가는 스탬프, <br />
+                  스탬프만큼 쌓여가는 리또와 쿠폰 선물!
+                </p>
                 <ul className={styleMyretto.stampWrap}>
                   <li>
                     <div>
                       <span className="circle"></span>
                       <p>두근두근 <br />첫 스탬프</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <span className="circle"></span>
-                      <p>2주차</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <span className="circle"></span>
-                      <p>3주차</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <span className="circle"></span>
-                      <p>4주차</p>
                     </div>
                   </li>
                   <li>
@@ -83,39 +59,15 @@ const LayerTutorialStamp = ({type}) => {
                   <li>
                     <div>
                       <span className="circle"></span>
-                      <p>6주차</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <span className="circle"></span>
-                      <p>7주차</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <span className="circle"></span>
-                      <p>8주차</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <p>9주차</p>
-                    </div>
-                  </li>
-                  <li className="coupon">
-                    <div>
-                      <span className="circle"></span>
                       <p>10주차</p>
                     </div>
                   </li>
                 </ul>
+                <button type="button" className={styleMyretto.stampButton}>
+                  1억 행운 리또 받기
+                </button>
               </div>
             </div>
-            <div className={styleMyretto.botCon}>
-              <a href="#" className={styleMyretto.button}>
-                리또 레벨 변경
-              </a>
             </div>
           </div>
         </Container>
@@ -135,14 +87,13 @@ const LayerTutorialStamp = ({type}) => {
                 리또가 최대 5개로 UP!
               </p>
             </div>
-            <button type='button' className={styleTutorial.skipBtn}>SKIP</button>
           </SwiperSlide>
           <SwiperSlide className={styleTutorial.slide2}>
             <div className={styleTutorial.slideWrap}>
               <h2>쿠폰 선물이 기다려요</h2>
               <p className={styleTutorial.subText}>
-                특별한 10번째 스탬프는 <br />
-                쿠폰 선물로 뿌듯함을 더해드려요!
+                에메랄드, 다이아 레벨 <br />
+                10주차마다 뿌듯함을 더해드려요!
               </p>
               <div className={styleTutorial.imgBox}></div> 
             </div>

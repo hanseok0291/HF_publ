@@ -40,7 +40,7 @@ const LayerApplyFail = ({case1, type}) => {
               <b>앗, {type !== "change" ? "신청" : "변경"}이 완료되지 않았어요!</b> <br />
               도중에 {type !== "change" ? "신청" : "변경"} 불가 시간과 겹쳤어요.
             </p> 
-            <p className={styleApply.subText}><b>{type !== "change" ? "오전 00시 30분 이후" : "오전 01시 이후"}</b>에 다시 신청해 주세요.</p>
+            <p className={styleApply.subText}><b>{type !== "change" ? "오전 12시 30분 이후" : "오전 1시 이후"}</b>에 다시 신청해 주세요.</p>
           </>
         }
         

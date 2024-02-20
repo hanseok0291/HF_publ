@@ -115,3 +115,16 @@ function privacyPopup() {
     "width=960, height=760, top=0, left=0, scrollbars=no"
   );
 }
+
+function openCenteredPopup(url, title, width, height) {
+  const screenLeft = window.screenLeft !== undefined ? window.screenLeft : window.screenX;
+  const screenTop = window.screenTop !== undefined ? window.screenTop : window.screenY;
+
+  const innerWidth = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+  const innerHeight = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+  const left = ((innerWidth - width) / 2) + screenLeft;
+  const top = ((innerHeight - height) / 2) + screenTop;
+
+  window.open(url, title, `scrollbars=yes, width=${width}, height=${height}, top=${top}, left=${left}`);
+}

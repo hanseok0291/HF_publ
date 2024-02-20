@@ -130,7 +130,7 @@ const Index = () => {
 									<div>
 										<p className={`${stylePay.listTitle}`}>결제 수단</p>
 										<div
-											className={`${stylePay.inputBox} ${stylePay.inputDouble} ${stylePay.addBorderBottom}`}
+											className={`${stylePay.inputBox} ${stylePay.inputDouble} ${stylePay.addBorderBottom} ${stylePay.addBorderBlack}`}
 										>
 											<div className={`${stylePay.inputInfoBox}`}>
 												<strong>머니&amp;포인트</strong>

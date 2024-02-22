@@ -124,20 +124,20 @@
 								</li>
 								<li>
 									<span class="checkbox square">
-										<input type="checkbox" name="checkbox_agree" id="checkbox_agree02" checked />
+										<input type="checkbox" name="checkbox_agree_set" id="checkbox_agree02" checked />
 										<label for="checkbox_agree02">결제 감사 리워드 지급을 위한 마케팅 정보 수신 (선택)</label>
 									</span>
 								</li>
 								<li>
 									<span class="checkbox square">
-										<input type="checkbox" name="checkbox_agree" id="checkbox_agree03" checked />
+										<input type="checkbox" name="checkbox_agree_set" id="checkbox_agree03" checked />
 										<label for="checkbox_agree03">결제 감사 리워드 지급을 위한 마케팅 목적 개인정보
 											수집 및 이용동의 (선택)</label>
 									</span>
 								</li>
 							</ul>
 							<div class="pop-wrap">
-								<p>결제 리워드(리워드 로또) 전송을 위한 동의이며, 다른 목적으로는 사용되지 않습니다.</p>
+								<p>결제 리워드(리워드 로또) 지급을 위한 동의이며, 다른 목적으로는 사용되지 않습니다.</p>
 								<button type="button" class="btn-close"></button>
 							</div>
 						</div>
@@ -411,6 +411,26 @@
 		$(".pop-wrap .btn-close").on("click", function () {
 			$('.pop-wrap').hide();
 		})
+
+		// 리또 리워드 체크박스
+		var checkbox1 = document.getElementById('checkbox_agree02');
+		var checkbox2 = document.getElementById('checkbox_agree03');
+
+		checkbox1.addEventListener('change', function () {
+			if (!this.checked) {
+				checkbox2.checked = false;
+			} else if (this.checked && !checkbox2.checked) {
+				checkbox2.checked = true;
+			}
+		});
+
+		checkbox2.addEventListener('change', function () {
+			if (!this.checked) {
+				checkbox1.checked = false;
+			} else if (this.checked && !checkbox1.checked) {
+				checkbox1.checked = true;
+			}
+		});
 	</script>
 </body>
 

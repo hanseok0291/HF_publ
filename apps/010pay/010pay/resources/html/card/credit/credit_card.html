@@ -31,11 +31,11 @@
 	<link rel="stylesheet" href="../../../css/jquery-ui.css">
 	<link rel="stylesheet" href="../../../css/owl.carousel.min.css">
 	<link rel="stylesheet" href="../../../css/swiper-bundle.min.css" />
-	<link rel="stylesheet" href="../../../css/common.css">
-	<link rel="stylesheet" href="../../../css/promotion.css?ver=240116">
-	<link rel="stylesheet" href="../../../css/card_credit.css">
-	<link rel="stylesheet" href="../../../css/card_animation.css">
-	<link rel="stylesheet" href="../../../css/card_after.css">
+	<link rel="stylesheet" href="../../../css/common.css?ver=2402202">
+	<link rel="stylesheet" href="../../../css/promotion.css?ver=2402202">
+	<link rel="stylesheet" href="../../../css/card_credit.css?ver=2402202">
+	<link rel="stylesheet" href="../../../css/card_animation.css?ver=2402202">
+	<link rel="stylesheet" href="../../../css/card_after.css?ver=2402202">
 	<!--[if lt IE 9]>
 <script type="text/javascript" src="../../../js/html5shiv.js"></script>
 <script type="text/javascript" src="../../../js/respond.min.js"></script>
@@ -51,6 +51,10 @@
 	<script src="../../../js/design.js?ezauthver=5.0" defer="defer"></script>
 	<script src="../../../js/commonmsg.js?ezauthver=5.0"></script>
 	<script src="../../../js/commonutil.js?ezauthver=5.0"></script>
+	<link rel="shortcut icon" type="image/x-icon"
+		href="https://ux.sbsvc.online/010pay/010pay-brand/resource/images/favicon/favicon.ico">
+	<link rel="icon" type="image/png" sizes="32x32"
+		href="https://ux.sbsvc.online/010pay/010pay-brand/resource/images/favicon/favicon-32x32.png">
 
 </head>
 
@@ -863,25 +867,45 @@
 			});
 			// Coupons 스크롤 애니메이션
 
-			if (windowWidth > 750) {
-				$('.coupon_list_wrap').vTicker('init', {
-					speed: 500,
-					pause: 1000,
-					showItems: 3,
-					padding: 0,
-					margin: 0,
-					height: 146
-				});
-			} else {
-				$('.coupon_list_wrap').vTicker('init', {
-					speed: 500,
-					pause: 1000,
-					showItems: 3,
-					padding: 0,
-					margin: 0,
-					height: 146
-				});
+			function updateCouponListWrap() {
+				var windowWidth = $(window).width();
+
+				if (windowWidth > 1240) {
+					$('.coupon_list_wrap').vTicker('init', {
+						speed: 500,
+						pause: 2000,
+						showItems: 3,
+						padding: 0,
+						margin: 0,
+						height: 191
+					});
+				} else if (windowWidth > 767) {
+					$('.coupon_list_wrap').vTicker('init', {
+						speed: 500,
+						pause: 2000,
+						showItems: 3,
+						padding: 0,
+						margin: 0,
+						height: 171
+					});
+				} else {
+					$('.coupon_list_wrap').vTicker('init', {
+						speed: 500,
+						pause: 1000,
+						showItems: 3,
+						padding: 0,
+						margin: 0,
+						height: 146
+					});
+				}
 			}
+			// 초기에도 실행
+			updateCouponListWrap();
+
+			// 화면 크기가 변경될 때마다 실행
+			$(window).resize(function () {
+				updateCouponListWrap();
+			});
 
 			// 초기 애니메이션 설정
 			setTimeout(() => {
@@ -965,13 +989,22 @@
 			var abTop = window.pageYOffset + target2.getBoundingClientRect().top;
 			// 리또란 클릭시 스크롤 이동
 			$(".retto_icon").click(function (e) {
-				$("body, html").animate({ scrollTop: 430 }, 500);
+				console.log('위치' + abTop);
+				if ($(window).width() > 738) {
+					$("body, html").animate({ scrollTop: 770 }, 500);
+				} else {
+					$("body, html").animate({ scrollTop: 435 }, 500);
+				}
 			});
 
 			// 유의사항 클릭시 스크롤 이동
 			$(".info_txt").click(function (e) {
 				console.log('위치' + abTop);
-				$("body, html").animate({ scrollTop: 5350 }, 500);
+				if ($(window).width() > 738) {
+					$("body, html").animate({ scrollTop: 5750 }, 500);
+				} else {
+					$("body, html").animate({ scrollTop: 5390 }, 500);
+				}
 			});
 
 			// 모바일에서 Retto 아이콘 숨기기

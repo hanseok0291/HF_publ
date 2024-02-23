@@ -893,11 +893,11 @@ header, .header {
   background: #ff0000;
 }
 .content_wrap.credit_card .section-wrap .link_btn_area {
-  position: absolute;
+  position: fixed;
   width: auto;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1111;
+  z-index: -1;
   text-align: center;
   bottom: 70px;
   transition: all 0.3s ease-in-out;
@@ -1668,6 +1668,9 @@ header, .header {
   border-radius: 24px;
   background-color: #fff;
 }
+.content_wrap.credit_card .section.app-down .left-con .btn-wrap a:hover {
+  cursor: auto;
+}
 .content_wrap.credit_card .section.app-down .left-con .btn-wrap a.google-btn {
   margin-right: 20px;
 }
@@ -1776,8 +1779,16 @@ header, .header {
   color: #575757;
   border: 1px solid #E5E5E5;
   padding: 13px 20px;
-	text-align: left;
-	vertical-align: top;
+  vertical-align: middle;
+}
+.content_wrap.credit_card .section.notice .accordion-body table tbody td.title {
+  text-align: center;
+}
+.content_wrap.credit_card .section.notice .accordion-body table tbody td.text-left {
+  text-align: left;
+}
+.content_wrap.credit_card .section.notice .accordion-body table tbody td.vertical-top {
+  vertical-align: top;
 }
 .content_wrap.credit_card .section.notice .accordion-body table::after {
   content: "";
@@ -1895,6 +1906,29 @@ header, .header {
 .content_wrap.credit_card .section.notice .notice-sub .notice-row > p.text-sub.none {
   margin-bottom: 40px;
 }
+.content_wrap.credit_card .section.notice .notice-sub .notice-row > p.text-sub > strong > span {
+  position: relative;
+  display: block;
+  padding-left: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 25px;
+}
+.content_wrap.credit_card .section.notice .notice-sub .notice-row > p.text-sub > strong > span::after {
+  content: "-";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #7D7D7D;
+}
+.content_wrap.credit_card .section.notice .notice-sub .notice-row > p.text-sub > strong > span.text-color {
+  color: #7D7D7D;
+}
+.content_wrap.credit_card .section.notice .notice-sub .notice-row > p.text-sub > strong > span.asterlist-item::after {
+  content: "*";
+  top: 1px;
+}
 .content_wrap.credit_card .section.notice .notice-sub .notice-row.notice-last {
   margin-top: 40px;
 }
@@ -1935,7 +1969,9 @@ header, .header {
           animation: txtUp3 0.5s 0.25s ease-in-out forwards;
 }
 .content_wrap.credit_card .section.animation.top-visual .container .link_btn_area {
+  opacity: 0;
   position: relative;
+	z-index: 1;
   -webkit-animation: txtUp3 0.5s 0.75s ease-in-out forwards;
           animation: txtUp3 0.5s 0.75s ease-in-out forwards;
 }
@@ -1971,12 +2007,12 @@ header, .header {
           animation: lightUp 1s 2.5s ease-in-out forwards;
 }
 .content_wrap.credit_card .section.animation.section06 .talk_area .txt_up .txt.txt01 {
-  -webkit-animation: txtUp4 0.5s 0.5s ease-in-out backwards;
-          animation: txtUp4 0.5s 0.5s ease-in-out backwards;
+  -webkit-animation: txtUp4 1s 0.5s ease-in-out backwards;
+          animation: txtUp4 1s 0.5s ease-in-out backwards;
 }
 .content_wrap.credit_card .section.animation.section06 .talk_area .txt_up .txt.txt02 {
-  -webkit-animation: txtUp4 0.5s 0.75s ease-in-out backwards;
-          animation: txtUp4 0.5s 0.75s ease-in-out backwards;
+  -webkit-animation: txtUp4 1s 1s ease-in-out backwards;
+          animation: txtUp4 1s 1s ease-in-out backwards;
   width: 100%;
 }
 .content_wrap.credit_card .section.animation.notice .accordion-item:first-of-type {
@@ -2232,6 +2268,7 @@ header, .header {
   }
 }
 
+@media only screen and (max-width: 767px) {
   .pcOnly {
     display: none;
   }
@@ -2257,10 +2294,10 @@ header, .header {
     display: block;
   }
   .content_wrap.credit_card.moveTop {
-    margin-top: -470px;
+    margin-top: -430px;
   }
   .content_wrap.credit_card .section-wrap .mo-link-button.link_btn_area {
-    position: absolute;
+    position: fixed;
     width: 100%;
     z-index: -1;
     bottom: 0;
@@ -2295,7 +2332,6 @@ header, .header {
     -webkit-animation: slideUp 0.5s ease-in-out;
             animation: slideUp 0.5s ease-in-out;
     opacity: 1;
-		position: fixed;
   }
   .content_wrap.credit_card .section-wrap .mo-link-button.link_btn_area.footer-fixed {
     bottom: 315px;
@@ -2335,10 +2371,10 @@ header, .header {
     height: 242px;
     border-radius: 15px;
     margin: 6px 10px 0;
+    border-radius: 10px;
   }
   .content_wrap.credit_card .section .container .card_area .card.card01 {
     background: url("../images/promotion/creditcard/coupon-bg-mo.png") no-repeat center/contain;
-    border-radius: 0;
   }
   .content_wrap.credit_card .section .container .card_area .card.card02 {
     margin-top: 36px;
@@ -2431,6 +2467,7 @@ header, .header {
   .content_wrap.credit_card .section.top-visual {
     background-color: #F3E5D1;
     height: 892px;
+    padding-top: 0;
     transition: all 0.3s ease-in-out;
   }
   .content_wrap.credit_card .section.top-visual .mo-link-button {
@@ -2447,6 +2484,7 @@ header, .header {
   .content_wrap.credit_card .section.top-visual .link_btn_area {
     position: relative;
     width: 100%;
+    z-index: -1;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
@@ -2828,20 +2866,20 @@ header, .header {
     margin-top: 30px;
   }
   .content_wrap.credit_card .section.section06 .container .card_area .card.card02 .talk_area .txt_up .txt.txt01 {
-    -webkit-animation-delay: 1s;
-            animation-delay: 1s;
+    -webkit-animation-delay: 1.5s;
+            animation-delay: 1.5s;
   }
   .content_wrap.credit_card .section.section06 .container .card_area .card.card02 .talk_area .txt_up .txt.txt02 {
-    -webkit-animation-delay: 1.5s;
-            animation-delay: 1.5s;
-  }
-  .content_wrap.credit_card .section.section06 .container .card_area .card.card03 .talk_area .txt_up .txt.txt01 {
-    -webkit-animation-delay: 1.5s;
-            animation-delay: 1.5s;
-  }
-  .content_wrap.credit_card .section.section06 .container .card_area .card.card03 .talk_area .txt_up .txt.txt02 {
     -webkit-animation-delay: 2s;
             animation-delay: 2s;
+  }
+  .content_wrap.credit_card .section.section06 .container .card_area .card.card03 .talk_area .txt_up .txt.txt01 {
+    -webkit-animation-delay: 2.5s;
+            animation-delay: 2.5s;
+  }
+  .content_wrap.credit_card .section.section06 .container .card_area .card.card03 .talk_area .txt_up .txt.txt02 {
+    -webkit-animation-delay: 3s;
+            animation-delay: 3s;
   }
   .content_wrap.credit_card .section.section06 .container .card_area .card .talk_area {
     font-size: 14px;
@@ -2947,11 +2985,7 @@ header, .header {
     line-height: 17px;
     letter-spacing: -0.04em;
     padding: 8px;
-		vertical-align: middle;
   }
-	.content_wrap.credit_card .section.notice .container .accordion-body table tbody td.vertical-top {
-		vertical-align: top;
-	}
   .content_wrap.credit_card .section.notice .container .accordion-body p {
     font-size: 12px;
     font-weight: 400;
@@ -2998,32 +3032,25 @@ header, .header {
     letter-spacing: 0em;
     color: #575757;
   }
-	.content_wrap.credit_card .section.notice .notice-sub .notice-row > p.text-sub > strong > span {
-		position: relative;
-		display: block;
-		padding-left: 8px;
-		font-size: 12px;
-		font-weight: 700;
-		line-height: 16.8px;
-		margin-bottom: 5px;
-	}
-	.content_wrap.credit_card .section.notice .notice-sub .notice-row > p.text-sub > strong > span.text-color {
-		color: #7D7D7D;
-	}
-	.content_wrap.credit_card .section.notice .notice-sub .notice-row > p.text-sub > strong > span::after {
-		content: '-';
-		display: block;
-		position: absolute;
-		left: 0;
-		top: 0;
-		color: #7d7d7d;
-	}
-	.content_wrap.credit_card .section.notice .notice-sub .notice-row > p.text-sub > strong > span.asterlist-item::after {
-		content: '*';
-		top: 1px;
-	}
   .content_wrap.credit_card .section.notice .notice-sub .notice-row > p.text-sub.none {
     margin-bottom: 20px;
+  }
+  .content_wrap.credit_card .section.notice .notice-sub .notice-row > p.text-sub > strong > span {
+    padding-left: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16.8px;
+  }
+  .content_wrap.credit_card .section.notice .notice-sub .notice-row > p.text-sub > strong > span::after {
+    content: "-";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #7D7D7D;
+  }
+  .content_wrap.credit_card .section.notice .notice-sub .notice-row > p.text-sub > strong > span.text-color {
+    color: #7D7D7D;
   }
   .content_wrap.credit_card .section.notice .notice-sub .notice-row.notice-last {
     margin-top: 20px;
@@ -3089,6 +3116,13 @@ header, .header {
       top: -16px;
     }
   }
+}
+@media only screen and (max-width: 330px) {
+  .content_wrap.credit_card .section.top-visual .container .tit_wrap .sub_info > p span {
+    font-size: 10px;
+    letter-spacing: -0.06em;
+  }
+}
 @-webkit-keyframes txtUp2 {
   0% {
     opacity: 0;

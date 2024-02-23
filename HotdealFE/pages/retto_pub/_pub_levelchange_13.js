@@ -66,7 +66,7 @@ const index = () => {
       {/* 레벨 변경 불가 */}
       {/* <ModalLevelChangeBan /> */}
       {/* 레벨 변경 실패 */}
-      {/* <LayerApplyFail type="fail" case1 /> */}
+      <LayerApplyFail type="change" case2 />
       {/* 스탬프 주차 확인 바텀 시트 */}
       {/* <BottomSheetSaveingList /> */}
       {/* 스탬프 10주차 유지 성공 바텀 시트 */}

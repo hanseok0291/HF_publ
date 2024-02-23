@@ -48,7 +48,7 @@ const index = () => {
         {/* <Stamp /> */}
       </Container>
       {/* 리또 신청 */}
-      <Apply />
+      {/* <Apply /> */}
       {/* 당첨 */}
       {/* <BottomSheetPrize /> */}
       {/* 미참여자 */}
@@ -56,7 +56,8 @@ const index = () => {
       {/* 기기알림 */}
       {/* <BottomSheetAlarm /> */}
       {/* 레벨 변경 */}
-      <LayerLevelSelection full rettoLevel={70} case4 />
+      {/* 에메랄드 필요 머니 x */}
+      <LayerLevelSelection full rettoLevel={70} />
       {/* 레벨 변경 확인 */}
       {/* <ModalLevelChange /> */}
       {/* 레벨 변경 불가 */}

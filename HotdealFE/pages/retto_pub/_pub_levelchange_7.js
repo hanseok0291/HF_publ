@@ -57,13 +57,14 @@ const index = () => {
       {/* 기기알림 */}
       {/* <BottomSheetAlarm /> */}
       {/* 레벨 변경 */}
-      <LayerLevelSelection full rettoLevel={70} case5 />
+      {/* 다이아 필요 머니  */}
+      <LayerLevelSelection full rettoLevel={92} />
       {/* 레벨 변경 확인 */}
       {/* <ModalLevelChange /> */}
       {/* 레벨 변경 불가 */}
       {/* <ModalLevelChangeBan /> */}
       {/* 레벨 변경 실패 */}
-      <LayerApplyFail type="change" case1 />
+      {/* <LayerApplyFail type="change" case1 /> */}
       {/* 스탬프 주차 확인 바텀 시트 */}
       {/* <BottomSheetSaveingList /> */}
       {/* 스탬프 10주차 유지 성공 바텀 시트 */}

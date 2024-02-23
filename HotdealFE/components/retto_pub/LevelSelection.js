@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'rc-slider'; // rc-slider 컴포넌트
 import 'rc-slider/assets/index.css'; // rc-slider 스타일링
 import Button from './common/Button';
@@ -21,39 +21,39 @@ const handle = (props) => {
 };
 
 const jewelCase = [{
-  eng: 'ruby',
-  kor: '루비',
-  cash: '10',
-  prize: '1백만원',
-  level: "Lv. 1"
-},
-{
-  eng: 'emerald',
-  kor: '에메랄드',
-  cash: '50',
-  prize: '1천만원',
-  level: "Lv. 2"
-},
-{
-  eng: 'diamond',
-  kor: '다이아',
-  cash: '100',
-  prize: '1억원',
-  level: "MAX."
-},
+    eng: 'ruby',
+    kor: '루비',
+    cash: '10',
+    prize: '1백만원',
+    level: "Lv. 1"
+  },
+  {
+    eng: 'emerald',
+    kor: '에메랄드',
+    cash: '50',
+    prize: '1천만원',
+    level: "Lv. 2"
+  },
+  {
+    eng: 'diamond',
+    kor: '다이아',
+    cash: '100',
+    prize: '1억원',
+    level: "MAX."
+  },
 ];
 
 // change true일 경우 선택하기 단계로 안감
-// case1 레벨 동일 case2 레벨 하향 case3 레벨 상향 보유 일반머니 충분 case4 리벨 상향 필요 머니 1000원 이상 case5 레벨 상향 필요머니 1000원 미만
-const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalToggle, rettoLevel, initial, ...props}) => {
+// case1 리또 루비 신청 case3 레벨 상향 보유 일반머니 충분 case4 레벨 상향 필요 머니 1000원 이상 case5 레벨 상향 필요머니 1000원 미만
+const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalToggle, rettoLevel = 26, ...props}) => {
   const [value, setValue] = useState(rettoLevel); // 단계별로 26, 48, 70, 92
-  // const [handleText, setHandelText] = useState(<p className={`${styleCommon.textBox} ${styleCommon.first}`} style={{left: `${value-2}%`}}>움직여서 선택하기</p>);
-  const [handleText, setHandelText] = useState(<p className={styleCommon.textBox} style={{left: `${value-2}%`}}><span><em>{`50만원까지`}</em><br />채우기</span></p>);
   const snapPoints = [26, 48, 70, 92];
+  const increase = rettoLevel < value; // 상향 시 true 하향시 false
+  const decrease = rettoLevel > value; // 상향 시 true 하향시 false
+  const initialJewel = jewelCase[snapPoints.indexOf(rettoLevel) - 1];
+  const [handleText, setHandelText] = useState(rettoLevel === 26 ? <p className={`${styleCommon.textBox} ${styleCommon.first}`} style={{left: `${value-2}%`}}>움직여서 선택하기</p> :<p className={styleCommon.textBox} style={{left: `${value-2}%`}}><span><em>{`${initialJewel.cash}`}만원까지</em><br />채우기</span></p>);
 
   const handleSliderChange = (newValue) => {
-    const snapPrice = [10, 50, 100, 100];
-
     if(change && newValue < snapPoints[1]){
       newValue = snapPoints[1];
     } else if( newValue < snapPoints[0]){
@@ -63,7 +63,6 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
     } else {
       setValue(newValue);
     }
-    
 
     const price = snapPoints.map((item, index) => {
       if(newValue === snapPoints[0] && index === 0){
@@ -76,7 +75,7 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
         return (
           <p key={index} className={styleCommon.textBox} style={{left: `${item-2}%`}}>
             <span>
-              <em>{`${snapPrice[index - 1]}만원까지`}</em><br />
+              <em>{jewelCase[index-1].cash}만원까지</em><br />
               채우기
             </span>
           </p>
@@ -85,6 +84,10 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
     });
     setHandelText(price);
   };
+
+  useEffect(() => {
+    setJewel(initialJewel);
+  }, [])
 
   return (
     <>
@@ -122,50 +125,60 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
           <p className={styleCommon.subText}>
             {jewel.eng === 'ruby' && (
               <>
-                {initial && initial.eng === 'ruby'?
+                {rettoLevel === 48 ?
                   <>
                     {/* 레벨 동일 시 적용 문구 */}
                     지금 <span className='jewelColor'>{jewel.kor}</span> 진행 중이에요. <br />
+                    더 높은 레벨로 큰 행운을 잡으세요.
                   </> : 
                   <>
-                    <span className='jewelColor'>{jewel.kor}</span>가 마음에 드세요? <br />
-                  </>
+                    <span className='jewelColor'>{jewel.kor}</span> 최대 1백만원 당첨! <br />
+                    {props.case1 ? <>매주 자동으로 리또를 드려요.</> : <>10주차 성공 선물을 받을 수 없어요.</>}
+                    
+                  </> 
                 }
-                <span>최대 {jewel.prize} 당첨</span> 가능해요!
               </>
             )}
             {jewel.eng === 'emerald' && (
               <>
-                {initial && initial.eng === 'emerald' ?
+                {rettoLevel === 70 ?
                   <>
-                    {/* 레벨 동일 시 적용 문구 */}
+                    {/* 레벨 동일 시 적용 문구 */} 
                     지금 <span className='jewelColor'>{jewel.kor}</span> 진행 중이에요. <br />
+                    10주마다 <b>편의점 기프티콘</b>을 드려요!
                   </> : 
                   <>
-                    <span className='jewelColor'>{jewel.kor}</span>는 어때요?<br />
-                  </>
+                    {
+                      increase ? 
+                      <>
+                      <span className='jewelColor'>{jewel.kor}</span> 최대 1천만원 당첨!<br />
+                      10주마다 <b>편의점 기프티콘</b>을 드려요.
+                    </>
+                  :
+                    <>
+                      <span className='jewelColor'>{jewel.kor}</span>가 마음에 드세요?<br />
+                      당첨금과 10주차 성공 선물이 작아져요.
+                    </>
+                    }
+                  </> 
+         
                 }
-                <b>최대 {jewel.prize} 행운</b>이 기다려요!
+                
               </>
             )}
             {jewel.eng === 'diamond' && (
               <>
-                {initial && initial.eng === 'diamond' ?
+                {rettoLevel === 92 ?
                   <>
                     {/* 레벨 동일 시 적용 문구 */}
                     지금 <span className='jewelColor'>{jewel.kor}</span> 진행 중이에요. <br />
                   </> :
                   <>
-                    <span className='jewelColor'>{jewel.kor}</span>는 역시 빛나네요! <br />
-                  </>
+                    <span className='jewelColor'>{jewel.kor}</span> 최대 1억원 당첨! <br />
+                  </> 
                 }
-                나도 <b>최대 {jewel.prize}의 주인공?!</b>
+                10주마다 <b>커피 기프티콘</b>을 드려요.
               </>
-            )}
-            {props.case4 && (
-              <span className={styleCommon.priceMoney}>
-                채운 금액은 리또 머니함에 보관할게요.
-              </span>
             )}
             {full && (
               <>
@@ -174,16 +187,22 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
                 {/* <span className={styleCommon.priceMoney}>
                   <span>최대 {jewel.prize} 당첨</span> 가능해요. <br />
                   채운 금액은 리또 머니함에 보관할게요.
-                </span> */}
-                {props.case5 && 
+                </span> */} 
+                {!props.case3 && props.case4 && increase && 
+                  <span className={styleCommon.priceMoney}>
+                    부족한 금액은 연결 계좌에서 충전해 <br />
+                    <span>리또 머니함에 보관</span>할게요.
+                  </span>
+                }
+                {!props.case3 && props.case5 && increase && 
                   <span className={styleCommon.priceMoney}>
                     <span>최소 1천원부터 충전 가능</span>해요. <br />
                     채운 금액은 리또 머니함에 보관할게요.
                   </span>
                 }
-                {props.case2 && 
+                {decrease && 
                   <span className={styleCommon.priceMoney}>
-                    10만원을 제외한 기존 머니함 속 금액은 <br />
+                    {jewel.cash}만원을 제외한 기존 머니함 속 금액은 <br />
                     <span>보유 머니로 이동</span>돼요. 
                   </span>
                 }
@@ -191,19 +210,19 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
             )}
           </p>
           <div className={styleCommon.moneyWrap}>
-            {(props.case1 || props.case2) &&
+            {!increase &&
               <dl>
                 <dt>리또 머니함</dt>
                 <dd>100,000원</dd>
               </dl>
             }
-            {(props.case3 || props.case4 || props.case5) &&
+            {increase &&
               <dl>
                 <dt>보유 일반 머니</dt>
                 <dd>15,000원</dd>
               </dl>
             }
-            {(!full || props.case4 || props.case5) && (
+            {!props.case3 && increase && (props.case4 || props.case5) && (
               <dl>
                 <dt>채우기 <button type='button' className={styleCommon.accountButton}><img src="../../images/coupon/logo/brand/bank1.png" alt="" />신한789</button></dt>
                 <dd><span className='jewelColor'>15,000원</span></dd>

@@ -59,7 +59,7 @@ const index = () => {
       {/* 레벨 변경 */}
       {/* <LayerLevelSelection full rettoLevel={70} case5 /> */}
       {/* 레벨 변경 확인 */}
-      <ModalLevelChange case2 />
+      <ModalLevelChange case3 />
       {/* 레벨 변경 불가 */}
       {/* <ModalLevelChangeBan /> */}
       {/* 레벨 변경 실패 */}

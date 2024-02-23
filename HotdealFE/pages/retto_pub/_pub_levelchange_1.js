@@ -57,7 +57,8 @@ const index = () => {
       {/* 기기알림 */}
       {/* <BottomSheetAlarm /> */}
       {/* 레벨 변경 */}
-      <LayerLevelSelection full rettoLevel={70} case1 />
+      {/* 루비 보유 일반머니 충분 */}
+      <LayerLevelSelection full rettoLevel={48} />
       {/* 레벨 변경 확인 */}
       {/* <ModalLevelChange /> */}
       {/* 레벨 변경 불가 */}

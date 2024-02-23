@@ -17,7 +17,7 @@ import ModalApplyAccount from "../../components/retto_pub/common/modal/ModalAppl
 import ModalApplyReady from "./common/modal/ModalApplyReady";
 import LayerApplyFail from "./LayerApplyFail";
 
-const Apply = () => {
+const Apply = ({full, rettoLevel = 26, case1, case2, case3, case4, case5}) => {
   const [jewel, setJewel] = useState(); // 보석 상태
   const [isModal, setIsModal] = useState(false);
 
@@ -45,12 +45,18 @@ const Apply = () => {
         <FadeIn delay={250}>
           <div className={`${styleCommon.borderBox} ${styleApply.borderBox}`}>
             <LevelSelection
-              change={false}
+              change={false} 
               buttonText="이 리또가 좋겠어요"
               jewel={jewel}
               setJewel={setJewel}
               handleModalToggle={handleModalToggle}
-              full={false}
+              rettoLevel={rettoLevel}
+              full={full} 
+              case1={case1}
+              case2={case2}
+              case3={case3}
+              case4={case4}
+              case5={case5}
             />
             <div className={styleApply.botConWrap}>
               <p className={styleApply.titleText}>리또 1개는 아쉽다면?</p>
@@ -66,7 +72,7 @@ const Apply = () => {
           <ModalApply jewel={jewel} handleModalToggle={handleModalToggle} />
         )}
         {/* 신청 완료 */}
-        <ApplyComplete jewel={jewel}/>
+        {/* <ApplyComplete jewel={jewel}/> */}
         {/* 리또란? */}
         {/* <BottomSheetRettoInfo /> */}
         {/* 계좌 변경 등록 */}
@@ -78,7 +84,7 @@ const Apply = () => {
         {/* 신청 실패 */}
         {/* <LayerApplyFail />  */}
         {/* 레벨 변경 실패 */}
-        <LayerApplyFail type="change" case1 /> 
+        {/* <LayerApplyFail type="change" case1 />  */}
       </Container>
   </div>
   )

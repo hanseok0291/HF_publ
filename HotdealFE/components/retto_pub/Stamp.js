@@ -312,9 +312,9 @@ const Stamp = ({case1, case2}) => {
                   리또 레벨 변경
                 </a> */}
                 <p className={styleMyretto.button}>
-                  <b>2.11(수)</b>부터 레벨 변경 가능
+                  <em className={styleMyretto.disabled}>리또 레벨 변경</em>
                   <button type="button" className={styleMyretto.infoBtn} onClick={infoBtnhandleClick}>
-                    {isInfo && <span>레벨 변경 후 <b>10일동안</b> 다른 레벨로 <br /> 변경할 수 없어요.</span>}
+                    {isInfo && <span><b>2.11(수)</b>부터 레벨 변경 가능 <br /> 레벨 변경 후 <b>10일동안</b> 다른 레벨로 <br /> 변경할 수 없어요.</span>}
                   </button>
                 </p>
               </div>

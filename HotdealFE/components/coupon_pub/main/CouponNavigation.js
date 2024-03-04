@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import styleCommon from "../../../styles/coupon_pub/Common.module.css";
-import styleNav from "../../../styles/coupon_pub/Nav.module.css";
+import styleCouponNav from "../../../styles/coupon_pub/CouponNav.module.css";
 
-const CouponNavigation = ({list = ["Home", "할인", "브랜드", "선물함", "선물함", "선물함", "선물함"]}) => {
+const CouponNavigation = ({list = ["전체", "구매 완료", "구매 취소"]}) => {
   const navRef = useRef();
   const [isFixed, setIsFixed] = useState(false);
   const [onNavIndex, setOnNavIndex] = useState(0);
@@ -28,10 +28,10 @@ const CouponNavigation = ({list = ["Home", "할인", "브랜드", "선물함", "
 
   return (
     <>
-      <div className={`${styleNav.navWrap}`} ref={navRef}>
-        <ul className={`${styleNav.nav} ${isFixed && styleNav.fixed}`}>
+      <div className={`${styleCouponNav.navWrap}`} ref={navRef}>
+        <ul className={`${styleCouponNav.nav} ${isFixed && styleCouponNav.fixed}`}>
           {list.map((item, index) => (
-            <li className={onNavIndex === index ? styleNav.active : ""} key={index}>
+            <li className={onNavIndex === index ? styleCouponNav.active : ""} key={index}>
             <a href={`/coupon/`} className={styleCommon.btn} onClick={() => handleClick(index)}>
               {item}
             </a>

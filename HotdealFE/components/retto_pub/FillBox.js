@@ -26,24 +26,31 @@ const FillBox = ({case1, case2}) => {
             <div className={`${styleCommon.levelWrap} ${styleFillBox.borderInner} ${case1 ? 'stone' : 'emerald'} ${case2 ? 'overlay' : ''}`}>{/* ruby emerald diamond stone(실패) className 추가 시 보석 변경 overlay className 추가 시 실패 위기  */}
               <div className="jewelImg"></div>
               <p className={`${styleCommon.levelText}`}>Lv. 2&nbsp;<span className="jewelColor">에메랄드</span><button type='button'></button></p>
-              <p className={styleCommon.subText}>
+              {/* <p className={styleCommon.subText}>
                 보관만 하면 <br />
                 매주 월요일 <b>리또를 받아요!</b>
-              </p>
+              </p> */}
               {/* 실패 */}
               {/* <p className={styleCommon.subText}>
                 이번 기회는 아쉽게 놓쳤어요! <br />
                 <b>50만원을 다시 채워주세요.</b>
               </p> */}
+              {/* 마케팅 수신 동의(혜택 알림 포함) 전체 해제로 실패 확정 */}
+              <p className={styleCommon.subText}>
+                이번 기회는 아쉽게 놓쳤어요! <br />
+                <b>혜택 알림을 다시 켜주세요.</b>
+              </p>
             </div>
             <div className={styleFillBox.priceWrap}>
               <b>500,000</b>원
               {/* 실패 위기(시간 지나지 않은 시점) */}
-              <div className={styleFillBox.timerTextWrap}>
+              {/* <div className={styleFillBox.timerTextWrap}>
                 <span className={styleFillBox.timerText}>7일 15시간 24분 41초 안에 머니를 채워주세요!</span>
-              </div>
+              </div> */}
             </div>
-            <Button>머니 채우기</Button>
+            {/* <Button>머니 채우기</Button> */}
+            {/* 마케팅 수신 동의(혜택 알림 포함) 전체 해제로 실패 확정 */}
+            <Button>알림 켜기</Button>
           </div>
 
         </div>

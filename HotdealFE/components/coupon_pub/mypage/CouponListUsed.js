@@ -21,7 +21,7 @@ const CouponList = (props) => {
               <li className={`${styleCouponList.CouponItem}`}>
                 <button href={`/coupon_pub/`}>
                   <div
-                    className={`${styleCouponList.imgBox} ${styleCommon.imgBox} stamp stamp_1 rightLarge`}
+                    className={`${styleCouponList.imgBox} ${styleCommon.imgBox} stamp stamp_1 centerSmall`}
                   >
                     <img
                       src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
@@ -37,7 +37,7 @@ const CouponList = (props) => {
               </li>
               <li className={`${styleCouponList.CouponItem}`}>
                 <button href={`/coupon_pub/`}>
-                  <div className={`${styleCouponList.imgBox}`}>
+                  <div className={`${styleCouponList.imgBox} ${styleCommon.imgBox} stamp stamp_2 centerSmall`}>
                     <img
                       src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
                       alt="핫딜 TEST"
@@ -52,7 +52,7 @@ const CouponList = (props) => {
               </li>
               <li className={`${styleCouponList.CouponItem}`}>
                 <button href={`/coupon_pub/`}>
-                  <div className={styleCouponList.imgBox}>
+                  <div className={`${styleCouponList.imgBox} ${styleCommon.imgBox} stamp stamp_3 centerSmall`}>
                     <img
                       src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
                       alt="핫딜 TEST"
@@ -67,7 +67,22 @@ const CouponList = (props) => {
               </li>
               <li className={`${styleCouponList.CouponItem}`}>
                 <button href={`/coupon_pub/`}>
-                  <div className={styleCouponList.imgBox}>
+                  <div className={`${styleCouponList.imgBox} ${styleCommon.imgBox} stamp stamp_4 centerSmall`}>
+                    <img
+                      src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
+                      alt="핫딜 TEST"
+                    ></img>
+                  </div>
+                  <div className={styleCouponList.infoBox}>
+                    <p className={styleCouponList.infoBrand}>투썸플레이스</p>
+                    <p className={styleCouponList.infoProduct}>오렌지에이드</p>
+                    <p className={styleCouponList.infoFrom}>From.이헥토</p>
+                  </div>
+                </button>
+              </li>
+              <li className={`${styleCouponList.CouponItem}`}>
+                <button href={`/coupon_pub/`}>
+                  <div className={`${styleCouponList.imgBox} ${styleCommon.imgBox} stamp stamp_5 centerSmall`}>
                     <img
                       src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
                       alt="핫딜 TEST"

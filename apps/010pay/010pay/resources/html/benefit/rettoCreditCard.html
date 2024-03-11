@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../../css/jquery-ui.css">
 <link rel="stylesheet" href="../../css/owl.carousel.min.css">
 <link rel="stylesheet" href="../../css/slick.min.css">
-<link rel="stylesheet" href="../../css/common.css?ver=231227">
+<link rel="stylesheet" href="../../css/common.css?ver=240305">
 <!--[if lt IE 9]>
 <script type="text/javascript" src="../../js/html5shiv.js"></script>
 <script type="text/javascript" src="../../js/respond.min.js"></script>
@@ -23,6 +23,7 @@
 <script src="../../js/design.js" defer="defer"></script>
 <script src="../../js/commonmsg.js"></script>
 <script src="../../js/commonutil.js"></script>
+<script src="https://www.youtube.com/iframe_api"></script>
 </head>
 
 <body>
@@ -94,6 +95,10 @@
 								</ul>
 							</div>
 							<div class="bg"></div>
+							<div class="video_container">
+								<div id="youtube-video"></div>
+								<div id="play-button" class="btn_wrap"></div>
+							</div>
 						</div>
 					</li>
 					<!-- <li class="maintain">
@@ -329,68 +334,95 @@
 <!-- //common prompt -->
 
 <script>
-$(document).ready(function(){
-	// rolling banner(logo)
-	var roller = $(".rolling-list");
-	var clone = roller.clone();
-	$(".rolling-banner").append(clone);
-	var rollerWidth = roller.outerWidth();
-	roller.addClass("original");
-	clone.addClass("clone").css("left", rollerWidth);
+	$(document).ready(function(){
+		// rolling banner(logo)
+		var roller = $(".rolling-list");
+		var clone = roller.clone();
+		$(".rolling-banner").append(clone);
+		var rollerWidth = roller.outerWidth();
+		roller.addClass("original");
+		clone.addClass("clone").css("left", rollerWidth);
+		
+		function createCalendar(startDate, endDate) {
+			var calendar = document.getElementById("calendar");
+			var currentDate = startDate;
+			
+			var table = document.createElement("table");
+			var thead = document.createElement("thead");
+			var tbody = document.createElement("tbody");
+			var headerRow = document.createElement("tr");
+			
+			var daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+			
+			for (var i = 0; i < daysOfWeek.length; i++) {
+					var th = document.createElement("th");
+					var p = document.createElement("p");
+					p.textContent = daysOfWeek[i];
+					th.appendChild(p);
+					headerRow.appendChild(th);
+			}
+			
+			thead.appendChild(headerRow);
+			table.appendChild(thead);
+			
+			var row = document.createElement("tr");
+			
+			while (currentDate <= endDate) {
+					var cell = document.createElement("td");
+					var p = document.createElement("p");
+					p.textContent = currentDate.getDate();
+					cell.appendChild(p);
+					row.appendChild(cell);
+					
+					if (currentDate.getDay() === 6) { // 토요일인 경우
+							tbody.appendChild(row);
+							row = document.createElement("tr");
+					}
+					
+					currentDate.setDate(currentDate.getDate() + 1);
+			}
+			
+			table.appendChild(tbody);
+			calendar.appendChild(table);
+		}
 	
-	function createCalendar(startDate, endDate) {
-            var calendar = document.getElementById("calendar");
-            var currentDate = startDate;
-            
-            var table = document.createElement("table");
-            var thead = document.createElement("thead");
-            var tbody = document.createElement("tbody");
-            var headerRow = document.createElement("tr");
-            
-            var daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
-            
-            for (var i = 0; i < daysOfWeek.length; i++) {
-                var th = document.createElement("th");
-                var p = document.createElement("p");
-                p.textContent = daysOfWeek[i];
-								th.appendChild(p);
-                headerRow.appendChild(th);
-            }
-            
-            thead.appendChild(headerRow);
-            table.appendChild(thead);
-            
-            var row = document.createElement("tr");
-            
-            while (currentDate <= endDate) {
-                var cell = document.createElement("td");
-                var p = document.createElement("p");
-                p.textContent = currentDate.getDate();
-								cell.appendChild(p);
-                row.appendChild(cell);
-                
-                if (currentDate.getDay() === 6) { // 토요일인 경우
-                    tbody.appendChild(row);
-                    row = document.createElement("tr");
-                }
-                
-                currentDate.setDate(currentDate.getDate() + 1);
-            }
-            
-            table.appendChild(tbody);
-            calendar.appendChild(table);
-        }
-
-        // 현재 날짜를 가져와서 2주 전과 다음 주의 시작과 끝 날짜 계산
-        var today = new Date();
-        var currentDayOfWeek = today.getDay();
-        var startDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() - currentDayOfWeek - 0); // 2주 전 시작 날짜
-        var endDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() - currentDayOfWeek + 14); // 다음 주 종료 날짜
-        
-        createCalendar(startDate, endDate);
-});
-</script>
-<style>
-</style>
+		// 현재 날짜를 가져와서 2주 전과 다음 주의 시작과 끝 날짜 계산
+		var today = new Date();
+		var currentDayOfWeek = today.getDay();
+		var startDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() - currentDayOfWeek - 0); // 2주 전 시작 날짜
+		var endDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() - currentDayOfWeek + 14); // 다음 주 종료 날짜
+	
+		createCalendar(startDate, endDate);
+	});
+	
+	var player;
+	function onYouTubeIframeAPIReady() {
+		player = new YT.Player('youtube-video', {
+			videoId: '0RJFok7VE8I',
+			playerVars: {
+				'controls' : 0,
+				'rel': 0,
+			},
+			events: {
+				'onReady': onPlayerReady,
+				'onStateChange': onPlayerStateChange,
+			}
+		});
+	}
+	
+	function onPlayerReady(event) {
+		var playButton = document.getElementById("play-button");
+		playButton.addEventListener("click", function(){
+			player.playVideo();
+			this.style.display = "none";
+		});
+	}
+	
+	function onPlayerStateChange(event) {
+		if(event.data == YT.PlayerState.ENDED) {
+			document.getElementById("play-button").style.display = "block";
+		}
+	}
+	</script>
 </body>
 </html>

@@ -59,29 +59,6 @@ const Stamp = ({case1, case2}) => {
           카드 추천하고 친구랑 다이아 리또 받아요!
         </a>
       </div>
-      <YouTube
-      //videoId : https://www.youtube.com/watch?v={videoId} 유튜브 링크의 끝부분에 있는 고유한 아이디
-        videoId={'osvgfhEYiZU'}
-      //opts(옵션들): 플레이어의 크기나 다양한 플레이어 매개 변수를 사용할 수 있음.
-      //밑에서 더 설명하겠습니다.
-        opts={{
-          width: "100%",
-          height: "315",
-          playerVars: {
-            autoplay: 1,       // 자동 재생 여부 (0: 자동 재생 안 함, 1: 자동 재생)
-            cc_load_policy: 1, // 자막 불러오기 (1: 자막 불러오기)
-            color: 'red',      // 플레이어의 프로그레스 바 색상 (red, white 중 선택)
-            controls: 0,       // 플레이어 컨트롤 표시 여부 (0: 숨김, 1: 표시)
-            iv_load_policy: 3, // 비디오 주석 (3: 비디오 주석 표시 안 함)
-            modestbranding: 1, // YouTube 로고 최소화 (1: 로고 최소화)
-            rel: 1,            // 관련 동영상 표시 여부 (0: 현재 동영상과 관련된 동영상만 표시)
-            showinfo: 0,       // 비디오 제목 및 업로더 표시 여부 (0: 표시 안 함)
-            loop: 0,           // 비디오 반복 재생 여부 (0: 반복 안 함, 1: 반복)
-          },
-        }}
-        //이벤트 리스너 
-        onEnd={(e)=>{e.target.stopVideo(0);}}      
-      />
       <div className={styleMyretto.stampBackground}>
         <FadeIn>
           <div className={styleMyretto.rewardContentWrap}>

@@ -3,13 +3,17 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper';
 import FadeIn from 'react-fade-in';
 import NewsTicker from 'react-advanced-news-ticker'
+import YouTube from 'react-youtube';
 
 // style
 import "swiper/css/pagination";
 import styleHome from "../../styles/retto_pub/styleHome.module.css";
 import Button from './common/Button';
+import LottieComponent from './LottieComponent';
+import ConfettiLottie from "../../public/lotties/confetti.json";
 
-const Home = () => {
+// case1 추첨 예정 리또 있음 case2 영상 노출 case3 토스트 팝업 노출
+const Home = ({case1, case2, case3}) => {
   // 슬라이드 내용
   const contents =[
     {
@@ -28,112 +32,143 @@ const Home = () => {
       imgClass: ['letter', 'code', 'present2']
     }
   ]
-  const checkBtnRef = useRef(null);
-  const bottomBtnRef = useRef(null);
   const mainSectionRef = useRef(null);
+  const videoRef = useRef();
+  const [isThumbnail, setIsThumbnail] = useState(true);
+  const [isToast, setIsToast] = useState(true);
 
-  const [isBounce, setIsBounce] = useState(true);
-  const [isBottomBtn, setIsBottomBtn] = useState(false);
+  const onReady = (e) => {
+    videoRef.current = e.target;
+  }
 
-  const handleScroll = () => {
-    // 스크롤 위치가 0보다 크면 로직 실행
-    if (window.scrollY > 0) {
-      setIsBounce(false);
-    } else {
-      setIsBounce(true);
-    }
+  const onEnd = () => {
+    setIsThumbnail(true);
+  }
 
-    if (window.scrollY > innerHeight / 2) {
-      setIsBottomBtn(true);
-    } else {
-      setIsBottomBtn(false);
-    }
-  };
-  
-  const scrollToTarget = () => {
-    if (mainSectionRef.current) {
-      const mainSectionPos = mainSectionRef.current.getBoundingClientRect().top + window.scrollY - 97
-      window.scrollTo({
-        top: mainSectionPos,
-        behavior: 'smooth',
-      });
+  const playVideo = () => {
+    if(videoRef.current){
+      videoRef.current.playVideo();
+      setIsThumbnail(false);
     }
   }
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <div className={styleHome.container}>
       <div className={styleHome.visualSection}>
         <div className={styleHome.titleWrap}>
-          <FadeIn delay={150}>
-            <div className={styleHome.prizeWrap}>
-              <NewsTicker maxRows={1} rowHeight={18}>
-                <div>1099회 <span>4,567명 1등 당첨!</span></div>
-                <div>1099회 <span>4,567명 1등 당첨!</span></div>
-                <div>1099회 <span>4,567명 1등 당첨!</span></div>
-                <div>1099회 <span>4,567명 1등 당첨!</span></div>
-              </NewsTicker>
+          <div className={styleHome.textWrap}>
+            <FadeIn delay={150}>
+              <div className={styleHome.prizeWrap}>
+                <NewsTicker maxRows={1} rowHeight={18}>
+                  <div>1099회 <span>4,567명 1등 당첨!</span></div>
+                  <div>1099회 <span>4,567명 1등 당첨!</span></div>
+                  <div>1099회 <span>4,567명 1등 당첨!</span></div>
+                  <div>1099회 <span>4,567명 1등 당첨!</span></div>
+                </NewsTicker>
+              </div>
+              <div>
+                <p>자동 응모되는 리워드 로또</p>
+                <h2>
+                  매주 최대<br /><span>1억원의 행운</span>
+                </h2>
+              </div>
+              {
+                case1 && (
+                  <a href="#" className={styleHome.rettoSizeWrap}>
+                    <span className={styleHome.firstText}>추첨 예정 리또</span>
+                    <span className={styleHome.secondText}>10개</span>
+                  </a>
+                )
+              }
+            </FadeIn>
+          </div>
+          <p className={`${styleHome.balloonText} ${case1 && styleHome.isRetto}`}>리또번호와 로또번호가 일치하면 당첨!</p>
+        </div>
+        <div className={styleHome.character}></div>
+        <span className={styleHome.hand}></span>
+        <LottieComponent className={styleHome.confettiLottie} animationData={ConfettiLottie} isStopped autoplay={false} delay={1000}  />
+      </div>
+      <div className={styleHome.mainSectionWrap}>
+        {case2 && (
+          <div className={styleHome.videoContainer}>
+            {/* <p className={styleHome.textWrap}>
+              임원희가 알려주는 <br />
+              <b>매주 리또를 얻는 3가지 방법</b>
+            </p> */}
+            <p className={styleHome.textWrap}>
+              리또 머니함에 넣어만 두면 <br />
+              <b>매주 알아서 쌓이는 리워드 로또란?</b>
+            </p>
+            <div className={styleHome.videoWrap}>
+              <YouTube
+                videoId={'0RJFok7VE8I'}
+                opts={{
+                  width: "100%",
+                  height: "100%",
+                  playerVars: {
+                    autoplay: 0,       // 자동 재생 여부 (0: 자동 재생 안 함, 1: 자동 재생)
+                    mute: 0,
+                    rel: 0,
+                    controls: 0
+                  },
+                }}
+                //이벤트 리스너 
+                onReady={onReady}
+                onEnd={onEnd}
+              />
+              {/* type1 머니함 완벽가이드 type2 임원희 */}
+              {isThumbnail && <button type='button' className={`${styleHome.thumbnail} ${styleHome.type1}`} onClick={playVideo}></button>}
             </div>
-            <h2>
-              <span>자동으로 응모되는 리워드 로또</span>
-              매주 최대 1억원의 행운
-            </h2>
-            <p>
-              무료로 받은 6개의 리또번호와 실제 로또번호가 <br />
-              일치하면 누구나 최대 1억원 행운 당첨
-            </p>
-          </FadeIn>
-        </div>
-        <div className={styleHome.character}>
-          <div className={styleHome.characterBox}>
-            <span className={styleHome.img1}></span>
           </div>
-          <div className={styleHome.itemBox}>
-            <span className={styleHome.img3}></span> 
-            <span className={styleHome.img2}></span>
+        )}
+        <div className={`${styleHome.mainSection} ${styleHome.firstSection}`} ref={mainSectionRef}>
+          <HomeSwiper content={contents[0]}/>
+          {/* 신용카드 미발급  */}
+          <Button white large>신용카드 결제로 리또 받기</Button>
+          {/* 이미 카드 신청한 고객 */}
+          {/* <Button white large>카드 추천하고 리또 더 받기</Button> */}
+        </div>
+        <div className={styleHome.mainSection}>
+          <HomeSwiper content={contents[1]}/>
+          <ul className={styleHome.secondContent}>
+            <li>
+              <strong>추가 혜택 1</strong>
+              <p>
+                리또 받기 연속 성공하면 <br />
+                매주 쌓이는 리또가 최대 5개
+              </p>
+            </li>
+            <li>
+              <strong>추가 혜택 2</strong>
+              <p>
+                에메랄드, 다이아 레벨 연속 10주 <br className={styleHome.foldSize} />
+                성공할 때마다 쿠폰 선물
+              </p>
+            </li>
+          </ul>
+          <Button white large>머니 채우기로 리또 받기</Button>
+          {/* <Button white large>나의 리또 보러가기</Button> */}
+        </div>
+        <div className={styleHome.mainSection}>
+          <HomeSwiper content={contents[2]}/>
+          <Button white large>리또 선물하고 리또 받기</Button>
+        </div>
+      </div>
+      {case3 && isToast && (
+        <div className={styleHome.toastWrap}>
+          <div className={styleHome.toastBox}>
+            <a href="#">
+              <div className={styleHome.textWrap}>
+                <span>1099회차</span>
+                <p>오늘 리또를 2개 받았어요!</p>
+              </div>
+            </a>
+            <button type='button' className={styleHome.closeBtn} onClick={() => setIsToast(false)}></button>
           </div>
         </div>
-        <div className={`${styleHome.checkBtnWrap} ${isBounce ? styleHome.bounce : ''}`}>
-          <button type="button" className={`${styleHome.checkBtn}`} ref={checkBtnRef} onClick={scrollToTarget}>혜택 확인하기</button>
-        </div>
-      </div>
-      <div className={styleHome.mainSection} ref={mainSectionRef}>
-        <HomeSwiper content={contents[0]}/>
-        <div className={styleHome.firstContent}>
-          <span className={styleHome.tip}>TIP</span>
-          <p>
-            친구와 나 모두 카드 발급받고 <br />사이좋게 <b>다이아 리또 25개</b>
-          </p>
-        </div>
-        <Button white large>신용카드 결제로 리또 받기</Button>
-      </div>
-      <div className={styleHome.mainSection}>
-        <HomeSwiper content={contents[1]}/>
-        <ul className={styleHome.secondContent}>
-          <li>
-            <strong>추가 혜택 1</strong>
-            <p>
-              리또 받기 연속 성공하면 <br />
-              매주 쌓이는 리또가 최대 5개
-            </p>
-          </li>
-          <li>
-            <strong>추가 혜택 2</strong>
-            <p>
-              에메랄드, 다이아 레벨 연속 10주 <br className={styleHome.foldSize} />
-              성공할 때마다 쿠폰 선물
-            </p>
-          </li>
-        </ul>
-        <Button white large>머니 채우기로 리또 받기</Button>
-      </div>
-      <div className={styleHome.mainSection}>
-        <HomeSwiper content={contents[2]}/>
-        <Button white large>리또 선물하고 리또 받기</Button>
-      </div>
-      <div className={`${styleHome.buttonWrap} ${isBottomBtn ? 'in' : 'out'}`} ref={bottomBtnRef}>
+      )}
+      
+      <div className={`${styleHome.buttonWrap}`}>
         <Button large>리또 받기</Button>
       </div>
     </div>
@@ -176,7 +211,7 @@ const HomeSwiper = ({content: {indexText, titleText, imgClass}}) => {
           swiper.autoplay.stop();
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.8 });
 
     if (targetRef.current) {
       observer.observe(targetRef.current);
@@ -190,12 +225,12 @@ const HomeSwiper = ({content: {indexText, titleText, imgClass}}) => {
   return (
     <>
       <span className={styleHome.topBox}>{indexText}</span>
-      <h4 ref={targetRef}>
+      <h4>
         {titleText.map((item, index) => (
           <span onClick={() => goToSlide(index)} className={currentIndex === index ? styleHome.active : ''} key={index}>{item}</span>
         ))}
       </h4>
-      <Swiper {...swiperParams} onSlideChange={handleSlideChange} onSwiper={setSwiper}>
+      <Swiper {...swiperParams} onSlideChange={handleSlideChange} onSwiper={setSwiper} ref={targetRef}>
         {imgClass.map((imgItem, imgIndex) => (
           <SwiperSlide key={imgIndex}>
             <div className={`img-box ${imgItem}`}></div>

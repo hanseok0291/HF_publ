@@ -26,7 +26,7 @@ export default function CouponDetail() {
               {/* //미사용 */}
               {/* 사용완료 */}
               <div
-                className={`${styleCouponDetail.imgBox} ${styleCommon.imgBox} ${styleCommon.stamp} ${styleCommon.stamp_1} ${styleCommon.rightMedium}`}
+                className={`${styleCouponDetail.imgBox} ${styleCommon.imgBox} stamp stamp_1 rightMedium`}
               >
                 <img
                   src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"

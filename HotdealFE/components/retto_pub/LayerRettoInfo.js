@@ -16,9 +16,8 @@ const LayerRettoInfo = () => {
           닫기
         </button>
       </div>
-      
     </div>
-  )
+  );
 }
 
 export default LayerRettoInfo;

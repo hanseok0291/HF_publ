@@ -25,7 +25,7 @@ export default function GiftDetail() {
           <div className={`${styleCommon.container}`}>
             <div className={`${styleGiftPresent.GiftDetaiSmalllWrap}`}>
               <div
-                className={`${styleCommon.imgBox} ${styleGiftPresent.imgBox} ${styleCommon.stamp} ${styleCommon.stamp_1} ${styleCommon.centerSmall}`}
+                className={`${styleCommon.imgBox} ${styleGiftPresent.imgBox} stamp stamp_1 centerSmall`}
               >
                 <img
                   src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"

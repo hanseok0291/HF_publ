@@ -21,7 +21,7 @@ const CouponList = (props) => {
               <li className={`${styleCouponList.CouponItem}`}>
                 <button href={`/coupon_pub/`}>
                   <div
-                    className={`${styleCouponList.imgBox} ${styleCommon.imgBox} stamp stamp_1 centerSmall`}
+                    className={`${styleCouponList.imgBox} ${styleCommon.imgBox} stamp stamp_1 centerLarge`}
                   >
                     <img
                       src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
@@ -37,7 +37,7 @@ const CouponList = (props) => {
               </li>
               <li className={`${styleCouponList.CouponItem}`}>
                 <button href={`/coupon_pub/`}>
-                  <div className={`${styleCouponList.imgBox} ${styleCommon.imgBox} stamp stamp_2 centerSmall`}>
+                  <div className={`${styleCouponList.imgBox} ${styleCommon.imgBox} stamp stamp_2 centerLarge`}>
                     <img
                       src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
                       alt="핫딜 TEST"
@@ -52,7 +52,7 @@ const CouponList = (props) => {
               </li>
               <li className={`${styleCouponList.CouponItem}`}>
                 <button href={`/coupon_pub/`}>
-                  <div className={`${styleCouponList.imgBox} ${styleCommon.imgBox} stamp stamp_3 centerSmall`}>
+                  <div className={`${styleCouponList.imgBox} ${styleCommon.imgBox} stamp stamp_3 centerLarge`}>
                     <img
                       src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
                       alt="핫딜 TEST"
@@ -67,7 +67,7 @@ const CouponList = (props) => {
               </li>
               <li className={`${styleCouponList.CouponItem}`}>
                 <button href={`/coupon_pub/`}>
-                  <div className={`${styleCouponList.imgBox} ${styleCommon.imgBox} stamp stamp_4 centerSmall`}>
+                  <div className={`${styleCouponList.imgBox} ${styleCommon.imgBox} stamp stamp_4 centerLarge`}>
                     <img
                       src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
                       alt="핫딜 TEST"
@@ -82,7 +82,7 @@ const CouponList = (props) => {
               </li>
               <li className={`${styleCouponList.CouponItem}`}>
                 <button href={`/coupon_pub/`}>
-                  <div className={`${styleCouponList.imgBox} ${styleCommon.imgBox} stamp stamp_5 centerSmall`}>
+                  <div className={`${styleCouponList.imgBox} ${styleCommon.imgBox} stamp stamp_5 centerLarge`}>
                     <img
                       src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"
                       alt="핫딜 TEST"

@@ -13,7 +13,7 @@ const ModalEntryComplete = ({ isCompletetOpen, closeCompletePopup }) => {
   };
   return (
     <BottomSheet
-      open={isCompletetOpen}
+      open={true}
       onDismiss={closeCompletePopup}
       snapPoints={({ minHeight, maxHeight }) => [minHeight, maxHeight * 0.9]}
       blocking={false}

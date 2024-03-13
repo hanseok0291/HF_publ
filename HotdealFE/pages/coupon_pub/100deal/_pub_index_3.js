@@ -350,8 +350,8 @@ const Index = () => {
       {/* <ModalHundredArrival /> */}
       {/* 재진입 팝업 */} 
       {/* <ModalHundredealReEnter noDeal={true}/> */}
-      <ModalHundredArrival />
-      {/* <ModalEntryComplete /> */}
+      {/* <ModalHundredArrival type2={true}/> */}
+      <ModalEntryComplete />
     </Layout>
   );
 };

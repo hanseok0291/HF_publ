@@ -67,7 +67,7 @@ const Home = ({case1, case2, case3}) => {
                 </NewsTicker>
               </div>
               <div>
-                <p>자동 응모되는 리워드 로또</p>
+                <p>자동 응모되는 무료 리워드 로또</p>
                 <h2>
                   매주 최대<br /><span>1억원의 행운</span>
                 </h2>
@@ -109,7 +109,7 @@ const Home = ({case1, case2, case3}) => {
                     autoplay: 0,       // 자동 재생 여부 (0: 자동 재생 안 함, 1: 자동 재생)
                     mute: 0,
                     rel: 0,
-                    controls: 0
+                    controls: 1
                   },
                 }}
                 //이벤트 리스너 
@@ -122,9 +122,9 @@ const Home = ({case1, case2, case3}) => {
           </div>
         )}
         <div className={`${styleHome.mainSection} ${styleHome.firstSection}`} ref={mainSectionRef}>
-          <HomeSwiper content={contents[0]}/>
+          <HomeSwiper content={contents[0]} issueTarget={true} />
           {/* 신용카드 미발급  */}
-          <Button white large>신용카드 결제로 리또 받기</Button>
+          {/* <Button white large>신용카드 결제로 리또 받기</Button> */}
           {/* 이미 카드 신청한 고객 */}
           {/* <Button white large>카드 추천하고 리또 더 받기</Button> */}
         </div>
@@ -175,7 +175,7 @@ const Home = ({case1, case2, case3}) => {
   )
 }
 
-const HomeSwiper = ({content: {indexText, titleText, imgClass}}) => {
+const HomeSwiper = ({content: {indexText, titleText, imgClass}, issueTarget=false}) => {
   // swiper option
   const swiperParams = {
     slidesPerView: 1,
@@ -230,6 +230,7 @@ const HomeSwiper = ({content: {indexText, titleText, imgClass}}) => {
           <span onClick={() => goToSlide(index)} className={currentIndex === index ? styleHome.active : ''} key={index}>{item}</span>
         ))}
       </h4>
+      {issueTarget && <p className={styleHome.swiperSubtext}>발급 대상: 신청일 기준 민법상 성년(만 19세 이상) 내국인</p>}
       <Swiper {...swiperParams} onSlideChange={handleSlideChange} onSwiper={setSwiper} ref={targetRef}>
         {imgClass.map((imgItem, imgIndex) => (
           <SwiperSlide key={imgIndex}>

@@ -97,7 +97,11 @@ const LayerRankingInfo = () => {
               <span className={styleRanking.left}>5만원 이하 랭킹 상금: 수령 신청일 기준 즉시 포인트로 지급</span>
             </li>
             <li>
-            5만원 초과 당첨금 <br /> : 제세공과금 처리를 위해 신분증 사본 제출 필수 <br /> : 신분증 사본 제출일 기준 익월 10일 내 포인트로 지급
+              5만원 초과 당첨금
+              <div className={styleRanking.innerText}>
+                : 제세공과금 처리를 위해 신분증 사본(미성년자의 경우 법정대리인의 신분증 사본, 가족관계 증명서와 당첨금 수령 동의) 제출 필수 <br />
+                : 신분증 사본 제출일 기준 익월 10일 내 포인트로 지급
+              </div>
             </li>
           </ul>
           <table className={styleRanking.table}>

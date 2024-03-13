@@ -40,6 +40,10 @@ const LayerWinInfo = () => {
               </CopyToClipboard>
             </li>
             <li>
+              미성년자의 경우 법정대리인의 신분증 사본, <br />
+              가족관계 증명서와 당첨금 수령 동의 제출 필수
+            </li>
+            <li>
               당첨일로부터 91일 내 미제출 시 당첨 취소
             </li>
           </ul>

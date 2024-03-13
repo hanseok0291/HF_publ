@@ -84,7 +84,7 @@ const index = () => {
       {/* 추천 코드 입력 완료 토스트 */}
       {/* <Toast width={250}>카드 발급 선물 신청이 완료되었어요!</Toast> */}
       {/* <ModalMoneyGive /> */}
-      {/* <LayerWinInfo /> */}
+      <LayerWinInfo />
     </>
   );
 };

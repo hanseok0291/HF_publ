@@ -63,7 +63,7 @@ const Home = ({case1, case2, case3}) => {
                   <div>1099회 <span>4,567명 1등 당첨!</span></div>
                   <div>1099회 <span>4,567명 1등 당첨!</span></div>
                   <div>1099회 <span>4,567명 1등 당첨!</span></div>
-                  <div>1099회 <span>4,567명 1등 당첨!</span></div>
+                  <div>1099회 <span>4,567789798명 1등 당첨!</span></div>
                 </NewsTicker>
               </div>
               <div>
@@ -74,10 +74,19 @@ const Home = ({case1, case2, case3}) => {
               </div>
               {
                 case1 && (
-                  <a href="#" className={styleHome.rettoSizeWrap}>
-                    <span className={styleHome.firstText}>추첨 예정 리또</span>
-                    <span className={styleHome.secondText}>10개</span>
-                  </a>
+                  <div className={styleHome.rettoSizeContainer}>
+                    <h4>추첨 예정 리또</h4>
+                    <div className={styleHome.rettoSizeWrap}>
+                      <a href="#" className={styleHome.rettoSizeBox}>
+                        <span className={styleHome.firstText}>1115회</span>
+                        <span className={styleHome.secondText}>10개</span>
+                      </a>
+                      <a href="#" className={styleHome.rettoSizeBox}>
+                        <span className={styleHome.firstText}>1116회</span>
+                        <span className={styleHome.secondText}>12개</span>
+                      </a>
+                    </div>
+                  </div>
                 )
               }
             </FadeIn>
@@ -107,7 +116,7 @@ const Home = ({case1, case2, case3}) => {
                   height: "100%",
                   playerVars: {
                     autoplay: 0,       // 자동 재생 여부 (0: 자동 재생 안 함, 1: 자동 재생)
-                    mute: 0,
+                    mute: 1,
                     rel: 0,
                     controls: 1
                   },

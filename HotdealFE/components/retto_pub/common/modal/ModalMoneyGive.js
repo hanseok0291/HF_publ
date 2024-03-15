@@ -11,7 +11,7 @@ import LottieComponent from "../../LottieComponent";
 const ModalMoneyGive = () => {
   return (
     <div
-      className={`${styleModal.modal} ${styleModal.modalCommon} ${styleModal.open} ${styleRettoModal.retto} ${styleRettoModal.moneyGive}`}
+      className={`${styleModal.modal} ${styleModal.modalCommon} ${styleModal.open} ${styleRettoModal.retto} ${styleRettoModal.moneyGiveModal}`}
     >
       <div className={`${styleModal.modalDialog} ${styleRettoModal.modalDialog}`}>
         <div className={`${styleModal.modalContent} ${styleRettoModal.modalContent}`}>

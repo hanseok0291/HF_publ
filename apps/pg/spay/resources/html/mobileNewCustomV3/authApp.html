@@ -31,7 +31,7 @@
 
 	<link rel="stylesheet" href="../../css/owl.carousel.min.css">
 	<link rel="stylesheet" href="../../css/slick.min.css">
-	<link rel="stylesheet" href="../../css/common_monotone.css?ver=240214">
+	<link rel="stylesheet" href="../../css/common_monotone.css?ver=240215">
 	<!--[if lt IE 9]>
 <script type="text/javascript" src="../../js/html5shiv.js"></script>
 <script type="text/javascript" src="../../js/respond.min.js"></script>
@@ -97,12 +97,13 @@
 								<div class="list-header accordion-title">
 									<button type="button">
 										<h3 class="subject">
-											<div class="check-box check-all">
+											<div class="check-box check-all w-full">
 												<input type="checkbox" id="check-all" name="check-all">
-												<label for="check-all">휴대폰 결제 항목 모두 동의 (필수)</label>
+												<label for="check-all">휴대폰 결제 항목 모두 동의</label>
 											</div>
 										</h3>
 									</button>
+									<span class="right">(선택포함)</span>
 									<button type="button" class="arrow-toggle">
 									</button>
 								</div>
@@ -112,7 +113,7 @@
 											<li class="list-item">
 												<div class="check-box">
 													<input type="checkbox" id="chk1" class="checkSelect" name="chk1" value="Y">
-													<label for="chk1">휴대폰 결제 항목 모두 동의 (필수)</label>
+													<label for="chk1">통신과금서비스 이용약관(필수)</label>
 												</div>
 												<span class="btn-right" id=""><a href="javascript:;" data-toggle="modal"
 														data-target="#noticeDetail"><span class="btn_view">보기</span></a></span>
@@ -120,7 +121,7 @@
 											<li class="list-item">
 												<div class="check-box">
 													<input type="checkbox" id="chk2" class="checkSelect" name="chk2" value="Y">
-													<label for="chk2">개인(신용)정보 수집/이용동의 (필수)</label>
+													<label for="chk2">개인정보 수집·이용(필수)</label>
 												</div>
 												<span class="btn-right" id=""><a href="javascript:;" data-toggle="modal"
 														data-target="#noticeDetail"><span class="btn_view">보기</span></a></span>
@@ -128,7 +129,7 @@
 											<li class="list-item">
 												<div class="check-box">
 													<input type="checkbox" id="chk3" class="checkSelect" name="chk3" value="Y">
-													<label for="chk3">개인(신용)정보 제공/위탁 동의 (필수)</label>
+													<label for="chk3">개인정보 제3자 제공 및 위탁 안내(필수)</label>
 												</div>
 												<span class="btn-right" id=""><a href="javascript:;" data-toggle="modal"
 														data-target="#noticeDetail"><span class="btn_view">보기</span></a></span>
@@ -136,33 +137,28 @@
 											<li class="list-item">
 												<div class="check-box">
 													<input type="checkbox" id="chk4" class="checkSelect" name="chk4" value="Y">
-													<label for="chk4">간편 인증 인증 동의 (필수)</label>
+													<label for="chk4">광고성 정보 전송을 위한 개인정보 수집·이용(선택)</label>
 												</div>
 												<span class="btn-right" id=""><a href="javascript:;" data-toggle="modal"
 														data-target="#noticeDetail"><span class="btn_view">보기</span></a></span>
 											</li>
 											<li class="list-item">
 												<div class="check-box">
-													<input type="checkbox" id="chk5" class="" name="chk5" value="Y">
-													<label for="chk5">결제 감사 리워드 지급을 위한 마케팅 정보 수신 동의 (선택)</label>
+													<input type="checkbox" id="chk5" class="checkSelect" name="chk5" value="Y">
+													<label for="chk5">결제 보상 알림을 위한 개인정보 활용 (선택)</label>
 												</div>
 												<span class="btn-right" id=""><a href="javascript:;" data-toggle="modal"
 														data-target="#noticeDetail"><span class="btn_view">보기</span></a></span>
 											</li>
 											<li class="list-item">
 												<div class="check-box">
-													<input type="checkbox" id="chk6" class="" name="chk6" value="Y">
-													<label for="chk6">결제 감사 리워드 지급을 위한 마케팅 목적 개인정보
-														수집 및 이용 동의 (선택)</label>
+													<input type="checkbox" id="chk6" class="checkSelect" name="chk6" value="Y">
+													<label for="chk6">결제 보상 알림을 위한 수신 (선택)</label>
 												</div>
 												<span class="btn-right" id=""><a href="javascript:;" data-toggle="modal"
 														data-target="#noticeDetail"><span class="btn_view">보기</span></a></span>
 											</li>
 										</ul>
-										<div class="pop-wrap">
-											<p>결제 리워드(리워드 로또) 전송을 위한 동의이며, 다른 목적으로는 사용되지 않습니다.</p>
-											<button type="button" class="btn-close"></button>
-										</div>
 									</div>
 								</div>
 							</li>
@@ -974,6 +970,26 @@
 		$(".pop-wrap .btn-close").on("click", function () {
 			$('.pop-wrap').hide();
 		})
+
+		// 결제 보상 약관 체크
+		var checkbox1 = document.getElementById('chk5');
+		var checkbox2 = document.getElementById('chk6');
+
+		checkbox1.addEventListener('change', function () {
+			if (!this.checked) {
+				checkbox2.checked = false;
+			} else if (this.checked) {
+				checkbox2.checked = true;
+			}
+		});
+
+		checkbox2.addEventListener('change', function () {
+			if (!this.checked) {
+				checkbox1.checked = false;
+			} else if (this.checked) {
+				checkbox1.checked = true;
+			}
+		});
 
 	</script>
 </body>

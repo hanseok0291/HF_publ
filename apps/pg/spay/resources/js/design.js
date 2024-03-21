@@ -291,217 +291,217 @@ function modalOpenSlide(obj) {
 
 // 농어촌공사 커스텀
 	// 결제해야할 금액
-	var payMoney = document.getElementById("payMoney").value;
-	var element = document.getElementById('payMoney').innerText;
-	var regex = /[^0-9]/g; // 숫자가 아닌 문자열을 선택하는 정규식
-	var payMoneyInt = element.replace(regex, "");	// 원래 문자열에서 숫자가 아닌 모든 문자열을 빈 문자로 변경
-	var payMoneyResult = parseInt(payMoneyInt);
+	// var payMoney = document.getElementById("payMoney").value;
+	// var element = document.getElementById('payMoney').innerText;
+	// var regex = /[^0-9]/g; // 숫자가 아닌 문자열을 선택하는 정규식
+	// var payMoneyInt = element.replace(regex, "");	// 원래 문자열에서 숫자가 아닌 모든 문자열을 빈 문자로 변경
+	// var payMoneyResult = parseInt(payMoneyInt);
 	
-	// 입력 가능 금액 계산
-	var totalMoney = parseFloat(document.getElementById('totalMoney').value);
-	var formatResult = formatNumber(totalMoney);
-	var resultEle = document.getElementById('result');
+	// // 입력 가능 금액 계산
+	// var totalMoney = parseFloat(document.getElementById('totalMoney').value);
+	// var formatResult = formatNumber(totalMoney);
+	// var resultEle = document.getElementById('result');
 	
-	resultEle.textContent = formatResult;
+	// resultEle.textContent = formatResult;
 	
-	function formatNumber(number) {
-		return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	}
+	// function formatNumber(number) {
+	// 	return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	// }
 	
-	function formatNumberInput(inputEl) {
-		var value = inputEl.value.replace(/,/g, '');
-		inputEl.value = formatNumber(value);
-	}
+	// function formatNumberInput(inputEl) {
+	// 	var value = inputEl.value.replace(/,/g, '');
+	// 	inputEl.value = formatNumber(value);
+	// }
 	
-	function calculate() {
-		var totalMoney = parseFloat(document.getElementById('totalMoney').value);
-		var num1 = parseFloat(document.getElementById('num1').value.replace(/,/g, ''));
-		var num2 = parseFloat(document.getElementById('num2').value.replace(/,/g, ''));
-		var num3 = parseFloat(document.getElementById('num3').value.replace(/,/g, ''));
-		var resultEle = document.getElementById('result');
+	// function calculate() {
+	// 	var totalMoney = parseFloat(document.getElementById('totalMoney').value);
+	// 	var num1 = parseFloat(document.getElementById('num1').value.replace(/,/g, ''));
+	// 	var num2 = parseFloat(document.getElementById('num2').value.replace(/,/g, ''));
+	// 	var num3 = parseFloat(document.getElementById('num3').value.replace(/,/g, ''));
+	// 	var resultEle = document.getElementById('result');
 	
-		//빈 값일 경우 0으로 대체하여 계산
-		num1 = isNaN(num1) ? 0 : num1;
-		num2 = isNaN(num2) ? 0 : num2;
-		num3 = isNaN(num3) ? 0 : num3;
+	// 	//빈 값일 경우 0으로 대체하여 계산
+	// 	num1 = isNaN(num1) ? 0 : num1;
+	// 	num2 = isNaN(num2) ? 0 : num2;
+	// 	num3 = isNaN(num3) ? 0 : num3;
 	
-		var result = totalMoney - num1 - num2 - num3;
-		var formatResult = formatNumber(result);
-		resultEle.textContent = formatResult;
-	}
+	// 	var result = totalMoney - num1 - num2 - num3;
+	// 	var formatResult = formatNumber(result);
+	// 	resultEle.textContent = formatResult;
+	// }
 	
-	// 초기화 함수
-	function resetCal() {
-		document.getElementById('num1').value = '';
-		document.getElementById('num2').value = '';
-		document.getElementById('num3').value = '';
-		document.getElementById('result').value = '';
-		calculate();
-	}
+	// // 초기화 함수
+	// function resetCal() {
+	// 	document.getElementById('num1').value = '';
+	// 	document.getElementById('num2').value = '';
+	// 	document.getElementById('num3').value = '';
+	// 	document.getElementById('result').value = '';
+	// 	calculate();
+	// }
 	
-	// 카드정보 입력 1000단위 콤마
-		$("input.num-only").change(function() {
-			var num1 = parseFloat(document.getElementById('num1').value);
-			var num2 = parseFloat(document.getElementById('num2').value);
-			var num3 = parseFloat(document.getElementById('num3').value);
+	// // 카드정보 입력 1000단위 콤마
+	// 	$("input.num-only").change(function() {
+	// 		var num1 = parseFloat(document.getElementById('num1').value);
+	// 		var num2 = parseFloat(document.getElementById('num2').value);
+	// 		var num3 = parseFloat(document.getElementById('num3').value);
 	
-			var formatResult1 = formatNumber(num1);
-			var formatResult2 = formatNumber(num2);
-			var formatResult3 = formatNumber(num3);
-		});
+	// 		var formatResult1 = formatNumber(num1);
+	// 		var formatResult2 = formatNumber(num2);
+	// 		var formatResult3 = formatNumber(num3);
+	// 	});
 	
-			// 푸터 고정 토글
-			function fixedFooter(){
-				// 짧은 화면 푸터 고정
-				var winHeight = $(window).innerHeight();
-				var mainHeight = $("#content").height() + $("#header").innerHeight() + $("#footer").innerHeight();
-				var gap = winHeight - mainHeight; // 콘텐츠가 짧은 경우
-				if(gap > 0) {
-					$("#footer").addClass("fixed");
-				} else {
-					$("#footer").removeClass("fixed");
-				}
+	// 		// 푸터 고정 토글
+	// 		function fixedFooter(){
+	// 			// 짧은 화면 푸터 고정
+	// 			var winHeight = $(window).innerHeight();
+	// 			var mainHeight = $("#content").height() + $("#header").innerHeight() + $("#footer").innerHeight();
+	// 			var gap = winHeight - mainHeight; // 콘텐츠가 짧은 경우
+	// 			if(gap > 0) {
+	// 				$("#footer").addClass("fixed");
+	// 			} else {
+	// 				$("#footer").removeClass("fixed");
+	// 			}
 	
-				// 푸터 고정 시 하단 여백 확보
-				var fixFoot = $("#footer.fixed");
-				if(fixFoot.length > 0){
-					var fixFootHeight = $(fixFoot).innerHeight();
-					$("#content").css("padding-bottom", fixFootHeight);
-				} else {
-					$("#content").css("padding-bottom", 0);
-				}
-			}
+	// 			// 푸터 고정 시 하단 여백 확보
+	// 			var fixFoot = $("#footer.fixed");
+	// 			if(fixFoot.length > 0){
+	// 				var fixFootHeight = $(fixFoot).innerHeight();
+	// 				$("#content").css("padding-bottom", fixFootHeight);
+	// 			} else {
+	// 				$("#content").css("padding-bottom", 0);
+	// 			}
+	// 		}
 			
-			// 아코디언 
-			$(".accodian-header").click(function(){
-				var selItem = $(this).parent('.accodian-item');
-				if(selItem.hasClass('open')) {
-					$(".accodian-item").removeClass('open');
-					selItem.find('.accodian-content').slideUp();
-				} else {
-					$(".accodian-item").removeClass('open');
-					$('.accodian-item .accodian-content').slideUp();
-					selItem.addClass('open');
-					selItem.find('.accodian-content').slideDown();
-				}
-				return false;
-			});
+	// 		// 아코디언 
+	// 		$(".accodian-header").click(function(){
+	// 			var selItem = $(this).parent('.accodian-item');
+	// 			if(selItem.hasClass('open')) {
+	// 				$(".accodian-item").removeClass('open');
+	// 				selItem.find('.accodian-content').slideUp();
+	// 			} else {
+	// 				$(".accodian-item").removeClass('open');
+	// 				$('.accodian-item .accodian-content').slideUp();
+	// 				selItem.addClass('open');
+	// 				selItem.find('.accodian-content').slideDown();
+	// 			}
+	// 			return false;
+	// 		});
 	
-			// 입력 가능금액 툴팁 버튼
-			$(".btn-tooltip").click(function(){
-				$(".popover").toggle();
-			});
+	// 		// 입력 가능금액 툴팁 버튼
+	// 		$(".btn-tooltip").click(function(){
+	// 			$(".popover").toggle();
+	// 		});
 			
-			// 결제하기 모달
-			var num1Chk = false;
-			var num2Chk = false;
-			var num3Chk = false;
-			var btnCount = 0;
+	// 		// 결제하기 모달
+	// 		var num1Chk = false;
+	// 		var num2Chk = false;
+	// 		var num3Chk = false;
+	// 		var btnCount = 0;
 	
-			$("#send").click(function() {
-					var resultEle = $('#result').text();
-					var resultEleInt = resultEle.replace(regex, "");	// 원래 문자열에서 숫자가 아닌 모든 문자열을 빈 문자로 변경
-					var num1 = parseFloat(document.getElementById('num1').value.replace(/,/g, ''));
-					var num2 = parseFloat(document.getElementById('num2').value.replace(/,/g, ''));
-					var num3 = parseFloat(document.getElementById('num3').value.replace(/,/g, ''));
-					num1 = isNaN(num1) ? 0 : num1;
-					num2 = isNaN(num2) ? 0 : num2;
-					num3 = isNaN(num3) ? 0 : num3;
+	// 		$("#send").click(function() {
+	// 				var resultEle = $('#result').text();
+	// 				var resultEleInt = resultEle.replace(regex, "");	// 원래 문자열에서 숫자가 아닌 모든 문자열을 빈 문자로 변경
+	// 				var num1 = parseFloat(document.getElementById('num1').value.replace(/,/g, ''));
+	// 				var num2 = parseFloat(document.getElementById('num2').value.replace(/,/g, ''));
+	// 				var num3 = parseFloat(document.getElementById('num3').value.replace(/,/g, ''));
+	// 				num1 = isNaN(num1) ? 0 : num1;
+	// 				num2 = isNaN(num2) ? 0 : num2;
+	// 				num3 = isNaN(num3) ? 0 : num3;
 					
-					var numResult = num1 + num2 + num3;
-					var resultEleInt = parseInt(resultEleInt);
+	// 				var numResult = num1 + num2 + num3;
+	// 				var resultEleInt = parseInt(resultEleInt);
 	
-					if (payMoneyResult == numResult) {
-						console.log('금액 검증 성공');
-						if (errChk1 == undefined) {
-						} else if (resultEle >= '0') {
-								console.log(errChk1);
-						} else if (resultEle >= '0' && errChk1 == false) {
-								return false;
-						} else if (num2Chk || (!num2Chk && num3Chk)) {
-								return false;
-						} else if (!num2Chk || (!num2Chk && !num3Chk)) {
-								return false;
-						}
-						alert('성공');
-					} else { //금액 검증 실패
-						showAlertMessage();
-						return false;
-					}
-			});
+	// 				if (payMoneyResult == numResult) {
+	// 					console.log('금액 검증 성공');
+	// 					if (errChk1 == undefined) {
+	// 					} else if (resultEle >= '0') {
+	// 							console.log(errChk1);
+	// 					} else if (resultEle >= '0' && errChk1 == false) {
+	// 							return false;
+	// 					} else if (num2Chk || (!num2Chk && num3Chk)) {
+	// 							return false;
+	// 					} else if (!num2Chk || (!num2Chk && !num3Chk)) {
+	// 							return false;
+	// 					}
+	// 					alert('성공');
+	// 				} else { //금액 검증 실패
+	// 					showAlertMessage();
+	// 					return false;
+	// 				}
+	// 		});
 	
-			$(".btn-add").click(btnAddClick);
+	// 		$(".btn-add").click(btnAddClick);
 	
-			function showAlertMessageOver() {
-					$.alertMessage("결제금액 입력 안내", "고객님의 입력하신 결제금액의 합계가 총 결제금액을 초과하였습니다. <br><br>입력한 결제금액 수정 후 재시도 해주세요.", "");
-			}
-			function showAlertMessage() {
-					$.alertMessage("결제금액 입력 안내", "고객님의 입력하신 결제금액의 합계가 총 결제금액과 다릅니다. <br><br>입력한 결제금액 수정 후 재시도 해주세요.", "");
-			}
+	// 		function showAlertMessageOver() {
+	// 				$.alertMessage("결제금액 입력 안내", "고객님의 입력하신 결제금액의 합계가 총 결제금액을 초과하였습니다. <br><br>입력한 결제금액 수정 후 재시도 해주세요.", "");
+	// 		}
+	// 		function showAlertMessage() {
+	// 				$.alertMessage("결제금액 입력 안내", "고객님의 입력하신 결제금액의 합계가 총 결제금액과 다릅니다. <br><br>입력한 결제금액 수정 후 재시도 해주세요.", "");
+	// 		}
 	
-			var errChk1, errChk2, errChk3;
-			function btnAddClick() {
-					var resultEle = $('#result').text();
-					var num1 = parseFloat(document.getElementById('num1').value.replace(/,/g, ''));
-					var num2 = parseFloat(document.getElementById('num2').value.replace(/,/g, ''));
-					var num3 = parseFloat(document.getElementById('num3').value.replace(/,/g, ''));
-					num1 = isNaN(num1) ? 0 : num1;
-					num2 = isNaN(num2) ? 0 : num2;
-					num3 = isNaN(num3) ? 0 : num3;
+	// 		var errChk1, errChk2, errChk3;
+	// 		function btnAddClick() {
+	// 				var resultEle = $('#result').text();
+	// 				var num1 = parseFloat(document.getElementById('num1').value.replace(/,/g, ''));
+	// 				var num2 = parseFloat(document.getElementById('num2').value.replace(/,/g, ''));
+	// 				var num3 = parseFloat(document.getElementById('num3').value.replace(/,/g, ''));
+	// 				num1 = isNaN(num1) ? 0 : num1;
+	// 				num2 = isNaN(num2) ? 0 : num2;
+	// 				num3 = isNaN(num3) ? 0 : num3;
 					
-					var numResult = num1 + num2 + num3;
-					var resultEleInt = parseInt(resultEle);
+	// 				var numResult = num1 + num2 + num3;
+	// 				var resultEleInt = parseInt(resultEle);
 	
-					if (btnCount === 0) {
-						if (resultEleInt >= 0) {
-							errChk1 = true;
-							num1Chk = checkAndShowError(errChk1, $(".accodian-item").eq(0));
-							openNextAccodian(0, 1);
-						} else {
-							errChk1 = false;
-							num1Chk = checkAndShowError(errChk1, $(".accodian-item").eq(0));
-							showAlertMessageOver();
-							return false;
-						}
-					} else if (btnCount === 1) {
-						if (resultEle >= '0') {
-							errChk2 = true;
-							num3 = $('#num3').val(resultEle);
-							resultEle = (resultEle - num3.val() +'');
-							$('#result').val(resultEle - resultEle);
-							$('#result').text('0');
-							num2Chk = checkAndShowError(errChk2, $(".accodian-item").eq(1));
-							openNextAccodian(1, 2);
-						} else {
-							errChk2 = false;
-							num2Chk = checkAndShowError(errChk2, $(".accodian-item").eq(1));
-							showAlertMessageOver();
-							return false;
-						}
-							$('.btn-add').hide();
-					}
-					btnCount++;
-			}
+	// 				if (btnCount === 0) {
+	// 					if (resultEleInt >= 0) {
+	// 						errChk1 = true;
+	// 						num1Chk = checkAndShowError(errChk1, $(".accodian-item").eq(0));
+	// 						openNextAccodian(0, 1);
+	// 					} else {
+	// 						errChk1 = false;
+	// 						num1Chk = checkAndShowError(errChk1, $(".accodian-item").eq(0));
+	// 						showAlertMessageOver();
+	// 						return false;
+	// 					}
+	// 				} else if (btnCount === 1) {
+	// 					if (resultEle >= '0') {
+	// 						errChk2 = true;
+	// 						num3 = $('#num3').val(resultEle);
+	// 						resultEle = (resultEle - num3.val() +'');
+	// 						$('#result').val(resultEle - resultEle);
+	// 						$('#result').text('0');
+	// 						num2Chk = checkAndShowError(errChk2, $(".accodian-item").eq(1));
+	// 						openNextAccodian(1, 2);
+	// 					} else {
+	// 						errChk2 = false;
+	// 						num2Chk = checkAndShowError(errChk2, $(".accodian-item").eq(1));
+	// 						showAlertMessageOver();
+	// 						return false;
+	// 					}
+	// 						$('.btn-add').hide();
+	// 				}
+	// 				btnCount++;
+	// 		}
 	
-			function checkAndShowError(errChk, accodianItem) {
-					if (errChk == true) {
-							accodianItem.find('.label, .text-error').hide();
-							return true;
-					} else {
-							accodianItem.find('.label, .text-error').show();
-							return false;
-					}
-			}
+	// 		function checkAndShowError(errChk, accodianItem) {
+	// 				if (errChk == true) {
+	// 						accodianItem.find('.label, .text-error').hide();
+	// 						return true;
+	// 				} else {
+	// 						accodianItem.find('.label, .text-error').show();
+	// 						return false;
+	// 				}
+	// 		}
 	
-			function openNextAccodian(currentIndex, nextIndex) {
-					$(".accodian-item").removeClass('open');
-					$(".accodian-item").eq(nextIndex).addClass('open');
-					setTimeout(function() {
-							$('.accodian .accodian-item').children('.accodian-content').slideUp();
-					}, 100);
-					setTimeout(function() {
-							$('.accodian .accodian-item').eq(nextIndex).slideDown();
-							$('.accodian .accodian-item').eq(nextIndex).children('.accodian-content').slideDown();
-					}, 350);
-			}
+	// 		function openNextAccodian(currentIndex, nextIndex) {
+	// 				$(".accodian-item").removeClass('open');
+	// 				$(".accodian-item").eq(nextIndex).addClass('open');
+	// 				setTimeout(function() {
+	// 						$('.accodian .accodian-item').children('.accodian-content').slideUp();
+	// 				}, 100);
+	// 				setTimeout(function() {
+	// 						$('.accodian .accodian-item').eq(nextIndex).slideDown();
+	// 						$('.accodian .accodian-item').eq(nextIndex).children('.accodian-content').slideDown();
+	// 				}, 350);
+	// 		}
 // 농어촌공사 커스텀

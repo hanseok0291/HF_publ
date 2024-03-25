@@ -46,7 +46,7 @@
 			<!-- //header -->
 
 			<!-- content -->
-			<div id="content" class="directDiscount exStyle">
+			<div id="content" class="directDiscount exStyle rettoStyle">
 				<!-- container -->
 				<div class="container">
 					<!-- headline -->
@@ -958,7 +958,12 @@
 	<!-- //common prompt -->
 	<script>
 		$(document).ready(function(){
-			modalOpenSlide('modalSlideType1')
+			// modalOpenSlide('modalSlideType1');
+			$('.check-type-sub').show();
+			var botHegiht = $('.bottom-area').outerHeight();
+			setTimeout(() => {
+				$('.check-type-sub').hide();
+			}, 0);
 		})
 
 		$("#modal-phone").on("focus", function () {
@@ -974,7 +979,8 @@
 		var otherItem = $(thisItem).siblings("li");
 		$(thisItem).toggleClass("active");
 		$('.check-type-sub').slideToggle(300);
-	});		
+		$("html, body").animate({ scrollTop: $(document).height() }, "slow");
+	});
 	
 	// modalOpenSlide("modalSlide");
 

@@ -46,7 +46,7 @@
 			<!-- //header -->
 
 			<!-- content -->
-			<div id="content" class="directDiscount exStyle">
+			<div id="content" class="directDiscount exStyle rettoStyle">
 				<!-- container -->
 				<div class="container">
 					<!-- headline -->
@@ -101,7 +101,48 @@
 								</ul>
 							</div>
 							<!-- 기본형 -->
-							<ul class="check-type">
+							<ul class="check-type retto accordion-list">
+								<li>
+									<div class="list-header accordion-title">
+										<span class="checkbox square">
+											<input type="checkbox" name="checkbox-all" id="checkbox-all" />
+											<label for="checkbox-all">결제조건 확인 및 결제정보, 보상 제공 전체 동의 <span class="text-right">(선택포함)</span> </label>
+										</span>
+										<button type="button" id="btn-open" class="arrow-toggle"></button>
+									</div>
+								</li>
+								<li class="check-type-sub">
+										<ul class="check-type depth">
+											<li>
+												<span class="checkbox square">
+													<input type="checkbox" name="checkbox_agree_set" id="checkbox_agree" class="checkbox_agree_set" />
+													<label for="checkbox_agree">결제 조건 확인 및 결제 정보 제품 동의(필수)</label>
+												</span>
+											</li>
+											<li>
+												<span class="checkbox square">
+													<input type="checkbox" name="checkbox_agree_set" id="checkbox_agree02" class="checkbox_agree_set" />
+													<label for="checkbox_agree02">결제 보상 알림을 위한 개인정보 활용 (선택)</label>
+												</span>
+												<span class="right">
+													<button type="button" id="terms" class="text-link info-chg ">
+														보기
+													</button>
+												</span>
+											</li>
+											<li>
+												<span class="checkbox square">
+													<input type="checkbox" name="checkbox_agree_set" id="checkbox_agree03" class="checkbox_agree_set" />
+													<label for="checkbox_agree03">결제 보상 알림을 위한 수신 (선택)</label>
+												</span>
+												<span class="right">
+													<button type="button" id="terms" class="text-link info-chg ">
+														보기
+													</button>
+												</span>
+											</li>
+										</ul>
+								</li>
 								<!-- 0월 결제 시 미노출 -->
 								<li>
 									<span class="checkbox square">
@@ -116,40 +157,11 @@
 									</span>
 								</li>
 								<!-- // 0월 결제 시 미노출 -->
-								<li>
-									<span class="checkbox square">
-										<input type="checkbox" name="checkbox_agree" id="checkbox_agree" checked />
-										<label for="checkbox_agree">결제조건 확인 및 결제정보 제공 동의</label>
-									</span>
-								</li>
-								<li>
-									<span class="checkbox square">
-										<input type="checkbox" name="checkbox_agree_set" id="checkbox_agree02" checked />
-										<label for="checkbox_agree02">결제 감사 리워드 지급을 위한 마케팅 정보 수신 (선택)</label>
-									</span>
-									<span>
-										<button type="button" id="terms" class="text-link info-chg">
-											보기
-										</button>
-									</span>
-								</li>
-								<li>
-									<span class="checkbox square">
-										<input type="checkbox" name="checkbox_agree_set" id="checkbox_agree03" checked />
-										<label for="checkbox_agree03">결제 감사 리워드 지급을 위한 마케팅 목적 개인정보
-											수집 및 이용동의 (선택)</label>
-									</span>
-									<span>
-										<button type="button" id="terms" class="text-link info-chg">
-											보기
-										</button>
-									</span>
-								</li>
 							</ul>
-							<div class="pop-wrap">
+							<!-- <div class="pop-wrap">
 								<p>결제 리워드(리워드 로또) 지급을 위한 동의이며, 다른 목적으로는 사용되지 않습니다.</p>
 								<button type="button" class="btn-close"></button>
-							</div>
+							</div> -->
 						</div>
 						<!-- //정보 입력 -->
 
@@ -301,6 +313,33 @@
 		</div>
 	</div>
 	<!-- //계좌 선택 -->
+
+	<!-- 비밀번호 변경 팝업 -->
+	<div id="modalSlideType1" class="modal modal-slide modal-info modal-view-only">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<!-- <button type="button" class="btn btn-close hide"><i class="icon-close">닫기</i></button> -->
+					<div class="container">
+						<h4>비밀번호 변경 안내</h4>
+						<p class="content">
+							강화된 회원 보안 정책의 일환으로, 취약한 조합의 <br>
+							결제 비밀번호는 초기화되었습니다.<br>
+							회원님의 개인정보를 안전하게 보호하기 위한 조치이오니<br>
+							<strong>
+								반드시 기존과 다른 결제 비밀번호로 <br>
+								재등록해 주시기 바랍니다. 
+							</strong>
+						</p>
+						<div class="btn-wrap">
+							<button type="button" class="bot-btn apply">결제 비밀번호 변경하기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //비밀번호 변경 팝업 -->
 
 	<!-- 현금영수증 발급정보 -->
 	<div id="modal-receipt" class="modal modal-slide modal-info">
@@ -918,6 +957,15 @@
 	</div>
 	<!-- //common prompt -->
 	<script>
+		$(document).ready(function(){
+			// modalOpenSlide('modalSlideType1');
+			$('.check-type-sub').show();
+			var botHegiht = $('.bottom-area').outerHeight();
+			setTimeout(() => {
+				$('.check-type-sub').hide();
+			}, 0);
+		})
+
 		$("#modal-phone").on("focus", function () {
 			console.log($('body').height());
 			$("html, body").scrollTop(200);
@@ -925,26 +973,90 @@
 		$(".pop-wrap .btn-close").on("click", function () {
 			$('.pop-wrap').hide();
 		})
+		
+		$(".accordion-list .list-header .arrow-toggle").click(function(){
+		var thisItem = $(this).parents("li");
+		var otherItem = $(thisItem).siblings("li");
+		$(thisItem).toggleClass("active");
+		$('.check-type-sub').slideToggle(300);
+		$("html, body").animate({ scrollTop: $(document).height() }, "slow");
+	});
+	
+	// modalOpenSlide("modalSlide");
 
 		// 리또 리워드 체크박스
-		var checkbox1 = document.getElementById('checkbox_agree02');
-		var checkbox2 = document.getElementById('checkbox_agree03');
+		var checkboxAll = document.getElementById('checkbox-all');
+		var checkbox1 = document.getElementById('checkbox_agree');
+		var checkbox2 = document.getElementById('checkbox_agree02');
+		var checkbox3 = document.getElementById('checkbox_agree03');
+		var subCheckBoxes = document.querySelectorAll('.checkbox_agree_set');
+
+		subCheckBoxes.forEach(function(checkbox) {
+			checkbox.addEventListener('change', function() {
+				// 모든 체크박스가 선택되었는지 확인합니다.
+				const allChecked = [...subCheckBoxes].every(function(checkbox) {
+					return checkbox.checked;
+				});
+				
+				// 모든 체크박스가 선택되었다면 checkbox_all도 선택합니다.
+				checkboxAll.checked = allChecked;
+				
+			});
+    });
+
+		// "모두 선택" 체크박스 상태 변경 이벤트 핸들러
+		function handleCheckboxAll() {
+			checkboxAll.checked = allSubCheckboxesChecked();
+		}
+
+		checkboxAll.addEventListener('change', function () {
+			if (!this.checked) {
+				checkbox1.checked = false;
+				checkbox2.checked = false;
+				checkbox3.checked = false;
+			} else if (this.checked) {
+				checkbox1.checked = true;
+				checkbox2.checked = true;
+				checkbox3.checked = true;
+			}
+		});
 
 		checkbox1.addEventListener('change', function () {
 			if (!this.checked) {
+				checkboxAll.checked = false;
 				checkbox2.checked = false;
-			} else if (this.checked && !checkbox2.checked) {
+				checkbox3.checked = false;
+			} else if (this.checked) {
+				checkboxAll.checked = true;
 				checkbox2.checked = true;
+				checkbox3.checked = true;
 			}
 		});
 
 		checkbox2.addEventListener('change', function () {
 			if (!this.checked) {
-				checkbox1.checked = false;
-			} else if (this.checked && !checkbox1.checked) {
-				checkbox1.checked = true;
+				checkboxAll.checked = false;
+				checkbox3.checked = false;
+			} else if (this.checked) {
+				checkbox3.checked = true;
+				if (checkbox1.checked) {
+					checkboxAll.checked = true;
+				}
 			}
 		});
+
+		checkbox3.addEventListener('change', function () {
+			if (!this.checked) {
+				checkboxAll.checked = false;
+				checkbox2.checked = false;
+			} else if (this.checked) {
+				checkbox2.checked = true;
+				if (checkbox1.checked) {
+					checkboxAll.checked = true;
+				}
+			}
+		});
+
 	</script>
 </body>
 

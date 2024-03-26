@@ -24,10 +24,6 @@ const Category = () => {
       name: '포인트 적립'
     },
     {
-      src: '../images/coupon/sample/icon-main-category-5.png',
-      name: 'PAY쿠폰'
-    },
-    {
       src: '../images/coupon/sample/icon-main-category-6.png',
       name: '상품권'
     },

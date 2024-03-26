@@ -36,7 +36,7 @@ const ModalFilter = ({ title, list, closeModal }) => {
               </button>
             </h3>
           </div>
-          <div className={`${styleModal.modalBody} ${styleFilter.modalBody}`}>
+          <div className={`${styleModal.modalBody} ${styleFilter.modalBody} ${styleModal.bgWhite}`}>
             <div className={`${styleFilter.filterWrap}`}>
               {list.map((item, index) => (
                 <p className={`${styleFilter.btn} ${countIndex === index && styleFilter.active}`} onClick={() => handleClick(index)} key={index}>

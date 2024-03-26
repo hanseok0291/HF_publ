@@ -338,7 +338,7 @@ export function InputCancle({ color, wd = "24", ht = "24" }) {
   return (
     <svg width={wd} height={ht} viewBox="0 0 24 24" fill={color} xmlns="http://www.w3.org/2000/svg">
       <path d="M3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12Z" fill="#CCCCCC"/>
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M15 16L16 15L13 12L16 9.00001L15 8.00001L12 11L9 8L8 9L11 12L8 15L9 16L12 13L15 16Z" fill="white"/>
+      <path fillRule="evenodd" clipRule="evenodd" d="M15 16L16 15L13 12L16 9.00001L15 8.00001L12 11L9 8L8 9L11 12L8 15L9 16L12 13L15 16Z" fill="white"/>
     </svg>
   );
 }

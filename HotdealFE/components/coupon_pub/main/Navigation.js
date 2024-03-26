@@ -2,12 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import styleCommon from "../../../styles/coupon_pub/Common.module.css";
 import styleNav from "../../../styles/coupon_pub/Nav.module.css";
 
-const navigationList = ["Home", "할인", "브랜드", "선물함"];
-
-const Navigation = () => {
+const Navigation = ({navList, activeIndex}) => {
   const navRef = useRef();
   const [isFixed, setIsFixed] = useState(false);
-  const [onNavIndex, setOnNavIndex] = useState(0);
+  const [onNavIndex, setOnNavIndex] = useState(activeIndex);
 
   const handleScroll = () => {
     if(navRef.current.getBoundingClientRect().top < 0){
@@ -32,7 +30,7 @@ const Navigation = () => {
     <>
       <div className={`${styleNav.navWrap}`} ref={navRef}>
         <ul className={`${styleNav.nav} ${isFixed && styleNav.fixed}`}>
-          {navigationList.map((item, index) => (
+          {navList.map((item, index) => (
             <li className={onNavIndex === index ? styleNav.active : ""} key={index}>
             <a href={`/coupon/`} className={styleCommon.btn} onClick={() => handleClick(index)}>
               {item}

@@ -18,6 +18,7 @@ import styleCategoryList from "../../../styles/coupon_pub/CategoryList.module.cs
 import styleCouponList from "../../../styles/coupon_pub/CouponList.module.css";
 import styleBrandList from "../../../styles/coupon_pub/BrandList.module.css";
 import CouponList from "./CouponList";
+import TabMenu from "../common/TabMenu";
 
 const settings = {
   rows: 1,
@@ -77,15 +78,7 @@ const BrandIn = ({priceList}) => {
             </p>
           </button>
         </div>
-        <ul className={styleBrandList.priceListWrap}>
-            {priceList.map((price, index) => (
-              <li key={index}>
-              <button type="button" className={priceActive === index && styleBrandList.active} onClick={() => handlePriceActiveClick(index)}>
-                {price}
-              </button>
-            </li>
-            ))}
-          </ul>
+        <TabMenu tabList={["전체", "1만원대", "2만원대", "3만원대", "4만원대", "5~9만원대", "10만원 이상"]} />
       </div>
 
       <div

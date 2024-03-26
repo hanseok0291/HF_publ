@@ -14,6 +14,7 @@ import ModalFillBox from "./common/modal/ModalFillBox";
 import Button from "./common/Button";
 import LayerFillFail from "./LayerFillFail";
 import LayerEmptyFail from "./LayerEmptyFail";
+import HundredDealEntry from "./HundredDealEntry";
 
 const FillBox = ({case1, case2}) => {
 
@@ -52,7 +53,7 @@ const FillBox = ({case1, case2}) => {
             {/* 마케팅 수신 동의(혜택 알림 포함) 전체 해제로 실패 확정 */}
             <Button>알림 켜기</Button>
           </div>
-
+          <HundredDealEntry />
         </div>
         <div className={styleFillBox.noteWrap}>
           <p>안내사항</p>

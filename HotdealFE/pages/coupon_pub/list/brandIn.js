@@ -16,7 +16,8 @@ import Footer from "../../../components/coupon_pub/common/Footer";
 import Category from "../../../components/coupon_pub/main/Category";
 import BrandIn from "../../../components/coupon_pub/list/BrandIn";
 import CouponList from "../../../components/coupon_pub/list/CouponList";
-import BrandHeader from "../../../components/coupon_pub/list/BrandHeader";
+import TabMenu from "../../../components/coupon_pub/common/TabMenu";
+import CategoryHeader from "../../../components/coupon_pub/list/CategoryHeader";
 
 const categoryList = [
   {
@@ -128,14 +129,14 @@ const Index = () => {
   return (
     <>
       <Layout>
-        <BrandHeader />
+        <CategoryHeader />
         <div
           className={`${styleDefaultLayout.wrap}`}
         >
           <div className={styleBrandList.brandTitleArea}>
             <button type="button" className={styleBrandList.brandTitle} onClick={handleCategoryOpenClick}>
               카페·베이커리
-              <i className={`${styleBrandList.iconDown} ${categoryOpen && styleBrandList.open}`}></i>
+              <i className={`${styleBrandList.iconDown} ${categoryOpen ? styleBrandList.open : ""}`}></i>
             </button>
             {categoryOpen && 
               <ul className={styleBrandList.categoryListWrap}>
@@ -151,14 +152,14 @@ const Index = () => {
             }
             
           </div>
-          <div className={`${styleBrandList.brandListWrap} ${brandOpen && styleBrandList.open}`}>
+          <div className={`${styleBrandList.brandListWrap} ${brandOpen ? styleBrandList.open : ""}`}>
             <div className={styleBrandList.areaBox}>
               <div></div>
             </div>
             <div className={styleBrandList.brandListBox}>
               <ul>
                 {brandList.map((brand, index) => (
-                  <li key={index} className={brandActive === index && styleBrandList.active} onClick={() => handleBrandActiveClick(index)}>
+                  <li key={index} className={brandActive === index ? styleBrandList.active : ""} onClick={() => handleBrandActiveClick(index)}>
                     <a href="#">
                       <div className={styleBrandList.imgWrap}>
                         <img src={brand.src} alt={brand.name} />
@@ -175,17 +176,7 @@ const Index = () => {
               </div>
             </div>
           </div>
-          <div className={`${styleBrandList.priceListContainer} ${priceListBlur && styleBrandList.blur}`}>
-            <ul className={styleBrandList.priceListWrap} ref={priceListRef} onScroll={() => handlePriceScroll()}>
-              {priceList.map((price, index) => (
-                <li key={index}>
-                  <button type="button" className={priceActive === index && styleBrandList.active} onClick={() => handlePriceActiveClick(index)}>
-                    {price}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <TabMenu tabList={["전체", "1만원대", "2만원대", "3만원대", "4만원대", "5~9만원대", "10만원 이상"]} bgColor={true} />
           <CouponList filter1={true}/>
           <Footer />
         </div>

@@ -62,6 +62,10 @@ const ModalHundredInfo = ({ isHundredOpen, closeHundredPopup }) => {
               상품별 첫 응모, 추가 응모 사용 가능 
             </p>
             <p>
+              <b>무료 응모권</b> <br />
+              상품 별 첫 응모, 추가 응모 사용 가능
+            </p>
+            <p>
               <b>미션 응모권<em>당첨 확률 UP</em></b> <br />
               추가 응모 사용 가능
             </p>

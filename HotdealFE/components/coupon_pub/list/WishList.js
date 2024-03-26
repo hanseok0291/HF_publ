@@ -40,7 +40,7 @@ const CouponList = (props) => {
                 <button href={`/coupon_pub/`}>
                   <div className={styleWishList.imgWrap}>
                     <div
-                      className={`${styleCouponList.imgBox} ${styleWishList.imgBox}`}
+                      className={`${styleCouponList.imgBox} ${styleWishList.imgBox} ${styleCommon.imgBox} stamp stamp_3 centerLarge`}
                     >
                       <img
                         src="https://tbezauth.settlebank.co.kr/theme/hotdeal/HD20220714000000000625_20220714094504024.png"

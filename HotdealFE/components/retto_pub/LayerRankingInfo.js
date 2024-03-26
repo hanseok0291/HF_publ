@@ -4,6 +4,7 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 //style
 import styleCommon from '../../styles/retto_pub/Common.module.css';
 import styleRanking from "../../styles/retto_pub/Ranking.module.css";
+import styleFillBox from "../../styles/retto_pub/FillBox.module.css";
 
 const LayerRankingInfo = () => {
 
@@ -15,10 +16,46 @@ const LayerRankingInfo = () => {
           닫기
         </button>
       </div>
+
       <div className={`${styleRanking.winInfoWrap}`}>
-        <h4><span className={`${styleRanking.number} ${styleRanking.number1}`}></span>랭킹 운영 기준</h4>
+        <div className={styleRanking.rettoInfoWrap}>
+          <h4><em>리또</em>란?</h4>
+          <p className={styleRanking.topText}>
+            실제 로또 당첨 번호와 내 리또 번호가 <br />
+            같다면 <b>최대 1억을 받을 수 있어요!</b>
+          </p>
+          <p className={styleRanking.botText}>
+            로또 앞에 ‘다시’를 뜻하는 ‘RE-’를 붙여 <br />
+            혜택을 되돌려드리고자 하는 마음을 담았어요.
+          </p>
+        </div>
+        <h4><span className={`${styleRanking.number} ${styleRanking.number1}`}></span>리또와 리또 랭킹 상금을 함께 받는 방법</h4>
+        <ul className={`${styleRanking.wayCon}`}>
+          <li>
+            <b>첫번째</b>
+            <p>
+              010PAY 우리카드로 <br />
+              1만원 이상 결제하고 리또 받기
+            </p>
+          </li>
+          <li>
+            <b>두번째</b>
+            <p>
+              리또 머니 보관하고 <br />
+              매주 자동으로 리또 받기
+            </p>
+          </li>
+          <li>
+            <b>세번째</b>
+            <p>
+              친구한테 리또 선물하고 <br />
+              리또 더 받기
+            </p>
+          </li>
+        </ul>
+        <h4><span className={`${styleRanking.number} ${styleRanking.number2}`}></span>리또 랭킹 운영 기준</h4>
         <div className={styleRanking.firstCon}>
-          <p>랭킹에 참여하면 <br /><b>포인트 최대 100만원</b></p>
+          <p>리또 랭킹에 참여하고<br /><b>1등하면 100만원!</b></p>
           <ul>
             <li>
               <span className={styleRanking.left}>참여 대상:</span><span className={styleRanking.right}>리또 보유 고객</span>
@@ -34,9 +71,15 @@ const LayerRankingInfo = () => {
             </li>
           </ul>
         </div>
-        <h4><span className={`${styleRanking.number} ${styleRanking.number2}`}></span>랭킹 산정 방법</h4>
+        <h4><span className={`${styleRanking.number} ${styleRanking.number3}`}></span>리또 랭킹 산정 방법</h4>
         <div className={styleRanking.secondCon}>
           <ul>
+            <li>
+              <span className={styleRanking.left}>일별 점수: 현재 보유한 리또 레벨의 수량 x 가중치</span>
+            </li>
+            <li>
+              <span className={styleRanking.left}>월별 점수: 일별로 집계된 점수의 총 합</span>
+            </li>
             <li>
               <span className={styleRanking.left}>동점일 경우:</span>
               <div className={styleRanking.right}>
@@ -45,49 +88,59 @@ const LayerRankingInfo = () => {
                   <span className={styleRanking.iconRuby}></span> 최대 보유 고객<span className={styleRanking.iconArrow}></span>
                 </div>
                 <div>
-                  <span className={styleRanking.iconEmerald}></span> 최대 보유 고객<span className={styleRanking.iconArrow}></span>
-                  고객 이름 ‘가나다순’
+                  <span className={styleRanking.iconEmerald}></span> 최대 보유 고객
                 </div>
               </div>
-            </li>
-            <li>
-              일별로 집계된 보유 리또 레벨 수량 x 가중치 <br />
-              <span className={styleRanking.smallText}><i className={styleRanking.iconStar}></i>다이아 리또 보유 고객은 일별 보유장수 x3으로 점수가 계산돼요!</span>
             </li>
           </ul>
           <table className={styleRanking.table}>
           <colgroup>
-            <col width="50%"/>
-            <col width="50%" />
+            <col width="80px"/>
+            <col />
+            <col width="80px" />
+            <col width="80px" />
           </colgroup>
             <thead>
               <tr>
                 <th>레벨</th>
-                <th>가중치</th>
+                <th>보유 리또 수량 (A)</th>
+                <th>가중치 (B)</th>
+                <th>점수 (AxB)</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>다이아</td>
+                <td>10개</td>
                 <td>x3</td>
+                <td>30점</td>
               </tr>
               <tr>
                 <td>에메랄드</td>
+                <td>10개</td>
                 <td>x2</td>
+                <td>20점</td>
               </tr>
               <tr>
                 <td>루비</td>
+                <td>10개</td>
                 <td>x1</td>
+                <td>10점</td>
+              </tr>
+              <tr>
+                <td colSpan={3}>일별 총 점수</td>
+                <td>60점</td>
               </tr>
             </tbody>
           </table>
+          <p className={styleRanking.botText}>* 위 표는 이해를 돕기 위한 예시입니다.</p>
         </div>
-        <h4><span className={`${styleRanking.number} ${styleRanking.number3}`}></span>블라인드 기간</h4>
+        <h4><span className={`${styleRanking.number} ${styleRanking.number4}`}></span>블라인드 기간</h4>
         <div className={`${styleRanking.firstCon} ${styleRanking.type3}`}>
           <p>마감 3일 전부터 <br /><b>랭킹 현황 비공개</b></p>
           <span className={styleRanking.smallText}>포인트 30원으로 랭킹 순위 확인 가능</span>
         </div>
-        <h4><span className={`${styleRanking.number} ${styleRanking.number4}`}></span>랭킹 상금 및 수령 방법</h4>
+        <h4><span className={`${styleRanking.number} ${styleRanking.number5}`}></span>랭킹 상금 및 수령 방법</h4>
         <div className={styleRanking.secondCon}>
           <ul>
             <li>
@@ -134,12 +187,26 @@ const LayerRankingInfo = () => {
               </tr>
             </tbody>
           </table>
-          <p className={styleRanking.botText}><i className={styleRanking.iconStar}></i>포인트 상금의 유효기간은 91일이며, 미사용 상금은 이후 자동 소멸됩니다.</p>
           <div className={styleRanking.botBanner}>
             <p className={styleRanking.text1}>리또에 대해 더 알아보고 싶다면?</p>
             <p className={styleRanking.text2}>지금 바로 알아보기</p>
           </div>
         </div>
+      </div>
+      <div className={styleFillBox.noteWrap}>
+        <p><span className={styleFillBox.alertIcon}></span>꼭 확인하세요</p>
+        <ul>
+          <li>리또 1장이라도 보유 시 리또 랭킹은 자동 참여 됩니다. </li>
+          <li>리또 랭킹 운영 방침은 내부 사정에 따라 변경될 수 있습니다.</li>
+          <li>반복되는 카드 결제/취소로 인한 부당한 행위 적발 시 리또 랭킹 참여 대상에서 제외될 수 있습니다.</li>
+          <li>상금은 010PAY 포인트로 지급됩니다.  </li>
+          <li>리또 랭킹의 상금 수령 기한은 당첨일로 부터 31일 내 입니다. </li>
+          <li>010PAY 포인트 상금의 유효기간은 91일 이며,  미사용 상금은 자동 소멸됩니다.</li>
+          <li>상금 수령기한내 미수령 시 자동 소멸됩니다. (이후 상금 수령 불가)</li>
+          <li>010PAY 앱 탈퇴 시 보유 포인트는 소멸됩니다. </li>
+          <li>010PAY 포인트 및 010PAY 머니 인당 보유 한도는 각 200만원으로, 보유 한도 초과 시 상금 리워드는 더 이상 적립되지 않습니다. </li>
+          <li>본 이벤트는 헥토파이낸셜 에서 제공하며, 헥토파이낸셜의 사정에 따라 운영 방침이 변경/종료될 수 있습니다.</li>
+        </ul>
       </div>
     </div>
   )

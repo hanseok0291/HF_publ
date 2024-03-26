@@ -57,7 +57,7 @@ const Index = () => {
           ref={wrapRef}
         >
           {/* 카테고리 메뉴 */}
-          <Navigation />
+          <Navigation navList={["HOME", "할인", "브랜드", "선물함"]} activeIndex={0}  />
           <RewardBanner />
           <Category />
           <div className={`${styleCommon.containerWrap} ${styleCommon.main}`}>

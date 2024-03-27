@@ -84,7 +84,7 @@ const BrandIn = ({priceList}) => {
       <div
         className={`${styleCouponList.CouponListWrap} ${styleCouponList.DropBox}}`}
       >
-          <CouponList filter1={true}/>
+        <CouponList filter1={true}/>
       </div>
     </>
   );

@@ -199,7 +199,7 @@ const CouponList = ({filter1, filter2, setIsFilter1, setIsFilter2}) => {
                 >
                   인기순
                   <i
-                    className={`${styleCommon.iconArrow} ${styleCommon.iconPlusRound}`}
+                    className={`${styleCommon.iconArrow} ${styleCommon.iconFilter}`}
                   ></i>
                 </button>}
 

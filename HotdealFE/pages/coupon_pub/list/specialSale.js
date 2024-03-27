@@ -40,7 +40,7 @@ const Index = () => {
           <a href="#">
             <img src="../../../images/coupon/sample/banner-sale-2.png" alt="" />
           </a>
-          <TabMenu tabList={["전체", "1만원대", "2만원대", "3만원대", "4만원대", "5~9만원대", "10만원 이상"]} />
+          <TabMenu fixedPos={50} tabList={["전체", "1만원대", "2만원대", "3만원대", "4만원대", "5~9만원대", "10만원 이상"]} />
           <CouponList filter1={true}/>
         </div>
         <Footer />

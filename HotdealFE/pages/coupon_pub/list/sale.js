@@ -13,6 +13,7 @@ import Footer from "../../../components/coupon_pub/common/Footer";
 import CouponList from "../../../components/coupon_pub/list/CouponList";
 import Navigation from "../../../components/coupon_pub/main/Navigation";
 import ModalFilter from "../../../components/coupon_pub/common/modal/ModalFilter";
+import TabMenu from "../../../components/coupon_pub/common/TabMenu";
 
 const Index = () => {
   //헤더 아이콘 디폴트 세팅
@@ -40,6 +41,7 @@ const Index = () => {
           <div>
             <img src="../../../images/coupon/sample/banner-sale-1.png" alt="" />
           </div>
+          <TabMenu fixedPos={45} tabList={["전체", "1만원대", "2만원대", "3만원대", "4만원대", "5~9만원대", "10만원 이상"]} />
           <CouponList filter1={true} filter2={true} setIsFilter1={setIsFilter1} setIsFilter2={setIsFilter2} />
         </div>
         <Footer />

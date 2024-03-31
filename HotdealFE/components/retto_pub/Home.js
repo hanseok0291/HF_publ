@@ -12,45 +12,41 @@ import Button from './common/Button';
 import LottieComponent from './LottieComponent';
 import ConfettiLottie from "../../public/lotties/confetti.json";
 
-// case1 추첨 예정 리또 있음 case2 영상 노출 case3 토스트 팝업 노출
-const Home = ({case1, case2, case3}) => {
+// case1 추첨 예정 리또 있음 case2 토스트 팝업 노출
+const Home = ({case1, case2}) => {
   // 슬라이드 내용
   const contents =[
     {
       indexText: '첫 번째',
-      titleText: ['010PAY 우리카드 발급', '1만원 이상 결제할 때마다', '최대 1억 당첨 리또 자동 지급'],
-      imgClass: ['card', 'receipt', 'money']
+      titleText: ['010PAY 우리카드', '결제 금액 1만원에 1개씩', '최대 1억 당첨 리또 자동 지급'],
+      imgClass: ['card', 'receipt', 'money'],
+      isVideo : true,
+      videoText: ['010PAY 우리카드', '쓰기만 해도 행운이 쌓이는 리워드'],
+      videoThumbnail: 'type1',
+      videoId: '8ycblWwEfdU'
     },
     {
       indexText: '두 번째',
       titleText: ['리또 머니함에 머니 보관', '최대 1억 당첨 가능한', '리또 자동 지급'],
-      imgClass: ['vault', 'money', 'present']
+      imgClass: ['vault', 'money', 'present'],
+      isVideo : true,
+      videoText: ['리또 머니함에 넣어만 두면', '매주 알아서 행운이 쌓이는 리워드'],
+      videoThumbnail: 'type2',
+      videoId: '0RJFok7VE8I'
     },
     {
       indexText: '세 번째',
       titleText: ['친구에게 리또 선물하기', '친구가 내 선물코드 입력하면', '친구와 나, 모두 리또 받기'],
-      imgClass: ['letter', 'code', 'present2']
+      imgClass: ['letter', 'code', 'present2'],
+      isVideo : false,
+      videoText: [],
+      videoThumbnail: '',
+      videoId: ''
     }
   ]
   const mainSectionRef = useRef(null);
-  const videoRef = useRef();
-  const [isThumbnail, setIsThumbnail] = useState(true);
   const [isToast, setIsToast] = useState(true);
-
-  const onReady = (e) => {
-    videoRef.current = e.target;
-  }
-
-  const onEnd = () => {
-    setIsThumbnail(true);
-  }
-
-  const playVideo = () => {
-    if(videoRef.current){
-      videoRef.current.playVideo();
-      setIsThumbnail(false);
-    }
-  }
+  const [playingVideoId, setPlayingVideoId] = useState(null);
 
   return (
     <div className={styleHome.container}>
@@ -98,47 +94,16 @@ const Home = ({case1, case2, case3}) => {
         <LottieComponent className={styleHome.confettiLottie} animationData={ConfettiLottie} isStopped autoplay={false} delay={1000}  />
       </div>
       <div className={styleHome.mainSectionWrap}>
-        {case2 && (
-          <div className={styleHome.videoContainer}>
-            {/* <p className={styleHome.textWrap}>
-              임원희가 알려주는 <br />
-              <b>매주 리또를 얻는 3가지 방법</b>
-            </p> */}
-            <p className={styleHome.textWrap}>
-              리또 머니함에 넣어만 두면 <br />
-              <b>매주 알아서 쌓이는 리워드 로또란?</b>
-            </p>
-            <div className={styleHome.videoWrap}>
-              <YouTube
-                videoId={'0RJFok7VE8I'}
-                opts={{
-                  width: "100%",
-                  height: "100%",
-                  playerVars: {
-                    autoplay: 0,       // 자동 재생 여부 (0: 자동 재생 안 함, 1: 자동 재생)
-                    mute: 1,
-                    rel: 0,
-                    controls: 1
-                  },
-                }}
-                //이벤트 리스너 
-                onReady={onReady}
-                onEnd={onEnd}
-              />
-              {/* type1 머니함 완벽가이드 type2 임원희 */}
-              {isThumbnail && <button type='button' className={`${styleHome.thumbnail} ${styleHome.type1}`} onClick={playVideo}></button>}
-            </div>
-          </div>
-        )}
+        <h3 className={styleHome.middleTitle}>무료로 리또 받는 방법</h3>
         <div className={`${styleHome.mainSection} ${styleHome.firstSection}`} ref={mainSectionRef}>
-          <HomeSwiper content={contents[0]} issueTarget={true} />
+          <HomeSwiper content={contents[0]} issueTarget={true} playingVideoId={playingVideoId}  setPlayingVideoId={setPlayingVideoId}/>
           {/* 신용카드 미발급  */}
-          {/* <Button white large>신용카드 결제로 리또 받기</Button> */}
+          <Button white large>010PAY 우리카드로 리또 받기</Button>
           {/* 이미 카드 신청한 고객 */}
           {/* <Button white large>카드 추천하고 리또 더 받기</Button> */}
         </div>
         <div className={styleHome.mainSection}>
-          <HomeSwiper content={contents[1]}/>
+          <HomeSwiper content={contents[1]} playingVideoId={playingVideoId} setPlayingVideoId={setPlayingVideoId}/>
           <ul className={styleHome.secondContent}>
             <li>
               <strong>추가 혜택 1</strong>
@@ -166,11 +131,11 @@ const Home = ({case1, case2, case3}) => {
           {/* <Button white large>나의 리또 보러가기</Button> */}
         </div>
         <div className={styleHome.mainSection}>
-          <HomeSwiper content={contents[2]}/>
+          <HomeSwiper content={contents[2]} playingVideoId={playingVideoId}  setPlayingVideoId={setPlayingVideoId}/>
           <Button white large>리또 선물하고 리또 받기</Button>
         </div>
       </div>
-      {case3 && isToast && (
+      {case2 && isToast && (
         <div className={styleHome.toastWrap}>
           <div className={styleHome.toastBox}>
             <a href="#">
@@ -191,7 +156,7 @@ const Home = ({case1, case2, case3}) => {
   )
 }
 
-const HomeSwiper = ({content: {indexText, titleText, imgClass}, issueTarget=false}) => {
+const HomeSwiper = ({content: {indexText, titleText, imgClass, isVideo, videoId, videoText, videoThumbnail}, issueTarget=false, playingVideoId, setPlayingVideoId}) => {
   // swiper option
   const swiperParams = {
     slidesPerView: 1,
@@ -204,6 +169,25 @@ const HomeSwiper = ({content: {indexText, titleText, imgClass}, issueTarget=fals
   const [currentIndex, setCurrentIndex] = useState(0);
   const [swiper, setSwiper] = useState(null);
   const targetRef = useRef(null);
+  const videoRef = useRef();
+  const [isThumbnail, setIsThumbnail] = useState(true);
+
+  const onReady = (e) => {
+    videoRef.current = e.target;
+  };
+  
+
+  const onEnd = () => {
+    setIsThumbnail(true);
+  }
+
+  const playVideo = () => {
+    if (videoRef.current) {
+      setPlayingVideoId(videoId); // 현재 재생 중인 비디오 ID를 전역 상태에 저장
+      videoRef.current.playVideo();
+      setIsThumbnail(false);
+    }
+  };
 
   const handleSlideChange = (swiper) => {
     setCurrentIndex(swiper.realIndex);
@@ -215,6 +199,13 @@ const HomeSwiper = ({content: {indexText, titleText, imgClass}, issueTarget=fals
       swiper.slideToLoop(index);
     }
   };
+
+  useEffect(() => {
+    // 다른 비디오가 재생되면 현재 비디오 정지
+    if (playingVideoId !== videoId && videoRef.current) {
+      videoRef.current.pauseVideo();
+    }
+  }, [playingVideoId, videoId]);
 
   useEffect(() => {
     if (!swiper || !swiper.autoplay) return;
@@ -241,6 +232,35 @@ const HomeSwiper = ({content: {indexText, titleText, imgClass}, issueTarget=fals
   return (
     <>
       <span className={styleHome.topBox}>{indexText}</span>
+      {isVideo && (
+        <div className={styleHome.videoContainer}>
+          <p className={styleHome.textWrap}>
+            <span>{videoText[0]}</span>
+            <b>{videoText[1]}</b>
+          </p>
+          <div className={styleHome.videoWrap}>
+            <YouTube
+              videoId={videoId}
+              opts={{
+                width: "100%",
+                height: "100%",
+                playerVars: {
+                  autoplay: 0,// 자동 재생 여부 (0: 자동 재생 안 함, 1: 자동 재생)
+                  mute: 1,
+                  rel: 0,
+                  controls: 1
+                },
+              }}
+              //이벤트 리스너 
+              onReady={onReady}
+              onEnd={onEnd}
+              onPlay={() => setPlayingVideoId(videoId)}
+            />
+            {/* type1 머니함 완벽가이드 type2 임원희 */}
+            {isThumbnail && <button type='button' className={`${styleHome.thumbnail} ${videoThumbnail === 'type1' ? styleHome.type2 : styleHome.type1}`} onClick={playVideo}></button>}
+          </div>
+        </div>
+      )}
       <h4>
         {titleText.map((item, index) => (
           <span onClick={() => goToSlide(index)} className={currentIndex === index ? styleHome.active : ''} key={index}>{item}</span>

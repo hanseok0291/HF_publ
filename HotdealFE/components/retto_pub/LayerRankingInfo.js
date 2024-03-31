@@ -35,7 +35,7 @@ const LayerRankingInfo = () => {
             <b>첫번째</b>
             <p>
               010PAY 우리카드로 <br />
-              1만원 이상 결제하고 리또 받기
+              1만원 결제마다 리또 1개 받기
             </p>
           </li>
           <li>
@@ -48,7 +48,7 @@ const LayerRankingInfo = () => {
           <li>
             <b>세번째</b>
             <p>
-              친구한테 리또 선물하고 <br />
+              친구에게 선물코드 전달하고 <br />
               리또 더 받기
             </p>
           </li>

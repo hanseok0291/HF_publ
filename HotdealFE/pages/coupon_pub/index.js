@@ -132,7 +132,7 @@ const Index = () => {
           ref={wrapRef}
         >
           {/* 카테고리 메뉴 */}
-          <Navigation />
+          <Navigation navList={["HOME", "할인", "브랜드", "선물함"]} activeIndex={0} />
           <TopBanner />
           <Category />
           <TimeSale
@@ -141,7 +141,7 @@ const Index = () => {
             }
             addView={true}
             listItem={listItem2}
-            paddingTop={40}
+            paddingTop={50}
             isWon={false}
           />
           <HundredDeal />
@@ -151,7 +151,7 @@ const Index = () => {
             }
             addView={true}
             listItem={listItem}
-            paddingTop={40}
+            paddingTop={50}
           />
           <HotBrand />
           <SwiperItem
@@ -160,7 +160,7 @@ const Index = () => {
             }
             addView={true}
             listItem={listItem}
-            paddingTop={40}
+            paddingTop={50}
           />
           <RewardBanner />
           <SwiperItem
@@ -169,7 +169,7 @@ const Index = () => {
             }
             addView={true}
             listItem={listItem}
-            paddingTop={40}
+            paddingTop={50}
           />
           {/* {showMainPopup && (
             // <ModalEnter

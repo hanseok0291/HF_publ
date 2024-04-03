@@ -42,7 +42,7 @@ const LayerReceive = () => {
             <li>제출하실 주소는 수령 신청이 완료되면 안내해 드릴게요.</li>
           </ul>
         </div>
-        <div className={styleReceive.btnWrap}>
+        <div className={`${styleReceive.btnWrap} ${styleReceive.noneFix}`}>
           <ul className={`${styleReceive.agreeList}`}>
             <li>
               <input type="checkbox" name="agree_01" id="agree_03_01" />

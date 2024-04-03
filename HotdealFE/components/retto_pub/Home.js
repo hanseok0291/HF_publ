@@ -143,7 +143,7 @@ const Home = ({case1, case2, case3}) => {
             <li>
               <strong>추가 혜택 1</strong>
               <p>
-                리또 받기 연속 성공하면 <br />
+                리또 받기 연속 성공하면 <br className={styleHome.foldSize} />
                 매주 쌓이는 리또가 최대 5개
               </p>
             </li>
@@ -152,6 +152,13 @@ const Home = ({case1, case2, case3}) => {
               <p>
                 에메랄드, 다이아 레벨 연속 10주 <br className={styleHome.foldSize} />
                 성공할 때마다 쿠폰 선물
+              </p>
+            </li>
+            <li>
+              <strong>추가 혜택 3</strong>
+              <p>
+                리또 머니함에 머니 보관하고 <br className={styleHome.foldSize} />
+                매일 100원딜 응모권 받기
               </p>
             </li>
           </ul>

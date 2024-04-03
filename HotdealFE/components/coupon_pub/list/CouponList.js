@@ -199,7 +199,7 @@ const CouponList = ({filter1, filter2, setIsFilter1, setIsFilter2}) => {
                 >
                   인기순
                   <i
-                    className={`${styleCommon.iconArrow} ${styleCommon.iconPlusRound}`}
+                    className={`${styleCommon.iconArrow} ${styleCommon.iconFilter}`}
                   ></i>
                 </button>}
 
@@ -233,7 +233,8 @@ const CouponList = ({filter1, filter2, setIsFilter1, setIsFilter2}) => {
           </div>
         </div>
       </div>
-      {/* <ModalFilter /> */}
+      {/* <ModalFilter title="할인 유형" list={["전체", "기본", "추가", "기간 한정", "선물 한정"]} /> */}
+      {/* <ModalFilter title="정렬 기준" list={["인기순", "할인율순", "낮은 가격순", "높은 가격순"]} /> */}
     </>
   );
 };

@@ -35,7 +35,7 @@ const Index = () => {
           noFixed={true}
           />
         <div className={styleCommon.myPageWrap}>
-        <Navigation />
+        <Navigation navList={["HOME", "할인", "브랜드", "선물함"]} activeIndex={3} />
         <Menu />
         </div>
         <Footer />

@@ -36,6 +36,7 @@ const Index = () => {
   const firstConRef = useRef();
   const secondConRef = useRef();
   const thirdConRef = useRef();
+  const fourthConRef = useRef();
   const botConRef = useRef();
 
   const closeHundredPopup = () => {
@@ -72,8 +73,9 @@ const Index = () => {
 
   const handleScroll = () => {
     let firstCon = firstConRef.current.getBoundingClientRect().top - 112;
-    let secondCon = secondConRef.current.getBoundingClientRect().top - 112;
+    let secondCon = secondConRef.current.getBoundingClientRect().top - 120;
     let thirdCon = thirdConRef.current.getBoundingClientRect().top - 112;
+    let fourthCon = fourthConRef.current.getBoundingClientRect().top - 112;
     let botCon = botConRef.current.getBoundingClientRect().bottom - document.body.getBoundingClientRect().height;
 
     if (firstConRef.current !== null) {
@@ -87,11 +89,13 @@ const Index = () => {
       }
       if (firstCon < 0 && secondCon > 0) {
         tabRef.current.children[0].classList.add('on');
-      } else if(thirdCon < 0 || botCon < 1) {
-        tabRef.current.children[2].classList.add('on');
       } else if(secondCon < 0 && thirdCon > 0) {
         tabRef.current.children[1].classList.add('on');
-      }
+      } else if(thirdCon < 0 && fourthCon > 0) {
+        tabRef.current.children[2].classList.add('on');
+      } else if(fourthCon < 0 || botCon < 1) {
+        tabRef.current.children[3].classList.add('on');
+      } 
     }
   };
 
@@ -134,8 +138,9 @@ const Index = () => {
         </div>
         <div className={`${styleHundredDeal.tabBtnWrap} ${navFixed && styleHundredDeal.fixed}`} ref={tabRef}>
           <button type="button" className="on" onClick={() => handleScrollToContent(firstConRef)}>오늘의 딜</button>
-          <button type="button" onClick={() => handleScrollToContent(secondConRef)}>미션 응모권</button>
-          <button type="button" onClick={() => handleScrollToContent(thirdConRef)}>라인업</button>
+          <button type="button" onClick={() => handleScrollToContent(secondConRef)}>무료 응모권</button> 
+          <button type="button" onClick={() => handleScrollToContent(thirdConRef)}>미션 응모권</button>
+          <button type="button" onClick={() => handleScrollToContent(fourthConRef)}>라인업</button>
         </div>
         <div className={`${styleHundredDeal.borderContent} ${styleHundredDeal.todayDeal}`}>
           <h3 ref={firstConRef}>
@@ -190,16 +195,6 @@ const Index = () => {
               </div>
             </SwiperSlide>
           </Swiper>
-          <div className={styleHundredDeal.coupangWrap}>
-            <p className={styleHundredDeal.titleText}>클릭하고 <b>공짜 응모권 받기</b></p>
-            <a href="#" className={styleHundredDeal.bannerWrap}>
-              <img src="../../images/100deal/sample/coupang-img-01.png" alt="홈플래닛 초음파 가습기 4L" />
-              <div className={styleHundredDeal.textWrap}>
-                <p className={styleHundredDeal.productName}>홈플래닛 초음파 가습기 4L (연장관/반투명 물탱크/무드등/타이머) (연장관/반투명 물탱크/무드등/타이머)</p>
-                <p className={`${styleHundredDeal.productPrice} ${styleHundredDeal.rocketDelivery}`}>37,040원</p>
-              </div>
-            </a>
-          </div>
         </div>
         <a href="#" className={styleHundredDeal.midBanner}>
           <p>
@@ -209,6 +204,36 @@ const Index = () => {
         </a>
         <div ref={botConRef} className={`${styleHundredDeal.borderContent} ${styleHundredDeal.restContent}`}>
           <h4 ref={secondConRef}>
+            매일 무료로 <br />
+            <strong>100원딜 응모권 받아요<i>!</i></strong>
+          </h4>
+          <div className={styleHundredDeal.rettoWrap}>
+            <div>
+              <a href="#" className={styleHundredDeal.linkBox}>
+                리또 머니함에 머니 보관하고 <br />
+                <b>매일 응모권 받기</b>
+              </a>
+              <div className={styleHundredDeal.rettoBox}>
+                <h4>레벨별 응모권 지급 개수</h4>
+                <ul>
+                  <li>1개 지급</li>
+                  <li>2개 지급</li>
+                  <li>3개 지급</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className={styleHundredDeal.coupangWrap}>
+            <p className={styleHundredDeal.titleText}>하단 배너 클릭하고 <b>공짜 응모권 받기</b></p>
+            <a href="#" className={styleHundredDeal.bannerWrap}>
+              <img src="../../images/100deal/sample/coupang-img-01.png" alt="홈플래닛 초음파 가습기 4L" />
+              <div className={styleHundredDeal.textWrap}>
+                <p className={styleHundredDeal.productName}>홈플래닛 초음파 가습기 4L (연장관/반투명 물탱크/무드등/타이머) (연장관/반투명 물탱크/무드등/타이머)</p>
+                <p className={`${styleHundredDeal.productPrice} ${styleHundredDeal.rocketDelivery}`}>37,040원</p>
+              </div>
+            </a>
+          </div>
+          <h4 ref={thirdConRef}>
             추가 응모하면 당첨 확률 UP <br />
             <strong>미션하고 응모권 받아요<i>!</i></strong>
           </h4>
@@ -247,7 +272,7 @@ const Index = () => {
             </ul>
           </div>
           <div>
-            <h4 ref={thirdConRef}>
+            <h4 ref={fourthConRef}>
               그냥 놓치기엔 아쉬운 <br />
               <strong>다음 딜을 소개해요<i>!</i></strong>
             </h4>

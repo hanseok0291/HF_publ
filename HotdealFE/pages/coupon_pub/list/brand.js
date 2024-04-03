@@ -15,10 +15,6 @@ import ModalBrandIn from "../../../components/coupon_pub/common/Modal/ModalBrand
 
 const tabList = [
   {
-    src: "../../../images/coupon/icon/brand/icon-brand-1.png",
-    name: "PAY쿠폰"
-  },
-  {
     src: "../../../images/coupon/icon/brand/icon-brand-2.png",
     name: "상품권"
   },
@@ -108,7 +104,7 @@ const Index = () => {
             noFixed={true}
           />
         </div>
-        <Navigation />
+        <Navigation navList={["HOME", "할인", "브랜드", "선물함"]} activeIndex={2}/>
         {/* 카테고리 메뉴 */}
         <div className={`${styleCommon.containerWrap} ${styleBrandList.brandMain}`}>
         {/* <div className={`${styleCommon.containerWrap} ${styleBrandList.brandMain}`}> */}

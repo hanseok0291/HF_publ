@@ -82,7 +82,7 @@ const index = () => {
       {/* 랭킹 상금 찾기 */}
       {/* <LayerRankingReceive /> */}
       {/* 신청 완료 */}
-      <LayerRankingMoneyGet />
+      {/* <LayerRankingMoneyGet /> */}
     </>
   );
 };

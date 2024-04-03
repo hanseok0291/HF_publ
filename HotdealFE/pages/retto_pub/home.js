@@ -34,6 +34,7 @@ import LayerTutorialMypage from "../../components/retto_pub/LayerTutorialMypage"
 import LayerTutorialStamp from "../../components/retto_pub/LayerTutorialStamp";
 import ModalMoneyGive from "../../components/retto_pub/common/modal/ModalMoneyGive";
 import LayerWinInfo from "../../components/retto_pub/LayerWinInfo";
+import Navigation from "../../components/coupon_pub/main/Navigation";
 
 const index = () => {
   return (
@@ -43,14 +44,15 @@ const index = () => {
         <li>HOME</li>
         <li>추첨 정보</li>
         <li className={styleMyretto.active}>나의 리또</li>
+        <li>리또 랭킹</li>
       </ul>
       <Container isTab padding="0" backgroundColor="#fff">
         {/* HOME */}
-        <Home /> 
+        {/* <Home />  */}
         {/* 추첨 정보 case1 리또 없음 case2 당첨 case3 미당첨 case4 추첨예정 case5 이번,다음 회차 case6 미신청자 case7 당첨금 배너 */}
         {/* <DrawInfo case4 /> */}
         {/* 나의 리또 case1 미신청자 case2 스탬프 10주까지만 */}
-        {/* <Stamp /> */}
+        <Stamp  />
       </Container>
       {/* 리또 신청 */}
       {/* <Apply full case1 /> */}

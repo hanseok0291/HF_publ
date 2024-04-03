@@ -13,7 +13,7 @@ import styleBrandList from "../../../styles/coupon_pub/BrandList.module.css";
 import Layout from "../../../components/common/Layout";
 import Footer from "../../../components/coupon_pub/common/Footer";
 import SwiperItem from "../../../components/coupon_pub/main/SwiperItem";
-import BrandHeader from "../../../components/coupon_pub/list/BrandHeader";
+import CategoryHeader from "../../../components/coupon_pub/list/CategoryHeader";
 
 const categoryList = [
   {
@@ -117,7 +117,7 @@ const Index = () => {
   return (
     <>
       <Layout>
-        <BrandHeader />
+        <CategoryHeader />
         <div className={`${styleDefaultLayout.wrap}`}>
           <div className={styleBrandList.brandTitleArea}>
             <button type="button" className={styleBrandList.brandTitle} onClick={handleCategoryOpenClick}>

@@ -4,6 +4,7 @@ import FadeIn from 'react-fade-in';
 // style
 import styleCommon from "../../styles/retto_pub/Common.module.css";
 import styleRanking from "../../styles/retto_pub/Ranking.module.css";
+import styleMyretto from "../../styles/retto_pub/Myretto.module.css";
 
 
 // component
@@ -136,8 +137,14 @@ const index = () => {
 
   return (
     <>
-      <Header title="리또 랭킹" sideBtn="안내" />
-      <Container>
+      <Header />
+      <ul className={styleMyretto.tabWrap}>
+        <li>HOME</li>
+        <li>추첨 정보</li>
+        <li>나의 리또</li>
+        <li className={styleMyretto.active}>리또 랭킹</li>
+      </ul>
+      <Container className={styleCommon.hidden} padding='77px 20px 30px'>
         {/* 블라인드 */}
         {/* <div className={styleRanking.blindWrap}>
           <div className={styleRanking.characterImg}></div>

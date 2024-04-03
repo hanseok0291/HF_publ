@@ -1093,29 +1093,43 @@
 
 		$(document).ready(function () {
 			// 페이지가 로드되면 실행될 코드
+			var lottieAni; // 전역 변수로 설정하여 다른 함수에서도 접근할 수 있도록 함
+			function createLottieAnimation() {
+					var path;
+					if (window.innerWidth >= 750) {
+							path = '../../resource/images/creditcard/img_360_03percent_3.json';
+					} else {
+							path = '../../resource/images/creditcard/img_360_03percent_3_mo.json';
+					}
+
+					// 이전 애니메이션 제거
+					if (lottieAni) {
+							lottieAni.destroy();
+					}
+
+					// 새로운 애니메이션 생성
+					lottieAni = bodymovin.loadAnimation({
+							container: document.getElementById('lottie-pop'),
+							path: path,
+							renderer: 'svg',
+							loop: false,
+							autoplay: false
+					});
+			}
+
+			// 초기 애니메이션 생성
+			createLottieAnimation();
+
+			// 화면 크기가 변경될 때마다 애니메이션 다시 생성
+			window.onresize = function() {
+					createLottieAnimation();
+			};
+			
 			var windowWidth = $(window).width(); // 현재 창의 너비를 가져옴
 				if (windowWidth >= 750) {
 						// 화면 너비가 750 이상인 경우 실행되는 코드
-						// 여기에 조건에 해당하는 동작을 추가하세요
-						console.log("a 출력");
-						var lottieAni = bodymovin.loadAnimation({
-							container: document.getElementById('lottie-pop'), // 필수, 애니메이션 들어가는 곳 
-							path: '../../resource/images/creditcard/img_360_03percent_3.json', // 필수(url 또는 json파일 다운로드 경로)
-							renderer: 'svg', // 필수
-							loop: false, // Optional
-							autoplay: false // Optional
-						});
 				} else {
 						// 화면 너비가 750 미만인 경우 실행되는 코드
-						// 여기에 조건에 해당하는 동작을 추가하세요
-						console.log("b 출력");
-						var lottieAni = bodymovin.loadAnimation({
-							container: document.getElementById('lottie-pop'), // 필수, 애니메이션 들어가는 곳 
-							path: '../../resource/images/creditcard/img_360_03percent_3_mo.json', // 필수(url 또는 json파일 다운로드 경로)
-							renderer: 'svg', // 필수
-							loop: false, // Optional
-							autoplay: false // Optional
-						});
 				}
 
 			const card = document.querySelector(".move_card");
@@ -1182,12 +1196,8 @@
 
 				if (action === "off") {
 					$("body").addClass("modal-open");
-					// $(".content_wrap").css("position", "fixed");
-					// $(".content_wrap").css("top", -scrollHeight);
 				} else if (action === "on") {
 					$("body").removeClass("modal-open");
-					// $(".content_wrap").css("position", "relative");
-					// $(".content_wrap").css("top", 10);
 					$(document).scrollTop(scrollHeight);
 				}
 			}
@@ -1324,7 +1334,7 @@
 			function handleResize() {
 				var newWidth = $(window).width();
 
-				if (newWidth > 750 && windowWidth <= 750) {
+				if (newWidth > 749 && windowWidth <= 749) {
 					// 화면이 PC 버전으로 변경되었을 때의 동작 설정
 					searchPosition();
 				} else if (newWidth <= 750 && windowWidth > 750) {
@@ -1370,7 +1380,6 @@
 			});
 
 		});
-
 	</script>
 	<script>
 		var player;

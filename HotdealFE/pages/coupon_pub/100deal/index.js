@@ -210,8 +210,24 @@ const Index = () => {
           <div className={styleHundredDeal.rettoWrap}>
             <div>
               <a href="#" className={styleHundredDeal.linkBox}>
-                리또 머니함에 머니 보관하고 <br />
+                리또 머니함에 보관하고 <br />
                 <b>매일 응모권 받기</b>
+              </a>
+              <div className={styleHundredDeal.rettoBox}>
+                <h4>레벨별 응모권 지급 개수</h4>
+                <ul>
+                  <li>1개 지급</li>
+                  <li>2개 지급</li>
+                  <li>3개 지급</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className={styleHundredDeal.rettoWrap}>
+            <div>
+              <a href="#" className={styleHundredDeal.linkBox}>
+                리또 머니함에 보관중! <br />
+                <b>100원딜 응모하기</b>
               </a>
               <div className={styleHundredDeal.rettoBox}>
                 <h4>레벨별 응모권 지급 개수</h4>

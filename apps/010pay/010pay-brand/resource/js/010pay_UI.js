@@ -244,6 +244,20 @@ var positionCtl = {
       }
     });
 
+    $(".coupon .section").each(function () {
+      if (
+        !$(this).hasClass("animation") &&
+        $(this).data("offsetTop") < position && position < $(this).data("offsetTop") + $(this).data("outerHeight") + (delayPosition * 2)
+      ) {
+        $(this).addClass("animation");
+      } else if (
+        $(this).hasClass("animation") && $(this).hasClass("message") &&
+        ($(this).data("offsetTop") + $(this).data("outerHeight") + (delayPosition * 2) < position || $(this).data("offsetTop") > position)
+      ) {
+        $(this).removeClass("animation");
+      }
+    });
+
     $(".retto-wrap .section").each(function () {
       if (
         !$(this).hasClass("animation") &&

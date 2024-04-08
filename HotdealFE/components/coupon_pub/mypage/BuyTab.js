@@ -16,7 +16,7 @@ const BuyTab = ({ tabItem, tabLink }) => {
 
   return (
     <>
-      {tabLink && <TabGroup tabList={["사용 가능"]} navList={["사용 가능", "사용 완료"]}/>}
+      {tabLink && <TabGroup navList={["사용 가능", "사용 완료"]}/>}
     </>
   );
 };

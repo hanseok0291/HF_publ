@@ -6,6 +6,16 @@
 
 .content_wrap {
   width: 100%;
+  &::after {
+    position:absolute; 
+    width:0; 
+    height:0; 
+    overflow:hidden; 
+    z-index:-1;
+
+    /* load images */
+    content:url(../images/giftimall/discount-slide-2-brand-2.png) url(../images/giftimall/discount-slide-2-brand-3.png);
+  }
 }
 
 .onAni {
@@ -906,11 +916,31 @@
                 }
               }
             }
-            &.slide-2.swiper-slide-active {
-              .discount-inner-slide .swiper-slide.swiper-slide-active::after {
-                visibility: visible;
-                opacity: 1;
-                transform: scale(1);
+            &.swiper-slide-active {
+              .imgBox {
+                animation-name: gather-img-change;
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: forwards;
+                &.imgBox1 {
+                  .pointer {
+                    animation: gather-FadeIn 0.3s 1s ease-in-out backwards;
+                    &::after {
+                      animation: gather-out 1s 1.3s ease-in-out backwards;
+                    }
+                  }
+                }
+                &.imgBox2 {
+                  animation-delay: 2.3s;
+                  .pointer {
+                    animation: gather-FadeIn 0.3s 2.6s ease-in-out backwards;
+                    &::after {
+                      animation: gather-out 1s 2.8s ease-in-out backwards;
+                    }
+                  }
+                }
+                &.imgBox3 {
+                  animation-delay: 3.8s;
+                }
               }
             }
             .nav-1 {
@@ -1060,6 +1090,65 @@
               border-color: #000;
               border-radius: 40px;
               box-shadow: 17px 15px 20px 0 rgba(0, 0, 0, 0.12);
+
+              .imgBox {
+                position: absolute;
+                left: 0; 
+                top: 0;
+                width: 290px;
+                height: 590px;
+                transform: translateX(100%);
+                &.imgBox1 {
+                  background: url(../images/giftimall/discount-slide-2-brand-1.png) 0 0 / cover no-repeat;
+                  transform: translateX(0);
+                  .pointer {
+                    left: 30px;
+                    top: 180px;
+                  }
+                }
+                &.imgBox2 {
+                  background: url(../images/giftimall/discount-slide-2-brand-2.png) 0 0 / cover no-repeat;
+                  .pointer {
+                    left: 30px;
+                    top: 250px;
+                  }
+                }
+                &.imgBox3 {
+                  background: url(../images/giftimall/discount-slide-2-brand-3.png) 0 0 / cover no-repeat;
+                }
+                .pointer {
+                  display: block;
+                  position: absolute;
+                  width: 23px;
+                  height: 23px;
+                  background: rgba(249, 59, 0, 0.3);
+                  border-radius: 50%;
+                  &::before {
+                    display: block;
+                    content: "";
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    background-color: rgba(255, 108, 0, 0.3);
+                  }
+                  &::after {
+                    display: block;
+                    content: "";
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%) scale(1);
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    background-color: rgba(249, 59, 0, 0.2);
+                  }
+                }
+              }
             }
             .center-con {
               position: absolute;
@@ -2171,6 +2260,24 @@
                   }
                 }
               }
+              &.swiper-slide-active {
+                .imgBox {
+                  &.imgBox1 {
+                    .pointer {
+                      animation: gather-FadeIn 0.3s 1.5s ease-in-out backwards;
+                    }
+                  }
+                  &.imgBox2 {
+                    animation-delay: 2.5s;
+                    .pointer {
+                      animation: gather-FadeIn 0.3s 3s ease-in-out backwards;
+                    }
+                  }
+                  &.imgBox3 {
+                    animation-delay: 4s;
+                  }
+                }
+              }
             }
 
             &.slide-3 {
@@ -2241,6 +2348,30 @@
                 padding-top: calc(740 / 370 * 49%);
                 border-width: 4px;
                 border-radius: 20px;
+                .imgBox {
+                  width: 100%;
+                  height: 100%;
+                  &.imgBox1 {
+                    .pointer {
+                      left: 10%;
+                      top: 29%;
+                    }
+                  }
+                  &.imgBox2 {
+                    .pointer {
+                      left: 10%;
+                      top: 41%;
+                    }
+                  }
+                  .pointer {
+                    width: 18px;
+                    height: 18px;
+                    &::before {
+                      width: 24px;
+                      height: 24px;
+                    }
+                  }
+                }
               }
             }
 
@@ -2982,5 +3113,35 @@
   }
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes gather-img-change {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes gather-FadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes gather-out {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.4);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
   }
 }

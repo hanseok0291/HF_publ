@@ -325,12 +325,80 @@
           </div>
         </section>
 
+        <section class="section gather-section">
+          <div class="container">
+            <div class="imgWrap add-ani" delay="0.9">
+              <div class="phoneFrame">
+                <div class="frameBox">
+                  <div class="imgBox imgBox1">
+                    <span class="pointer"></span>
+                  </div>
+                  <div class="imgBox imgBox2">
+                    <span class="pointer"></span>
+                  </div>
+                  <div class="imgBox imgBox3">
+                    <div class="contentsWrap">
+                      <div class="barWrap">
+                        <span></span>
+                      </div>
+                      <div class="numberWrap">
+                        <span id="increaseNumber" class="number">0</span>
+                        /
+                        <span>1000</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="imgBox imgBox4">
+                    <ul id="gatherList" class="listWrap">
+                      <li>
+                        <img src="../../resource/images/main/gather-list-img-01.png" alt="상품">
+                      </li>
+                      <li>
+                        <img src="../../resource/images/main/gather-list-img-02.png" alt="상품">
+                      </li>
+                      <li>
+                        <img src="../../resource/images/main/gather-list-img-03.png" alt="상품">
+                      </li>
+                      <li>
+                        <img src="../../resource/images/main/gather-list-img-04.png" alt="상품">
+                      </li>
+                      <li>
+                        <img src="../../resource/images/main/gather-list-img-05.png" alt="상품">
+                      </li>
+                      <li>
+                        <img src="../../resource/images/main/gather-list-img-06.png" alt="상품">
+                      </li>
+                      <li>
+                        <img src="../../resource/images/main/gather-list-img-07.png" alt="상품">
+                      </li>
+                      <li>
+                        <img src="../../resource/images/main/gather-list-img-08.png" alt="상품">
+                      </li>
+                      <li>
+                        <img src="../../resource/images/main/gather-list-img-09.png" alt="상품">
+                      </li>
+                      <li>
+                        <img src="../../resource/images/main/gather-list-img-10.png" alt="상품">
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="textWrap add-ani" delay="0.6">
+              <p class="topText icon-1">내 쿠폰 못쓰는 일 없도록</p>
+              <p class="titleText">쿠폰 모아보기</p>
+              <p class="subText">
+                휴대폰 속 흩어져 있는 쿠폰 <br>
+                010PAY에 모아서 한번에 관리해요!
+              </p>
+            </div>
+          </div>
+        </section>
+
         <section class="section third-section">
           <div class="container">
-            <div class="imgWrap">
-              <img src="../../resource/images/main/third-content-img-01.png" alt="휴대폰 소액결제" class="chargeImg add-ani" delay="0.9" />
-              <img class="autoChargeImg add-ani" src="../../resource/images/main/third-content-img-02.png" alt="자동 충전" delay="1.1" />
-            </div>
             <div class="textWrap add-ani" delay="0.6">
               <p class="topText icon-2">지금 쓰고 나중에 결제하는</p>
               <p class="titleText">휴대폰 소액결제 충전</p>
@@ -338,6 +406,10 @@
                 충전한 머니는 010PAY체크카드로 <br>
                 온 · 오프라인에서 현금처럼 사용하세요. 
               </p>
+            </div>
+            <div class="imgWrap">
+              <img src="../../resource/images/main/third-content-img-01.png" alt="휴대폰 소액결제" class="chargeImg add-ani" delay="0.9" />
+              <img class="autoChargeImg add-ani" src="../../resource/images/main/third-content-img-02.png" alt="자동 충전" delay="1.1" />
             </div>
           </div>
         </section>
@@ -524,7 +596,44 @@
     </div>
 
     <script>
+    function counter($counter, max) {
+      var now = max;
 
+      var handle = setInterval(function(){
+        $counter.innerHTML = Math.ceil(max - now);
+      
+        // 목표수치에 도달하면 정지
+        if (now < 1) {
+          clearInterval(handle);
+        }
+        
+        // 증가되는 값이 계속하여 작아짐
+        var step = now / 5;
+        
+        // 값을 적용시키면서 다음 차례에 영향을 끼침
+        now -= step;
+      }, 50);
+    }
+
+    function gatherSection(){
+      // 카운트를 적용시킬 요소
+      var $counter = document.querySelector("#increaseNumber");
+      
+      // 목표 수치
+      var max = 1000;
+      
+      setTimeout(function(){ 
+        counter($counter, max);
+      }, 5000);
+
+      setTimeout(function(){ 
+        $("#gatherList").animate({scrollTop: 540}, 500);
+      }, 8000);
+    }
+
+    window.onload = () => {
+      
+    }
       String.prototype.toKorChars = function() { 
       var cCho = [ 'ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ' ], 
           cJung = [ 'ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ' ], 
@@ -558,19 +667,15 @@
         //     chars.push(cJong[jong]); 
         //     } 
 
-
         //  테스트라는 문장이 있으면 ㅌ테ㅅ스ㅌ트 형식으로 저장되도록함 (타이핑을 위해서)
         chars.push(cCho[cho]);
         chars.push(String.fromCharCode( 44032 + (cho * 588) + (jung  * 28)));
         if (cJong[jong] !== '') { 
           chars.push(String.fromCharCode( 44032 + (cho * 588) + (jung  * 28) + jong ));
         }
-
       } 
-
       return chars; 
     }
-
 
     //타이핑할 문장
     var result  = "혜택";
@@ -669,12 +774,18 @@
 
       secondSlide.autoplay.stop();
       var second_state = false;
+      var gather_state = false;
       $(window).on("scroll load", function(){
         if($(".second-section").hasClass("animation") && !second_state){
           setTimeout(function(){
             secondSlide.autoplay.start();
           }, 100);
           second_state = true;
+        }
+
+        if($(".gather-section").hasClass("animation") && !gather_state){ 
+          gatherSection();
+          gather_state = true;
         }
       });
 

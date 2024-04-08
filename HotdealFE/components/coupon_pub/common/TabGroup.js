@@ -52,7 +52,9 @@ const TabGroup = ({navList, tabList, bgColor}) => {
   }
 
   useEffect(() => {
-    listRef.current.addEventListener('scroll', handleScroll);
+    if(tabList){
+      listRef.current.addEventListener('scroll', handleScroll);
+    }
     checkForScroll();
     window.addEventListener('scroll', windowHandleScroll);
     window.addEventListener('resize', checkForScroll);

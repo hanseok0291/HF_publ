@@ -46,7 +46,7 @@ export default function Header({
         {isShowSearchBtn && (
           <button
             type="button"
-            className={`${styleCommon.icon} ${styleCommon.iconSearch}`}
+            className={`${styleCommon.icon} ${styleCommon.iconSearch2}`}
           ></button>
         )}
         {isShowMypageBtn && (

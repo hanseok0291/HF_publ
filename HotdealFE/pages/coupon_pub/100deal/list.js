@@ -13,6 +13,7 @@ import Footer from "../../../components/coupon_pub/common/Footer";
 import List from "../../../components/coupon_pub/100deal/List";
 import ModalHundredResult from "../../../components/coupon_pub/common/Modal/ModalHundredResult";
 import ModalHundredWinner from "../../../components/coupon_pub/common/Modal/ModalHundredWinner";
+import TabGroup from "../../../components/coupon_pub/common/TabGroup";
 
 const Index = () => {
   //헤더 아이콘 디폴트 세팅
@@ -39,15 +40,17 @@ const Index = () => {
           isShowBackBtn={isShowBackBtn}
           isShowSearchBtn={isShowSearchBtn}
           isShowMypageBtn={isShowMypageBtn}
+          noFixed={true}
         />
         <div
-          className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap} ${styleDefaultLayout.footerWrap}`}
+          className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap}`}
         >
+          <TabGroup navList={["사용 가능", "사용 완료"]} tabList={["PAY 쿠폰"]} />
           <List openResultPopup={openResultPopup}/>
-          <Footer />
         </div>
+        <Footer />
         {/* 응모 결과 팝업 */}
-        <ModalHundredResult isResultOpen={isResultOpen} closeResultPopup={closeResultPopup}/>
+        {/* <ModalHundredResult isResultOpen={isResultOpen} closeResultPopup={closeResultPopup}/> */}
         {/* <ModalHundredWinner /> */}
       </Layout>
     </>

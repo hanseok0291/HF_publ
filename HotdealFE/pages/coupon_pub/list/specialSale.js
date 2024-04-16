@@ -36,7 +36,7 @@ const Index = () => {
         <SaleHeader />
         {/* 카테고리 메뉴 */}
         <h2 className={styleBrandList.specialSaleTitle}>20% 특가</h2>
-        <div>
+        <div className={styleDefaultLayout.defaultContent}>
           <a href="#">
             <img src="../../../images/coupon/sample/banner-sale-2.png" alt="" />
           </a>

@@ -37,7 +37,7 @@ const Index = () => {
           noFixed={true}
         />
         <Navigation navList={["HOME", "할인", "브랜드", "선물함"]} activeIndex={1}/>
-        <div className={`${styleCommon.containerWrap}`}>
+        <div className={`${styleDefaultLayout.defaultContent}`}>
           <div>
             <img src="../../../images/coupon/sample/banner-sale-1.png" alt="" />
           </div>

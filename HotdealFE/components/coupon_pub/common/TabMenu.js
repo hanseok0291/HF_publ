@@ -25,6 +25,7 @@ const TabMenu = ({tabList, bgColor, fixedPos, onFixed = true}) => {
   }
 
   const handleScroll = () => {
+    console.log(navRef.current.getBoundingClientRect().top)
     if(navRef.current.getBoundingClientRect().top < fixedPos){
       setIsFixed(true);
     } else {
@@ -48,7 +49,7 @@ const TabMenu = ({tabList, bgColor, fixedPos, onFixed = true}) => {
     const onScroll = () => {
       if(!initialized) return;
       const currentScroll = window.scrollY;
-      console.log(currentScroll, lastScrollTop);
+
       if(currentScroll > lastScrollTop) {
         setIsScrollDown(true);
       } else {

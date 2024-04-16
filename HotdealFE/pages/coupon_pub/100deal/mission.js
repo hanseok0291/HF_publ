@@ -34,7 +34,7 @@ const Index = () => {
     const panel = rouletteRef.current;
     const btn = rouletteBtnRef.current;
     const btn2 = rouletteBtnRef2.current;
-    console.log(rouletteBtnRef)
+    
     const deg = [];
     for (let i = 1, len = rolLength; i <= len; i++) {
       deg.push((360 / len) * i);
@@ -95,7 +95,7 @@ const Index = () => {
         </div>
 
         <div
-          className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap} ${styleHundredDeal.mission}`}
+          className={`${styleDefaultLayout.wrap} ${styleHundredDeal.mission}`}
         >
           <div className={styleHundredDeal.tabWrap}>
             <button type="button" onClick={() => handleTabClick(0)} className={`${activeTab === 0 ? 'on' : ''}`}>포인트 룰렛</button>

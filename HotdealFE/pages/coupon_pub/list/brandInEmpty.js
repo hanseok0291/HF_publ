@@ -14,6 +14,7 @@ import Layout from "../../../components/common/Layout";
 import Footer from "../../../components/coupon_pub/common/Footer";
 import SwiperItem from "../../../components/coupon_pub/main/SwiperItem";
 import CategoryHeader from "../../../components/coupon_pub/list/CategoryHeader";
+import BrandHeader from "../../../components/coupon_pub/list/BrandHeader";
 
 const categoryList = [
   {
@@ -117,26 +118,8 @@ const Index = () => {
   return (
     <>
       <Layout>
-        <CategoryHeader />
+        <BrandHeader />
         <div className={`${styleDefaultLayout.wrap}`}>
-          <div className={styleBrandList.brandTitleArea}>
-            <button type="button" className={styleBrandList.brandTitle} onClick={handleCategoryOpenClick}>
-              카페·베이커리
-              <i className={`${styleBrandList.iconDown} ${categoryOpen && styleBrandList.open}`}></i>
-            </button>
-            {categoryOpen && 
-              <ul className={styleBrandList.categoryListWrap}>
-                {categoryList.map((category, index) => (
-                  <li key={index}>
-                    <a href="#">
-                      <img src={category.src} alt={category.name} />
-                      <span>{category.name}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            }
-          </div>
           <div className={styleBrandList.noItem}>
             <p>관련 상품을 찾지 못했어요</p>
           </div>

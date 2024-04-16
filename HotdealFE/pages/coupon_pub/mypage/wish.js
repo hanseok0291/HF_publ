@@ -36,7 +36,7 @@ const Index = () => {
         >
           <WishList pageType="result" />
         </div>
-        <Footer isfixedBottom={isFixedBottom} />
+        <Footer />
       </Layout>
     </>
   );

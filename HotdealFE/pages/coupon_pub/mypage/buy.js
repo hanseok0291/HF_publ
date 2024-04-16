@@ -28,13 +28,14 @@ const Index = () => {
           isShowBackBtn={isShowBackBtn}
           isShowSearchBtn={isShowSearchBtn}
           isShowMypageBtn={isShowMypageBtn}
+          noFixed={true}
         />
         <div
-          className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap} ${styleDefaultLayout.footerWrap}`}
+          className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap}`}
         >
           <BuyMain />
-          <Footer />
         </div>
+        <Footer />
       </Layout>
     </>
   );

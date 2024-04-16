@@ -112,12 +112,11 @@ const Index = () => {
         {/* <CategoryHeader /> */}
         <BrandHeader />
         <div
-          className={`${styleDefaultLayout.wrap}`}
+          className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap}`}
         >
-          {/* <TabMenu onFixed={true} fixedPos={150} tabList={["전체", "1만원대", "2만원대", "3만원대", "4만원대", "5~9만원대", "10만원 이상"]} bgColor={true} /> */}
-          <CouponList filter1={true}/>
-          <Footer />
+          <CouponList filter1={true} />
         </div>
+        <Footer />
       </Layout>
     </>
   );

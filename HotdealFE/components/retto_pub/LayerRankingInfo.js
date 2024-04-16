@@ -6,7 +6,7 @@ import styleCommon from '../../styles/retto_pub/Common.module.css';
 import styleRanking from "../../styles/retto_pub/Ranking.module.css";
 import styleFillBox from "../../styles/retto_pub/FillBox.module.css";
 
-const LayerRankingInfo = () => {
+const LayerRankingInfo = ({beforeVersion}) => {
 
   return (
     <div className={styleCommon.layer}>
@@ -33,10 +33,19 @@ const LayerRankingInfo = () => {
         <ul className={`${styleRanking.wayCon}`}>
           <li>
             <b>첫번째</b>
-            <p>
-              010PAY 우리카드로 <br />
-              1만원 이상 결제하고 리또 받기
-            </p>
+            {/* 240425 이후 노출 */}
+            {beforeVersion ? (
+              <p>
+                010PAY 우리카드로 <br />
+                1만원 이상 결제하고 리또 받기
+              </p>
+            ) : (
+              <p>
+                010PAY 우리카드로 <br />
+                1만원 결제마다 리또 1개 받기
+              </p>
+            )}
+            
           </li>
           <li>
             <b>두번째</b>
@@ -47,10 +56,20 @@ const LayerRankingInfo = () => {
           </li>
           <li>
             <b>세번째</b>
-            <p>
-              친구한테 리또 선물하고 <br />
-              리또 더 받기
-            </p>
+            
+            {/* 240425 이후 노출 */}
+            {beforeVersion ? (
+              <p>
+                친구한테 리또 선물하고 <br />
+                리또 더 받기
+              </p>
+            ) : (
+              <p>
+                친구한테 선물코드 전달하고 <br />
+                리또 더 받기
+              </p>
+            )}
+            
           </li>
         </ul>
         <h4><span className={`${styleRanking.number} ${styleRanking.number2}`}></span>리또 랭킹 운영 기준</h4>

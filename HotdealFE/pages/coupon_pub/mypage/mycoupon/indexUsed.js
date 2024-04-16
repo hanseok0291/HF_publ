@@ -21,16 +21,13 @@ const Index = () => {
   return (
     <>
       <Layout>
-        <HeaderMypage pageTitle="보유 쿠폰" />
+        <HeaderMypage pageTitle="보유 쿠폰" noFixed={true} />
         <div
           className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap}`}
         >
           <CouponMainUsed />
-
-          <div style={{ paddingTop: "80px" }}>
-            {/* 카테고리 상품리스트 */}
-            <CouponListUsed pageType="result" />
-          </div>
+          {/* 카테고리 상품리스트 */}
+          <CouponListUsed pageType="result" />
         </div>
       </Layout>
     </>

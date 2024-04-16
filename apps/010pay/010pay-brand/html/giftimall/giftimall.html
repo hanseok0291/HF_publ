@@ -506,75 +506,6 @@
           </div>
         </section>
 
-        <section class="section reward">
-          <div class="inner-wrap">
-            <div class="text-wrap">
-              <h3 class="title-text">
-                <span>최대 1만원 주는 <strong>꽝 없는 0원딜<i>!</i></strong></span>
-              </h3>
-              <p class="sub-text">
-                인기상품 0원에 응모하고 <br />
-                상품 구매 시 바로 사용 가능한 <br />
-                리워드도 받아 가세요<i>!</i>
-              </p>
-            </div>
-            <div class="slide-wrap onAni">
-              <div class="frame-slide">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <div class="slide-box">
-                      <img class="slide-img" src="../../resource/images/giftimall/sample/reward-1.png" alt="" />
-                      <p class="slide-text">투썸 스트로베리 초콜릿 케이크</p>
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="slide-box">
-                      <img class="slide-img" src="../../resource/images/giftimall/sample/reward-2.png" alt="" />
-                      <p class="slide-text">투썸 스트로베리 초콜릿 케이크</p>
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="slide-box">
-                      <img class="slide-img" src="../../resource/images/giftimall/sample/reward-3.png" alt="" />
-                      <p class="slide-text">투썸 스트로베리 초콜릿 케이크</p>
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="slide-box">
-                      <img class="slide-img" src="../../resource/images/giftimall/sample/reward-4.png" alt="" />
-                      <p class="slide-text">투썸 스트로베리 초콜릿 케이크</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="reward-slide">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <div class="slide-box">
-                      <img class="slide-img" src="../../resource/images/giftimall/sample/reward-2.png" alt="" />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="slide-box">
-                      <img class="slide-img" src="../../resource/images/giftimall/sample/reward-3.png" alt="" />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="slide-box">
-                      <img class="slide-img" src="../../resource/images/giftimall/sample/reward-4.png" alt="" />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="slide-box">
-                      <img class="slide-img" src="../../resource/images/giftimall/sample/reward-1.png" alt="" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         <section class="section app-down">
           <div class="left-con">
             <h3>지금 010PAY 기프티몰에서 <br> 가격 부담은 덜고 마음을 전해보세요<i>!</i></h3>
@@ -813,10 +744,10 @@
       // 221103_수정 END
       
       var discount = new Swiper(".discount-slide", {
-        autoplay: {
-          delay: 3200,
-          disableOnInteraction: false, // 221031_수정
-        },
+        // autoplay: {
+        //   delay: 3200,
+        //   disableOnInteraction: false, // 221031_수정
+        // },
         loop: true,
         slidesPerView: 1,
         pagination: {
@@ -863,13 +794,13 @@
           $(".discount .nav-wrap li").eq(discount.activeIndex-1).addClass("on");
         }
         discountInner.autoplay.stop();
-        clearTimeout(setTrans);
         $(discount.slides).removeClass('transition');
         $(discount.slides[discount.activeIndex]).addClass('transition');
         var setTrans = setTimeout(function(){
           $(discount.slides).removeClass('transition');
           discountInner.autoplay.start(); // 221130_수정 주석해제
         }, 1000);
+        clearTimeout(setTrans);
       });
 
       var zero_setting = {
@@ -936,7 +867,7 @@
       $(window).on("scroll load", function(){
         if($(".discount").hasClass("animation") && !discount_state){
           setTimeout(function(){
-            discount.autoplay.start(); 
+            // discount.autoplay.start(); 
           }, 100);
           discount_state = true;
         }

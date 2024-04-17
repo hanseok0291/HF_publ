@@ -5,11 +5,12 @@ import styleBuyMain from "../../../styles/coupon_pub/BuyMain.module.css";
 import { useEffect } from "react";
 import BuyTab from "./BuyTab";
 import CouponNavigation from "../main/CouponNavigation";
+import TabGroup from "../common/TabGroup";
 
 export default function GiftDetail() {
   return (
     <div className={styleBuyMain.styleBuyMainWrap}>
-      <CouponNavigation />
+      <TabGroup navList={["전체", "구매 완료", "구매 취소"]} />
       <div className={`${styleBuyMain.listWrap}`}>
         <div className={`${styleCommon.container} ${styleBuyMain.container}`}>
           <dl className={styleBuyMain.date}>

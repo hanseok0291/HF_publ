@@ -6,10 +6,11 @@ export default function HeaderMypage({
   isShowMypageBtn,
   isShowRegCodeBtn,
   pageTitle,
+  noFixed
 }) {
   return (
     <div
-      className={`${styleDefaultLayout.pageHeader} ${styleDefaultLayout.defaultHeader}`}
+      className={`${styleDefaultLayout.pageHeader} ${styleDefaultLayout.defaultHeader} ${noFixed ? styleDefaultLayout.noFixed : ''}`}
     >
       <div className={`${styleDefaultLayout.container}`}>
         <button

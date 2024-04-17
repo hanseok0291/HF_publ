@@ -6,7 +6,7 @@ import styleCommon from '../../styles/retto_pub/Common.module.css';
 import styleRanking from "../../styles/retto_pub/Ranking.module.css";
 import styleFillBox from "../../styles/retto_pub/FillBox.module.css";
 
-const LayerRankingInfo = () => {
+const LayerRankingInfo = ({beforeVersion}) => {
 
   return (
     <div className={styleCommon.layer}>
@@ -19,24 +19,33 @@ const LayerRankingInfo = () => {
 
       <div className={`${styleRanking.winInfoWrap}`}>
         <div className={styleRanking.rettoInfoWrap}>
-          <h4><em>리또</em>란?</h4>
+          <h4><em>리또 랭킹</em>이란?</h4>
           <p className={styleRanking.topText}>
-            실제 로또 당첨 번호와 내 리또 번호가 <br />
-            같다면 <b>최대 1억을 받을 수 있어요!</b>
+            내가 모은 리또가 점수로 나온다? <br />
+            <b>나의 리또 수 X 가중치로 집계되는 랭킹</b>
           </p>
           <p className={styleRanking.botText}>
-            로또 앞에 ‘다시’를 뜻하는 ‘RE-’를 붙여 <br />
-            혜택을 되돌려드리고자 하는 마음을 담았어요.
+            월별로 진행되며, 리또 1개라도 있다면 자동 참여 ! <br />
+            리또 모아서 100만원 상금의 주인공이 되세요.
           </p>
         </div>
         <h4><span className={`${styleRanking.number} ${styleRanking.number1}`}></span>리또와 리또 랭킹 상금을 함께 받는 방법</h4>
         <ul className={`${styleRanking.wayCon}`}>
           <li>
             <b>첫번째</b>
-            <p>
-              010PAY 우리카드로 <br />
-              1만원 이상 결제하고 리또 받기
-            </p>
+            {/* 240425 이후 노출 */}
+            {beforeVersion ? (
+              <p>
+                010PAY 우리카드로 <br />
+                1만원 이상 결제하고 리또 받기
+              </p>
+            ) : (
+              <p>
+                010PAY 우리카드로 <br />
+                1만원 결제마다 리또 1개 받기
+              </p>
+            )}
+            
           </li>
           <li>
             <b>두번째</b>
@@ -47,10 +56,20 @@ const LayerRankingInfo = () => {
           </li>
           <li>
             <b>세번째</b>
-            <p>
-              친구한테 리또 선물하고 <br />
-              리또 더 받기
-            </p>
+            
+            {/* 240425 이후 노출 */}
+            {beforeVersion ? (
+              <p>
+                친구한테 리또 선물하고 <br />
+                리또 더 받기
+              </p>
+            ) : (
+              <p>
+                친구한테 선물코드 전달하고 <br />
+                리또 더 받기
+              </p>
+            )}
+            
           </li>
         </ul>
         <h4><span className={`${styleRanking.number} ${styleRanking.number2}`}></span>리또 랭킹 운영 기준</h4>

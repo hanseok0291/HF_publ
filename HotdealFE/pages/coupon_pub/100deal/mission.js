@@ -34,7 +34,7 @@ const Index = () => {
     const panel = rouletteRef.current;
     const btn = rouletteBtnRef.current;
     const btn2 = rouletteBtnRef2.current;
-    console.log(rouletteBtnRef)
+    
     const deg = [];
     for (let i = 1, len = rolLength; i <= len; i++) {
       deg.push((360 / len) * i);
@@ -95,7 +95,7 @@ const Index = () => {
         </div>
 
         <div
-          className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap} ${styleHundredDeal.mission}`}
+          className={`${styleDefaultLayout.wrap} ${styleHundredDeal.mission}`}
         >
           <div className={styleHundredDeal.tabWrap}>
             <button type="button" onClick={() => handleTabClick(0)} className={`${activeTab === 0 ? 'on' : ''}`}>포인트 룰렛</button>
@@ -270,7 +270,7 @@ const Index = () => {
       {/* <Footer isfixedBottom={isFixedBottom} isDeadlinFixed={isDeadlinFixed}/> */}
       {/* 응모권 획득 */}
       {/* <ModalHundredArrival /> */}
-      <ModalEntryComplete isCompletetOpen={isCompletetOpen} closeCompletePopup={closeCompletePopup} />
+      {/* <ModalEntryComplete isCompletetOpen={isCompletetOpen} closeCompletePopup={closeCompletePopup} /> */}
       {/* <ModalAlert message={`오늘의 참여 기회를 모두 사용하였습니다.\n내일 다시 이용해 주세요.`} />
       <ModalAlert message={`룰렛 1회당 100P가 필요합니다.\n부족한 포인트를 모아 다시 이용해 주세요.`} /> */}
     </>

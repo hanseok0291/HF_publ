@@ -12,6 +12,7 @@ import Layout from "../../../components/common/Layout";
 import Header from "../../../components/coupon_pub/common/Header";
 
 import GiftDetail from "../../../components/coupon_pub/mypage/GiftDetail";
+import Footer from "../../../components/coupon_pub/common/Footer";
 
 const Index = () => {
   //헤더 아이콘 디폴트 세팅
@@ -31,9 +32,10 @@ const Index = () => {
           isShowMypageBtn={isShowMypageBtn}
         />
         <div
-          className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap}`}
+          className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap} ${styleDefaultLayout.bottomBtnPadding}`}
         >
           <GiftDetail />
+        <Footer />
         </div>
       </Layout>
     </>

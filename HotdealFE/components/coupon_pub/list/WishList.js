@@ -24,13 +24,12 @@ import styleCouponList from "../../../styles/coupon_pub/CouponList.module.css";
 import styleWishList from "../../../styles/coupon_pub/WishList.module.css";
 
 const CouponList = (props) => {
-  const [visible, setVisible] = useState(false);
+  
   return (
     <>
       {/* <Theme /> */}
       {/* 브랜드필터 상단 고정일때 DropBoxOn 클래스 추가, 자식 DropBoxWrap 클래스에 fixed 클래스 추가 */}
       <div
-        style={{ paddingTop: 0 }}
         className={`${styleCouponList.CouponListWrap} ${styleCouponList.DropBox}`}
       >
         <div className={`${styleCommon.container}`}>

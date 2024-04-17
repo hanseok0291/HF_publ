@@ -21,7 +21,7 @@ export default function CouponDetail({setDeadlinFixed }) {
 
   const handleScroll = () => {
     if (imgRef.current !== null) {
-      if (imgRef.current.getBoundingClientRect().bottom < 58) {
+      if (imgRef.current.getBoundingClientRect().bottom < 50) {
         setDeadlinFixed(true);
       } else {
         setDeadlinFixed(false);
@@ -31,10 +31,10 @@ export default function CouponDetail({setDeadlinFixed }) {
       if (
         !isTabTop &&
         tabConRef.current.getBoundingClientRect().top <
-          tabRef.current.clientHeight + 58
+          tabRef.current.clientHeight + 50
       ) {
         setTabdTop(true);
-      } else if (tabConRef.current.getBoundingClientRect().top > 58) {
+      } else if (tabConRef.current.getBoundingClientRect().top > 50) {
         setTabdTop(false);
       }
     }

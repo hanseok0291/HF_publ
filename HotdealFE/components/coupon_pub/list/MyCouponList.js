@@ -1,12 +1,95 @@
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+
+// components
+import Theme from "./Theme";
+import ModalFilter from "../common/modal/ModalFilter";
+
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css/bundle";
+import "swiper/css";
+import "swiper/css/grid";
+import "swiper/css/pagination";
+
 //slick
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 
+import styleDefaultLayout from "../../../styles/coupon_pub/DefaultLayout.module.css";
 import styleCommon from "../../../styles/coupon_pub/Common.module.css";
 import styleCategoryList from "../../../styles/coupon_pub/CategoryList.module.css";
 import styleCouponList from "../../../styles/coupon_pub/CouponList.module.css";
 
+import { Grid, Pagination } from "swiper";
 import CouponListItem from "./CouponListItem";
+
+const settings = {
+  rows: 1,
+  slidesPerRow: 5,
+  arrows: false,
+  dots: true,
+  infinite: false,
+  centerPadding: "32px",
+};
+
+const settings2rows = {
+  rows: 2,
+  slidesPerRow: 5,
+  arrows: false,
+  dots: true,
+  infinite: false,
+  centerPadding: "32px",
+};
+
+const CategoryListWrap = () => {
+  return (
+    <>
+      {/* 브랜드 드롭박스 클릭시 hidden 클래스 제거하여 해당 영역 노출 */}
+      <div className={`${styleCategoryList.CategoryListWrap}`}>
+        <div className={`${styleCommon.container}`}>
+          <div className={styleCategoryList.CategoryListSlick}>
+            <Slider {...settings2rows}>
+              <div
+                className={`${styleCategoryList.slidewidth} ${styleCategoryList.slidewidthActive}`}
+              >
+                <div className={styleCategoryList.CategoryListImg}>
+                  <img
+                    src="../../images/coupon/icon/common/all.png"
+                    alt="All"
+                  ></img>
+                </div>
+                <p className={styleCategoryList.CategoryListName}>전체</p>
+              </div>
+              <div className={styleCategoryList.slidewidth}>
+                <div className={styleCategoryList.CategoryListImg}>
+                  <img
+                    src="https://ux.sbsvc.online/010pay/react/test/images/coupon/logo/brand/02.png"
+                    alt="TEST"
+                  ></img>
+                </div>
+                <p className={styleCategoryList.CategoryListName}>스타벅스</p>
+              </div>
+              <div className={styleCategoryList.slidewidth}>
+                <div className={styleCategoryList.CategoryListImg}>
+                  <img
+                    src="https://ux.sbsvc.online/010pay/react/test/images/coupon/logo/brand/02.png"
+                    alt="TEST"
+                  ></img>
+                </div>
+                <p className={styleCategoryList.CategoryListName}>스타벅스</p>
+              </div>
+            </Slider>
+          </div>
+        </div>
+      </div>
+      {/* //브랜드 드롭박스 클릭시 hidden 클래스 제거하여 해당 영역 노출 */}
+    </>
+  );
+};
+
 
 const listItem = [
   {
@@ -136,7 +219,7 @@ const CouponList = ({filter1, filter2, setIsFilter1, setIsFilter2}) => {
 
         <div className={`${styleCommon.container}`}>
           <div className={`${styleCouponList.containerWrap}`}>
-            <ul className={`${styleCouponList.CouponList}`}>
+            <ul className={`${styleCouponList.CouponList} ${(filter1 || filter2) ? '' : styleCouponList.noFilter}`}>
               {listItem.map((item, idx) => {
                 return (
                   <li className={`${styleCouponList.CouponItem}`} key={idx}><CouponListItem listItem={item}/></li>

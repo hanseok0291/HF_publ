@@ -61,34 +61,36 @@ const TabGroup = ({navList, tabList, bgColor}) => {
   }, []);
 
   return (
-    <div ref={navRef} className={`${styleTabGroup.tabGroupWrap} ${isFixed ? styleTabGroup.fixed : ""}`}>
-      {navList && 
-        <div className={`${styleNav.navWrap} ${styleTabGroup.navWrap}`}>
-          <ul className={`${styleNav.nav}`}>
-            {navList.map((item, index) => (
-              <li className={onNavIndex === index ? styleNav.active : ""} key={index}>
-                <a href={`/coupon/`} className={styleCommon.btn} onClick={(e) => handleClick(e, index)}>
-                  {item}
-                </a>
+    <div>
+      <div className={`${styleTabGroup.tabGroupArea} ${tabList ? styleTabGroup.tabListHeight : ''}`}></div>
+      <div ref={navRef} className={`${styleTabGroup.tabGroupWrap} ${isFixed ? styleTabGroup.fixed : ""}`}>
+        {navList && 
+          <div className={`${styleNav.navWrap} ${styleTabGroup.navWrap}`}>
+            <ul className={`${styleNav.nav}`}>
+              {navList.map((item, index) => (
+                <li className={onNavIndex === index ? styleNav.active : ""} key={index}>
+                  <a href={`/coupon/`} className={styleCommon.btn} onClick={(e) => handleClick(e, index)}>
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        }
+        {tabList && 
+          <div className={`${styleBrandList.priceListContainer} ${isScrollable ? styleBrandList.blur : ''} ${bgColor ? styleBrandList.gray : ''} ${styleTabGroup.menuWrap}`}>
+            <ul className={`${styleBrandList.priceListWrap}`} ref={listRef}>
+              {tabList.map((price, index) => (
+                <li key={index}>
+                <button type="button" className={priceActive === index ? styleBrandList.active : ''} onClick={() => handlePriceActiveClick(index)}>
+                  {price}
+                </button>
               </li>
-            ))}
-          </ul>
-        </div>
-      }
-      {tabList && 
-        <div className={`${styleBrandList.priceListContainer} ${isScrollable ? styleBrandList.blur : ''} ${bgColor ? styleBrandList.gray : ''} ${styleTabGroup.menuWrap}`}>
-          <ul className={`${styleBrandList.priceListWrap}`} ref={listRef}>
-            {tabList.map((price, index) => (
-              <li key={index}>
-              <button type="button" className={priceActive === index ? styleBrandList.active : ''} onClick={() => handlePriceActiveClick(index)}>
-                {price}
-              </button>
-            </li>
-            ))}
-          </ul>
-        </div>
-      }
-      
+              ))}
+            </ul>
+          </div>
+        }
+      </div>
     </div>
   )
 }

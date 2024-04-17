@@ -297,7 +297,7 @@ const index = () => {
       {/* 회차 선택 */}
       {/* <BottomSheetRankingTurn /> */}
       {/* 랭킹 안내 */}
-      {/* <LayerRankingInfo /> */}
+      <LayerRankingInfo />
     </>
   )
 }

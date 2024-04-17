@@ -89,7 +89,7 @@ const Index = () => {
         </div>
 
         <div
-          className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap} ${styleHundredDeal.mission}`}
+          className={`${styleDefaultLayout.wrap} ${styleHundredDeal.mission}`}
         >
           <div className={styleHundredDeal.tabWrap}>
             <button type="button" onClick={() => handleTabClick(0)} className={`${activeTab === 0 ? 'on' : ''}`}>포인트 룰렛</button>

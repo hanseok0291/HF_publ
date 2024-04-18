@@ -169,6 +169,7 @@ const Home = ({case1, case2, case3}) => {
           <HomeSwiper content={contents[2]}/>
           <Button white large>리또 선물하고 리또 받기</Button>
         </div>
+        <div className={styleHome.bottomBanner}></div>
       </div>
       {case3 && isToast && (
         <div className={styleHome.toastWrap}>

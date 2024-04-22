@@ -43,6 +43,44 @@ const Home = ({case1, case2}) => {
       videoThumbnail: '',
       videoId: ''
     }
+  ];
+
+  // swiper option
+  const reviewParams = {
+    slidesPerView: "auto", 
+    spaceBetween: 12,
+    modules: [Autoplay],
+    autoplay: { delay: 2000, disableOnInteraction: false },
+    loop: true,
+    
+  };
+
+  const reviews = [
+    { 
+      avatar: "img1",
+      reviewer: "블로거 이*",
+      content: "점심, 저녁 한 끼만 결제해도 리또가 나오니까 이득!"
+    },
+    { 
+      avatar: "img2",
+      reviewer: "블로거 혜무늘*",
+      content: "카드 긁을 때마다 로또 긁는 기분!"
+    },
+    { 
+      avatar: "img3",
+      reviewer: "블로거 재테크하는 감*",
+      content: "리또 받으면 토요일 저녁까지 설레는 마음으로 보내요"
+    },
+    { 
+      avatar: "img4",
+      reviewer: "블로거 킴*",
+      content: "리또 6장밖에 없는데 보너스 당첨됐어요!"
+    },
+    { 
+      avatar: "img5",
+      reviewer: "블로거 에르*",
+      content: "짜잘한 혜택보다 로또 사는 효과!"
+    }
   ]
   const mainSectionRef = useRef(null);
   const [isToast, setIsToast] = useState(true);
@@ -94,13 +132,26 @@ const Home = ({case1, case2}) => {
         <LottieComponent className={styleHome.confettiLottie} animationData={ConfettiLottie} isStopped autoplay={false} delay={1000}  />
       </div>
       <div className={styleHome.mainSectionWrap}>
+        <Swiper {...reviewParams} className={styleHome.reviewWrap}>
+          {
+            reviews.map((item, index) => (
+              <SwiperSlide key={index} className={styleHome.reviewContent}>
+                <div className={`${styleHome.imgWrap} ${item.avatar}`}></div>
+                <div className={styleHome.textWrap}>
+                  <p className={styleHome.reviewer}>{item.reviewer}</p>
+                  <p className={styleHome.content}>{item.content}</p>
+                </div>
+              </SwiperSlide>
+            ))
+          }
+        </Swiper>
         <h3 className={styleHome.middleTitle}>무료로 리또 받는 방법</h3>
         <div className={`${styleHome.mainSection} ${styleHome.firstSection}`} ref={mainSectionRef}>
           <HomeSwiper content={contents[0]} issueTarget={true} playingVideoId={playingVideoId}  setPlayingVideoId={setPlayingVideoId}/>
           {/* 신용카드 미발급  */}
           <Button white large>010PAY 우리카드로 리또 받기</Button>
           {/* 이미 카드 신청한 고객 */}
-          {/* <Button white large>카드 추천하고 리또 더 받기</Button> */}
+          {/* <Button white large>010PAY 우리카드 혜택 보기</Button> */}
         </div>
         <div className={styleHome.mainSection}>
           <HomeSwiper content={contents[1]} playingVideoId={playingVideoId} setPlayingVideoId={setPlayingVideoId}/>
@@ -246,7 +297,6 @@ const HomeSwiper = ({content: {indexText, titleText, imgClass, isVideo, videoId,
                 height: "100%",
                 playerVars: {
                   autoplay: 0,// 자동 재생 여부 (0: 자동 재생 안 함, 1: 자동 재생)
-                  mute: 1,
                   rel: 0,
                   controls: 1
                 },

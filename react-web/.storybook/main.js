@@ -3,25 +3,25 @@ import path from 'path';
 const toPath = (_path) => path.join(process.cwd(), _path);
 
 const config = {
-  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
-    "@storybook/addon-onboarding",
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@chromatic-com/storybook",
-    "@storybook/addon-interactions",
+    '@storybook/addon-onboarding',
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@chromatic-com/storybook',
+    '@storybook/addon-interactions',
   ],
   framework: {
-    name: "@storybook/nextjs",
+    name: '@storybook/nextjs',
     options: {},
   },
   docs: {
-    autodocs: "tag",
+    autodocs: 'tag',
   },
   core: {
-    builder: "@storybook/builder-webpack5"
+    builder: '@storybook/builder-webpack5',
   },
-  staticDirs: ["..\\public"],
+  staticDirs: ['..\\public'],
   webpackFinal: async (config, { configType }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
@@ -31,23 +31,23 @@ const config = {
     };
 
     const imageRule = config.module?.rules?.find((rule) => {
-      const test = (rule).test;
+      const test = rule.test;
 
       if (!test) {
         return false;
       }
 
-      return test.test(".svg");
+      return test.test('.svg');
     });
 
     imageRule.exclude = /\.svg$/;
 
     config.module?.rules?.push({
       test: /\.svg$/,
-      use: ["@svgr/webpack"],
+      use: ['@svgr/webpack'],
     });
 
     return config;
-  }
+  },
 };
 export default config;

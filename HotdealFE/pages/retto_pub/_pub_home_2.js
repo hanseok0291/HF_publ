@@ -58,7 +58,7 @@ const index = () => {
       {/* 당첨 */}
       {/* <BottomSheetPrize /> */}
       {/* 미참여자 */}
-      {/* <BottomSheetBanner /> */}
+      <BottomSheetBanner />
       {/* 기기알림 */}
       {/* <BottomSheetAlarm /> */}
       {/* 레벨 변경 */}

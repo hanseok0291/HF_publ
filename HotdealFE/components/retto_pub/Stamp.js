@@ -50,31 +50,22 @@ const Stamp = ({case1, case2}) => {
           리또 선물하고 친구랑 같이 받아요!
         </a>
       </div>
-      <div className={`${styleRettoList.winBanner} ${styleRettoList.card}`}>
+      {/* <div className={`${styleRettoList.winBanner} ${styleRettoList.card}`}>
         <a href="#"> 
           카드 추천인 적고 다이아 리또 받아요!
         </a>
-      </div>
-      <div className={`${styleRettoList.winBanner} ${styleRettoList.issue}`}>
+      </div> */}
+      {/* <div className={`${styleRettoList.winBanner} ${styleRettoList.issue}`}>
         <a href="#"> 
           카드 추천하고 친구랑 다이아 리또 받아요!
         </a>
-      </div>
+      </div> */}
       <div className={styleMyretto.stampBackground}>
         <FadeIn>
           <div className={styleMyretto.rewardContentWrap}>
             <h4>친구와 리또해요</h4>
             <div className={styleMyretto.textWrap}>
               <p className={styleMyretto.leftCon}><em className={styleMyretto.iconGift}></em><strong>0명</strong><span>리또 선물 성공</span></p>
-              <p className={styleMyretto.rightCon}><span>보상 리또</span><strong>0개</strong></p>
-            </div>
-          </div>
-        </FadeIn>
-        <FadeIn delay={100}>
-          <div className={styleMyretto.rewardContentWrap}>
-            <h4>친구에게 카드 추천해요</h4>
-            <div className={styleMyretto.textWrap}>
-              <p className={styleMyretto.leftCon}><em className={styleMyretto.iconCard}></em><strong>0명</strong><span>카드 발급 성공</span></p>
               <p className={styleMyretto.rightCon}><span>보상 리또</span><strong>0개</strong></p>
             </div>
           </div>
@@ -330,20 +321,8 @@ const Stamp = ({case1, case2}) => {
           <div className={styleMyretto.bannerWrap} style={{ marginTop: 10 }}>
             <div className={`${styleMyretto.bottomBox} ${styleMyretto.type1}`}>
               <a href="#">
-                <p>결제할 때마다 쌓이는 리또</p>
-                <h4 className={styleMyretto.addArrowBlack}>신용카드 결제로 받기</h4>
-              </a>
-            </div>
-            <div className={`${styleMyretto.bottomBox} ${styleMyretto.type2}`}>
-              <a href="#">
-                <p>채워만 둬도 쌓이는 리또</p>
-                <h4 className={styleMyretto.addArrowBlack}>머니 채우기로 받기</h4>
-              </a>
-            </div>
-            <div className={`${styleMyretto.bottomBox} ${styleMyretto.type3}`}>
-              <a href="#">
-                <p>친구에게 리또 선물하고</p>
-                <h4 className={styleMyretto.addArrowBlack}>친구와 같이 받기</h4>
+                <p>1만원 결제마다 리또 1개</p>
+                <h4 className={styleMyretto.addArrowBlack}>010PAY 우리카드로 받기</h4>
               </a>
             </div>
           </div>

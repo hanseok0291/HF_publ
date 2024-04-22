@@ -58,28 +58,28 @@ const Home = ({case1, case2}) => {
   const reviews = [
     { 
       avatar: "img1",
-      reviewer: "블로거 이*",
-      content: "점심, 저녁 한 끼만 결제해도 리또가 나오니까 이득!"
+      reviewer: "010PAY 회원 김*리 (4914)",
+      content: ["로또 좋아하시면 추천!", "4주 만에 10,355원 당첨"]
     },
     { 
       avatar: "img2",
-      reviewer: "블로거 혜무늘*",
-      content: "카드 긁을 때마다 로또 긁는 기분!"
+      reviewer: "머니***카페 *수",
+      content: ["리또 이벤트 다 챙겼더니", "4만원 벌고 시작하네!"]
     },
     { 
       avatar: "img3",
-      reviewer: "블로거 재테크하는 감*",
-      content: "리또 받으면 토요일 저녁까지 설레는 마음으로 보내요"
+      reviewer: "블로거 킴*",
+      content: ["리또 6장밖에 없는데", "보너스 당첨됐어요!"]
     },
     { 
       avatar: "img4",
-      reviewer: "블로거 킴*",
-      content: "리또 6장밖에 없는데 보너스 당첨됐어요!"
+      reviewer: "블로거 에르*",
+      content: ["짜잘한 혜택보다 로또 사는 효과!"]
     },
     { 
       avatar: "img5",
-      reviewer: "블로거 에르*",
-      content: "짜잘한 혜택보다 로또 사는 효과!"
+      reviewer: "꿈행**카페 김*",
+      content: ["요즘 로또 명당 다니기", "귀찮은데 리또로 받으렵니다."]
     }
   ]
   const mainSectionRef = useRef(null);
@@ -139,7 +139,7 @@ const Home = ({case1, case2}) => {
                 <div className={`${styleHome.imgWrap} ${item.avatar}`}></div>
                 <div className={styleHome.textWrap}>
                   <p className={styleHome.reviewer}>{item.reviewer}</p>
-                  <p className={styleHome.content}>{item.content}</p>
+                  <p className={styleHome.content}>{item.content.map((item) => <>{item} <br /></>)}</p>
                 </div>
               </SwiperSlide>
             ))
@@ -316,7 +316,8 @@ const HomeSwiper = ({content: {indexText, titleText, imgClass, isVideo, videoId,
           <span onClick={() => goToSlide(index)} className={currentIndex === index ? styleHome.active : ''} key={index}>{item}</span>
         ))}
       </h4>
-      {issueTarget && <p className={styleHome.swiperSubtext}>발급 대상: 신청일 기준 민법상 성년(만 19세 이상) 내국인</p>}
+      <p className={styleHome.swiperSubtext}>발급 대상: 신청일 기준 민법상 성년(만 19세 이상) 내국인</p>
+      <p className={`${styleHome.swiperSubtext} ${styleHome.lastText}`}>결제 건당 최대 1,000개 지급</p>
       <Swiper {...swiperParams} onSlideChange={handleSlideChange} onSwiper={setSwiper} ref={targetRef}>
         {imgClass.map((imgItem, imgIndex) => (
           <SwiperSlide key={imgIndex}>

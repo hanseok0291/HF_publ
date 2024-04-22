@@ -33,16 +33,17 @@ const LayerRankingInfo = ({beforeVersion}) => {
         <ul className={`${styleRanking.wayCon}`}>
           <li>
             <b>첫번째</b>
-            {/* 240425 이후 노출 */}
             {beforeVersion ? (
               <p>
                 010PAY 우리카드로 <br />
                 1만원 이상 결제하고 리또 받기
               </p>
             ) : (
+                // 240425 이후 노출
               <p>
                 010PAY 우리카드로 <br />
-                1만원 결제마다 리또 1개 받기
+                1만원 결제마다 리또 1개 받기 <br />
+                <span>(결제 건당 최대 1,000개 지급)</span>
               </p>
             )}
             
@@ -56,14 +57,13 @@ const LayerRankingInfo = ({beforeVersion}) => {
           </li>
           <li>
             <b>세번째</b>
-            
-            {/* 240425 이후 노출 */}
             {beforeVersion ? (
               <p>
                 친구한테 리또 선물하고 <br />
                 리또 더 받기
               </p>
             ) : (
+              // 240425 이후 노출
               <p>
                 친구한테 선물코드 전달하고 <br />
                 리또 더 받기
@@ -225,6 +225,7 @@ const LayerRankingInfo = ({beforeVersion}) => {
           <li>010PAY 앱 탈퇴 시 보유 포인트는 소멸됩니다. </li>
           <li>010PAY 포인트 및 010PAY 머니 인당 보유 한도는 각 200만원으로, 보유 한도 초과 시 상금 리워드는 더 이상 적립되지 않습니다. </li>
           <li>본 이벤트는 헥토파이낸셜 에서 제공하며, 헥토파이낸셜의 사정에 따라 운영 방침이 변경/종료될 수 있습니다.</li>
+          <li>010PAY 우리카드 결제 시 지급되는 리또 관련 내용은 이벤트 상세 페이지에서 확인하세요.</li>
         </ul>
       </div>
     </div>

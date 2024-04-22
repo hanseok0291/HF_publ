@@ -41,18 +41,14 @@ const index = () => {
     <>
       <Header />
       <ul className={styleMyretto.tabWrap}>
-        <li>HOME</li>
+        <li className={styleMyretto.active}>HOME</li>
         <li>추첨 정보</li>
-        <li className={styleMyretto.active}>나의 리또</li>
+        <li>나의 리또</li>
         <li>리또 랭킹</li>
       </ul>
       <Container isTab padding="0" backgroundColor="#fff">
         {/* HOME */}
-        {/* <Home />  */}
-        {/* 추첨 정보 case1 리또 없음 case2 당첨 case3 미당첨 case4 추첨예정 case5 이번,다음 회차 case6 미신청자 case7 당첨금 배너 */}
-        <DrawInfo case4 />
-        {/* 나의 리또 case1 미신청자 case2 스탬프 10주까지만 */}
-        {/* <Stamp /> */}
+        <Home case1 /> 
       </Container>
       {/* 리또 신청 */}
       {/* <Apply full case1 /> */}

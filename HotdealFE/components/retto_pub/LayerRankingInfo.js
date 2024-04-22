@@ -104,10 +104,10 @@ const LayerRankingInfo = ({beforeVersion}) => {
               <div className={styleRanking.right}>
                 <div>
                   <span className={styleRanking.iconDia}></span> 최대 보유 고객<span className={styleRanking.iconArrow}></span>
-                  <span className={styleRanking.iconRuby}></span> 최대 보유 고객<span className={styleRanking.iconArrow}></span>
+                  <span className={styleRanking.iconEmerald}></span> 최대 보유 고객<span className={styleRanking.iconArrow}></span>
                 </div>
                 <div>
-                  <span className={styleRanking.iconEmerald}></span> 최대 보유 고객
+                  <span className={styleRanking.iconRuby}></span> 최대 보유 고객
                 </div>
               </div>
             </li>

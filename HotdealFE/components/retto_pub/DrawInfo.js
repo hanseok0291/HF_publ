@@ -195,115 +195,136 @@ const DrawInfo = ({case1, case2, case3, case4, case5, case6, case7, case8 = fals
         </div>
         <div className={styleRettoList.listWinWrap}>
           <FadeIn>
-          <div className={styleRettoList.drawResultWrap}>
-            {case8 ? (
-              <ul className={`${styleRettoList.ballWrap}`}> 
-                {rettoNumber.map((item, index) => {
-                  let styleBall;
-                  if( 0 < item && item < 11){
-                    styleBall = "type1";
-                  } else if( 10 < item && item < 21 ) {
-                    styleBall = "type2";
-                  } else if( 20 < item && item < 31 ) {
-                    styleBall = "type3";
-                  } else if( 30 < item && item < 41 ) {
-                    styleBall = "type4";
-                  } else {
-                    styleBall = "type5";
-                  }
+            <div className={styleRettoList.drawResultWrap}>
+              {case8 ? (
+                <ul className={`${styleRettoList.ballWrap}`}> 
+                  {rettoNumber.map((item, index) => {
+                    let styleBall;
+                    if( 0 < item && item < 11){
+                      styleBall = "type1";
+                    } else if( 10 < item && item < 21 ) {
+                      styleBall = "type2";
+                    } else if( 20 < item && item < 31 ) {
+                      styleBall = "type3";
+                    } else if( 30 < item && item < 41 ) {
+                      styleBall = "type4";
+                    } else {
+                      styleBall = "type5";
+                    }
 
-                  if(index === 6 ) {
-                    return (
-                      <>
-                        <li key={index} className={`${styleRettoList.plus}`}><span></span></li>
-                        <li key={index + 1} className={`${styleRettoList.ball} ${styleBall}`}><span>{item}</span></li>
-                      </>
-                    )
-                  } else {
-                    return (
-                      <li key={index} className={`${styleRettoList.ball} ${styleBall}`}><span>{item}</span></li>
-                    )
-                  }
-                })}
-              </ul>
-            ) : (
-              <div className={styleRettoList.slotCounterWrap}>
-                <SlotCounter
-                  startValue={rettoNumber}
-                  startValueOnce
-                  value={numbers}
-                  animateUnchanged
-                  direction="bottom-up"
-                  autoAnimationStart={true}
-                  charClassName="char"
-                />
-              </div>
-            )}
-            <div className={styleRettoList.drawResultText}>
-              <p>추첨일 2023.12.02 <span className={styleRettoList.dDay}>D-2</span></p>
-              {/* 당첨 있을때 */}
-              <p>수령기한 2024.03.02</p>
-            </div>
-          </div>
-          {case5 &&
-            <div className={styleRettoList.winPriceInfoWrap} ref={secondObserveRef}>
-              <div className={`${styleRettoList.winPriceInfo} ${isSecondFixed ? styleRettoList.fixed : ''}`}>
-                <p>1등 최대 당첨금</p>
-                <p>1백만원</p>
-                <p>1천만원</p>
-                <p>1억원</p>
+                    if(index === 6 ) {
+                      return (
+                        <>
+                          <li key={index} className={`${styleRettoList.plus}`}><span></span></li>
+                          <li key={index + 1} className={`${styleRettoList.ball} ${styleBall}`}><span>{item}</span></li>
+                        </>
+                      )
+                    } else {
+                      return (
+                        <li key={index} className={`${styleRettoList.ball} ${styleBall}`}><span>{item}</span></li>
+                      )
+                    }
+                  })}
+                </ul>
+              ) : (
+                <div className={styleRettoList.slotCounterWrap}>
+                  <SlotCounter
+                    startValue={rettoNumber}
+                    startValueOnce
+                    value={numbers}
+                    animateUnchanged
+                    direction="bottom-up"
+                    autoAnimationStart={true}
+                    charClassName="char"
+                  />
+                </div>
+              )}
+              <div className={styleRettoList.drawResultText}>
+                <p>추첨일 2023.12.02 <span className={styleRettoList.dDay}>D-2</span></p>
+                {/* 당첨 있을때 */}
+                <p>수령기한 2024.03.02</p>
               </div>
             </div>
-          }
-          {case6 && 
-            <ul className={styleRettoList.infoContentsWrap}>
-              <li>
-                <div className={styleRettoList.textBox}>
-                  <span className={styleRettoList.indexText}>1</span>
-                  <p>
-                    1만원 이상 결제하고 <br />
-                    <b>최대 1억 당첨 행운 받기</b>
-                  </p>
+            {case5 &&
+              <div className={styleRettoList.winPriceInfoWrap} ref={secondObserveRef}>
+                <div className={`${styleRettoList.winPriceInfo} ${isSecondFixed ? styleRettoList.fixed : ''}`}>
+                  <p>1등 최대 당첨금</p>
+                  <p>1백만원</p>
+                  <p>1천만원</p>
+                  <p>1억원</p>
                 </div>
-              </li>
-              <li>
-                <div className={styleRettoList.textBox}>
-                  <span className={styleRettoList.indexText}>2</span>
-                  <p>
-                    리또 머니 보관하고 <br />
-                    <b>매주 자동 리또 받기</b>
-                  </p>
-                </div>
-              </li>
-              <li>
-                <div className={styleRettoList.textBox}>
-                  <span className={styleRettoList.indexText}>3</span>
-                  <p>
-                    친구에게 선물코드 전달하고 <br />
-                    <b>리또 더 받기</b>
-                  </p>
-                </div>
-              </li>
-            </ul>
-          }
-          {/* 리또 없음 */}
-          {case1 && 
-            <div className={styleRettoList.emptyList}>
-              <p>받은 리또가 없어요.</p>
-            </div>
-          }
-          {/* 당첨 */}
-          {case2 && 
-            <ResultList data={results.win} />
-          }
-          {/* 미당첨 */}
-          {case3 && 
-            <ResultList data={results.lose} />
-          }
-          {/* 추첨 예정 */}
-          {case4 &&
-            <ResultList data={results.standby} />
-          }
+              </div>
+            }
+            {case6 && 
+              <div className={styleRettoList.infoContentsContainer}>
+                <h4>리또 받는 방법</h4>
+                <ul className={styleRettoList.infoContentsWrap}>
+                  <li>
+                    <div className={styleRettoList.textBox}>
+                      <span className={styleRettoList.indexText}>1</span>
+                      <p>
+                        010PAY 우리카드로 <br />
+                        <b>1만원 결제마다 리또 1개 받기</b>
+                      </p>
+                    </div>
+                  </li>
+                  <li>
+                    <div className={styleRettoList.textBox}>
+                      <span className={styleRettoList.indexText}>2</span>
+                      <p>
+                        리또 머니 보관하고 <br />
+                        <b>매주 자동으로 리또 받기</b>
+                      </p>
+                    </div>
+                  </li>
+                  <li>
+                    <div className={styleRettoList.textBox}>
+                      <span className={styleRettoList.indexText}>3</span>
+                      <p>
+                        친구에게 선물코드 전달하고 <br />
+                        <b>리또 더 받기</b>
+                      </p>
+                    </div>
+                  </li>
+                  <li>
+                    <div className={styleRettoList.textBox}>
+                      <span className={styleRettoList.indexText}>4</span>
+                      <p>
+                        내통장결제 가맹점에서 <br />
+                        <b>결제할 때마다 받기</b>
+                      </p>
+                    </div>
+                  </li>
+                  <li>
+                    <div className={styleRettoList.textBox}>
+                      <span className={styleRettoList.indexText}>5</span>
+                      <p>
+                        쿠팡 상품 구경하고 <br />
+                        <b>리또 더 받기</b>
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            }
+            {/* 리또 없음 */}
+            {case1 && 
+              <div className={styleRettoList.emptyList}>
+                <p>받은 리또가 없어요.</p>
+              </div>
+            }
+            {/* 당첨 */}
+            {case2 && 
+              <ResultList data={results.win} />
+            }
+            {/* 미당첨 */}
+            {case3 && 
+              <ResultList data={results.lose} />
+            }
+            {/* 추첨 예정 */}
+            {case4 &&
+              <ResultList data={results.standby} />
+            }
           </FadeIn>
         </div>
       </div>
@@ -340,13 +361,13 @@ const ResultList = ({data: {winState, size, list}}) => {
       </div>
       {
         openList &&
-        <ResultListItem list={list} />
+        <ResultListItem list={list} winState={winState} />
       }
     </div>
   );
 }
 
-const ResultListItem = ({list}) => {
+const ResultListItem = ({list, winState}) => {
   const [openIndex, setOpenIndex] = useState(null);
 
   const toggleMenu = (index) => {
@@ -379,7 +400,9 @@ const ResultListItem = ({list}) => {
                     <ul className={styleRettoList.myBallWrap}>
                       {sortNumber.map((item, index) => {
                         let styleBall;
-                        if( 0 < item && item < 11){
+                        if (winState === 'standby') {
+                          styleBall = 'discord';
+                        } else if( 0 < item && item < 11){
                           styleBall = "type1";
                         } else if( 10 < item && item < 21 ) {
                           styleBall = "type2";

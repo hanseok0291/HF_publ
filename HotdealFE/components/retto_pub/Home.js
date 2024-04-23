@@ -139,7 +139,7 @@ const Home = ({case1, case2}) => {
                 <div className={`${styleHome.imgWrap} ${item.avatar}`}></div>
                 <div className={styleHome.textWrap}>
                   <p className={styleHome.reviewer}>{item.reviewer}</p>
-                  <p className={styleHome.content}>{item.content.map((item) => <>{item} <br /></>)}</p>
+                  <p className={styleHome.content}>{item.content.map((item, idx) => <span key={idx}>{item} <br /></span>)}</p>
                 </div>
               </SwiperSlide>
             ))
@@ -185,7 +185,6 @@ const Home = ({case1, case2}) => {
           <HomeSwiper content={contents[2]} playingVideoId={playingVideoId}  setPlayingVideoId={setPlayingVideoId}/>
           <Button white large>리또 선물하고 리또 받기</Button>
         </div>
-        <div className={styleHome.bottomBanner}></div>
       </div>
       {case2 && isToast && (
         <div className={styleHome.toastWrap}>
@@ -317,8 +316,13 @@ const HomeSwiper = ({content: {indexText, titleText, imgClass, isVideo, videoId,
           <span onClick={() => goToSlide(index)} className={currentIndex === index ? styleHome.active : ''} key={index}>{item}</span>
         ))}
       </h4>
-      <p className={styleHome.swiperSubtext}>발급 대상: 신청일 기준 민법상 성년(만 19세 이상) 내국인</p>
-      <p className={`${styleHome.swiperSubtext} ${styleHome.lastText}`}>결제 건당 최대 1,000개 지급</p>
+      {issueTarget && (
+        <>
+          <p className={styleHome.swiperSubtext}>발급 대상: 신청일 기준 민법상 성년(만 19세 이상) 내국인</p>
+          <p className={`${styleHome.swiperSubtext} ${styleHome.lastText}`}>결제 건당 최대 1,000개 지급</p>
+        </>
+      )}
+      
       <Swiper {...swiperParams} onSlideChange={handleSlideChange} onSwiper={setSwiper} ref={targetRef}>
         {imgClass.map((imgItem, imgIndex) => (
           <SwiperSlide key={imgIndex}>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<link rel="stylesheet" href="../../resources/css/musinsa.css?ver=1">
+	<script src="../../resources/js/jquery-1.8.3.min.js"></script>
+	<script src="../../resources/js/design.js" defer="defer"></script>
+	<!--[if lt IE 9]>
+	<script src="../../resources/js/html5shiv.js"></script>
+	<link rel="stylesheet" href="../../resources/css/ie-down.css">
+	<link rel="stylesheet" href="../../resources/css/common/css/custom/yanolja/pc/yanolja.css">
+	<![endif]-->
+	<!-- <link rel="stylesheet" href="../../resources/css/common/css/custom/yanolja/yanolja.css"> -->
+	<title>간편결제</title>
+
+	<!--[if lt IE 9]>
+			<script src="../css/common/js/html5shiv.js"></script>
+			<link rel="stylesheet" href="../css/common/css/ie-down.css">
+			<![endif]-->
+
+	<title>간편결제</title>
+
+	<script>
+		$(function () {
+			var check = true;
+			var arscheck = true;
+			$('#doAuthAcctNmCheck').click(function (e) {
+				if (!$('.btn_xr.btn_type').hasClass('on')) {
+					$('#POacctNo').focus();
+					return false;
+				}
+				$.ajax({
+					type: "post",
+					url: "" + URL_PATH + "?_method=authAcctNmCheck_rep",
+					dataType: "json",
+					data: { POacctNo: $("#POacctNo").val(), payGb: $("#payGb").val(), PCustId: $("#PCustId").val(), PMid: $("#PMid").val() },
+					success: function (data) {
+						var dataMsg = data.msg;
+						if (data.code == "0000") {
+							var formData = $("#frm").serialize();
+							$.ajax({
+								type: "post",
+								url: "" + URL_PATH + "?_method=checkAccount",
+								dataType: "json",
+								data: formData,
+								success: function (data) {
+									if (data.code == "9999") {	// 팝업 후 결제 스톱
+										alert(data.msg);
+										return false;
+									} else if (data.code == "0000") {
+										//goArsAuthInfo();	// 정상 결제진행
+										//return true;
+										if ('' == 'CO') {
+											confirm("<h1 style='font-size: 1.5rem;'>예금주 성명조회 결과</h1><br/> <h1>예금주명 : " + dataMsg + "</h1>"
+												, function () {
+													goArsAuthInfo();
+												});
+										} else {
+											goArsAuthInfo();
+										}
+									} else if (data.code == "session") {
+										$("#pwdError").hide("fade");
+										$("#_method").val("goErrorPage");
+										$("#frm").attr('action', '' + URL_PATH).submit();
+									} else {
+										alert(data.msg);
+										return false;
+									}
+								},
+								error: function (e) {
+									alert("서비스 오류가 발생되었습니다.\n다시 시도 하십시오.");
+									return false;
+								}
+							});
+							return true;
+						} else if (data.code == "session") {
+							$("#_method").val("goErrorPage");
+							$("#frm").attr('action', '' + URL_PATH).submit();
+						} else {
+							alert(dataMsg, function () {
+								$("#POacctNo").val("");
+								$('.btn_xr.btn_type').removeClass('on');
+							});
+							return false;
+						}
+					},
+					error: function (e) {
+						alert("서비스 오류가 발생되었습니다.\n다시 시도 하십시오.", function () {
+							$(this).removeClass('on');
+							$("#POacctNo").val("");
+							$('#POacctNo').focus();
+						});
+						return false;
+					}
+				});
+			});
+
+			$('#doArsCancel').click(function (e) {
+				layer_close();
+				check = true;
+				if ($("#POacctNo").val()) {
+					$('.btn_xr.btn_type').addClass('on');
+				} else {
+					$('.btn_xr.btn_type').removeClass('on');
+				}
+			});
+
+			$('#doArs').click(function (e) {
+				if (arscheck) {
+					arscheck = false;
+					goArsAuthInfo();
+				}
+			});
+
+			function goArsAuthInfo() {
+				var formData = $("#frm").serialize();
+				$.ajax({
+					type: "post",
+					url: "" + URL_PATH + "?_method=goArsAuth",
+					dataType: "json",
+					data: formData,
+					success: function (data) {
+						if (data.code == "000") {
+							//ARS에서 전화는 걸고있고 화면을 이리로 보냄.
+							$("#_method").val("doArsAuth");
+							$("#frm").attr('action', '' + URL_PATH).submit();
+						} else if (data.code == "session") {
+							$("#_method").val("goErrorPage");
+							$("#frm").attr('action', '' + URL_PATH).submit();
+						} else {
+							setTimeout(function () {
+								alert(data.msg);
+							}, 500);
+						}
+					},
+					error: function (e) {
+						alert("서비스 오류가 발생되었습니다.\n다시 시도 하십시오.");
+					}
+				});
+				arscheck = true;
+			}
+
+			$("#POacctNo").keyup(function (e) {
+				$(this).val($(this).val().replace(/[^0-9]/g, ''));
+				var acctLength = $("#POacctNo").val().length;
+				if (7 <= acctLength && acctLength <= 15) {
+					if (!$('.btn_xr.btn_type').hasClass('on')) {
+						$('.btn_xr.btn_type').addClass('on');
+						$('.btn_xr.btn_type').attr('disabled', false);
+					}
+				} else {
+					if ($('.btn_xr.btn_type').hasClass('on')) {
+						$('.btn_xr.btn_type').removeClass('on');
+						$('.btn_xr.btn_type').attr('disabled', true);
+					}
+				}
+			});
+		});
+
+		$(function () {
+			$("#cancle").click(function () {
+				var msg;
+				if ($("#adminSt").val() == "Admin") {
+					msg = "새로운 계좌 추가를 취소하시겠습니까?";
+				} else {
+					msg = "등록을 취소하시겠습니까?";
+				}
+				confirm(msg, function () {
+					$("#_method").val("payCancel");
+					$("#frm").attr('action', '' + URL_PATH).submit();
+				});
+			});
+		});
+
+		$(function () {
+			$("#reset").click(function () {
+				var msg;
+				msg = "입력하신 계좌정보가 초기화됩니다.";
+				confirm(msg, function () {
+					$("#_method").val("payCancel");
+					$("#frm").attr('action', '' + URL_PATH).submit();
+				});
+			});
+		});
+	</script>
+</head>
+
+<body class="musinsa">
+	<header id="header">
+		<h1>신규/추가 등록</h1>
+	</header>
+
+	<div id="ct">
+		<form name="frm" id="frm" method="post">
+			<input type="hidden" id="_method" name="_method" value="" />
+			<input type="hidden" id="PCancUrl" name="PCancUrl"
+				value="https://test-driver.settlebank.co.kr:443/resultCanclPayment?_csrf=dae7d902-2b95-4592-a23f-1c5f708501d4" />
+			<input type="hidden" id="payGb" name="payGb" value="RE" />
+			<input type="hidden" id="PCustId" name="PCustId" value="jaehee7996" />
+			<input type="hidden" id="PMid" name="PMid" value="bio1101t" />
+			<input type="hidden" id="JuminNo" name="JuminNo" value="7902122">
+			<input type="hidden" id="PhoneNo" name="PhoneNo" value="01035075520">
+			<input type="hidden" id="PErrCd" name="PErrCd" value="">
+			<input type="hidden" id="PRmesg1" name="PRmesg1" value="">
+			<input type="hidden" id="PStatus" name="PStatus" value="">
+			<input type="hidden" id="adminSt" name="adminSt" value="">
+			<input type="hidden" id="PMchtParam" name="PMchtParam" value="" />
+			<input style="VISIBILITY: hidden; WIDTH:0px; HEIGHT:0PX;">
+			<h2 class="logo_fullname"><img src="../../resources/images/bank/fullname_088.png" alt="신한은행"></h2>
+			<fieldset class="ars_form">
+				<legend>계좌번호 입력폼</legend>
+				<ul class="brb0">
+					<li class="master">
+						<span class="stit">예금주</span>
+						<strong>강수미</strong>
+					</li>
+					<li class="num">
+						<span class="stit">계좌번호</span>
+						<span class="input">
+							<input type="tel" name="POacctNo" id="POacctNo" placeholder="‘-’없이 입력" tabindex="2" maxlength="20">
+						</span>
+					</li>
+				</ul>
+			</fieldset>
+			<div class="btn_area4 v1">
+				<p class="txt_cm_cau">본인명의 계좌만 가능<br>
+					가상계좌, 적금, 펀드계좌, 평생계좌등록 불가</p>
+				<ul>
+					<li class="bt1"><button type="button" id="cancle" name="cancle" class="btn_xr btn_type2">취소</button></li>
+					<li class="bt2"><button type="button" class="btn_xr btn_type" id="doAuthAcctNmCheck">다음</button></li>
+				</ul>
+			</div>
+			<div class="btn_area4 txt_cm_cau">
+				<button type="button" id="reset" class="btn_re">계좌 등록할 은행을 다시 선택하시겠습니까?</button>
+			</div>
+		</form>
+	</div>
+	<!-- //content -->
+
+</body>
+
+</html>

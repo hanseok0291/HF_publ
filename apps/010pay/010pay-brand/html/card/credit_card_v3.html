@@ -59,7 +59,6 @@
 	<script src="../../resource/library/jquery.3.4.1.min.js"></script>
 	<script src="../../resource/js/010pay_UI.js"></script>
 	<script src="../../resource/js/swiper.js"></script>
-	<script src="../../resource/js/lottie.min.js"></script>
 	<script src="https://www.youtube.com/iframe_api"></script>
 	<!-- <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script> -->
 	<!-- <script src="../../resource/js/jquery.vticker.min.js"></script> -->
@@ -448,7 +447,7 @@
 									<!--  -->
 									<div class="accordion-item">
 										<div class="accordion-header js">
-											<h3><button type="button"><span class="label">프로모션</span><span class="color">체크카드 고객 1만원</span><br
+											<h3><button type="button"><span class="label">프로모션</span><span class="color">체크카드 고객 1만원 </span><br
 														class="mo-view">추가 리워드</button></h3>
 										</div>
 										<div class="accordion-body">
@@ -478,7 +477,7 @@
 											<!--  -->
 											<div class="accordion-item">
 												<div class="accordion-header js">
-													<h3><button type="button"><span class="label">프로모션</span><span class="color">결제금액 0.3%<br
+													<h3><button type="button"><span class="label">프로모션</span><span class="color">결제금액 0.3% <br
 																	class="mo-view"></span>010PAY 포인트 적립</button>
 													</h3>
 												</div>
@@ -1133,38 +1132,8 @@
 				}
 			}
 
-
-			// 페이지가 로드되면 실행될 코드
-			var lottieAni; // 전역 변수로 설정하여 다른 함수에서도 접근할 수 있도록 함
-			function createLottieAnimation() {
-				var path;
-				if (window.innerWidth >= 750) {
-					path = '../../resource/images/creditcard/img_360_03percent_3.json';
-				} else {
-					path = '../../resource/images/creditcard/img_360_03percent_3_mo.json';
-				}
-
-				// 이전 애니메이션 제거
-				if (lottieAni) {
-					lottieAni.destroy();
-				}
-
-				// 새로운 애니메이션 생성
-				lottieAni = bodymovin.loadAnimation({
-					container: document.getElementById('lottie-pop'),
-					path: path,
-					renderer: 'svg',
-					loop: false,
-					autoplay: false
-				});
-			}
-
-			// 초기 애니메이션 생성
-			createLottieAnimation();
-
 			// 화면 크기가 변경될 때마다 애니메이션 다시 생성
 			window.onresize = function () {
-				createLottieAnimation();
 				rollingAnimation();
 			};
 
@@ -1197,11 +1166,6 @@
 				} else if (windowWidth < 768) {
 					// 모바일 버전
 					handleScrollMobile(scrollTop);
-				}
-
-				// 로티 애니메이션 재생
-				if ($(".section04").hasClass('animation') == true) {
-					lottieAni.play();
 				}
 
 			});

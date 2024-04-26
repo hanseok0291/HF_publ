@@ -830,7 +830,7 @@
   }
 }
 /* 기본설정 */
-.pcOnly {
+.pcOnly, .pc-view {
   display: block !important;
 }
 
@@ -856,6 +856,41 @@ i {
 
 .btn_top.footer-fixed {
   bottom: 240px;
+}
+
+.mouse {
+  position: absolute;
+  top: 622px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  width: 62px;
+  height: 72px;
+  justify-content: center;
+  background: url("../images/creditcard/v2/mouse.png") no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin-top: 137px;
+}
+.mouse.web-view {
+  display: flex;
+}
+.mouse.mo-view {
+  display: none;
+}
+.mouse .move {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ccc;
+  width: 4px;
+  height: 13px;
+  margin-top: 9px;
+  border-radius: 2px;
+  -webkit-animation: moveArrow 2.5s infinite ease-in-out;
+          animation: moveArrow 2.5s infinite ease-in-out;
 }
 
 .main-view .btn_top.float-app-down {
@@ -1907,76 +1942,19 @@ header, .header {
 .content_wrap.credit_card .section.section06 .container .card_area .card {
   padding: 20px;
   background: #fff;
-  margin-top: 50px;
+  margin-top: 40px;
 }
 .content_wrap.credit_card .section.section06 .container .card_area .card .face {
   width: 90px;
   height: 90px;
 }
-.content_wrap.credit_card .section.section06 .container .card_area .card .txt {
-  border-radius: 30px;
-  padding: 24px 20px;
-}
 .content_wrap.credit_card .section.section06 .container .card_area .card .txt01 {
   background: #222;
-  color: #fff;
+  color: #222;
 }
 .content_wrap.credit_card .section.section06 .container .card_area .card .txt02 {
   background: #fff;
   color: #151515;
-}
-.content_wrap.credit_card .section.section06 .container .card_area .card.card01 .face {
-  background: url("../images/creditcard/face01.png") no-repeat center/contain;
-}
-.content_wrap.credit_card .section.section06 .container .card_area .card.card02 .face {
-  background: url("../images/creditcard/face02.png") no-repeat center/contain;
-}
-.content_wrap.credit_card .section.section06 .container .card_area .card.card03 .face {
-  background: url("../images/creditcard/face03.png") no-repeat center/contain;
-}
-.content_wrap.credit_card .section.section06 .container .card_area .card .talk_area {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-flow: row wrap;
-  font-size: 18px;
-}
-.content_wrap.credit_card .section.section06 .container .card_area .card .talk_area .txt_up {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: space-between;
-}
-.content_wrap.credit_card .section.section06 .container .card_area .card .talk_area .txt_up .txt {
-  position: relative;
-  font-size: 18px;
-  line-height: 24px;
-}
-.content_wrap.credit_card .section.section06 .container .card_area .card .talk_area .txt_up .txt.txt01::after {
-  content: "";
-  position: absolute;
-  top: -12px;
-  right: 30px;
-  width: 18px;
-  height: 18px;
-  background: url(../images/creditcard/bubble-bg.png) no-repeat center/contain;
-  transform: rotate(180deg);
-}
-.content_wrap.credit_card .section.section06 .container .card_area .card .talk_area .txt_up .txt.txt02::after {
-  content: "";
-  position: absolute;
-  top: -12px;
-  left: 30px;
-  width: 18px;
-  height: 18px;
-  background: url(../images/creditcard/bubble-bg-white.png) no-repeat center/contain;
-}
-.content_wrap.credit_card .section.section06 .container .card_area .card .talk_area .txt_up .txt.txt_up02 {
-  margin-top: 22px;
-}
-.content_wrap.credit_card .section.section06 .container .card_area .card .talk_area .txt_up.txt_up02 {
-  margin-top: 22px;
 }
 .content_wrap.credit_card .section.app-down {
   display: flex;
@@ -2585,15 +2563,14 @@ header, .header {
   height: 575px;
 }
 .content_wrap.credit_card .top-visual .retto_icon {
-  position: fixed;
-  top: 632px;
-  right: 50%;
+  position: absolute;
+  bottom: 0;
+  right: -10px;
   display: inline-block;
   width: 100px;
   height: 115px;
   background: url("../images/creditcard/retto-icon.png") no-repeat center/auto 98px;
   z-index: 101;
-  margin-right: -650px;
   -webkit-animation: downUp 2s 1s infinite ease-in-out;
           animation: downUp 2s 1s infinite ease-in-out;
   opacity: 0;
@@ -2663,35 +2640,35 @@ header, .header {
   text-align: center;
   background-color: #151515;
 }
-.content_wrap.credit_card.v2 .top-visual {
+.content_wrap.credit_card.v2 .top-visual, .content_wrap.credit_card.v3 .top-visual {
   height: 1911px;
 }
-.content_wrap.credit_card.v2 .bg .sub_info {
+.content_wrap.credit_card.v2 .bg .sub_info, .content_wrap.credit_card.v3 .bg .sub_info {
   margin-top: 70px;
 }
-.content_wrap.credit_card.v2 .bg .sub_info > p strong {
+.content_wrap.credit_card.v2 .bg .sub_info > p strong, .content_wrap.credit_card.v3 .bg .sub_info > p strong {
   font-feature-settings: "clig" off, "liga" off;
   font-size: 32px;
   letter-spacing: -1.6px;
 }
-.content_wrap.credit_card.v2 .bg .sub_info > p.line {
+.content_wrap.credit_card.v2 .bg .sub_info > p.line, .content_wrap.credit_card.v3 .bg .sub_info > p.line {
   background: rgba(243, 229, 209, 0.1);
 }
-.content_wrap.credit_card.v2 .bg .video_area {
+.content_wrap.credit_card.v2 .bg .video_area, .content_wrap.credit_card.v3 .bg .video_area {
   text-align: center;
   position: relative;
   width: 1064px;
   height: 597px;
   margin: 50px auto 0;
 }
-.content_wrap.credit_card.v2 .bg .video_area iframe {
+.content_wrap.credit_card.v2 .bg .video_area iframe, .content_wrap.credit_card.v3 .bg .video_area iframe {
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
 }
-.content_wrap.credit_card.v2 .bg .video_area::before {
+.content_wrap.credit_card.v2 .bg .video_area::before, .content_wrap.credit_card.v3 .bg .video_area::before {
   display: block;
   content: "";
   position: absolute;
@@ -2702,7 +2679,7 @@ header, .header {
   height: 100%;
   pointer-events: none;
 }
-.content_wrap.credit_card.v2 .bg .video_area .btn_wrap {
+.content_wrap.credit_card.v2 .bg .video_area .btn_wrap, .content_wrap.credit_card.v3 .bg .video_area .btn_wrap {
   position: absolute;
   top: 0;
   left: 0;
@@ -2712,7 +2689,7 @@ header, .header {
   background: url(../images/creditcard/video_img_big2.png) 0 0/cover no-repeat;
   cursor: pointer;
 }
-.content_wrap.credit_card.v2 .bg .video_area .btn_wrap::after {
+.content_wrap.credit_card.v2 .bg .video_area .btn_wrap::after, .content_wrap.credit_card.v3 .bg .video_area .btn_wrap::after {
   display: block;
   content: "";
   position: absolute;
@@ -2723,16 +2700,13 @@ header, .header {
   height: 127px;
   background: url(../images/creditcard/btn_play_big.png) 0 0/cover no-repeat;
 }
-.content_wrap.credit_card.v2 .bg.active {
-  height: 1243px;
-}
-.content_wrap.credit_card.v2 .section.section01 .container {
+.content_wrap.credit_card.v2 .section.section01 .container, .content_wrap.credit_card.v3 .section.section01 .container {
   padding: 100px 0;
   background: url(../images/creditcard/section01-bg.png) no-repeat;
   background-size: 1280px auto;
   background-position: top 140px center;
 }
-.content_wrap.credit_card.v2 .section.section01 .container .txt_area .juwel_wrap {
+.content_wrap.credit_card.v2 .section.section01 .container .txt_area .juwel_wrap, .content_wrap.credit_card.v3 .section.section01 .container .txt_area .juwel_wrap {
   display: none;
   position: absolute;
   top: 0;
@@ -2740,34 +2714,34 @@ header, .header {
   transform: translateX(-50%);
   width: 100%;
 }
-.content_wrap.credit_card.v2 .section.section01 .container .txt_area .juwel_wrap .juwel {
+.content_wrap.credit_card.v2 .section.section01 .container .txt_area .juwel_wrap .juwel, .content_wrap.credit_card.v3 .section.section01 .container .txt_area .juwel_wrap .juwel {
   position: absolute;
   display: inline-block;
   left: 50%;
   transform: translateX(-50%);
 }
-.content_wrap.credit_card.v2 .section.section01 .container .txt_area .juwel_wrap .juwel1 {
+.content_wrap.credit_card.v2 .section.section01 .container .txt_area .juwel_wrap .juwel1, .content_wrap.credit_card.v3 .section.section01 .container .txt_area .juwel_wrap .juwel1 {
   width: 111px;
   height: 111px;
   background: url("../images/creditcard/juwel1.png") no-repeat center/contain;
   margin-left: -432px;
   top: 60px;
 }
-.content_wrap.credit_card.v2 .section.section01 .container .txt_area .juwel_wrap .juwel2 {
+.content_wrap.credit_card.v2 .section.section01 .container .txt_area .juwel_wrap .juwel2, .content_wrap.credit_card.v3 .section.section01 .container .txt_area .juwel_wrap .juwel2 {
   width: 152px;
   height: 162px;
   background: url("../images/creditcard/juwel2.png") no-repeat center/contain;
   margin-left: 370px;
   top: -20px;
 }
-.content_wrap.credit_card.v2 .section.section01 .container .txt_area .juwel_wrap .juwel3 {
+.content_wrap.credit_card.v2 .section.section01 .container .txt_area .juwel_wrap .juwel3, .content_wrap.credit_card.v3 .section.section01 .container .txt_area .juwel_wrap .juwel3 {
   width: 105px;
   height: 105px;
   background: url("../images/creditcard/juwel3.png") no-repeat center/contain;
   margin-left: 510px;
   top: 290px;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_area {
+.content_wrap.credit_card.v2 .section.section01 .reward_area, .content_wrap.credit_card.v3 .section.section01 .reward_area {
   max-width: 886px;
   margin: 0 auto;
   margin-top: 50px;
@@ -2776,13 +2750,13 @@ header, .header {
   grid-template-rows: repeat(3, 1fr); /* 3개의 행으로 나눔 */
   gap: 20px; /* 그리드 아이템 사이의 간격 설정 */
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_area .box {
+.content_wrap.credit_card.v2 .section.section01 .reward_area .box, .content_wrap.credit_card.v3 .section.section01 .reward_area .box {
   position: relative;
   min-height: 148px;
   border-radius: 15px;
   padding: 50px 20px;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_area .box::after {
+.content_wrap.credit_card.v2 .section.section01 .reward_area .box::after, .content_wrap.credit_card.v3 .section.section01 .reward_area .box::after {
   content: "";
   background-size: contain;
   position: absolute;
@@ -2791,62 +2765,62 @@ header, .header {
   width: 149px;
   height: 100px;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_area .box > p {
+.content_wrap.credit_card.v2 .section.section01 .reward_area .box > p, .content_wrap.credit_card.v3 .section.section01 .reward_area .box > p {
   color: #151515;
   font-size: 18px;
   font-weight: 700;
   line-height: 135%; /* 24.3px */
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box1 {
+.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box1, .content_wrap.credit_card.v3 .section.section01 .reward_area .box.box1 {
   background-color: #F2F7FA;
   grid-column: 1; /* 왼쪽에 위치 */
   grid-row: span 3; /* 3개의 행에 걸쳐 배치 */
   height: 484px;
   padding: 50px;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box1 p {
+.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box1 p, .content_wrap.credit_card.v3 .section.section01 .reward_area .box.box1 p {
   font-size: 30px;
   margin-bottom: 10px;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box1 span {
+.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box1 span, .content_wrap.credit_card.v3 .section.section01 .reward_area .box.box1 span {
   color: var(--gray-600, #7D7D7D);
   font-size: 16px;
   font-weight: 400;
   line-height: 135%; /* 21.6px */
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box2 {
+.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box2, .content_wrap.credit_card.v3 .section.section01 .reward_area .box.box2 {
   background-color: #F3FAF2;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box2 p {
+.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box2 p, .content_wrap.credit_card.v3 .section.section01 .reward_area .box.box2 p {
   font-size: 18px;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box2::after {
+.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box2::after, .content_wrap.credit_card.v3 .section.section01 .reward_area .box.box2::after {
   background-image: url("../images/creditcard/reward_box_2.png");
   width: 149px;
   height: 100px;
   bottom: 0;
   right: 10px;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box3 {
+.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box3, .content_wrap.credit_card.v3 .section.section01 .reward_area .box.box3 {
   background-color: #F9F7EA;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box3 p {
+.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box3 p, .content_wrap.credit_card.v3 .section.section01 .reward_area .box.box3 p {
   font-size: 18px;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box3::after {
+.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box3::after, .content_wrap.credit_card.v3 .section.section01 .reward_area .box.box3::after {
   background-image: url("../images/creditcard/reward_box_3_pay.png");
   width: 126px;
   height: 92px;
   bottom: 27px;
   right: 20px;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box4 {
+.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box4, .content_wrap.credit_card.v3 .section.section01 .reward_area .box.box4 {
   background-color: #FFF4FE;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box4 p {
+.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box4 p, .content_wrap.credit_card.v3 .section.section01 .reward_area .box.box4 p {
   font-size: 18px;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box4::after {
+.content_wrap.credit_card.v2 .section.section01 .reward_area .box.box4::after, .content_wrap.credit_card.v3 .section.section01 .reward_area .box.box4::after {
   background-image: url("../images/creditcard/reward_box_4.png");
   width: 100px;
   height: 100px;
@@ -2854,7 +2828,7 @@ header, .header {
   right: 34px;
   background-size: cover;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_area .card_ani_wrap {
+.content_wrap.credit_card.v2 .section.section01 .reward_area .card_ani_wrap, .content_wrap.credit_card.v3 .section.section01 .reward_area .card_ani_wrap {
   position: relative;
   width: 360px;
   height: 240px;
@@ -2862,14 +2836,14 @@ header, .header {
   margin-left: calc(50% - 110px);
   overflow: hidden;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_area .card_ani {
+.content_wrap.credit_card.v2 .section.section01 .reward_area .card_ani, .content_wrap.credit_card.v3 .section.section01 .reward_area .card_ani {
   position: absolute;
   width: 360px;
   height: 240px;
   background: url("../images/creditcard/card_ani_bg.png") no-repeat center left 64px/145px auto;
   z-index: 1;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_area .card_ani_card {
+.content_wrap.credit_card.v2 .section.section01 .reward_area .card_ani_card, .content_wrap.credit_card.v3 .section.section01 .reward_area .card_ani_card {
   position: absolute;
   top: 124px;
   width: 360px;
@@ -2878,7 +2852,7 @@ header, .header {
   -webkit-animation: cardAniUp 3.5s cubic-bezier(0.7, 0, 0.7, 0) infinite;
           animation: cardAniUp 3.5s cubic-bezier(0.7, 0, 0.7, 0) infinite;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_area .card_ani_text {
+.content_wrap.credit_card.v2 .section.section01 .reward_area .card_ani_text, .content_wrap.credit_card.v3 .section.section01 .reward_area .card_ani_text {
   position: absolute;
   background: #F1F4F6 url("../images/creditcard/card_ani_text01.png") no-repeat center/91px 29px;
   width: 100px;
@@ -2891,28 +2865,28 @@ header, .header {
   -webkit-animation-delay: 0.4s;
           animation-delay: 0.4s;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_info {
+.content_wrap.credit_card.v2 .section.section01 .reward_info, .content_wrap.credit_card.v3 .section.section01 .reward_info {
   max-width: 886px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 652px 1fr; /* 왼쪽 1칸, 오른쪽 1칸으로 나눔 */
   gap: 20px; /* 그리드 아이템 사이의 간격 설정 */
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_info .box {
+.content_wrap.credit_card.v2 .section.section01 .reward_info .box, .content_wrap.credit_card.v3 .section.section01 .reward_info .box {
   background: #F9F9F9;
   border-radius: 15px;
   overflow: hidden;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_info .box .line {
+.content_wrap.credit_card.v2 .section.section01 .reward_info .box .line, .content_wrap.credit_card.v3 .section.section01 .reward_info .box .line {
   width: calc(100% - 70px);
   height: 1px;
   background: #f1f1f1;
   margin: 16px auto;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_info .box .flex {
+.content_wrap.credit_card.v2 .section.section01 .reward_info .box .flex, .content_wrap.credit_card.v3 .section.section01 .reward_info .box .flex {
   padding: 24px 0;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_info .box .top {
+.content_wrap.credit_card.v2 .section.section01 .reward_info .box .top, .content_wrap.credit_card.v3 .section.section01 .reward_info .box .top {
   background: #F1F1F1;
   color: #151515;
   text-align: center;
@@ -2920,24 +2894,24 @@ header, .header {
   font-weight: 700;
   line-height: 48px;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_info .box .txt-box {
+.content_wrap.credit_card.v2 .section.section01 .reward_info .box .txt-box, .content_wrap.credit_card.v3 .section.section01 .reward_info .box .txt-box {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_info .box .txt-box .win-img {
+.content_wrap.credit_card.v2 .section.section01 .reward_info .box .txt-box .win-img, .content_wrap.credit_card.v3 .section.section01 .reward_info .box .txt-box .win-img {
   width: 90px;
   height: 85px;
   margin: 0;
   margin-right: 50px;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_info .box .txt-box .win-img.win-img01 {
+.content_wrap.credit_card.v2 .section.section01 .reward_info .box .txt-box .win-img.win-img01, .content_wrap.credit_card.v3 .section.section01 .reward_info .box .txt-box .win-img.win-img01 {
   background: url(../images/creditcard/win-img01.png) no-repeat 2px 0/auto 95px;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_info .box .txt-box .win-img.win-img02 {
+.content_wrap.credit_card.v2 .section.section01 .reward_info .box .txt-box .win-img.win-img02, .content_wrap.credit_card.v3 .section.section01 .reward_info .box .txt-box .win-img.win-img02 {
   background: url(../images/creditcard/win-img02.png) no-repeat 2px 0/auto 95px;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_info .box .txt-box .win-txt {
+.content_wrap.credit_card.v2 .section.section01 .reward_info .box .txt-box .win-txt, .content_wrap.credit_card.v3 .section.section01 .reward_info .box .txt-box .win-txt {
   color: #222;
   text-align: center;
   font-size: 20px;
@@ -2945,7 +2919,7 @@ header, .header {
   line-height: 135%; /* 27px */
   margin-right: 50px;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_info .box .txt-box .win-info1 {
+.content_wrap.credit_card.v2 .section.section01 .reward_info .box .txt-box .win-info1, .content_wrap.credit_card.v3 .section.section01 .reward_info .box .txt-box .win-info1 {
   color: #575757;
   font-size: 18px;
   font-weight: 400;
@@ -2953,28 +2927,28 @@ header, .header {
   text-align: center;
   margin-right: 50px;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_info .box .txt-box .win-info2 {
+.content_wrap.credit_card.v2 .section.section01 .reward_info .box .txt-box .win-info2, .content_wrap.credit_card.v3 .section.section01 .reward_info .box .txt-box .win-info2 {
   color: #222;
   font-size: 18px;
   font-weight: 400;
   line-height: 135%; /* 24.3px */
   text-align: center;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_info .box.box2 .txt-box {
+.content_wrap.credit_card.v2 .section.section01 .reward_info .box.box2 .txt-box, .content_wrap.credit_card.v3 .section.section01 .reward_info .box.box2 .txt-box {
   flex-direction: column;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_info .box.box2 .txt-box .win-img {
+.content_wrap.credit_card.v2 .section.section01 .reward_info .box.box2 .txt-box .win-img, .content_wrap.credit_card.v3 .section.section01 .reward_info .box.box2 .txt-box .win-img {
   margin: 0 0 8px;
   background: url(../images/creditcard/win-img03.png) no-repeat center/contain;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_info .box.box2 .txt-box .win-txt {
+.content_wrap.credit_card.v2 .section.section01 .reward_info .box.box2 .txt-box .win-txt, .content_wrap.credit_card.v3 .section.section01 .reward_info .box.box2 .txt-box .win-txt {
   margin-right: 0;
   margin-bottom: 11px;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_info .box.box2 .txt-box .win-info1 {
+.content_wrap.credit_card.v2 .section.section01 .reward_info .box.box2 .txt-box .win-info1, .content_wrap.credit_card.v3 .section.section01 .reward_info .box.box2 .txt-box .win-info1 {
   margin-right: 0;
 }
-.content_wrap.credit_card.v2 .section.section01 .reward_info .box.box2 .txt-box .win-info2 {
+.content_wrap.credit_card.v2 .section.section01 .reward_info .box.box2 .txt-box .win-info2, .content_wrap.credit_card.v3 .section.section01 .reward_info .box.box2 .txt-box .win-info2 {
   color: #222;
   text-align: center;
   font-size: 18px;
@@ -2982,7 +2956,7 @@ header, .header {
   line-height: 135%; /* 24.3px */
   margin-top: 16px;
 }
-.content_wrap.credit_card.v2 .section.section01 .box_area {
+.content_wrap.credit_card.v2 .section.section01 .box_area, .content_wrap.credit_card.v3 .section.section01 .box_area {
   position: relative;
   max-width: 886px;
   margin: 108px auto 0;
@@ -2990,7 +2964,7 @@ header, .header {
   border-radius: 15px;
   padding: 60px 0 55px;
 }
-.content_wrap.credit_card.v2 .section.section01 .box_area strong {
+.content_wrap.credit_card.v2 .section.section01 .box_area strong, .content_wrap.credit_card.v3 .section.section01 .box_area strong {
   display: inline-block;
   color: #FF4600;
   text-align: center;
@@ -2999,14 +2973,14 @@ header, .header {
   line-height: 135%; /* 32.4px */
   margin-bottom: 12px;
 }
-.content_wrap.credit_card.v2 .section.section01 .box_area p {
+.content_wrap.credit_card.v2 .section.section01 .box_area p, .content_wrap.credit_card.v3 .section.section01 .box_area p {
   color: var(--gray-800, #222);
   text-align: center;
   font-size: 24px;
   font-weight: 400;
   line-height: 135%; /* 32.4px */
 }
-.content_wrap.credit_card.v2 .section.section01 .box_area::after {
+.content_wrap.credit_card.v2 .section.section01 .box_area::after, .content_wrap.credit_card.v3 .section.section01 .box_area::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -3017,7 +2991,7 @@ header, .header {
   height: 98px;
   background: url("../images/creditcard/juwel.png") no-repeat center/contain;
 }
-.content_wrap.credit_card.v2 .section.section01 .sub-title {
+.content_wrap.credit_card.v2 .section.section01 .sub-title, .content_wrap.credit_card.v3 .section.section01 .sub-title {
   max-width: 886px;
   margin: 30px auto 20px;
   color: #151515;
@@ -3026,7 +3000,7 @@ header, .header {
   line-height: 135%; /* 29.7px */
   text-align: left;
 }
-.content_wrap.credit_card.v2 .section.section01 .sub-title .txt-bottom {
+.content_wrap.credit_card.v2 .section.section01 .sub-title .txt-bottom, .content_wrap.credit_card.v3 .section.section01 .sub-title .txt-bottom {
   position: relative;
   display: inline-block;
   text-align: center;
@@ -3037,58 +3011,59 @@ header, .header {
   letter-spacing: -0.64px;
   padding-left: 15px;
 }
-.content_wrap.credit_card.v2 .section.section01 .sub-title .txt-bottom a {
+.content_wrap.credit_card.v2 .section.section01 .sub-title .txt-bottom a, .content_wrap.credit_card.v3 .section.section01 .sub-title .txt-bottom a {
   text-decoration: underline;
   color: #575757;
 }
-.content_wrap.credit_card.v2 .section.section01 .sub-title .txt-bottom::after {
+.content_wrap.credit_card.v2 .section.section01 .sub-title .txt-bottom::after, .content_wrap.credit_card.v3 .section.section01 .sub-title .txt-bottom::after {
   content: "•";
   position: absolute;
   top: 0;
   left: 0;
   color: #7d7d7d;
 }
-.content_wrap.credit_card.v2 .section.section01 .sub-title.info {
+.content_wrap.credit_card.v2 .section.section01 .sub-title.info, .content_wrap.credit_card.v3 .section.section01 .sub-title.info {
   text-align: center;
   margin-top: 24px;
 }
-.content_wrap.credit_card.v2 .section.section04 .container .card_area .card.card01 {
+.content_wrap.credit_card.v2 .section.section04 .container .card_area .card.card01, .content_wrap.credit_card.v3 .section.section04 .container .card_area .card.card01 {
   width: 550px;
   height: 360px;
 }
-.content_wrap.credit_card.v2 .section.section04 .container .card_area .card.card01 img {
+.content_wrap.credit_card.v2 .section.section04 .container .card_area .card.card01 img, .content_wrap.credit_card.v3 .section.section04 .container .card_area .card.card01 img {
   width: 550px;
   height: 360px;
 }
-.content_wrap.credit_card.v2 .section.section06 .container .card_area .card {
+.content_wrap.credit_card.v2 .section.section06 .container .card_area .card, .content_wrap.credit_card.v3 .section.section06 .container .card_area .card {
+  align-items: start;
   width: 344px;
-  height: 197px;
-  padding: 20px 17px;
-  margin: 50px 6px 0;
+  height: 186px;
+  padding: 30px 17px;
+  margin: 40px 6px 0;
   opacity: 0;
 }
-.content_wrap.credit_card.v2 .section.section06 .container .card_area .card.card01 {
-  width: 360px;
+.content_wrap.credit_card.v2 .section.section06 .container .card_area .card.card01, .content_wrap.credit_card.v3 .section.section06 .container .card_area .card.card01 {
+  width: 299px;
 }
-.content_wrap.credit_card.v2 .section.section06 .container .card_area .card.card02 {
-  width: 338px;
+.content_wrap.credit_card.v2 .section.section06 .container .card_area .card.card02, .content_wrap.credit_card.v3 .section.section06 .container .card_area .card.card02 {
+  width: 304px;
 }
-.content_wrap.credit_card.v2 .section.section06 .container .card_area .card.card03 {
-  width: 416px;
+.content_wrap.credit_card.v2 .section.section06 .container .card_area .card.card03, .content_wrap.credit_card.v3 .section.section06 .container .card_area .card.card03 {
+  width: 363px;
 }
-.content_wrap.credit_card.v2 .section.section06 .container .card_area .card .talk_area .txt_up {
+.content_wrap.credit_card.v2 .section.section06 .container .card_area .card .talk_area .txt_up, .content_wrap.credit_card.v3 .section.section06 .container .card_area .card .talk_area .txt_up {
   margin-top: 0;
 }
-.content_wrap.credit_card.v2 .section.section06 .container .card_area .card .talk_area .txt_up .txt.txt02 {
+.content_wrap.credit_card.v2 .section.section06 .container .card_area .card .talk_area .txt_up .txt.txt02, .content_wrap.credit_card.v3 .section.section06 .container .card_area .card .talk_area .txt_up .txt.txt02 {
   padding-left: 24px;
   margin-top: 0;
   color: #575757;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 135%; /* 24.3px */
   letter-spacing: -0.6px;
 }
-.content_wrap.credit_card.v2 .section.section06 .container .card_area .card .talk_area .txt_up .txt.txt02::after {
+.content_wrap.credit_card.v2 .section.section06 .container .card_area .card .talk_area .txt_up .txt.txt02::after, .content_wrap.credit_card.v3 .section.section06 .container .card_area .card .talk_area .txt_up .txt.txt02::after {
   content: "A.";
   color: #FF6C00;
   font-size: 22px;
@@ -3100,10 +3075,10 @@ header, .header {
   top: -4px;
   left: 0;
 }
-.content_wrap.credit_card.v2 .section.section06 .container .card_area .txt {
+.content_wrap.credit_card.v2 .section.section06 .container .card_area .txt, .content_wrap.credit_card.v3 .section.section06 .container .card_area .txt {
   padding: 0;
 }
-.content_wrap.credit_card.v2 .section.section06 .container .card_area .txt01 {
+.content_wrap.credit_card.v2 .section.section06 .container .card_area .txt01, .content_wrap.credit_card.v3 .section.section06 .container .card_area .txt01 {
   color: #575757;
   font-size: 20px;
   font-weight: 700;
@@ -3111,63 +3086,63 @@ header, .header {
   letter-spacing: -0.4px;
   background: none;
 }
-.content_wrap.credit_card.v2 .section.section06 .container .card_area .txt01::after {
+.content_wrap.credit_card.v2 .section.section06 .container .card_area .txt01::after, .content_wrap.credit_card.v3 .section.section06 .container .card_area .txt01::after {
   display: none;
 }
-.content_wrap.credit_card.v2 .section.section06 .container .card_area .txt02 {
+.content_wrap.credit_card.v2 .section.section06 .container .card_area .txt02, .content_wrap.credit_card.v3 .section.section06 .container .card_area .txt02 {
   position: relative;
   color: #575757;
   background: none;
   margin-top: 0;
 }
-.content_wrap.credit_card.v2 .section.section06 .container .card_area .txt02 span {
+.content_wrap.credit_card.v2 .section.section06 .container .card_area .txt02 span, .content_wrap.credit_card.v3 .section.section06 .container .card_area .txt02 span {
   color: #FF6C00;
   font-size: 22px;
   font-weight: 700;
   line-height: 135%; /* 29.7px */
 }
-.content_wrap.credit_card.v2 .section.section06 .container .card_area .line {
+.content_wrap.credit_card.v2 .section.section06 .container .card_area .line, .content_wrap.credit_card.v3 .section.section06 .container .card_area .line {
   width: 100%;
   height: 1px;
   background: #ccc;
-  margin: 18px 0;
+  margin: 16px 0;
 }
-.content_wrap.credit_card.v2 .section.section06.animation.section06 .container .card_area .card01 {
+.content_wrap.credit_card.v2 .section.section06.animation.section06 .container .card_area .card01, .content_wrap.credit_card.v3 .section.section06.animation.section06 .container .card_area .card01 {
   -webkit-animation: txtUp3 0.5s 0.5s ease-in-out forwards;
           animation: txtUp3 0.5s 0.5s ease-in-out forwards;
 }
-.content_wrap.credit_card.v2 .section.section06.animation.section06 .container .card_area .card02 {
+.content_wrap.credit_card.v2 .section.section06.animation.section06 .container .card_area .card02, .content_wrap.credit_card.v3 .section.section06.animation.section06 .container .card_area .card02 {
   -webkit-animation: txtUp3 0.5s 1s ease-in-out forwards;
           animation: txtUp3 0.5s 1s ease-in-out forwards;
 }
-.content_wrap.credit_card.v2 .section.section06.animation.section06 .container .card_area .card03 {
+.content_wrap.credit_card.v2 .section.section06.animation.section06 .container .card_area .card03, .content_wrap.credit_card.v3 .section.section06.animation.section06 .container .card_area .card03 {
   -webkit-animation: txtUp3 0.5s 1.5s ease-in-out forwards;
           animation: txtUp3 0.5s 1.5s ease-in-out forwards;
 }
-.content_wrap.credit_card.v2 .section.app-down .left-con {
+.content_wrap.credit_card.v2 .section.app-down .left-con, .content_wrap.credit_card.v3 .section.app-down .left-con {
   align-items: start;
 }
-.content_wrap.credit_card.v2 .section.app-down .left-con .btn-wrap {
+.content_wrap.credit_card.v2 .section.app-down .left-con .btn-wrap, .content_wrap.credit_card.v3 .section.app-down .left-con .btn-wrap {
   display: block;
   margin-top: 57px;
 }
-.content_wrap.credit_card.v2 .section.app-down .left-con .btn-wrap a {
+.content_wrap.credit_card.v2 .section.app-down .left-con .btn-wrap a, .content_wrap.credit_card.v3 .section.app-down .left-con .btn-wrap a {
   padding: 0 26px;
 }
-.content_wrap.credit_card.v2 .section.app-down .left-con .btn-wrap .down-btn {
+.content_wrap.credit_card.v2 .section.app-down .left-con .btn-wrap .down-btn, .content_wrap.credit_card.v3 .section.app-down .left-con .btn-wrap .down-btn {
   margin-right: 20px;
 }
-.content_wrap.credit_card.v2 .section.app-down .left-con .btn-wrap .down-btn.home::before {
+.content_wrap.credit_card.v2 .section.app-down .left-con .btn-wrap .down-btn.home::before, .content_wrap.credit_card.v3 .section.app-down .left-con .btn-wrap .down-btn.home::before {
   background: url("../images/creditcard/ico-home.png") no-repeat center/contain;
 }
-.content_wrap.credit_card.v2 .section.app-down .left-con .btn-wrap .down-btn.share::before {
+.content_wrap.credit_card.v2 .section.app-down .left-con .btn-wrap .down-btn.share::before, .content_wrap.credit_card.v3 .section.app-down .left-con .btn-wrap .down-btn.share::before {
   background: url("../images/creditcard/ico-share.png") no-repeat center/contain;
 }
-.content_wrap.credit_card.v2 .section.app-down .right-con p {
+.content_wrap.credit_card.v2 .section.app-down .right-con p, .content_wrap.credit_card.v3 .section.app-down .right-con p {
   font-weight: 700;
   text-align: center;
 }
-.content_wrap.credit_card.v2 .section.app-down .right-con p::before {
+.content_wrap.credit_card.v2 .section.app-down .right-con p::before, .content_wrap.credit_card.v3 .section.app-down .right-con p::before {
   content: "";
   display: inline-block;
   vertical-align: middle;
@@ -3178,9 +3153,13 @@ header, .header {
 }
 .content_wrap.credit_card.v3 .top-visual {
   background-color: #fff;
+  height: 776px;
 }
 .content_wrap.credit_card.v3 .top-visual .container {
+  min-width: 932px;
   max-width: 932px;
+  height: 100%;
+  padding: 100px 0px;
 }
 .content_wrap.credit_card.v3 .top-visual .container .logo_wrap {
   justify-content: start;
@@ -3188,35 +3167,802 @@ header, .header {
 .content_wrap.credit_card.v3 .top-visual .container .tit_wrap {
   text-align: left;
 }
+.content_wrap.credit_card.v3 .top-visual .container .tit_wrap .txt_info {
+  font-size: 50px;
+}
+.content_wrap.credit_card.v3 .top-visual .container .tit_wrap .txt_tit_big {
+  font-size: 24px;
+  font-family: "Noto Sans KR";
+  -webkit-animation: txtUp3 1s ease-in-out forwards;
+          animation: txtUp3 1s ease-in-out forwards;
+}
 .content_wrap.credit_card.v3 .top-visual .container .circle_wrap {
   display: flex;
+  margin-top: 54px;
 }
 .content_wrap.credit_card.v3 .top-visual .container .circle_wrap .circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   position: relative;
   width: 150px;
   height: 150px;
   border-radius: 100%;
   color: #fff;
   text-align: center;
+  margin-left: -120px;
+  transition: margin 0.7s;
+}
+.content_wrap.credit_card.v3 .top-visual .container .circle_wrap .circle.on {
+  margin-left: -20px;
 }
 .content_wrap.credit_card.v3 .top-visual .container .circle_wrap .circle.circle01 {
   background: #FF7F00;
+  z-index: 3;
+  margin-left: 0;
 }
 .content_wrap.credit_card.v3 .top-visual .container .circle_wrap .circle.circle02 {
   background: #FF5A00;
+  z-index: 2;
 }
 .content_wrap.credit_card.v3 .top-visual .container .circle_wrap .circle.circle03 {
   background: #FF4600;
+  z-index: 1;
 }
-.content_wrap.credit_card.v3 .top-visual .container .card_wrap .card.card01 {
+.content_wrap.credit_card.v3 .top-visual .container .circle_wrap .circle .top {
+  font-size: 14px;
+  font-weight: 300;
+}
+.content_wrap.credit_card.v3 .top-visual .container .circle_wrap .circle .mid {
+  font-size: 32px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  margin: 7px 0;
+}
+.content_wrap.credit_card.v3 .top-visual .container .circle_wrap .circle .mid.align_bottom {
+  align-items: end;
+}
+.content_wrap.credit_card.v3 .top-visual .container .circle_wrap .circle .mid .small {
+  font-size: 24px;
+  margin-left: 5px;
+}
+.content_wrap.credit_card.v3 .top-visual .container .circle_wrap .circle .bot {
+  font-size: 14px;
+  font-weight: 700;
+}
+.content_wrap.credit_card.v3 .top-visual .container .circle_wrap .circle .vertical {
+  display: flex;
+  flex-direction: column;
+  margin-right: 5px;
+}
+.content_wrap.credit_card.v3 .top-visual .container .circle_wrap .circle .vertical > span {
+  font-size: 12px;
+}
+.content_wrap.credit_card.v3 .top-visual .container .circle_wrap .circle:hover {
+  background: #222;
+  cursor: pointer;
+}
+.content_wrap.credit_card.v3 .top-visual .container .card_wrap {
+  position: absolute;
+  height: 700px;
+  top: 0;
+  left: 50%;
+  margin-left: 113px;
+}
+.content_wrap.credit_card.v3 .top-visual .container .card_wrap .card {
+  position: relative;
+  width: 400px;
+  height: 100%;
+  overflow: hidden;
+}
+.content_wrap.credit_card.v3 .top-visual .container .card_wrap .card.card01 .card-origin {
+  position: absolute;
+  display: inline-block;
+  z-index: 3;
+  width: 237px;
+  height: 377px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  background: url("../images/creditcard/v2/img-card-front-01.png") no-repeat center/contain;
+  -webkit-animation: cardBottomUp 1s ease-in-out forwards;
+          animation: cardBottomUp 1s ease-in-out forwards;
+  bottom: -100%;
+  left: 20px;
+  transition: 0.3s;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.content_wrap.credit_card.v3 .top-visual .container .card_wrap .card.card01 .card-origin.shiny::after {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  top: -180px;
+  left: 0;
+  width: 30px;
+  height: 100%;
+  background-color: #fff;
+  -webkit-animation: shiny-btn1 3s ease-in-out infinite;
+          animation: shiny-btn1 3s ease-in-out infinite;
+}
+.content_wrap.credit_card.v3 .top-visual .container .card_wrap .card.card01 .card-bg {
+  position: absolute;
+  display: inline-block;
+  z-index: 2;
   width: 297px;
   height: 437px;
-  background: url("../images/creditcard/v2/img-card-front.png") no-repeat center/contain;
+  background: url("../images/creditcard/v2/img-card-front-bg.png") no-repeat center/contain;
+  -webkit-animation: cardBottomUp 1s ease-in-out forwards;
+          animation: cardBottomUp 1s ease-in-out forwards;
+  bottom: -100%;
+  left: 20px;
+  transition: 0.3s;
 }
 .content_wrap.credit_card.v3 .top-visual .container .card_wrap .card.card02 {
   width: 215px;
   height: 340px;
   background: url("../images/creditcard/v2/img-card-back.png") no-repeat center/contain;
+  -webkit-animation: cardTopDown 1s ease-in-out forwards;
+          animation: cardTopDown 1s ease-in-out forwards;
+  top: -100%;
+  left: 137px;
+  transition: 0.3s;
+}
+.content_wrap.credit_card.v3 .top-visual .container .card_wrap .card.card02.shiny::after {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  top: -180px;
+  left: 0;
+  width: 30px;
+  height: 100%;
+  background-color: #fff;
+  -webkit-animation: shiny-btn1 3s ease-in-out infinite;
+          animation: shiny-btn1 3s ease-in-out infinite;
+}
+.content_wrap.credit_card.v3 .top-visual .container .card_wrap .card::before {
+  content: "";
+  display: block;
+}
+.content_wrap.credit_card.v3 .section01 {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  background: #222;
+  height: 760px;
+  padding-top: 159px;
+}
+.content_wrap.credit_card.v3 .section01 .bg .video_area {
+  text-align: center;
+  position: relative;
+  width: 885px;
+  height: 501px;
+  margin: 0 auto;
+}
+.content_wrap.credit_card.v3 .section01 .bg .video_area iframe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.content_wrap.credit_card.v3 .section01 .bg .video_area::before {
+  display: block;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.content_wrap.credit_card.v3 .section01 .bg .video_area .btn_wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background: url(../images/creditcard/video_img_big2.png) 0 0/cover no-repeat;
+  cursor: pointer;
+}
+.content_wrap.credit_card.v3 .section01 .bg .video_area .btn_wrap::after {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 127px;
+  height: 127px;
+  background: url(../images/creditcard/btn_play_big.png) 0 0/cover no-repeat;
+}
+.content_wrap.credit_card.v3 .section02 {
+  background: #f1f1f1;
+}
+.content_wrap.credit_card.v3 .section02 .container {
+  max-width: none;
+  text-align: center;
+  padding: 80px 0 80px;
+}
+.content_wrap.credit_card.v3 .section02 .container .txt_tit {
+  margin-bottom: 40px;
+}
+.content_wrap.credit_card.v3 .section02 .rolling-list {
+  position: absolute;
+}
+.content_wrap.credit_card.v3 .section02 .rolling-list.original {
+  -webkit-animation: rollingleft1 33s linear infinite;
+          animation: rollingleft1 33s linear infinite;
+}
+.content_wrap.credit_card.v3 .section02 .rolling-list.clone {
+  -webkit-animation: rollingleft2 33s linear infinite;
+          animation: rollingleft2 33s linear infinite;
+}
+@keyframes rollingleft1 {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-100%);
+  }
+  50.01% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes rollingleft2 {
+  0% {
+    transition: translateX(0);
+  }
+  100% {
+    transform: translateX(-200%);
+  }
+}
+.content_wrap.credit_card.v3 .section02 .review_wrap {
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  height: 174px;
+}
+.content_wrap.credit_card.v3 .section02 .roller_list {
+  display: flex;
+}
+.content_wrap.credit_card.v3 .section02 .roller_list li {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+  width: 250px;
+  height: 174px;
+  padding: 46px 24px 0 24px;
+  border-radius: 12px;
+  color: #151515;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24.3px;
+  text-align: left;
+  background: #fff url("../images/creditcard/v2/box-mark.png") no-repeat top 24px left 24px/18px 12px;
+  margin-right: 20px;
+}
+.content_wrap.credit_card.v3 .section02 .roller_list li .color {
+  color: #FF4600;
+}
+.content_wrap.credit_card.v3 .section02 .roller_list li .txt_review {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.04em;
+  text-align: left;
+  margin-top: 14px;
+}
+.content_wrap.credit_card.v3 .section03, .content_wrap.credit_card.v3 .section04 {
+  background: #222;
+}
+.content_wrap.credit_card.v3 .section03 .container, .content_wrap.credit_card.v3 .section04 .container {
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  padding: 80px 0;
+}
+.content_wrap.credit_card.v3 .section03 .container .txt_area, .content_wrap.credit_card.v3 .section04 .container .txt_area {
+  text-align: left;
+  margin-top: 32px;
+}
+.content_wrap.credit_card.v3 .section03 .container .txt_area .label, .content_wrap.credit_card.v3 .section04 .container .txt_area .label {
+  color: #151515;
+  border: 1px solid #acacac;
+  background-color: #acacac;
+  padding: 3px 16px;
+}
+.content_wrap.credit_card.v3 .section03 .container .txt_area .txt_info, .content_wrap.credit_card.v3 .section04 .container .txt_area .txt_info {
+  color: #fff;
+}
+.content_wrap.credit_card.v3 .section03 .container .txt_area .txt_tit, .content_wrap.credit_card.v3 .section04 .container .txt_area .txt_tit {
+  color: #fff;
+  font-size: 26px;
+  line-height: 35.1px;
+  margin-bottom: 16px;
+}
+.content_wrap.credit_card.v3 .section03 .container .txt_area .txt_date, .content_wrap.credit_card.v3 .section04 .container .txt_area .txt_date {
+  color: #fff;
+  font-size: 14px;
+  line-height: 19.6px;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area {
+  max-width: 520px;
+  margin-left: 89px;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li {
+  width: 50%;
+  height: 280px;
+  color: #151515;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li > div, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li > div {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 12px;
+  color: #151515;
+  padding: 32px 24px 0;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li > div::after, .content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li > div::before, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li > div::after, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li > div::before {
+  content: "";
+  position: absolute;
+  width: 125px;
+  height: 90px;
+  bottom: 20px;
+  right: 20px;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li.full, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li.full {
+  width: 100%;
+  height: auto;
+  padding-right: 0;
+  padding-bottom: 0;
+  color: #ccc;
+  max-width: 500px;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li.full > div, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li.full > div {
+  background-color: #393939;
+  color: #ccc;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li:nth-of-type(1) > div, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li:nth-of-type(1) > div {
+  color: #fff;
+  background-image: linear-gradient(90deg, #FF7F00 0%, #FF4600 100%);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li:nth-of-type(1) > div::after, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li:nth-of-type(1) > div::after {
+  background: url(../images/creditcard/v2/card_bg_01.png) no-repeat center/contain;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li:nth-of-type(2) > div::before, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li:nth-of-type(2) > div::before {
+  width: 79px;
+  height: 30px;
+  bottom: 94px;
+  background: url(../images/creditcard/v2/card_bg_02_label.png) no-repeat center/contain;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li:nth-of-type(2) > div::after, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li:nth-of-type(2) > div::after {
+  background: url(../images/creditcard/v2/card_bg_02.png) no-repeat center/contain;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li:nth-of-type(3) > div::after, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li:nth-of-type(3) > div::after {
+  background: url(../images/creditcard/v2/card_bg_03.png) no-repeat center/contain;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li:nth-of-type(4) > div::after, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li:nth-of-type(4) > div::after {
+  background: url(../images/creditcard/v2/card_bg_04.png) no-repeat center/contain;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li .txt_top, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li .txt_top {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19.6px;
+  text-align: left;
+  color: #7d7d7d;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li .txt_top.big, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li .txt_top.big {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32.4px;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li .txt_md, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li .txt_md {
+  display: block;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24.3px;
+  text-align: left;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li .txt_small, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li .txt_small {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19.6px;
+  text-align: left;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li .mt10, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li .mt10 {
+  margin-top: 10px;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li .ico, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li .ico {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li .ico.info, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li .ico.info {
+  background: url("../images/creditcard/v2/ico-info.png") no-repeat center/contain;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li ul, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li ul {
+  margin-left: 6px;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li ul li, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li ul li {
+  position: relative;
+  width: 100%;
+  height: auto;
+  color: #ccc;
+  padding-left: 14px;
+  padding-right: 0;
+  padding-bottom: 4px;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.04em;
+  text-align: left;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li ul li::before, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li ul li::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 100%;
+  background-color: #ccc;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li ul li .info_txt, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li ul li .info_txt {
+  padding: 0;
+  background: transparent;
+  color: #ccc;
+  border: 0;
+  font-size: 12px;
+  text-decoration: underline;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li .txt_center, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li .txt_center {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+.content_wrap.credit_card.v3 .section03 .container .wrap02 .card_area ul li .txt_center .ico, .content_wrap.credit_card.v3 .section04 .container .wrap02 .card_area ul li .txt_center .ico {
+  margin-right: 4px;
+}
+.content_wrap.credit_card.v3 .section04 {
+  background: #F9F9F9;
+}
+.content_wrap.credit_card.v3 .section04 .container {
+  padding: 105px 0;
+}
+.content_wrap.credit_card.v3 .section04 .container .txt_area {
+  text-align: left;
+  margin-top: 12px;
+}
+.content_wrap.credit_card.v3 .section04 .container .txt_area .label {
+  color: #fff;
+  border: 1px solid #151515;
+  background-color: #151515;
+}
+.content_wrap.credit_card.v3 .section04 .container .txt_area .txt_info {
+  color: #151515;
+}
+.content_wrap.credit_card.v3 .section04 .container .txt_area .txt_tit {
+  color: #151515;
+}
+.content_wrap.credit_card.v3 .section04 .container .wrap02 {
+  width: 500px;
+  color: #151515;
+  margin-left: 165px;
+}
+.content_wrap.credit_card.v3 .section04 .container .wrap02 ul li {
+  padding-bottom: 20px;
+}
+.content_wrap.credit_card.v3 .section04 .container .wrap02 ul li div {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 29.7px;
+  text-align: center;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
+}
+.content_wrap.credit_card.v3 .section04 .container .wrap02 .color {
+  color: #FF4600;
+}
+.content_wrap.credit_card.v3 .section04 .container .accordion .accordion-item:first-of-type {
+  padding-top: 0;
+}
+.content_wrap.credit_card.v3 .section04 .container .accordion .accordion-item.active .accordion-header {
+  border-radius: 10px 10px 0 0;
+}
+.content_wrap.credit_card.v3 .section04 .container .accordion .accordion-item .accordion-header {
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
+}
+.content_wrap.credit_card.v3 .section04 .container .accordion .accordion-item .accordion-header button {
+  padding-left: 104px;
+  width: 100%;
+  background: transparent url(../images/creditcard/v2/accordion_bg_01.png) 30px 23px/64px auto no-repeat;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 108px;
+  color: #151515;
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+.content_wrap.credit_card.v3 .section04 .container .accordion .accordion-item .accordion-header button .label {
+  position: absolute;
+  bottom: 19px;
+  left: 33px;
+  border: 1px solid #FF4600;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: -0.04em;
+  text-align: center;
+  color: #FF4600;
+  border-radius: 99px;
+  background-color: #fff;
+  padding: 2px 8px 2px 8px;
+}
+.content_wrap.credit_card.v3 .section04 .container .accordion .accordion-item:nth-of-type(2) .accordion-header button {
+  background: transparent url(../images/creditcard/v2/accordion_bg_02.png) 30px 23px/64px auto no-repeat;
+}
+.content_wrap.credit_card.v3 .section04 .container .accordion .accordion-item:nth-of-type(3) .accordion-header button {
+  background: transparent url(../images/creditcard/v2/accordion_bg_03.png) 30px 23px/64px auto no-repeat;
+}
+.content_wrap.credit_card.v3 .section04 .container .accordion .accordion-item .accordion-body {
+  position: relative;
+  padding: 0 0px 20px 104px;
+  background-color: #fff;
+  top: -19px;
+}
+.content_wrap.credit_card.v3 .section06 {
+  background: linear-gradient(90deg, #FFF0EC 0%, #FFEABF 100%);
+}
+.content_wrap.credit_card.v3 .section06 .card_area .card {
+  width: 344px;
+  height: 186px;
+  padding: 20px 17px;
+  margin: 40px 10px 0;
+  opacity: 0;
+}
+.content_wrap.credit_card.v3 .section06 .card_area .card.card01 {
+  width: 310px;
+}
+.content_wrap.credit_card.v3 .section06 .card_area .card.card02 {
+  width: 338px;
+}
+.content_wrap.credit_card.v3 .section06 .card_area .card.card03 {
+  width: 416px;
+}
+.content_wrap.credit_card.v3 .section06 .card_area .card .talk_area .txt_up {
+  margin-top: 0;
+}
+.content_wrap.credit_card.v3 .section06 .card_area .card .talk_area .txt_up .txt.txt01 {
+  background: none;
+  font-size: 18px;
+}
+.content_wrap.credit_card.v3 .section06 .card_area .card .talk_area .txt_up .txt.txt02 {
+  padding-left: 24px;
+  margin-top: 0;
+  color: #575757;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21.6px;
+}
+.content_wrap.credit_card.v3 .section06 .card_area .card .talk_area .txt_up .txt.txt02::after {
+  position: absolute;
+  content: "A.";
+  color: #FF6C00;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 135%; /* 29.7px */
+  background: none;
+  width: 22px;
+  height: 30px;
+  top: -4px;
+  left: 0;
+}
+.content_wrap.credit_card.v3 .section06 .card_area .txt {
+  padding: 0;
+}
+.content_wrap.credit_card.v3 .section06 .card_area .txt01 {
+  color: #575757;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24.3px;
+  background: none;
+}
+.content_wrap.credit_card.v3 .section06 .card_area .txt01::after {
+  display: none;
+}
+.content_wrap.credit_card.v3 .section06 .card_area .txt02 {
+  position: relative;
+  color: #575757;
+  background: none;
+  margin-top: 0;
+}
+.content_wrap.credit_card.v3 .section06 .card_area .txt02 span {
+  color: #FF6C00;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 135%; /* 29.7px */
+}
+.content_wrap.credit_card.v3 .section06 .card_area .line {
+  width: 100%;
+  height: 1px;
+  background: #ccc;
+  margin: 18px 0;
+}
+.content_wrap.credit_card.v3 .section06.animation .container .card_area .card.card01 {
+  -webkit-animation: txtUp3 0.5s 0.5s ease-in-out forwards;
+          animation: txtUp3 0.5s 0.5s ease-in-out forwards;
+}
+.content_wrap.credit_card.v3 .section06.animation .container .card_area .card.card02 {
+  -webkit-animation: txtUp3 0.5s 0.5s ease-in-out forwards;
+          animation: txtUp3 0.5s 0.5s ease-in-out forwards;
+}
+.content_wrap.credit_card.v3 .section06.animation .container .card_area .card.card03 {
+  -webkit-animation: txtUp3 0.5s 0.5s ease-in-out forwards;
+          animation: txtUp3 0.5s 0.5s ease-in-out forwards;
+}
+.content_wrap.credit_card.v3 .app-down {
+  padding: 100px 0 95px;
+}
+.content_wrap.credit_card.v3 .app-down > .container {
+  min-width: auto;
+}
+.content_wrap.credit_card.v3 .app-down .left-con {
+  align-items: start;
+}
+.content_wrap.credit_card.v3 .app-down .left-con .btn-wrap {
+  display: flex;
+  flex-direction: row;
+}
+.content_wrap.credit_card.v3 .app-down .left-con .btn-wrap .down-btn {
+  margin-right: 0;
+  margin-bottom: 0;
+  border-radius: 16px;
+}
+.content_wrap.credit_card.v3 .app-down .left-con .btn-wrap a {
+  padding: 0 26px;
+}
+.content_wrap.credit_card.v3 .app-down .left-con .btn-wrap .down-btn {
+  margin-right: 20px;
+}
+.content_wrap.credit_card.v3 .app-down .left-con .btn-wrap .down-btn.home::before {
+  background: url("../images/creditcard/ico-home.png") no-repeat center/contain;
+}
+.content_wrap.credit_card.v3 .app-down .left-con .btn-wrap .down-btn.share::before {
+  background: url("../images/creditcard/ico-share.png") no-repeat center/contain;
+}
+.content_wrap.credit_card.v3 .app-down .right-con {
+  display: block;
+  text-align: center;
+  margin-left: auto;
+}
+.content_wrap.credit_card.v3 .info_area > dl {
+  display: flex;
+  margin-bottom: 12px;
+}
+.content_wrap.credit_card.v3 .info_area > dl:last-of-type {
+  margin-bottom: 0px;
+}
+.content_wrap.credit_card.v3 .info_area dt {
+  width: 44px;
+  height: 21px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: -0.04em;
+  color: #575757;
+  background: #F1F1F1;
+  border-radius: 30px;
+}
+.content_wrap.credit_card.v3 .info_area dd {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19.6px;
+  color: #151515;
+  margin-left: 16px;
+}
+.content_wrap.credit_card.v3 .info_area > p {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: -0.04em;
+  padding-left: 66px;
+  margin-left: 0;
+}
+@-webkit-keyframes shiny-btn1 {
+  0% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0;
+  }
+  80% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0.5;
+  }
+  81% {
+    -webkit-transform: scale(4) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(50) rotate(45deg);
+    opacity: 0;
+  }
+}
+@keyframes shiny-btn1 {
+  0% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0;
+  }
+  80% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0.5;
+  }
+  81% {
+    -webkit-transform: scale(4) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(50) rotate(45deg);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes cardBottomUp {
+  0% {
+    bottom: -100%;
+  }
+  100% {
+    bottom: 173px;
+  }
+}
+@keyframes cardBottomUp {
+  0% {
+    bottom: -100%;
+  }
+  100% {
+    bottom: 173px;
+  }
+}
+@-webkit-keyframes cardTopDown {
+  0% {
+    top: -200%;
+  }
+  100% {
+    top: -600px;
+  }
+}
+@keyframes cardTopDown {
+  0% {
+    top: -200%;
+  }
+  100% {
+    top: -600px;
+  }
 }
 @-webkit-keyframes slideUp {
   0% {
@@ -3350,7 +4096,7 @@ header, .header {
 }
 
 @media only screen and (max-width: 767px) {
-  .pcOnly {
+  .pcOnly, .pc-view {
     display: none !important;
   }
   .moOnly, .mo-view {
@@ -3380,10 +4126,10 @@ header, .header {
   .content_wrap .mo-link-button.fixed {
     display: block;
   }
-  .content_wrap.credit_card.moveTop {
+  .content_wrap.credit_card.v3.moveTop {
     margin-top: -430px;
   }
-  .content_wrap.credit_card .section-wrap .mo-link-button.link_btn_area {
+  .content_wrap.credit_card.v3 .section-wrap .mo-link-button.link_btn_area {
     position: absolute;
     width: 100%;
     z-index: -1;
@@ -3392,7 +4138,7 @@ header, .header {
     transform: translateX(-50%);
     transition: all 0.3s ease-in-out;
   }
-  .content_wrap.credit_card .section-wrap .mo-link-button.link_btn_area .link_btn {
+  .content_wrap.credit_card.v3 .section-wrap .mo-link-button.link_btn_area .link_btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -3405,7 +4151,7 @@ header, .header {
     letter-spacing: 0px;
     margin: 20px auto;
   }
-  .content_wrap.credit_card .section-wrap .mo-link-button.link_btn_area .link_btn .label {
+  .content_wrap.credit_card.v3 .section-wrap .mo-link-button.link_btn_area .link_btn .label {
     top: -20px;
     font-size: 14px;
     font-weight: 500;
@@ -3414,19 +4160,19 @@ header, .header {
     padding: 6px 8px;
     margin-left: 40px;
   }
-  .content_wrap.credit_card .section-wrap .mo-link-button.link_btn_area.fixed {
+  .content_wrap.credit_card.v3 .section-wrap .mo-link-button.link_btn_area.fixed {
     z-index: 998;
     -webkit-animation: slideUp 0.5s ease-in-out;
             animation: slideUp 0.5s ease-in-out;
     opacity: 1;
   }
-  .content_wrap.credit_card .section-wrap .mo-link-button.link_btn_area.footer-fixed {
+  .content_wrap.credit_card.v3 .section-wrap .mo-link-button.link_btn_area.footer-fixed {
     bottom: 315px;
   }
-  .content_wrap.credit_card .section .container {
+  .content_wrap.credit_card.v3 .section .container {
     padding: 50px 25px;
   }
-  .content_wrap.credit_card .section .container .txt_area .label {
+  .content_wrap.credit_card.v3 .section .container .txt_area .label {
     font-size: 14px;
     line-height: 20px;
     font-weight: 700;
@@ -3434,45 +4180,45 @@ header, .header {
     border-radius: 20px;
     margin-bottom: 16px;
   }
-  .content_wrap.credit_card .section .container .txt_info {
+  .content_wrap.credit_card.v3 .section .container .txt_info {
     font-size: 16px;
     line-height: 21.6px;
     margin-bottom: 4px;
   }
-  .content_wrap.credit_card .section .container .txt_tit {
+  .content_wrap.credit_card.v3 .section .container .txt_tit {
     font-size: 24px;
     line-height: 32.4px;
     margin-bottom: 10px;
   }
-  .content_wrap.credit_card .section .container .txt_date {
+  .content_wrap.credit_card.v3 .section .container .txt_date {
     font-size: 16px;
     line-height: 21.6px;
   }
-  .content_wrap.credit_card .section .container .txt_area {
+  .content_wrap.credit_card.v3 .section .container .txt_area {
     margin-bottom: 30px;
   }
-  .content_wrap.credit_card .section .container .card_area {
+  .content_wrap.credit_card.v3 .section .container .card_area {
     flex-direction: column;
   }
-  .content_wrap.credit_card .section .container .card_area .card {
+  .content_wrap.credit_card.v3 .section .container .card_area .card {
     width: 295px;
     height: 242px;
     border-radius: 15px;
     margin: 6px 10px 0;
     border-radius: 10px;
   }
-  .content_wrap.credit_card .section .container .card_area .card.card01 {
+  .content_wrap.credit_card.v3 .section .container .card_area .card.card01 {
     background: url("../images/creditcard/coupon-bg-mo.png") no-repeat center/contain;
   }
-  .content_wrap.credit_card .section .container .card_area .card.card02 {
+  .content_wrap.credit_card.v3 .section .container .card_area .card.card02 {
     margin-top: 36px;
     background: transparent;
     border: 0;
   }
-  .content_wrap.credit_card .section .container .card_area .card.card03 .label {
+  .content_wrap.credit_card.v3 .section .container .card_area .card.card03 .label {
     top: -20px;
   }
-  .content_wrap.credit_card .section .container .card_area .card .label {
+  .content_wrap.credit_card.v3 .section .container .card_area .card .label {
     top: -16px;
     font-size: 16px;
     font-weight: 700;
@@ -3480,38 +4226,38 @@ header, .header {
     border-radius: 30px;
     padding: 8px 14px;
   }
-  .content_wrap.credit_card .section .container .card_area .card .coupon {
+  .content_wrap.credit_card.v3 .section .container .card_area .card .coupon {
     width: 295px;
     margin-top: 32px;
   }
-  .content_wrap.credit_card .section .container .card_area .card .coupon > div {
+  .content_wrap.credit_card.v3 .section .container .card_area .card .coupon > div {
     text-align: center;
   }
-  .content_wrap.credit_card .section .container .card_area .card .coupon .txt {
+  .content_wrap.credit_card.v3 .section .container .card_area .card .coupon .txt {
     font-size: 16px;
     font-weight: 400;
     line-height: 21.6px;
     letter-spacing: 0px;
   }
-  .content_wrap.credit_card .section .container .card_area .card .coupon .txt strong {
+  .content_wrap.credit_card.v3 .section .container .card_area .card .coupon .txt strong {
     font-size: 16px;
     line-height: 21.6px;
   }
-  .content_wrap.credit_card .section .container .card_area .card .coupon .coupon_list_wrap {
+  .content_wrap.credit_card.v3 .section .container .card_area .card .coupon .coupon_list_wrap {
     width: 255px;
     margin: 0 auto;
   }
-  .content_wrap.credit_card .section .container .card_area .card .coupon .coupon_list li {
+  .content_wrap.credit_card.v3 .section .container .card_area .card .coupon .coupon_list li {
     font-size: 14px;
     line-height: 19.6px;
     margin: 3px 0;
     padding: 8px 12px 8px 32px;
   }
-  .content_wrap.credit_card .section .container .card_area .card .coupon .coupon_list li > div {
+  .content_wrap.credit_card.v3 .section .container .card_area .card .coupon .coupon_list li > div {
     padding: 9px 12px 7px 32px;
     margin: 3px 0;
   }
-  .content_wrap.credit_card .section .container .card_area .card .coupon .coupon_list li > div::after {
+  .content_wrap.credit_card.v3 .section .container .card_area .card .coupon .coupon_list li > div::after {
     content: "";
     position: absolute;
     top: 8px;
@@ -3519,23 +4265,23 @@ header, .header {
     width: 18px;
     height: 18px;
   }
-  .content_wrap.credit_card .section .container .card_area .card .coupon .coupon_list li .sub {
+  .content_wrap.credit_card.v3 .section .container .card_area .card .coupon .coupon_list li .sub {
     font-size: 14px;
   }
-  .content_wrap.credit_card .section .container .card_area .card .coupon .line {
+  .content_wrap.credit_card.v3 .section .container .card_area .card .coupon .line {
     width: 255px;
     margin: 8px auto 5px;
   }
-  .content_wrap.credit_card .section .container .card_area .card .slide-wrap .slide div {
+  .content_wrap.credit_card.v3 .section .container .card_area .card .slide-wrap .slide div {
     position: relative;
     height: 173px;
   }
-  .content_wrap.credit_card .section .container .card_area .card .slide-wrap .slide div img {
+  .content_wrap.credit_card.v3 .section .container .card_area .card .slide-wrap .slide div img {
     position: relative;
     width: auto;
     height: 126px;
   }
-  .content_wrap.credit_card .section .container .card_area .card .slide-wrap .slide div::after {
+  .content_wrap.credit_card.v3 .section .container .card_area .card .slide-wrap .slide div::after {
     content: "";
     position: absolute;
     bottom: 20px;
@@ -3546,7 +4292,7 @@ header, .header {
     z-index: -1;
     border-radius: 10px;
   }
-  .content_wrap.credit_card .section .container .card_area .card .slide-wrap .slide div .sub-text {
+  .content_wrap.credit_card.v3 .section .container .card_area .card .slide-wrap .slide div .sub-text {
     top: 10px;
     color: #222;
     font-size: 11px;
@@ -3554,32 +4300,32 @@ header, .header {
     font-weight: 400;
     line-height: 135%; /* 14.85px */
   }
-  .content_wrap.credit_card .section .container .card_area .card .slide-wrap .swiper-pagination {
+  .content_wrap.credit_card.v3 .section .container .card_area .card .slide-wrap .swiper-pagination {
     bottom: 30px;
   }
-  .content_wrap.credit_card .section .container .card_area .card .slide-wrap .swiper-pagination span {
+  .content_wrap.credit_card.v3 .section .container .card_area .card .slide-wrap .swiper-pagination span {
     width: 8px;
     height: 8px;
     margin: 0 4px;
   }
-  .content_wrap.credit_card .section.top-visual {
+  .content_wrap.credit_card.v3 .section.top-visual {
     background-color: #F3E5D1;
     height: 962px;
     padding-top: 61px;
     transition: all 0.3s ease-in-out;
   }
-  .content_wrap.credit_card .section.top-visual .mo-link-button {
+  .content_wrap.credit_card.v3 .section.top-visual .mo-link-button {
     width: 100%;
     z-index: 1;
   }
-  .content_wrap.credit_card .section.top-visual .link_btn {
+  .content_wrap.credit_card.v3 .section.top-visual .link_btn {
     width: 100%;
     max-width: 335px;
     font-size: 18px;
     font-weight: 700;
     line-height: 24px;
   }
-  .content_wrap.credit_card .section.top-visual .link_btn_area {
+  .content_wrap.credit_card.v3 .section.top-visual .link_btn_area {
     position: relative;
     width: 100%;
     z-index: -1;
@@ -3588,14 +4334,14 @@ header, .header {
     transform: translateX(-50%);
     transition: all 0.3s ease-in-out;
   }
-  .content_wrap.credit_card .section.top-visual .link_btn_area.fixed {
+  .content_wrap.credit_card.v3 .section.top-visual .link_btn_area.fixed {
     position: fixed;
     z-index: 1000;
   }
-  .content_wrap.credit_card .section.top-visual .link_btn_area.footer-fixed {
+  .content_wrap.credit_card.v3 .section.top-visual .link_btn_area.footer-fixed {
     bottom: 300px;
   }
-  .content_wrap.credit_card .section.top-visual .link_btn_area .link_btn {
+  .content_wrap.credit_card.v3 .section.top-visual .link_btn_area .link_btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -3608,7 +4354,7 @@ header, .header {
     letter-spacing: 0px;
     margin: 20px auto;
   }
-  .content_wrap.credit_card .section.top-visual .link_btn_area .link_btn .label {
+  .content_wrap.credit_card.v3 .section.top-visual .link_btn_area .link_btn .label {
     top: -20px;
     font-size: 14px;
     font-weight: 500;
@@ -3617,61 +4363,63 @@ header, .header {
     padding: 6px 8px;
     margin-left: 40px;
   }
-  .content_wrap.credit_card .section.top-visual .container {
+  .content_wrap.credit_card.v3 .section.top-visual .container {
     z-index: 100;
     padding: 40px 25px;
   }
-  .content_wrap.credit_card .section.top-visual .container .logo_wrap {
+  .content_wrap.credit_card.v3 .section.top-visual .container .logo_wrap {
     top: 0;
     margin-bottom: 0;
     justify-content: center;
     left: auto;
   }
-  .content_wrap.credit_card .section.top-visual .container .logo_wrap .logo {
+  .content_wrap.credit_card.v3 .section.top-visual .container .logo_wrap .logo {
     height: 18px;
     text-align: center;
   }
-  .content_wrap.credit_card .section.top-visual .container .logo_wrap .logo img {
+  .content_wrap.credit_card.v3 .section.top-visual .container .logo_wrap .logo img {
     width: auto;
     height: 100%;
   }
-  .content_wrap.credit_card .section.top-visual .container .tit_wrap {
+  .content_wrap.credit_card.v3 .section.top-visual .container .tit_wrap {
     margin-top: 30px;
   }
-  .content_wrap.credit_card .section.top-visual .container .tit_wrap .txt_info {
-    font-size: 25px;
+  .content_wrap.credit_card.v3 .section.top-visual .container .tit_wrap .txt_info {
+    font-size: 30px;
     font-weight: 700;
-    line-height: 33.75px;
-    letter-spacing: -2.1px;
+    line-height: 40.5px;
   }
-  .content_wrap.credit_card .section.top-visual .container .tit_wrap .txt_tit {
-    font-size: 42px;
+  .content_wrap.credit_card.v3 .section.top-visual .container .tit_wrap .txt_tit {
+    font-size: 30px;
     font-weight: 700;
-    line-height: 57px;
-    letter-spacing: -2.1px;
+    line-height: 40.5px;
   }
-  .content_wrap.credit_card .section.top-visual .container .tit_wrap .sub_info > p span {
+  .content_wrap.credit_card.v3 .section.top-visual .container .tit_wrap .txt_tit_big {
+    font-size: 16px;
+    line-height: 21.6px;
+  }
+  .content_wrap.credit_card.v3 .section.top-visual .container .tit_wrap .sub_info > p span {
     font-size: 11px;
     font-weight: 400;
     line-height: 14px;
     letter-spacing: -0.04em;
     white-space: nowrap;
   }
-  .content_wrap.credit_card .section.top-visual .container .tit_wrap .sub_info > p span.round_box {
+  .content_wrap.credit_card.v3 .section.top-visual .container .tit_wrap .sub_info > p span.round_box {
     padding: 5px 12px 4px;
     font-weight: 700;
     margin-bottom: 12px;
   }
-  .content_wrap.credit_card .section.top-visual .container .tit_wrap .sub_info > p strong {
+  .content_wrap.credit_card.v3 .section.top-visual .container .tit_wrap .sub_info > p strong {
     font-size: 22px;
     font-weight: 700;
     line-height: 29px;
     letter-spacing: -0.05em;
   }
-  .content_wrap.credit_card .section.top-visual .container .tit_wrap .sub_info .line {
+  .content_wrap.credit_card.v3 .section.top-visual .container .tit_wrap .sub_info .line {
     margin: 0 10px;
   }
-  .content_wrap.credit_card .section.top-visual .container .link_btn_area .link_btn {
+  .content_wrap.credit_card.v3 .section.top-visual .container .link_btn_area .link_btn {
     width: 280px;
     height: 60px;
     line-height: 60px;
@@ -3680,7 +4428,7 @@ header, .header {
     margin-top: 27px;
     margin-bottom: 30px;
   }
-  .content_wrap.credit_card .section.top-visual .container .link_btn_area .link_btn .label {
+  .content_wrap.credit_card.v3 .section.top-visual .container .link_btn_area .link_btn .label {
     display: none;
     font-size: 14px;
     font-weight: 500;
@@ -3689,7 +4437,7 @@ header, .header {
     padding: 6px 8px;
     margin-left: 40px;
   }
-  .content_wrap.credit_card .section.top-visual .retto_icon {
+  .content_wrap.credit_card.v3 .section.top-visual .retto_icon {
     top: 490px;
     right: 15px;
     margin-right: 0;
@@ -3698,25 +4446,25 @@ header, .header {
     width: 77px;
     height: 90px;
   }
-  .content_wrap.credit_card .section.top-visual .bg {
+  .content_wrap.credit_card.v3 .section.top-visual .bg {
     height: 445px;
     bottom: -100%;
     border-radius: 40px 40px 0 0;
   }
-  .content_wrap.credit_card .section.top-visual .bg.active {
+  .content_wrap.credit_card.v3 .section.top-visual .bg.active {
     bottom: 0;
   }
-  .content_wrap.credit_card .section.top-visual .bg.moveAni1 {
+  .content_wrap.credit_card.v3 .section.top-visual .bg.moveAni1 {
     border-radius: 0;
   }
-  .content_wrap.credit_card .section.top-visual .bg.moveAni2 {
+  .content_wrap.credit_card.v3 .section.top-visual .bg.moveAni2 {
     bottom: 0%;
     height: 1243px;
   }
-  .content_wrap.credit_card .section.top-visual .bg .sub_info {
+  .content_wrap.credit_card.v3 .section.top-visual .bg .sub_info {
     margin-top: 60px;
   }
-  .content_wrap.credit_card .section.top-visual .bg .sub_info > p span {
+  .content_wrap.credit_card.v3 .section.top-visual .bg .sub_info > p span {
     color: #F3E5D1;
     font-size: 11px;
     font-style: normal;
@@ -3724,7 +4472,7 @@ header, .header {
     line-height: 130%; /* 14.3px */
     letter-spacing: -0.44px;
   }
-  .content_wrap.credit_card .section.top-visual .bg .sub_info > p span.round_box {
+  .content_wrap.credit_card.v3 .section.top-visual .bg .sub_info > p span.round_box {
     color: #967C4A;
     font-size: 11px;
     font-style: normal;
@@ -3735,10 +4483,10 @@ header, .header {
     box-sizing: border-box;
     height: 25px;
   }
-  .content_wrap.credit_card .section.top-visual .bg .txt_area {
+  .content_wrap.credit_card.v3 .section.top-visual .bg .txt_area {
     margin-top: 70px;
   }
-  .content_wrap.credit_card .section.top-visual .bg .txt_area .txt_info {
+  .content_wrap.credit_card.v3 .section.top-visual .bg .txt_area .txt_info {
     color: #FFF;
     text-align: center;
     font-size: 16px;
@@ -3746,7 +4494,7 @@ header, .header {
     font-weight: 400;
     line-height: 135%; /* 21.6px */
   }
-  .content_wrap.credit_card .section.top-visual .bg .txt_area .txt_tit {
+  .content_wrap.credit_card.v3 .section.top-visual .bg .txt_area .txt_tit {
     color: #FFF;
     text-align: center;
     font-size: 24px;
@@ -3755,34 +4503,34 @@ header, .header {
     line-height: 135%; /* 32.4px */
     letter-spacing: -0.48px;
   }
-  .content_wrap.credit_card .section.section01 .container {
+  .content_wrap.credit_card.v3 .section.section01 .container {
     padding: 50px 0;
   }
-  .content_wrap.credit_card .section.section01 .container .card_area .card .label::after {
+  .content_wrap.credit_card.v3 .section.section01 .container .card_area .card .label::after {
     display: none;
   }
-  .content_wrap.credit_card .section.section01 .container .card_area .card.card02 {
+  .content_wrap.credit_card.v3 .section.section01 .container .card_area .card.card02 {
     margin-top: 46px;
   }
-  .content_wrap.credit_card .section.section01 .container .card_area .card.card02 .slide-wrap {
+  .content_wrap.credit_card.v3 .section.section01 .container .card_area .card.card02 .slide-wrap {
     margin-top: 0px;
   }
-  .content_wrap.credit_card .section.section01 .container .card_area .card.card03 {
+  .content_wrap.credit_card.v3 .section.section01 .container .card_area .card.card03 {
     width: 335px;
     height: 300px;
     margin-top: 22px;
   }
-  .content_wrap.credit_card .section.section01 .container .card_area .card.card03 .win-wrap {
+  .content_wrap.credit_card.v3 .section.section01 .container .card_area .card.card03 .win-wrap {
     margin-top: 34px;
     justify-content: space-around;
   }
-  .content_wrap.credit_card .section.section01 .container .card_area .card.card03 .win-wrap .con {
+  .content_wrap.credit_card.v3 .section.section01 .container .card_area .card.card03 .win-wrap .con {
     padding: 0 10px;
   }
-  .content_wrap.credit_card .section.section01 .container .card_area .card.card03 .win-wrap .con.right::after {
+  .content_wrap.credit_card.v3 .section.section01 .container .card_area .card.card03 .win-wrap .con.right::after {
     left: -10px;
   }
-  .content_wrap.credit_card .section.section01 .container .card_area .card.card03 .win-wrap .con .tit {
+  .content_wrap.credit_card.v3 .section.section01 .container .card_area .card.card03 .win-wrap .con .tit {
     color: #151515;
     text-align: center;
     font-size: 16px;
@@ -3790,28 +4538,28 @@ header, .header {
     font-weight: 400;
     line-height: 18px; /* 112.5% */
   }
-  .content_wrap.credit_card .section.section01 .container .card_area .card.card03 .win-wrap .con .flex > div:nth-child(2) {
+  .content_wrap.credit_card.v3 .section.section01 .container .card_area .card.card03 .win-wrap .con .flex > div:nth-child(2) {
     margin-left: 8px;
   }
-  .content_wrap.credit_card .section.section01 .container .card_area .card.card03 .win-wrap .con .win-img {
+  .content_wrap.credit_card.v3 .section.section01 .container .card_area .card.card03 .win-wrap .con .win-img {
     width: 70px;
     height: 66px;
     margin: 0 8px 5px;
   }
-  .content_wrap.credit_card .section.section01 .container .card_area .card.card03 .win-wrap .con .win-img.win-img01 {
+  .content_wrap.credit_card.v3 .section.section01 .container .card_area .card.card03 .win-wrap .con .win-img.win-img01 {
     background-size: auto 75px;
   }
-  .content_wrap.credit_card .section.section01 .container .card_area .card.card03 .win-wrap .con .win-img.win-img02 {
+  .content_wrap.credit_card.v3 .section.section01 .container .card_area .card.card03 .win-wrap .con .win-img.win-img02 {
     background-size: auto 75px;
   }
-  .content_wrap.credit_card .section.section01 .container .card_area .card.card03 .win-wrap .con .txt-box {
+  .content_wrap.credit_card.v3 .section.section01 .container .card_area .card.card03 .win-wrap .con .txt-box {
     height: 108px;
   }
-  .content_wrap.credit_card .section.section01 .container .card_area .card.card03 .win-wrap .con .win-txt {
+  .content_wrap.credit_card.v3 .section.section01 .container .card_area .card.card03 .win-wrap .con .win-txt {
     font-size: 13px;
     margin-bottom: 0;
   }
-  .content_wrap.credit_card .section.section01 .container .card_area .card.card03 .win-wrap .con .win-txt > span {
+  .content_wrap.credit_card.v3 .section.section01 .container .card_area .card.card03 .win-wrap .con .win-txt > span {
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -3820,52 +4568,55 @@ header, .header {
     margin-top: 15px;
     display: inline-block;
   }
-  .content_wrap.credit_card .section.section01 .container .card_area .card.card03 .win-wrap .con .win-info {
+  .content_wrap.credit_card.v3 .section.section01 .container .card_area .card.card03 .win-wrap .con .win-info {
     font-size: 12px;
     height: 36px;
   }
-  .content_wrap.credit_card .section.section01 .container .card_area .card.card03 .win-wrap .con .win-info strong {
+  .content_wrap.credit_card.v3 .section.section01 .container .card_area .card.card03 .win-wrap .con .win-info strong {
     margin-top: 2px;
   }
-  .content_wrap.credit_card .section.section01 .container .card_area .card.card03 .win-wrap .txt-bottom {
+  .content_wrap.credit_card.v3 .section.section01 .container .card_area .card.card03 .win-wrap .txt-bottom {
     font-size: 12px;
     bottom: 20px;
     padding-left: 12px;
   }
-  .content_wrap.credit_card .section.section02 .container, .content_wrap.credit_card .section.section03 .container {
-    padding: 50px 20px 20px;
+  .content_wrap.credit_card.v3 .section.section02 .container {
+    padding: 50px 0px;
   }
-  .content_wrap.credit_card .section.section02 .container .card_area .card, .content_wrap.credit_card .section.section03 .container .card_area .card {
+  .content_wrap.credit_card.v3 .section.section02 .container .txt_tit {
+    margin-bottom: 30px;
+  }
+  .content_wrap.credit_card.v3 .section.section02 .container .card_area .card {
     width: 335px;
     height: auto;
     padding: 54px 20px;
   }
-  .content_wrap.credit_card .section.section02 .container .card_area .card.card01 img, .content_wrap.credit_card .section.section03 .container .card_area .card.card01 img {
+  .content_wrap.credit_card.v3 .section.section02 .container .card_area .card.card01 img {
     height: 113px;
   }
-  .content_wrap.credit_card .section.section02 .container .card_area .card.card02, .content_wrap.credit_card .section.section03 .container .card_area .card.card02 {
+  .content_wrap.credit_card.v3 .section.section02 .container .card_area .card.card02 {
     margin-top: 10px;
     height: auto;
     padding: 30px 20px;
   }
-  .content_wrap.credit_card .section.section02 .container .card_area .card .info_area > dl, .content_wrap.credit_card .section.section03 .container .card_area .card .info_area > dl {
+  .content_wrap.credit_card.v3 .section.section02 .container .card_area .card .info_area > dl {
     margin-bottom: 12px;
   }
-  .content_wrap.credit_card .section.section02 .container .card_area .card .info_area > dl:last-of-type, .content_wrap.credit_card .section.section03 .container .card_area .card .info_area > dl:last-of-type {
+  .content_wrap.credit_card.v3 .section.section02 .container .card_area .card .info_area > dl:last-of-type {
     margin-bottom: 6px;
   }
-  .content_wrap.credit_card .section.section02 .container .card_area .card .info_area > dl dt, .content_wrap.credit_card .section.section03 .container .card_area .card .info_area > dl dt {
+  .content_wrap.credit_card.v3 .section.section02 .container .card_area .card .info_area > dl dt {
     width: 50px;
     height: 22px;
     font-size: 12px;
     line-height: 22px;
     padding: 0;
   }
-  .content_wrap.credit_card .section.section02 .container .card_area .card .info_area > dl dd, .content_wrap.credit_card .section.section03 .container .card_area .card .info_area > dl dd {
+  .content_wrap.credit_card.v3 .section.section02 .container .card_area .card .info_area > dl dd {
     font-size: 14px;
     line-height: 19.6px;
   }
-  .content_wrap.credit_card .section.section02 .container .card_area .card .info_area > p, .content_wrap.credit_card .section.section03 .container .card_area .card .info_area > p {
+  .content_wrap.credit_card.v3 .section.section02 .container .card_area .card .info_area > p {
     font-size: 11px;
     font-weight: 400;
     line-height: 17px;
@@ -3873,115 +4624,201 @@ header, .header {
     padding-left: 66px;
     margin-left: 0;
   }
-  .content_wrap.credit_card .section.section02 .txt_area, .content_wrap.credit_card .section.section03 .txt_area {
+  .content_wrap.credit_card.v3 .section.section02 .txt_area {
     margin-bottom: 20px;
   }
-  .content_wrap.credit_card .section.section04 .container {
-    padding: 50px 20px 24px;
+  .content_wrap.credit_card.v3 .section.section03 .container {
+    padding: 50px 20px;
+    flex-direction: column;
   }
-  .content_wrap.credit_card .section.section04 .container .card_area {
-    padding-top: 0;
-  }
-  .content_wrap.credit_card .section.section04 .container .card_area .card.card01 {
+  .content_wrap.credit_card.v3 .section.section03 .container .wrap01 .txt_area {
+    text-align: center;
     margin-top: 0;
   }
-  .content_wrap.credit_card .section.section04 .container .card_area .card.card01 .pop.pop01 {
+  .content_wrap.credit_card.v3 .section.section03 .container .wrap01 .txt_area .txt_info {
+    margin-bottom: 10px;
+  }
+  .content_wrap.credit_card.v3 .section.section03 .container .wrap02 .card_area {
+    margin-left: 0;
+  }
+  .content_wrap.credit_card.v3 .section.section03 .container .wrap02 .card_area ul li {
+    width: 100%;
+    height: 140px;
+    padding-right: 0;
+    padding-bottom: 10px;
+  }
+  .content_wrap.credit_card.v3 .section.section03 .container .wrap02 .card_area ul li > div {
+    padding: 24px 100px 0 24px;
+  }
+  .content_wrap.credit_card.v3 .section.section03 .container .wrap02 .card_area ul li > div::after {
+    width: 100px;
+    height: 90px;
+  }
+  .content_wrap.credit_card.v3 .section.section03 .container .wrap02 .card_area ul li.full > div {
+    padding: 24px 24px;
+  }
+  .content_wrap.credit_card.v3 .section.section03 .container .wrap02 .card_area ul li:nth-of-type(1) > div::after {
+    background: url(../images/creditcard/v2/card_bg_01_mo.png) no-repeat center/contain;
+  }
+  .content_wrap.credit_card.v3 .section.section03 .container .wrap02 .card_area ul li:nth-of-type(2) > div::before {
+    background: url(../images/creditcard/v2/card_bg_02_label.png) no-repeat center/contain;
+    bottom: 84px;
+  }
+  .content_wrap.credit_card.v3 .section.section03 .container .wrap02 .card_area ul li:nth-of-type(2) > div::after {
+    background: url(../images/creditcard/v2/card_bg_02_mo.png) no-repeat center/contain;
+    bottom: 10px;
+  }
+  .content_wrap.credit_card.v3 .section.section03 .container .wrap02 .card_area ul li:nth-of-type(3) > div::after {
+    background: url(../images/creditcard/v2/card_bg_03_mo.png) no-repeat center/contain;
+  }
+  .content_wrap.credit_card.v3 .section.section03 .container .wrap02 .card_area ul li:nth-of-type(4) > div::after {
+    background: url(../images/creditcard/v2/card_bg_04_mo.png) no-repeat center/contain;
+  }
+  .content_wrap.credit_card.v3 .section.section04 .container {
+    padding: 50px 20px;
+    flex-direction: column;
+  }
+  .content_wrap.credit_card.v3 .section.section04 .container .card_area {
+    padding-top: 0;
+  }
+  .content_wrap.credit_card.v3 .section.section04 .container .card_area .card.card01 {
+    margin-top: 0;
+  }
+  .content_wrap.credit_card.v3 .section.section04 .container .card_area .card.card01 .pop.pop01 {
     top: 30.36px;
     height: 31.68px;
     margin-left: 90px;
   }
-  .content_wrap.credit_card .section.section04 .container .card_area .card.card01 .pop.pop02 {
+  .content_wrap.credit_card.v3 .section.section04 .container .card_area .card.card01 .pop.pop02 {
     top: 54.48px;
     height: 31.68px;
     margin-left: -90px;
   }
-  .content_wrap.credit_card .section.section04 .container .card_area .card.card01 .pop.pop03 {
+  .content_wrap.credit_card.v3 .section.section04 .container .card_area .card.card01 .pop.pop03 {
     top: 91.2px;
     height: 31.68px;
     margin-left: 44px;
   }
-  .content_wrap.credit_card .section.section04 .container .card_area .card.card01 .pop.pop04 {
+  .content_wrap.credit_card.v3 .section.section04 .container .card_area .card.card01 .pop.pop04 {
     top: 173.2px;
   }
-  .content_wrap.credit_card .section.section04 .container .card_area .card.card01 img {
+  .content_wrap.credit_card.v3 .section.section04 .container .card_area .card.card01 img {
     width: 295px;
     height: 226px;
   }
-  .content_wrap.credit_card .section.section04 .container .txt_area {
+  .content_wrap.credit_card.v3 .section.section04 .container .txt_area {
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+  }
+  .content_wrap.credit_card.v3 .section.section04 .container .txt_area .label {
+    margin-bottom: 11px;
+  }
+  .content_wrap.credit_card.v3 .section.section04 .container .txt_area .txt_tit {
+    margin-bottom: 35px;
+  }
+  .content_wrap.credit_card.v3 .section.section04 .container .txt_tit {
     margin-bottom: 0;
   }
-  .content_wrap.credit_card .section.section04 .container .txt_tit {
-    margin-bottom: 0;
+  .content_wrap.credit_card.v3 .section.section04 .container .wrap02 {
+    width: auto;
+    margin-left: 0;
   }
-  .content_wrap.credit_card .section.section05 .container {
+  .content_wrap.credit_card.v3 .section.section04 .container .accordion .accordion-item {
+    padding-top: 10px;
+  }
+  .content_wrap.credit_card.v3 .section.section04 .container .accordion .accordion-item .accordion-header button {
+    padding-left: 108px;
+    font-size: 18px;
+    line-height: 24.3px;
+    height: 104px;
+  }
+  .content_wrap.credit_card.v3 .section.section04 .container .accordion .accordion-item .accordion-header button .label {
+    font-size: 11px;
+    left: 28px;
+  }
+  .content_wrap.credit_card.v3 .section.section04 .container .accordion .accordion-item .accordion-body {
+    padding: 12px 24px 20px;
+    margin-bottom: -19px;
+  }
+  .content_wrap.credit_card.v3 .section.section04 .container .accordion .accordion-item:nth-of-type(1) .accordion-header button {
+    background: transparent url(../images/creditcard/v2/accordion_bg_01.png) 24px 20px/64px auto no-repeat;
+  }
+  .content_wrap.credit_card.v3 .section.section04 .container .accordion .accordion-item:nth-of-type(2) .accordion-header button {
+    background: transparent url(../images/creditcard/v2/accordion_bg_02.png) 24px 20px/64px auto no-repeat;
+  }
+  .content_wrap.credit_card.v3 .section.section04 .container .accordion .accordion-item:nth-of-type(3) .accordion-header button {
+    background: transparent url(../images/creditcard/v2/accordion_bg_03.png) 24px 20px/64px auto no-repeat;
+  }
+  .content_wrap.credit_card.v3 .section.section05 .container {
     padding: 50px 25px;
   }
-  .content_wrap.credit_card .section.section05 .container .txt_area {
+  .content_wrap.credit_card.v3 .section.section05 .container .txt_area {
     margin-bottom: 0;
   }
-  .content_wrap.credit_card .section.section05 .container .txt_area .label {
+  .content_wrap.credit_card.v3 .section.section05 .container .txt_area .label {
     margin-bottom: 17px;
   }
-  .content_wrap.credit_card .section.section05 .container .txt_area .txt_tit {
+  .content_wrap.credit_card.v3 .section.section05 .container .txt_area .txt_tit {
     margin-bottom: 0;
   }
-  .content_wrap.credit_card .section.section05 .container .card_area {
+  .content_wrap.credit_card.v3 .section.section05 .container .card_area {
     padding-top: 0;
   }
-  .content_wrap.credit_card .section.section05 .container .card_area .card {
+  .content_wrap.credit_card.v3 .section.section05 .container .card_area .card {
     margin-top: 61px;
   }
-  .content_wrap.credit_card .section.section05 .container .card_area .card.card01 .frame_wrap {
+  .content_wrap.credit_card.v3 .section.section05 .container .card_area .card.card01 .frame_wrap {
     width: 295px;
     height: 220px;
   }
-  .content_wrap.credit_card .section.section05 .container .card_area .card.card01 .frame_wrap .light {
+  .content_wrap.credit_card.v3 .section.section05 .container .card_area .card.card01 .frame_wrap .light {
     width: 28.56px;
     height: 27.98px;
   }
-  .content_wrap.credit_card .section.section05 .container .card_area .card.card01 .frame_wrap .light.light01 {
+  .content_wrap.credit_card.v3 .section.section05 .container .card_area .card.card01 .frame_wrap .light.light01 {
     top: -50px;
     left: -20px;
   }
-  .content_wrap.credit_card .section.section05 .container .card_area .card.card01 .frame_wrap .light.light02 {
+  .content_wrap.credit_card.v3 .section.section05 .container .card_area .card.card01 .frame_wrap .light.light02 {
     top: -58px;
     width: 23.44px;
     height: 30px;
     margin-left: -11.72px;
   }
-  .content_wrap.credit_card .section.section05 .container .card_area .card.card01 .frame_wrap .light.light03 {
+  .content_wrap.credit_card.v3 .section.section05 .container .card_area .card.card01 .frame_wrap .light.light03 {
     top: -50px;
     right: -20px;
   }
-  .content_wrap.credit_card .section.section05 .container .card_area .card.card01 .frame_wrap .light.light01_on {
+  .content_wrap.credit_card.v3 .section.section05 .container .card_area .card.card01 .frame_wrap .light.light01_on {
     top: -42px;
     left: -12px;
     width: 300px;
     height: 49.5px;
   }
-  .content_wrap.credit_card .section.section05 .container .card_area .card.card01 .frame_wrap .light.light02_on {
+  .content_wrap.credit_card.v3 .section.section05 .container .card_area .card.card01 .frame_wrap .light.light02_on {
     top: -44px;
     left: 50%;
     width: 87px;
     height: 66px;
     margin-left: -44px;
   }
-  .content_wrap.credit_card .section.section05 .container .card_area .card.card01 .frame_wrap .light.light03_on {
+  .content_wrap.credit_card.v3 .section.section05 .container .card_area .card.card01 .frame_wrap .light.light03_on {
     top: -41px;
     left: 2px;
     width: 300px;
     height: 49.5px;
   }
-  .content_wrap.credit_card .section.section05 .container .card_area .card.card02 {
+  .content_wrap.credit_card.v3 .section.section05 .container .card_area .card.card02 {
     height: 110px;
     margin-top: -6px;
     background-color: #fff;
     padding: 6px;
   }
-  .content_wrap.credit_card .section.section05 .container .card_area .card.card02 .border_box {
+  .content_wrap.credit_card.v3 .section.section05 .container .card_area .card.card02 .border_box {
     padding: 9px;
   }
-  .content_wrap.credit_card .section.section05 .container .card_area .card.card02 .border_box strong {
+  .content_wrap.credit_card.v3 .section.section05 .container .card_area .card.card02 .border_box strong {
     font-size: 14px;
     font-weight: 700;
     line-height: 20px;
@@ -3989,22 +4826,22 @@ header, .header {
     text-align: center;
     margin-bottom: 6px;
   }
-  .content_wrap.credit_card .section.section05 .container .card_area .card.card02 .border_box p {
+  .content_wrap.credit_card.v3 .section.section05 .container .card_area .card.card02 .border_box p {
     font-size: 12px;
     font-weight: 400;
     line-height: 18px;
     letter-spacing: -0.04em;
   }
-  .content_wrap.credit_card .section.section06 .container {
+  .content_wrap.credit_card.v3 .section.section06 .container {
     padding: 50px 20px 50px;
   }
-  .content_wrap.credit_card .section.section06 .container .txt_area {
+  .content_wrap.credit_card.v3 .section.section06 .container .txt_area {
     margin-bottom: 0;
   }
-  .content_wrap.credit_card .section.section06 .container .card_area {
+  .content_wrap.credit_card.v3 .section.section06 .container .card_area {
     padding-top: 0;
   }
-  .content_wrap.credit_card .section.section06 .container .card_area .card {
+  .content_wrap.credit_card.v3 .section.section06 .container .card_area .card {
     width: 335px;
     height: 268px;
     border-radius: 10px;
@@ -4012,68 +4849,75 @@ header, .header {
     margin-top: 12px;
     padding: 30px 16px;
   }
-  .content_wrap.credit_card .section.section06 .container .card_area .card.card01 {
+  .content_wrap.credit_card.v3 .section.section06 .container .card_area .card.card01 {
     margin-top: 30px;
+    width: 100%;
   }
-  .content_wrap.credit_card .section.section06 .container .card_area .card.card02 .talk_area .txt_up .txt.txt01 {
+  .content_wrap.credit_card.v3 .section.section06 .container .card_area .card.card02 {
+    width: 100%;
+  }
+  .content_wrap.credit_card.v3 .section.section06 .container .card_area .card.card02 .talk_area .txt_up .txt.txt01 {
     -webkit-animation-delay: 1.5s;
             animation-delay: 1.5s;
   }
-  .content_wrap.credit_card .section.section06 .container .card_area .card.card02 .talk_area .txt_up .txt.txt02 {
+  .content_wrap.credit_card.v3 .section.section06 .container .card_area .card.card02 .talk_area .txt_up .txt.txt02 {
     -webkit-animation-delay: 2s;
             animation-delay: 2s;
   }
-  .content_wrap.credit_card .section.section06 .container .card_area .card.card03 .talk_area .txt_up .txt.txt01 {
+  .content_wrap.credit_card.v3 .section.section06 .container .card_area .card.card03 {
+    width: 100%;
+  }
+  .content_wrap.credit_card.v3 .section.section06 .container .card_area .card.card03 .talk_area .txt_up .txt.txt01 {
     -webkit-animation-delay: 2.5s;
             animation-delay: 2.5s;
   }
-  .content_wrap.credit_card .section.section06 .container .card_area .card.card03 .talk_area .txt_up .txt.txt02 {
+  .content_wrap.credit_card.v3 .section.section06 .container .card_area .card.card03 .talk_area .txt_up .txt.txt02 {
     -webkit-animation-delay: 3s;
             animation-delay: 3s;
   }
-  .content_wrap.credit_card .section.section06 .container .card_area .card .talk_area {
+  .content_wrap.credit_card.v3 .section.section06 .container .card_area .card .talk_area {
     font-size: 14px;
   }
-  .content_wrap.credit_card .section.section06 .container .card_area .card .talk_area .face {
+  .content_wrap.credit_card.v3 .section.section06 .container .card_area .card .talk_area .face {
     width: 70px;
     height: 70px;
   }
-  .content_wrap.credit_card .section.section06 .container .card_area .card .talk_area .txt_up .txt {
+  .content_wrap.credit_card.v3 .section.section06 .container .card_area .card .talk_area .txt_up .txt {
     padding: 16px;
     font-size: 14px;
     line-height: 18.9px;
     border-radius: 20px;
   }
-  .content_wrap.credit_card .section.section06 .container .card_area .card .talk_area .txt_up .txt.txt01::after {
+  .content_wrap.credit_card.v3 .section.section06 .container .card_area .card .talk_area .txt_up .txt.txt01::after {
     width: 9px;
     height: 9px;
     top: -9px;
   }
-  .content_wrap.credit_card .section.section06 .container .card_area .card .talk_area .txt_up .txt.txt_up02 {
+  .content_wrap.credit_card.v3 .section.section06 .container .card_area .card .talk_area .txt_up .txt.txt_up02 {
     margin-top: 17px;
   }
-  .content_wrap.credit_card .section.section06 .container .card_area .card .talk_area .txt_up.txt_up02 {
+  .content_wrap.credit_card.v3 .section.section06 .container .card_area .card .talk_area .txt_up.txt_up02 {
     margin-top: 17px;
   }
-  .content_wrap.credit_card .section.app-down {
+  .content_wrap.credit_card.v3 .section.app-down {
     padding: 50px 0;
   }
-  .content_wrap.credit_card .section.app-down .container {
+  .content_wrap.credit_card.v3 .section.app-down .container {
     justify-content: center;
     padding: 0;
   }
-  .content_wrap.credit_card .section.app-down .container .left-con h3 {
+  .content_wrap.credit_card.v3 .section.app-down .container .left-con h3 {
     font-size: 24px;
     font-weight: 400;
     line-height: 32px;
     letter-spacing: -0.02em;
     text-align: center;
   }
-  .content_wrap.credit_card .section.app-down .container .left-con .btn-wrap {
+  .content_wrap.credit_card.v3 .section.app-down .container .left-con .btn-wrap {
     margin-top: 30px;
     display: block;
   }
-  .content_wrap.credit_card .section.app-down .container .left-con .btn-wrap a {
+  .content_wrap.credit_card.v3 .section.app-down .container .left-con .btn-wrap a {
     font-size: 18px;
     height: 60px;
     background: #fff;
@@ -4082,59 +4926,59 @@ header, .header {
     padding: 0;
     justify-content: center;
   }
-  .content_wrap.credit_card .section.app-down .container .left-con .btn-wrap a::before {
+  .content_wrap.credit_card.v3 .section.app-down .container .left-con .btn-wrap a::before {
     width: 24px;
     height: 24px;
   }
-  .content_wrap.credit_card .section.app-down .right-con {
+  .content_wrap.credit_card.v3 .section.app-down .right-con {
     display: none;
   }
-  .content_wrap.credit_card .section.notice {
+  .content_wrap.credit_card.v3 .section.notice {
     padding-bottom: 110px;
   }
-  .content_wrap.credit_card .section.notice .container {
+  .content_wrap.credit_card.v3 .section.notice .container {
     padding: 50px 20px;
   }
-  .content_wrap.credit_card .section.notice .container .txt_area {
+  .content_wrap.credit_card.v3 .section.notice .container .txt_area {
     text-align: left;
     margin-bottom: 0;
   }
-  .content_wrap.credit_card .section.notice .container .txt_area .txt_tit {
+  .content_wrap.credit_card.v3 .section.notice .container .txt_area .txt_tit {
     margin-bottom: 0;
     font-size: 16px;
     line-height: 21.6px;
   }
-  .content_wrap.credit_card .section.notice .container .accordion-item {
+  .content_wrap.credit_card.v3 .section.notice .container .accordion-item {
     padding-top: 10px;
   }
-  .content_wrap.credit_card .section.notice .container .accordion-item:first-of-type {
+  .content_wrap.credit_card.v3 .section.notice .container .accordion-item:first-of-type {
     padding-top: 10px;
   }
-  .content_wrap.credit_card .section.notice .container .accordion-header button {
+  .content_wrap.credit_card.v3 .section.notice .container .accordion-header button {
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
     letter-spacing: 0em;
     padding: 20px;
   }
-  .content_wrap.credit_card .section.notice .container .accordion-body {
+  .content_wrap.credit_card.v3 .section.notice .container .accordion-body {
     padding: 0 20px 20px;
   }
-  .content_wrap.credit_card .section.notice .container .accordion-body .txt-info {
+  .content_wrap.credit_card.v3 .section.notice .container .accordion-body .txt-info {
     font-size: 12px;
     font-weight: 400;
     line-height: 18px;
     letter-spacing: -0.04em;
     margin-bottom: 10px;
   }
-  .content_wrap.credit_card .section.notice .container .accordion-body table thead th {
+  .content_wrap.credit_card.v3 .section.notice .container .accordion-body table thead th {
     font-size: 11px;
     font-weight: 400;
     line-height: 17px;
     letter-spacing: -0.04em;
     height: 28px;
   }
-  .content_wrap.credit_card .section.notice .container .accordion-body table tbody td {
+  .content_wrap.credit_card.v3 .section.notice .container .accordion-body table tbody td {
     font-family: Pretendard;
     font-size: 11px;
     font-weight: 400;
@@ -4142,24 +4986,24 @@ header, .header {
     letter-spacing: -0.04em;
     padding: 6px;
   }
-  .content_wrap.credit_card .section.notice .container .accordion-body p {
+  .content_wrap.credit_card.v3 .section.notice .container .accordion-body p {
     font-size: 12px;
     font-weight: 400;
     line-height: 18px;
     letter-spacing: -0.04em;
     color: #575757;
   }
-  .content_wrap.credit_card .section.notice .container .accordion-body p.txt-info2 {
+  .content_wrap.credit_card.v3 .section.notice .container .accordion-body p.txt-info2 {
     margin-bottom: 10px;
   }
-  .content_wrap.credit_card .section.notice .container .accordion-body .notice-list li {
+  .content_wrap.credit_card.v3 .section.notice .container .accordion-body .notice-list li {
     font-size: 11px;
     font-weight: 400;
     line-height: 17px;
     letter-spacing: -0.04em;
     padding-left: 12px;
   }
-  .content_wrap.credit_card .section.notice .container .accordion-body .notice-list li .sub-txt {
+  .content_wrap.credit_card.v3 .section.notice .container .accordion-body .notice-list li .sub-txt {
     font-size: 11px;
     font-weight: 400;
     line-height: 17px;
@@ -4167,37 +5011,37 @@ header, .header {
     margin-top: 2px;
     padding-left: 10px;
   }
-  .content_wrap.credit_card .section.notice .notice-sub {
+  .content_wrap.credit_card.v3 .section.notice .notice-sub {
     margin-top: 20px;
   }
-  .content_wrap.credit_card .section.notice .notice-sub .notice-row {
+  .content_wrap.credit_card.v3 .section.notice .notice-sub .notice-row {
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
   }
-  .content_wrap.credit_card .section.notice .notice-sub .notice-row > p {
+  .content_wrap.credit_card.v3 .section.notice .notice-sub .notice-row > p {
     margin-bottom: 5px;
   }
-  .content_wrap.credit_card .section.notice .notice-sub .notice-row > p::after {
+  .content_wrap.credit_card.v3 .section.notice .notice-sub .notice-row > p::after {
     top: 0;
   }
-  .content_wrap.credit_card .section.notice .notice-sub .notice-row > p.text-sub {
+  .content_wrap.credit_card.v3 .section.notice .notice-sub .notice-row > p.text-sub {
     font-size: 12px;
     font-weight: 400;
     line-height: 17px;
     letter-spacing: 0em;
     color: #575757;
   }
-  .content_wrap.credit_card .section.notice .notice-sub .notice-row > p.text-sub.none {
+  .content_wrap.credit_card.v3 .section.notice .notice-sub .notice-row > p.text-sub.none {
     margin-bottom: 20px;
   }
-  .content_wrap.credit_card .section.notice .notice-sub .notice-row > p.text-sub > strong > span {
+  .content_wrap.credit_card.v3 .section.notice .notice-sub .notice-row > p.text-sub > strong > span {
     padding-left: 8px;
     font-size: 12px;
     font-weight: 700;
     line-height: 16.8px;
   }
-  .content_wrap.credit_card .section.notice .notice-sub .notice-row > p.text-sub > strong > span::after {
+  .content_wrap.credit_card.v3 .section.notice .notice-sub .notice-row > p.text-sub > strong > span::after {
     content: "-";
     display: block;
     position: absolute;
@@ -4205,41 +5049,41 @@ header, .header {
     top: 0;
     color: #7D7D7D;
   }
-  .content_wrap.credit_card .section.notice .notice-sub .notice-row > p.text-sub > strong > span.text-color {
+  .content_wrap.credit_card.v3 .section.notice .notice-sub .notice-row > p.text-sub > strong > span.text-color {
     color: #7D7D7D;
   }
-  .content_wrap.credit_card .section.notice .notice-sub .notice-row.notice-last {
+  .content_wrap.credit_card.v3 .section.notice .notice-sub .notice-row.notice-last {
     margin-top: 20px;
   }
-  .content_wrap.credit_card .section.notice .notice-sub .notice-row.notice-last .none {
+  .content_wrap.credit_card.v3 .section.notice .notice-sub .notice-row.notice-last .none {
     font-size: 14px;
     font-weight: 700;
     line-height: 20px;
     letter-spacing: 0em;
   }
-  .content_wrap.credit_card .section.animation .mo-link-button {
+  .content_wrap.credit_card.v3 .section.animation .mo-link-button {
     display: none;
   }
-  .content_wrap.credit_card .section.animation .mo-link-button.fixed {
+  .content_wrap.credit_card.v3 .section.animation .mo-link-button.fixed {
     display: block;
   }
-  .content_wrap.credit_card .section.animation.top-visual .container .tit_wrap .txt_tit {
+  .content_wrap.credit_card.v3 .section.animation.top-visual .container .tit_wrap .txt_tit {
     transform: translateY(-6px);
   }
-  .content_wrap.credit_card .section.animation.top-visual .container .tit_wrap .sub_info {
+  .content_wrap.credit_card.v3 .section.animation.top-visual .container .tit_wrap .sub_info {
     margin-top: 16px;
   }
-  .content_wrap.credit_card .section.animation.section04 .container .card_area .card.card01 .pop.pop04 {
+  .content_wrap.credit_card.v3 .section.animation.section04 .container .card_area .card.card01 .pop.pop04 {
     width: 220px;
   }
-  .content_wrap.credit_card .section.animation.section04 .container .card_area .card.card01 .pop.pop04 span {
+  .content_wrap.credit_card.v3 .section.animation.section04 .container .card_area .card.card01 .pop.pop04 span {
     color: #151515;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 135%; /* 21.6px */
   }
-  .content_wrap.credit_card.v2 .bg .sub_info > p strong {
+  .content_wrap.credit_card.v3.v2 .bg .sub_info > p strong {
     color: #F3E5D1;
     text-align: center;
     font-size: 22px;
@@ -4248,41 +5092,41 @@ header, .header {
     letter-spacing: -1.1px;
     margin: 2px 0;
   }
-  .content_wrap.credit_card.v2 .bg .sub_info > p.line {
+  .content_wrap.credit_card.v3.v2 .bg .sub_info > p.line {
     margin: 0 10px;
     background: rgba(243, 229, 209, 0.1);
     margin-top: auto;
   }
-  .content_wrap.credit_card.v2 .section.top-visual {
+  .content_wrap.credit_card.v3.v2 .section.top-visual {
     height: 1149px;
   }
-  .content_wrap.credit_card.v2 .section.top-visual .bg {
+  .content_wrap.credit_card.v3.v2 .section.top-visual .bg {
     height: auto;
     padding-bottom: 50px;
   }
-  .content_wrap.credit_card.v2 .section.top-visual .bg .txt_area {
+  .content_wrap.credit_card.v3.v2 .section.top-visual .bg .txt_area {
     margin-top: 50px;
     margin-bottom: 0;
   }
-  .content_wrap.credit_card.v2 .section.top-visual .video_container {
+  .content_wrap.credit_card.v3.v2 .section.top-visual .video_container {
     padding: 0 20px;
     margin-top: 30px;
   }
-  .content_wrap.credit_card.v2 .section.top-visual .video_area {
+  .content_wrap.credit_card.v3.v2 .section.top-visual .video_area {
     position: relative;
     width: 100%;
     max-width: 336px;
     height: 189px;
     margin: 0 auto;
   }
-  .content_wrap.credit_card.v2 .section.top-visual .video_area iframe {
+  .content_wrap.credit_card.v3.v2 .section.top-visual .video_area iframe {
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
   }
-  .content_wrap.credit_card.v2 .section.top-visual .video_area::before {
+  .content_wrap.credit_card.v3.v2 .section.top-visual .video_area::before {
     display: block;
     content: "";
     position: absolute;
@@ -4293,7 +5137,7 @@ header, .header {
     height: 100%;
     pointer-events: none;
   }
-  .content_wrap.credit_card.v2 .section.top-visual .video_area .btn_wrap {
+  .content_wrap.credit_card.v3.v2 .section.top-visual .video_area .btn_wrap {
     position: absolute;
     top: 0;
     left: 0;
@@ -4302,7 +5146,7 @@ header, .header {
     height: 100%;
     background: url(../images/creditcard/video_img_big2.png) 0 0/cover no-repeat;
   }
-  .content_wrap.credit_card.v2 .section.top-visual .video_area .btn_wrap::after {
+  .content_wrap.credit_card.v3.v2 .section.top-visual .video_area .btn_wrap::after {
     display: block;
     content: "";
     position: absolute;
@@ -4313,44 +5157,44 @@ header, .header {
     height: 40px;
     background: url(../images/creditcard/btn_play.png) 0 0/cover no-repeat;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container {
     padding: 50px 0;
     background: url("../images/creditcard/section01-bg-mo.png") no-repeat;
     background-size: 100% 186px;
     background-position: top center;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .txt_area {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .txt_area {
     padding: 0 20px;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .txt_area .juwel_wrap {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .txt_area .juwel_wrap {
     display: none;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .box_area {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .box_area {
     margin: 54px auto 0;
     padding: 38px 0 20px;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .box_area::after {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .box_area::after {
     top: -24px;
     width: 72px;
     height: 43px;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .box_area strong {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .box_area strong {
     font-size: 16px;
     line-height: 135%; /* 21.6px */
     margin-bottom: 6px;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .box_area p {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .box_area p {
     font-size: 16px;
     line-height: 135%; /* 21.6px */
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .juwel_wrap .juwel.juwel1 {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .juwel_wrap .juwel.juwel1 {
     width: 68px;
     height: 68px;
     margin-left: 0;
     top: 60px;
     left: 5px;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .juwel_wrap .juwel.juwel2 {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .juwel_wrap .juwel.juwel2 {
     width: 86px;
     height: 91px;
     margin-left: 0;
@@ -4360,7 +5204,7 @@ header, .header {
     top: -40px;
     right: 10px;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .juwel_wrap .juwel.juwel3 {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .juwel_wrap .juwel.juwel3 {
     width: 36px;
     height: 36px;
     margin-left: 0;
@@ -4369,105 +5213,105 @@ header, .header {
     top: 70px;
     transform: rotateZ(-65deg);
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .reward_area {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .reward_area {
     margin-top: 30px;
     grid-template-columns: 1fr;
     padding: 0 20px;
     gap: 10px;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .reward_area .box {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .reward_area .box {
     display: flex;
     align-items: center;
     padding: 20px;
     overflow: hidden;
     min-height: 120px;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .reward_area .box p {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .reward_area .box p {
     font-size: 16px;
     line-height: 135%; /* 29.7px */
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .reward_area .box span {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .reward_area .box span {
     font-size: 12px;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .reward_area .box.box1 {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .reward_area .box.box1 {
     display: block;
     height: 300px;
     padding: 30px;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .reward_area .box.box1 p {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .reward_area .box.box1 p {
     font-size: 22px;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .reward_area .box.box3::after {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .reward_area .box.box3::after {
     bottom: 10px;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .reward_area .box.box4::after {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .reward_area .box.box4::after {
     bottom: 10px;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .reward_area .box .card_ani_wrap {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .reward_area .box .card_ani_wrap {
     width: 220px;
     height: 146px;
     margin-top: 10px;
     margin-left: calc(50% - 90px);
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .reward_area .box .card_ani {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .reward_area .box .card_ani {
     width: 220px;
     height: 146px;
     background-size: contain;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .reward_area .box .card_ani .card_ani_text {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .reward_area .box .card_ani .card_ani_text {
     background: #F1F4F6 url(../images/creditcard/card_ani_text01.png) no-repeat center/56px 18px;
     width: 66.5px;
     height: 41px;
     top: 17px;
     left: 76px;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .reward_area .box .card_ani_card {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .reward_area .box .card_ani_card {
     top: 124px;
     width: 220px;
     height: 146px;
     background-position: center left 144px;
     background-size: 62px 98px;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .reward_info {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .reward_info {
     padding: 0 20px;
     grid-template-columns: 1fr 108px;
     gap: 10px;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .reward_info .box .top {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .reward_info .box .top {
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: 40px; /* 21.6px */
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .reward_info .box .flex {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .reward_info .box .flex {
     display: flex;
     justify-content: space-around;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .reward_info .box .txt-box {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .reward_info .box .txt-box {
     flex-direction: column;
     flex-wrap: nowrap;
     height: 178px;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .reward_info .box .txt-box .win-img {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .reward_info .box .txt-box .win-img {
     margin-right: 0;
     margin-bottom: 10px;
     width: 60px;
     height: 66px;
     background-size: auto 66px;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .reward_info .box .txt-box .win-txt {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .reward_info .box .txt-box .win-txt {
     font-size: 14px;
     line-height: 140%; /* 19.6px */
     margin-right: 0;
     margin-bottom: 11px;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .reward_info .box .txt-box .win-info1 {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .reward_info .box .txt-box .win-info1 {
     font-size: 12px;
     line-height: 150%; /* 18px */
     letter-spacing: -0.48px;
     margin-right: 0;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .reward_info .box .txt-box .win-info2 {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .reward_info .box .txt-box .win-info2 {
     font-size: 12px;
     line-height: 150%; /* 18px */
     letter-spacing: -0.48px;
@@ -4476,29 +5320,29 @@ header, .header {
     height: 36px;
     padding-top: 5px;
   }
-  .content_wrap.credit_card.v2 .section.section01 .container .reward_info .box .line {
+  .content_wrap.credit_card.v3.v2 .section.section01 .container .reward_info .box .line {
     display: none;
   }
-  .content_wrap.credit_card.v2 .section.section01 .sub-title {
+  .content_wrap.credit_card.v3.v2 .section.section01 .sub-title {
     text-align: left;
     padding: 0 20px;
     font-size: 16px;
     margin: 20px auto 15px;
   }
-  .content_wrap.credit_card.v2 .section.section01 .sub-title.info {
+  .content_wrap.credit_card.v3.v2 .section.section01 .sub-title.info {
     text-align: center;
     margin: 10px 0 0 0;
   }
-  .content_wrap.credit_card.v2 .section.section01 .sub-title.info .txt-bottom {
+  .content_wrap.credit_card.v3.v2 .section.section01 .sub-title.info .txt-bottom {
     font-size: 12px;
     line-height: 18px;
     padding-left: 10px;
   }
-  .content_wrap.credit_card.v2 .section.section04 .container .card_area .card.card01 {
+  .content_wrap.credit_card.v3.v2 .section.section04 .container .card_area .card.card01 {
     width: 335px;
     height: 272px;
   }
-  .content_wrap.credit_card.v2 .section.section06 .container .card_area .card {
+  .content_wrap.credit_card.v3.v2 .section.section06 .container .card_area .card {
     width: 100%;
     height: inherit;
     min-height: 190px;
@@ -4506,75 +5350,322 @@ header, .header {
     max-width: 335px;
     width: 100%;
   }
-  .content_wrap.credit_card.v2 .section.section06 .container .card_area .card.card01 {
+  .content_wrap.credit_card.v3.v2 .section.section06 .container .card_area .card.card01 {
     max-width: 335px;
     width: 100%;
   }
-  .content_wrap.credit_card.v2 .section.section06 .container .card_area .card.card02 {
-    max-width: 335px;
-    width: 100%;
-    margin-top: 10px;
-  }
-  .content_wrap.credit_card.v2 .section.section06 .container .card_area .card.card03 {
+  .content_wrap.credit_card.v3.v2 .section.section06 .container .card_area .card.card02 {
     max-width: 335px;
     width: 100%;
     margin-top: 10px;
   }
-  .content_wrap.credit_card.v2 .section.section06 .container .card_area .card .talk_area .txt_up .txt {
+  .content_wrap.credit_card.v3.v2 .section.section06 .container .card_area .card.card03 {
+    max-width: 335px;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .content_wrap.credit_card.v3.v2 .section.section06 .container .card_area .card .talk_area .txt_up .txt {
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
     line-height: 135%; /* 24.3px */
     padding: 0;
   }
-  .content_wrap.credit_card.v2 .section.section06 .container .card_area .card .talk_area .txt_up .txt.txt02 {
+  .content_wrap.credit_card.v3.v2 .section.section06 .container .card_area .card .talk_area .txt_up .txt.txt02 {
     font-size: 16px;
   }
-  .content_wrap.credit_card.v2 .section.section06 .container .card_area .card .talk_area .txt_up .txt.txt02::after {
+  .content_wrap.credit_card.v3.v2 .section.section06 .container .card_area .card .talk_area .txt_up .txt.txt02::after {
     top: -2px;
     width: 18px;
     height: 24px;
     font-size: 18px;
   }
-  .content_wrap.credit_card.v2 .section.section06 .container .card_area .card .talk_area .txt_up.txt_up02 {
+  .content_wrap.credit_card.v3.v2 .section.section06 .container .card_area .card .talk_area .txt_up.txt_up02 {
     margin-top: 0;
   }
-  .content_wrap.credit_card.v2 .section.app-down > .container {
+  .content_wrap.credit_card.v3.v2 .section.app-down > .container {
     min-width: auto;
     flex-direction: column;
   }
-  .content_wrap.credit_card.v2 .section.app-down .left-con {
+  .content_wrap.credit_card.v3.v2 .section.app-down .left-con {
     align-items: center;
   }
-  .content_wrap.credit_card.v2 .section.app-down .left-con .btn-wrap {
+  .content_wrap.credit_card.v3.v2 .section.app-down .left-con .btn-wrap {
     display: flex;
     flex-direction: column;
   }
-  .content_wrap.credit_card.v2 .section.app-down .left-con .btn-wrap .down-btn {
+  .content_wrap.credit_card.v3.v2 .section.app-down .left-con .btn-wrap .down-btn {
     margin-right: 0;
     margin-bottom: 8px;
     border-radius: 16px;
   }
-  .content_wrap.credit_card.v2 .section.app-down .left-con .btn-wrap a::before {
+  .content_wrap.credit_card.v3.v2 .section.app-down .left-con .btn-wrap a::before {
     background: url(../images/creditcard/ico-app.png) no-repeat center/contain;
   }
-  .content_wrap.credit_card.v2 .section.app-down .right-con {
+  .content_wrap.credit_card.v3.v2 .section.app-down .right-con {
     display: block;
     text-align: center;
     margin: 0 auto;
   }
-  .content_wrap.credit_card.v2 .section.app-down .right-con .qr-img {
+  .content_wrap.credit_card.v3.v2 .section.app-down .right-con .qr-img {
     display: none;
   }
-  .content_wrap.credit_card.v2 .section.notice .container .accordion-body .notice-list {
+  .content_wrap.credit_card.v3.v2 .section.notice .container .accordion-body .notice-list {
     margin-bottom: 0;
   }
-  .content_wrap.credit_card.v2 .txt_copy {
+  .content_wrap.credit_card.v3.v2 .txt_copy {
     margin-top: 0;
+  }
+  .content_wrap.credit_card.v3.v3 .section.top-visual {
+    height: 661px;
+    background-color: #fff;
+    overflow: visible;
+  }
+  .content_wrap.credit_card.v3.v3 .section.top-visual .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    overflow: visible;
+    min-width: auto;
+    padding: 30px 25px;
+  }
+  .content_wrap.credit_card.v3.v3 .section.top-visual .container .tit_wrap {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .content_wrap.credit_card.v3.v3 .section.top-visual .container .card_wrap {
+    position: relative;
+    height: 310px;
+    left: 0;
+    margin-left: 0;
+    margin-top: 20px;
+  }
+  .content_wrap.credit_card.v3.v3 .section.top-visual .container .card_wrap .card.card01 .card-origin {
+    position: absolute;
+    display: inline-block;
+    z-index: 3;
+    width: 166px;
+    height: 265px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    background: url("../images/creditcard/v2/img-card-front-01-mo.png") no-repeat center/contain;
+    -webkit-animation: cardBottomUp 1s ease-in-out forwards;
+            animation: cardBottomUp 1s ease-in-out forwards;
+    bottom: -100%;
+    left: 50%;
+    margin-left: -83px;
+    transition: 0.3s;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  .content_wrap.credit_card.v3.v3 .section.top-visual .container .card_wrap .card.card01 .card-origin.shiny::after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    top: -180px;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background-color: #fff;
+    -webkit-animation: shiny-btn1 3s ease-in-out infinite;
+            animation: shiny-btn1 3s ease-in-out infinite;
+  }
+  .content_wrap.credit_card.v3.v3 .section.top-visual .container .card_wrap .card.card01 .card-bg {
+    position: absolute;
+    display: inline-block;
+    z-index: 2;
+    width: 209px;
+    height: 307px;
+    background: url("../images/creditcard/v2/img-card-front-bg-mo.png") no-repeat center/contain;
+    -webkit-animation: cardBottomUp 1s ease-in-out forwards;
+            animation: cardBottomUp 1s ease-in-out forwards;
+    bottom: -100%;
+    left: 50%;
+    margin-left: -104.5px;
+    transition: 0.3s;
+  }
+  .content_wrap.credit_card.v3.v3 .section.top-visual .container .card_wrap .card.card02 {
+    width: 150px;
+    height: 238px;
+    left: 190px;
+  }
+  .content_wrap.credit_card.v3.v3 .section.top-visual .container .circle_wrap {
+    position: absolute;
+    bottom: -30px;
+  }
+  .content_wrap.credit_card.v3.v3 .section.top-visual .container .circle_wrap .circle {
+    width: 120px;
+    height: 120px;
+  }
+  .content_wrap.credit_card.v3.v3 .section.top-visual .container .circle_wrap .circle .top {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: -0.04em;
+  }
+  .content_wrap.credit_card.v3.v3 .section.top-visual .container .circle_wrap .circle .mid {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 35.1px;
+  }
+  .content_wrap.credit_card.v3.v3 .section.top-visual .container .circle_wrap .circle .vertical > span {
+    font-size: 11px;
+    line-height: 1;
+  }
+  .content_wrap.credit_card.v3.v3 .section.top-visual .container .circle_wrap .circle .bot {
+    font-size: 12px;
+  }
+  .content_wrap.credit_card.v3.v3 .section.top-visual .retto_icon {
+    top: 424px;
+  }
+  .content_wrap.credit_card.v3.v3 .section.section01 {
+    height: 390px;
+    padding-top: 152px;
+  }
+  .content_wrap.credit_card.v3.v3 .section.section01 .full {
+    width: 100%;
+  }
+  .content_wrap.credit_card.v3.v3 .section.section01 .scrollNav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    bottom: 288px;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: auto;
+    font-size: 15px;
+    background: none;
+    text-indent: 0;
+    color: #fff;
+    -webkit-animation: scrollNavAni 1.8s 1.8s ease-in-out infinite backwards;
+            animation: scrollNavAni 1.8s 1.8s ease-in-out infinite backwards;
+  }
+  .content_wrap.credit_card.v3.v3 .section.section01 .scrollNav::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -15px;
+    transform: translateX(-50%);
+    display: block;
+    width: 14px;
+    height: 6px;
+    background: url(../images/creditcard/v2/mo-icon-scroll.png) 0 0/cover no-repeat;
+  }
+  .content_wrap.credit_card.v3.v3 .section.section01 .video_container {
+    padding: 0 20px;
+    margin-top: 0px;
+  }
+  .content_wrap.credit_card.v3.v3 .section.section01 .video_area {
+    position: relative;
+    width: 100%;
+    max-width: 336px;
+    height: 189px;
+    margin: 0 auto;
+  }
+  .content_wrap.credit_card.v3.v3 .section.section01 .video_area iframe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .content_wrap.credit_card.v3.v3 .section.section01 .video_area::before {
+    display: block;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  .content_wrap.credit_card.v3.v3 .section.section01 .video_area .btn_wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background: url(../images/creditcard/video_img_big2.png) 0 0/cover no-repeat;
+  }
+  .content_wrap.credit_card.v3.v3 .section.section01 .video_area .btn_wrap::after {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background: url(../images/creditcard/btn_play.png) 0 0/cover no-repeat;
   }
   /* 	.footer {
   		padding: 25px 25px 120px;
   	} */
+  @-webkit-keyframes scrollNavAni {
+    0% {
+      opacity: 0;
+      margin-bottom: 0;
+    }
+    15% {
+      opacity: 1;
+      margin-bottom: 0;
+    }
+    100% {
+      opacity: 0;
+      margin-bottom: -30px;
+    }
+  }
+  @keyframes scrollNavAni {
+    0% {
+      opacity: 0;
+      margin-bottom: 0;
+    }
+    15% {
+      opacity: 1;
+      margin-bottom: 0;
+    }
+    100% {
+      opacity: 0;
+      margin-bottom: -30px;
+    }
+  }
+  @-webkit-keyframes cardBottomUp {
+    0% {
+      bottom: -1000px;
+    }
+    100% {
+      bottom: 0;
+    }
+  }
+  @keyframes cardBottomUp {
+    0% {
+      bottom: -1000px;
+    }
+    100% {
+      bottom: 0;
+    }
+  }
+  @-webkit-keyframes cardTopDown {
+    0% {
+      top: -1000px;
+    }
+    100% {
+      top: -300px;
+    }
+  }
+  @keyframes cardTopDown {
+    0% {
+      top: -1000px;
+    }
+    100% {
+      top: -300px;
+    }
+  }
   @-webkit-keyframes slideUp {
     0% {
       bottom: -30px;

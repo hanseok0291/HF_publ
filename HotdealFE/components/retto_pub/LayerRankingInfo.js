@@ -26,7 +26,7 @@ const LayerRankingInfo = ({beforeVersion}) => {
           </p>
           <p className={styleRanking.botText}>
             월별로 진행되며, 리또 1개라도 있다면 자동 참여 ! <br />
-            리또 모아서 100만원 상금의 주인공이 되세요.
+            리또 모아서 100만원 상금의 주인공이 되세
           </p>
         </div>
         <h4><span className={`${styleRanking.number} ${styleRanking.number1}`}></span>리또와 리또 랭킹 상금을 함께 받는 방법</h4>
@@ -44,6 +44,7 @@ const LayerRankingInfo = ({beforeVersion}) => {
                 010PAY 우리카드로 <br />
                 1만원 결제마다 리또 1개 받기 <br />
                 <span>(결제 건당 최대 1,000개 지급)</span>
+                <a href="#" className={styleRanking.benefitView}>혜택 보러가기</a>
               </p>
             )}
             

@@ -48,7 +48,7 @@ const index = () => {
       </ul>
       <Container isTab padding="0" backgroundColor="#fff">
         {/* HOME */}
-        <Home case1 /> 
+        <Home case2 /> 
       </Container>
       {/* 리또 신청 */}
       {/* <Apply full case1 /> */}

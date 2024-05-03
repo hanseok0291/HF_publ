@@ -85,6 +85,19 @@ const Home = ({case1, case2}) => {
   const mainSectionRef = useRef(null);
   const [isToast, setIsToast] = useState(true);
   const [playingVideoId, setPlayingVideoId] = useState(null);
+  const bottomToastRef = useRef(null);
+  const [toastShow, setToastShow] = useState(true);
+
+  const handleScrollEvent = () => {
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight) {
+      setToastShow(false);
+    } else {
+      setToastShow(true);
+    }
+  }
+  useEffect(() => {
+    window.addEventListener('scroll', handleScrollEvent);
+  },[]);
 
   return (
     <div className={styleHome.container}>
@@ -187,7 +200,7 @@ const Home = ({case1, case2}) => {
         </div>
       </div>
       {case2 && isToast && (
-        <div className={styleHome.toastWrap}>
+        <div className={`${styleHome.toastWrap} ${!toastShow ? styleHome.toastHide : '' }`} ref={bottomToastRef}>
           <div className={styleHome.toastBox}>
             <a href="#">
               <div className={styleHome.textWrap}>

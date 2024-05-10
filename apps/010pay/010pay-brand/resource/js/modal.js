@@ -4,11 +4,11 @@ function scrollOff(){
     scrollHeight = $(document).scrollTop();
     $("body").addClass("modal-open");
     $(".content_wrap").css("position", "fixed");
-    $(".content_wrap").css("top", - scrollHeight);
+    // $(".content_wrap").css("top", - scrollHeight);
 }
 function scrollOn(){
     $("body").removeClass("modal-open");
-    $(".content_wrap").css("top", 0);
+    // $(".content_wrap").css("top", 0);
     $(".content_wrap").css("position", "relative");
     $(document).scrollTop(scrollHeight);
 }

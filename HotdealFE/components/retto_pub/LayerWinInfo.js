@@ -193,6 +193,12 @@ const LayerWinInfo = () => {
               <td>
                 1천원</td>
             </tr>
+            <tr>
+              <td>3등</td>
+              <td>3 ~ 5개</td>
+              <td style={{textAlign: 'center'}}>-</td>
+              <td colSpan={3}>최대 1만 포인트</td>
+            </tr>
           </tbody>
         </table>
       </div>

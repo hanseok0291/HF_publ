@@ -90,7 +90,7 @@ function scrollOn() {
   $("#wrap").css("top", 0);
   $("#wrap").css("position", "relative");
   $("#header").css("top", "-1px");
-  // $(document).scrollTop(scrollHeight);
+	$(document).scrollTop(scrollHeight);
 }
 
 // 레이어 팝업(모달) 열기

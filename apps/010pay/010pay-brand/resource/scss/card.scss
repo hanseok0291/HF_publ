@@ -7,7 +7,7 @@
 /* 기본설정 */
 .pcOnly, .pc-view {display: block !important;}
 .moOnly, .mo-view {display: none !important;}
-.main-view { overflow: hidden; }
+.main-view { overflow: hidden; max-width: 100%; }
 .mb20 { margin-bottom: 20px !important; }
 .moFlex { display: flex;}
 i { font-style: italic; }
@@ -406,12 +406,6 @@ header, .header { background-color: #fff; }
 .content_wrap {
 	// credit_card
 	&.credit_card {
-		transition: all .5s ease-in-out;
-		header {
-			.logo {
-				// background-position-y: -65px;
-			}
-		}
 		&.moveTop {
 			margin-top: -465px;
 		}
@@ -1382,6 +1376,9 @@ header, .header { background-color: #fff; }
 								&.vertical-top {
 									vertical-align: top;
 								}
+								&.mo-text-center {
+									text-align: left;
+								}
 							}
 						}
 						&::after {
@@ -1537,7 +1534,7 @@ header, .header { background-color: #fff; }
 										position: relative;
 										display: block;
 										padding-left: 12px;
-										font-size: 18px;
+										font-size: 20px;
 										font-weight: 700;
 										line-height: 25px;
 										margin-bottom: 8px;
@@ -2529,7 +2526,7 @@ header, .header { background-color: #fff; }
 								width: 35px;
 								height: 35px;
 								margin-right: 8px;
-								background: url('../images/creditcard/ico-app.png') no-repeat center / contain;
+								background: url('../images/creditcard/v2/ico-app.png') no-repeat center / contain;
 							}
 						}
 					}
@@ -2617,7 +2614,7 @@ header, .header { background-color: #fff; }
 							}
 							.bot {
 								font-size: 14px;
-								font-weight: 700;
+								font-weight: 400;
 							}
 							.vertical {
 								display: flex;
@@ -2644,6 +2641,7 @@ header, .header { background-color: #fff; }
 							width: 400px;
 							height: 100%;
 							overflow: hidden;
+							border-radius: 10px;
 							&.card01 {
 								.card-origin {
 									position: absolute;
@@ -2670,7 +2668,7 @@ header, .header { background-color: #fff; }
 										width: 30px;
 										height: 100%;
 										background-color: #fff;
-										animation: shiny-btn1 3s ease-in-out infinite;
+										animation: shiny-btn1 2s ease-in-out infinite;
 										}
 									}
 								}
@@ -2706,7 +2704,7 @@ header, .header { background-color: #fff; }
 									width: 30px;
 									height: 100%;
 									background-color: #fff;
-									animation: shiny-btn1 3s ease-in-out infinite;
+									animation: shiny-btn1 2s ease-in-out infinite;
 									}
 								}
 							}
@@ -2791,10 +2789,10 @@ header, .header { background-color: #fff; }
 					position: absolute;
 				}
 				.rolling-list.original {
-					animation: rollingleft1 33s linear infinite;
+					animation: rollingleft1 100s linear infinite;
 				}
 				.rolling-list.clone {
-					animation: rollingleft2 33s linear infinite;
+					animation: rollingleft2 100s linear infinite;
 				}
 
 				@keyframes rollingleft1 {
@@ -2996,11 +2994,19 @@ header, .header { background-color: #fff; }
 										span {
 											font-size: 11px;
 										}
+										&+span {
+											position: relative;
+											font-size: 12px;
+											font-weight: 400;
+											line-height: 18px;
+											letter-spacing: -0.04em;
+											color: #7d7d7d;
+										}
 									}
 									.txt_small {
 										display: inline-block;
 										font-size: 14px;
-										font-weight: 400;
+										font-weight: 300;
 										line-height: 19.6px;
 										text-align: left;
 									}
@@ -3108,30 +3114,67 @@ header, .header { background-color: #fff; }
 					}
 					.accordion {
 						.accordion-item {
-							padding-top: 20px;
+							padding-top: 0;
+							box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
+							border-radius: 10px;
+							background: #fff;
+							margin-bottom: 20px;
 							&:first-of-type {
 								padding-top: 0;
 							}
 							&.active {
-								margin-bottom: -19px;
+								margin-bottom: 20px;
 								.accordion-header {
 									border-radius: 10px 10px 0 0;
 								}	
 							}
 							.accordion-header {
-								border-radius: 10px;
-								background: #fff;
-								box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
+								background: transparent;
+								> h3 {
+									display: flex;
+									align-items: center;
+									.icon {
+										position: relative;
+										display: inline-block;
+										background: transparent url(../images/creditcard/v2/accordion_bg_01.png) center/64px auto no-repeat;
+										width: 64px;
+										height: 64px;
+										margin-right: 14px;
+										.label {
+											position: absolute;
+											bottom: -3px;
+											left: 50%;
+											transform: translateX(-50%);
+											border: 1px solid #FF4600;
+											font-size: 12px;
+											font-weight: 700;
+											line-height: 16px;
+											letter-spacing: -0.04em;
+											text-align: center;
+											color: #FF4600;
+											border-radius: 99px;
+											background-color: #fff;
+											padding: 1px 6px;
+											white-space: nowrap;
+											min-width: 56px;
+											&.last {
+												left: 27px;
+											}
+										}
+									}
+								}
 								button {
-									padding-left: 104px;
+									display: flex;
+									align-items: center;
 									width: 100%;
-									background: transparent url(../images/creditcard/v2/accordion_bg_01.png) 30px 23px / 64px auto no-repeat;
+									background: none;
 									font-size: 22px;
 									font-weight: 700;
 									line-height: 108px;
 									color: #151515;
 									letter-spacing: -0.03em;
 									text-align: left;
+									padding-left: 28px;
 									.label {
 										position: absolute;
 										bottom: 19px;
@@ -3146,28 +3189,32 @@ header, .header { background-color: #fff; }
 										border-radius: 99px;
 										background-color: #fff;
 										padding: 2px 8px 2px 8px;
+										&.last {
+											left: 27px;
+										}
 									}
 								}
 							}
 							&:nth-of-type(2) {
 								.accordion-header {
-									button {
-										background: transparent url(../images/creditcard/v2/accordion_bg_02.png) 30px 23px / 64px auto no-repeat;
+									.icon {
+										background: transparent url(../images/creditcard/v2/accordion_bg_02.png) center/64px auto no-repeat;
 									}
 								}
 							}
+							
 							&:nth-of-type(3) {
 								.accordion-header {
-									button {
-										background: transparent url(../images/creditcard/v2/accordion_bg_03.png) 30px 23px / 64px auto no-repeat;
+									.icon {
+										background: transparent url(../images/creditcard/v2/accordion_bg_03.png) center/64px auto no-repeat;
 									}
 								}
 							}
 							.accordion-body {
 								position: relative;
-								padding: 0 0px 20px 104px;
-								background-color: #fff;
-								top: -19px;
+								padding: 0 0 0 104px;
+								background-color: transparent;
+								top: -24px;
 							} //accordion-body
 						} //accordion-item
 					} //accordion
@@ -3339,16 +3386,17 @@ header, .header { background-color: #fff; }
 					}
 				}
 				dt {
-					width: 44px;
+					min-width: 44px;
 					height: 21px;
 					text-align: center;
 					font-size: 11px;
-					font-weight: 400;
+					font-weight: 700;
 					line-height: 21px;
 					letter-spacing: -0.04em;
 					color: #575757;
 					background: #F1F1F1;
 					border-radius: 30px;
+					padding: 0 8px;
 				}
 				dd {
 					font-size: 14px;
@@ -3356,6 +3404,24 @@ header, .header { background-color: #fff; }
 					line-height: 19.6px;
 					color: #151515;
 					margin-left: 16px;
+					.sub-list {
+						position: relative;
+						font-size: 12px;
+						font-weight: 400;
+						line-height: 18px;
+						letter-spacing: -0.04em;
+						text-align: left;
+						padding-left: 12px;
+						margin-top: 4px;
+						color: #7d7d7d;
+						&::after {
+							content: "•";
+							position: absolute;
+							top: -1px;
+							left: 0;
+							color: #7d7d7d;
+						}
+					}
 				}
 				> p {
 					font-size: 11px;
@@ -3364,6 +3430,24 @@ header, .header { background-color: #fff; }
 					letter-spacing: -0.04em;
 					padding-left: 66px;
 					margin-left: 0;
+					&.sub-list {
+						position: relative;
+						margin-top: 8px;
+						padding-left: 12px;
+						font-size: 12px;
+						font-weight: 400;
+						line-height: 18px;
+						letter-spacing: -0.04em;
+						text-align: left;
+						color: #7d7d7d;
+						&::after {
+							content: "•";
+							position: absolute;
+							top: -1px;
+							left: 0;
+							color: #7d7d7d;
+						}
+					}
 				}
 			}
 		} 
@@ -5330,6 +5414,14 @@ header, .header { background-color: #fff; }
 					}
 				}
 				&.section02 {
+					.rolling-list {
+						&.original {
+							animation: rollingleft1 120s linear infinite;
+						}
+						&.clone {
+							animation: rollingleft2 120s linear infinite;
+						}
+					}
 					.container {
 						padding: 50px 0px;
 						.txt_tit {
@@ -5441,6 +5533,7 @@ header, .header { background-color: #fff; }
 										}
 										&:nth-of-type(2) {
 											> div {
+												padding-top: 16px;
 												&::before {
 													background: url(../images/creditcard/v2/card_bg_02_label.png) no-repeat center / contain;
 													bottom: 84px;
@@ -5538,47 +5631,41 @@ header, .header { background-color: #fff; }
 						}
 						.accordion {
 							.accordion-item {
-								padding-top: 10px;
+								padding-top: 0;
+								margin-bottom: 10px;
 								&:first-of-type {
 									padding-top: 0;
 								}
+								&:nth-of-type(3) {
+								margin-bottom: 0;
+									.accordion-body {
+										padding: 12px 24px 0;
+									}
+								}
 								.accordion-header {
 									button {
-										padding-left: 108px;
+										padding-left: 24px;
 										font-size: 18px;
 										line-height: 24.3px;
 										height: 104px;
 										.label {
 											font-size: 11px;
-											left: 28px;
 										}
 									}
 								} //accordion-header
 								.accordion-body {
-									padding: 12px 24px 20px;
-									margin-bottom: -19px;
+									padding: 12px 28px 0;
+									margin-bottom: 10px;
+									top: -17px;
+									.info_area {
+										> dl {
+											margin-bottom: 10px;
+											dt {
+												min-width: 56px;
+											}
+										}
+									}
 								} //accordion-body
-								&:nth-of-type(1) {
-									.accordion-header {
-										button {
-											background: transparent url(../images/creditcard/v2/accordion_bg_01.png) 24px 20px / 64px auto no-repeat;
-										}
-									}
-								}
-								&:nth-of-type(2) {
-									.accordion-header {
-										button {
-											background: transparent url(../images/creditcard/v2/accordion_bg_02.png) 24px 20px / 64px auto no-repeat;
-										}
-									}
-								}
-								&:nth-of-type(3) {
-									.accordion-header {
-										button {
-											background: transparent url(../images/creditcard/v2/accordion_bg_03.png) 24px 20px / 64px auto no-repeat;
-										}
-									}
-								}
 							} //accordion-item
 						} //accordion
 					} //container
@@ -5802,16 +5889,16 @@ header, .header { background-color: #fff; }
 									}
 									&.down-btn {
 										&::before {
-											background: url(../images/creditcard/ico-app.png) no-repeat center / contain;
+											background: url(../images/creditcard/v2/ico-app.png) no-repeat center / contain;
 										}
 										&.home {
 											&::before {
-												background: url(../images/creditcard/ico-home.png) no-repeat center / contain;
+												background: url(../images/creditcard/v2/ico-home.png) no-repeat center / contain;
 											}
 										}
 										&.share {
 											&::before {
-												background: url(../images/creditcard/ico-share.png) no-repeat center / contain;
+												background: url(../images/creditcard/v2/ico-share.png) no-repeat center / contain;
 											}
 										}
 									}
@@ -5843,6 +5930,7 @@ header, .header { background-color: #fff; }
 							}
 						}
 						.accordion-header {
+							margin-bottom: -5px;
 							button {
 									font-size: 14px;
 									font-weight: 400;
@@ -5878,6 +5966,9 @@ header, .header { background-color: #fff; }
 										line-height: 17px;
 										letter-spacing: -0.04em;
 										padding: 6px;
+										&.mo-text-center {
+											text-align: center;
+										}
 									}
 								}
 							}
@@ -5933,7 +6024,7 @@ header, .header { background-color: #fff; }
 									> strong {
 										> span {
 											padding-left: 8px;
-											font-size: 12px;
+											font-size: 14px;
 											font-weight: 700;
 											line-height: 16.8px;
 											&::after {
@@ -5942,10 +6033,10 @@ header, .header { background-color: #fff; }
 												position: absolute;
 												left: 0;
 												top: 0;
-												color: #7D7D7D;
+												color: #575757;
 											}
 											&.text-color {
-												color: #7D7D7D;
+												color: #575757;
 											}
 										}
 									}
@@ -6442,7 +6533,7 @@ header, .header { background-color: #fff; }
 											animation: cardBottomUp 1s ease-in-out forwards;
 											bottom: -100%;
 											left: 50%;
-											margin-left: -83px;
+											margin-left: -111px;
 											transition: .3s;
 											overflow: hidden;
 											border-radius: 10px;
@@ -6456,7 +6547,7 @@ header, .header { background-color: #fff; }
 												width: 30px;
 												height: 100%;
 												background-color: #fff;
-												animation: shiny-btn1 3s ease-in-out infinite;
+												animation: shiny-btn1 2s ease-in-out infinite;
 												}
 											}
 										}
@@ -6470,7 +6561,7 @@ header, .header { background-color: #fff; }
 											animation: cardBottomUp 1s ease-in-out forwards;
 											bottom: -100%;
 											left: 50%;
-											margin-left: -95.5px;
+											margin-left: -123.5px;
 											margin-bottom: 6px;
 											transition: .3s;
 										}
@@ -6478,7 +6569,9 @@ header, .header { background-color: #fff; }
 									&.card02 {
 										width: 150px;
 										height: 238px;
-										left: 190px;
+										left: 50%;
+										transform: translateX(-50%);
+										margin-left: 38px;
 									}
 								}
 							}
@@ -6498,6 +6591,13 @@ header, .header { background-color: #fff; }
 										font-size: 26px;
 										font-weight: 700;
 										line-height: 35.1px;
+										margin: 0;
+										.small {
+											font-size: 16px;
+										}
+										&.align_bottom {
+											align-items: baseline;
+										}
 									}
 									.vertical {
 										> span {
@@ -6507,6 +6607,11 @@ header, .header { background-color: #fff; }
 									}
 									.bot {
 										font-size: 12px;
+									}
+									&.circle02, &.circle03 {
+										.mid {
+											margin: -2px 0;
+										}
 									}
 								}
 							}

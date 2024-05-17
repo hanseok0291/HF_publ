@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+	<title>헥토파이낸셜</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no, address=no, email=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+	<!-- css -->
+	<link rel="stylesheet" href="../../css/slick.min.css">
+	<link rel="stylesheet" href="../../css/common.css?ver=240513">
+	<!-- <link rel="stylesheet" href="../../css/common_v2.css"> -->
+
+	<!-- javascript -->
+	<script src="../../js/jquery-1.8.3.min.js"></script>
+	<script src="../../js/jquery.placeholder.min.js"></script>
+	<script src="../../js/owl.carousel.min.js"></script>
+	<script src="../../js/slick.min.js"></script>
+	<script src="../../js/design_monotone.js" defer="defer"></script>
+	<script src="../../js/commonmsg_monotone.js"></script>
+	<script src="../../js/commonutil.js"></script>
+	<script src="../../js/design.js" defer="defer"></script>
+</head>
+
+<body>
+	<!-- IE 브라우저 지원 안내 -->
+	<!--[if lte IE 10]>
+<div class="info-ie-update">
+	<div class="container">
+		<h2>브라우저를 업데이트해 주세요.</h2>
+		<p>안전한 결제 환경을 위해 크롬, 엣지 또는<br> Internet Explorer 10 이상을 이용해 주세요.</p>
+		<p class="btn-area">
+			<a href="http://www.google.com/chrome" target="_blank" class="btn">크롬 설치</a>
+			<a href="http://windows.microsoft.com/ko-kr/internet-explorer/download-ie" target="_blank" class="btn">엣지 설치 / IE 업데이트</a>
+		</p>
+	</div>
+</div>
+<![endif]-->
+	<!-- //IE 브라우저 지원 안내 -->
+
+	<!-- wrap -->
+	<div id="wrap" class="wrap newType">
+		<!-- form -->
+		<form class="wrap" autocomplete="off">
+			<!-- header -->
+			<header>
+				<div class="container">
+					<h1 class="page-title">본인 인증</h1>
+					<button type="button" id="btnBack" class="btn-icon btn-back">뒤로 가기</button>
+					<button type="button" id="closeWindow" class="btn-icon btn-close" data-toggle="modal"
+						data-target="#commonConfirm">창 닫기</button>
+				</div>
+			</header>
+			<!-- //header -->
+
+			<!-- main content -->
+			<main>
+				<!-- container -->
+				<div class="container">
+					<!-- headline -->
+					<h2 class="headline"><strong>본인 확인을 위해<br>
+							휴대폰 인증을 진행해 주세요.</strong></h2>
+					<!-- //headline -->
+
+					<!-- section -->
+					<section>
+						<h3 class="hidden">정보 입력</h3>
+						<!-- form area -->
+						<div class="form-area">
+							<div class="form-group">
+								<label class="form-label">이름</label>
+								<input type="text" class="form-control" placeholder="이름 입력">
+								<div class="text-error"></div>
+							</div>
+							<div class="form-group">
+								<label class="form-label">주민등록번호</label>
+								<div class="form-control input-group myid">
+									<input type="tel" class="input" maxlength="6" placeholder="주민등록번호 입력">
+									<span class="dash">-</span>
+									<span class="input">
+										<input type="tel" maxlength="1" placeholder="＊">
+										<span class="masking"><i></i> <i></i> <i></i> <i></i> <i></i> <i></i></span>
+									</span>
+								</div>
+								<div class="text-error"></div>
+							</div>
+							<div class="form-group">
+								<label class="form-label">휴대폰 번호</label>
+								<div class="form-control input-group select-input">
+									<button type="button" id="telecomCd" class="select input" data-toggle="modal"
+										data-target="#telecomCdModal">SKT</button>
+									<input type="tel" class="input" maxlength="11" placeholder="'-' 없이 입력">
+								</div>
+								<div class="text-error"></div>
+							</div>
+							<div class="form-group" id="captcha">
+								<div class="form-control input-group captcha">
+									<span class="img-area input">
+										<img src="../../images/sample/captchaImg.png" id="captchaImg" alt="보안문자 이미지" class="img">
+										<span class="btn-area">
+											<button type="button" id="refreshCaptcha" class="btn btn-icon" onclick="refreshCaptchaImage()"><i
+													class="icon icon-refresh"></i> 새로고침</button>
+											<button type="button" id="soundCaptcha" class="btn btn-icon" onclick="audio()"><i
+													class="icon icon-speaker"></i> 음성듣기</button>
+										</span>
+									</span>
+									<input type="tel" class="input" maxlength="6" placeholder="보안 숫자 입력">
+								</div>
+								<div class="text-error"></div>
+							</div>
+						</div>
+						<!-- //form area -->
+					</section>
+					<!-- //section -->
+				</div>
+				<!-- //container -->
+			</main>
+			<!-- //main content -->
+
+			<!-- footer -->
+			<footer>
+				<!-- container -->
+				<div class="container">
+					<button type="button" id="submit" class="btn btn-lg btn-primary shadow" disabled>인증 요청</button>
+				</div>
+				<!-- //container -->
+			</footer>
+			<!-- //footer -->
+		</form>
+		<!-- //form -->
+	</div>
+	<!-- //wrap -->
+
+	<!-- modal - 통신사 선택 -->
+	<div id="telecomCdModal" class="modal modal-slide newType" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title">통신사 선택</h3>
+				</div>
+				<div class="modal-body">
+					<ul class="btn-list">
+						<li class="active"><button type="button" class="btn btn-white" data-dismiss="modal"
+								aria-label="Close">SKT</button></li>
+						<li><button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">KT</button></li>
+						<li><button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">LG U+</button></li>
+						<li><button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">SKT 알뜰폰</button>
+						</li>
+						<li><button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">KT 알뜰폰</button></li>
+						<li><button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">LG U+ 알뜰폰</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //modal - 통신사 선택 -->
+
+	<!-- modal - common -->
+	<div id="commonAlert" class="modal fade common newType" tabindex="-1" role="dialog" data-backdrop="static">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 id="alertTitle" class="modal-title">알림</h3>
+				</div>
+				<div class="modal-body">
+					<div id="alertContents">알려드립니다.</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //modal - common -->
+
+	<!-- modal - common -->
+	<div id="commonConfirm" class="modal fade common newType" tabindex="-1" role="dialog" data-backdrop="static">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 id="confirmTitle" class="modal-title">안내</h3>
+				</div>
+				<div class="modal-body">
+					<div id="confirmContents">확인하시겠습니까?</div>
+				</div>
+				<div class="modal-footer type2">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+					<button type="button" id="confirmOk" class="btn btn-md btn-primary">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //modal - common -->
+
+	<!-- loading -->
+	<div class="loading hidden">로딩 중</div>
+	<!-- //loading -->
+
+	<script>
+		$(document).ready(function () {
+			// PASS 선택 시 캡챠 미노출
+			function captchaYn() {
+				var $checkItem = $('.check-slider > input[type="radio"]').eq(0);
+				if ($checkItem.is(':checked')) {
+					$('#captcha').show();
+				} else {
+					$('#captcha').hide();
+				}
+			}
+			captchaYn();
+			$('.check-slider').click(function () {
+				captchaYn();
+			});
+
+			// 통신사 선택
+			$('#telecomCdModal .btn-list .btn').click(function () {
+				var text = $(this).html();
+				$('#telecomCd').html(text);
+			});
+
+			$(".select-input > .select").on("click", function () {
+				modalOpenSlide("telecomCdModal");
+			});
+
+			// 버튼 목록 - 옵션 버튼 토글(활성, 비활성)
+			$('.btn-list .btn').click(function () {
+				$(this).parent('li').addClass('active').siblings('li').removeClass('active');
+			});
+
+			// form focus ui
+			var $input = $('input[type=text], input[type=password], input[type=tel], select, .select');
+			var $inputChild = $('.form-control').find($input);
+			$input.focus(function () {
+				$(this).addClass('focus');
+			}).blur(function () {
+				$(this).removeClass('focus');
+			}).blur();
+			$inputChild.focus(function () {
+				$(this).parents('.form-control').addClass('focus');
+				$(this).removeClass('focus');
+			}).blur(function () {
+				$(this).parents('.form-control').removeClass('focus');
+			}).blur();
+		});
+	</script>
+</body>
+
+</html>

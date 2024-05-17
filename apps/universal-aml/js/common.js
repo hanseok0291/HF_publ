@@ -1,0 +1,261 @@
+// 바디 스크롤 제거/해제
+var scrollHeight = 0;
+function scrollOff() {
+  scrollHeight = $(document).scrollTop();
+  $("#wrap").css("position", "fixed");
+  $("#wrap").css("top", -scrollHeight);
+}
+function scrollOn() {
+  $("#wrap").css("top", 0);
+  $("#wrap").css("position", "relative");
+  $(document).scrollTop(scrollHeight);
+}
+
+var wrap = document.getElementById("wrap");
+var modal = document.getElementById("modalSlide");
+var modal02 = document.getElementById("modalSlide02");
+var btn = document.getElementById("openModalBtn");
+var span = document.getElementsByClassName("close")[0];
+
+// modalOpen 함수가 실행되었는지 여부를 나타내는 변수
+var modalOpenExecuted = false;
+var modalNext;
+// 모달 열기 함수
+function modalOpen(obj1, obj2) {
+  var temp = $("#" + obj1);
+  modalNext = obj2;
+  modalOpenExecuted = true;
+  temp.addClass("modal-open");
+  temp.css("display", "block");
+  scrollOff(); // 바디 스크롤 제거
+
+  // 슬라이드 모달 닫기
+  function modalOut() {
+    temp.removeClass("modal-open");
+    temp.css("display", "none");
+
+    // 이중 모달이 아닌 경우
+    if (!$(temp).hasClass("depth2")) {
+      scrollOn(); // 바디 스크롤 제거 해제
+    }
+  }
+
+  // 팝업 내 닫기 버튼 클릭 시 팝업 닫기
+  $(temp)
+    .find(".modal-close")
+    .click(function () {
+      modalOut();
+    });
+}
+
+// 모달 닫기 함수
+function modalClose() {
+  $(".modal").removeClass("modal-open");
+  $(".modal").addClass("modal-close");
+  setTimeout(function () {
+    $(".modal").css("display", "none");
+    $(".modal").removeClass("modal-close");
+    modalOther = 0;
+    scrollOn();
+  }, 100); // 애니메이션 지속 시간
+}
+
+// 모달 열기 버튼
+$(".js-modal-slide").click(function () {
+  var chk = $(this).attr("data-chk"); // 모달이 열리는지 체크
+  var target = $(this).attr("data-target"); // 모달 ID
+
+  if (chk == "false") {
+  } else {
+    modalOpen(target);
+  }
+});
+
+// 모달 내에서 다음 단계로 이동할 경우
+var modalOther = 0;
+window.addEventListener("click", function (event) {
+  if (modalNext == "true" && modalOther == "0") {
+  } else if (modalNext == "false" && modalOther == "1") {
+    modalClose();
+  }
+});
+
+// 모달(레이어 팝업), 배너, 팝오버
+$(function () {
+  // 모달 열기
+  $("[data-toggle='modal']").click(function () {
+    var openBtn = $(this);
+    var target = $(this).attr("data-target"); // 모달 ID
+    $(target).show().focus(); // 모달 열기, 포커스
+    scrollOff(); // 바디 스크롤 제거
+
+    // 모달 위치
+    var thisDialog = $(target).find(".modal-dialog");
+    var marginValue = thisDialog.outerHeight() / 2;
+    $(thisDialog).css("margin-top", "-" + marginValue + "px");
+
+    // 모달 닫기
+    $("[data-dismiss='modal']").click(function () {
+      $(openBtn).focus(); // 열기 버튼 포커스
+    });
+
+    $("#wrap").css("position", "fixed");
+  });
+
+  // 모달 닫기
+  $("[data-dismiss='modal']").click(function () {
+    var target = $(this).parents(".modal");
+    $(target).hide(); // 모달 닫기
+    scrollOn(); // 바디 스크롤 제거 해제
+  });
+
+  // 배너 닫기(플로팅 배너)
+  $("[data-dismiss='banner']").click(function () {
+    var target = $(this).parents(".banner");
+    $(target).hide();
+  });
+
+  // popover
+  $("[data-dismiss='popover']").click(function () {
+    var target = $(this).parents(".popover");
+    $(target).hide();
+  });
+});
+
+// maxlength
+function maxLengthCheck(object) {
+  if (object.value.length > object.maxLength) {
+    object.value = object.value.slice(0, object.maxLength);
+  }
+}
+// 전화번호 체크
+function formatPhoneNumber() {
+  var phoneChk = document.getElementById("phone");
+  if (phoneChk) {
+    phoneChk.addEventListener("input", function () {
+      // 현재 입력된 값
+      var inputValue = this.value;
+      // 숫자 이외의 문자는 모두 제거
+      var phoneNumber = inputValue.replace(/\D/g, "");
+      // 전화번호 형식에 맞게 "-" 추가
+      var formattedNumber = phoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3");
+      // 입력된 값을 형식에 맞게 업데이트
+      this.value = formattedNumber;
+    });
+  }
+}
+
+// 각 버튼에 클릭 이벤트 추가
+var buttons = document.querySelectorAll(".btn");
+buttons.forEach(function (button) {
+  button.addEventListener("click", function () {
+    // 클릭한 버튼의 data-target 속성 값을 가져옴
+    var targetId = this.getAttribute("data-target");
+
+    // 해당하는 id를 가진 요소를 보여줌
+    var targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      targetElement.checked = true;
+      updateSendButtonClass();
+    }
+  });
+});
+
+// 공통 모달 열기 (메시지 추가, 모달 버튼 포커스)
+// Common Alert Modal
+$.alertMessage = function (title, contents, callbackFunc) {
+  var target = $("#commonAlert");
+
+  // 모달 제목/내용
+  $("#alertTitle").html(title);
+  $("#alertContents > p").html(contents);
+
+  // 모달 열기
+  $(target).show().focus();
+
+  // 모달 위치
+  var thisDialog = $(target).find(".modal-dialog");
+  var marginValue = thisDialog.outerHeight() / 2;
+  $(thisDialog).css("margin-top", "-" + marginValue + "px");
+};
+
+$(document).ready(function () {
+  $(".modal").on("click", function (event) {
+    if ($(event.target).closest(".modal-dialog").length > 0) {
+    } else {
+      modalClose();
+    }
+  });
+});
+
+$.alertMessage = function (title, contents, alertObj) {
+  $("#alertTitle").html(title);
+  $("#alertContents").html(contents);
+  modalOpen(alertObj.attr("id"));
+};
+
+$.popupMessage = function (title, contents, alertObj) {
+  $("#popupTitle").html(title);
+  $("#popupContents").html(contents);
+  modalOpen(alertObj.attr("id"));
+  setTimeout(() => {
+    $("#commonPopup").hide();
+    scrollOn();
+  }, 1000);
+};
+
+$.promptMessage = function (title, contents, promptObj) {
+  $("#promptTitle").html(title);
+  $("#promptContents").html(contents);
+
+  // var clickEvent = new Function(callbackFunc);
+  // promptOkObj.prop("onclick", null).off("click"); //기존에 등록된 함수가 반복 실행을 막음. reset
+  // promptOkObj.prop("onclick", "").click(clickEvent); //callback 함수 등록
+
+  modalOpen(promptObj.attr("id"));
+};
+
+document.addEventListener("DOMContentLoaded", function () {
+  var btnGroup = document.querySelectorAll(".btn-group li");
+
+  if (btnGroup) {
+    // 각 li 요소에 대해 이벤트 리스너 추가
+    btnGroup.forEach(function (li, index) {
+      li.addEventListener("click", function () {
+        // 모든 li에서 active 클래스 제거
+        btnGroup.forEach(function (item) {
+          item.classList.remove("active");
+        });
+
+        // 클릭된 li에 active 클래스 추가
+        this.classList.add("active");
+      });
+    });
+  }
+});
+
+// 최하단 버튼 활성화
+// input 요소에 대한 NodeList를 가져옵니다.
+var inputs = document.querySelectorAll('input[type="text"]');
+// send 버튼의 요소를 가져옵니다.
+var sendButton = document.getElementById("send");
+
+// input 요소에 대해 각각의 입력 이벤트를 추가합니다.
+inputs.forEach(function (input) {
+  input.addEventListener("input", function () {
+    // 입력할 때마다 모든 input 요소에 값이 있는지 확인합니다.
+    var allValuesEntered = true;
+    inputs.forEach(function (input) {
+      if (input.value.trim() === "") {
+        allValuesEntered = false;
+      }
+    });
+
+    // 만약 모든 input 요소에 값이 들어가 있으면 send 버튼의 disabled 속성을 해제합니다.
+    if (allValuesEntered) {
+      sendButton.removeAttribute("disabled");
+    } else {
+      sendButton.setAttribute("disabled", "disabled");
+    }
+  });
+});

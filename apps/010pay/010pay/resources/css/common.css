@@ -3505,8 +3505,11 @@ body:not(.custom-pass) .modal:not(.modal-slide).modal-meta .modal-content .color
 .wrap-app.wrap-drawing .tooltip { display: none; position: absolute; top: 375.5px; left: 50%; transform: translateX(-50%); width: 219px; height: 46px; background-color: transparent; background-image: url('../images/drawing/tooltip.png'); background-repeat: no-repeat; background-position: center; background-size: contain; z-index: 1; } 
 .wrap-app.wrap-drawing.first-open .tooltip { display: block; } 
 .wrap-app.wrap-drawing #move-button { position: absolute; top: 351px; left: 50%; transform: translateX(-50%); width: 194px; height: 54px; color: #151515; font-size: 16px; font-weight: 700; background: rgb(255,216,26); background: linear-gradient(0deg, rgba(255,216,26,1) 0%, rgba(255,216,26,1) 100%); overflow: hidden; border-radius: 40px; border: 2px solid #231815; } 
+.wrap-app.wrap-drawing #move-button:disabled { background: #ccc; } 
 .wrap-app.wrap-drawing #move-button::before { content: ''; display: block; width: 15px; height: 100%; position: absolute; top: -180px; left: 0; z-index: -1; border-radius: 100%; background-color: #fff; animation: shiny 6s ease-in-out infinite backwards } 
 .wrap-app.wrap-drawing #move-button::after { content: ''; display: block; width: 49px; height: 22px; position: absolute; top: 6px; left: 7px; background: url('../images/drawing/btn-bg.png') no-repeat center / contain; } 
+.wrap-app.wrap-drawing #move-button:disabled::after {background: url('../images/drawing/btn-off-bg.png') no-repeat center / contain; } 
+.wrap-app.wrap-drawing #move-button:disabled .title { color: #fff; } 
 @keyframes shiny { 
  0% { -webkit-transform: scale(0) rotate(45deg); opacity: 0; } 
 1% { -webkit-transform: scale(4) rotate(45deg); opacity: 1; } 
@@ -3695,7 +3698,7 @@ body:not(.custom-pass) .modal.modal-result .modal-footer { padding: 0 20px 20px;
 /* //내통장결제창 리또 프로모션 */
 
 /* 내통장결제 복합결제 */
-.newType .headline + .section { margin-top: 50px; }
+.newType .headline + .section { margin-top: 50px; } 
 .section.account-info .checkbox-wrap .color-text-orange { color: #F36F31; } 
 .section.account-info .checkbox-wrap .text-bold { font-weight: 700; } 
 .section.account-info .title { font-size: 18px; font-weight: 700; color: #000; } 
@@ -3712,50 +3715,20 @@ body:not(.custom-pass) .modal.modal-result .modal-footer { padding: 0 20px 20px;
 .section.account-info .checkbox-wrap .pay-sec .form-type li { line-height: 18px; } 
 .section.account-info .checkbox-wrap .pay-sec .form-type li + li { margin-top: 8px; } 
 .section.account-info .checkbox-wrap .pay-sec .form-type li .label { line-height: 18px; font-size: 15px; } 
-.section.account-info .checkbox-wrap .pay-sec .form-type li .label + .btn-q {margin-top: 1px;margin-left: 4px;height: 16px;line-height: 16px;border: 1px solid #CBCBCB;padding: 0;width: 16px;border-radius: 10px;background: #fff;color: #929292;font-size: 12px;line-height: 12px; } 
-.section.account-info .checkbox-wrap .pay-sec .form-type li .label + .btn-q:hover { box-shadow: none; }
-.section.account-info .checkbox-wrap .pay-sec .form-type li .toggle-box {display: none;z-index: 1;position: absolute;top: 25px; left: -15px;border-radius: 4px;background-color: #fff;border: 1px solid #929292;padding: 14px 16px;font-size: 13px;color: #545455; } 
-.section.account-info .checkbox-wrap .pay-sec .form-type li .toggle-box .title {font-size: 14px;font-weight: 700;text-align: left;margin-bottom: 4px;color: #545455; } 
-.section.account-info .checkbox-wrap .pay-sec .form-type li .toggle-box li {position: relative;font-size: 13px;padding-left: 10px;margin-top: 0; } 
-.section.account-info .checkbox-wrap .pay-sec .form-type li .toggle-box li::before {content: '';position: absolute;top: 7px;left: 0;width: 3px;height: 3px;border-radius: 10px;background: #545454; } 
-.modal.modal-center .modal-content {max-width: 310px; } 
-.modal.modal-center .modal-body {text-align: center;font-size: 16px; } 
-.modal.modal-center .modal-footer {text-align: center; } 
-.modal.modal-center .modal-footer .btn {float: none; } 
-.modal.modal-center .modal-footer .btn:hover {box-shadow: none; } 
+.section.account-info .checkbox-wrap .pay-sec .form-type li .label + .btn-q { margin-top: 1px; margin-left: 4px; height: 16px; line-height: 16px; border: 1px solid #CBCBCB; padding: 0; width: 16px; border-radius: 10px; background: #fff; color: #929292; font-size: 12px; line-height: 12px; } 
+.section.account-info .checkbox-wrap .pay-sec .form-type li .label + .btn-q:hover { box-shadow: none; } 
+.section.account-info .checkbox-wrap .pay-sec .form-type li .toggle-box { display: none; z-index: 1; position: absolute; top: 25px; left: -15px; border-radius: 4px; background-color: #fff; border: 1px solid #929292; padding: 14px 16px; font-size: 13px; color: #545455; } 
+.section.account-info .checkbox-wrap .pay-sec .form-type li .toggle-box .title { font-size: 14px; font-weight: 700; text-align: left; margin-bottom: 4px; color: #545455; } 
+.section.account-info .checkbox-wrap .pay-sec .form-type li .toggle-box li { position: relative; font-size: 13px; padding-left: 10px; margin-top: 0; } 
+.section.account-info .checkbox-wrap .pay-sec .form-type li .toggle-box li::before { content: ''; position: absolute; top: 7px; left: 0; width: 3px; height: 3px; border-radius: 10px; background: #545454; } 
+.modal.modal-center .modal-content { max-width: 310px; } 
+.modal.modal-center .modal-body { text-align: center; font-size: 16px; } 
+.modal.modal-center .modal-footer { text-align: center; } 
+.modal.modal-center .modal-footer .btn { float: none; } 
+.modal.modal-center .modal-footer .btn:hover { box-shadow: none; } 
 /* .exStyle.newType .join-agree .agree-list { display: none; } */
-.exStyle.newType .bottom-area {}
-.checkbox.child > input + label:before {
-    border-color: #e1e1e1;
-}
-.checkbox.child > input + label:before {
-    border-color: #e1e1e1;
-    content: '';
-    position: absolute;
-    top: 4px;
-    left: 3px;
-    display: block;
-    width: 16px;
-    height: 10px;
-    border-left: 2px solid #e1e1e1;
-    border-bottom: 2px solid #e1e1e1;
-    -webkit-transform: rotate(-50deg);
-    transform: rotate(-50deg);
-    z-index: 2;
-}
-.exStyle .checkbox.circle > input + label:before {
-		content: '';
-    position: absolute;
-    top: 4px;
-    left: 3px;
-    display: block;
-    width: 16px;
-    height: 10px;
-    border-left: 2px solid #fff;
-    border-bottom: 2px solid #fff;
-    -webkit-transform: rotate(-50deg);
-    transform: rotate(-50deg);
-    z-index: 2;
-		background-image: none;
-}
+.exStyle.newType .bottom-area { } 
+.checkbox.child > input + label:before { border-color: #e1e1e1; } 
+.checkbox.child > input + label:before { border-color: #e1e1e1; content: ''; position: absolute; top: 4px; left: 3px; display: block; width: 16px; height: 10px; border-left: 2px solid #e1e1e1; border-bottom: 2px solid #e1e1e1; -webkit-transform: rotate(-50deg); transform: rotate(-50deg); z-index: 2; } 
+.exStyle .checkbox.circle > input + label:before {content: ''; position: absolute; top: 4px; left: 3px; display: block; width: 16px; height: 10px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; -webkit-transform: rotate(-50deg); transform: rotate(-50deg); z-index: 2;background-image: none; } 
 /* //내통장결제 복합결제 */

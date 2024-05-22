@@ -15,9 +15,8 @@ const ModalFillBox = () => {
       <div className={styleModal.modalDialog}>
         <div className={`${styleModal.modalContent} ${styleRettoModal.modalContent}`}>
           <div className={styleRettoModal.textWrap}>
-            <p className={styleRettoModal.topText}><b>더이상 리또를 받을 수 없어도</b><br />
-            <span>리또 머니함을 비울까요?</span></p>
-            <p className={styleRettoModal.botText}>머니함 속 금액은 보유 머니로 이동돼요.</p>
+            <p className={styleRettoModal.topText}><b>지금 비우기 하면 리또뿐만 아니라<br /><span>100원딜 응모권도 받을 수 없어요.</span></b></p>
+            <p className={styleRettoModal.botText}>그래도 리또 머니함을 비울까요?</p>
           </div>
           <Button>그대로 둘게요</Button>
           <button type="button" className={styleRettoModal.bottomBtn}>네, 우선 비울게요</button>

@@ -142,7 +142,7 @@ const index = () => {
           <div className={`${styleRanking.characterImg} ${styleRanking.end}`}></div>
           <div className={styleRanking.deadline}>마감되었어요!</div>
           <h3>
-            랭킹은 10일 밤 12시 30분에 <br />
+            랭킹은 10일 오전 10시에<br />
             발표됩니다!
           </h3>
         </div>

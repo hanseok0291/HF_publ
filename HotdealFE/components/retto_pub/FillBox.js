@@ -20,7 +20,7 @@ const FillBox = ({case1, case2}) => {
 
   return (
     <div className={`${styleCommon.layer} ${styleFillBox.fillBoxWrap}`}>
-      <Header title="리또 머니함" isborder sideBtn=""/>
+      <Header title="리또 머니함" isborder sideBtn="비우기"/>
       <Container className={styleCommon.layerContainer} backgroundColor="#fff" padding="0">
         <div className={styleFillBox.topConWrap}>
           <div className={`${styleCommon.borderBox} ${styleApply.borderBox}`}>
@@ -64,7 +64,7 @@ const FillBox = ({case1, case2}) => {
               (010PAY 기프티몰, 내통장결제 및 카드 결제 등에서 사용 불가)
             </li>
             <li>
-              <em>비우기</em> 선택 시 머니함 속 금액은 일반 머니로 자동 전환되며, <br />
+              비우기 선택 시 머니함 속 금액은 일반 머니로 자동 전환되며, <br />
               전환된 일반 머니는 언제든 결제 시 사용하거나 출금할 수 있습니다.
             </li>
             <li>

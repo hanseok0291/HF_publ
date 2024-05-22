@@ -43,7 +43,7 @@ const LayerRankingInfo = ({beforeVersion}) => {
               <p>
                 010PAY 우리카드로 <br />
                 1만원 결제마다 리또 1개 받기 <br />
-                <span>(결제 건당 최대 1,000개 지급)</span>
+                <span>* 결제 건당 최대 1,000개 지급</span>
                 <a href="#" className={styleRanking.benefitView}>혜택 보러가기</a>
               </p>
             )}
@@ -84,7 +84,7 @@ const LayerRankingInfo = ({beforeVersion}) => {
               <span className={styleRanking.left}>운영 기간:</span><span className={styleRanking.right}>월별 운영 <br /><em><i className={styleRanking.iconStar}></i>1일 00시 00분 00초 ~ 말일 23시 59분 59초</em></span>
             </li>
             <li>
-              <span className={styleRanking.left}>결과 발표:</span><span className={styleRanking.right}>월집계 마감 후 익월 10일 00시 30분</span>
+              <span className={styleRanking.left}>결과 발표:</span><span className={styleRanking.right}>월집계 마감 후 익월 10일 오전 10시</span>
             </li>
             <li>
               <span className={styleRanking.left}>랭킹 기준:</span><span className={styleRanking.right}>월별 보유 누적 리또 점수 <br /><em><i className={styleRanking.iconStar}></i>순위는 일별로 업데이트</em></span>
@@ -114,12 +114,12 @@ const LayerRankingInfo = ({beforeVersion}) => {
             </li>
           </ul>
           <table className={styleRanking.table}>
-          <colgroup>
-            <col width="80px"/>
-            <col />
-            <col width="80px" />
-            <col width="80px" />
-          </colgroup>
+            <colgroup>
+              <col width="80px"/>
+              <col />
+              <col width="80px" />
+              <col width="80px" />
+            </colgroup>
             <thead>
               <tr>
                 <th>레벨</th>

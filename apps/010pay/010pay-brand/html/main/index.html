@@ -249,31 +249,54 @@
           </div>
         </section>
 
-        <section class="section retto-section">
-          <div class="container">
-            <div class="imgWrap add-ani" delay="0.9">
-              <div class="phoneFrame">
-                <div class="frameBox">
-                </div>
-                <span class="jewelImg jewelImg-01 add-ani" delay="1.2"></span>
-                <span class="jewelImg jewelImg-02 add-ani" delay="1.2"></span>
-                <span class="jewelImg jewelImg-03 add-ani" delay="1.2"></span>
-              </div>
-              
-            </div>
-            <div class="textWrap add-ani" delay="0.6">
-              <p class="topText icon-5">매주 알아서 쌓이는 행운</p>
-              <p class="titleText">최대 1억 당첨, 리또</p>
-              <!-- <p class="subText">
-                머니만 채워두면 쌓이는 <br>
-                010PAY만의 로또를 만나보세요!
-              </p> -->
-              <p class="subText">
-                머니만 채워두면 쌓이는 <br>
-                010PAY만의 리워드를 만나보세요!
-              </p>
-            </div>
-          </div>
+				<section class="section retto-section">
+					<div class="container">
+						<div class="retto-slide add-ani" delay="0.9">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide slide1">
+									<div class="imgWrap">
+										<div class="phoneFrame">
+											<div class="frameBox">
+											</div>
+											<span class="jewelImg jewelImg-01 add-ani" delay="4.8"></span>
+											<span class="jewelImg jewelImg-02 add-ani" delay="4.8"></span>
+											<span class="jewelImg jewelImg-03 add-ani" delay="4.8"></span>
+										</div>
+									</div>
+									</div>
+									<div class="swiper-slide slide2">
+										<div class="imgWrap">
+											<div class="phoneFrame">
+												<div class="frameBox">
+												</div>
+												<span class="rettoImg rettoImg-01 add-ani" delay="1.2"></span>
+												<span class="rettoImg rettoImg-02 add-ani" delay="1.2"></span>
+												<span class="rettoImg rettoImg-03 add-ani" delay="1.2"></span>
+											</div>
+										</div>
+									</div>
+									</div>
+									</div>
+									<div class="textBox add-ani" delay="0.6">
+										<div class="textWrap textWrap1 active">
+											<p class="topText icon-1">매주 알아서 쌓이는 행운</p>
+											<p class="titleText">최대 1억 당첨, 리또</p>
+											<p class="subText">
+												머니만 채워두면 쌓이는<br>
+												010PAY만의 로또를 만나보세요<i>!</i>
+												</p>
+												</div>
+										<div class="textWrap textWrap2">
+											<p class="topText icon-1">쓰는 만큼 쌓이는 행운</p>
+											<p class="titleText">010PAY 신용카드</p>
+											<p class="subText">
+												1만원 결제마다 쌓이는 리또로<br>
+												1억원 당첨 확률을 높여보세요!
+											</p>
+										</div>
+										<div class="retto-pagination"></div>
+										</div>
+						</div>
         </section>
 
         <section class="section second-section">
@@ -750,12 +773,31 @@
         $("#moAppDownbtn").removeClass("fixed");
       }
     });
-    var secondSlide = new Swiper(".second-slide", {
-        speed: 800,
-        autoplay: {
-          delay: 3400,
-          disableOnInteraction: false,
-        },
+										var rettoSlide = new Swiper(".retto-slide", {
+											speed: 800,
+											autoplay: {
+												delay: 3400,
+												disableOnInteraction: false,
+											},
+											loop: true,
+											slidesPerView: 1,
+											pagination: {
+												el: ".retto-pagination",
+												clickable: true
+											},
+											breakpoints: {
+												767: {
+													direction: 'vertical',
+												}
+											}
+										});
+
+											var secondSlide = new Swiper(".second-slide", {
+												speed: 800,
+												autoplay: {
+													delay: 3400,
+													disableOnInteraction: false,
+												},
         loop: true,
         slidesPerView: 1,
         pagination: {
@@ -769,19 +811,34 @@
         }
       });
 
+										rettoSlide.on('slideChange', function () {
+											$(".retto-section").addClass("on");
+											$(".retto-section .textBox .textWrap").removeClass("active");
+											$(".retto-section .textBox .textWrap").eq(rettoSlide.realIndex).addClass("active");
+										});
       secondSlide.on('slideChange', function () {
         $(".second-section").addClass("on");
         $(".second-section .textBox .textWrap").removeClass ("active");
         $(".second-section .textBox .textWrap").eq(secondSlide.realIndex).addClass ("active");
       });
 
+										rettoSlide.autoplay.stop();
       secondSlide.autoplay.stop();
+
+	var retto_state = false;
       var second_state = false;
       var gather_state = false;
       $(window).on("scroll load", function(){
+				if ($(".retto-section").hasClass("animation") && !retto_state) {
+					setTimeout(function () {
+						rettoSlide.autoplay.start();
+					}, 2000);
+					retto_state = true;
+				}
+
         if($(".second-section").hasClass("animation") && !second_state){
           setTimeout(function(){
-            secondSlide.autoplay.start();
+						secondSlide.autoplay.start();
           }, 100);
           second_state = true;
         }

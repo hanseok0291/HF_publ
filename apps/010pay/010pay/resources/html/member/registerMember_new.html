@@ -126,34 +126,34 @@
 										<span class="checkbox child">
 											<input type="checkbox" name="agree_01" id="agree_01_02">
 											<label for="agree_01_02"><span>(필수)</span> 010PAY 서비스 이용약관</label>
+										</span>
+										<button type="button" id="terms" class="btn btn-xs btn-nobg info-chg">보기</button>
+										</li>
+										<li>
+											<span class="checkbox child">
+												<input type="checkbox" name="agree_01" id="agree_01_03">
+												<label for="agree_01_03"><span>(필수)</span> 개인정보 수집·이용</label>
+											</span>
+											<button type="button" id="terms" class="btn btn-xs btn-nobg info-chg">보기</button>
+										</li>
+										<li>
+											<span class="checkbox child">
+												<input type="checkbox" name="agree_01" id="agree_01_04">
+												<label for="agree_01_04"><span>(필수)</span> 개인정보 제3자 제공 및 위탁</label>
+											</span>
+											<button type="button" id="terms" class="btn btn-xs btn-nobg info-chg">보기</button>
+										</li>
+										<li>
+											<span class="checkbox child">
+											<input type="checkbox" name="agree_01" id="agree_01_05">
+											<label for="agree_01_05"><span>(선택)</span> 마케팅 목적 개인정보 수집이용</label>
 											</span>
 											<button type="button" id="terms" class="btn btn-xs btn-nobg info-chg">보기</button>
 											</li>
 											<li>
 												<span class="checkbox child">
-													<input type="checkbox" name="agree_01" id="agree_01_03">
-													<label for="agree_01_03"><span>(필수)</span> 개인정보 수집·이용</label>
-												</span>
-												<button type="button" id="terms" class="btn btn-xs btn-nobg info-chg">보기</button>
-											</li>
-											<li>
-												<span class="checkbox child">
-													<input type="checkbox" name="agree_01" id="agree_01_04">
-													<label for="agree_01_04"><span>(필수)</span> 개인정보 제3자 제공 및 위탁</label>
-												</span>
-												<button type="button" id="terms" class="btn btn-xs btn-nobg info-chg">보기</button>
-											</li>
-											<li>
-												<span class="checkbox child">
-												<input type="checkbox" name="agree_01" id="agree_01_02">
-												<label for="agree_01_02"><span>(필수)</span> 마케팅 목적 개인정보 수집이용</label>
-												</span>
-												<button type="button" id="terms" class="btn btn-xs btn-nobg info-chg">보기</button>
-												</li>
-												<li>
-													<span class="checkbox child">
-											<input type="checkbox" name="agree_01" id="agree_01_05">
-											<label for="agree_01_05"><span>(선택)</span> 마케팅 정보 수신</label>
+											<input type="checkbox" name="agree_01" id="agree_01_06">
+											<label for="agree_01_06"><span>(선택)</span> 마케팅 정보 수신</label>
 										</span>
 										<button type="button" id="terms" class="btn btn-xs btn-nobg info-chg">보기</button>
 									</li>
@@ -562,53 +562,82 @@
 		checkboxAll.checked = allSubCheckboxesChecked();
 	}
 
-	checkboxAll.addEventListener('change', function () {
-		if (!this.checked) {
-			checkbox1.checked = false;
-			checkbox2.checked = false;
-			checkbox3.checked = false;
-		} else if (this.checked) {
-			checkbox1.checked = true;
-			checkbox2.checked = true;
-			checkbox3.checked = true;
-		}
-	});
+	// checkboxAll.addEventListener('change', function () {
+	// 	if (!this.checked) {
+	// 		checkbox1.checked = false;
+	// 		checkbox2.checked = false;
+	// 		checkbox3.checked = false;
+	// 	} else if (this.checked) {
+	// 		checkbox1.checked = true;
+	// 		checkbox2.checked = true;
+	// 		checkbox3.checked = true;
+	// 	}
+	// });
 
-	checkbox1.addEventListener('change', function () {
-		if (!this.checked) {
-			checkboxAll.checked = false;
-			checkbox2.checked = false;
-			checkbox3.checked = false;
-		} else if (this.checked) {
-			checkboxAll.checked = true;
-			checkbox2.checked = true;
-			checkbox3.checked = true;
-		}
-	});
+	// checkbox1.addEventListener('change', function () {
+	// 	if (!this.checked) {
+	// 		checkboxAll.checked = false;
+	// 		checkbox2.checked = false;
+	// 		checkbox3.checked = false;
+	// 	} else if (this.checked) {
+	// 		checkboxAll.checked = true;
+	// 		checkbox2.checked = true;
+	// 		checkbox3.checked = true;
+	// 	}
+	// });
 
-	checkbox2.addEventListener('change', function () {
-		if (!this.checked) {
-			checkboxAll.checked = false;
-			checkbox3.checked = false;
-		} else if (this.checked) {
-			checkbox3.checked = true;
-			if (checkbox1.checked) {
-				checkboxAll.checked = true;
-			}
-		}
-	});
+	// checkbox2.addEventListener('change', function () {
+	// 	if (!this.checked) {
+	// 		checkboxAll.checked = false;
+	// 		checkbox3.checked = false;
+	// 	} else if (this.checked) {
+	// 		checkbox3.checked = true;
+	// 		if (checkbox1.checked) {
+	// 			checkboxAll.checked = true;
+	// 		}
+	// 	}
+	// });
 
-	checkbox3.addEventListener('change', function () {
-		if (!this.checked) {
-			checkboxAll.checked = false;
-			checkbox2.checked = false;
-		} else if (this.checked) {
-			checkbox2.checked = true;
-			if (checkbox1.checked) {
-				checkboxAll.checked = true;
-			}
+	// checkbox3.addEventListener('change', function () {
+	// 	if (!this.checked) {
+	// 		checkboxAll.checked = false;
+	// 		checkbox2.checked = false;
+	// 	} else if (this.checked) {
+	// 		checkbox2.checked = true;
+	// 		if (checkbox1.checked) {
+	// 			checkboxAll.checked = true;
+	// 		}
+	// 	}
+	// });
+
+document.addEventListener("DOMContentLoaded", function() {
+		function setupCheckboxSync(allCheckboxId, checkboxesName) {
+				const allCheckbox = document.getElementById(allCheckboxId);
+				const checkboxes = document.querySelectorAll(`input[name="${checkboxesName}"]`);
+
+				allCheckbox.addEventListener('change', function() {
+						checkboxes.forEach(function(checkbox) {
+								checkbox.checked = allCheckbox.checked;
+						});
+				});
+
+				checkboxes.forEach(function(checkbox) {
+						checkbox.addEventListener('change', function() {
+								if (!checkbox.checked) {
+										allCheckbox.checked = false;
+								} else {
+										const allChecked = Array.from(checkboxes).every(function(checkbox) {
+												return checkbox.checked;
+										});
+										allCheckbox.checked = allChecked;
+								}
+						});
+				});
 		}
-	});
+
+		setupCheckboxSync('agreeAll_02', 'agree_01');
+		setupCheckboxSync('agreeAll_03', 'agree_02');
+});
 </script>
 
 </html>

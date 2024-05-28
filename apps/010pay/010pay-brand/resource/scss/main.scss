@@ -295,7 +295,7 @@
     }
 
     &.animation {
-      .container  {
+      .container {
         .bg {
           height: 100%;
           opacity: 1;
@@ -442,25 +442,145 @@
 
   &.retto-section {
     height: 800px;
+		overflow: hidden;
     &.animation {
       .container {
         .imgWrap .phoneFrame .frameBox {
           animation: imgChange 6s 1s ease-in-out both infinite;
         }
+				.slide2 .imgWrap .phoneFrame .frameBox {
+					animation: imgChange2 6s 1s ease-in-out both infinite;
+				}
+				.swiper-slide-active {
+					opacity: 1;
+					.imgWrap {
+					.phoneFrame {
+						.rettoImg {
+							opacity: 1;
+								&.rettoImg-01 {
+									animation: upDownAni 2s 1s ease-in-out infinite;
+								}
+								&.rettoImg-02 {
+									animation: upDownAni 2s 1.8s ease-in-out infinite;
+								}
+								&.rettoImg-03 {
+									animation: upDownAni 2s 1s ease-in-out infinite;
+								}
+							}
+							.jewelImg {
+								opacity: 1;
+							}
+						}
+					}
+				}
+			}
+    }
+
+    .retto-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 834px;
+      .swiper-wrapper {
+        flex-direction: column;
+        .swiper-slide {
+					opacity: 1;
+          &.slide1 {
+            .logoBox {
+              position: absolute;
+              left:0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              opacity: 0;
+              img {
+                position: absolute;
+
+                &:nth-child(1) {
+                  left: -213px;
+                  top: 390px;
+                  width: 144px;
+                  height: 26px;
+                }
+                &:nth-child(2) {
+                  left: -100px;
+                  top: 259px;
+                  width: 55px;
+                  height: 34px;
+                  opacity: 0.3;
+                }
+                &:nth-child(3) {
+                  right: -116px;
+                  top: 326px;
+                  width: 130px;
+                  height: 23px;
+                  opacity: 0.4;
+                }
+                &:nth-child(4) {
+                  right: -238px;
+                  top: 480px;
+                  width: 149px;
+                  height: 15px;
+                  opacity: 0.5;
+                }
+                &:nth-child(5) {
+                  left: -100px;
+                  top: 522px;
+                  width: 128px;
+                  height: 18px;
+                  opacity: 0.3;
+                }
+                &:nth-child(6) {
+                  right: -110px;
+                  top: 566px;
+                  width: 86px;
+                  height: 31px;
+                }
+              }
+            }
+          }
+
+          &.slide2 {
+            .money {
+              display: block;
+              position: absolute;
+              background-position: center;
+              background-repeat: no-repeat;
+              opacity: 0;
+
+              &.money1 {
+                left: -127px;
+                top: 272px;
+                width: 89px;
+                height: 207px;
+                background-image: url(../images/main/top-content-img-07.png);
+              }
+              &.money2 {
+                right: -118px;
+                top: 272px;
+                width: 145px;
+                height: 404px;
+                background-image: url(../images/main/top-content-img-08.png);
+                z-index: 2;
+              }
+            }
+          }
+        }
       }
     }
     .container {
+      padding-top: 293px;
       .imgWrap {
-        padding-top: 131px;
+        margin-top: 131px;
         .phoneFrame {
-          overflow: visible;
+					overflow: visible;
           .frameBox {
             position: absolute;
             width: 267px;
             height: 564px;
             left: 0; 
             top: 0;
-            border-radius: 36px;
+            border-radius: 26px;
             background-size: 283px 580px;
             background-position: center;
           }
@@ -475,7 +595,6 @@
               background: url('../images/main/retto-img-05.svg') 0 0 / cover no-repeat;
               animation: upDownAni 2s 1s ease-in-out infinite;
             }
-
             &.jewelImg-02 {
               right: -105px;
               top: 233px;
@@ -493,10 +612,65 @@
               animation: upDownAni 2s 1s ease-in-out infinite;
             }
           }
+					.rettoImg {
+            display: block;
+            position: absolute;
+						opacity: 0;
+            &.rettoImg-01 {
+              left: -139px;
+              top: 130px;
+              width: 64px;
+              height: 64px;
+              background: url('../images/main/retto-img-08.png') 0 0 / cover no-repeat;
+            }
+            &.rettoImg-02 {
+              left: 336px;
+              top: 187px;
+              width: 35px;
+              height: 35px;
+              background: url('../images/main/retto-img-09.png') 0 0 / cover no-repeat;
+            }
+            &.rettoImg-03 {
+              left: 245px;
+              top: 288px;
+              width: 120px;
+              height: 120px;
+              background: url('../images/main/retto-img-010.png') 0 0 / cover no-repeat;
+            }
+					}
         }
       }
+			.textBox {
+				position: relative;
+				margin-left: auto;
+				width: 100%;
+    		height: 200px;
+				display: flex;
+				// justify-content: end;
+				margin-left: 60%;
+				.retto-pagination {
+					position: absolute;
+					left: 0;
+					bottom: 0;
+					.swiper-pagination-bullet {
+						width: 28px;
+						height: 6px;
+						margin-right: 6px;
+						border-radius: 0;
+						background-color: #cccccc;
+						opacity: 1;
+						&.swiper-pagination-bullet-active {
+							background-color: #ff4600;
+						}
+					}
+				}
+			}
       .textWrap {
-        padding: 337px 0 0 269px;
+				position: absolute;
+				opacity: 0;
+				&.active {
+					opacity: 1;
+				}
       }
     }
   }
@@ -1459,10 +1633,18 @@
       }
     }
     &.retto-section {
-      height: 659px;
+      height: auto;
       padding: 50px 0;
       .container {
         flex-direction: column-reverse;
+				padding-top: 0;
+				.retto-slide {
+					position: static;
+					height: auto;
+					.swiper-wrapper {
+						flex-direction: row;
+					}
+				}
         .imgWrap {
           margin: auto;
           padding: 0;
@@ -1498,6 +1680,46 @@
           padding: 0;
           margin-bottom: 30px;
         }
+				.textBox {
+					position: static;
+					margin-left: 0;
+					justify-content: center;
+					height: 130px;
+					.retto-pagination {
+						bottom: -30px;
+						left: 50%;
+						transform: translateX(-50%);
+					}
+				}
+				.slide2 {
+					.imgWrap {
+						.phoneFrame {
+							.frameBox {
+								border-radius: 13px;
+							}
+							.rettoImg {
+								&.rettoImg-01 {
+									width: 42px;
+									height: 42px;
+									left: -63px;
+									top: 87px;
+								}
+								&.rettoImg-02 {
+									width: 23px;
+									height: 23px;
+									left: 230px;
+									top: 142px;
+								}
+								&.rettoImg-03 {
+									width: 79px;
+									height: 79px;
+									left: 175px;
+									top: 226px;
+								}
+							}
+						}
+					}
+				}
       }
     }
     &.gather-section {
@@ -2388,6 +2610,14 @@
   }
   100% {
     background-image: url('../images/main/retto-img-01.png');
+  }
+}
+@keyframes imgChange2 {
+  0% {
+    background-image: url('../images/main/retto-img-05.png');
+  }
+  100% {
+    background-image: url('../images/main/retto-img-05.png');
   }
 }
 @keyframes spreadFadeIn {

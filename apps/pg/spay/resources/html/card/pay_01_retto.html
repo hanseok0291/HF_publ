@@ -170,7 +170,8 @@
 								<button type="button" class="btn"><span class="name">삼성</span> <span class="logo"><img
 											src="../../images/logo/card/ssc.png" alt="삼성"></span></button>
 								<span class="label label-free">무</span>
-								<span class="label label-event bg-primary">혜</span> </li>
+								<span class="label label-event bg-primary">혜</span>
+							</li>
 							<li>
 								<button type="button" class="btn"><span class="name">현대</span> <span class="logo"><img
 											src="../../images/logo/card/hdc.png" alt="현대"></span></button>
@@ -360,7 +361,7 @@
 										data-toggle="modal" data-target="#infoFree"><i class="icon-help shadow">?</i><span
 											class="sr-only">도움말</span></button></div>
 							</li>
-<!--							<li class="mgt20">
+							<!--							<li class="mgt20">
 								<div class="event-wrap">
 									<div class="event-wrap__box">
 										<p class="event-wrap__tit"><span class="event-wrap__tit--point">EVENT</span> 결제 감사 리워드 받기</p>
@@ -672,7 +673,7 @@
 				<div class="modal-body">
 					<div class="container">
 						<h3>휴대폰 번호를 입력해주세요 <span class="right">(선택)</span></h3>
-						
+
 						<div class="form-type ">
 							<input type="tel" name="phone" id="phone" class="mb14" placeholder="연락처(숫자만 입력)" maxlength="11">
 							<div class="checkbox square w-full position-relative">
@@ -683,15 +684,17 @@
 							<div class="checkbox square w-full position-relative depth">
 								<input type="checkbox" name="rewardSend" id="rewardTerms1" class="checkbox_agree_set">
 								<label for="rewardTerms1">결제 보상 알림을 위한 개인정보 활용 (선택)</label>
-								<span class="btn-right" id=""><a href="javascript:;" data-toggle="modal" data-target="#noticeDetail"><span class="btn_view">(보기)</span></a></span>
+								<span class="btn-right" id=""><a href="javascript:;" data-toggle="modal"
+										data-target="#noticeDetail"><span class="btn_view">(보기)</span></a></span>
 							</div>
 							<div class="checkbox square w-full position-relative depth">
 								<input type="checkbox" name="rewardSend" id="rewardTerms2" class="checkbox_agree_set">
 								<label for="rewardTerms2">결제 보상 알림을 위한 수신 (선택)</label>
-								<span class="btn-right" id=""><a href="javascript:;" data-toggle="modal" data-target="#noticeDetail"><span class="btn_view">(보기)</span></a></span>
+								<span class="btn-right" id=""><a href="javascript:;" data-toggle="modal"
+										data-target="#noticeDetail"><span class="btn_view">(보기)</span></a></span>
 							</div>
 						</div>
-						
+
 					</div>
 				</div>
 				<div class="modal-footer type2 yellow type3">
@@ -789,14 +792,14 @@
 			$("#send1").click(function () {
 				modalOpenSlide("modalSlide");
 			});
-			
+
 			$("#send2").click(function () {
 				var phoneNumber = $("#phone").val();
-        var rewardChecked = document.getElementById('rewardSend');
-        var rewardChecked1 = document.getElementById('rewardTerms1');
-        var rewardChecked2 = document.getElementById('rewardTerms2');
+				var rewardChecked = document.getElementById('rewardSend');
+				var rewardChecked1 = document.getElementById('rewardTerms1');
+				var rewardChecked2 = document.getElementById('rewardTerms2');
 
-        // 휴대폰 번호가 10자리 미만이면서 rewardSend가 체크되지 않은 경우
+				// 휴대폰 번호가 10자리 미만이면서 rewardSend가 체크되지 않은 경우
 				if (phoneNumber.length < 11) {
 					$.confirmMessage("", "결제 보상 지급을 위한 휴대폰 번호가 입력되지 않았습니다. <br> 결제 보상을 받지 않겠습니까?", $('#confirmOk'), "");
 					$('#commonConfirm .modal-footer .btn-reward-get').addClass('case1');
@@ -813,21 +816,21 @@
 			});
 
 			// 약관 화살표
-			$("#btn-open").click(function(){
+			$("#btn-open").click(function () {
 				var thisItem = $(this).parents(".checkbox");
 				$(thisItem).toggleClass("active");
 				$('.checkbox.depth').slideToggle(300);
-			});		
+			});
 
 			// 보상 받기 클릭
-			$(document).on('click', '.btn-reward-get.case1', function(){
+			$(document).on('click', '.btn-reward-get.case1', function () {
 				modalOpenSlide("modalSlide");
 				$('#phone').focus();
 			});
-			$(document).on('click', '.btn-reward-get.case2', function(){
+			$(document).on('click', '.btn-reward-get.case2', function () {
 				var rewardChecked = document.getElementById('rewardSend');
-        var rewardChecked1 = document.getElementById('rewardTerms1');
-        var rewardChecked2 = document.getElementById('rewardTerms2');
+				var rewardChecked1 = document.getElementById('rewardTerms1');
+				var rewardChecked2 = document.getElementById('rewardTerms2');
 				rewardChecked.checked = true;
 				rewardChecked1.checked = true;
 				rewardChecked2.checked = true;
@@ -844,153 +847,153 @@
 		}
 
 		// 하단 레이어 팝업(슬라이드 모달) 열기
-function modalOpenSlide(obj){
-	var temp = $("#" + obj);
-	var modalCont = $(temp).find('.modal-content');
+		function modalOpenSlide(obj) {
+			var temp = $("#" + obj);
+			var modalCont = $(temp).find('.modal-content');
 
-	temp.show();
-	$(modalCont).animate({bottom: 0}, 200);
+			temp.show();
+			$(modalCont).animate({ bottom: 0 }, 200);
 
-	// 이중 모달이 아닌 경우
-	if(!$(this).hasClass("depth2")) {
-		scrollOff(); // 바디 스크롤 제거
-	}
+			// 이중 모달이 아닌 경우
+			if (!$(this).hasClass("depth2")) {
+				scrollOff(); // 바디 스크롤 제거
+			}
 
-	// 바깥 영역 클릭 시 팝업 닫힘
-	$(temp).on('click', function(e) {
-		if(!$('.modal-content').has(e.target).length) {
-			modalCloseSlide();
-		}
-	});
-
-	// 팝업 내 하단 버튼 클릭 시 팝업 닫힘
-	$(temp).find('.modal-footer .btn').on('click', function(e) {
-		modalCloseSlide();
-	});
-	
-	$(temp).find('.btn-close').on('click', function(e) {
-		modalCloseSlide();
-	});
-
-	// bottom modal 닫기
-	function modalCloseSlide() {
-		temp.fadeOut(200);
-		$(temp).find('.modal-content').animate({bottom: 0}, 200);
-
-		// 이중 모달이 아닌 경우
-		if(!$(temp).hasClass("depth2")) {
-			scrollOn(); // 바디 스크롤 제거 해제
-		}
-	}
-
-	// 모달 높이가 큰 경우 포지션 변경
-	function modalContPos() {
-		var modalContent = temp.find(".modal-content");
-		var modalContentH = temp.find(".modal-content").height();
-		var modalDialogH = temp.find(".modal-dialog").height();
-		var gap = modalDialogH - modalContentH;
-		if(gap < 0) {
-			modalContent.css("position", "relative");
-		} else {
-			modalContent.css("position", "fixed");
-		}
-	}
-	modalContPos();
-
-	// 리사이즈
-	$(window).resize(function(){
-		modalContPos();
-	});
-
-		// 리또 리워드 체크박스
-		var checkboxAll = document.getElementById('rewardSend');
-		var checkbox1 = document.getElementById('rewardTerms1');
-		var checkbox2 = document.getElementById('rewardTerms2');
-		var subCheckBoxes = document.querySelectorAll('.checkbox_agree_set');
-
-		subCheckBoxes.forEach(function(checkbox) {
-			checkbox.addEventListener('change', function() {
-				// 모든 체크박스가 선택되었는지 확인합니다.
-				const allChecked = [...subCheckBoxes].every(function(checkbox) {
-					return checkbox.checked;
-				});
-				
-				// 모든 체크박스가 선택되었다면 checkbox_all도 선택합니다.
-				checkboxAll.checked = allChecked;
-				
+			// 바깥 영역 클릭 시 팝업 닫힘
+			$(temp).on('click', function (e) {
+				if (!$('.modal-content').has(e.target).length) {
+					modalCloseSlide();
+				}
 			});
-    });
 
-		// "모두 선택" 체크박스 상태 변경 이벤트 핸들러
-		function handleCheckboxAll() {
-			checkboxAll.checked = allSubCheckboxesChecked();
-		}
+			// 팝업 내 하단 버튼 클릭 시 팝업 닫힘
+			$(temp).find('.modal-footer .btn').on('click', function (e) {
+				modalCloseSlide();
+			});
 
-		checkboxAll.addEventListener('change', function () {
-			if (!this.checked) {
-				checkbox1.checked = false;
-				checkbox2.checked = false;
-			} else if (this.checked) {
-				checkbox1.checked = true;
-				checkbox2.checked = true;
-			}
-		});
+			$(temp).find('.btn-close').on('click', function (e) {
+				modalCloseSlide();
+			});
 
-		checkbox1.addEventListener('change', function () {
-			if (!this.checked) {
-				checkboxAll.checked = false;
-				checkbox2.checked = false;
-			} else if (this.checked) {
-				checkboxAll.checked = true;
-				checkbox2.checked = true;
-			}
-		});
+			// bottom modal 닫기
+			function modalCloseSlide() {
+				temp.fadeOut(200);
+				$(temp).find('.modal-content').animate({ bottom: 0 }, 200);
 
-		checkbox2.addEventListener('change', function () {
-			if (!this.checked) {
-				checkboxAll.checked = false;
-				checkbox1.checked = false;
-			} else if (this.checked) {
-				checkbox1.checked = true;
-				if (checkbox1.checked) {
-					checkboxAll.checked = true;
+				// 이중 모달이 아닌 경우
+				if (!$(temp).hasClass("depth2")) {
+					scrollOn(); // 바디 스크롤 제거 해제
 				}
 			}
-		});
 
-		// 휴대폰번호 maxlength
-		function maxLengthCheck(object) {
-			if (object.value.length > object.maxLength) {
-				//object.maxLength : 매게변수 오브젝트의 maxlength 속성 값입니다.
-				object.value = object.value.slice(0, object.maxLength);
+			// 모달 높이가 큰 경우 포지션 변경
+			function modalContPos() {
+				var modalContent = temp.find(".modal-content");
+				var modalContentH = temp.find(".modal-content").height();
+				var modalDialogH = temp.find(".modal-dialog").height();
+				var gap = modalDialogH - modalContentH;
+				if (gap < 0) {
+					modalContent.css("position", "relative");
+				} else {
+					modalContent.css("position", "fixed");
+				}
 			}
+			modalContPos();
+
+			// 리사이즈
+			$(window).resize(function () {
+				modalContPos();
+			});
+
+			// 리또 리워드 체크박스
+			var checkboxAll = document.getElementById('rewardSend');
+			var checkbox1 = document.getElementById('rewardTerms1');
+			var checkbox2 = document.getElementById('rewardTerms2');
+			var subCheckBoxes = document.querySelectorAll('.checkbox_agree_set');
+
+			subCheckBoxes.forEach(function (checkbox) {
+				checkbox.addEventListener('change', function () {
+					// 모든 체크박스가 선택되었는지 확인합니다.
+					const allChecked = [...subCheckBoxes].every(function (checkbox) {
+						return checkbox.checked;
+					});
+
+					// 모든 체크박스가 선택되었다면 checkbox_all도 선택합니다.
+					checkboxAll.checked = allChecked;
+
+				});
+			});
+
+			// "모두 선택" 체크박스 상태 변경 이벤트 핸들러
+			function handleCheckboxAll() {
+				checkboxAll.checked = allSubCheckboxesChecked();
+			}
+
+			checkboxAll.addEventListener('change', function () {
+				if (!this.checked) {
+					checkbox1.checked = false;
+					checkbox2.checked = false;
+				} else if (this.checked) {
+					checkbox1.checked = true;
+					checkbox2.checked = true;
+				}
+			});
+
+			checkbox1.addEventListener('change', function () {
+				if (!this.checked) {
+					checkboxAll.checked = false;
+					checkbox2.checked = false;
+				} else if (this.checked) {
+					checkboxAll.checked = true;
+					checkbox2.checked = true;
+				}
+			});
+
+			checkbox2.addEventListener('change', function () {
+				if (!this.checked) {
+					checkboxAll.checked = false;
+					checkbox1.checked = false;
+				} else if (this.checked) {
+					checkbox1.checked = true;
+					if (checkbox1.checked) {
+						checkboxAll.checked = true;
+					}
+				}
+			});
+
+			// 휴대폰번호 maxlength
+			function maxLengthCheck(object) {
+				if (object.value.length > object.maxLength) {
+					//object.maxLength : 매게변수 오브젝트의 maxlength 속성 값입니다.
+					object.value = object.value.slice(0, object.maxLength);
+				}
+			}
+
+			$(".checkbox.depth .btn_view").click(function () {
+				var modalSlide = $('.modal-slide-new');
+				var zIndex = modalSlide.css('z-index');
+				modalSlide.css('z-index', '9');
+			});
+
+			$(".modal-full .btn").click(function () {
+				var modalSlide = $('.modal-slide-new');
+				var zIndex = modalSlide.css('z-index');
+				modalSlide.css('z-index', '999');
+			});
 		}
 
-		$(".checkbox.depth .btn_view").click(function() {
-			var modalSlide = $('.modal-slide-new');
-			var zIndex = modalSlide.css('z-index');
-			modalSlide.css('z-index', '9');
+		const phoneInput = document.getElementById('phone');
+		const sendButton = document.getElementById('send2');
+
+		phoneInput.addEventListener('input', function () {
+			if (phoneInput.value.length > 10) {
+				sendButton.classList.remove('disabled');
+				sendButton.innerText = "동의하고 결제하기";
+			} else {
+				sendButton.classList.add('disabled');
+				sendButton.innerText = "결제하기";
+			}
 		});
-
-		$(".modal-full .btn").click(function() {
-			var modalSlide = $('.modal-slide-new');
-			var zIndex = modalSlide.css('z-index');
-			modalSlide.css('z-index', '999');
-		});
-												}
-
-												const phoneInput = document.getElementById('phone');
-												const sendButton = document.getElementById('send2');
-
-														phoneInput.addEventListener('input', function () {
-															if (phoneInput.value.length > 10) {
-																sendButton.classList.remove('disabled');
-																sendButton.innerText = "동의하고 결제하기";
-															} else {
-																sendButton.classList.add('disabled');
-																sendButton.innerText = "결제하기";
-														}
-													});
 
 	</script>
 </body>

@@ -259,3 +259,21 @@ inputs.forEach(function (input) {
     }
   });
 });
+
+var inputs = document.querySelectorAll("input[type=text], input[type=password], input[type=tel], input[type=email], input[type=number], select, textarea, .input");
+var rows = document.querySelectorAll(".input input, .input select");
+
+// Input Focus
+inputs.forEach(function (input) {
+  input.addEventListener("focus", function () {
+    this.classList.add("focus");
+  });
+  input.addEventListener("blur", function () {
+    this.classList.remove("focus");
+  });
+});
+
+// Blur initially
+inputs.forEach(function (input) {
+  input.blur();
+});

@@ -980,133 +980,76 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> 
 	<!-- //common prompt -->
 
 	<script>
 		$(document).ready(function () {
+			// 페이지 로드 시 'check-type-sub' 표시 후 바로 숨기기
 			$('.check-type-sub').show();
-			var botHegiht = $('.bottom-area').outerHeight();
-			setTimeout(() => {
-				$('.check-type-sub').hide();
-			}, 0);
-		})
+			setTimeout(() => $('.check-type-sub').hide(), 0);
 
-		$("#modal-phone").on("focus", function () {
-			console.log($('body').height());
-			$("html, body").scrollTop(200);
-		})
-		$(".pop-wrap .btn-close").on("click", function () {
-			$('.pop-wrap').hide();
-		})
-
-		$(".accordion-list .list-header .arrow-toggle").click(function () {
-			var thisItem = $(this).parents("li");
-			var otherItem = $(thisItem).siblings("li");
-			$(thisItem).toggleClass("active");
-			$('.check-type-sub').slideToggle(300);
-			$("html, body").animate({ scrollTop: $(document).height() }, "slow");
-		});
-
-		// 리또 리워드 체크박스
-		var checkboxAll = document.getElementById('checkbox-all');
-		var checkbox1 = document.getElementById('checkbox_agree');
-		var checkbox2 = document.getElementById('checkbox_agree02');
-		var checkbox3 = document.getElementById('checkbox_agree03');
-		var subCheckBoxes = document.querySelectorAll('.checkbox_agree_set');
-
-		subCheckBoxes.forEach(function (checkbox) {
-			checkbox.addEventListener('change', function () {
-				// 모든 체크박스가 선택되었는지 확인합니다.
-				const allChecked = [...subCheckBoxes].every(function (checkbox) {
-					return checkbox.checked;
-				});
-
-				// 모든 체크박스가 선택되었다면 checkbox_all도 선택합니다.
-				checkboxAll.checked = allChecked;
-
+			// 모달 포커스 시 스크롤 처리
+			$("#modal-phone").on("focus", function () {
+				console.log($('body').height());
+				$("html, body").scrollTop(200);
 			});
-		});
 
-		// "모두 선택" 체크박스 상태 변경 이벤트 핸들러
-		function handleCheckboxAll() {
-			checkboxAll.checked = allSubCheckboxesChecked();
-		}
+			// 팝업 닫기 버튼 클릭 이벤트
+			$(".pop-wrap .btn-close").on("click", function () {
+				$('.pop-wrap').hide();
+			});
 
-		checkboxAll.addEventListener('change', function () {
-			if (!this.checked) {
-				checkbox1.checked = false;
-				checkbox2.checked = false;
-				checkbox3.checked = false;
-			} else if (this.checked) {
-				checkbox1.checked = true;
-				checkbox2.checked = true;
-				checkbox3.checked = true;
-			}
-		});
+			// 아코디언 리스트 토글
+			$(".accordion-list .list-header .arrow-toggle").click(function () {
+				var thisItem = $(this).closest("li");
+				thisItem.toggleClass("active");
+				$('.check-type-sub').slideToggle(300); 
+				$("html, body").animate({ scrollTop: $(document).height() }, "slow");
+			});
 
-		checkbox1.addEventListener('change', function () {
-			if (!this.checked) {
-				checkboxAll.checked = false;
-				checkbox2.checked = false;
-				checkbox3.checked = false;
-			} else if (this.checked) {
-				checkboxAll.checked = true;
-				checkbox2.checked = true;
-				checkbox3.checked = true;
-			}
-		});
+			// 리워드 체크박스 처리
+			var checkboxAll = document.getElementById('checkbox-all');
+			var subCheckBoxes = document.querySelectorAll('.checkbox_agree_set');
 
-		checkbox2.addEventListener('change', function () {
-			if (!this.checked) {
-				checkboxAll.checked = false;
-				checkbox3.checked = false;
-			} else if (this.checked) {
-				checkbox3.checked = true;
-				if (checkbox1.checked) {
-					checkboxAll.checked = true;
-				}
-			}
-		});
+			subCheckBoxes.forEach(function (checkbox) {
+				checkbox.addEventListener('change', function () {
+					checkboxAll.checked = Array.from(subCheckBoxes).every(cb => cb.checked);
+				});
+			});
 
-		checkbox3.addEventListener('change', function () {
-			if (!this.checked) {
-				checkboxAll.checked = false;
-				checkbox2.checked = false;
-			} else if (this.checked) {
-				checkbox2.checked = true;
-				if (checkbox1.checked) {
-					checkboxAll.checked = true;
-				}
-			}
-		});
+			checkboxAll.addEventListener('change', function () {
+				subCheckBoxes.forEach(cb => cb.checked = checkboxAll.checked);
+			});
 
-		// checkbox 요소 참조
-		var checkbox = document.getElementById("checkbox-money");
-		// pay-sec 영역 참조
-		var paySec = document.getElementById("useMoneyWrap");
+			document.querySelectorAll('#checkbox_agree, #checkbox_agree02, #checkbox_agree03').forEach(checkbox => {
+				checkbox.addEventListener('change', function () {
+					if (!this.checked) {
+						if (checkboxAll) {
+							checkboxAll.checked = false;
+						}
+					} else if (Array.from(subCheckBoxes).every(cb => cb.checked)) {
+						if (checkboxAll) {
+							checkboxAll.checked = true;
+						}
+					}
+				});
+			});
 
-		// checkbox 변경 이벤트 처리
-		checkbox.addEventListener("change", function () {
-			// checkbox가 체크되어 있는지 확인
-			if (checkbox.checked) {
-				// 체크되어 있다면 pay-sec 영역을 보여줌
-				paySec.style.display = "block";
-			} else {
-				// 체크되어 있지 않다면 pay-sec 영역을 숨김
-				paySec.style.display = "none";
-			}
-		});
+			// 사용 머니 토글
+			$("#checkbox-money").change(function () {
+				$("#useMoneyWrap").toggle(this.checked);
+			});
 
-		// 사용머니 토글
-		$(".btn-toggle.btn-q").click(function () {
-			$(this).next('.toggle-box').toggle();
-		});
+			$(".btn-toggle.btn-q").click(function () {
+				$(this).next('.toggle-box').toggle();
+			});
 
-		// 얼럿 버튼
-		$("#send").click(function () {
-			$.alertMessage("", "사용가능한 보유머니 잔액이 없습니다.", $("#commonAlert"));
-			// $.alertMessage("", "일시적인 오류가 발생했습니다.<br>잠시 후 다시 시도해주세요.<br>‘확인’ 선택 시 <br>010머니 조회내역은 초기화 됩니다.", $("#commonAlert"));
+			// 얼럿 버튼
+			$("#send").click(function () {
+				$.alertMessage("", "사용가능한 보유머니 잔액이 없습니다.", $("#commonAlert"));
+				// $.alertMessage("", "일시적인 오류가 발생했습니다.<br>잠시 후 다시 시도해주세요.<br>‘확인’ 선택 시 <br>010머니 조회내역은 초기화 됩니다.", $("#commonAlert"));
+			});
 		});
 
 	</script>

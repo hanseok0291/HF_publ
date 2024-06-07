@@ -35,17 +35,13 @@ import LayerTutorialStamp from "../../components/retto_pub/LayerTutorialStamp";
 import ModalMoneyGive from "../../components/retto_pub/common/modal/ModalMoneyGive";
 import LayerWinInfo from "../../components/retto_pub/LayerWinInfo";
 import Navigation from "../../components/coupon_pub/main/Navigation";
+import HomeTab from "../../components/retto_pub/HomeTab";
 
 const index = () => {
   return (
     <>
       <Header />
-      <ul className={styleMyretto.tabWrap}>
-        <li>HOME</li>
-        <li>추첨 정보</li>
-        <li className={styleMyretto.active}>나의 리또</li>
-        <li>리또 랭킹</li>
-      </ul>
+      <HomeTab activeTab={3} />
       <Container isTab padding="0" backgroundColor="#fff">
         {/* 나의 리또 case1 미신청자 case2 스탬프 10주까지만 */}
         <Stamp  />

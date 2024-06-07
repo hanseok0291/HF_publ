@@ -18,7 +18,7 @@ const Home = ({case1, case2}) => {
   const contents =[
     {
       indexText: '첫 번째',
-      titleText: ['010PAY 우리카드', '결제 금액 1만원에 1개씩', '최대 1억원 당첨 리또 자동 지급'],
+      titleText: ['010PAY 우리카드', '결제 금액 1만원에 1개씩', '최대 1억원 당첨 리또 지급'],
       imgClass: ['card', 'receipt', 'money'],
       isVideo : true,
       videoText: ['010PAY 우리카드', '쓰기만 해도 행운이 쌓이는 리워드'],
@@ -138,7 +138,7 @@ const Home = ({case1, case2}) => {
               }
             </FadeIn>
           </div>
-          <p className={`${styleHome.balloonText} ${case1 && styleHome.isRetto}`}>리또번호와 로또번호가 일치하면 당첨!</p>
+          <p className={`${styleHome.balloonText} ${styleHome.isRetto}`}>리또번호와 로또번호가 일치하면 당첨!</p>
         </div>
         <div className={styleHome.character}></div>
         <span className={styleHome.hand}></span>

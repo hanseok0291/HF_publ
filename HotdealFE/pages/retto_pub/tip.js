@@ -10,6 +10,7 @@ import styleRettoTip from "../../styles/retto_pub/RettoTip.module.css";
 import Header from "../../components/retto_pub/common/Header";
 import Container from "../../components/retto_pub/common/Container";
 import FadeInSection from '../../components/retto_pub/common/FadeInSection';
+import HomeTab from '../../components/retto_pub/HomeTab';
 
 
 const Marquee = ({ children }) => {
@@ -45,14 +46,8 @@ const index = () => {
   return (
     <>
       <Header />
-      <ul className={styleMyretto.tabWrap}>
-        <li>HOME</li>
-        <li>추첨 정보</li>
-        <li>나의 리또</li>
-        <li>리또 랭킹</li>
-        <li className={styleMyretto.active}>리또 TIP</li>
-      </ul>
-      <Container className={styleCommon.hidden} padding='47px 0 50px'>
+      <HomeTab activeTab={5} />
+      <Container isTab padding="0" backgroundColor="#fff" className={styleCommon.hidden}>
         <div className={styleRettoTip.topContent}>
             <h2 className={styleRettoTip.titleText}>
               최대 1억! 당첨 행운 <br />

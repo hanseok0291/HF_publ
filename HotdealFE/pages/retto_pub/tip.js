@@ -144,9 +144,8 @@ const index = () => {
             <li className={styleRettoTip.medal1}>
               <p className={styleRettoTip.name}>010PAY 회원 곽*규</p>
               <p className={styleRettoTip.titleText}>
-                리또 랭킹 1등으로 <br />
-                100만원을 <br />
-                받았습니다
+                리또 랭킹으로 <br />
+                100만 원 받았어요.
               </p>
               <p className={styleRettoTip.mainText}>
                 두 달 동안 리또 17번 <br />
@@ -165,6 +164,31 @@ const index = () => {
                 이번에 리또 랭킹으로 <br />
                 추가 상금까지 <br />
                 받았어요!
+              </p>
+            </li>
+            <li className={styleRettoTip.medal1}>
+              <p className={styleRettoTip.name}>010PAY 회원 장*기</p>
+              <p className={styleRettoTip.titleText}>
+                리또 1등 노리는 <br />
+                재미가 있어요!
+              </p>
+              <p className={styleRettoTip.mainText}>
+                5월 당첨만 50번 넘게 <br />
+                됐는데, 랭킹 1위까지 <br />
+                하니 기쁩니다!
+              </p>
+            </li>
+            <li className={styleRettoTip.medal2}>
+              <p className={styleRettoTip.name}>010PAY 회원 권*영</p>
+              <p className={styleRettoTip.titleText}>
+                리또 정말 당첨이 <br />
+                잘되네요!
+              </p>
+              <p className={styleRettoTip.mainText}>
+                리또 3등에 여러 번 <br />
+                당첨됐어요. 50만 원<br />
+                상금까지 기분이 <br />
+                짱입니다.
               </p>
             </li>
           </ul>

@@ -34,10 +34,8 @@ const Index = () => {
           isShowSearchBtn={isShowSearchBtn}
           noFixed={true}
           />
-        <div className={styleCommon.myPageWrap}>
         <Navigation navList={["HOME", "할인", "브랜드", "선물함"]} activeIndex={3} />
         <Menu />
-        </div>
         <Footer />
       </Layout>
     </>

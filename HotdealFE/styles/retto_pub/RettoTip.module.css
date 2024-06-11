@@ -40,13 +40,25 @@
 .secondContent .subtitleText { display: inline-block; position: relative; color: #fff; } 
 .secondContent .subtitleText:first-child:before { display: block; content: ""; position: absolute; left: -12px; top: 2px; width: 12px; height: 12px; background: url(../../public/images/retto/icon-point-text-01.png) 0 0 / cover no-repeat; } 
 .secondContent .subtitleText:first-child:after { display: block; content: ""; position: absolute; right: -12px; top: 2px; width: 12px; height: 12px; background: url(../../public/images/retto/icon-point-text-02.png) 0 0 / cover no-repeat; } 
-.secondContent .reviewWrap { display: flex; justify-content: space-between; margin: 30px auto 50px; padding: 0 20px; } 
-.secondContent .reviewWrap li { width: calc(50% - 5px); height: 270px; padding: 20px 0 0 20px; border-radius: 12px; background-color: #fff; text-align: left; } 
+.secondContent .reviewWrap { display: flex; flex-wrap: wrap; justify-content: space-between; margin: 30px auto 50px; padding: 0 20px; } 
+.secondContent .reviewWrap li { width: calc(50% - 5px); height: 270px; margin-bottom: 10px; padding: 20px 15px 0 20px; border-radius: 12px; background-color: #fff; text-align: left; word-break: keep-all; } 
+.secondContent .reviewWrap li:nth-last-child(-n+2) { margin-bottom: 0; } 
 .secondContent .reviewWrap li.medal1 { background: #fff url(../../public/images/retto/medal-img-01.png) bottom 15px right 15px / 60px 60px no-repeat; } 
 .secondContent .reviewWrap li.medal2 { background: #fff url(../../public/images/retto/medal-img-02.png) bottom 15px right 15px / 60px 60px no-repeat; } 
 .secondContent .reviewWrap li .name { color: #7d7d7d; font-size: 12px; line-height: 150%; letter-spacing: -0.48px; } 
 .secondContent .reviewWrap li .titleText { margin: 10px 0; color: #222; font-size: 16px; line-height: 140%; font-weight: 700; } 
 .secondContent .reviewWrap li .mainText { color: #222; font-size: 14px; line-height: 140%; } 
+
+@media screen and (max-width: 374px){
+  .secondContent .reviewWrap li br { display: none; }
+}
+
+@media screen and (max-width: 350px){
+  .secondContent .reviewWrap li { flex-direction: column; width: 100%; height: 200px; }
+  .secondContent .reviewWrap li:nth-last-child(-n+2) { margin-bottom: 10px; } 
+  .secondContent .reviewWrap li:last-child { margin-bottom: 0; } 
+}
+
 .marquee { display: flex; overflow: hidden; white-space: nowrap; position: relative; margin-top: 30px; } 
 .marqueeContent { display: flex; animation: marquee 33s linear infinite; } 
 .secondContent .slideWrap { display: flex; white-space: nowrap; } 

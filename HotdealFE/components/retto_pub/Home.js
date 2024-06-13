@@ -22,8 +22,8 @@ const Home = ({case1, case2}) => {
       imgClass: ['card', 'receipt', 'money'],
       isVideo : true,
       videoText: ['010PAY 우리카드', '쓰기만 해도 행운이 쌓이는 리워드'],
-      videoThumbnail: 'type1',
-      videoId: '8ycblWwEfdU'
+      videoThumbnail: 'type3',
+      videoId: '3TQnp7uW37c' //8ycblWwEfdU 임원희
     },
     {
       indexText: '두 번째',
@@ -31,7 +31,7 @@ const Home = ({case1, case2}) => {
       imgClass: ['vault', 'money', 'present'],
       isVideo : true,
       videoText: ['리또 머니함에 넣어만 두면', '매주 알아서 행운이 쌓이는 리워드'],
-      videoThumbnail: 'type2',
+      videoThumbnail: 'type1',
       videoId: '0RJFok7VE8I'
     },
     {
@@ -200,7 +200,7 @@ const Home = ({case1, case2}) => {
         </div>
       </div>
       <div className={styleHome.noteWrap}>
-        <h4>유의사항</h4>
+        <h4>010PAY 우리카드 유의사항</h4>
         <ul className={styleHome.noteContent}>
           <li>010PAY 우리카드 연회비 : 국내전용, 해외겸용(Mastercard) : 12,000원</li>
           <li>
@@ -382,7 +382,7 @@ const HomeSwiper = ({content: {indexText, titleText, imgClass, isVideo, videoId,
               onPlay={() => setPlayingVideoId(videoId)}
             />
             {/* type1 머니함 완벽가이드 type2 임원희 */}
-            {isThumbnail && <button type='button' className={`${styleHome.thumbnail} ${videoThumbnail === 'type1' ? styleHome.type2 : styleHome.type1}`} onClick={playVideo}></button>}
+            {isThumbnail && <button type='button' className={`${styleHome.thumbnail} ${videoThumbnail}`} onClick={playVideo}></button>}
           </div>
         </div>
       )}

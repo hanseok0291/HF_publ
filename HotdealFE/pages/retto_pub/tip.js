@@ -211,7 +211,7 @@ const index = () => {
               </li>
               <li>
                 <div className={styleRettoTip.textWrap}>
-                  <p className={styleRettoTip.name}>블로거 킴* (2024. 05)</p>
+                  <p className={styleRettoTip.name}>블로거 킴*</p>
                   <p className={styleRettoTip.mainText}>
                     <span>매주 리또 5장으로도 <br />
                     5월 보너스 당첨 2번!</span> <br />

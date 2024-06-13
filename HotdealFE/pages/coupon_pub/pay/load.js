@@ -106,6 +106,7 @@ const Index = () => {
                       className={`${styleCommon.btnIcon} ${styleCommon.btnDel} ${stylePay.btnDel}`}
                     ></button>
                   </div>
+                  <p className={stylePay.addText}>19세 미만의 경우 보유한도 최대 50만원까지 가능합니다.</p>
                   <p className={`${stylePay.loadOptionBox}`}>
                     <button type="button" className={`${stylePay.btn}`}>
                       + 1만원

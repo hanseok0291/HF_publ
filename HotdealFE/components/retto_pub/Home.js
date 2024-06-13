@@ -18,20 +18,20 @@ const Home = ({case1, case2}) => {
   const contents =[
     {
       indexText: '첫 번째',
-      titleText: ['010PAY 우리카드', '결제 금액 1만원에 1개씩', '최대 1억 당첨 리또 자동 지급'],
+      titleText: ['010PAY 우리카드', '결제 금액 1만원에 1개씩', '최대 1억원 당첨 리또 지급'],
       imgClass: ['card', 'receipt', 'money'],
       isVideo : true,
       videoText: ['010PAY 우리카드', '쓰기만 해도 행운이 쌓이는 리워드'],
-      videoThumbnail: 'type1',
-      videoId: '8ycblWwEfdU'
+      videoThumbnail: 'type3',
+      videoId: '3TQnp7uW37c' //8ycblWwEfdU 임원희
     },
     {
       indexText: '두 번째',
-      titleText: ['리또 머니함에 머니 보관', '최대 1억 당첨 가능한', '리또 자동 지급'],
+      titleText: ['리또 머니함에 머니 보관', '최대 1억원 당첨 가능한', '리또 자동 지급'],
       imgClass: ['vault', 'money', 'present'],
       isVideo : true,
       videoText: ['리또 머니함에 넣어만 두면', '매주 알아서 행운이 쌓이는 리워드'],
-      videoThumbnail: 'type2',
+      videoThumbnail: 'type1',
       videoId: '0RJFok7VE8I'
     },
     {
@@ -138,7 +138,7 @@ const Home = ({case1, case2}) => {
               }
             </FadeIn>
           </div>
-          <p className={`${styleHome.balloonText} ${case1 && styleHome.isRetto}`}>리또번호와 로또번호가 일치하면 당첨!</p>
+          <p className={`${styleHome.balloonText} ${styleHome.isRetto}`}>리또번호와 로또번호가 일치하면 당첨!</p>
         </div>
         <div className={styleHome.character}></div>
         <span className={styleHome.hand}></span>
@@ -198,6 +198,68 @@ const Home = ({case1, case2}) => {
           <HomeSwiper content={contents[2]} playingVideoId={playingVideoId}  setPlayingVideoId={setPlayingVideoId}/>
           <Button white large>리또 선물하고 리또 받기</Button>
         </div>
+      </div>
+      <div className={styleHome.noteWrap}>
+        <h4>010PAY 우리카드 유의사항</h4>
+        <ul className={styleHome.noteContent}>
+          <li>010PAY 우리카드 연회비 : 국내전용, 해외겸용(Mastercard) : 12,000원</li>
+          <li>
+            상세혜택 및 이용조건은 카드를 발급받기 전에 <br />
+            홈페이지(www.wooricard.com), 상품설명서 및 약관 등을 <br />
+            통해 확인하시기 바랍니다.
+          </li>
+          <li>신용카드 발급이 부적정한 경우(개인신용평점 낮음 등) 카드발급이 제한될 수 있습니다.</li>
+          <li>카드이용대금과 이에 수반되는 모든 수수료를 지정된 대금결제일에 상환합니다.</li>
+          <li>
+            금융소비자는 금융소비자보호법 제 19조 제1항에 따라 <br />
+            해당상품 또는 서비스에 대하여 설명을 받을 권리가 있으며, <br />
+            그 설명을 듣고 내용을 충분히 이해한 후 거래하시기 바랍니다.
+          </li>
+          <li className={styleHome.strongText}>
+            상환능력에 비해 신용카드 사용액이 과도할 경우, <br />
+            귀하의 개인신용평점이 하락할 수 있습니다.
+          </li>
+          <li className={styleHome.strongText}>개인신용평점 하락 시 금융거래와 관련된 불이익이 발생할 수 있습니다.</li>
+          <li className={styleHome.strongText}>
+          일정기간 원리금을 연체할 경우, <br />
+          모든 원리금을 변제할 의무가 발생할 수 있습니다.
+          </li>
+          <li className={styleHome.strongText}>
+            연체이율: 회원별/이용상품별 정상이자율 + 최대 연 3% <br />
+            (법정최고금리 연 20% 이내) <br />
+            단, 연체발생 시점에 정상이자율이 없는 경우에는 아래와 같이 적용함
+            <ul className={styleHome.innerContent}>
+              <li>
+                일시불거래 연체 시 : 거래발생시점의 최소 기간(2개월) <br />
+                유이자 할부금리
+              </li>
+              <li>
+                무이자할부거래 연체 시 : 거래발생시점의 동일한 <br />
+                할부계약기간의 유이자 할부금리
+              </li>
+              <li>
+                그 외의 경우 : 상사법정이율과 상호금융 가계자금대출금리* 중 높은 금리 적용
+              </li>
+              <li className={styleHome.grayText}>
+                한국은행에서 매월 발표하는 가장 최근의 비은행 금융기관<br />
+                가중평균대출금리(신규대출 기준)
+              </li>
+            </ul>
+          </li>
+          <li>
+            ㈜헥토파이낸셜은 ㈜우리카드의 신용카드 회원 모집업무를 <br />
+            대리·중개합니다.
+          </li>
+          <li>㈜헥토파이낸셜은 ㈜우리카드를 대리하거나 중개합니다.</li>
+          <li>
+            ㈜헥토파이낸셜은 ㈜우리카드의 금융상품에 대한 계약체결 권한이 없습니다.
+          </li>
+          <li className={styleHome.marginBottom}>㈜헥토파이낸셜은 금융관계법률에 따라 ㈜우리카드와 위탁계약을 체결한 금융상품 판매 대리·중개업자입니다.</li>
+          <li>
+            여신금융협회 심의필 제 2024 - C1h - 06370호 <br />
+            (2024.05.28 ~ 2025.05.27)
+          </li>
+        </ul>
       </div>
       {case2 && isToast && (
         <div className={`${styleHome.toastWrap} ${!toastShow ? styleHome.toastHide : '' }`} ref={bottomToastRef}>
@@ -320,7 +382,7 @@ const HomeSwiper = ({content: {indexText, titleText, imgClass, isVideo, videoId,
               onPlay={() => setPlayingVideoId(videoId)}
             />
             {/* type1 머니함 완벽가이드 type2 임원희 */}
-            {isThumbnail && <button type='button' className={`${styleHome.thumbnail} ${videoThumbnail === 'type1' ? styleHome.type2 : styleHome.type1}`} onClick={playVideo}></button>}
+            {isThumbnail && <button type='button' className={`${styleHome.thumbnail} ${videoThumbnail}`} onClick={playVideo}></button>}
           </div>
         </div>
       )}

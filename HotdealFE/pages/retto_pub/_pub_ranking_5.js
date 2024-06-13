@@ -11,6 +11,7 @@ import Container from "../../components/retto_pub/common/Container";
 import Header from "../../components/retto_pub/common/Header";
 import BottomSheetRankingTurn from '../../components/retto_pub/common/modal/BottomSheetRankingTurn';
 import LayerRankingInfo from '../../components/retto_pub/LayerRankingInfo';
+import HomeTab from '../../components/retto_pub/HomeTab';
 
 const index = () => {
   const data = [
@@ -137,7 +138,8 @@ const index = () => {
   return (
     <>
       <Header title="리또 랭킹" sideBtn="안내" />
-      <Container backgroundColor="#fff">
+      <HomeTab activeTab={4} />
+      <Container className={styleCommon.hidden} padding='77px 20px 30px'>
         <div className={styleRanking.blindWrap}>
           <div className={styleRanking.characterImg}></div>
           <div className={styleRanking.deadline}>마감까지 <span>2일 07 : 00 : 00</span></div>

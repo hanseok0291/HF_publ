@@ -28,16 +28,13 @@ import Toast from "../../components/retto_pub/common/Toast";
 import MyPageNotJoin from "../../components/retto_pub/MyPageNotJoin";
 import Home from "../../components/retto_pub/Home";
 import DrawInfo from "../../components/retto_pub/DrawInfo";
+import HomeTab from "../../components/retto_pub/HomeTab";
 
 const index = () => {
   return (
     <>
       <Header />
-      <ul className={styleMyretto.tabWrap}>
-        <li>HOME</li>
-        <li>추첨 정보</li>
-        <li className={styleMyretto.active}>나의 리또</li>
-      </ul>
+      <HomeTab activeTab={3} />
       <Container isTab padding="0" backgroundColor="#fff">
         {/* HOME */}
         {/* <Home /> */}

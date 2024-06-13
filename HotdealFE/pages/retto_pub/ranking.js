@@ -12,6 +12,7 @@ import Container from "../../components/retto_pub/common/Container";
 import Header from "../../components/retto_pub/common/Header";
 import BottomSheetRankingTurn from '../../components/retto_pub/common/modal/BottomSheetRankingTurn';
 import LayerRankingInfo from '../../components/retto_pub/LayerRankingInfo';
+import HomeTab from '../../components/retto_pub/HomeTab';
 
 const index = () => {
   const data = [
@@ -138,12 +139,7 @@ const index = () => {
   return (
     <>
       <Header />
-      <ul className={styleMyretto.tabWrap}>
-        <li>HOME</li>
-        <li>추첨 정보</li>
-        <li>나의 리또</li>
-        <li className={styleMyretto.active}>리또 랭킹</li>
-      </ul>
+      <HomeTab activeTab={4} />
       <Container className={styleCommon.hidden} padding='77px 20px 30px'>
         {/* 블라인드 */}
         {/* <div className={styleRanking.blindWrap}>

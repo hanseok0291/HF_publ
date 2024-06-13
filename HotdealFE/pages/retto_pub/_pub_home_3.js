@@ -33,16 +33,13 @@ import ModalApplyReady from "../../components/retto_pub/common/modal/ModalApplyR
 import LayerTutorialMypage from "../../components/retto_pub/LayerTutorialMypage";
 import LayerTutorialStamp from "../../components/retto_pub/LayerTutorialStamp";
 import ModalMoneyGive from "../../components/retto_pub/common/modal/ModalMoneyGive";
+import HomeTab from "../../components/retto_pub/HomeTab";
 
 const index = () => {
   return (
     <>
       <Header />
-      <ul className={styleMyretto.tabWrap}>
-        <li>HOME</li>
-        <li>추첨 정보</li>
-        <li className={styleMyretto.active}>나의 리또</li>
-      </ul>
+      <HomeTab activeTab={1} />
       <Container isTab padding="0" backgroundColor="#fff">
         {/* HOME */}
         <Home case1 case2 /> 

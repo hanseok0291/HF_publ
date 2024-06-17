@@ -1,8 +1,6 @@
 // form
 $(function () {
-  var input = $(
-    "input[type=text], input[type=password], input[type=tel], input[type=email], input[type=number], select, textarea, .input"
-  );
+  var input = $("input[type=text], input[type=password], input[type=tel], input[type=email], input[type=number], select, textarea, .input");
   var row = $(".input input, .input select, .input .select");
 
   // input Focus
@@ -51,21 +49,13 @@ $(function () {
     } else if (byte.length == 2) {
       $(".input-mark .mark i:eq(0), .input-mark .mark i:eq(1)").addClass("on");
     } else if (byte.length == 3) {
-      $(
-        ".input-mark .mark i:eq(0), .input-mark .mark i:eq(1), .input-mark .mark i:eq(2)"
-      ).addClass("on");
+      $(".input-mark .mark i:eq(0), .input-mark .mark i:eq(1), .input-mark .mark i:eq(2)").addClass("on");
     } else if (byte.length == 4) {
-      $(
-        ".input-mark .mark i:eq(0), .input-mark .mark i:eq(1), .input-mark .mark i:eq(2), .input-mark .mark i:eq(3)"
-      ).addClass("on");
+      $(".input-mark .mark i:eq(0), .input-mark .mark i:eq(1), .input-mark .mark i:eq(2), .input-mark .mark i:eq(3)").addClass("on");
     } else if (byte.length == 5) {
-      $(
-        ".input-mark .mark i:eq(0), .input-mark .mark i:eq(1), .input-mark .mark i:eq(2), .input-mark .mark i:eq(3), .input-mark .mark i:eq(4)"
-      ).addClass("on");
+      $(".input-mark .mark i:eq(0), .input-mark .mark i:eq(1), .input-mark .mark i:eq(2), .input-mark .mark i:eq(3), .input-mark .mark i:eq(4)").addClass("on");
     } else if (byte.length == 6) {
-      $(
-        ".input-mark .mark i:eq(0), .input-mark .mark i:eq(1), .input-mark .mark i:eq(2), .input-mark .mark i:eq(3), .input-mark .mark i:eq(4), .input-mark .mark i:eq(5)"
-      ).addClass("on");
+      $(".input-mark .mark i:eq(0), .input-mark .mark i:eq(1), .input-mark .mark i:eq(2), .input-mark .mark i:eq(3), .input-mark .mark i:eq(4), .input-mark .mark i:eq(5)").addClass("on");
     } else {
       $(".input-mark .mark i").removeClass();
     }
@@ -90,7 +80,7 @@ function scrollOn() {
   $("#wrap").css("top", 0);
   $("#wrap").css("position", "relative");
   $("#header").css("top", "-1px");
-	$(document).scrollTop(scrollHeight);
+  $(document).scrollTop(scrollHeight);
 }
 
 // 레이어 팝업(모달) 열기
@@ -152,9 +142,7 @@ $(function () {
   });
 
   // 약관 상세 팝업 > 제목 네비 > 시행일 표시 여백
-  $(".modal-terms .nav.owl-carousel .select-sm")
-    .parents(".item")
-    .addClass("has-select");
+  $(".modal-terms .nav.owl-carousel .select-sm").parents(".item").addClass("has-select");
 
   // 셀렉트 옵션 레이어 열기(통신사, 머니 충전 계좌, 이용내역 필터)
   $(".select-modal").click(function () {
@@ -184,9 +172,7 @@ $(function () {
   });
 
   // 모달 슬라이드 닫기(셀렉트 옵션, 은행 선택 레이어 팝업)
-  $(
-    ".modal-slide .btn-close, .modal-slide .btn-list button, .modal-slide .bank-list button"
-  ).click(function () {
+  $(".modal-slide .btn-close, .modal-slide .btn-list button, .modal-slide .bank-list button").click(function () {
     var temp = $(this).parents(".modal");
     $(temp).fadeOut(200);
     $(this).parents(".modal-content").animate({ bottom: -450 }, 200);
@@ -228,11 +214,7 @@ $(function () {
       var nowDate = new Date();
 
       if (startDate < nowDate && nowDate < endDate) {
-        $.alertMessage(
-          "",
-          "기업은행 점검 시간입니다.<br/>(2021.08.15 00:00 ~ 05:00)",
-          $("#commonAlert")
-        );
+        $.alertMessage("", "기업은행 점검 시간입니다.<br/>(2021.08.15 00:00 ~ 05:00)", $("#commonAlert"));
         $("#bankCd").val("");
         $(".bank-select").html("목록에서 선택");
         $(":focus").blur();
@@ -263,27 +245,27 @@ $(function () {
 
     if (gap >= 0) {
       $(".bottom-area").addClass("fixed");
+      $("#content.newType .bottom-area").removeClass("fixed");
+      $(".layout-payment .bottom-area").removeClass("fixed");
     } else {
       $(".bottom-area").removeClass("fixed");
     }
-
   }
   fixFootBtn();
 
   // 하단 고정 영역 여백 확보
   function wrapPadding() {
     var fixFoot = $(".bottom-area.fixed");
-		const matchesMediaQuery = window.matchMedia('(max-width:999px) and (orientation:landscape)').matches;
+    const matchesMediaQuery = window.matchMedia("(max-width:999px) and (orientation:landscape)").matches;
 
-		if (fixFoot.length > 0 && !matchesMediaQuery) {
-			var fixFootHeight = $(fixFoot).innerHeight();
-			$("#content").css("padding-bottom", fixFootHeight);
-			$(".wrap.oneStore").removeClass("horizontal");
-		} else {
-			$(".wrap.oneStore").addClass("horizontal");
-			$("#content").css("padding-bottom", 24);
-		}
-    
+    if (fixFoot.length > 0 && !matchesMediaQuery) {
+      var fixFootHeight = $(fixFoot).innerHeight();
+      $("#content").css("padding-bottom", fixFootHeight);
+      $(".wrap.oneStore").removeClass("horizontal");
+    } else {
+      $(".wrap.oneStore").addClass("horizontal");
+      $("#content").css("padding-bottom", 24);
+    }
   }
   wrapPadding();
 
@@ -425,24 +407,24 @@ function modalOpenSlide(obj) {
   var temp = $("#" + obj);
   var modalCont = $(temp).find(".modal-content");
 
-	temp.show();
-	$(modalCont).animate({bottom: 0}, 200);
-	// 이중 모달이 아닌 경우
-	if (obj === 'modal-useCoupon') {
-		$("body").addClass("modal-open");
-	} else 
-	if(!$(this).hasClass("depth2")) {
-		scrollOff(); // 바디 스크롤 제거
-	} else 
+  temp.show();
+  $(modalCont).animate({ bottom: 0 }, 200);
+  // 이중 모달이 아닌 경우
+  if (obj === "modal-useCoupon") {
+    $("body").addClass("modal-open");
+  } else if (!$(this).hasClass("depth2")) {
+    scrollOff(); // 바디 스크롤 제거
+  }
 
   // 팝업 내 하단 버튼 클릭 시 팝업 닫힘
-  $(temp)
-    .find(".modal-footer .btn")
-    .on("click", function (e) {
-      if (!$(this).hasClass("not-close")) {
-        modalCloseSlide();
-      }
-    });
+  else
+    $(temp)
+      .find(".modal-footer .btn")
+      .on("click", function (e) {
+        if (!$(this).hasClass("not-close")) {
+          modalCloseSlide();
+        }
+      });
 
   // bottom modal 닫기
   function modalCloseSlide() {
@@ -480,44 +462,43 @@ function modalOpenSlideNoMove(obj) {
   var temp = $("#" + obj);
   var modalCont = $(temp).find(".modal-content");
 
-	temp.show();
-	$(modalCont).animate({bottom: 0}, 200);
-	// 이중 모달이 아닌 경우
-	if (obj === 'retto') {
-		$("body").addClass("modal-open");
-	} else 
-	if(!$(this).hasClass("depth2")) {
-		// scrollOff(); // 바디 스크롤 제거
-	} else 
+  temp.show();
+  $(modalCont).animate({ bottom: 0 }, 200);
+  // 이중 모달이 아닌 경우
+  if (obj === "retto") {
+    $("body").addClass("modal-open");
+  } else if (!$(this).hasClass("depth2")) {
+    // scrollOff(); // 바디 스크롤 제거
+  }
 
   // 팝업 내 하단 버튼 클릭 시 팝업 닫힘
-  $(temp)
-    .find(".modal-footer .btn")
-    .on("click", function (e) {
-      if (!$(this).hasClass("not-close")) {
-        modalCloseSlide();
-      }
-    });
+  else
+    $(temp)
+      .find(".modal-footer .btn")
+      .on("click", function (e) {
+        if (!$(this).hasClass("not-close")) {
+          modalCloseSlide();
+        }
+      });
 
   // bottom modal 닫기
-	function modalCloseSlide() {
-		var temp = $("#" + obj);
-		temp.fadeOut(200);
-		var modalContent = $(temp).find(".modal-content");
-	
-		// $(modalContent).animate({ bottom: modalH }, 200, function () {
-		// 	// 애니메이션 완료 후 실행될 코드
-		// 	if (!$(temp).hasClass("depth2")) {
-		// 		scrollOn(); // 바디 스크롤 제거 해제
-		// 	}
-		// });
-	}
+  function modalCloseSlide() {
+    var temp = $("#" + obj);
+    temp.fadeOut(200);
+    var modalContent = $(temp).find(".modal-content");
+
+    // $(modalContent).animate({ bottom: modalH }, 200, function () {
+    // 	// 애니메이션 완료 후 실행될 코드
+    // 	if (!$(temp).hasClass("depth2")) {
+    // 		scrollOn(); // 바디 스크롤 제거 해제
+    // 	}
+    // });
+  }
 
   // 리사이즈
   $(window).resize(function () {
     modalContPos();
   });
-
 }
 
 // 충전하기 이벤트
@@ -559,24 +540,15 @@ checkBorderChange();
 // 쿠폰함 탭
 function couponTab() {
   $(window).on("scroll", function () {
-    if (
-      $(window).scrollTop() >
-      $(".main-coupon .top-banner").offset().top +
-        $(".main-coupon .top-banner").outerHeight() -
-        60
-    ) {
+    if ($(window).scrollTop() > $(".main-coupon .top-banner").offset().top + $(".main-coupon .top-banner").outerHeight() - 60) {
       $(".main-coupon .tab-btn-wrap, .main-coupon .tab-wrap").addClass("fixed");
     } else {
-      $(".main-coupon .tab-btn-wrap, .main-coupon .tab-wrap").removeClass(
-        "fixed"
-      );
+      $(".main-coupon .tab-btn-wrap, .main-coupon .tab-wrap").removeClass("fixed");
     }
   });
   $(".main-coupon .tab-btn-wrap li").click("on", function () {
     var idx = $(this).index();
-    $(".main-coupon .tab-btn-wrap li, .main-coupon .tab-wrap .tab").removeClass(
-      "on"
-    );
+    $(".main-coupon .tab-btn-wrap li, .main-coupon .tab-wrap .tab").removeClass("on");
     $(this).addClass("on");
     $(".main-coupon .tab-wrap .tab").eq(idx).addClass("on");
   });
@@ -610,13 +582,7 @@ $(function () {
   });
 
   $(".btn-exit").click(function () {
-    $.promptMessage(
-      naviAlertTitle.orderEnd,
-      naviAlertMsg.orderBrandEnd,
-      $("#commonPrompt"),
-      $("#promptOk"),
-      "self.close()"
-    );
+    $.promptMessage(naviAlertTitle.orderEnd, naviAlertMsg.orderBrandEnd, $("#commonPrompt"), $("#promptOk"), "self.close()");
   });
 });
 
@@ -629,73 +595,28 @@ $(function () {
 
 $.closeAction = function (processType, formId, returnUrl) {
   if (processType == "MP") {
-    $.closeAlertMessageCallback(
-      naviAlertTitle.orderEnd,
-      naviAlertMsg.orderBrandEnd,
-      $("#closeAlert"),
-      "$.closeMPUrl()"
-    );
+    $.closeAlertMessageCallback(naviAlertTitle.orderEnd, naviAlertMsg.orderBrandEnd, $("#closeAlert"), "$.closeMPUrl()");
   } else if (processType == "M") {
-    $.promptMessage(
-      naviAlertTitle.orderEnd,
-      naviAlertMsg.orderBrandEnd,
-      $("#commonPrompt"),
-      $("#promptOk"),
-      "$.closeUrl()"
-    );
+    $.promptMessage(naviAlertTitle.orderEnd, naviAlertMsg.orderBrandEnd, $("#commonPrompt"), $("#promptOk"), "$.closeUrl()");
   } else if (processType == "B") {
-    $.promptMessage(
-      naviAlertTitle.orderEnd,
-      naviAlertMsg.orderBrandEnd,
-      $("#commonPrompt"),
-      $("#promptOk"),
-      '$.closeBack("' + formId + '", "' + returnUrl + '")'
-    );
+    $.promptMessage(naviAlertTitle.orderEnd, naviAlertMsg.orderBrandEnd, $("#commonPrompt"), $("#promptOk"), '$.closeBack("' + formId + '", "' + returnUrl + '")');
   } else if (processType == "Z") {
     //모바일 GW용
-    $.promptMessageEx2(
-      naviAlertTitle.orderEnd,
-      naviAlertMsg.mobileAppEnd,
-      $("#commonPromptZeroapp"),
-      $("#promptOkZeroapp"),
-      '$.closeZeroApp("' + formId + '", "' + returnUrl + '")'
-    );
+    $.promptMessageEx2(naviAlertTitle.orderEnd, naviAlertMsg.mobileAppEnd, $("#commonPromptZeroapp"), $("#promptOkZeroapp"), '$.closeZeroApp("' + formId + '", "' + returnUrl + '")');
   } else if (processType == "ZE") {
     //모바일 GW용 (종료 메시지)
-    $.promptMessage(
-      naviAlertTitle.orderEnd,
-      naviAlertMsg.orderBrandEnd,
-      $("#commonPrompt"),
-      $("#promptOk"),
-      '$.closeBack("' + formId + '", "' + returnUrl + '")'
-    );
+    $.promptMessage(naviAlertTitle.orderEnd, naviAlertMsg.orderBrandEnd, $("#commonPrompt"), $("#promptOk"), '$.closeBack("' + formId + '", "' + returnUrl + '")');
   } else {
-    $.promptMessage(
-      naviAlertTitle.orderEnd,
-      naviAlertMsg.orderEnd,
-      $("#commonPrompt"),
-      $("#promptOk"),
-      "$.close()"
-    );
+    $.promptMessage(naviAlertTitle.orderEnd, naviAlertMsg.orderEnd, $("#commonPrompt"), $("#promptOk"), "$.close()");
   }
 };
 
 $.closeZeroApp = function (formId, returnUrl) {
-  $.closeAlertMessageCallback(
-    naviAlertTitle.orderEnd,
-    "결제가 취소되었습니다.",
-    $("#closeAlert"),
-    "$.closeMPUrl()"
-  );
+  $.closeAlertMessageCallback(naviAlertTitle.orderEnd, "결제가 취소되었습니다.", $("#closeAlert"), "$.closeMPUrl()");
 };
 
 $.close = function () {
-  $.closeAlertMessageCallback(
-    naviAlertTitle.orderEnd,
-    naviAlertMsg.orderEndOk,
-    $("#closeAlert"),
-    "$.closeUrl()"
-  );
+  $.closeAlertMessageCallback(naviAlertTitle.orderEnd, naviAlertMsg.orderEndOk, $("#closeAlert"), "$.closeUrl()");
 };
 $.closeUrl = function () {
   var mercntId = $("#mercntId").val();

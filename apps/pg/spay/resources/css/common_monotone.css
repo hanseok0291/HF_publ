@@ -1,4 +1,4 @@
-@charset "UTF-8";@import url(../fonts/nanumsquareround/nanumsquareround.min.css); @import url(../fonts/pretendard/pretendard-subset.min.css); @import url(../fonts/play/play.min.css);/**
+@charset "UTF-8"; @import url(../fonts/nanumsquareround/nanumsquareround.min.css); @import url(../fonts/pretendard/pretendard-subset.min.css); @import url(../fonts/play/play.min.css); /**
 * ====================== TABLE OF INDEX ======================
 * - #RESET
 * - #FORM
@@ -44,6 +44,9 @@ input::-webkit-search-decoration,
 input::-webkit-search-cancel-button,
 input::-webkit-search-results-button,
 input::-webkit-search-results-decoration { display: none; } 
+
+.blind { position: absolute; clip: rect(0 0 0 0); width: 1px; height: 1px; margin: -1px; overflow: hidden; } 
+.blind::before { display: block; width: 0; height: 0; content: '\00a0'; font-size: 0; } 
 
 /* #FORM
 ------------------------------------------------------------*/
@@ -164,11 +167,11 @@ input::-webkit-search-results-button,
 input::-webkit-search-results-decoration { display: none; } 
 
 /** placeholder **/
-input::placeholder { color: #bbb; font-weight: 400; height: auto; line-height: 1; } 
-textarea::placeholder { color: #bbb; font-weight: 400; line-height: 1; } 
+input::placeholder { color: #bebebe; font-weight: 400; height: auto; line-height: 1; } 
+textarea::placeholder { color: #bebebe; font-weight: 400; line-height: 1; } 
 /* webkit */
-input::-webkit-input-placeholder { color: #bbb; font-weight: 400; } 
-textarea::-webkit-input-placeholder { color: #bbb; font-weight: 400; } 
+input::-webkit-input-placeholder { color: #bebebe; font-weight: 400; } 
+textarea::-webkit-input-placeholder { color: #bebebe; font-weight: 400; } 
 /* firefox 4-18 */
 input:-moz-placeholder { color: #aaa; font-weight: 400; } 
 textarea:-moz-placeholder { color: #aaa; font-weight: 400; } 
@@ -176,9 +179,9 @@ textarea:-moz-placeholder { color: #aaa; font-weight: 400; }
 input::-moz-placeholder { color: #aaa; font-weight: 400; } 
 textarea::-moz-placeholder { color: #aaa; font-weight: 400; } 
 /* IE10+ */
-input:-ms-input-placeholder { color: #bbb !important; font-weight: 400 !important; } 
-textarea:-ms-input-placeholder { color: #bbb !important; font-weight: 400 !important; } 
-.placeholder { color: #bbb !important; } 
+input:-ms-input-placeholder { color: #bebebe !important; font-weight: 400 !important; } 
+textarea:-ms-input-placeholder { color: #bebebe !important; font-weight: 400 !important; } 
+.placeholder { color: #bebebe !important; } 
 
 
 /* #LAYOUT
@@ -356,18 +359,18 @@ body.custom-new .order-wrap .list-table .price { color: #2B2B2B; font-size: 18px
 body.custom-new .order-wrap .list-table .price-dc { margin-right: 8px; font-size: 14px; color: #bebebe; text-decoration: line-through; } 
 
 body.custom-new .check-box > input + label { position:relative; display:block; line-height:20px; padding-left:29px; padding-right: 20px; font-size: 12px; color: #747474; } 
-body.custom-new .check-box > input + label::before { content:''; position:absolute; left:2px; width:20px; height:20px; background:url(../images/custom/new/check_sm_off.png) no-repeat center / contain; } 
-body.custom-new .check-box > input:checked + label::before { background: url('../images/custom/new/check_sm_on.png') no-repeat center / contain; } 
+body.custom-new .check-box > input + label::before { content:''; position:absolute; left:2px; width:20px; height:20px; background:url(../images/custom/new/check_sm_off.png?ver=240613) no-repeat center / contain; } 
+body.custom-new .check-box > input:checked + label::before { background: url('../images/custom/new/check_sm_on.png?ver=240613') no-repeat center / contain; } 
 body.custom-new .check-all > input + label { position: relative; display: block; line-height: 24px; padding-left: 34px; font-size: 16px; color: #2b2b2b; } 
-body.custom-new .check-all > input + label::before { content: ''; position: absolute; left: 0; width: 24px; height: 24px; background: url('../images/custom/new/check_off.png') no-repeat center / contain; } 
-body.custom-new .check-all > input:checked + label::before { background: url('../images/custom/new/check_on.png') no-repeat center / contain; } 
+body.custom-new .check-all > input + label::before { content: ''; position: absolute; left: 0; width: 24px; height: 24px; background: url('../images/custom/new/check_off.png?ver=240613') no-repeat center / contain; } 
+body.custom-new .check-all > input:checked + label::before { background: url('../images/custom/new/check_on.png?ver=240613') no-repeat center / contain; } 
 
 body.custom-new .accordion-list { margin-bottom: 12px; } 
-body.custom-new .accordion-list .accordion-title { display: flex; justify-content: space-between;align-items: center;margin-top: 23px; } 
+body.custom-new .accordion-list .accordion-title { display: flex; justify-content: space-between; align-items: center; margin-top: 23px; } 
 body.custom-new .accordion-list .accordion-title .subject { font-size: 16px; font-weight: 500; color: #2b2b2b; } 
 
-body.custom-new .accordion-list .accordion-title .w-full {width: 100%;}
-body.custom-new .accordion-list .accordion-title .right {margin-right: auto;margin-left: -15px;color: #bbb;font-size: 12px;}
+body.custom-new .accordion-list .accordion-title .w-full { width: 100%; } 
+body.custom-new .accordion-list .accordion-title .right { margin-right: auto; margin-left: -15px; color: #bbb; font-size: 12px; } 
 body.custom-new .accordion-item .list-sub { margin-top: 19px; } 
 body.custom-new .accordion-item .list-sub .list-item { display: flex; justify-content: space-between; margin-bottom: 2px; } 
 body.custom-new .accordion-item .list-sub .list-item .btn-right { white-space: nowrap; } 
@@ -386,6 +389,7 @@ body.custom-new .select-telecom { margin-top: 10px; display: flex; justify-conte
 body.custom-new .select-telecom .select-input { display: flex; align-items: center; border-bottom: 1px solid #EBEBEB; } 
 body.custom-new .select-telecom.col-2 .select-input:first-child { width: auto; margin-right: 10px; } 
 body.custom-new .select-telecom .select-input > .select { width: 110px; height: 40px; overflow: hidden; font-size: 16px; color: #2b2b2b; } 
+body.custom-new .select-telecom .select-input > .select button { width: 100%;text-align: left;line-height: 30px; font-size: 16px;}
 body.custom-new .select-telecom .select-input > input { height: 40px; margin-left: 10px; } 
 body.custom-new .select-telecom .select-input > input[readonly] { color: #222; -webkit-text-fill-color: #222; } 
 body.custom-new .form-type li { display: flex; align-items: center; } 
@@ -433,7 +437,7 @@ body.custom-new .pop-wrap::after { content: ''; position: absolute; top: -4.5px;
 .modal-head .subject { font-size: 15px; font-weight: 700; color: #151515; line-height: 52px; } 
 .modal-dialog { } 
 .modal-full .modal-body, body.pc .modal-full .modal-body > .container { height: 100%; align-items: start; } 
-.modal .terms.scroll { overflow-y: scroll; text-align: left; height: calc(100% - 150px); } 
+.modal .terms.scroll { overflow-y: scroll; text-align: left; height: calc(100% - 30px); } 
 body.pc .modal-terms .container, .modal-terms .container { padding: 0 24px; max-width: 700px; } 
 .modal-terms .modal-content { position: relative; overflow: hidden; } 
 .modal-terms .modal-body { max-height: 50vh; overflow-y: scroll; padding: 18px 0 100px; border-top: 1px solid #e2e2e2; font-size: 12px; color: #151515; } 
@@ -572,7 +576,7 @@ body.pc .modal-terms .container, .modal-terms .container { padding: 0 24px; max-
 .modal.new.modal-slide .modal-body { padding: 40px 0 20px; } 
 .modal.new.modal-slide .modal-content { position: fixed !important; left: 50%; transform: translateX(-50%); border-radius: 20px 20px 0 0; max-width: none; bottom: -100%; } 
 .modal.new.modal-slide .select-list li { font-size: 16px; margin-bottom: 10px; } 
-.modal.new.modal-slide .select-list li.bold { font-weight: 700; } 
+.modal.new.modal-slide .select-list li.bold button { font-weight: 700; } 
 
 body.custom-new .select-type .check-group input:disabled + label { background: #EBEBEB; border: none; } 
 
@@ -586,5 +590,5 @@ body.custom-new .select-type .check-group input:disabled + label { background: #
 #content .container-wrap .select-type, #content .container-wrap .select-auth, #content .pay-password { position: relative; } 
 #content .pay-password { width: 100%; display: flex; align-items: center; border-bottom: 1px solid #ebebeb; } 
 #content .pay-password .reg-number-wrap, #content .pay-password input[type="password"] { height: 100%; } 
-#content .container-wrap .select-type::after, #content .container-wrap .select-auth::after, #content .pay-password::after { content: ''; width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: -1; } 
+/* #content .container-wrap .select-type::after, #content .container-wrap .select-auth::after, #content .pay-password::after { content: ''; width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: -1; }  */
 #content.next .container-wrap .select-type::after, #content.next .container-wrap .select-auth::after, #content.next .pay-password::after { z-index: 10; } 

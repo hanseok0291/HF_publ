@@ -551,8 +551,8 @@
   <script>
     $(document).ready(function () {
       $(".check-type-sub").show();
-      var botHegiht = $(".bottom-area").outerHeight();
-      setTimeout(() => {
+      var botHeight = $(".bottom-area").outerHeight();
+      setTimeout(function () {
         $(".check-type-sub").hide();
       }, 0);
     });
@@ -572,10 +572,10 @@
     var checkbox3 = document.getElementById("checkbox_agree03");
     var subCheckBoxes = document.querySelectorAll(".checkbox_agree_set");
 
-    subCheckBoxes.forEach(function (checkbox) {
+    Array.prototype.forEach.call(subCheckBoxes, function (checkbox) {
       checkbox.addEventListener("change", function () {
         // 모든 체크박스가 선택되었는지 확인합니다.
-        const allChecked = [...subCheckBoxes].every(function (checkbox) {
+        var allChecked = Array.prototype.every.call(subCheckBoxes, function (checkbox) {
           return checkbox.checked;
         });
 
@@ -589,71 +589,23 @@
       checkboxAll.checked = allSubCheckboxesChecked();
     }
 
-    // checkboxAll.addEventListener('change', function () {
-    // 	if (!this.checked) {
-    // 		checkbox1.checked = false;
-    // 		checkbox2.checked = false;
-    // 		checkbox3.checked = false;
-    // 	} else if (this.checked) {
-    // 		checkbox1.checked = true;
-    // 		checkbox2.checked = true;
-    // 		checkbox3.checked = true;
-    // 	}
-    // });
-
-    // checkbox1.addEventListener('change', function () {
-    // 	if (!this.checked) {
-    // 		checkboxAll.checked = false;
-    // 		checkbox2.checked = false;
-    // 		checkbox3.checked = false;
-    // 	} else if (this.checked) {
-    // 		checkboxAll.checked = true;
-    // 		checkbox2.checked = true;
-    // 		checkbox3.checked = true;
-    // 	}
-    // });
-
-    // checkbox2.addEventListener('change', function () {
-    // 	if (!this.checked) {
-    // 		checkboxAll.checked = false;
-    // 		checkbox3.checked = false;
-    // 	} else if (this.checked) {
-    // 		checkbox3.checked = true;
-    // 		if (checkbox1.checked) {
-    // 			checkboxAll.checked = true;
-    // 		}
-    // 	}
-    // });
-
-    // checkbox3.addEventListener('change', function () {
-    // 	if (!this.checked) {
-    // 		checkboxAll.checked = false;
-    // 		checkbox2.checked = false;
-    // 	} else if (this.checked) {
-    // 		checkbox2.checked = true;
-    // 		if (checkbox1.checked) {
-    // 			checkboxAll.checked = true;
-    // 		}
-    // 	}
-    // });
-
     document.addEventListener("DOMContentLoaded", function () {
       function setupCheckboxSync(allCheckboxId, checkboxesName) {
-        const allCheckbox = document.getElementById(allCheckboxId);
-        const checkboxes = document.querySelectorAll(`input[name="${checkboxesName}"]`);
+        var allCheckbox = document.getElementById(allCheckboxId);
+        var checkboxes = document.querySelectorAll('input[name="' + checkboxesName + '"]');
 
         allCheckbox.addEventListener("change", function () {
-          checkboxes.forEach(function (checkbox) {
+          Array.prototype.forEach.call(checkboxes, function (checkbox) {
             checkbox.checked = allCheckbox.checked;
           });
         });
 
-        checkboxes.forEach(function (checkbox) {
+        Array.prototype.forEach.call(checkboxes, function (checkbox) {
           checkbox.addEventListener("change", function () {
             if (!checkbox.checked) {
               allCheckbox.checked = false;
             } else {
-              const allChecked = Array.from(checkboxes).every(function (checkbox) {
+              var allChecked = Array.prototype.every.call(checkboxes, function (checkbox) {
                 return checkbox.checked;
               });
               allCheckbox.checked = allChecked;

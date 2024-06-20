@@ -35,7 +35,7 @@ const ModalEnterType2 = ({ show, onClose }) => {
                   className={`${styleApply.checkbox} ${styleApply.parents}`}
                 >
                   <input type="checkbox" name="agreeAll" id="agreeAll_01" />
-                  <label for="agreeAll_01">전체 동의</label>
+                  <label htmlFor="agreeAll_01">전체 동의</label>
                 </span>
               </div>
               <div className={`${styleApply.agreeAll}`}>
@@ -43,7 +43,7 @@ const ModalEnterType2 = ({ show, onClose }) => {
                   className={`${styleApply.checkbox} ${styleApply.parents}`}
                 >
                   <input type="checkbox" name="agreeAll" id="agreeAll_02" />
-                  <label for="agreeAll_02">서비스 이용 약관</label>
+                  <label htmlFor="agreeAll_02">서비스 이용 약관</label>
                 </span>
               </div>
               <ul className={`${styleApply.agreeList}`}>
@@ -52,7 +52,7 @@ const ModalEnterType2 = ({ show, onClose }) => {
                     className={`${styleApply.checkbox} ${styleApply.child}`}
                   >
                     <input type="checkbox" name="agree_01" id="agree_02_01" />
-                    <label for="agree_02_01">(필수) 기프티몰 이용약관</label>
+                    <label htmlFor="agree_02_01">(필수) 기프티몰 이용약관</label>
 
                     <button
                       type="button"
@@ -70,7 +70,7 @@ const ModalEnterType2 = ({ show, onClose }) => {
                     className={`${styleApply.checkbox} ${styleApply.child}`}
                   >
                     <input type="checkbox" name="agree_01" id="agree_02_02" />
-                    <label for="agree_02_02">
+                    <label htmlFor="agree_02_02">
                       (필수) 개인정보 수집 이용 동의
                     </label>
 
@@ -90,7 +90,7 @@ const ModalEnterType2 = ({ show, onClose }) => {
                     className={`${styleApply.checkbox} ${styleApply.child}`}
                   >
                     <input type="checkbox" name="agree_01" id="agree_02_03" />
-                    <label for="agree_02_03">(선택) 마케팅 정보 수신</label>
+                    <label htmlFor="agree_02_03">(선택) 마케팅 정보 수신</label>
 
                     <button
                       type="button"
@@ -110,7 +110,7 @@ const ModalEnterType2 = ({ show, onClose }) => {
                   className={`${styleApply.checkbox} ${styleApply.parents}`}
                 >
                   <input type="checkbox" name="agreeAll" id="agreeAll_03" />
-                  <label for="agreeAll_03">본인 확인 이용 약관</label>
+                  <label htmlFor="agreeAll_03">본인 확인 이용 약관</label>
                 </span>
               </div>
               <ul className={`${styleApply.agreeList}`}>
@@ -119,7 +119,7 @@ const ModalEnterType2 = ({ show, onClose }) => {
                     className={`${styleApply.checkbox} ${styleApply.child}`}
                   >
                     <input type="checkbox" name="agree_01" id="agree_03_01" />
-                    <label for="agree_03_01">(필수) 핫딜 서비스 이용약관</label>
+                    <label htmlFor="agree_03_01">(필수) 핫딜 서비스 이용약관</label>
 
                     <button
                       type="button"
@@ -137,7 +137,7 @@ const ModalEnterType2 = ({ show, onClose }) => {
                     className={`${styleApply.checkbox} ${styleApply.child}`}
                   >
                     <input type="checkbox" name="agree_01" id="agree_03_02" />
-                    <label for="agree_03_02">
+                    <label htmlFor="agree_03_02">
                       (필수) 개인정보 수집·이용 동의
                     </label>
 

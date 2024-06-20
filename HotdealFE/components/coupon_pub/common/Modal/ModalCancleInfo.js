@@ -6,7 +6,7 @@ import styleModal from "../../../../styles/coupon_pub/Modal.module.css";
 import styleFilter from "../../../../styles/common/DefaultModal.module.css";
 import styleRecent from "../../../../styles/coupon_pub/Recent.module.css";
 
-const ModalAlert = ({ title, cancle = "취소", confirm = "확인", content }) => {
+const ModalCancleInfo = ({ title, cancle = "취소", confirm = "확인", content }) => {
   return (
     <>
       <div
@@ -55,4 +55,4 @@ const ModalAlert = ({ title, cancle = "취소", confirm = "확인", content }) =
   );
 };
 
-export default ModalAlert;
+export default ModalCancleInfo;

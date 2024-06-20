@@ -7,12 +7,12 @@
 
 /* common */
 .modal { position: fixed; top: 0; left: 0; z-index: 999; padding: 0 20px; width: 100%; min-width: 280px; height: 100%; overflow-x: hidden; overflow-y: hidden; } 
-.modalDialog { position: fixed; left: 0; bottom: 0; width: 100%; min-width: 280px; max-width: 700px; overflow: hidden; background-color: #fff; border-radius: 16px 16px 0 0; } 
+.modalDialog { position: fixed; left: 0; bottom: 0; width: 100%; min-width: 280px; max-width: 700px; overflow: hidden; background-color: #fff; border-radius: 20px 20px 0 0; } 
 .modalContent { background-color: #fff; width: 100%; } 
-.modalHeader { position: relative; padding: 20px 20px 0; height: 58px; background-color: #fff; } 
-.modalTitle { font-size: 16px; line-height: 58px; } 
+.modalHeader { display: flex; align-items: center; justify-content: space-between; position: relative; padding: 0 20px; height: 68px; background-color: #fff; } 
+.modalTitle { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 0; font-size: 16px; line-height: 68px; } 
 .modalTitleSub { margin-top: 11px; font-size: 15px; line-height: 20px; color: #575757; } 
-.modalHeader .btnClose { position: absolute; top: -4px; right: -4px; width: 28px; height: 28px; background: url(../../public/images/coupon/icon/common/icon-close.svg) no-repeat center / 28px; font-size: 0; z-index: 10; } 
+.modalHeader .btnClose { width: 24px; height: 24px; background: url(../../public/images/coupon/icon/common/icon-close.svg) no-repeat center / 24px; font-size: 0; z-index: 10; } 
 .modalHeader .logo010 { width: 31px; height: 12px; vertical-align: 0; } 
 .modalBody { padding: 0 20px 0; font-size: 16px; } 
 .modalBody.bgWhite { background-color: #fff; } 
@@ -29,26 +29,32 @@
 
 /* 공통 모달(alert, confirm) */
 .modalCommon .modalHeader { padding: 0 30px; } 
-.modalCommon .modalTitle { border-bottom: 1px solid #f1f1f1; } 
 .modalCommon .modalTitleLine { line-height: 1; } 
 .modalCommon .underBarTitle { padding-top: 30px; padding-bottom: 17px; line-height: 1; font-size: 18px; border-bottom: 1px solid #f1f1f1; } 
 .modalCommon .modalBody { padding: 30px 30px 25px; } 
 .modalCommon .modalBody .subTitle { margin-bottom: 10px; font-size: 18px; line-height: 21px; } 
-.modalCommon .modalDialog { top: 50%; left: 50%; transform: translate(-50%, -50%); width: calc(100% - 40px); max-width: 335px; height: fit-content; border-radius: 16px; animation: modalOpen 0.2s backwards; } 
+.modalCommon .modalDialog { top: 50%; left: 50%; transform: translate(-50%, -50%); width: calc(100% - 40px); max-width: 335px; height: fit-content; border-radius: 20px; animation: modalOpen 0.2s backwards; } 
 .modalCommon .modalContent { padding: 0; height: auto; } 
 .modalCommon .modalFooter { overflow: hidden; padding: 0; } 
 .modalCommon .modalFooter .btn { display: inline-block; padding: 0 30px; width: 50%; height: 70px; border-radius: 0; background-color: #fff; font-size: 18px; line-height: 70px; } 
 .modalCommon .modalFooter .btnCancel { float: left; color: #575757; font-weight: 400; text-align: left; } 
 .modalCommon .modalFooter .btnConfirm { float: right; font-weight: 700; color: #151515; text-align: right; } 
-
-.modalCommon.limitedSale .modalBody { padding: 40px 0 30px; text-align: center; } 
-.modalCommon.limitedSale .modalBody h2 { font-size: 24px; line-height: 26px; } 
-.modalCommon.limitedSale .modalBody h2 em { z-index: 1; position: relative; } 
+.modalCommon.limitedSale .modalBody::before { display: block; content: ""; width: 70px; height: 70px; margin: 0 auto 16px; background: url(../../public/images/coupon/icon/common/icon-fail.png) 0 0 / cover no-repeat; }
+.modalCommon.limitedSale .modalBody { padding: 24px 0 20px; text-align: center; } 
+.modalCommon.limitedSale .modalBody h2 { font-size: 18px; line-height: 135%; } 
 .modalCommon.limitedSale .modalBody h2 em::after { z-index: -1; position: absolute; left: 0; bottom: 0; content: ""; width: 100%; height: 14px; background-color: #E6FF00; } 
-.modalCommon.limitedSale .modalBody p { margin-top: 15px; font-size: 17px; line-height: 19px; letter-spacing: -0.033em; } 
-.modalCommon.limitedSale .modalFooter button { display: block; float: none; width: calc(100% - 40px); height: auto; margin: auto; padding: 15px 0 22px; text-align: center; line-height: 20px; font-weight: 500; font-size: 17px; color: #575757; } 
-.modalCommon.limitedSale .modalFooter button.background { height: 55px; line-height: 23px; background: #151515; color: #fff; font-weight: 700; border-radius: 12px; font-size: 18px; } 
+.modalCommon.limitedSale .modalBody p { margin-top: 8px; font-size: 15px; line-height: 140%; } 
+.modalCommon.limitedSale .modalFooter { padding-bottom: 16px; }
+.modalCommon.limitedSale .modalFooter button { display: block; float: none; width: calc(100% - 40px); height: 48px; margin: auto; text-align: center; line-height: 48px; font-weight: 400; font-size: 16px; color: #7d7d7d; } 
+.modalCommon.limitedSale .modalFooter button.background { height: 54px; margin-bottom: 8px; line-height: 54px; background: #151515; color: #fff; font-weight: 700; border-radius: 12px; font-size: 16px; } 
 
+/*  */
+.modalCommon.alert .modalDialog .modalContent { display: flex; flex-wrap: wrap; flex-direction: column; min-height: 174px; padding: 30px 30px 16px; }
+.modalCommon.alert .modalDialog .modalContent .modalHeader { height: auto; padding: 0; line-height: 1; }
+.modalCommon.alert .modalDialog .modalContent .modalHeader .modalTitle { height: auto; margin-bottom: 8px; font-size: 18px; line-height: 135%; }
+.modalCommon.alert .modalDialog .modalContent .modalBody { height: auto; padding: 0; line-height: 135%; }
+.modalCommon.alert .modalDialog .modalContent .modalFooter { height: 48px; margin-top: auto; }
+.modalCommon.alert .modalDialog .modalContent .modalFooter .btn { height: 48px; padding: 0; line-height: 48px; }
 
 /* 당첨 결과 */
 .modalResult .modalBody { position: relative; line-height: 1.2; } 
@@ -159,26 +165,17 @@
 .modalInfoBox .title { font-size: 14px; font-weight: 500; color: #0c0c0c; } 
 .modalInfoBox .money { font-size: 19px; font-weight: 700; color: #0c0c0c; } */
 
-.modalCommon.modalMessage .modalDialog {max-width: 300px;}
+.modalCommon.modalMessage .modalDialog { max-width: 300px; } 
 .modalMessage .modalHeader, .modalMessage .modalContent, .modalMessage .modalFooter { background-color: #F8F3C1; } 
 .modalMessage .modalHeader { height: 30px; } 
-.modalMessage .modalHeader .btnClose { top: 20px; right: 10px; } 
+.modalMessage .modalHeader .btnClose { position: absolute; top: 20px; right: 10px; } 
 .modalMessage .modalBody { box-sizing: border-box; padding: 140px 16px 20px; text-align: center; background-image: url("../../public/images/coupon/bg/bg-foryou-v2.png"); background-repeat: no-repeat; background-size: auto 135px; background-position: center 0px; } 
 .modalBody .toText, .modalBody .fromText { font-size: 14px; color: #151515; font-weight: 700; line-height: 19px; } 
 .modalBody .toText { text-align: left; font-size: 14px; line-height: 19px; } 
 .modalBody .fromText { text-align: right; } 
 .modalBody .messageBox { padding: 18px 15px; border-radius: 10px; font-size: 15px; line-height: 19px; text-align: left; word-break: break-all; background-color: #fff; } 
-.modalBody .messageBox .modalText {color: #575757;
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 19px;
-margin: 4px 0;}
+.modalBody .messageBox .modalText { color: #575757;font-size: 14px;font-style: normal;font-weight: 400;line-height: 19px;margin: 4px 0; } 
 
-.cancleTable { margin-top: 15px; padding: 20px 15px; font-size: 13px; background-color: #f9f9f9; border-radius: 5px; } 
-.cancleTable .cancleTableLine { width: 100%; height: 1.5px; margin: 12px 0 17px; background-color: #dcdcdc; } 
-.cancleTable .cancleTableRow { display: flex; justify-content: space-between; line-height: 22px; } 
-.cancleTable .totalRow { font-size: 16px; font-weight: 700; } 
 
 /* 순번 대기 팝업 */
 .modalWaiting { padding: 0; text-align: center; } 
@@ -204,7 +201,7 @@ margin: 4px 0;}
  }
 
 /* 100원딜 */
-.defaultBtn { width: 100%; height: 55px; background-color: #151515; color: #fff; font-size: 18px; font-weight: bold; border-radius: 10px; } 
+.defaultBtn { width: 100%; height: 55px; background-color: #151515; color: #fff; font-size: 16px; font-weight: bold; border-radius: 12px; } 
 .defaultBtn[disabled] { background-color: #d5d5d5; } 
 .slideCloseBtn { display: block; width: 31px; height: 5px; margin: auto; background-color: #cccccc; border-radius: 3px; } 
 .hundredDeal .modalDialog { border-radius: 18px 18px 0 0; } 
@@ -232,14 +229,13 @@ margin: 4px 0;}
 .bottomSheet .resultWrap .botContent .imgWrap { overflow: hidden; flex: 0 0 auto; width: 125px; height: 125px; background-color: rgba(21,21,21,0.03); border-radius: 50%; } 
 .bottomSheet .resultBtnWrap { padding: 0 20px 20px 20px; background-color: #f1f1f1; } 
 .hundredDealArrival { text-align: center; } 
-.hundredDealArrival .entryTitle { font-size: 24px; } 
+.hundredDealArrival .entryTitle { font-size: 18px; line-height: 1.35; } 
 .hundredDealArrival .entryTitle span { color: #ff6c00; } 
-.hundredDealArrival .entrySubtext { margin-top: 8px; font-size: 17px; line-height: 1.2; } 
-.hundredDealArrival .entrySubtext i { font-style: italic; } 
-.hundredDealArrival .modalContent { padding: 40px 20px 20px; } 
-.hundredDealArrival .modalContent::before { display: block; content: ""; width: 97px; height: 47px; margin: 0 auto 23px; background: url('../../public/images/100deal/coupon-img.png') 0 / cover no-repeat; } 
-.hundredDealArrival .modalContent.modalGet::before { display: block; content: ""; width: 62px; height: 61px; margin: 0 auto 19px; background: url('../../public/images/100deal/get-img.png') 0 / cover no-repeat; } 
-.hundredDealArrival .defaultBtn { margin-top: 26px; } 
+.hundredDealArrival .entrySubtext { margin-top: 8px; font-size: 15px; line-height: 1.4; } 
+.hundredDealArrival .modalContent { padding: 24px; } 
+.hundredDealArrival .modalContent::before { display: block; content: ""; width: 97px; height: 70px; margin: 0 auto 16px; background: url('../../public/images/100deal/coupon-img.png') 0 / cover no-repeat; } 
+.hundredDealArrival .modalContent.modalGet::before { display: block; content: ""; width: 70px; height: 70px; margin: 0 auto 16px; background: url('../../public/images/100deal/get-img-02.png') 0 / cover no-repeat; } 
+.hundredDealArrival .defaultBtn { margin-top: 20px; } 
 .hundredDealArrival .nextBtn { padding-top: 15px; font-size: 17px; color: #575757; } 
 .hundredDealInfo .modalDialog { border-radius: 18px 18px 0 0; } 
 .hundredDealInfo .modalHeader { height: auto; margin-bottom: 30px !important; padding: 16px 0 0; } 
@@ -260,11 +256,11 @@ margin: 4px 0;}
 .hundredDealInfo dl dd p em { position: absolute; top: 46%; right: calc(-100%); transform: translateY(-50%); display: inline-block; height: 15px; padding: 0 6px; border-radius: 7px; font-size: 9px; background-image: linear-gradient(to left, #ff2b00, #ff8000); color: #fff; font-weight: 400; line-height: 15px; text-align: center; } 
 .hundredDealInfo dl dd span { font-size: 12px; color: #575757; } 
 
-.hundredDealReEnter { padding: 0 36px; text-align: center; }
-.hundredDealReEnter .titleText { font-size: 22px; line-height: 26.25px; }
-.hundredDealReEnter .subText { margin-top: 5px; color: #575757; font-size: 16px; line-height: 19px; }
-.hundredDealReEnter .subText::after { display: block; content: ""; width: 90px; height: 88px; margin: 33px auto; background: url(../../public/images/100deal/img-result-fail-02.png) 0 0 / cover no-repeat; }
-.hundredDealReEnter .defaultBtn { margin-bottom: 30px; }
+.hundredDealReEnter { padding: 0 36px; text-align: center; } 
+.hundredDealReEnter .titleText { font-size: 22px; line-height: 26.25px; } 
+.hundredDealReEnter .subText { margin-top: 5px; color: #575757; font-size: 16px; line-height: 19px; } 
+.hundredDealReEnter .subText::after { display: block; content: ""; width: 90px; height: 88px; margin: 33px auto; background: url(../../public/images/100deal/img-result-fail-02.png) 0 0 / cover no-repeat; } 
+.hundredDealReEnter .defaultBtn { margin-bottom: 30px; } 
 
 .addEntry { display: flex; } 
 .addEntry .imgWrap { overflow: hidden; width: 105px; margin-right: 12px; border-radius: 15px; } 
@@ -281,7 +277,9 @@ margin: 4px 0;}
 .addEntry .textWrap .botCon .countBox button.plusBtn { background: url('../../public/images/100deal/icon-plus.png') center / 12px 12px no-repeat; } 
 .addEntry .textWrap .botCon .countBox button.disabled { opacity: 0.5; pointer-events: none; } 
 
-.giftEntry .modalHeader { height: 34px; } 
+.giftEntry .modalHeader { position: static; height: 34px; } 
+.giftEntry .modalHeader .modalTitle { position: static !important; }
+.giftEntry .modalHeader .modalTitle .modalClose { position: absolute; right: 20px; top: 24px; } 
 .giftEntry .modalDialog { border-radius: 18px 18px 0 0; } 
 .giftEntry .modalDialog .modalBody { padding-top: 59px; padding-bottom: 20px; background: url('../../public/images/100deal/giftBox-img.png') center top / 99px 59px no-repeat; } 
 .giftEntry .modalDialog .modalBody h4 { margin-top: 16px; text-align: center; color: #151515; font-size: 24px; } 
@@ -299,6 +297,7 @@ margin: 4px 0;}
 .giftEntry .modalDialog .formWrap .inputWrap .name { width: 133px; margin-right: 6px; } 
 .giftEntry .modalDialog .formWrap .HundredToastError { position: absolute; left: 50%; bottom: -20px; transform: translateX(-50%); text-align: center; width: 100%; height: 25px; } 
 .giftEntry .modalDialog .formWrap .HundredToastError > span { display: inline-block; height: 100%; padding: 0 30px; border: none; border-radius: 13px; color: #fff; font-size: 14px; box-shadow: 0px 10px 30px 0 rgba(27, 27, 27, 0.16); background-color: #ff5533; line-height: 25px; } 
+.giftEntry .defaultBtn { font-size: 18px; }
 
 
 /* 메인 팝업 */
@@ -370,3 +369,19 @@ margin: 4px 0;}
  0% { opacity: 0.5; top: 70%; } 
  100% { opacity: 1; top: 50%; } 
  }
+
+ /* 결제 취소 */
+ .paymentCancle .modalHeader { padding-top: 30px; height: auto; } 
+ .paymentCancle .modalHeader .modalTitle { padding: 0; font-size: 18px; line-height: 135%; }  
+ .paymentCancle .modalBody { padding: 8px 30px 0; } 
+ .paymentCancle .modalBody .subText { line-height: 135%; } 
+ .paymentCancle .modalBody .cancleTable { margin: 16px 0; padding: 20px 15px; font-size: 13px; background-color: #f9f9f9; border-radius: 10px; } 
+ .paymentCancle .modalBody .cancleTable .cancleTableRow:first-child { margin-bottom: 10px; } 
+ .paymentCancle .modalBody .cancleTable .cancleTableRow:nth-child(2) { margin-bottom: 4px; } 
+ .paymentCancle .modalBody .cancleTable .cancleTableLine { width: 100%; height: 1px; margin: 12px 0; background: url(../../public/images/coupon/icon/common/dash-line.png) 0 0 / 100% 1px; } 
+ .paymentCancle .modalBody .cancleTable .cancleTableRow { display: flex; justify-content: space-between; line-height: 16px; } 
+ .paymentCancle .modalBody .cancleTable .textWrap { display: flex; justify-content: flex-end; width: calc(100% - 70px); }
+ .paymentCancle .modalBody .cancleTable .textWrap .leftText { width: 33px; margin-right: 27px; }
+ .paymentCancle .modalBody .cancleTable .totalRow { font-size: 15px; font-weight: 700; line-height: 18px; } 
+ .paymentCancle .modalFooter { display: flex; padding-bottom: 16px; }
+ .paymentCancle .modalFooter .btn { float: none; height: 48px; font-size: 16px; line-height: 1; }

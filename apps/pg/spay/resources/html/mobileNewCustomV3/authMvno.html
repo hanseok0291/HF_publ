@@ -468,27 +468,27 @@
       <span id="popupTitle" class="blink" tabindex="0">통신사 선택 팝업</span>
       <div class="modal-dialog">
         <div class="modal-content">
-          <button type="button" class="btn-close btn-cancel" data-toggle="modal" aria-label="닫기"></button>
+          <button type="button" class="btn-close btn-cancel" aria-label="닫기"></button>
           <div class="modal-body">
             <div class="container">
-              <ul class="select-list">
-                <li>
-                  <button type="button" aria-label="SKT" aria-pressed="false">SKT</button>
+              <ul class="select-list" role="listbox">
+                <li class="bold" role="none">
+                  <button type="button" role="option" aria-label="SKT 버튼 선택됨" aria-pressed="false">SKT</button>
                 </li>
-                <li>
-                  <button type="button" aria-label="KT" aria-pressed="false">KT</button>
+                <li role="none">
+                  <button type="button" role="option" aria-label="KT 버튼" aria-pressed="false">KT</button>
                 </li>
-                <li>
-                  <button type="button" aria-label="LG U+" aria-pressed="false">LG U+</button>
+                <li role="none">
+                  <button type="button" role="option" aria-label="LG U+ 버튼" aria-pressed="false">LG U+</button>
                 </li>
-                <li>
-                  <button type="button" aria-label="KCT" aria-pressed="false">KCT</button>
+                <li role="none">
+                  <button type="button" role="option" aria-label="KCT 버튼" aria-pressed="false">KCT</button>
                 </li>
-                <li>
-                  <button type="button" aria-label="SK7mobile" aria-pressed="false">SK7mobile</button>
+                <li role="none">
+                  <button type="button" role="option" aria-label="SK7mobile 버튼" aria-pressed="false">SK7mobile</button>
                 </li>
-                <li>
-                  <button type="button" aria-label="헬로모바일" aria-pressed="false">헬로모바일</button>
+                <li role="none">
+                  <button type="button" role="option" aria-label="헬로모바일 버튼" aria-pressed="false">헬로모바일</button>
                 </li>
               </ul>
             </div>
@@ -603,6 +603,7 @@
       $(".select-input > .select").on("click", function () {
         modalOpenSlide("modalSlide");
       });
+
       $(".select-list li").on("click", function () {
         // 클릭한 li 요소의 텍스트 값을 가져옴
         var selectedText = $(this).text();
@@ -618,26 +619,14 @@
           $(".tab2 .skt").show();
           $("#authTypePass").prop("disabled", false);
           $("#authTypeEasy").prop("disabled", false);
-          $(".mvno-wrap").hide();
-          $(".step2 .mvno-wrap").show();
         } else if (selectedText === "헬로모바일") {
           $.alertMessage("", "LG U+망 고객은 LG U+를 선택한 후<br>이용을 부탁드립니다.", $("#commonAlert"));
           $("#authTypePass").prop("disabled", true);
           $("#authTypeSms").prop("checked", true);
           $("#authTypeEasy").prop("disabled", true);
-          $(".mvno-wrap").show();
-          $(".step2 .mvno-wrap").hide();
-        } else if (selectedText === "KCT" || selectedText === "SK7mobile") {
-          $("#authTypePass").prop("disabled", true);
-          $("#authTypeSms").prop("checked", true);
-          $("#authTypeEasy").prop("disabled", true);
-          $(".mvno-wrap").show();
-          $(".step2 .mvno-wrap").hide();
         } else {
           // 다른 옵션이 선택되었을 때
           $(".tab2 .skt").hide();
-          $(".mvno-wrap").hide();
-          $(".step2 .mvno-wrap").show();
           $("#authTypePass").prop("disabled", false);
           $("#authTypeEasy").prop("disabled", false);
         }
@@ -652,6 +641,18 @@
         $("body").removeClass("modal-open");
         $("#wrap").css("top", 0);
         $("#wrap").css("position", "relative");
+
+        // 모든 버튼의 aria-label을 초기화
+        $(".select-list li button").each(function () {
+          var defaultText = $(this).text();
+          $(this).attr("aria-label", defaultText + "버튼");
+          // $(this).attr("aria-pressed", "false");
+        });
+        // 선택된 버튼의 aria-label 업데이트
+        $(this)
+          .children("button")
+          .attr("aria-label", selectedText + " 버튼 선택됨");
+        // $(this).children("button").attr("aria-pressed", "true");
       });
     </script>
   </body>

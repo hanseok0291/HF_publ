@@ -58,8 +58,8 @@ const Home = ({case1, case2}) => {
   const reviews = [
     { 
       avatar: "img1",
-      reviewer: "010PAY 회원 김*리 (4914)",
-      content: ["로또 좋아하시면 추천!", "4주 만에 10,355원 당첨"]
+      reviewer: "010PAY 회원 곽*규",
+      content: ["리또 10번 이상 당첨!", "랭킹 100만원까지 감사합니다."]
     },
     { 
       avatar: "img2",
@@ -69,7 +69,7 @@ const Home = ({case1, case2}) => {
     { 
       avatar: "img3",
       reviewer: "블로거 킴*",
-      content: ["리또 6장밖에 없는데", "보너스 당첨됐어요!"]
+      content: ["매주 리또 5장 받는데", "한 달 동안 2번 당첨됐어요!"]
     },
     { 
       avatar: "img4",

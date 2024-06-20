@@ -211,11 +211,11 @@ const index = () => {
               </li>
               <li>
                 <div className={styleRettoTip.textWrap}>
-                  <p className={styleRettoTip.name}>블로거 킴*</p>
+                  <p className={styleRettoTip.name}>블로거 길*</p>
                   <p className={styleRettoTip.mainText}>
-                    <span>매주 리또 5장으로도 <br />
-                    5월 보너스 당첨 2번!</span> <br />
-                    꾸준히 하면 더 당첨확률 올라갈듯
+                    리또가 쌓일수록 <br />
+                    당첨 기대감 급상승 중! <br />
+                    <span>웬만한 재테크보다 수익률 좋아요</span>
                   </p>
                 </div>
                 <div className={styleRettoTip.imgWrap}></div>
@@ -236,8 +236,8 @@ const index = () => {
                   <p className={styleRettoTip.name}>블로거 이*</p>
                   <p className={styleRettoTip.mainText}>
                     앱만 설치하면 누구나 쉽게 받는 <br />
-                    리또! <span>추가로 받는 보너스도 <br />
-                    다양해서 활용도가 너무 좋아요</span>
+                    리또! <span>100원딜, 기프티콘까지 <br />
+                    추가 혜택도 좋아요~</span>
                   </p>
                 </div>
                 <div className={styleRettoTip.imgWrap}></div>

@@ -12,7 +12,7 @@ const DrawInfo = ({case1, case2, case3, case4, case5, case6, case7, case8 = fals
   const results = {
     win : {
       winState: true,
-      size: 3,
+      size: 4,
       list: [
         {
           grade: '1등',
@@ -37,8 +37,8 @@ const DrawInfo = ({case1, case2, case3, case4, case5, case6, case7, case8 = fals
           isBottom: [true, 'type2']
         },
         {
-          grade: '보너스',
-          money: '40원',
+          grade: '4등',
+          money: '리또 30개',
           jewel: 'diamond',
           number: [1, 6, 25, 29, 40, 43],
           info: [
@@ -48,8 +48,8 @@ const DrawInfo = ({case1, case2, case3, case4, case5, case6, case7, case8 = fals
           isBottom: [true, 'type3']
         },
         {
-          grade: '보너스',
-          money: '100원',
+          grade: '5등',
+          money: '리또 3개',
           jewel: 'diamond',
           number: [1, 6, 25, 29, 40, 43],
           info: [
@@ -134,7 +134,7 @@ const DrawInfo = ({case1, case2, case3, case4, case5, case6, case7, case8 = fals
     let nums = new Set();
     let numsArray;
     while (nums.size < 8) {
-        nums.add(Math.floor(Math.random() * 45) + 1);
+      nums.add(Math.floor(Math.random() * 45) + 1);
     }
     numsArray = Array.from(nums).sort((a,b) => a - b);
     return numsArray;
@@ -450,7 +450,7 @@ const ResultListItem = ({list, winState}) => {
                 <div className={styleRettoList.buttonWrap}>
                   {isBottom[1] === 'type1' && <button type='button'>당첨금 받기</button> }
                   {isBottom[1] === 'type2' && <p className={styleRettoList.ing}>수령 신청을 완료했어요! 곧 만나요~</p> }
-                  {isBottom[1] === 'type3' && <p className={styleRettoList.complete}>당첨금을 찾아갔어요!</p> }
+                  {isBottom[1] === 'type3' && <p className={styleRettoList.complete}>당첨 리워드를 받았어요!</p> }
                   {isBottom[1] === 'type4' && <p className={styleRettoList.fail}>수령 기한이 끝났어요.</p> }
                 </div>
               }

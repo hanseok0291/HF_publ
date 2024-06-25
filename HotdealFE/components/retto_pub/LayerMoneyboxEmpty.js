@@ -34,11 +34,11 @@ const LayerMoneyboxEmpty = () => {
               </h4>
               <ul className={styleMoneyboxEmpty.box1}>
                 <li>
-                  <b>50만 명+</b>
+                  <b>60만 명+</b>
                   <p>리또 고객</p>
                 </li>
                 <li>
-                  <b>1.5만 명+</b>
+                  <b>2.5만 명+</b>
                   <p>누적 당첨자</p>
                 </li>
                 <li>

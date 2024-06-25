@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 // Import Swiper React components
 import SwiperCore, { Controller } from 'swiper';
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -16,12 +16,19 @@ function TimeSale(props) {
   const swiper1 = useRef(null);
   const swiper2 = useRef(null);
 
+  useEffect(() => {
+    if (swiper1.current && swiper2.current) {
+      swiper1.current.controller.control = swiper2.current;
+      swiper2.current.controller.control = swiper1.current;
+    }
+  }, []);
+
   return (
     <>
-			<div
-					className={`${styleSwiper.SwiperWrap} ${styleSwiper.timeSale}`}
-          style={{paddingTop: props.paddingTop, paddingBottom: props.paddingBottom, backgroundColor: props.bgColor}}
-				>
+      <div
+        className={`${styleSwiper.SwiperWrap} ${styleSwiper.timeSale}`}
+        style={{paddingTop: props.paddingTop, paddingBottom: props.paddingBottom, backgroundColor: props.bgColor}}
+      >
         <div>
           <div className={styleSwiper.SwiperTitleWrap}>
             <h2
@@ -43,7 +50,6 @@ function TimeSale(props) {
               slidesOffsetAfter={40}
               className={styleSwiper.sm}
               onSwiper={(swiper) => (swiper1.current = swiper)}
-              controller={{ control: swiper2.current }}
             >
               {props.listItem.map((item, idx) => {
                 return (
@@ -62,7 +68,6 @@ function TimeSale(props) {
               slidesOffsetAfter={40}
               className={styleSwiper.sm}
               onSwiper={(swiper) => (swiper2.current = swiper)}
-              controller={{ control: swiper1.current }}
             >
               {props.listItem.map((item, idx) => {
                 return (

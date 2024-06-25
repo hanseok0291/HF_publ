@@ -41,7 +41,7 @@ const CouponListItem = (
           <p className={styleCouponList.infoProduct}>{infoProduct}</p>
           <div className={`${styleCouponList.infoPriceWrap} ${saving && styleCouponList.saving}`}>
             {infoPrice && <p className={styleCouponList.infoPrice}>{infoPrice}원</p>}
-            <p className={`${styleCouponList.infoDcPrice}`}>
+            <p className={`${styleCouponList.infoDcPrice} ${styleSwiper.infoDcPrice}`}>
               {infoDcPercent && (
                 <span className={styleCouponList.infoDcPercent}>
                   {infoDcPercent}

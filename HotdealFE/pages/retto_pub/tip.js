@@ -76,7 +76,7 @@ const index = () => {
                 <div className={styleRettoTip.imgWrap}></div>
                 <div className={styleRettoTip.textWrap}>
                   <p className={styleRettoTip.target}>리또 고객</p>
-                  <p className={styleRettoTip.people}>50만 명+</p>
+                  <p className={styleRettoTip.people}>60만 명+</p>
                   <p className={styleRettoTip.info}>*24년 5월 기준 누적 리또 지급 고객 수</p>
                 </div>
               </li>
@@ -84,7 +84,7 @@ const index = () => {
                 <div className={styleRettoTip.imgWrap}></div>
                 <div className={styleRettoTip.textWrap}>
                   <p className={styleRettoTip.target}>리또 당첨자</p>
-                  <p className={styleRettoTip.people}>1.5만 명+</p>
+                  <p className={styleRettoTip.people}>2.5만 명+</p>
                   <p className={styleRettoTip.info}>*24년 5월 기준 누적 리또 당첨자 수</p>
                 </div>
               </li>

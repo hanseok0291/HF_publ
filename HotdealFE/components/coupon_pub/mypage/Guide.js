@@ -24,7 +24,7 @@ const Guide = () => {
         </ul>
         <div className={`${styleGuide.csList}`}>
           <div className={`${styleCommon.container}`}>
-            <h3 className={`${styleGuide.csTitle}`}>전화 문의</h3>
+            <h3 className={`${styleGuide.csTitle}`}>문의하기</h3>
             <p className={`${styleGuide.csDesc}`}>
               <span className={`${styleGuide.title}`}>운영시간</span> 평일 09:00
               ~ 18:00(주말 · 공휴일 휴무)
@@ -34,20 +34,24 @@ const Guide = () => {
               style={{ display: "block" }}
             >
               <p className={`${styleGuide.box}`}>
-                <a href="tel:16005220">
+                <div className={styleGuide.textWrap}>
                   <span className={`${styleGuide.title}`}>
                     결제 · 취소 문의
                   </span>
+                  <a href="#" className={styleGuide.kakaoBtn}>상담하기</a>
+                </div>
+                <a href="tel:16005220" className={styleGuide.telBtn}>
                   <span className={`${styleGuide.desc}`}>
+                    <span className={`${styleGuide.olopay}`}></span>
                     1600-5220
                   </span>
                 </a>
               </p>
               <p className={`${styleGuide.box}`}>
-                <a href="tel:16005220">
-                  <span className={`${styleGuide.title}`}>
-                    사용 · 환불 문의
-                  </span>
+                <span className={`${styleGuide.title}`}>
+                  사용 · 환불 문의
+                </span>
+                <a href="tel:16005220" className={styleGuide.telBtn}>
                   <span className={`${styleGuide.desc}`}>
                     <span className={`${styleGuide.ktAlpha}`}></span>
                     1588-6474

@@ -289,7 +289,7 @@
         <section class="section first-section">
           <div class="container">
             <div class="content-wrap">
-              <div class="jewel-img mo-view add-ani" delay="0.4"></div>
+              <span class="jewel-img add-ani" delay="0.4"></span>
               <div class="content-box add-ani" delay="0.6">
                 <p class="text-1">
                   오직 010PAY만의 <br class="mo-view" />특별한 리워드 로또!
@@ -332,7 +332,7 @@
                       <p class="box-img"></p>
                       <div class="m-box">
                         <p class="big-tit">
-                          1.5만 명 <span class="arrowUp"></span>
+                          2.5만 명 <span class="arrowUp"></span>
                         </p>
                         <p class="small-tit">누적 당첨자 수</p>
                         <p class="small-text">24년 6월 기준 누적</p>
@@ -562,7 +562,7 @@
                     </ul>
                   </div>
                 </div>
-                <div class="box box5 add-ani" delay="0.6">
+                <div class="box box5 add-ani" delay="0.8">
                   <div class="title-wrap">
                     <p class="box-tit">리또 당첨금</p>
                     <p class="box-info-text">
@@ -876,19 +876,23 @@
           }
 
           // Handle fixed-title-02
-          var section2FadeStart = section1Top + section1Height - 150; // Start fading in after fixed-title-01 fades out
-          var section2FadeEnd = section2Top + section2Height * 0.7; // Fade out at 70%
+          var section2FadeStart = section2Top - 200; // Start fading in at 40% of section2
+          var section2FadeEnd = section2Top + section2Height * 0.5; // Start fading out at 70% of section2
+          var section2CompleteEnd = section2Top + section2Height; // End of section2
 
           if (scrollY >= section2FadeStart && scrollY <= section2FadeEnd) {
-            var percentage2 =
-              (scrollY - section2FadeStart) / (section2Height * 0.1);
-            var opacity2 = Math.min(1, Math.max(0.2, percentage2));
-            innerBg2.css({ opacity: opacity2 });
-            fixedTitle2.css({ opacity: opacity2 });
+              var percentage2 = (scrollY - section2FadeStart) / (section2Height * 0.3);
+              var opacity2 = Math.min(1, Math.max(0.3, percentage2)); // Start opacity from 0.3
+              fixedTitle2.css({"opacity": opacity2});
+              innerBg2.css({ opacity: opacity2 });
           } else if (scrollY < section2FadeStart) {
-            fixedTitle2.css({ opacity: 0 });
-          } else if (scrollY > section2FadeEnd) {
-            // fixedTitle2.css({"opacity": 0});
+              fixedTitle2.css({"opacity": 0});
+          } else if (scrollY > section2FadeEnd && scrollY <= section2CompleteEnd) {
+              var percentage2End = (scrollY - section2FadeEnd) / (section2Height * 0.3);
+              var opacity2End = Math.min(1, Math.max(0, 1 - percentage2End)); // Fade out to 0
+              fixedTitle2.css({"opacity": opacity2End});
+          } else if (scrollY > section2CompleteEnd) {
+              // fixedTitle2.css({"opacity": 0});
           }
         }
         // Handle background opacity for sectionBg
@@ -940,17 +944,21 @@
       // slide
       var secondSlide = new Swiper(".second-section-slide", {
         speed: 1000,
-        // autoplay: {
-        //   delay: 0,
-        //   disableOnInteraction: false,
-        // },
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
         loopAdditionalSlides: 3,
         spaceBetween: 20,
         loop: true,
         slidesPerView: 1,
         breakpoints: {
-          speed: 3000,
           767: {
+            autoplay: {
+              delay: 0,
+              disableOnInteraction: false,
+            },
+            speed: 3000,
             slidesPerView: 4,
           },
         },

@@ -381,7 +381,7 @@
                         <dl class="count none">
                           <dt>혜택</dt>
                           <dd>쿠팡 이용 금액의 7% 010PAY 포인트 적립<br /><span class="small">(쿠팡 이용금액 월 20만원 한도)</span></dd>
-                          <dd>이용월의 익월 20영업일 내 일괄 적립</dd>
+                          <dd>이용월의 익월 10영업일 내 일괄 적립</dd>
                         </dl>
                         <div class="txt-bottom">자세한 내용은 아래 <a href="#" class="info_txt info_txt2">유의사항</a>을 확인해 주세요!</div>
                       </div>
@@ -986,7 +986,7 @@
                         <li>상품권/선불카드(선불전자 지급수단) 구매 및 충전 이용금액은 제외됩니다.</li>
                         <li>쿠팡 이용 금액 월 합산 20만원까지 혜택이 적용됩니다.</li>
                         <li>쿠팡 이용 금액은 쿠폰 적용 금액이나 쿠팡 포인트 사용 금액 등을 제외한 실제 카드 이용 금액 기준으로, <br class="pc-view" />일시불과 할부 금액이 모두 포함됩니다.</li>
-                        <li>해당 프로모션은 매월 참여 가능하며, <br />리워드는 이용월의 익월 20영업일 내 일괄 적립됩니다.</li>
+                        <li>해당 프로모션은 매월 참여 가능하며, <br />리워드는 이용월의 익월 10영업일 내 일괄 적립됩니다.</li>
                         <li>프로모션 기간 전 쿠팡에서 010PAY 우리카드를 이용한 이력이 있을 경우, 프로모션 혜택 대상자에 해당되지 않습니다.</li>
                         <li>프로모션 혜택은 010PAY 포인트로 지급됩니다.</li>
                         <li>010PAY 포인트의 유효기간은 1년이며 이후 자동 소멸됩니다.</li>
@@ -1529,27 +1529,32 @@
         var linkButton = document.querySelector(".mo-link-button");
         var linkButton2 = document.querySelector(".btn_top");
 
-        // Get the element to which you want to add the class
+        // 클래스를 추가할 요소 가져오기
         var targetElement = document.querySelector(".mo-link-button");
         var targetElement2 = document.querySelector(".btn_top");
-        // Add a scroll event listener
+
+        // 스크롤 이벤트 리스너 추가
         window.addEventListener("scroll", function () {
-          // Calculate the distance between the bottom of the page and the bottom of the viewport
+          // 페이지의 맨 아래와 뷰포트의 맨 아래 사이의 거리를 계산
           var distanceToBottom = document.documentElement.scrollHeight - window.innerHeight - window.scrollY;
 
-          // Define a threshold, for example, 50 pixels from the bottom
+          // 예를 들어, 맨 아래에서 50픽셀 이내를 임계값으로 정의
           var threshold = 50;
 
+          // 스크롤 위치가 targetElementFooterTop - targetchk보다 작은 경우
           if (window.scrollY < targetElementFooterTop - targetchk) {
+            // 추가 동작 없음
           } else {
+            // 추가 동작 없음
           }
-          // Check if the distance to the bottom is less than the threshold
+
+          // 맨 아래와의 거리가 임계값보다 작은지 확인
           if (distanceToBottom < threshold) {
-            // Add the class when scrolling to the bottom
+            // 맨 아래로 스크롤할 때 클래스 추가
             targetElement.classList.add("footer-fixed");
             targetElement2.classList.add("footer-fixed");
           } else {
-            // Remove the class if not at the bottom
+            // 맨 아래가 아닐 경우 클래스 제거
             targetElement.classList.remove("footer-fixed");
             targetElement2.classList.remove("footer-fixed");
           }

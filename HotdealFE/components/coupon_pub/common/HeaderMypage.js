@@ -6,7 +6,8 @@ export default function HeaderMypage({
   isShowMypageBtn,
   isShowRegCodeBtn,
   pageTitle,
-  noFixed
+	noFixed,
+	subHeader
 }) {
   return (
     <div

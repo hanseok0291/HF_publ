@@ -97,7 +97,7 @@ $(function () {
       // 하위 선택 체크박스가 모두 체크되지 않은 경우
     } else {
       $(all).prop("checked", false);
-    }
+    } 
   });
 
   // card active

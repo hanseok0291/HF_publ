@@ -28,6 +28,8 @@ document.querySelectorAll(".select-list li").forEach((item) => {
     // 클릭한 li의 텍스트를 rcptIdGb_01 값으로 설정
     selectInput.forEach((input) => {
       input.textContent = selectedText;
+      // 선택된 상태를 나타내는 클래스 추가
+      input.classList.add("selected");
     });
 
     // 기존에 bold 클래스가 추가된 요소가 있으면 제거

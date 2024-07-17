@@ -8,14 +8,15 @@ export default function Header({
   isShowCloseBtn,
   isShowShareBtn,
   pageTitle,
-  noFixed
+	noFixed,
+	subHeader
 }) {
   return (
     <div
-      className={`${styleDefaultLayout.pageHeader} ${styleDefaultLayout.defaultHeader} ${noFixed && styleDefaultLayout.noFixed}`}
+      className={`${styleDefaultLayout.pageHeader} ${styleDefaultLayout.defaultHeader} ${noFixed && styleDefaultLayout.noFixed} ${subHeader && styleDefaultLayout.subHeader}`}
     >
       <div
-        className={`${styleDefaultLayout.container} ${styleCommon.pageHeader}`}
+        className={`${styleDefaultLayout.container} ${styleCommon.pageHeader} ${subHeader && styleCommon.subHeader}`}
       >
         {isShowBackBtn && (
           <button
@@ -25,7 +26,7 @@ export default function Header({
             뒤로가기
           </button>
         )}
-				<h1 className={`${styleDefaultLayout.pageTitle} ${!isShowBackBtn && styleDefaultLayout.pageTitleMain}`}>{pageTitle}</h1>
+				<h1 className={`${styleDefaultLayout.pageTitle} ${subHeader && styleDefaultLayout.subHeader} ${!isShowBackBtn && styleDefaultLayout.pageTitleMain}`}>{pageTitle}</h1>
         
         {isShowCloseBtn && (
           <button

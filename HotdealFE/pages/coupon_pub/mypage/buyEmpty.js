@@ -33,7 +33,8 @@ const Index = () => {
           pageTitle="구매 내역"
           isShowBackBtn={isShowBackBtn}
           isShowSearchBtn={isShowSearchBtn}
-          isShowMypageBtn={isShowMypageBtn}
+					isShowMypageBtn={isShowMypageBtn}
+					subHeader={true}
         />
         <div style={{ paddingTop: "58px" }}>
           <BuyTab tabItem={["전체", "구매 완료", "구매 취소"]}/>

@@ -29,7 +29,8 @@ const Index = () => {
           pageTitle="상세 내역"
           isShowBackBtn={isShowBackBtn}
           isShowSearchBtn={isShowSearchBtn}
-          isShowMypageBtn={isShowMypageBtn}
+					isShowMypageBtn={isShowMypageBtn}
+					subHeader={true}
         />
         <div
           className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap} ${styleDefaultLayout.bottomBtnPadding}`}

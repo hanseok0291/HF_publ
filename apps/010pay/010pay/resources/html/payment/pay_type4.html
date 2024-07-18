@@ -60,17 +60,28 @@
             <div class="section account-info">
               <p class="title">계좌정보</p>
               <div class="round-box">
-                <img src="../../images/bank/logo_090.png" alt="카카오뱅크" /> 카카오뱅크 <em class="number">123</em>
-                <button id="account" type="button" class="btn btn-sm info-chg">계좌변경</button>
+                <button type="button" class="btn-add"><img src="../../images/ico-plus.png" alt="+" /><span class="bank">계좌 등록하기</span></button>
+                <!-- <button id="account" type="button" class="btn btn-sm">계좌변경</button> -->
               </div>
               <div class="checkbox-wrap">
                 <span class="checkbox square">
                   <input type="checkbox" name="checkbox-money" id="checkbox-money" />
                   <label for="checkbox-money">010머니 사용</label>
                 </span>
+                <!-- 즉시할인일때 010머니 사용 미체크시 보여지는 박스 -->
+                <!-- <div id="" class="pay-sec direct-discount">
+                  <div class="bg-gray">
+                    <ul class="form-type">
+                      <li class=""><label class="label color-text-red">즉시할인</label><span class="text-right color-text-red text-bold">-2,000원</span></li>
+                      <li><label class="label">출금 금액</label><span class="text-right text-bold">8,000원</span></li>
+                    </ul>
+                  </div>
+                </div> -->
+                <!-- //즉시할인일때 010머니 사용 미체크시 보여지는 박스 -->
                 <div id="useMoneyWrap" class="pay-sec">
                   <div class="bg-gray">
                     <ul class="form-type">
+                      <li class="direct-discount"><label class="label color-text-red">즉시할인</label><span class="text-right color-text-red text-bold">-2,000원</span></li>
                       <li>
                         <label class="label text-bold">사용 머니</label>
                         <button type="button" class="btn btn-toggle btn-q">?</button>
@@ -100,11 +111,48 @@
             <div class="container pay-wrap">
               <!-- 정보 입력 -->
               <div class="section pay-sec">
-                <ul class="check-type">
+                <ul class="check-type retto accordion-list">
+                  <li class="">
+                    <div class="list-header accordion-title">
+                      <span class="checkbox square">
+                        <input type="checkbox" name="checkbox-all" id="checkbox-all" />
+                        <label for="checkbox-all">결제조건 확인 및 결제정보, 보상 제공 전체 동의 <span class="text-right">(선택포함)</span> </label>
+                      </span>
+                      <button type="button" id="btn-open" class="arrow-toggle"></button>
+                    </div>
+                  </li>
+                  <li class="check-type-sub">
+                    <ul class="check-type depth">
+                      <li>
+                        <span class="checkbox square">
+                          <input type="checkbox" name="checkbox_agree_set" id="checkbox_agree" class="checkbox_agree_set" />
+                          <label for="checkbox_agree">결제 조건 확인 및 결제 정보 제품 동의(필수)</label>
+                        </span>
+                      </li>
+                      <li>
+                        <span class="checkbox square">
+                          <input type="checkbox" name="checkbox_agree_set" id="checkbox_agree02" class="checkbox_agree_set" />
+                          <label for="checkbox_agree02">결제 보상 알림을 위한 개인정보 활용 (선택)</label>
+                        </span>
+                        <span class="right">
+                          <button type="button" id="terms" class="text-link info-chg">보기</button>
+                        </span>
+                      </li>
+                      <li>
+                        <span class="checkbox square">
+                          <input type="checkbox" name="checkbox_agree_set" id="checkbox_agree03" class="checkbox_agree_set" />
+                          <label for="checkbox_agree03">결제 보상 알림을 위한 수신 (선택)</label>
+                        </span>
+                        <span class="right">
+                          <button type="button" id="terms" class="text-link info-chg">보기</button>
+                        </span>
+                      </li>
+                    </ul>
+                  </li>
                   <!-- 0월 결제 시 미노출 -->
                   <li>
                     <span class="checkbox square">
-                      <input type="checkbox" name="checkbox-receipt" id="checkbox-receipt" checked="" />
+                      <input type="checkbox" name="checkbox-receipt" id="checkbox-receipt" checked />
                       <label for="checkbox-receipt">현금영수증 발급</label>
                     </span>
                     <span class="receipt">
@@ -113,12 +161,6 @@
                     </span>
                   </li>
                   <!-- // 0월 결제 시 미노출 -->
-                  <li>
-                    <span class="checkbox square">
-                      <input type="checkbox" name="checkbox_agree" id="checkbox_agree" checked="" />
-                      <label for="checkbox_agree">결제조건 확인 및 결제정보 제공 동의</label>
-                    </span>
-                  </li>
                 </ul>
               </div>
               <!-- //정보 입력 -->
@@ -1098,7 +1140,9 @@
       $(document).ready(function () {
         // 페이지 로드 시 'check-type-sub' 표시 후 바로 숨기기
         $(".check-type-sub").show();
-        setTimeout(() => $(".check-type-sub").hide(), 0);
+        setTimeout(function () {
+          $(".check-type-sub").hide();
+        }, 0);
 
         // 모달 포커스 시 스크롤 처리
         $("#modal-phone").on("focus", function () {
@@ -1113,7 +1157,7 @@
 
         // 아코디언 리스트 토글
         $(".accordion-list .list-header .arrow-toggle").click(function () {
-          var thisItem = $(this).parents("li");
+          var thisItem = $(this).closest("li");
           thisItem.toggleClass("active");
           $(".check-type-sub").slideToggle(300);
           $("html, body").animate({ scrollTop: $(document).height() }, "slow");
@@ -1171,6 +1215,7 @@
         // 사용 머니 토글
         $("#checkbox-money").change(function () {
           $("#useMoneyWrap").toggle(this.checked);
+          $(".pay-sec.direct-discount").toggle();
         });
 
         $(".btn-toggle.btn-q").click(function () {
@@ -1179,8 +1224,8 @@
 
         // 얼럿 버튼
         $("#send").click(function () {
-          // $.alertMessage("", "사용가능한 보유머니 잔액이 없습니다.", $("#commonAlert"));
-          $.alertMessage("", "일시적인 오류가 발생했습니다.<br>잠시 후 다시 시도해주세요.<br>‘확인’ 선택 시 <br>010머니 조회내역은 초기화 됩니다.", $("#commonAlert"));
+          $.alertMessage("", "사용가능한 보유머니 잔액이 없습니다.", $("#commonAlert"));
+          // $.alertMessage("", "일시적인 오류가 발생했습니다.<br>잠시 후 다시 시도해주세요.<br>‘확인’ 선택 시 <br>010머니 조회내역은 초기화 됩니다.", $("#commonAlert"));
         });
       });
     </script>

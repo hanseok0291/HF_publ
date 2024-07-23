@@ -50,8 +50,9 @@
             <!-- headline -->
             <div class="headline">
               <p>
-                <strong>바이오일레븐</strong>에서<br />
-                <strong class="text-primary">88,000원</strong> 결제합니다.
+                <strong>바이오일레븐</strong><span>에서</span><br />
+                <strong class="text-primary">88,000원</strong>
+                <span>결제합니다.</span>
               </p>
               <p class="small">오투부스터 포커스(14포)</p>
             </div>
@@ -1214,8 +1215,17 @@
 
         // 사용 머니 토글
         $("#checkbox-money").change(function () {
-          $("#useMoneyWrap").toggle(this.checked);
-          $(".pay-sec.direct-discount").toggle();
+          // 계좌등록 o
+          var checkAccount = false;
+          if (checkAccount) {
+            $("#useMoneyWrap").toggle(this.checked);
+            $(".pay-sec.direct-discount").toggle();
+          } else {
+            // 계좌등록 x
+            if (this.checked) {
+              $.alertMessage("", "결제할 계좌등록을 먼저 진행해주세요.<br>확인을 선택하시면 <br>계좌등록 화면으로 이동합니다.", $("#commonAlert"));
+            }
+          }
         });
 
         $(".btn-toggle.btn-q").click(function () {

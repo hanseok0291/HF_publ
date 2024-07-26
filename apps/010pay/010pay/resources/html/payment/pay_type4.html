@@ -50,8 +50,9 @@
             <!-- headline -->
             <div class="headline">
               <p>
-                <strong>바이오일레븐</strong>에서<br />
-                <strong class="text-primary">88,000원</strong> 결제합니다.
+                <strong>바이오일레븐</strong><span>에서</span><br />
+                <strong class="text-primary">88,000원</strong>
+                <span>결제합니다.</span>
               </p>
               <p class="small">오투부스터 포커스(14포)</p>
             </div>
@@ -60,17 +61,28 @@
             <div class="section account-info">
               <p class="title">계좌정보</p>
               <div class="round-box">
-                <img src="../../images/bank/logo_090.png" alt="카카오뱅크" /><span class="bank">카카오뱅크</span> <em class="number">123</em>
-                <button id="account" type="button" class="btn btn-sm info-chg">계좌변경</button>
+                <button type="button" class="btn-add"><img src="../../images/ico-plus.png" alt="+" /><span class="bank">계좌 등록하기</span></button>
+                <!-- <button id="account" type="button" class="btn btn-sm">계좌변경</button> -->
               </div>
               <div class="checkbox-wrap">
                 <span class="checkbox square">
                   <input type="checkbox" name="checkbox-money" id="checkbox-money" />
                   <label for="checkbox-money">010머니 사용</label>
                 </span>
+                <!-- 즉시할인일때 010머니 사용 미체크시 보여지는 박스 -->
+                <!-- <div id="" class="pay-sec direct-discount">
+                  <div class="bg-gray">
+                    <ul class="form-type">
+                      <li class=""><label class="label color-text-red">즉시할인</label><span class="text-right color-text-red text-bold">-2,000원</span></li>
+                      <li><label class="label">출금 금액</label><span class="text-right text-bold">8,000원</span></li>
+                    </ul>
+                  </div>
+                </div> -->
+                <!-- //즉시할인일때 010머니 사용 미체크시 보여지는 박스 -->
                 <div id="useMoneyWrap" class="pay-sec">
                   <div class="bg-gray">
                     <ul class="form-type">
+                      <li class="direct-discount"><label class="label color-text-red">즉시할인</label><span class="text-right color-text-red text-bold">-2,000원</span></li>
                       <li>
                         <label class="label text-bold">사용 머니</label>
                         <button type="button" class="btn btn-toggle btn-q">?</button>
@@ -1203,7 +1215,17 @@
 
         // 사용 머니 토글
         $("#checkbox-money").change(function () {
-          $("#useMoneyWrap").toggle(this.checked);
+          // 계좌등록 o
+          var checkAccount = false;
+          if (checkAccount) {
+            $("#useMoneyWrap").toggle(this.checked);
+            $(".pay-sec.direct-discount").toggle();
+          } else {
+            // 계좌등록 x
+            if (this.checked) {
+              $.alertMessage("", "결제할 계좌등록을 먼저 진행해주세요.<br>확인을 선택하시면 <br>계좌등록 화면으로 이동합니다.", $("#commonAlert"));
+            }
+          }
         });
 
         $(".btn-toggle.btn-q").click(function () {

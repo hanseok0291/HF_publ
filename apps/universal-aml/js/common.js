@@ -62,6 +62,7 @@ function modalClose() {
 
 // 모달 열기 버튼
 $(".js-modal-slide").click(function () {
+  scrollOff; // 모달 열렸을때 딤 영역 스크롤 막기
   var chk = $(this).attr("data-chk"); // 모달이 열리는지 체크
   var target = $(this).attr("data-target"); // 모달 ID
 

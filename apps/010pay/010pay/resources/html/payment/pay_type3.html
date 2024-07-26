@@ -44,7 +44,7 @@
         <!-- //header -->
 
         <!-- content -->
-        <div id="content" class="exStyle newType">
+        <div id="content" class="exStyle newType directDiscount">
           <!-- container -->
           <div class="container">
             <!-- headline -->
@@ -68,9 +68,20 @@
                   <input type="checkbox" name="checkbox-money" id="checkbox-money" />
                   <label for="checkbox-money">010머니 사용</label>
                 </span>
+                <!-- 즉시할인일때 010머니 사용 미체크시 보여지는 박스 -->
+                <div id="" class="pay-sec direct-discount">
+                  <div class="bg-gray">
+                    <ul class="form-type">
+                      <li class=""><label class="label color-text-red">즉시할인</label><span class="text-right color-text-red text-bold">-2,000원</span></li>
+                      <li><label class="label">출금 금액</label><span class="text-right text-bold">8,000원</span></li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- //즉시할인일때 010머니 사용 미체크시 보여지는 박스 -->
                 <div id="useMoneyWrap" class="pay-sec">
                   <div class="bg-gray">
                     <ul class="form-type">
+                      <li class="direct-discount"><label class="label color-text-red">즉시할인</label><span class="text-right color-text-red text-bold">-2,000원</span></li>
                       <li>
                         <label class="label text-bold">사용 머니</label>
                         <button type="button" class="btn btn-toggle btn-q">?</button>
@@ -1204,6 +1215,7 @@
         // 사용 머니 토글
         $("#checkbox-money").change(function () {
           $("#useMoneyWrap").toggle(this.checked);
+          $(".pay-sec.direct-discount").toggle();
         });
 
         $(".btn-toggle.btn-q").click(function () {

@@ -5,19 +5,23 @@
 @import "animation";
 
 /* 기본설정 */
-.main-view { overflow: hidden; }
+.main-view {
+  overflow: hidden;
+}
 .main-view .container {
   margin: 0 auto;
 
   &::after {
-    position:absolute; 
-    width:0; 
-    height:0; 
-    overflow:hidden; 
-    z-index:-1;
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    z-index: -1;
 
     /* load images */
-    content:url(../images/main/top-content-img-03.png) url(../images/main/top-content-img-04.png) url(../images/main/top-content-img-05.png) url(../images/main/top-content-img-06.png) url(../images/main/top-content-img-09.png) url(../images/main/top-content-img-02.png) url('../images/main/retto-img-01.png') url('../images/main/retto-img-02.png') url('../images/main/retto-img-03.png') url('../images/main/retto-img-04.png');
+    content: url(../images/main/top-content-img-03.png) url(../images/main/top-content-img-04.png) url(../images/main/top-content-img-05.png) url(../images/main/top-content-img-06.png)
+      url(../images/main/top-content-img-09.png) url(../images/main/top-content-img-02.png) url("../images/main/retto-img-01.png") url("../images/main/retto-img-02.png")
+      url("../images/main/retto-img-03.png") url("../images/main/retto-img-04.png");
   }
 }
 .main-view .section {
@@ -74,11 +78,11 @@
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        border: 2px solid rgba(255,255,255,0.2);
+        border: 2px solid rgba(255, 255, 255, 0.2);
         border-radius: 50%;
         pointer-events: none;
         opacity: 0;
-        
+
         &.small {
           width: 793px;
           height: 793px;
@@ -93,7 +97,8 @@
           animation: spinCircle2 40s linear both infinite;
         }
 
-        &::before, &::after {
+        &::before,
+        &::after {
           position: absolute;
           display: block;
           content: "";
@@ -124,13 +129,14 @@
         transition: 0.3s;
         z-index: 1;
 
-        .firstText,.lastText {
+        .firstText,
+        .lastText {
           display: block;
           position: relative;
           // overflow: hidden;
           width: 201px;
           height: 78px;
-          
+
           span {
             opacity: 0;
             display: block;
@@ -180,7 +186,7 @@
             background-repeat: no-repeat;
             transition: 0.3s;
 
-            &.active{
+            &.active {
               opacity: 1;
               animation: mainRolling 6s 0.5s both linear infinite;
             }
@@ -230,7 +236,8 @@
           }
         }
       }
-      .moText, .moBtn {
+      .moText,
+      .moBtn {
         display: none;
       }
     }
@@ -315,7 +322,8 @@
             transition: opacity 1s;
             transition-delay: 1.5s;
           }
-          .firstText, .lastText {
+          .firstText,
+          .lastText {
             span {
               opacity: 1;
               transform: translateX(0);
@@ -344,7 +352,7 @@
   }
 
   .textWrap {
-    .topText { 
+    .topText {
       display: flex;
       align-items: center;
       font-size: 24px;
@@ -394,7 +402,7 @@
         width: 40px;
         height: 40px;
         margin-right: 5px;
-        background: url(../images/main/icon-5.png) 0 0/cover no-repeat;
+        background: url(../images/main/icon-5.png) 0 0 / cover no-repeat;
       }
     }
     .titleText {
@@ -406,7 +414,7 @@
     }
     .subText {
       font-size: 24px;
-      color: #7D7D7D;
+      color: #7d7d7d;
       line-height: 32.4px;
 
       i {
@@ -430,7 +438,7 @@
       transform: translateY(0);
       width: 100%;
       height: auto;
-      
+
       &.active {
         top: 100%;
         transform: translateY(-100%);
@@ -442,38 +450,38 @@
 
   &.retto-section {
     height: 800px;
-		overflow: hidden;
+    overflow: hidden;
     &.animation {
       .container {
         .imgWrap .phoneFrame .frameBox {
           animation: imgChange 6s 1s ease-in-out both infinite;
         }
-				.slide2 .imgWrap .phoneFrame .frameBox {
-					animation: imgChange2 6s 1s ease-in-out both infinite;
-				}
-				.swiper-slide-active {
-					opacity: 1;
-					.imgWrap {
-					.phoneFrame {
-						.rettoImg {
-							opacity: 1;
-								&.rettoImg-01 {
-									animation: upDownAni 2s 1s ease-in-out infinite;
-								}
-								&.rettoImg-02 {
-									animation: upDownAni 2s 1.8s ease-in-out infinite;
-								}
-								&.rettoImg-03 {
-									animation: upDownAni 2s 1s ease-in-out infinite;
-								}
-							}
-							.jewelImg {
-								opacity: 1;
-							}
-						}
-					}
-				}
-			}
+        .slide2 .imgWrap .phoneFrame .frameBox {
+          animation: imgChange2 6s 1s ease-in-out both infinite;
+        }
+        .swiper-slide-active {
+          opacity: 1;
+          .imgWrap {
+            .phoneFrame {
+              .rettoImg {
+                opacity: 1;
+                &.rettoImg-01 {
+                  animation: upDownAni 2s 1s ease-in-out infinite;
+                }
+                &.rettoImg-02 {
+                  animation: upDownAni 2s 1.8s ease-in-out infinite;
+                }
+                &.rettoImg-03 {
+                  animation: upDownAni 2s 1s ease-in-out infinite;
+                }
+              }
+              .jewelImg {
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
     }
 
     .retto-slide {
@@ -484,11 +492,11 @@
       .swiper-wrapper {
         flex-direction: column;
         .swiper-slide {
-					opacity: 1;
+          opacity: 1;
           &.slide1 {
             .logoBox {
               position: absolute;
-              left:0;
+              left: 0;
               top: 0;
               width: 100%;
               height: 100%;
@@ -582,12 +590,12 @@
       .imgWrap {
         margin-top: 131px;
         .phoneFrame {
-					overflow: visible;
+          overflow: visible;
           .frameBox {
             position: absolute;
             width: 267px;
             height: 564px;
-            left: 0; 
+            left: 0;
             top: 0;
             border-radius: 26px;
             background-size: 283px 580px;
@@ -601,7 +609,7 @@
               top: 115px;
               width: 102px;
               height: 102px;
-              background: url('../images/main/retto-img-05.svg') 0 0 / cover no-repeat;
+              background: url("../images/main/retto-img-05.svg") 0 0 / cover no-repeat;
               animation: upDownAni 2s 1s ease-in-out infinite;
             }
             &.jewelImg-02 {
@@ -609,7 +617,7 @@
               top: 233px;
               width: 149px;
               height: 149px;
-              background: url('../images/main/retto-img-06.svg') 0 0 / cover no-repeat;
+              background: url("../images/main/retto-img-06.svg") 0 0 / cover no-repeat;
               animation: upDownAni 2s 1.8s ease-in-out infinite;
             }
             &.jewelImg-03 {
@@ -617,69 +625,69 @@
               top: 439px;
               width: 150px;
               height: 150px;
-              background: url('../images/main/retto-img-07.svg') 0 0 / cover no-repeat;
+              background: url("../images/main/retto-img-07.svg") 0 0 / cover no-repeat;
               animation: upDownAni 2s 1s ease-in-out infinite;
             }
           }
-					.rettoImg {
+          .rettoImg {
             display: block;
             position: absolute;
-						opacity: 0;
+            opacity: 0;
             &.rettoImg-01 {
               left: -139px;
               top: 130px;
               width: 64px;
               height: 64px;
-              background: url('../images/main/retto-img-08.png') 0 0 / cover no-repeat;
+              background: url("../images/main/retto-img-08.png") 0 0 / cover no-repeat;
             }
             &.rettoImg-02 {
               left: 336px;
               top: 187px;
               width: 35px;
               height: 35px;
-              background: url('../images/main/retto-img-09.png') 0 0 / cover no-repeat;
+              background: url("../images/main/retto-img-09.png") 0 0 / cover no-repeat;
             }
             &.rettoImg-03 {
               left: 245px;
               top: 288px;
               width: 120px;
               height: 120px;
-              background: url('../images/main/retto-img-010.png') 0 0 / cover no-repeat;
+              background: url("../images/main/retto-img-010.png") 0 0 / cover no-repeat;
             }
-					}
+          }
         }
       }
-			.textBox {
-				position: relative;
-				margin-left: auto;
-				width: 100%;
-    		height: 200px;
-				display: flex;
-				// justify-content: end;
-				margin-left: 60%;
-				.retto-pagination {
-					position: absolute;
-					left: 0;
-					bottom: 0;
-					.swiper-pagination-bullet {
-						width: 28px;
-						height: 6px;
-						margin-right: 6px;
-						border-radius: 0;
-						background-color: #cccccc;
-						opacity: 1;
-						&.swiper-pagination-bullet-active {
-							background-color: #ff4600;
-						}
-					}
-				}
-			}
+      .textBox {
+        position: relative;
+        margin-left: auto;
+        width: 100%;
+        height: 200px;
+        display: flex;
+        // justify-content: end;
+        margin-left: 60%;
+        .retto-pagination {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          .swiper-pagination-bullet {
+            width: 28px;
+            height: 6px;
+            margin-right: 6px;
+            border-radius: 0;
+            background-color: #cccccc;
+            opacity: 1;
+            &.swiper-pagination-bullet-active {
+              background-color: #ff4600;
+            }
+          }
+        }
+      }
       .textWrap {
-				position: absolute;
-				opacity: 0;
-				&.active {
-					opacity: 1;
-				}
+        position: absolute;
+        opacity: 0;
+        &.active {
+          opacity: 1;
+        }
       }
     }
   }
@@ -687,8 +695,8 @@
   &.second-section {
     overflow: hidden;
     height: 800px;
-    background-color: #FFF8ED;
-    
+    background-color: #fff8ed;
+
     .container {
       padding-top: 338px;
     }
@@ -704,7 +712,7 @@
         width: 100%;
         opacity: 0;
         // transition: opacity 0.5s;
-        
+
         &.active {
           opacity: 1;
         }
@@ -744,7 +752,7 @@
           &.slide1 {
             .logoBox {
               position: absolute;
-              left:0;
+              left: 0;
               top: 0;
               width: 100%;
               height: 100%;
@@ -892,7 +900,7 @@
   }
   &.third-section {
     height: 560px;
-    background-color: #FFF8ED;
+    background-color: #fff8ed;
 
     .container {
       display: flex;
@@ -925,7 +933,7 @@
       .textWrap {
         padding-top: 272px;
       }
-      
+
       .imgWrap {
         position: relative;
         padding-top: 72px;
@@ -959,7 +967,7 @@
 
         img {
           position: absolute;
-          
+
           &.img1 {
             left: -180px;
             top: 292px;
@@ -1011,7 +1019,7 @@
       .textWrap {
         padding-top: 272px;
       }
-      
+
       .imgWrap {
         position: relative;
         padding-top: 72px;
@@ -1034,7 +1042,7 @@
             width: 264px;
           }
         }
-        
+
         .money {
           position: absolute;
           left: 180px;
@@ -1060,7 +1068,7 @@
           .frameBox {
             animation: taxAni1 8s 1.5s ease-in-out backwards infinite;
           }
-  
+
           .lastImg {
             animation: taxAni3 8s 4s ease-in-out backwards infinite;
           }
@@ -1129,34 +1137,34 @@
                       animation-duration: 0.3s;
                       animation-timing-function: ease-in-out;
                       animation-fill-mode: forwards;
-                      &:nth-child(1){
+                      &:nth-child(1) {
                         animation-delay: 7.4s;
                       }
-                      &:nth-child(2){
+                      &:nth-child(2) {
                         animation-delay: 7.5s;
                       }
-                      &:nth-child(3){
+                      &:nth-child(3) {
                         animation-delay: 7.6s;
                       }
-                      &:nth-child(4){
+                      &:nth-child(4) {
                         animation-delay: 7.7s;
                       }
-                      &:nth-child(5){
+                      &:nth-child(5) {
                         animation-delay: 7.8s;
                       }
-                      &:nth-child(6){
+                      &:nth-child(6) {
                         animation-delay: 7.9s;
                       }
-                      &:nth-child(7){
+                      &:nth-child(7) {
                         animation-delay: 8s;
                       }
-                      &:nth-child(8){
+                      &:nth-child(8) {
                         animation-delay: 8.1s;
                       }
-                      &:nth-child(9){
+                      &:nth-child(9) {
                         animation-delay: 8.2s;
                       }
-                      &:nth-child(10){
+                      &:nth-child(10) {
                         animation-delay: 8.3s;
                       }
                     }
@@ -1180,7 +1188,7 @@
             position: absolute;
             width: 267px;
             height: 564px;
-            left: 0; 
+            left: 0;
             top: 0;
             border-radius: 36px;
             .imgBox {
@@ -1205,7 +1213,7 @@
                 }
               }
               &.imgBox2 {
-                background-color: #F1F1F1;
+                background-color: #f1f1f1;
                 background-image: url(../images/main/gather-frame-img-02.png);
                 .pointer {
                   left: 217px;
@@ -1223,7 +1231,7 @@
                     position: relative;
                     width: 200px;
                     height: 8px;
-                    background-color: #F1F1F1;
+                    background-color: #f1f1f1;
                     border-radius: 4px;
 
                     span {
@@ -1234,7 +1242,7 @@
                       width: 0;
                       height: 8px;
                       border-radius: 4px;
-                      background-color: #FF5A00;
+                      background-color: #ff5a00;
                     }
                   }
                   .numberWrap {
@@ -1319,8 +1327,8 @@
   }
 
   &.app-down {
-    background-color: #FFF;
-    border-bottom: 1px solid #E2E2E2;
+    background-color: #fff;
+    border-bottom: 1px solid #e2e2e2;
     .contents-wrap {
       display: flex;
       align-items: center;
@@ -1411,7 +1419,8 @@
       bottom: 100px;
     }
   }
-  .main-view header .logo, .main-view .hearder .logo {
+  .main-view header .logo,
+  .main-view .hearder .logo {
     background-position-y: -65px;
   }
   .main-view .section {
@@ -1440,25 +1449,25 @@
           width: 24px;
           height: 16px;
           margin-right: 6px;
-          background: url(../images/main/icon-1.png) 0 0/cover no-repeat;
+          background: url(../images/main/icon-1.png) 0 0 / cover no-repeat;
         }
         &.icon-2::before {
           width: 24px;
           height: 24px;
           margin-right: 5px;
-          background: url(../images/main/icon-2.png) 0 0/cover no-repeat;
+          background: url(../images/main/icon-2.png) 0 0 / cover no-repeat;
         }
         &.icon-3::before {
           width: 20px;
           height: 23px;
           margin-right: 6px;
-          background: url(../images/main/icon-3.png) 0 0/cover no-repeat;
+          background: url(../images/main/icon-3.png) 0 0 / cover no-repeat;
         }
         &.icon-4::before {
           width: 24px;
           height: 23px;
           margin-right: 5px;
-          background: url(../images/main/icon-4.png) 0 0/cover no-repeat;
+          background: url(../images/main/icon-4.png) 0 0 / cover no-repeat;
         }
         &.icon-5::before {
           width: 24px;
@@ -1474,13 +1483,12 @@
       .subText {
         font-size: 16px;
         line-height: 21.6px;
-  
+
         i {
           font-style: italic;
         }
       }
     }
-    
 
     &.top-visual {
       height: 580px;
@@ -1494,7 +1502,7 @@
         .bg {
           background: url(../images/main/mo-top-content-bg.png) center center/cover no-repeat;
         }
-        
+
         .circleBg {
           &.small {
             width: 472px;
@@ -1505,7 +1513,8 @@
             height: 631px;
           }
 
-          &::before, &:after {
+          &::before,
+          &:after {
             width: 18px;
             height: 18px;
           }
@@ -1519,11 +1528,12 @@
         }
 
         .mainText {
-          .firstText, .lastText {
+          .firstText,
+          .lastText {
             display: none;
           }
 
-          .textImg  {
+          .textImg {
             width: 187px;
             height: 47px;
             .result {
@@ -1552,7 +1562,7 @@
           font-weight: bold;
           color: #fff;
           line-height: 1;
-          
+
           span {
             color: #e6ff00;
           }
@@ -1593,7 +1603,7 @@
             z-index: 1000;
             border: 1px solid #fff;
             color: #fff;
-            background: linear-gradient(105deg, rgba(255,70,0,1) 0%, rgba(255,122,0,1) 100%);
+            background: linear-gradient(105deg, rgba(255, 70, 0, 1) 0%, rgba(255, 122, 0, 1) 100%);
 
             &::before {
               background-image: url(../images/main/icon-app_fixed.png);
@@ -1605,7 +1615,7 @@
         &.web {
           display: none;
         }
-  
+
         &.mo {
           display: block;
           bottom: 44px;
@@ -1646,14 +1656,14 @@
       padding: 50px 0;
       .container {
         flex-direction: column-reverse;
-				padding-top: 0;
-				.retto-slide {
-					position: static;
-					height: auto;
-					.swiper-wrapper {
-						flex-direction: row;
-					}
-				}
+        padding-top: 0;
+        .retto-slide {
+          position: static;
+          height: auto;
+          .swiper-wrapper {
+            flex-direction: row;
+          }
+        }
         .slide2 {
           .imgWrap {
             .phoneFrame {
@@ -1698,46 +1708,46 @@
           padding: 0;
           margin-bottom: 30px;
         }
-				.textBox {
-					position: static;
-					margin-left: 0;
-					justify-content: center;
-					height: 130px;
-					.retto-pagination {
-						bottom: -30px;
-						left: 50%;
-						transform: translateX(-50%);
-					}
-				}
-				.slide2 {
-					.imgWrap {
-						.phoneFrame {
-							.frameBox {
-								border-radius: 13px;
-							}
-							.rettoImg {
-								&.rettoImg-01 {
-									width: 42px;
-									height: 42px;
-									left: -63px;
-									top: 87px;
-								}
-								&.rettoImg-02 {
-									width: 23px;
-									height: 23px;
-									left: 230px;
-									top: 142px;
-								}
-								&.rettoImg-03 {
-									width: 79px;
-									height: 79px;
-									left: 175px;
-									top: 226px;
-								}
-							}
-						}
-					}
-				}
+        .textBox {
+          position: static;
+          margin-left: 0;
+          justify-content: center;
+          height: 130px;
+          .retto-pagination {
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
+        .slide2 {
+          .imgWrap {
+            .phoneFrame {
+              .frameBox {
+                border-radius: 13px;
+              }
+              .rettoImg {
+                &.rettoImg-01 {
+                  width: 42px;
+                  height: 42px;
+                  left: -63px;
+                  top: 87px;
+                }
+                &.rettoImg-02 {
+                  width: 23px;
+                  height: 23px;
+                  left: 230px;
+                  top: 142px;
+                }
+                &.rettoImg-03 {
+                  width: 79px;
+                  height: 79px;
+                  left: 175px;
+                  top: 226px;
+                }
+              }
+            }
+          }
+        }
       }
     }
     &.gather-section {
@@ -1784,7 +1794,7 @@
                       width: 150px;
                       height: 5px;
                       border-radius: 3px;
-  
+
                       span {
                         height: 5px;
                         border-radius: 3px;
@@ -1804,7 +1814,7 @@
                   .listWrap {
                     height: 346px;
                     padding: 0 8px 20px;
-  
+
                     li {
                       width: 80px;
                       margin-bottom: 14px;
@@ -1894,15 +1904,15 @@
               &.slide1 {
                 .logoBox {
                   position: absolute;
-                  left:0;
+                  left: 0;
                   top: 0;
                   width: 100%;
                   height: 100%;
                   opacity: 0;
-    
+
                   img {
                     position: absolute;
-    
+
                     &:nth-child(1) {
                       left: -56%;
                       top: 44%;
@@ -1942,9 +1952,9 @@
                   }
                 }
               }
-    
+
               &.slide2 {
-                .money {    
+                .money {
                   &.money1 {
                     left: -38%;
                     top: 26%;
@@ -2014,26 +2024,26 @@
 
           img {
             position: absolute;
-  
+
             &.img1 {
               width: 111px;
               left: -76px;
               top: 186px;
               z-index: 2;
             }
-  
+
             &.img2 {
               width: 103px;
               right: -80px;
               top: 118px;
             }
-  
+
             &.img3 {
               width: 75px;
               right: -104px;
               top: 262px;
             }
-  
+
             &.img4 {
               width: 180px;
               right: -38px;
@@ -2117,7 +2127,7 @@
             padding: 0 30px;
             font-size: 14px;
             border-radius: 16px;
-  
+
             &.kakao-btn {
               &.web {
                 display: none;
@@ -2126,7 +2136,7 @@
                 display: inline-flex;
               }
             }
-  
+
             &.kakao-btn::before {
               width: 27px;
               height: 27px;
@@ -2172,38 +2182,100 @@
             width: 400px;
             height: 458px;
           }
-
-          input[type=checkbox] {
-            display: none;
-          }
-          input[type=checkbox] + label {
-            display: inline-block;
-            width: 21px;
-            height: 21px;
-            position: absolute;
-            bottom: 5px;
-            left: 21px;
-            font-size: 0;
-            background: url(../images/tax/ico-check-off.png) no-repeat center/contain;
-            cursor: pointer;
-          }
-          input[id=chk1]:checked + label::after {
-            content: "";
-            font-size: 25px;
-            width: 21px;
-            height: 21px;
-            text-align: center;
-            position: absolute;
-            left: 0;
-            top: 0;
-            background: url(../images/tax/ico-check-on.png) no-repeat center/contain;
-          }
           .btn-link {
             position: absolute;
             width: 100%;
             height: 65px;
             left: 0;
             bottom: 55px;
+          }
+        }
+        .modal-footer {
+          position: relative;
+          background: #fff;
+          display: flex;
+          align-items: center;
+          input[type="checkbox"] {
+            display: none;
+          }
+          input[type="checkbox"] + label {
+            display: inline-block;
+            width: 21px;
+            height: 21px;
+            // position: absolute;
+            bottom: 5px;
+            left: 21px;
+            font-size: 0;
+            background: url(../images/tax/ico-check-off.png) no-repeat center/contain;
+            cursor: pointer;
+          }
+          input[id="chk1"]:checked + label::after {
+            content: "";
+            font-size: 25px;
+            width: 21px;
+            height: 21px;
+            text-align: center;
+            // position: absolute;
+            left: 0;
+            top: 0;
+            background: url(../images/tax/ico-check-on.png) no-repeat center/contain;
+          }
+        }
+      }
+    }
+  }
+  &.modal-event {
+    .modal-dialog {
+      .modal-content {
+        width: 100%;
+        text-align: center;
+        max-width: 420px;
+        padding: 0 10px;
+        .modal-body {
+          font-size: 0;
+          img {
+            width: 100%;
+            height: auto;
+          }
+          .btn-link {
+            bottom: 80px;
+          }
+        }
+        .modal-close {
+          right: auto;
+          bottom: auto;
+          font-size: 16px;
+          font-weight: 700;
+          width: auto;
+          height: 100%;
+          color: #000;
+          position: relative;
+          text-indent: 0;
+          margin-left: auto;
+        }
+        .modal-footer {
+          height: 60px;
+          padding: 0 20px;
+          margin-top: -1px;
+          border-radius: 0 0 12px 12px;
+          input[type="checkbox"] + label {
+            display: inline-block;
+            width: auto;
+            height: 16px;
+            position: relative;
+            bottom: auto;
+            left: auto;
+            font-size: 16px;
+            color: #575757;
+            background: url(../images/main/check-off.svg) no-repeat left center / contain;
+            cursor: pointer;
+            padding-left: 22px;
+          }
+          input[type="checkbox"]:checked + label {
+            background: url(../images/main/check-on.svg) no-repeat left center / contain;
+          }
+          input[id="chk1"]:checked + label::after {
+            display: none;
           }
         }
       }
@@ -2214,13 +2286,13 @@
     &.modal-creditcard .modal-dialog .modal-content {
       .modal-body {
         img {
-          width: 312px;
+          width: 400px;
           height: auto;
         }
         .btn-link {
-          bottom: 37px;
+          bottom: 75px;
         }
-        input[type=checkbox] + label {
+        input[type="checkbox"] + label {
           display: inline-block;
           width: 21px;
           height: 21px;
@@ -2232,9 +2304,30 @@
           cursor: pointer;
         }
       }
-      outline:none;
+      outline: none;
       -webkit-tap-highlight-color: transparent;
-  }
+    }
+
+    &.modal-event {
+      .modal-body {
+        font-size: 0;
+      }
+      .modal-dialog {
+        width: 100%;
+        text-align: center;
+        max-width: 420px;
+        .modal-content {
+          .modal-body {
+            img {
+              width: 100%;
+            }
+          }
+          .modal-footer {
+            height: 50px;
+          }
+        }
+      }
+    }
   }
 
   &.active {
@@ -2267,8 +2360,7 @@
         display: inline-block;
         top: -52px;
         right: 0;
-        background: url(../images/giftimall/icon/icon-close.svg) no-repeat 10px
-          10px / 17px 17px;
+        background: url(../images/giftimall/icon/icon-close.svg) no-repeat 10px 10px / 17px 17px;
         width: 40px;
         height: 40px;
         font-size: 0;
@@ -2289,8 +2381,7 @@
           .icon-logo-pop {
             display: inline-block;
             vertical-align: top;
-            background: url(../images/giftimall/popup/logo-popup.png) no-repeat
-              center / 135px 31px;
+            background: url(../images/giftimall/popup/logo-popup.png) no-repeat center / 135px 31px;
             width: 135px;
             height: 31px;
           }
@@ -2301,8 +2392,7 @@
           font-weight: $font-weight-bold;
           .icon-arrow-pop {
             display: inline-block;
-            background: url(../images/giftimall/popup/popup-icon-arrow.png)
-              no-repeat center / 11px 9px;
+            background: url(../images/giftimall/popup/popup-icon-arrow.png) no-repeat center / 11px 9px;
             width: 11px;
             height: 1em;
             vertical-align: top;
@@ -2351,20 +2441,17 @@
               margin-right: 5px;
               vertical-align: top;
               &.icon-qr-google {
-                background: url(../images/giftimall/icon/icon-qr-google.png)
-                  no-repeat center / 18px 19px;
+                background: url(../images/giftimall/icon/icon-qr-google.png) no-repeat center / 18px 19px;
                 width: 18px;
                 height: 30px;
               }
               &.icon-qr-one {
-                background: url(../images/giftimall/icon/icon-qr-one.png)
-                  no-repeat center / 19px 19px;
+                background: url(../images/giftimall/icon/icon-qr-one.png) no-repeat center / 19px 19px;
                 width: 19px;
                 height: 30px;
               }
               &.icon-qr-app {
-                background: url(../images/giftimall/icon/icon-qr-app.png)
-                  no-repeat center 0.4px / 20px 23px;
+                background: url(../images/giftimall/icon/icon-qr-app.png) no-repeat center 0.4px / 20px 23px;
                 width: 20px;
                 height: 30px;
               }
@@ -2468,7 +2555,6 @@
     transform: translate(-50%, -50%) rotate(480deg);
   }
 }
-
 
 @keyframes scrollNavAni {
   0% {
@@ -2600,42 +2686,42 @@
 
 @keyframes imgChange {
   0% {
-    background-image: url('../images/main/retto-img-01.png');
+    background-image: url("../images/main/retto-img-01.png");
   }
   12% {
-    background-image: url('../images/main/retto-img-01.png');
+    background-image: url("../images/main/retto-img-01.png");
   }
   15% {
-    background-image: url('../images/main/retto-img-02.png');
+    background-image: url("../images/main/retto-img-02.png");
   }
   37% {
-    background-image: url('../images/main/retto-img-02.png');
+    background-image: url("../images/main/retto-img-02.png");
   }
   40% {
-    background-image: url('../images/main/retto-img-03.png');
+    background-image: url("../images/main/retto-img-03.png");
   }
   62% {
-    background-image: url('../images/main/retto-img-03.png');
+    background-image: url("../images/main/retto-img-03.png");
   }
   65% {
-    background-image: url('../images/main/retto-img-04.png');
+    background-image: url("../images/main/retto-img-04.png");
   }
   87% {
-    background-image: url('../images/main/retto-img-04.png');
+    background-image: url("../images/main/retto-img-04.png");
   }
   90% {
-    background-image: url('../images/main/retto-img-01.png');
+    background-image: url("../images/main/retto-img-01.png");
   }
   100% {
-    background-image: url('../images/main/retto-img-01.png');
+    background-image: url("../images/main/retto-img-01.png");
   }
 }
 @keyframes imgChange2 {
   0% {
-    background-image: url('../images/main/retto-img-05.png?ver=240703');
+    background-image: url("../images/main/retto-img-05.png?ver=240703");
   }
   100% {
-    background-image: url('../images/main/retto-img-05.png?ver=240703');
+    background-image: url("../images/main/retto-img-05.png?ver=240703");
   }
 }
 @keyframes spreadFadeIn {
@@ -2685,10 +2771,10 @@
     background-color: #fff;
   }
   .section.third-section {
-    background-color: #FFF8ED;
+    background-color: #fff8ed;
   }
   .section.app-down {
-    background-color: #FFF8ED;
+    background-color: #fff8ed;
     max-width: none;
     .container {
       display: flex;
@@ -2696,7 +2782,8 @@
       width: 890px;
     }
   }
-  .footer, .footer {
+  .footer,
+  .footer {
     background-color: #fff;
   }
 }
@@ -2704,5 +2791,17 @@
 @media only screen and (max-width: 767px) {
   .main-view.no-tax .section.app-down .container {
     justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .modal {
+    &.modal-event {
+      .modal-dialog {
+        .modal-content {
+          padding: 0 20px;
+        }
+      }
+    }
   }
 }

@@ -324,10 +324,7 @@ const index = () => {
                 <div className={styleRettoTip.emptyBox} ref={emptyBoxRef}></div>
                 <div className={`${styleMyretto.bottomBox} ${styleMyretto.type5} ${styleRettoTip.bottomBox} ${bannerFixed ? styleRettoTip.fixed : ''} ${floatState === 2 ? styleRettoTip.type2 : '' }`}>
                   <a href="#">
-                    {/* 체크카드 대상 */}
                     <p>쿠팡 7% 추가 적립되는</p>
-                    {/* 가상계좌 고객 대상 */}
-                    {/* <p>쿠팡 7% 추가 적립되는</p> */}
                     <h4 className={styleMyretto.addArrowBlack}>010PAY 카드로 받기</h4>
                   </a>
                 </div>
@@ -345,19 +342,19 @@ const index = () => {
                   <div>
                     {
                       <>
-                        {floatState === 2 &&
-                          <>
-                            <p className={`${styleRettoTip.text} ${styleRettoTip.coin}`}>
-                              <span>포인트 1천원</span>이 지급되었어요!
-                            </p>
-                            <p className={styleRettoTip.subText}>쿠팡 7%적립 프로모션도 놓치지 마세요!</p>
-                          </>
-                        }
-                        {floatState === 3 &&
+                      {floatState === 2 &&
+                        <>
                           <p className={`${styleRettoTip.text} ${styleRettoTip.coin}`}>
-                            <span>포인트 1천원</span>을 이미 받으셨어요!
+                            <span>포인트 1천원</span>이 지급되었어요!
                           </p>
-                        }
+                          <p className={styleRettoTip.subText}>쿠팡 7%적립 프로모션도 놓치지 마세요!</p>
+                        </>
+                      }
+                      {floatState === 3 &&
+                        <p className={`${styleRettoTip.text} ${styleRettoTip.coin}`}>
+                          <span>포인트 1천원</span>을 이미 받으셨어요!
+                        </p>
+                      }
                       </>
                     }
                   </div>

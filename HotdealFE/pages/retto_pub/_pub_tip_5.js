@@ -11,6 +11,7 @@ import Header from "../../components/retto_pub/common/Header";
 import Container from "../../components/retto_pub/common/Container";
 import FadeInSection from '../../components/retto_pub/common/FadeInSection';
 import HomeTab from '../../components/retto_pub/HomeTab';
+import ModalTipEventEnd from '../../components/retto_pub/common/modal/ModalTipEventEnd';
 
 
 const Marquee = ({ children }) => {
@@ -26,30 +27,18 @@ const Marquee = ({ children }) => {
 
 const index = () => {
   const animationRef = useRef(null);
-  const emptyBoxRef = useRef(null);
-  const botTextWrapRef = useRef(null);
   const [floatState, setFloatState ] = useState(3);//0 flaot 미노출, 1 스크롤 안내 노출, 2 포인트 지급 노출, 3 중복 참여 노출
-  const [bannerFixed, setBannerFixed] = useState(true);
-  const [botTextWrapHeight, setBotTextWrapHeight] = useState(0);
 
   const handleScroll = () => {
     if(floatState === 1){
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight) {
         setFloatState(2);
-        setBotTextWrapHeight(botTextWrapRef.current.clientHeight);
       }
-    }
-    if(emptyBoxRef.current.getBoundingClientRect().bottom <= window.innerHeight - botTextWrapHeight){
-      setBannerFixed(false);
-    } else {
-      setBannerFixed(true);
     }
   };
 
   useEffect(() => {
-    if(botTextWrapRef.current){
-      setBotTextWrapHeight(botTextWrapRef.current.clientHeight);
-    }
+    document.body.style.overflow = 'hidden';
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -64,11 +53,8 @@ const index = () => {
 
     window.addEventListener('scroll', handleScroll);
 
-    return () => {
-      observer.disconnect();
-      window.removeEventListener('scroll', handleScroll);
-    }
-  }, [botTextWrapHeight]);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
@@ -283,22 +269,14 @@ const index = () => {
             </ul>
           </Marquee>
         </div>
-        <div className={`${styleRettoTip.thirdContent} ${floatState !== 0 ? styleRettoTip.isFixed : ''} ${floatState === 2 ? styleRettoTip.type2 : ''}`}>
+        <div className={`${styleRettoTip.thirdContent} ${floatState !== 0 ? styleRettoTip.isFixed : ''}`}>
           <div className={styleRettoTip.textWrap}>
             <h4>이제, 리또를 받아볼까요?</h4>
             <p>
-              {floatState === 0 ?
-                <>
-                  내 재테크 성향에 맞는 것으로 선택해 보세요!
-                </>
-                :
-                <>
-                  결제할 때마다 리또가 쌓이는 카드로 받아보세요.
-                </>
-              }
+              내 재테크 성향에 맞는 것으로 선택해 보세요!
             </p>
           </div>
-          {/* <div className={styleRettoTip.bannerWrap}>
+          <div className={styleRettoTip.bannerWrap}>
             <div className={`${styleMyretto.bottomBox} ${styleMyretto.type4}`}>
               <a href="#">
                 <p>쉬운 앱테크 찾는다면</p>
@@ -317,56 +295,53 @@ const index = () => {
                 <h4 className={styleMyretto.addArrowBlack}>리또 선물하기</h4>
               </a>
             </div>
-          </div> */}
-          {floatState !== 0 && 
-            <div className={styleRettoTip.floatContent}>
-              <div className={styleRettoTip.bottomBoxWrap}>
-                <div className={styleRettoTip.emptyBox} ref={emptyBoxRef}></div>
-                <div className={`${styleMyretto.bottomBox} ${styleMyretto.type5} ${styleRettoTip.bottomBox} ${bannerFixed ? styleRettoTip.fixed : ''} ${floatState === 2 ? styleRettoTip.type2 : '' }`}>
-                  <a href="#">
-                    {/* 체크카드 대상 */}
-                    <p>쿠팡 7% 추가 적립되는</p>
-                    {/* 가상계좌 고객 대상 */}
-                    {/* <p>쿠팡 7% 추가 적립되는</p> */}
-                    <h4 className={styleMyretto.addArrowBlack}>010PAY 카드로 받기</h4>
-                  </a>
-                </div>
-              </div>
-              <div className={styleRettoTip.botTextWrap} ref={botTextWrapRef}>
-                {floatState === 1 ?
-                  <div className={styleRettoTip.textWrap}>
-                    <div className={styleRettoTip.arrowWrap}>
-                      <span></span>
-                      <span></span>
-                    </div>
-                    <p className={styleRettoTip.text}>스크롤을 끝까지 내리면 <span>포인트 1천원</span> 증정!</p>
-                  </div>
-                  :
-                  <div>
-                    {
-                      <>
-                        {floatState === 2 &&
-                          <>
-                            <p className={`${styleRettoTip.text} ${styleRettoTip.coin}`}>
-                              <span>포인트 1천원</span>이 지급되었어요!
-                            </p>
-                            <p className={styleRettoTip.subText}>쿠팡 7%적립 프로모션도 놓치지 마세요!</p>
-                          </>
-                        }
-                        {floatState === 3 &&
-                          <p className={`${styleRettoTip.text} ${styleRettoTip.coin}`}>
-                            <span>포인트 1천원</span>을 이미 받으셨어요!
-                          </p>
-                        }
-                      </>
-                    }
-                  </div>
-                }
+          </div>
+        </div>
+        {floatState !== 0 && 
+          <div className={styleRettoTip.floatContent}>
+            <div className={styleRettoTip.bottomBoxWrap}>
+              <div className={`${styleMyretto.bottomBox} ${styleMyretto.type5} ${styleRettoTip.bottomBox}`}>
+                <a href="#">
+                  <p>쿠팡 7% 추가 적립되는</p>
+                  <h4 className={styleMyretto.addArrowBlack}>010PAY 카드로 받기</h4>
+                </a>
               </div>
             </div>
-          }
-        </div>
+            <div className={styleRettoTip.botTextWrap}>
+              {floatState === 1 ?
+                <div className={styleRettoTip.textWrap}>
+                  <div className={styleRettoTip.arrowWrap}>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <p className={styleRettoTip.text}>스크롤을 끝까지 내리면 <span>포인트 1천원</span> 증정!</p>
+                </div>
+                :
+                <div>
+                  {
+                    <>
+                    {floatState === 2 &&
+                      <>
+                        <p className={`${styleRettoTip.text} ${styleRettoTip.coin}`}>
+                          <span>포인트 1천원</span>이 지급되었어요!
+                        </p>
+                        <p className={styleRettoTip.subText}>쿠팡 7%적립 프로모션도 놓치지 마세요!</p>
+                      </>
+                    }
+                    {floatState === 3 &&
+                      <p className={`${styleRettoTip.text} ${styleRettoTip.coin}`}>
+                        <span>포인트 1천원</span>을 이미 받으셨어요!
+                      </p>
+                    }
+                    </>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+        }
       </Container> 
+      <ModalTipEventEnd />
     </>
   )
 }

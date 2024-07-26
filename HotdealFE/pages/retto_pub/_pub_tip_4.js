@@ -324,10 +324,7 @@ const index = () => {
                 <div className={styleRettoTip.emptyBox} ref={emptyBoxRef}></div>
                 <div className={`${styleMyretto.bottomBox} ${styleMyretto.type5} ${styleRettoTip.bottomBox} ${bannerFixed ? styleRettoTip.fixed : ''} ${floatState === 2 ? styleRettoTip.type2 : '' }`}>
                   <a href="#">
-                    {/* 체크카드 대상 */}
-                    <p>쿠팡 7% 추가 적립되는</p>
-                    {/* 가상계좌 고객 대상 */}
-                    {/* <p>쿠팡 7% 추가 적립되는</p> */}
+                    <p>매주 로또산다면? 무료 리또</p>
                     <h4 className={styleMyretto.addArrowBlack}>010PAY 카드로 받기</h4>
                   </a>
                 </div>

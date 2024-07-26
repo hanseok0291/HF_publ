@@ -50,14 +50,14 @@
 .secondContent .reviewWrap li .mainText { color: #222; font-size: 14px; line-height: 140%; } 
 
 @media screen and (max-width: 374px){
-  .secondContent .reviewWrap li br { display: none; }
-}
+ .secondContent .reviewWrap li br { display: none; } 
+ }
 
 @media screen and (max-width: 350px){
-  .secondContent .reviewWrap li { flex-direction: column; width: 100%; height: 200px; }
-  .secondContent .reviewWrap li:nth-last-child(-n+2) { margin-bottom: 10px; } 
-  .secondContent .reviewWrap li:last-child { margin-bottom: 0; } 
-}
+ .secondContent .reviewWrap li { flex-direction: column; width: 100%; height: 200px; } 
+ .secondContent .reviewWrap li:nth-last-child(-n+2) { margin-bottom: 10px; } 
+ .secondContent .reviewWrap li:last-child { margin-bottom: 0; } 
+ }
 
 .marquee { display: flex; overflow: hidden; white-space: nowrap; position: relative; margin-top: 30px; } 
 .marqueeContent { display: flex; animation: marquee 33s linear infinite; } 
@@ -74,6 +74,8 @@
 .secondContent .slideWrap li:nth-child(4) .imgWrap { background-image: url(../../public/images/retto/review-img-04.png); } 
 .secondContent .slideWrap li:nth-child(5) .imgWrap { background-image: url(../../public/images/retto/review-img-05.png); } 
 .thirdContent { padding: 50px 20px; } 
+.thirdContent.isFixed { padding-bottom: 95px; } 
+.thirdContent.isFixed.type2 { padding-bottom: 120px; } 
 .thirdContent .textWrap { text-align: center; } 
 .thirdContent .textWrap h4 { margin-bottom: 6px; font-size: 20px; line-height: 135%; } 
 .thirdContent .textWrap p { font-size: 16px; line-height: 135%; } 
@@ -91,7 +93,31 @@
  }
 
  @keyframes float { 
-  0% { transform: translateY(4px); } 
-  50% { transform: translateY(-2px); } 
-  100% { transform: translateY(4px); } 
-  }
+ 0% { transform: translateY(4px); } 
+ 50% { transform: translateY(-2px); } 
+ 100% { transform: translateY(4px); } 
+ }
+
+/* .floatContent { position: fixed; left: 0; bottom: 0; z-index: 10; width: 100%; } */
+.floatContent .bottomBoxWrap { position: relative; } 
+.floatContent .bottomBoxWrap .emptyBox { display: block; content: ""; width: 100%;; height: 80px; margin-top: 30px; } 
+.floatContent .bottomBoxWrap .bottomBox { position: absolute; top: 0; width: 100%; margin-bottom: 0; z-index: 10; } 
+.floatContent .bottomBoxWrap .bottomBox.fixed { position: fixed; left: 20px; top: auto; bottom: 44px; width: calc(100% - 40px); } 
+.floatContent .bottomBoxWrap .bottomBox.fixed.type2 { bottom: 66px; } 
+.floatContent .botTextWrap { position: fixed; left: 0; bottom: 0; z-index: 9; display: flex; justify-content: center; align-items: center; width: 100%; padding: 12px 0; background-color: #fff; } 
+.floatContent .botTextWrap::before { position: absolute; left: 0; top: -82px; display: block; content: ""; width: 100%; height: 82px; background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); } 
+.floatContent .botTextWrap .arrowWrap { margin-right: 5px; padding: 2px 3px; } 
+.floatContent .botTextWrap .arrowWrap span { display: block; width: 14px; height: 8px; background: url(../../public/images/retto/icon-tip-arrow.svg) center center / 14px 6px no-repeat; animation: downArrow 1.4s 0.3s ease-in-out infinite backwards; } 
+.floatContent .botTextWrap .arrowWrap span:nth-child(2) { animation-delay: 0.4s; } 
+.floatContent .botTextWrap .textWrap { display: flex; } 
+.floatContent .botTextWrap .text { color: #222; font-size: 14px; } 
+.floatContent .botTextWrap .text.coin { display: flex; } 
+.floatContent .botTextWrap .text.coin::before { display: block; content: ""; width: 20px; height: 20px; margin-right: 6px; background: url(../../public/images/retto/icon-coin.svg) 0 0 / cover no-repeat; } 
+.floatContent .botTextWrap .text span { color: #FF4600; font-weight: 700; } 
+.floatContent .botTextWrap .subText { margin-top: 4px; color: #575757; font-size: 13px; } 
+
+@keyframes downArrow { 
+ 0% { opacity: 0; } 
+ 50% { opacity: 1; } 
+ 100% { opacity: 0; } 
+ }

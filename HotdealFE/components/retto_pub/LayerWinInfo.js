@@ -176,7 +176,7 @@ const LayerWinInfo = () => {
               <td>3개</td>
               <td style={{textAlign: 'center'}}>-</td>
               <td colSpan={3}>
-              당첨 리또와 동일 레벨 리또 3개
+                당첨 리또와 동일 레벨 리또 3개
               </td>
             </tr>
           </tbody>

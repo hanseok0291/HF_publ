@@ -121,7 +121,7 @@ const Index = () => {
 
   return (
     <Layout>
-      <Header openHundredPopup={openHundredPopup} />
+      <Header openHundredPopup={openHundredPopup} subHeader={true} />
       <div className={styleHundredDeal.hundredDeal}>
         <div className={styleHundredDeal.topBanner}>
           첫 응모는 미당첨 시 <b>최대 1만 포인트 드려요</b><i>!</i>
@@ -350,7 +350,7 @@ const Index = () => {
       {/* <ModalHundredArrival /> */}
       {/* 재진입 팝업 */} 
       {/* <ModalHundredealReEnter noDeal={true}/> */}
-      <ModalHundredArrival type1={true}/>
+      {/* <ModalHundredArrival type1={true}/> */}
       {/* <ModalEntryComplete /> */}
     </Layout>
   );

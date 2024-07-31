@@ -45,6 +45,7 @@ const Index = () => {
           isShowSearchBtn={isShowSearchBtn}
           isShowMypageBtn={isShowMypageBtn}
           isShowShareBtn={isShowShareBtn}
+					subHeader={true}
         />
         <div
           className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap}`}

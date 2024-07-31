@@ -1,9 +1,12 @@
 import styleDefaultLayout from "../../../styles/coupon_pub/DefaultLayout.module.css";
 
-export default function Header({openHundredPopup}) {
+export default function Header({
+	openHundredPopup,
+	subHeader
+}) {
   return (
     <div
-      className={`${styleDefaultLayout.pageHeader} ${styleDefaultLayout.defaultHeader} ${styleDefaultLayout.hundredDealHeader}`}
+      className={`${styleDefaultLayout.pageHeader} ${styleDefaultLayout.defaultHeader} ${styleDefaultLayout.hundredDealHeader} ${subHeader && styleDefaultLayout.subHeader}`}
     >
       <div className={`${styleDefaultLayout.container}`}>
         <button

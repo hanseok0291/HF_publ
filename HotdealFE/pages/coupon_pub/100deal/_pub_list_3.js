@@ -41,6 +41,7 @@ const Index = () => {
           isShowSearchBtn={isShowSearchBtn}
           isShowMypageBtn={isShowMypageBtn}
           noFixed={true}
+					subHeader={true}
         />
         <div
           className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap}`}

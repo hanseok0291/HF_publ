@@ -44,7 +44,8 @@ const Index = () => {
           isShowBackBtn={isShowBackBtn}
           isShowSearchBtn={isShowSearchBtn}
           isShowMypageBtn={isShowMypageBtn}
-          isShowCloseBtn={isShowCloseBtn}
+					isShowCloseBtn={isShowCloseBtn}
+					subHeader={true}
         />
         <div
           className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap}`}

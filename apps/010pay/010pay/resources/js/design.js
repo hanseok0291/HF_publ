@@ -254,19 +254,27 @@ $(function () {
   fixFootBtn();
 
   // 하단 고정 영역 여백 확보
-  function wrapPadding() {
-    var fixFoot = $(".bottom-area.fixed");
-    const matchesMediaQuery = window.matchMedia("(max-width:999px) and (orientation:landscape)").matches;
+	function wrapPadding() {
+			var fixFoot = $(".bottom-area.fixed");
+			const matchesMediaQuery = window.matchMedia("(max-width:999px) and (orientation:landscape)").matches;
+			const matchesSpecialSize = window.matchMedia("(min-width:690px) and (max-width:720px) and (min-height:750px) and (max-height:900px)").matches;
 
-    if (fixFoot.length > 0 && !matchesMediaQuery) {
-      var fixFootHeight = $(fixFoot).innerHeight();
-      $("#content").css("padding-bottom", fixFootHeight);
-      $(".wrap.oneStore").removeClass("horizontal");
-    } else {
-      $(".wrap.oneStore").addClass("horizontal");
-      $("#content").css("padding-bottom", 24);
-    }
-  }
+			console.log('matchesMediaQuery:', matchesMediaQuery);
+			console.log('matchesSpecialSize:', matchesSpecialSize);
+
+			if (fixFoot.length > 0 && (!matchesMediaQuery || matchesSpecialSize)) {
+					var fixFootHeight = $(fixFoot).innerHeight();
+					$("#content").css("padding-bottom", fixFootHeight);
+					$(".wrap.oneStore").removeClass("horizontal");
+			} else if (matchesSpecialSize) {
+					var fixFootHeight = $(fixFoot).innerHeight();
+					$("#content").css("padding-bottom", fixFootHeight);
+					$(".wrap.oneStore").removeClass("horizontal");
+			} else {
+					$(".wrap.oneStore").addClass("horizontal");
+					$("#content").css("padding-bottom", 24);
+			}
+	}
   wrapPadding();
 
   // 보안 키패드 상단 링크 위치

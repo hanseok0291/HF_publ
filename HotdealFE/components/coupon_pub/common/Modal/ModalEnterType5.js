@@ -43,7 +43,7 @@ const ModalEnterType4 = ({ show, onClose }) => {
                     className={`${styleApply.checkbox} ${styleApply.child}`}
                   >
                     <input type="checkbox" name="agree_01" id="agree_02_01" />
-                    <label for="agree_02_01">(필수) 기프티몰 이용약관</label>
+                    <label htmlFor="agree_02_01">(필수) 기프티몰 이용약관</label>
 
                     <button
                       type="button"

@@ -22,7 +22,7 @@ import LimitCoupon from "../../components/coupon_pub/main/LimitCoupon";
 import RewardBanner from "../../components/coupon_pub/main/RewardBanner";
 import MainPopup from "../../components/coupon_pub/common/Modal/MainPopup";
 import ModalLoading from "../../components/coupon_pub/common/Modal/ModalLoading";
-import ModalEnter from "../../components/coupon_pub/common/modal/ModalEnter";
+import ModalEnter from "../../components/coupon_pub/common/Modal/ModalEnter";
 import ModalHundredComing from "../../components/coupon_pub/common/Modal/ModalHundredComing";
 import HundredDeal from "../../components/coupon_pub/main/HundredDeal";
 import Navigation from "../../components/coupon_pub/main/Navigation";
@@ -171,9 +171,8 @@ const Index = () => {
             listItem={listItem}
             paddingTop={50}
           />
+          <ModalEnter />
           {/* {showMainPopup && (
-            // <ModalEnter
-            // />
             // <ModalLoading />
             <ModalHundredComing
 							onClose={() => {

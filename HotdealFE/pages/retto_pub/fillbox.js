@@ -6,7 +6,7 @@ import ApplyComplete from "../../components/retto_pub/ApplyComplete";
 import ModalFillBox from "../../components/retto_pub/common/modal/ModalFillBox";
 import LayerEmptyFail from "../../components/retto_pub/LayerEmptyFail";
 import LayerMoneyboxEmpty from "../../components/retto_pub/LayerMoneyboxEmpty";
-import ModalHundredInfo from "../../components/coupon_pub/common/Modal/ModalHundredInfo";
+import ModalHundredInfo from "../../components/coupon_pub/common/modal/ModalHundredInfo";
 import Toast from "../../components/retto_pub/common/Toast";
 
 

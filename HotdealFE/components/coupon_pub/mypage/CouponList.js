@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 // components
 import ModalFilter from "../common/modal/ModalFilter";
-import ModalBarcode from "../../../components/coupon_pub/common/Modal/ModalBarcode";
+import ModalBarcode from "../../../components/coupon_pub/common/modal/ModalBarcode";
 
 import styleDefaultLayout from "../../../styles/coupon_pub/DefaultLayout.module.css";
 import styleCommon from "../../../styles/coupon_pub/Common.module.css";

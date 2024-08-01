@@ -16,12 +16,12 @@ import styleModal from "../../../styles/coupon_pub/Modal.module.css";
 import Slider from "react-slick";
 import Layout from "../../../components/common/Layout";
 import Header from "../../../components/coupon_pub/100deal/Header";
-import ModalEntry from "../../../components/coupon_pub/common/Modal/ModalEntry";
-import ModalHundredArrival from "../../../components/coupon_pub/common/Modal/ModalHundredArrival";
-import ModalHundredInfo from "../../../components/coupon_pub/common/Modal/ModalHundredInfo";
-import ModalEntryAdd from "../../../components/coupon_pub/common/Modal/ModalEntryAdd";
-import ModalHundredealReEnter from "../../../components/coupon_pub/common/Modal/ModalHundredealReEnter";
-import ModalEntryComplete from "../../../components/coupon_pub/common/Modal/ModalEntryComplete";
+import ModalEntry from "../../../components/coupon_pub/common/modal/ModalEntry";
+import ModalHundredArrival from "../../../components/coupon_pub/common/modal/ModalHundredArrival";
+import ModalHundredInfo from "../../../components/coupon_pub/common/modal/ModalHundredInfo";
+import ModalEntryAdd from "../../../components/coupon_pub/common/modal/ModalEntryAdd";
+import ModalHundredealReEnter from "../../../components/coupon_pub/common/modal/ModalHundredealReEnter";
+import ModalEntryComplete from "../../../components/coupon_pub/common/modal/ModalEntryComplete";
 
 
 const Index = () => {

@@ -29,17 +29,17 @@ import CouponDetail from "../../../../components/coupon_pub/mypage/CouponDetail"
 import CouponDetailUsed from "../../../../components/coupon_pub/mypage/CouponDetailUsed";
 import CouponDetailPay from "../../../../components/coupon_pub/mypage/CouponDetailPay";
 import CouponDetailPayUsed from "../../../../components/coupon_pub/mypage/CouponDetailPayUsed";
-import ModalAvailable from "../../../../components/coupon_pub/common/Modal/ModalAvailable";
-import ModalMessage from "../../../../components/coupon_pub/common/Modal/ModalMessage";
-import ModalAlert from "../../../../components/coupon_pub/common/Modal/ModalAlert";
-import ModalCancle from "../../../../components/coupon_pub/common/Modal/ModalCancle";
-import ModalCancleConfirm from "../../../../components/coupon_pub/common/Modal/ModalCancleConfirm";
-import ModalCancleInfo from "../../../../components/coupon_pub/common/Modal/ModalCancleInfo";
-import ModalCancleEnd from "../../../../components/coupon_pub/common/Modal/ModalCancleEnd";
-import ModalRefundKt from "../../../../components/coupon_pub/common/Modal/ModalRefundKt";
-import ModalRefund from "../../../../components/coupon_pub/common/Modal/ModalRefund";
-import ModalExtensionInfo from "../../../../components/coupon_pub/common/Modal/ModalExtensionInfo";
-import ModalExtensionInfoEnd from "../../../../components/coupon_pub/common/Modal/ModalExtensionInfoEnd";
+import ModalAvailable from "../../../../components/coupon_pub/common/modal/ModalAvailable";
+import ModalMessage from "../../../../components/coupon_pub/common/modal/ModalMessage";
+import ModalAlert from "../../../../components/coupon_pub/common/modal/ModalAlert";
+import ModalCancle from "../../../../components/coupon_pub/common/modal/ModalCancle";
+import ModalCancleConfirm from "../../../../components/coupon_pub/common/modal/ModalCancleConfirm";
+import ModalCancleInfo from "../../../../components/coupon_pub/common/modal/ModalCancleInfo";
+import ModalCancleEnd from "../../../../components/coupon_pub/common/modal/ModalCancleEnd";
+import ModalRefundKt from "../../../../components/coupon_pub/common/modal/ModalRefundKt";
+import ModalRefund from "../../../../components/coupon_pub/common/modal/ModalRefund";
+import ModalExtensionInfo from "../../../../components/coupon_pub/common/modal/ModalExtensionInfo";
+import ModalExtensionInfoEnd from "../../../../components/coupon_pub/common/modal/ModalExtensionInfoEnd";
 
 const Index = () => {
   //헤더 아이콘 디폴트 세팅

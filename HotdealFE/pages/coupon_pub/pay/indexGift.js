@@ -14,19 +14,19 @@ import styleApply from ".././../../styles/coupon_pub/Apply.module.css";
 import Layout from "../../../components/common/Layout";
 import Header from "../../../components/coupon_pub/common/Header";
 import Footer from "../../../components/coupon_pub/common/Footer";
-import ModalRecent from "../../../components/coupon_pub/common/Modal/ModalRecent";
+import ModalRecent from "../../../components/coupon_pub/common/modal/ModalRecent";
 import ModalEnterType4 from "../../../components/coupon_pub/common/modal/ModalEnterType4";
 import ModalEnterType5 from "../../../components/coupon_pub/common/modal/ModalEnterType5";
 import ToastError from "../../../components/coupon_pub/common/toast/ToastError";
-import ModalBrandIn from "../../../components/coupon_pub/common/Modal/ModalBrandIn";
-import ModalAvailable from "../../../components/coupon_pub/common/Modal/ModalAvailable";
-import ModalFaild from "../../../components/coupon_pub/common/Modal/ModalFaild";
-import ModalFilter from "../../../components/coupon_pub/common/Modal/ModalFilter";
-import ModalAlert from "../../../components/coupon_pub/common/Modal/ModalMessage";
-import ModalCancleConfirm from "../../../components/coupon_pub/common/Modal/ModalCancleConfirm";
-import ModalLimitedSale from "../../../components/coupon_pub/common/Modal/ModalLimitedSale";
-import ModalHundredArrival from "../../../components/coupon_pub/common/Modal/ModalHundredArrival";
-import ModalHundredGiftEntry from "../../../components/coupon_pub/common/Modal/ModalHundredGiftEntry";
+import ModalBrandIn from "../../../components/coupon_pub/common/modal/ModalBrandIn";
+import ModalAvailable from "../../../components/coupon_pub/common/modal/ModalAvailable";
+import ModalFaild from "../../../components/coupon_pub/common/modal/ModalFaild";
+import ModalFilter from "../../../components/coupon_pub/common/modal/ModalFilter";
+import ModalAlert from "../../../components/coupon_pub/common/modal/ModalMessage";
+import ModalCancleConfirm from "../../../components/coupon_pub/common/modal/ModalCancleConfirm";
+import ModalLimitedSale from "../../../components/coupon_pub/common/modal/ModalLimitedSale";
+import ModalHundredArrival from "../../../components/coupon_pub/common/modal/ModalHundredArrival";
+import ModalHundredGiftEntry from "../../../components/coupon_pub/common/modal/ModalHundredGiftEntry";
 
 const Index = () => {
   //헤더 아이콘 디폴트 세팅

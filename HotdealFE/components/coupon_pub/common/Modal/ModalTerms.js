@@ -5,10 +5,10 @@ import styleCommon from "../../../../styles/coupon_pub/Common.module.css";
 import styleModal from "../../../../styles/coupon_pub/Modal.module.css";
 import styleApply from "../../../../styles/coupon_pub/Apply.module.css";
 
-const ModalEnter = ({ show, onClose }) => {
+const ModalTerms = ({ show, onClose }) => {
   return (
     <div
-      className={`${styleModal.modal} ${styleModal.modalInfo} ${styleModal.modalType2} ${styleModal.open}`}
+      className={`${styleModal.modal} ${styleModal.modalInfo} ${styleModal.modalTerms} ${styleModal.modalType2} ${styleModal.open}`}
     >
       <div
         className={`${styleModal.modalDialog} ${styleModal.slideDialog}`}
@@ -17,9 +17,11 @@ const ModalEnter = ({ show, onClose }) => {
         <div className={`${styleModal.modalContent}`}>
           <div className={`${styleModal.modalHeader}`}>
             <p className={`${styleModal.modalTitle}`}>
-              <strong>개인정보 수집·이용 동의</strong>가 필요해요.
-              <br />
-              약관 동의 후에 결제하시겠어요?
+              <div>
+                <strong>개인정보 수집·이용 동의</strong>가 필요해요.
+                <br />
+                약관 동의 후에 결제하시겠어요?
+              </div>
               <button
                 type="button"
                 className={`${styleCommon.btnIcon} ${styleModal.btnClose} ${styleModal.modalClose}`}
@@ -30,23 +32,27 @@ const ModalEnter = ({ show, onClose }) => {
           </div>
           <div className={`${styleModal.modalBody}`}>
             <div className={`${styleApply.termsAgree}`}>
-              <div className={`${styleApply.agreeAll}`}>
-                <span
-                  className={`${styleApply.checkbox} ${styleApply.parents}`}
-                >
-                  <input type="checkbox" name="agreeAll" id="agreeAll_01" />
-                  <label htmlFor="agreeAll_01">기프티몰 이용약관(필수)</label>
-                  <button
-                    type="button"
-                    className={`${styleCommon.btnIcon} ${styleApply.agreeBtn}`}
+            <ul className={`${styleApply.agreeList}`}>
+                <li>
+                  <span
+                    className={`${styleApply.checkbox} ${styleApply.child}`}
                   >
-                    보기{" "}
-                    <i
-                      className={`${styleApply.icon} ${styleApply.iconArrowRight}`}
-                    ></i>
-                  </button>
-                </span>
-              </div>
+                    <input type="checkbox" name="agree_01" id="agree_02_01" />
+                    <label htmlFor="agree_02_01">(필수) 기프티몰 이용약관</label>
+
+                    <button
+                      type="button"
+                      className={`${styleCommon.btnIcon} ${styleApply.agreeBtn}`}
+                    >
+                      보기{" "}
+                      <i
+                        className={`${styleApply.icon} ${styleApply.iconArrowRight}`}
+                      ></i>
+                    </button>
+                  </span>
+                </li>
+
+              </ul>
             </div>
           </div>
           <div className={`${styleModal.modalFooter}`}>
@@ -73,4 +79,4 @@ const ModalEnter = ({ show, onClose }) => {
   );
 };
 
-export default ModalEnter;
+export default ModalTerms;

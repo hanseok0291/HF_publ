@@ -7,7 +7,7 @@ import styleMoneyboxEmpty from '../../styles/retto_pub/LayerMoneyboxEmpty.module
 import Button from './common/Button';
 import FadeInSection from './common/FadeInSection';
 import FadeIn from 'react-fade-in/lib/FadeIn';
-import ModalHundredInfo from '../coupon_pub/common/Modal/ModalHundredInfo';
+import ModalHundredInfo from '../coupon_pub/common/modal/ModalHundredInfo';
 import ModalFillBox from './common/modal/ModalFillBox';
 
 const LayerMoneyboxEmpty = () => {

@@ -17,9 +17,11 @@ const ModalEnterType4 = ({ show, onClose }) => {
         <div className={`${styleModal.modalContent}`}>
           <div className={`${styleModal.modalHeader}`}>
             <p className={`${styleModal.modalTitle}`}>
-              <strong>개인정보 수집·이용 동의가 필요해요.</strong>
-              <br />
-              약관 동의 후에 결제하시겠어요?
+              <div>
+                <strong>개인정보 수집·이용 동의가 필요해요.</strong>
+                <br />
+                약관 동의 후에 결제하시겠어요?
+              </div>
               <button
                 type="button"
                 className={`${styleCommon.btnIcon} ${styleModal.btnClose} ${styleModal.modalClose}`}

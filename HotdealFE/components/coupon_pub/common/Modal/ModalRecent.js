@@ -7,7 +7,7 @@ import styleFilter from "../../../../styles/coupon_pub/Filter.module.css";
 import styleRecent from "../../../../styles/coupon_pub/Recent.module.css";
 
 // 최근 선물했던 친구 바텀 팝업
-const ModalAlert = ({ show, onClose }) => {
+const ModalRecent = ({ show, onClose }) => {
   return (
     <div
       className={`${styleModal.modal} ${styleModal.open} ${styleRecent.modalCommon} ${styleRecent.recentFriends}`}
@@ -87,4 +87,4 @@ const ModalAlert = ({ show, onClose }) => {
   );
 };
 
-export default ModalAlert;
+export default ModalRecent;

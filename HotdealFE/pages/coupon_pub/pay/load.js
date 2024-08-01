@@ -14,9 +14,9 @@ import styleApply from ".././../../styles/coupon_pub/Apply.module.css";
 import Layout from "../../../components/common/Layout";
 import Header from "../../../components/coupon_pub/common/Header";
 import Footer from "../../../components/coupon_pub/common/Footer";
-import ModalSelectAccount from "../../../components/coupon_pub/common/Modal/ModalSelectAccount";
-import ModalSuccess from "../../../components/coupon_pub/common/Modal/ModalSuccess";
-import ModalFaild from "../../../components/coupon_pub/common/Modal/ModalFaild";
+import ModalSelectAccount from "../../../components/coupon_pub/common/modal/ModalSelectAccount";
+import ModalSuccess from "../../../components/coupon_pub/common/modal/ModalSuccess";
+import ModalFaild from "../../../components/coupon_pub/common/modal/ModalFaild";
 
 const Index = () => {
   //헤더 아이콘 디폴트 세팅

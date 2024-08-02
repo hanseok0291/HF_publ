@@ -199,7 +199,7 @@ const Index = () => {
             listItem={listItem}
             paddingTop={50}
           />
-          <TermsAgree />
+          <ModalEnter />
           {/* {showMainPopup && (
             // <ModalLoading />
             <ModalHundredComing

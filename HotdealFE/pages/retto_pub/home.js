@@ -42,6 +42,7 @@ const index = () => {
       <HomeTab activeTab={1} />
       <Container isTab padding="0" backgroundColor="#fff" className={styleCommon.hidden}>
         {/* HOME */}
+        <Home case2 /> 
       </Container>
       {/* 리또 신청 */}
       {/* <Apply full case1 /> */}
@@ -76,7 +77,7 @@ const index = () => {
       {/* <Toast width={250}>카드 발급 선물 신청이 완료되었어요!</Toast> */}
       {/* <ModalMoneyGive /> */}
       {/* <LayerWinInfo /> */}
-      <LayerMoneyboxEmpty />
+      {/* <LayerMoneyboxEmpty /> */}
     </>
   );
 };

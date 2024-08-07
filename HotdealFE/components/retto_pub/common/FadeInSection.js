@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import styles from '../../../styles/retto_pub/FadeInSection.module.css';
 
-const FadeInSection = ({ children }) => {
+const FadeInSection = ({ children, delay = 0 }) => {
   const domRef = useRef();
 
   useEffect(() => {
@@ -20,8 +20,12 @@ const FadeInSection = ({ children }) => {
     return () => observer.disconnect();
   }, []);
 
+  const style = {
+    transitionDelay: `${delay/1000}s`
+  };
+
   return (
-    <div className={`${styles.fadeInSection}`} ref={domRef}>
+    <div className={`${styles.fadeInSection}`} ref={domRef} style={style}>
       {children}
     </div>
   );

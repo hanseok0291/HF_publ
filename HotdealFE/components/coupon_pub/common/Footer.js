@@ -58,19 +58,19 @@ export default function Footer({ isfixedBottom, isDeadlinFixed }) {
         }`}
       >
         <div className={styleFooter.footer}>
-          <Link href={`/coupon/`}>
+          <Link href={`/coupon/`} legacyBehavior>
             <a className={`${styleLayout.btnLink} ${styleLayout.btnLink1}`}>
               고객센터
             </a>
           </Link>
           <span className={styleFooter.txtBar}>|</span>
-          <Link href={`/coupon/`}>
+          <Link href={`/coupon/`} legacyBehavior>
             <a className={`${styleLayout.btnLink} ${styleLayout.btnLink1}`}>
               이용약관
             </a>
           </Link>
           <span className={styleFooter.txtBar}>|</span>
-          <Link href={`/coupon/`}>
+          <Link href={`/coupon/`} legacyBehavior>
             <a className={`${styleLayout.btnLink} ${styleLayout.btnLink1}`}>
               개인정보처리방침
             </a>

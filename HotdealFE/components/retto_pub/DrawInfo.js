@@ -4,7 +4,8 @@ import SlotCounter from 'react-slot-counter';
 
 // style
 import styleRettoList from "../../styles/retto_pub/RettoList.module.css";
-import FadeIn from 'react-fade-in/lib/FadeIn';
+// import FadeIn from 'react-fade-in/lib/FadeIn';
+import FadeInSection from './common/FadeInSection';
 
 const rettoNumber = [1, 6, 25, 29, 40, 43, 44];
 
@@ -194,7 +195,7 @@ const DrawInfo = ({case1, case2, case3, case4, case5, case6, case7, case8 = fals
           </div>
         </div>
         <div className={styleRettoList.listWinWrap}>
-          <FadeIn>
+          <FadeInSection>
             <div className={styleRettoList.drawResultWrap}>
               {case8 ? (
                 <ul className={`${styleRettoList.ballWrap}`}> 
@@ -245,6 +246,8 @@ const DrawInfo = ({case1, case2, case3, case4, case5, case6, case7, case8 = fals
                 <p>수령기한 2024.03.02</p>
               </div>
             </div>
+          </FadeInSection>
+          <FadeInSection delay={200}>
             {case5 &&
               <div className={styleRettoList.winPriceInfoWrap} ref={secondObserveRef}>
                 <div className={`${styleRettoList.winPriceInfo} ${isSecondFixed ? styleRettoList.fixed : ''}`}>
@@ -325,7 +328,7 @@ const DrawInfo = ({case1, case2, case3, case4, case5, case6, case7, case8 = fals
             {case4 &&
               <ResultList data={results.standby} />
             }
-          </FadeIn>
+          </FadeInSection>
         </div>
       </div>
       

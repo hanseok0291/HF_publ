@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper';
-import FadeIn from 'react-fade-in';
 import NewsTicker from 'react-advanced-news-ticker'
 import YouTube from 'react-youtube';
 
@@ -11,6 +10,7 @@ import styleHome from "../../styles/retto_pub/styleHome.module.css";
 import Button from './common/Button';
 import LottieComponent from './LottieComponent';
 import ConfettiLottie from "../../public/lotties/confetti.json";
+import FadeInSection from './common/FadeInSection';
 
 // case1 추첨 예정 리또 있음 case2 토스트 팝업 노출
 const Home = ({case1, case2}) => {
@@ -104,7 +104,7 @@ const Home = ({case1, case2}) => {
       <div className={styleHome.visualSection}>
         <div className={styleHome.titleWrap}>
           <div className={styleHome.textWrap}>
-            <FadeIn delay={150}>
+            <FadeInSection>
               <div className={styleHome.prizeWrap}>
                 <NewsTicker maxRows={1} rowHeight={18}>
                   <div>1099회 <span>4,567명 1등 당첨!</span></div>
@@ -113,6 +113,8 @@ const Home = ({case1, case2}) => {
                   <div>1099회 <span>4,567789798명 1등 당첨!</span></div>
                 </NewsTicker>
               </div>
+            </FadeInSection>
+            <FadeInSection delay={200}>
               <div>
                 <p>자동 응모되는 무료 리워드 로또</p>
                 <h2>
@@ -136,7 +138,7 @@ const Home = ({case1, case2}) => {
                   </div>
                 )
               }
-            </FadeIn>
+            </FadeInSection>
           </div>
           <p className={`${styleHome.balloonText} ${styleHome.isRetto}`}>리또번호와 로또번호가 일치하면 당첨!</p>
         </div>

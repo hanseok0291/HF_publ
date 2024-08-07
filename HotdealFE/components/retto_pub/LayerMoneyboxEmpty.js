@@ -5,8 +5,8 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 import styleCommon from '../../styles/retto_pub/Common.module.css';
 import styleMoneyboxEmpty from '../../styles/retto_pub/LayerMoneyboxEmpty.module.css'
 import Button from './common/Button';
+import ButtonText from './../common_refactoring/Button';
 import FadeInSection from './common/FadeInSection';
-import FadeIn from 'react-fade-in/lib/FadeIn';
 import ModalHundredInfo from '../coupon_pub/common/modal/ModalHundredInfo';
 import ModalFillBox from './common/modal/ModalFillBox';
 
@@ -26,12 +26,14 @@ const LayerMoneyboxEmpty = () => {
 
         <div className={styleMoneyboxEmpty.container}>
           <div className={styleMoneyboxEmpty.content1}>
-            <FadeIn delay={100} transitionDuration={800}>
+            <FadeInSection>
               <h4 className={styleMoneyboxEmpty.title}>
                 잠시만요! <br />
                 지금 이 순간에도 많은 사람들이 <br />
                 리또를 받아 가고 있어요!
               </h4>
+            </FadeInSection>
+            <FadeInSection delay={200}>
               <ul className={styleMoneyboxEmpty.box1}>
                 <li>
                   <b>50만 명+</b>
@@ -46,6 +48,8 @@ const LayerMoneyboxEmpty = () => {
                   <p>매주 평균 당첨자</p>
                 </li>
               </ul>
+            </FadeInSection>
+            <FadeInSection delay={400}>
               <div className={styleMoneyboxEmpty.box2}>
                 <p>
                   지금 리또 머니함을 비우면 <br />
@@ -70,7 +74,7 @@ const LayerMoneyboxEmpty = () => {
                   </dl>
                 </div>
               </div>
-            </FadeIn>
+            </FadeInSection>
           </div>
           <div className={styleMoneyboxEmpty.content2}>
             <FadeInSection>

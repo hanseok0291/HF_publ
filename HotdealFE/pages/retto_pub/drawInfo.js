@@ -7,14 +7,12 @@ import styleMyretto from "../../styles/retto_pub/Myretto.module.css";
 
 // component
 import Header from "../../components/retto_pub/common/Header";
-import MyPage from "../../components/retto_pub/MyPage";
 import Apply from "../../components/retto_pub/Apply";
 import BottomSheetPrize from "../../components/retto_pub/common/modal/BottomSheetPrize";
 import LayerLevelSelection from "../../components/retto_pub/LayerLevelSelection";
 import BottomSheetAlarm from "../../components/retto_pub/common/modal/BottomSheetAlarm";
 import ModalLevelChange from "../../components/retto_pub/common/modal/ModalLevelChange";
 import BottomSheetBanner from "../../components/retto_pub/common/modal/BottomSheetBanner";
-import Stamp from "../../components/retto_pub/Stamp";
 import BottomSheetSaveingList from "../../components/retto_pub/common/modal/BottomSheetSaveingList";
 import BottomSheetPresent from "../../components/retto_pub/common/modal/BottomSheetPresent";
 import BottomSheetMission from "../../components/retto_pub/common/modal/BottomSheetMission";
@@ -25,7 +23,6 @@ import ModalmembershipOut2 from "../../components/retto_pub/common/modal/Modalme
 import LayerRecommend from "../../components/retto_pub/LayerRecommend";
 import ModalRecommendEnd from "../../components/retto_pub/common/modal/ModalRecommendEnd";
 import Toast from "../../components/retto_pub/common/Toast";
-import MyPageNotJoin from "../../components/retto_pub/MyPageNotJoin";
 import Home from "../../components/retto_pub/Home";
 import DrawInfo from "../../components/retto_pub/DrawInfo";
 import ModalLevelChangeBan from "../../components/retto_pub/common/modal/ModalLevelChangeBan";

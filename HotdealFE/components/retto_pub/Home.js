@@ -14,37 +14,6 @@ import FadeInSection from './common/FadeInSection';
 
 // case1 추첨 예정 리또 있음 case2 토스트 팝업 노출
 const Home = ({case1, case2}) => {
-  // 슬라이드 내용
-  const contents =[
-    {
-      indexText: '첫 번째',
-      titleText: ['010PAY 우리카드', '결제 금액 1만원에 1개씩', '최대 1억원 당첨 리또 지급'],
-      imgClass: ['card', 'receipt', 'money'],
-      isVideo : true,
-      videoText: ['010PAY 우리카드', '쓰기만 해도 행운이 쌓이는 리워드'],
-      videoThumbnail: 'type3',
-      videoId: '3TQnp7uW37c' //8ycblWwEfdU 임원희
-    },
-    {
-      indexText: '두 번째',
-      titleText: ['리또 머니함에 머니 보관', '최대 1억원 당첨 가능한', '리또 자동 지급'],
-      imgClass: ['vault', 'money', 'present'],
-      isVideo : true,
-      videoText: ['리또 머니함에 넣어만 두면', '매주 알아서 행운이 쌓이는 리워드'],
-      videoThumbnail: 'type1',
-      videoId: '0RJFok7VE8I'
-    },
-    {
-      indexText: '세 번째',
-      titleText: ['친구에게 리또 선물하기', '친구가 내 선물코드 입력하면', '친구와 나, 모두 리또 받기'],
-      imgClass: ['letter', 'code', 'present2'],
-      isVideo : false,
-      videoText: [],
-      videoThumbnail: '',
-      videoId: ''
-    }
-  ];
-
   // swiper option
   const reviewParams = {
     slidesPerView: "auto", 
@@ -162,34 +131,40 @@ const Home = ({case1, case2}) => {
         </Swiper>
         <h3 className={styleHome.middleTitle}>무료로 리또 받는 방법</h3>
         <div className={`${styleHome.mainSection} ${styleHome.firstSection}`} ref={mainSectionRef}>
-          <HomeSwiper content={contents[0]} issueTarget={true} playingVideoId={playingVideoId}  setPlayingVideoId={setPlayingVideoId}/>
+          <span className={styleHome.topBox}>첫 번째</span>
+          <h2 className={styleHome.mainText}>
+            리또 머니함에 머니를 넣어만 두면 <br />
+            리또 최대 5개 + 10주마다 쿠폰까지
+          </h2>
+          <div className={`${styleHome.imgBox} ${styleHome.coupon}`}></div>
+        </div>
+        <div className={`${styleHome.mainSection} ${styleHome.firstSection}`} ref={mainSectionRef}>
+          
           {/* 신용카드 미발급  */}
           <Button white large>010PAY 우리카드로 리또 받기</Button>
           {/* 이미 카드 신청한 고객 */}
           {/* <Button white large>010PAY 우리카드 혜택 보기</Button> */}
         </div>
         <div className={styleHome.mainSection}>
-          <HomeSwiper content={contents[1]} playingVideoId={playingVideoId} setPlayingVideoId={setPlayingVideoId}/>
-          <ul className={styleHome.secondContent}>
+          
+          <ul className={styleHome.listContent}>
             <li>
-              <strong>추가 혜택 1</strong>
+              <strong>혜택 1</strong>
               <p>
-                리또 받기 연속 성공하면 <br className={styleHome.foldSize} />
-                매주 쌓이는 리또가 최대 5개
+                매주 리또 최대 5개 적립
               </p>
             </li>
             <li>
-              <strong>추가 혜택 2</strong>
+              <strong>혜택 2</strong>
               <p>
-                에메랄드, 다이아 레벨 연속 10주 <br className={styleHome.foldSize} />
-                성공할 때마다 쿠폰 선물
+                에메랄드, 다이아 레벨 <br className={styleHome.foldSize} />
+                10주마다 쿠폰 선물
               </p>
             </li>
             <li>
-              <strong>추가 혜택 3</strong>
+              <strong>혜택 3</strong>
               <p>
-                리또 머니함에 머니 보관하고 <br className={styleHome.foldSize} />
-                매일 100원딜 응모권 받기
+                매일 100원딜 응모권 지급
               </p>
             </li>
           </ul>
@@ -197,7 +172,7 @@ const Home = ({case1, case2}) => {
           {/* <Button white large>나의 리또 보러가기</Button> */}
         </div>
         <div className={styleHome.mainSection}>
-          <HomeSwiper content={contents[2]} playingVideoId={playingVideoId}  setPlayingVideoId={setPlayingVideoId}/>
+          
           <Button white large>리또 선물하고 리또 받기</Button>
         </div>
       </div>
@@ -284,131 +259,6 @@ const Home = ({case1, case2}) => {
   )
 }
 
-const HomeSwiper = ({content: {indexText, titleText, imgClass, isVideo, videoId, videoText, videoThumbnail}, issueTarget=false, playingVideoId, setPlayingVideoId}) => {
-  // swiper option
-  const swiperParams = {
-    slidesPerView: 1,
-    modules: [Pagination, Autoplay],
-    pagination: true,
-    autoplay: { delay: 2000, disableOnInteraction: false },
-    loop: true
-  };
-  
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [swiper, setSwiper] = useState(null);
-  const targetRef = useRef(null);
-  const videoRef = useRef();
-  const [isThumbnail, setIsThumbnail] = useState(true);
 
-  const onReady = (e) => {
-    videoRef.current = e.target;
-  };
-  
-
-  const onEnd = () => {
-    setIsThumbnail(true);
-  }
-
-  const playVideo = () => {
-    if (videoRef.current) {
-      setPlayingVideoId(videoId); // 현재 재생 중인 비디오 ID를 전역 상태에 저장
-      videoRef.current.playVideo();
-      setIsThumbnail(false);
-    }
-  };
-
-  const handleSlideChange = (swiper) => {
-    setCurrentIndex(swiper.realIndex);
-  };
-  
-  // 특정 슬라이드로 이동하는 함수
-  const goToSlide = (index) => {
-    if (swiper) {
-      swiper.slideToLoop(index);
-    }
-  };
-
-  useEffect(() => {
-    // 다른 비디오가 재생되면 현재 비디오 정지
-    if (playingVideoId !== videoId && videoRef.current) {
-      videoRef.current.pauseVideo();
-    }
-  }, [playingVideoId, videoId]);
-
-  useEffect(() => {
-    if (!swiper || !swiper.autoplay) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          swiper.autoplay.start();
-        } else {
-          swiper.autoplay.stop();
-        }
-      });
-    }, { threshold: 0.8 });
-
-    if (targetRef.current) {
-      observer.observe(targetRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [swiper]);
-
-  return (
-    <>
-      <span className={styleHome.topBox}>{indexText}</span>
-      {isVideo && (
-        <div className={styleHome.videoContainer}>
-          <p className={styleHome.textWrap}>
-            <span>{videoText[0]}</span>
-            <b>{videoText[1]}</b>
-          </p>
-          <div className={styleHome.videoWrap}>
-            <YouTube
-              videoId={videoId}
-              opts={{
-                width: "100%",
-                height: "100%",
-                playerVars: {
-                  autoplay: 0,// 자동 재생 여부 (0: 자동 재생 안 함, 1: 자동 재생)
-                  rel: 0,
-                  controls: 1
-                },
-              }}
-              //이벤트 리스너 
-              onReady={onReady}
-              onEnd={onEnd}
-              onPlay={() => setPlayingVideoId(videoId)}
-            />
-            {/* type1 머니함 완벽가이드 type2 임원희 */}
-            {isThumbnail && <button type='button' className={`${styleHome.thumbnail} ${videoThumbnail}`} onClick={playVideo}></button>}
-          </div>
-        </div>
-      )}
-      <h4>
-        {titleText.map((item, index) => (
-          <span onClick={() => goToSlide(index)} className={currentIndex === index ? styleHome.active : ''} key={index}>{item}</span>
-        ))}
-      </h4>
-      {issueTarget && (
-        <>
-          <p className={styleHome.swiperSubtext}>발급 대상: 신청일 기준 민법상 성년(만 19세 이상) 내국인</p>
-          <p className={`${styleHome.swiperSubtext} ${styleHome.lastText}`}>결제 건당 최대 1,000개 지급</p>
-        </>
-      )}
-      
-      <Swiper {...swiperParams} onSlideChange={handleSlideChange} onSwiper={setSwiper} ref={targetRef}>
-        {imgClass.map((imgItem, imgIndex) => (
-          <SwiperSlide key={imgIndex}>
-            <div className={`img-box ${imgItem}`}></div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </>
-  )
-}
 
 export default Home;

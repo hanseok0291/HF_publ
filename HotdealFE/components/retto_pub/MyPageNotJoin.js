@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
-import FadeIn from 'react-fade-in';
 import GiftBox from "../../public/lotties/giftbox2.json";
 import LottieComponent from './LottieComponent';
 
@@ -10,6 +9,7 @@ import styleCommon from "../../styles/retto_pub/Common.module.css";
 import styleMyretto from "../../styles/retto_pub/Myretto.module.css";
 import styleNotJoin from "../../styles/retto_pub/NotJoin.module.css";
 import Button from './common/Button';
+import FadeInSection from './common/FadeInSection';
 
 const MyPageNotJoin = ({case1, case2}) => {
   const [isConOpen, SetIsConOpen] = useState(false);
@@ -22,15 +22,15 @@ const MyPageNotJoin = ({case1, case2}) => {
   return (
     <>
       <div className={styleNotJoin.container}>
-        <FadeIn transitionDuration={duration}>
+        <FadeInSection>
           <div className={`${styleCommon.titleWrap} ${styleMyretto.titleWrap}`}>
             <p>무료로 자동 지급되는 리워드</p>
             <h2>매주 최대 1억원 당첨!</h2>
             <LottieComponent className={styleNotJoin.giftboxImg} animationData={GiftBox} isPaused delay={500} speed={2} />
           </div>
-        </FadeIn>
+        </FadeInSection>
         {case1 &&
-          <FadeIn delay={200} transitionDuration={duration}>
+          <FadeInSection delay={200}>
             <div>
               <dl className={styleMyretto.borderBox}> 
                 <dt className={styleMyretto.icon1}> 
@@ -77,11 +77,11 @@ const MyPageNotJoin = ({case1, case2}) => {
                 <button type='button' className={styleNotJoin.moreViewBtn}>더 많은 리또 보러가기</button>
               </div>
             </div>
-          </FadeIn>
+          </FadeInSection>
         }
         {
           case2 &&
-          <FadeIn delay={300} transitionDuration={duration}>
+          <FadeInSection delay={300}>
             <div>
               <dl className={styleMyretto.borderBox}> 
                 <dt className={styleMyretto.icon4}> 
@@ -105,9 +105,9 @@ const MyPageNotJoin = ({case1, case2}) => {
                 </ul>
               </div>
             </div>
-          </FadeIn>
+          </FadeInSection>
         }
-        <FadeIn delay={400} transitionDuration={duration}>
+        <FadeInSection delay={400}>
           <ul className={styleNotJoin.infoConWrap}>
             <li className={styleNotJoin.infoConBox}>
               <span className={styleNotJoin.numberText}>1</span>
@@ -122,7 +122,7 @@ const MyPageNotJoin = ({case1, case2}) => {
               <p className={styleNotJoin.mainText}>최대 1억 당첨 행운의<br /><b>리또 즐기기</b></p>
             </li>
           </ul>
-        </FadeIn>
+        </FadeInSection>
       </div>
       <div className={styleNotJoin.footerBtnWrap}>
         <Button>리또 받으러 가기</Button>

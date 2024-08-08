@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
-import FadeIn from 'react-fade-in';
+import FadeInSection from './common/FadeInSection';
 
 // style
 import styleCommon from "../../styles/retto_pub/Common.module.css";
@@ -26,7 +26,7 @@ const MyPage = ({case1, case2, case3, case4, case5, case6, case7, case8}) => {
         {/* 선물하기 */}
         리또 선물하고 친구랑 같이 받아요!
       </a>
-      <FadeIn transitionDuration={duration}>
+      <FadeInSection>
         <div className={`${styleCommon.titleWrap} ${styleMyretto.titleWrap} ${styleMyretto.isTopBanner}`}>
           <h2>매주 최대 1억 행운 리또</h2>
           {case4 && 
@@ -35,8 +35,8 @@ const MyPage = ({case1, case2, case3, case4, case5, case6, case7, case8}) => {
             </div>
           }
         </div>
-      </FadeIn>
-      <FadeIn delay={100} transitionDuration={duration}>
+      </FadeInSection>
+      <FadeInSection delay={100}>
         {case5 && 
           <div className={styleMyretto.celebrationWrap}>
             <p className={styleMyretto.title}>당첨금 찾아가세요 !</p>
@@ -44,8 +44,8 @@ const MyPage = ({case1, case2, case3, case4, case5, case6, case7, case8}) => {
             <p className={styleMyretto.link}>지금 찾으러 가기</p>
           </div>
         }
-      </FadeIn>
-      <FadeIn delay={200} transitionDuration={duration}>
+      </FadeInSection>
+      <FadeInSection delay={200}>
         <div>
           <dl className={styleMyretto.borderBox}> 
             <dt className={styleMyretto.icon1}> 
@@ -94,8 +94,8 @@ const MyPage = ({case1, case2, case3, case4, case5, case6, case7, case8}) => {
             <button type='button' className={styleNotJoin.moreViewBtn}>더 많은 리또 보러가기</button>
           </div>
         </div>
-      </FadeIn>
-      <FadeIn delay={300} transitionDuration={duration}>
+      </FadeInSection>
+      <FadeInSection delay={300}>
         <div>
           <dl className={styleMyretto.borderBox}> 
             <dt className={styleMyretto.icon4}> 
@@ -119,8 +119,8 @@ const MyPage = ({case1, case2, case3, case4, case5, case6, case7, case8}) => {
             </ul>
           </div>
         </div>
-      </FadeIn>
-      <FadeIn delay={400} transitionDuration={duration}>
+      </FadeInSection>
+      <FadeInSection delay={400}>
         <div>
           <dl className={`${styleMyretto.borderBox} ${styleMyretto.friendRetto} ${ isConOpen ? styleMyretto.open : styleMyretto.close}`}>
             <dt className={`${styleMyretto.icon3}`} onClick={handleClickIsCon}>
@@ -144,14 +144,14 @@ const MyPage = ({case1, case2, case3, case4, case5, case6, case7, case8}) => {
             }
           </dl>
         </div>
-      </FadeIn>
-      <FadeIn delay={500} transitionDuration={duration}>
+      </FadeInSection>
+      <FadeInSection delay={500}>
         <dl className={`${styleMyretto.borderBox}`}>
           <dt className={styleMyretto.icon2}>내 당첨금</dt>
           <dd><button type="button" className={`${!case7 ? styleMyretto.off : ''}`}>0원</button></dd>
         </dl>
-      </FadeIn>
-      <FadeIn delay={600} transitionDuration={duration}>
+      </FadeInSection>
+      <FadeInSection delay={600}>
         {case1 && 
           <div className={`${styleMyretto.jewelBox}`}>
             <div className={`${styleMyretto.topCon} diamond`}>{/* ruby emerald diamond className 추가 시 스타일 변경*/}
@@ -180,8 +180,8 @@ const MyPage = ({case1, case2, case3, case4, case5, case6, case7, case8}) => {
             </div> */}
           </div>
         }
-      </FadeIn>
-      <FadeIn delay={700} transitionDuration={duration}>
+      </FadeInSection>
+      <FadeInSection delay={700}>
         <div className={styleMyretto.bannerWrap}>
           <div className={`${styleMyretto.bottomBox} ${styleMyretto.type1}`}>
             <a href="#">
@@ -196,7 +196,7 @@ const MyPage = ({case1, case2, case3, case4, case5, case6, case7, case8}) => {
               </a>
             </div>
         </div>
-      </FadeIn>
+      </FadeInSection>
       
       {/* <Toast>
         2023.08.31 <br /> 

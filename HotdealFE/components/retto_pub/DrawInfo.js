@@ -4,7 +4,6 @@ import SlotCounter from 'react-slot-counter';
 
 // style
 import styleRettoList from "../../styles/retto_pub/RettoList.module.css";
-// import FadeIn from 'react-fade-in/lib/FadeIn';
 import FadeInSection from './common/FadeInSection';
 
 const rettoNumber = [1, 6, 25, 29, 40, 43, 44];

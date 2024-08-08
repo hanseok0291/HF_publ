@@ -46,7 +46,9 @@ const ModalHundredWinner = ({ show, onClose }) => {
             <h3
               className={`${styleModal.modalTitle} ${styleModal.modalTitleLine} ${styleFilter.modalTitle}`}
             >
-              당첨자 <span className={styleFilter.redText}>30명</span>
+              <span>
+                당첨자 <span className={styleFilter.redText}>30명</span>
+              </span>
               <button
                 type="button"
                 className={`${styleCommon.btnIcon} ${styleModal.btnClose} ${styleModal.modalClose}`}

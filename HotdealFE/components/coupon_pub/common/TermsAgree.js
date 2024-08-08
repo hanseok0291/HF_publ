@@ -5,7 +5,7 @@ import styleCommon from "../../../styles/coupon_pub/Common.module.css";
 import styleModal from "../../../styles/coupon_pub/Modal.module.css";
 import styleTerms from "../../../styles/coupon_pub/Terms.module.css";
 
-const PrivateAgree = () => {
+const TermsAgree = () => {
 	return (
 	<>
 		<div className={`${styleModal.modal} ${styleModal.modalInfo} ${styleModal.modalFullpage} ${styleModal.open}`}>
@@ -27,4 +27,4 @@ const PrivateAgree = () => {
 	)
 }
 
-export default PrivateAgree;
+export default TermsAgree;

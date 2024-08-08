@@ -6,7 +6,7 @@ import styleModal from "../../../../styles/coupon_pub/Modal.module.css";
 import styleFilter from "../../../../styles/common/DefaultModal.module.css";
 import styleRecent from "../../../../styles/coupon_pub/Recent.module.css";
 
-const ModalAlert = ({
+const ModalCancle = ({
   title,
   cancle = "돌아가기",
   confirm = "확인",
@@ -45,4 +45,4 @@ const ModalAlert = ({
   );
 };
 
-export default ModalAlert;
+export default ModalCancle;

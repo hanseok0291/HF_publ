@@ -10,12 +10,12 @@ const ModalRefund = ({ title, cancle = "취소", confirm = "확인", content }) 
   return (
     <>
       <div
-        className={`${styleModal.modal} ${styleModal.modalCommon} ${styleModal.open} ${styleRecent.modalCommon}`}
+        className={`${styleModal.modal} ${styleModal.alert} ${styleModal.modalCommon} ${styleModal.open}`}
       >
         <div className={`${styleModal.modalDialog}`}>
           <div className={`${styleModal.modalContent}`}>
             <div
-              className={`${styleModal.modalHeader} ${styleRecent.modalHeader}`}
+              className={`${styleModal.modalHeader}`}
             >
               <h3
                 className={`${styleModal.modalTitle} ${styleFilter.modalTitle}`}

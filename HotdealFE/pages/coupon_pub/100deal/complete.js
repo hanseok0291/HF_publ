@@ -10,7 +10,7 @@ import styleHundredDeal from "../../../styles/coupon_pub/HundredDeal.module.css"
 import Layout from "../../../components/common/Layout";
 import Header from "../../../components/coupon_pub/common/Header";
 import InterestList from "../../../components/coupon_pub/100deal/InterestList";
-import ModalHundredGiftEntry from "../../../components/coupon_pub/common/Modal/ModalHundredGiftEntry";
+import ModalHundredGiftEntry from "../../../components/coupon_pub/common/modal/ModalHundredGiftEntry";
 
 const Index = () => {
   //헤더 아이콘 디폴트 세팅

@@ -20,10 +20,10 @@ import PopularCoupon from "../../components/coupon_pub/main/PopularCoupon";
 import PromotionBanner from "../../components/coupon_pub/main/PromotionBanner";
 import LimitCoupon from "../../components/coupon_pub/main/LimitCoupon";
 import RewardBanner from "../../components/coupon_pub/main/RewardBanner";
-import MainPopup from "../../components/coupon_pub/common/Modal/MainPopup";
-import ModalLoading from "../../components/coupon_pub/common/Modal/ModalLoading";
+import MainPopup from "../../components/coupon_pub/common/modal/MainPopup";
+import ModalLoading from "../../components/coupon_pub/common/modal/ModalLoading";
 import ModalEnter from "../../components/coupon_pub/common/modal/ModalEnter";
-import ModalHundredComing from "../../components/coupon_pub/common/Modal/ModalHundredComing";
+import ModalHundredComing from "../../components/coupon_pub/common/modal/ModalHundredComing";
 import HundredDeal from "../../components/coupon_pub/main/HundredDeal";
 import Navigation from "../../components/coupon_pub/main/Navigation";
 

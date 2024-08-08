@@ -12,8 +12,8 @@ import styleApply from ".././../../styles/coupon_pub/Apply.module.css";
 
 // //components
 import Layout from "../../../components/common/Layout";
-import ModalAlert from "../../../components/coupon_pub/common/Modal/ModalAlert";
-import ModalLimitedSale from "../../../components/coupon_pub/common/Modal/ModalLimitedSale";
+import ModalAlert from "../../../components/coupon_pub/common/modal/ModalAlert";
+import ModalLimitedSale from "../../../components/coupon_pub/common/modal/ModalLimitedSale";
 
 const Index = () => {
   //헤더 아이콘 디폴트 세팅

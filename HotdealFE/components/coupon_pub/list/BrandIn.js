@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
 
-// components
-import ModalBrandSelect from "../common/modal/ModalBrandSelect";
-
 
 // Import Swiper styles
 import "swiper/css/bundle";

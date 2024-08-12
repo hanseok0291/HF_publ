@@ -60,7 +60,7 @@ const Index = () => {
             </h1>
           </div>
         </div>
-        <div style={{ paddingTop: "58px" }}>
+        <div style={{ paddingTop: "55px" }}>
           <div style={{ marginBottom: "20px" }}>
             {/* 카테고리 상품리스트 */}
             <CouponList pageType="result" />

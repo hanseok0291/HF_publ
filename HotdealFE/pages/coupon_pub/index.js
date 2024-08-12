@@ -171,7 +171,7 @@ const Index = () => {
             listItem={listItem}
             paddingTop={50}
           />
-          <ModalEnter />
+          {/* <ModalEnter /> */}
           {/* {showMainPopup && (
             // <ModalLoading />
             <ModalHundredComing

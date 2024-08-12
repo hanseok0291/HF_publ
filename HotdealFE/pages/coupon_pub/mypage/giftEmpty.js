@@ -34,6 +34,7 @@ const Index = () => {
           isShowBackBtn={isShowBackBtn}
           isShowSearchBtn={isShowSearchBtn}
           isShowMypageBtn={isShowMypageBtn}
+          subHeader={true}
         />
         <div style={{ paddingTop: "58px" }}>
           <div style={{ marginBottom: "20px" }}>

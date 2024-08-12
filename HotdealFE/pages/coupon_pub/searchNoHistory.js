@@ -35,7 +35,7 @@ const Index = () => {
     <>
       <Layout>
         <div
-          className={`${styleDefaultLayout.pageHeader} ${styleDefaultLayout.defaultHeader} ${styleSearch.pageHeader}`}
+          className={`${styleDefaultLayout.pageHeader} ${styleDefaultLayout.defaultHeader} ${styleSearch.pageHeader} ${styleDefaultLayout.subHeader}`}
         >
           <div className={`${styleDefaultLayout.container}`}>
             <button
@@ -45,7 +45,7 @@ const Index = () => {
               뒤로가기
             </button>
             <h1
-              className={`${styleDefaultLayout.pageTitle} ${styleSearch.pageTitle}`}
+              className={`${styleDefaultLayout.pageTitle} ${styleSearch.pageTitle} ${styleSearch.subHeader}`}
             >
               <input
                 type="text"
@@ -58,7 +58,7 @@ const Index = () => {
             </h1>
           </div>
         </div>
-        <div style={{ paddingTop: "58px" }}>
+        <div style={{ paddingTop: "55px" }}>
           <div style={{ marginBottom: "20px" }}>
             <InterestKeywords />
           </div>

@@ -11,7 +11,7 @@ export default function HeaderMypage({
 }) {
   return (
     <div
-      className={`${styleDefaultLayout.pageHeader} ${styleDefaultLayout.defaultHeader} ${noFixed ? styleDefaultLayout.noFixed : ''}`}
+      className={`${styleDefaultLayout.pageHeader} ${styleDefaultLayout.defaultHeader} ${noFixed ? styleDefaultLayout.noFixed : ''} ${subHeader && styleDefaultLayout.subHeader}`}
     >
       <div className={`${styleDefaultLayout.container}`}>
         <button

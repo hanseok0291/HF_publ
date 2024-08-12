@@ -13,7 +13,7 @@ const Index = () => {
 
 	return (
 		<>
-			<HeaderMypage pageTitle="선물함" />
+			<HeaderMypage pageTitle="선물함" subHeader={true} />
 			<Layout>
 			<MenuEmpty />
 			</Layout>

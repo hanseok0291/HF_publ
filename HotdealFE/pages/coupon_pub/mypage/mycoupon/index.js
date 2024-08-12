@@ -20,7 +20,7 @@ const Index = () => {
   return (
     <>
       <Layout>
-        <HeaderMypage pageTitle="보유 쿠폰" noFixed={true} />
+        <HeaderMypage pageTitle="보유 쿠폰" noFixed={true} subHeader={true} />
         <div
           className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap}`}
         >

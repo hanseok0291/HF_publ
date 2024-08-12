@@ -21,7 +21,7 @@ const Index = () => {
   return (
     <>
       <Layout>
-        <HeaderMypage pageTitle="보유 쿠폰" />
+        <HeaderMypage pageTitle="보유 쿠폰" subHeader={true} />
         <div
           className={`${styleDefaultLayout.defaultContent} ${styleDefaultLayout.wrap}`}
         >

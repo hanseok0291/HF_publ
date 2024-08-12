@@ -11,7 +11,7 @@ import styleGiftCoupon from "../../../styles/coupon_pub/GiftCoupon.module.css";
 import Layout from "../../../components/common/Layout";
 import Header from "../../../components/coupon_pub/common/Header";
 import GiftCoupon from "../../../components/coupon_pub/mypage/GiftCoupon";
-import ModalAlert from "../../../components/coupon_pub/common/Modal/ModalAlert";
+import ModalAlert from "../../../components/coupon_pub/common/modal/ModalAlert";
 import PromotionCoupon from "../../../components/coupon_pub/mypage/PromotionCoupon";
 import BuyTab from "../../../components/coupon_pub/mypage/BuyTab";
 

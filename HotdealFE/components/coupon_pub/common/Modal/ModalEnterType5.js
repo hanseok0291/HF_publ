@@ -5,7 +5,7 @@ import styleCommon from "../../../../styles/coupon_pub/Common.module.css";
 import styleModal from "../../../../styles/coupon_pub/Modal.module.css";
 import styleApply from "../../../../styles/coupon_pub/Apply.module.css";
 
-const ModalEnterType4 = ({ show, onClose }) => {
+const ModalEnterType5 = ({ show, onClose }) => {
   return (
     <div
       className={`${styleModal.modal} ${styleModal.modalInfo} ${styleModal.modalTerms} ${styleModal.modalType2} ${styleModal.open}`}
@@ -16,22 +16,24 @@ const ModalEnterType4 = ({ show, onClose }) => {
       >
         <div className={`${styleModal.modalContent}`}>
           <div className={`${styleModal.modalHeader}`}>
-            <p className={`${styleModal.modalTitle}`}>
-              <strong>개인정보 수집·이용 동의가 필요해요.</strong>
-              <br />
-              약관 동의 후에 결제하시겠어요?
-              <p className={`${styleModal.modalTitleSub}`}>
-                서브텍스트 내용 2줄 이상일 경우
+            <div className={`${styleModal.modalTitle}`}>
+              <div>
+                <strong>개인정보 수집·이용 동의가 필요해요.</strong>
                 <br />
-                이렇게 노출 됩니다.
-              </p>
+                약관 동의 후에 결제하시겠어요?
+                <p className={`${styleModal.modalTitleSub}`}>
+                  서브텍스트 내용 2줄 이상일 경우
+                  <br />
+                  이렇게 노출 됩니다.
+                </p>
+              </div>
               <button
                 type="button"
                 className={`${styleCommon.btnIcon} ${styleModal.btnClose} ${styleModal.modalClose}`}
               >
                 닫기
               </button>
-            </p>
+            </div>
           </div>
           <div className={`${styleModal.modalBody}`}>
             <div
@@ -83,4 +85,4 @@ const ModalEnterType4 = ({ show, onClose }) => {
   );
 };
 
-export default ModalEnterType4;
+export default ModalEnterType5;

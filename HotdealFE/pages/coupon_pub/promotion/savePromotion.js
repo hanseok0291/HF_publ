@@ -12,7 +12,7 @@ import Header from "../../../components/coupon_pub/common/Header";
 
 import SavePromotion from "../../../components/coupon_pub/promotion/SavePromotion";
 import PromotionList from "../../../components/coupon_pub/list/PromotionList";
-import ModalPromotion from "../../../components/coupon_pub/common/Modal/ModalPromotion";
+import ModalPromotion from "../../../components/coupon_pub/common/modal/ModalPromotion";
 
 const Index = () => {
   //헤더 아이콘 디폴트 세팅

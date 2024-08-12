@@ -4,7 +4,7 @@ import React from "react";
 import LayerRecommend from "../../components/retto_pub/LayerRecommend";
 import ModalRecommendEnd from "../../components/retto_pub/common/modal/ModalRecommendEnd";
 import Toast from "../../components/retto_pub/common/Toast";
-import ModalAlert from "../../components/coupon_pub/common/Modal/ModalAlert";
+import ModalAlert from "../../components/coupon_pub/common/modal/ModalAlert";
 import ModalRecommendBlock from "../../components/retto_pub/common/modal/ModalRecommendBlock";
 
 const index = () => {

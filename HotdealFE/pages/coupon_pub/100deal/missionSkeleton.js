@@ -8,9 +8,9 @@ import styleHundredDeal from "../../../styles/coupon_pub/HundredDeal.module.css"
 //css
 // //components
 import Layout from "../../../components/common/Layout";
-import ModalHundredArrival from "../../../components/coupon_pub/common/Modal/ModalHundredArrival";
-import ModalEntryComplete from "../../../components/coupon_pub/common/Modal/ModalEntryComplete";
-import ModalAlert from "../../../components/coupon_pub/common/Modal/ModalAlert";
+import ModalHundredArrival from "../../../components/coupon_pub/common/modal/ModalHundredArrival";
+import ModalEntryComplete from "../../../components/coupon_pub/common/modal/ModalEntryComplete";
+import ModalAlert from "../../../components/coupon_pub/common/modal/ModalAlert";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState(0);

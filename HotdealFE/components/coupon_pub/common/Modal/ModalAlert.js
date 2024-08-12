@@ -1,7 +1,7 @@
 import rhp from "html-react-parser";
 import styleModal from "../../../../styles/coupon_pub/Modal.module.css";
 
-const ModalAlert = ({ title, subTitle, cancle = "취소", confirm = "확인", message }) => {
+const ModalAlert = ({ title="제목", subTitle, cancle = "취소", confirm = "확인", message }) => {
   const TextLine = ({ text }) => {
     return (
       <>
@@ -12,14 +12,14 @@ const ModalAlert = ({ title, subTitle, cancle = "취소", confirm = "확인", me
   }
   return (
     <div
-      className={`${styleModal.modal} ${styleModal.modalCommon} ${styleModal.open}`}
+      className={`${styleModal.modal} ${styleModal.alert} ${styleModal.modalCommon} ${styleModal.open}`}
     >
       <div className={styleModal.modalDialog}>
         <div className={styleModal.modalContent}>
           {title && title !== "" ? (
             <div className={styleModal.modalHeader}>
-            <h3 className={styleModal.modalTitle}>{title}</h3>
-          </div>
+              <h3 className={styleModal.modalTitle}>{title}</h3>
+            </div>
           ): null}
           
           <div className={styleModal.modalBody}>

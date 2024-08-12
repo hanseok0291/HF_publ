@@ -12,7 +12,7 @@ import styleApply from ".././../../styles/coupon_pub/Apply.module.css";
 
 // //components
 import Layout from "../../../components/common/Layout";
-import ModalRecent from "../../../components/coupon_pub/common/Modal/ModalRecent";
+import ModalRecent from "../../../components/coupon_pub/common/modal/ModalRecent";
 
 const Index = () => {
   //헤더 아이콘 디폴트 세팅

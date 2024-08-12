@@ -17,13 +17,15 @@ const ModalEnterType3 = ({ show, onClose }) => {
         <div className={`${styleModal.modalContent}`}>
           <div className={`${styleModal.modalHeader}`}>
             <p className={`${styleModal.modalTitle}`}>
-              <strong>기프티몰이 처음</strong>이시라면
-              <br />
-              최초 1회 약관 동의가 필요해요
-              <p className={`${styleModal.modalTitleSub}`}>
-                동의하시면 핫딜까지 만나볼 수 있어요
-                <i className={`${styleCommon.italic}`}>!</i>
-              </p>
+              <div>
+                <strong>기프티몰이 처음</strong>이시라면
+                <br />
+                최초 1회 약관 동의가 필요해요
+                <p className={`${styleModal.modalTitleSub}`}>
+                  동의하시면 핫딜까지 만나볼 수 있어요
+                  <i className={`${styleCommon.italic}`}>!</i>
+                </p>
+              </div>
               <button
                 type="button"
                 className={`${styleCommon.btnIcon} ${styleModal.btnClose} ${styleModal.modalClose}`}

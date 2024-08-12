@@ -11,7 +11,7 @@ import Layout from "../../../components/common/Layout";
 import Header from "../../../components/coupon_pub/common/Header";
 import Footer from "../../../components/coupon_pub/common/Footer";
 import Navigation from "../../../components/coupon_pub/main/Navigation";
-import ModalBrandIn from "../../../components/coupon_pub/common/Modal/ModalBrandIn";
+import ModalBrandIn from "../../../components/coupon_pub/common/modal/ModalBrandIn";
 
 const tabList = [
   {

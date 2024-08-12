@@ -13,7 +13,7 @@ import FirstCouponRadio from "../../../components/coupon_pub/mypage/FirstCouponR
 import {
   ModalSelectCoupon,
   ModalSelectCouponDetail,
-} from "../../../components/coupon_pub/common/Modal/ModalSelectCoupon";
+} from "../../../components/coupon_pub/common/modal/ModalSelectCoupon";
 
 const Index = () => {
   //헤더 아이콘 디폴트 세팅

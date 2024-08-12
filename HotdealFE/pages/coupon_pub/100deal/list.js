@@ -11,8 +11,8 @@ import Header from "../../../components/coupon_pub/common/Header";
 import Footer from "../../../components/coupon_pub/common/Footer";
 
 import List from "../../../components/coupon_pub/100deal/List";
-import ModalHundredResult from "../../../components/coupon_pub/common/Modal/ModalHundredResult";
-import ModalHundredWinner from "../../../components/coupon_pub/common/Modal/ModalHundredWinner";
+import ModalHundredResult from "../../../components/coupon_pub/common/modal/ModalHundredResult";
+import ModalHundredWinner from "../../../components/coupon_pub/common/modal/ModalHundredWinner";
 import TabGroup from "../../../components/coupon_pub/common/TabGroup";
 
 const Index = () => {

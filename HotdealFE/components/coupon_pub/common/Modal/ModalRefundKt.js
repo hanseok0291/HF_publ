@@ -15,7 +15,7 @@ const ModalRefundKt = ({
   return (
     <>
       <div
-        className={`${styleModal.modal} ${styleModal.modalCommon} ${styleModal.open} ${styleRecent.modalCommon}`}
+        className={`${styleModal.modal} ${styleModal.alert} ${styleModal.modalCommon} ${styleModal.open}`}
       >
         <div className={`${styleModal.modalDialog}`}>
           <div className={`${styleModal.modalContent}`}>

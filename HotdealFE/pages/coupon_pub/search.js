@@ -14,7 +14,7 @@ import Footer from "../../components/coupon_pub/common/Footer";
 import SearchKeywords from "../../components/coupon_pub/search/SearchKeywords";
 import InterestKeywords from "../../components/coupon_pub/search/InterestKeywords";
 import BuyAgainCoupon from "../../components/coupon_pub/search/BuyAgainCoupon";
-import ModalHundredComing from "../../components/coupon_pub/common/Modal/ModalHundredComing";
+import ModalHundredComing from "../../components/coupon_pub/common/modal/ModalHundredComing";
 
 const Index = () => {
   const router = useRouter();

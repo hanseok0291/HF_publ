@@ -20,7 +20,7 @@ import PopularCoupon from "../../components/coupon_pub/main/PopularCoupon";
 import PromotionBanner from "../../components/coupon_pub/main/PromotionBanner";
 import LimitCoupon from "../../components/coupon_pub/main/LimitCoupon";
 import RewardBanner from "../../components/coupon_pub/main/RewardBanner";
-import MainPopup from "../../components/coupon_pub/common/Modal/MainPopup";
+import MainPopup from "../../components/coupon_pub/common/modal/MainPopup";
 
 const Index = () => {
   const router = useRouter();
@@ -66,7 +66,7 @@ const Index = () => {
             <MaybeCoupon
               pageTitle={[
                 "혹시 이 상품 찾으세요?",
-                <span className="titleEmoticon">🔍</span>,
+                <span className="titleEmoticon" key="0">🔍</span>,
               ]}
             />
             {/* 프로모션 배너 */}

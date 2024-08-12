@@ -12,9 +12,9 @@ import styleApply from ".././../../styles/coupon_pub/Apply.module.css";
 
 // //components
 import Layout from "../../../components/common/Layout";
-import ModalAlert from "../../../components/coupon_pub/common/Modal/ModalAlert";
-import ModalLimitedSale from "../../../components/coupon_pub/common/Modal/ModalLimitedSale";
-import ModalCancleConfirm from "../../../components/coupon_pub/common/Modal/ModalCancleConfirm";
+import ModalAlert from "../../../components/coupon_pub/common/modal/ModalAlert";
+import ModalLimitedSale from "../../../components/coupon_pub/common/modal/ModalLimitedSale";
+import ModalCancleConfirm from "../../../components/coupon_pub/common/modal/ModalCancleConfirm";
 
 const Index = () => {
   //헤더 아이콘 디폴트 세팅

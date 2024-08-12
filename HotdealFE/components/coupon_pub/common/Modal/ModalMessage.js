@@ -1,7 +1,7 @@
 import styleCommon from "../../../../styles/coupon_pub/Common.module.css";
 import styleModal from "../../../../styles/coupon_pub/Modal.module.css";
 
-const ModalAlert = ({ title, cancle = "취소", confirm = "확인", content }) => {
+const ModalMessage = ({ title, cancle = "취소", confirm = "확인", content }) => {
   return (
     <div
       className={`${styleModal.modal} ${styleModal.modalCommon} ${styleModal.open} ${styleModal.modalMessage}`}
@@ -33,8 +33,8 @@ const ModalAlert = ({ title, cancle = "취소", confirm = "확인", content }) =
   );
 };
 
-// ModalAlert.propTypes = {
+// ModalMessage.propTypes = {
 //   content: PropTypes.string.isRequired,
 // };
 
-export default ModalAlert;
+export default ModalMessage;

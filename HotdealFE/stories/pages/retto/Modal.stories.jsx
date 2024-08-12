@@ -1,4 +1,4 @@
-import ModalAlert from "../../../components/coupon_pub/common/Modal/ModalAlert";
+import ModalAlert from "../../../components/coupon_pub/common/modal/ModalAlert";
 
 export default {
   title: "Pages/Retto/리또 신청",

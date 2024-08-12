@@ -280,7 +280,7 @@ const Index = () => {
 												className={`${stylePay.checkbox} ${styleApply.checkbox} ${styleApply.parents}`}
 											>
 												<input type="checkbox" name="agreeAll" id="agreeAll_03" />
-												<label for="agreeAll_03">개인정보 수집이용 동의</label>
+												<label htmlFor="agreeAll_03">개인정보 수집이용 동의</label>
 											</span>
 											<button
 												type="button"

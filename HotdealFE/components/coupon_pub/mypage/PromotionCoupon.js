@@ -4,7 +4,7 @@ import styleCommon from "../../../styles/coupon_pub/Common.module.css";
 import styleGiftPresent from "../../../styles/coupon_pub/GiftPresent.module.css";
 import styleGiftCoupon from "../../../styles/coupon_pub/GiftCoupon.module.css";
 import styleModal from "../../../styles/coupon_pub/Modal.module.css";
-import ModalAlert from "../common/Modal/ModalAlert";
+import ModalAlert from "../common/modal/ModalAlert";
 
 //components
 

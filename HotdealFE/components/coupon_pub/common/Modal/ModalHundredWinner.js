@@ -51,7 +51,7 @@ const ModalHundredWinner = ({ show, onClose }) => {
               </span>
               <button
                 type="button"
-                className={`${styleCommon.btnIcon} ${styleModal.btnClose} ${styleModal.modalClose}`}
+                className={`${styleCommon.btnIcon} ${styleModal.btnClose} ${styleModal.modalClose}`} onClick={() => onClose()}
               >
                 닫기
               </button>

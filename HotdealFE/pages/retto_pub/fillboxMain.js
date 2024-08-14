@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import Container from "../../components/retto_pub/common/Container";
 
 // component
 import Header from "../../components/retto_pub/common/Header";
-import DrawInfo from "../../components/retto_pub/DrawInfo";
 import HomeTab from "../../components/retto_pub/HomeTab";
+import FillBoxMain from "@/components/retto_pub/FillBoxMain";
+import FillBoxPrev from "@/components/retto_pub/FillBoxPrev";
 
 const index = () => {
-
   return (
     <>
       <Header />
-      <HomeTab activeTab={2} />
+      <HomeTab activeTab={3} />
       <Container isTab padding="0" backgroundColor="#fff">
-        {/* 추첨 정보 case1 리또 없음 case2 당첨 case3 미당첨 case4 추첨예정 case5 이번,다음 회차 case6 미신청자 case7 당첨금 배너 */}
-        <DrawInfo case2 />
+        {/* <FillBoxMain /> */}
+        <FillBoxPrev />
       </Container>
     </>
   );

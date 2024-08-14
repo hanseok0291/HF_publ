@@ -95,7 +95,6 @@ footerButtons.forEach((button) => {
     const targetButton = document.querySelector(`#${target}`); // 해당하는 버튼 선택
     const allAgreeCheckbox = document.getElementById("check-all");
 
-    console.log("click");
     if (targetButton) {
       targetButton.checked = true; // 해당하는 버튼을 체크된 상태로 만들기
       if ([...otherCheckboxes].every((cb) => cb.checked)) {

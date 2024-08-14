@@ -36,7 +36,7 @@ function modalOpen(obj1, obj2) {
 
     // 이중 모달이 아닌 경우
     if (!$(temp).hasClass("depth2")) {
-      scrollOn(); // 바디 스크롤 제거 해제
+      // scrollOn(); // 바디 스크롤 제거 해제
     }
   }
 
@@ -62,10 +62,8 @@ function modalClose() {
 
 // 모달 열기 버튼
 $(".js-modal-slide").click(function () {
-  scrollOff; // 모달 열렸을때 딤 영역 스크롤 막기
   var chk = $(this).attr("data-chk"); // 모달이 열리는지 체크
   var target = $(this).attr("data-target"); // 모달 ID
-
   if (chk == "false") {
   } else {
     modalOpen(target);
@@ -88,7 +86,7 @@ $(function () {
     var openBtn = $(this);
     var target = $(this).attr("data-target"); // 모달 ID
     $(target).show().focus(); // 모달 열기, 포커스
-    scrollOff(); // 바디 스크롤 제거
+    // scrollOff(); // 바디 스크롤 제거
 
     // 모달 위치
     var thisDialog = $(target).find(".modal-dialog");
@@ -98,6 +96,7 @@ $(function () {
     // 모달 닫기
     $("[data-dismiss='modal']").click(function () {
       $(openBtn).focus(); // 열기 버튼 포커스
+      // scrollOff(); // 바디 스크롤 제거
     });
 
     $("#wrap").css("position", "fixed");
@@ -108,6 +107,7 @@ $(function () {
     var target = $(this).parents(".modal");
     $(target).hide(); // 모달 닫기
     scrollOn(); // 바디 스크롤 제거 해제
+    // scrollOff(); // 바디 스크롤 제거
   });
 
   // 배너 닫기(플로팅 배너)

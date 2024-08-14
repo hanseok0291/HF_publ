@@ -10,14 +10,16 @@
     <script src="../js/jquery-1.8.3.min.js"></script>
     <script src="../js/common.js" defer></script>
     <script src="../js/aml.js" defer></script>
+    <script src="../js/postcode.v2.js"></script>
   </head>
 
   <body>
     <!-- wrap -->
-    <div id="wrap">
+    <div id="wrap" class="aml-home">
       <!-- header -->
       <header class="header">
         <div class="container">
+          <button type="button" class="btn-back btn"></button>
           <h1 class="brand-name">
             <span class="my-logo"><img src="../images/common/logo.png" alt="헥토파이낸셜" /></span>
           </h1>
@@ -30,86 +32,146 @@
       <section>
         <!-- container -->
         <div id="content" class="container">
-          <div class="tit-wrap">
-            <!-- tit -->
-            <h2 class="tit">
-              본인확인을 위해<br />
-              정확한 정보를 입력해주세요
-            </h2>
-            <!-- //tit -->
-          </div>
-
-          <div class="form-wrap">
-            <div class="custom-input">
-              <input id="phone" type="tel" pattern="\d*" maxlength="11" oninput="maxLengthCheck(this)" onblur="formatPhoneNumber()" />
-              <label for="phone" class="custom-label">휴대폰번호</label>
+          <!-- card-box-money -->
+          <div class="card-box card-box-money">
+            <div class="money-wrap js-modal-slide" data-target="modalSlide01">
+              <p class="money">2,000,000 원</p>
+              <p class="point">포인트 3000P</p>
             </div>
-            <div class="custom-input custom-select js-modal-slide" data-target="modalTelecom">
-              <label for="inputField02" class="custom-label">통신사</label>
-              <div class="select">
+            <div class="card-box-money-bottom-wrap">
+              <button type="button" class="btn btn-round">카드 발급</button>
+              <div class="check-box">
+                <input type="checkbox" id="check-all" name="check-all" />
+                <label for="check-all">항상 머니 먼저 사용</label>
+              </div>
+            </div>
+          </div>
+          <!-- //card-box-money -->
+          <!-- card-box-menu-list -->
+          <div class="card-box card-box-menu-list">
+            <div class="container">
+              <ul>
+                <li>
+                  <button type="button">
+                    <i class="ico ico-plus"></i>
+                    <p>충전하기</p>
+                    <i class="btn btn-arrow"></i>
+                  </button>
+                </li>
+                <li>
+                  <button type="button">
+                    <i class="ico ico-out"></i>
+                    <p>출금하기</p>
+                    <i class="btn btn-arrow"></i>
+                  </button>
+                </li>
+                <li>
+                  <button type="button">
+                    <i class="ico ico-myinfo"></i>
+                    <p>내 정보</p>
+                    <i class="btn btn-arrow"></i>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- //card-box-menu-list -->
+          <!-- card-box-history -->
+          <div class="card-box card-box-history">
+            <div class="container">
+              <div class="card-box-history-tit-wrap">
+                <p class="month-history">9월 이용내역</p>
+                <button type="button" class="btn btn-all-view">전체보기</button>
+              </div>
+              <div class="card-box-history-list-wrap">
                 <ul>
-                  <li>SKT</li>
+                  <li class="minus">
+                    <div>
+                      <span class="date">12일(목)</span>
+                      <span class="place">KINDABEIGE</span>
+                      <span class="price">-10,000원</span>
+                    </div>
+                  </li>
+                  <li class="plus">
+                    <div>
+                      <span class="date">12일(목)</span>
+                      <span class="place">신한(3443)</span>
+                      <span class="price">+30,000원</span>
+                    </div>
+                    <div>
+                      <span class="date"></span>
+                      <span class="place">Mansur Manso Mansur Manso...</span>
+                      <span class="price">+2,000,000원</span>
+                    </div>
+                  </li>
                 </ul>
               </div>
             </div>
-            <div class="custom-input custom-number-wrap">
-              <div class="number-wrap">
-                <input type="text" id="selectField" class="birth-wrap" maxlength="6" />
-                <label for="selectField" class="custom-label">주민등록번호</label>
-                <span class="text-dash">-</span>
-                <input type="text" id="inputDotBox" class="birth-wrap" maxlength="1" />
-              </div>
-              <div class="input-dot" id="inputDot">
-                <!-- span에 fill Class 추가 시 입력 -->
-                <span class="fill"></span>
-                <span class="fill"></span>
-                <span class="fill"></span>
-                <span class="fill"></span>
-                <span class="fill"></span>
-                <span class="fill"></span>
-              </div>
-            </div>
-            <div class="custom-input">
-              <!-- 에러일 경우 error 클래스 추가 -->
-              <input type="text" id="inputField02" />
-              <label for="inputField02" class="custom-label">이름</label>
-              <p class="error">영문명은 여권명과 동일하게 해주세요.</p>
-            </div>
-            <div class="custom-input">
-              <input type="text" id="inputField03" maxlength="6" />
-              <label for="inputField03" class="custom-label">인증번호</label>
-              <span class="btn-label time">2:37</span>
-            </div>
           </div>
+          <!-- //card-box-history -->
         </div>
         <!-- //container -->
-
-        <!-- footer -->
-        <div id="footer">
-          <!-- container -->
-          <div class="btn-wrap">
-            <button type="button" id="send" class="btn btn-default js-modal-slide" data-target="modalSlide02" data-chk="true">인증요청</button>
-          </div>
-          <!-- //container -->
-        </div>
-        <!-- //footer -->
       </section>
       <!-- //section -->
     </div>
     <!-- //wrap -->
 
-    <div id="modalTelecom" class="modal modal-slide">
+    <div id="modalJob" class="modal modal-slide modal-popup full">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
             <div class="container">
               <ul class="select-list">
-                <li class="bold">SKT</li>
-                <li>KT</li>
-                <li>LG U+</li>
-                <li>KCT</li>
-                <li>SK7mobile</li>
-                <li>헬로모바일</li>
+                <li class="bold">직장인</li>
+                <li>전문직(변호사, 의사 등)</li>
+                <li>공무원</li>
+                <li>개인사업자/자영업자</li>
+                <li>자유직/프리랜서</li>
+                <li>학생/군인</li>
+                <li>주부</li>
+                <li>무직</li>
+                <li>소액해외송금업</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modalSource" class="modal modal-slide modal-popup full">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="container">
+              <ul class="select-list">
+                <li class="bold">근로 및 연금소득</li>
+                <li>퇴직 소득</li>
+                <li>사업 소득</li>
+                <li>부동산 임대 소득</li>
+                <li>부동산 양도 소득</li>
+                <li>금융 소득(이자 및 배당)</li>
+                <li>상속/증여</li>
+                <li class="show">기타(명시)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modaPurpose" class="modal modal-slide modal-popup full">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="container">
+              <ul class="select-list">
+                <li class="bold">노후준비</li>
+                <li>상속준비</li>
+                <li>자녀양육</li>
+                <li>급여 및 생활비</li>
+                <li>저축 및 투자</li>
+                <li>대출금 상환 결제</li>
+                <li class="show">기타(명시)</li>
               </ul>
             </div>
           </div>
@@ -301,29 +363,149 @@
       </div>
     </div>
     <!-- //modal - 공지사항 상세 -->
-    <!-- common prompt -->
-    <div id="commonPrompt" class="modal">
+
+    <!-- modal - common alert -->
+    <div id="commonAlert" class="modal modal-new" tabindex="-1" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
-            <h3 id="promptTitle"></h3>
-            <p id="promptContents"></p>
+            <div id="alertContents">
+              <p class="text-info"></p>
+            </div>
           </div>
           <div class="modal-footer">
-            <button type="button" onclick="modalClose();" class="btn btn-cancel">아니오</button>
-            <button type="button" onclick="modalClose();" id="promptOk" class="btn btn-confirm">예</button>
+            <button type="button" id="confirmOk" class="btn" data-dismiss="modal">확인</button>
           </div>
         </div>
       </div>
     </div>
-    <!-- //common prompt -->
+    <!-- //modal - common alert -->
+
+    <!-- 주소검색 -->
+    <div id="modalAddr" class="modal modal-full modal-addr" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <div class="container">
+              <button type="button" onclick="modalClose();" class="btn-back btn"></button>
+              <h1 class="brand-name">
+                <span class="my-logo"><img src="../images/common/logo.png" alt="헥토파이낸셜" /></span>
+              </h1>
+              <button type="button" class="btn btn-close" data-dismiss="modal" data-target="#noticeDetail"></button>
+            </div>
+          </div>
+          <div class="modal-body">
+            <p class="title">주소 검색하기</p>
+            <div class="addr-wrap">
+              <div class="addr-search">
+                <input type="text" placeholder="도로명/건물명 검색" class="" />
+                <button type="button" class="btn-search"></button>
+              </div>
+              <div class="addr-body">
+                <ul>
+                  <li>
+                    <span class="zipcode">1</span>
+                    <span class="address">서울특별시 중구 서소문로9길 서소문로9길 28</span>
+                  </li>
+                  <li>
+                    <span class="zipcode">12</span>
+                    <span class="address">서울특별시 중구 서소문로9길 28</span>
+                  </li>
+                  <li>
+                    <span class="zipcode">123</span>
+                    <span class="address">서울특별시 중구 서소문로9길 28</span>
+                  </li>
+                  <li>
+                    <span class="zipcode">1234</span>
+                    <span class="address">서울특별시 중구 서소문로9길 28</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //주소검색 -->
+
+    <!-- 머니, 포인트 모달 -->
+    <div id="modalSlide01" class="modal modal-slide money-point">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="container">
+              <div class="modal-list-wrap">
+                <div class="modal-list-tit">
+                  <h3>머니 · 포인트</h3>
+                  <button type="button" class="btn btn-close"></button>
+                </div>
+                <div class="modal-list">
+                  <ul>
+                    <li>
+                      <div>
+                        <span class="txt">머니</span>
+                        <span class="price">2,000,000원</span>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <span class="txt">포인트</span>
+                        <span class="price">3,000P</span>
+                      </div>
+                      <div class="sub">
+                        <p>만료 예정<span class="color">(D-1)</span></p>
+                        <p>1,000P</p>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <span class="txt">대기 머니</span>
+                        <span class="price">100,000원</span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script>
-      $(window).on("load", function () {
-        formatPhoneNumber();
+      // input 요소에 대한 NodeList를 가져옵니다.
+      var inputs = document.querySelectorAll('input[type="text"]');
+      // send 버튼의 요소를 가져옵니다.
+      var sendButton = document.getElementById("send");
+
+      // input 요소에 대해 각각의 입력 이벤트를 추가합니다.
+      inputs.forEach(function (input) {
+        input.addEventListener("input", function () {
+          // 입력할 때마다 모든 input 요소에 값이 있는지 확인합니다.
+          var allValuesEntered = true;
+          inputs.forEach(function (input) {
+            if (input.value.trim() === "") {
+              allValuesEntered = false;
+            }
+          });
+
+          // 만약 모든 input 요소에 값이 들어가 있으면 send 버튼의 disabled 속성을 해제합니다.
+          if (allValuesEntered) {
+            sendButton.removeAttribute("disabled");
+          } else {
+            sendButton.setAttribute("disabled", "disabled");
+          }
+        });
       });
 
-      $(".btn-close.btn").click(function () {
-        $.promptMessage("", "선불충전서비스를 이용하기 위해서는<br>본인확인이 필요합니다.<br><br><b>본인확인을 계속 하시겠습니까?</b>", $("#commonPrompt"));
+      // 얼럿 버튼
+      $("#send").click(function () {
+        $.alertMessage("", "간편인증에 실패하였습니다.<br>다시 진행해주세요.", $("#commonAlert"));
+      });
+
+      // 얼럿 버튼
+      $(".money-point .btn-close").click(function () {
+        modalClose();
       });
     </script>
   </body>

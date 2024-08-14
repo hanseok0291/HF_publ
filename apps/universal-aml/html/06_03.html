@@ -335,25 +335,8 @@
     </div>
     <!-- //modal - 공지사항 상세 -->
 
-    <!-- modal - common alert -->
-    <div id="commonAlert" class="modal modal-new" tabindex="-1" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-body">
-            <div id="alertContents">
-              <p class="text-info"></p>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" id="confirmOk" class="btn" data-dismiss="modal">확인</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- //modal - common alert -->
-
     <!-- 주소검색 -->
-    <div id="modalAddr" class="modal modal-full modal-addr" tabindex="-1" role="dialog">
+    <div id="modalAddr" class="modal modal-full modal-addr" tabindex="-1" role="dialog" style="display: block">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-head">
@@ -375,12 +358,12 @@
               <div class="addr-body">
                 <ul>
                   <li>
-                    <span class="zipcode">1</span>
-                    <span class="address">서울특별시 중구 서소문로9길 서소문로9길 28</span>
+                    <span class="zipcode">10535</span>
+                    <span class="address">경기도 고양시 덕양구 소원로 252(행신동,중흥에스클래스타운하우스(서정마을11단지))</span>
                   </li>
                   <li>
-                    <span class="zipcode">12</span>
-                    <span class="address">서울특별시 중구 서소문로9길 28</span>
+                    <span class="zipcode">10535</span>
+                    <span class="address">경상남도 창원시 마산합포구 현동9길 14(현동,중흥 S-클래스 프라디움 2차)</span>
                   </li>
                   <li>
                     <span class="zipcode">123</span>
@@ -396,9 +379,42 @@
           </div>
         </div>
       </div>
+
+      <!-- modal - common alert -->
+      <div id="commonAlert" class="modal modal-alert modal-new" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div id="alertContents">
+                <p class="text-info"></p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="confirmOk" class="btn" data-dismiss="modal">확인</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- //modal - common alert -->
     </div>
     <!-- //주소검색 -->
 
+    <!-- modal - common alert -->
+    <div id="commonAlert" class="modal modal-alert modal-new" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div id="alertContents">
+              <p class="text-info"></p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="confirmOk" class="btn" data-dismiss="modal">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //modal - common alert -->
     <script>
       // input 요소에 대한 NodeList를 가져옵니다.
       var inputs = document.querySelectorAll('input[type="text"]');
@@ -424,7 +440,6 @@
           }
         });
       });
-
       // 얼럿 버튼
       $("#send").click(function () {
         $.alertMessage(
@@ -432,6 +447,12 @@
           "고객님께서는 미성년자에 해당되어<br>(만 14세 이상~만 17세 미만)<br><br><b>선불 충전잔액은 최대 50만원,<br>월 보유한도는 최대 200만원으로<br>제한됨을 알려드립니다.</b>",
           $("#commonAlert")
         );
+      });
+      // 검색 결과 없을 경우 노출
+      $(document).ready(function () {
+        if ($("#modalAddr").is(":visible")) {
+          $.alertMessage("", "검색 결과가 없습니다.<br><br>잘못 입력된 철자가 없는지<br>또는 정확한 주소인지<br>다시 한번 확인해주세요.", $("#commonAlert"));
+        }
       });
 
       let buttonClicked = "";

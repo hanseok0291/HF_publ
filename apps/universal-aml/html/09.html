@@ -10,6 +10,7 @@
     <script src="../js/jquery-1.8.3.min.js"></script>
     <script src="../js/common.js" defer></script>
     <script src="../js/aml.js" defer></script>
+    <script src="../js/postcode.v2.js"></script>
   </head>
 
   <body>
@@ -33,52 +34,42 @@
           <div class="tit-wrap">
             <!-- tit -->
             <h2 class="tit">
-              본인확인을 위해<br />
-              정확한 정보를 입력해주세요
+              간편인증을<br />
+              진행해 주세요
             </h2>
             <!-- //tit -->
+            <p class="sub-tit">개인정보를 확인하고 인증 수단을 선택한 후<br />인증 버튼 요청을 눌러 간편 인증을 진행해주세요.</p>
           </div>
 
           <div class="form-wrap">
-            <div class="custom-input">
-              <input id="phone" type="tel" pattern="\d*" maxlength="11" oninput="maxLengthCheck(this)" onblur="formatPhoneNumber()" />
-              <label for="phone" class="custom-label">휴대폰번호</label>
+            <div class="custom-input value">
+              <p class="sub-tit">이름</p>
+              <p class="tit">김헥토</p>
             </div>
-            <div class="custom-input custom-select js-modal-slide" data-target="modalTelecom">
-              <label for="inputField02" class="custom-label">통신사</label>
-              <div class="select">
-                <ul>
-                  <li>SKT</li>
-                </ul>
+            <div class="custom-input value">
+              <p class="sub-tit">생년월일</p>
+              <p class="tit">19900101</p>
+            </div>
+            <div class="custom-input value">
+              <p class="sub-tit">휴대폰번호</p>
+              <p class="tit">010-1234-4321</p>
+            </div>
+            <div class="custom-input value radio-input">
+              <p class="sub-tit">간편인증 수단</p>
+              <div class="radio-wrap">
+                <div class="check-box check-all w-full naver">
+                  <input type="radio" id="naver" name="check-all" />
+                  <label for="naver">네이버</label>
+                </div>
+                <div class="check-box check-all w-full kakao">
+                  <input type="radio" id="kakao" name="check-all" />
+                  <label for="kakao">카카오톡</label>
+                </div>
+                <div class="check-box check-all w-full pass">
+                  <input type="radio" id="pass" name="check-all" />
+                  <label for="pass">통신사패스</label>
+                </div>
               </div>
-            </div>
-            <div class="custom-input custom-number-wrap">
-              <div class="number-wrap">
-                <input type="text" id="selectField" class="birth-wrap" maxlength="6" />
-                <label for="selectField" class="custom-label">주민등록번호</label>
-                <span class="text-dash">-</span>
-                <input type="text" id="inputDotBox" class="birth-wrap" maxlength="1" />
-              </div>
-              <div class="input-dot" id="inputDot">
-                <!-- span에 fill Class 추가 시 입력 -->
-                <span class="fill"></span>
-                <span class="fill"></span>
-                <span class="fill"></span>
-                <span class="fill"></span>
-                <span class="fill"></span>
-                <span class="fill"></span>
-              </div>
-            </div>
-            <div class="custom-input">
-              <!-- 에러일 경우 error 클래스 추가 -->
-              <input type="text" id="inputField02" />
-              <label for="inputField02" class="custom-label">이름</label>
-              <p class="error">영문명은 여권명과 동일하게 해주세요.</p>
-            </div>
-            <div class="custom-input">
-              <input type="text" id="inputField03" maxlength="6" />
-              <label for="inputField03" class="custom-label">인증번호</label>
-              <span class="btn-label time">2:37</span>
             </div>
           </div>
         </div>
@@ -88,7 +79,7 @@
         <div id="footer">
           <!-- container -->
           <div class="btn-wrap">
-            <button type="button" id="send" class="btn btn-default js-modal-slide" data-target="modalSlide02" data-chk="true">인증요청</button>
+            <button type="button" id="send" class="btn btn-default" disabled>인증요청</button>
           </div>
           <!-- //container -->
         </div>
@@ -98,18 +89,62 @@
     </div>
     <!-- //wrap -->
 
-    <div id="modalTelecom" class="modal modal-slide">
+    <div id="modalJob" class="modal modal-slide modal-popup full">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
             <div class="container">
               <ul class="select-list">
-                <li class="bold">SKT</li>
-                <li>KT</li>
-                <li>LG U+</li>
-                <li>KCT</li>
-                <li>SK7mobile</li>
-                <li>헬로모바일</li>
+                <li class="bold">직장인</li>
+                <li>전문직(변호사, 의사 등)</li>
+                <li>공무원</li>
+                <li>개인사업자/자영업자</li>
+                <li>자유직/프리랜서</li>
+                <li>학생/군인</li>
+                <li>주부</li>
+                <li>무직</li>
+                <li>소액해외송금업</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modalSource" class="modal modal-slide modal-popup full">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="container">
+              <ul class="select-list">
+                <li class="bold">근로 및 연금소득</li>
+                <li>퇴직 소득</li>
+                <li>사업 소득</li>
+                <li>부동산 임대 소득</li>
+                <li>부동산 양도 소득</li>
+                <li>금융 소득(이자 및 배당)</li>
+                <li>상속/증여</li>
+                <li class="show">기타(명시)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modaPurpose" class="modal modal-slide modal-popup full">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="container">
+              <ul class="select-list">
+                <li class="bold">노후준비</li>
+                <li>상속준비</li>
+                <li>자녀양육</li>
+                <li>급여 및 생활비</li>
+                <li>저축 및 투자</li>
+                <li>대출금 상환 결제</li>
+                <li class="show">기타(명시)</li>
               </ul>
             </div>
           </div>
@@ -301,29 +336,112 @@
       </div>
     </div>
     <!-- //modal - 공지사항 상세 -->
-    <!-- common prompt -->
-    <div id="commonPrompt" class="modal">
+
+    <!-- modal - common alert -->
+    <div id="commonAlert" class="modal modal-new" tabindex="-1" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
-            <h3 id="promptTitle"></h3>
-            <p id="promptContents"></p>
+            <div id="alertContents">
+              <p class="text-info"></p>
+            </div>
           </div>
           <div class="modal-footer">
-            <button type="button" onclick="modalClose();" class="btn btn-cancel">아니오</button>
-            <button type="button" onclick="modalClose();" id="promptOk" class="btn btn-confirm">예</button>
+            <button type="button" id="confirmOk" class="btn" data-dismiss="modal">확인</button>
           </div>
         </div>
       </div>
     </div>
-    <!-- //common prompt -->
+    <!-- //modal - common alert -->
+
+    <!-- 주소검색 -->
+    <div id="modalAddr" class="modal modal-full modal-addr" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <div class="container">
+              <button type="button" onclick="modalClose();" class="btn-back btn"></button>
+              <h1 class="brand-name">
+                <span class="my-logo"><img src="../images/common/logo.png" alt="헥토파이낸셜" /></span>
+              </h1>
+              <button type="button" class="btn btn-close" data-dismiss="modal" data-target="#noticeDetail"></button>
+            </div>
+          </div>
+          <div class="modal-body">
+            <p class="title">주소 검색하기</p>
+            <div class="addr-wrap">
+              <div class="addr-search">
+                <input type="text" placeholder="도로명/건물명 검색" class="" />
+                <button type="button" class="btn-search"></button>
+              </div>
+              <div class="addr-body">
+                <ul>
+                  <li>
+                    <span class="zipcode">1</span>
+                    <span class="address">서울특별시 중구 서소문로9길 서소문로9길 28</span>
+                  </li>
+                  <li>
+                    <span class="zipcode">12</span>
+                    <span class="address">서울특별시 중구 서소문로9길 28</span>
+                  </li>
+                  <li>
+                    <span class="zipcode">123</span>
+                    <span class="address">서울특별시 중구 서소문로9길 28</span>
+                  </li>
+                  <li>
+                    <span class="zipcode">1234</span>
+                    <span class="address">서울특별시 중구 서소문로9길 28</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //주소검색 -->
+
     <script>
-      $(window).on("load", function () {
-        formatPhoneNumber();
+      // input 요소에 대한 NodeList를 가져옵니다.
+      var inputs = document.querySelectorAll('input[type="text"]');
+      // send 버튼의 요소를 가져옵니다.
+      var sendButton = document.getElementById("send");
+
+      // input 요소에 대해 각각의 입력 이벤트를 추가합니다.
+      inputs.forEach(function (input) {
+        input.addEventListener("input", function () {
+          // 입력할 때마다 모든 input 요소에 값이 있는지 확인합니다.
+          var allValuesEntered = true;
+          inputs.forEach(function (input) {
+            if (input.value.trim() === "") {
+              allValuesEntered = false;
+            }
+          });
+
+          // 만약 모든 input 요소에 값이 들어가 있으면 send 버튼의 disabled 속성을 해제합니다.
+          if (allValuesEntered) {
+            sendButton.removeAttribute("disabled");
+          } else {
+            sendButton.setAttribute("disabled", "disabled");
+          }
+        });
       });
 
-      $(".btn-close.btn").click(function () {
-        $.promptMessage("", "선불충전서비스를 이용하기 위해서는<br>본인확인이 필요합니다.<br><br><b>본인확인을 계속 하시겠습니까?</b>", $("#commonPrompt"));
+      // 라디오 버튼 선택되면 send 버튼 활성화
+      document.addEventListener("DOMContentLoaded", () => {
+        const radioButtons = document.querySelectorAll('input[name="check-all"]');
+        const sendButton = document.getElementById("send");
+
+        radioButtons.forEach((radio) => {
+          radio.addEventListener("change", () => {
+            sendButton.disabled = false;
+          });
+        });
+      });
+
+      // 얼럿 버튼
+      $("#send").click(function () {
+        $.alertMessage("", "선택하신 수단으로 인증을 완료한 후<br>'인증 완료' 버튼을 눌러 주세요.<br><br>인증을 완료하지 않고 '인증 완료'<br>버튼을 누르면 인증이 실패됩니다.</b>", $("#commonAlert"));
       });
     </script>
   </body>

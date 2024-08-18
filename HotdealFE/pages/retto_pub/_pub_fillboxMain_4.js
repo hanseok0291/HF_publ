@@ -132,7 +132,7 @@ const stampInfo = [
     mcEventSetPrice: 100000,
     weekOrder: 1,
     lottoCnt: 1,
-    succYn: "N",
+    succYn: "Y",
     succYnDt: "20240726230000",
     succDayCnt: 5,
     insufficientMoney: 100000,
@@ -152,7 +152,7 @@ const index = () => {
       <Header />
       <HomeTab activeTab={3} />
       <Container isTab padding="0" backgroundColor="#fff">
-        <FillBoxMain stampInfo={stampInfo} rettoCase={0} money={false} />
+        <FillBoxMain stampInfo={stampInfo} rettoCase={2} />
         {/* <FillBoxPrev /> */}
       </Container>
     </>

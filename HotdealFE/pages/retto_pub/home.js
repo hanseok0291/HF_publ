@@ -34,6 +34,7 @@ import LayerWinInfo from "../../components/retto_pub/LayerWinInfo";
 import Navigation from "../../components/coupon_pub/main/Navigation";
 import HomeTab from "../../components/retto_pub/HomeTab";
 import LayerMoneyboxEmpty from "../../components/retto_pub/LayerMoneyboxEmpty";
+import ModalHundredInfo from "@/components/coupon_pub/common/modal/ModalHundredInfo";
 
 const index = () => {
   return (
@@ -78,6 +79,7 @@ const index = () => {
       {/* <ModalMoneyGive /> */}
       {/* <LayerWinInfo /> */}
       {/* <LayerMoneyboxEmpty /> */}
+      <BottomSheetPresent />
     </>
   );
 };

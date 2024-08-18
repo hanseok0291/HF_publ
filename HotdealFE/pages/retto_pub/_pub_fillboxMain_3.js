@@ -26,21 +26,21 @@ const stampInfo = [
     failType: null,
   },
   {
-    mcWeekId: "MC20240722",
+    mcWeekId: "MC20240812",
     mcEventSetPrice: 100000,
-    weekOrder: 1,
-    lottoCnt: 1,
+    weekOrder: 2,
+    lottoCnt: 2,
     succYn: "Y",
-    succYnDt: "20240726230000",
-    succDayCnt: 5,
-    insufficientMoney: 100000,
+    succYnDt: "20240809142158",
+    succDayCnt: 7,
+    insufficientMoney: 0,
     stampImgPath: null,
     rewardPsblYn: "N",
     rewardYn: "N",
     rewardProductImgPath: null,
     rewardBrandNm: null,
     rewardProductNm: null,
-    failType: "MOCH",
+    failType: null,
   },
   {
     mcWeekId: "MC20240722",
@@ -132,7 +132,24 @@ const stampInfo = [
     mcEventSetPrice: 100000,
     weekOrder: 1,
     lottoCnt: 1,
-    succYn: "N",
+    succYn: "Y",
+    succYnDt: "20240726230000",
+    succDayCnt: 5,
+    insufficientMoney: 100000,
+    stampImgPath: null,
+    rewardPsblYn: "N",
+    rewardYn: "N",
+    rewardProductImgPath: null,
+    rewardBrandNm: null,
+    rewardProductNm: null,
+    failType: "MOCH",
+  },
+  {
+    mcWeekId: "MC20240722",
+    mcEventSetPrice: 100000,
+    weekOrder: 1,
+    lottoCnt: 1,
+    succYn: "Y",
     succYnDt: "20240726230000",
     succDayCnt: 5,
     insufficientMoney: 100000,
@@ -152,7 +169,7 @@ const index = () => {
       <Header />
       <HomeTab activeTab={3} />
       <Container isTab padding="0" backgroundColor="#fff">
-        <FillBoxMain stampInfo={stampInfo} rettoCase={0} money={false} />
+        <FillBoxMain stampInfo={stampInfo} rettoCase={1} />
         {/* <FillBoxPrev /> */}
       </Container>
     </>

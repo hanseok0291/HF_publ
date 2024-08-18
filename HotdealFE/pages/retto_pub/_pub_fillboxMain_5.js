@@ -152,7 +152,7 @@ const index = () => {
       <Header />
       <HomeTab activeTab={3} />
       <Container isTab padding="0" backgroundColor="#fff">
-        <FillBoxMain stampInfo={stampInfo} rettoCase={0} money={false} />
+        <FillBoxMain stampInfo={stampInfo} rettoCase={2} money={true} />
         {/* <FillBoxPrev /> */}
       </Container>
     </>

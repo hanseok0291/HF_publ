@@ -52,7 +52,7 @@ const BottomSheetPresent = ({ closeHundredPopup, case1 }) => {
         <div className={`${styleRettoModal.conWrap} ${case1 ? styleRettoModal.fail : ''}`}>{/*  추가 시 선물 증발 이미지 노출 */}
           <div className={`${styleRettoModal.imgWrap}`}>
             <img src="../../images/retto/stamp-starbucks-02.png" alt="커피" />
-            {/* <img src="../../images/retto/stamp-cu-02.png" alt="쿠폰" /> */}
+            <img src="../../images/retto/stamp-cu-02.png" alt="쿠폰" />
           </div>
         </div>
         

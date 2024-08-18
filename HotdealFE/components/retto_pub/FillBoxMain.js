@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 // style
 import styleFillBoxMain from "../../styles/retto_pub/FillBoxMain.module.css";
 import styleMyretto from "../../styles/retto_pub/Myretto.module.css";
+import FadeInSection from "./common/FadeInSection";
 
 const rettoJewelCase = [
   {
@@ -19,14 +20,16 @@ const rettoJewelCase = [
   },
 ];
 
-const FillBoxMain = () => {
+const FillBoxMain = ({ stampInfo, rettoCase, money = false }) => {
+  const [isTooltip, setIsTooltip] = useState(false);
   const [stampArr, setStampArr] = useState(Array(10).fill(undefined)); // 스탬프 정보
   const [stampCnt, setStampCnt] = useState(0); // 스탬프 개수
   const [isFail, setIsFail] = useState(null); // 실패 상태 확인
   const [weekUnit, setWeekUnit] = useState(null); // 주차 1의 자리
   const notiOn = true; // 알림 설정
-  const moneyEmpty = true; // 머니함 상태 true 비어있음 false 채워져 있음
-  const levelInfo = rettoJewelCase[2]; // 0 ruby 1 emelard 2 diamond
+  const failSoon = true;
+  const moneyEmpty = money; // 머니함 상태 true 비어있음 false 채워져 있음
+  const levelInfo = rettoJewelCase[rettoCase]; // 0 ruby 1 emelard 2 diamond
 
   const chunkArray = (array, chunkSize) => {
     const result = [];
@@ -54,344 +57,21 @@ const FillBoxMain = () => {
     }
   };
 
-  const stampInfo = [
-    {
-      mcWeekId: "MC20240805",
-      mcEventSetPrice: 100000,
-      weekOrder: 1,
-      lottoCnt: 1,
-      succYn: "Y",
-      succYnDt: "20240808103847",
-      succDayCnt: 7,
-      insufficientMoney: 0,
-      stampImgPath: null,
-      rewardPsblYn: "N",
-      rewardYn: "N",
-      rewardProductImgPath: null,
-      rewardBrandNm: null,
-      rewardProductNm: null,
-      failType: null,
-    },
-    {
-      mcWeekId: "MC20240812",
-      mcEventSetPrice: 100000,
-      weekOrder: 2,
-      lottoCnt: 2,
-      succYn: "Y",
-      succYnDt: "20240809142158",
-      succDayCnt: 7,
-      insufficientMoney: 0,
-      stampImgPath: null,
-      rewardPsblYn: "N",
-      rewardYn: "N",
-      rewardProductImgPath: null,
-      rewardBrandNm: null,
-      rewardProductNm: null,
-      failType: null,
-    },
-    {
-      mcWeekId: "MC20240722",
-      mcEventSetPrice: 100000,
-      weekOrder: 1,
-      lottoCnt: 1,
-      succYn: "Y",
-      succYnDt: "20240726230000",
-      succDayCnt: 5,
-      insufficientMoney: 100000,
-      stampImgPath: null,
-      rewardPsblYn: "N",
-      rewardYn: "N",
-      rewardProductImgPath: null,
-      rewardBrandNm: null,
-      rewardProductNm: null,
-      failType: "MOCH",
-    },
-    {
-      mcWeekId: "MC20240722",
-      mcEventSetPrice: 100000,
-      weekOrder: 1,
-      lottoCnt: 1,
-      succYn: "Y",
-      succYnDt: "20240726230000",
-      succDayCnt: 5,
-      insufficientMoney: 100000,
-      stampImgPath: null,
-      rewardPsblYn: "N",
-      rewardYn: "N",
-      rewardProductImgPath: null,
-      rewardBrandNm: null,
-      rewardProductNm: null,
-      failType: "MOCH",
-    },
-    {
-      mcWeekId: "MC20240722",
-      mcEventSetPrice: 100000,
-      weekOrder: 1,
-      lottoCnt: 1,
-      succYn: "Y",
-      succYnDt: "20240726230000",
-      succDayCnt: 5,
-      insufficientMoney: 100000,
-      stampImgPath: null,
-      rewardPsblYn: "N",
-      rewardYn: "N",
-      rewardProductImgPath: null,
-      rewardBrandNm: null,
-      rewardProductNm: null,
-      failType: "MOCH",
-    },
-    {
-      mcWeekId: "MC20240722",
-      mcEventSetPrice: 100000,
-      weekOrder: 1,
-      lottoCnt: 1,
-      succYn: "Y",
-      succYnDt: "20240726230000",
-      succDayCnt: 5,
-      insufficientMoney: 100000,
-      stampImgPath: null,
-      rewardPsblYn: "N",
-      rewardYn: "N",
-      rewardProductImgPath: null,
-      rewardBrandNm: null,
-      rewardProductNm: null,
-      failType: "MOCH",
-    },
-    {
-      mcWeekId: "MC20240722",
-      mcEventSetPrice: 100000,
-      weekOrder: 1,
-      lottoCnt: 1,
-      succYn: "Y",
-      succYnDt: "20240726230000",
-      succDayCnt: 5,
-      insufficientMoney: 100000,
-      stampImgPath: null,
-      rewardPsblYn: "N",
-      rewardYn: "N",
-      rewardProductImgPath: null,
-      rewardBrandNm: null,
-      rewardProductNm: null,
-      failType: "MOCH",
-    },
-    {
-      mcWeekId: "MC20240722",
-      mcEventSetPrice: 100000,
-      weekOrder: 1,
-      lottoCnt: 1,
-      succYn: "Y",
-      succYnDt: "20240726230000",
-      succDayCnt: 5,
-      insufficientMoney: 100000,
-      stampImgPath: null,
-      rewardPsblYn: "N",
-      rewardYn: "N",
-      rewardProductImgPath: null,
-      rewardBrandNm: null,
-      rewardProductNm: null,
-      failType: "MOCH",
-    },
-    {
-      mcWeekId: "MC20240722",
-      mcEventSetPrice: 100000,
-      weekOrder: 1,
-      lottoCnt: 1,
-      succYn: "Y",
-      succYnDt: "20240726230000",
-      succDayCnt: 5,
-      insufficientMoney: 100000,
-      stampImgPath: null,
-      rewardPsblYn: "N",
-      rewardYn: "N",
-      rewardProductImgPath: null,
-      rewardBrandNm: null,
-      rewardProductNm: null,
-      failType: "MOCH",
-    },
-    {
-      mcWeekId: "MC20240722",
-      mcEventSetPrice: 100000,
-      weekOrder: 1,
-      lottoCnt: 1,
-      succYn: "Y",
-      succYnDt: "20240726230000",
-      succDayCnt: 5,
-      insufficientMoney: 100000,
-      stampImgPath: null,
-      rewardPsblYn: "N",
-      rewardYn: "N",
-      rewardProductImgPath: null,
-      rewardBrandNm: null,
-      rewardProductNm: null,
-      failType: "MOCH",
-    },
-    {
-      mcWeekId: "MC20240722",
-      mcEventSetPrice: 100000,
-      weekOrder: 1,
-      lottoCnt: 1,
-      succYn: "Y",
-      succYnDt: "20240726230000",
-      succDayCnt: 5,
-      insufficientMoney: 100000,
-      stampImgPath: null,
-      rewardPsblYn: "N",
-      rewardYn: "N",
-      rewardProductImgPath: null,
-      rewardBrandNm: null,
-      rewardProductNm: null,
-      failType: "MOCH",
-    },
-    {
-      mcWeekId: "MC20240722",
-      mcEventSetPrice: 100000,
-      weekOrder: 1,
-      lottoCnt: 1,
-      succYn: "Y",
-      succYnDt: "20240726230000",
-      succDayCnt: 5,
-      insufficientMoney: 100000,
-      stampImgPath: null,
-      rewardPsblYn: "N",
-      rewardYn: "N",
-      rewardProductImgPath: null,
-      rewardBrandNm: null,
-      rewardProductNm: null,
-      failType: "MOCH",
-    },
-    {
-      mcWeekId: "MC20240722",
-      mcEventSetPrice: 100000,
-      weekOrder: 1,
-      lottoCnt: 1,
-      succYn: "Y",
-      succYnDt: "20240726230000",
-      succDayCnt: 5,
-      insufficientMoney: 100000,
-      stampImgPath: null,
-      rewardPsblYn: "N",
-      rewardYn: "N",
-      rewardProductImgPath: null,
-      rewardBrandNm: null,
-      rewardProductNm: null,
-      failType: "MOCH",
-    },
-    {
-      mcWeekId: "MC20240722",
-      mcEventSetPrice: 100000,
-      weekOrder: 1,
-      lottoCnt: 1,
-      succYn: "Y",
-      succYnDt: "20240726230000",
-      succDayCnt: 5,
-      insufficientMoney: 100000,
-      stampImgPath: null,
-      rewardPsblYn: "N",
-      rewardYn: "N",
-      rewardProductImgPath: null,
-      rewardBrandNm: null,
-      rewardProductNm: null,
-      failType: "MOCH",
-    },
-    {
-      mcWeekId: "MC20240722",
-      mcEventSetPrice: 100000,
-      weekOrder: 1,
-      lottoCnt: 1,
-      succYn: "Y",
-      succYnDt: "20240726230000",
-      succDayCnt: 5,
-      insufficientMoney: 100000,
-      stampImgPath: null,
-      rewardPsblYn: "N",
-      rewardYn: "N",
-      rewardProductImgPath: null,
-      rewardBrandNm: null,
-      rewardProductNm: null,
-      failType: "MOCH",
-    },
-    {
-      mcWeekId: "MC20240722",
-      mcEventSetPrice: 100000,
-      weekOrder: 1,
-      lottoCnt: 1,
-      succYn: "Y",
-      succYnDt: "20240726230000",
-      succDayCnt: 5,
-      insufficientMoney: 100000,
-      stampImgPath: null,
-      rewardPsblYn: "N",
-      rewardYn: "N",
-      rewardProductImgPath: null,
-      rewardBrandNm: null,
-      rewardProductNm: null,
-      failType: "MOCH",
-    },
-    {
-      mcWeekId: "MC20240722",
-      mcEventSetPrice: 100000,
-      weekOrder: 1,
-      lottoCnt: 1,
-      succYn: "Y",
-      succYnDt: "20240726230000",
-      succDayCnt: 5,
-      insufficientMoney: 100000,
-      stampImgPath: null,
-      rewardPsblYn: "N",
-      rewardYn: "N",
-      rewardProductImgPath: null,
-      rewardBrandNm: null,
-      rewardProductNm: null,
-      failType: "MOCH",
-    },
-    {
-      mcWeekId: "MC20240722",
-      mcEventSetPrice: 100000,
-      weekOrder: 1,
-      lottoCnt: 1,
-      succYn: "Y",
-      succYnDt: "20240726230000",
-      succDayCnt: 5,
-      insufficientMoney: 100000,
-      stampImgPath: null,
-      rewardPsblYn: "N",
-      rewardYn: "N",
-      rewardProductImgPath: null,
-      rewardBrandNm: null,
-      rewardProductNm: null,
-      failType: "MOCH",
-    },
-    {
-      mcWeekId: "MC20240722",
-      mcEventSetPrice: 100000,
-      weekOrder: 1,
-      lottoCnt: 1,
-      succYn: "Y",
-      succYnDt: "20240726230000",
-      succDayCnt: 5,
-      insufficientMoney: 100000,
-      stampImgPath: null,
-      rewardPsblYn: "N",
-      rewardYn: "N",
-      rewardProductImgPath: null,
-      rewardBrandNm: null,
-      rewardProductNm: null,
-      failType: "MOCH",
-    }
-  ];
+  const handleTooltipToggle = () => {
+    setIsTooltip(!isTooltip);
+  };
 
   useEffect(() => {
     setStampCnt(stampInfo.length);
     replaceArray(stampInfo);
-    setWeekUnit((stampCnt - Math.floor(stampCnt / 10) * 10));
+    setWeekUnit(stampCnt - Math.floor(stampCnt / 10) * 10);
     const hasFail = stampInfo.some((item) => item.succYn === "N");
     setIsFail(hasFail);
   }, []);
 
   useEffect(() => {
-    setWeekUnit((stampCnt - Math.floor(stampCnt / 10) * 10));
-  }, [stampInfo]);
-  
+    setWeekUnit(stampCnt - Math.floor(stampCnt / 10) * 10);
+  }, [stampArr]);
 
   return (
     <div className={`${styleFillBoxMain.container}`}>
@@ -401,93 +81,128 @@ const FillBoxMain = () => {
         </p>
       </div>
       <div className={`${styleFillBoxMain.stampConBox} ${levelInfo.eng}`}>
-        {/* ruby emerald diamond */}
-        <button type="button" className={styleFillBoxMain.weekBtn}>
-          <em>{levelInfo.kor}</em> {stampCnt}주차
-        </button>
-        {notiOn ? (
-          <p className={styleFillBoxMain.infoText}>
-            {stampCnt < 5 ? (
-              <>5주 이상 보관하면 매주 리또 5개!</>
-            ) : (
-              <>연속 성공으로 리또 5개씩 받고 있어요.</>
-            )}
-          </p>
-        ) : (
-          <p className={styleFillBoxMain.infoText}>
-            <a href="#">알림 설정</a>하고 리또 받으세요.
-          </p>
-        )}
-        <div className={styleFillBoxMain.stampContainer}>
-          <ul className={styleFillBoxMain.stampWrap}>
-            {stampArr.map((item, index) => {
-              return (
-                <li
-                  key={index}
-                  className={`${
-                    item?.succYn === "Y"
-                      ? levelInfo.eng
-                      : item?.failType
-                      ? "fail"
-                      : ""
-                  } ${
-                    item?.succYn === "Y" && stampCnt - 1 === index
-                      ? "current"
-                      : ""
-                  } ${index === 9 ? styleFillBoxMain.complete : ""}`}
-                >
-                  {item?.succYn === "Y" ||
-                  item?.failType ||
-                  (index === 9 && levelInfo.eng !== "ruby")
-                    ? ""
-                    : `${index + 1 + (Math.floor(stampCnt / 10) * 10)}주차`}
-                  <span className={styleFillBoxMain.rettoLength}>
-                    <b>{stampCnt < 10 && index < 5 ? index + 1 : 5}</b>
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
-          {!isFail && (weekUnit === 8 || weekUnit === 9) && (
-            <div className={styleFillBoxMain.balloon}>
-              {weekUnit === 8 ? "3주만" : weekUnit === 9 && "이번주만"} 더
-              성공하면 쿠폰 받아요.
-            </div>
+        <FadeInSection>
+          {/* ruby emerald diamond */}
+          <button type="button" className={styleFillBoxMain.weekBtn}>
+            <em>{levelInfo.kor}</em> {stampCnt}주차
+          </button>
+          {notiOn ? (
+            <p className={styleFillBoxMain.infoText}>
+              {stampCnt < 5 ? (
+                <>5주 이상 보관하면 매주 리또 5개!</>
+              ) : (
+                <>연속 성공으로 리또 5개씩 받고 있어요.</>
+              )}
+            </p>
+          ) : (
+            <p className={styleFillBoxMain.infoText}>
+              <a href="#">알림 설정</a>하고 리또 받으세요.
+            </p>
           )}
-        </div>
-        <div
-          className={`${styleFillBoxMain.moneyBox} ${
-            moneyEmpty ? styleFillBoxMain.empty : ""
-          }`}
-        >
-          <div className={styleFillBoxMain.leftCon}>
-            {moneyEmpty ? (
-              <>
-                <p className={styleFillBoxMain.text1}>
-                  리또 머니함이 비었어요.
-                </p>
-                <p className={styleFillBoxMain.text2}>
-                  월요일이 되기 전까지 다시 채워주세요.
-                </p>
-              </>
-            ) : (
-              <p className={styleFillBoxMain.text1}>리또 머니함</p>
+          <div className={styleFillBoxMain.stampContainer}>
+            <ul className={styleFillBoxMain.stampWrap}>
+              {stampArr.map((item, index) => {
+                return (
+                  <li
+                    key={index}
+                    className={`${
+                      item?.succYn === "Y"
+                        ? levelInfo.eng
+                        : item?.failType
+                        ? "fail"
+                        : ""
+                    } ${
+                      item?.succYn === "Y" && stampCnt - 1 === index
+                        ? "current"
+                        : ""
+                    } ${index === 9 ? styleFillBoxMain.complete : ""}`}
+                  >
+                    {item?.succYn === "Y" ||
+                    item?.failType ||
+                    (index === 9 && levelInfo.eng !== "ruby")
+                      ? ""
+                      : `${index + 1 + Math.floor(stampCnt / 10) * 10}주차`}
+                    <span className={styleFillBoxMain.rettoLength}>
+                      <b>{stampCnt < 10 && index < 5 ? index + 1 : 5}</b>
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+            {(weekUnit === 8 || weekUnit === 9) && (
+              <div className={styleFillBoxMain.balloon}>
+                {!isFail && levelInfo.eng === "ruby" ? (
+                  <>
+                    다이아 레벨로 변경해 <br />
+                    10주 연속 성공 선물로 쿠폰 받으세요!
+                  </>
+                ) : (
+                  <>
+                    {weekUnit === 8 ? "3주만" : "이번주만"} 더 성공하면 쿠폰
+                    받아요.
+                  </>
+                )}
+              </div>
             )}
           </div>
-          {moneyEmpty ? (
-            <button type="button" className={styleFillBoxMain.fillBtn}>
-              채우기
-            </button>
-          ) : (
-            <a href="#" className={styleFillBoxMain.myMoney}>
-              1,000,000원
-            </a>
-          )}
-        </div>
+        </FadeInSection>
+        <FadeInSection delay={200}>
+          <div
+            className={`${styleFillBoxMain.moneyBox} ${
+              moneyEmpty ? styleFillBoxMain.empty : ""
+            }`}
+          >
+            <div className={styleFillBoxMain.leftCon}>
+              {moneyEmpty ? (
+                <>
+                  <p className={styleFillBoxMain.text1}>
+                    리또 머니함이 비었어요.
+                  </p>
+                  <p className={styleFillBoxMain.text2}>
+                    {failSoon ? (
+                      <>월요일이 되기 전까지 다시 채워주세요.</> // 이번주 실패 확정
+                    ) : (
+                      <>오늘밤 11시까지 다시 채워주세요.</> // 오늘 실패 예정
+                    )}
+                  </p>
+                </>
+              ) : (
+                <p className={styleFillBoxMain.text1}>리또 머니함</p>
+              )}
+            </div>
+            {moneyEmpty ? (
+              <button type="button" className={styleFillBoxMain.fillBtn}>
+                채우기
+              </button>
+            ) : (
+              <a href="#" className={styleFillBoxMain.myMoney}>
+                1,000,000원
+              </a>
+            )}
+          </div>
+        </FadeInSection>
       </div>
+
       <div className={styleFillBoxMain.rettoLevelChangeConBox}>
-        <p>리또 레벨 변경하기</p>
-        <button type="button"></button>
+        <div className={styleFillBoxMain.textWrap}>
+          <p>리또 레벨 변경하기</p>
+          <div className={styleFillBoxMain.tooltipWrap}>
+            <button
+              className={styleFillBoxMain.tooltipBtn}
+              onClick={handleTooltipToggle}
+            ></button>
+            {isTooltip && (
+              <div className={styleFillBoxMain.tooltipBox}>
+                <div>
+                  2.11(수)부터 레벨 변경 가능 <br />
+                  레벨 변경 후 10일동안 다른 레벨로 <br />
+                  변경할 수 없어요.
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+        <button type="button" className={styleFillBoxMain.moveBtn}></button>
       </div>
       <div className={styleFillBoxMain.botConBox}>
         <div className={`${styleFillBoxMain.grayBox} ${styleFillBoxMain.box1}`}>
@@ -504,7 +219,13 @@ const FillBoxMain = () => {
         <div className={`${styleFillBoxMain.grayBox} ${styleFillBoxMain.box2}`}>
           <div className={styleFillBoxMain.innerBox}>
             <div className={styleFillBoxMain.textWrap}>
-              <p className={styleFillBoxMain.titleText}>100원딜 응모권 <button type="button" className={styleFillBoxMain.questionMark}></button></p>
+              <p className={styleFillBoxMain.titleText}>
+                100원딜 응모권{" "}
+                <button
+                  type="button"
+                  className={styleFillBoxMain.questionMark}
+                ></button>
+              </p>
               <p className={styleFillBoxMain.subText}>
                 사용 가능 <em>12개</em>
               </p>

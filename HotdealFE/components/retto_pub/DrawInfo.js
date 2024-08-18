@@ -9,7 +9,7 @@ import FadeInSection from "./common/FadeInSection";
 const rettoNumber = [1, 6, 25, 29, 40, 43, 44];
 
 const winnerList = {
-  first: ["이승우", "호날두"],
+  first: [],
   second: ["커리", "르브론제임스", "Faker", "블랙보리"],
   third: ["Alice", "김민준", "Grace", "박지훈", "이철수"],
   fourth: ["Eve", "정수빈", "John", "박하은", "유진"],
@@ -148,7 +148,7 @@ const DrawInfo = ({
   case6,
   case7,
   case8 = false,
-  modal1Open
+  modal1Open,
 }) => {
   const [isFirstFixed, setIsFirstFixed] = useState(false);
   const [isSecondFixed, setIsSecondFixed] = useState(false);
@@ -159,8 +159,8 @@ const DrawInfo = ({
   const secondObserveRef = useRef(null);
 
   const handleModalBtnClick = () => {
-    modal1Open()
-  }
+    modal1Open();
+  };
 
   // 랜덤한 숫자 배열 만들기 함수
   function generateRandomNumbers() {
@@ -192,7 +192,6 @@ const DrawInfo = ({
     const handleScroll = () => {
       if (firstObserveRef.current) {
         const firstRect = firstObserveRef.current.getBoundingClientRect();
-        console.log(firstRect.height);
         setIsFirstFixed(firstRect.top - 22 <= 0);
       }
       if (secondObserveRef.current) {
@@ -351,18 +350,26 @@ const DrawInfo = ({
                 <div key={index} className={styleRettoList.list}>
                   <h4 className={styleRettoList.grade}>{index + 1}등</h4>
                   <ul className={styleRettoList.listWrap}>
-                    {names.slice(0, 4).map((name, idx) => (
-                      <li key={idx} className={styleRettoList.listItem}>
-                        {name}
-                        {idx < names.length - 1 && idx !== 3 && <>,&nbsp;</>}
-                        {names.length > 4 && idx === 3 && (
-                          <>
-                            외 {(names.length - 4).toLocaleString()}명
-                            <button type="button" className={styleRettoList.bottomSheetBtn} onClick={handleModalBtnClick}></button>
-                          </>
-                        )}
-                      </li>
-                    ))}
+                    {names.length !== 0 ? (
+                      names.slice(0, 4).map((name, idx) => (
+                        <li key={idx} className={styleRettoList.listItem}>
+                          {name}
+                          {idx < names.length - 1 && idx !== 3 && <>,&nbsp;</>}
+                          {names.length > 4 && idx === 3 && (
+                            <>
+                              외 {(names.length - 4).toLocaleString()}명
+                              <button
+                                type="button"
+                                className={styleRettoList.bottomSheetBtn}
+                                onClick={handleModalBtnClick}
+                              ></button>
+                            </>
+                          )}
+                        </li>
+                      ))
+                    ) : (
+                      <li>0명</li>
+                    )}
                   </ul>
                 </div>
               ))}

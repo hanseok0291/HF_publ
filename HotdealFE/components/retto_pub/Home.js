@@ -112,8 +112,10 @@ const Home = ({ case1, case2, case3 }) => {
                   </h2>
                 )}
               </div>
-              {case1 && (
-                <div className={styleHome.rettoSizeContainer}>
+            </FadeInSection>
+            {case1 && (
+              <div className={styleHome.rettoSizeContainer}>
+                <FadeInSection delay={200}>
                   <h4>추첨 예정 리또</h4>
                   <div className={styleHome.rettoSizeWrap}>
                     <a href="#" className={styleHome.rettoSizeBox}>
@@ -125,9 +127,9 @@ const Home = ({ case1, case2, case3 }) => {
                       <span className={styleHome.secondText}>12개</span>
                     </a>
                   </div>
-                </div>
-              )}
-            </FadeInSection>
+                </FadeInSection>
+              </div>
+            )}
           </div>
           {!case3 && (
             <p className={`${styleHome.balloonText} ${styleHome.isRetto}`}>

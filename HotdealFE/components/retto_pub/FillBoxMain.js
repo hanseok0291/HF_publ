@@ -31,30 +31,12 @@ const FillBoxMain = ({ stampInfo, rettoCase, money = false }) => {
   const moneyEmpty = money; // 머니함 상태 true 비어있음 false 채워져 있음
   const levelInfo = rettoJewelCase[rettoCase]; // 0 ruby 1 emelard 2 diamond
 
-  const chunkArray = (array, chunkSize) => {
-    const result = [];
-    for (let i = 0; i < array.length; i += chunkSize) {
-      let chunk = array.slice(i, i + chunkSize);
-
-      if (chunk.length < chunkSize) {
-        chunk = [...chunk, ...Array(chunkSize - chunk.length).fill(undefined)];
-      }
-
-      result.push(chunk);
+  const replaceArray = (info) => {
+    const result = Array(10).fill(undefined);
+    for (let i = 0; i < weekUnit; i++) {
+      result[i] = { ...info };
     }
-    return result;
-  };
-
-  const replaceArray = (newValues) => {
-    const fixedArray = chunkArray(newValues, 10);
-    if (stampInfo.length > 10) {
-      setStampArr(fixedArray[fixedArray.length - 1]);
-    } else {
-      const newArray = fixedArray[fixedArray.length - 1].map((_, index) =>
-        newValues[index] !== undefined ? newValues[index] : undefined
-      );
-      setStampArr(newArray);
-    }
+    setStampArr(result);
   };
 
   const handleTooltipToggle = () => {
@@ -62,16 +44,19 @@ const FillBoxMain = ({ stampInfo, rettoCase, money = false }) => {
   };
 
   useEffect(() => {
-    setStampCnt(stampInfo.length);
-    replaceArray(stampInfo);
-    setWeekUnit(stampCnt - Math.floor(stampCnt / 10) * 10);
-    const hasFail = stampInfo.some((item) => item.succYn === "N");
-    setIsFail(hasFail);
-  }, []);
+    setStampCnt(stampInfo.weekOrder);
+    setIsFail(stampInfo.succYn === "N");
+  }, [stampInfo]);
 
   useEffect(() => {
-    setWeekUnit(stampCnt - Math.floor(stampCnt / 10) * 10);
-  }, [stampArr]);
+    setWeekUnit(stampCnt % 10 || 10);
+  }, [stampCnt]);
+
+  useEffect(() => {
+    if (weekUnit !== null) {
+      replaceArray(stampInfo);
+    }
+  }, [weekUnit]);
 
   return (
     <div className={`${styleFillBoxMain.container}`}>
@@ -106,22 +91,31 @@ const FillBoxMain = ({ stampInfo, rettoCase, money = false }) => {
                   <li
                     key={index}
                     className={`${
-                      item?.succYn === "Y"
-                        ? levelInfo.eng
-                        : item?.failType
+                      isFail && weekUnit - 1 === index
                         ? "fail"
+                        : index < weekUnit
+                        ? levelInfo.eng
                         : ""
-                    } ${
-                      item?.succYn === "Y" && stampCnt - 1 === index
+                    } 
+                    ${
+                      item?.succYn === "Y" && weekUnit - 1 === index
                         ? "current"
                         : ""
-                    } ${index === 9 ? styleFillBoxMain.complete : ""}`}
+                    } ${
+                      index === 9 && levelInfo.eng !== "ruby"
+                        ? styleFillBoxMain.complete
+                        : ""
+                    }`}
                   >
-                    {item?.succYn === "Y" ||
-                    item?.failType ||
-                    (index === 9 && levelInfo.eng !== "ruby")
-                      ? ""
-                      : `${index + 1 + Math.floor(stampCnt / 10) * 10}주차`}
+                    {index >= weekUnit &&
+                      !(index === 9 && levelInfo.eng !== "ruby") &&
+                      `${index + 1 + Math.floor(stampCnt / 10) * 10}주차`}
+                    {index === 9 && levelInfo.eng !== "ruby" && (
+                      <img
+                        src="../../images/retto/fillbox-stamp-coupon.png"
+                        alt="10주차"
+                      />
+                    )}
                     <span className={styleFillBoxMain.rettoLength}>
                       <b>{stampCnt < 10 && index < 5 ? index + 1 : 5}</b>
                     </span>
@@ -129,9 +123,9 @@ const FillBoxMain = ({ stampInfo, rettoCase, money = false }) => {
                 );
               })}
             </ul>
-            {(weekUnit === 8 || weekUnit === 9) && (
+            {!isFail && (weekUnit === 8 || weekUnit === 9) && (
               <div className={styleFillBoxMain.balloon}>
-                {!isFail && levelInfo.eng === "ruby" ? (
+                {levelInfo.eng === "ruby" ? (
                   <>
                     다이아 레벨로 변경해 <br />
                     10주 연속 성공 선물로 쿠폰 받으세요!

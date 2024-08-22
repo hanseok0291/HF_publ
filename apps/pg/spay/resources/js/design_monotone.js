@@ -161,7 +161,7 @@ function modalOpenSlide(obj) {
     var modalCont = $(temp).find(".modal-content");
 
     temp.show();
-    temp.focus();
+    // modalCont.focus();
     $(modalCont).animate({ bottom: 0 }, 200);
 
     // 이중 모달이 아닌 경우

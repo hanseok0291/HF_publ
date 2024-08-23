@@ -35,6 +35,7 @@ const index = () => {
         <FillBoxMain stampInfo={stampInfo} rettoCase={2} money={false} />
         {/* <FillBoxPrev /> */}
       </Container>
+      {/* <BottomSheetPresent /> */}
     </>
   );
 };

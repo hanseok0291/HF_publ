@@ -8,7 +8,7 @@ import Button from "../Button";
 
 
 // 당첨 바텀 시트
-const BottomSheetPresent = ({ closeHundredPopup, case1 }) => {
+const BottomSheetPresent = ({ closeHundredPopup }) => {
 
   return (
     <BottomSheet
@@ -38,27 +38,13 @@ const BottomSheetPresent = ({ closeHundredPopup, case1 }) => {
     >
       {/* 선물 증발 추가 */}
       <div className={`${styleModal.modalBody} ${styleRettoModal.bottomSheetBody} ${styleRettoModal.rettoPresent}`}>
-        {!case1 ? 
-          <>
-            <h2>우와 연속 10번이에요!</h2>
-            <p>축하 선물이 선물함에 도착했어요.</p>
-          </>
-          :
-          <>
-            <h2>선물이 사라져서 아쉬워요..!</h2>
-            <p>91일 안에 받지 않아 사라졌어요.</p>
-          </>
-        }
-        <div className={`${styleRettoModal.conWrap} ${case1 ? styleRettoModal.fail : ''}`}>{/*  추가 시 선물 증발 이미지 노출 */}
+        <h2>10주 연속 성공하셨네요!</h2>
+        <p>쿠폰 선물함에서 선물을 확인하세요.</p>
+        <div className={`${styleRettoModal.conWrap}`}>{/*  추가 시 선물 증발 이미지 노출 */}
           <div className={`${styleRettoModal.imgWrap}`}>
-            <img src="../../images/retto/stamp-starbucks-02.png" alt="커피" />
-            <img src="../../images/retto/stamp-cu-02.png" alt="쿠폰" />
           </div>
         </div>
-        
-        {!case1 ? <Button>확인하러 가기</Button> : <Button>확인했어요</Button>}
-        
-        
+        <Button>확인하러 가기</Button>
       </div>
     </BottomSheet>
   );

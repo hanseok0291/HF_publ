@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=1200">
+<title>Settlebank</title>
+<link rel="shortcut icon" href="../resources/image/favicon.ico">
+<link rel="stylesheet" href="../resources/css/n_sb_style.css" type="text/css">
+<script type="text/javascript" src="../resources/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="../resources/js/layout.js"></script>
+<script type="text/javascript" src="../resources/js/placeholders.min.js"></script>
+</head>
+<body>
+<!-- wrap -->
+<div id="wrap">
+	<!--header-->
+	<div id="header">
+		<!-- container -->
+		<div class="container">
+			<h1 class="logo"><a href="/"><img src="../resources/image/logo.png?ver=20220629" alt="Hecto Financial"></a></h1>
+
+			<!-- util menu -->
+			<div class="util">
+				<ul class="nav">
+					<li>
+						<a href="javascript:void(0);" id="show_login" class="btn_login">로그인</a>
+						<a href="javascript:void(0);" id="show_logout" class="btn_logout" style="display: none">로그아웃</a>
+					</li>
+					<li><a href="javascript:void(0);" id="show_introductory_inquiry" class="btn_introductory_inquiry">도입 문의</a></li>
+					<li><a href="javascript:void(0);" id="show_sitemap" class="btn_sitemap">사이트맵</a></li>
+				</ul>
+				<p class="user"><strong>spay에스페이</strong>님 안녕하세요.</p>
+
+				<!-- 로그인 -->
+				<div id="login_layer" class="layer_pop login">
+					<div class="dimmed"></div>
+					<div class="login_box">
+						<span class="arrow"></span>
+						<p class="tit">Settlebank Login <a href="javascript:void(0);" id="login_close" class="close close_pop ir">닫기</a></p>
+
+						<form name="userForm" id="userForm" method="post">
+							<input type="hidden" id="otp2" name="otp2">
+							<input type="password" name="mobileNo" id="mobileNo" placeholder="휴대폰번호" readonly style="display:none"> <!-- 인증번호 받을 휴대폰번호 -->
+							<input type="hidden" id="_method" name="_method">
+
+							<!-- 로그인_1차인증 -->
+							<div class="con" id="fAuth">
+								<input type="text" id="userId" name="sc.userId" placeholder="아이디">
+								<input type="password" id="pswd" name="sc.pswd" placeholder="비밀번호" >
+								<p class="save mb20"><input type="checkbox" name="cb01" id="id_save" checked="checked"><label for="id_save">아이디 저장</label></p>
+								<p><a href="#" id="do_login" class="btn_txt_login st01">로그인</a></p>
+								<p class="mt7">
+									<a id="findID" href="#" class="btn_txt_login st03 fl" style="width:140px;">아이디 찾기</a>
+									<a id="findPasswd" href="#" class="btn_txt_login st03 fr" style="width:140px;">비밀번호 찾기</a></p>
+							</div>
+							<!-- //로그인_1차인증 -->
+
+							<!-- 로그인_2차인증 -->
+							<div class="con" id="sAuth" style="display: none">
+								<input type="text" id="mobileNo2" name="mobileNo2" placeholder="휴대폰번호" class="fl" style="width:225px;" readonly>
+								<a href="#" id="authKey_send" class="btn_txt_login st02 fr" style="width:60px">전송</a>
+								<input type="text" id="otp" name="otp" placeholder="OTP">
+								<p class="time mb20">남은시간&nbsp;&nbsp;<span class="timer">03:00</span></p>
+								<p><a href="#" class="btn_txt_login st01" id="sec_exceipte">로그인</a></p>
+							</div>
+							<!-- //로그인_2차인증 -->
+						</form>
+					</div>
+				</div>
+				<!-- //로그인 -->
+
+				<!-- 사이트맵 -->
+				<div id="sitemap_layer" class="layer_pop sitemap">
+					<div class="dimmed"></div>
+					<div class="sitemap_wrap">
+						<div class="header">
+							<h2>사이트맵</h2>
+							<a href="javascript:void(0);" id="close_sitemap" class="close_pop btn_close ir">닫기</a>
+						</div>
+						<div class="con">
+							<dl>
+								<dt>회사소개</dt>
+								<dd><a href="#">소개</a></dd>
+								<dd><a href="#">연혁</a></dd>
+								<dd><a href="#">조직도</a></dd>
+								<dd><a href="#">사업현황</a></dd>
+								<dd><a href="#">제휴현황</a></dd>
+								<dd><a href="#">CI소개</a></dd>
+								<dd><a href="#">오시는길</a></dd>
+							</dl>
+							<dl>
+								<dt>서비스안내</dt>
+								<dd><a href="#">간편현금결제</a></dd>
+								<dd><a href="#">가상계좌</a></dd>
+								<dd><a href="#">펌뱅킹</a></dd>
+								<dd><a href="#">전자결제</a></dd>
+								<dd><a href="#">G뱅킹</a></dd>
+								<dd><a href="#">금융부가서비스</a>
+									<ul class="dep3">
+										<li>- <a href="#">예금주성명조회</a></li>
+										<li>- <a href="#">예금거래내역조회</a></li>
+										<li>- <a href="#">실시간 체납확인</a></li>
+										<li>- <a href="#">SMS 발송대행</a></li>
+										<li>- <a href="#">현금영수증 발급대행</a></li>
+									</ul>
+								</dd>
+							</dl>
+							<dl>
+								<dt>거래내역조회</dt>
+								<dd><a href="#">결제수단별 조회</a>
+									<ul class="dep3">
+										<li>- <a href="#">신용카드</a></li>
+										<li>- <a href="#">계좌이체</a></li>
+										<li>- <a href="#">가상계좌(무통장)</a></li>
+										<li>- <a href="#">휴대폰결제</a></li>
+										<li>- <a href="#">현금영수증</a></li>
+									</ul>
+								</dd>
+								<dd><a href="#">현금영수증내역 (판매자용)</a></dd>
+								<dd><a href="#">등록금 납부내역</a></dd>
+							</dl>
+							<dl>
+								<dt>고객지원</dt>
+								<dd><a href="#">공지사항</a></dd>
+								<dd><a href="#">문의하기</a></dd>
+								<dd><a href="#">FAQ</a></dd>
+								<dd><a href="#">신용카드 서비스 등록확인</a></dd>
+								<dd><a href="#">자료실</a></dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+				<!-- //사이트맵 -->
+			</div>
+			<!-- //util menu -->
+
+			<!-- gnb -->
+			<div class="gnb">
+				<ul class="nav dep1">
+					<li>
+						<a href="#">회사소개</a>
+						<div class="submenu">
+							<strong class="title">회사소개</strong>
+							<ul class="dep2">
+								<li><a href="#">소개</a></li>
+								<li><a href="#">연혁</a></li>
+								<li><a href="#">조직도</a></li>
+								<li><a href="#">사업현황</a></li>
+								<li><a href="#">CI소개</a></li>
+								<li><a href="#">오시는 길</a></li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<a href="#">서비스안내</a>
+						<div class="submenu">
+							<strong class="title">서비스안내</strong>
+							<ul class="dep2">
+								<li><a href="/service/settlepay">간편현금결제</a></li>
+								<li><a href="/service/pg">PG</a></li>
+								<li><a href="/service/kiosk">키오스크 결제</a></li>
+								<li><a href="/service/firm">펌뱅킹</a></li>
+								<li><a href="/service/vaccount">가상계좌</a></li>
+								<li><a href="/service/gbank">G뱅킹</a></li>
+								<li><a href="/service/mytongjang">010내통장결제</a></li>
+								<li><a href="/service/010vbank">010가상계좌</a></li>
+								<li><a href="/service/datastore">데이터 스토어</a></li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<a href="#">거래내역조회</a>
+						<div class="submenu">
+							<strong class="title">거래내역조회</strong>
+							<ul class="dep2">
+								<li><a href="#">결제수단별 조회</a></li>
+								<li><a href="#">현금영수증내역 (판매자용)</a></li>
+								<li><a href="#">등록금 납부내역</a></li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<a href="#">고객지원</a>
+						<div class="submenu">
+							<strong class="title">고객지원</strong>
+							<ul class="dep2">
+								<li><a href="#">공지사항</a></li>
+								<li><a href="#">FAQ</a></li>
+								<li><a href="#">문의하기</a></li>
+								<li><a href="#">신용카드 서비스 등록확인</a></li>
+								<li><a href="#">자료실</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!-- //gnb -->
+		</div>
+		<!-- //container -->
+		<div class="gnb_dimmed"></div> <!-- gnb 하단 딤드 마스크 -->
+		<div class="gnb_sub_bg"></div> <!-- gnb 서브 메뉴 배경 -->
+	</div>
+	<!--//header-->
+	
+	<!-- container -->
+	<div id="container">
+		<!-- sub visual -->
+		<div class="sub_visual s06">
+			<div class="location_area">
+				<p class="location"><span class="home">&nbsp;</span>&gt;<span>회사소개</span>&gt;<b>조직도</b></p>
+			</div>
+		</div>
+		<!-- //sub visual -->
+
+		<!-- content -->
+		<div class="contents">
+			<!--column_sub(좌측컨텐츠)-->
+			<div class="column_sub">
+				<div class="snb">
+					<ul>
+						<li><a href="#">소개</a></li>
+						<li><a href="#">연혁</a></li>
+						<li class="on"><a href="#">조직도</a></li>
+						<li><a href="#">사업현황</a></li>
+						<li><a href="#">제휴현황</a></li>
+						<li><a href="#">CI소개</a></li>
+						<li><a href="#">오시는 길</a></li>
+					</ul>
+				</div>
+			</div>
+			<!--//column_sub(좌측컨텐츠)-->
+
+			<!--column_main(우측컨텐츠)-->
+			<div class="column_main">
+				<div class="con_top">
+					<h3>조직도</h3>
+					<!--<p class="ptxt">세틀뱅크의 조직구성을 소개합니다.</p>-->
+				</div>
+				<div class="organization"><img src="../resources/image/organization.png?ver=20220114" alt="조직도"></div>
+			</div>
+			<!--//column_main(우측컨텐츠)-->
+			</div>
+		<!-- //content -->
+	</div>
+	<!-- //container -->
+
+	<!--footer-->
+	<div id="footer">
+		<div class="footer_menu">
+			<div class="container">
+				<ul class="provision fl">
+					<li><a href="javascript:provisionPopup();">이용약관</a></li>
+					<li><a href="javascript:privacyPopup();"><strong>개인정보처리방침</strong></a></li>
+				</ul>
+				<div class="fr">
+					<div class="family">
+						<button type="button" class="select_btn">관련사이트 <span class="arrow"></span></button>
+						<div id="family_option" class="option">
+							<p class="title">패밀리사이트</p>
+							<ul>
+								<li><a href="https://www.minwise.co.kr" target="_blank">헥토이노베이션</a></li>
+								<li><a href="http://bio11corp.co.kr" target="_blank">헥토헬스케어</a></li>
+								<li><a href="http://www.hecto.co.kr" target="_blank">헥토</a></li>
+								<li><a href="https://hectodata.co.kr/" target="_blank">헥토 데이터</a></li>
+							</ul>
+							<p class="title">비즈니스</p>
+							<ul>
+								<li><a href="https://www.couchip.com/main.do" target="_blank">쿠칩</a></li>
+								<li><a href="https://010pay.kr" target="_blank">010PAY</a></li>
+								<li><a href="https://www.mytongjang.com" target="_blank">010내통장결제</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer_info">
+			<div class="container">
+				<div class="address fl">
+					<ul>
+						<li>세틀뱅크(주)</li>
+						<li>(06220) 서울특별시 강남구 테헤란로 34길 6, 9~10층 (역삼동, 태광타워)</li>
+						<li>사업자등록번호 : 101-81-63383</li>
+					</ul>
+					<ul>
+						<li><span>TEL.</span> 1600-5220</li>
+						<li><span>FAX.</span> 02-6008-5158</li>
+						<li><span>E-mail.</span> info_F@settlebank.co.kr</li>
+					</ul>
+					<p class="copyright">Copyrightⓒ Hecto Financial Co., Ltd. All Rights Reserved.</p>
+				</div>
+				<div class="isms fr"><img src="../resources/image/isms.png" alt="정보보호관리체계인증 ISMS"></div>
+			</div>
+		</div>
+	</div>
+	<!--//footer-->
+</div>
+<!-- //wrap -->
+</body>
+</html>

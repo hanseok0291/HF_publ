@@ -1,6 +1,6 @@
 $(document).ready(function () {
   // GNB (상단 메인 메뉴)
-  $(".gnb .nav").hover(
+  $(".gnb").hover(
     function () {
       $(".gnb .submenu, .gnb_sub_bg").slideDown(100);
       $(".gnb_dimmed").fadeIn(200);

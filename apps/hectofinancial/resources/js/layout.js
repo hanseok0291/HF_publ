@@ -10,25 +10,25 @@ $(document).ready(function () {
   $(".gnb").hover(
     function () {
       $("#header").addClass("open");
-      $(".gnb .submenu, .gnb_sub_bg").slideDown(100);
+      $(".gnb .submenu, .gnb_sub_bg").fadeIn(200);
       $(".gnb_dim").fadeIn(200);
     },
     function () {
       $("#header").removeClass("open");
-      $(".gnb .submenu, .gnb_sub_bg").stop().slideUp(100);
+      $(".gnb .submenu, .gnb_sub_bg").stop().fadeOut(200);
       $(".gnb_dim").stop().fadeOut(100);
     }
   );
 
   // GNB 언어 선택
   $("#language_btn").on("click", function (e) {
-    $(this).next(".language_box").toggle();
+    $(this).next(".language_box").fadeToggle();
   });
 
   // FOOTER 파트너 사 토글
   $("#partner_list_btn").on("click", function (e) {
     $(this).toggleClass("open");
-    $(this).next(".list_wrap").toggle();
+    $(this).next(".list_wrap").fadeToggle();
   });
 
   //

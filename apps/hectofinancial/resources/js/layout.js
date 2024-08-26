@@ -52,7 +52,7 @@ $(document).ready(function () {
   // LNB (snb - 좌측 서브 메뉴)
   $(".snb>ul>li>a").click(function () {
     if ($(this).parent().hasClass("on")) {
-      $(this).parent().removeClass("on");
+      // $(this).parent().removeClass("on"); 서비스안내 페이지 좌측 snb 메뉴 토글때문에 주석처리.
     } else {
       $(this).parent().addClass("on");
       $(this).parent().siblings().removeClass("on");

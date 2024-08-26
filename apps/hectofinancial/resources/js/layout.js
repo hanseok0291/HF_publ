@@ -21,12 +21,12 @@ $(document).ready(function () {
   );
 
   // GNB 언어 선택
-  $("#language_btn").on("click", function(e){
+  $("#language_btn").on("click", function (e) {
     $(this).next(".language_box").toggle();
   });
 
   // FOOTER 파트너 사 토글
-  $("#partner_list_btn").on("click", function(e){
+  $("#partner_list_btn").on("click", function (e) {
     $(this).toggleClass("open");
     $(this).next(".list_wrap").toggle();
   });
@@ -70,19 +70,26 @@ $(document).ready(function () {
     $(this).removeClass("open");
   });
 
-  // 위로 이동 버튼
+  var lastScrollTop = 0; // 마지막 스크롤 위치를 저장할 변수
+
   $(window).scroll(function () {
+    // 위로 이동 버튼
     if ($(this).scrollTop() > 150) {
       $("#btn_top").fadeIn(200);
     } else {
       $("#btn_top").fadeOut(200);
     }
 
-    if ($(this).scrollTop() > 0) {
-      $("#header").addClass("fixed");
+    var currentScroll = $(this).scrollTop(); // 현재 스크롤 위치
+
+    if (currentScroll > lastScrollTop) {
+      // 스크롤 다운 시
+      $("#header").css("top", "-50px"); // 헤더를 위로 숨김
     } else {
-      $("#header").removeClass("fixed");
+      // 스크롤 업 시
+      $("#header").css("top", "0"); // 헤더를 다시 보여줌
     }
+    lastScrollTop = currentScroll; // 현재 스크롤 위치를 lastScrollTop에 저장
   });
   // scroll body to 0px on click
   $("#btn_top").click(function () {
@@ -145,14 +152,28 @@ function privacyPopup() {
 }
 
 function openCenteredPopup(url, title, width, height) {
-  const screenLeft = window.screenLeft !== undefined ? window.screenLeft : window.screenX;
-  const screenTop = window.screenTop !== undefined ? window.screenTop : window.screenY;
+  const screenLeft =
+    window.screenLeft !== undefined ? window.screenLeft : window.screenX;
+  const screenTop =
+    window.screenTop !== undefined ? window.screenTop : window.screenY;
 
-  const innerWidth = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
-  const innerHeight = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+  const innerWidth = window.innerWidth
+    ? window.innerWidth
+    : document.documentElement.clientWidth
+    ? document.documentElement.clientWidth
+    : screen.width;
+  const innerHeight = window.innerHeight
+    ? window.innerHeight
+    : document.documentElement.clientHeight
+    ? document.documentElement.clientHeight
+    : screen.height;
 
-  const left = ((innerWidth - width) / 2) + screenLeft;
-  const top = ((innerHeight - height) / 2) + screenTop;
+  const left = (innerWidth - width) / 2 + screenLeft;
+  const top = (innerHeight - height) / 2 + screenTop;
 
-  window.open(url, title, `scrollbars=yes, width=${width}, height=${height}, top=${top}, left=${left}`);
+  window.open(
+    url,
+    title,
+    `scrollbars=yes, width=${width}, height=${height}, top=${top}, left=${left}`
+  );
 }

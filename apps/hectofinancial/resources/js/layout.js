@@ -84,12 +84,18 @@ $(document).ready(function () {
 
     if (currentScroll > lastScrollTop) {
       // 스크롤 다운 시
-      $("#header").css("top", "-50px"); // 헤더를 위로 숨김
+      $("#header .container").css("top", "-84px"); // 헤더를 위로 숨김
     } else {
       // 스크롤 업 시
-      $("#header").css("top", "0"); // 헤더를 다시 보여줌
+      $("#header .container").css("top", "0"); // 헤더를 다시 보여줌
     }
     lastScrollTop = currentScroll; // 현재 스크롤 위치를 lastScrollTop에 저장
+
+    if ($(this).scrollTop() > 0) {
+      $("#header").addClass("fixed");
+    } else {
+      $("#header").removeClass("fixed");
+    }
   });
   // scroll body to 0px on click
   $("#btn_top").click(function () {

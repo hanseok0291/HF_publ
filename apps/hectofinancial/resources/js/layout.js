@@ -1,15 +1,37 @@
 $(document).ready(function () {
+  // 로딩 시 GNB 위치에 따라 클래스 추가 제거
+  if ($(window).scrollTop() > 0) {
+    $("#header").addClass("fixed");
+  } else {
+    $("#header").removeClass("fixed");
+  }
+
   // GNB (상단 메인 메뉴)
   $(".gnb").hover(
     function () {
+      $("#header").addClass("open");
       $(".gnb .submenu, .gnb_sub_bg").slideDown(100);
-      $(".gnb_dimmed").fadeIn(200);
+      $(".gnb_dim").fadeIn(200);
     },
     function () {
+      $("#header").removeClass("open");
       $(".gnb .submenu, .gnb_sub_bg").stop().slideUp(100);
-      $(".gnb_dimmed").stop().fadeOut(100);
+      $(".gnb_dim").stop().fadeOut(100);
     }
   );
+
+  // GNB 언어 선택
+  $("#language_btn").on("click", function(e){
+    $(this).next(".language_box").toggle();
+  });
+
+  // FOOTER 파트너 사 토글
+  $("#partner_list_btn").on("click", function(e){
+    $(this).toggleClass("open");
+    $(this).next(".list_wrap").toggle();
+  });
+
+  //
 
   // 로그인 레이어
   /*	$("#show_login").click(function(){
@@ -54,6 +76,12 @@ $(document).ready(function () {
       $("#btn_top").fadeIn(200);
     } else {
       $("#btn_top").fadeOut(200);
+    }
+
+    if ($(this).scrollTop() > 0) {
+      $("#header").addClass("fixed");
+    } else {
+      $("#header").removeClass("fixed");
     }
   });
   // scroll body to 0px on click

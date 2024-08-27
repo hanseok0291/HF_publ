@@ -339,3 +339,28 @@ if (phoneCheck) {
         this.value = formattedNumber;
     });
 }
+
+/* 하단 버튼 가려짐 이슈로 추가 */
+function toggleFooterFixed() {
+    const wrap = document.getElementById("wrap");
+    const header = document.getElementById("header");
+    const content = document.getElementById("content");
+    const footer = document.getElementById("footer");
+
+    // header 높이 + content 높이
+    const totalHeight = header.offsetHeight + content.offsetHeight;
+    // 윈도우 높이
+    const windowHeight = window.innerHeight;
+
+    // 윈도우 높이가 header + content 높이보다 작을 경우
+    if (windowHeight < totalHeight) {
+        wrap.classList.add("relative-bottom");
+    } else {
+        wrap.classList.remove("relative-bottom");
+    }
+}
+
+// 윈도우가 로드될 때와 리사이즈될 때 toggleFooterFixed 함수 실행
+window.addEventListener("load", toggleFooterFixed);
+window.addEventListener("resize", toggleFooterFixed);
+/* //하단 버튼 가려짐 이슈로 추가 */

@@ -8,7 +8,7 @@
       content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width"
     />
     <title>Hecto Financial</title>
-    <link rel="shortcut icon" href="../resources/image/favicon.ico" />
+    <link rel="shortcut icon" href="../resources/images/favicon.ico" />
     <link
       rel="stylesheet"
       href="../resources/css/n_sb_style.css?ver=230605"
@@ -34,7 +34,7 @@
         <div class="container">
           <h1 class="logo">
             <a href="/"
-              ><img src="../resources/image/logo.svg" alt="Hecto Financial"
+              ><img src="../resources/images/logo.svg" alt="Hecto Financial"
             /></a>
           </h1>
 
@@ -315,123 +315,123 @@
         // 	preservenativescrolling: false,
         // 	enablemousewheel: false,
         // });
-        new SimpleBar(document.getElementById("scrollBar"), {
+        new SimpleBar(document.getElementById('scrollBar'), {
           autoHide: false,
           scrollbarMinSize: 2.5,
         });
 
-        $(".column_sub .left_cust").css("display", "block");
-        $(".column_sub .left_cust #cust_list6").addClass("on");
+        $('.column_sub .left_cust').css('display', 'block');
+        $('.column_sub .left_cust #cust_list6').addClass('on');
 
-        $("#sendMail").css("background", "#c8c8c8");
-        $("#agreeChk").attr("checked", false);
+        $('#sendMail').css('background', '#c8c8c8');
+        $('#agreeChk').attr('checked', false);
 
-        $("#agreeChk").change(function () {
-          if ($("input:checkbox[id='agreeChk']").is(":checked")) {
-            $("#sendMail").css("background", "#faa61a");
+        $('#agreeChk').change(function () {
+          if ($("input:checkbox[id='agreeChk']").is(':checked')) {
+            $('#sendMail').css('background', '#faa61a');
           } else {
-            $("#sendMail").css("background", "#c8c8c8");
+            $('#sendMail').css('background', '#c8c8c8');
           }
         });
 
         /* 문의메일 발송 */
-        $("#sendMailSuccess").click(function () {
+        $('#sendMailSuccess').click(function () {
           $.ajax({
-            type: "post",
-            url: "/sendmail",
-            data: $("#mailForm").serializeArray(),
+            type: 'post',
+            url: '/sendmail',
+            data: $('#mailForm').serializeArray(),
             success: function (data) {
               //console.log("ajax result data: " + data)
-              if (data == "0") {
-                $("input").prop("value", "");
-                $("#mcontents").val("");
-                alert("전송되었습니다.\n담당자 확인 후 연락드리겠습니다.");
+              if (data == '0') {
+                $('input').prop('value', '');
+                $('#mcontents').val('');
+                alert('전송되었습니다.\n담당자 확인 후 연락드리겠습니다.');
               } else {
-                alert("메일 발송이 실패하였습니다.");
+                alert('메일 발송이 실패하였습니다.');
                 return false;
               }
             },
             error: function (e) {
-              alert("메일전송 도중 오류가 발생하였습니다.");
+              alert('메일전송 도중 오류가 발생하였습니다.');
               return false;
             },
           });
 
-          $("#sendMail").css("background", "#c8c8c8");
-          $("#agreeChk").attr("checked", false);
+          $('#sendMail').css('background', '#c8c8c8');
+          $('#agreeChk').attr('checked', false);
         });
         /* 문의메일 발송 */
-        $("#sendMail").click(function () {
-          if ($("#name").val() == "") {
-            alert("회사명을 입력해 주세요");
-            $("#name").focus();
+        $('#sendMail').click(function () {
+          if ($('#name').val() == '') {
+            alert('회사명을 입력해 주세요');
+            $('#name').focus();
             return;
           }
 
-          if ($("#tel").val() == "") {
-            alert("연락처를 입력해 주세요");
-            $("#tel").focus();
+          if ($('#tel').val() == '') {
+            alert('연락처를 입력해 주세요');
+            $('#tel').focus();
             return;
           }
 
-          if ($("#addr").val() == "") {
-            alert("회사 이메일 주소를 입력해 주세요");
-            $("#addr").focus();
+          if ($('#addr').val() == '') {
+            alert('회사 이메일 주소를 입력해 주세요');
+            $('#addr').focus();
             return;
           }
 
-          if ($("#companyNumber").val() == "") {
-            alert("사업자등록번호를 입력해 주세요");
-            $("#companyNumber").focus();
+          if ($('#companyNumber').val() == '') {
+            alert('사업자등록번호를 입력해 주세요');
+            $('#companyNumber').focus();
             return;
           }
 
           if (
-            $("#addr")
+            $('#addr')
               .val()
               .search(/(\S+)@(\S+)\.(\S+)/) == -1
           ) {
-            alert("유효하지 않은 메일주소입니다");
-            $("#addr").focus();
+            alert('유효하지 않은 메일주소입니다');
+            $('#addr').focus();
             return;
           }
 
-          if ($("#title").val() == "") {
-            alert("제목을 입력해주세요");
-            $("#title").focus();
+          if ($('#title').val() == '') {
+            alert('제목을 입력해주세요');
+            $('#title').focus();
             return;
           }
 
-          if ($("#mcontents").val() == "") {
-            alert("내용을 입력해주세요");
-            $("#mcontents").focus();
+          if ($('#mcontents').val() == '') {
+            alert('내용을 입력해주세요');
+            $('#mcontents').focus();
             return;
           }
 
-          $("#mcontents").bind("keyup keydown", function (e) {
+          $('#mcontents').bind('keyup keydown', function (e) {
             var charLimit = 500;
             if (this.value.length > charLimit) {
-              alert(charLimit + "자 이상 입력하실 수 없습니다.");
+              alert(charLimit + '자 이상 입력하실 수 없습니다.');
               this.value = this.value.substring(0, charLimit);
               return false;
             }
           });
 
-          if ($("input:checkbox[id='agreeChk']").is(":checked") != true) {
-            alert("유의사항 확인 후 동의해 주세요.");
+          if ($("input:checkbox[id='agreeChk']").is(':checked') != true) {
+            alert('유의사항 확인 후 동의해 주세요.');
           } else {
-            $("#sendMailSuccess").trigger("click");
+            $('#sendMailSuccess').trigger('click');
           }
         });
       });
 
-      $(document).on("click", ".helpdesk .btn_box", function () {
-        $(".helpdesk .btn_box .btn").hide();
-        $(".helpdesk .btn_box .btn.on").show();
+      $(document).on('click', '.helpdesk .btn_box', function () {
+        $('.helpdesk .btn_box .btn').hide();
+        $('.helpdesk .btn_box .btn.on').show();
       });
-      $(document).on("click", ".btn_wrap .btn_box", function () {
-        $(".btn_wrap .btn_box .btn").hide();
-        $(".btn_wrap .btn_box .btn.on").show();
+      $(document).on('click', '.btn_wrap .btn_box', function () {
+        $('.btn_wrap .btn_box .btn').hide();
+        $('.btn_wrap .btn_box .btn.on').show();
       });
     </script>
   </body>

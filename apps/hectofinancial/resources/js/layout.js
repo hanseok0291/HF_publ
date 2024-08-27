@@ -25,13 +25,26 @@ $(document).ready(function () {
     $(this).next('.language_box').fadeToggle();
   });
 
+  $('.lagnuage_wrap').hover(
+    function () {
+      $('.lagnuage_wrap .language_box').fadeIn();
+    },
+    function () {
+      $('.lagnuage_wrap .language_box').fadeOut();
+    }
+  );
+
   // FOOTER 파트너 사 토글
   $('#partner_list_btn').on('click', function (e) {
     $(this).toggleClass('open');
     $(this).next('.list_wrap').fadeToggle();
   });
 
-  //
+  //TAB 버튼 클릭 시 활성화
+  $('.tab_btn_wrap .tab_btn').on('click', function () {
+    $('.tab_btn_wrap .tab_btn').removeClass('on');
+    $(this).addClass('on');
+  });
 
   // 로그인 레이어
   /*	$("#show_login").click(function(){

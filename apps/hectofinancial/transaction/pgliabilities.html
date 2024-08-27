@@ -1,459 +1,603 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=1200">
-<title>Hecto Financial</title>
-<link rel="shortcut icon" href="../resources/images/favicon.ico">
-<link rel="stylesheet" href="../resources/css/n_sb_style.css" type="text/css">
-<script type="text/javascript" src="../resources/js/jquery-1.8.2.min.js"></script> 
-<script type="text/javascript" src="../resources/js/layout.js"></script>
-</head>
-<body>
-<!-- wrap -->
-<div class="newpage bcfff"> 
-	<!--header-->
-	<div id="header">
-		<h1 class="logo"><a href="/"><img src="../resources/images/logo.png" alt="Hecto Financial"></a></h1>
-		<p class="slogan">금융의 새 틀을 만듭니다. Hecto Financial</p>
-	</div>
-	<!--//header--> 
-	
-	<!-- contents -->
-	<div class="con">
-		<div class="column"> 
-			<!--column_main(우측컨텐츠)-->
-			<div class="column_main">
-				<div class="con_top">
-					<h3>부채증명서 발급/미납 내역 조회</h3>
-				</div>
-				<div> 
-					<div class="search">
-						<div class="disc">
-							<ul>
-								<li>ㆍ 대리인 발급 문의는 고객센터(1600-5220)로 문의 바랍니다.(온라인 발급 불가)</li>
-								<li>ㆍ 당사가 제공한 미납 내역이 실제 납부 내역과 차이가 있는 경우 고객센터(1600-5220)로 문의 바랍니다.</li>
-								<li>ㆍ 휴대폰결제 미납내역이 없는 경우 부채증명서 발급 / 미납내역 조회가 불가능합니다. </li>
-								<li>ㆍ 부채증명서 발급 시 휴대폰소액결제의 정상적인 서비스 이용이 어려울 수 있습니다. </li>
-								<li>ㆍ 헥토파이낸셜에서 발급한 부채증명서의 효력 유효기간은 발급일로부터 3개월입니다.</li>
-								<li>ㆍ 부채증명서는 결제가 완료되어야 발급이 완료됩니다. </li>
-							</ul>
-						</div>
-					</div>
-					<h5 class="mt40 mb10">개인정보의 수집 및 이용안내</h5>
-					<div class="privacy_agree mb10">
-						<div class="privacy_agree_i liabilities_agree"> 헥토파이낸셜 주식회사(이하 “헥토파이낸셜”)는 고객(이하 “고객”)의 개인정보를 중요시하며 개인정보 보호법, 정보통신망 이용촉진 및 정보보호 등에 관한 법률 등 관계법령을 준수하고 있습니다. “헥토파이낸셜”은 개인정보처리방침을 통하여 “고객”의 개인정보가 어떠한 용도와 방식으로 이용되고 있으며 개인정보 보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다.<br />
-							<br />
-							<strong>1. 개인정보의 수집∙이용목적</strong><br />
-							“헥토파이낸셜”은 다음과 같은 목적으로 “고객”의 개인정보 항목을 수집 및 이용하고 있습니다.<br />
-							- 부채증명서 발급/조회 신청자의 본인확인<br />
-							- 휴대폰결제 미납내역에 대한 조회 및 미납금액 조회 <br />
-							- 부채증명서 발급 내역에 대한 조회 및 증명서 진위여부 확인 <br />
-							<br />
-							<strong>2. 수집하는 개인정보의 항목</strong><br />
-							“헥토파이낸셜”은 개인정보의 수집 및 이용목적을 달성하기 위하여 아래와 같은 개인정보를 수집합니다.<br />
-							- 휴대폰번호, 주문자명(명의자 이름), 성별, 생년월일(+내/외국인), CI, DI <br />
-							<br />
-							<strong>3. 개인정보의 보유 및 이용기간</strong><br />
-							개인정보는 개인정보의 수집∙이용목적이 달성되면 지체 없이 파기 합니다. 단, 관계법령에서 보존의무를 부과하고 있는 경우는 예외로 합니다.<br />
-							<br />
-							<strong>4. 이용자의 개인정보의 수집 및 이용 거부</strong><br />
-							“고객”은 ”헥토파이낸셜”의 개인정보 수집∙이용 동의를 거부할 수 있습니다. 단, 동의를 거부하는 경우 부채증명서 발급∙조회가 정상적으로 완료되지 않을 수 있음을 알려드립니다.
-						</div>
-					</div>
-					<div class="check_group mb20">
-						<label>
-							<input type="checkbox" name="agreeChk" id="agreeChk">
-							개인정보 수집 및 이용 내용에 동의합니다.</label>
-					</div>
-					<!-- //개인정보 동의 --> 
-					<div class="tc"><button type="button" class="btn_txt main st01" onclick="openModal('modal_1')">조회</button></div>
-					<!-- //조회 --> 
-					<!-- 휴대폰결제 조회결과 -->
-					<h5 class=" mt50 mb20">발급내역</h5>
-					<div class="tb_wrap">
-						<table class="tb_data_list">
-							<thead>
-								<tr>
-									<th>번호</th>
-									<th>신청일자</th>
-									<th>발급 용도 </th>
-									<th>제출처</th>
-									<th>발급일자</th>
-									<th>결제상태</th>
-									<th>발급유효기간</th>
-									<th class="nrl">
-										발급 
-										<button id="info_btn" type="button" class="info_btn">
-											<div id="infobox_wrap" class="infobox_wrap">
-												<p>부채증명서 발급 참고사항</p>
-												<ul>
-													<li>ㆍ 발급 용도, 제출처 변경이 필요한 경우 신규 발급이 필요합니다.</li>
-													<li>ㆍ 발급 내역을 클릭하시면 상세보기 및 신규 발급이 가능합니다.</li>
-													<li>ㆍ 발급 후 24시간 : 무료 / 24시간 이후 ~ 만료 : 3000원</li>
-												</ul>
-											</div>
-										</button>
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td>2022-11-20</td>
-									<td>개인 회생 신청</td>
-									<td>법원</td>
-									<td>발급 대기중</td>
-									<td><a href="#" class="btn_txt tb st01">조회하기</a></td>
-									<td></td>
-									<td class="nrl">발급 대기중</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>2022-11-20</td>
-									<td>개인 회생 신청</td>
-									<td>법원</td>
-									<td>발급 실패</td>
-									<td>기간 만료</td>
-									<td></td>
-									<td class="nrl">기간 만료</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>2022-11-20</td>
-									<td>개인 회생 신청</td>
-									<td>법원</td>
-									<td>발급 대기중</td>
-									<td><a href="#" class="btn_txt tb st01">조회하기</a></td>
-									<td>6일 23시간 59분 <br><span class="end">(만료: 2023-11-28 24:00)</span></td>
-									<td class="nrl">기간만료</td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td>2022-11-20</td>
-									<td>개인 회생 신청</td>
-									<td>법원</td>
-									<td>2023-11-21</td>
-									<td>결제 완료</td>
-									<td>6일 23시간 59분</td>
-									<td class="nrl"><a href="#" class="btn_txt tb st01">다운로드</a></td>
-								</tr>
-								<tr>
-									<td>5</td>
-									<td>2022-11-20</td>
-									<td>개인 회생 신청</td>
-									<td>법원</td>
-									<td>2023-11-21</td>
-									<td>결제 완료</td>
-									<td>6일 23시간 59분</td>
-									<td class="nrl"><a href="#" class="btn_txt tb st01">재발급</a></td>
-								</tr>
-								<tr>
-									<td>6</td>
-									<td>2022-11-20</td>
-									<td>개인 회생 신청</td>
-									<td>법원</td>
-									<td>2023-11-21</td>
-									<td>결제 완료</td>
-									<td>기간 만료</td>
-									<td class="nrl">기간 만료</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<!-- //휴대폰결제 조회결과 --> 
-					<!-- 테이블하단 영역-->
-					<div class="tb_bottom_area">
-						<div class="paging"> <span class="btn"><a href="#" class="first">처음으로 이동</a></span> <span class="btn"><a href="#" class="prev">이전 페이지로 이동</a></span> <span class="num"> <strong class="on">1</strong> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">6</a> <a href="#">7</a> <a href="#">8</a> <a href="#">9</a> <a href="#">0</a> </span> <span class="btn"><a href="#" class="next">다음 페이지로 이동</a></span> <span class="btn"><a href="#" class="last">마지막으로 이동</a></span> </div>
-					</div>
-					<!-- //테이블하단 영역--> 
-				</div>
-				<!--//tab--> 
-			</div>
-			<!--//column_main(우측컨텐츠)--> 
-		</div>
-	</div>
-	<!-- //contents --> 
-</div>
-<!-- //wrap -->
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=1200" />
+    <title>Hecto Financial</title>
+    <link rel="shortcut icon" href="../resources/images/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="../resources/css/n_sb_style.css"
+      type="text/css"
+    />
+    <script
+      type="text/javascript"
+      src="../resources/js/jquery-1.8.2.min.js"
+    ></script>
+    <script type="text/javascript" src="../resources/js/layout.js"></script>
+  </head>
+  <body>
+    <!-- wrap -->
+    <div class="newpage bcfff">
+      <!--header-->
+      <div id="header" class="normal">
+        <h1 class="logo">
+          <a href="/"
+            ><img src="../resources/images/logo.png" alt="Hecto Financial"
+          /></a>
+        </h1>
+        <p class="slogan">금융의 새 틀을 만듭니다. Hecto Financial</p>
+      </div>
+      <!--//header-->
 
-<!-- modal 부채증명서 미납내역 -->
-<div id="modal_1" class="modal_container liabilities_list_container">
-	<div class="modal_wrap">
-		<div class="modal_header">
-			<img class="logo" src="../resources/images/logo.png" alt="hectofinancial" />
-			<button type="button" class="modal_close_btn"><img src="../resources/images/btn_close.svg" alt="닫기" /></button>
-		</div>
-		<div class="modal_body">
-			<h5 class="mb20">월별 미납금액</h5>
-			<div class="tb_container">
-				<div class="tb_wrap">
-					<table class="tb_data_list">
-						<colgroup>
-							<col width="8%" />
-							<col width="14%" />
-							<col width="21%" />
-							<col width="10%" />
-							<col width="14%" />
-							<col />
-						</colgroup>
-						<thead>
-							<tr>
-								<th>번호</th>
-								<th>결제 년/월</th>
-								<th>휴대폰번호</th>
-								<th>미납금액</th>
-								<th>연체이자</th>
-								<th class="nrl">총액</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>1</td>
-								<td>23년/10월</td>
-								<td>010-XXXX-1234</td>
-								<td>60,000원</td>
-								<td>3,400원</td>
-								<td class="nrl">63,400원</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>23년/10월</td>
-								<td>010-XXXX-1234</td>
-								<td>60,000원</td>
-								<td>3,400원</td>
-								<td class="nrl">63,400원</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>23년/10월</td>
-								<td>010-XXXX-1234</td>
-								<td>60,000원</td>
-								<td>3,400원</td>
-								<td class="nrl">63,400원</td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>23년/10월</td>
-								<td>010-XXXX-1234</td>
-								<td>60,000원</td>
-								<td>3,400원</td>
-								<td class="nrl">63,400원</td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td>23년/10월</td>
-								<td>010-XXXX-1234</td>
-								<td>60,000원</td>
-								<td>3,400원</td>
-								<td class="nrl">63,400원</td>
-							</tr>
-							<tr>
-								<td>6</td>
-								<td>23년/10월</td>
-								<td>010-XXXX-1234</td>
-								<td>60,000원</td>
-								<td>3,400원</td>
-								<td class="nrl">63,400원</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<dl class="total_money_wrap">
-					<dt>총 미납금액</dt>
-					<dd><b>253,000</b>원</dd>
-				</dl>
-			</div>
-			<h5 class="mt30 mb20">미납 거래내역</h5>
-			<div class="tb_wrap">
-				<table class="tb_data_list">
-					<colgroup>
-						<col width="8%" />
-						<col width="14%" />
-						<col width="21%" />
-						<col width="10%" />
-						<col width="14%" />
-						<col />
-					</colgroup>
-					<thead>
-						<tr>
-							<th>번호</th>
-							<th>거래 일시</th>
-							<th>휴대폰번호</th>
-							<th>거래금액</th>
-							<th>상호</th>
-							<th class="nrl">상품명</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td>23년/10월</td>
-							<td>010-XXXX-1234</td>
-							<td>30,000원</td>
-							<td>주식회사 헥토</td>
-							<td class="nrl">롯데웰푸드 엄마손파이</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>23년/10월</td>
-							<td>010-XXXX-1234</td>
-							<td>30,000원</td>
-							<td>주식회사 헥토</td>
-							<td class="nrl">롯데웰푸드 엄마손파이</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>23년/10월</td>
-							<td>010-XXXX-1234</td>
-							<td>30,000원</td>
-							<td>주식회사 헥토</td>
-							<td class="nrl">롯데웰푸드 엄마손파이</td>
-						</tr>
-						<tr>
-							<td>4</td>
-							<td>23년/10월</td>
-							<td>010-XXXX-1234</td>
-							<td>30,000원</td>
-							<td>주식회사 헥토</td>
-							<td class="nrl">롯데웰푸드 엄마손파이</td>
-						</tr>
-						<tr>
-							<td>5</td>
-							<td>23년/10월</td>
-							<td>010-XXXX-1234</td>
-							<td>30,000원</td>
-							<td>주식회사 헥토</td>
-							<td class="nrl">롯데웰푸드 엄마손파이</td>
-						</tr>
-						<tr>
-							<td>6</td>
-							<td>23년/10월</td>
-							<td>010-XXXX-1234</td>
-							<td>30,000원</td>
-							<td>주식회사 헥토</td>
-							<td class="nrl">롯데웰푸드 엄마손파이</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="btn_wrap">
-				<button type="button" class="btn_txt main st01" onclick="openModal('modal_2')">부채증명서 신규 발급</button>
-				<button type="button" class="btn_txt main st02">재발급</button>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- // modal 부채증명서 미납내역 -->
+      <!-- contents -->
+      <div class="con">
+        <div class="column">
+          <!--column_main(우측컨텐츠)-->
+          <div class="column_main">
+            <div class="con_top">
+              <h3>부채증명서 발급/미납 내역 조회</h3>
+            </div>
+            <div>
+              <div class="search">
+                <div class="disc">
+                  <ul>
+                    <li>
+                      ㆍ 대리인 발급 문의는 고객센터(1600-5220)로 문의
+                      바랍니다.(온라인 발급 불가)
+                    </li>
+                    <li>
+                      ㆍ 당사가 제공한 미납 내역이 실제 납부 내역과 차이가 있는
+                      경우 고객센터(1600-5220)로 문의 바랍니다.
+                    </li>
+                    <li>
+                      ㆍ 휴대폰결제 미납내역이 없는 경우 부채증명서 발급 /
+                      미납내역 조회가 불가능합니다.
+                    </li>
+                    <li>
+                      ㆍ 부채증명서 발급 시 휴대폰소액결제의 정상적인 서비스
+                      이용이 어려울 수 있습니다.
+                    </li>
+                    <li>
+                      ㆍ 헥토파이낸셜에서 발급한 부채증명서의 효력 유효기간은
+                      발급일로부터 3개월입니다.
+                    </li>
+                    <li>
+                      ㆍ 부채증명서는 결제가 완료되어야 발급이 완료됩니다.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <h5 class="mt40 mb10">개인정보의 수집 및 이용안내</h5>
+              <div class="privacy_agree mb10">
+                <div class="privacy_agree_i liabilities_agree">
+                  헥토파이낸셜 주식회사(이하 “헥토파이낸셜”)는 고객(이하
+                  “고객”)의 개인정보를 중요시하며 개인정보 보호법, 정보통신망
+                  이용촉진 및 정보보호 등에 관한 법률 등 관계법령을 준수하고
+                  있습니다. “헥토파이낸셜”은 개인정보처리방침을 통하여 “고객”의
+                  개인정보가 어떠한 용도와 방식으로 이용되고 있으며 개인정보
+                  보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다.<br />
+                  <br />
+                  <strong>1. 개인정보의 수집∙이용목적</strong><br />
+                  “헥토파이낸셜”은 다음과 같은 목적으로 “고객”의 개인정보 항목을
+                  수집 및 이용하고 있습니다.<br />
+                  - 부채증명서 발급/조회 신청자의 본인확인<br />
+                  - 휴대폰결제 미납내역에 대한 조회 및 미납금액 조회 <br />
+                  - 부채증명서 발급 내역에 대한 조회 및 증명서 진위여부 확인
+                  <br />
+                  <br />
+                  <strong>2. 수집하는 개인정보의 항목</strong><br />
+                  “헥토파이낸셜”은 개인정보의 수집 및 이용목적을 달성하기 위하여
+                  아래와 같은 개인정보를 수집합니다.<br />
+                  - 휴대폰번호, 주문자명(명의자 이름), 성별,
+                  생년월일(+내/외국인), CI, DI <br />
+                  <br />
+                  <strong>3. 개인정보의 보유 및 이용기간</strong><br />
+                  개인정보는 개인정보의 수집∙이용목적이 달성되면 지체 없이 파기
+                  합니다. 단, 관계법령에서 보존의무를 부과하고 있는 경우는
+                  예외로 합니다.<br />
+                  <br />
+                  <strong>4. 이용자의 개인정보의 수집 및 이용 거부</strong
+                  ><br />
+                  “고객”은 ”헥토파이낸셜”의 개인정보 수집∙이용 동의를 거부할 수
+                  있습니다. 단, 동의를 거부하는 경우 부채증명서 발급∙조회가
+                  정상적으로 완료되지 않을 수 있음을 알려드립니다.
+                </div>
+              </div>
+              <div class="check_group mb20">
+                <label>
+                  <input type="checkbox" name="agreeChk" id="agreeChk" />
+                  개인정보 수집 및 이용 내용에 동의합니다.</label
+                >
+              </div>
+              <!-- //개인정보 동의 -->
+              <div class="tc">
+                <button
+                  type="button"
+                  class="btn_txt main st01"
+                  onclick="openModal('modal_1')"
+                >
+                  조회
+                </button>
+              </div>
+              <!-- //조회 -->
+              <!-- 휴대폰결제 조회결과 -->
+              <h5 class="mt50 mb20">발급내역</h5>
+              <div class="tb_wrap">
+                <table class="tb_data_list">
+                  <thead>
+                    <tr>
+                      <th>번호</th>
+                      <th>신청일자</th>
+                      <th>발급 용도</th>
+                      <th>제출처</th>
+                      <th>발급일자</th>
+                      <th>결제상태</th>
+                      <th>발급유효기간</th>
+                      <th class="nrl">
+                        발급
+                        <button id="info_btn" type="button" class="info_btn">
+                          <div id="infobox_wrap" class="infobox_wrap">
+                            <p>부채증명서 발급 참고사항</p>
+                            <ul>
+                              <li>
+                                ㆍ 발급 용도, 제출처 변경이 필요한 경우 신규
+                                발급이 필요합니다.
+                              </li>
+                              <li>
+                                ㆍ 발급 내역을 클릭하시면 상세보기 및 신규
+                                발급이 가능합니다.
+                              </li>
+                              <li>
+                                ㆍ 발급 후 24시간 : 무료 / 24시간 이후 ~ 만료 :
+                                3000원
+                              </li>
+                            </ul>
+                          </div>
+                        </button>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>2022-11-20</td>
+                      <td>개인 회생 신청</td>
+                      <td>법원</td>
+                      <td>발급 대기중</td>
+                      <td><a href="#" class="btn_txt tb st01">조회하기</a></td>
+                      <td></td>
+                      <td class="nrl">발급 대기중</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>2022-11-20</td>
+                      <td>개인 회생 신청</td>
+                      <td>법원</td>
+                      <td>발급 실패</td>
+                      <td>기간 만료</td>
+                      <td></td>
+                      <td class="nrl">기간 만료</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>2022-11-20</td>
+                      <td>개인 회생 신청</td>
+                      <td>법원</td>
+                      <td>발급 대기중</td>
+                      <td><a href="#" class="btn_txt tb st01">조회하기</a></td>
+                      <td>
+                        6일 23시간 59분 <br /><span class="end"
+                          >(만료: 2023-11-28 24:00)</span
+                        >
+                      </td>
+                      <td class="nrl">기간만료</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>2022-11-20</td>
+                      <td>개인 회생 신청</td>
+                      <td>법원</td>
+                      <td>2023-11-21</td>
+                      <td>결제 완료</td>
+                      <td>6일 23시간 59분</td>
+                      <td class="nrl">
+                        <a href="#" class="btn_txt tb st01">다운로드</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>2022-11-20</td>
+                      <td>개인 회생 신청</td>
+                      <td>법원</td>
+                      <td>2023-11-21</td>
+                      <td>결제 완료</td>
+                      <td>6일 23시간 59분</td>
+                      <td class="nrl">
+                        <a href="#" class="btn_txt tb st01">재발급</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>6</td>
+                      <td>2022-11-20</td>
+                      <td>개인 회생 신청</td>
+                      <td>법원</td>
+                      <td>2023-11-21</td>
+                      <td>결제 완료</td>
+                      <td>기간 만료</td>
+                      <td class="nrl">기간 만료</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- //휴대폰결제 조회결과 -->
+              <!-- 테이블하단 영역-->
+              <div class="tb_bottom_area">
+                <div class="paging">
+                  <span class="btn"
+                    ><a href="#" class="first">처음으로 이동</a></span
+                  >
+                  <span class="btn"
+                    ><a href="#" class="prev">이전 페이지로 이동</a></span
+                  >
+                  <span class="num">
+                    <strong class="on">1</strong> <a href="#">2</a>
+                    <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
+                    <a href="#">6</a> <a href="#">7</a> <a href="#">8</a>
+                    <a href="#">9</a> <a href="#">0</a>
+                  </span>
+                  <span class="btn"
+                    ><a href="#" class="next">다음 페이지로 이동</a></span
+                  >
+                  <span class="btn"
+                    ><a href="#" class="last">마지막으로 이동</a></span
+                  >
+                </div>
+              </div>
+              <!-- //테이블하단 영역-->
+            </div>
+            <!--//tab-->
+          </div>
+          <!--//column_main(우측컨텐츠)-->
+        </div>
+      </div>
+      <!-- //contents -->
+    </div>
+    <!-- //wrap -->
 
-<!-- modal 신규발급 1 -->
-<div id="modal_2" class="modal_container liabilities_issue_container">
-	<div class="modal_wrap">
-		<div class="modal_header">
-			<img class="logo" src="../resources/images/logo.png" alt="hectofinancial" />
-			<button type="button" class="modal_close_btn"><img src="../resources/images/btn_close.svg" alt="닫기" /></button>
-		</div>
-		<div class="modal_body">
-			<dl class="process_contents_1">
-				<dt>증명서 종류</dt>
-				<dd>부채증명서</dd>
-				<dt>증명서 발급 용도</dt>
-				<dd>
-					<input type="text" placeholder="직접 입력">
-				</dd>
-				<dt>제출처</dt>
-				<dd>
-					<input type="text" placeholder="직접 입력">
-				</dd>
-				<dt>증명서 발급 금액</dt>
-				<dd>10,000원</dd>
-				<dt>결제 방법</dt>
-				<dd>가상계좌</dd>
-			</dl>
-			<div class="btn_wrap">
-				<button type="button" class="btn_txt main st01" onclick="openModal('modal_3')">발급하기</button>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- //modal 신규발급 1 -->
+    <!-- modal 부채증명서 미납내역 -->
+    <div id="modal_1" class="modal_container liabilities_list_container">
+      <div class="modal_wrap">
+        <div class="modal_header">
+          <img
+            class="logo"
+            src="../resources/images/logo.png"
+            alt="hectofinancial"
+          />
+          <button type="button" class="modal_close_btn">
+            <img src="../resources/images/btn_close.svg" alt="닫기" />
+          </button>
+        </div>
+        <div class="modal_body">
+          <h5 class="mb20">월별 미납금액</h5>
+          <div class="tb_container">
+            <div class="tb_wrap">
+              <table class="tb_data_list">
+                <colgroup>
+                  <col width="8%" />
+                  <col width="14%" />
+                  <col width="21%" />
+                  <col width="10%" />
+                  <col width="14%" />
+                  <col />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>번호</th>
+                    <th>결제 년/월</th>
+                    <th>휴대폰번호</th>
+                    <th>미납금액</th>
+                    <th>연체이자</th>
+                    <th class="nrl">총액</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>23년/10월</td>
+                    <td>010-XXXX-1234</td>
+                    <td>60,000원</td>
+                    <td>3,400원</td>
+                    <td class="nrl">63,400원</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>23년/10월</td>
+                    <td>010-XXXX-1234</td>
+                    <td>60,000원</td>
+                    <td>3,400원</td>
+                    <td class="nrl">63,400원</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>23년/10월</td>
+                    <td>010-XXXX-1234</td>
+                    <td>60,000원</td>
+                    <td>3,400원</td>
+                    <td class="nrl">63,400원</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>23년/10월</td>
+                    <td>010-XXXX-1234</td>
+                    <td>60,000원</td>
+                    <td>3,400원</td>
+                    <td class="nrl">63,400원</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>23년/10월</td>
+                    <td>010-XXXX-1234</td>
+                    <td>60,000원</td>
+                    <td>3,400원</td>
+                    <td class="nrl">63,400원</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>23년/10월</td>
+                    <td>010-XXXX-1234</td>
+                    <td>60,000원</td>
+                    <td>3,400원</td>
+                    <td class="nrl">63,400원</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <dl class="total_money_wrap">
+              <dt>총 미납금액</dt>
+              <dd><b>253,000</b>원</dd>
+            </dl>
+          </div>
+          <h5 class="mt30 mb20">미납 거래내역</h5>
+          <div class="tb_wrap">
+            <table class="tb_data_list">
+              <colgroup>
+                <col width="8%" />
+                <col width="14%" />
+                <col width="21%" />
+                <col width="10%" />
+                <col width="14%" />
+                <col />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>번호</th>
+                  <th>거래 일시</th>
+                  <th>휴대폰번호</th>
+                  <th>거래금액</th>
+                  <th>상호</th>
+                  <th class="nrl">상품명</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>23년/10월</td>
+                  <td>010-XXXX-1234</td>
+                  <td>30,000원</td>
+                  <td>주식회사 헥토</td>
+                  <td class="nrl">롯데웰푸드 엄마손파이</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>23년/10월</td>
+                  <td>010-XXXX-1234</td>
+                  <td>30,000원</td>
+                  <td>주식회사 헥토</td>
+                  <td class="nrl">롯데웰푸드 엄마손파이</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>23년/10월</td>
+                  <td>010-XXXX-1234</td>
+                  <td>30,000원</td>
+                  <td>주식회사 헥토</td>
+                  <td class="nrl">롯데웰푸드 엄마손파이</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>23년/10월</td>
+                  <td>010-XXXX-1234</td>
+                  <td>30,000원</td>
+                  <td>주식회사 헥토</td>
+                  <td class="nrl">롯데웰푸드 엄마손파이</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>23년/10월</td>
+                  <td>010-XXXX-1234</td>
+                  <td>30,000원</td>
+                  <td>주식회사 헥토</td>
+                  <td class="nrl">롯데웰푸드 엄마손파이</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>23년/10월</td>
+                  <td>010-XXXX-1234</td>
+                  <td>30,000원</td>
+                  <td>주식회사 헥토</td>
+                  <td class="nrl">롯데웰푸드 엄마손파이</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="btn_wrap">
+            <button
+              type="button"
+              class="btn_txt main st01"
+              onclick="openModal('modal_2')"
+            >
+              부채증명서 신규 발급
+            </button>
+            <button type="button" class="btn_txt main st02">재발급</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- // modal 부채증명서 미납내역 -->
 
-<!-- modal 신규발급 2 -->
-<div id="modal_3" class="modal_container liabilities_issue_container">
-	<div class="modal_wrap">
-		<div class="modal_header">
-			<img class="logo" src="../resources/images/logo.png" alt="hectofinancial" />
-			<button type="button" class="modal_close_btn"><img src="../resources/images/btn_close.svg" alt="닫기" /></button>
-		</div>
-		<div class="modal_body">
-			<div class="process_contents_2">
-				<p class="text_1">입력하신 발급 용도와 제출처로 신청하시겠습니까?</p>
-				<div class="border_box">
-					<p><b>증명서 발급 용도 :</b> 개인회생 신청 자료</p>
-					<p><b>제출처 :</b> 서울 중앙 지방 법원</p>
-				</div>
-				<p class="text_2">
-					결제 이후부터 7일동안 재발급이 가능합니다. <br>
-					<b>(발급 후 24시간 : 무료 / 24시간 이후 : 3000원)</b> <br>
-					유효시간 경과 이후 신규 발급이 필요합니다.
-				</p>
-			</div>
-			<div class="btn_wrap">
-				<button type="button" class="btn_txt main st02" onclick="closeModal()">취소</button>
-				<button type="button" class="btn_txt main st01" onclick="openModal('modal_4')">확인</button>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- //modal 신규발급 2 -->
+    <!-- modal 신규발급 1 -->
+    <div id="modal_2" class="modal_container liabilities_issue_container">
+      <div class="modal_wrap">
+        <div class="modal_header">
+          <img
+            class="logo"
+            src="../resources/images/logo.png"
+            alt="hectofinancial"
+          />
+          <button type="button" class="modal_close_btn">
+            <img src="../resources/images/btn_close.svg" alt="닫기" />
+          </button>
+        </div>
+        <div class="modal_body">
+          <dl class="process_contents_1">
+            <dt>증명서 종류</dt>
+            <dd>부채증명서</dd>
+            <dt>증명서 발급 용도</dt>
+            <dd>
+              <input type="text" placeholder="직접 입력" />
+            </dd>
+            <dt>제출처</dt>
+            <dd>
+              <input type="text" placeholder="직접 입력" />
+            </dd>
+            <dt>증명서 발급 금액</dt>
+            <dd>10,000원</dd>
+            <dt>결제 방법</dt>
+            <dd>가상계좌</dd>
+          </dl>
+          <div class="btn_wrap">
+            <button
+              type="button"
+              class="btn_txt main st01"
+              onclick="openModal('modal_3')"
+            >
+              발급하기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //modal 신규발급 1 -->
 
-<!-- modal 신규발급 3 -->
-<div id="modal_4" class="modal_container liabilities_issue_container">
-	<div class="modal_wrap">
-		<div class="modal_header">
-			<img class="logo" src="../resources/images/logo.png" alt="hectofinancial" />
-			<button type="button" class="modal_close_btn"><img src="../resources/images/btn_close.svg" alt="닫기" /></button>
-		</div>
-		<div class="modal_body">
-			<dl class="process_contents_1">
-				<dt>결제 상태</dt>
-				<dd>결제 대기중</dd>
-				<dt>결제 금액</dt>
-				<dd>10,000원</dd>
-				<dt>입금 은행</dt>
-				<dd>케이뱅크</dd>
-				<dt>입금 계좌</dt>
-				<dd>79012915092616</dd>
-				<dt>예금주명</dt>
-				<dd>헥토파이낸셜</dd>
-				<dt>입금 기한</dt>
-				<dd>2023년 10월 02일 23:59</dd>
-			</dl>
-			<div class="btn_wrap">
-				<button type="button" class="btn_txt main st01" onclick="closeModal()">확인</button>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- //modal 신규발급 3 -->
+    <!-- modal 신규발급 2 -->
+    <div id="modal_3" class="modal_container liabilities_issue_container">
+      <div class="modal_wrap">
+        <div class="modal_header">
+          <img
+            class="logo"
+            src="../resources/images/logo.png"
+            alt="hectofinancial"
+          />
+          <button type="button" class="modal_close_btn">
+            <img src="../resources/images/btn_close.svg" alt="닫기" />
+          </button>
+        </div>
+        <div class="modal_body">
+          <div class="process_contents_2">
+            <p class="text_1">
+              입력하신 발급 용도와 제출처로 신청하시겠습니까?
+            </p>
+            <div class="border_box">
+              <p><b>증명서 발급 용도 :</b> 개인회생 신청 자료</p>
+              <p><b>제출처 :</b> 서울 중앙 지방 법원</p>
+            </div>
+            <p class="text_2">
+              결제 이후부터 7일동안 재발급이 가능합니다. <br />
+              <b>(발급 후 24시간 : 무료 / 24시간 이후 : 3000원)</b> <br />
+              유효시간 경과 이후 신규 발급이 필요합니다.
+            </p>
+          </div>
+          <div class="btn_wrap">
+            <button
+              type="button"
+              class="btn_txt main st02"
+              onclick="closeModal()"
+            >
+              취소
+            </button>
+            <button
+              type="button"
+              class="btn_txt main st01"
+              onclick="openModal('modal_4')"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //modal 신규발급 2 -->
 
-<script>
-	function closeModal(){
-		$(".modal_container").hide();
-	}
+    <!-- modal 신규발급 3 -->
+    <div id="modal_4" class="modal_container liabilities_issue_container">
+      <div class="modal_wrap">
+        <div class="modal_header">
+          <img
+            class="logo"
+            src="../resources/images/logo.png"
+            alt="hectofinancial"
+          />
+          <button type="button" class="modal_close_btn">
+            <img src="../resources/images/btn_close.svg" alt="닫기" />
+          </button>
+        </div>
+        <div class="modal_body">
+          <dl class="process_contents_1">
+            <dt>결제 상태</dt>
+            <dd>결제 대기중</dd>
+            <dt>결제 금액</dt>
+            <dd>10,000원</dd>
+            <dt>입금 은행</dt>
+            <dd>케이뱅크</dd>
+            <dt>입금 계좌</dt>
+            <dd>79012915092616</dd>
+            <dt>예금주명</dt>
+            <dd>헥토파이낸셜</dd>
+            <dt>입금 기한</dt>
+            <dd>2023년 10월 02일 23:59</dd>
+          </dl>
+          <div class="btn_wrap">
+            <button
+              type="button"
+              class="btn_txt main st01"
+              onclick="closeModal()"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //modal 신규발급 3 -->
 
-	function openModal(modalId){
-		$(".modal_container").hide();
-		$("#" + modalId).show();
-	}
+    <script>
+      function closeModal() {
+        $('.modal_container').hide();
+      }
 
-	$(function(){
-		// 모달 닫기
-		$(".modal_close_btn").on("click", function(){
-			closeModal();
-		});
-	});
-</script>
-</body>
+      function openModal(modalId) {
+        $('.modal_container').hide();
+        $('#' + modalId).show();
+      }
+
+      $(function () {
+        // 모달 닫기
+        $('.modal_close_btn').on('click', function () {
+          closeModal();
+        });
+      });
+    </script>
+  </body>
 </html>

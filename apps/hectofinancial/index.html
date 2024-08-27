@@ -1,129 +1,308 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<title>헥토파이낸셜 홈페이지 퍼블리싱 안내</title>
-<link rel="stylesheet" href="css/font/NotoSansKR/notosanskr.css" type="text/css">
-<script type="text/javascript" src="resources/js/jquery-1.8.2.min.js"></script>
-<script src="../../common/js/js.cookie.min.js"></script>
-<script src="../../common/js/security.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>헥토파이낸셜 홈페이지 퍼블리싱 안내</title>
+    <link
+      rel="stylesheet"
+      href="css/font/NotoSansKR/notosanskr.css"
+      type="text/css"
+    />
+    <script
+      type="text/javascript"
+      src="resources/js/jquery-1.8.2.min.js"
+    ></script>
+    <script src="../../common/js/js.cookie.min.js"></script>
+    <script src="../../common/js/security.js"></script>
 
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+      p {
+        margin: 0.25em 0;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #fff;
+        font-family: 'Nanum Square Round', 'Malgun Gothic', Dotum,
+          'Apple SD Gothic Neo', sans-serif;
+        font-size: 12px;
+        line-height: 1.4;
+        letter-spacing: -0.03em;
+        color: #222;
+      }
+      input,
+      button,
+      label {
+        font-family: 'Nanum Square Round', 'Malgun Gothic', Dotum,
+          'Apple SD Gothic Neo', sans-serif;
+      }
+      header {
+        margin: 0;
+        padding: 20px 20px;
+        border-bottom: 1px solid #ccc;
+      }
+      header h1 {
+        margin: 0 0 10px;
+        font-size: 24px;
+        font-weight: 700;
+        color: #faa61a;
+      }
+      header p {
+        line-height: 1.4;
+      }
+      .main {
+        position: relative;
+        padding: 0 20px 20px;
+      }
+      h2 {
+        margin: 30px 0 10px;
+        font-size: 18px;
+        font-weight: 800;
+      }
+      small {
+        font-size: 90% !important;
+        color: #9a9a9a;
+      }
+      ul {
+        margin: 0;
+        padding-left: 1.667em;
+        list-style: disc;
+      }
+      ul ul {
+        margin-top: 0.333em;
+        list-style: circle;
+      }
+      li {
+        margin-top: 0.333em;
+      }
+      ul li:first-child {
+        margin-top: 0;
+      }
+      a {
+        color: #1d8dd8;
+      }
+      a,
+      a:hover,
+      a:active,
+      a:focus {
+        text-decoration: underline;
+      }
+      .strong {
+        font-weight: 500;
+      }
+      .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+        border: 1px solid #ddd;
+      }
+      .table {
+        margin: 0;
+        min-width: 550px;
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 12px;
+        border: 0;
+      }
+      .table th,
+      .table td {
+        padding: 5px 10px;
+        height: auto;
+        border: 1px solid #ddd;
+      }
+      .table th {
+        background: #f1f2f4;
+        color: #222;
+        font-weight: 500;
+        text-align: center;
+      }
+      .table .date,
+      .table .status {
+        text-align: center;
+      }
+      .well {
+        padding: 20px;
+        border: 2px solid #ddd;
+      }
+      .bg-info {
+        background: #dbf5ff;
+      }
+      .bg-success {
+        background: #e7fbe2;
+      }
+      .bg-warning {
+        background: #ff9;
+      }
+      .bg-danger {
+        background: #ffe5e8;
+      }
+      .bg-wait {
+        background: #eee;
+        color: #888;
+      }
+      .del {
+        text-decoration: line-through;
+      }
+      code {
+        padding: 2px 4px;
+        background-color: #f9f2f4;
+        font-size: 96%;
+        font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+        color: #c7254e;
+      }
+      .text-primary {
+        color: #faa61a;
+      }
+      .text-info {
+        color: #1d8dd8;
+      }
+      .text-danger {
+        color: #ff4f51;
+      }
+      .text-success {
+        color: #28a745;
+      }
+      .badge {
+        display: inline-block;
+        padding: 3px 4px;
+        border-radius: 2px;
+        background-color: #45a3e3;
+        font-size: 92%;
+        line-height: 1.1;
+        color: #fff;
+      }
+      .badge-primary {
+        background-color: #faa61a;
+      }
+      .badge-wait {
+        background-color: #b7b7b7;
+      }
+      .btn {
+        display: inline-block;
+        padding: 0.25em 0.5em;
+        border: 1px solid #5e8cc0;
+        border-radius: 0.5em;
+        background-color: transparent;
+        font-size: 11px;
+        color: #5e8cc0;
+        line-height: 1.2;
+      }
+      .flip {
+        position: relative;
+      }
+      .flip .flip-body {
+        display: none;
+      }
+      .flip.open .flip-body {
+        display: block;
+      }
+      .flip.open .btn-flip .open {
+        display: none;
+      }
+      .flip:not(.open) .btn-flip .close {
+        display: none;
+      }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $(".status:contains('검토 요청')").parents('tr').addClass('bg-warning');
+        $(
+          ".status:contains('작업 중'), .status:contains('검토 중'), .status:contains('수정 예정')"
+        )
+          .parents('tr')
+          .addClass('bg-danger');
+        $('li.text-success').parents('tr').addClass('bg-success');
+        $('.status:empty').parents('tr').addClass('bg-wait');
+      });
+    </script>
+  </head>
 
-<style>
-	html, body { width: 100%; height: 100%; }
-	p { margin: .25em 0; }
-	body { margin: 0; padding: 0; background-color: #fff; font-family: 'Nanum Square Round', 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; font-size: 12px; line-height: 1.4; letter-spacing: -0.03em; color: #222; }
-	input, button, label { font-family: 'Nanum Square Round', 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; }
-	header { margin: 0; padding: 20px 20px; border-bottom: 1px solid #ccc; }
-	header h1 { margin: 0 0 10px; font-size: 24px; font-weight: 700; color: #faa61a; }
-	header p { line-height: 1.4; }
-	.main { position: relative; padding: 0 20px 20px; }
-	h2 { margin: 30px 0 10px; font-size: 18px; font-weight: 800; }
-	small { font-size: 90% !important; color: #9a9a9a; }
-	ul { margin: 0; padding-left: 1.667em; list-style: disc; }
-	ul ul { margin-top: .333em; list-style: circle; }
-	li { margin-top: .333em; }
-	ul li:first-child { margin-top: 0; }
-	a { color: #1d8dd8; }
-	a, a:hover, a:active, a:focus { text-decoration: underline; }
-	.strong { font-weight: 500; }
-	.table-responsive { width: 100%; overflow-x: auto; border: 1px solid #ddd; }
-	.table { margin: 0; min-width: 550px;  border-collapse: collapse; width: 100%; font-size: 12px; border: 0; }
-	.table th, .table td {  padding: 5px 10px; height: auto; border: 1px solid #ddd; }
-	.table th { background: #f1f2f4; color: #222; font-weight: 500; text-align: center; }
-	.table .date, .table .status { text-align: center; }
-	.well { padding: 20px; border: 2px solid #ddd; }
-	.bg-info { background: #dbf5ff; }
-	.bg-success { background: #e7fbe2; }
-	.bg-warning { background: #ff9; }
-	.bg-danger { background: #ffe5e8; }
-	.bg-wait { background: #eee; color: #888; }
-	.del { text-decoration: line-through; }
-	code { padding: 2px 4px; background-color: #f9f2f4; font-size: 96%; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; color: #c7254e; }
-	.text-primary { color: #faa61a; }
-	.text-info { color: #1d8dd8; }
-	.text-danger { color: #ff4f51; }
-	.text-success { color: #28a745; }
-	.badge { display: inline-block; padding: 3px 4px; border-radius: 2px; background-color: #45a3e3; font-size: 92%; line-height: 1.1; color: #fff; }
-	.badge-primary { background-color: #faa61a; }
-	.badge-wait { background-color: #b7b7b7; }
-	.btn { display: inline-block; padding: .25em .5em; border: 1px solid #5e8cc0; border-radius: .5em; background-color: transparent; font-size: 11px; color: #5e8cc0; line-height: 1.2; }
-	.flip { position: relative; }
-	.flip .flip-body { display: none; }
-	.flip.open .flip-body { display: block; }
-	.flip.open .btn-flip .open { display: none; }
-	.flip:not(.open) .btn-flip .close { display: none; }
-</style>
-<script>
-$(document).ready(function(){
-	$(".status:contains('검토 요청')").parents("tr").addClass("bg-warning");
-	$(".status:contains('작업 중'), .status:contains('검토 중'), .status:contains('수정 예정')").parents("tr").addClass("bg-danger");
-	$("li.text-success").parents("tr").addClass("bg-success");
-	$(".status:empty").parents("tr").addClass("bg-wait");
-});
-</script>
-</head>
+  <body>
+    <header>
+      <h1>헥토파이낸셜 홈페이지 퍼블리싱 안내</h1>
+      <p>최종 수정일 : 2024-08-27</p>
+    </header>
 
-<body>
-<header>
-	<h1>헥토파이낸셜 홈페이지 퍼블리싱 안내</h1>
-	<p>최종 수정일 : 2023-02-02</p>
-</header>
+    <div class="main">
+      <h2>PAGE</h2>
+      <div class="table-responsive">
+        <table class="table" id="pageTable">
+          <colgroup>
+            <col style="width: 15%" />
+            <col style="width: 15%" />
+            <col style="width: 15%" />
+            <col style="width: 15%" />
+            <col style="width: 100px" />
+            <col style="width: 100px" />
+            <col />
+          </colgroup>
+          <thead>
+            <tr>
+              <th>Depth 1</th>
+              <th>Depth 2</th>
+              <th>Depth 3</th>
+              <th>파일</th>
+              <th>날짜</th>
+              <th>상태</th>
+              <th>비고</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                메인<br />
+                (main)
+              </td>
+              <td>-</td>
+              <td>-</td>
+              <td><a href="main/main.html" target="_blank">main</a></td>
+              <td class="date">2024-08-27</td>
+              <td class="status">검토 요청</td>
+              <td>
+                <ul></ul>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                서비스<br />
+                (service)
+              </td>
+              <td>-</td>
+              <td>-</td>
+              <td>
+                <a href="service/service.html" target="_blank">service</a>
+              </td>
+              <td class="date">2024-08-27</td>
+              <td class="status">검토 요청</td>
+              <td>
+                <ul></ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-<div class="main">
-	<h2>PAGE</h2>
-	<div class="table-responsive">
-		<table class="table" id="pageTable">
-			<colgroup>
-				<col style="width: 15%">
-				<col style="width: 15%">
-				<col style="width: 15%">
-				<col style="width: 15%">
-				<col style="width: 100px">
-				<col style="width: 100px">
-				<col>
-			</colgroup>
-			<thead>
-				<tr>
-					<th>Depth 1</th>
-					<th>Depth 2</th>
-					<th>Depth 3</th>
-					<th>파일</th>
-					<th>날짜</th>
-					<th>상태</th>
-					<th>비고</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>메인<br> (main)</td>
-					<td>-</td>
-					<td>-</td>
-					<td><a href="main/main.html" target="_blank">main</a></td>
-					<td class="date">2023-04-25</td>
-					<td class="status">작업 중</td>
-					<td>
-						<ul>
-						</ul>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-
-	<h2>MEMO</h2>
-	<div class="well">
-		<ul>
-			<li>브라우저 지원
-				<ul>
-					<li>레이아웃/콘텐츠 : IE 9 이상</li>
-					<li>애니메이션, 동영상 : IE 10 이상</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</div>
-</body>
+      <h2>MEMO</h2>
+      <div class="well">
+        <ul>
+          <li>
+            브라우저 지원
+            <ul>
+              <li>레이아웃/콘텐츠 : IE 9 이상</li>
+              <li>애니메이션, 동영상 : IE 10 이상</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
 </html>

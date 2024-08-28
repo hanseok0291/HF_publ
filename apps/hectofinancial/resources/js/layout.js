@@ -35,9 +35,30 @@ $(document).ready(function () {
   );
 
   // FOOTER 파트너 사 토글
-  $('#partner_list_btn').on('click', function (e) {
+  $('.partners_wrap button').on('click', function (e) {
     $(this).toggleClass('open');
     $(this).next('.list_wrap').fadeToggle();
+  });
+
+  // selectbox 토글 및 선택
+  $('.selectbox_wrap button').on('click', function (e) {
+    $(this).toggleClass('open');
+    $(this).next('.list_wrap').fadeToggle();
+  });
+
+  // selectbox 목록의 항목 클릭 시
+  $('.list_wrap li a').on('click', function (e) {
+    e.preventDefault(); // 기본 링크 동작 방지
+    var selectedText = $(this).text(); // 클릭한 항목의 텍스트 가져오기
+    $(this).closest('.list_wrap').prev().text(selectedText); // 버튼 텍스트 변경
+    $(this).closest('.list_wrap').hide(); // 목록 숨기기
+  });
+
+  // selectbox 외부 클릭 시 목록 숨김
+  $(document).on('click', function (e) {
+    if (!$(e.target).closest('.selectbox_wrap').length) {
+      $('.selectbox_wrap .list_wrap').hide();
+    }
   });
 
   //TAB 버튼 클릭 시 활성화

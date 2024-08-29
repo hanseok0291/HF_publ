@@ -197,7 +197,7 @@
                 <div class="cardWrap mt120">
                   <ul>
                     <li>
-                      <p class="cardWrapTitle">ZEAL</p>
+                      <p class="cardWrapTitle"></p>
                       <p class="cardWRapSubTitle">긍정과 열정</p>
                       <p class="cardWrapContent">
                         삶을 대하는 긍정적인 사고방식과 꾸준하게 지속하는
@@ -205,7 +205,7 @@
                       </p>
                     </li>
                     <li>
-                      <p class="cardWrapTitle">THRIVE</p>
+                      <p class="cardWrapTitle"></p>
                       <p class="cardWRapSubTitle">내일을 위한 혁신</p>
                       <p class="cardWrapContent">
                         기술과 데이터 솔루션을 기반으로 사람들의 일상생활에
@@ -213,7 +213,7 @@
                       </p>
                     </li>
                     <li>
-                      <p class="cardWrapTitle">TRUST</p>
+                      <p class="cardWrapTitle"></p>
                       <p class="cardWRapSubTitle">지속 가능한 믿음</p>
                       <p class="cardWrapContent">
                         사람들이 보다 나은 삶을 살아가도록 도덕적이고 선한
@@ -221,7 +221,7 @@
                       </p>
                     </li>
                     <li>
-                      <p class="cardWrapTitle">RESPECT</p>
+                      <p class="cardWrapTitle"></p>
                       <p class="cardWRapSubTitle">삶에 대한 자부심</p>
                       <p class="cardWrapContent">
                         오늘날을 살아가는 모든 사람들이 각자의 삶에 자부심을
@@ -279,7 +279,7 @@
             <div class="section section_2">
               <div class="title_wrap">
                 <h2>
-                  <p>전략</p>
+                  <p>비즈니스</p>
                   지속적인 금융 혁신을 통해 <br />
                   새로운 분야로 확장하는 기업
                 </h2>
@@ -450,7 +450,7 @@
       document.addEventListener('DOMContentLoaded', function () {
         setTimeout(function () {
           window.scrollTo(0, 0);
-        }, 10); // 10ms 후에 스크롤을 맨 위로 이동
+        }, 0); // 10ms 후에 스크롤을 맨 위로 이동
       });
 
       $(document).ready(function () {
@@ -462,6 +462,16 @@
             $('#btn_top').fadeIn(200);
           } else {
             $('#btn_top').fadeOut(200);
+          }
+
+          if ($(this).scrollTop() > 0) {
+            $('.company').addClass('style');
+            $('#wrap').addClass('white');
+            $('#wrap').addClass('animation');
+            $('#header').removeClass('fixed');
+          } else {
+            $('.company').removeClass('style');
+            $('#wrap').removeClass('white');
           }
 
           var currentScroll = $(this).scrollTop(); // 현재 스크롤 위치
@@ -476,28 +486,10 @@
           } else {
             // 스크롤 업 시
             $('#header .container').css('top', '0'); // 헤더를 다시 보여줌
+            $('#wrap').removeClass('white');
           }
 
           lastScrollTop = currentScroll; // 현재 스크롤 위치를 lastScrollTop에 저장
-
-          if ($(this).scrollTop() > 0) {
-            $('.company').addClass('style');
-            $('#wrap').addClass('animation');
-            $('#wrap').addClass('white');
-            $('#header').removeClass('fixed');
-          } else {
-            $('.company').removeClass('style');
-            $('#wrap').removeClass('white');
-          }
-        });
-      });
-
-      // 진입 후 클릭시 애니메이션 추가
-      document.addEventListener('DOMContentLoaded', function () {
-        const wrap = document.getElementById('wrap');
-
-        wrap.addEventListener('click', function () {
-          // wrap.classList.add('animation');
         });
       });
 

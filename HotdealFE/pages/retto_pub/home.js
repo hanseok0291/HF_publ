@@ -35,6 +35,11 @@ import Navigation from "../../components/coupon_pub/main/Navigation";
 import HomeTab from "../../components/retto_pub/HomeTab";
 import LayerMoneyboxEmpty from "../../components/retto_pub/LayerMoneyboxEmpty";
 import ModalHundredInfo from "@/components/coupon_pub/common/modal/ModalHundredInfo";
+import ApplyComplete from "@/components/retto_pub/ApplyComplete";
+import LayerRankingInfo from "@/components/retto_pub/LayerRankingInfo";
+import FillBox from "@/components/retto_pub/FillBox";
+import LayerRettoMoneyGet from "@/components/retto_pub/LayerRettoMoneyGet";
+import LayerRankingMoneyGet from "@/components/retto_pub/LayerRankingMoneyGet";
 
 const index = () => {
   return (
@@ -79,7 +84,8 @@ const index = () => {
       {/* <ModalMoneyGive /> */}
       {/* <LayerWinInfo /> */}
       {/* <LayerMoneyboxEmpty /> */}
-      <BottomSheetPresent />
+      {/* <BottomSheetPresent /> */}
+      <LayerRankingMoneyGet />
     </>
   );
 };

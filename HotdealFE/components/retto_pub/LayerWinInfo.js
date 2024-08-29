@@ -1,6 +1,8 @@
 import React from 'react';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
+import Header from './common/Header';
+
 //style
 import styleCommon from '../../styles/retto_pub/Common.module.css';
 import styleRettoList from "../../styles/retto_pub/RettoList.module.css";
@@ -9,12 +11,8 @@ const LayerWinInfo = () => {
 
   return (
     <div className={styleCommon.layer}>
-      <div className={styleCommon.layerHeader}>
-        <h2>당첨 안내</h2>
-        <button type="button" className={styleCommon.closeBtn}>
-          닫기
-        </button>
-      </div>
+      <Header title='당첨 안내' sideBtn={false}/>
+
       <div className={`${styleRettoList.winInfoWrap}`}>
       <h4><span className={`${styleRettoList.number} ${styleRettoList.number1}`}></span>당첨 리워드</h4>
         

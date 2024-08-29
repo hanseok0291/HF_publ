@@ -9,6 +9,7 @@ import ButtonText from './../common_refactoring/Button';
 import FadeInSection from './common/FadeInSection';
 import ModalHundredInfo from '../coupon_pub/common/modal/ModalHundredInfo';
 import ModalFillBox from './common/modal/ModalFillBox';
+import Header from "./common/Header";
 
 const LayerMoneyboxEmpty = () => {
   const [sheetOpen, setSheetOpen] = useState(false);
@@ -17,12 +18,7 @@ const LayerMoneyboxEmpty = () => {
   return (
     <>
       <div className={styleCommon.layer}>
-        <div className={`${styleCommon.layerHeader} ${styleCommon.borderNone}`}>
-          <h2>리또 머니함 비우기</h2>
-          <button type="button" className={styleCommon.closeBtn}>
-            닫기
-          </button>
-        </div>
+        <Header title="리또 머니함 비우기" sideBtn={false}/>
 
         <div className={styleMoneyboxEmpty.container}>
           <div className={styleMoneyboxEmpty.content1}>

@@ -67,6 +67,15 @@ $(document).ready(function () {
     $(this).addClass('on');
   });
 
+  // 탭 이벤트
+  $('.tab_btn_wrap .tab_btn').on('click', function () {
+    var $idx = $(this).index();
+    $('.tab_btn_wrap .tab_btn').removeClass('on');
+    $(this).addClass('on');
+    $('.tab_contents_wrap > div').removeClass('on');
+    $('.tab_contents_wrap > div').eq($idx).addClass('on');
+  });
+
   // 로그인 레이어
   /*	$("#show_login").click(function(){
 		$("#login_layer").show();

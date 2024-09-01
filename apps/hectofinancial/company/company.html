@@ -453,40 +453,6 @@
         }, 0); // 10ms 후에 스크롤을 맨 위로 이동
       });
 
-      $(document).ready(function () {
-        var lastScrollTop = 0; // 마지막 스크롤 위치를 저장할 변수
-
-        $(window).scroll(function () {
-          if ($(this).scrollTop() > 0) {
-            $('.company').addClass('style');
-            $('#wrap').addClass('white');
-            $('#wrap').addClass('animation');
-            $('#header').removeClass('fixed');
-          } else {
-            $('.company').removeClass('style');
-            $('#wrap').removeClass('white');
-            $('#wrap').removeClass('animation');
-          }
-
-          var currentScroll = $(this).scrollTop(); // 현재 스크롤 위치
-
-          if (currentScroll > lastScrollTop) {
-            // 스크롤 다운 시
-            if (currentScroll > 150) {
-              $('#header .container').css('top', '-84px');
-            } else {
-              $('#header .container').css('top', '0');
-            }
-          } else {
-            // 스크롤 업 시
-            $('#header .container').css('top', '0'); // 헤더를 다시 보여줌
-            $('#wrap').removeClass('white');
-          }
-
-          lastScrollTop = currentScroll; // 현재 스크롤 위치를 lastScrollTop에 저장
-        });
-      });
-
       // 스크롤시 cardWrap 클래스 추가
       document.addEventListener('DOMContentLoaded', function () {
         const cardWrap = document.querySelector('.cardWrap');

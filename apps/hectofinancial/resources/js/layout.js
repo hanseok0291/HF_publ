@@ -1,38 +1,137 @@
 $(document).ready(function () {
-  // 로딩 시 GNB 위치에 따라 클래스 추가 제거
-  if ($(window).scrollTop() > 0) {
-    $('#header').addClass('fixed');
-  } else {
-    $('#header').removeClass('fixed');
+  // 현재 활성화된 GNB 로직을 추적하기 위한 변수
+  var gnbInitialized = false;
+
+  // 함수 정의: 해상도에 따라 GNB 로직을 적용
+  function applyGnbLogic() {
+    if ($(window).width() >= 1280) {
+      // 1280px 이상일 때만 hover 이벤트를 등록
+      if (!gnbInitialized) {
+        // 로딩 시 GNB 위치에 따라 클래스 추가 제거
+        if ($(window).scrollTop() > 0) {
+          $('#header').addClass('fixed');
+        } else {
+          $('#header').removeClass('fixed');
+        }
+
+        // GNB (상단 메인 메뉴) - hover 이벤트 설정
+        $('.gnb').hover(
+          function () {
+            $('#header').addClass('open');
+            $('.gnb .submenu, .gnb_sub_bg').fadeIn(200);
+            $('.gnb_dim').fadeIn(200);
+          },
+          function () {
+            $('#header').removeClass('open');
+            $('.gnb .submenu, .gnb_sub_bg').stop().fadeOut(200);
+            $('.gnb_dim').stop().fadeOut(100);
+          }
+        );
+
+        $('.lagnuage_wrap').hover(
+          function () {
+            $('.lagnuage_wrap .language_box').fadeIn();
+          },
+          function () {
+            $('.lagnuage_wrap .language_box').fadeOut();
+          }
+        );
+
+        // GNB 로직이 초기화되었음을 표시
+        gnbInitialized = true;
+      }
+    } else {
+      // 1280px 미만일 때
+      $('#header').removeClass('fixed open');
+
+      // 1280px 미만일 때는 hover 이벤트를 해제
+      if (gnbInitialized) {
+        $('.gnb').off('mouseenter mouseleave'); // hover 이벤트 해제
+        gnbInitialized = false; // GNB 로직이 해제되었음을 표시
+      }
+
+      // 모바일 또는 작은 화면용 로직 추가 가능
+      // 예: 모바일 GNB 메뉴 토글
+      var bodyPos = 0;
+
+      $('.mo_gnb_btn').on('click', function () {
+        if (!$('#header').hasClass('open')) {
+          bodyPos = $(window).scrollTop();
+          $('body').css({
+            position: 'fixed',
+            top: -bodyPos + 'px',
+            width: '100%',
+          });
+        } else {
+          $('body').css({
+            position: '',
+            top: '',
+            width: '',
+          });
+          $(window).scrollTop(bodyPos);
+        }
+        $('#header').toggleClass('open');
+        $('.gnb').fadeToggle();
+      });
+
+      // 모바일 GNB 하위 메뉴 노출
+      $('.gnb .down_arrow').on('click', function () {
+        if ($(this).hasClass('open')) {
+          $(this).removeClass('open').next().slideUp(200);
+        } else {
+          $('.gnb .submenu').slideUp();
+          $('.gnb .down_arrow').removeClass('open');
+          $(this).addClass('open').next().slideDown();
+        }
+      });
+    }
   }
 
-  // GNB (상단 메인 메뉴)
-  $('.gnb').hover(
-    function () {
-      $('#header').addClass('open');
-      $('.gnb .submenu, .gnb_sub_bg').fadeIn(200);
-      $('.gnb_dim').fadeIn(200);
-    },
-    function () {
-      $('#header').removeClass('open');
-      $('.gnb .submenu, .gnb_sub_bg').stop().fadeOut(200);
-      $('.gnb_dim').stop().fadeOut(100);
+  // 페이지 로드 시 초기화
+  applyGnbLogic();
+
+  // 윈도우 리사이즈 이벤트 감지
+  $(window).resize(function () {
+    applyGnbLogic();
+  });
+
+  var lastScrollTop = 0; // 마지막 스크롤 위치를 저장할 변수
+
+  // 스크롤 이벤트로 GNB 위치 확인 (1280px 이상일 때만)
+  $(window).on('scroll', function () {
+    if ($(window).width() >= 1280) {
+      if ($(window).scrollTop() > 0) {
+        $('#header').addClass('fixed');
+      } else {
+        $('#header').removeClass('fixed');
+      }
+
+      var currentScroll = $(this).scrollTop(); // 현재 스크롤 위치
+
+      if (currentScroll > lastScrollTop) {
+        // 스크롤 다운 시
+        $('#header .container').css('top', '-84px'); // 헤더를 위로 숨김
+      } else {
+        // 스크롤 업 시
+        $('#header .container').css('top', '0'); // 헤더를 다시 보여줌
+      }
+
+      lastScrollTop = currentScroll; // 현재 스크롤 위치를 lastScrollTop에 저장
+
+      if ($(this).scrollTop() > 0) {
+        $('#header').addClass('fixed');
+      } else {
+        $('#header').removeClass('fixed');
+      }
     }
-  );
+
+    lastScrollTop = currentScroll; // 현재 스크롤 위치를 lastScrollTop에 저장
+  });
 
   // GNB 언어 선택
   $('#language_btn').on('click', function (e) {
     $(this).next('.language_box').fadeToggle();
   });
-
-  $('.lagnuage_wrap').hover(
-    function () {
-      $('.lagnuage_wrap .language_box').fadeIn();
-    },
-    function () {
-      $('.lagnuage_wrap .language_box').fadeOut();
-    }
-  );
 
   // FOOTER 파트너 사 토글
   $('.partners_wrap button').on('click', function (e) {
@@ -113,8 +212,6 @@ $(document).ready(function () {
     $(this).removeClass('open');
   });
 
-  var lastScrollTop = 0; // 마지막 스크롤 위치를 저장할 변수
-
   $(window).scroll(function () {
     if ($('#wrap').hasClass('company')) {
       // #wrap 요소에 company 클래스가 있는 경우
@@ -128,21 +225,6 @@ $(document).ready(function () {
         $('#wrap').removeClass('white');
         $('#wrap').removeClass('animation');
       }
-
-      var currentScroll = $(this).scrollTop(); // 현재 스크롤 위치
-
-      if (currentScroll > lastScrollTop) {
-        // 스크롤 다운 시
-        if (currentScroll > 150) {
-          $('#header .container').css('top', '-84px');
-        } else {
-          $('#header .container').css('top', '0');
-        }
-      } else {
-        // 스크롤 업 시
-        $('#header .container').css('top', '0'); // 헤더를 다시 보여줌
-        $('#wrap').removeClass('white');
-      }
     } else {
       // #wrap 요소에 company 클래스가 없는 경우
       if ($(this).scrollTop() > 150) {
@@ -150,27 +232,7 @@ $(document).ready(function () {
       } else {
         $('#btn_top').fadeOut(200);
       }
-
-      var currentScroll = $(this).scrollTop(); // 현재 스크롤 위치
-
-      if (currentScroll > lastScrollTop) {
-        // 스크롤 다운 시
-        $('#header .container').css('top', '-84px'); // 헤더를 위로 숨김
-      } else {
-        // 스크롤 업 시
-        $('#header .container').css('top', '0'); // 헤더를 다시 보여줌
-      }
-
-      lastScrollTop = currentScroll; // 현재 스크롤 위치를 lastScrollTop에 저장
-
-      if ($(this).scrollTop() > 0) {
-        $('#header').addClass('fixed');
-      } else {
-        $('#header').removeClass('fixed');
-      }
     }
-
-    lastScrollTop = currentScroll; // 현재 스크롤 위치를 lastScrollTop에 저장
   });
 
   // scroll body to 0px on click
@@ -231,6 +293,51 @@ function privacyPopup() {
     '개인정보처리방침',
     'width=960, height=760, top=0, left=0, scrollbars=no'
   );
+}
+
+// 스크롤 위치를 저장할 변수
+var scrollPosition = 0;
+
+// 팝업을 보이게 하는 함수
+function showPopup(popupId) {
+  // 현재 스크롤 위치를 저장
+  scrollPosition = $(window).scrollTop();
+
+  // 팝업을 보이게 하고, 스크롤을 비활성화
+  $('#' + popupId).css({ display: 'flex' });
+  $('body').css({
+    position: 'fixed',
+    top: -scrollPosition + 'px',
+    width: '100%',
+  });
+}
+
+// 팝업을 숨기는 함수
+function hidePopup(popupId) {
+  // 팝업을 숨기고, 스크롤을 활성화하면서 이전 스크롤 위치로 복원
+  $('#' + popupId).hide();
+  $('body').css({
+    position: '',
+    top: '',
+    width: '',
+  });
+  $(window).scrollTop(scrollPosition);
+}
+
+// 모든 팝업 닫기 버튼에 이벤트 리스너를 추가하는 함수
+function initializePopupButtons() {
+  $('.popup_container button').on('click', function () {
+    var popup = $(this).closest('.popup_container');
+    popup.hide();
+
+    // 스크롤을 활성화하면서 이전 스크롤 위치로 복원
+    $('body').css({
+      position: '',
+      top: '',
+      width: '',
+    });
+    $(window).scrollTop(scrollPosition);
+  });
 }
 
 function openCenteredPopup(url, title, width, height) {

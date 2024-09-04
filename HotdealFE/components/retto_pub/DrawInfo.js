@@ -12,7 +12,7 @@ const winnerList = {
   first: [],
   second: ["커리", "르브론제임스", "Faker", "블랙보리"],
   third: ["Alice", "김민준", "Grace", "박지훈", "이철수"],
-  fourth: ["Eve", "정수빈", "John", "박하은", "유진"],
+  fourth: ["Eve", "정수빈", "Joooooooooooooooooooooooohn", "박하은", "유진"],
   fifth: [
     "Charlie",
     "이현우",
@@ -178,10 +178,8 @@ const DrawInfo = ({
 
     if (length === 2) {
       return name[0] + "*";
-    } else if (3 <= length && length <= 5) {
+    } else if (3 <= length) {
       return name[0] + "*".repeat(length - 2) + name[length - 1];
-    } else if (length > 5) {
-      return name[0] + "*" + name[length - 1];
     } else {
       return name;
     }
@@ -358,11 +356,6 @@ const DrawInfo = ({
                           {names.length > 4 && idx === 3 && (
                             <>
                               외 {(names.length - 4).toLocaleString()}명
-                              <button
-                                type="button"
-                                className={styleRettoList.bottomSheetBtn}
-                                onClick={handleModalBtnClick}
-                              ></button>
                             </>
                           )}
                         </li>

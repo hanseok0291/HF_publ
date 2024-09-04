@@ -107,7 +107,7 @@ const Home = ({ case1, case2, case3 }) => {
                 ) : (
                   <h2>
                     1132회 <span>1등 당첨</span> <br />
-                    김*토, 헥*토, K*R님 <br />
+                    김*토, 헥*토, K*R님, K***************R님 <br />
                     <span>축하드려요!</span>
                   </h2>
                 )}

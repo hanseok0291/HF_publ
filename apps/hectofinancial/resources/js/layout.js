@@ -64,6 +64,7 @@ $(document).ready(function () {
               top: -bodyPos + 'px',
               width: '100%',
             });
+            $('.logo img').attr('src', '../resources/images/logo.svg'); // 회사소개 아닐경우 로고
           } else {
             $('body').css({
               position: '',
@@ -71,6 +72,10 @@ $(document).ready(function () {
               width: '',
             });
             $(window).scrollTop(bodyPos);
+            if (!$('#wrap').hasClass('company')) {
+            } else {
+              $('.logo img').attr('src', '../resources/images/logo_white.svg'); // 회사소개 로고 변경
+            }
           }
           $('#header').toggleClass('open');
           $('.gnb').fadeToggle();

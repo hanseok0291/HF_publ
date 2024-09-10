@@ -82,19 +82,23 @@ $(document).ready(function () {
           $('#header').toggleClass('open');
           $('.gnb').fadeToggle();
         });
-
-      // 모바일 GNB 하위 메뉴 노출
-      $('.gnb .down_arrow').on('click', function () {
-        if ($(this).hasClass('open')) {
-          $(this).removeClass('open').next().slideUp(200);
-        } else {
-          $('.gnb .submenu').slideUp();
-          $('.gnb .down_arrow').removeClass('open');
-          $(this).addClass('open').next().slideDown();
-        }
-      });
     }
   }
+
+  // 모바일 GNB 하위 메뉴 노출
+  $('.gnb .down_arrow').on('click', function () {
+    if ($(window).width() <= 1280) {
+      if ($(this).hasClass('open')) {
+        $(this).removeClass('open').next().slideUp(200);
+      } else {
+        $('.gnb .submenu').slideUp();
+        $('.gnb .down_arrow').removeClass('open');
+        $(this).addClass('open').next().slideDown();
+      }
+    } else {
+      return false;
+    }
+  });
 
   // 페이지 로드 시 초기화
   applyGnbLogic();

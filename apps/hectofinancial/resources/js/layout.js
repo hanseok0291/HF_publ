@@ -5,6 +5,7 @@ $(document).ready(function () {
   // 함수 정의: 해상도에 따라 GNB 로직을 적용
   function applyGnbLogic() {
     if ($(window).width() >= 1280) {
+      $('.gnb').show();
       // 1280px 이상일 때만 hover 이벤트를 등록
       if (!gnbInitialized) {
         // 로딩 시 GNB 위치에 따라 클래스 추가 제거
@@ -42,6 +43,7 @@ $(document).ready(function () {
       }
     } else {
       // 1280px 미만일 때
+      $('.gnb').hide();
       $('#header').removeClass('fixed open');
 
       // 1280px 미만일 때는 hover 이벤트를 해제
@@ -225,6 +227,7 @@ $(document).ready(function () {
     if ($(window).width() >= 768) {
       // 기존 스크롤 이벤트 핸들러 제거
       $(window).off('scroll');
+      $('#wrap').removeClass('animation');
 
       // 새로운 스크롤 이벤트 핸들러 추가
       $(window).scroll(function () {
@@ -236,9 +239,6 @@ $(document).ready(function () {
             $('#wrap').addClass('animation');
             $('#header').removeClass('fixed');
           } else {
-            // $('.company').removeClass('style');
-            // $('#wrap').removeClass('white');
-            // $('#wrap').removeClass('animation');
           }
 
           var currentScroll = $(this).scrollTop(); // 현재 스크롤 위치
@@ -300,10 +300,13 @@ $(document).ready(function () {
           if (currentScroll > lastScrollTop) {
             // 스크롤 다운 시
             if (currentScroll > 150) {
+              console.log('2');
+              $('#wrap').removeClass('white');
             } else {
             }
           } else {
             // 스크롤 업 시
+            console.log('1');
             $('#wrap').addClass('white');
             $('#wrap').addClass('animation');
           }

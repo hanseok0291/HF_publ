@@ -39,11 +39,11 @@
         <!-- container -->
         <div class="container">
           <h1 class="logo">
+            <!-- 수정 사항  - 회사소개에선 로고 변경 -->
             <a href="/"
-              ><img
-                src="../resources/images/logo_white.svg"
-                alt="Hecto Financial"
+              ><img src="../resources/images/logo.svg" alt="Hecto Financial"
             /></a>
+            <!-- //수정 사항  - 회사소개에선 로고 변경 -->
           </h1>
 
           <!-- gnb -->
@@ -51,7 +51,9 @@
             <ul class="nav dep1">
               <li><a href="#">도입문의</a></li>
               <li>
+                <!-- 수정 사항  - 클래스 추가 -->
                 <a href="#" class="down_arrow">서비스안내</a>
+                <!-- //수정 사항  - 클래스 추가 -->
                 <div class="submenu">
                   <ul class="dep2">
                     <li><a href="#" target="_blank">서비스 요약</a></li>
@@ -63,7 +65,9 @@
               </li>
               <li><a href="#" class="arrow">결제내역 조회</a></li>
               <li>
+                <!-- 수정 사항  - 클래스 추가 -->
                 <a href="#" class="down_arrow">고객지원</a>
+                <!-- //수정 사항  - 클래스 추가 -->
                 <div class="submenu">
                   <ul class="dep2">
                     <li><a href="#">공지사항</a></li>
@@ -72,7 +76,9 @@
                 </div>
               </li>
               <li>
+                <!-- 수정 사항  - 클래스 추가 -->
                 <a href="#" class="down_arrow">회사소개</a>
+                <!-- //수정 사항  - 클래스 추가 -->
                 <div class="submenu">
                   <ul class="dep2">
                     <li><a href="#">회사소개</a></li>
@@ -84,7 +90,9 @@
                 </div>
               </li>
               <li>
+                <!-- 수정 사항  - 클래스 추가 -->
                 <a href="#" class="down_arrow">투자정보</a>
+                <!-- //수정 사항  - 클래스 추가 -->
                 <div class="submenu">
                   <ul class="dep2">
                     <li><a href="#">투자요약</a></li>
@@ -118,7 +126,9 @@
                 <li><a href="#">EN</a></li>
               </ul>
             </div>
+            <!-- 수정 사항  - 버튼 추가 -->
             <button class="mo_gnb_btn"></button>
+            <!-- //수정 사항  - 버튼 추가 -->
           </div>
         </div>
         <!-- //container -->
@@ -189,12 +199,14 @@
               <div class="content">
                 <div class="titleWrap">
                   <p>미션</p>
+                  <!-- 수정 사항  - 띄어쓰기 추가 -->
                   <h4>
                     우리는 혁신적인 기술을 통해<br />
                     모든 사람들이<br class="pc-view" />
                     쉽고 안전하게 금융 <br class="mo-view" />서비스를 이용할 수
                     있도록 합니다.
                   </h4>
+                  <!-- //수정 사항  - 띄어쓰기 추가 -->
                 </div>
                 <div class="cardWrap mt120">
                   <ul>
@@ -277,10 +289,12 @@
           <!-- contents -->
 
           <!-- main contents -->
+          <!-- 수정 사항  - html 구조 변경 -->
           <div class="fullWrap">
             <div class="main_contents">
               <div class="section section_2">
                 <div class="titleWrap">
+                  <!-- //수정 사항  - html 구조 변경 -->
                   <p>비즈니스</p>
                   <h4>
                     지속적인 금융 혁신을 통해<br />
@@ -354,7 +368,9 @@
           </div>
           <!-- //contents -->
 
+          <!-- 수정 사항  - 클래스 추가 -->
           <div class="content companyInfoWrap">
+            <!-- //수정 사항  - 클래스 추가 -->
             <div class="title mt120">
               <h3>기업 정보</h3>
             </div>
@@ -487,6 +503,7 @@
         observer.observe(cardWrap);
       });
 
+      // 수정사항 회사소개 스크립트 수정
       var swiper = new Swiper('.swiper_1', {
         slidesPerView: 'auto',
         spaceBetween: 10,
@@ -525,6 +542,26 @@
           }
         }
       );
+
+      $(document).ready(function () {
+        function updateLogo() {
+          if ($(window).width() >= 768) {
+            $('.logo img').attr('src', '../resources/images/logo.svg');
+            $('#wrap').removeClass('white');
+          } else {
+            $('.logo img').attr('src', '../resources/images/logo_white.svg');
+          }
+        }
+
+        // 페이지 로드 시 로고 업데이트
+        updateLogo();
+
+        // 창 크기 변경 시 로고 업데이트
+        $(window).resize(function () {
+          updateLogo();
+        });
+      });
+      // 수정사항 회사소개 스크립트 수정
     </script>
   </body>
 </html>

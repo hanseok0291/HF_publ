@@ -133,6 +133,21 @@
                 <button type="button" class="tab_btn on">연도별</button>
                 <button type="button" class="tab_btn">분기별</button>
               </div>
+              <!-- selectbox_wrap 위치 변경 0909 -->
+              <div class="selectbox_wrap down">
+                <button class="selectbox_btn">2024년</button>
+                <div class="list_wrap">
+                  <li>
+                    <a href="#">2024년</a>
+                  </li>
+                  <li>
+                    <a href="#">2023년</a>
+                  </li>
+                  <li>
+                    <a href="#">2022년</a>
+                  </li>
+                </div>
+              </div>
             </div>
             <div class="tab_contents_wrap">
               <!-- 연도별 -->
@@ -261,6 +276,7 @@
                 </div>
                 <div class="section section_3">
                   <h4 class="title_text">손익계산서</h4>
+                  <!-- 수정 사항 - table_wrap 영역 추가 -->
                   <div class="table_wrap">
                     <table class="odd_table">
                       <thead>
@@ -464,6 +480,7 @@
                       </div>
                     </li>
                   </ul>
+                  <!-- 수정 사항 - table_wrap 영역 추가 -->
                   <div class="table_wrap">
                     <table class="odd_table table_2">
                       <thead>
@@ -555,22 +572,9 @@
                 <div class="section section_3">
                   <div class="title_wrap">
                     <h4 class="title_text">손익계산서</h4>
-                    <div class="selectbox_wrap down">
-                      <button class="selectbox_btn">2024년</button>
-                      <div class="list_wrap">
-                        <li>
-                          <a href="#">2024년</a>
-                        </li>
-                        <li>
-                          <a href="#">2023년</a>
-                        </li>
-                        <li>
-                          <a href="#">2022년</a>
-                        </li>
-                      </div>
-                    </div>
                     <p class="unit_text">단위: 백만원</p>
                   </div>
+                  <!-- 수정 사항 - table_wrap 영역 추가 -->
                   <div class="table_wrap">
                     <table class="odd_table quarter">
                       <thead>
@@ -678,22 +682,9 @@
                 <div class="section section_4">
                   <div class="title_wrap">
                     <h4 class="title_text">재무상태표</h4>
-                    <div class="selectbox_wrap down">
-                      <button class="selectbox_btn">2024년</button>
-                      <div class="list_wrap">
-                        <li>
-                          <a href="#">2024년</a>
-                        </li>
-                        <li>
-                          <a href="#">2023년</a>
-                        </li>
-                        <li>
-                          <a href="#">2022년</a>
-                        </li>
-                      </div>
-                    </div>
                     <p class="unit_text">단위: 백만원</p>
                   </div>
+                  <!-- 수정 사항 - table_wrap 영역 추가 -->
                   <div class="table_wrap">
                     <table class="double_table quarter mt_0">
                       <thead>
@@ -915,6 +906,16 @@
           var heightPercent = calculateHeight(value);
           $(this).text(value.toLocaleString());
           $(this).css('height', heightPercent + '%');
+        });
+
+        // 분기별 클릭 시 연도 셀렉트박스 노출 0909
+        $('.tab_btn_wrap .tab_btn').on('click', function () {
+          var $idx = $(this).index();
+          if ($idx === 1) {
+            $('.selectbox_wrap').addClass('on');
+          } else {
+            $('.selectbox_wrap').removeClass('on');
+          }
         });
       });
     </script>

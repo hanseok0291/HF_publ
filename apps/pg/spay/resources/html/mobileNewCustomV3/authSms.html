@@ -30,7 +30,7 @@
 
         <link rel="stylesheet" href="../../css/owl.carousel.min.css" />
         <link rel="stylesheet" href="../../css/slick.min.css" />
-        <link rel="stylesheet" href="../../css/common_monotone.css" />
+        <link rel="stylesheet" href="../../css/common_monotone.css?ver=240925" />
         <!--[if lt IE 9]>
             <script type="text/javascript" src="../../js/html5shiv.js"></script>
             <script type="text/javascript" src="../../js/respond.min.js"></script>
@@ -259,7 +259,11 @@
                                                 <div class="form-col2 auth-number-box">
                                                     <div class="form-item input-btn reg-number-wrap">
                                                         <input type="text" placeholder="인증번호 입력" />
-                                                        <span class="count">02:59</span>
+                                                        <!-- <span id="timer" class="count" aria-live="polite" aria-label="2분 59초">02:59</span> -->
+                                                        <span id="timer" aria-live="off">
+                                                            <span id="visualTimer" tabindex="0" aria-hidden="true">02:59</span>
+                                                            <span class="sr-only" id="accessibleTimer">2분 59초</span>
+                                                        </span>
                                                     </div>
                                                     <div class="auth-btn-box">
                                                         <button type="button" class="btn">인증번호 받기</button>
@@ -637,6 +641,58 @@
                 $("#noticeDetail .terms-title").attr("tabindex", 0).show().focus();
                 $this = $(this);
             });
+
+            // 스크린 리더기 인증번호 카운트
+            let minutes = 2;
+            let seconds = 59;
+
+            function updateTimer() {
+                const visualTimerElement = document.getElementById("visualTimer");
+                const accessibleTimerElement = document.getElementById("accessibleTimer");
+
+                // 시간이 1초씩 줄어듦
+                if (seconds === 0) {
+                    if (minutes === 0) {
+                        clearInterval(timerInterval);
+                    } else {
+                        minutes--;
+                        seconds = 59;
+                    }
+                } else {
+                    seconds--;
+                }
+
+                // 시각적으로 보여줄 포맷
+                const displayMinutes = String(minutes).padStart(2, "0");
+                const displaySeconds = String(seconds).padStart(2, "0");
+
+                // 화면에 표시할 시간 업데이트 (시각적으로 보이는 부분)
+                visualTimerElement.textContent = `${displayMinutes}:${displaySeconds}`;
+
+                // 스크린 리더에 읽히는 시간 업데이트
+                accessibleTimerElement.textContent = `${minutes}분 ${seconds}초`;
+            }
+
+            const timerInterval = setInterval(updateTimer, 1000);
+
+            // 초점이 다시 돌아왔을 때만 aria-live 활성화
+            function handleFocus() {
+                const timerElement = document.getElementById("timer");
+                timerElement.setAttribute("aria-live", "polite"); // 초점이 돌아오면 다시 활성화
+            }
+
+            function handleBlur() {
+                const timerElement = document.getElementById("timer");
+                timerElement.setAttribute("aria-live", "off"); // 포커스가 벗어나면 읽지 않도록 설정
+            }
+
+            // 타이머에 대한 포커스 및 블러 이벤트 추가
+            const timerElement = document.getElementById("timer");
+            timerElement.addEventListener("focus", handleFocus);
+            timerElement.addEventListener("blur", handleBlur);
+
+            // 초점이 없는 상태에서는 aria-live를 off로 설정
+            handleBlur();
         </script>
     </body>
 </html>

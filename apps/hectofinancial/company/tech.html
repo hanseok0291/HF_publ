@@ -164,6 +164,7 @@
                       <a
                         href="#"
                         id="link1"
+                        class="suit"
                         data-target="#tech"
                         data-target="#tech"
                         >사업현황</a
@@ -173,6 +174,7 @@
                       <a
                         href="#"
                         id="link2"
+                        class="suit"
                         data-target="#coalition"
                         data-target="#coalition"
                         >제휴현황</a
@@ -268,7 +270,7 @@
                             </p>
                           </div>
                           <div class="">
-                            <div class="title">
+                            <div class="title left">
                               <p>
                                 안전하고 효율적인 금융 서비스를 위해<br />
                                 헥토 파이낸셜은 항상 노력합니다.
@@ -717,31 +719,31 @@
         const circleWrap = document.querySelector('.circleWrap');
         const windowWidth = window.innerWidth;
 
-        if (windowWidth >= 768) {
-          // 화면 너비가 768px 이상일 때 IntersectionObserver 사용
-          const observer = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  circleWrap.classList.add('move');
-                  observer.unobserve(entry.target); // 클래스를 추가한 후 관찰 중지
-                }
-              });
-            },
-            {
-              threshold: 0.5, // 필요에 따라 threshold 조정
-            }
-          );
-
-          observer.observe(circleWrap);
-        } else {
-          // 화면 너비가 768px 이하일 때는 클릭 이벤트로 move 클래스 추가
-          if (circleWrap) {
-            circleWrap.addEventListener('click', () => {
-              circleWrap.classList.add('move');
+        // if (windowWidth >= 768) {
+        // 화면 너비가 768px 이상일 때 IntersectionObserver 사용
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                circleWrap.classList.add('move');
+                observer.unobserve(entry.target); // 클래스를 추가한 후 관찰 중지
+              }
             });
+          },
+          {
+            threshold: 0.5, // 필요에 따라 threshold 조정
           }
-        }
+        );
+
+        observer.observe(circleWrap);
+        // } else {
+        //   // 화면 너비가 768px 이하일 때는 클릭 이벤트로 move 클래스 추가
+        //   if (circleWrap) {
+        //     circleWrap.addEventListener('click', () => {
+        //       circleWrap.classList.add('move');
+        //     });
+        //   }
+        // }
       });
       // 수정 사항 - 스크립트 수정
 

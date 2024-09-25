@@ -180,10 +180,20 @@
                     </li>
                   </ul>
                 </div>
-                <div class="thumnailWrap">
+                <div class="thumnailWrap thumnailWrap1 on">
                   <p class="thumnail thumnail01"></p>
                   <p class="thumnailDate">2023.12</p>
                   <p class="thumnailTitle">010PAY 010리또 오픈</p>
+                </div>
+                <div class="thumnailWrap thumnailWrap2">
+                  <p class="thumnail thumnail02"></p>
+                  <p class="thumnailDate">2019.12</p>
+                  <p class="thumnailTitle">오픈뱅킹 이용 기관 선정</p>
+                </div>
+                <div class="thumnailWrap thumnailWrap3">
+                  <p class="thumnail thumnail03"></p>
+                  <p class="thumnailDate">2018.12</p>
+                  <p class="thumnailTitle">제로페이 서비스 오픈</p>
                 </div>
               </div>
             </div>
@@ -302,13 +312,15 @@
                           <!-- 수정 사항 - 모바일 썸네일 추가 -->
                           <li class="mo-view">
                             <div class="thumnailWrap">
-                              <p class="thumnail"></p>
-                              <p class="thumnailDate">2019.6</p>
-                              <p class="thumnailTitle">두번째 이미지</p>
+                              <p class="thumnail thumnail02"></p>
+                              <p class="thumnailDate">2019.12</p>
+                              <p class="thumnailTitle">
+                                오픈뱅킹 이용 기관 선정
+                              </p>
                             </div>
                           </li>
                           <!-- //수정 사항 - 모바일 썸네일 추가 -->
-                          <li>
+                          <li class="second-view">
                             <p>2019</p>
                             <dl>
                               <dt>12</dt>
@@ -341,7 +353,16 @@
                               </dd>
                             </dl>
                           </li>
-                          <li>
+                          <!-- 수정 사항 - 모바일 썸네일 추가 -->
+                          <li class="mo-view">
+                            <div class="thumnailWrap">
+                              <p class="thumnail thumnail03"></p>
+                              <p class="thumnailDate">2018.12</p>
+                              <p class="thumnailTitle">제로페이 서비스 오픈</p>
+                            </div>
+                          </li>
+                          <!-- //수정 사항 - 모바일 썸네일 추가 -->
+                          <li class="third-view">
                             <p>2018</p>
                             <dl>
                               <dt>12</dt>
@@ -713,12 +734,16 @@
         .addEventListener('click', function (event) {
           event.preventDefault(); // Prevent default anchor click behavior
           swiper.slideTo(0); // Slide to the first slide (index 0)
-          // thumnail 클래스에 thumnail01 클래스 추가
-          const thumbnailElement = document.querySelector('.thumnail');
-          thumbnailElement.classList.add('thumnail01');
 
-          // thumnail02, thumnail03 클래스 제거
-          thumbnailElement.classList.remove('thumnail02', 'thumnail03');
+          // 모든 thumnailWrap 요소에서 on 클래스 제거
+          const allThumbnails = document.querySelectorAll('.thumnailWrap');
+          allThumbnails.forEach(function (thumbnail) {
+            thumbnail.classList.remove('on');
+          });
+
+          // thumnailWrap1에 on 클래스 추가
+          const thumbnailElement = document.querySelector('.thumnailWrap1');
+          thumbnailElement.classList.add('on');
         });
 
       document
@@ -726,12 +751,16 @@
         .addEventListener('click', function (event) {
           event.preventDefault();
           swiper.slideTo(1); // Slide to the second slide (index 1)
-          // thumnail 클래스에 thumnail01 클래스 추가
-          const thumbnailElement = document.querySelector('.thumnail');
-          thumbnailElement.classList.add('thumnail02');
 
-          // thumnail02, thumnail03 클래스 제거
-          thumbnailElement.classList.remove('thumnail01', 'thumnail03');
+          // 모든 thumnailWrap 요소에서 on 클래스 제거
+          const allThumbnails = document.querySelectorAll('.thumnailWrap');
+          allThumbnails.forEach(function (thumbnail) {
+            thumbnail.classList.remove('on');
+          });
+
+          // thumnailWrap2에 on 클래스 추가
+          const thumbnailElement = document.querySelector('.thumnailWrap2');
+          thumbnailElement.classList.add('on');
         });
 
       document
@@ -739,13 +768,89 @@
         .addEventListener('click', function (event) {
           event.preventDefault();
           swiper.slideTo(2); // Slide to the third slide (index 2)
-          // thumnail 클래스에 thumnail01 클래스 추가
-          const thumbnailElement = document.querySelector('.thumnail');
-          thumbnailElement.classList.add('thumnail03');
 
-          // thumnail02, thumnail03 클래스 제거
-          thumbnailElement.classList.remove('thumnail02', 'thumnail01');
+          // 모든 thumnailWrap 요소에서 on 클래스 제거
+          const allThumbnails = document.querySelectorAll('.thumnailWrap');
+          allThumbnails.forEach(function (thumbnail) {
+            thumbnail.classList.remove('on');
+          });
+
+          // thumnailWrap3에 on 클래스 추가
+          const thumbnailElement = document.querySelector('.thumnailWrap3');
+          thumbnailElement.classList.add('on');
         });
+
+      // 스크롤
+
+      document.addEventListener('DOMContentLoaded', function () {
+        var stickyElement = document.getElementById('leftCon');
+        var rightElement = document.getElementById('rightCon');
+        var footerElement = document.getElementById('footer');
+
+        function handleScroll() {
+          var windowHeight = window.innerHeight;
+          var footerTop = footerElement.getBoundingClientRect().top;
+          var scrollY = window.scrollY;
+          var stickyTop = stickyElement.offsetTop;
+
+          if (scrollY > stickyTop) {
+            stickyElement.classList.add('sticky');
+            rightElement.classList.add('sticky');
+          } else {
+            stickyElement.classList.remove('sticky');
+            rightElement.classList.remove('sticky');
+          }
+
+          // 페이지 하단에 도달한 경우 bottomFixed 클래스를 추가
+          if (footerTop <= windowHeight) {
+            stickyElement.classList.add('bottomFixed');
+            stickyElement.style.top =
+              footerTop - stickyElement.offsetHeight + 'px';
+          } else {
+            stickyElement.classList.remove('bottomFixed');
+            stickyElement.style.top = '0'; // 기본 위치로 재설정
+          }
+
+          // second-view와 third-view 체크
+          var secondViewElement = document.querySelector('.second-view');
+          var thirdViewElement = document.querySelector('.third-view');
+          var thumbnailElement = document.querySelector('.thumnail');
+
+          var secondViewPosition = secondViewElement.getBoundingClientRect();
+          var thirdViewPosition = thirdViewElement.getBoundingClientRect();
+
+          // second-view가 최상단부터 100px 떨어졌을 때 클래스 추가
+          if (secondViewPosition.top <= 134 && secondViewPosition.bottom >= 0) {
+            thumbnailElement.classList.add('second');
+            thumbnailElement.classList.remove('third');
+          } else {
+            thumbnailElement.classList.remove('second');
+          }
+
+          // third-view가 최상단부터 100px 떨어졌을 때 클래스 추가
+          if (thirdViewPosition.top <= 134 && thirdViewPosition.bottom >= 0) {
+            thumbnailElement.classList.add('third');
+          } else {
+          }
+        }
+
+        // Resize event listener
+        window.addEventListener('resize', function () {
+          if (window.innerWidth >= 768) {
+            window.addEventListener('scroll', handleScroll);
+          } else {
+            window.removeEventListener('scroll', handleScroll);
+            // stickyElement 및 rightElement의 sticky 클래스 제거
+            stickyElement.classList.remove('sticky');
+            rightElement.classList.remove('sticky');
+          }
+        });
+
+        // 초기 체크
+        if (window.innerWidth >= 768) {
+          window.addEventListener('scroll', handleScroll);
+        }
+      });
     </script>
   </body>
 </html>

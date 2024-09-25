@@ -301,18 +301,15 @@ $(document).ready(function () {
       // 새로운 스크롤 이벤트 핸들러 추가
       $(window).scroll(function () {
         if ($('#wrap').hasClass('company')) {
+          $('#wrap').addClass('white'); // 모바일에서도 스크롤 시 유지
+          $('#wrap').addClass('animation'); // 모바일에서도 스크롤 시 유지
           if (currentScroll > lastScrollTop) {
             // 스크롤 다운 시
             if (currentScroll > 150) {
-              console.log('2');
-              $('#wrap').removeClass('white');
             } else {
             }
           } else {
             // 스크롤 업 시
-            console.log('1');
-            $('#wrap').addClass('white');
-            $('#wrap').addClass('animation');
           }
         } else {
         }

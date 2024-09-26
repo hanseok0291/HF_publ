@@ -380,30 +380,48 @@
             stickyElement.classList.remove('sticky');
             rightElement.classList.remove('sticky');
           }
+
+          // 섹션 위치에 따라 snb의 li에 on 클래스 추가
+          var sections = [
+            { id: 'banking', liIndex: 0 },
+            { id: 'pay', liIndex: 1 },
+            { id: 'mytongjang', liIndex: 2 },
+          ];
+
+          sections.forEach(function (section) {
+            var element = document.getElementById(section.id);
+            var elementPosition = element.getBoundingClientRect();
+
+            // 섹션이 최상단에서 100px 떨어져 있을 때
+            if (elementPosition.top <= 100 && elementPosition.bottom >= 0) {
+              // 모든 li에서 on 클래스 제거
+              document.querySelectorAll('.snb li').forEach(function (li) {
+                li.classList.remove('on');
+              });
+              // 해당 섹션에 맞는 li에 on 클래스 추가
+              document
+                .querySelector(
+                  '.snb li:nth-of-type(' + (section.liIndex + 1) + ')'
+                )
+                .classList.add('on');
+            }
+          });
         });
-        // 스크롤시 위치 고정
 
         // 레프트메뉴 클릭시 스크롤 이동
-        // 모든 snb 링크를 선택
         var links = document.querySelectorAll('.snb a');
 
-        // 각 링크에 클릭 이벤트 리스너 추가
         links.forEach(function (link) {
           link.addEventListener('click', function (e) {
             e.preventDefault(); // 기본 링크 동작 방지
 
-            // 클릭한 링크의 data-target 속성 값 가져오기
             var targetId = this.getAttribute('data-target');
             var targetElement = document.querySelector(targetId);
 
             if (targetElement) {
-              // 요소의 위치 가져오기
               var elementPosition = targetElement.getBoundingClientRect().top;
-
-              // 현재 스크롤 위치 가져오기
               var offsetPosition = window.pageYOffset + elementPosition - 40; // 40px 위로 조정
 
-              // 원하는 위치로 부드럽게 스크롤 이동
               window.scrollTo({
                 top: offsetPosition,
                 behavior: 'smooth',
@@ -411,7 +429,6 @@
             }
           });
         });
-        // 레프트메뉴 클릭시 스크롤 이동
       });
     </script>
   </body>

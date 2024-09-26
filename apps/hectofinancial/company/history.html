@@ -761,6 +761,9 @@
           // thumnailWrap2에 on 클래스 추가
           const thumbnailElement = document.querySelector('.thumnailWrap2');
           thumbnailElement.classList.add('on');
+
+          $('.stickyWrap .snb li').removeClass('on');
+          $('.stickyWrap .snb li:nth-of-type(2)').addClass('on');
         });
 
       document
@@ -778,16 +781,58 @@
           // thumnailWrap3에 on 클래스 추가
           const thumbnailElement = document.querySelector('.thumnailWrap3');
           thumbnailElement.classList.add('on');
+
+          $('.stickyWrap .snb li').removeClass('on');
+          $('.stickyWrap .snb li:nth-of-type(3)').addClass('on');
         });
 
       // 스크롤
-
       document.addEventListener('DOMContentLoaded', function () {
         var stickyElement = document.getElementById('leftCon');
         var rightElement = document.getElementById('rightCon');
         var footerElement = document.getElementById('footer');
+        var clickedLinkIndex = null; // 클릭된 링크의 인덱스를 저장할 변수
+
+        // Swiper 설정 (필요한 경우 수정)
+        var swiper = new Swiper('.swiper-container', {
+          on: {
+            slideChange: function () {
+              if (this.activeIndex === 0) {
+                // slide_1이 활성화된 경우에만 스크롤 이벤트 적용
+                window.addEventListener('scroll', handleScroll);
+              } else {
+                window.removeEventListener('scroll', handleScroll);
+                resetSticky();
+              }
+            },
+          },
+        });
+
+        // 클릭 이벤트 핸들러 (link2, link3 클릭 시 처리)
+        document.getElementById('link2').addEventListener('click', function () {
+          clickedLinkIndex = 2;
+          updateOnClass(clickedLinkIndex);
+        });
+
+        document.getElementById('link3').addEventListener('click', function () {
+          clickedLinkIndex = 3;
+          updateOnClass(clickedLinkIndex);
+        });
+
+        // link1로 이동했을 때 스크롤 이벤트를 재활성화하기 위한 핸들러
+        document.getElementById('link1').addEventListener('click', function () {
+          clickedLinkIndex = null; // 클릭 후 스크롤이 다시 적용되도록 null로 설정
+          handleScroll(); // 스크롤 상태를 업데이트
+        });
+
+        function updateOnClass(index) {
+          $('.stickyWrap .snb li').removeClass('on');
+          $('.stickyWrap .snb li:nth-of-type(' + index + ')').addClass('on');
+        }
 
         function handleScroll() {
+          if (clickedLinkIndex !== null) return; // 링크 클릭 후 스크롤 시 on 클래스 유지
+
           var windowHeight = window.innerHeight;
           var footerTop = footerElement.getBoundingClientRect().top;
           var scrollY = window.scrollY;
@@ -801,17 +846,15 @@
             rightElement.classList.remove('sticky');
           }
 
-          // 페이지 하단에 도달한 경우 bottomFixed 클래스를 추가
           if (footerTop <= windowHeight) {
             stickyElement.classList.add('bottomFixed');
             stickyElement.style.top =
               footerTop - stickyElement.offsetHeight + 'px';
           } else {
             stickyElement.classList.remove('bottomFixed');
-            stickyElement.style.top = '0'; // 기본 위치로 재설정
+            stickyElement.style.top = '0';
           }
 
-          // second-view와 third-view 체크
           var secondViewElement = document.querySelector('.second-view');
           var thirdViewElement = document.querySelector('.third-view');
           var thumbnailElement = document.querySelector('.thumnail');
@@ -819,36 +862,43 @@
           var secondViewPosition = secondViewElement.getBoundingClientRect();
           var thirdViewPosition = thirdViewElement.getBoundingClientRect();
 
-          // second-view가 최상단부터 100px 떨어졌을 때 클래스 추가
-          if (secondViewPosition.top <= 134 && secondViewPosition.bottom >= 0) {
+          if (secondViewPosition.top <= 100 && secondViewPosition.bottom >= 0) {
+            updateOnClass(2); // link2에 on 클래스 추가
             thumbnailElement.classList.add('second');
             thumbnailElement.classList.remove('third');
-          } else {
+          } else if (secondViewPosition.top > 100) {
+            updateOnClass(1); // link1에 on 클래스 추가
             thumbnailElement.classList.remove('second');
+            thumbnailElement.classList.remove('third');
           }
 
-          // third-view가 최상단부터 100px 떨어졌을 때 클래스 추가
-          if (thirdViewPosition.top <= 134 && thirdViewPosition.bottom >= 0) {
+          if (thirdViewPosition.top <= 100 && thirdViewPosition.bottom >= 0) {
+            updateOnClass(3); // link3에 on 클래스 추가
             thumbnailElement.classList.add('third');
-          } else {
+            thumbnailElement.classList.remove('second');
           }
         }
 
-        // Resize event listener
+        window.addEventListener('scroll', handleScroll);
+
         window.addEventListener('resize', function () {
           if (window.innerWidth >= 768) {
             window.addEventListener('scroll', handleScroll);
           } else {
             window.removeEventListener('scroll', handleScroll);
-            // stickyElement 및 rightElement의 sticky 클래스 제거
-            stickyElement.classList.remove('sticky');
-            rightElement.classList.remove('sticky');
+            resetSticky();
           }
         });
 
-        // 초기 체크
         if (window.innerWidth >= 768) {
           window.addEventListener('scroll', handleScroll);
+        }
+
+        function resetSticky() {
+          stickyElement.classList.remove('sticky');
+          rightElement.classList.remove('sticky');
+          stickyElement.classList.remove('bottomFixed');
+          stickyElement.style.top = '0';
         }
       });
     </script>

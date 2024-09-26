@@ -576,6 +576,7 @@
       });
       // 수정사항 회사소개 스크립트 수정
 
+      // 카드 카운팅
       function animateCount(element, start, end, duration) {
         let startTime = null;
 
@@ -584,20 +585,23 @@
           const progress = Math.min((timestamp - startTime) / duration, 1);
 
           if (end === 1) {
-            // end 값이 1일 때는 0부터 9까지 랜덤 숫자를 표시
-            const randomNumber = Math.floor(Math.random() * 10);
-            element.textContent = randomNumber;
+            // 랜덤 숫자가 느리게 변화하도록 0.1초 간격으로 업데이트
+            const randomDuration = Math.floor((timestamp - startTime) / 100); // 100ms마다 랜덤 숫자 변경
+            if (progress < 1) {
+              const randomNumber = randomDuration % 10; // 0부터 9까지의 숫자를 순환
+              element.textContent = randomNumber;
+            } else {
+              // 시간이 다 끝났을 때 최종적으로 1로 설정
+              element.textContent = end.toLocaleString();
+            }
           } else {
-            // 일반 카운팅
+            // 일반 카운팅 애니메이션
             const currentCount = Math.floor(progress * (end - start) + start);
             element.textContent = currentCount.toLocaleString(); // 천 단위 콤마 추가
           }
 
           if (progress < 1) {
             window.requestAnimationFrame(step);
-          } else if (end === 1) {
-            // 시간이 다 끝났을 때, 1로 최종 설정
-            element.textContent = end.toLocaleString();
           }
         }
 

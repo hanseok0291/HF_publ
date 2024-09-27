@@ -21,11 +21,12 @@ var positionCtl = {
     $(".credit_card .section").each(function () {
       if (
         !$(this).hasClass("animation") &&
-        $(this).data("offsetTop") < position &&
-        position <
-          $(this).data("offsetTop") +
-            $(this).data("outerHeight") +
-            delayPosition * 2
+        $(this).data("offsetTop") <= position
+        // &&
+        // position <=
+        //   $(this).data("offsetTop") +
+        //     $(this).data("outerHeight") +
+        //     delayPosition * 2
       ) {
         $(this).addClass("animation");
         $(this).addClass("active");

@@ -2,6 +2,7 @@
   font-family: SUIT !important;
 }
 #container .content {
+  position: relative;
   max-width: 1140px;
   margin: 0 auto;
 }
@@ -681,19 +682,27 @@
   margin-top: 0;
 }
 #container.history .leftWrap .thumnailWrap {
-  margin-top: 40px;
-  display: none;
+  height: 300px;
+  position: absolute;
+  top: 80px;
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+  z-index: 1;
+}
+#container.history .leftWrap.bottomFixed .thumnailWrap.on {
+  position: relative;
+  bottom: 0px;
+  top: auto;
 }
 #container.history .leftWrap .thumnailWrap .thumnail {
   width: 482px;
   height: 300px;
   border-radius: 16px;
-  transition: all 0.3s ease-in-out;
-  display: none;
 }
 #container.history .leftWrap .thumnailWrap.on,
 #container.history .leftWrap .thumnailWrap.on .thumnail {
   display: block;
+  opacity: 1;
 }
 #container.history .leftWrap .thumnailWrap .thumnail01 {
   background: url('../images/company/history_img_01.png') no-repeat center / cover;
@@ -1339,7 +1348,7 @@
     font-size: 20px;
     font-weight: 700;
     line-height: 26px;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.045em;
     text-align: left;
   }
   #container.brand .rightWrap .title h3 {
@@ -1669,6 +1678,13 @@
   }
   #container.history .leftWrap .thumnailWrap {
     margin-top: 20px;
+    display: none;
+    position: relative;
+    top: 0;
+    height: auto;
+  }
+  #container.history .leftWrap .thumnailWrap.on {
+    display: block;
   }
   /* //연혁 */
 
@@ -1890,6 +1906,15 @@
     font-weight: 700;
     line-height: 26px;
     letter-spacing: -0.04em;
+  }
+}
+
+.mo-view-414-up {
+  display: none !important;
+}
+@media all and (min-width: 415px) {
+  .mo-view-414-up {
+    display: block !important;
   }
 }
 /* //mo */

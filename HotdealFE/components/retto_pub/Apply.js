@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FadeIn from 'react-fade-in';
+// import FadeIn from 'react-fade-in';
 
 // style
 import styleCommon from "../../styles/retto_pub/Common.module.css";
@@ -16,6 +16,7 @@ import ApplyComplete from "../../components/retto_pub/ApplyComplete";
 import ModalApplyAccount from "../../components/retto_pub/common/modal/ModalApplyAccount";
 import ModalApplyReady from "./common/modal/ModalApplyReady";
 import LayerApplyFail from "./LayerApplyFail";
+import FadeInSection from "./common/FadeInSection";
 
 const Apply = ({full, rettoLevel = 26, case1, case2, case3, case4, case5}) => {
   const [jewel, setJewel] = useState(); // 보석 상태
@@ -31,7 +32,7 @@ const Apply = ({full, rettoLevel = 26, case1, case2, case3, case4, case5}) => {
       <Container className={styleCommon.layerContainer}>
         <span className={styleApply.visualImg1}></span>
         <span className={styleApply.visualImg2}></span>
-        <FadeIn> 
+        <FadeInSection> 
           <div className={styleCommon.titleWrap}>
             <h2>
               머니만 채워도 알아서 쌓여요 <br />
@@ -41,8 +42,8 @@ const Apply = ({full, rettoLevel = 26, case1, case2, case3, case4, case5}) => {
               </b>
             </h2>
           </div>
-        </FadeIn>
-        <FadeIn delay={250}>
+        </FadeInSection>
+        <FadeInSection delay={250}>
           <div className={`${styleCommon.borderBox} ${styleApply.borderBox}`}>
             <LevelSelection
               change={false} 
@@ -67,7 +68,7 @@ const Apply = ({full, rettoLevel = 26, case1, case2, case3, case4, case5}) => {
               </p>
             </div>
           </div>
-        </FadeIn>
+        </FadeInSection>
         {isModal && (
           <ModalApply jewel={jewel} handleModalToggle={handleModalToggle} />
         )}

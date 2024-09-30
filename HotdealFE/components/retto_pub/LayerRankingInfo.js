@@ -1,6 +1,7 @@
 import React from 'react';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
+import Header from './common/Header';
 //style
 import styleCommon from '../../styles/retto_pub/Common.module.css';
 import styleRanking from "../../styles/retto_pub/Ranking.module.css";
@@ -10,12 +11,7 @@ const LayerRankingInfo = ({beforeVersion}) => {
 
   return (
     <div className={styleCommon.layer}>
-      <div className={`${styleCommon.layerHeader} ${styleCommon.borderNone}`}>
-        <h2>랭킹 안내</h2>
-        <button type="button" className={styleCommon.closeBtn}>
-          닫기
-        </button>
-      </div>
+      <Header title='랭킹 안내' sideBtn={false}/>
 
       <div className={`${styleRanking.winInfoWrap}`}>
         <div className={styleRanking.rettoInfoWrap}>

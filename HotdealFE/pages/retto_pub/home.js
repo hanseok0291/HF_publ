@@ -7,14 +7,12 @@ import styleMyretto from "../../styles/retto_pub/Myretto.module.css";
 
 // component
 import Header from "../../components/retto_pub/common/Header";
-import MyPage from "../../components/retto_pub/MyPage";
 import Apply from "../../components/retto_pub/Apply";
 import BottomSheetPrize from "../../components/retto_pub/common/modal/BottomSheetPrize";
 import LayerLevelSelection from "../../components/retto_pub/LayerLevelSelection";
 import BottomSheetAlarm from "../../components/retto_pub/common/modal/BottomSheetAlarm";
 import ModalLevelChange from "../../components/retto_pub/common/modal/ModalLevelChange";
 import BottomSheetBanner from "../../components/retto_pub/common/modal/BottomSheetBanner";
-import Stamp from "../../components/retto_pub/Stamp";
 import BottomSheetSaveingList from "../../components/retto_pub/common/modal/BottomSheetSaveingList";
 import BottomSheetPresent from "../../components/retto_pub/common/modal/BottomSheetPresent";
 import BottomSheetMission from "../../components/retto_pub/common/modal/BottomSheetMission";
@@ -25,7 +23,6 @@ import ModalmembershipOut2 from "../../components/retto_pub/common/modal/Modalme
 import LayerRecommend from "../../components/retto_pub/LayerRecommend";
 import ModalRecommendEnd from "../../components/retto_pub/common/modal/ModalRecommendEnd";
 import Toast from "../../components/retto_pub/common/Toast";
-import MyPageNotJoin from "../../components/retto_pub/MyPageNotJoin";
 import Home from "../../components/retto_pub/Home";
 import DrawInfo from "../../components/retto_pub/DrawInfo";
 import ModalLevelChangeBan from "../../components/retto_pub/common/modal/ModalLevelChangeBan";
@@ -36,6 +33,13 @@ import ModalMoneyGive from "../../components/retto_pub/common/modal/ModalMoneyGi
 import LayerWinInfo from "../../components/retto_pub/LayerWinInfo";
 import Navigation from "../../components/coupon_pub/main/Navigation";
 import HomeTab from "../../components/retto_pub/HomeTab";
+import LayerMoneyboxEmpty from "../../components/retto_pub/LayerMoneyboxEmpty";
+import ModalHundredInfo from "@/components/coupon_pub/common/modal/ModalHundredInfo";
+import ApplyComplete from "@/components/retto_pub/ApplyComplete";
+import LayerRankingInfo from "@/components/retto_pub/LayerRankingInfo";
+import FillBox from "@/components/retto_pub/FillBox";
+import LayerRettoMoneyGet from "@/components/retto_pub/LayerRettoMoneyGet";
+import LayerRankingMoneyGet from "@/components/retto_pub/LayerRankingMoneyGet";
 
 const index = () => {
   return (
@@ -44,7 +48,7 @@ const index = () => {
       <HomeTab activeTab={1} />
       <Container isTab padding="0" backgroundColor="#fff" className={styleCommon.hidden}>
         {/* HOME */}
-        <Home case2 /> 
+        <Home case1 case3 /> 
       </Container>
       {/* 리또 신청 */}
       {/* <Apply full case1 /> */}
@@ -79,6 +83,9 @@ const index = () => {
       {/* <Toast width={250}>카드 발급 선물 신청이 완료되었어요!</Toast> */}
       {/* <ModalMoneyGive /> */}
       {/* <LayerWinInfo /> */}
+      {/* <LayerMoneyboxEmpty /> */}
+      {/* <BottomSheetPresent /> */}
+      {/* <LayerRankingMoneyGet /> */}
     </>
   );
 };

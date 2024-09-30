@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import FadeIn from 'react-fade-in';
 
 // style
 import styleCommon from "../../styles/retto_pub/Common.module.css";

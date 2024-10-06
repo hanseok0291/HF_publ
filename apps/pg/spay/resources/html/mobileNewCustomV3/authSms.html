@@ -30,7 +30,7 @@
 
         <link rel="stylesheet" href="../../css/owl.carousel.min.css" />
         <link rel="stylesheet" href="../../css/slick.min.css" />
-        <link rel="stylesheet" href="../../css/common_monotone.css?ver=240925" />
+        <link rel="stylesheet" href="../../css/common_monotone.css?ver=240922" />
         <!--[if lt IE 9]>
             <script type="text/javascript" src="../../js/html5shiv.js"></script>
             <script type="text/javascript" src="../../js/respond.min.js"></script>
@@ -97,10 +97,9 @@
                                         <span class="subject">
                                             <div class="check-box check-all w-full">
                                                 <input type="checkbox" id="check-all" name="check-all" title="휴대폰 결제 항목 모두 동의" />
-                                                <label for="check-all">휴대폰 결제 항목 모두 동의</label>
+                                                <label for="check-all">휴대폰 결제 항목 모두 동의 <span class="right" aria-hidden="true">(선택포함)</span></label>
                                             </div>
                                         </span>
-                                        <span class="right">(선택포함)</span>
                                         <button type="button" class="arrow-toggle" aria-label="휴대폰 결제 항목 모두 보기"></button>
                                     </div>
                                     <div class="list-body accordion-item">
@@ -200,8 +199,8 @@
                                 <div class="select-auth">
                                     <!-- select-telecom -->
                                     <div class="select-telecom col-2">
-                                        <div class="input select-input">
-                                            <div class="select">
+                                        <div class="input select-input" tabindex="0">
+                                            <div class="select" tabindex="0">
                                                 <ul>
                                                     <li>SKT</li>
                                                 </ul>
@@ -219,7 +218,7 @@
                                                     <input type="tel" maxlength="6" placeholder="생년월일(6자리)" class="birth-wrap" />
                                                     <span class="text-dash">-</span>
                                                     <div class="last-input-wrap">
-                                                        <input class="last-input" type="tel" maxlength="1" pattern="[0-9]*" aria-label="주민등록 번호 앞 1자리" />
+                                                        <input class="last-input" type="tel" maxlength="1" pattern="[0-9]*" aria-label="주민등록번호 뒷 첫번째 자리" />
                                                         <div class="input-dot">
                                                             <!-- span에 fill Class 추가 시 입력 -->
                                                             <span></span>
@@ -258,12 +257,11 @@
                                             <div class="form-type form-type-top auth-number-wrap">
                                                 <div class="form-col2 auth-number-box">
                                                     <div class="form-item input-btn reg-number-wrap">
-                                                        <input type="text" placeholder="인증번호 입력" />
-                                                        <!-- <span id="timer" class="count" aria-live="polite" aria-label="2분 59초">02:59</span> -->
-                                                        <span id="timer" aria-live="off">
-                                                            <span id="visualTimer" tabindex="0" aria-hidden="true">02:59</span>
-                                                            <span class="sr-only" id="accessibleTimer">2분 59초</span>
-                                                        </span>
+                                                        <input type="text" placeholder="인증번호 입력" id="authNum" />
+                                                        <div id="timer" aria-live="off">
+                                                            <span id="visualTimer" tabindex="0" aria-hidden="true">03:00</span>
+                                                            <span class="sr-only" id="accessibleTimer">3분 00초</span>
+                                                        </div>
                                                     </div>
                                                     <div class="auth-btn-box">
                                                         <button type="button" class="btn">인증번호 받기</button>
@@ -331,7 +329,7 @@
         <div id="noticeDetail" class="modal modal-full" tabindex="0" aria-labelledby="noticeTitle">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-head" aria-hidden="true">
+                    <div class="modal-head">
                         <div class="container">
                             <p class="brand-name">
                                 <span class="my-logo"><img src="../../images/logo-hecto.png?ver=1.0" alt="헥토파이낸셜" /></span>
@@ -567,6 +565,11 @@
                             $(".step1").hide();
                             $(".step2").show();
                             $("#send").text("결제완료");
+                            // id가 authNum인 요소로 포커스 이동
+                            const authNumElement = document.getElementById("authNum");
+                            if (authNumElement) {
+                                authNumElement.focus();
+                            }
                         } else {
                             // "check-all" 체크박스가 체크되어 있지 않을 때
                             // $.alertMessage("", "휴대폰결제 이용을 위해 <br>필수 약관 전체 동의가 필요합니다.", $("#commonAlert"));
@@ -633,66 +636,6 @@
                     // $(this).children("button").attr("aria-pressed", "true");
                 });
             });
-
-            // 팝업 포커스
-            var $this;
-
-            $(".btn_view").click(function () {
-                $("#noticeDetail .terms-title").attr("tabindex", 0).show().focus();
-                $this = $(this);
-            });
-
-            // 스크린 리더기 인증번호 카운트
-            let minutes = 2;
-            let seconds = 59;
-
-            function updateTimer() {
-                const visualTimerElement = document.getElementById("visualTimer");
-                const accessibleTimerElement = document.getElementById("accessibleTimer");
-
-                // 시간이 1초씩 줄어듦
-                if (seconds === 0) {
-                    if (minutes === 0) {
-                        clearInterval(timerInterval);
-                    } else {
-                        minutes--;
-                        seconds = 59;
-                    }
-                } else {
-                    seconds--;
-                }
-
-                // 시각적으로 보여줄 포맷
-                const displayMinutes = String(minutes).padStart(2, "0");
-                const displaySeconds = String(seconds).padStart(2, "0");
-
-                // 화면에 표시할 시간 업데이트 (시각적으로 보이는 부분)
-                visualTimerElement.textContent = `${displayMinutes}:${displaySeconds}`;
-
-                // 스크린 리더에 읽히는 시간 업데이트
-                accessibleTimerElement.textContent = `${minutes}분 ${seconds}초`;
-            }
-
-            const timerInterval = setInterval(updateTimer, 1000);
-
-            // 초점이 다시 돌아왔을 때만 aria-live 활성화
-            function handleFocus() {
-                const timerElement = document.getElementById("timer");
-                timerElement.setAttribute("aria-live", "polite"); // 초점이 돌아오면 다시 활성화
-            }
-
-            function handleBlur() {
-                const timerElement = document.getElementById("timer");
-                timerElement.setAttribute("aria-live", "off"); // 포커스가 벗어나면 읽지 않도록 설정
-            }
-
-            // 타이머에 대한 포커스 및 블러 이벤트 추가
-            const timerElement = document.getElementById("timer");
-            timerElement.addEventListener("focus", handleFocus);
-            timerElement.addEventListener("blur", handleBlur);
-
-            // 초점이 없는 상태에서는 aria-live를 off로 설정
-            handleBlur();
         </script>
     </body>
 </html>

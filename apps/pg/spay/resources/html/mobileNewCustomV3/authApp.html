@@ -55,7 +55,7 @@
                         <h1 class="brand-name">
                             <span class="my-logo"><img src="../../images/logo-hecto.png?ver=1.0" alt="헥토파이낸셜" /></span>
                         </h1>
-                        <button type="button" id="closeWindow" class="btn-close" data-toggle="modal" data-target="#commonConfirm" aria-label="닫기">
+                        <button type="button" id="closeWindow" class="btn-close" data-toggle="modal" aria-label="닫기">
                             <span class="blind">닫기</span>
                         </button>
                     </div>
@@ -364,8 +364,11 @@
                                             <div class="form-type form-type-top auth-number-wrap">
                                                 <div class="form-col2 auth-number-box">
                                                     <div class="form-item input-btn reg-number-wrap">
-                                                        <input type="text" placeholder="인증번호 입력" />
-                                                        <span class="count">02:59</span>
+                                                        <input type="text" placeholder="인증번호 입력" id="authNum" />
+                                                        <div id="timer" aria-live="off">
+                                                            <span id="visualTimer" tabindex="0" aria-hidden="true">03:00</span>
+                                                            <span class="sr-only" id="accessibleTimer">3분 00초</span>
+                                                        </div>
                                                     </div>
                                                     <div class="auth-btn-box">
                                                         <button type="button" class="btn">인증번호 받기</button>
@@ -457,8 +460,11 @@
                                             <div class="form-type form-type-top auth-number-wrap">
                                                 <div class="form-col2 auth-number-box">
                                                     <div class="form-item input-btn reg-number-wrap">
-                                                        <input type="text" placeholder="인증번호 입력" id="authChk" />
-                                                        <span class="count">02:59</span>
+                                                        <input type="text" placeholder="인증번호 입력" id="authNum" />
+                                                        <div id="timer" aria-live="off">
+                                                            <span id="visualTimer" tabindex="0" aria-hidden="true">03:00</span>
+                                                            <span class="sr-only" id="accessibleTimer">3분 00초</span>
+                                                        </div>
                                                     </div>
                                                     <div class="auth-btn-box">
                                                         <button type="button" class="btn">인증번호 받기</button>
@@ -540,19 +546,19 @@
         <div id="noticeDetail" class="modal modal-full" tabindex="0" aria-labelledby="noticeTitle">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-head">
+                    <div class="modal-head" tabindex="0">
                         <div class="container">
-                            <p class="brand-name" aria-hidden="true">
+                            <p class="brand-name">
                                 <span class="my-logo"><img src="../../images/logo-hecto.png?ver=1.0" alt="헥토파이낸셜" /></span>
                             </p>
-                            <button type="button" class="btn btn-close" data-dismiss="modal" data-target="#noticeDetail"></button>
+                            <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="모달 닫기"></button>
                         </div>
                     </div>
                     <div class="modal-body">
                         <div class="container">
                             <!-- 게시판 상세 -->
                             <div class="terms scroll">
-                                <p class="terms-title" id="focusElement">통신과금 서비스 이용약관(필수)</p>
+                                <p class="terms-title" id="focusElement" tabindex="-1">통신과금 서비스 이용약관(필수)</p>
                                 <p class="terms-title-sub" id="termPurpose">제 1조 (목적)</p>
                                 <p>
                                     본 약관은 통신과금 서비스를 제공하는 주식회사 헥토파이낸셜(이하 ‘회사’라고 합니다)과 통신과금서비스 이용자 (이하 ‘이용자’라고 합니다) 간에 통신과금서비스에 관한
@@ -693,14 +699,14 @@
         <!-- //passloading -->
 
         <!-- slide modal -->
-        <div id="modalSlide" class="modal new modal-slide modal-info" aria-live="polite" aria-labelledby="popupTitle">
+        <div id="modalSlide" class="modal new modal-slide modal-info" aria-live="polite" aria-labelledby="popupTitle" tabindex="0">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <span id="popupTitle" class="blink" tabindex="0">통신사 선택 팝업</span>
                     <button type="button" class="btn-close btn-cancel" aria-label="닫기"></button>
                     <div class="modal-body">
                         <div class="container">
-                            <ul class="select-list" role="listbox">
+                            <ul class="select-list" role="listbox" tabindex="0">
                                 <li class="bold" role="none">
                                     <button type="button" role="option" aria-label="SKT 버튼 " aria-pressed="false">SKT</button>
                                 </li>
@@ -894,7 +900,8 @@
 
             $(".select-input > .select").on("click", function () {
                 modalOpenSlide("modalSlide");
-                $("#modalSlide").attr("tabindex", 0).show().focus();
+                $("#modalSlide").attr("tabindex", 0).show();
+                $("#modalSlide #popupTitle").focus();
             });
 
             $(".select-list li").on("click", function () {
@@ -949,6 +956,14 @@
                 // $(this).children("button").attr("aria-pressed", "true");
             });
 
+            // 팝업 포커스
+            var $this;
+
+            $(".btn_view").click(function () {
+                $("#noticeDetail .terms-title").attr("tabindex", 0).show().focus();
+                $this = $(this);
+            });
+
             // 리또 이벤트 팝업 닫기
             $(".pop-wrap .btn-close").on("click", function () {
                 $(".pop-wrap").hide();
@@ -973,30 +988,6 @@
                     checkbox1.checked = true;
                 }
             });
-
-            // 팝업 포커스
-            // var $this;
-
-            // $(".btn_view").click(function () {
-            //     $("#focusElement").focus();
-            //     $this = $(this);
-            // });
-
-            // document.addEventListener('DOMContentLoaded', function () {
-            //     const modal = document.getElementById('noticeDetail');
-
-            //     modal.addEventListener('.modal', function () {
-            //         const focusElement = document.getElementById('focusElement');
-            //         const nextFocusElement = document.getElementById('termPurpose');
-
-            //         if (focusElement) {
-            //             focusElement.focus();
-            //             setTimeout(() => {
-            //                 nextFocusElement.focus();
-            //             }, 500); // 조금의 지연을 주어 자연스럽게 읽히도록 합니다.
-            //         }
-            //     });
-            // });
         </script>
     </body>
 </html>

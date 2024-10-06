@@ -2,23 +2,7 @@
  * Design Script
  */
 // 모바일 위주로 구별
-var mobileKeyWords = new Array(
-    "iPhone",
-    "iPod",
-    "BlackBerry",
-    "Android",
-    "Windows CE",
-    "Windows CE;",
-    "LG",
-    "MOT",
-    "SAMSUNG",
-    "SonyEricsson",
-    "Mobile",
-    "Symbian",
-    "Opera Mobi",
-    "Opera Mini",
-    "IEmobile"
-);
+var mobileKeyWords = ["iPhone", "iPod", "BlackBerry", "Android", "Windows CE", "Windows CE;", "LG", "MOT", "SAMSUNG", "SonyEricsson", "Mobile", "Symbian", "Opera Mobi", "Opera Mini", "IEmobile"];
 for (var word in mobileKeyWords) {
     if (navigator.userAgent.match(mobileKeyWords[word]) != null) {
         $("body").removeClass("pc");
@@ -71,31 +55,102 @@ $(function () {
     $("input, textarea").placeholder();
 });
 
+// 포커스 관리 변수 (전역 변수로 선언하여 중복 선언 방지)
+var lastFocusedElement = null;
+
+// 포커스 트랩 함수
+function trapFocus(modalId) {
+    var modal = document.getElementById(modalId.replace("#", ""));
+    var focusableElementsString = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex="0"]';
+    var focusableElements = modal.querySelectorAll(focusableElementsString);
+    focusableElements = Array.prototype.slice.call(focusableElements);
+
+    if (focusableElements.length === 0) return;
+
+    var firstFocusableElement = focusableElements[0];
+    var lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+    function handleKeyDown(e) {
+        var isTabPressed = e.key === "Tab" || e.keyCode === 9;
+
+        if (!isTabPressed) {
+            return;
+        }
+
+        if (e.shiftKey) {
+            // Shift + Tab
+            if (document.activeElement === firstFocusableElement) {
+                lastFocusableElement.focus();
+                e.preventDefault();
+            }
+        } else {
+            // Tab
+            if (document.activeElement === lastFocusableElement) {
+                firstFocusableElement.focus();
+                e.preventDefault();
+            }
+        }
+    }
+
+    modal.addEventListener("keydown", handleKeyDown);
+
+    // 모달이 닫힐 때 이벤트 리스너 제거
+    function removeTrap() {
+        modal.removeEventListener("keydown", handleKeyDown);
+    }
+
+    // 모달 닫기 이벤트에 트랩 제거 연결
+    modal.querySelectorAll("[data-dismiss='modal']").forEach(function (btn) {
+        btn.addEventListener("click", removeTrap);
+    });
+}
+
 // 모달(레이어 팝업), 배너, 팝오버
 $(function () {
     // 모달 열기
     $("[data-toggle='modal']").click(function () {
-        var openBtn = $(this);
+        var openBtn = $(this); // "보기" 버튼 참조
         var target = $(this).attr("data-target"); // 모달 ID
-        $(target).show().focus(); // 모달 열기, 포커스
+        var modal = $(target);
+        $(target).show().attr("aria-hidden", "false"); // 모달 열기, aria-hidden 설정
         scrollOff(); // 바디 스크롤 제거
 
-        // 모달 위치
-        var thisDialog = $(target).find(".modal-dialog");
+        // 모달 위치 조정
+        var thisDialog = modal.find(".modal-dialog");
         var marginValue = thisDialog.outerHeight() / 2;
-        $(thisDialog).css("margin-top", "-" + marginValue + "px");
+        thisDialog.css("margin-top", "-" + marginValue + "px");
 
-        // 모달 닫기
-        $("[data-dismiss='modal']").click(function () {
-            $(openBtn).focus(); // 열기 버튼 포커스
-        });
+        // 포커스 이동 및 aria-hidden 관리
+        setTimeout(function () {
+            var modal = $(target)[0];
+            var termsTitle = $(target).find(".terms-title")[0];
+            if (termsTitle) {
+                termsTitle.setAttribute("tabindex", "-1"); // 포커스 가능하도록 설정
+                termsTitle.focus(); // terms-title로 포커스 이동
+            }
+
+            // 외부 콘텐츠 aria-hidden 설정
+            $("#wrap, #header, #content, #footer").attr("aria-hidden", "true");
+        }, 300); // 모달 열림에 딜레이가 있으면 약간의 시간 지연을 줄 수 있음
+
+        // 마지막 포커스된 요소 저장 (초점을 복귀할 요소)
+        lastFocusedElement = openBtn;
     });
 
     // 모달 닫기
     $("[data-dismiss='modal']").click(function () {
         var target = $(this).parents(".modal");
-        $(target).hide(); // 모달 닫기
+        $(target).hide().attr("aria-hidden", "true"); // 모달 닫기, aria-hidden 설정
         scrollOn(); // 바디 스크롤 제거 해제
+
+        // 외부 콘텐츠 aria-hidden 해제
+        $("#wrap, #header, #content, #footer").attr("aria-hidden", "false");
+
+        // 모달 닫힐 때 포커스 복귀
+        if (lastFocusedElement) {
+            lastFocusedElement.focus(); // "보기" 버튼으로 포커스 이동
+            lastFocusedElement = null; // 참조 해제
+        }
     });
 
     // 배너 닫기(플로팅 배너)
@@ -104,7 +159,7 @@ $(function () {
         $(target).hide();
     });
 
-    // popover
+    // popover 닫기
     $("[data-dismiss='popover']").click(function () {
         var target = $(this).parents(".popover");
         $(target).hide();
@@ -140,19 +195,39 @@ $(modalCont).css("bottom", modalH); // 팝업들 bottom 값 setting
 // 레이어 팝업(모달) 열기
 function modalOpen(obj) {
     var temp = $("#" + obj);
-    temp.show();
+    temp.show().attr("aria-hidden", "false").focus(); // 모달 열기, aria-hidden 설정
     scrollOff(); // 바디 스크롤 제거
 
     // 위치
     var thisDialog = temp.children(".modal-dialog");
     var marginValue = thisDialog.outerHeight() / 2;
     $(thisDialog).css("margin-top", "-" + marginValue + "px");
+
+    // 포커스 이동 및 aria-hidden 관리
+    setTimeout(function () {
+        var termsTitle = temp.find(".terms-title");
+        if (termsTitle.length > 0) {
+            termsTitle.attr("tabindex", "-1"); // 포커스 가능하도록 설정
+            termsTitle.focus(); // terms-title로 포커스 이동
+        }
+
+        // 외부 콘텐츠 aria-hidden 설정
+        $("#wrap, #header, #content, #footer").attr("aria-hidden", "true");
+    }, 300);
+
+    // 포커스 트랩 설정
+    trapFocus(temp[0]);
 }
 
 // 레이어 팝업(모달) 닫기
 function modalClose() {
-    $(".modal").hide();
+    $(".modal").hide().attr("aria-hidden", "true"); // 모달 닫기, aria-hidden 설정
     scrollOn(); // 바디 스크롤 제거 해제
+
+    // 모달 닫힐 때 aria-hidden 해제
+    $("#wrap, #header, #content, #footer").attr("aria-hidden", "false");
+
+    // 포커스 복귀는 여기에 필요에 따라 추가
 }
 
 // 하단 레이어 팝업(슬라이드 모달) 열기
@@ -160,7 +235,7 @@ function modalOpenSlide(obj) {
     var temp = $("#" + obj);
     var modalCont = $(temp).find(".modal-content");
 
-    temp.show();
+    temp.show().attr("aria-hidden", "false"); // 모달 열기, aria-hidden 설정
     // modalCont.focus();
     $(modalCont).animate({ bottom: 0 }, 200);
 
@@ -168,6 +243,20 @@ function modalOpenSlide(obj) {
     if (!$(this).hasClass("depth2")) {
         scrollOff(); // 바디 스크롤 제거
     }
+
+    // 모달 열릴 때 포커스 이동 및 aria-hidden 관리
+    setTimeout(function () {
+        const closeButton = temp.find(".btn-close")[0];
+        if (closeButton) {
+            closeButton.focus(); // 모달이 열리면 닫기 버튼에 포커스
+        }
+
+        // 외부 콘텐츠 aria-hidden 설정
+        $("#wrap, #header, #content, #footer").attr("aria-hidden", "true");
+    }, 200);
+
+    // 포커스 트랩 설정
+    trapFocus("#" + obj, null);
 
     // 바깥 영역 클릭 시 팝업 닫힘
     $(temp).on("click", function (e) {
@@ -191,13 +280,16 @@ function modalOpenSlide(obj) {
 
     // bottom modal 닫기
     function modalCloseSlide() {
-        temp.fadeOut(200);
+        temp.fadeOut(200).attr("aria-hidden", "true"); // 모달 닫기, aria-hidden 설정
         $(temp).find(".modal-content").animate({ bottom: modalH }, 200);
 
         // 이중 모달이 아닌 경우
         if (!$(temp).hasClass("depth2")) {
             scrollOn(); // 바디 스크롤 제거 해제
         }
+
+        // 외부 콘텐츠 aria-hidden 해제
+        $("#wrap, #header, #content, #footer").attr("aria-hidden", "false");
     }
 
     // 푸터 고정 토글
@@ -277,7 +369,7 @@ $.toastMessage = function (title, contents, callbackFunc) {
     $(".toast-title").html(contents);
 
     // 모달 열기
-    $(target).show().focus();
+    $(target).show().attr("aria-hidden", "false").focus();
 
     // 모달 위치
     var thisDialog = $(target).find(".modal-dialog");
@@ -285,17 +377,18 @@ $.toastMessage = function (title, contents, callbackFunc) {
     $(thisDialog).css("margin-top", "-" + marginValue + "px");
 
     setTimeout(() => {
-        $(target).fadeOut(200);
+        $(target).fadeOut(200).attr("aria-hidden", "true");
     }, 2000);
 };
 
+// Prompt Modal
 $.promptMessage = function (title, contents, promptObj, promptOkObj, callbackFunc) {
     $("#promptTitle").html(title);
     $("#promptContents").html(contents);
 
     var clickEvent = new Function(callbackFunc);
-    promptOkObj.prop("onclick", null).off("click"); //기존에 등록된 함수가 반복 실행을 막음. reset
-    promptOkObj.prop("onclick", "").click(clickEvent); //callback 함수 등록
+    promptOkObj.prop("onclick", null).off("click"); // 기존에 등록된 함수가 반복 실행을 막음. reset
+    promptOkObj.prop("onclick", "").click(clickEvent); // callback 함수 등록
 
     modalOpen(promptObj.attr("id"));
 };
@@ -364,3 +457,107 @@ function toggleFooterFixed() {
 window.addEventListener("load", toggleFooterFixed);
 window.addEventListener("resize", toggleFooterFixed);
 /* //하단 버튼 가려짐 이슈로 추가 */
+
+// 1004 추가
+// 스크린 리더기 인증번호 카운트
+let timerInterval;
+let time = 180; // 타이머 초기값 (2분 59초)
+
+$(document).ready(function () {
+    function startTimer() {
+        clearInterval(timerInterval); // 기존 타이머가 실행 중이면 초기화
+        time = 180; // 타이머 초기값 (2분 59초)로 리셋
+
+        timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    function updateTimer() {
+        let minutes = Math.floor(time / 60);
+        let seconds = time % 60;
+
+        const visualTimerElement = document.getElementById("visualTimer");
+        const accessibleTimerElement = document.getElementById("accessibleTimer");
+
+        // 시각적으로 보여줄 포맷
+        const displayMinutes = String(minutes).padStart(2, "0");
+        const displaySeconds = String(seconds).padStart(2, "0");
+
+        // 화면에 표시할 시간 업데이트 (시각적으로 보이는 부분)
+        visualTimerElement.textContent = `${displayMinutes}:${displaySeconds}`;
+
+        // 스크린 리더에 읽히는 시간 업데이트
+        accessibleTimerElement.textContent = `${minutes}분 ${seconds}초`;
+
+        if (time === 0) {
+            clearInterval(timerInterval);
+        } else {
+            time--; // 1초씩 감소
+        }
+    }
+
+    // 인증번호 받기 버튼 클릭 이벤트
+    $(".auth-btn-box .btn").click(function () {
+        startTimer(); // 타이머 시작
+    });
+
+    // 타이머에 대한 포커스 및 블러 이벤트 추가
+    const timerElement = document.getElementById("timer");
+    timerElement.addEventListener("focus", handleFocus);
+    timerElement.addEventListener("blur", handleBlur);
+
+    function handleFocus() {
+        timerElement.setAttribute("aria-live", "polite");
+    }
+
+    function handleBlur() {
+        timerElement.setAttribute("aria-live", "off");
+    }
+
+    // 초점이 없는 상태에서는 aria-live를 off로 설정
+    handleBlur();
+});
+
+// 초점이 다시 돌아왔을 때만 aria-live 활성화
+function handleFocus() {
+    const timerElement = document.getElementById("timer");
+    timerElement.setAttribute("aria-live", "polite"); // 초점이 돌아오면 다시 활성화
+}
+
+function handleBlur() {
+    const timerElement = document.getElementById("timer");
+    timerElement.setAttribute("aria-live", "off"); // 포커스가 벗어나면 읽지 않도록 설정
+}
+
+// 타이머에 대한 포커스 및 블러 이벤트 추가
+const timerElement = document.getElementById("timer");
+timerElement.addEventListener("focus", handleFocus);
+timerElement.addEventListener("blur", handleBlur);
+
+// 초점이 없는 상태에서는 aria-live를 off로 설정
+handleBlur();
+
+const modal = document.querySelector(".modal");
+const pageContent = document.querySelector("#wrap"); // 모달 외부 콘텐츠
+const closeButton = modal.querySelector(".btn-close");
+
+// 모달 열림 감지
+const observer = new MutationObserver(function (mutationsList) {
+    mutationsList.forEach(function (mutation) {
+        if (mutation.attributeName === "style") {
+            const displayStyle = window.getComputedStyle(modal).display;
+            if (displayStyle === "block") {
+                // 모달이 열렸을 때 실행할 코드
+                pageContent.setAttribute("aria-hidden", "true"); // 외부 콘텐츠 숨기기
+                modal.removeAttribute("aria-hidden");
+                closeButton.focus(); // 모달 내부로 스크린리더 초점 이동
+            } else {
+                // 모달이 닫혔을 때 실행할 코드
+                pageContent.removeAttribute("aria-hidden"); // 외부 콘텐츠 접근 가능
+                modal.setAttribute("aria-hidden", "true");
+            }
+        }
+    });
+});
+
+// 모달의 스타일 변화를 감시
+observer.observe(modal, { attributes: true, attributeFilter: ["style"] });

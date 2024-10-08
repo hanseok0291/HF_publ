@@ -335,7 +335,12 @@
                 모든 뱅킹과 결제 서비스, <br class="mo-view" />
                 지금 바로 경험하세요.
               </p>
-              <a href="#" class="btn">서비스 이용 신청</a>
+              <!-- 수정 사항 - 1004 html 수정 -->
+              <a href="#" class="btn">
+                <div class="background"></div>
+                <p class="btn-txt">서비스 이용 신청</p>
+              </a>
+              <!-- //수정 사항 - 1004 html 수정 -->
             </div>
           </div>
           <!-- //ad -->
@@ -425,53 +430,7 @@
     </div>
     <!-- //wrap -->
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        // 스크롤시 위치 고정
-        var stickyElement = document.getElementById('leftCon');
-        var rightElement = document.getElementById('rightCon');
-        var stickyTop = stickyElement.offsetTop;
-
-        window.addEventListener('scroll', function () {
-          if (window.scrollY > stickyTop) {
-            stickyElement.classList.add('sticky');
-            rightElement.classList.add('sticky');
-          } else {
-            stickyElement.classList.remove('sticky');
-            rightElement.classList.remove('sticky');
-          }
-        });
-        // 스크롤시 위치 고정
-
-        // 레프트메뉴 클릭시 스크롤 이동
-        // 모든 snb 링크를 선택
-        var links = document.querySelectorAll('.snb a');
-
-        // 각 링크에 클릭 이벤트 리스너 추가
-        links.forEach(function (link) {
-          link.addEventListener('click', function (e) {
-            e.preventDefault(); // 기본 링크 동작 방지
-
-            // 클릭한 링크의 data-target 속성 값 가져오기
-            var targetId = this.getAttribute('data-target');
-            var targetElement = document.querySelector(targetId);
-
-            if (targetElement) {
-              // 요소의 위치 가져오기
-              var elementPosition = targetElement.getBoundingClientRect().top;
-
-              // 현재 스크롤 위치 가져오기
-              var offsetPosition = window.pageYOffset + elementPosition - 40; // 40px 위로 조정
-
-              // 원하는 위치로 부드럽게 스크롤 이동
-              window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth',
-              });
-            }
-          });
-        });
-        // 레프트메뉴 클릭시 스크롤 이동
-      });
+      // 수정 사항 - 1004 스크립트 제거
     </script>
   </body>
 </html>

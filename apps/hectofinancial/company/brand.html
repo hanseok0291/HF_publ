@@ -235,7 +235,6 @@
                     단단한 산세리프 형태의 로고타입은 뜨거운 열정을 가지고<br
                       class="pc-view"
                     />
-                    <!-- 수정 사항 - 0926 텍스트 수정 -->
                     긍정적인 변화를 추구하는 헥토의
                     <span class="suit">Go-Getter</span> 페르소나를 표현합니다.
                   </p>
@@ -279,7 +278,6 @@
                 <div class="title">
                   <p class="mdText eng">Secondary color</p>
                   <p class="smText smText1">
-                    <!-- 수정 사항 - 0926 텍스트 수정 -->
                     <span class="suit">Point color</span>
                   </p>
                   <p class="smText smText2">
@@ -301,14 +299,12 @@
                   </div>
                 </div>
               </div>
-              <!-- 수정 사항 - 0926 영역 삭제 -->
               <div id="typo" class="box">
                 <div class="title">
                   <h3>
                     <span class="eng">Typeface</span>
                     지정서체
                   </h3>
-                  <!-- 수정 사항 - 0926 텍스트 suit 클래스 추가 -->
                   <p>
                     헥토의 국문 지정서체는
                     <span class="suit">Noto Sans KR</span>입니다. 영문
@@ -318,7 +314,6 @@
                     <span class="suit">Proxima Nova</span>
                     서체를 위계에 따라 사용합니다.
                   </p>
-                  <!-- //수정 사항 - 0926 텍스트 suit 클래스 추가 -->
                 </div>
                 <div class="contentBox">
                   <div class="imgBox">
@@ -339,7 +334,6 @@
                       alt=""
                       class="pc-view"
                     />
-                    <!-- 수정 사항 - 0926 mo 이미지 -> 텍스트로 변경 -->
                     <div class="mo-view">
                       <p>
                         <strong class="title">글로벌 라이프-테크 컴퍼니</strong>
@@ -433,14 +427,12 @@
               통신판매업 신고번호 : 제2017-서울강남-00914호
             </p>
             <p class="company_info2">
-              <!-- 수정 사항  - 띄어쓰기 mo만 적용 -->
               대표전화 : 1600-5220(고객) 1600-5220(가맹점) <br />
               FAX : 02-6008-5158(제휴/계약문의)<br
                 class="only_mo"
               />02-6008-4949(사고/영장접수)
               <br />
               E-mail : info_F@hecto.co.kr
-              <!-- //수정 사항  - 띄어쓰기 mo만 적용 -->
             </p>
             <ul class="link_wrap">
               <li><a href="#">온라인제보</a></li>
@@ -454,27 +446,22 @@
                 <p class="text_wrap">
                   <b>헥토파이낸셜 <span>ISO/IEC 27001</span></b> <br />
                   [인증범위] 통합전자결제서비스 <br />
-                  <!-- 수정 사항  - 띄어쓰기 pc만 적용 -->
                   [유효기간] 2023년 4월 18일 <br class="only_web" />
                   ~ 2025년 10월 31일
-                  <!-- //수정 사항  - 띄어쓰기 pc만 적용 -->
                 </p>
               </div>
               <div class="award_box">
                 <p class="text_wrap">
-                  <!-- 수정 사항  - 띄어쓰기 pc만 적용 -->
                   <b>헥토파이낸셜 <span>ISMS</span></b> <br />
                   [인증범위] 통합전자결제서비스 <br />
                   [유효기간] 2024년 7월 30일 <br class="only_web" />
                   ~ 2027년 7월 29일
-                  <!-- //수정 사항  - 띄어쓰기 pc만 적용 -->
                 </p>
               </div>
             </div>
           </div>
           <div class="bottom_contents">
             <p class="copyright">
-              <!-- 수정 사항  - 띄어쓰기 적용 -->
               <span class="only_web"
                 >Copyright(C) Hecto financial Co., Ltd. All rights
                 reserved.</span
@@ -482,7 +469,6 @@
               <span class="only_mo"
                 >ⓒ Hecto financial Co., Ltd. All rights reserved.</span
               >
-              <!-- //수정 사항  - 띄어쓰기 적용 -->
             </p>
             <div class="link_btn_wrap">
               <div class="sns_btn_wrap">
@@ -516,16 +502,7 @@
         var rightElement = document.getElementById('rightCon');
         var stickyTop = stickyElement.offsetTop;
 
-        window.addEventListener('scroll', function () {
-          if (window.scrollY > stickyTop) {
-            stickyElement.classList.add('sticky');
-            rightElement.classList.add('sticky');
-          } else {
-            stickyElement.classList.remove('sticky');
-            rightElement.classList.remove('sticky');
-          }
-        });
-        // 스크롤시 위치 고정
+        // 수정 사항 - 1004 스크립트 삭제
 
         // 레프트메뉴 클릭시 스크롤 이동
         // 모든 snb 링크를 선택
@@ -593,6 +570,52 @@
         if (colorWrap2) observer.observe(colorWrap2);
         if (colorWrap3) observer.observe(colorWrap3);
       });
+
+      // 수정 사항 - 1004 스크립트 수정
+      // 요소 선택
+      const sections = document.querySelectorAll('#rightCon .box');
+      const navLinks = document.querySelectorAll('#leftCon .snb li');
+
+      // 초기 상태 설정: 첫 번째 li에 'on' 클래스 추가
+      navLinks[0].classList.add('on');
+
+      // 스크롤 이벤트 핸들러
+      function handleScroll() {
+        // 첫 번째 및 두 번째 섹션의 위치 확인
+        const firstSectionTop = sections[0].getBoundingClientRect().top;
+        const secondSectionTop = sections[1].getBoundingClientRect().top;
+
+        // 첫 번째 섹션이 보일 때 첫 번째 li에 'on' 클래스 유지
+        if (firstSectionTop > 100) {
+          navLinks[0].classList.add('on');
+        } else if (secondSectionTop <= 100) {
+          // 두 번째 섹션이 보일 때 첫 번째 li에 'on' 클래스 제거
+          navLinks[0].classList.remove('on');
+        }
+
+        // 나머지 섹션에 대한 처리
+        sections.forEach((section, index) => {
+          const sectionTop = section.getBoundingClientRect().top;
+
+          // 각 섹션이 화면 최상단에서 100px 떨어졌는지 확인
+          if (sectionTop <= 100 && sectionTop > -section.offsetHeight) {
+            // 현재 섹션에 맞는 li 요소에 'on' 클래스 추가
+            navLinks[index].classList.add('on');
+          } else {
+            // 현재 섹션이 아닐 경우 'on' 클래스 제거
+            if (index > 0) {
+              // 첫 번째 섹션이 아닐 경우에만 제거
+              navLinks[index].classList.remove('on');
+            }
+          }
+        });
+      }
+
+      // 스크롤 이벤트 리스너 추가
+      window.addEventListener('scroll', handleScroll);
+
+      // 초기 호출 (페이지 로드 시)
+      handleScroll();
     </script>
   </body>
 </html>

@@ -441,9 +441,8 @@
         var rightElement = document.getElementById('rightCon');
         var stickyTop = stickyElement.offsetTop;
 
-        window.addEventListener('scroll', function () {
-          // 수정 사항 - 1004 스크립트 추가
-          // 섹션 위치에 따라 snb의 li에 on 클래스 추가
+        // 스크롤 이벤트에 따라 snb의 li에 on 클래스 추가 함수
+        function updateSnbOnScroll() {
           var sections = [
             { id: 'banking', liIndex: 0 },
             { id: 'pay', liIndex: 1 },
@@ -468,14 +467,27 @@
                 .classList.add('on');
             }
           });
+        }
+
+        // 스크롤 이벤트 리스너 추가
+        window.addEventListener('scroll', function () {
+          // 링크 클릭 상태일 때는 updateSnbOnScroll() 함수 호출 방지
+          if (!isLinkClicked) {
+            updateSnbOnScroll();
+          }
         });
 
-        // 레프트메뉴 클릭시 스크롤 이동
-        var links = document.querySelectorAll('.snb a');
+        // 링크 클릭 상태를 추적하기 위한 변수
+        let isLinkClicked = false;
+
+        const links = document.querySelectorAll('.snb a');
 
         links.forEach(function (link) {
           link.addEventListener('click', function (e) {
             e.preventDefault(); // 기본 링크 동작 방지
+
+            // 링크 클릭 상태를 true로 설정
+            isLinkClicked = true;
 
             var targetId = this.getAttribute('data-target');
             var targetElement = document.querySelector(targetId);
@@ -488,6 +500,11 @@
                 top: offsetPosition,
                 behavior: 'smooth',
               });
+
+              // 스크롤이 끝난 후 링크 클릭 상태를 false로 리셋
+              setTimeout(() => {
+                isLinkClicked = false;
+              }, 500); // 500ms 후에 리셋 (부드러운 스크롤이 끝나는 시간에 맞춰 조정)
             }
           });
         });

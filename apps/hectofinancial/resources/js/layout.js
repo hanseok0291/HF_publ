@@ -211,8 +211,6 @@ $(document).ready(function () {
     $(this).removeClass('open');
   });
 
-  var lastScrollTop = 0; // 마지막 스크롤 위치를 저장할 변수
-
   $(window).on('resize', function () {
     if ($(window).width() >= 768) {
       // 기존 스크롤 이벤트 핸들러 제거
@@ -222,8 +220,10 @@ $(document).ready(function () {
       // 새로운 스크롤 이벤트 핸들러 추가
       $(window).scroll(function () {
         if ($(this).scrollTop() > 0) {
+          $('#wrap').addClass('animation');
           $('#header').addClass('fixed');
         } else {
+          $('#wrap').removeClass('animation');
           $('#header').removeClass('fixed');
         }
       });

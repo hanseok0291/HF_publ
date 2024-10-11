@@ -123,7 +123,7 @@
                     <li><a href="#" target="_blank">서비스 요약</a></li>
                     <li><a href="#" target="_blank">뱅킹 서비스</a></li>
                     <li><a href="#" target="_blank">결제 서비스</a></li>
-                    <li><a href="#" target="_blank">내통장 결제</a></li>
+                    <li><a href="#" target="_blank">내통장결제</a></li>
                   </ul>
                 </div>
               </li>
@@ -496,43 +496,82 @@
     </div>
     <!-- //wrap -->
     <script>
+      // 수정 사항 - 1011 스크립트 전체 수정
       document.addEventListener('DOMContentLoaded', function () {
         // 스크롤시 위치 고정
         var stickyElement = document.getElementById('leftCon');
         var rightElement = document.getElementById('rightCon');
         var stickyTop = stickyElement.offsetTop;
 
-        // 수정 사항 - 1004 스크립트 삭제
+        // 스크롤 이벤트에 따라 snb의 li에 on 클래스 추가 함수
+        function updateSnbOnScroll() {
+          const sections = [
+            { id: 'logo', liIndex: 0 }, // 각 섹션 ID와 SNB 인덱스 매핑
+            { id: 'color', liIndex: 1 },
+            { id: 'typo', liIndex: 2 },
+          ];
 
-        // 레프트메뉴 클릭시 스크롤 이동
-        // 모든 snb 링크를 선택
-        var links = document.querySelectorAll('.snb a');
+          sections.forEach(function (section) {
+            const element = document.getElementById(section.id);
+            const elementPosition = element.getBoundingClientRect();
 
-        // 각 링크에 클릭 이벤트 리스너 추가
+            // 섹션이 최상단에서 100px 떨어져 있을 때
+            if (elementPosition.top <= 100 && elementPosition.bottom >= 0) {
+              // 모든 li에서 on 클래스 제거
+              document.querySelectorAll('.snb li').forEach(function (li) {
+                li.classList.remove('on');
+              });
+              // 해당 섹션에 맞는 li에 on 클래스 추가
+              document
+                .querySelector(
+                  '.snb li:nth-of-type(' + (section.liIndex + 1) + ')'
+                )
+                .classList.add('on');
+            }
+          });
+        }
+
+        // 링크 클릭 상태를 추적하기 위한 변수
+        let isLinkClicked = false;
+
+        const links = document.querySelectorAll('.snb a');
+
         links.forEach(function (link) {
           link.addEventListener('click', function (e) {
             e.preventDefault(); // 기본 링크 동작 방지
 
-            // 클릭한 링크의 data-target 속성 값 가져오기
-            var targetId = this.getAttribute('data-target');
-            var targetElement = document.querySelector(targetId);
+            // 링크 클릭 상태를 true로 설정
+            isLinkClicked = true;
+
+            const targetId = this.getAttribute('data-target');
+            const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
-              // 요소의 위치 가져오기
-              var elementPosition = targetElement.getBoundingClientRect().top;
+              const elementPosition = targetElement.getBoundingClientRect().top;
+              const offsetPosition = window.pageYOffset + elementPosition - 90; // 90px 위로 조정
 
-              // 현재 스크롤 위치 가져오기
-              var offsetPosition = window.pageYOffset + elementPosition - 40; // 40px 위로 조정
-
-              // 원하는 위치로 부드럽게 스크롤 이동
               window.scrollTo({
                 top: offsetPosition,
                 behavior: 'smooth',
               });
+
+              // 스크롤이 끝난 후 링크 클릭 상태를 false로 리셋하고 on 클래스 업데이트
+              setTimeout(() => {
+                isLinkClicked = false;
+                // 스크롤 후 업데이트된 위치에 따라 on 클래스 추가
+                updateSnbOnScroll(); // 클래스 업데이트 호출
+              }, 700); // 500ms 후에 리셋 (부드러운 스크롤이 끝나는 시간에 맞춰 조정)
             }
           });
         });
-        // 레프트메뉴 클릭시 스크롤 이동
+
+        // 스크롤 이벤트 리스너 추가
+        window.addEventListener('scroll', function () {
+          // 링크 클릭 상태일 때는 updateSnbOnScroll() 함수 호출 방지
+          if (!isLinkClicked) {
+            updateSnbOnScroll();
+          }
+        });
       });
 
       document.addEventListener('DOMContentLoaded', function () {
@@ -570,52 +609,6 @@
         if (colorWrap2) observer.observe(colorWrap2);
         if (colorWrap3) observer.observe(colorWrap3);
       });
-
-      // 수정 사항 - 1004 스크립트 수정
-      // 요소 선택
-      const sections = document.querySelectorAll('#rightCon .box');
-      const navLinks = document.querySelectorAll('#leftCon .snb li');
-
-      // 초기 상태 설정: 첫 번째 li에 'on' 클래스 추가
-      navLinks[0].classList.add('on');
-
-      // 스크롤 이벤트 핸들러
-      function handleScroll() {
-        // 첫 번째 및 두 번째 섹션의 위치 확인
-        const firstSectionTop = sections[0].getBoundingClientRect().top;
-        const secondSectionTop = sections[1].getBoundingClientRect().top;
-
-        // 첫 번째 섹션이 보일 때 첫 번째 li에 'on' 클래스 유지
-        if (firstSectionTop > 100) {
-          navLinks[0].classList.add('on');
-        } else if (secondSectionTop <= 100) {
-          // 두 번째 섹션이 보일 때 첫 번째 li에 'on' 클래스 제거
-          navLinks[0].classList.remove('on');
-        }
-
-        // 나머지 섹션에 대한 처리
-        sections.forEach((section, index) => {
-          const sectionTop = section.getBoundingClientRect().top;
-
-          // 각 섹션이 화면 최상단에서 100px 떨어졌는지 확인
-          if (sectionTop <= 100 && sectionTop > -section.offsetHeight) {
-            // 현재 섹션에 맞는 li 요소에 'on' 클래스 추가
-            navLinks[index].classList.add('on');
-          } else {
-            // 현재 섹션이 아닐 경우 'on' 클래스 제거
-            if (index > 0) {
-              // 첫 번째 섹션이 아닐 경우에만 제거
-              navLinks[index].classList.remove('on');
-            }
-          }
-        });
-      }
-
-      // 스크롤 이벤트 리스너 추가
-      window.addEventListener('scroll', handleScroll);
-
-      // 초기 호출 (페이지 로드 시)
-      handleScroll();
     </script>
   </body>
 </html>

@@ -235,101 +235,17 @@ $(document).ready(function () {
 
       // 새로운 스크롤 이벤트 핸들러 추가
       $(window).scroll(function () {
-        if ($('#wrap').hasClass('company')) {
-          // #wrap 요소에 company 클래스가 있는 경우
-          if ($(this).scrollTop() > 0) {
-            $('.company').addClass('style');
-            $('#wrap').addClass('white');
-            $('#wrap').addClass('animation');
-            $('#header').removeClass('fixed');
-          } else {
-          }
+        var currentScroll = $(this).scrollTop(); // 현재 스크롤 위치
 
-          var currentScroll = $(this).scrollTop(); // 현재 스크롤 위치
+        lastScrollTop = currentScroll; // 현재 스크롤 위치를 lastScrollTop에 저장
 
-          if (currentScroll > lastScrollTop) {
-            // 스크롤 다운 시
-            if (currentScroll > 150) {
-              $('#header .container').css('top', '-84px');
-            } else {
-              $('#header .container').css('top', '0');
-            }
-          } else {
-            // 스크롤 업 시
-            $('#header .container').css('top', '0'); // 헤더를 다시 보여줌
-            $('#wrap').removeClass('white');
-            $('#wrap').removeClass('animation');
-          }
+        if ($(this).scrollTop() > 0) {
+          $('#header').addClass('fixed');
         } else {
-          // #wrap 요소에 company 클래스가 없는 경우
-          if ($(this).scrollTop() > 150) {
-            $('#btn_top').fadeIn(200);
-          } else {
-            $('#btn_top').fadeOut(200);
-          }
-
-          var currentScroll = $(this).scrollTop(); // 현재 스크롤 위치
-
-          if (currentScroll > lastScrollTop) {
-            // 스크롤 다운 시
-            $('#header .container').css('top', '-84px'); // 헤더를 위로 숨김
-          } else {
-            // 스크롤 업 시
-            $('#header .container').css('top', '0'); // 헤더를 다시 보여줌
-          }
-
-          lastScrollTop = currentScroll; // 현재 스크롤 위치를 lastScrollTop에 저장
-
-          if ($(this).scrollTop() > 0) {
-            $('#header').addClass('fixed');
-          } else {
-            $('#header').removeClass('fixed');
-          }
+          $('#header').removeClass('fixed');
         }
 
         lastScrollTop = currentScroll; // 현재 스크롤 위치를 lastScrollTop에 저장
-      });
-    } else {
-      // 768px 미만에서는 기존 스크롤 이벤트 핸들러 제거
-      $('.company').addClass('style');
-      $('#wrap').addClass('white');
-      $('#wrap').addClass('animation');
-
-      var currentScroll = $(this).scrollTop(); // 현재 스크롤 위치
-
-      var lastScrollTop = 0; // 마지막 스크롤 위치를 저장할 변수
-      // 새로운 스크롤 이벤트 핸들러 추가
-      $(window).scroll(function () {
-        if ($('#wrap').hasClass('company')) {
-          $('#wrap').addClass('white'); // 모바일에서도 스크롤 시 유지
-          $('#wrap').addClass('animation'); // 모바일에서도 스크롤 시 유지
-          if (currentScroll > lastScrollTop) {
-            // 스크롤 다운 시
-            if (currentScroll > 150) {
-            } else {
-            }
-          } else {
-            // 스크롤 업 시
-          }
-        } else {
-        }
-      });
-      var lastScrollTop = 0; // 마지막 스크롤 위치를 저장할 변수
-
-      // 스크롤 이벤트로 GNB 위치 확인 (1280px 이상일 때만)
-      $(window).on('scroll', function () {
-        if ($(window).width() < 1280) {
-          var currentScroll = $(this).scrollTop(); // 현재 스크롤 위치
-
-          if (currentScroll > lastScrollTop) {
-            // 스크롤 다운 시
-            $('#header .container').css('top', '-84px'); // 헤더를 위로 숨김
-          } else {
-            // 스크롤 업 시
-            $('#header .container').css('top', '0'); // 헤더를 다시 보여줌
-          }
-          lastScrollTop = currentScroll; // 현재 스크롤 위치를 lastScrollTop에 저장
-        }
       });
     }
   });

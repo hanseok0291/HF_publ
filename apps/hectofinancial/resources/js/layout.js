@@ -112,33 +112,19 @@ $(document).ready(function () {
 
   // 스크롤 이벤트로 GNB 위치 확인 (1280px 이상일 때만)
   $(window).on('scroll', function () {
-    if ($(window).width() >= 1280) {
-      if ($(window).scrollTop() > 0) {
-        $('#header').addClass('fixed');
-      } else {
-        $('#header').removeClass('fixed');
-      }
-
-      var currentScroll = $(this).scrollTop(); // 현재 스크롤 위치
-
-      if (currentScroll > lastScrollTop) {
-        // 스크롤 다운 시
-        $('#header .container').css('top', '-84px'); // 헤더를 위로 숨김
-      } else {
-        // 스크롤 업 시
-        $('#header .container').css('top', '0'); // 헤더를 다시 보여줌
-      }
-
-      lastScrollTop = currentScroll; // 현재 스크롤 위치를 lastScrollTop에 저장
-
-      if ($(this).scrollTop() > 0) {
-        $('#header').addClass('fixed');
-      } else {
-        $('#header').removeClass('fixed');
-      }
+    // if ($(window).width() >= 1280) {
+    if ($(window).scrollTop() > 0) {
+      $('#header').addClass('fixed');
+    } else {
+      $('#header').removeClass('fixed');
     }
 
-    lastScrollTop = currentScroll; // 현재 스크롤 위치를 lastScrollTop에 저장
+    if ($(this).scrollTop() > 0) {
+      $('#header').addClass('fixed');
+    } else {
+      $('#header').removeClass('fixed');
+    }
+    // }
   });
 
   // GNB 언어 선택
@@ -235,18 +221,17 @@ $(document).ready(function () {
 
       // 새로운 스크롤 이벤트 핸들러 추가
       $(window).scroll(function () {
-        var currentScroll = $(this).scrollTop(); // 현재 스크롤 위치
-
-        lastScrollTop = currentScroll; // 현재 스크롤 위치를 lastScrollTop에 저장
-
         if ($(this).scrollTop() > 0) {
           $('#header').addClass('fixed');
         } else {
           $('#header').removeClass('fixed');
         }
-
-        lastScrollTop = currentScroll; // 현재 스크롤 위치를 lastScrollTop에 저장
       });
+    } else {
+      // 768px 미만에서는 기존 스크롤 이벤트 핸들러 제거
+      $('.company').addClass('style');
+      $('#wrap').addClass('white');
+      $('#wrap').addClass('animation');
     }
   });
 

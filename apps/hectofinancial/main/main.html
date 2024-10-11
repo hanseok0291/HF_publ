@@ -516,29 +516,26 @@
         <!-- //main contents -->
 
         <!-- popup -->
-        <!-- <div class="popup-main">
-          <div class="dimmed"></div>
-          <div class="popup_main">
+        <!-- 1011 최종 수정 -->
+        <div class="popup-main show ci-change">
+          <div class="popup-area">
             <div class="wrap">
               <div class="con">
                 <img
-                  src="../resources/images/main/popup/notice_fishing_20240528.png"
-                  alt="공지팝업"
+                  src="../resources/images/main/popup/notice_ci_change.png"
+                  alt="사명 변경 안내"
                 />
               </div>
               <div class="close_area">
-                <input type="checkbox" name="closeOK1" id="closeOK1" />
-                이 창을 다시 보지 않기
-                <a
+                <input type="checkbox" name="" id="" />이 창을 다시 보지 않기<a
                   href="javascript:void(0);"
                   class="btn_close"
-                  style="float: right"
                   >X 닫기</a
                 >
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
         <!-- //popup -->
       </div>
       <!-- //container -->
@@ -680,10 +677,21 @@
         },
       });
 
-      // 팝업 닫기 버튼 클릭
-      $(document).on('click', '.popup_main .btn_close', function () {
+      // 1011 최종 수정
+      $(document).on('click', '.popup-area .btn_close', function () {
         $('.popup-main').hide();
+        $('html').css('overflow-y', 'scroll');
       });
+      $(document).on('click', '.btn_box', function () {
+        $('.btn_box .btn').hide();
+        $('.btn_box .btn.on').show();
+      });
+      $(document).ready(function () {
+        if ($('.popup-main').hasClass('show')) {
+          $('html').css('overflow-y', 'hidden');
+        }
+      });
+      // 1011 최종 수정
     </script>
   </body>
 </html>

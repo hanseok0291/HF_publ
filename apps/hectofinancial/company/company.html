@@ -618,12 +618,25 @@
       );
 
       $(document).ready(function () {
+        // 1011 최종 수정 updateLogo 함수 수정
         function updateLogo() {
           if ($(window).width() >= 768) {
             $('.logo img').attr('src', '../resources/images/logo.svg');
             $('#wrap').removeClass('white');
           } else {
             $('.logo img').attr('src', '../resources/images/logo_white.svg');
+            $(window).scroll(function () {
+              if (!$('#header').hasClass('open')) {
+                if ($(window).scrollTop() <= 0) {
+                  $('.logo img').attr(
+                    'src',
+                    '../resources/images/logo_white.svg'
+                  );
+                } else {
+                  $('.logo img').attr('src', '../resources/images/logo.svg');
+                }
+              }
+            });
           }
         }
 

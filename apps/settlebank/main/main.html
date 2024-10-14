@@ -378,17 +378,17 @@
 		</div>
 		<!-- //quick -->
 		<!-- popup -->
-		<!-- <div class="popup-main">
-			<div class="dimmed" style="z-index: 9999"></div>
-			<div class="popup_main" style="position:fixed; left:50%; top:50%; margin:-300px 0 0 -300px; width:602px;">
+		<!-- 1008 수정 -->
+		<div class="popup-main ci-change show">
+			<div class="popup_main">
 				<div class="wrap">
-					<div class="con"><img src="../resources/image/main/notice_newci.png" alt="사명 변경 안내"></div>
+					<div class="con"><img src="../resources/image/main/popup/notice_ci_change.png" alt="사명 변경 안내"></div>
 					<div class="close_area">
-						<INPUT type="checkbox" name="" id="">이 창을 다시 보지 않기<a href="javascript:void(0);" class="btn_close">X 닫기</a>
+						<input type="checkbox" name="" id="">이 창을 다시 보지 않기<a href="javascript:void(0);" class="btn_close">X 닫기</a>
 					</div>
 				</div>
 			</div>
-		</div> -->
+		</div>
 		<!-- //popup -->
 	</div>
 	<!-- //container -->
@@ -466,11 +466,19 @@
 <script>
 $(document).on('click','.popup_main .btn_close',function(){
 	$('.popup-main').hide();
+	$("html").css("overflow-y","scroll"); // 1008 수정
 });
 $(document).on('click','.btn_box',function(){
 	$('.btn_box .btn').hide();
 	$('.btn_box .btn.on').show();
 });
+// 1008 수정
+$(document).ready(function(){
+	if($(".popup-main").hasClass("show")){
+		$("html").css("overflow-y","hidden");
+	}
+}); 
+// END 1008 수정
 </script>
 </body>
 </html>

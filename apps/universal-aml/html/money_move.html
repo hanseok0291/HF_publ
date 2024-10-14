@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>헥토파이낸셜</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+    <script src="../js/jquery-1.8.3.min.js"></script>
+    <script src="../js/common.js" defer></script>
+    <script src="../js/aml.js" defer></script>
+    <script src="../js/postcode.v2.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap" class="aml-home">
+      <!-- header -->
+      <header class="header white">
+        <div class="container">
+          <button type="button" class="btn-back btn"></button>
+          <h1 class="brand-name text">
+            <span>머니 이동하기</span>
+          </h1>
+          <button type="button" class="btn-close btn"></button>
+        </div>
+      </header>
+      <!-- //header -->
+
+      <!-- section -->
+      <section class="full">
+        <!-- container -->
+        <div id="" class="container-wrap charge-wrap full-wrap">
+          <div class="charge-container">
+            <div class="charge-header">이동 금액</div>
+            <div class="charge-amount">
+              <input type="text" numberOnlyMinComma="true" koreanCurrency="true" value="0 원" />
+              <button type="button" class="btn btn-del"></button>
+            </div>
+            <div class="charge-limit">
+              <span>출금 가능 금액</span>
+              <p><span class="color">200,000</span> 원</p>
+            </div>
+          </div>
+
+          <div class="">
+            <!-- 이동 플랫폼 -->
+            <div class="swiperWrap">
+              <div class="titWrap">
+                <p>이동 플랫폼</p>
+              </div>
+              <!-- Swiper -->
+              <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide balso">
+                    <p class="logo"></p>
+                    <p class="brand">발로소득</p>
+                    <p class="price">10,000<span class="won">원</span></p>
+                  </div>
+                  <div class="swiper-slide whistle">
+                    <p class="logo"></p>
+                    <p class="brand">휘슬</p>
+                    <p class="price">10,000<span class="won">원</span></p>
+                  </div>
+                  <div class="swiper-slide desimone">
+                    <p class="logo"></p>
+                    <p class="brand">드시모네</p>
+                    <p class="price">10,000<span class="won">원</span></p>
+                  </div>
+                  <div class="swiper-slide ddobak">
+                    <p class="logo"></p>
+                    <p class="brand">또박케어</p>
+                    <p class="price">10,000<span class="won">원</span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- //이동 플랫폼 -->
+          </div>
+        </div>
+        <!-- //container -->
+
+        <!-- footer -->
+        <div id="footer">
+          <!-- container -->
+          <div class="btn-wrap">
+            <button type="button" id="send" class="btn">머니 이동하기</button>
+          </div>
+          <!-- //container -->
+        </div>
+        <!-- //footer -->
+      </section>
+      <!-- //section -->
+    </div>
+    <!-- //wrap -->
+
+    <div id="modalJob" class="modal modal-slide modal-popup full">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="container">
+              <ul class="select-list">
+                <li class="bold">직장인</li>
+                <li>전문직(변호사, 의사 등)</li>
+                <li>공무원</li>
+                <li>개인사업자/자영업자</li>
+                <li>자유직/프리랜서</li>
+                <li>학생/군인</li>
+                <li>주부</li>
+                <li>무직</li>
+                <li>소액해외송금업</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal - common alert -->
+    <div id="commonAlert" class="modal modal-new" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div id="alertContents">
+              <p class="text-info"></p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="confirmOk" class="btn" data-dismiss="modal">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //modal - common alert -->
+
+    <!-- 필터 모달 -->
+    <div id="modalSlide01" class="modal modal-slide filter">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="container">
+              <div class="modal-list-wrap">
+                <div class="modal-list-tit">
+                  <h3>필터</h3>
+                  <button type="button" class="btn btn-close"></button>
+                </div>
+                <div class="modal-list">
+                  <ul>
+                    <li class="on">전체</li>
+                    <li>충전</li>
+                    <li>사용</li>
+                    <li>포인트 지급</li>
+                    <li>충전 취소</li>
+                    <li>사용 취소</li>
+                    <li>포인트 지급 취소</li>
+                    <li>대기 머니</li>
+                    <li>출금</li>
+                    <li>만료</li>
+                    <li>소멸</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- common prompt -->
+    <div id="commonPrompt" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="promptTitle"></h3>
+            <p id="promptContents"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" onclick="modalClose();" class="btn btn-cancel">아니오</button>
+            <button type="button" onclick="modalClose();" id="promptOk" class="btn btn-confirm">예</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //common prompt -->
+
+    <script>
+      $(".modal-list li").click(function () {
+        // Remove 'on' class from all siblings
+        $(this).siblings().removeClass("on");
+        // Add 'on' class to the clicked li
+        $(this).addClass("on");
+        // Get the text of the clicked li
+        var text = $(this).text();
+        // Set the text of .btn-filter
+        $(".btn-filter").text(text);
+        modalClose();
+      });
+
+      // 숫자 입력 처리 및 콤마 추가
+      $(document).on("keyup", "input:text[numberOnlyMinComma]", function (event) {
+        var strVal = $(this).val();
+        event = event || window.event;
+        var keyID = event.which ? event.which : event.keyCode;
+
+        if ((keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 46 || keyID == 8 || keyID == 109 || keyID == 189 || keyID == 9 || keyID == 37 || keyID == 39) {
+          if (strVal.length > 1 && (keyID == 109 || keyID == 189)) {
+            return false;
+          } else {
+            return;
+          }
+        } else {
+          return false;
+        }
+      });
+
+      $(document).on("keyup", "input:text[numberOnlyMinComma]", function () {
+        $(this).val(
+          $(this)
+            .val()
+            .replace(/[^-\.0-9]/gi, "")
+        );
+        $(this).val(
+          $(this)
+            .val()
+            .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+        );
+      });
+
+      // focus가 사라지면 '원' 추가
+      $(document).on("blur", "input:text[numberOnlyMinComma]", function () {
+        var val = $(this).val();
+        if (val && !val.endsWith(" 원")) {
+          $(this).val(val + " 원");
+        }
+      });
+
+      // focus가 되면 '원' 제거
+      $(document).on("focus", "input:text[numberOnlyMinComma]", function () {
+        var val = $(this).val();
+        if (val.endsWith(" 원")) {
+          $(this).val(val.replace(" 원", ""));
+        }
+      });
+
+      // del 버튼 금액 제거
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelector(".btn-del").addEventListener("click", () => {
+          document.querySelector('.charge-amount input[type="text"]').value = "";
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const listItems = document.querySelectorAll(".charge-type-list li");
+
+        listItems.forEach((item) => {
+          item.addEventListener("click", () => {
+            // Remove 'on' class from all list items
+            listItems.forEach((li) => li.classList.remove("on"));
+
+            // Add 'on' class to the clicked list item
+            item.classList.add("on");
+          });
+        });
+      });
+
+      $("#send").click(function () {
+        $.promptMessage("", "선불충전서비스를 이용하기 위해서는<br>본인확인이 필요합니다.<br><br><b>본인확인을 계속 하시겠습니까?</b>", $("#commonPrompt"));
+      });
+
+      // 입력 가능금액 툴팁 버튼
+      $(".btn-tooltip").click(function () {
+        $(".popover").toggle();
+      });
+
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1.2, // 1개 슬라이드를 꽉 채우고 옆에 살짝 보이도록
+        spaceBetween: 0, // 슬라이드 간의 간격 설정
+        centeredSlides: true, // 현재 슬라이드가 중앙에 오도록
+        loop: true, // 무한 루프 기능
+      });
+    </script>
+  </body>
+</html>

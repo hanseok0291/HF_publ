@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>헥토파이낸셜</title>
+    <link rel="stylesheet" href="../../css/reset.css" />
+    <link rel="stylesheet" href="../../css/showcase.css" />
+    <script src="../../js/jquery-1.8.3.min.js"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap" class="showCase2">
+      <!-- header -->
+      <header class="header">
+        <span></span>
+        <h1 class="brand-name">
+          <span class="my-logo"><img src="../../images/showcase/logo_010pay.png" alt="헥토파이낸셜" /></span>
+        </h1>
+        <a href="./showcase_01.html" class="btn-close btn"></a>
+      </header>
+      <!-- //header -->
+
+      <!-- section -->
+      <section>
+        <!-- container -->
+        <div id="content" class="container">
+          <div class="guideBox">
+            <p class="title">경품 추천 목적의 개인정보 수집 이용 동의</p>
+            <ul>
+              <li>개인정보의 수집 이용 목적 : 이벤트 진행 및 경품 전송</li>
+              <li>수집하는 개인정보의 항목 : 휴대폰번호</li>
+              <li>개인정보의 보유 이용기간 : 이벤트 경품 전송 후 즉시파기</li>
+              <li>개인정보의 수집 및 이용에 대한 동의를 거부할 수 있으며, 이 경우 이벤트 참여가 제한됩니다.</li>
+            </ul>
+
+            <div class="radio-group">
+              <div class="radio-option">
+                <input type="radio" id="yes" name="agreement" value="yes" checked />
+                <label for="yes">네. 동의합니다.</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" id="no" name="agreement" value="no" />
+                <label for="no">아니요. 동의하지 않습니다. <span>(경품 추첨에서 제외)</span></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="phone-container">
+            <div class="phone-header">휴대폰 번호</div>
+            <div class="phone-amount">
+              <input type="text" id="phone-input" maxlength="13" placeholder="" />
+            </div>
+          </div>
+
+          <div class="btn-wrap">
+            <button type="button" id="send" class="btn btn-default" disabled>이벤트 참여 완료</button>
+          </div>
+        </div>
+        <!-- //container -->
+      </section>
+      <!-- //section -->
+
+      <!-- modal - common alert -->
+      <div id="commonAlert" class="modal modal-alert modal-new" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div id="alertContents">
+                <p class="text-info">이벤트 참여가 완료되었습니다.</p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <!-- <button type="button" id="confirmOk" class="btn" data-dismiss="modal">확인</button> -->
+              <a href="./showcase_01.html" id="confirmOk" class="btn" data-dismiss="modal">확인</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- //modal - common alert -->
+    </div>
+    <!-- //wrap -->
+
+    <!-- //common prompt -->
+    <script>
+      document.getElementById("phone-input").addEventListener("input", function () {
+        let input = this.value.replace(/[^0-9]/g, ""); // 숫자만 남기기
+
+        // 숫자 길이에 따라 하이픈 추가
+        if (input.length >= 7) {
+          input = input.replace(/(\d{3})(\d{4})(\d{0,4})/, "$1-$2-$3");
+        } else if (input.length > 3) {
+          input = input.replace(/(\d{3})(\d{0,4})/, "$1-$2");
+        }
+        this.value = input;
+      });
+
+      // 키 다운 이벤트 추가
+      document.getElementById("phone-input").addEventListener("keydown", function (event) {
+        if (event.key === "Backspace") {
+          const value = this.value;
+          // 하이픈을 제외한 길이 체크
+          if (value.length === 1) {
+            this.value = "";
+          } else if (value.endsWith("-")) {
+            this.value = value.slice(0, -1);
+          }
+        }
+      });
+
+      // radio button의 상태 변화 감지
+      document.querySelectorAll('input[name="agreement"]').forEach(function (radio) {
+        radio.addEventListener("change", function () {
+          const phoneContainer = document.querySelector(".phone-container");
+
+          if (document.getElementById("yes").checked) {
+            phoneContainer.style.opacity = "1"; // "네"가 체크되어 있으면 표시
+          } else {
+            phoneContainer.style.opacity = "0"; // "아니오"가 체크되어 있으면 감추기
+          }
+        });
+      });
+
+      // 페이지 로드 시 초기 상태 설정 (네가 체크되어 있을 경우)
+      window.addEventListener("DOMContentLoaded", function () {
+        const phoneContainer = document.querySelector(".phone-container");
+
+        if (document.getElementById("yes").checked) {
+          phoneContainer.style.opacity = "1"; // "네"가 체크되어 있으면 표시
+        } else {
+          phoneContainer.style.opacity = "0"; // "아니오"가 체크되어 있으면 감추기
+        }
+      });
+
+      // 최하단 버튼 활성화
+      document.getElementById("phone-input").addEventListener("input", function () {
+        const phoneInput = document.getElementById("phone-input");
+        const sendButton = document.getElementById("send");
+
+        // 입력 값이 13자리가 되면 버튼 활성화
+        if (phoneInput.value.length === 13) {
+          sendButton.removeAttribute("disabled"); // disabled 속성 제거
+          sendButton.classList.remove("btn-default"); // btn-default 클래스 제거
+        } else {
+          sendButton.setAttribute("disabled", true); // disabled 속성 추가
+          sendButton.classList.add("btn-default"); // btn-default 클래스 추가
+        }
+      });
+
+      // 얼럿 표시 버튼
+      $("#send").click(function () {
+        $("#commonAlert").show();
+      });
+
+      // 얼럿 닫기 버튼
+      $("[data-dismiss='modal']").click(function () {
+        var target = $(this).parents(".modal");
+        $(target).hide(); // 모달 닫기
+      });
+    </script>
+  </body>
+</html>

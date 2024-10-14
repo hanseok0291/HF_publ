@@ -257,16 +257,12 @@ $(function () {
 	function wrapPadding() {
 			var fixFoot = $(".bottom-area.fixed");
 			const matchesMediaQuery = window.matchMedia("(max-width:999px) and (orientation:landscape)").matches;
-			const matchesSpecialSize = window.matchMedia("(min-width:690px) and (max-width:720px) and (min-height:750px) and (max-height:900px)").matches;
+			const matchesSpecialSize = window.matchMedia("(min-width:690px) and (max-width:720px) and (min-height:720px) and (max-height:750px)").matches;
 
-			console.log('matchesMediaQuery:', matchesMediaQuery);
-			console.log('matchesSpecialSize:', matchesSpecialSize);
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
 
 			if (fixFoot.length > 0 && (!matchesMediaQuery || matchesSpecialSize)) {
-					var fixFootHeight = $(fixFoot).innerHeight();
-					$("#content").css("padding-bottom", fixFootHeight);
-					$(".wrap.oneStore").removeClass("horizontal");
-			} else if (matchesSpecialSize) {
 					var fixFootHeight = $(fixFoot).innerHeight();
 					$("#content").css("padding-bottom", fixFootHeight);
 					$(".wrap.oneStore").removeClass("horizontal");
@@ -274,6 +270,28 @@ $(function () {
 					$(".wrap.oneStore").addClass("horizontal");
 					$("#content").css("padding-bottom", 24);
 			}
+
+      // fold 6 대응
+      if (matchesSpecialSize) {
+        console.log('matchesSpecialSize:', matchesSpecialSize);
+        var fixFootHeight = $(fixFoot).innerHeight();
+        $("#content").addClass("fold-style");
+        $("#content").css("padding-bottom", fixFootHeight);
+        $(".wrap.oneStore").removeClass("horizontal");
+
+        // accNo input 요소에 대한 포커스/블러 이벤트 처리
+        $('#accNo').on('focus', function () {
+          // 포커스가 될 때 .bottom-area에 fold-top-0 클래스 추가
+          $('.bottom-area').addClass('fold-top-0');
+        });
+
+        $('#accNo').on('blur', function () {
+          // 포커스가 해제될 때 .bottom-area에서 fold-top-0 클래스 제거
+          $('.bottom-area').removeClass('fold-top-0');
+        });
+      } else {
+        $("#content").removeClass("fold-style");
+      }
 	}
   wrapPadding();
 

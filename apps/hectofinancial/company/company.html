@@ -370,8 +370,8 @@
                   </div>
                   <button class="slide_control" type="button"></button>
                 </div>
-
-                <div class="swiper swiper_1">
+                <!-- swiper_1 => rolling-container로 변경 -->
+                <div class="swiper rolling-container">
                   <div class="swiper-wrapper">
                     <div class="swiper-slide slide_1">
                       <dl class="top_box">
@@ -465,7 +465,6 @@
           <h2 class="company_name">(주)헥토파이낸셜</h2>
           <div class="left_contents">
             <p class="company_info1">
-              (주)헥토파이낸셜대표이사 : 최종원 <br />
               서울특별시 강남구 테헤란로34길 6, 9~10층(역삼동, 태광타워) <br />
               사업자등록번호 : 101-81-63383 <br />
               통신판매업 신고번호 : 제2017-서울강남-00914호
@@ -567,55 +566,56 @@
         observer.observe(cardWrap);
       });
 
-      // 수정 사항 - 0926 슬라이드 스크립트 수정
-      var swiper = new Swiper('.swiper_1', {
-        slidesPerView: 'auto',
-        spaceBetween: 10,
-        autoplay: false,
-      });
+      /* 수정 사항 - 여기부터 삭제 */
+      // var swiper = new Swiper('.swiper_1', {
+      //   slidesPerView: 'auto',
+      //   spaceBetween: 10,
+      //   autoplay: false,
+      // });
 
-      var $sliderWrapper = $('.swiper_1 .swiper-wrapper');
-      var $slides = $('.swiper_1 .swiper-slide');
+      // var $sliderWrapper = $('.rolling-container .swiper-wrapper');
+      // var $slides = $('.rolling-container .swiper-slide');
 
-      // 슬라이드 트랙 복사
-      $('.swiper_1').append($sliderWrapper.clone()); // 복사한 슬라이드를 트랙에 추가
+      // // 슬라이드 트랙 복사
+      // $('.rolling-container').append($sliderWrapper.clone()); // 복사한 슬라이드를 트랙에 추가
 
       // 슬라이드 컨트롤 버튼 클릭 이벤트
-      var isPlaying = true;
-      $('.slide_control').addClass('pause');
-      $('.slide_control').on('click', function () {
-        if (!$(this).hasClass('pause')) {
-          $('.swiper_1 .swiper-wrapper').css('animation-play-state', 'running');
-          $(this).addClass('pause');
-          isPlaying = true; // isPlaying이 true가 되면 호버 이벤트가 동작하게 설정
-        } else {
-          $('.swiper_1 .swiper-wrapper').css('animation-play-state', 'paused');
-          $(this).removeClass('pause');
-          isPlaying = false; // isPlaying이 false일 때 호버 이벤트 비활성화
-        }
-      });
+      // var isPlaying = true;
+      // $('.slide_control').addClass('pause');
+      // $('.slide_control').on('click', function () {
+      //   if (!$(this).hasClass('pause')) {
+      //     $('.swiper_1 .swiper-wrapper').css('animation-play-state', 'running');
+      //     $(this).addClass('pause');
+      //     isPlaying = true; // isPlaying이 true가 되면 호버 이벤트가 동작하게 설정
+      //   } else {
+      //     $('.swiper_1 .swiper-wrapper').css('animation-play-state', 'paused');
+      //     $(this).removeClass('pause');
+      //     isPlaying = false; // isPlaying이 false일 때 호버 이벤트 비활성화
+      //   }
+      // });
 
       // 슬라이더에 마우스 올렸을 때 일시 정지
-      $('.swiper_1').hover(
-        function () {
-          if (isPlaying) {
-            // isPlaying이 true일 때만 애니메이션 일시정지
-            $('.swiper_1 .swiper-wrapper').css(
-              'animation-play-state',
-              'paused'
-            );
-          }
-        },
-        function () {
-          if (isPlaying) {
-            // isPlaying이 true일 때만 애니메이션 재개
-            $('.swiper_1 .swiper-wrapper').css(
-              'animation-play-state',
-              'running'
-            );
-          }
-        }
-      );
+      // $('.swiper_1').hover(
+      //   function () {
+      //     if (isPlaying) {
+      //       // isPlaying이 true일 때만 애니메이션 일시정지
+      //       $('.swiper_1 .swiper-wrapper').css(
+      //         'animation-play-state',
+      //         'paused'
+      //       );
+      //     }
+      //   },
+      //   function () {
+      //     if (isPlaying) {
+      //       // isPlaying이 true일 때만 애니메이션 재개
+      //       $('.swiper_1 .swiper-wrapper').css(
+      //         'animation-play-state',
+      //         'running'
+      //       );
+      //     }
+      //   }
+      // );
+      /* 수정 사항 - 여기까지 삭제 */
 
       $(document).ready(function () {
         // 1011 최종 수정 updateLogo 함수 수정

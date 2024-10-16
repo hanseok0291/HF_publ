@@ -268,6 +268,153 @@ $(document).ready(function () {
     var select_name = $(this).children('option:selected').text();
     $(this).siblings('label').text(select_name);
   });
+
+  if ($('.rolling-container').length > 0) {
+    var rolling = new Swiper('.rolling-container', {
+      slidesPerView: 'auto',
+      loop: true,
+      loopAdditionalSlides: 1,
+      loopAddBlankSlides: true,
+      autoplay: {
+        delay: 0,
+        disableOnInteraction: true,
+      },
+      speed: 3000,
+      // freeMode: true,
+      // freeModeMomentum: false,
+    });
+
+    var isPlaying = true; // 현재 슬라이드 상태를 추적
+    var isHovering = false; // 마우스 hover 상태를 추적
+    var savedSwiperX = 0; // Swiper X 값을 저장할 변수
+    var savedActualX = 0; // 실제 X 값을 저장할 변수
+    var remainingDuration = 3000; // 남은 transition-duration 값을 저장할 변수
+    var slideStartTime = 0; // 슬라이드가 시작된 시간을 저장할 변수
+    var slideDuration = 3000; // 슬라이드가 진행되는 전체 시간 (3000ms)
+    var elapsedTime = 0; // 경과된 시간을 저장할 변수
+    var totalElapsedTime = 0; // 전체 경과 시간을 축적하기 위한 변수
+
+    // Swiper가 설정한 translate3d()의 X 값을 가져오는 함수 (Swiper X)
+    function getSwiperTranslateX() {
+      const swiperWrapper = document.querySelector(
+        '.rolling-container .swiper-wrapper'
+      );
+      const transformValue = swiperWrapper.style.transform; // 인라인 스타일에서 transform 값 가져오기
+
+      if (transformValue && transformValue.includes('translate3d')) {
+        const translateValues = transformValue
+          .match(/translate3d\((.*?)\)/)[1]
+          .split(', ');
+        return parseFloat(translateValues[0]); // Swiper X축 값 반환
+      }
+      return 0; // 기본 값 0 반환
+    }
+
+    // 현재 진행 중인 실제 X 값을 가져오는 함수 (Actual X)
+    function getActualTranslateX() {
+      const swiperWrapper = document.querySelector(
+        '.rolling-container .swiper-wrapper'
+      );
+      const style = window.getComputedStyle(swiperWrapper); // 현재 스타일 가져오기
+      const matrix = new WebKitCSSMatrix(style.transform); // transform 값을 matrix로 변환
+      return matrix.m41; // 실제 X축 값 (m41은 translateX 값)
+    }
+
+    // 정지 시 슬라이드가 진행된 시간을 계산하는 함수
+    function calculateElapsedTime() {
+      const currentTime = Date.now();
+      return currentTime - slideStartTime; // 슬라이드 시작 후 경과된 시간(ms)
+    }
+
+    // 슬라이드를 정지시키기 전 Swiper X 값을 미리 저장하고, 정지
+    function pauseRolling() {
+      elapsedTime = calculateElapsedTime(); // 이번 정지 시 경과된 시간(ms)
+      totalElapsedTime += elapsedTime; // 이번까지 누적된 전체 경과 시간
+
+      // 남은 시간을 계산할 때는 처음부터 진행된 전체 시간을 기준으로 빼줌
+      remainingDuration = slideDuration - totalElapsedTime; // 3000ms에서 누적된 시간 빼기
+
+      savedSwiperX = getSwiperTranslateX(); // Swiper X 값을 미리 저장
+      savedActualX = getActualTranslateX(); // 실제 X 값을 저장
+      rolling.autoplay.stop(); // Swiper의 자동 재생 멈춤
+
+      // 실제 X 값으로 .swiper-wrapper에 transform 적용하여 정지
+      $('.rolling-container .swiper-wrapper').css(
+        'transform',
+        `translate3d(${savedActualX}px, 0, 0)`
+      ); // 실제 X 값으로 고정
+    }
+
+    // 슬라이드를 다시 시작하는 함수 (저장된 Swiper X 값으로 재개)
+    function startRolling() {
+      // 남은 시간을 이용해 transition-duration 설정
+      $('.rolling-container .swiper-wrapper').css(
+        'transition',
+        `transform ${remainingDuration}ms ease`
+      ); // 남은 시간 적용
+      $('.rolling-container .swiper-wrapper').css(
+        'transform',
+        `translate3d(${savedSwiperX}px, 0, 0)`
+      ); // Swiper X 값으로 복구
+
+      // 약간의 지연 후 다시 transition 적용하여 자연스럽게 재생
+      setTimeout(function () {
+        rolling.autoplay.start(); // Swiper 자동 재생 다시 시작
+        slideStartTime = Date.now(); // 슬라이드가 다시 시작된 시간 저장
+      }, 50); // 50ms 지연 후 재생
+    }
+
+    // 슬라이드가 끝날 때 호출되는 함수
+    function resetSlideStatus() {
+      totalElapsedTime = 0; // 슬라이드가 끝나면 전체 경과 시간을 초기화
+      remainingDuration = slideDuration; // 남은 시간도 초기화
+    }
+
+    // 버튼 클릭 시 슬라이드를 정지 또는 다시 시작하는 이벤트 핸들러
+    $('.slide_control').on('click', function () {
+      if (isPlaying) {
+        pauseRolling(); // 슬라이드 정지
+        $(this).removeClass('pause');
+        isPlaying = false;
+      } else {
+        startRolling(); // 슬라이드 재시작
+        $(this).addClass('pause');
+        isPlaying = true;
+      }
+    });
+
+    // .swiper-wrapper에 hover 시에도 슬라이드를 정지하고, 다시 시작
+    $('.rolling-container .swiper-wrapper').on('mouseenter', function () {
+      if (isPlaying && !isHovering) {
+        // 이미 정지된 상태가 아니라면
+        pauseRolling(); // Hover 시 슬라이드 정지
+        $('.slide_control').removeClass('pause');
+        isPlaying = false; // 상태를 정지로 변경
+        isHovering = true; // Hover 상태 기록
+      }
+    });
+
+    $('.rolling-container .swiper-wrapper').on('mouseleave', function () {
+      if (!isPlaying && isHovering) {
+        // 이미 재생 중인 상태가 아니라면
+        startRolling(); // Hover 해제 시 슬라이드 재시작
+        $('.slide_control').addClass('pause');
+        isPlaying = true; // 상태를 재생으로 변경
+        isHovering = false; // Hover 상태 해제
+      }
+    });
+
+    // 슬라이드가 처음 시작될 때 현재 시간을 저장하고, 슬라이드가 끝날 때만 초기화
+    rolling.on('slideChange', function () {
+      totalElapsedTime = 0; // 슬라이드가 변경되면 누적 경과 시간을 초기화
+      slideStartTime = Date.now(); // 슬라이드가 시작된 시간 저장
+    });
+
+    // 슬라이드가 완료될 때만 초기화하는 이벤트
+    rolling.on('reachEnd', function () {
+      resetSlideStatus(); // 슬라이드가 끝났을 때만 전체 경과 시간과 남은 시간을 초기화
+    });
+  }
 });
 
 // 이용약관

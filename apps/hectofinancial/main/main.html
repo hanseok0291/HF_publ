@@ -258,6 +258,10 @@
                 헥토파이낸셜의 모든 서비스를 <br />
                 지금 바로 신청하세요.
               </p>
+              <div class="tel_text">
+                <b>1666-7065</b>
+                <span>(신규 계약 문의)</span>
+              </div>
               <a class="service_btn" href="#">서비스 이용 신청</a>
             </div>
           </div>
@@ -268,9 +272,10 @@
                 금융의 가능성을 확장하는 <br />
                 글로벌 핀테크 컴퍼니
               </h2>
-              <button class="slide_control" type="button"></button>
+              <button class="slide_control pause" type="button"></button>
             </div>
-            <div class="swiper swiper_1">
+            <!-- swiper_1 => rolling-container로 변경 -->
+            <div class="swiper rolling-container">
               <div class="swiper-wrapper">
                 <div class="swiper-slide slide_1">
                   <dl class="top_box">
@@ -353,7 +358,6 @@
             </div>
             <div class="swiper swiper_2">
               <div class="swiper-wrapper">
-                <!-- 수정 사항 - 1004 swiper-slide 링크 영역으로 변경 div => a 아래 모두 포함 -->
                 <a href="#" class="swiper-slide slide_1">
                   <p class="company only_mo">Hecto Financial</p>
                   <dl class="top_box">
@@ -516,7 +520,6 @@
         <!-- //main contents -->
 
         <!-- popup -->
-        <!-- 1011 최종 수정 -->
         <div class="popup-main show ci-change">
           <div class="popup-area">
             <div class="wrap">
@@ -527,11 +530,10 @@
                 />
               </div>
               <div class="close_area">
-                <input type="checkbox" name="" id="" />이 창을 다시 보지 않기<a
-                  href="javascript:void(0);"
-                  class="btn_close"
-                  >X 닫기</a
-                >
+                <button type="button" class="notview_btn">
+                  오늘은 그만보기
+                </button>
+                <button type="button" class="btn_close">닫기</button>
               </div>
             </div>
           </div>
@@ -546,27 +548,29 @@
           <h2 class="company_name">(주)헥토파이낸셜</h2>
           <div class="left_contents">
             <p class="company_info1">
-              (주)헥토파이낸셜대표이사 : 최종원 <br />
               서울특별시 강남구 테헤란로34길 6, 9~10층(역삼동, 태광타워) <br />
               사업자등록번호 : 101-81-63383 <br />
               통신판매업 신고번호 : 제2017-서울강남-00914호
             </p>
             <p class="company_info2">
-              대표전화 : 1600-5220(고객) 1600-5220(가맹점) <br />
-              FAX : 02-6008-5158(제휴/계약문의)<br
-                class="only_mo"
-              />02-6008-4949(사고/영장접수)
+              대표전화 : 1600-5220(고객)&nbsp;&nbsp;<span class="line"></span
+              >&nbsp;&nbsp;1600-5220(가맹점)&nbsp;&nbsp;<span
+                class="line"
+              ></span
+              >&nbsp;&nbsp;<br class="only_mo" />1666-7065(신규 계약 문의)<br />
+              FAX : 02-6008-5158(제휴/계약문의)&nbsp;&nbsp;<span
+                class="line"
+              ></span
+              >&nbsp;&nbsp;<br class="only_mo" />02-6008-4949(사고/영장접수)
               <br />
               E-mail : info_F@hecto.co.kr
             </p>
-            <!-- 수정 사항 - 1004 내용 변경 -->
             <ul class="link_wrap">
-              <li><a href="#">온라인제보</a></li>
-              <li><a href="#">개인정보처리방침</a></li>
               <li><a href="#">이용약관</a></li>
               <li><a href="#">전자금융거래 이용약관</a></li>
+              <li><a href="#" class="highlight">개인정보처리방침</a></li>
+              <li><a href="#">온라인제보</a></li>
             </ul>
-            <!-- END 수정 사항 - 1004 내용 변경 -->
           </div>
           <div class="right_contents">
             <div class="award_wrap">
@@ -592,7 +596,6 @@
           </div>
           <div class="bottom_contents">
             <p class="copyright">
-              <!-- 수정 사항 - 0926 PC MO Copyright 내용 통일 -->
               <span
                 >Copyright(C) Hecto financial Co., Ltd. All rights
                 reserved.</span
@@ -625,49 +628,6 @@
     </div>
     <!-- //wrap -->
     <script>
-      var $sliderWrapper = $('.swiper_1 .swiper-wrapper');
-      var $slides = $('.swiper_1 .swiper-slide');
-
-      // 슬라이드 트랙 복사
-      $('.swiper_1').append($sliderWrapper.clone()); // 복사한 슬라이드를 트랙에 추가
-
-      // 슬라이드 컨트롤 버튼 클릭 이벤트
-      var isPlaying = true;
-      $('.slide_control').addClass('pause');
-      $('.slide_control').on('click', function () {
-        if (!$(this).hasClass('pause')) {
-          $('.swiper_1 .swiper-wrapper').css('animation-play-state', 'running');
-          $(this).addClass('pause');
-          isPlaying = true; // isPlaying이 true가 되면 호버 이벤트가 동작하게 설정
-        } else {
-          $('.swiper_1 .swiper-wrapper').css('animation-play-state', 'paused');
-          $(this).removeClass('pause');
-          isPlaying = false; // isPlaying이 false일 때 호버 이벤트 비활성화
-        }
-      });
-
-      // 호버 시 애니메이션 정지
-      $('.swiper_1').hover(
-        function () {
-          if (isPlaying) {
-            // isPlaying이 true일 때만 애니메이션 일시정지
-            $('.swiper_1 .swiper-wrapper').css(
-              'animation-play-state',
-              'paused'
-            );
-          }
-        },
-        function () {
-          if (isPlaying) {
-            // isPlaying이 true일 때만 애니메이션 재개
-            $('.swiper_1 .swiper-wrapper').css(
-              'animation-play-state',
-              'running'
-            );
-          }
-        }
-      );
-
       var swiper2 = new Swiper('.swiper_2', {
         slidesPerView: 'auto',
         spaceBetween: 16,
@@ -677,7 +637,6 @@
         },
       });
 
-      // 1011 최종 수정
       $(document).on('click', '.popup-area .btn_close', function () {
         $('.popup-main').hide();
         $('html').css('overflow-y', 'scroll');
@@ -691,7 +650,6 @@
           $('html').css('overflow-y', 'hidden');
         }
       });
-      // 1011 최종 수정
     </script>
   </body>
 </html>

@@ -48,7 +48,7 @@ const index = () => {
       <HomeTab activeTab={1} />
       <Container isTab padding="0" backgroundColor="#fff" className={styleCommon.hidden}>
         {/* HOME */}
-        <Home case1 case3 /> 
+        <Home case1 case2 /> 
       </Container>
       {/* 리또 신청 */}
       {/* <Apply full case1 /> */}

@@ -1,0 +1,949 @@
+/* #RESET
+------------------------------------------------------------*/
+*, *:after, *:before { -webkit-box-sizing: border-box; box-sizing: border-box; -webkit-text-size-adjust: none; text-size-adjust: none; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-font-smoothing: antialiased; } 
+html { -ms-touch-action: none; } 
+body, p, ul, menu, ol, li, dl, dt, dd, form, table, th, td,
+fieldset, input, textarea, select, button, h1, h2, h3, h4, h5, h6, pre, address, i, svg { margin: 0; padding: 0; } 
+html, body { width: 100%; height: 100%; } 
+body { background-color: #fff; font-family: 'pretendard', 'Nanum Square Round', 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; font-size: 13px; line-height: 1.5; letter-spacing: -0.03em; color: #444; } 
+header, footer, section, article, aside, nav, hgroup, details, menu, figure, figcaption { display: block; margin: 0; padding: 0; } 
+fieldset { border: 0; } 
+img { vertical-align: top; -ms-interpolation-mode: bicubic; border: 0; } 
+img, video, audio, object, embed, iframe { max-width: 100%; } 
+caption, legend { width: 0; height: 0; line-height: 0; visibility: hidden; overflow: hidden; } 
+table { border-spacing: 0; border-collapse: collapse; } 
+ul, ol, menu { list-style: none; } 
+a { color: #222; text-decoration: none; } 
+address, em, i { font-style: normal; } 
+del { text-decoration: none; } 
+button { overflow: hidden; border: 0; background: none; } 
+h1, h2, h3, h4, h5 { font-weight: 700; line-height: 1.4; } 
+strong, b { font-weight: 700; } 
+pre { word-break: break-all; white-space: pre-line; } 
+.mlAuto { margin-left: auto !important; }
+.mrAuto { margin-right: auto !important; }
+/*:focus { outline: 0; } */
+
+
+/* #FORM
+------------------------------------------------------------*/
+label, input, select, textarea, button { border: 0; border-radius: 0; background-color: transparent; -webkit-appearance: none; -moz-appearance: none; appearance: none; font-family: 'pretendard', 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif; font-size: 15px; letter-spacing: -0.03em; color: #222; vertical-align: top; } 
+label, input, select, textarea { outline: none; } 
+textarea { padding: 10px; width: 100%; border: 1px solid #ccc; resize: none; } 
+input[type="image"], input[type="submit"], input[type="cancel"], button, select { cursor: pointer; } 
+input:disabled, select:disabled, textarea:disabled,
+input[readonly], select[readonly], textarea[readonly],
+.disabled, .readonly { background-color: transparent; color: #9a9a9a; -webkit-text-fill-color: #9a9a9a; opacity:1; } 
+code { padding: 2px 4px; background-color: #f9f2f4; font-size: 96%; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; color: #c7254e; } 
+
+/* ----- input, select ----- */
+input[type="text"], input[type="password"], input[type="number"], input[type="email"], input[type="tel"],
+.input, select, .select { display: inline-block; padding: 7px 0; width: 100%; height: 45px; border-bottom: 1px solid #ccc; line-height: 30px; vertical-align: top; } 
+.input input[type="text"], .input input[type="password"], .input input[type="number"], .input input[type="email"], .input input[type="tel"],
+.input { padding: 0; } 
+input[type="text"], input[type="password"], input[type="number"], input[type="email"], input[type="tel"] { font-weight: 600; } 
+.input select, .input .select, .input input, .input .input { height: 44px; border: 0; } 
+input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="tel"]:focus, select:focus, textarea:focus, .input.focus { border-color: #FF6114; z-index: 2; border-width: 2px; } 
+select, .select { background: transparent url("../images/kyc/common/select-bg.svg") right 10px center no-repeat; background-size: 24px auto; text-align: left; } 
+select:disabled, .select:disabled, select[readony], .select[readony] { background-image: url("../images/select-disabled-bg.png?ver=20210331"); color: #888; cursor: default; } 
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: url('../images/kyc/common/calendar.svg') no-repeat center / contain;
+    width: 24px;
+    height: 24px;
+}
+
+/* input number */
+input[type='number'] { -moz-appearance: textfield; } 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; } 
+
+.container { max-width: 1024px; margin: 0 auto; }
+
+#wrap header { display: flex; align-items: center; justify-content: center; height: 100px; }
+#wrap .logo { width: 148px; height: 22px; background: url('../images/kyc/logo.png') no-repeat center / contain; margin: 0 auto; }
+
+/* 테이블 */
+.kyc .modal table { border: 0; border-top: 1px solid #000; border-bottom: 1px solid #000; }
+.kyc .modal table tr { border-bottom: 1px solid #cbcbcb; }
+.kyc .modal table tr:last-of-type { border-bottom: 0; }
+.kyc .modal table th {  background-color: #F5F5F7; padding: 9px 10px; border: 0; text-align: left; color: #000000; border-right: 1px solid #cbcbcb;  }
+.kyc .modal table td { background-color: #fff; padding: 9px 10px; border: 0; text-align: left; color: #333; }
+.kyc .modal table a { text-decoration: underline; color: #1E8AFF; }
+/* 테이블 */
+
+/* 폼 스타일링 */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+input[type="text"], input[type="tel"] {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 40px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+input[type="text"]::placeholder, input[type="tel"]::placeholder {
+    font-weight: 400;
+    color: #ACACAC;
+}
+.required:after {
+    content: ' *';
+    color: red;
+}
+.timer {
+    position: absolute;
+    right: 10px;
+    display: inline-block;
+    padding-left: 8px;
+    height: 45px;
+    line-height: 45px;
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+    color: #1E8AFF;
+}
+button {
+    padding: 10px 20px;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button:disabled {
+    background-color: #ccc;
+}
+.kyc .selectBox * { box-sizing: border-box; }
+.kyc .selectBox {
+    position: relative;
+    width: 100%;
+    min-width: 332px;
+    max-width: 332px;
+    height: 48px;
+    max-height: 48px;
+    border: 1px solid #dadada;
+    border-radius: 4px;
+    background: transparent url("../images/kyc/common/select-bg.svg") right 10px center no-repeat;
+    background-size: 24px;
+    cursor: pointer;
+    color: #acacac;
+}
+.kyc .selectBox:after {
+  content: '';
+  display: block; 
+  width: 2px;
+  height: 100%; 
+  position: absolute; 
+  top: 0; 
+  right: 35px;
+}
+.kyc .selectBox + input {
+    margin-left: 10px;
+}
+
+.kyc .selectBox .label {
+  display: flex;
+  align-items: center;
+  width: inherit;
+  height: inherit;
+  border: 0 none;
+  outline: 0 none;
+  padding-left: 15px;
+  background: transparent;
+  cursor: pointer;
+  color: #acacac;
+  max-width: inherit;
+}
+.kyc .selectBox.comp .label {
+    color: #222;
+}
+
+.kyc .selectBox .optionList {
+  position: absolute; 
+  top: 51px;
+  left: -1px;
+  width: 332px;
+  background: #fff;
+  color: #333;
+  list-style-type: none;
+  padding: 0;
+  border-radius: 5px;
+  overflow: hidden;
+  max-height: 0;
+  padding: 20px 10px;
+  display: none;
+  z-index: 1;
+}
+
+.kyc .selectBox.active .optionList {
+  max-height: 250px;
+  border: 1px solid #dadada;
+  display: block;
+  overflow-y: scroll;
+}
+
+.kyc .selectBox .optionItem {
+  padding: 0;
+  transition: .1s;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+.kyc .selectBox .optionItem:last-of-type {
+    margin-bottom: 0;
+}
+
+/* 스크롤 커스텀 */
+.kyc .optionList::-webkit-scrollbar{
+    width: 20px;
+}
+/* 스크롤바 막대 설정*/
+.kyc .optionList::-webkit-scrollbar-thumb{
+    background-color: rgba(203, 203, 203, 1);
+    border-radius: 10px; 
+	border: 8px solid rgba(255,255,255,1); /* 스크롤을 적용할 영역 색깔과 border 색상을 똑같이 맞춘다 */
+}
+.kyc .optionList::-webkit-scrollbar-track{
+	background-color: rgba(0,0,0,0); /* 스크롤바 뒷 배경을 투명 처리한다 */
+}
+
+/* 로그인 */
+.title {
+    font-family: Pretendard;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 23.87px;
+    text-align: center;
+    color: #000;
+}
+.inputItem {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+}
+.inputItem > div {
+    position: relative;
+    width: 100%;
+}
+.inputItem.col-2 > div {
+    width: 70%;
+}
+/* //로그인 */
+
+/* kyc 공통 */
+.kyc .titleWrap {
+    display: flex;
+    align-items: baseline;
+    justify-content: center
+}
+.kyc .titleWrap .text {
+    font-family: Pretendard;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21.48px;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: #000;
+    margin-left: 10px;
+}
+.kyc .textLeft {
+    text-align: left;
+}
+.kyc .textRight {
+    text-align: right;
+}
+.kyc .textCenter {
+    text-align: center;
+}
+.kyc .content {
+    padding: 50px 0 70px;
+}
+.kyc .content .title {
+    font-family: Pretendard;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21.48px;
+    text-align: left;
+    margin-bottom: 40px;
+}
+.kyc .stepWrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+.kyc .stepWrap .step {
+    display: flex;
+}
+.kyc .stepWrap .step::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: url('../images/kyc/common/dot.svg') no-repeat center / contain;
+    margin: 0 10px;
+}
+.kyc .stepWrap .step:last-of-type::after {
+    display: none;
+}
+.kyc .stepWrap .step .step-number {
+    position: relative;
+    font-family: Pretendard;
+    font-weight: 700;
+    font-size: 18.67px;
+    line-height: 22.28px;
+    text-align: left;
+    color: #CBCBCB;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #CBCBCB;
+    border-radius: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+.kyc .stepWrap .step.step-active .step-number {
+    background-color: #FF6114;
+    border-color: #FF6114;
+    color: #fff;
+}
+.kyc .stepWrap .step.step-end .step-number {
+    background-color: #3e3e3e;
+    border-color: #3e3e3e;
+    color: #fff;
+}
+
+.kyc .guideWrap {
+    background-color: #F5F5F7;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+.kyc .guideWrap .title {
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19.09px;
+    text-align: left;
+    color: #222;
+    margin-bottom: 14px;
+}
+.kyc .guideList li {
+    position: relative;
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+    color: #666;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+.kyc .guideList li::before {
+    content: '・';
+    position: absolute;
+    font-size: 24px;
+    left: 0;
+}
+.kyc .guideWrap .guideList li:last-of-type {
+    margin-bottom: 0;
+}
+
+.kyc .radioWrap {
+    margin-bottom: 40px;
+}
+.kyc .radioWrap .radioStep {
+    margin-bottom: 30px;
+}
+.kyc .radioWrap .title {
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19.09px;
+    text-align: left;
+    color: #222;
+    margin-bottom: 14px;
+}
+
+.kyc .checkBox > input[type="checkbox"], .kyc .checkBox > input[type="radio"] {
+    position: absolute;
+    top: auto;
+    left: 0;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    border: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.kyc .checkBox > input + label {
+    position: relative;
+    display: block;
+    line-height: 22px;
+    padding-left: 32px;
+    padding-right: 20px;
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 14px;
+    white-space: nowrap;
+}
+.kyc .checkBox > input + label::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    width: 22px;
+    height: 22px;
+    background: url(../images/kyc/common/radio-off.svg) no-repeat center / contain;
+}
+.kyc .checkBox > input:checked + label::before {
+    background: url(../images/kyc/common/radio-on.svg) no-repeat center / contain;
+}
+
+.kyc .formGroup .checkBox > input + label {
+    margin-bottom: 0;
+    width: auto;
+    min-width: auto;
+}
+.kyc .formGroup.stake > input {
+    background: transparent url("../images/kyc/common/percentage.svg") right 15px center / 16px auto no-repeat;
+}
+
+.kyc .btnWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.kyc .btn {
+    font-family: Pretendard;
+    line-height: 19.09px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0 5px;
+    padding: 13px 0;
+    color: #3e3e3e;
+    min-width: 140px;
+    border: 1px solid #3e3e3e;
+    background-color: #fff;
+    border-radius: 5px;
+}
+.kyc .btnNext {
+    border-color: #3E3E3E;
+    background-color: #3E3E3E;
+    color: #fff;
+}
+.kyc .btnLink {
+    text-decoration: underline;
+    cursor: pointer;
+}
+.kyc .btnOrange {
+    background-color: #FF6114;
+    border-color: #FF6114;
+    color: #fff;
+}
+.kyc .btnOff, .kyc .btn:disabled {
+    border-color: #DADADA !important;
+    background-color: #DADADA !important;
+    color: #fff;
+}
+.formContainer {
+    padding: 20px 0 40px;
+    margin: 0 auto;
+}
+.formGroup {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.formGroup:last-of-type {
+    margin-bottom: 0;
+}
+.kyc .formGroup.col-4 {
+    flex-wrap: wrap;
+    gap: 10px; /* 간격 조정 */
+}
+.kyc .formGroup label {
+    display: block;
+    margin-bottom: 0;
+    font-weight: bold;
+    width: 126px;
+    min-width: 126px;
+}
+.formGroup input,
+.formGroup select {
+    width: 100%;
+    min-width: 332px;
+    max-width: 332px;
+    height: 48px;
+    max-height: 48px;
+    padding: 10px;
+    font-size: 15px;
+    line-height: 15px;
+    border: 1px solid #dadada;
+    border-radius: 4px;
+    margin-bottom: 0;
+}
+.formGroup input::placeholder, .formGroup select::placeholder {
+    color: #acacac;
+}
+.formGroup input:read-only {
+    background-color: #F5F5F7;
+}
+.formGroup .checkBox input:read-only {
+    background-color: transparent;
+}
+.formGroup select + input {
+    margin-left: 10px;
+}
+.formGroup .checkBox {
+    position: relative;
+    overflow: hidden;
+}
+/* .formGroup .checkBox.full-width {
+    flex: 0 0 100%;
+    margin-top: 10px;
+} */
+.postalContainer,
+.accountContainer {
+    display: flex;
+    gap: 10px;
+}
+.postalContainer button,
+.accountContainer button {
+    padding: 15px 0;
+    background-color: #fff;
+    border: 1px solid #3e3e3e;
+    color: #3E3E3E;
+    border-radius: 5px;
+    cursor: pointer;
+    white-space: nowrap;
+    width: 124px;
+    max-width: 124px;
+    max-height: 48px;
+}
+
+/* 테이블 */
+.kyc .tableWrap table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 40px;
+    font-size: 14px;
+    text-align: center;
+  }
+  .kyc .tableWrap th, .kyc .tableWrap td {
+    padding: 12px 15px;
+  }
+  .kyc .tableWrap th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    height: 60px;
+  }
+  .kyc .tableWrap td:nth-of-type(1) {
+    width: 300px;
+  }
+  .kyc .tableWrap td:nth-of-type(3) {
+    width: 160px;
+  }
+  .kyc .tableWrap td .checkBox {
+    width: 100px;
+    white-space: nowrap;
+    margin: 0 auto;
+  }
+  .kyc .tableWrap td .checkBox > input + label {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  .kyc .tableWrap td .checkBox:last-of-type > input + label {
+    margin-bottom: 0;
+  }
+  .kyc .tableWrap thead tr {
+    border-top: 2px solid #333;
+  }
+  .kyc .tableWrap tbody tr {
+    border-bottom: 1px solid #CBCBCB;
+  }
+  .kyc .tableWrap .radioGroup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .kyc .tableWrap .radioGroup input {
+    margin-right: 5px;
+  }
+  .kyc .tableWrap .btnWrap {
+    margin-bottom: 20px;
+  }
+  .kyc .tableWrap .btnWrap .btn {
+    margin-right: 0;
+  }
+  .kyc .tableWrap table button {
+    padding: 15px 0;
+    background-color: #fff;
+    border: 1px solid #3e3e3e;
+    color: #3E3E3E;
+    border-radius: 5px;
+    cursor: pointer;
+    white-space: nowrap;
+    width: 98px;
+    min-width: 98px;
+    max-width: 98px;
+    max-height: 48px;
+}
+.kyc .tableWrap .type2 td .checkBox {
+    width: auto;
+}
+.kyc .tableWrap .type2 td .checkBox > input + label {
+    text-align: left;
+}
+.kyc .tableWrap .type2 td input + label, .kyc .tableWrap .type2 td label {
+    font-weight: 400;
+}
+.kyc .tableWrap .type2 tbody td:first-of-type {
+    text-align: left;
+}
+/* 테이블 */
+
+/* 모달 */
+.kyc .modal {
+    display: none; /* 기본적으로 보이지 않음 */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+  }
+  
+.kyc .modal-content {
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 0 20px;
+    border: 1px solid #888;
+    width: 500px;
+    max-height: 790px;
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.kyc .modalWide .modal-content {
+    width: 800px;
+}
+  
+.kyc .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+.kyc .modal h2 {
+    font-family: Pretendard;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 58px;
+    text-align: center;
+    color: #000;
+    margin-bottom: 10px;
+}
+.kyc .modal h3 {
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 17.9px;
+    text-align: left;
+    color: #000;
+    margin-bottom: 14px;
+}
+.kyc .modal .guideWrap .guideList li {
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: -0.04em;
+    text-align: left;
+}
+.kyc .modal .guideWrap {
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.kyc .modal .formContainer {
+    padding: 0 0 20px;
+}
+.kyc .modal .formContainer:last-of-type {
+    padding-bottom: 0;
+}
+.kyc .modal .radioWrap + .btnWrap {
+    margin-top: -20px;
+}
+.kyc .modal .btnWrap {
+    margin-bottom: 30px;
+}
+.kyc .modal .btnWrap:last-child {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.kyc .modal .formGroup {
+    height: 48px;
+    margin-bottom: 14px;
+}
+/* .kyc .modal .formGroup + .formGroup {
+    margin-top: -14px;
+} */
+.kyc .modal .formGroup.col-4 {
+    height: auto;
+}
+.kyc .modal .formGroup:last-of-type {
+    margin-bottom: 0;
+}
+.kyc .modal .formGroup input:read-only {
+    background-color: #F5F5F7;
+}
+.kyc .modal .checkBox > input + label {
+    margin-bottom: 0;
+}
+.kyc .modal .formGroup .checkBox input:read-only {
+    background-color: transparent;
+}
+.kyc .modal .formGroup .checkBox {
+    width: 17%;
+}
+.kyc .modal .formGroup .checkBox {
+    width: auto;
+}
+.kyc .modal .formGroup .checkBox.full-width {
+    width: 100%;
+}
+.kyc .modal .formGroup .checkBox label {
+    width: auto;
+    min-width: auto;
+    white-space: nowrap;
+    font-weight: 400;
+}
+.kyc .modal .infoTitle {
+    position: relative;
+    font-family: Pretendard;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 20px;
+    text-align: left;
+    color: #000;
+    margin-bottom: 16px;
+    padding-left: 20px;
+}
+.kyc .modal .infoTitle::before {
+    content: '・';
+    position: absolute;
+    font-size: 24px;
+    left: 0;
+}
+.kyc .modal .noBullet .infoTitle {
+    padding-left: 0;
+}
+.kyc .modal .noBullet .infoTitle::before {
+    display: none;
+}
+/* //모달 */
+ #birthDate {
+    width: 100%;
+    min-width: 332px;
+    max-width: 332px;
+    height: 48px;
+    max-height: 48px;
+    padding: 10px;
+    font-size: 15px;
+    line-height: 15px;
+    border: 1px solid #dadada;
+    border-radius: 4px;
+    margin-bottom: 0;
+}
+.kyc .ownerCheckWrap .formWrap .radioWrap {
+    margin-bottom: 0;
+}
+/* //kyc 공통 */
+
+/* 개인 */
+/* //개인 */
+
+/* 법인 */
+.kyc .repTypeWrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #DADADA;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+.kyc .repTypeWrap .guideList {
+    margin-top:  10px;
+}
+.kyc .repTypeWrap .title {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1;
+    text-align: left;
+    margin-bottom: 0;
+}
+.kyc .repTypeWrap .title span {
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: left;
+    color: #666;
+}
+.kyc .repTypeWrap .title span.accordionBtn {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.kyc .repTypeWrap .btn {
+    min-width: 98px;
+    max-width: inherit;
+    padding: 13px 10px;
+}
+.kyc .repTypeWrap .moreViewWrap {
+    flex-basis: 100%; /* 전체 너비를 차지하게 함 */
+    margin-top: 20px; /* 위의 요소와 간격을 줌 */
+}
+.kyc .repTypeWrap .moreViewWrap.tableWrap {
+    display: none;
+    width: 100%;
+}
+.kyc .repTypeWrap .moreViewWrap.tableWrap table {
+    table-layout: fixed;
+}
+.kyc .repTypeWrap .moreViewWrap.tableWrap th {
+    color: #000;
+    border-right: 1px solid #CBCBCB;
+}
+.kyc .repTypeWrap .moreViewWrap.tableWrap th:last-of-type {
+    border-right: 0;
+}
+.kyc .repTypeWrap .moreViewWrap.tableWrap td {
+    width: 100px;
+    border-right: 1px solid #CBCBCB;
+    color: #000;
+}
+.kyc .repTypeWrap .moreViewWrap.tableWrap td:last-of-type {
+    border-right: 0;
+    text-align: left;
+}
+.kyc .repTypeWrap .moreViewWrap.tableWrap .guideList li {
+    color: #000;
+}
+
+.kyc .ownerCheckWrap {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px;
+    border: 1px solid #DADADA;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    display: none;
+}
+.kyc .ownerCheckWrap .line {
+    width: 100%;
+    height: 1px;
+    background: #E3E3E7;
+    margin: 40px 0;
+}
+.kyc .ownerCheckWrap .title {
+    font-family: Pretendard;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 22px;
+    text-align: center;
+    color: #000;
+}
+.kyc .ownerCheckWrap .formWrap, .kyc .ownerCheckWrap .form-group {
+    width: 100%;
+}
+.kyc .ownerCheckWrap .formWrap.center {
+    width: 520px;
+    margin: 0 auto;
+}
+.kyc .ownerCheckWrap .formWrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 28px; /* form-group 간의 간격 */
+    padding: 20px 0;
+}
+.kyc .ownerCheckWrap .formWrap .form-group {
+    flex: 1 1 calc(50% - 20px); /* 한 줄에 2개씩 배치되게 설정 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.kyc .ownerCheckWrap .formWrap .form-group.full-width {
+    flex: 100%;
+    justify-content: start;
+}
+.kyc .ownerCheckWrap .formWrap .form-group label {
+    white-space: nowrap;
+    margin-bottom: 0;
+    width: 126px;
+}
+.kyc .ownerCheckWrap .formWrap .form-group input[type="text"] {
+    max-width: 332px;
+    margin-bottom: 0;
+}
+.kyc .ownerCheckWrap .guideList li {
+    position: relative;
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+    color: #666;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+.kyc .ownerCheckWrap .guideList li::before {
+    content: '・';
+    position: absolute;
+    font-size: 24px;
+    left: 0;
+}
+.kyc .ownerCheckWrap .midText {
+    font-family: Pretendard;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 36px;
+    text-align: center;
+    color: #000;
+    margin: 0;
+}
+.kyc .ownerCheckWrap .midText strong {
+    font-weight: 600;
+    text-decoration: underline;
+}
+.kyc .ownerCheckWrap .nameType {
+font-family: Pretendard;
+font-size: 17px;
+font-weight: 600;
+line-height: 20.29px;
+text-align: center;
+color: #000;
+margin-bottom: 20px;
+}
+.kyc .ownerCheckWrap .nameTitle {
+font-family: Pretendard;
+font-size: 20px;
+font-weight: 600;
+line-height: 23.87px;
+text-align: center;
+color: #000;
+}
+/* //법인 */

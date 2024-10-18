@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>헥토파이낸셜 지불서비스</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no, address=no, email=no" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+        <!-- favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="../../images/favicon/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="57x57" href="../../images/favicon/apple-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="60x60" href="../../images/favicon/apple-icon-60x60.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="../../images/favicon/apple-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="../../images/favicon/apple-icon-76x76.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="../../images/favicon/apple-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="../../images/favicon/apple-icon-120x120.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="../../images/favicon/apple-icon-144x144.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="../../images/favicon/apple-icon-152x152.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon/apple-icon-180x180.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="../../images/favicon/android-icon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="../../images/favicon/favicon-96x96.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon/favicon-16x16.png" />
+        <link rel="manifest" href="../../images/favicon/manifest.json" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="msapplication-TileImage" content="../../images/favicon/ms-icon-144x144.png" />
+        <meta name="theme-color" content="#ffffff" />
+        <!-- //favicon -->
+
+        <link rel="stylesheet" href="../../css/slick.min.css" />
+        <link rel="stylesheet" href="../../css/kyc.css" />
+        <script src="../../js/jquery-1.8.3.min.js"></script>
+        <script src="../../js/slick.min.js"></script>
+    </head>
+
+    <body>
+        <!-- wrap -->
+        <div id="wrap" class="wrap kyc sole">
+            <header>
+                <div class="container">
+                    <div class="titleWrap">
+                        <h1 class="logo"></h1>
+                        <span class="text">가맹점 서비스 계약</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content">
+                <div class="container">
+                    <h2 class="title textLeft">고객확인제도(KYC) 수집정보 등록</h2>
+
+                    <div class="stepWrap">
+                        <div class="step step-active" data-step="1">
+                            <div class="step-number">1</div>
+                        </div>
+                        <div class="step line" data-step="2">
+                            <div class="step-number">2</div>
+                        </div>
+                        <div class="step line" data-step="3">
+                            <div class="step-number">3</div>
+                        </div>
+                        <div class="step" data-step="4">
+                            <div class="step-number">4</div>
+                        </div>
+                    </div>
+
+                    <div class="guideWrap">
+                        <p class="title">사업자 구분 등록</p>
+                        <ul class="guideList">
+                            <li>사업자 종류 구분이 필요합니다.</li>
+                            <li>사업자 구분에 따라 제출 정보가 상이하니 올바른 정보를 선택해주시기 바랍니다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="radioWrap">
+                        <p class="title">사업자 구분</p>
+                        <div class="checkBox">
+                            <input type="radio" id="chk1" class="checkSelect" name="chk1" title="개인사업자" />
+                            <label for="chk1">개인사업자</label>
+                        </div>
+                        <div class="checkBox">
+                            <input type="radio" id="chk2" class="checkSelect" name="chk1" title="법인사업자(비영리 단체 포함)" />
+                            <label for="chk2">법인사업자(비영리 단체 포함)</label>
+                        </div>
+                    </div>
+
+                    <div class="btnWrap">
+                        <button type="button" class="btn btnPrev">이전</button>
+                        <button type="button" class="btn btnNext btnOff">다음 (저장)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //wrap -->
+        <script>
+            // 모든 라디오 버튼을 선택합니다.
+            const radioButtons = document.querySelectorAll(".checkSelect");
+
+            // 다음 버튼을 선택합니다.
+            const nextButton = document.querySelector(".btnNext");
+
+            // 라디오 버튼 체크 상태 확인 함수
+            const checkRadioButtons = () => {
+                let isChecked = false;
+
+                // 각 라디오 버튼을 확인해서 체크된 것이 있으면 isChecked를 true로 설정
+                radioButtons.forEach((radio) => {
+                    if (radio.checked) {
+                        isChecked = true;
+                    }
+                });
+
+                // 라디오 버튼이 하나라도 체크되면 btnOff 클래스를 제거하고 disabled를 해제
+                if (isChecked) {
+                    nextButton.classList.remove("btnOff");
+                    nextButton.disabled = false;
+                } else {
+                    nextButton.classList.add("btnOff");
+                    nextButton.disabled = true;
+                }
+            };
+
+            // 페이지 로드 시 버튼을 초기화 (비활성화 상태)
+            nextButton.classList.add("btnOff");
+            nextButton.disabled = true;
+
+            // 라디오 버튼이 클릭될 때마다 상태를 체크
+            radioButtons.forEach((radio) => {
+                radio.addEventListener("change", checkRadioButtons);
+            });
+        </script>
+    </body>
+</html>

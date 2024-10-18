@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>헥토파이낸셜 지불서비스</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no, address=no, email=no" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+        <!-- favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="../../images/favicon/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="57x57" href="../../images/favicon/apple-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="60x60" href="../../images/favicon/apple-icon-60x60.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="../../images/favicon/apple-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="../../images/favicon/apple-icon-76x76.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="../../images/favicon/apple-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="../../images/favicon/apple-icon-120x120.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="../../images/favicon/apple-icon-144x144.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="../../images/favicon/apple-icon-152x152.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon/apple-icon-180x180.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="../../images/favicon/android-icon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="../../images/favicon/favicon-96x96.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon/favicon-16x16.png" />
+        <link rel="manifest" href="../../images/favicon/manifest.json" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="msapplication-TileImage" content="../../images/favicon/ms-icon-144x144.png" />
+        <meta name="theme-color" content="#ffffff" />
+        <!-- //favicon -->
+
+        <link rel="stylesheet" href="../../css/slick.min.css" />
+        <link rel="stylesheet" href="../../css/kyc.css" />
+        <script src="../../js/jquery-1.8.3.min.js"></script>
+        <script src="../../js/slick.min.js"></script>
+    </head>
+
+    <body>
+        <!-- wrap -->
+        <div id="wrap" class="wrap">
+            <header>
+                <div class="container">
+                    <h1 class="logo"></h1>
+                </div>
+            </header>
+
+            <div>
+                <div class="container">
+                    <h2 class="title">로그인</h2>
+
+                    <form action="/submit" method="post">
+                        <div class="inputItem">
+                            <label for="companyName" class="required">업체명</label>
+                            <div><input type="text" id="companyName" name="companyName" aria-required="true" placeholder="작성 텍스트 색" /></div>
+                        </div>
+
+                        <div class="inputItem">
+                            <label for="businessNumber" class="required">사업자등록번호</label>
+                            <div>
+                                <input
+                                    type="text"
+                                    id="businessNumber"
+                                    name="businessNumber"
+                                    aria-required="true"
+                                    placeholder="사업자등록번호 10자리"
+                                    maxlength="10"
+                                    pattern="\d{10}"
+                                    title="사업자등록번호는 10자리 숫자여야 합니다."
+                                />
+                            </div>
+                        </div>
+
+                        <div class="inputItem">
+                            <label for="phoneNumber" class="required">담당자 휴대전화번호</label>
+                            <div>
+                                <input
+                                    type="tel"
+                                    id="phoneNumber"
+                                    name="phoneNumber"
+                                    aria-required="true"
+                                    placeholder="휴대전화번호"
+                                    pattern="\d{10,11}"
+                                    title="휴대전화번호는 10자리 또는 11자리 숫자여야 합니다."
+                                />
+                            </div>
+                        </div>
+
+                        <div class="inputItem col-2">
+                            <label for="verificationCode" class="required">인증코드</label>
+                            <div>
+                                <input type="text" id="verificationCode" name="verificationCode" aria-required="true" placeholder="인증코드 입력" />
+                                <div class="timer" aria-live="polite" id="timer">09:59</div>
+                            </div>
+                            <button type="button" id="sendCodeBtn">인증코드 입력</button>
+                        </div>
+
+                        <button type="submit" id="loginBtn">로그인</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- //wrap -->
+    </body>
+</html>

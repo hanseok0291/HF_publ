@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>헥토파이낸셜 지불서비스</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no, address=no, email=no" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+        <!-- favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="../../images/favicon/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="57x57" href="../../images/favicon/apple-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="60x60" href="../../images/favicon/apple-icon-60x60.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="../../images/favicon/apple-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="../../images/favicon/apple-icon-76x76.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="../../images/favicon/apple-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="../../images/favicon/apple-icon-120x120.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="../../images/favicon/apple-icon-144x144.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="../../images/favicon/apple-icon-152x152.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon/apple-icon-180x180.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="../../images/favicon/android-icon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="../../images/favicon/favicon-96x96.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon/favicon-16x16.png" />
+        <link rel="manifest" href="../../images/favicon/manifest.json" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="msapplication-TileImage" content="../../images/favicon/ms-icon-144x144.png" />
+        <meta name="theme-color" content="#ffffff" />
+        <!-- //favicon -->
+
+        <link rel="stylesheet" href="../../css/slick.min.css" />
+        <link rel="stylesheet" href="../../css/kyc.css" />
+        <script src="../../js/jquery-1.8.3.min.js"></script>
+        <script src="../../js/slick.min.js"></script>
+    </head>
+
+    <body>
+        <!-- wrap -->
+        <div id="wrap" class="wrap kyc sole">
+            <header>
+                <div class="container">
+                    <div class="titleWrap">
+                        <h1 class="logo"></h1>
+                        <span class="text">가맹점 서비스 계약</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content">
+                <div class="container">
+                    <h2 class="title textLeft">고객확인제도(KYC) 수집정보 등록</h2>
+
+                    <div class="stepWrap">
+                        <div class="step step-end" data-step="1">
+                            <div class="step-number">1</div>
+                        </div>
+                        <div class="step step-end line" data-step="2">
+                            <div class="step-number">2</div>
+                        </div>
+                        <div class="step line step-active" data-step="3">
+                            <div class="step-number">3</div>
+                        </div>
+                        <div class="step" data-step="4">
+                            <div class="step-number">4</div>
+                        </div>
+                    </div>
+
+                    <div class="guideWrap">
+                        <p class="title">실소유자 정보 등록</p>
+                        <ul class="guideList">
+                            <li>입점 법인의 주주 또는 출자자 지분율에 따라 아래와 같은 실소유자의 정보 입력이 필요합니다.</li>
+                            <li>아래 ‘유형’은 법인 등기 유형 선택에 따라 노출되며, 최신 정보가 아닐 경우 제출하신 서류와 일치하도록 법인 유형을 재선택해주세요.</li>
+                            <li>유형 선택이 완료되면 실소유자 등록을 진행해주세요.</li>
+                        </ul>
+                    </div>
+
+                    <div class="repTypeWrap">
+                        <p class="title">
+                            국가 지방 자치단체, 공공단체, 금융회사, 상장사 등 사업보고서 제출 대상 법인<br />
+                            <span> 입점 법인이 발행한 주식의 총 수 25%이상의 지분을 가진 개인(자연인)이 있음 </span>
+                        </p>
+                        <button type="button" class="btn btnNext mlAuto openModalBtn" data-target="modalSelectType">유형재선택</button>
+                    </div>
+
+                    <div class="tableWrap">
+                        <div class="btnWrap">
+                            <button type="button" id="addRowBtn" class="btn btnOrange mlAuto">+실소유자 추가 등록</button>
+                        </div>
+                        <!--  -->
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>소유자명(국문)</th>
+                                    <th>소유자명(영문)</th>
+                                    <th>국적</th>
+                                    <th>관리</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                <tr>
+                                    <td>홍*동</td>
+                                    <td>H***********G</td>
+                                    <td>한국</td>
+                                    <td><button type="button" class="btn openModalBtn" data-action="edit" data-target="modalOwnerEdit">수정/삭제</button></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><button type="button" class="btn openModalBtn" data-action="register" data-target="modalOwnerReg">등록</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--  -->
+                    </div>
+
+                    <div class="btnWrap">
+                        <button type="button" class="btn btnPrev">이전</button>
+                        <button type="button" id="nextBtn" class="btn btnNext" disabled>다음 (저장)</button>
+                        <!-- 전체 데이터 입력 / 계좌 인증시 버튼 활성화 -->
+                        <!-- <button type="button" class="btn btnNext">실소유자 확인</button> -->
+                    </div>
+                </div>
+            </div>
+
+            <!--  -->
+            <!-- 모달창 -->
+            <div id="modalSelectType" class="modal modalWide">
+                <div class="modal-content">
+                    <span class="close closeModalBtn" data-target="modalSelectType">&times;</span>
+                    <h2 id="modalTitle">법인 신원 확인 대상자(실소유주) 유형 선택</h2>
+
+                    <div class="guideWrap">
+                        <ul class="guideList">
+                            <li>아래 ‘유형’ 선택에 따라 법인 신원 확인 유형이 변경되어지며, 최신 정보 서류와 일치하도록 선택 부탁드립니다.</li>
+                            <li>확인생략대상 법인에 해당하여도 추가 확인이 필요한 경우 서류 제출을 요청할 수 있습니다.</li>
+                            <li><p class="btnLink openModalBtn" data-target="modalBusinessType">사업체 종류 확인하기</p></li>
+                        </ul>
+                    </div>
+
+                    <div class="radioWrap">
+                        <p class="infoTitle">귀 법인 · 단체가 해당하는 항목을 선택해주세요.</p>
+                        <div class="formGroup col-4">
+                            <div class="checkBox">
+                                <input type="radio" id="repType1" class="checkSelect" name="repType" />
+                                <label for="repType1">국가, 지방자치단체</label>
+                            </div>
+                            <div class="checkBox">
+                                <input type="radio" id="repType2" class="checkSelect" name="repType" />
+                                <label for="repType2">공공단체</label>
+                            </div>
+                            <div class="checkBox">
+                                <input type="radio" id="repType3" class="checkSelect" name="repType" />
+                                <label for="repType3">금융회사</label>
+                            </div>
+                            <div class="checkBox">
+                                <input type="radio" id="repType4" class="checkSelect" name="repType" />
+                                <label for="repType4">상장사 등 사업보고서 제출 대상 법인</label>
+                            </div>
+                            <div class="checkBox full-width">
+                                <input type="radio" id="repType5" class="checkSelect" name="repType" />
+                                <label for="repType5">주주명부 직접 입력</label>
+                            </div>
+                            <div class="checkBox full-width">
+                                <input type="radio" id="repType6" class="checkSelect" name="repType" />
+                                <label for="repType6">위 선택 항목에 없음 </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btnWrap">
+                        <button type="button" id="confirmBtn" class="btn btnNext" disabled>선택완료</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 모달창 -->
+
+            <!-- 서브모달 -->
+            <div id="modalBusinessType" class="modal modalWide">
+                <div class="modal-content">
+                    <span id="closeSubModal" class="close closeModalBtn" data-target="modalBusinessType">&times;</span>
+                    <h2>사업체 종류 확인하기</h2>
+
+                    <h3>사업자 구분 방법</h3>
+                    <table border="1" cellspacing="0" cellpadding="10">
+                        <tbody>
+                            <tr>
+                                <th>영리법인</th>
+                                <td>사업자번호 가운데 숫자가 81 또는 84~88이며 사업보고서 제출 대상(법인/상장사/금융회사)를 제외한 모든 영리 법인</td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    사업보고서 제출 <br />
+                                    대상 법인(상장사)
+                                </th>
+                                <td>
+                                    금융감독원 전자공시시스템(<a href="https://dart.fss.or.kr/">https://dart.fss.or.kr/</a>) 내 최근 1년 이내 ‘사업보고서’ 기 제출 법인 코스피/ 코스닥 등 국내 상장 여부
+                                    확인 가능 법인 또는 외국 증권 시장 상장 여부 확인 가능법인
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>금융회사</th>
+                                <td>금융소비자 정보포털 파인(<a href="htttps://fine.fss.or.kr/" target="_blank">htttps://fine.fss.or.kr/</a>) 내 제도권금융회사 조회 가능한 법인</td>
+                            </tr>
+                            <tr>
+                                <th>비영리법인</th>
+                                <td>사업자번호 가운데 숫자가 80,82,89 +법인등록번호가 있는 경우</td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    비영리 단체<br />
+                                    (임의단체)
+                                </th>
+                                <td>사업자번호 가운데 숫자가 80,82,89 +법인등록번호가 없는 경우</td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    공공기관<br />
+                                    (국가기관, <br />
+                                    지방자치단체)
+                                </th>
+                                <td>
+                                    사업자번호 가운데 숫자가 83 또는 공공기관 알리오(<a href="https://alio.go.kr/" target="_blank">https://alio.go.kr/</a>) 또는 지방공공기관 통합공시 클린아이(<a
+                                        href="https://www.cleaneye.go.kr"
+                                        target="_blank"
+                                        >https://www.cleaneye.go.kr</a
+                                    >) 조회 가능한 기관
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>공공단체</th>
+                                <td>
+                                    가. 『공공기관의 운영에 관한 법률』에 따른 공공기관<br />
+                                    나. 『정부출연연구기관 등의 설립 · 운영 및 육성에 관한 법률』 및 『과학기술분야 정부출연연구기관 등의 설립 · 운영 및 육성에 관한 법률』에 따라 설립된
+                                    정부출연연구기관, 과학기술분야 정부출연연구기관 및 연구회<br />
+                                    다. 『지방공기업법』에 따라 설립된 지방직영기업 · 지방공사 및 지방공단
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="btnWrap">
+                        <button type="button" class="btn btnNext closeModalBtn" data-target="modalBusinessType">닫기</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 서브모달 -->
+
+            <!-- 등록 모달창 -->
+            <div id="modalOwnerReg" class="modal">
+                <div class="modal-content">
+                    <span class="close closeModalBtn" data-target="modalOwnerReg">&times;</span>
+                    <h2 id="modalTitle">실소유자 정보</h2>
+
+                    <div class="guideWrap">
+                        <ul class="guideList">
+                            <li>사업체의 대표자에 대한 신원확인이 필요합니다. <br />신원 확인을 위해 아래 정보를 등록해주시기 바랍니다.</li>
+                            <li>대표자명(영문)의 경우 여권 명을 기준으로 입력해주세요.</li>
+                        </ul>
+                    </div>
+
+                    <div class="formWrap">
+                        <!--  -->
+                        <div class="formContainer">
+                            <!-- 실소유자(국문) -->
+                            <div class="formGroup">
+                                <label for="name">실소유자(국문)</label>
+                                <input type="text" id="name" name="name" placeholder="" />
+                            </div>
+
+                            <!-- 실소유자(영문) -->
+                            <div class="formGroup">
+                                <label for="nameEn">실소유자(영문)</label>
+                                <input type="text" id="nameEn" name="nameEn" placeholder="" />
+                            </div>
+
+                            <!-- 국적 -->
+                            <div class="formGroup">
+                                <label for="businessType">국적</label>
+                                <div class="selectBox">
+                                    <button class="label">국적</button>
+                                    <ul class="optionList">
+                                        <li class="optionItem">국적 1</li>
+                                        <li class="optionItem">국적 2</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- 거주국 -->
+                            <div class="formGroup">
+                                <label for="country">거주국</label>
+                                <div class="selectBox">
+                                    <button class="label">거주국</button>
+                                    <ul class="optionList">
+                                        <li class="optionItem">거주국1</li>
+                                        <li class="optionItem">거주국2</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- 성별 -->
+                            <div class="formGroup">
+                                <label>성별</label>
+                                <div class="checkBox">
+                                    <input type="radio" id="chk3" class="checkSelect" name="chk3" />
+                                    <label for="chk3">남자</label>
+                                </div>
+                                <div class="checkBox">
+                                    <input type="radio" id="chk4" class="checkSelect" name="chk3" />
+                                    <label for="chk4">여자</label>
+                                </div>
+                            </div>
+
+                            <!-- 생년월일  -->
+                            <div class="formGroup">
+                                <label for="birthDate">생년월일 </label>
+                                <input type="date" id="birthDate" name="birthDate" placeholder="YYYY-MM-DD" />
+                            </div>
+
+                            <!-- 지분율 -->
+                            <div class="formGroup stake">
+                                <label for="stake">지분율</label>
+                                <input type="text" id="stake" name="stake" placeholder="" />
+                            </div>
+                        </div>
+                        <!--  -->
+                    </div>
+                    <div id="btnWrap" class="btnWrap">
+                        <button type="button" id="" class="btn btnNext closeModalBtn" data-target="modalOwnerReg">닫기</button>
+                        <button type="button" id="" class="btn btnOrange">등록</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 등록 모달창 -->
+
+            <!-- 수정 모달창 -->
+            <div id="modalOwnerEdit" class="modal">
+                <div class="modal-content">
+                    <span class="close closeModalBtn" data-target="modalOwnerEdit">&times;</span>
+                    <h2 id="modalTitle">실소유자 정보</h2>
+
+                    <div class="guideWrap">
+                        <ul class="guideList">
+                            <li>사업체의 대표자에 대한 신원확인이 필요합니다. <br />신원 확인을 위해 아래 정보를 등록해주시기 바랍니다.</li>
+                            <li>대표자명(영문)의 경우 여권 명을 기준으로 입력해주세요.</li>
+                        </ul>
+                    </div>
+
+                    <div class="formWrap">
+                        <!--  -->
+                        <div class="formContainer">
+                            <!-- 실소유자(국문) -->
+                            <div class="formGroup">
+                                <label for="name">실소유자(국문)</label>
+                                <input type="text" id="name" name="name" placeholder="홍길동" readonly />
+                            </div>
+
+                            <!-- 실소유자(영문) -->
+                            <div class="formGroup">
+                                <label for="nameEn">실소유자(영문)</label>
+                                <input type="text" id="nameEn" name="nameEn" placeholder="" />
+                            </div>
+
+                            <!-- 국적 -->
+                            <div class="formGroup">
+                                <label for="businessType">국적</label>
+                                <div class="selectBox">
+                                    <button class="label">국적</button>
+                                    <ul class="optionList">
+                                        <li class="optionItem">국적 1</li>
+                                        <li class="optionItem">국적 2</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- 거주국 -->
+                            <div class="formGroup">
+                                <label for="country">거주국</label>
+                                <div class="selectBox">
+                                    <button class="label">거주국</button>
+                                    <ul class="optionList">
+                                        <li class="optionItem">거주국1</li>
+                                        <li class="optionItem">거주국2</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- 성별 -->
+                            <div class="formGroup">
+                                <label>성별</label>
+                                <div class="checkBox">
+                                    <input type="radio" id="chk3" class="checkSelect" name="chk3" />
+                                    <label for="chk3">남자</label>
+                                </div>
+                                <div class="checkBox">
+                                    <input type="radio" id="chk4" class="checkSelect" name="chk3" />
+                                    <label for="chk4">여자</label>
+                                </div>
+                            </div>
+
+                            <!-- 생년월일  -->
+                            <div class="formGroup">
+                                <label for="birthDate">생년월일 </label>
+                                <input type="date" id="birthDate" name="birthDate" placeholder="YYYY-MM-DD" />
+                            </div>
+
+                            <!-- 지분율 -->
+                            <div class="formGroup stake">
+                                <label for="stake">지분율</label>
+                                <input type="text" id="stake" name="stake" placeholder="" />
+                            </div>
+                        </div>
+                        <!--  -->
+                    </div>
+                    <div id="btnWrap" class="btnWrap">
+                        <button type="button" class="btn btnNext closeModalBtn" data-target="modalOwnerEdit">삭제</button>
+                        <button type="button" id="" class="btn btnOrange">수정</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 수정 모달창 -->
+        </div>
+        <!-- //wrap -->
+        <script>
+            /* 화살표 함수 */
+            const selectBoxes = document.querySelectorAll(".selectBox");
+
+            selectBoxes.forEach((selectBox) => {
+                const label = selectBox.querySelector(".label");
+                const options = selectBox.querySelectorAll(".optionItem");
+
+                // 클릭한 옵션의 텍스트를 라벨 안에 넣음
+                const handleSelect = (item) => {
+                    selectBox.classList.remove("active");
+                    label.innerHTML = item.textContent;
+                    selectBox.classList.add("comp");
+                };
+
+                // 옵션 클릭 시 클릭한 옵션을 넘김
+                options.forEach((option) => {
+                    option.addEventListener("click", () => handleSelect(option));
+                });
+
+                // 라벨을 클릭시 옵션 목록이 열림/닫힘
+                label.addEventListener("click", () => {
+                    if (selectBox.classList.contains("active")) {
+                        selectBox.classList.remove("active");
+                    } else {
+                        // 다른 selectBox는 닫기
+                        selectBoxes.forEach((box) => {
+                            box.classList.remove("active");
+                        });
+                        selectBox.classList.add("active");
+                    }
+                });
+            });
+
+            // 모달 열기 버튼과 모달 요소, 닫기 버튼을 선택
+            const openModalBtns = document.querySelectorAll(".openModalBtn");
+            const closeModalBtns = document.querySelectorAll(".closeModalBtn");
+            const body = document.body; // body 요소 선택
+
+            // 모달 열기
+            openModalBtns.forEach((btn) => {
+                btn.addEventListener("click", function () {
+                    const targetModal = document.getElementById(this.getAttribute("data-target"));
+                    targetModal.style.display = "block";
+                    body.style.overflow = "hidden"; // 모달 열릴 때 스크롤 비활성화
+                });
+            });
+
+            // 모달 닫기
+            closeModalBtns.forEach((btn) => {
+                btn.addEventListener("click", function () {
+                    const targetModal = document.getElementById(this.getAttribute("data-target"));
+                    targetModal.style.display = "none";
+                    body.style.overflow = ""; // 모달 닫힐 때 스크롤 활성화
+                });
+            });
+
+            // 모달 외부 영역 클릭 시 닫기
+            window.addEventListener("click", function (event) {
+                const modals = document.querySelectorAll(".modal");
+                modals.forEach((modal) => {
+                    if (event.target === modal) {
+                        modal.style.display = "none";
+                        body.style.overflow = ""; // 모달 닫힐 때 스크롤 활성화
+                    }
+                });
+            });
+
+            // 라디오 버튼들 선택
+            const radioButtons = document.querySelectorAll('input[name="repType"]');
+            const modalBtn = document.getElementById("confirmBtn");
+            const nextBtn = document.getElementById("nextBtn");
+
+            // 라디오 버튼 선택 시 버튼 활성화
+            radioButtons.forEach((radio) => {
+                radio.addEventListener("change", function () {
+                    if (this.checked) {
+                        modalBtn.disabled = false; // 버튼 활성화
+                        nextBtn.disabled = false; // 다음버튼 활성화
+                    }
+                });
+            });
+
+            const addRowBtn = document.getElementById("addRowBtn");
+            const tableBody = document.getElementById("tableBody");
+
+            // 행 추가 함수
+            addRowBtn.addEventListener("click", () => {
+                // 현재 tbody 내의 tr 개수를 체크
+                const rowCount = tableBody.getElementsByTagName("tr").length;
+
+                // tr이 5개 미만일 경우에만 행 추가
+                if (rowCount < 5) {
+                    // 새로운 행을 생성
+                    const newRow = document.createElement("tr");
+
+                    // 새로운 행의 HTML 내용
+                    newRow.innerHTML = `
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><button type="button" class="btn openModalBtn" data-action="register" data-target="modalOwnerReg">등록</button></td>
+                    `;
+
+                    // 새로운 행을 테이블에 추가
+                    tableBody.appendChild(newRow);
+
+                    // 새로운 모달 열기 버튼에도 이벤트를 추가
+                    const openModalBtn = newRow.querySelector(".openModalBtn");
+                    openModalBtn.addEventListener("click", () => {
+                        document.getElementById("modalOwnerReg").style.display = "block";
+                        document.body.style.overflow = "hidden"; // 스크롤 비활성화
+                    });
+                } else {
+                    alert("소유자는 최대 5명까지 등록 가능합니다.");
+                }
+            });
+        </script>
+    </body>
+</html>

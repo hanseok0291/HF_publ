@@ -1,3 +1,16 @@
+/* load images */
+body::after {
+  /* 소스만 다운받고 화면은 나태내지 않는다. (숨김 처리) */
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  z-index: -1;
+
+  /* load images */
+  content: url(../images/main/main_slide_01.png) url(../images/main/main_slide_02.png) url(../images/main/main_slide_03.png) url(../images/main/main_slide_04.png) url(../images/main/main_slide_05.png);
+}
+
 /* ----- main content ----- */
 .only_mo {
   display: none;
@@ -23,8 +36,8 @@
 }
 #container .main_contents .section.section_1 .card {
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
+  justify-content: space-between;
   overflow: hidden;
   position: relative;
   padding: 20px;
@@ -170,6 +183,7 @@
   line-height: 28px;
 }
 #container .main_contents .section.section_1 .card.card_5 {
+  justify-content: baseline;
   width: calc(50% - 8px);
   height: 200px;
   margin-top: 16px;
@@ -182,12 +196,32 @@
   line-height: 30.8px;
   letter-spacing: -0.04em;
 }
+#container .main_contents .section.section_1 .card.card_5 .tel_text {
+  margin-top: 10px;
+}
+#container .main_contents .section.section_1 .card.card_5 .tel_text b {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 21px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+#container .main_contents .section.section_1 .card.card_5 .tel_text span {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
 #container .main_contents .section.section_1 .card.card_5 .service_btn {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 130px;
   height: 41px;
+  margin-top: auto;
   color: #fff;
   font-size: 15px;
   font-weight: 700;
@@ -203,7 +237,8 @@
 }
 
 #container .main_contents .section.section_2 {
-  width: 100%;
+  overflow: hidden;
+  width: 1140px;
   margin: auto;
   padding: 120px 0 150px;
 }
@@ -225,11 +260,10 @@
   width: 44px;
   height: 44px;
   background: url(../images/ic_play.svg) 0 0 / cover no-repeat;
-  transition: 300ms;
+  transition: background 300ms;
 }
 #container .main_contents .section.section_2 .title_wrap .slide_control.pause {
   background: url(../images/ic_pause.svg) 0 0 / cover no-repeat;
-  transition: 300ms;
 }
 #container .main_contents .section.section_2 .title_wrap .slide_control:hover {
   background: url(../images/ic_play_active.svg) 0 0 / cover no-repeat;
@@ -245,8 +279,10 @@
   display: flex;
 }
 #container .main_contents .section.section_2 .swiper .swiper-wrapper {
+  transition-timing-function: linear !important;
+  /* transition-duration: 0ms !important; */
+  transition-delay: 0ms !important;
   width: auto;
-  animation: scroll 25s linear infinite;
 }
 #container .main_contents .section.section_2 .swiper .swiper-wrapper .swiper-slide {
   display: flex;
@@ -428,7 +464,6 @@
   margin-left: 10px;
 }
 #container .main_contents .section.section_4 .swiper {
-  overflow: visible;
   margin-top: 40px;
   text-align: center;
 }
@@ -596,9 +631,14 @@
 }
 
 .popup-main.ci-change .popup-area .con img {
-  width: 455px;
+  width: 600px;
 }
-
+@media (max-height: 768px) {
+  .popup-main.ci-change .popup-area .con img {
+    width: unset;
+    height: 70dvh;
+  }
+}
 @media (max-width: 1280px) {
   #container .main_contents .section.section_1 {
     width: 100%;
@@ -687,6 +727,7 @@
     width: 100%;
     height: 160px;
     margin-top: 10px;
+    padding: 16px;
   }
   #container .main_contents .section.section_1 .card.card_4 {
     width: 100%;
@@ -718,9 +759,21 @@
     line-height: 23.4px;
     letter-spacing: -0.02em;
   }
+  #container .main_contents .section.section_1 .card.card_5 .tel_text {
+    margin-top: 6px;
+  }
+  #container .main_contents .section.section_1 .card.card_5 .tel_text b {
+    font-size: 14px;
+    line-height: 19.6px;
+  }
+  #container .main_contents .section.section_1 .card.card_5 .tel_text span {
+    font-size: 14px;
+    line-height: 19.6px;
+  }
   #container .main_contents .section.section_1 .card.card_5 .service_btn {
     font-size: 14px;
     line-height: 19.6px;
+    height: 34px;
   }
   #container .main_contents .section.section_2 {
     padding: 0 16px 80px;

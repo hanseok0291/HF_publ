@@ -64,10 +64,6 @@
       src="../resources/js/jquery-1.8.2.min.js"
     ></script>
     <script type="text/javascript" src="../resources/js/layout.js"></script>
-    <script
-      type="text/javascript"
-      src="../resources/js/placeholders.min.js"
-    ></script>
     <script type="text/javascript" src="../../common/js/security.js"></script>
   </head>
   <body>
@@ -544,6 +540,12 @@
     <!-- //wrap -->
     <script>
       $(document).ready(function () {
+        // 수정 사항 - 1017 스크립트 추가
+        var gnbHeight = $('#header').outerHeight();
+        $(window).on('resize', function () {
+          gnbHeight = $('#header').outerHeight();
+        });
+        // 수정 사항 - 1017 스크립트 추가 END
         $('.click_area').on('click', function () {
           var posTop;
 
@@ -558,7 +560,7 @@
               .next()
               .slideDown(400, function () {
                 // slideDown 애니메이션이 완료된 후 스크롤 이동
-                posTop = $(this).prev().offset().top - 50;
+                posTop = $(this).prev().offset().top - gnbHeight; // 수정 사항 - 1017 gnb 높이 gnbHeight로 변경
                 $('html, body').animate(
                   {
                     scrollTop: posTop,

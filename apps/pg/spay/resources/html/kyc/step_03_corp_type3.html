@@ -32,6 +32,7 @@
         <link rel="stylesheet" href="../../css/kyc.css" />
         <script src="../../js/jquery-1.8.3.min.js"></script>
         <script src="../../js/slick.min.js"></script>
+        <script src="../../js/kyc.js"></script>
     </head>
 
     <body>
@@ -260,18 +261,6 @@
                     <div class="formWrap">
                         <!--  -->
                         <div class="formContainer">
-                            <!-- 실소유자(국문) -->
-                            <div class="formGroup">
-                                <label for="name">실소유자(국문)</label>
-                                <input type="text" id="name" name="name" placeholder="" />
-                            </div>
-
-                            <!-- 실소유자(영문) -->
-                            <div class="formGroup">
-                                <label for="nameEn">실소유자(영문)</label>
-                                <input type="text" id="nameEn" name="nameEn" placeholder="" />
-                            </div>
-
                             <!-- 국적 -->
                             <div class="formGroup">
                                 <label for="businessType">국적</label>
@@ -282,6 +271,18 @@
                                         <li class="optionItem">국적 2</li>
                                     </ul>
                                 </div>
+                            </div>
+
+                            <!-- 실소유자(국문) -->
+                            <div class="formGroup">
+                                <label for="name">실소유자(국문)</label>
+                                <input type="text" id="name" name="name" placeholder="" />
+                            </div>
+
+                            <!-- 실소유자(영문) -->
+                            <div class="formGroup">
+                                <label for="nameEn">실소유자(영문)</label>
+                                <input type="text" id="nameEn" name="nameEn" placeholder="" />
                             </div>
 
                             <!-- 거주국 -->
@@ -347,18 +348,6 @@
                     <div class="formWrap">
                         <!--  -->
                         <div class="formContainer">
-                            <!-- 실소유자(국문) -->
-                            <div class="formGroup">
-                                <label for="name">실소유자(국문)</label>
-                                <input type="text" id="name" name="name" placeholder="홍길동" readonly />
-                            </div>
-
-                            <!-- 실소유자(영문) -->
-                            <div class="formGroup">
-                                <label for="nameEn">실소유자(영문)</label>
-                                <input type="text" id="nameEn" name="nameEn" placeholder="" />
-                            </div>
-
                             <!-- 국적 -->
                             <div class="formGroup">
                                 <label for="businessType">국적</label>
@@ -369,6 +358,18 @@
                                         <li class="optionItem">국적 2</li>
                                     </ul>
                                 </div>
+                            </div>
+
+                            <!-- 실소유자(국문) -->
+                            <div class="formGroup">
+                                <label for="name">실소유자(국문)</label>
+                                <input type="text" id="name" name="name" placeholder="홍길동" readonly />
+                            </div>
+
+                            <!-- 실소유자(영문) -->
+                            <div class="formGroup">
+                                <label for="nameEn">실소유자(영문)</label>
+                                <input type="text" id="nameEn" name="nameEn" placeholder="" />
                             </div>
 
                             <!-- 거주국 -->
@@ -420,39 +421,6 @@
         </div>
         <!-- //wrap -->
         <script>
-            /* 화살표 함수 */
-            const selectBoxes = document.querySelectorAll(".selectBox");
-
-            selectBoxes.forEach((selectBox) => {
-                const label = selectBox.querySelector(".label");
-                const options = selectBox.querySelectorAll(".optionItem");
-
-                // 클릭한 옵션의 텍스트를 라벨 안에 넣음
-                const handleSelect = (item) => {
-                    selectBox.classList.remove("active");
-                    label.innerHTML = item.textContent;
-                    selectBox.classList.add("comp");
-                };
-
-                // 옵션 클릭 시 클릭한 옵션을 넘김
-                options.forEach((option) => {
-                    option.addEventListener("click", () => handleSelect(option));
-                });
-
-                // 라벨을 클릭시 옵션 목록이 열림/닫힘
-                label.addEventListener("click", () => {
-                    if (selectBox.classList.contains("active")) {
-                        selectBox.classList.remove("active");
-                    } else {
-                        // 다른 selectBox는 닫기
-                        selectBoxes.forEach((box) => {
-                            box.classList.remove("active");
-                        });
-                        selectBox.classList.add("active");
-                    }
-                });
-            });
-
             // 모달 열기 버튼과 모달 요소, 닫기 버튼을 선택
             const openModalBtns = document.querySelectorAll(".openModalBtn");
             const closeModalBtns = document.querySelectorAll(".closeModalBtn");

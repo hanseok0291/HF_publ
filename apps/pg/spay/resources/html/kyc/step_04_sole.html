@@ -32,6 +32,7 @@
         <link rel="stylesheet" href="../../css/kyc.css" />
         <script src="../../js/jquery-1.8.3.min.js"></script>
         <script src="../../js/slick.min.js"></script>
+        <script src="../../js/kyc.js"></script>
     </head>
 
     <body>
@@ -103,7 +104,7 @@
                                 <tr>
                                     <td>
                                         <div class="checkBox">
-                                            <input type="radio" id="chk1" class="checkSelect" name="chk1" title="주민등록증" checked="" />
+                                            <input type="radio" id="chk1" class="checkSelect" name="chk1" title="주민등록증" />
                                             <label for="chk1">주민등록증</label>
                                         </div>
                                         <div class="checkBox">
@@ -140,7 +141,7 @@
 
                     <div class="btnWrap">
                         <button type="button" class="btn btnPrev">이전</button>
-                        <button type="button" class="btn btnNext btnOrange" disabled>심사요청</button>
+                        <button type="button" id="nextBtn" class="btn btnNext btnOrange" disabled>심사요청</button>
                         <!-- 전체서류 등록시 버튼 활성화 -->
                         <!-- <button type="button" class="btn btnNext">심사요청</button> -->
                     </div>
@@ -265,39 +266,6 @@
         </div>
         <!-- //wrap -->
         <script>
-            /* 화살표 함수 */
-            const selectBoxes = document.querySelectorAll(".selectBox");
-
-            selectBoxes.forEach((selectBox) => {
-                const label = selectBox.querySelector(".label");
-                const options = selectBox.querySelectorAll(".optionItem");
-
-                // 클릭한 옵션의 텍스트를 라벨 안에 넣음
-                const handleSelect = (item) => {
-                    selectBox.classList.remove("active");
-                    label.innerHTML = item.textContent;
-                    selectBox.classList.add("comp");
-                };
-
-                // 옵션 클릭 시 클릭한 옵션을 넘김
-                options.forEach((option) => {
-                    option.addEventListener("click", () => handleSelect(option));
-                });
-
-                // 라벨을 클릭시 옵션 목록이 열림/닫힘
-                label.addEventListener("click", () => {
-                    if (selectBox.classList.contains("active")) {
-                        selectBox.classList.remove("active");
-                    } else {
-                        // 다른 selectBox는 닫기
-                        selectBoxes.forEach((box) => {
-                            box.classList.remove("active");
-                        });
-                        selectBox.classList.add("active");
-                    }
-                });
-            });
-
             // 등록/수정 확인 버튼 클릭 이벤트
             confirmBtn.addEventListener("click", () => {
                 if (confirmBtn.classList.contains("register")) {
@@ -313,25 +281,23 @@
                 body.style.overflow = ""; // 스크롤 다시 활성화
             });
 
-            const uploadBtns = document.querySelectorAll(".uploadBtn");
+            // 라디오버튼 선택
+            const nextBtn = document.getElementById("nextBtn");
+            const chk1 = document.getElementsByName("chk1");
 
-            uploadBtns.forEach((button) => {
-                button.addEventListener("click", function () {
-                    const fileInputId = this.getAttribute("data-file-id");
-                    const fileInput = document.getElementById(fileInputId);
+            // 체크박스의 상태를 확인하는 함수
+            function checkAllSelected() {
+                const chk1Checked = Array.from(chk1).some((chk) => chk.checked); // chk1 그룹에서 하나라도 선택된 경우
 
-                    // 파일 선택 창 열기
-                    fileInput.click();
+                // 하나라도 선택되었으면 버튼 활성화, 그렇지 않으면 비활성화
+                nextBtn.disabled = !chk1Checked;
+            }
 
-                    // 파일 선택 후 파일명을 열에 표시
-                    fileInput.addEventListener("change", function () {
-                        const fileNameCell = document.getElementById(`fileName${fileInputId.slice(-1)}`); // 해당 열의 파일명 셀
-                        if (fileInput.files.length > 0) {
-                            fileNameCell.textContent = fileInput.files[0].name;
-                        }
-                    });
-                });
-            });
+            // 각 라디오 버튼의 변경 이벤트를 감지
+            chk1.forEach((chk) => chk.addEventListener("change", checkAllSelected));
+
+            // 페이지 로드 시 초기 상태 확인
+            checkAllSelected();
         </script>
     </body>
 </html>

@@ -1,3 +1,4 @@
+@charset "UTF-8"; @import url(../fonts/pretendard/pretendard-subset.min.css);
 /* #RESET
 ------------------------------------------------------------*/
 *, *:after, *:before { -webkit-box-sizing: border-box; box-sizing: border-box; -webkit-text-size-adjust: none; text-size-adjust: none; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-font-smoothing: antialiased; } 
@@ -38,7 +39,7 @@ code { padding: 2px 4px; background-color: #f9f2f4; font-size: 96%; font-family:
 
 /* ----- input, select ----- */
 input[type="text"], input[type="password"], input[type="number"], input[type="email"], input[type="tel"],
-.input, select, .select { display: inline-block; padding: 7px 0; width: 100%; height: 45px; border-bottom: 1px solid #ccc; line-height: 30px; vertical-align: top; } 
+.input, select, .select { display: inline-block; padding: 7px 0; width: 100%; height: 48px; border-bottom: 1px solid #ccc; line-height: 30px; vertical-align: top; } 
 .input input[type="text"], .input input[type="password"], .input input[type="number"], .input input[type="email"], .input input[type="tel"],
 .input { padding: 0; } 
 input[type="text"], input[type="password"], input[type="number"], input[type="email"], input[type="tel"] { font-weight: 600; } 
@@ -69,7 +70,68 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
 .kyc .modal table th {  background-color: #F5F5F7; padding: 9px 10px; border: 0; text-align: left; color: #000000; border-right: 1px solid #cbcbcb;  }
 .kyc .modal table td { background-color: #fff; padding: 9px 10px; border: 0; text-align: left; color: #333; }
 .kyc .modal table a { text-decoration: underline; color: #1E8AFF; }
+.kyc .tableWrap table { table-layout: fixed; }
+.kyc .tableWrap.type3 .modal-content { width: 840px; }
+.kyc .tableWrap.type3 td { border-right: 1px solid #CBCBCB; }
+.kyc .tableWrap.type3 td:first-of-type { width: 100px; }
+.kyc .tableWrap.type3 td:nth-of-type(3), .kyc .tableWrap.type3 td:nth-of-type(4) { width: 165px; }
+.kyc .tableWrap.type3 td:last-of-type { border-right: 0; }
+.kyc .tableWrap + .title { margin-top: -26px; margin-bottom: 10px; }
 /* 테이블 */
+
+.grayText {
+    color: #666;
+}
+.darkText {
+    color: #5c5c5c;
+}
+.blackText {
+    color: #000;
+}
+.alignLeft {
+    text-align: left !important;
+}
+.alignCenter {
+    text-align: center !important;
+}
+.alignRight {
+    text-align: right !important;
+}
+.boldText {
+    font-weight: 600;
+}
+.extraBoldText {
+    font-weight: 700;
+}
+
+.dFlex {
+    display: flex;
+}
+.dAlignCenter  {
+    align-items: center;
+}
+.dJustifyCenter {
+    justify-content: center;
+}
+.dSpaceBetween {
+    justify-content: space-between;
+}
+.dEnd {
+    justify-content: end;
+}
+
+.mt10 {
+    margin-top: 10px !important;
+}
+.mt40 {
+    margin-top: 40px !important;
+}
+
+/* 셀렉트박스 */
+.kyc #businessTypeContainer1 .formGroup:last-of-type, .kyc #businessTypeContainer2 .formGroup:last-of-type {
+    margin-bottom: 20px;
+}
+/* 셀렉트박스 */
 
 /* 폼 스타일링 */
 form {
@@ -108,6 +170,7 @@ input[type="text"]::placeholder, input[type="tel"]::placeholder {
     font-weight: 600;
     text-align: left;
     color: #1E8AFF;
+    display: none;
 }
 button {
     padding: 10px 20px;
@@ -119,6 +182,21 @@ button {
 }
 button:disabled {
     background-color: #ccc;
+}
+#sendCodeBtn {
+    width: 102px;
+    padding-left: 0;
+    padding-right: 0;
+}
+.btnFull { 
+    width: 100%; 
+    height: 48px; 
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 17.9px;
+    text-align: center;
+    color: #fff; 
 }
 .kyc .selectBox * { box-sizing: border-box; }
 .kyc .selectBox {
@@ -222,6 +300,24 @@ button:disabled {
     text-align: center;
     color: #000;
 }
+.subTitle {
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
+    text-align: left;
+    color: #333;
+}
+.subTitle + .subTitleContent {
+    margin-top: 10px;
+    margin-bottom: 40px;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: left;
+    color: #666;
+}
 .inputItem {
     display: flex;
     align-items: start;
@@ -232,8 +328,18 @@ button:disabled {
     position: relative;
     width: 100%;
 }
+.inputItem.col-2 {
+    flex-direction: row;
+    align-items: center;
+}
 .inputItem.col-2 > div {
     width: 70%;
+}
+.inputItem.col-2 button {
+    height: 48px;
+    margin-top: -7px;
+    margin-left: 8px;
+    white-space: nowrap;
 }
 /* //로그인 */
 
@@ -272,6 +378,9 @@ button:disabled {
     line-height: 21.48px;
     text-align: left;
     margin-bottom: 40px;
+}
+.kyc .content .title + .tableWrap {
+    margin-top: -20px;
 }
 .kyc .stepWrap {
     display: flex;
@@ -334,6 +443,27 @@ button:disabled {
     color: #222;
     margin-bottom: 14px;
 }
+.kyc .guideSubWrap {
+    margin-bottom: 40px;
+}
+.kyc .guideSubWrap .title {
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
+    text-align: left;
+    color: #333333;
+    margin-bottom: 10px;
+}
+.kyc .guideSubWrap .info {
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: left;
+    color: #666;
+}
+
 .kyc .guideList li {
     position: relative;
     font-family: Pretendard;
@@ -350,6 +480,9 @@ button:disabled {
     position: absolute;
     font-size: 24px;
     left: 0;
+}
+.kyc .darkText .guideList li {
+    color: #5c5c5c;
 }
 .kyc .guideWrap .guideList li:last-of-type {
     margin-bottom: 0;
@@ -405,7 +538,31 @@ button:disabled {
 .kyc .checkBox > input:checked + label::before {
     background: url(../images/kyc/common/radio-on.svg) no-repeat center / contain;
 }
-
+.kyc .checkBox > input[type="checkbox"] + label::before {
+    background: url(../images/kyc/common/checkbox-off.svg) no-repeat center / contain;
+}
+.kyc .checkBox > input[type="checkbox"]:checked + label::before {
+    background: url(../images/kyc/common/checkbox-on.svg) no-repeat center / contain;
+}
+.kyc .checkBox.round > input + label::before {
+    background: url(../images/kyc/common/radio-off.svg) no-repeat center / contain;
+}
+.kyc .checkBox.round > input:checked + label::before {
+    background: url(../images/kyc/common/radio-on.svg) no-repeat center / contain;
+}
+.kyc .checkBox.box > input + label::before {
+    background: url(../images/kyc/common/checkbox-off.svg) no-repeat center / contain;
+}
+.kyc .checkBox.box > input + label:checked:before {
+    background: url(../images/kyc/common/checkbox-on.svg) no-repeat center / contain;
+}
+.kyc .checkBox > input + label .btnLink {
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 17.9px;
+    letter-spacing: -0.02em;
+}
 .kyc .formGroup .checkBox > input + label {
     margin-bottom: 0;
     width: auto;
@@ -413,6 +570,18 @@ button:disabled {
 }
 .kyc .formGroup.stake > input {
     background: transparent url("../images/kyc/common/percentage.svg") right 15px center / 16px auto no-repeat;
+}
+.kyc .checkBox.alignCenter > input + label {
+    width: auto;
+    display: inline-block;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.kyc .tableWrap + div .checkBox.alignCenter > input + label {
+    margin-top: 0;
+}
+.kyc .formWrap + .btnWrap {
+    margin-top: 40px;
 }
 
 .kyc .btnWrap {
@@ -444,9 +613,9 @@ button:disabled {
     cursor: pointer;
 }
 .kyc .btnOrange {
-    background-color: #FF6114;
-    border-color: #FF6114;
-    color: #fff;
+    background-color: #FF6114 !important;
+    border-color: #FF6114 !important;
+    color: #fff !important;
 }
 .kyc .btnOff, .kyc .btn:disabled {
     border-color: #DADADA !important;
@@ -461,10 +630,16 @@ button:disabled {
     position: relative;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     margin-bottom: 20px;
 }
 .formGroup:last-of-type {
     margin-bottom: 0;
+}
+.formGroup .subBottomTitle {
+    width: 100%;
+    margin-top: 8px;
+    margin-left: 126px;
 }
 .kyc .formGroup.col-4 {
     flex-wrap: wrap;
@@ -512,12 +687,14 @@ button:disabled {
     margin-top: 10px;
 } */
 .postalContainer,
-.accountContainer {
+.accountContainer,
+.sideBtnWrap {
     display: flex;
     gap: 10px;
 }
 .postalContainer button,
-.accountContainer button {
+.accountContainer button,
+.sideBtnBox button {
     padding: 15px 0;
     background-color: #fff;
     border: 1px solid #3e3e3e;
@@ -538,18 +715,75 @@ button:disabled {
     font-size: 14px;
     text-align: center;
   }
+  .kyc .tableWrap.tableCenter table {
+    text-align: center;
+    table-layout: fixed;
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+  .kyc .tableWrap.tableCenter table th {
+    width: 100px;
+    text-align: center;
+    font-weight: 600;
+    height: 48px;
+  }
+  .kyc .tableWrap.tableCenter table td {
+    width: 100px;
+    text-align: center;
+    border-right: 1px solid #cbcbcb;
+    font-weight: 600;
+  }
+  .kyc .tableWrap table .won {
+    color: #666;
+    font-family: Pretendard;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: -0.02em;
+  }
+  .kyc .tableWrap table .lightGray {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: #666;
+  }
+
+  .kyc .tableWrap.tableCenter table td > p {
+    margin-bottom: 4px;
+  }
+  .kyc .tableWrap.tableCenter table td > p:last-of-type {
+    margin-bottom: 0;
+  }
+  .kyc .tableWrap.tableCenter table th:last-of-type {
+    width: auto;
+    border-right: 0;
+  }
+  .kyc .tableWrap.tableCenter table td:last-of-type {
+    width: auto;
+    text-align: left;
+    border-right: 0;
+    font-weight: 400;
+  }
   .kyc .tableWrap th, .kyc .tableWrap td {
     padding: 12px 15px;
+  }
+  .kyc .tableWrap td.grayText {
+    color: #999;
+  }
+  .kyc .tableWrap .onrageText {
+    color: #FF6114;
   }
   .kyc .tableWrap th {
     background-color: #f4f4f4;
     font-weight: bold;
     height: 60px;
   }
-  .kyc .tableWrap td:nth-of-type(1) {
+  .kyc .tableWrap.type2 td:nth-of-type(1) {
     width: 300px;
   }
-  .kyc .tableWrap td:nth-of-type(3) {
+  .kyc .tableWrap.type2 td:nth-of-type(3) {
     width: 160px;
   }
   .kyc .tableWrap td .checkBox {
@@ -597,6 +831,13 @@ button:disabled {
     max-width: 98px;
     max-height: 48px;
 }
+.kyc .tableWrap table button.btnDown {
+    padding: 0;
+    max-height: 38px;
+    height: 38px;
+    font-size: 14px;
+    font-weight: 500;
+}
 .kyc .tableWrap .type2 td .checkBox {
     width: auto;
 }
@@ -608,6 +849,65 @@ button:disabled {
 }
 .kyc .tableWrap .type2 tbody td:first-of-type {
     text-align: left;
+}
+.kyc .tableWrap.type4 th {
+    border-right: 1px solid #cbcbcb;
+    height: 48px;
+}
+.kyc .tableWrap.type4 th:last-of-type {
+    border-right: 0;
+}
+.kyc .tableWrap.type4 td .checkBox {
+    position: relative;
+    width: auto;
+    height: 22px;
+    margin: 0;
+}
+.kyc .tableWrap.type4 .checkBox > input + label::before {
+    left: 50%;
+    transform: translateX(-50%);
+}
+.kyc .tableWrap.tableCenter table th:nth-of-type(2) {
+    width: 60px;
+}
+.kyc .tableWrap.tableCenter table td:nth-of-type(3) {
+    width: 60px;
+}
+.kyc .tableWrap.tableCenter table td.alignRight {
+    text-align: right;
+}
+.kyc .tableWrap.type4 .checkBox > input + label {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: -0.02em;
+    text-align: center;
+    padding-left: 22px;
+    padding-right: 0;
+}
+
+.kyc .tableWrap.type4 .checkBox > input + label::before {
+    width: 18px;
+    height: 18px;
+}
+.kyc .tableWrap.type5 {}
+.kyc .tableWrap.type5 .checkBox.checkBoxText {
+    margin-right: 10px;
+}
+.kyc .tableWrap.type5 .checkBox.checkBoxText:last-of-type {
+    margin-right: 0;
+}
+.kyc .tableWrap.type5 .checkBox.checkBoxText > input + label::before {
+    transform: translateX(-22px);
+}
+.kyc .tableWrap.type5 .dFlex + .dFlex {
+    margin-top: 10px;
+}
+.kyc .checkBox.box > input + label::before {
+    background: url(../images/kyc/common/checkbox-off.svg) no-repeat center / contain;
+}
+.kyc .checkBox.box > input:checked + label::before {
+    background: url(../images/kyc/common/checkbox-on.svg) no-repeat center / contain;
 }
 /* 테이블 */
 
@@ -638,6 +938,18 @@ button:disabled {
 }
 .kyc .modalWide .modal-content {
     width: 800px;
+    min-height: 600px;
+}
+.kyc .modalWide.modalFullHeight .modal-content {
+    width: 840px;
+    max-height: 898px;
+    overflow-y: scroll;
+}
+.kyc .modalWide.modalFullHeight .guideList li {
+    padding-left: 15px;
+}
+.kyc .modalWide.modalFullHeight .guideList li::before {
+    font-size: 16px;
 }
   
 .kyc .close {
@@ -665,6 +977,27 @@ button:disabled {
     color: #000;
     margin-bottom: 14px;
 }
+.kyc .modal .termsTitle {
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
+    text-align: left;
+    color: #333;
+    margin-bottom: 10px;
+}
+.kyc .modal .termsText {
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: left;
+    color: #666;
+    margin-bottom: 56px;
+}
+.kyc .modal .termsText + .title {
+    margin-top: -40px;
+}
 .kyc .modal .guideWrap .guideList li {
     font-family: Pretendard;
     font-size: 14px;
@@ -676,6 +1009,9 @@ button:disabled {
 .kyc .modal .guideWrap {
     padding: 10px;
     margin-bottom: 20px;
+}
+.kyc .modal .guideWrap.pd20 {
+    padding: 20px;
 }
 .kyc .modal .formContainer {
     padding: 0 0 20px;
@@ -947,3 +1283,174 @@ text-align: center;
 color: #000;
 }
 /* //법인 */
+
+/* 계약서 */
+.kyc.agreement .content .title {
+    margin-bottom: 20px;
+}
+.kyc.agreement .content .agreeText {
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.71px;
+    text-align: left;
+    color: #222;
+    margin-bottom: 50px;
+    display: none;
+ }
+ .kyc.agreement .content .agreeText.active {
+    display: block;
+ }
+ .kyc.agreement .content .agreeText .box {
+    margin-bottom: 20px;
+ }
+ .kyc.agreement .content .agreeText .box p {
+    margin-bottom: 5px;
+ }
+.kyc.agreement .content .agreeText strong {}
+
+.kyc .colWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.kyc .agreementPage {}
+.kyc .agreementPage .agreementPageTitle {
+    font-family: Pretendard;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 21.48px;
+    text-align: center;
+    color: #000;
+    margin-bottom: 20px;
+}
+.kyc .agreementPage .agreementPage2Col { 
+    display: flex;
+    justify-content: space-around;
+    gap: 0 10px;    
+}
+.kyc .agreementPage .companyName {
+    font-family: Pretendard;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 9.55px;
+    text-align: left;
+    color: #000;
+    text-decoration: underline;
+}
+.kyc .agreementPage .paraTitle {
+    font-family: Pretendard;
+    font-size: 8px;
+    font-weight: 700;
+    line-height: 9.55px;
+    text-align: left;
+    color: #000;
+}
+.kyc .agreementPage .agreementPage2Col > div { 
+    width: 50%;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    text-align: left;
+    color: #000;
+ }
+ .kyc .agreementPage .agreementPage2Col > div > p {
+    margin-bottom: 10px;
+ }
+ .kyc .agreementPage .agreementPage2Col > div > p:last-of-type {
+    margin-bottom: 0;
+ }
+.kyc .agreementPage .agreementPage2Col .left {}
+.kyc .agreementPage .agreementPage2Col .right {}
+/* 계약서 */
+
+/*  */
+.kyc .agreementPage { height: 100%; }
+.kyc .agreementPage .agreementPageTitle {
+    font-family: Pretendard;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 21.48px;
+    text-align: center;
+    color: #000;
+    margin-bottom: 20px;
+}
+.kyc .agreementPage .agreementPageSubTitle {
+    font-family: Pretendard;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 11.93px;
+    text-align: left;
+}
+
+.kyc .agreementPage .agreementPage1Col { 
+    font-family: Pretendard;
+    font-size: 8px;
+    font-weight: 400;
+    line-height: 14px;
+    text-align: left;
+    color: #000;
+}
+.kyc .agreementPage .agreementPage1Col .companyName {
+    font-family: Pretendard;
+    font-size: 8px;
+    font-weight: 700;
+    line-height: 9.55px;
+    text-align: left;
+    color: #000;
+    text-decoration: underline;
+}
+.kyc .agreementPage .agreementPage2Col { 
+    width: 100%; /* 전체 너비 */
+    display: flex; /* flexbox를 활용하여 레이아웃 관리 */
+    justify-content: start; /* 왼쪽부터 채우기 */
+}
+.kyc .agreementPage .agreementPage2Col > div {
+    column-count: 2; /* 두 개의 열로 나눔 */
+    column-gap: 40px; /* 열 사이의 간격 */
+    width: 100%; /* 콘텐츠가 100% 너비를 차지 */
+}
+.kyc .agreementPage .agreementPage2Col .left, .kyc .agreementPage .agreementPage2Col .right {
+    flex: 1; /* 양쪽을 동일하게 차지 */
+    min-width: 300px; /* 최소 너비를 설정하여 너무 작아지지 않도록 방지 */
+}
+.kyc .agreementPage .companyName {
+    font-family: Pretendard;
+    font-size: 8px;
+    font-weight: 700;
+    line-height: 9.55px;
+    text-align: left;
+    color: #000;
+    text-decoration: underline;
+}
+.kyc .agreementPage .paraTitle {
+    font-family: Pretendard;
+    font-size: 8px;
+    font-weight: 700;
+    line-height: 9.55px;
+    text-align: left;
+    color: #000;
+    margin-bottom: 4px;
+}
+.kyc .agreementPage .paraTitle + .noti-list {
+    margin-top: 0;
+}
+.kyc .agreementPage .agreementPage2Col > div { 
+    width: 100%;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    text-align: left;
+    color: #000;
+ }
+ .kyc .agreementPage .agreementPage2Col > div > p {
+    margin-bottom: 10px;
+    font-size: 8px;
+ }
+ .kyc .agreementPage .agreementPage2Col > div > p:last-of-type {
+    margin-bottom: 0;
+ }
+/*  */

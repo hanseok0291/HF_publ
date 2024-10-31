@@ -147,97 +147,38 @@
         </div>
         <!-- //wrap -->
         <script>
-            // 라디오 버튼과 표시할 영역 선택
-            const listingInfo1 = document.getElementById("listingInfo1");
-            const listingInfo2 = document.getElementById("listingInfo2");
-            const sole = document.getElementById("sole");
-            const corp = document.getElementById("corp");
+            // 모든 input 입력시 버튼 활성화
+            document.addEventListener("DOMContentLoaded", function () {
+                const btnNext = document.querySelector(".btnNext");
+                const formInputs = document.querySelectorAll(".formContainer input");
 
-            // 라디오 버튼 클릭 시 영역 표시/숨기기
-            listingInfo1.addEventListener("change", () => {
-                if (listingInfo1.checked) {
-                    sole.style.display = "block"; // 개인사업자 영역 보이기
-                    corp.style.display = "none"; // 법인사업자 영역 숨기기
+                // 모든 input 요소의 값이 채워져 있는지 확인하는 함수
+                function checkInputs(inputs) {
+                    const totalInputs = inputs.length;
+                    const filledInputs = Array.from(inputs).filter((input) => input.value.trim() !== "").length;
+
+                    // 콘솔 출력: 총 input 개수와 채워진 input 개수
+                    console.log(`Total inputs: ${totalInputs}, Filled inputs: ${filledInputs}`);
+
+                    return filledInputs === totalInputs;
                 }
-            });
 
-            listingInfo2.addEventListener("change", () => {
-                if (listingInfo2.checked) {
-                    sole.style.display = "none"; // 개인사업자 영역 숨기기
-                    corp.style.display = "block"; // 법인사업자 영역 보이기
+                // .formContainer 내의 모든 input 값을 확인하여 버튼 상태를 업데이트하는 함수
+                function updateButtonState() {
+                    if (checkInputs(formInputs)) {
+                        btnNext.disabled = false;
+                        btnNext.classList.remove("btnOff");
+                    } else {
+                        btnNext.disabled = true;
+                        btnNext.classList.add("btnOff");
+                    }
                 }
-            });
 
-            // 업종 추가 버튼과 추가할 컨테이너 선택
-            const addBusinessTypeBtn1 = document.getElementById("addBusinessTypeBtn1");
-            const addBusinessTypeBtn2 = document.getElementById("addBusinessTypeBtn2");
+                // 각 input 요소에 input 이벤트를 추가하여 값이 변경될 때마다 버튼 상태 업데이트
+                formInputs.forEach((input) => input.addEventListener("input", updateButtonState));
 
-            const businessTypeContainer1 = document.getElementById("businessTypeContainer1");
-            const businessTypeContainer2 = document.getElementById("businessTypeContainer2");
-            // const businessTypeContainer = addBusinessTypeBtn.closest(".formGroup"); // 업종 추가 버튼이 속한 formGroup을 기준으로
-
-            // formGroup 생성 함수
-            function createNewFormGroup() {
-                // 새로운 formGroup 요소 생성
-                const newFormGroup = document.createElement("div");
-                newFormGroup.classList.add("formGroup");
-                newFormGroup.innerHTML = `
-        <label for="businessType"></label>
-        <div class="selectBox">
-            <button class="label">업종</button>
-            <ul class="optionList">
-                <li class="optionItem">업종 1</li>
-                <li class="optionItem">업종 2</li>
-            </ul>
-        </div>
-    `;
-
-                // 선택박스 동작 설정 (옵션 선택, comp 클래스 추가)
-                const selectBox = newFormGroup.querySelector(".selectBox");
-                const label = selectBox.querySelector(".label");
-                const optionList = selectBox.querySelector(".optionList");
-                const optionItems = selectBox.querySelectorAll(".optionItem");
-
-                // 선택박스 클릭 시 selectBox에 active 클래스 토글
-                label.addEventListener("click", () => {
-                    selectBox.classList.toggle("active");
-                });
-
-                // 옵션 클릭 시 선택된 항목 라벨에 표시 및 selectBox에 comp 클래스 추가
-                optionItems.forEach((option) => {
-                    option.addEventListener("click", () => {
-                        label.textContent = option.textContent;
-                        selectBox.classList.remove("active"); // 선택 후 active 클래스 제거
-                        selectBox.classList.add("comp"); // 선택 완료 시 comp 클래스 추가
-                    });
-                });
-
-                return newFormGroup;
-            }
-
-            // 특정 컨테이너에 새로운 formGroup을 추가하는 함수
-            function addFormGroup(container) {
-                // 마지막 formGroup을 찾아서 그 뒤에 추가하거나, 처음 추가하는 경우에는 컨테이너에 직접 추가
-                const lastFormGroup = container.querySelector(".formGroup:last-of-type");
-                const newFormGroup = createNewFormGroup();
-
-                if (lastFormGroup) {
-                    // 마지막 formGroup 뒤에 새로운 formGroup 추가
-                    lastFormGroup.insertAdjacentElement("afterend", newFormGroup);
-                } else {
-                    // 컨테이너가 비어 있는 경우에는 처음으로 추가
-                    container.appendChild(newFormGroup);
-                }
-            }
-
-            // 첫 번째 버튼 클릭 시 첫 번째 컨테이너에 새로운 formGroup 추가
-            addBusinessTypeBtn1.addEventListener("click", () => {
-                addFormGroup(businessTypeContainer1);
-            });
-
-            // 두 번째 버튼 클릭 시 두 번째 컨테이너에 새로운 formGroup 추가
-            addBusinessTypeBtn2.addEventListener("click", () => {
-                addFormGroup(businessTypeContainer2);
+                // 페이지가 처음 로드될 때 버튼 상태 초기화
+                updateButtonState();
             });
         </script>
     </body>

@@ -84,11 +84,11 @@
                                     <div class="colWrap">
                                         <div class="checkBox">
                                             <input type="radio" id="listingInfo1" class="checkSelect" name="listingInformation" />
-                                            <label for="listingInfo1">개인사업자</label>
+                                            <label for="listingInfo1" class="mediumText">개인사업자</label>
                                         </div>
                                         <div class="checkBox">
                                             <input type="radio" id="listingInfo2" class="checkSelect" name="listingInformation" />
-                                            <label for="listingInfo2">법인사업자(비영리 단체 포함)</label>
+                                            <label for="listingInfo2" class="mediumText">법인사업자(비영리 단체 포함)</label>
                                         </div>
                                     </div>
                                 </div>
@@ -130,21 +130,28 @@
                                         </ul>
                                     </div>
                                     <div class="sideBtnBox">
-                                        <button type="button">업종 추가</button>
+                                        <button type="button" id="addBusinessTypeBtn1">업종 추가</button>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="formGroup">
                                 <label for="businessType"></label>
-                                <div class="selectBox">
-                                    <button class="label">업종</button>
-                                    <ul class="optionList">
-                                        <li class="optionItem">업종 1</li>
-                                        <li class="optionItem">업종 2</li>
-                                    </ul>
+                                <div class="sideBtnWrap">
+                                    <div class="selectBox">
+                                        <button class="label">업종</button>
+                                        <ul class="optionList">
+                                            <li class="optionItem">업종 1</li>
+                                            <li class="optionItem">업종 2</li>
+                                        </ul>
+                                    </div>
+                                    <div class="sideBtnBox">
+                                        <button type="button" class="delBusinessTypeBtn">삭제</button>
+                                    </div>
                                 </div>
                             </div>
+
+                            <div id="businessTypeContainer1"></div>
 
                             <!-- 업태 -->
                             <div class="formGroup">
@@ -206,6 +213,88 @@
             </div>
         </div>
         <!-- //wrap -->
-        <script></script>
+        <script>
+            // 업종 추가 버튼과 추가할 컨테이너 선택
+            const addBusinessTypeBtn1 = document.getElementById("addBusinessTypeBtn1");
+            const addBusinessTypeBtn2 = document.getElementById("addBusinessTypeBtn2");
+
+            const businessTypeContainer1 = document.getElementById("businessTypeContainer1");
+            const businessTypeContainer2 = document.getElementById("businessTypeContainer2");
+            // const businessTypeContainer = addBusinessTypeBtn.closest(".formGroup"); // 업종 추가 버튼이 속한 formGroup을 기준으로
+
+            // formGroup 생성 함수
+            function createNewFormGroup() {
+                // 새로운 formGroup 요소 생성
+                const newFormGroup = document.createElement("div");
+                newFormGroup.classList.add("formGroup");
+                newFormGroup.innerHTML = `
+        <label for="businessType"></label>
+        <div class="sideBtnWrap">
+            <div class="selectBox">
+                <button class="label">업종</button>
+                <ul class="optionList">
+                    <li class="optionItem">업종 1</li>
+                    <li class="optionItem">업종 2</li>
+                </ul>
+            </div>
+            <div class="sideBtnBox">
+                <button type="button" class="delBusinessTypeBtn">삭제</button>
+            </div>
+        </div>
+    `;
+
+                // 선택박스 동작 설정 (옵션 선택, comp 클래스 추가)
+                const selectBox = newFormGroup.querySelector(".selectBox");
+                const label = selectBox.querySelector(".label");
+                const optionList = selectBox.querySelector(".optionList");
+                const optionItems = selectBox.querySelectorAll(".optionItem");
+
+                // 선택박스 클릭 시 selectBox에 active 클래스 토글
+                label.addEventListener("click", () => {
+                    selectBox.classList.toggle("active");
+                });
+
+                // 옵션 클릭 시 선택된 항목 라벨에 표시 및 selectBox에 comp 클래스 추가
+                optionItems.forEach((option) => {
+                    option.addEventListener("click", () => {
+                        label.textContent = option.textContent;
+                        selectBox.classList.remove("active"); // 선택 후 active 클래스 제거
+                        selectBox.classList.add("comp"); // 선택 완료 시 comp 클래스 추가
+                    });
+                });
+
+                return newFormGroup;
+            }
+
+            // 특정 컨테이너에 새로운 formGroup을 추가하는 함수
+            function addFormGroup(container) {
+                // 마지막 formGroup을 찾아서 그 뒤에 추가하거나, 처음 추가하는 경우에는 컨테이너에 직접 추가
+                const lastFormGroup = container.querySelector(".formGroup:last-of-type");
+                const newFormGroup = createNewFormGroup();
+
+                if (lastFormGroup) {
+                    // 마지막 formGroup 뒤에 새로운 formGroup 추가
+                    lastFormGroup.insertAdjacentElement("afterend", newFormGroup);
+                } else {
+                    // 컨테이너가 비어 있는 경우에는 처음으로 추가
+                    container.appendChild(newFormGroup);
+                }
+            }
+
+            // 첫 번째 버튼 클릭 시 첫 번째 컨테이너에 새로운 formGroup 추가
+            addBusinessTypeBtn1.addEventListener("click", () => {
+                addFormGroup(businessTypeContainer1);
+            });
+
+            // delBusinessTypeBtn1 클릭 시 상위 formGroup 삭제
+            document.addEventListener("click", function (event) {
+                if (event.target.classList.contains("delBusinessTypeBtn")) {
+                    const parentFormGroup = event.target.closest(".formGroup");
+                    if (parentFormGroup) {
+                        parentFormGroup.remove();
+                    }
+                }
+            });
+        </script>
     </body>
 </html>

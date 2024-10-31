@@ -101,7 +101,7 @@
                                         <td>초기등록비</td>
                                         <td>
                                             <div class="checkBox">
-                                                <input type="checkbox" id="chk1_1" class="checkSelect" name="chk1_1" />
+                                                <input type="checkbox" id="chk1_1" class="checkSelect" name="chk1_1" checked disabled />
                                                 <label for="chk1_1"></label>
                                             </div>
                                         </td>
@@ -112,7 +112,7 @@
                                         <td>연관리비</td>
                                         <td>
                                             <div class="checkBox">
-                                                <input type="checkbox" id="chk1_2" class="checkSelect" name="chk1_2" />
+                                                <input type="checkbox" id="chk1_2" class="checkSelect" name="chk1_2" checked disabled />
                                                 <label for="chk1_2"></label>
                                             </div>
                                         </td>
@@ -124,7 +124,7 @@
                                         <td>보증보험</td>
                                         <td>
                                             <div class="checkBox">
-                                                <input type="checkbox" id="chk1_3" class="checkSelect" name="chk1_3" />
+                                                <input type="checkbox" id="chk1_3" class="checkSelect" name="chk1_3" checked disabled />
                                                 <label for="chk1_3"></label>
                                             </div>
                                         </td>
@@ -133,22 +133,22 @@
                                         </td>
                                         <td class="alignCenter">문의전화 02-3543-8902~3</td>
                                     </tr>
-                                    <tr>
+                                    <tr class="disabled">
                                         <td>보증금</td>
                                         <td>
                                             <div class="checkBox">
-                                                <input type="checkbox" id="chk1_4" class="checkSelect" name="chk1_4" />
+                                                <input type="checkbox" id="chk1_4" class="checkSelect" name="chk1_4" disabled />
                                                 <label for="chk1_4"></label>
                                             </div>
                                         </td>
                                         <td class="alignRight"><span class="won">0 원</span></td>
                                         <td class="alignCenter lightGray">월 기본 수수료 3개월</td>
                                     </tr>
-                                    <tr>
+                                    <tr class="disabled">
                                         <td colspan="2">유무선전화결제중재센터 비용</td>
                                         <td>
                                             <div class="checkBox">
-                                                <input type="checkbox" id="chk1_5" class="checkSelect" name="chk1_5" />
+                                                <input type="checkbox" id="chk1_5" class="checkSelect" name="chk1_5" disabled />
                                                 <label for="chk1_5"></label>
                                             </div>
                                         </td>
@@ -161,8 +161,8 @@
                         </div>
                         <!--  -->
                         <div>
-                            <div class="checkBox alignCenter">
-                                <input type="radio" id="chk1" class="checkSelect" name="chk1" />
+                            <div class="checkBox round alignCenter">
+                                <input type="checkbox" id="chk1" class="checkSelect" name="chk1" />
                                 <label for="chk1">위의 사항을 확인하였습니다.</label>
                             </div>
                         </div>
@@ -170,104 +170,25 @@
 
                     <div class="btnWrap">
                         <button type="button" class="btn btnPrev">이전</button>
-                        <button type="button" class="btn btnNext">다음</button>
+                        <button type="button" class="btn btnNext" disabled>다음</button>
                     </div>
                 </div>
             </div>
         </div>
         <!-- //wrap -->
         <script>
-            // 라디오 버튼과 표시할 영역 선택
-            const listingInfo1 = document.getElementById("listingInfo1");
-            const listingInfo2 = document.getElementById("listingInfo2");
-            const sole = document.getElementById("sole");
-            const corp = document.getElementById("corp");
+            // 체크박스와 버튼 요소 가져오기
+            const checkbox = document.getElementById("chk1");
+            const nextButton = document.querySelector(".btnNext");
 
-            // 라디오 버튼 클릭 시 영역 표시/숨기기
-            listingInfo1.addEventListener("change", () => {
-                if (listingInfo1.checked) {
-                    sole.style.display = "block"; // 개인사업자 영역 보이기
-                    corp.style.display = "none"; // 법인사업자 영역 숨기기
-                }
-            });
-
-            listingInfo2.addEventListener("change", () => {
-                if (listingInfo2.checked) {
-                    sole.style.display = "none"; // 개인사업자 영역 숨기기
-                    corp.style.display = "block"; // 법인사업자 영역 보이기
-                }
-            });
-
-            // 업종 추가 버튼과 추가할 컨테이너 선택
-            const addBusinessTypeBtn1 = document.getElementById("addBusinessTypeBtn1");
-            const addBusinessTypeBtn2 = document.getElementById("addBusinessTypeBtn2");
-
-            const businessTypeContainer1 = document.getElementById("businessTypeContainer1");
-            const businessTypeContainer2 = document.getElementById("businessTypeContainer2");
-            // const businessTypeContainer = addBusinessTypeBtn.closest(".formGroup"); // 업종 추가 버튼이 속한 formGroup을 기준으로
-
-            // formGroup 생성 함수
-            function createNewFormGroup() {
-                // 새로운 formGroup 요소 생성
-                const newFormGroup = document.createElement("div");
-                newFormGroup.classList.add("formGroup");
-                newFormGroup.innerHTML = `
-        <label for="businessType"></label>
-        <div class="selectBox">
-            <button class="label">업종</button>
-            <ul class="optionList">
-                <li class="optionItem">업종 1</li>
-                <li class="optionItem">업종 2</li>
-            </ul>
-        </div>
-    `;
-
-                // 선택박스 동작 설정 (옵션 선택, comp 클래스 추가)
-                const selectBox = newFormGroup.querySelector(".selectBox");
-                const label = selectBox.querySelector(".label");
-                const optionList = selectBox.querySelector(".optionList");
-                const optionItems = selectBox.querySelectorAll(".optionItem");
-
-                // 선택박스 클릭 시 selectBox에 active 클래스 토글
-                label.addEventListener("click", () => {
-                    selectBox.classList.toggle("active");
-                });
-
-                // 옵션 클릭 시 선택된 항목 라벨에 표시 및 selectBox에 comp 클래스 추가
-                optionItems.forEach((option) => {
-                    option.addEventListener("click", () => {
-                        label.textContent = option.textContent;
-                        selectBox.classList.remove("active"); // 선택 후 active 클래스 제거
-                        selectBox.classList.add("comp"); // 선택 완료 시 comp 클래스 추가
-                    });
-                });
-
-                return newFormGroup;
-            }
-
-            // 특정 컨테이너에 새로운 formGroup을 추가하는 함수
-            function addFormGroup(container) {
-                // 마지막 formGroup을 찾아서 그 뒤에 추가하거나, 처음 추가하는 경우에는 컨테이너에 직접 추가
-                const lastFormGroup = container.querySelector(".formGroup:last-of-type");
-                const newFormGroup = createNewFormGroup();
-
-                if (lastFormGroup) {
-                    // 마지막 formGroup 뒤에 새로운 formGroup 추가
-                    lastFormGroup.insertAdjacentElement("afterend", newFormGroup);
+            // 체크박스 상태 변경 이벤트 리스너 추가
+            checkbox.addEventListener("change", function () {
+                // 체크박스가 체크된 경우
+                if (this.checked) {
+                    nextButton.disabled = false; // 버튼 활성화
                 } else {
-                    // 컨테이너가 비어 있는 경우에는 처음으로 추가
-                    container.appendChild(newFormGroup);
+                    nextButton.disabled = true; // 버튼 비활성화
                 }
-            }
-
-            // 첫 번째 버튼 클릭 시 첫 번째 컨테이너에 새로운 formGroup 추가
-            addBusinessTypeBtn1.addEventListener("click", () => {
-                addFormGroup(businessTypeContainer1);
-            });
-
-            // 두 번째 버튼 클릭 시 두 번째 컨테이너에 새로운 formGroup 추가
-            addBusinessTypeBtn2.addEventListener("click", () => {
-                addFormGroup(businessTypeContainer2);
             });
         </script>
     </body>

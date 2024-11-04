@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>헥토파이낸셜 지불서비스</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no, address=no, email=no" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+        <!-- favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="../../images/favicon/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="57x57" href="../../images/favicon/apple-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="60x60" href="../../images/favicon/apple-icon-60x60.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="../../images/favicon/apple-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="../../images/favicon/apple-icon-76x76.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="../../images/favicon/apple-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="../../images/favicon/apple-icon-120x120.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="../../images/favicon/apple-icon-144x144.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="../../images/favicon/apple-icon-152x152.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon/apple-icon-180x180.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="../../images/favicon/android-icon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="../../images/favicon/favicon-96x96.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon/favicon-16x16.png" />
+        <link rel="manifest" href="../../images/favicon/manifest.json" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="msapplication-TileImage" content="../../images/favicon/ms-icon-144x144.png" />
+        <meta name="theme-color" content="#ffffff" />
+        <!-- //favicon -->
+
+        <link rel="stylesheet" href="../../css/slick.min.css" />
+        <link rel="stylesheet" href="../../css/kyc.css" />
+        <script src="../../js/jquery-1.8.3.min.js"></script>
+        <script src="../../js/slick.min.js"></script>
+        <script src="../../js/kyc.js"></script>
+    </head>
+
+    <body>
+        <!-- wrap -->
+        <div id="wrap" class="wrap kyc sole">
+            <header>
+                <div class="container">
+                    <div class="titleWrap">
+                        <h1 class="logo"></h1>
+                        <span class="text">가맹점 서비스 계약</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content">
+                <div class="container">
+                    <h2 class="title textLeft">서비스 신청서</h2>
+
+                    <div class="stepWrap">
+                        <div class="step step-active" data-step="1">
+                            <div class="step-number">1</div>
+                        </div>
+                        <div class="step line" data-step="2">
+                            <div class="step-number">2</div>
+                        </div>
+                        <div class="step line" data-step="3">
+                            <div class="step-number">3</div>
+                        </div>
+                        <div class="step" data-step="4">
+                            <div class="step-number">4</div>
+                        </div>
+                    </div>
+
+                    <div class="guideWrap">
+                        <p class="title">기본 정보 등록</p>
+                        <ul class="guideList">
+                            <li>사업자 정보 필수 값을 입력해주세요.</li>
+                            <li>VAN서비스(가상계좌 중계, 펌뱅킹)의 경우 ‘공통’만 기재하세요.</li>
+                        </ul>
+                    </div>
+
+                    <div class="formWrap">
+                        <!--  -->
+                        <div class="formContainer">
+                            <!-- 사업자 구분 -->
+                            <div class="formGroup">
+                                <label for="businessNumber">사업자 구분</label>
+                                <div>
+                                    <div class="colWrap">
+                                        <div class="checkBox">
+                                            <input type="radio" id="listingInfo1" class="checkSelect" name="listingInformation" checked />
+                                            <label for="listingInfo1" class="mediumText">개인사업자</label>
+                                        </div>
+                                        <div class="checkBox">
+                                            <input type="radio" id="listingInfo2" class="checkSelect" name="listingInformation" />
+                                            <label for="listingInfo2" class="mediumText">법인사업자(비영리 단체 포함)</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 개인사업자 -->
+                            <div id="sole" style="display: block">
+                                <!-- 상호명(국문) -->
+                                <div class="formGroup">
+                                    <label for="businessNameKr1">상호명(국문)</label>
+                                    <input type="text" id="businessNameKr1" name="businessNameKr1" value="헥토" readonly />
+                                </div>
+
+                                <!-- 상호명(영문) -->
+                                <div class="formGroup">
+                                    <label for="businessNameEn1">상호명(영문)</label>
+                                    <input type="text" id="businessNameEn1" name="businessNameEn1" placeholder="상호명(영문)" />
+                                </div>
+
+                                <!-- 사업자등록번호 -->
+                                <div class="formGroup">
+                                    <label for="businessNumber1">사업자등록번호</label>
+                                    <input type="text" id="businessNumber1" name="businessNumber1" value="123-45-67899" readonly />
+                                </div>
+
+                                <!-- 설립일 -->
+                                <div class="formGroup">
+                                    <label for="establishmentDate1">설립일</label>
+                                    <input type="date" id="establishmentDate1" name="establishmentDate1" placeholder="YYYY-MM-DD" />
+                                </div>
+
+                                <!-- 업종 -->
+                                <div class="formGroup">
+                                    <label for="businessType">업종</label>
+                                    <div class="sideBtnWrap">
+                                        <div class="selectBox">
+                                            <button class="label">업종</button>
+                                            <ul class="optionList">
+                                                <li class="optionItem">업종 1</li>
+                                                <li class="optionItem">업종 2</li>
+                                            </ul>
+                                        </div>
+                                        <div class="sideBtnBox">
+                                            <button type="button" id="addBusinessTypeBtn1">업종 추가</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="formGroup">
+                                    <label for="businessType"></label>
+                                    <div class="sideBtnWrap">
+                                        <div class="selectBox">
+                                            <button class="label">업종</button>
+                                            <ul class="optionList">
+                                                <li class="optionItem">업종 1</li>
+                                                <li class="optionItem">업종 2</li>
+                                            </ul>
+                                        </div>
+                                        <div class="sideBtnBox">
+                                            <button type="button" class="delBusinessTypeBtn">삭제</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="businessTypeContainer1"></div>
+
+                                <!-- 업태 -->
+                                <div class="formGroup">
+                                    <label for="businesstype">업태</label>
+                                    <input type="text" id="businesstype" name="businesstype" placeholder="업태 직접 입력" />
+                                </div>
+
+                                <!-- 사업장 주소 국가 -->
+                                <div class="formGroup">
+                                    <label for="country">사업장 주소 국가</label>
+                                    <div class="selectBox">
+                                        <button class="label">사업장 주소 국가</button>
+                                        <ul class="optionList">
+                                            <li class="optionItem">한국</li>
+                                            <li class="optionItem">기타</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- 사업장 주소 -->
+                                <div class="formGroup">
+                                    <label for="postalCode1">사업장 주소</label>
+                                    <div class="postalContainer">
+                                        <input type="text" id="postalCode1" name="postalCode1" placeholder="우편번호" />
+                                        <button type="button">우편번호 검색</button>
+                                    </div>
+                                </div>
+
+                                <div class="formGroup">
+                                    <label for="address1"></label>
+                                    <input type="text" id="address1" name="address1" placeholder="상세주소" />
+                                </div>
+
+                                <div class="formGroup">
+                                    <label for="address1_2"></label>
+                                    <input type="text" id="address1_2" name="address1_2" placeholder="상세주소 2" />
+                                </div>
+
+                                <!-- 이메일 -->
+                                <div class="formGroup">
+                                    <label for="email1">이메일</label>
+                                    <input type="text" id="email1" name="email1" placeholder="이메일 직접 입력" />
+                                </div>
+
+                                <!-- (대표)유선번호 -->
+                                <div class="formGroup">
+                                    <label for="landline1">(대표)유선번호</label>
+                                    <input type="text" id="landline1" name="landline1" placeholder="고객센터 번호 필수 기재" />
+                                </div>
+                            </div>
+                            <!-- //개인사업자 -->
+
+                            <!-- 법인사업자 -->
+                            <div id="corp" style="display: none">
+                                <!-- 법인명 -->
+                                <div class="formGroup">
+                                    <label for="businessNameKr">법인명</label>
+                                    <input type="text" id="businessNameKr" name="businessNameKr" value="헥토" readonly />
+                                </div>
+
+                                <!-- 법인명(영문) -->
+                                <div class="formGroup">
+                                    <label for="businessNameEn">법인명(영문)</label>
+                                    <input type="text" id="businessNameEn" name="businessNameEn" placeholder="법인명(영문)" />
+                                </div>
+
+                                <!-- 사업자등록번호 -->
+                                <div class="formGroup">
+                                    <label for="businessNumber">사업자등록번호</label>
+                                    <input type="text" id="businessNumber" name="businessNumber" />
+                                </div>
+
+                                <!-- 법인등록번호 -->
+                                <div class="formGroup">
+                                    <label for="businessNumber2">법인등록번호</label>
+                                    <input type="text" id="businessNumber2" name="businessNumber2" placeholder="법인등록번호" />
+                                </div>
+
+                                <!-- 법인 구분 -->
+                                <div class="formGroup">
+                                    <label for="businessNumber2">법인 구분</label>
+                                    <div>
+                                        <div class="colWrap">
+                                            <div class="checkBox">
+                                                <input type="radio" id="busiType1" class="checkSelect" name="busiType" />
+                                                <label for="busiType1">영리</label>
+                                            </div>
+                                            <div class="checkBox">
+                                                <input type="radio" id="busiType2" class="checkSelect" name="busiType" />
+                                                <label for="busiType2">비영리</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 설립일 -->
+                                <div class="formGroup">
+                                    <label for="establishmentDate">설립일</label>
+                                    <input type="date" id="establishmentDate" name="establishmentDate" placeholder="YYYY-MM-DD" />
+                                </div>
+
+                                <!-- 설립목적 -->
+                                <div class="formGroup">
+                                    <label for="businessFor">설립목적</label>
+                                    <input type="text" id="businessFor" name="businessFor" placeholder="설립 목적" />
+                                </div>
+
+                                <!-- 법인국가 -->
+                                <div class="formGroup">
+                                    <label for="country2">법인국가</label>
+                                    <div class="selectBox">
+                                        <button class="label">법인국가</button>
+                                        <ul class="optionList">
+                                            <li class="optionItem">한국</li>
+                                            <li class="optionItem">기타</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- 업태 -->
+                                <div class="formGroup">
+                                    <label for="businesstype1">업태</label>
+                                    <input type="text" id="businesstype1" name="businesstype1" placeholder="업태 직접 입력" />
+                                </div>
+
+                                <!-- 업종 -->
+                                <div class="formGroup">
+                                    <label for="businessType2">업종</label>
+                                    <div class="sideBtnWrap">
+                                        <div class="selectBox">
+                                            <button class="label">업종</button>
+                                            <ul class="optionList">
+                                                <li class="optionItem">업종 1</li>
+                                                <li class="optionItem">업종 2</li>
+                                            </ul>
+                                        </div>
+                                        <div class="sideBtnBox">
+                                            <button type="button" id="addBusinessTypeBtn2">업종 추가</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="businessTypeContainer2"></div>
+
+                                <!-- 본점 주소(법인) -->
+                                <div class="formGroup">
+                                    <label for="postalCode2">본점 주소(법인)</label>
+                                    <div class="postalContainer">
+                                        <input type="text" id="postalCode2" name="postalCode2" placeholder="우편번호" />
+                                        <button type="button">우편번호 검색</button>
+                                    </div>
+                                </div>
+
+                                <div class="formGroup">
+                                    <label for="address1_1"></label>
+                                    <input type="text" id="address1_1" name="address1_1" placeholder="상세주소" />
+                                </div>
+
+                                <div class="formGroup">
+                                    <label for="address2_1"></label>
+                                    <input type="text" id="address2_1" name="address2_1" placeholder="상세주소 2" />
+                                </div>
+
+                                <!-- 사업장 주소 -->
+                                <div class="formGroup">
+                                    <label for="3">사업장 주소</label>
+                                    <div class="postalContainer">
+                                        <input type="text" id="postalCode3" name="postalCode3" placeholder="우편번호" />
+                                        <button type="button">우편번호 검색</button>
+                                    </div>
+                                </div>
+
+                                <div class="formGroup">
+                                    <label for="address3_1"></label>
+                                    <input type="text" id="address3_1" name="address3_1" placeholder="상세주소" />
+                                </div>
+
+                                <div class="formGroup">
+                                    <label for="address4_1"></label>
+                                    <input type="text" id="address4_1" name="address4_1" placeholder="상세주소 2" />
+                                </div>
+
+                                <!-- 본점 주소 국가 -->
+                                <div class="formGroup">
+                                    <label for="">본점 주소 국가</label>
+                                    <div class="selectBox">
+                                        <button class="label">본점 주소 국가</button>
+                                        <ul class="optionList">
+                                            <li class="optionItem">한국</li>
+                                            <li class="optionItem">기타</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- 사업장 주소 국가 -->
+                                <div class="formGroup">
+                                    <label for="">사업장 주소 국가</label>
+                                    <div class="selectBox">
+                                        <button class="label">사업장 주소 국가</button>
+                                        <ul class="optionList">
+                                            <li class="optionItem">한국</li>
+                                            <li class="optionItem">기타</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- 이메일 -->
+                                <div class="formGroup">
+                                    <label for="email">이메일</label>
+                                    <input type="text" id="email" name="email" placeholder="이메일 직접 입력" />
+                                </div>
+
+                                <!-- (대표)유선번호 -->
+                                <div class="formGroup">
+                                    <label for="landline">(대표)유선번호</label>
+                                    <input type="text" id="landline" name="landline" placeholder="고객센터 번호 필수 기재" />
+                                </div>
+                            </div>
+                            <!-- //법인사업자 -->
+                        </div>
+                        <!--  -->
+                    </div>
+
+                    <div class="btnWrap">
+                        <button type="button" class="btn btnPrev">이전</button>
+                        <button type="button" class="btn btnNext" disabled>다음</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //wrap -->
+        <script>
+            // 라디오 버튼과 표시할 영역 선택
+            const listingInfo1 = document.getElementById("listingInfo1");
+            const listingInfo2 = document.getElementById("listingInfo2");
+            const sole = document.getElementById("sole");
+            const corp = document.getElementById("corp");
+
+            // 라디오 버튼 클릭 시 영역 표시/숨기기
+            listingInfo1.addEventListener("change", () => {
+                if (listingInfo1.checked) {
+                    sole.style.display = "block"; // 개인사업자 영역 보이기
+                    corp.style.display = "none"; // 법인사업자 영역 숨기기
+                }
+            });
+
+            listingInfo2.addEventListener("change", () => {
+                if (listingInfo2.checked) {
+                    sole.style.display = "none"; // 개인사업자 영역 숨기기
+                    corp.style.display = "block"; // 법인사업자 영역 보이기
+                }
+            });
+
+            // 업종 추가 버튼과 추가할 컨테이너 선택
+            const addBusinessTypeBtn1 = document.getElementById("addBusinessTypeBtn1");
+            const addBusinessTypeBtn2 = document.getElementById("addBusinessTypeBtn2");
+
+            const businessTypeContainer1 = document.getElementById("businessTypeContainer1");
+            const businessTypeContainer2 = document.getElementById("businessTypeContainer2");
+            // const businessTypeContainer = addBusinessTypeBtn.closest(".formGroup"); // 업종 추가 버튼이 속한 formGroup을 기준으로
+
+            // formGroup 생성 함수
+            function createNewFormGroup() {
+                // 새로운 formGroup 요소 생성
+                const newFormGroup = document.createElement("div");
+                newFormGroup.classList.add("formGroup");
+                newFormGroup.innerHTML = `
+        <label for="businessType"></label>
+        <div class="sideBtnWrap">
+            <div class="selectBox">
+                <button class="label">업종</button>
+                <ul class="optionList">
+                    <li class="optionItem">업종 1</li>
+                    <li class="optionItem">업종 2</li>
+                </ul>
+            </div>
+            <div class="sideBtnBox">
+                <button type="button" class="delBusinessTypeBtn">삭제</button>
+            </div>
+        </div>
+    `;
+
+                // 선택박스 동작 설정 (옵션 선택, comp 클래스 추가)
+                const selectBox = newFormGroup.querySelector(".selectBox");
+                const label = selectBox.querySelector(".label");
+                const optionList = selectBox.querySelector(".optionList");
+                const optionItems = selectBox.querySelectorAll(".optionItem");
+
+                // 선택박스 클릭 시 selectBox에 active 클래스 토글
+                label.addEventListener("click", () => {
+                    selectBox.classList.toggle("active");
+                });
+
+                // 옵션 클릭 시 선택된 항목 라벨에 표시 및 selectBox에 comp 클래스 추가
+                optionItems.forEach((option) => {
+                    option.addEventListener("click", () => {
+                        label.textContent = option.textContent;
+                        selectBox.classList.remove("active"); // 선택 후 active 클래스 제거
+                        selectBox.classList.add("comp"); // 선택 완료 시 comp 클래스 추가
+                    });
+                });
+
+                return newFormGroup;
+            }
+
+            // 특정 컨테이너에 새로운 formGroup을 추가하는 함수
+            function addFormGroup(container) {
+                // 마지막 formGroup을 찾아서 그 뒤에 추가하거나, 처음 추가하는 경우에는 컨테이너에 직접 추가
+                const lastFormGroup = container.querySelector(".formGroup:last-of-type");
+                const newFormGroup = createNewFormGroup();
+
+                if (lastFormGroup) {
+                    // 마지막 formGroup 뒤에 새로운 formGroup 추가
+                    lastFormGroup.insertAdjacentElement("afterend", newFormGroup);
+                } else {
+                    // 컨테이너가 비어 있는 경우에는 처음으로 추가
+                    container.appendChild(newFormGroup);
+                }
+            }
+
+            // 첫 번째 버튼 클릭 시 첫 번째 컨테이너에 새로운 formGroup 추가
+            addBusinessTypeBtn1.addEventListener("click", () => {
+                addFormGroup(businessTypeContainer1);
+            });
+
+            // 두 번째 버튼 클릭 시 두 번째 컨테이너에 새로운 formGroup 추가
+            addBusinessTypeBtn2.addEventListener("click", () => {
+                addFormGroup(businessTypeContainer2);
+            });
+
+            // delBusinessTypeBtn1 클릭 시 상위 formGroup 삭제
+            document.addEventListener("click", function (event) {
+                if (event.target.classList.contains("delBusinessTypeBtn")) {
+                    const parentFormGroup = event.target.closest(".formGroup");
+                    if (parentFormGroup) {
+                        parentFormGroup.remove();
+                    }
+                }
+            });
+
+            // 모든 input 입력시 버튼 활성화
+            document.addEventListener("DOMContentLoaded", function () {
+                const btnNext = document.querySelector(".btnNext");
+                const soleInputs = document.querySelectorAll("#sole input");
+                const corpInputs = document.querySelectorAll("#corp input");
+
+                // 모든 input 요소의 값이 채워져 있는지 확인하는 함수
+                function checkInputs(inputs) {
+                    const totalInputs = inputs.length;
+                    const filledInputs = Array.from(inputs).filter((input) => input.value.trim() !== "").length;
+
+                    // 콘솔 출력: 총 input 개수와 채워진 input 개수
+                    console.log(`Total inputs: ${totalInputs}, Filled inputs: ${filledInputs}`);
+
+                    return filledInputs === totalInputs;
+                }
+
+                // 현재 보이는 섹션의 모든 input 값을 확인하여 버튼 상태를 업데이트하는 함수
+                function updateButtonState() {
+                    const soleVisible = window.getComputedStyle(document.getElementById("sole")).display !== "none";
+                    const corpVisible = window.getComputedStyle(document.getElementById("corp")).display !== "none";
+
+                    if (soleVisible && checkInputs(soleInputs)) {
+                        btnNext.disabled = false;
+                        btnNext.classList.remove("btnOff");
+                    } else if (corpVisible && checkInputs(corpInputs)) {
+                        btnNext.disabled = false;
+                        btnNext.classList.remove("btnOff");
+                    } else {
+                        btnNext.disabled = true;
+                        btnNext.classList.add("btnOff");
+                    }
+                }
+
+                // 각 input 요소에 input 이벤트를 추가하여 값이 변경될 때마다 버튼 상태 업데이트
+                soleInputs.forEach((input) => input.addEventListener("input", updateButtonState));
+                corpInputs.forEach((input) => input.addEventListener("input", updateButtonState));
+
+                // 페이지가 처음 로드될 때 버튼 상태 초기화
+                updateButtonState();
+            });
+        </script>
+    </body>
+</html>

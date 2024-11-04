@@ -32,6 +32,7 @@
         <link rel="stylesheet" href="../../css/kyc.css" />
         <script src="../../js/jquery-1.8.3.min.js"></script>
         <script src="../../js/slick.min.js"></script>
+        <script src="../../js/kyc.js"></script>
     </head>
 
     <body>
@@ -139,7 +140,7 @@
                             <!-- 대표자명(국문) -->
                             <div class="formGroup">
                                 <label for="name">대표자명</label>
-                                <input type="text" id="name" name="name" placeholder="홍길동" readonly />
+                                <input type="text" id="name" name="name" value="홍길동" readonly />
                             </div>
 
                             <!-- 대표자명(영문) -->
@@ -235,39 +236,6 @@
         </div>
         <!-- //wrap -->
         <script>
-            /* 화살표 함수 */
-            const selectBoxes = document.querySelectorAll(".selectBox");
-
-            selectBoxes.forEach((selectBox) => {
-                const label = selectBox.querySelector(".label");
-                const options = selectBox.querySelectorAll(".optionItem");
-
-                // 클릭한 옵션의 텍스트를 라벨 안에 넣음
-                const handleSelect = (item) => {
-                    selectBox.classList.remove("active");
-                    label.innerHTML = item.textContent;
-                    selectBox.classList.add("comp");
-                };
-
-                // 옵션 클릭 시 클릭한 옵션을 넘김
-                options.forEach((option) => {
-                    option.addEventListener("click", () => handleSelect(option));
-                });
-
-                // 라벨을 클릭시 옵션 목록이 열림/닫힘
-                label.addEventListener("click", () => {
-                    if (selectBox.classList.contains("active")) {
-                        selectBox.classList.remove("active");
-                    } else {
-                        // 다른 selectBox는 닫기
-                        selectBoxes.forEach((box) => {
-                            box.classList.remove("active");
-                        });
-                        selectBox.classList.add("active");
-                    }
-                });
-            });
-
             // 모달 열기 버튼과 모달 요소, 닫기 버튼을 선택
             const openModalBtns = document.querySelectorAll(".openModalBtn");
             const modal = document.getElementById("modal");
@@ -301,6 +269,59 @@
                             closeModal(); // 모달 닫기
                         });
                         btnWrap.appendChild(registerBtn);
+
+                        // 폼 입력 확인 및 버튼 활성화 로직 추가
+                        const modal = document.getElementById("modal");
+                        const inputs = modal.querySelectorAll("input");
+                        const selectBoxes = modal.querySelectorAll(".selectBox .label");
+
+                        // 폼 값 체크 함수
+                        function checkFormCompletion() {
+                            let allFilled = true;
+
+                            inputs.forEach((input) => {
+                                if ((input.type === "text" || input.type === "date") && input.value === "") {
+                                    allFilled = false;
+                                }
+                                if (input.type === "radio") {
+                                    const radioGroup = modal.querySelectorAll(`input[name="${input.name}"]`);
+                                    const radioChecked = Array.from(radioGroup).some((radio) => radio.checked);
+                                    if (!radioChecked) {
+                                        allFilled = false;
+                                    }
+                                }
+                            });
+
+                            selectBoxes.forEach((select) => {
+                                if (select.textContent === "" || select.textContent === "기타") {
+                                    allFilled = false;
+                                }
+                            });
+
+                            // 모든 필드가 채워지면 버튼 활성화
+                            registerBtn.disabled = !allFilled;
+                        }
+
+                        // 각 input 요소에 이벤트 리스너 추가
+                        inputs.forEach((input) => {
+                            input.addEventListener("input", checkFormCompletion); // 텍스트 및 날짜 입력 시
+                            input.addEventListener("change", checkFormCompletion); // 라디오 버튼 선택 시
+                        });
+
+                        selectBoxes.forEach((select) => {
+                            select.addEventListener("click", () => {
+                                const optionList = select.nextElementSibling.querySelectorAll(".optionItem");
+                                optionList.forEach((option) => {
+                                    option.addEventListener("click", () => {
+                                        select.textContent = option.textContent;
+                                        checkFormCompletion(); // 선택 후 확인 함수 실행
+                                    });
+                                });
+                            });
+                        });
+
+                        // 모달이 열릴 때마다 버튼 상태 업데이트
+                        checkFormCompletion(); // 모달이 열릴 때 호출하여 입력 상태에 따라 버튼 활성화
                     } else if (actionType === "edit") {
                         // 수정 케이스
                         modalTitle.textContent = "대표자 정보 수정";

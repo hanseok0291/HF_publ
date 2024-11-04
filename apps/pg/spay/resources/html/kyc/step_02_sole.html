@@ -32,6 +32,7 @@
         <link rel="stylesheet" href="../../css/kyc.css" />
         <script src="../../js/jquery-1.8.3.min.js"></script>
         <script src="../../js/slick.min.js"></script>
+        <script src="../../js/kyc.js"></script>
     </head>
 
     <body>
@@ -91,7 +92,7 @@
                             <!-- 상호명(영문) -->
                             <div class="formGroup">
                                 <label for="businessNameEn">상호명(영문)</label>
-                                <input type="text" id="businessNameEn" name="businessNameEn" placeholder="입력 텍스트 색" />
+                                <input type="text" id="businessNameEn" name="businessNameEn" placeholder="상호명(영문)" />
                             </div>
 
                             <!-- 설립일 -->
@@ -155,14 +156,7 @@
                                         <li class="optionItem">사업 소득</li>
                                         <li class="optionItem">부동산 임대 소득</li>
                                         <li class="optionItem">부동산 양도 소득</li>
-                                        <li class="optionItem">기타</li>
-                                        <li class="optionItem">근로/연금소득</li>
-                                        <li class="optionItem">퇴직소득</li>
-                                        <li class="optionItem">상속/증여</li>
-                                        <li class="optionItem">사업 소득</li>
-                                        <li class="optionItem">부동산 임대 소득</li>
-                                        <li class="optionItem">부동산 양도 소득</li>
-                                        <li class="optionItem">기타</li>
+                                        <li class="optionItem otherOption" data-target="fundSourceOther">기타</li>
                                     </ul>
                                 </div>
                                 <input type="text" id="fundSourceOther" name="fundSourceOther" placeholder="직접 입력" />
@@ -174,20 +168,8 @@
                                 <div class="selectBox">
                                     <button class="label">기타</button>
                                     <ul class="optionList">
-                                        <li class="optionItem">근로/연금소득</li>
-                                        <li class="optionItem">퇴직소득</li>
-                                        <li class="optionItem">상속/증여</li>
-                                        <li class="optionItem">사업 소득</li>
-                                        <li class="optionItem">부동산 임대 소득</li>
-                                        <li class="optionItem">부동산 양도 소득</li>
-                                        <li class="optionItem">기타</li>
-                                        <li class="optionItem">근로/연금소득</li>
-                                        <li class="optionItem">퇴직소득</li>
-                                        <li class="optionItem">상속/증여</li>
-                                        <li class="optionItem">사업 소득</li>
-                                        <li class="optionItem">부동산 임대 소득</li>
-                                        <li class="optionItem">부동산 양도 소득</li>
-                                        <li class="optionItem">기타</li>
+                                        <li class="optionItem">사업 상거래</li>
+                                        <li class="optionItem otherOption" data-target="tradePurposeOther">기타</li>
                                     </ul>
                                 </div>
                                 <input type="text" id="tradePurposeOther" name="tradePurposeOther" placeholder="직접 입력" />
@@ -239,39 +221,6 @@
         </div>
         <!-- //wrap -->
         <script>
-            /* 화살표 함수 */
-            const selectBoxes = document.querySelectorAll(".selectBox");
-
-            selectBoxes.forEach((selectBox) => {
-                const label = selectBox.querySelector(".label");
-                const options = selectBox.querySelectorAll(".optionItem");
-
-                // 클릭한 옵션의 텍스트를 라벨 안에 넣음
-                const handleSelect = (item) => {
-                    selectBox.classList.remove("active");
-                    label.innerHTML = item.textContent;
-                    selectBox.classList.add("comp");
-                };
-
-                // 옵션 클릭 시 클릭한 옵션을 넘김
-                options.forEach((option) => {
-                    option.addEventListener("click", () => handleSelect(option));
-                });
-
-                // 라벨을 클릭시 옵션 목록이 열림/닫힘
-                label.addEventListener("click", () => {
-                    if (selectBox.classList.contains("active")) {
-                        selectBox.classList.remove("active");
-                    } else {
-                        // 다른 selectBox는 닫기
-                        selectBoxes.forEach((box) => {
-                            box.classList.remove("active");
-                        });
-                        selectBox.classList.add("active");
-                    }
-                });
-            });
-
             // 계좌번호 입력 필드 및 인증 버튼
             const accountNumberInput = document.getElementById("accountNumber");
             const accountVerifyBtn = document.getElementById("accountVerifyBtn");

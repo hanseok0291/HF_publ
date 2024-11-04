@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>헥토파이낸셜 지불서비스</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no, address=no, email=no" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+        <!-- favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="../../images/favicon/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="57x57" href="../../images/favicon/apple-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="60x60" href="../../images/favicon/apple-icon-60x60.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="../../images/favicon/apple-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="../../images/favicon/apple-icon-76x76.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="../../images/favicon/apple-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="../../images/favicon/apple-icon-120x120.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="../../images/favicon/apple-icon-144x144.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="../../images/favicon/apple-icon-152x152.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon/apple-icon-180x180.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="../../images/favicon/android-icon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="../../images/favicon/favicon-96x96.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon/favicon-16x16.png" />
+        <link rel="manifest" href="../../images/favicon/manifest.json" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="msapplication-TileImage" content="../../images/favicon/ms-icon-144x144.png" />
+        <meta name="theme-color" content="#ffffff" />
+        <!-- //favicon -->
+
+        <link rel="stylesheet" href="../../css/slick.min.css" />
+        <link rel="stylesheet" href="../../css/kyc.css" />
+        <script src="../../js/jquery-1.8.3.min.js"></script>
+        <script src="../../js/slick.min.js"></script>
+        <script src="../../js/kyc.js"></script>
+    </head>
+
+    <body>
+        <!-- wrap -->
+        <div id="wrap" class="wrap kyc sole">
+            <header>
+                <div class="container">
+                    <div class="titleWrap">
+                        <h1 class="logo"></h1>
+                        <span class="text">가맹점 서비스 계약</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content">
+                <div class="container">
+                    <h2 class="title textLeft">서비스 신청서</h2>
+
+                    <div class="stepWrap">
+                        <div class="step step-end" data-step="1">
+                            <div class="step-number">1</div>
+                        </div>
+                        <div class="step line step-end" data-step="2">
+                            <div class="step-number">2</div>
+                        </div>
+                        <div class="step line step-active" data-step="3">
+                            <div class="step-number">3</div>
+                        </div>
+                        <div class="step" data-step="4">
+                            <div class="step-number">4</div>
+                        </div>
+                    </div>
+
+                    <div class="guideWrap">
+                        <p class="title">담당자 정보 등록</p>
+                        <ul class="guideList">
+                            <li>계약 담당자 인증 단계입니다.</li>
+                            <li>등록된 담당자의 이메일 또는 휴대폰 번호로 서비스 가입 및 이용 방법에 대한 안내를 받으실 수 있습니다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="formWrap">
+                        <!--  -->
+                        <div class="formContainer">
+                            <div>
+                                <!-- 담당자 성명 -->
+                                <div class="formGroup">
+                                    <label for="managerName">담당자 성명</label>
+                                    <input type="text" id="managerName" name="managerName" value="김철수" readonly />
+                                </div>
+
+                                <!-- 담당자 이메일 -->
+                                <div class="formGroup">
+                                    <label for="managerEmail">담당자 이메일</label>
+                                    <input type="text" id="managerEmail" name="managerEmail" value="hecto@hecto.co.kr" readonly />
+                                </div>
+
+                                <!-- 담당자 휴대폰 번호 -->
+                                <div class="formGroup">
+                                    <label for="managerPhone">담당자 휴대폰 번호</label>
+                                    <div class="accountContainer">
+                                        <input type="text" id="managerPhone" name="managerPhone" value="010-1234-5678" readonly />
+                                        <button type="button" id="accountVerifyBtn" class="btn btnOrange">인증하기</button>
+                                        <button type="button" id="reVerifyBtn" class="btn btnHide">재인증</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  -->
+                    </div>
+
+                    <div class="btnWrap">
+                        <button type="button" class="btn btnPrev">이전</button>
+                        <button type="button" class="btn btnNext" disabled>다음</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //wrap -->
+        <script>
+            const nextButton = document.querySelector(".btnNext");
+
+            document.getElementById("accountVerifyBtn").addEventListener("click", function () {
+                // 인증하기 버튼 텍스트 변경
+                this.textContent = "인증완료";
+
+                // 인증완료 버튼 표시
+                document.getElementById("reVerifyBtn").style.display = "inline-block";
+                document.getElementById("accountVerifyBtn").classList.remove("btnOrange");
+                document.getElementById("accountVerifyBtn").classList.add("btnNext");
+                nextButton.disabled = false;
+            });
+
+            document.getElementById("reVerifyBtn").addEventListener("click", function () {
+                // 인증하기 버튼 다시 표시
+                document.getElementById("accountVerifyBtn").style.display = "inline-block";
+            });
+        </script>
+    </body>
+</html>

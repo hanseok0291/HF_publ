@@ -50,7 +50,7 @@
                     <form action="/submit" method="post">
                         <div class="inputItem">
                             <label for="companyName" class="required">업체명</label>
-                            <div><input type="text" id="companyName" name="companyName" aria-required="true" placeholder="작성 텍스트 색" /></div>
+                            <div><input type="text" id="companyName" name="companyName" aria-required="true" placeholder="업체명" /></div>
                         </div>
 
                         <div class="inputItem">
@@ -85,19 +85,29 @@
                         </div>
 
                         <div class="inputItem col-2">
-                            <label for="verificationCode" class="required">인증코드</label>
                             <div>
+                                <label for="verificationCode" class="required">인증코드</label>
                                 <input type="text" id="verificationCode" name="verificationCode" aria-required="true" placeholder="인증코드 입력" />
                                 <div class="timer" aria-live="polite" id="timer">09:59</div>
                             </div>
-                            <button type="button" id="sendCodeBtn">인증코드 입력</button>
+                            <button type="button" id="sendCodeBtn">인증코드 발송</button>
                         </div>
 
-                        <button type="submit" id="loginBtn">로그인</button>
+                        <button type="submit" id="loginBtn" class="btnFull">로그인</button>
                     </form>
                 </div>
             </div>
         </div>
         <!-- //wrap -->
+        <script>
+            // 1031 추가
+            document.getElementById("sendCodeBtn").addEventListener("click", function () {
+                // timer 요소를 보이도록 설정
+                document.getElementById("timer").style.display = "inline"; // 또는 "block"으로 설정
+
+                // 버튼 텍스트를 "인증코드 재발송"으로 변경
+                this.textContent = "인증코드 재발송";
+            });
+        </script>
     </body>
 </html>

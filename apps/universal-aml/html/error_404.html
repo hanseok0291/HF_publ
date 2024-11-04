@@ -21,9 +21,8 @@
       <!-- header -->
       <header class="header">
         <div class="container">
-          <button type="button" class="btn-back btn"></button>
-          <h1 class="brand-name text">
-            <span>내정보</span>
+          <h1 class="brand-name">
+            <span class="my-logo"><img src="../images/common/logo.svg" alt="헥토파이낸셜" /></span>
           </h1>
           <button type="button" class="btn-close btn"></button>
         </div>
@@ -34,34 +33,13 @@
       <section>
         <!-- container -->
         <div id="content" class="container">
-          <div class="my-info-wrap">
-            <ul>
-              <li>
-                <a href="#"
-                  >결제 비밀번호 재설정
-                  <p>KYC 이행 완료일 (2023/07/11)</p></a
-                >
-              </li>
-              <li>
-                <a href="#"
-                  >회원정보 수정 (KYC 이행/재이행)
-                  <p>KYC 재이행 예정일 (2026/07/11)</p></a
-                >
-              </li>
-              <li>
-                <a href="#"
-                  >주계좌 관리
-                  <p>NH농협은행</p></a
-                >
-              </li>
-              <li>
-                <a href="#"
-                  >현금영수증 관리
-                  <p>개인소득 공제용 (휴대폰번호/010 **** 5678)</p></a
-                >
-              </li>
-              <li><a href="#">회원 해지</a></li>
-            </ul>
+          <div class="errorWrap">
+            <p class="title">페이지를 찾을 수 없습니다.</p>
+            <p class="subTitle">
+              존재하지 않거나, 사용할 수 없는 페이지 입니다.<br />
+              요청하신 주소가 정확한지 다시 한번 확인해주세요.
+            </p>
+            <button type="button" class="btn">홈으로 이동</button>
           </div>
         </div>
         <!-- //container -->
@@ -85,47 +63,6 @@
                 <li>주부</li>
                 <li>무직</li>
                 <li>소액해외송금업</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="modalSource" class="modal modal-slide modal-popup full">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-body">
-            <div class="container">
-              <ul class="select-list">
-                <li class="bold">근로 및 연금소득</li>
-                <li>퇴직 소득</li>
-                <li>사업 소득</li>
-                <li>부동산 임대 소득</li>
-                <li>부동산 양도 소득</li>
-                <li>금융 소득(이자 및 배당)</li>
-                <li>상속/증여</li>
-                <li class="show">기타(명시)</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="modaPurpose" class="modal modal-slide modal-popup full">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-body">
-            <div class="container">
-              <ul class="select-list">
-                <li class="bold">노후준비</li>
-                <li>상속준비</li>
-                <li>자녀양육</li>
-                <li>급여 및 생활비</li>
-                <li>저축 및 투자</li>
-                <li>대출금 상환 결제</li>
-                <li class="show">기타(명시)</li>
               </ul>
             </div>
           </div>
@@ -335,52 +272,19 @@
     </div>
     <!-- //modal - common alert -->
 
-    <!-- 주소검색 -->
-    <div id="modalAddr" class="modal modal-full modal-addr" tabindex="-1" role="dialog">
+    <!-- modal - common popup -->
+    <div id="commonPopup" class="modal modal-new" tabindex="-1" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-head">
-            <div class="container">
-              <button type="button" onclick="modalClose();" class="btn-back btn"></button>
-              <h1 class="brand-name">
-                <span class="my-logo"><img src="../images/common/logo.svg" alt="헥토파이낸셜" /></span>
-              </h1>
-              <button type="button" class="btn btn-close" data-dismiss="modal" data-target="#noticeDetail"></button>
-            </div>
-          </div>
           <div class="modal-body">
-            <p class="title">주소 검색하기</p>
-            <div class="addr-wrap">
-              <div class="addr-search">
-                <input type="text" placeholder="도로명/건물명 검색" class="" />
-                <button type="button" class="btn-search"></button>
-              </div>
-              <div class="addr-body">
-                <ul>
-                  <li>
-                    <span class="zipcode">1</span>
-                    <span class="address">서울특별시 중구 서소문로9길 서소문로9길 28</span>
-                  </li>
-                  <li>
-                    <span class="zipcode">12</span>
-                    <span class="address">서울특별시 중구 서소문로9길 28</span>
-                  </li>
-                  <li>
-                    <span class="zipcode">123</span>
-                    <span class="address">서울특별시 중구 서소문로9길 28</span>
-                  </li>
-                  <li>
-                    <span class="zipcode">1234</span>
-                    <span class="address">서울특별시 중구 서소문로9길 28</span>
-                  </li>
-                </ul>
-              </div>
+            <div id="popupContents">
+              <p class="text-info"></p>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- //주소검색 -->
+    <!-- //modal - common popup -->
 
     <script>
       // input 요소에 대한 NodeList를 가져옵니다.
@@ -408,21 +312,9 @@
         });
       });
 
-      // 라디오 버튼 선택되면 send 버튼 활성화
-      document.addEventListener("DOMContentLoaded", () => {
-        const radioButtons = document.querySelectorAll('input[name="check-all"]');
-        const sendButton = document.getElementById("send");
-
-        radioButtons.forEach((radio) => {
-          radio.addEventListener("change", () => {
-            sendButton.disabled = false;
-          });
-        });
-      });
-
       // 얼럿 버튼
       $("#send").click(function () {
-        $.alertMessage("", "간편인증에 실패하였습니다.<br>다시 진행해주세요.", $("#commonAlert"));
+        $.popupMessage("", "<b>신분증 진위 확인이<br>완료 되었습니다.<b>", $("#commonPopup"));
       });
     </script>
   </body>

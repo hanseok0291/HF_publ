@@ -6,19 +6,44 @@ $(document).ready(function () {
         const label = selectBox.querySelector(".label");
         const options = selectBox.querySelectorAll(".optionItem");
 
-        // 클릭한 옵션의 텍스트를 라벨 안에 넣음
+        // '기타' 옵션 선택 시 '기타' 입력 formGroup 추가/삭제 함수
         const handleSelect = (item) => {
             selectBox.classList.remove("active");
-            label.innerHTML = item.textContent;
+            label.textContent = item.textContent;
             selectBox.classList.add("comp");
+
+            const formGroup = selectBox.closest(".formGroup");
+
+            // unique ID 생성
+            const uniqueId = `otherCountryInput-${Math.random().toString(36).substring(2, 9)}`;
+
+            if (item.textContent.trim() === "기타") {
+                // '기타' 옵션이 선택되었고, 해당 formGroup 아래에 추가된 '기타' 입력 필드가 없을 때
+                if (!formGroup.nextElementSibling || !formGroup.nextElementSibling.classList.contains("otherCountryInput")) {
+                    formGroup.insertAdjacentHTML(
+                        "afterend",
+                        `
+                    <div class="formGroup otherCountryInput" id="${uniqueId}">
+                        <label for="${uniqueId}-input"></label>
+                        <input type="text" id="${uniqueId}-input" name="other1" placeholder="국가 입력">
+                    </div>
+                `
+                    );
+                }
+            } else {
+                // '기타' 외의 옵션 선택 시 '기타' 입력 formGroup 삭제
+                if (formGroup.nextElementSibling && formGroup.nextElementSibling.classList.contains("otherCountryInput")) {
+                    formGroup.nextElementSibling.remove();
+                }
+            }
         };
 
-        // 옵션 클릭 시 클릭한 옵션을 넘김
+        // 옵션 클릭 시 handleSelect 호출
         options.forEach((option) => {
             option.addEventListener("click", () => handleSelect(option));
         });
 
-        // 라벨을 클릭시 옵션 목록이 열림/닫힘
+        // 라벨을 클릭 시 옵션 목록이 열리고 닫힘
         label.addEventListener("click", () => {
             if (selectBox.classList.contains("active")) {
                 selectBox.classList.remove("active");

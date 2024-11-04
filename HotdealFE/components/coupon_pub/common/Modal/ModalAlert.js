@@ -1,7 +1,7 @@
 import rhp from "html-react-parser";
 import styleModal from "../../../../styles/coupon_pub/Modal.module.css";
 
-const ModalAlert = ({ title="제목", subTitle, cancle = "취소", confirm = "확인", message }) => {
+const ModalAlert = ({ title="제목", subTitle, cancle = "취소", confirm = "확인", message, onCancel }) => {
   const TextLine = ({ text }) => {
     return (
       <>
@@ -9,6 +9,9 @@ const ModalAlert = ({ title="제목", subTitle, cancle = "취소", confirm = "�
         <br />
       </>
     )
+  }
+  const handelCancleClick = () => {
+    onCancel();
   }
   return (
     <div
@@ -41,6 +44,7 @@ const ModalAlert = ({ title="제목", subTitle, cancle = "취소", confirm = "�
               <button
                 type="button"
                 className={`${styleModal.btn} ${styleModal.btnCancel} ${styleModal.modalClose}`}
+                onClick={handelCancleClick}
               >
                 {cancle}
               </button>

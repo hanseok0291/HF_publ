@@ -413,6 +413,7 @@
       line-height: 54px;
     }
     .subText {
+      width: max-content;
       font-size: 24px;
       color: #7d7d7d;
       line-height: 32.4px;
@@ -453,30 +454,36 @@
     overflow: hidden;
     &.animation {
       .container {
-        .imgWrap .phoneFrame .frameBox {
-          animation: imgChange 6s 1s ease-in-out both infinite;
-        }
-        .slide2 .imgWrap .phoneFrame .frameBox {
-          animation: imgChange2 6s 1s ease-in-out both infinite;
-        }
         .swiper-slide-active {
           opacity: 1;
           .imgWrap {
             .phoneFrame {
+              .jewelImg {
+                opacity: 1;
+                &.delayInit {
+                  transition-delay: 1s !important;
+                }
+                &.jewelImg-01 {
+                  animation: upDownAni 2s 0s ease-in-out infinite;
+                }
+                &.jewelImg-02 {
+                  animation: upDownAni 2s 0.8s ease-in-out infinite;
+                }
+                &.jewelImg-03 {
+                  animation: upDownAni 2s 0s ease-in-out infinite;
+                }
+              }
               .rettoImg {
                 opacity: 1;
                 &.rettoImg-01 {
-                  animation: upDownAni 2s 1s ease-in-out infinite;
+                  animation: upDownAni 2s 0s ease-in-out infinite;
                 }
                 &.rettoImg-02 {
-                  animation: upDownAni 2s 1.8s ease-in-out infinite;
+                  animation: upDownAni 2s 0.8s ease-in-out infinite;
                 }
                 &.rettoImg-03 {
-                  animation: upDownAni 2s 1s ease-in-out infinite;
+                  animation: upDownAni 2s 0s ease-in-out infinite;
                 }
-              }
-              .jewelImg {
-                opacity: 1;
               }
             }
           }
@@ -578,11 +585,22 @@
     }
     .container {
       padding-top: 293px;
+      .slide1 {
+        .imgWrap {
+          .phoneFrame {
+            .frameBox {
+              background-size: 283px 566px;
+              background-image: url("../images/main/retto-img-04.png?ver=240703");
+            }
+          }
+        }
+      }
       .slide2 {
         .imgWrap {
           .phoneFrame {
             .frameBox {
               background-size: 283px 566px;
+              background-image: url("../images/main/retto-img-05.png?ver=240703");
             }
           }
         }
@@ -604,13 +622,13 @@
           .jewelImg {
             display: block;
             position: absolute;
+            opacity: 0;
             &.jewelImg-01 {
               left: -142px;
               top: 115px;
               width: 102px;
               height: 102px;
               background: url("../images/main/retto-img-05.svg") 0 0 / cover no-repeat;
-              animation: upDownAni 2s 1s ease-in-out infinite;
             }
             &.jewelImg-02 {
               right: -105px;
@@ -618,7 +636,6 @@
               width: 149px;
               height: 149px;
               background: url("../images/main/retto-img-06.svg") 0 0 / cover no-repeat;
-              animation: upDownAni 2s 1.8s ease-in-out infinite;
             }
             &.jewelImg-03 {
               left: -84px;
@@ -626,7 +643,6 @@
               width: 150px;
               height: 150px;
               background: url("../images/main/retto-img-07.svg") 0 0 / cover no-repeat;
-              animation: upDownAni 2s 1s ease-in-out infinite;
             }
           }
           .rettoImg {
@@ -668,7 +684,7 @@
         .retto-pagination {
           position: absolute;
           left: 0;
-          bottom: 0;
+          bottom: -25px;
           .swiper-pagination-bullet {
             width: 28px;
             height: 6px;
@@ -1433,8 +1449,8 @@
     .phoneFrame {
       width: 196px;
       height: 418px;
-      border: 4px solid #151515;
-      border-radius: 18px;
+      border: 4px solid #151515;;
+      border-radius: 23px;
     }
 
     .textWrap {
@@ -1483,6 +1499,7 @@
       .subText {
         font-size: 16px;
         line-height: 21.6px;
+        margin: auto;
 
         i {
           font-style: italic;
@@ -1653,22 +1670,36 @@
     }
     &.retto-section {
       height: auto;
-      padding: 50px 0;
+      padding: 50px 0 80px;
       .container {
         flex-direction: column-reverse;
         padding-top: 0;
         .retto-slide {
           position: static;
           height: auto;
+          margin-top: 30px;
           .swiper-wrapper {
             flex-direction: row;
-          }
-        }
-        .slide2 {
-          .imgWrap {
-            .phoneFrame {
-              .frameBox {
-                background-size: 188px 410px;
+            .slide1 {
+              .imgWrap {
+                .phoneFrame {
+                  border: none;
+                  .frameBox {
+                    background-size: 100% auto;
+                    background-image: url("../images/main/retto-img-04.png?ver=240703");
+                  }
+                }
+              }
+            }
+            .slide2 {
+              .imgWrap {
+                .phoneFrame {
+                  border: none;
+                  .frameBox {
+                    background-size: auto 100%;
+                    background-image: url("../images/main/retto-img-05.png?ver=240703");
+                  }
+                }
               }
             }
           }
@@ -1678,9 +1709,13 @@
           padding: 0;
           .phoneFrame {
             .frameBox {
-              width: 188px;
-              height: 410px;
-              background-size: 188px 410px;
+              left: 50%;
+              top: 50%;
+              transform: translate(-50%, -50%);
+              width: 192px;
+              height: 414px;
+              outline: 4px solid #151515;
+              background-size: 100% auto;
             }
             .jewelImg {
               &.jewelImg-01 {
@@ -1714,7 +1749,7 @@
           justify-content: center;
           height: 130px;
           .retto-pagination {
-            bottom: -30px;
+            bottom: -41px;
             left: 50%;
             transform: translateX(-50%);
           }
@@ -1723,7 +1758,7 @@
           .imgWrap {
             .phoneFrame {
               .frameBox {
-                border-radius: 13px;
+                border-radius: 23px;
               }
               .rettoImg {
                 &.rettoImg-01 {
@@ -1980,9 +2015,10 @@
       height: auto;
       padding: 50px 0;
       .container {
-        flex-direction: column-reverse;
+        flex-direction: column;
 
         .imgWrap {
+          right: 0;
           width: fit-content;
           margin: auto;
           padding: 0;
@@ -2684,46 +2720,6 @@
   }
 }
 
-@keyframes imgChange {
-  0% {
-    background-image: url("../images/main/retto-img-01.png");
-  }
-  12% {
-    background-image: url("../images/main/retto-img-01.png");
-  }
-  15% {
-    background-image: url("../images/main/retto-img-02.png");
-  }
-  37% {
-    background-image: url("../images/main/retto-img-02.png");
-  }
-  40% {
-    background-image: url("../images/main/retto-img-03.png");
-  }
-  62% {
-    background-image: url("../images/main/retto-img-03.png");
-  }
-  65% {
-    background-image: url("../images/main/retto-img-04.png");
-  }
-  87% {
-    background-image: url("../images/main/retto-img-04.png");
-  }
-  90% {
-    background-image: url("../images/main/retto-img-01.png");
-  }
-  100% {
-    background-image: url("../images/main/retto-img-01.png");
-  }
-}
-@keyframes imgChange2 {
-  0% {
-    background-image: url("../images/main/retto-img-05.png?ver=240703");
-  }
-  100% {
-    background-image: url("../images/main/retto-img-05.png?ver=240703");
-  }
-}
 @keyframes spreadFadeIn {
   0% {
     opacity: 0;

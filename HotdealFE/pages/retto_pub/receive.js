@@ -11,6 +11,8 @@ import Button from "../../components/retto_pub/common/Button";
 import LayerRettoInfo from "../../components/retto_pub/LayerRettoInfo";
 import LayerRettoMoneyGet from "../../components/retto_pub/LayerRettoMoneyGet";
 import LayerReceive from "../../components/retto_pub/LayerReceive";
+import LayerApplyFail from "@/components/retto_pub/LayerApplyFail";
+import LayerWriteReview from "@/components/retto_pub/LayerWriteReview";
 
 
 const index = () => {
@@ -141,7 +143,8 @@ const index = () => {
       <LayerReceive />
       {/* 신청 완료 레이어 */}
       {/* <LayerRettoMoneyGet /> */}
-      {/* 제세공과금 설명 */}
+      {/* 리또 당첨 소감 작성 */}
+      <LayerWriteReview /> 
     </>
   );
 };

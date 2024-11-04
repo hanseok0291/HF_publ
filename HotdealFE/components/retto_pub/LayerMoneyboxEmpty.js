@@ -32,16 +32,16 @@ const LayerMoneyboxEmpty = () => {
             <FadeInSection delay={200}>
               <ul className={styleMoneyboxEmpty.box1}>
                 <li>
-                  <b>60만 명+</b>
-                  <p>리또 고객</p>
+                  <b>당첨 명당</b>
+                  <p>연속 1등 당첨</p>
                 </li>
                 <li>
-                  <b>2.5만 명+</b>
-                  <p>누적 당첨자</p>
+                  <b>60만 건+</b>
+                  <p>누적 당첨 수</p>
                 </li>
                 <li>
-                  <b>1천 명</b>
-                  <p>매주 평균 당첨자</p>
+                  <b>3만 건</b>
+                  <p>1주 평균 당첨 수</p>
                 </li>
               </ul>
             </FadeInSection>

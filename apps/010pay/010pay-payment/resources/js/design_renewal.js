@@ -236,6 +236,17 @@ $(function () {
     //         }
     //     });
     // });
+
+    // input 삭제 버튼
+    document.querySelectorAll(".js-text-del").forEach((button) => {
+        button.addEventListener("mousedown", function () {
+            const inputField = this.closest(".input-container").querySelector(".custom-input");
+            if (inputField && inputField.classList.contains("custom-input")) {
+                inputField.value = ""; // input 값을 지움
+                inputField.focus(); // input 필드에 포커스를 다시 줌
+            }
+        });
+    });
 });
 
 // 레이아웃, 토글

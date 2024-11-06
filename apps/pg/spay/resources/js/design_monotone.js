@@ -125,7 +125,7 @@ $(function () {
             var modal = $(target)[0];
             var termsTitle = $(target).find(".terms-title")[0];
             if (termsTitle) {
-                termsTitle.setAttribute("tabindex", "-1"); // 포커스 가능하도록 설정
+                termsTitle.setAttribute("tabindex", "0"); // 포커스 가능하도록 설정
                 termsTitle.focus(); // terms-title로 포커스 이동
             }
 

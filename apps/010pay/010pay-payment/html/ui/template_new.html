@@ -179,9 +179,16 @@
                         <h3 class="section-title">Form</h3>
                         <ul class="form-type">
                             <li>
-                                <div class="input-container no-label">
+                                <div class="input-container label-n">
                                     <input type="text" class="custom-input" placeholder=" " id="accountNumber" />
                                     <label for="accountNumber" class="floating-label">계좌 번호</label>
+                                    <button type="button" class="icon icon-del js-text-del"></button>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="input-container label-n small">
+                                    <input type="text" class="custom-input" placeholder="계좌번호" id="accountNumber2" />
+                                    <!-- <label for="accountNumber2" class="floating-label">계좌 번호</label> -->
                                     <button type="button" class="icon icon-del js-text-del"></button>
                                 </div>
                             </li>
@@ -192,17 +199,35 @@
                                 </div>
                             </li>
                             <li>
+                                <div class="select-box small">
+                                    <button class="label" onclick="modalOpenSlide('modal-select-bank')" data-target="modal-select-bank">은행</button>
+                                    <span class="floating-label">은행</span>
+                                </div>
+                            </li>
+                            <li>
                                 <div class="input-container">
-                                    <label class="label" for="text_01">텍스트</label>
                                     <input type="text" class="custom-input" placeholder="텍스트" id="text_01" />
                                     <button type="button" class="icon icon-del js-text-del"></button>
                                 </div>
                             </li>
                             <li>
+                                <div class="input-container small">
+                                    <input type="text" class="custom-input" placeholder="텍스트" id="text_02" />
+                                    <button type="button" class="icon icon-del js-text-del"></button>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="input-container label-y">
+                                    <label class="label" for="text_03">텍스트</label>
+                                    <input type="text" class="custom-input" placeholder="텍스트" id="text_03" />
+                                    <button type="button" class="icon icon-del js-text-del"></button>
+                                </div>
+                            </li>
+                            <li>
                                 <div class="input-container col">
-                                    <label class="label" for="text_02">텍스트</label>
+                                    <label class="label" for="text_04">텍스트</label>
                                     <div class="col-box">
-                                        <input type="text" class="custom-input" id="text_02" />
+                                        <input type="text" class="custom-input" id="text_04" />
                                         <input type="text" class="custom-input" />
                                         <input type="text" class="custom-input" />
                                         <input type="text" class="custom-input" />
@@ -854,7 +879,7 @@
         document.querySelectorAll(".js-text-del").forEach((button) => {
             button.addEventListener("mousedown", function () {
                 const inputField = this.closest(".input-container").querySelector(".custom-input");
-                if (inputField && inputField.classList.contains("custom-input")) {
+                if (inputField) {
                     inputField.value = ""; // input 값을 지움
                     inputField.focus(); // input 필드에 포커스를 다시 줌
                 }

@@ -85,8 +85,8 @@ const index = () => {
                 <div className={styleRettoTip.imgWrap}></div>
                 <div className={styleRettoTip.textWrap}>
                   <p className={styleRettoTip.target}>매주 당첨 맛집</p>
-                  <p className={styleRettoTip.people}>1등 3회 <span>당첨</span></p>
-                  <p className={styleRettoTip.info}>*1141회 ~ 1143회 1등 당첨</p>
+                  <p className={styleRettoTip.people}>1등 4회 <span>당첨</span></p>
+                  <p className={styleRettoTip.info}>*1141회 ~ 1144회 1등 당첨</p>
                 </div>
               </li>
               <li>

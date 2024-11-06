@@ -392,16 +392,6 @@ input[type="number"]::-webkit-inner-spin-button {
 /* select-box (통신사 + 휴대폰번호, 은행 + 계좌번호) */
 .select-box {
     position: relative;
-    width: 100%;
-    height: 70px;
-    max-height: 70px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: transparent url("../images/common/icon-arrow-down.svg") right 16px center no-repeat;
-    background-size: 16px;
-    cursor: pointer;
-    color: #acacac;
-    font-size: 20px;
 }
 .select-box .label {
     display: flex;
@@ -420,6 +410,17 @@ input[type="number"]::-webkit-inner-spin-button {
     font-weight: 700;
     line-height: 27px;
     text-align: left;
+    /*  */
+    width: 100%;
+    height: 70px;
+    padding: 21.5px 16px;
+    padding-top: 20px;
+    font-size: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    font-weight: 700;
+    background: transparent url("../images/common/icon-arrow-down.svg") right 16px center no-repeat;
 }
 .select-box .option-list {
     position: absolute;
@@ -440,6 +441,17 @@ input[type="number"]::-webkit-inner-spin-button {
 .select-input input {
     float: right;
     width: 52%;
+}
+.select-box .floating-label {
+    display: none;
+}
+.select-box.comp .floating-label {
+    display: block;
+    top: 20.5px;
+}
+.select-box.comp .label {
+    padding-top: 26.5px;
+    color: #222;
 }
 
 /* ----- checkbox, radio ----- */
@@ -917,9 +929,11 @@ input::-webkit-search-results-decoration {
 /** placeholder **/
 input::placeholder {
     color: #d3d3d3;
-    font-weight: 400;
     height: 35px;
     line-height: 35px;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-weight: 700;
 }
 textarea::placeholder {
     color: #d3d3d3;
@@ -929,7 +943,7 @@ textarea::placeholder {
 /* webkit */
 input::-webkit-input-placeholder {
     color: #d3d3d3;
-    font-weight: 400;
+    font-weight: 700;
 }
 textarea::-webkit-input-placeholder {
     color: #d3d3d3;
@@ -938,7 +952,7 @@ textarea::-webkit-input-placeholder {
 /* firefox 4-18 */
 input:-moz-placeholder {
     color: #b3b3b3;
-    font-weight: 400;
+    font-weight: 700;
 }
 textarea:-moz-placeholder {
     color: #b3b3b3;
@@ -947,7 +961,7 @@ textarea:-moz-placeholder {
 /* firefox 19+ */
 input::-moz-placeholder {
     color: #b3b3b3;
-    font-weight: 400;
+    font-weight: 700;
 }
 textarea::-moz-placeholder {
     color: #b3b3b3;
@@ -956,15 +970,15 @@ textarea::-moz-placeholder {
 /* ie10+ */
 input:-ms-input-placeholder {
     color: #d3d3d3 !important;
-    font-weight: 400 !important;
+    font-weight: 700 !important;
 }
 textarea:-ms-input-placeholder {
     color: #d3d3d3 !important;
-    font-weight: 400 !important;
+    font-weight: 700 !important;
 }
 .placeholder {
     color: #d3d3d3 !important;
-    font-weight: 400;
+    font-weight: 700;
 }
 
 /* #LAYOUT
@@ -3789,14 +3803,14 @@ div.nppfs-keypad {
 }
 .modal-slide.type-title .check-all.top {
     border-bottom: 1px solid #e2e2e2;
-}
-.modal-slide.type-title .check-all {
     padding-bottom: 12px;
     margin-bottom: 12px;
 }
-.modal-slide.type-title .check-all + .terms-list {
-    margin-top: -16px;
+.modal-slide.type-title .check-all {
 }
+/* .modal-slide.type-title .check-all + .terms-list {
+    margin-top: -16px;
+} */
 .modal-slide.type-title .check-all label {
     font-family: Pretendard;
     display: flex;
@@ -3827,6 +3841,9 @@ div.nppfs-keypad {
     margin-left: 5px;
 }
 
+.modal-slide.type-title .terms-list + .check-all {
+    margin-top: 16px;
+}
 .modal-slide.type-title .terms-list {
     list-style: none;
     padding: 0;
@@ -3864,7 +3881,7 @@ div.nppfs-keypad {
     width: 100%;
     padding: 18px 30px;
     color: #fff;
-    background-color: #ccc;
+    background-color: #151515;
     border: none;
     border-radius: 5px;
     cursor: not-allowed;
@@ -3873,6 +3890,10 @@ div.nppfs-keypad {
     font-weight: 700;
     line-height: 21.48px;
     text-align: center;
+}
+
+.modal-slide.type-title .btn-confirm:disabled {
+    background-color: #ccc;
 }
 
 .modal-slide.type-title .btn-confirm.active {
@@ -3937,7 +3958,6 @@ div.nppfs-keypad {
 }
 /* //은행선택 */
 
-/*  */
 /* 전체 컨테이너 스타일 */
 .input-container {
     position: relative;
@@ -3945,14 +3965,27 @@ div.nppfs-keypad {
     margin-top: 20px;
 }
 .input-container > button {
-    display: none;
     position: absolute;
-    top: 50%;
+    display: none;
+    top: auto;
+    bottom: 2px;
     right: 16px;
     transform: translateY(-50%);
 }
-
+.input-container.no-label > button {
+    top: 50%;
+    bottom: auto;
+}
 /* label 스타일 */
+.input-container > .label {
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 19.6px;
+    text-align: left;
+    color: #151515;
+    margin-bottom: 8px;
+}
 .floating-label {
     position: absolute;
     left: 16px;
@@ -3967,8 +4000,31 @@ div.nppfs-keypad {
     pointer-events: none;
     color: #ccc;
 }
-
+.comp .floating-label {
+    top: 20.5px;
+    left: 16px;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: -0.04em;
+    text-align: left;
+    color: #575757;
+}
 /* input 기본 스타일 */
+.input-container > .label + .custom-input {
+    padding: 0 16px;
+    height: 52px;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21.6px;
+    text-align: left;
+}
+.input-container > .label + .custom-input::placeholder {
+    font-weight: 400;
+    font-size: 16px;
+}
 .custom-input,
 input[type="text"].custom-input {
     width: 100%;
@@ -3980,11 +4036,23 @@ input[type="text"].custom-input {
     outline: none;
     font-weight: 700;
 }
-.custom-input,
-input[type="text"].custom-input.focus,
-input[type="text"].custom-input:not(:placeholder-shown) {
+.no-label .custom-input,
+.no-label input[type="text"].custom-input.focus,
+.no-label input[type="text"].custom-input:not(:placeholder-shown) {
     padding-top: 31.5px;
 }
+/* input 4열 */
+/* .input-container.col-4 .custom-input {
+    width: 25%;
+} */
+.input-container.col .col-box {
+    display: flex;
+    gap: 0 8px;
+}
+.input-container.col .col-box .custom-input {
+    height: 52px;
+}
+/* //input 4열 */
 
 /* input에 포커스가 있을 때, 또는 값이 입력되었을 때 label 스타일 */
 .custom-input:focus ~ .floating-label,

@@ -159,17 +159,6 @@ $(function () {
         });
     });
 
-    // 은행 선택 레이어 열기
-    $(".bank-select").click(function () {
-        $(".modal-banklist").show();
-        $(".modal-banklist .modal-content").animate({ bottom: 0 }, 200);
-
-        // 이중 모달 아닌 경우
-        if (!$(this).hasClass("depth2")) {
-            scrollOff(); // 바디 스크롤 제거
-        }
-    });
-
     // 모달 슬라이드 닫기(셀렉트 옵션, 은행 선택 레이어 팝업)
     $(".modal-slide .btn-close, .modal-slide .btn-list button, .modal-slide .bank-list button").click(function () {
         var temp = $(this).parents(".modal");
@@ -190,7 +179,7 @@ $(function () {
     });
 
     // 슬라이드 모달, 은행 선택 레이어 닫기
-    $(".modal-banklist, .modal-slide").click(function (e) {
+    $(".modal.type-bank, .modal-slide").click(function (e) {
         if (!$(".modal-content").has(e.target).length && !$("#wrap").hasClass("gigworker")) {
             $(this).fadeOut(200);
             $(this).find(".modal-content").animate({ bottom: -450 }, 200);
@@ -203,39 +192,54 @@ $(function () {
         }
     });
 
-    // 은행 선택 버튼에 은행명 전달, 선택 은행 표시
-    $(".modal-banklist .bank-list button").click(function () {
-        //2021.08.15 00~04 기업은행 점검 등록 불가
-        if ($(this).attr("name") == "003") {
-            //month : 0(1월) ~ 11(12월)
-            var startDate = new Date(2021, 07, 15, 00, 00, 00);
-            var endDate = new Date(2021, 07, 15, 04, 59, 59);
-            var nowDate = new Date();
+    // const selectBoxes = document.querySelectorAll(".select-box");
 
-            if (startDate < nowDate && nowDate < endDate) {
-                $.alertMessage("", "기업은행 점검 시간입니다.<br/>(2021.08.15 00:00 ~ 05:00)", $("#commonAlert"));
-                $("#bankCd").val("");
-                $(".bank-select").html("목록에서 선택");
-                $(":focus").blur();
-                return;
-            }
-        }
+    // selectBoxes.forEach((selectBox) => {
+    //     const label = selectBox.querySelector(".label");
+    //     const options = selectBox.querySelectorAll("#modal-select-bank .option-item");
 
-        $(this).parents(".bank-list").find("button").removeClass("active");
-        $(this).addClass("active");
-        var bankCd = $(this).html();
-        $(".bank-select").html(bankCd);
-        $(".bank-list").scrollTop(0);
-    });
+    //     // '기타' 옵션 선택 시 '기타' 입력 formGroup 추가/삭제 함수
+    //     const handleSelect = (item) => {
+    //         console.log("Selected option text:", item.textContent);
+    //         selectBox.classList.remove("active");
+    //         label.textContent = item.textContent;
+    //         selectBox.classList.add("comp");
+    //     };
+
+    //     // 옵션 클릭 시 handleSelect 호출
+    //     options.forEach((option) => {
+    //         option.addEventListener("click", () => handleSelect(option));
+    //     });
+
+    //     // 라벨을 클릭 시 옵션 목록이 열리고 닫힘
+    //     label.addEventListener("click", () => {
+    //         if (selectBox.classList.contains("active")) {
+    //             selectBox.classList.remove("active");
+    //         } else {
+    //             selectBoxes.forEach((box) => {
+    //                 box.classList.remove("active");
+    //             });
+    //             selectBox.classList.add("active");
+    //         }
+    //     });
+    // });
+
+    // // 모든 '기타' 옵션에 대해 클릭 시 관련 input에 포커스를 이동
+    // const otherOptions = document.querySelectorAll(".otherOption");
+
+    // otherOptions.forEach((option) => {
+    //     option.addEventListener("click", function () {
+    //         const targetInputId = option.getAttribute("data-target"); // data-target 속성값을 가져옴
+    //         const targetInput = document.getElementById(targetInputId);
+    //         if (targetInput) {
+    //             targetInput.focus(); // 해당 input에 포커스 이동
+    //         }
+    //     });
+    // });
 });
 
 // 레이아웃, 토글
 $(function () {
-    // 광고 팝업(무료 충전) 닫기
-    $(".btn-pop-close").click(function () {
-        $(this).parents(".pop-ad").hide();
-    });
-
     // 짧은 화면 버튼 하단 고정
     function fixFootBtn() {
         var winHeight = $(window).innerHeight();
@@ -326,35 +330,6 @@ $(function () {
     });
 });
 
-// 민앤지 작업본 + 수정
-$(function () {
-    // 모달 팝업 setting 및 이벤트
-    if ($(".modal-info").length > 0) {
-        modalSet();
-        chargeIpForm(); // 충전하기 이벤트
-    }
-
-    // 계좌관리 순서 설정
-    if ($("#sort-account").length > 0) {
-        $("#sort-account").sortable({
-            axis: "y",
-            handle: ".icon-area",
-        });
-        $("#sort-account").disableSelection(); //내부 선택 불가 처리
-    }
-
-    // checkbox 하나만 선택
-    $.fn.checkedOne = function () {
-        var wrap = $(this);
-        var child = $(wrap).find('.checkbox input[type="checkbox"]');
-        $(child).on("change", function () {
-            $(child).prop("checked", false);
-            $(this).prop("checked", true);
-        });
-    };
-    $(".checked-one").checkedOne();
-});
-
 // 모달 setting 및 이벤트
 function modalSet() {
     var modalCont = $(".modal-info .modal-content");
@@ -427,6 +402,23 @@ var modalH = $(window).height();
 modalH = modalH * -1;
 $(modalCont).css("bottom", modalH); // 팝업들 bottom 값 setting
 
+// input 확인 후 버튼 활성화 함수
+function checkInputs(modal) {
+    const allFilled = modal
+        .find("input")
+        .toArray()
+        .every((input) => {
+            if ($(input).attr("type") === "checkbox") {
+                return $(input).is(":checked");
+            } else {
+                return $(input).val().trim() !== "";
+            }
+        });
+
+    const btnConfirm = modal.find(".btn-confirm");
+    btnConfirm.prop("disabled", !allFilled); // 조건 만족 시 활성화
+}
+
 // 하단 레이어 팝업(슬라이드 모달) 열기
 function modalOpenSlide(obj) {
     var temp = $("#" + obj);
@@ -462,6 +454,11 @@ function modalOpenSlide(obj) {
         }
     }
 
+    // 클릭된 버튼의 부모 select-box에 comp 클래스 추가
+    const button = $(event.target); // 클릭된 버튼
+    const selectBox = button.closest(".select-box"); // 부모 select-box 찾기
+    // selectBox.addClass("comp"); // 부모 select-box에 comp 클래스 추가
+
     // 모달 높이가 큰 경우 포지션 변경
     function modalContPos() {
         var modalContent = temp.find(".modal-content");
@@ -480,6 +477,45 @@ function modalOpenSlide(obj) {
     $(window).resize(function () {
         modalContPos();
     });
+
+    // 버튼 활성화 업데이트 함수
+    function updateConfirmButton() {
+        const allChecked = temp.find(".terms-list .checkbox.child input").length === temp.find(".terms-list .checkbox.child input:checked").length;
+        const confirmButton = temp.find(".btn-confirm");
+
+        // 모든 체크박스가 체크되었으면 버튼 활성화, 아니면 비활성화
+        if (allChecked) {
+            confirmButton.removeClass("disabled").prop("disabled", false);
+        } else {
+            confirmButton.addClass("disabled").prop("disabled", true);
+        }
+    }
+    // 전체 동의 체크박스 클릭 시, 모든 개별 약관 체크박스 상태 업데이트
+    temp.find("#checkbox_011_01").on("change", function () {
+        const isChecked = $(this).is(":checked");
+        temp.find(".terms-list .checkbox.child input").prop("checked", isChecked);
+        updateConfirmButton();
+    });
+    // 개별 체크박스 클릭 시, 전체 동의 체크박스 상태와 확인 버튼 업데이트
+    temp.find(".terms-list .checkbox.child input").on("change", function () {
+        const allChecked = temp.find(".terms-list .checkbox.child input").length === temp.find(".terms-list .checkbox.child input:checked").length;
+        temp.find("#checkbox_011_01").prop("checked", allChecked);
+        updateConfirmButton();
+    });
+
+    // 리스트에서 선택한 항목을 버튼에 반영
+    $(".option-item button").on("click", function () {
+        var selectedBank = $(this).text().trim(); // 선택한 이름 가져오기
+        $(".label").text(selectedBank); // 버튼에 텍스트 업데이트
+        selectBox.addClass("comp");
+        modalCloseSlide(); // 모달 닫기
+    });
+
+    // input 요소에 이벤트 리스너 추가
+    temp.find("input").on("input change", function () {
+        checkInputs(temp); // input 상태 확인
+    });
+    checkInputs(temp); // 초기 상태 확인
 }
 
 // 하단 레이어 팝업(슬라이드 모달) 열기 + 상단 이동 막기
@@ -511,38 +547,11 @@ function modalOpenSlideNoMove(obj) {
         var temp = $("#" + obj);
         temp.fadeOut(200);
         var modalContent = $(temp).find(".modal-content");
-
-        // $(modalContent).animate({ bottom: modalH }, 200, function () {
-        // 	// 애니메이션 완료 후 실행될 코드
-        // 	if (!$(temp).hasClass("depth2")) {
-        // 		scrollOn(); // 바디 스크롤 제거 해제
-        // 	}
-        // });
     }
 
     // 리사이즈
     $(window).resize(function () {
         modalContPos();
-    });
-}
-
-// 충전하기 이벤트
-function chargeIpForm() {
-    var chargeIp, chargeLi, chargeBtn;
-    chargeIp = $(".charge-form .form-type input");
-    chargeIp.on({
-        focus: function () {
-            chargeLi = $(this).parents("li");
-            $(chargeLi).addClass("shw");
-            // $(chargeBtn).fadeIn();
-        },
-        blur: function () {
-            chargeLi = $(this).parents("li");
-            if (!$(this).val()) {
-                $(chargeLi).removeClass("shw");
-            }
-            // $(chargeBtn).fadeOut();
-        },
     });
 }
 
@@ -561,27 +570,6 @@ function checkBorderChange() {
     });
 }
 checkBorderChange();
-
-// 쿠폰함 탭
-function couponTab() {
-    $(window).on("scroll", function () {
-        if ($(window).scrollTop() > $(".main-coupon .top-banner").offset().top + $(".main-coupon .top-banner").outerHeight() - 60) {
-            $(".main-coupon .tab-btn-wrap, .main-coupon .tab-wrap").addClass("fixed");
-        } else {
-            $(".main-coupon .tab-btn-wrap, .main-coupon .tab-wrap").removeClass("fixed");
-        }
-    });
-    $(".main-coupon .tab-btn-wrap li").click("on", function () {
-        var idx = $(this).index();
-        $(".main-coupon .tab-btn-wrap li, .main-coupon .tab-wrap .tab").removeClass("on");
-        $(this).addClass("on");
-        $(".main-coupon .tab-wrap .tab").eq(idx).addClass("on");
-    });
-}
-
-if ($("#wrap").is(".main-coupon")) {
-    couponTab();
-}
 
 /* 개발 시 추가
  * -------------------------------------------------------------------- */

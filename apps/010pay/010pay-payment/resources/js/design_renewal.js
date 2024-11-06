@@ -517,7 +517,7 @@ function modalOpenSlide(obj) {
     // 리스트에서 선택한 항목을 버튼에 반영
     $(".option-item button").on("click", function () {
         var selectedBank = $(this).text().trim(); // 선택한 이름 가져오기
-        $(".label").text(selectedBank); // 버튼에 텍스트 업데이트
+        selectBox.find(".label").text(selectedBank); // 버튼에 텍스트 업데이트
         selectBox.addClass("comp");
         modalCloseSlide(); // 모달 닫기
     });

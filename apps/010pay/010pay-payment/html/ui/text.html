@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <style>
+        /* 기본 스타일 */
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+            width: 300px; /* input 크기 설정 */
+        }
+
+        label {
+            font-size: 12px;
+            color: #666;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        /* 맨 처음 상태 */
+        .input.default {
+            border: 1px solid #ddd;
+            color: #ccc; /* 텍스트 색상 변경 */
+        }
+
+        /* 입력 중 상태 */
+        .input.active {
+            border: 2px solid #000;
+        }
+
+        .clear-btn {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: #888;
+            cursor: pointer;
+        }
+
+        /* 입력 완료 상태 */
+        .input.complete {
+            border: 1px solid #ddd;
+            color: #000;
+        }
+
+        /* Helper text */
+        .helper-text {
+            font-size: 12px;
+            color: #888;
+            margin-top: 5px;
+        }
+    </style>
+    <body>
+        <div class="input-group">
+            <!-- 맨 처음 상태 -->
+            <label for="input1">생년월일</label>
+            <input type="text" id="input1" class="input default" placeholder="생년월일 - 0" />
+            <span class="helper-text">helper text</span>
+        </div>
+
+        <div class="input-group">
+            <!-- 입력 중 상태 -->
+            <label for="input2">주민등록 번호 앞 7자리</label>
+            <input type="text" id="input2" class="input active" value="860181 - 0" />
+            <span class="clear-btn">×</span>
+            <span class="helper-text">helper text</span>
+        </div>
+
+        <div class="input-group">
+            <!-- 입력 완료 상태 -->
+            <label for="input3">주민등록 번호 앞 7자리</label>
+            <input type="text" id="input3" class="input complete" value="920212 - 2" />
+            <span class="helper-text">helper text</span>
+        </div>
+    </body>
+    <script>
+        // 각 input 요소에 이벤트 리스너 추가
+        const inputs = document.querySelectorAll(".input");
+
+        inputs.forEach((input) => {
+            input.addEventListener("focus", () => {
+                input.classList.remove("default", "complete");
+                input.classList.add("active");
+            });
+
+            input.addEventListener("blur", () => {
+                if (input.value) {
+                    input.classList.remove("active");
+                    input.classList.add("complete");
+                } else {
+                    input.classList.remove("active");
+                    input.classList.add("default");
+                }
+            });
+        });
+
+        // "×" 버튼 클릭 시 input 값을 초기화하고 맨 처음 상태로 변경
+        document.querySelectorAll(".clear-btn").forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+                const input = e.target.previousElementSibling;
+                input.value = "";
+                input.classList.remove("active", "complete");
+                input.classList.add("default");
+                input.focus();
+            });
+        });
+    </script>
+</html>

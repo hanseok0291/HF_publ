@@ -1721,14 +1721,22 @@ body > div > form.main_form {
     display: inline-block;
     padding: 14px 10px;
     width: 100%;
-    border: 1px solid #151515;
-    border-radius: 12px;
-    background-color: #151515;
+    border: 1px solid #f1f1f1;
+    border-radius: 8px;
+    background-color: #f1f1f1;
     font-size: 18px;
     font-weight: 700;
-    color: #fff;
+    color: #222;
     line-height: 21.48px;
     white-space: nowrap;
+    text-align: center;
+}
+.btn-small {
+    padding: 4px 8px;
+    font-family: Pretendard;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 18px;
     text-align: center;
 }
 
@@ -3999,6 +4007,37 @@ div.nppfs-keypad {
     top: auto;
     bottom: 2px;
 }
+.input-container + .helper-text,
+.select-box + .helper-text {
+    display: inline-block;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: -0.04em;
+    text-align: left;
+    color: #7d7d7d;
+    margin-top: 8px;
+}
+
+.input-container.type-timer .type-timer-box {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    gap: 0 8px;
+}
+.input-container.type-timer .type-timer-box .time {
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19.6px;
+    text-align: left;
+    color: #fb3636;
+}
+
 /* label 스타일 */
 .input-container > .label {
     font-family: Pretendard;
@@ -4049,7 +4088,9 @@ div.nppfs-keypad {
     font-size: 16px;
 }
 .custom-input,
-input[type="text"].custom-input {
+input[type="text"].custom-input,
+input[type="number"].custom-input,
+input[type="tel"].custom-input {
     width: 100%;
     padding: 21.5px 16px;
     padding-top: 20px; /* 위쪽 여백을 추가하여 label과 겹치지 않도록 함 */
@@ -4061,36 +4102,57 @@ input[type="text"].custom-input {
 }
 .label-n .custom-input,
 .label-n input[type="text"].custom-input.focus,
-.label-n input[type="text"].custom-input:not(:placeholder-shown) {
-    padding-top: 31.5px;
+.label-n input[type="text"].custom-input:not(:placeholder-shown),
+.label-n.focus-on input[type="text"].custom-input,
+.label-n input[type="number"].custom-input.focus,
+.label-n input[type="number"].custom-input:not(:placeholder-shown),
+.label-n input[type="tel"].custom-input.focus,
+.label-n input[type="tel"].custom-input:not(:placeholder-shown) {
+    padding-top: 30.5px;
+}
+.label-n.type-timer input[type="number"].custom-input:not(:placeholder-shown) ~ .icon-del {
+    right: 110px;
 }
 .small .custom-input,
 .small input[type="text"].custom-input {
     padding: 0 16px;
     height: 52px;
 }
+/* 주민등록번호 input */
+.id-number {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+}
+.id-number .custom-input,
+.id-number input[type="text"].custom-input {
+    border: 0;
+}
+.id-number > div {
+    position: relative;
+}
+.id-number > div:first-of-type {
+    width: 30%;
+    min-width: 110px;
+}
+.id-number > div:last-of-type .custom-input {
+    padding-left: 10px;
+}
+/* //주민등록번호 input */
 
 .small.label-n .custom-input,
 .small.label-n input[type="text"].custom-input.focus,
 .small.label-n input[type="text"].custom-input:not(:placeholder-shown) {
     padding-top: 0;
 }
-/* input 4열 */
-/* .input-container.col-4 .custom-input {
-    width: 25%;
-} */
-.input-container.col .col-box {
-    display: flex;
-    gap: 0 8px;
-}
-.input-container.col .col-box .custom-input {
-    height: 52px;
-}
-/* //input 4열 */
 
 /* input에 포커스가 있을 때, 또는 값이 입력되었을 때 label 스타일 */
 .custom-input:focus ~ .floating-label,
-.custom-input:not(:placeholder-shown) ~ .floating-label {
+/* .custom-input:not(:placeholder-shown) ~ .floating-label, */
+.focus-on .floating-label {
+    white-space: nowrap;
     top: 20.5px;
     left: 16px;
     font-family: Pretendard;
@@ -4101,6 +4163,49 @@ input[type="text"].custom-input {
     text-align: left;
     color: #575757;
 }
+.focus-on em.dash {
+    top: 5px;
+}
+.focus-on.comp em.dash {
+    color: #575757;
+}
+
+.focus-on .id-mark {
+    margin-top: 5px;
+}
+/* 에러 */
+.label-error .custom-input:not(:placeholder-shown) ~ .floating-label,
+.label-error.focus-on .floating-label,
+.error .custom-input:not(:placeholder-shown) ~ .floating-label,
+.error.focus-on .floating-label {
+    color: #fb3636;
+}
+.error.label-n .custom-input,
+.error.label-n input[type="text"].custom-input.focus,
+.error.label-n input[type="text"].custom-input:not(:placeholder-shown),
+.error.label-n.focus-on input[type="text"].custom-input {
+    color: #fb3636;
+}
+/* //에러 */
+/* 비활성화 */
+.disabled .custom-input {
+    background-color: #f9f9f9;
+    color: #ccc;
+}
+.disabled .floating-label {
+    color: #575757;
+}
+/* //비활성화 */
+/* 읽기전용 */
+.readonly .custom-input {
+    background-color: #f9f9f9;
+    color: #575757;
+}
+.readonly .floating-label {
+    color: #575757;
+}
+/* //읽기전용 */
+
 .custom-input:focus {
     padding-top: 31.5px;
     font-size: 20px;
@@ -4111,7 +4216,47 @@ input[type="text"].custom-input {
 .custom-input.focus:not(:placeholder-shown) ~ .icon-del {
     display: block;
 }
-/* .custom-input:not(:placeholder-shown) ~ .icon-del {
-    display: none;
-} */
+.type-timer .custom-input.focus:not(:placeholder-shown) ~ .icon-del {
+    right: 110px;
+}
+
+/* input 열나눔 */
+.input-container.col .col-box {
+    display: flex;
+    gap: 0 8px;
+}
+.input-container.col .col-box .custom-input {
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21.6px;
+    height: 52px;
+    padding: 0 6px;
+    text-align: center;
+}
+/* //input 열나눔 */
+.id-mark {
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 0 4px;
+}
+.id-mark > i {
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-color: #000;
+    border-radius: 100%;
+}
+em.dash {
+    position: relative;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 27px;
+    text-align: left;
+    color: #ccc;
+}
 /*  */

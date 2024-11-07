@@ -63,6 +63,8 @@ $(function () {
 
     // IE9 이하 jquery.placeholder.js 적용
     $("input, textarea").placeholder();
+
+    
 });
 
 // 바디 스크롤 제거/해제
@@ -142,22 +144,6 @@ $(function () {
 
     // 약관 상세 팝업 > 제목 네비 > 시행일 표시 여백
     $(".modal-terms .nav.owl-carousel .select-sm").parents(".item").addClass("has-select");
-
-    // 셀렉트 옵션 레이어 열기(통신사, 머니 충전 계좌, 이용내역 필터)
-    $(".select-modal").click(function () {
-        var selectId = $(this).attr("id");
-        var optionLayer = "modal-" + selectId;
-        var temp = $("#" + optionLayer);
-        temp.show();
-        temp.find(".modal-content").animate({ bottom: 0 }, 200);
-        scrollOff(); // 바디 스크롤 제거
-
-        // 셀렉트 옵션 선택, 레이어 닫기(텍스트 전달)
-        temp.find(".btn-list .btn").click(function () {
-            var thisOption = $(this).find("em").text();
-            $("#" + selectId).text(thisOption);
-        });
-    });
 
     // 모달 슬라이드 닫기(셀렉트 옵션, 은행 선택 레이어 팝업)
     $(".modal-slide .btn-close, .modal-slide .btn-list button, .modal-slide .bank-list button").click(function () {
@@ -434,7 +420,25 @@ function checkInputs(modal) {
 function modalOpenSlide(obj) {
     var temp = $("#" + obj);
     var modalCont = $(temp).find(".modal-content");
-
+    var containHeight;
+    var contentsHeight;
+    setTimeout(function(){
+        containHeight  = modalCont[0].querySelector(".modal-body").clientHeight;
+        contentsHeight = modalCont[0].querySelector(".modal-body").scrollHeight;
+        if(containHeight < contentsHeight) {
+            modalCont.addClass("scroll");
+        }
+    }, 100)
+    
+    $(modalCont[0]).find(".modal-body").on("scroll", function(){
+        var bodyScrollTop = $(this).scrollTop();
+        if(contentsHeight - containHeight - 60 <= bodyScrollTop) {
+            $(modalCont[0]).removeClass("scroll");
+        } else {
+            $(modalCont[0]).addClass("scroll");
+        }
+    });
+    
     temp.show();
     $(modalCont).animate({ bottom: 0 }, 200);
     // 이중 모달이 아닌 경우
@@ -527,6 +531,8 @@ function modalOpenSlide(obj) {
         checkInputs(temp); // input 상태 확인
     });
     checkInputs(temp); // 초기 상태 확인
+
+    
 }
 
 // 하단 레이어 팝업(슬라이드 모달) 열기 + 상단 이동 막기

@@ -417,7 +417,7 @@ input[type="number"]::-webkit-inner-spin-button {
     border-radius: 8px;
     outline: none;
     font-weight: 700;
-    background: transparent url("../images/common/icon-arrow-down.svg") right 16px center no-repeat;
+    background: #fff url("../images/common/icon-arrow-down.svg") right 16px center no-repeat;
 }
 .select-box .option-list {
     position: absolute;
@@ -454,10 +454,17 @@ input[type="number"]::-webkit-inner-spin-button {
 /* select small */
 .select-box.small .label {
     height: 52px;
+    padding-top: 0;
     font-size: 16px;
     font-weight: 400;
     line-height: 21.6px;
     text-align: left;
+}
+.select-box.small .label.select {
+    color: #151515;
+}
+.select-box.small .label.select .icon-check-on {
+    
 }
 .select-box.small.comp .floating-label {
     display: none;
@@ -1538,6 +1545,12 @@ body > div > form.main_form {
     background: url("../images/common/icon-more.svg") center / contain no-repeat;
     font-size: 0;
 }
+.icon-question-mark {
+    width: 16px;
+    height: 16px;
+    background: url("../images/common/icon-question-mark.svg") center / contain no-repeat;
+    font-size: 0;
+}
 /* //라운드 추가 */
 
 /* ----- 안내문 ----- */
@@ -1917,11 +1930,12 @@ body > div > form.main_form {
 /* button vertical list(버튼 리스트 - 알뜰폰 통신사, 셀렉트박스 옵션 팝업) */
 .btn-list {
     width: 100%;
-    max-height: 250px;
     overflow: hidden;
-    overflow-y: auto;
 }
 .btn-list .btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     position: relative;
     height: 60px;
     padding: 0;
@@ -1937,29 +1951,10 @@ body > div > form.main_form {
 .btn-list .btn.on {
     background-color: #fff;
     color: #151515;
+    font-weight: 700;
 }
-.btn-list .btn.on .check-primary {
-    display: inline-block;
-    position: absolute;
-    top: 15px;
-    right: 20px;
-}
-.btn-list .btn:not(.on) .check-primary {
+.btn-list .btn:not(.on) .icon-check-on {
     display: none;
-}
-.btn-list .btn.on .check-primary i {
-    margin-left: 3px;
-}
-
-@media all and (min-width: 360px) {
-    .btn-list {
-        max-height: 300px;
-    }
-}
-@media all and (min-width: 375px) {
-    .btn-list {
-        max-height: 360px;
-    }
 }
 
 /* 버튼 그룹 */
@@ -2224,7 +2219,7 @@ body > div > form.main_form {
 body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer {
     padding: 0 10px 10px;
 }
-/* .modal-open { overflow: hidden; } */
+.modal-open { overflow: hidden; }
 
 /* common modal */
 #commonAlert:before,
@@ -2276,9 +2271,9 @@ body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer {
     bottom: -100%;
     max-width: 100%;
     height: auto;
-    overflow: visible;
-    border-radius: 0;
-    background: none;
+    overflow: hidden;
+    border-radius: 16px 16px 0 0;
+    background: #fff;
 }
 .modal-slide .modal-body {
     position: relative;
@@ -2290,18 +2285,6 @@ body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer {
     overflow: hidden;
     border-radius: 16px 16px 0 0;
     font-size: 0;
-}
-.modal-slide .modal-body::after {
-    content: "";
-    display: block;
-    position: fixed;
-}
-.modal-slide .modal-body::-webkit-scrollbar {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 27.2%, #ffffff 100%);
-    width: 100%;
-    height: 120px;
-    bottom: 0;
-    opacity: 50%;
 }
 .modal-slide .modal-body + .modal-footer {
     margin-top: -20px;
@@ -2436,6 +2419,13 @@ body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer {
 .modal-slide.exStyle .number-area li button {
     font-size: 24px;
     font-weight: bold;
+}
+.modal-slide.type-select .container {
+    padding: 0;
+}
+.modal-slide.type-select .modal-dialog .modal-body {
+    position: relative;
+    padding: 0 20px;
 }
 /* 출석 행운상자 팝업 */
 .modal-slide.modal-benefit .modal-body {
@@ -3815,8 +3805,25 @@ div.nppfs-keypad {
 }
 
 .modal-slide.type-title .modal-body {
+    overflow-y: auto;
+    max-height: calc(80vh - 68px);
     padding: 0 0 24px;
     border-radius: 0;
+}
+.modal-slide.type-title .modal-content::after  {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 120px;
+    opacity: 0;
+    transition: 0.3s;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 27.2%, #FFFFFF 100%);
+    pointer-events: none;
+}
+.modal-slide.type-title .modal-content.scroll::after {
+    opacity: 0.5;
 }
 .modal-slide.type-title .check-all.top {
     border-bottom: 1px solid #e2e2e2;
@@ -4056,6 +4063,7 @@ input[type="text"].custom-input {
     border-radius: 8px;
     outline: none;
     font-weight: 700;
+    background-color: #fff;
 }
 .label-n .custom-input,
 .label-n input[type="text"].custom-input.focus,
@@ -4070,8 +4078,14 @@ input[type="text"].custom-input {
     font-weight: 400;
 }
 
+.small .custom-input.error,
+.small input[type="text"].custom-input.error {
+    border-color: #FB3636;
+}
+
 .small .custom-input::placeholder,
 .small input[type="text"].custom-input::placeholder {
+    height: auto;
     font-size: 16px;
     font-weight: 400;
 }

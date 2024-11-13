@@ -233,6 +233,61 @@ $(function () {
             }
         });
     });
+
+    // 검색 인풋
+    $(".input-container.search input").on("input", function(e) {
+        showCountryList(e.target.value.trim(), $(this).closest(".input-container"));
+    });
+    
+    $(".input-container.search input").on("focus", function() {
+        showCountryList($(this).val().trim(), $(this).closest(".input-container"));
+    });
+    
+    function showCountryList(searchValue, $inputContainer) {
+        var countryList = $inputContainer.attr("data-country");
+        var countryArray = JSON.parse(countryList);
+    
+        var $searchList = $inputContainer.find(".search-list");
+    
+        // <ul> 요소가 없으면 생성
+        if ($searchList.length === 0) {
+            $searchList = $("<ul class='search-list'></ul>").appendTo($inputContainer);
+        }
+    
+        // 기존 <ul> 내용 지우기
+        $searchList.empty();
+    
+        // 일치하는 항목 찾기
+        var matchedItems = countryArray.filter(function(country) {
+            return country.toLowerCase().includes(searchValue.toLowerCase());
+        });
+    
+        // 일치하는 항목이 있을 경우 <li> 추가 및 <ul> 표시, 없으면 숨기기
+        if (matchedItems.length > 0) {
+            matchedItems.forEach(function(country) {
+                $searchList.append(`<li>${country}</li>`);
+            });
+            $searchList.show(); // 일치하는 항목이 있을 때만 표시
+        } else {
+            $searchList.hide(); // 일치하는 항목이 없으면 숨기기
+        }
+    }
+    
+    // blur 시 <ul> 숨기기
+    $(".input-container.search input").on("blur", function() {
+        var $this = $(this);
+        setTimeout(function(){
+            $this.closest(".input-container").find(".search-list").hide();
+        }, 10);
+    });
+
+    // <li> 클릭 시 해당 항목의 텍스트를 <input>에 설정하고 <ul> 숨기기
+    $(document).on("click", ".search-list li", function() {
+        var selectedCountry = $(this).text();
+        var $input = $(this).closest(".input-container").find("input");
+        $input.val(selectedCountry); // 선택한 텍스트를 <input> 값으로 설정
+        $(this).closest(".search-list").hide(); // 리스트 숨기기
+    });
 });
 
 // 레이아웃, 토글

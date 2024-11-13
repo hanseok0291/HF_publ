@@ -7,11 +7,73 @@ $(function () {
     input
         .focus(function () {
             $(this).addClass("focus");
-            $(".bottom-banner-area.fixed").addClass("hidden-mobile"); //키패드 노출 시 하단 배너 영역 숨김 - 2020-03-09 추가
+            $(".bottom-banner-area.fixed").addClass("hidden-mobile");
+            $(this).parents(".input-container").addClass("focus-on");
+
+            // .floating-label.first 텍스트를 변경
+            if ($(this).closest(".input-container").hasClass("focus-on")) {
+                var floatingLabel = $(this).closest(".input-container").find(".floating-label");
+
+                // id-number 클래스 처리
+                if ($(this).closest(".id-number").length) {
+                    floatingLabel.text("주민 등록 번호 앞 7자리");
+                }
+                // type-text 클래스 처리
+                else if ($(this).closest(".type-text").length) {
+                    floatingLabel.text("텍스트");
+                }
+                // type-timer 클래스 처리
+                else if ($(this).closest(".type-timer").length) {
+                    floatingLabel.text("인증 번호");
+                }
+            }
         })
         .blur(function () {
             $(this).removeClass("focus");
-            $(".bottom-banner-area.fixed").removeClass("hidden-mobile"); //키패드 미노출 시 하단 배너 영역 보임 - 2020-03-09 추가
+            $(".bottom-banner-area.fixed").removeClass("hidden-mobile");
+            $(this).parents(".input-container").removeClass("focus-on");
+
+            // id-number 하위 input인 경우, 값이 비어 있지 않으면 focus-on 유지
+            var hasValue = false;
+            $(this)
+                .parents(".input-container")
+                .find("input, select, textarea")
+                .each(function () {
+                    if ($(this).val().trim() !== "") {
+                        hasValue = true;
+                    }
+                });
+
+            // input에 값이 있으면 focus-on 유지, 없으면 제거
+            if (hasValue) {
+                $(this).parents(".input-container").addClass("focus-on");
+                $(this).parents(".input-container").addClass("comp"); // .comp 클래스 추가 (값이 있을 때)
+
+                // id-number 하위 input인 경우, 텍스트가 "주민 등록 번호 앞 7자리"로 유지되도록 설정
+                if ($(this).closest(".id-number").length) {
+                    var floatingLabel = $(this).closest(".input-container").find(".floating-label");
+                    floatingLabel.text("주민 등록 번호 앞 7자리");
+                }
+            } else {
+                $(this).parents(".input-container").removeClass("focus-on");
+                $(this).parents(".input-container").removeClass("comp");
+
+                // id-number 하위 input인 경우, 원래 텍스트로 복원 ("생년월일")
+                if ($(this).closest(".id-number").length) {
+                    var floatingLabel = $(this).closest(".input-container").find(".floating-label");
+                    floatingLabel.text("생년월일");
+                }
+                // type-text 하위 input인 경우, 원래 텍스트로 복원 ("텍스트 입력")
+                else if ($(this).closest(".type-text").length) {
+                    var floatingLabel = $(this).closest(".input-container").find(".floating-label");
+                    floatingLabel.text("텍스트를 입력 하세요");
+                }
+                // type-timer 하위 input인 경우, 원래 텍스트로 복원 ("6자리 숫자 입력")
+                else if ($(this).closest(".type-timer").length) {
+                    var floatingLabel = $(this).closest(".input-container").find(".floating-label");
+                    floatingLabel.text("6자리 숫자 입력");
+                }
+            }
         })
         .blur();
 

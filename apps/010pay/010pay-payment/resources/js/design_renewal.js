@@ -125,8 +125,6 @@ $(function () {
 
     // IE9 이하 jquery.placeholder.js 적용
     $("input, textarea").placeholder();
-
-    
 });
 
 // 바디 스크롤 제거/해제
@@ -208,17 +206,17 @@ $(function () {
     $(".modal-terms .nav.owl-carousel .select-sm").parents(".item").addClass("has-select");
 
     // 모달 슬라이드 닫기(셀렉트 옵션, 은행 선택 레이어 팝업)
-    $(".modal-slide .btn-close, .modal-slide .btn-list button, .modal-slide .bank-list button").click(function () {
-        var temp = $(this).parents(".modal");
-        $(temp).fadeOut(200);
-        $(this).parents(".modal-content").animate({ bottom: -450 }, 200);
-        $(".bank-list").scrollTop(0);
+    // $(".modal-slide .btn-close, .modal-slide .btn-list button, .modal-slide .bank-list button").click(function () {
+    //     var temp = $(this).parents(".modal");
+    //     $(temp).fadeOut(200);
+    //     $(this).parents(".modal-content").animate({ bottom: -450 }, 200);
+    //     $(".bank-list").scrollTop(0);
 
-        // 이중 모달 아닌 경우
-        if (!$(temp).hasClass("depth2")) {
-            scrollOn(); // 바디 스크롤 제거 해제
-        }
-    });
+    //     // 이중 모달 아닌 경우
+    //     if (!$(temp).hasClass("depth2")) {
+    //         scrollOn(); // 바디 스크롤 제거 해제
+    //     }
+    // });
 
     // 셀렉트 옵션 선택(통신사, 머니 충전 계좌, 이용내역 필터 등)
     $(".modal-slide .btn-list .btn").click(function () {
@@ -226,9 +224,18 @@ $(function () {
         $(this).addClass("on");
     });
 
-    // 슬라이드 모달, 은행 선택 레이어 닫기
     $(".modal.type-bank, .modal-slide").click(function (e) {
-        if (!$(".modal-content").has(e.target).length && !$("#wrap").hasClass("gigworker")) {
+        // 특정 모달이 'modal-select-bank'인 경우에만 콘솔 출력
+        if ($(this).attr("id") === "modal-select-bank" || ("modal-select-title" && !$(".modal-content").has(e.target).length)) {
+            // console.log("asdd");
+            // $(".select-box").removeClass("comp");
+            // 은행선택 모달에서 아무것도 선택안하고 모달 닫을 경우 하단 버튼 노출
+            if ($("#chkSelectBtn").text().trim() === "은행") {
+                $("#btnHidden").removeClass("btn-hidden");
+            } else {
+                $("#btnHidden").addClass("btn-hidden");
+            }
+
             $(this).fadeOut(200);
             $(this).find(".modal-content").animate({ bottom: -450 }, 200);
             $(".bank-list").scrollTop(0);
@@ -240,50 +247,30 @@ $(function () {
         }
     });
 
-    // const selectBoxes = document.querySelectorAll(".select-box");
+    // 모든 input 및 select-box 요소의 값이 채워져 있는지 확인하는 함수
+    function checkAllInputsAndSelects() {
+        const allInputs = document.querySelectorAll(".section input");
+        const allSelectBoxes = document.querySelectorAll(".select-box");
 
-    // selectBoxes.forEach((selectBox) => {
-    //     const label = selectBox.querySelector(".label");
-    //     const options = selectBox.querySelectorAll("#modal-select-bank .option-item");
+        // 모든 input 요소가 채워졌는지 확인
+        const inputsFilled = Array.from(allInputs).every((input) => input.value.trim() !== "");
+        // 모든 select-box 요소에 comp 클래스가 있는지 확인
+        const selectsFilled = Array.from(allSelectBoxes).every((box) => box.classList.contains("comp"));
 
-    //     // '기타' 옵션 선택 시 '기타' 입력 formGroup 추가/삭제 함수
-    //     const handleSelect = (item) => {
-    //         console.log("Selected option text:", item.textContent);
-    //         selectBox.classList.remove("active");
-    //         label.textContent = item.textContent;
-    //         selectBox.classList.add("comp");
-    //     };
+        return inputsFilled && selectsFilled;
+    }
 
-    //     // 옵션 클릭 시 handleSelect 호출
-    //     options.forEach((option) => {
-    //         option.addEventListener("click", () => handleSelect(option));
-    //     });
-
-    //     // 라벨을 클릭 시 옵션 목록이 열리고 닫힘
-    //     label.addEventListener("click", () => {
-    //         if (selectBox.classList.contains("active")) {
-    //             selectBox.classList.remove("active");
-    //         } else {
-    //             selectBoxes.forEach((box) => {
-    //                 box.classList.remove("active");
-    //             });
-    //             selectBox.classList.add("active");
-    //         }
-    //     });
-    // });
-
-    // // 모든 '기타' 옵션에 대해 클릭 시 관련 input에 포커스를 이동
-    // const otherOptions = document.querySelectorAll(".otherOption");
-
-    // otherOptions.forEach((option) => {
-    //     option.addEventListener("click", function () {
-    //         const targetInputId = option.getAttribute("data-target"); // data-target 속성값을 가져옴
-    //         const targetInput = document.getElementById(targetInputId);
-    //         if (targetInput) {
-    //             targetInput.focus(); // 해당 input에 포커스 이동
-    //         }
-    //     });
-    // });
+    // 버튼 상태 업데이트 함수
+    function updateButtonState() {
+        const btnNext = document.querySelector("#send");
+        if (checkAllInputsAndSelects()) {
+            btnNext.disabled = false;
+            btnNext.classList.remove("btnOff");
+        } else {
+            btnNext.disabled = true;
+            btnNext.classList.add("btnOff");
+        }
+    }
 
     // input 삭제 버튼
     document.querySelectorAll(".js-text-del").forEach((button) => {
@@ -292,41 +279,42 @@ $(function () {
             if (inputField && inputField.classList.contains("custom-input")) {
                 inputField.value = ""; // input 값을 지움
                 inputField.focus(); // input 필드에 포커스를 다시 줌
+                updateButtonState(); // 버튼 상태 업데이트
             }
         });
     });
 
     // 검색 인풋
-    $(".input-container.search input").on("input", function(e) {
+    $(".input-container.search input").on("input", function (e) {
         showCountryList(e.target.value.trim(), $(this).closest(".input-container"));
     });
-    
-    $(".input-container.search input").on("focus", function() {
+
+    $(".input-container.search input").on("focus", function () {
         showCountryList($(this).val().trim(), $(this).closest(".input-container"));
     });
-    
+
     function showCountryList(searchValue, $inputContainer) {
         var countryList = $inputContainer.attr("data-country");
         var countryArray = JSON.parse(countryList);
-    
+
         var $searchList = $inputContainer.find(".search-list");
-    
+
         // <ul> 요소가 없으면 생성
         if ($searchList.length === 0) {
             $searchList = $("<ul class='search-list'></ul>").appendTo($inputContainer);
         }
-    
+
         // 기존 <ul> 내용 지우기
         $searchList.empty();
-    
+
         // 일치하는 항목 찾기
-        var matchedItems = countryArray.filter(function(country) {
+        var matchedItems = countryArray.filter(function (country) {
             return country.toLowerCase().includes(searchValue.toLowerCase());
         });
-    
+
         // 일치하는 항목이 있을 경우 <li> 추가 및 <ul> 표시, 없으면 숨기기
         if (matchedItems.length > 0) {
-            matchedItems.forEach(function(country) {
+            matchedItems.forEach(function (country) {
                 $searchList.append(`<li>${country}</li>`);
             });
             $searchList.show(); // 일치하는 항목이 있을 때만 표시
@@ -334,17 +322,17 @@ $(function () {
             $searchList.hide(); // 일치하는 항목이 없으면 숨기기
         }
     }
-    
+
     // blur 시 <ul> 숨기기
-    $(".input-container.search input").on("blur", function() {
+    $(".input-container.search input").on("blur", function () {
         var $this = $(this);
-        setTimeout(function(){
+        setTimeout(function () {
             $this.closest(".input-container").find(".search-list").hide();
         }, 10);
     });
 
     // <li> 클릭 시 해당 항목의 텍스트를 <input>에 설정하고 <ul> 숨기기
-    $(document).on("click", ".search-list li", function() {
+    $(document).on("click", ".search-list li", function () {
         var selectedCountry = $(this).text();
         var $input = $(this).closest(".input-container").find("input");
         $input.val(selectedCountry); // 선택한 텍스트를 <input> 값으로 설정
@@ -445,70 +433,70 @@ $(function () {
 });
 
 // 모달 setting 및 이벤트
-function modalSet() {
-    var modalCont = $(".modal-info .modal-content");
-    var modalH = $(window).height();
-    modalH = modalH * -1;
-    $(modalCont).css("bottom", modalH); // 팝업들 bottom 값 setting
+// function modalSet() {
+//     var modalCont = $(".modal-info .modal-content");
+//     var modalH = $(window).height();
+//     modalH = modalH * -1;
+//     $(modalCont).css("bottom", modalH); // 팝업들 bottom 값 setting
 
-    // bottom modal 열기
-    $(".info-chg").click(function () {
-        var selectId = $(this).attr("id");
-        var optionLayer = "modal-" + selectId;
-        var temp = $("#" + optionLayer);
-        temp.show();
-        $(temp).find(".modal-content").animate({ bottom: 0 }, 200);
+//     // bottom modal 열기
+//     $(".info-chg").click(function () {
+//         var selectId = $(this).attr("id");
+//         var optionLayer = "modal-" + selectId;
+//         var temp = $("#" + optionLayer);
+//         temp.show();
+//         $(temp).find(".modal-content").animate({ bottom: 0 }, 200);
 
-        // 이중 모달이 아닌 경우
-        if (!$(this).hasClass("depth2")) {
-            scrollOff(); // 바디 스크롤 제거
-        }
+//         // 이중 모달이 아닌 경우
+//         if (!$(this).hasClass("depth2")) {
+//             scrollOff(); // 바디 스크롤 제거
+//         }
 
-        // 바깥 영역 클릭 시 팝업 닫힘
-        $(temp).on("click", function (e) {
-            if (!$(".modal-content").has(e.target).length) {
-                modalOut();
-            }
-        });
+//         // 바깥 영역 클릭 시 팝업 닫힘
+//         $(temp).on("click", function (e) {
+//             if (!$(".modal-content").has(e.target).length) {
+//                 modalOut();
+//             }
+//         });
 
-        // 팝업 내 하단 버튼 클릭 시 팝업 닫힘
-        $(temp)
-            .find(".modal-footer .btn")
-            .on("click", function (e) {
-                modalOut();
-            });
+//         // 팝업 내 하단 버튼 클릭 시 팝업 닫힘
+//         $(temp)
+//             .find(".modal-footer .btn")
+//             .on("click", function (e) {
+//                 modalOut();
+//             });
 
-        // bottom modal 닫기
-        function modalOut() {
-            temp.fadeOut(200);
-            $(temp).find(".modal-content").animate({ bottom: modalH }, 200);
+//         // bottom modal 닫기
+//         function modalOut() {
+//             temp.fadeOut(200);
+//             $(temp).find(".modal-content").animate({ bottom: modalH }, 200);
 
-            // 이중 모달이 아닌 경우
-            if (!$(temp).hasClass("depth2")) {
-                scrollOn(); // 바디 스크롤 제거 해제
-            }
-        }
+//             // 이중 모달이 아닌 경우
+//             if (!$(temp).hasClass("depth2")) {
+//                 scrollOn(); // 바디 스크롤 제거 해제
+//             }
+//         }
 
-        // 모달 높이가 큰 경우 포지션 변경
-        function modalContPos() {
-            var modalContent = temp.find(".modal-content");
-            var modalContentH = temp.find(".modal-content").height();
-            var modalDialogH = temp.find(".modal-dialog").height();
-            var gap = modalDialogH - modalContentH;
-            if (gap < 0) {
-                modalContent.css("position", "relative");
-            } else {
-                modalContent.css("position", "fixed");
-            }
-        }
-        modalContPos();
+//         // 모달 높이가 큰 경우 포지션 변경
+//         function modalContPos() {
+//             var modalContent = temp.find(".modal-content");
+//             var modalContentH = temp.find(".modal-content").height();
+//             var modalDialogH = temp.find(".modal-dialog").height();
+//             var gap = modalDialogH - modalContentH;
+//             if (gap < 0) {
+//                 modalContent.css("position", "relative");
+//             } else {
+//                 modalContent.css("position", "fixed");
+//             }
+//         }
+//         modalContPos();
 
-        // 리사이즈
-        $(window).resize(function () {
-            modalContPos();
-        });
-    });
-}
+//         // 리사이즈
+//         $(window).resize(function () {
+//             modalContPos();
+//         });
+//     });
+// }
 
 // 하단 레이어 팝업(슬라이드 모달) 기본 세팅
 var modalCont = $(".modal-info .modal-content");
@@ -539,23 +527,25 @@ function modalOpenSlide(obj) {
     var modalCont = $(temp).find(".modal-content");
     var containHeight;
     var contentsHeight;
-    setTimeout(function(){
-        containHeight  = modalCont[0].querySelector(".modal-body").clientHeight;
+    setTimeout(function () {
+        containHeight = modalCont[0].querySelector(".modal-body").clientHeight;
         contentsHeight = modalCont[0].querySelector(".modal-body").scrollHeight;
-        if(containHeight < contentsHeight) {
+        if (containHeight < contentsHeight) {
             modalCont.addClass("scroll");
         }
-    }, 100)
-    
-    $(modalCont[0]).find(".modal-body").on("scroll", function(){
-        var bodyScrollTop = $(this).scrollTop();
-        if(contentsHeight - containHeight - 60 <= bodyScrollTop) {
-            $(modalCont[0]).removeClass("scroll");
-        } else {
-            $(modalCont[0]).addClass("scroll");
-        }
-    });
-    
+    }, 100);
+
+    $(modalCont[0])
+        .find(".modal-body")
+        .on("scroll", function () {
+            var bodyScrollTop = $(this).scrollTop();
+            if (contentsHeight - containHeight - 60 <= bodyScrollTop) {
+                $(modalCont[0]).removeClass("scroll");
+            } else {
+                $(modalCont[0]).addClass("scroll");
+            }
+        });
+
     temp.show();
     $(modalCont).animate({ bottom: 0 }, 200);
     // 이중 모달이 아닌 경우
@@ -577,6 +567,7 @@ function modalOpenSlide(obj) {
 
     // bottom modal 닫기
     function modalCloseSlide() {
+        // console.log("111");
         temp.fadeOut(200);
         $(temp).find(".modal-content").animate({ bottom: modalH }, 200);
 
@@ -585,6 +576,18 @@ function modalOpenSlide(obj) {
             scrollOn(); // 바디 스크롤 제거 해제
         }
     }
+
+    // 모달 외부 클릭 시 닫기 처리 및 01 출력
+    temp.on("click", function (e) {
+        // 외부를 클릭했는지 확인
+        if (!$(e.target).closest(".modal-content").length) {
+            modalCloseSlide(); // 모달 닫기
+        }
+    });
+    // js-modal-close 버튼 클릭 시 모달 닫기 실행
+    temp.find(".js-modal-close").on("click", function () {
+        modalCloseSlide();
+    });
 
     // 클릭된 버튼의 부모 select-box에 comp 클래스 추가
     const button = $(event.target); // 클릭된 버튼
@@ -640,6 +643,15 @@ function modalOpenSlide(obj) {
         var selectedBank = $(this).text().trim(); // 선택한 이름 가져오기
         selectBox.find(".label").text(selectedBank); // 버튼에 텍스트 업데이트
         selectBox.addClass("comp");
+
+        // step-list에서 현재 on 클래스가 있는 li 찾고 다음 li에 on 클래스 추가
+        var currentStep = $(".step-list li.on"); // 현재 on 클래스가 있는 li
+        var nextStep = currentStep.next("li"); // 다음 li 요소 찾기
+
+        // 다음 li가 있을 경우에만 on 클래스 추가
+        if (nextStep.length) {
+            nextStep.addClass("on"); // 다음 li에 on 클래스 추가
+        }
         modalCloseSlide(); // 모달 닫기
     });
 
@@ -648,46 +660,44 @@ function modalOpenSlide(obj) {
         checkInputs(temp); // input 상태 확인
     });
     checkInputs(temp); // 초기 상태 확인
-
-    
 }
 
 // 하단 레이어 팝업(슬라이드 모달) 열기 + 상단 이동 막기
-function modalOpenSlideNoMove(obj) {
-    var temp = $("#" + obj);
-    var modalCont = $(temp).find(".modal-content");
+// function modalOpenSlideNoMove(obj) {
+//     var temp = $("#" + obj);
+//     var modalCont = $(temp).find(".modal-content");
 
-    temp.show();
-    $(modalCont).animate({ bottom: 0 }, 200);
-    // 이중 모달이 아닌 경우
-    if (obj === "retto") {
-        $("body").addClass("modal-open");
-    } else if (!$(this).hasClass("depth2")) {
-        // scrollOff(); // 바디 스크롤 제거
-    }
+//     temp.show();
+//     $(modalCont).animate({ bottom: 0 }, 200);
+//     // 이중 모달이 아닌 경우
+//     if (obj === "retto") {
+//         $("body").addClass("modal-open");
+//     } else if (!$(this).hasClass("depth2")) {
+//         // scrollOff(); // 바디 스크롤 제거
+//     }
 
-    // 팝업 내 하단 버튼 클릭 시 팝업 닫힘
-    else
-        $(temp)
-            .find(".modal-footer .btn")
-            .on("click", function (e) {
-                if (!$(this).hasClass("not-close")) {
-                    modalCloseSlide();
-                }
-            });
+//     // 팝업 내 하단 버튼 클릭 시 팝업 닫힘
+//     else
+//         $(temp)
+//             .find(".modal-footer .btn")
+//             .on("click", function (e) {
+//                 if (!$(this).hasClass("not-close")) {
+//                     modalCloseSlide();
+//                 }
+//             });
 
-    // bottom modal 닫기
-    function modalCloseSlide() {
-        var temp = $("#" + obj);
-        temp.fadeOut(200);
-        var modalContent = $(temp).find(".modal-content");
-    }
+//     // bottom modal 닫기
+//     function modalCloseSlide() {
+//         var temp = $("#" + obj);
+//         temp.fadeOut(200);
+//         var modalContent = $(temp).find(".modal-content");
+//     }
 
-    // 리사이즈
-    $(window).resize(function () {
-        modalContPos();
-    });
-}
+//     // 리사이즈
+//     $(window).resize(function () {
+//         modalContPos();
+//     });
+// }
 
 // 체크박스 라디오 선택 시 컨테이너 컬러 변경
 function checkBorderChange() {
@@ -844,3 +854,64 @@ function makeBodyFormSubmit(form) {
         }, 1000);
     }
 }
+
+// 모달(레이어 팝업), 배너, 팝오버
+$(function () {
+    // 모달 열기
+    $("[data-toggle='modal']").click(function () {
+        var openBtn = $(this); // "보기" 버튼 참조
+        var target = $(this).attr("data-target"); // 모달 ID
+        var modal = $(target);
+        $(target).show().attr("aria-hidden", "false"); // 모달 열기, aria-hidden 설정
+        scrollOff(); // 바디 스크롤 제거
+
+        // 모달 위치 조정
+        var thisDialog = modal.find(".modal-dialog");
+        var marginValue = thisDialog.outerHeight() / 2;
+        thisDialog.css("margin-top", "-" + marginValue + "px");
+
+        // 포커스 이동 및 aria-hidden 관리
+        setTimeout(function () {
+            var modal = $(target)[0];
+            var termsTitle = $(target).find(".terms-title")[0];
+            if (termsTitle) {
+                termsTitle.setAttribute("tabindex", "0"); // 포커스 가능하도록 설정
+                termsTitle.focus(); // terms-title로 포커스 이동
+            }
+
+            // 외부 콘텐츠 aria-hidden 설정
+            $("#wrap, #header, #content, #footer").attr("aria-hidden", "true");
+        }, 300); // 모달 열림에 딜레이가 있으면 약간의 시간 지연을 줄 수 있음
+
+        // 마지막 포커스된 요소 저장 (초점을 복귀할 요소)
+        lastFocusedElement = openBtn;
+    });
+
+    // 모달 닫기
+    $("[data-dismiss='modal']").click(function () {
+        var target = $(this).parents(".modal");
+        $(target).hide().attr("aria-hidden", "true"); // 모달 닫기, aria-hidden 설정
+        scrollOn(); // 바디 스크롤 제거 해제
+
+        // 외부 콘텐츠 aria-hidden 해제
+        $("#wrap, #header, #content, #footer").attr("aria-hidden", "false");
+
+        // 모달 닫힐 때 포커스 복귀
+        if (lastFocusedElement) {
+            lastFocusedElement.focus(); // "보기" 버튼으로 포커스 이동
+            lastFocusedElement = null; // 참조 해제
+        }
+    });
+
+    // 배너 닫기(플로팅 배너)
+    $("[data-dismiss='banner']").click(function () {
+        var target = $(this).parents(".banner");
+        $(target).hide();
+    });
+
+    // popover 닫기
+    $("[data-dismiss='popover']").click(function () {
+        var target = $(this).parents(".popover");
+        $(target).hide();
+    });
+});

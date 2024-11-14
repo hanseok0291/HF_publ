@@ -27,24 +27,7 @@
             <!-- header -->
             <div id="header">
                 <div class="container">
-                    <!-- <button type="button" class=""><i class="icon-arrow-left">뒤로가기</i></button> -->
-                    <button
-                        type="button"
-                        onclick="$.promptMessage(
-							'', 
-							'계좌 등록을 그만할까요?<br>결제수단을 다시 선택해주세요.', 
-							$('#commonPrompt'), 
-							$('#promptOk'), 
-							'modalClose()', 
-							'',  // warning
-							'다시 선택하기',  // 취소 버튼 텍스트
-							'계속하기'       // 확인 버튼 텍스트
-						);"
-                        id="btnBack"
-                        class="btn-back"
-                    >
-                        <i class="icon-arrow-left">뒤로가기</i>
-                    </button>
+                    <button type="button" id="btnBack" class="btn-back"><i class="icon-arrow-left">뒤로가기</i></button>
                     <h1 class="brand-name hidden">
                         <a href="#">
                             <span class="shop-logo"><img src="../../resources/images/common/logo.png" alt="로고 샘플" /></span>
@@ -116,22 +99,7 @@
                                         <span class="checkbox round">
                                             <input type="checkbox" name="checkbox_01" id="checkbox_01_01" />
                                             <label for="checkbox_01_01">새마을금고</label>
-                                            <button
-                                                type="button"
-                                                onclick="$.promptMessage(
-												'', 
-												'변경 시 계좌인증을 다시 진행해야해요. <br>그래도 변경할까요?', 
-												$('#commonPrompt'), 
-												$('#promptOk'), 
-												'modalClose()', 
-												'',  // warning
-												'취소',  // 취소 버튼 텍스트
-												'확인'       // 확인 버튼 텍스트
-											);"
-                                                class="change-btn js-change-btn"
-                                            >
-                                                변경
-                                            </button>
+                                            <button type="button" class="change-btn js-change-btn">변경</button>
                                         </span>
                                         <span class="checkbox-near">11022773450698</span>
                                     </div>
@@ -163,7 +131,7 @@
                                             <div class="ars-content toggle-content active">
                                                 <p class="instruction">버튼을 누른 후, 인증번호를 입력해주세요.</p>
                                                 <div class="verification-code">25</div>
-                                                <button type="button" class="call-button js-call-btn" data-toggle="modal" data-target="#passwordSet"><i class="icon-call"></i> 인증 전화 요청</button>
+                                                <button type="button" class="call-button js-call-btn"><i class="icon-call"></i> 인증 전화 요청</button>
                                             </div>
 
                                             <!-- PASS 인증 내용 -->
@@ -186,10 +154,6 @@
                     <!--  -->
                 </div>
                 <!-- //step2 -->
-
-                <!-- step3 -->
-                <div class="step3" style="display: none"></div>
-                <!-- //step3 -->
             </div>
             <!-- //content -->
         </div>
@@ -242,23 +206,6 @@
             </div>
         </div>
         <!-- //common prompt -->
-
-        <!-- cancel prompt -->
-        <div id="cancelPrompt" class="modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <h3 id="promptTitle"></h3>
-                        <p id="promptContents"></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" onclick="modalClose();" class="btn btn-cancel">다시 선택하기</button>
-                        <button type="button" id="promptOk" class="btn btn-confirm">계속하기</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- //cancel prompt -->
 
         <!-- select modal list -->
         <div id="modal-select-title" class="modal modal-slide type-title">
@@ -464,9 +411,9 @@
                 <div class="modal-content">
                     <div class="modal-head" tabindex="0">
                         <div class="container">
-                            <!-- <p class="brand-name">
+                            <p class="brand-name">
                                 <span class="my-logo"><img src="../../resources/images/common/logo.png" alt="헥토파이낸셜" /></span>
-                            </p> -->
+                            </p>
                             <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="모달 닫기"><i class="icon-close"></i></button>
                         </div>
                     </div>
@@ -515,80 +462,8 @@
             </div>
         </div>
         <!-- //modal - 공지사항 상세 -->
-
-        <!-- modal - 비밀번호 설정 -->
-        <div id="passwordSet" class="modal modal-full" tabindex="0" aria-labelledby="passwordSet" style="display: none">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-head" tabindex="0">
-                        <div class="container">
-                            <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="모달 닫기"><i class="icon-close"></i></button>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <!-- 게시판 상세 -->
-                        <div class="modal-step1" style="display: block">
-                            <div class="content-wrap">
-                                <h3 class="title">간편결제 이용이 처음이시네요.</h3>
-                                <p class="sub-title">한번만 비밀번호를 설정하면<br />안전하고 빠르게 결제 할 수 있습니다.</p>
-
-                                <div class="input-mark">
-                                    <span class="mark"
-                                        ><i id="pwd_01" class="on"></i><i id="pwd_02" class="on"></i><i id="pwd_03" class="on"></i><i id="pwd_04"></i><i id="pwd_05"></i><i id="pwd_06"></i
-                                    ></span>
-                                </div>
-
-                                <p class="noti-text">동일/연속된 숫자, 생년월일, 휴대폰 번호는 사용할 수 없어요.</p>
-
-                                <div class="mark-box">
-                                    <img src="../../resources/images/common/security_keypad.png" alt="" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-step2" style="display: none">
-                            <div class="content-wrap">
-                                <div class="container">
-                                    <p class=""></p>
-                                    <h3 class="title">
-                                        <i class="icon-round-big-orange"></i>
-                                        <p>결제 비밀번호 등록 완료 !</p>
-                                    </h3>
-                                    <p class="sub-title">안전하고 빠르게 결제할 수 있어요</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- //게시판 상세 -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- //modal - 비밀번호 설정 -->
-
-        <!-- //모달 생체정보 등록 -->
-        <div id="modal-bio-reg" class="modal modal-slide type-title">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-head">
-                        <p class="modal-head-title">생체정보를 등록하세요</p>
-                        <button type="button" class="btn btn-close js-modal-close"><i class="icon-close"></i></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>비밀번호 대신 생체정보로 더욱 빠르게<br />결제할 수 있어요</p>
-                    </div>
-                    <!-- 동의하기 버튼 -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn-confirm js-modal-close disabled" disabled>동의하기</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- //모달 생체정보 등록 -->
     </body>
     <script>
-        $(document).ready(function () {
-            modalOpenSlide("modal-bio-reg"); // 이때 modalOpenSlide 호출
-        });
-
         $("#modal-select-title .btn-confirm").click(function () {
             if (!this.disabled) {
                 // 버튼이 활성화된 경우에만 실행
@@ -626,24 +501,6 @@
 
             // 버튼을 비활성화
             this.disabled = true;
-        });
-
-        document.querySelector(".js-call-btn").addEventListener("click", function () {
-            // passwordSet 모달 표시
-            const passwordSetModal = document.getElementById("passwordSet");
-            const step1 = passwordSetModal.querySelector(".modal-step1");
-            const step2 = passwordSetModal.querySelector(".modal-step2");
-
-            // 모달을 보이도록 설정
-            // passwordSetModal.style.display = "block";
-            step1.style.display = "block";
-            step2.style.display = "none";
-
-            // 5초 후 modal-step1을 숨기고 modal-step2를 표시
-            setTimeout(() => {
-                step1.style.display = "none";
-                step2.style.display = "block";
-            }, 5000); // 5초 (5000 밀리초) 뒤 실행
         });
     </script>
 </html>

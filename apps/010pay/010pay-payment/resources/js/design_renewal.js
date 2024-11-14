@@ -205,19 +205,6 @@ $(function () {
     // 약관 상세 팝업 > 제목 네비 > 시행일 표시 여백
     $(".modal-terms .nav.owl-carousel .select-sm").parents(".item").addClass("has-select");
 
-    // 모달 슬라이드 닫기(셀렉트 옵션, 은행 선택 레이어 팝업)
-    // $(".modal-slide .btn-close, .modal-slide .btn-list button, .modal-slide .bank-list button").click(function () {
-    //     var temp = $(this).parents(".modal");
-    //     $(temp).fadeOut(200);
-    //     $(this).parents(".modal-content").animate({ bottom: -450 }, 200);
-    //     $(".bank-list").scrollTop(0);
-
-    //     // 이중 모달 아닌 경우
-    //     if (!$(temp).hasClass("depth2")) {
-    //         scrollOn(); // 바디 스크롤 제거 해제
-    //     }
-    // });
-
     // 셀렉트 옵션 선택(통신사, 머니 충전 계좌, 이용내역 필터 등)
     $(".modal-slide .btn-list .btn").click(function () {
         $(this).parents(".btn-list").find(".btn").removeClass("on");
@@ -227,8 +214,6 @@ $(function () {
     $(".modal.type-bank, .modal-slide").click(function (e) {
         // 특정 모달이 'modal-select-bank'인 경우에만 콘솔 출력
         if ($(this).attr("id") === "modal-select-bank" || ("modal-select-title" && !$(".modal-content").has(e.target).length)) {
-            // console.log("asdd");
-            // $(".select-box").removeClass("comp");
             // 은행선택 모달에서 아무것도 선택안하고 모달 닫을 경우 하단 버튼 노출
             if ($("#chkSelectBtn").text().trim() === "은행") {
                 $("#btnHidden").removeClass("btn-hidden");
@@ -432,72 +417,6 @@ $(function () {
     });
 });
 
-// 모달 setting 및 이벤트
-// function modalSet() {
-//     var modalCont = $(".modal-info .modal-content");
-//     var modalH = $(window).height();
-//     modalH = modalH * -1;
-//     $(modalCont).css("bottom", modalH); // 팝업들 bottom 값 setting
-
-//     // bottom modal 열기
-//     $(".info-chg").click(function () {
-//         var selectId = $(this).attr("id");
-//         var optionLayer = "modal-" + selectId;
-//         var temp = $("#" + optionLayer);
-//         temp.show();
-//         $(temp).find(".modal-content").animate({ bottom: 0 }, 200);
-
-//         // 이중 모달이 아닌 경우
-//         if (!$(this).hasClass("depth2")) {
-//             scrollOff(); // 바디 스크롤 제거
-//         }
-
-//         // 바깥 영역 클릭 시 팝업 닫힘
-//         $(temp).on("click", function (e) {
-//             if (!$(".modal-content").has(e.target).length) {
-//                 modalOut();
-//             }
-//         });
-
-//         // 팝업 내 하단 버튼 클릭 시 팝업 닫힘
-//         $(temp)
-//             .find(".modal-footer .btn")
-//             .on("click", function (e) {
-//                 modalOut();
-//             });
-
-//         // bottom modal 닫기
-//         function modalOut() {
-//             temp.fadeOut(200);
-//             $(temp).find(".modal-content").animate({ bottom: modalH }, 200);
-
-//             // 이중 모달이 아닌 경우
-//             if (!$(temp).hasClass("depth2")) {
-//                 scrollOn(); // 바디 스크롤 제거 해제
-//             }
-//         }
-
-//         // 모달 높이가 큰 경우 포지션 변경
-//         function modalContPos() {
-//             var modalContent = temp.find(".modal-content");
-//             var modalContentH = temp.find(".modal-content").height();
-//             var modalDialogH = temp.find(".modal-dialog").height();
-//             var gap = modalDialogH - modalContentH;
-//             if (gap < 0) {
-//                 modalContent.css("position", "relative");
-//             } else {
-//                 modalContent.css("position", "fixed");
-//             }
-//         }
-//         modalContPos();
-
-//         // 리사이즈
-//         $(window).resize(function () {
-//             modalContPos();
-//         });
-//     });
-// }
-
 // 하단 레이어 팝업(슬라이드 모달) 기본 세팅
 var modalCont = $(".modal-info .modal-content");
 var modalH = $(window).height();
@@ -661,43 +580,6 @@ function modalOpenSlide(obj) {
     });
     checkInputs(temp); // 초기 상태 확인
 }
-
-// 하단 레이어 팝업(슬라이드 모달) 열기 + 상단 이동 막기
-// function modalOpenSlideNoMove(obj) {
-//     var temp = $("#" + obj);
-//     var modalCont = $(temp).find(".modal-content");
-
-//     temp.show();
-//     $(modalCont).animate({ bottom: 0 }, 200);
-//     // 이중 모달이 아닌 경우
-//     if (obj === "retto") {
-//         $("body").addClass("modal-open");
-//     } else if (!$(this).hasClass("depth2")) {
-//         // scrollOff(); // 바디 스크롤 제거
-//     }
-
-//     // 팝업 내 하단 버튼 클릭 시 팝업 닫힘
-//     else
-//         $(temp)
-//             .find(".modal-footer .btn")
-//             .on("click", function (e) {
-//                 if (!$(this).hasClass("not-close")) {
-//                     modalCloseSlide();
-//                 }
-//             });
-
-//     // bottom modal 닫기
-//     function modalCloseSlide() {
-//         var temp = $("#" + obj);
-//         temp.fadeOut(200);
-//         var modalContent = $(temp).find(".modal-content");
-//     }
-
-//     // 리사이즈
-//     $(window).resize(function () {
-//         modalContPos();
-//     });
-// }
 
 // 체크박스 라디오 선택 시 컨테이너 컬러 변경
 function checkBorderChange() {

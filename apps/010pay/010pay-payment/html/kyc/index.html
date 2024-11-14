@@ -17,6 +17,10 @@
   </head>
   <body>
     <div class="">
+      <div class="layer-head">
+        <h4>고객확인제도</h4>
+        <div class="close-btn icon-close">X</div>
+      </div>
       <div class="top-con-wrap">
         <div class="top-info">
           고객확인제도 정책에 따라 의무적으로 개인정보를 <br />
@@ -57,6 +61,21 @@
       </div>
       <div class="form-wrap">
         <div class="form-box">
+          <h4>국적</h4>
+          <div
+            class="input-container small search"
+            data-country='["Korea", "USA", "China", "Japan"]'
+          >
+            <input
+              type="text"
+              class="custom-input"
+              placeholder="국적 입력"
+              id=""
+            />
+            <button type="button" class="icon icon-del js-text-del"></button>
+          </div>
+        </div>
+        <div class="form-box">
           <h4>영문명</h4>
           <div class="input-wrap">
             <div class="input-container small">
@@ -93,7 +112,9 @@
                 type="text"
                 class="custom-input"
                 placeholder="건물 지번 또는 도로명 검색"
-                id=""
+                onclick="openPostcode()"
+                readonly
+                id="addressInput"
               />
               <button type="button" class="icon icon-del js-text-del"></button>
             </div>
@@ -114,7 +135,11 @@
         <div class="form-box">
           <h4>직업</h4>
           <div class="select-box small">
-            <button id="select-job" class="label" onclick="modalOpenSlide('modal-select-job')">
+            <button
+              id="select-job"
+              class="label"
+              onclick="modalOpenSlide('modal-select-job')"
+            >
               직업 선택
             </button>
           </div>
@@ -130,6 +155,9 @@
             />
             <button type="button" class="icon icon-del js-text-del"></button>
           </div>
+        </div>
+        <div class="btn-wrap">
+          <button type="button" class="btn" disabled>확인</button>
         </div>
       </div>
     </div>
@@ -292,7 +320,16 @@
       </div>
     </div>
     <!-- //select modal list -->
+
+    <div class="popup-full-screen" id="postcodeOverlay">
+      <div class="layer-head">
+        <h4>주소 검색</h4>
+        <div class="close-btn icon-close" onclick="closePostcode()">X</div>
+      </div>
+      <div class="full-screen-content" id="postcodeContainer"></div>
+    </div>
   </body>
+  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script>
     var isTooltip = false;
     $(".tooptip-box button").on("click", function () {
@@ -303,5 +340,43 @@
       }
       isTooltip = !isTooltip;
     });
+
+    // 우편번호 검색 열기
+    function openPostcode() {
+      document.getElementById("postcodeOverlay").style.display = "block"; // 전체 화면 레이어 표시
+
+      new daum.Postcode({
+        oncomplete: function (data) {
+          // 검색 완료 시 레이어 닫기
+          closePostcode();
+
+          // 주소를 특정 input에 넣기
+          var fullAddr = data.address; // 기본 주소
+          var extraAddr = ""; // 참고 항목
+
+          // 참고 항목 추가
+          if (data.addressType === "R") {
+            if (data.bname !== "") {
+              extraAddr += data.bname;
+            }
+            if (data.buildingName !== "") {
+              extraAddr +=
+                extraAddr !== "" ? ", " + data.buildingName : data.buildingName;
+            }
+            fullAddr += extraAddr !== "" ? " (" + extraAddr + ")" : "";
+          }
+
+          // 주소를 input에 설정
+          document.getElementById("addressInput").value = fullAddr;
+        },
+        width: "100%",
+        height: "100%",
+      }).embed(document.getElementById("postcodeContainer")); // 검색 창을 전체 화면에 임베드
+    }
+
+    // 레이어 닫기
+    function closePostcode() {
+      document.getElementById("postcodeOverlay").style.display = "none";
+    }
   </script>
 </html>

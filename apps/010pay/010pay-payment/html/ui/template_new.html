@@ -100,6 +100,7 @@
                                 <i class="icon-call"></i>
                                 <i class="icon-more"></i>
                                 <i class="icon-question-mark"></i>
+                                <i class="icon-round-big-orange"></i>
                             </p>
                         </div>
                     </div>
@@ -171,6 +172,9 @@
                         <p class="btn-group">
                             <button type="button" onclick="modalOpenSlide('modal-select-title')" class="btn btn-md btn-outline">확인<small>(약관동의)</small></button>
                             <button type="button" onclick="modalOpenSlide('modal-select-title2')" class="btn btn-md btn-outline">확인<small>(약관동의 - 서브메뉴)</small></button>
+                        </p>
+                        <p class="btn-group">
+                            <button type="button" onclick="modalOpenSlide('modal-bio-reg')" class="btn btn-md btn-outline">확인<small>(하단버튼 o)</small></button>
                         </p>
                     </div>
                     <!-- //modal button -->
@@ -320,7 +324,6 @@
                                 <div class="input-container label-n readonly">
                                     <input type="text" class="custom-input" value="6자리 숫자 입력" id="accountNumber8" readonly />
                                     <label for="accountNumber8" class="floating-label">인증 번호</label>
-                                    <!-- <button type="button" class="icon icon-del js-text-del"></button> -->
                                 </div>
                                 <span class="helper-text">helper text</span>
                             </li>
@@ -414,6 +417,18 @@
                             <span class="checkbox square white">
                                 <input type="checkbox" name="checkbox_08" id="checkbox_08_02" checked />
                                 <label for="checkbox_08_02">checkbox square white</label>
+                            </span>
+                        </p>
+
+                        <h4 class="text-primary mgt20 mgb10">Round style checkbox</h4>
+                        <p class="checkbox-block-group">
+                            <span class="checkbox round">
+                                <input type="checkbox" name="checkbox_09" id="checkbox_09_01" />
+                                <label for="checkbox_09_01">checkbox square</label>
+                            </span>
+                            <span class="checkbox round">
+                                <input type="checkbox" name="checkbox_09" id="checkbox_09_02" checked />
+                                <label for="checkbox_09_02">checkbox square</label>
                             </span>
                         </p>
 
@@ -523,7 +538,7 @@
                 <div class="modal-content">
                     <div class="modal-head">
                         <p class="modal-head-title">계좌 등록을 위해 약관 동의가 필요해요.</p>
-                        <button type="button" class="btn btn-close"><i class="icon-close"></i></button>
+                        <button type="button" class="btn btn-close js-modal-close"><i class="icon-close"></i></button>
                     </div>
                     <div class="modal-body">
                         <!-- 전체 동의 체크박스 -->
@@ -577,7 +592,7 @@
                 <div class="modal-content">
                     <div class="modal-head">
                         <p class="modal-head-title">계좌 등록을 위해 약관 동의가 필요해요.</p>
-                        <button type="button" class="btn btn-close"><i class="icon-close"></i></button>
+                        <button type="button" class="btn btn-close js-modal-close"><i class="icon-close"></i></button>
                     </div>
                     <div class="modal-body">
                         <!-- 전체 동의 체크박스 -->
@@ -640,16 +655,20 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <span class="checkbox child">
-                                        <input type="checkbox" id="checkbox_group2_2" data-group="group2" />
-                                        <label for="checkbox_group2_2">(필수) 오픈뱅킹 출금 및 조회 약관</label>
-                                    </span>
+                                    <div class="checkbox-block-group">
+                                        <span class="checkbox child">
+                                            <input type="checkbox" id="checkbox_group2_2" data-group="group2" />
+                                            <label for="checkbox_group2_2">(필수) 오픈뱅킹 출금 및 조회 약관 <button type="button" class="arrow-right js-open-terms"></button></label>
+                                        </span>
+                                    </div>
                                 </li>
                                 <li>
-                                    <span class="checkbox child">
-                                        <input type="checkbox" id="checkbox_group2_3" data-group="group2" />
-                                        <label for="checkbox_group2_3">(필수) 개인정보 제 3자 제공 동의</label>
-                                    </span>
+                                    <div class="checkbox-block-group">
+                                        <span class="checkbox child">
+                                            <input type="checkbox" id="checkbox_group2_3" data-group="group2" />
+                                            <label for="checkbox_group2_3">(필수) 개인정보 제 3자 제공 동의 <button type="button" class="arrow-right js-open-terms"></button></label>
+                                        </span>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -668,7 +687,7 @@
                 <div class="modal-content">
                     <div class="modal-head">
                         <p class="modal-head-title">은행 선택</p>
-                        <button type="button" class="btn btn-close"><i class="icon-close"></i></button>
+                        <button type="button" class="btn btn-close js-modal-close"><i class="icon-close"></i></button>
                     </div>
                     <div class="modal-body">
                         <div class="container">
@@ -831,6 +850,28 @@
             </div>
         </div>
         <!-- //select modal list -->
+
+        <!-- 슬라이드 모달 하단 버튼 o -->
+        <div id="modal-bio-reg" class="modal modal-slide type-title">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-head">
+                        <p class="modal-head-title">생체정보를 등록하세요</p>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <p>비밀번호 대신 생체정보로 더욱 빠르게<br />결제할 수 있어요</p>
+                        </div>
+                    </div>
+                    <!-- 동의하기 버튼 -->
+                    <div class="modal-footer type2">
+                        <button type="button" id="promptNo" onclick="modalClose();" class="btn btn-cancel">다음에 하기</button>
+                        <button type="button" id="promptOk" onclick="modalClose();" class="btn btn-confirm">등록하기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //슬라이드 모달 하단 버튼 o -->
 
         <!-- loading -->
         <div class="modal modal-loading">

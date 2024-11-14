@@ -28,7 +28,11 @@
             <div id="header">
                 <div class="container">
                     <!-- <button type="button" class=""><i class="icon-arrow-left">뒤로가기</i></button> -->
-                    <button
+                    <div class="header-box">
+                        <h2 class="page-title">계좌 등록</h2>
+                        <button type="button" class="btn-close"><i class="icon-close"></i></button>
+                    </div>
+                    <!-- <button
                         type="button"
                         onclick="$.promptMessage(
 							'', 
@@ -49,8 +53,7 @@
                         <a href="#">
                             <span class="shop-logo"><img src="../../resources/images/common/logo.png" alt="로고 샘플" /></span>
                         </a>
-                    </h1>
-                    <h2 class="page-title">계좌 등록</h2>
+                    </h1> -->
                 </div>
             </div>
             <!-- //header -->
@@ -236,7 +239,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" onclick="modalClose();" class="btn btn-cancel">취소</button>
-                        <button type="button" id="promptOk" class="btn btn-confirm">확인</button>
+                        <button type="button" onclick="modalClose();" class="btn btn-confirm">확인</button>
                     </div>
                 </div>
             </div>
@@ -464,10 +467,10 @@
                 <div class="modal-content">
                     <div class="modal-head" tabindex="0">
                         <div class="container">
-                            <!-- <p class="brand-name">
-                                <span class="my-logo"><img src="../../resources/images/common/logo.png" alt="헥토파이낸셜" /></span>
-                            </p> -->
-                            <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="모달 닫기"><i class="icon-close"></i></button>
+                            <div class="header-box">
+                                <h2 class="page-title">약관</h2>
+                                <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="모달 닫기"><i class="icon-close"></i></button>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-body">
@@ -508,7 +511,7 @@
                     </div>
                     <div class="modal-footer">
                         <div class="btn-wrap">
-                            <button type="button" class="btn btn-xl btn-secondary" data-dismiss="modal">확인</button>
+                            <button type="button" class="btn btn-confirm" data-dismiss="modal">확인</button>
                         </div>
                     </div>
                 </div>
@@ -522,7 +525,9 @@
                 <div class="modal-content">
                     <div class="modal-head" tabindex="0">
                         <div class="container">
-                            <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="모달 닫기"><i class="icon-close"></i></button>
+                            <div class="header-box">
+                                <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="모달 닫기"><i class="icon-close"></i></button>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-body">
@@ -564,37 +569,113 @@
         </div>
         <!-- //modal - 비밀번호 설정 -->
 
-        <!-- //모달 생체정보 등록 -->
-        <div id="modal-bio-reg" class="modal modal-slide type-title">
+        <!-- //모달 생체정보 등록 안내 -->
+        <div id="modal-bio-info" class="modal modal-slide type-title">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-head">
-                        <p class="modal-head-title">생체정보를 등록하세요</p>
-                        <button type="button" class="btn btn-close js-modal-close"><i class="icon-close"></i></button>
-                    </div>
+                    <!-- <div class="modal-head"></div> -->
                     <div class="modal-body">
-                        <p>비밀번호 대신 생체정보로 더욱 빠르게<br />결제할 수 있어요</p>
+                        <div class="container">
+                            <p class="modal-body-title">생체정보를 등록하세요</p>
+                            <p>비밀번호 대신 생체정보로 더욱 빠르게<br />결제할 수 있어요</p>
+                        </div>
                     </div>
                     <!-- 동의하기 버튼 -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn-confirm js-modal-close disabled" disabled>동의하기</button>
+                    <div class="modal-footer type2">
+                        <button type="button" id="" onclick="modalClose();" class="btn btn-cancel">다음에 하기</button>
+                        <button type="button" id="" onclick="modalOpenSlide('modal-bio-reg')" data-target="modal-select-title" class="btn btn-confirm">등록하기</button>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- //모달 생체정보 등록 -->
+        <!-- //모달 생체정보 등록 안내 -->
+
+        <!-- modal - 생체정보 등록 -->
+        <div id="modal-bio-reg" class="modal modal-full" tabindex="0" aria-labelledby="modal-bio-reg" style="display: none">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-head" tabindex="0">
+                        <div class="container">
+                            <div class="header-box">
+                                <h2 class="page-title">생체정보 등록</h2>
+                                <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="모달 닫기"><i class="icon-close"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-step1" style="display: block">
+                            <div class="bio-reg-wrap">
+                                <i class="icon-face"></i>
+                                <p class="bio-reg-text">생체정보를 등록하고<br />빠르게 인증하시겠어요?</p>
+                            </div>
+                        </div>
+                        <div class="modal-step2" style="display: none">
+                            <div class="bio-reg-wrap">
+                                <i class="icon-face"></i>
+                                <p class="bio-reg-text">생체정보를 등록 완료!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 버튼 -->
+                    <div class="modal-footer">
+                        <button type="button" id="" class="btn btn-confirm">생체정보 등록</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //modal - 생체정보 등록 -->
     </body>
     <script>
         $(document).ready(function () {
-            modalOpenSlide("modal-bio-reg"); // 이때 modalOpenSlide 호출
+            // 모든 input, select의 값이 입력되었는지 확인하여 버튼 상태를 업데이트하는 함수
+            function updateSendButton() {
+                const allFieldsFilled = Array.from(document.querySelectorAll(".section input, .section select")).every((field) => field.value.trim() !== ""); // 각 필드가 빈 값이 아닌지 확인
+
+                const sendButton = document.getElementById("send");
+                if (allFieldsFilled) {
+                    sendButton.classList.remove("disabled"); // disabled 클래스 제거
+                    sendButton.disabled = false; // 버튼 활성화
+                } else {
+                    sendButton.classList.add("disabled"); // disabled 클래스 추가
+                    sendButton.disabled = true; // 버튼 비활성화
+                }
+            }
+
+            // input 및 select 요소에 이벤트 리스너 추가
+            document.querySelectorAll(".section input, .section select").forEach((field) => {
+                field.addEventListener("input", updateSendButton); // input 필드에서 입력 변화 감지
+                field.addEventListener("change", updateSendButton); // select 필드에서 값 변경 감지
+            });
+
+            // 초기 상태 확인
+            updateSendButton();
+
+            // modalOpenSlide("modal-bio-reg");
         });
 
+        // 스텝화면 변경
         $("#modal-select-title .btn-confirm").click(function () {
             if (!this.disabled) {
                 // 버튼이 활성화된 경우에만 실행
                 modalClose();
                 $(".step1").hide();
                 $(".step2").show();
+            }
+        });
+
+        // 스텝화면 변경
+        $("#modal-bio-reg .btn-confirm").click(function () {
+            if (!this.disabled) {
+                // 버튼의 현재 텍스트를 확인하여 첫 번째 클릭인지 두 번째 클릭인지 판단
+                if (document.querySelector("#modal-bio-reg .btn-confirm").textContent === "주문화면으로 돌아가기") {
+                    // 두 번째 클릭 시 modalClose() 실행
+                    modalClose();
+                } else {
+                    // 첫 번째 클릭 시 modal-step1을 숨기고 modal-step2를 보여줌
+                    $(".modal-step1").hide();
+                    $(".modal-step2").show();
+                    document.querySelector("#modal-bio-reg .btn-confirm").textContent = "주문화면으로 돌아가기";
+                }
             }
         });
 
@@ -643,6 +724,7 @@
             setTimeout(() => {
                 step1.style.display = "none";
                 step2.style.display = "block";
+                modalOpenSlide("modal-bio-info"); // 이때 modalOpenSlide 호출
             }, 5000); // 5초 (5000 밀리초) 뒤 실행
         });
     </script>

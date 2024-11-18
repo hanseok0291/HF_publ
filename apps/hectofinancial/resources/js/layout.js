@@ -85,6 +85,28 @@ $(document).ready(function () {
     }
   }
 
+  // footer 인증 영역 size 조절
+  function footerAward() {
+    var $awardWrap = $('.award_wrap .award_box');
+    var maxWidth = 0;
+    var maxHeight = 0;
+
+    $awardWrap.each(function (i, e) {
+      var width = Math.ceil($(e).find('.text_wrap').width()) + 68;
+      var height = Math.ceil($(e).find('.text_wrap').height()) + 1;
+
+      maxWidth = Math.max(maxWidth, width);
+      maxHeight = Math.max(maxHeight, height);
+    });
+    if ($(window).width() <= 768) {
+      $awardWrap.height(maxHeight).width('100%');
+    } else {
+      $awardWrap.height(maxHeight).width(maxWidth);
+    }
+  }
+
+  footerAward();
+
   // 모바일 GNB 하위 메뉴 노출
   $('.gnb .down_arrow').on('click', function () {
     if ($(window).width() <= 1280) {
@@ -106,6 +128,7 @@ $(document).ready(function () {
   // 윈도우 리사이즈 이벤트 감지
   $(window).resize(function () {
     applyGnbLogic();
+    footerAward();
   });
 
   var lastScrollTop = 0; // 마지막 스크롤 위치를 저장할 변수

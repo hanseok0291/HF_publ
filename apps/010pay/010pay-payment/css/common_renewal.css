@@ -660,7 +660,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 /* display */
 .checkbox-inline-group {
-    margin: 0 -10px;
+    /* margin: 0 -10px; */
 }
 .checkbox-block-group {
     text-align: left;
@@ -1152,6 +1152,7 @@ body > div > form.main_form {
 #header .header-box {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 #header .header-box .page-title {
     padding-left: 0;
@@ -1171,7 +1172,8 @@ body > div > form.main_form {
     text-align: left;
 }
 #header .brand-name {
-    padding-right: 30px;
+    padding-left: 30px;
+    margin-left: auto;
 }
 #header .brand-name img,
 #header .brand-name svg {
@@ -1659,6 +1661,18 @@ body > div > form.main_form {
     background: url("../images/common/face.png") center / contain no-repeat;
     font-size: 0;
 }
+.icon-phone {
+    width: 32px;
+    height: 32px;
+    background: url("../images/common/icon-phone.svg") center / contain no-repeat;
+    font-size: 0;
+}
+.icon-pass {
+    width: 32px;
+    height: 32px;
+    background: url("../images/common/icon-pass.svg") center / contain no-repeat;
+    font-size: 0;
+}
 /* //라운드 추가 */
 
 /* ----- 안내문 ----- */
@@ -2070,6 +2084,26 @@ body > div > form.main_form {
 }
 .btn-list .btn:not(.on) .icon-check-on {
     display: none;
+}
+.btn-list.left .btn {
+    justify-content: start;
+}
+.btn-list.left .btn em.label {
+    margin-left: 10px;
+}
+
+.btn-list.gray-list li {
+    margin-bottom: 8px;
+}
+.btn-list.gray-list li:last-of-type {
+    margin-bottom: 0;
+}
+.btn-list.gray-list .btn {
+    background-color: #f9f9f9;
+    border-radius: 12px;
+}
+.btn-list.left .btn > i {
+    margin-left: 20px;
 }
 
 /* 버튼 그룹 */
@@ -3398,7 +3432,7 @@ div.nppfs-keypad {
 }
 .form-type li {
     clear: both;
-    margin-top: 20px;
+    margin-top: 12px;
 }
 .form-type li:first-child {
     margin-top: 0;
@@ -4225,7 +4259,7 @@ div.nppfs-keypad {
 .input-container {
     position: relative;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 12px;
 }
 .input-container > button {
     position: absolute;
@@ -4728,6 +4762,9 @@ em.dash {
 #passwordSet.modal-full .modal-body .title {
     margin-top: 60px;
 }
+#passwordSet.modal-full .modal-body .modal-step2 .title {
+    margin-top: 150px;
+}
 #passwordSet.modal-full .modal-body .title p {
     margin-top: 20px;
 }
@@ -4768,3 +4805,60 @@ em.dash {
     margin-top: 20px;
 }
 /* //생체정보 등록 모달 */
+
+/* 아코디언 리스트 애니메이션 */
+/* .accordion-list li {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.accordion-list li.active {
+    display: block;
+    opacity: 1;
+} */
+/* 기본 상태: 모든 li 요소는 숨겨짐 */
+.accordion-list li {
+    display: none;
+    opacity: 0;
+    transform: translateY(-10px); /* 위에서부터 내려오는 효과 */
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+/* 애니메이션을 위한 keyframes 정의 */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px); /* 위에서 내려오기 */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* 원래 위치로 */
+    }
+}
+
+/* active 클래스가 추가되면 애니메이션 적용 */
+.accordion-list li.active {
+    display: block; /* 요소를 보이게 */
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+/* 각 li 요소가 순차적으로 보이도록 지연 시간 설정 */
+.accordion-list li:nth-child(1).active {
+    animation-delay: 0s;
+}
+.accordion-list li:nth-child(2).active {
+    animation-delay: 0.25s;
+}
+.accordion-list li:nth-child(3).active {
+    animation-delay: 0.5s;
+}
+.accordion-list li:nth-child(4).active {
+    animation-delay: 0.75s;
+}
+.accordion-list li:nth-child(5).active {
+    animation-delay: 1s;
+}
+/* 필요에 따라 더 많은 li에 대해 nth-child 추가 */
+
+/* //아코디언 리스트 애니메이션 */

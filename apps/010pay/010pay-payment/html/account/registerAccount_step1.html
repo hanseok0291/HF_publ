@@ -71,7 +71,9 @@
                         <div class="container">
                             <!--<button type="button" id="send" class="btn" disabled>다음</button>-->
                             <button type="button" id="send" class="btn js-modal-close" onclick="modalOpenSlide('modal-select-title')" data-target="modal-select-title" disabled>다음</button>
-                            <button type="button" id="btnHidden" class="btn btn-transparent btn-hidden">다른 충전 선택하기</button>
+                            <button type="button" id="btnHidden" class="btn btn-transparent btn-hidden" onclick="modalOpenSlide('modal-other-charge')" data-target="modal-other-charge">
+                                다른 충전 선택하기
+                            </button>
                         </div>
                         <!-- //container -->
                     </div>
@@ -79,92 +81,6 @@
                     <!--  -->
                 </div>
                 <!-- //step1 -->
-                <!-- step2 -->
-                <div class="step2" style="display: none">
-                    <!-- container -->
-                    <div class="container">
-                        <!-- section -->
-                        <div class="section">
-                            <ul class="form-type">
-                                <li>
-                                    <div class="checkbox-block-group">
-                                        <span class="checkbox round">
-                                            <input type="checkbox" name="checkbox_01" id="checkbox_01_01" />
-                                            <label for="checkbox_01_01">새마을금고</label>
-                                            <button
-                                                type="button"
-                                                onclick="$.promptMessage(
-												'', 
-												'변경 시 계좌인증을 다시 진행해야해요. <br>그래도 변경할까요?', 
-												$('#commonPrompt'), 
-												$('#promptOk'), 
-												'modalClose()', 
-												'',  // warning
-												'취소',  // 취소 버튼 텍스트
-												'확인'       // 확인 버튼 텍스트
-											);"
-                                                class="change-btn js-change-btn"
-                                            >
-                                                변경
-                                            </button>
-                                        </span>
-                                        <span class="checkbox-near">11022773450698</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="checkbox-block-group">
-                                        <span class="checkbox round">
-                                            <input type="checkbox" name="checkbox_02" id="checkbox_02_01" />
-                                            <label for="checkbox_02_01">약관 동의</label>
-                                        </span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="checkbox-block-group">
-                                        <span class="checkbox more">
-                                            <input type="checkbox" name="checkbox_03" id="checkbox_03_01" />
-                                            <label for="checkbox_03_01">자동이체 출금 동의</label>
-                                        </span>
-                                    </div>
-
-                                    <div class="gray-box">
-                                        <div class="toggle-box">
-                                            <div class="toggle-buttons">
-                                                <button class="toggle-button active" onclick="selectToggle('ars')">ARS 인증</button>
-                                                <button class="toggle-button" onclick="selectToggle('pass')">PASS 인증</button>
-                                            </div>
-
-                                            <!-- ARS 인증 내용 -->
-                                            <div class="ars-content toggle-content active">
-                                                <p class="instruction">버튼을 누른 후, 인증번호를 입력해주세요.</p>
-                                                <div class="verification-code">25</div>
-                                                <button type="button" class="call-button js-call-btn" data-toggle="modal" data-target="#passwordSet"><i class="icon-call"></i> 인증 전화 요청</button>
-                                            </div>
-
-                                            <!-- PASS 인증 내용 -->
-                                            <div class="pass-content toggle-content">
-                                                <p class="instruction">
-                                                    PASS앱을 통해<br />
-                                                    비밀번호 또는 지문, Face ID 등<br />
-                                                    생체 정보로 인증할 수 있습니다.
-                                                </p>
-                                                <button type="button" class="pass-button">PASS 인증 요청</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- //section -->
-                    </div>
-                    <!-- //container -->
-                    <!--  -->
-                </div>
-                <!-- //step2 -->
-
-                <!-- step3 -->
-                <div class="step3" style="display: none"></div>
-                <!-- //step3 -->
             </div>
             <!-- //content -->
         </div>
@@ -259,7 +175,7 @@
                                         <span class="checkbox child">
                                             <input type="checkbox" name="checkbox_033" id="checkbox_033_02" />
                                             <label for="checkbox_033_02"
-                                                >(필수) 010PAY 서비스 이용 약관 <button type="button" class="arrow-right js-open-terms" data-toggle="modal" data-target="#noticeDetail"></button
+                                                >(필수) 010PAY 서비스 이용 약관 <button type="button" class="arrow-right js-open-terms" data-toggle="modal" data-target="#noticeDetail1"></button
                                             ></label>
                                         </span>
                                     </div>
@@ -268,7 +184,9 @@
                                     <div class="checkbox-block-group">
                                         <span class="checkbox child arrow-right">
                                             <input type="checkbox" name="checkbox_033" id="checkbox_033_03" />
-                                            <label for="checkbox_033_03">(필수) 오픈뱅킹 출금 및 조회 약관<button type="button" class="arrow-right js-open-terms"></button></label>
+                                            <label for="checkbox_033_03"
+                                                >(필수) 오픈뱅킹 출금 및 조회 약관<button type="button" class="arrow-right js-open-terms" data-toggle="modal" data-target="#noticeDetail2"></button
+                                            ></label>
                                         </span>
                                     </div>
                                 </li>
@@ -276,7 +194,9 @@
                                     <div class="checkbox-block-group">
                                         <span class="checkbox child arrow-right">
                                             <input type="checkbox" name="checkbox_033" id="checkbox_033_04" />
-                                            <label for="checkbox_033_04">(필수) 개인정보 제 3자 제공 동의<button type="button" class="arrow-right js-open-terms"></button></label>
+                                            <label for="checkbox_033_04"
+                                                >(필수) 개인정보 제 3자 제공 동의<button type="button" class="arrow-right js-open-terms" data-toggle="modal" data-target="#noticeDetail3"></button
+                                            ></label>
                                         </span>
                                     </div>
                                 </li>
@@ -321,62 +241,62 @@
                                     </li>
                                     <li class="option-item">
                                         <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 신한
+                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 카카오뱅크
                                         </button>
                                     </li>
                                     <li class="option-item">
                                         <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 우리
+                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> NH농협
                                         </button>
                                     </li>
                                     <li class="option-item">
                                         <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 기업
+                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 국민
                                         </button>
                                     </li>
                                     <li class="option-item">
                                         <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 케이뱅크
+                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 카카오뱅크
                                         </button>
                                     </li>
                                     <li class="option-item">
                                         <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 토스뱅크
+                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 카카오뱅크
                                         </button>
                                     </li>
                                     <li class="option-item">
                                         <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 수협
+                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> NH농협
                                         </button>
                                     </li>
                                     <li class="option-item">
                                         <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 대구
+                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 국민
                                         </button>
                                     </li>
                                     <li class="option-item">
                                         <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 새마을금고
+                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 카카오뱅크
                                         </button>
                                     </li>
                                     <li class="option-item">
                                         <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 부산
+                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 카카오뱅크
                                         </button>
                                     </li>
                                     <li class="option-item">
                                         <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 우체국
+                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> NH농협
                                         </button>
                                     </li>
                                     <li class="option-item">
                                         <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 경남
+                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 국민
                                         </button>
                                     </li>
                                     <li class="option-item">
                                         <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 광주
+                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 카카오뱅크
                                         </button>
                                     </li>
                                     <li class="option-item">
@@ -433,8 +353,42 @@
         </div>
         <!-- //select modal list -->
 
+        <!-- select modal other-charge -->
+        <div id="modal-other-charge" class="modal modal-slide type-title">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-head">
+                        <p class="modal-head-title">다른 충전 선택하기</p>
+                        <button type="button" class="btn btn-close">
+                            <i class="icon-close"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- 전체 동의 체크박스 -->
+                        <div class="container">
+                            <ul class="btn-list gray-list left">
+                                <li class="option-item">
+                                    <button type="button" class="btn" disabled>
+                                        <i class="icon-phone"></i>
+                                        <em class="label">휴대폰 소액결제</em>
+                                    </button>
+                                </li>
+                                <li class="option-item">
+                                    <button type="button" class="btn" disabled>
+                                        <i class="icon-pass"></i>
+                                        <em class="label">다른 은행 계좌 추가하기</em>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //select modal other-charge -->
+
         <!-- modal - 공지사항 상세 -->
-        <div id="noticeDetail" class="modal modal-full" tabindex="0" aria-labelledby="noticeTitle">
+        <div id="noticeDetail1" class="modal modal-full" tabindex="0" aria-labelledby="noticeTitle">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-head" tabindex="0">
@@ -449,7 +403,124 @@
                         <div class="container">
                             <!-- 게시판 상세 -->
                             <div class="terms scroll">
-                                <p class="terms-title" id="focusElement" tabindex="-1">통신과금 서비스 이용약관(필수)</p>
+                                <p class="terms-title" id="focusElement" tabindex="-1">(필수) 010PAY 서비스 이용 약관</p>
+                                <br />
+                                <p class="terms-title-sub" id="termPurpose">제 1조 (목적)</p>
+                                <p>
+                                    본 약관은 통신과금 서비스를 제공하는 주식회사 헥토파이낸셜(이하 ‘회사’라고 합니다)과 통신과금서비스 이용자 (이하 ‘이용자’라고 합니다) 간에 통신과금서비스에 관한
+                                    회사와 이용자의 권리의무, 기타 제반 사항을 정함을 목적으로 합니다.
+                                </p>
+                                <p class="terms-title-sub">제 2조 (용어의 정의)</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+
+                                <p class="terms-title-sub">제 3조 (용어의 정의)</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                            </div>
+                            <!-- //게시판 상세 -->
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <div class="btn-wrap">
+                            <button type="button" class="btn btn-confirm" data-dismiss="modal">확인</button>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <!-- //modal - 공지사항 상세 -->
+        <!-- modal - 공지사항 상세 -->
+        <div id="noticeDetail2" class="modal modal-full" tabindex="0" aria-labelledby="noticeTitle">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-head" tabindex="0">
+                        <div class="container">
+                            <div class="header-box">
+                                <h2 class="page-title">약관</h2>
+                                <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="모달 닫기"><i class="icon-close"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <!-- 게시판 상세 -->
+                            <div class="terms scroll">
+                                <p class="terms-title" id="focusElement" tabindex="-1">(필수) 오픈뱅킹 출금 및 조회 약관</p>
+                                <br />
+                                <p class="terms-title-sub" id="termPurpose">제 1조 (목적)</p>
+                                <p>
+                                    본 약관은 통신과금 서비스를 제공하는 주식회사 헥토파이낸셜(이하 ‘회사’라고 합니다)과 통신과금서비스 이용자 (이하 ‘이용자’라고 합니다) 간에 통신과금서비스에 관한
+                                    회사와 이용자의 권리의무, 기타 제반 사항을 정함을 목적으로 합니다.
+                                </p>
+                                <p class="terms-title-sub">제 2조 (용어의 정의)</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+
+                                <p class="terms-title-sub">제 3조 (용어의 정의)</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                            </div>
+                            <!-- //게시판 상세 -->
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <div class="btn-wrap">
+                            <button type="button" class="btn btn-confirm" data-dismiss="modal">확인</button>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <!-- //modal - 공지사항 상세 -->
+        <!-- modal - 공지사항 상세 -->
+        <div id="noticeDetail3" class="modal modal-full" tabindex="0" aria-labelledby="noticeTitle">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-head" tabindex="0">
+                        <div class="container">
+                            <div class="header-box">
+                                <h2 class="page-title">약관</h2>
+                                <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="모달 닫기"><i class="icon-close"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <!-- 게시판 상세 -->
+                            <div class="terms scroll">
+                                <p class="terms-title" id="focusElement" tabindex="-1">(필수) 개인정보 제 3자 제공 동의</p>
+                                <br />
                                 <p class="terms-title-sub" id="termPurpose">제 1조 (목적)</p>
                                 <p>
                                     본 약관은 통신과금 서비스를 제공하는 주식회사 헥토파이낸셜(이하 ‘회사’라고 합니다)과 통신과금서비스 이용자 (이하 ‘이용자’라고 합니다) 간에 통신과금서비스에 관한
@@ -504,10 +575,10 @@
                     </div>
                     <div class="modal-body">
                         <!-- 게시판 상세 -->
-                        <div class="modal-step1" style="display: none">
+                        <div class="modal-step1" style="display: block">
                             <div class="content-wrap">
-                                <h3 class="title">비밀번호를 한번 더 입력해주세요.</h3>
-                                <!-- <p class="sub-title">한번만 비밀번호를 설정하면<br />안전하고 빠르게 결제 할 수 있습니다.</p> -->
+                                <h3 class="title">간편결제 이용이 처음이시네요.</h3>
+                                <p class="sub-title">한번만 비밀번호를 설정하면<br />안전하고 빠르게 결제 할 수 있습니다.</p>
 
                                 <div class="input-mark">
                                     <span class="mark"
@@ -522,7 +593,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-step2" style="display: block">
+                        <div class="modal-step2" style="display: none">
                             <div class="content-wrap">
                                 <div class="container">
                                     <p class=""></p>
@@ -535,10 +606,6 @@
                             </div>
                         </div>
                         <!-- //게시판 상세 -->
-                    </div>
-                    <!-- 버튼 -->
-                    <div class="modal-footer">
-                        <button type="button" id="" class="btn btn-confirm">주문 내역으로 가기</button>
                     </div>
                 </div>
             </div>
@@ -626,7 +693,58 @@
             // 초기 상태 확인
             updateSendButton();
 
-            modalOpenSlide("passwordSet");
+            // option-list 내의 모든 li 요소에 클릭 이벤트 리스너 추가
+            $(".option-list li").click(function () {
+                // 모든 li에서 select 클래스 제거
+                $(".option-list li").removeClass("select");
+
+                // 클릭한 li에만 select 클래스 추가
+                $(this).addClass("select");
+            });
+
+            // option-item button을 클릭했을 때
+            $(".option-item button").on("click", function () {
+                // 선택한 button 텍스트 가져오기
+                var selectedBank = $(this).text().trim();
+
+                // 상위 선택박스의 label과 comp 클래스 추가
+                var selectBox = $("[data-target='modal-select-bank']").closest(".select-box"); // 부모 select-box 찾기
+                selectBox.find(".label").text(selectedBank); // 선택한 은행 이름을 label에 반영
+                selectBox.addClass("comp"); // 부모 select-box에 comp 클래스 추가
+
+                // 선택된 항목에 select 클래스 추가 및 다른 항목의 select 클래스 제거
+                $(".option-item").removeClass("select"); // 모든 option-item에서 select 클래스 제거
+                $(this).closest(".option-item").addClass("select"); // 현재 선택한 요소에만 select 클래스 추가
+
+                // 선택된 텍스트가 "은행"이 아닐 경우에만 단계 이동
+                if (selectedBank !== "은행") {
+                    var currentStep = $(".step-list li.on"); // 현재 on 클래스가 있는 li
+                    var nextStep = currentStep.next("li"); // 다음 li 요소 찾기
+
+                    // 다음 li가 있을 경우에만 on 클래스 추가
+                    if (nextStep.length) {
+                        nextStep.addClass("on"); // 다음 li에 on 클래스 추가
+                    }
+                }
+                // #accountNumber 요소에 focus 이벤트 리스너 추가
+                $("#accountNumber").on("focus", function () {
+                    // 현재 요소에 focus 클래스 추가
+                    $(this).addClass("focus");
+                    // 부모 요소에 focus-on 클래스 추가
+                    $(this).parent().addClass("focus-on");
+                });
+
+                // #accountNumber 요소에 blur 이벤트 리스너 추가 (포커스 해제 시)
+                $("#accountNumber").on("blur", function () {
+                    // 현재 요소에서 focus 클래스 제거
+                    $(this).removeClass("focus");
+                    // 부모 요소에서 focus-on 클래스 제거
+                    $(this).parent().removeClass("focus-on");
+                });
+                $("#accountNumber").focus();
+            });
+
+            modalOpenSlide("modal-select-bank");
         });
 
         // 스텝화면 변경
@@ -634,74 +752,7 @@
             if (!this.disabled) {
                 // 버튼이 활성화된 경우에만 실행
                 modalClose();
-                $(".step1").hide();
-                $(".step2").show();
             }
-        });
-
-        // 스텝화면 변경
-        $("#modal-bio-reg .btn-confirm").click(function () {
-            if (!this.disabled) {
-                // 버튼의 현재 텍스트를 확인하여 첫 번째 클릭인지 두 번째 클릭인지 판단
-                if (document.querySelector("#modal-bio-reg .btn-confirm").textContent === "주문화면으로 돌아가기") {
-                    // 두 번째 클릭 시 modalClose() 실행
-                    modalClose();
-                } else {
-                    // 첫 번째 클릭 시 modal-step1을 숨기고 modal-step2를 보여줌
-                    $(".modal-step1").hide();
-                    $(".modal-step2").show();
-                    document.querySelector("#modal-bio-reg .btn-confirm").textContent = "주문화면으로 돌아가기";
-                }
-            }
-        });
-
-        // 토글버튼
-        function selectToggle(type) {
-            const arsButton = document.querySelector(".toggle-buttons .toggle-button:first-child");
-            const passButton = document.querySelector(".toggle-buttons .toggle-button:last-child");
-
-            const arsContent = document.querySelector(".ars-content");
-            const passContent = document.querySelector(".pass-content");
-
-            if (type === "ars") {
-                arsButton.classList.add("active");
-                passButton.classList.remove("active");
-                arsContent.classList.add("active");
-                passContent.classList.remove("active");
-            } else {
-                passButton.classList.add("active");
-                arsButton.classList.remove("active");
-                passContent.classList.add("active");
-                arsContent.classList.remove("active");
-            }
-        }
-
-        // 전화 인증 버튼
-        document.querySelector(".js-call-btn").addEventListener("click", function () {
-            // 버튼의 텍스트를 변경
-            this.innerHTML = '<i class="icon-call"></i> 전화수신 중';
-
-            // 버튼을 비활성화
-            this.disabled = true;
-        });
-
-        document.querySelector(".js-call-btn").addEventListener("click", function () {
-            // passwordSet 모달 표시
-            const passwordSetModal = document.getElementById("passwordSet");
-            const step1 = passwordSetModal.querySelector(".modal-step1");
-            const step2 = passwordSetModal.querySelector(".modal-step2");
-
-            // 모달을 보이도록 설정
-            // passwordSetModal.style.display = "block";
-            step1.style.display = "block";
-            step2.style.display = "none";
-
-            // 5초 후 modal-step1을 숨기고 modal-step2를 표시
-            setTimeout(() => {
-                step1.style.display = "none";
-                step2.style.display = "block";
-                modalOpenSlide("modal-bio-info"); // 이때 modalOpenSlide 호출
-            }, 5000); // 5초 (5000 밀리초) 뒤 실행
         });
     </script>
 </html>

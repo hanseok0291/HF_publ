@@ -162,6 +162,17 @@ function modalClose() {
     scrollOn(); // 바디 스크롤 제거 해제
 }
 
+// bottom modal 닫기
+function modalCloseSlide() {
+    $(".modal").fadeOut(200);
+    $(".modal").find(".modal-content").animate({ bottom: modalH }, 200);
+
+    // 이중 모달이 아닌 경우
+    if (!$(".modal").hasClass("depth2")) {
+        scrollOn(); // 바디 스크롤 제거 해제
+    }
+}
+
 function modalCloseNoMove() {
     $(".modal").hide();
     // scrollOn(); // 바디 스크롤 제거 해제
@@ -484,18 +495,6 @@ function modalOpenSlide(obj) {
                 }
             });
 
-    // bottom modal 닫기
-    function modalCloseSlide() {
-        // console.log("111");
-        temp.fadeOut(200);
-        $(temp).find(".modal-content").animate({ bottom: modalH }, 200);
-
-        // 이중 모달이 아닌 경우
-        if (!$(temp).hasClass("depth2")) {
-            scrollOn(); // 바디 스크롤 제거 해제
-        }
-    }
-
     // 모달 외부 클릭 시 닫기 처리 및 01 출력
     temp.on("click", function (e) {
         // 외부를 클릭했는지 확인
@@ -609,191 +608,343 @@ $(function () {
 
         $.closeAction(processType, formId, returnUrl);
     });
+});
 
-    // sys error 페이지 X버튼 클릭 (token 값이 없기 때문에 바로 cancl url을 submit 해준다.)
-    $(".btn-close-error").click(function () {
-        var cancelUrl = $("#cancelFm").attr("action");
-        if (cancelUrl == "") {
-            self.close();
+$(document).ready(function () {
+    var naviAlertTitle = {
+        orderEnd: "",
+        settingPrev: "",
+        stopProc: "",
+    };
+    var naviAlertMsg = {
+        orderEnd: "창을 닫으시면 결제가 취소됩니다.<br>종료하시겠습니까?",
+        orderEndOk: "결제를 취소하셨습니다.",
+        passwordEnd: "비밀번호 설정이 중단되고 주문창이 종료됩니다.",
+        arsPrevEnd: "ARS 인증이 중단되고 주문창이 종료됩니다.",
+        selfAuthPrev: "본인인증이 중단됩니다.",
+        passwordPrev: "비밀번호 설정이 중단됩니다.",
+        passwordVerify: "비밀번호 확인 중단됩니다.",
+        arsPrev: "ARS 인증이 중단됩니다.",
+        selectBankPrev: "은행 선택이 중단됩니다.",
+        generalPrev: "진행 중인 설정을 종료합니다.",
+        settingPrev: "설정을 종료합니다.",
+        setFavAccount: "{0} {1} 를 <br>대표 계좌로 설정하시겠습니까?",
+        setFavAccountSucc: "설정되었습니다.",
+        orderBrandEnd: "종료하시겠습니까?",
+        mobileAppEnd: "결제를 취소하시겠습니까?<br>취소 시 처음부터 다시 진행하셔야 합니다.",
+    };
+    $.closeSetting = function () {
+        $.promptMessage(naviAlertTitle.settingPrev, naviAlertMsg.settingPrev, $("#commonPrompt"), $("#promptOk"), "$.closeWindow()");
+    };
+
+    $.closeOrder = function () {
+        $.promptMessage(naviAlertTitle.orderEnd, naviAlertMsg.orderEnd, $("#commonPrompt"), $("#promptOk"), "$.closeWindow()");
+    };
+
+    $.closeAction = function (processType, formId, returnUrl) {
+        if (processType == "MP") {
+            $.closeAlertMessageCallback(naviAlertTitle.orderEnd, naviAlertMsg.orderBrandEnd, $("#closeAlert"), "$.closeMPUrl()");
+        } else if (processType == "M") {
+            $.promptMessage(naviAlertTitle.orderEnd, naviAlertMsg.orderBrandEnd, $("#commonPrompt"), $("#promptOk"), "$.closeUrl()");
+        } else if (processType == "B") {
+            $.promptMessage(naviAlertTitle.orderEnd, naviAlertMsg.orderBrandEnd, $("#commonPrompt"), $("#promptOk"), '$.closeBack("' + formId + '", "' + returnUrl + '")');
+        } else if (processType == "Z") {
+            //모바일 GW용
+            $.promptMessageEx2(naviAlertTitle.orderEnd, naviAlertMsg.mobileAppEnd, $("#commonPromptZeroapp"), $("#promptOkZeroapp"), '$.closeZeroApp("' + formId + '", "' + returnUrl + '")');
+        } else if (processType == "ZE") {
+            //모바일 GW용 (종료 메시지)
+            $.promptMessage(naviAlertTitle.orderEnd, naviAlertMsg.orderBrandEnd, $("#commonPrompt"), $("#promptOk"), '$.closeBack("' + formId + '", "' + returnUrl + '")');
         } else {
-            $("#cancelFm").submit();
+            $.promptMessage(naviAlertTitle.orderEnd, naviAlertMsg.orderEnd, $("#commonPrompt"), $("#promptOk"), "$.close()");
         }
-    });
+    };
 
-    $(".btn-exit").click(function () {
-        $.promptMessage(naviAlertTitle.orderEnd, naviAlertMsg.orderBrandEnd, $("#commonPrompt"), $("#promptOk"), "self.close()");
-    });
-});
+    $.closeZeroApp = function (formId, returnUrl) {
+        $.closeAlertMessageCallback(naviAlertTitle.orderEnd, "결제가 취소되었습니다.", $("#closeAlert"), "$.closeMPUrl()");
+    };
 
-//서비스관리 화면 이동
-$(function () {
-    $("#header .btn-svc").click(function () {
-        javascript: SettlePay.svc_execute(document.iaDirectFrm);
-    });
-});
+    $.close = function () {
+        $.closeAlertMessageCallback(naviAlertTitle.orderEnd, naviAlertMsg.orderEndOk, $("#closeAlert"), "$.closeUrl()");
+    };
+    $.closeUrl = function () {
+        var mercntId = $("#mercntId").val();
+        var ordNo = $("#ordNo").val();
+        var trPrice = $("#trPrice").val();
+        var trDay = $("#trDay").val();
+        var trTime = $("#trTime").val();
+        var mercntParam1 = $("#mercntParam1").val();
+        var mercntParam2 = $("#mercntParam2").val();
+        var cancelUrl = $("#cancelUrl").val();
+        var token = $("#token").val();
+        var processType = $("#processType").val();
+        var contactType = $("#contactType").val();
 
-$.closeAction = function (processType, formId, returnUrl) {
-    if (processType == "MP") {
-        $.closeAlertMessageCallback(naviAlertTitle.orderEnd, naviAlertMsg.orderBrandEnd, $("#closeAlert"), "$.closeMPUrl()");
-    } else if (processType == "M") {
-        $.promptMessage(naviAlertTitle.orderEnd, naviAlertMsg.orderBrandEnd, $("#commonPrompt"), $("#promptOk"), "$.closeUrl()");
-    } else if (processType == "B") {
-        $.promptMessage(naviAlertTitle.orderEnd, naviAlertMsg.orderBrandEnd, $("#commonPrompt"), $("#promptOk"), '$.closeBack("' + formId + '", "' + returnUrl + '")');
-    } else if (processType == "Z") {
-        //모바일 GW용
-        $.promptMessageEx2(naviAlertTitle.orderEnd, naviAlertMsg.mobileAppEnd, $("#commonPromptZeroapp"), $("#promptOkZeroapp"), '$.closeZeroApp("' + formId + '", "' + returnUrl + '")');
-    } else if (processType == "ZE") {
-        //모바일 GW용 (종료 메시지)
-        $.promptMessage(naviAlertTitle.orderEnd, naviAlertMsg.orderBrandEnd, $("#commonPrompt"), $("#promptOk"), '$.closeBack("' + formId + '", "' + returnUrl + '")');
-    } else {
-        $.promptMessage(naviAlertTitle.orderEnd, naviAlertMsg.orderEnd, $("#commonPrompt"), $("#promptOk"), "$.close()");
+        var form = makeBodyForm("POST", "/std/closeAction.do");
+        makeBodyFormInput(form, "token", token);
+        makeBodyFormInput(form, "mercntId", mercntId);
+        makeBodyFormInput(form, "ordNo", ordNo);
+        makeBodyFormInput(form, "trPrice", trPrice);
+        makeBodyFormInput(form, "trDay", trDay);
+        makeBodyFormInput(form, "trTime", trTime);
+        makeBodyFormInput(form, "mercntParam1", mercntParam1);
+        makeBodyFormInput(form, "mercntParam2", mercntParam2);
+        makeBodyFormInput(form, "cancelUrl", cancelUrl);
+        makeBodyFormInput(form, "processType", processType);
+        makeBodyFormInput(form, "contactType", contactType);
+        makeBodyFormSubmit(form);
+    };
+
+    $.closeBack = function (formId, returnUrl) {
+        $("#" + formId).attr("action", returnUrl);
+        $("#" + formId).submit();
+    };
+    $.closeMPUrl = function () {
+        $("#cancelFm").submit();
+    };
+
+    function maxLengthCheck(object) {
+        if (object.value.length > object.maxLength) {
+            object.value = object.value.slice(0, object.maxLength);
+        }
     }
-};
 
-$.closeZeroApp = function (formId, returnUrl) {
-    $.closeAlertMessageCallback(naviAlertTitle.orderEnd, "결제가 취소되었습니다.", $("#closeAlert"), "$.closeMPUrl()");
-};
+    function makeBodyForm(method, action) {
+        var num = Math.floor(Math.random() * 10000) + 1;
+        var formName = "SETTLE_FORM_" + num;
+        var el = document.getElementsByTagName("body")[0];
 
-$.close = function () {
-    $.closeAlertMessageCallback(naviAlertTitle.orderEnd, naviAlertMsg.orderEndOk, $("#closeAlert"), "$.closeUrl()");
-};
-$.closeUrl = function () {
-    var mercntId = $("#mercntId").val();
-    var ordNo = $("#ordNo").val();
-    var trPrice = $("#trPrice").val();
-    var trDay = $("#trDay").val();
-    var trTime = $("#trTime").val();
-    var mercntParam1 = $("#mercntParam1").val();
-    var mercntParam2 = $("#mercntParam2").val();
-    var cancelUrl = $("#cancelUrl").val();
-    var token = $("#token").val();
-    var processType = $("#processType").val();
-    var contactType = $("#contactType").val();
+        var resultForm = document.createElement("form");
+        resultForm.setAttribute("id", formName);
+        resultForm.setAttribute("name", formName);
+        resultForm.setAttribute("method", method);
+        resultForm.setAttribute("action", action);
 
-    var form = makeBodyForm("POST", "/std/closeAction.do");
-    makeBodyFormInput(form, "token", token);
-    makeBodyFormInput(form, "mercntId", mercntId);
-    makeBodyFormInput(form, "ordNo", ordNo);
-    makeBodyFormInput(form, "trPrice", trPrice);
-    makeBodyFormInput(form, "trDay", trDay);
-    makeBodyFormInput(form, "trTime", trTime);
-    makeBodyFormInput(form, "mercntParam1", mercntParam1);
-    makeBodyFormInput(form, "mercntParam2", mercntParam2);
-    makeBodyFormInput(form, "cancelUrl", cancelUrl);
-    makeBodyFormInput(form, "processType", processType);
-    makeBodyFormInput(form, "contactType", contactType);
-    makeBodyFormSubmit(form);
-};
+        el.appendChild(resultForm);
 
-$.closeBack = function (formId, returnUrl) {
-    $("#" + formId).attr("action", returnUrl);
-    $("#" + formId).submit();
-};
-$.closeMPUrl = function () {
-    $("#cancelFm").submit();
-};
-
-function maxLengthCheck(object) {
-    if (object.value.length > object.maxLength) {
-        object.value = object.value.slice(0, object.maxLength);
+        return formName;
     }
-}
 
-function makeBodyForm(method, action) {
-    var num = Math.floor(Math.random() * 10000) + 1;
-    var formName = "SETTLE_FORM_" + num;
-    var el = document.getElementsByTagName("body")[0];
+    function makeBodyFormInput(form, name, value) {
+        var formInput = document.createElement("input");
 
-    var resultForm = document.createElement("form");
-    resultForm.setAttribute("id", formName);
-    resultForm.setAttribute("name", formName);
-    resultForm.setAttribute("method", method);
-    resultForm.setAttribute("action", action);
+        formInput.setAttribute("type", "hidden");
+        formInput.setAttribute("name", name);
+        formInput.setAttribute("value", value);
 
-    el.appendChild(resultForm);
-
-    return formName;
-}
-
-function makeBodyFormInput(form, name, value) {
-    var formInput = document.createElement("input");
-
-    formInput.setAttribute("type", "hidden");
-    formInput.setAttribute("name", name);
-    formInput.setAttribute("value", value);
-
-    var el = document.getElementById(form);
-    el.appendChild(formInput);
-}
-
-function makeBodyFormSubmit(form) {
-    var el = document.getElementById(form);
-    if (el != null) {
-        el.submit();
-
-        setTimeout(function () {
-            el.remove();
-        }, 1000);
+        var el = document.getElementById(form);
+        el.appendChild(formInput);
     }
-}
 
-// 모달(레이어 팝업), 배너, 팝오버
-$(function () {
-    // 모달 열기
-    $("[data-toggle='modal']").click(function () {
-        var openBtn = $(this); // "보기" 버튼 참조
-        var target = $(this).attr("data-target"); // 모달 ID
-        var modal = $(target);
-        $(target).show().attr("aria-hidden", "false"); // 모달 열기, aria-hidden 설정
-        scrollOff(); // 바디 스크롤 제거
+    function makeBodyFormSubmit(form) {
+        var el = document.getElementById(form);
+        if (el != null) {
+            el.submit();
 
-        // 모달 위치 조정
-        var thisDialog = modal.find(".modal-dialog");
-        var marginValue = thisDialog.outerHeight() / 2;
-        thisDialog.css("margin-top", "-" + marginValue + "px");
+            setTimeout(function () {
+                el.remove();
+            }, 1000);
+        }
+    }
 
-        // 포커스 이동 및 aria-hidden 관리
-        setTimeout(function () {
-            var modal = $(target)[0];
-            var termsTitle = $(target).find(".terms-title")[0];
-            if (termsTitle) {
-                termsTitle.setAttribute("tabindex", "0"); // 포커스 가능하도록 설정
-                termsTitle.focus(); // terms-title로 포커스 이동
+    // 모달(레이어 팝업), 배너, 팝오버
+    $(function () {
+        // 모달 열기
+        $("[data-toggle='modal']").click(function () {
+            var openBtn = $(this); // "보기" 버튼 참조
+            var target = $(this).attr("data-target"); // 모달 ID
+            var modal = $(target);
+            $(target).show().attr("aria-hidden", "false"); // 모달 열기, aria-hidden 설정
+            scrollOff(); // 바디 스크롤 제거
+
+            // 모달 위치 조정
+            var thisDialog = modal.find(".modal-dialog");
+            var marginValue = thisDialog.outerHeight() / 2;
+            thisDialog.css("margin-top", "-" + marginValue + "px");
+
+            // 포커스 이동 및 aria-hidden 관리
+            setTimeout(function () {
+                var modal = $(target)[0];
+                var termsTitle = $(target).find(".terms-title")[0];
+                if (termsTitle) {
+                    termsTitle.setAttribute("tabindex", "0"); // 포커스 가능하도록 설정
+                    termsTitle.focus(); // terms-title로 포커스 이동
+                }
+
+                // 외부 콘텐츠 aria-hidden 설정
+                $("#wrap, #header, #content, #footer").attr("aria-hidden", "true");
+            }, 300); // 모달 열림에 딜레이가 있으면 약간의 시간 지연을 줄 수 있음
+
+            // 마지막 포커스된 요소 저장 (초점을 복귀할 요소)
+            lastFocusedElement = openBtn;
+        });
+
+        // 모달 닫기
+        $("[data-dismiss='modal']").click(function () {
+            var target = $(this).parents(".modal");
+            $(target).hide().attr("aria-hidden", "true"); // 모달 닫기, aria-hidden 설정
+            scrollOn(); // 바디 스크롤 제거 해제
+
+            // 외부 콘텐츠 aria-hidden 해제
+            $("#wrap, #header, #content, #footer").attr("aria-hidden", "false");
+
+            // 모달 닫힐 때 포커스 복귀
+            if (lastFocusedElement) {
+                lastFocusedElement.focus(); // "보기" 버튼으로 포커스 이동
+                lastFocusedElement = null; // 참조 해제
             }
+        });
 
-            // 외부 콘텐츠 aria-hidden 설정
-            $("#wrap, #header, #content, #footer").attr("aria-hidden", "true");
-        }, 300); // 모달 열림에 딜레이가 있으면 약간의 시간 지연을 줄 수 있음
+        // 배너 닫기(플로팅 배너)
+        $("[data-dismiss='banner']").click(function () {
+            var target = $(this).parents(".banner");
+            $(target).hide();
+        });
 
-        // 마지막 포커스된 요소 저장 (초점을 복귀할 요소)
-        lastFocusedElement = openBtn;
+        // popover 닫기
+        $("[data-dismiss='popover']").click(function () {
+            var target = $(this).parents(".popover");
+            $(target).hide();
+        });
     });
 
-    // 모달 닫기
-    $("[data-dismiss='modal']").click(function () {
-        var target = $(this).parents(".modal");
-        $(target).hide().attr("aria-hidden", "true"); // 모달 닫기, aria-hidden 설정
-        scrollOn(); // 바디 스크롤 제거 해제
+    // commonutil start
+    $.alertMessage = function (title, contents, alertObj) {
+        $("#alertTitle").html(title);
+        $("#alertContents").html(contents);
+        modalOpen(alertObj.attr("id"));
+    };
 
-        // 외부 콘텐츠 aria-hidden 해제
-        $("#wrap, #header, #content, #footer").attr("aria-hidden", "false");
+    $.closeAlertMessageCallback = function (title, contents, alertObj, callbackFunc) {
+        $("#closeAlertTitle").html(title);
+        $("#closeAlertContents").html(contents);
 
-        // 모달 닫힐 때 포커스 복귀
-        if (lastFocusedElement) {
-            lastFocusedElement.focus(); // "보기" 버튼으로 포커스 이동
-            lastFocusedElement = null; // 참조 해제
+        if (callbackFunc != null && alertObj != null) {
+            callbackFunc += ";modalClose('" + alertObj.attr("id") + "');";
+            var clickEvent = new Function(callbackFunc);
+            alertObj.prop("onclick", null).off("click"); //기존에 등록된 함수가 반복 실행을 막음. reset
+            alertObj.find("#okBtn").prop("onclick", "").click(clickEvent); //callback 함수 등록
+
+            modalOpen(alertObj.attr("id"));
         }
-    });
+    };
 
-    // 배너 닫기(플로팅 배너)
-    $("[data-dismiss='banner']").click(function () {
-        var target = $(this).parents(".banner");
-        $(target).hide();
-    });
+    $.alertMessageCallback = function (title, contents, alertObj, callbackFunc) {
+        $("#alertTitle").html(title);
+        $("#alertContents").html(contents);
 
-    // popover 닫기
-    $("[data-dismiss='popover']").click(function () {
-        var target = $(this).parents(".popover");
-        $(target).hide();
-    });
+        //확인 클릭시 닫기 함수 추가
+        callbackFunc += ";modalClose('" + alertObj.attr("id") + "');";
+
+        var clickEvent = new Function(callbackFunc);
+        alertObj.prop("onclick", null).off("click"); //기존에 등록된 함수가 반복 실행을 막음. reset
+        alertObj.find("#okBtn").prop("onclick", "").click(clickEvent); //callback 함수 등록
+        modalOpen(alertObj.attr("id"));
+    };
+
+    $.alertMessageCallbackEx = function (title, contents, alertObj, alertOkObj, callbackFunc) {
+        $("#alertTitle").html(title);
+        $("#alertContents").html(contents);
+
+        var clickEvent = new Function(callbackFunc);
+        alertOkObj.prop("onclick", null).off("click"); //기존에 등록된 함수가 반복 실행을 막음. reset
+        alertOkObj.prop("onclick", "").click(clickEvent); //callback 함수 등록
+
+        modalOpen(alertObj.attr("id"));
+    };
+
+    $.alertCallback = function (alertObj, alertOkObj, callbackFunc) {
+        var clickEvent = new Function(callbackFunc);
+        alertOkObj.prop("onclick", null).off("click"); //기존에 등록된 함수가 반복 실행을 막음. reset
+        alertOkObj.prop("onclick", "").click(clickEvent); //callback 함수 등록
+
+        modalOpen(alertObj.attr("id"));
+    };
+
+    $.promptMessage = function (title, contents, promptObj, promptOkObj, callbackFunc, warning, cancelButtonText, confirmButtonText) {
+        $("#promptTitle").html(title);
+        $("#promptWarning").html(warning);
+        $("#promptContents").html(contents);
+
+        if (title !== "") {
+            $("#promptTitle").show();
+            $("#promptContents").removeClass("noTitle");
+        } else {
+            $("#promptContents").addClass("noTitle");
+            $("#promptTitle").hide();
+        }
+        warning ? $("#promptWarning").show() : $("#promptWarning").hide();
+
+        // 취소 및 확인 버튼의 텍스트 설정
+        promptObj.find(".btn-cancel").text(cancelButtonText);
+        promptOkObj.text(confirmButtonText);
+
+        var clickEvent = new Function(callbackFunc);
+        promptOkObj.prop("onclick", null).off("click"); //기존에 등록된 함수가 반복 실행을 막음. reset
+        promptOkObj.prop("onclick", "").click(clickEvent); //callback 함수 등록
+
+        modalOpen(promptObj.attr("id"));
+    };
+
+    $.promptMessageYn = function (title, contents, promptObj, promptOkObj, promptNoObj, callbackOkFunc, callbackNoFunc) {
+        $("#promptTitle").html(title);
+        $("#promptContents").html(contents);
+
+        var clickOkEvent = new Function(callbackOkFunc);
+        promptOkObj.prop("onclick", null).off("click"); //기존에 등록된 함수가 반복 실행을 막음. reset
+        promptOkObj.prop("onclick", "").click(clickOkEvent); //callback 함수 등록
+
+        var clickNoEvent = new Function(callbackNoFunc);
+        promptNoObj.prop("onclick", null).off("click"); //기존에 등록된 함수가 반복 실행을 막음. reset
+        promptNoObj.prop("onclick", "").click(clickNoEvent); //callback 함수 등록
+
+        modalOpen(promptObj.attr("id"));
+    };
+
+    $.promptMessageShort = function (promptObj, promptOkObj, callbackFunc) {
+        var clickEvent = new Function(callbackFunc);
+        promptOkObj.prop("onclick", null).off("click"); //기존에 등록된 함수가 반복 실행을 막음. reset
+        promptOkObj.prop("onclick", "").click(clickEvent); //callback 함수 등록
+
+        modalOpen(promptObj.attr("id"));
+    };
+
+    $.promptMessageEx = function (titleObj, contentsObj, title, contents, promptObj, promptOkObj, callbackFunc) {
+        titleObj.html(title);
+        contentsObj.html(contents);
+
+        var clickEvent = new Function(callbackFunc);
+        promptOkObj.prop("onclick", null).off("click"); //기존에 등록된 함수가 반복 실행을 막음. reset
+        promptOkObj.prop("onclick", "").click(clickEvent); //callback 함수 등록
+
+        modalOpen(promptObj.attr("id"));
+    };
+
+    $.promptMessageEx2 = function (title, contents, promptObj, promptOkObj, callbackFunc) {
+        $("#promptTitleZeroapp").html(title);
+        $("#promptContentsZeroapp").html(contents);
+
+        var clickEvent = new Function(callbackFunc);
+        promptOkObj.prop("onclick", null).off("click"); //기존에 등록된 함수가 반복 실행을 막음. reset
+        promptOkObj.prop("onclick", "").click(clickEvent); //callback 함수 등록
+
+        modalOpen(promptObj.attr("id"));
+    };
+
+    $.promptMessageCustomBtn = function (title, contents, promptObj, promptOkObj, promptNoObj, promptOkNm, promptNoNm, callbackOkFunc, callbackNoFunc) {
+        $("#promptTitle").html(title);
+        $("#promptContents").html(contents);
+
+        var clickOkEvent = new Function(callbackOkFunc);
+        promptOkObj.text(promptOkNm);
+        promptOkObj.prop("onclick", null).off("click"); //기존에 등록된 함수가 반복 실행을 막음. reset
+        promptOkObj.prop("onclick", "").click(clickOkEvent); //callback 함수 등록
+
+        var clickNoEvent = new Function(callbackNoFunc);
+        promptNoObj.text(promptNoNm);
+        promptNoObj.prop("onclick", null).off("click"); //기존에 등록된 함수가 반복 실행을 막음. reset
+        promptNoObj.prop("onclick", "").click(clickNoEvent); //callback 함수 등록
+
+        modalOpen(promptObj.attr("id"));
+    };
 });
+// commonutil end

@@ -46,11 +46,11 @@ $(function () {
 
             // input에 값이 있으면 focus-on 유지, 없으면 제거
             if (hasValue) {
-                $(this).parents(".input-container").addClass("focus-on");
                 $(this).parents(".input-container").addClass("comp"); // .comp 클래스 추가 (값이 있을 때)
-
+                
                 // id-number 하위 input인 경우, 텍스트가 "주민 등록 번호 앞 7자리"로 유지되도록 설정
                 if ($(this).closest(".id-number").length) {
+                    $(this).parents(".input-container").addClass("fill");
                     var floatingLabel = $(this).closest(".input-container").find(".floating-label");
                     floatingLabel.text("주민 등록 번호 앞 7자리");
                 }
@@ -60,6 +60,7 @@ $(function () {
 
                 // id-number 하위 input인 경우, 원래 텍스트로 복원 ("생년월일")
                 if ($(this).closest(".id-number").length) {
+                    $(this).parents(".input-container").removeClass("fill");
                     var floatingLabel = $(this).closest(".input-container").find(".floating-label");
                     floatingLabel.text("생년월일");
                 }
@@ -79,24 +80,26 @@ $(function () {
     row.on("focus", function () {
         $(this).parents(".input").addClass("focus");
         $(this).removeClass("focus");
-    })
-        .blur(function () {
+    }).blur(function () {
             $(this).parents(".input").removeClass("focus");
-        })
-        .blur();
-
-    // input value 삭제 버튼
-    $(".form-type input")
-        .on("input change", function () {
-            var $this = $(this);
-            var visible = Boolean($this.val());
-            $this.next(".form-control-clear").toggleClass("hidden", !visible);
-        })
-        .trigger("propertychange");
-    $(".form-control-clear").on("click", function () {
-        $(this).prev("input").val("").trigger("change").focus();
-        $(this).toggleClass("hidden", true);
-    });
+        }).blur();
+    
+    if($(".id-number").length){
+        $(".id-number input").on("input change", function(){
+            var inputLength = 0;
+            var inputContainer = $(this).closest(".id-number");
+            var input = inputContainer.find("input");
+            input.each(function(i,e){
+                inputLength += $(e).val().length;
+            });
+            if(inputLength > 0){
+                inputContainer.find(".icon-del").show();
+            } else {
+                inputContainer.find(".icon-del").hide();
+            }
+        });
+    }
+    
 });
 
 // 바디 스크롤 제거/해제
@@ -197,27 +200,18 @@ $(function () {
         return inputsFilled && selectsFilled;
     }
 
-    // 버튼 상태 업데이트 함수
-    function updateButtonState() {
-        const btnNext = document.querySelector("#send");
-        if (checkAllInputsAndSelects()) {
-            btnNext.disabled = false;
-            btnNext.classList.remove("btnOff");
-        } else {
-            btnNext.disabled = true;
-            btnNext.classList.add("btnOff");
-        }
-    }
-
     // input 삭제 버튼
     document.querySelectorAll(".js-text-del").forEach((button) => {
         button.addEventListener("mousedown", function () {
-            const inputField = this.closest(".input-container").querySelector(".custom-input");
-            if (inputField && inputField.classList.contains("custom-input")) {
-                inputField.value = ""; // input 값을 지움
-                inputField.focus(); // input 필드에 포커스를 다시 줌
-                updateButtonState(); // 버튼 상태 업데이트
-            }
+            const inputField = this.closest(".input-container").querySelectorAll(".custom-input");
+            inputField.forEach((e,i) => {
+                e.value = ""
+                if(i === 0){
+                    setTimeout(() => {
+                        e.focus();
+                    }, 10); // input 필드에 포커스를 다시 줌
+                }
+            });
         });
     });
 

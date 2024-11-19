@@ -270,7 +270,6 @@ select,
     display: inline-block;
     width: 100%;
     height: 70px;
-    border-bottom: 1px solid #d4d4d4;
     vertical-align: top;
 }
 input[type="text"],
@@ -4265,6 +4264,11 @@ div.nppfs-keypad {
     position: relative;
     width: 100%;
     margin-top: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+.input-container.focus-on {
+    border-color: #151515;
 }
 .input-container > button {
     position: absolute;
@@ -4274,6 +4278,7 @@ div.nppfs-keypad {
     right: 16px;
     transform: translateY(-50%);
 }
+
 .input-container.label-n > button {
     top: 50%;
     bottom: auto;
@@ -4347,6 +4352,7 @@ div.nppfs-keypad {
     letter-spacing: -0.04em;
     text-align: left;
     color: #575757;
+    white-space: nowrap;
 }
 /* input 기본 스타일 */
 .input-container > .label + .custom-input {
@@ -4370,7 +4376,6 @@ input[type="tel"].custom-input {
     padding: 21.5px 16px;
     padding-top: 20px; /* 위쪽 여백을 추가하여 label과 겹치지 않도록 함 */
     font-size: 20px;
-    border: 1px solid #ddd;
     border-radius: 8px;
     outline: none;
     font-weight: 700;
@@ -4465,6 +4470,34 @@ input[type="tel"].custom-input {
 .focus-on .id-mark {
     margin-top: 9.5px;
 }
+
+.fill .floating-label {
+    white-space: nowrap;
+    top: 20.5px;
+    left: 16px;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: -0.04em;
+    text-align: left;
+    color: #575757;
+}
+.fill em.dash {
+    top: 11.5px;
+}
+.fill.comp em.dash {
+    color: #575757;
+}
+
+.fill .id-mark {
+    margin-top: 9.5px;
+}
+.label-n.fill input[type="text"].custom-input {
+    line-height: 27px;
+    padding-bottom: 11.5px;
+    padding-top: 31.5px;
+}
 /* 에러 */
 .label-error .custom-input:not(:placeholder-shown) ~ .floating-label,
 .label-error.focus-on .floating-label,
@@ -4509,9 +4542,9 @@ input[type="tel"].custom-input {
 .custom-input.focus:not(:placeholder-shown) ~ .icon-del {
     display: block;
 }
-/* .custom-input:not(:placeholder-shown) ~ .icon-del {
+.custom-input:not(:placeholder-shown) ~ .icon-del {
     display: none;
-} */
+}
 /* input 검색 리스트 */
 .input-container.search .search-list {
     position: absolute;

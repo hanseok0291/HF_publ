@@ -85,17 +85,28 @@ $(function () {
         }).blur();
     
     if($(".id-number").length){
+        var totalInputLength = 0;
         $(".id-number input").on("input change", function(){
-            var inputLength = 0;
+            totalInputLength = 0;
             var inputContainer = $(this).closest(".id-number");
             var input = inputContainer.find("input");
             input.each(function(i,e){
-                inputLength += $(e).val().length;
+                var inputLength = $(e).val().length; 
+                totalInputLength += inputLength;
+                if(i === 0 && inputLength === 6){
+                    input[1].focus();
+                } 
             });
-            if(inputLength > 0){
+            if(totalInputLength > 0){
                 inputContainer.find(".icon-del").show();
             } else {
                 inputContainer.find(".icon-del").hide();
+            }
+        }).on("blur", function(){
+            $(this).closest(".id-number").find(".icon-del").hide();
+        }).on("focus", function(){
+            if(totalInputLength > 0){
+                $(this).closest(".id-number").find(".icon-del").show();
             }
         });
     }
@@ -202,14 +213,13 @@ $(function () {
 
     // input 삭제 버튼
     document.querySelectorAll(".js-text-del").forEach((button) => {
-        button.addEventListener("mousedown", function () {
+        button.addEventListener("mousedown", function (e) {
+            e.preventDefault();
             const inputField = this.closest(".input-container").querySelectorAll(".custom-input");
             inputField.forEach((e,i) => {
                 e.value = ""
                 if(i === 0){
-                    setTimeout(() => {
-                        e.focus();
-                    }, 10); // input 필드에 포커스를 다시 줌
+                    e.focus();
                 }
             });
         });

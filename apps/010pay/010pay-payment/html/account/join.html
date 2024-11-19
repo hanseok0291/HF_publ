@@ -26,6 +26,7 @@
     <script src="../../resources/js/commonmsg.js"></script>
     <script src="../../resources/js/commonutil.js"></script>
     <script src="../../resources/js/owl.carousel.min.js"></script>
+    <script src="../../resources/js/utils.js"></script>
   </head>
 
   <body>
@@ -48,7 +49,7 @@
           <div class="container">
             <!-- headline -->
             <div class="headline">
-              <p>휴대폰 번호를 입력해 주세요</p>
+              <p>휴대폰 번호를 알려주세요</p>
             </div>
             <!-- //headline -->
 
@@ -60,10 +61,11 @@
                     <input
                       type="text"
                       class="custom-input"
-                      placeholder=" "
-                      id="accountNumber"
+                      placeholder=""
+                      id="phoneNumber1"
+                      maxlength="11"
                     />
-                    <label for="accountNumber" class="floating-label"
+                    <label for="phoneNumber1" class="floating-label"
                       >휴대폰 번호</label
                     >
                     <button
@@ -83,7 +85,15 @@
             <!-- container -->
             <div class="container">
               <!--<button type="button" id="send" class="btn" disabled>다음</button>-->
-              <button type="button" id="send" class="btn" disabled>다음</button>
+              <button
+                type="button"
+                id="nextBtn"
+                class="btn"
+                disabled
+                onclick="modalOpenSlide('modal-agree')"
+              >
+                다음
+              </button>
             </div>
             <!-- //container -->
           </div>
@@ -109,7 +119,9 @@
           <div class="container">
             <!-- headline -->
             <div class="headline">
-              <p>주민등록번호를 알려주세요</p>
+              <p>
+                <span class="change-headline">주민등록번호를</span> 알려주세요
+              </p>
             </div>
             <!-- //headline -->
 
@@ -122,9 +134,9 @@
                       type="text"
                       class="custom-input"
                       placeholder=" "
-                      id="accountNumber"
+                      id="phoneNumber2"
                     />
-                    <label for="accountNumber" class="floating-label"
+                    <label for="phoneNumber2" class="floating-label"
                       >휴대폰 번호</label
                     >
                     <button
@@ -151,10 +163,10 @@
                         type="text"
                         class="custom-input"
                         placeholder=""
-                        id="accountNumber3"
+                        id="birthDate"
                         maxlength="6"
                       />
-                      <label for="accountNumber3" class="floating-label first"
+                      <label for="birthDate" class="floating-label first"
                         >생년월일</label
                       >
                     </div>
@@ -177,6 +189,21 @@
                         <i></i>
                       </span>
                     </div>
+                    <button
+                      type="button"
+                      class="icon icon-del js-text-del"
+                    ></button>
+                  </div>
+                </li>
+                <li>
+                  <div class="input-container label-n">
+                    <input
+                      type="text"
+                      class="custom-input"
+                      placeholder=" "
+                      id="name"
+                    />
+                    <label for="name" class="floating-label">이름</label>
                     <button
                       type="button"
                       class="icon icon-del js-text-del"
@@ -266,6 +293,254 @@
       </div>
     </div>
     <!-- //common prompt -->
+
+    <!-- select modal list -->
+    <div id="modal-agree" class="modal modal-slide type-title modal-agree">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title">
+              결제 서비스를 이용하기 위해 <br />
+              아래의 약관 동의가 필요해요.
+            </p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- 전체 동의 체크박스 -->
+            <div class="container">
+              <div class="check-all top">
+                <span class="checkbox">
+                  <input
+                    type="checkbox"
+                    name="checkbox_1"
+                    id="checkbox1_all"
+                  />
+                  <label for="checkbox1_all">약관 전체 동의</label>
+                </span>
+              </div>
+            </div>
+            <!-- 첫 번째 약관 그룹 -->
+            <div class="container mb16">
+              <div class="check-all">
+                <span class="checkbox">
+                  <input type="checkbox" id="checkbox1_group1_all" />
+                  <label for="checkbox1_group1_all"> 서비스 이용 약관 </label>
+                </span>
+              </div>
+              <ul class="terms-list terms-block-list">
+                <li>
+                  <div class="checkbox-block-group">
+                    <span class="checkbox child">
+                      <input
+                        type="checkbox"
+                        id="checkbox1_group1_1"
+                        data-group="checkbox1_group1"
+                        data-required="true"
+                      />
+                      <label for="checkbox1_group1_1"
+                        >(필수) 서비스 이용 약관
+                        <button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                        ></button
+                      ></label>
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <div class="checkbox-block-group">
+                    <span class="checkbox child">
+                      <input
+                        type="checkbox"
+                        id="checkbox1_group1_2"
+                        data-group="checkbox1_group1"
+                        data-required="true"
+                      />
+                      <label for="checkbox1_group1_2"
+                        >(필수) 전자금융거래 이용약관
+                        <button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                        ></button
+                      ></label>
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <div class="checkbox-block-group">
+                    <span class="checkbox child">
+                      <input
+                        type="checkbox"
+                        id="checkbox1_group1_3"
+                        data-group="checkbox1_group1"
+                        data-required="true"
+                      />
+                      <label for="checkbox1_group1_3"
+                        >(필수) 개인정보 수집·이용
+                        <button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                        ></button
+                      ></label>
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <div class="checkbox-block-group">
+                    <span class="checkbox child">
+                      <input
+                        type="checkbox"
+                        id="checkbox1_group1_4"
+                        data-group="checkbox1_group1"
+                        data-required="true"
+                      />
+                      <label for="checkbox1_group1_4"
+                        >(필수) 개인정보 제3자 제공 및 위탁
+                        <button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                        ></button
+                      ></label>
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <div class="checkbox-block-group">
+                    <span class="checkbox child">
+                      <input
+                        type="checkbox"
+                        id="checkbox1_group1_5"
+                        data-group="checkbox1_group1"
+                        data-required="false"
+                      />
+                      <label for="checkbox1_group1_5"
+                        >(선택) 마케팅 목적 개인정보 수집/이용
+                        <button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                        ></button
+                      ></label>
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <div class="checkbox-block-group">
+                    <span class="checkbox child">
+                      <input
+                        type="checkbox"
+                        id="checkbox1_group1_6"
+                        data-group="checkbox1_group1"
+                        data-required="false"
+                      />
+                      <label for="checkbox1_group1_6"
+                        >(선택) 마케팅 정보 수신
+                        <button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                        ></button
+                      ></label>
+                    </span>
+                  </div>
+                </li>
+              </ul>
+              <div class="check-all">
+                <span class="checkbox">
+                  <input type="checkbox" id="checkbox1_group2_all" />
+                  <label for="checkbox1_group2_all"
+                    >본인 확인 이용 약관동의
+                  </label>
+                </span>
+              </div>
+              <ul class="terms-list terms-block-list">
+                <li>
+                  <div class="checkbox-block-group">
+                    <span class="checkbox child">
+                      <input
+                        type="checkbox"
+                        id="checkbox1_group2_1"
+                        data-group="checkbox1_group2"
+                        data-required="true"
+                      />
+                      <label for="checkbox1_group2_1"
+                        >(필수) 휴대폰 본인 확인 이용 약관
+                        <button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                        ></button
+                      ></label>
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <div class="checkbox-block-group">
+                    <span class="checkbox child">
+                      <input
+                        type="checkbox"
+                        id="checkbox1_group2_2"
+                        data-group="checkbox1_group2"
+                        data-required="true"
+                      />
+                      <label for="checkbox1_group2_2"
+                        >(필수) 본인 인증 개인 정보 수집·이용
+                        <button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                        ></button
+                      ></label>
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <div class="checkbox-block-group">
+                    <span class="checkbox child">
+                      <input
+                        type="checkbox"
+                        id="checkbox1_group2_3"
+                        data-group="checkbox1_group2"
+                        data-required="true"
+                      />
+                      <label for="checkbox1_group2_3"
+                        >(필수) 본인 인증 개인 정보 제공 위탁
+                        <button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                        ></button
+                      ></label>
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <div class="checkbox-block-group">
+                    <span class="checkbox child">
+                      <input
+                        type="checkbox"
+                        id="checkbox1_group2_4"
+                        data-group="checkbox1_group2"
+                        data-required="true"
+                      />
+                      <label for="checkbox1_group2_4"
+                        >(필수) 본인 인증 고유 식별 정보 처리
+                        <button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                        ></button
+                      ></label>
+                    </span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="btn-agree1" class="btn-confirm" disabled>동의하기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //select modal list -->
+
     <!-- select modal bank -->
     <div
       id="modal-select-phone-info"
@@ -275,7 +550,7 @@
         <div class="modal-content">
           <div class="modal-head">
             <p class="modal-head-title">통신사 선택</p>
-            <button type="button" class="btn btn-close">
+            <button type="button" class="btn btn-close js-modal-close">
               <i class="icon-close"></i>
             </button>
           </div>
@@ -289,35 +564,35 @@
                   </button>
                 </li>
                 <li class="option-item">
-                    <button type="button" class="btn">
-                      <em class="label">KT</em>
-                      <i class="icon-check-on"></i>
-                    </button>
-                  </li>
-                  <li class="option-item">
-                    <button type="button" class="btn">
-                      <em class="label">LG U+</em>
-                      <i class="icon-check-on"></i>
-                    </button>
-                  </li>
-                  <li class="option-item">
-                    <button type="button" class="btn">
-                      <em class="label">SKT 알뜰폰</em>
-                      <i class="icon-check-on"></i>
-                    </button>
-                  </li>
-                  <li class="option-item">
-                    <button type="button" class="btn">
-                      <em class="label">KT 알뜰폰</em>
-                      <i class="icon-check-on"></i>
-                    </button>
-                  </li>
-                  <li class="option-item">
-                    <button type="button" class="btn">
-                      <em class="label">LG U+ 알뜰폰</em>
-                      <i class="icon-check-on"></i>
-                    </button>
-                  </li>
+                  <button type="button" class="btn">
+                    <em class="label">KT</em>
+                    <i class="icon-check-on"></i>
+                  </button>
+                </li>
+                <li class="option-item">
+                  <button type="button" class="btn">
+                    <em class="label">LG U+</em>
+                    <i class="icon-check-on"></i>
+                  </button>
+                </li>
+                <li class="option-item">
+                  <button type="button" class="btn">
+                    <em class="label">SKT 알뜰폰</em>
+                    <i class="icon-check-on"></i>
+                  </button>
+                </li>
+                <li class="option-item">
+                  <button type="button" class="btn">
+                    <em class="label">KT 알뜰폰</em>
+                    <i class="icon-check-on"></i>
+                  </button>
+                </li>
+                <li class="option-item">
+                  <button type="button" class="btn">
+                    <em class="label">LG U+ 알뜰폰</em>
+                    <i class="icon-check-on"></i>
+                  </button>
+                </li>
               </ul>
             </div>
           </div>
@@ -325,5 +600,37 @@
       </div>
     </div>
     <!-- //select modal list -->
+
+    <script>
+      $(function () {
+        $("#phoneNumber1").on("input", function () {
+          var input = $(this).val(); // 현재 입력된 값
+          if (input.length === 11) {
+            $("#nextBtn").attr("disabled", false);
+          }
+        });
+
+        var headline = $(".step2 .headline .change-headline");
+
+        $("#phoneNumber2").focus(function () {
+          headline.text("휴대폰 번호를");
+        });
+        $("#birthDate").focus(function () {
+          headline.text("주민등록번호를");
+        });
+        $("#name").focus(function () {
+          headline.text("이름을");
+        });
+
+        const termsPopup1  = new TermsAgreementManager(
+                "checkbox1_all", // 전체 동의 체크박스 ID
+                [
+                    { allCheckboxId: "checkbox1_group1_all", groupName: "checkbox1_group1" },
+                    { allCheckboxId: "checkbox1_group2_all", groupName: "checkbox1_group2" },
+                ],
+                "#btn-agree1" // 버튼 선택자
+            );
+      });
+    </script>
   </body>
 </html>

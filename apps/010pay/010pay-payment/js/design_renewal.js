@@ -5,7 +5,7 @@ $(function () {
 
     // input Focus
     input
-        .on('focus', function () {
+        .on("focus", function () {
             $(this).addClass("focus");
             $(".bottom-banner-area.fixed").addClass("hidden-mobile");
             $(this).parents(".input-container").addClass("focus-on");
@@ -28,7 +28,7 @@ $(function () {
                 }
             }
         })
-        .on('blur', function () {
+        .on("blur", function () {
             $(this).removeClass("focus");
             $(".bottom-banner-area.fixed").removeClass("hidden-mobile");
             $(this).parents(".input-container").removeClass("focus-on");
@@ -75,9 +75,9 @@ $(function () {
                     floatingLabel.text("6자리 숫자 입력");
                 }
             }
-        })
+        });
 
-    row.on('focus',function () {
+    row.on("focus", function () {
         $(this).parents(".input").addClass("focus");
         $(this).removeClass("focus");
     }).blur(function () {
@@ -135,6 +135,17 @@ function modalOpen(obj) {
 function modalClose() {
     $(".modal").hide();
     scrollOn(); // 바디 스크롤 제거 해제
+}
+
+// bottom modal 닫기
+function modalCloseSlide() {
+    $(".modal").fadeOut(200);
+    $(".modal").find(".modal-content").animate({ bottom: modalH }, 200);
+
+    // 이중 모달이 아닌 경우
+    if (!$(".modal").hasClass("depth2")) {
+        scrollOn(); // 바디 스크롤 제거 해제
+    }
 }
 
 function modalCloseNoMove() {
@@ -393,18 +404,6 @@ function modalOpenSlide(obj) {
                     modalCloseSlide();
                 }
             });
-
-    // bottom modal 닫기
-    function modalCloseSlide() {
-        // console.log("111");
-        temp.fadeOut(200);
-        $(temp).find(".modal-content").animate({ bottom: modalH }, 200);
-
-        // 이중 모달이 아닌 경우
-        if (!$(temp).hasClass("depth2")) {
-            scrollOn(); // 바디 스크롤 제거 해제
-        }
-    }
 
     // 모달 외부 클릭 시 닫기 처리 및 01 출력
     temp.on("click", function (e) {

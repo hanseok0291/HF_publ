@@ -10,7 +10,6 @@
         <link rel="stylesheet" href="../../css/common_renewal.css" />
         <script src="../../js/jquery.3.4.1.min.js"></script>
         <script src="../../js/jquery.3.4.1.min.js"></script>
-        <script src="../../js/jquery.placeholder.min.js"></script>
         <script src="../../js/jquery-ui.js"></script>
         <script src="../../js/design_renewal.js" defer="defer"></script>
         <script src="../../js/owl.carousel.min.js"></script>
@@ -24,7 +23,9 @@
                 <div class="container">
                     <div class="header-box">
                         <h2 class="page-title">계좌 등록</h2>
-                        <button type="button" class="btn-close"><i class="icon-close"></i></button>
+                        <button type="button" class="btn-close js-change-btn" data-message="창을 닫으시면 결제가 취소됩니다.<br>종료하시겠습니까?" data-cancel="취소" data-confirm="확인">
+                            <i class="icon-close"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -46,17 +47,10 @@
                                             <label for="checkbox_01_01">새마을금고</label>
                                             <button
                                                 type="button"
-                                                onclick="$.promptMessage(
-												'', 
-												'변경 시 계좌인증을 다시 진행해야해요. <br>그래도 변경할까요?', 
-												$('#commonPrompt'), 
-												$('#promptOk'), 
-												'modalClose()', 
-												'',  // warning
-												'취소',  // 취소 버튼 텍스트
-												'확인'       // 확인 버튼 텍스트
-											);"
                                                 class="change-btn js-change-btn"
+                                                data-message="변경 시 계좌인증을 다시 진행해야해요.<br>그래도 변경할까요?"
+                                                data-cancel="취소"
+                                                data-confirm="확인"
                                             >
                                                 변경
                                             </button>
@@ -161,8 +155,8 @@
                         <p id="promptContents"></p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" onclick="modalClose();" class="btn btn-cancel">취소</button>
-                        <button type="button" onclick="modalClose();" class="btn btn-confirm">확인</button>
+                        <button type="button" id="promptNo" onclick="modalClose();" class="btn btn-cancel">취소</button>
+                        <button type="button" id="promptOk" onclick="modalClose();" class="btn btn-confirm">확인</button>
                     </div>
                 </div>
             </div>

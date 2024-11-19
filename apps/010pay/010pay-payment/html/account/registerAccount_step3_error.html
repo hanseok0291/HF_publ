@@ -22,8 +22,14 @@
             <div id="header">
                 <div class="container">
                     <div class="header-box">
-                        <h2 class="page-title">계좌 등록</h2>
-                        <button type="button" class="btn-close js-change-btn" data-message="창을 닫으시면 결제가 취소됩니다.<br>종료하시겠습니까?" data-cancel="취소" data-confirm="확인">
+                        <h2 class="page-title"></h2>
+                        <button
+                            type="button"
+                            class="btn-close js-change-btn"
+                            data-message="비밀번호 등록이 완료되지 않아 간편결제<br>등록이 안됐어요. 이대로 중단할까요?"
+                            data-cancel="취소"
+                            data-confirm="확인"
+                        >
                             <i class="icon-close"></i>
                         </button>
                     </div>
@@ -33,92 +39,30 @@
 
             <!-- content -->
             <div id="content">
-                <!-- step2 -->
-                <div class="step2" style="display: block">
-                    <!-- container -->
-                    <div class="container">
-                        <!-- section -->
-                        <div class="section">
-                            <ul class="form-type type2 accordion-list">
-                                <li>
-                                    <div class="checkbox-block-group">
-                                        <span class="checkbox round">
-                                            <input type="checkbox" name="checkbox_01" id="checkbox_01_01" />
-                                            <label for="checkbox_01_01">새마을금고</label>
-                                            <button
-                                                type="button"
-                                                class="change-btn js-change-btn"
-                                                data-message="변경 시 계좌인증을 다시 진행해야해요.<br>그래도 변경할까요?"
-                                                data-cancel="취소"
-                                                data-confirm="확인"
-                                            >
-                                                변경
-                                            </button>
-                                        </span>
-                                        <span class="checkbox-near">11022773450698</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="checkbox-block-group">
-                                        <span class="checkbox round">
-                                            <input type="checkbox" name="checkbox_02" id="checkbox_02_01" />
-                                            <label for="checkbox_02_01">약관 동의</label>
-                                        </span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="checkbox-block-group">
-                                        <span class="checkbox more">
-                                            <input type="checkbox" name="checkbox_03" id="checkbox_03_01" />
-                                            <label for="checkbox_03_01">자동이체 출금 동의</label>
-                                        </span>
-                                    </div>
+                <!--  -->
+                <div id="passwordSet" class="">
+                    <div class="password-wrap">
+                        <div>
+                            <div class="content-wrap">
+                                <h3 class="title">한번만 비밀번호를 설정하면<br />안전하고 빠르게 결제할 수 있어요.</h3>
 
-                                    <div class="gray-box">
-                                        <div class="toggle-box">
-                                            <div class="toggle-buttons">
-                                                <button class="toggle-button active" onclick="selectToggle('ars')">ARS 인증</button>
-                                                <button class="toggle-button" onclick="selectToggle('pass')">PASS 인증</button>
-                                            </div>
+                                <div class="input-mark">
+                                    <span class="mark error"
+                                        ><i id="pwd_01" class="on"></i><i id="pwd_02" class="on"></i><i id="pwd_03" class="on"></i><i id="pwd_04"></i><i id="pwd_05"></i><i id="pwd_06"></i
+                                    ></span>
+                                </div>
 
-                                            <!-- ARS 인증 내용 -->
-                                            <div class="ars-content toggle-content active">
-                                                <p class="instruction">버튼을 누른 후, 인증번호를 입력해주세요.</p>
-                                                <div class="verification-code">25</div>
-                                                <button type="button" class="call-button js-call-button" data-toggle="modal" data-target="#passwordSet">
-                                                    <i class="icon-call"></i> 인증 전화 요청
-                                                </button>
-                                            </div>
+                                <p class="noti-text">동일/연속된 숫자, 생년월일, 휴대폰 번호는 사용할 수 없어요.</p>
 
-                                            <!-- PASS 인증 내용 -->
-                                            <div class="pass-content toggle-content">
-                                                <p class="instruction">
-                                                    PASS앱을 통해<br />
-                                                    비밀번호 또는 지문, Face ID 등<br />
-                                                    생체 정보로 인증할 수 있습니다.
-                                                </p>
-                                                <button type="button" class=""></button>
-                                                <button
-                                                    type="button"
-                                                    class="pass-button js-pass-button js-change-btn"
-                                                    data-message="정상적으로 처리되지 않았어요.<br>다시 시도해주세요!"
-                                                    data-cancel="확인"
-                                                    data-confirm="재인증하기"
-                                                >
-                                                    PASS 인증 요청
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+                                <div class="mark-box">
+                                    <img src="../../images/common/security_keypad.png" alt="" />
+                                </div>
+                            </div>
                         </div>
-                        <!-- //section -->
                     </div>
-                    <!-- //container -->
-                    <!--  -->
                 </div>
-                <!-- //step2 -->
+                <!-- //container -->
+                <!--  -->
             </div>
             <!-- //content -->
         </div>
@@ -154,23 +98,6 @@
             </div>
         </div>
         <!-- //common alert -->
-
-        <!-- common prompt -->
-        <div id="commonPrompt" class="modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <h3 id="promptTitle"></h3>
-                        <p id="promptContents"></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" onclick="modalClose();" class="btn btn-cancel">취소</button>
-                        <button type="button" onclick="modalClose();" class="btn btn-confirm">확인</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- //common prompt -->
 
         <!-- cancel prompt -->
         <div id="commonPrompt" class="modal">
@@ -602,73 +529,28 @@
     </body>
     <script>
         $(document).ready(function () {
-            // 초기 상태: 첫 번째 li만 열림
-            const $accordionItems = $(".accordion-list li"); // 모든 li 요소 선택
-            let currentIndex = 0; // 현재 노출 중인 li의 인덱스
+            // 모든 input, select의 값이 입력되었는지 확인하여 버튼 상태를 업데이트하는 함수
+            function updateSendButton() {
+                const allFieldsFilled = Array.from(document.querySelectorAll(".section input, .section select")).every((field) => field.value.trim() !== ""); // 각 필드가 빈 값이 아닌지 확인
 
-            function showNextItem() {
-                if (currentIndex < $accordionItems.length) {
-                    // 현재 항목을 fadeIn으로 부드럽게 나타냄
-                    $accordionItems.eq(currentIndex).fadeIn(250, function () {
-                        // fadeIn 후 active 클래스 추가
-                        $(this).addClass("active");
-                    });
-                    currentIndex++; // 다음 인덱스로 이동
-                    setTimeout(showNextItem, 250); // 1초 후에 다음 li를 보여줌
+                const sendButton = document.getElementById("send");
+                if (allFieldsFilled) {
+                    sendButton.classList.remove("disabled"); // disabled 클래스 제거
+                    sendButton.disabled = false; // 버튼 활성화
+                } else {
+                    sendButton.classList.add("disabled"); // disabled 클래스 추가
+                    sendButton.disabled = true; // 버튼 비활성화
                 }
             }
 
-            // 초기 설정: 모든 li 숨김
-            $accordionItems.hide();
+            // input 및 select 요소에 이벤트 리스너 추가
+            document.querySelectorAll(".section input, .section select").forEach((field) => {
+                field.addEventListener("input", updateSendButton); // input 필드에서 입력 변화 감지
+                field.addEventListener("change", updateSendButton); // select 필드에서 값 변경 감지
+            });
 
-            // 첫 번째 li부터 시작
-            showNextItem();
-        });
-
-        // 토글버튼
-        function selectToggle(type) {
-            const arsButton = document.querySelector(".toggle-buttons .toggle-button:first-child");
-            const passButton = document.querySelector(".toggle-buttons .toggle-button:last-child");
-
-            const arsContent = document.querySelector(".ars-content");
-            const passContent = document.querySelector(".pass-content");
-
-            if (type === "ars") {
-                arsButton.classList.add("active");
-                passButton.classList.remove("active");
-                arsContent.classList.add("active");
-                passContent.classList.remove("active");
-            } else {
-                passButton.classList.add("active");
-                arsButton.classList.remove("active");
-                passContent.classList.add("active");
-                arsContent.classList.remove("active");
-            }
-        }
-
-        // 전화 인증 버튼
-        document.querySelector(".js-call-button").addEventListener("click", function () {
-            // 버튼의 텍스트를 변경
-            this.innerHTML = '<i class="icon-call"></i> 전화수신 중';
-
-            // 버튼을 비활성화
-            this.disabled = true;
-        });
-
-        // pass 인증 버튼
-        const passButton = document.querySelector(".js-pass-button");
-        passButton.addEventListener("click", function () {
-            // 버튼의 텍스트를 변경
-            this.innerHTML = "PASS 재인증";
-
-            // 버튼을 비활성화
-            this.disabled = true;
-
-            // 3초 후 작업 실행
-            setTimeout(() => {
-                // 버튼 비활성화 해제
-                this.disabled = false;
-            }, 3000);
+            // 초기 상태 확인
+            updateSendButton();
         });
     </script>
 </html>

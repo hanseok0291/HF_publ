@@ -493,3 +493,32 @@ function modalOpenSlide(obj) {
         modalCloseSlide(); // 모달 닫기
     });
 }
+
+// 버튼 클릭시 텍스트 변경
+document.querySelectorAll(".js-change-btn").forEach((button) => {
+    button.addEventListener("click", function () {
+        const title = this.dataset.title || ""; // 버튼의 데이터 속성에서 제목 가져오기
+        const message = this.dataset.message || ""; // 버튼의 데이터 속성에서 메시지 가져오기
+        const cancelText = this.dataset.cancel || "취소"; // 취소 버튼 텍스트
+        const confirmText = this.dataset.confirm || "확인"; // 확인 버튼 텍스트
+        const showCancel = this.dataset.showCancel !== "false"; // 취소 버튼 표시 여부
+
+        // 모달 내용 업데이트
+        document.getElementById("promptTitle").innerHTML = title;
+        document.getElementById("promptContents").innerHTML = message;
+        document.querySelector("#commonPrompt .btn-cancel").innerHTML = cancelText;
+        document.querySelector("#commonPrompt .btn-confirm").innerHTML = confirmText;
+
+        // 취소 버튼 표시/숨기기
+        const cancelButton = document.getElementById("promptNo");
+        if (showCancel) {
+            cancelButton.style.display = "inline-block";
+            cancelButton.innerHTML = cancelText;
+        } else {
+            cancelButton.style.display = "none";
+        }
+
+        // 모달 표시 (여기서 modalOpen은 모달을 여는 함수로 가정)
+        modalOpen("commonPrompt");
+    });
+});

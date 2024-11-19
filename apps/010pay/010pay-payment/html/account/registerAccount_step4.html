@@ -512,31 +512,30 @@
             </div>
         </div>
         <!-- //modal - 공지사항 상세 -->
+        <!-- //모달 생체정보 등록 안내 -->
+        <div id="modal-bio-info" class="modal modal-slide type-title">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- <div class="modal-head"></div> -->
+                    <div class="modal-body">
+                        <div class="container">
+                            <p class="modal-body-title">생체정보를 등록하세요</p>
+                            <p>비밀번호 대신 생체정보로 더욱 빠르게<br />결제할 수 있어요</p>
+                        </div>
+                    </div>
+                    <!-- 동의하기 버튼 -->
+                    <div class="modal-footer type2">
+                        <button type="button" id="" onclick="modalClose();" class="btn btn-cancel">다음에 하기</button>
+                        <button type="button" id="" onclick="modalOpenSlide('modal-bio-reg')" data-target="modal-select-title" class="btn btn-confirm">등록하기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //모달 생체정보 등록 안내 -->
     </body>
     <script>
         $(document).ready(function () {
-            // 모든 input, select의 값이 입력되었는지 확인하여 버튼 상태를 업데이트하는 함수
-            function updateSendButton() {
-                const allFieldsFilled = Array.from(document.querySelectorAll(".section input, .section select")).every((field) => field.value.trim() !== ""); // 각 필드가 빈 값이 아닌지 확인
-
-                const sendButton = document.getElementById("send");
-                if (allFieldsFilled) {
-                    sendButton.classList.remove("disabled"); // disabled 클래스 제거
-                    sendButton.disabled = false; // 버튼 활성화
-                } else {
-                    sendButton.classList.add("disabled"); // disabled 클래스 추가
-                    sendButton.disabled = true; // 버튼 비활성화
-                }
-            }
-
-            // input 및 select 요소에 이벤트 리스너 추가
-            document.querySelectorAll(".section input, .section select").forEach((field) => {
-                field.addEventListener("input", updateSendButton); // input 필드에서 입력 변화 감지
-                field.addEventListener("change", updateSendButton); // select 필드에서 값 변경 감지
-            });
-
-            // 초기 상태 확인
-            updateSendButton();
+            modalOpenSlide("modal-bio-info"); // 이때 modalOpenSlide 호출
         });
     </script>
 </html>

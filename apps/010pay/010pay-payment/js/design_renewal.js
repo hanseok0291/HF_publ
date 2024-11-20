@@ -144,6 +144,11 @@ function modalOpen(obj) {
     var thisDialog = temp.children(".modal-dialog");
     var marginValue = thisDialog.outerHeight() / 2;
     $(thisDialog).css("margin-top", "-" + marginValue + "px");
+
+    // js-modal-close 버튼 클릭 시 모달 닫기 실행
+    temp.find(".js-modal-close").on("click", function () {
+        modalClose();
+    });
 }
 
 // 레이어 팝업(모달) 닫기
@@ -154,7 +159,6 @@ function modalClose() {
 
 // bottom modal 닫기
 function modalCloseSlide() {
-    console.log("modalCloseSlide called"); // 디버깅 로그
     $(".modal").fadeOut(200);
     $(".modal").find(".modal-content").animate({ bottom: modalH }, 200);
 
@@ -424,6 +428,11 @@ function modalOpenSlide(obj) {
     temp.on("click", function (e) {
         // 외부를 클릭했는지 확인
         if (!$(e.target).closest(".modal-content").length) {
+            // 열린 모달 확인 (display: block 기준)
+            const openedModal = $(".modal:visible"); // 현재 보이는 모달 선택
+            if (openedModal.attr("id") === "modal-select-bank") {
+                $("#btnHidden").show();
+            }
             modalCloseSlide(); // 모달 닫기
         }
     });
@@ -502,6 +511,7 @@ function modalOpenSlide(obj) {
         var selectedBank = $(this).text().trim(); // 선택한 이름 가져오기
         selectBox.find(".label").text(selectedBank); // 버튼에 텍스트 업데이트
         selectBox.addClass("comp");
+        $("#btnHidden").hide();
 
         // step-list에서 현재 on 클래스가 있는 li 찾고 다음 li에 on 클래스 추가
         var currentStep = $(".step-list li.on"); // 현재 on 클래스가 있는 li

@@ -47,7 +47,7 @@ $(function () {
             // input에 값이 있으면 focus-on 유지, 없으면 제거
             if (hasValue) {
                 $(this).parents(".input-container").addClass("comp"); // .comp 클래스 추가 (값이 있을 때)
-                
+
                 // id-number 하위 input인 경우, 텍스트가 "주민 등록 번호 앞 7자리"로 유지되도록 설정
                 if ($(this).closest(".id-number").length) {
                     $(this).parents(".input-container").addClass("fill");
@@ -80,7 +80,8 @@ $(function () {
     row.on("focus", function () {
         $(this).parents(".input").addClass("focus");
         $(this).removeClass("focus");
-    }).blur(function () {
+    })
+        .blur(function () {
             $(this).parents(".input").removeClass("focus");
         }).blur();
     
@@ -114,7 +115,6 @@ $(function () {
             }
         });
     }
-    
 });
 
 // 바디 스크롤 제거/해제
@@ -154,6 +154,7 @@ function modalClose() {
 
 // bottom modal 닫기
 function modalCloseSlide() {
+    console.log("modalCloseSlide called"); // 디버깅 로그
     $(".modal").fadeOut(200);
     $(".modal").find(".modal-content").animate({ bottom: modalH }, 200);
 
@@ -220,9 +221,9 @@ $(function () {
         button.addEventListener("mousedown", function (e) {
             e.preventDefault();
             const inputField = this.closest(".input-container").querySelectorAll(".custom-input");
-            inputField.forEach((e,i) => {
-                e.value = ""
-                if(i === 0){
+            inputField.forEach((e, i) => {
+                e.value = "";
+                if (i === 0) {
                     e.focus();
                 }
             });
@@ -435,9 +436,25 @@ function modalOpenSlide(obj) {
     });
 
     // 클릭된 버튼의 부모 select-box에 comp 클래스 추가
-    const button = $(event.target); // 클릭된 버튼
-    const selectBox = button.closest(".select-box"); // 부모 select-box 찾기
-    // selectBox.addClass("comp"); // 부모 select-box에 comp 클래스 추가
+    let button;
+    let selectBox;
+
+    if (event && event.target) {
+        // 클릭 이벤트가 발생한 경우
+        button = $(event.target); // 클릭된 버튼
+        selectBox = button.closest(".select-box"); // 부모 select-box 찾기
+    } else {
+        // 클릭 이벤트가 발생하지 않은 경우 기본값 또는 대체 로직 처리
+        button = $(".select-box .label"); // 예: 첫 번째 .label 선택
+        selectBox = button.closest(".select-box");
+    }
+
+    // 이후 로직 처리
+    if (button && selectBox) {
+        console.log("Button:", button);
+        console.log("SelectBox:", selectBox);
+        // 추가 작업 수행
+    }
 
     // 모달 높이가 큰 경우 포지션 변경
     function modalContPos() {

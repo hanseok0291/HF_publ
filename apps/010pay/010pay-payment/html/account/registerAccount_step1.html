@@ -671,29 +671,6 @@
     </body>
     <script>
         $(document).ready(function () {
-            // 모든 input, select의 값이 입력되었는지 확인하여 버튼 상태를 업데이트하는 함수
-            function updateSendButton() {
-                const allFieldsFilled = Array.from(document.querySelectorAll(".section input, .section select")).every((field) => field.value.trim() !== ""); // 각 필드가 빈 값이 아닌지 확인
-
-                const sendButton = document.getElementById("send");
-                if (allFieldsFilled) {
-                    sendButton.classList.remove("disabled"); // disabled 클래스 제거
-                    sendButton.disabled = false; // 버튼 활성화
-                } else {
-                    sendButton.classList.add("disabled"); // disabled 클래스 추가
-                    sendButton.disabled = true; // 버튼 비활성화
-                }
-            }
-
-            // input 및 select 요소에 이벤트 리스너 추가
-            document.querySelectorAll(".section input, .section select").forEach((field) => {
-                field.addEventListener("input", updateSendButton); // input 필드에서 입력 변화 감지
-                field.addEventListener("change", updateSendButton); // select 필드에서 값 변경 감지
-            });
-
-            // 초기 상태 확인
-            updateSendButton();
-
             // option-list 내의 모든 li 요소에 클릭 이벤트 리스너 추가
             $(".option-list li").click(function () {
                 // 모든 li에서 select 클래스 제거
@@ -702,58 +679,8 @@
                 // 클릭한 li에만 select 클래스 추가
                 $(this).addClass("select");
             });
-
-            // option-item button을 클릭했을 때
-            $(".option-item button").on("click", function () {
-                // 선택한 button 텍스트 가져오기
-                var selectedBank = $(this).text().trim();
-
-                // 상위 선택박스의 label과 comp 클래스 추가
-                var selectBox = $("[data-target='modal-select-bank']").closest(".select-box"); // 부모 select-box 찾기
-                selectBox.find(".label").text(selectedBank); // 선택한 은행 이름을 label에 반영
-                selectBox.addClass("comp"); // 부모 select-box에 comp 클래스 추가
-
-                // 선택된 항목에 select 클래스 추가 및 다른 항목의 select 클래스 제거
-                $(".option-item").removeClass("select"); // 모든 option-item에서 select 클래스 제거
-                $(this).closest(".option-item").addClass("select"); // 현재 선택한 요소에만 select 클래스 추가
-
-                // 선택된 텍스트가 "은행"이 아닐 경우에만 단계 이동
-                if (selectedBank !== "은행") {
-                    var currentStep = $(".step-list li.on"); // 현재 on 클래스가 있는 li
-                    var nextStep = currentStep.next("li"); // 다음 li 요소 찾기
-
-                    // 다음 li가 있을 경우에만 on 클래스 추가
-                    if (nextStep.length) {
-                        nextStep.addClass("on"); // 다음 li에 on 클래스 추가
-                    }
-                }
-                // #accountNumber 요소에 focus 이벤트 리스너 추가
-                $("#accountNumber").on("focus", function () {
-                    // 현재 요소에 focus 클래스 추가
-                    $(this).addClass("focus");
-                    // 부모 요소에 focus-on 클래스 추가
-                    $(this).parent().addClass("focus-on");
-                });
-
-                // #accountNumber 요소에 blur 이벤트 리스너 추가 (포커스 해제 시)
-                $("#accountNumber").on("blur", function () {
-                    // 현재 요소에서 focus 클래스 제거
-                    $(this).removeClass("focus");
-                    // 부모 요소에서 focus-on 클래스 제거
-                    $(this).parent().removeClass("focus-on");
-                });
-                $("#accountNumber").focus();
-            });
-
             modalOpenSlide("modal-select-bank");
         });
-
-        // 스텝화면 변경
-        $("#modal-select-title .btn-confirm").click(function () {
-            if (!this.disabled) {
-                // 버튼이 활성화된 경우에만 실행
-                modalClose();
-            }
-        });
+        window.onload = function () {};
     </script>
 </html>

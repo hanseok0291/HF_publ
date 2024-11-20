@@ -110,7 +110,6 @@ $(function () {
             if(totalInputLength > 0){
                 $(this).closest(".id-number").find(".icon-del").show();
             } else {
-                console.log(totalInputLength);
                 $(this).closest(".id-number").find(".icon-del").hide();
             }
         });
@@ -463,7 +462,7 @@ function modalOpenSlide(obj) {
         var modalDialogH = temp.find(".modal-dialog").height();
         var gap = modalDialogH - modalContentH;
         if (gap < 0) {
-            modalContent.css("position", "relative");
+            modalContent.css("position", "absolute");
         } else {
             modalContent.css("position", "fixed");
         }

@@ -84,8 +84,8 @@ $(function () {
             $(this).parents(".input").removeClass("focus");
         }).blur();
     
+    var totalInputLength = 0;
     if($(".id-number").length){
-        var totalInputLength = 0;
         $(".id-number input").on("input change", function(){
             totalInputLength = 0;
             var inputContainer = $(this).closest(".id-number");
@@ -95,6 +95,7 @@ $(function () {
                 totalInputLength += inputLength;
                 if(i === 0 && inputLength === 6){
                     input[1].focus();
+                    inputContainer.addClass("focus-on");
                 } 
             });
             if(totalInputLength > 0){
@@ -107,6 +108,9 @@ $(function () {
         }).on("focus", function(){
             if(totalInputLength > 0){
                 $(this).closest(".id-number").find(".icon-del").show();
+            } else {
+                console.log(totalInputLength);
+                $(this).closest(".id-number").find(".icon-del").hide();
             }
         });
     }
@@ -222,6 +226,9 @@ $(function () {
                     e.focus();
                 }
             });
+            if(this.closest(".id-number")){
+                this.style.display = "none";
+            }
         });
     });
 

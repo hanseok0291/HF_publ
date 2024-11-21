@@ -83,37 +83,41 @@ $(function () {
     })
         .blur(function () {
             $(this).parents(".input").removeClass("focus");
-        }).blur();
-    
+        })
+        .blur();
+
     var totalInputLength = 0;
-    if($(".id-number").length){
-        $(".id-number input").on("input change", function(){
-            totalInputLength = 0;
-            var inputContainer = $(this).closest(".id-number");
-            var input = inputContainer.find("input");
-            input.each(function(i,e){
-                var inputLength = $(e).val().length; 
-                totalInputLength += inputLength;
-                if(i === 0 && inputLength === 6){
-                    input[1].focus();
-                    inputContainer.addClass("focus-on");
-                } 
-            });
-            if(totalInputLength > 0){
-                inputContainer.find(".icon-del").show();
-            } else {
-                inputContainer.find(".icon-del").hide();
-            }
-        }).on("blur", function(){
-            $(this).closest(".id-number").find(".icon-del").hide();
-        }).on("focus", function(){
-            if(totalInputLength > 0){
-                $(this).closest(".id-number").find(".icon-del").show();
-            } else {
-                console.log(totalInputLength);
+    if ($(".id-number").length) {
+        $(".id-number input")
+            .on("input change", function () {
+                totalInputLength = 0;
+                var inputContainer = $(this).closest(".id-number");
+                var input = inputContainer.find("input");
+                input.each(function (i, e) {
+                    var inputLength = $(e).val().length;
+                    totalInputLength += inputLength;
+                    if (i === 0 && inputLength === 6) {
+                        input[1].focus();
+                        inputContainer.addClass("focus-on");
+                    }
+                });
+                if (totalInputLength > 0) {
+                    inputContainer.find(".icon-del").show();
+                } else {
+                    inputContainer.find(".icon-del").hide();
+                }
+            })
+            .on("blur", function () {
                 $(this).closest(".id-number").find(".icon-del").hide();
-            }
-        });
+            })
+            .on("focus", function () {
+                if (totalInputLength > 0) {
+                    $(this).closest(".id-number").find(".icon-del").show();
+                } else {
+                    console.log(totalInputLength);
+                    $(this).closest(".id-number").find(".icon-del").hide();
+                }
+            });
     }
 });
 
@@ -151,26 +155,27 @@ function modalOpen(obj) {
     });
 }
 
-// 레이어 팝업(모달) 닫기
-function modalClose() {
+// 얼럿 (모달) 닫기
+function modalCloseAlert() {
     $(".modal").hide();
     scrollOn(); // 바디 스크롤 제거 해제
 }
 
-// bottom modal 닫기
-function modalCloseSlide() {
-    $(".modal").fadeOut(200);
-    $(".modal").find(".modal-content").animate({ bottom: modalH }, 200);
-
-    // 이중 모달이 아닌 경우
-    if (!$(".modal").hasClass("depth2")) {
-        scrollOn(); // 바디 스크롤 제거 해제
-    }
+// 레이어 팝업(풀모달) 닫기
+function modalClose() {
+    $(".modal-full").hide();
+    scrollOn(); // 바디 스크롤 제거 해제
 }
 
-function modalCloseNoMove() {
-    $(".modal").hide();
-    // scrollOn(); // 바디 스크롤 제거 해제
+// bottom modal(슬라이드모달) 닫기
+function modalCloseSlide() {
+    $(".modal-slide").fadeOut(200);
+    $(".modal-slide").find(".modal-content").animate({ bottom: modalH }, 200);
+
+    // 이중 모달이 아닌 경우
+    if (!$(".modal-slide").hasClass("depth2")) {
+        scrollOn(); // 바디 스크롤 제거 해제
+    }
 }
 
 function modalClose(obj) {
@@ -178,19 +183,9 @@ function modalClose(obj) {
         var temp = $("#" + obj);
         temp.hide();
     } else {
-        $(".modal").hide();
+        $(".modal-full").hide();
     }
     scrollOn(); // 바디 스크롤 제거 해제
-}
-
-function modalCloseNoMove(obj) {
-    if (obj != null && obj != undefined && obj != "") {
-        var temp = $("#" + obj);
-        temp.hide();
-    } else {
-        $(".modal").hide();
-    }
-    // scrollOn(); // 바디 스크롤 제거 해제
 }
 
 // 레이어 팝업(모달) 닫기 (오류 페이지 외)
@@ -231,7 +226,7 @@ $(function () {
                     e.focus();
                 }
             });
-            if(this.closest(".id-number")){
+            if (this.closest(".id-number")) {
                 this.style.display = "none";
             }
         });
@@ -456,13 +451,6 @@ function modalOpenSlide(obj) {
         // 클릭 이벤트가 발생하지 않은 경우 기본값 또는 대체 로직 처리
         button = $(".select-box .label"); // 예: 첫 번째 .label 선택
         selectBox = button.closest(".select-box");
-    }
-
-    // 이후 로직 처리
-    if (button && selectBox) {
-        console.log("Button:", button);
-        console.log("SelectBox:", selectBox);
-        // 추가 작업 수행
     }
 
     // 모달 높이가 큰 경우 포지션 변경

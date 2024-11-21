@@ -12,6 +12,7 @@
         <script src="../../js/jquery-ui.js"></script>
         <script src="../../js/design_renewal.js" defer="defer"></script>
         <script src="../../js/owl.carousel.min.js"></script>
+        <script src="../../js/lottie.min.js"></script>
     </head>
 
     <body>
@@ -21,8 +22,8 @@
             <div id="header">
                 <div class="container">
                     <div class="header-box">
-                        <h2 class="page-title">계좌 등록</h2>
-                        <button type="button" class="btn-close js-change-btn" data-message="창을 닫으시면 결제가 취소됩니다.<br>종료하시겠습니까?" data-cancel="취소" data-confirm="확인">
+                        <h2 class="page-title">휴대폰 간편결제 등록</h2>
+                        <button type="button" class="btn-close js-change-btn" data-message="간편 등록을 안하면 포인트 적립이 안돼요!<br>이대로 중단할까요?" data-cancel="취소" data-confirm="확인">
                             <i class="icon-close"></i>
                         </button>
                     </div>
@@ -34,26 +35,15 @@
             <div id="content">
                 <!-- container -->
                 <div class="container">
-                    <!-- headline -->
-                    <div class="headline">
-                        <p>본인 명의 계좌번호를 입력해 주세요</p>
-                    </div>
-                    <!-- //headline -->
-
                     <!-- section -->
                     <div class="section">
-                        <ul class="form-type step-list">
-                            <li class="on">
-                                <div class="select-box">
-                                    <button type="button" id="chkSelectBtn" class="label" onclick="modalOpenSlide('modal-select-bank')" data-target="modal-select-bank">은행</button>
-                                    <span class="floating-label">은행</span>
-                                </div>
-                            </li>
-                            <li class="">
-                                <div class="input-container label-n">
-                                    <input type="number" class="custom-input" placeholder=" " id="accountNumber" />
-                                    <label for="accountNumber" class="floating-label">계좌 번호</label>
-                                    <button type="button" class="icon icon-del js-text-del"></button>
+                        <ul class="form-type type2 accordion-list">
+                            <li>
+                                <div class="checkbox-block-group">
+                                    <span class="checkbox more">
+                                        <input type="checkbox" name="checkbox_03" id="checkbox_03_01" />
+                                        <label for="checkbox_03_01" class="lottie-loading">약관 동의</label>
+                                    </span>
                                 </div>
                             </li>
                         </ul>
@@ -61,40 +51,12 @@
                     <!-- //section -->
                 </div>
                 <!-- //container -->
-
-                <!-- bottom area -->
-                <div class="bottom-area">
-                    <!-- container -->
-                    <div class="container">
-                        <button type="button" class="btn js-modal-close" onclick="modalOpenSlide('modal-select-title')" data-target="modal-select-title">다음</button>
-                        <button type="button" id="btnHidden" class="btn btn-transparent btn-hidden" onclick="modalOpenSlide('modal-other-charge')" data-target="modal-other-charge">
-                            다른 충전 선택하기
-                        </button>
-                    </div>
-                    <!-- //container -->
-                </div>
-                <!-- //bottom area -->
             </div>
             <!-- //content -->
         </div>
         <!-- //wrap -->
 
-        <!-- loading -->
-        <div class="modal modal-loading">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="loading">
-                        <span class="loading-bar"></span>
-                        <span class="loading-bar"></span>
-                        <span class="loading-bar"></span>
-                    </div>
-                    <span class="sr-only">로딩 중</span>
-                </div>
-            </div>
-        </div>
-        <!-- //loading -->
-
-        <!-- cancel prompt -->
+        <!-- common prompt -->
         <div id="commonPrompt" class="modal">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -109,26 +71,28 @@
                 </div>
             </div>
         </div>
-        <!-- //cancel prompt -->
+        <!-- //common prompt -->
 
         <!-- select modal list -->
-        <div id="modal-select-title" class="modal modal-slide type-title">
+        <div id="modal-select-title2" class="modal modal-slide type-title">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-head">
-                        <p class="modal-head-title">계좌 등록을 위해 약관 동의가 필요해요.</p>
+                        <p class="modal-head-title">간편 결제를 위해 약관 동의가 필요해요.</p>
                         <button type="button" class="btn btn-close js-modal-close"><i class="icon-close"></i></button>
                     </div>
                     <div class="modal-body">
                         <!-- 전체 동의 체크박스 -->
-                        <div class="container" data-group="group1">
+                        <div class="container" data-group="group22">
                             <div class="check-all top">
                                 <span class="checkbox">
                                     <input type="checkbox" name="checkbox_011" id="checkbox_011_01" />
                                     <label for="checkbox_011_01">약관 전체 동의 <span class="optional">(선택포함)</span></label>
                                 </span>
                             </div>
-                            <!-- 개별 약관 동의 리스트 -->
+                        </div>
+                        <!-- 첫 번째 약관 그룹 -->
+                        <div class="container mb16" data-group="group33">
                             <ul class="terms-list terms-block-list">
                                 <li>
                                     <div class="checkbox-block-group">
@@ -176,189 +140,13 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- 동의하기 버튼 -->
                     <div class="modal-footer">
-                        <button id="send" class="btn-confirm js-modal-close disabled" onclick="window.location.href='./registerAccount_step2.html'" disabled>다음</button>
+                        <button id="send" class="btn-confirm" onclick="window.location.href='./registerEasy_step2.html'" disabled>동의하기</button>
                     </div>
                 </div>
             </div>
         </div>
         <!-- //select modal list -->
-
-        <!-- select modal bank -->
-        <div id="modal-select-bank" class="modal modal-slide type-bank type-title">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-head">
-                        <p class="modal-head-title">은행 선택</p>
-                        <button type="button" class="btn btn-close js-modal-close"><i class="icon-close"></i></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container">
-                            <div>
-                                <ul class="bank-list option-list">
-                                    <li class="option-item select">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> NH농협
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 국민
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 카카오뱅크
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 카카오뱅크
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> NH농협
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 국민
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 카카오뱅크
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 카카오뱅크
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> NH농협
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 국민
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 카카오뱅크
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 카카오뱅크
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> NH농협
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 국민
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 카카오뱅크
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 카카오뱅크
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> NH농협
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 국민
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 카카오뱅크
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 카카오뱅크
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> NH농협
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 국민
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 카카오뱅크
-                                        </button>
-                                    </li>
-                                    <li class="option-item">
-                                        <button type="button">
-                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 카카오뱅크
-                                        </button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- //select modal list -->
-
-        <!-- select modal other-charge -->
-        <div id="modal-other-charge" class="modal modal-slide type-title">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-head">
-                        <p class="modal-head-title">다른 충전 선택하기</p>
-                        <button type="button" class="btn btn-close js-modal-close">
-                            <i class="icon-close"></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- 전체 동의 체크박스 -->
-                        <div class="container">
-                            <ul class="btn-list gray-list left">
-                                <li class="option-item">
-                                    <button type="button" class="btn" disabled>
-                                        <i class="icon-phone"></i>
-                                        <em class="label">휴대폰 소액결제</em>
-                                    </button>
-                                </li>
-                                <li class="option-item">
-                                    <button type="button" class="btn" disabled>
-                                        <i class="icon-pass"></i>
-                                        <em class="label">다른 은행 계좌 추가하기</em>
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- //select modal other-charge -->
 
         <!-- modal - 공지사항 상세 -->
         <div id="noticeDetail1" class="modal modal-full" tabindex="0" aria-labelledby="noticeTitle">
@@ -537,15 +325,41 @@
     </body>
     <script>
         $(document).ready(function () {
-            // option-list 내의 모든 li 요소에 클릭 이벤트 리스너 추가
-            $(".option-list li").click(function () {
-                // 모든 li에서 select 클래스 제거
-                $(".option-list li").removeClass("select");
+            // 초기 상태: 첫 번째 li만 열림
+            const $accordionItems = $(".accordion-list li"); // 모든 li 요소 선택
+            let currentIndex = 0; // 현재 노출 중인 li의 인덱스
 
-                // 클릭한 li에만 select 클래스 추가
-                $(this).addClass("select");
-            });
-            modalOpenSlide("modal-select-bank");
+            function showNextItem() {
+                if (currentIndex < $accordionItems.length) {
+                    // 현재 항목을 fadeIn으로 부드럽게 나타냄
+                    $accordionItems.eq(currentIndex).fadeIn(250, function () {
+                        // fadeIn 후 active 클래스 추가
+                        $(this).addClass("active");
+                    });
+                    currentIndex++; // 다음 인덱스로 이동
+                    setTimeout(showNextItem, 250); // 1초 후에 다음 li를 보여줌
+                }
+            }
+
+            // 초기 설정: 모든 li 숨김
+            $accordionItems.hide();
+
+            // 첫 번째 li부터 시작
+            showNextItem();
+
+            setTimeout(() => {
+                modalOpenSlide("modal-select-title2");
+            }, 500);
+        });
+
+        // 로티 로딩
+        let svgContainer = document.querySelector(".lottie-loading");
+
+        let animItem = bodymovin.loadAnimation({
+            wrapper: svgContainer,
+            animType: "svg",
+            loop: true,
+            path: "https://ux.sbsvc.online/010pay/010pay-payment/images/lottie/loading.json",
         });
     </script>
 </html>

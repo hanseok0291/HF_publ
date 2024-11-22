@@ -310,7 +310,7 @@ function modalOpenSlide(obj) {
             var fixFootHeight = $(fixFoot).innerHeight();
             $("#content").css("padding-bottom", fixFootHeight);
         } else {
-            $("#content").css("padding-bottom", 0);
+            // $("#content").css("padding-bottom", 0);
         }
     }
     fixedFooter();

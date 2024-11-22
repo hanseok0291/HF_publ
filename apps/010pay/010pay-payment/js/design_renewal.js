@@ -442,15 +442,15 @@ function modalOpenSlide(obj) {
     let button;
     let selectBox;
 
-    if (event && event.target) {
-        // 클릭 이벤트가 발생한 경우
-        button = $(event.target); // 클릭된 버튼
-        selectBox = button.closest(".select-box"); // 부모 select-box 찾기
-    } else {
-        // 클릭 이벤트가 발생하지 않은 경우 기본값 또는 대체 로직 처리
-        button = $(".select-box .label"); // 예: 첫 번째 .label 선택
-        selectBox = button.closest(".select-box");
-    }
+    $(".select-box").each(function (i, e) {
+        const $button = $(e).find('button'); // 현재 순회 중인 select-box의 버튼
+        if (obj === $button.attr("data-target")) {
+            selectBox = $(e); // data-target과 obj가 일치하는 select-box 설정
+        } else {
+            const button = $(e.currentTarget); // 이벤트 핸들러에서 전달된 이벤트 객체를 사용
+            selectBox = button.closest(".select-box"); // 부모 select-box 찾기
+        }
+    });
 
     // 모달 높이가 큰 경우 포지션 변경
     function modalContPos() {

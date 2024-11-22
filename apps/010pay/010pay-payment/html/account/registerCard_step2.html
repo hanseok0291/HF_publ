@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>내통장결제</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no, address=no, email=no" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+        <link rel="stylesheet" href="../../css/jquery-ui.css" />
+        <link rel="stylesheet" href="../../css/common_renewal.css" />
+        <script src="../../js/jquery.3.4.1.min.js"></script>
+        <script src="../../js/jquery-ui.js"></script>
+        <script src="../../js/design_renewal.js" defer="defer"></script>
+        <script src="../../js/owl.carousel.min.js"></script>
+        <script src="../../js/lottie.min.js"></script>
+    </head>
+
+    <body>
+        <!-- wrap -->
+        <div id="wrap">
+            <!-- header -->
+            <div id="header">
+                <div class="container">
+                    <div class="header-box">
+                        <h2 class="page-title">카드 등록</h2>
+                        <button type="button" class="btn-close js-change-btn" data-message="창을 닫으시면 결제가 취소됩니다.<br>종료하시겠습니까?" data-cancel="취소" data-confirm="확인">
+                            <i class="icon-close"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- //header -->
+
+            <!-- content -->
+            <div id="content">
+                <!-- container -->
+                <div class="container">
+                    <!-- section -->
+                    <div class="section">
+                        <ul class="form-type type2 accordion-list">
+                            <li>
+                                <div class="checkbox-block-group">
+                                    <span class="checkbox round">
+                                        <input type="checkbox" name="checkbox_01" id="checkbox_01_01" />
+                                        <label for="checkbox_01_01">현대카드</label>
+                                        <button
+                                            type="button"
+                                            class="change-btn js-change-btn"
+                                            data-message="변경 시 계좌인증을 다시 진행해야해요.<br>그래도 변경할까요?"
+                                            data-cancel="취소"
+                                            data-confirm="확인"
+                                        >
+                                            변경
+                                        </button>
+                                    </span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="checkbox-block-group">
+                                    <span class="checkbox more">
+                                        <input type="checkbox" name="checkbox_03" id="checkbox_03_01" />
+                                        <label for="checkbox_03_01" class="lottie-loading">약관 동의</label>
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- //section -->
+                </div>
+                <!-- //container -->
+            </div>
+            <!-- //content -->
+        </div>
+        <!-- //wrap -->
+
+        <!-- common prompt -->
+        <div id="commonPrompt" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h3 id="promptTitle"></h3>
+                        <p id="promptContents"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="promptNo" onclick="modalCloseAlert();" class="btn btn-cancel">취소</button>
+                        <button type="button" id="promptOk" onclick="modalCloseAlert();" class="btn btn-confirm">확인</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //common prompt -->
+
+        <!-- select modal list -->
+        <div id="modal-select-title2" class="modal modal-slide type-title">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-head">
+                        <p class="modal-head-title">카드 등록을 위해 약관 동의가 필요해요.</p>
+                        <button type="button" class="btn btn-close js-modal-close"><i class="icon-close"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- 전체 동의 체크박스 -->
+                        <div class="container" data-group="group22">
+                            <div class="check-all top">
+                                <span class="checkbox">
+                                    <input type="checkbox" name="checkbox_0444" id="checkbox_0444_01" />
+                                    <label for="checkbox_0444_01">전체 동의</label>
+                                </span>
+                                <p class="sub-title">서비스 이용을 위해 최초 1회 약관동의가 필요해요.</p>
+                            </div>
+                        </div>
+                        <!-- 첫 번째 약관 그룹 -->
+                        <div class="container mb16" data-group="group33">
+                            <div class="check-all">
+                                <span class="checkbox">
+                                    <input type="checkbox" id="checkbox_group1_all" />
+                                    <label for="checkbox_group1_all">서비스 이용 동의</label>
+                                </span>
+                            </div>
+                            <ul class="terms-list terms-block-list">
+                                <li>
+                                    <div class="checkbox-block-group">
+                                        <span class="checkbox child">
+                                            <input type="checkbox" id="checkbox_group1_1" data-group="group1" />
+                                            <label for="checkbox_group1_1">(필수) 010PAY 서비스 이용 약관 <button type="button" class="arrow-right js-open-terms"></button></label>
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="check-all">
+                                <span class="checkbox">
+                                    <input type="checkbox" id="checkbox_group2_all" />
+                                    <label for="checkbox_group2_all">카드 결제 이용 동의</label>
+                                </span>
+                            </div>
+                            <ul class="terms-list terms-block-list">
+                                <li>
+                                    <div class="checkbox-block-group">
+                                        <span class="checkbox child">
+                                            <input type="checkbox" id="checkbox_group2_1" data-group="group2" />
+                                            <label for="checkbox_group2_1">(필수) ePAY 서비스 이용약관 <button type="button" class="arrow-right js-open-terms"></button></label>
+                                        </span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="checkbox-block-group">
+                                        <span class="checkbox child">
+                                            <input type="checkbox" id="checkbox_group2_2" data-group="group2" />
+                                            <label for="checkbox_group2_2">(필수) 개인정보 수집 및 이용 동의 <button type="button" class="arrow-right js-open-terms"></button></label>
+                                        </span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="checkbox-block-group">
+                                        <span class="checkbox child">
+                                            <input type="checkbox" id="checkbox_group2_3" data-group="group2" />
+                                            <label for="checkbox_group2_3">(필수) 개인정보 제 3자 제공 동의<button type="button" class="arrow-right js-open-terms"></button></label>
+                                        </span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="checkbox-block-group">
+                                        <span class="checkbox child">
+                                            <input type="checkbox" id="checkbox_group2_4" data-group="group2" />
+                                            <label for="checkbox_group2_4">(필수) 개인정보 제공 동의_신용카드사<button type="button" class="arrow-right js-open-terms"></button></label>
+                                        </span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="checkbox-block-group">
+                                        <span class="checkbox child">
+                                            <input type="checkbox" id="checkbox_group2_5" data-group="group2" />
+                                            <label for="checkbox_group2_5">(필수) 전자지급결제대행 서비스 이용약관...<button type="button" class="arrow-right js-open-terms"></button></label>
+                                        </span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="checkbox-block-group">
+                                        <span class="checkbox child">
+                                            <input type="checkbox" id="checkbox_group2_6" data-group="group2" />
+                                            <label for="checkbox_group2_6">(필수) 전자지급결제대행 서비스 이용약관...<button type="button" class="arrow-right js-open-terms"></button></label>
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="check-all">
+                                <span class="checkbox">
+                                    <input type="checkbox" id="checkbox_group3_all" />
+                                    <label for="checkbox_group3_all">본인 인증 동의</label>
+                                </span>
+                            </div>
+                            <ul class="terms-list terms-block-list">
+                                <li>
+                                    <div class="checkbox-block-group">
+                                        <span class="checkbox child">
+                                            <input type="checkbox" id="checkbox_group3_1" data-group="group3" />
+                                            <label for="checkbox_group3_1">(필수) 010PAY 서비스 이용 약관 <button type="button" class="arrow-right js-open-terms"></button></label>
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="send" class="btn-confirm" onclick="window.location.href='./registerCard_step3.html'">동의하기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //select modal list -->
+
+        <!-- modal - 공지사항 상세 -->
+        <div id="noticeDetail" class="modal modal-full" tabindex="0" aria-labelledby="noticeTitle">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-head" tabindex="0">
+                        <div class="container">
+                            <p class="brand-name">
+                                <span class="my-logo"><img src="../../images/common/logo.png" alt="헥토파이낸셜" /></span>
+                            </p>
+                            <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="모달 닫기"><i class="icon-close"></i></button>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <!-- 게시판 상세 -->
+                            <div class="terms scroll">
+                                <p class="terms-title" id="focusElement" tabindex="-1">통신과금 서비스 이용약관(필수)</p>
+                                <p class="terms-title-sub" id="termPurpose">제 1조 (목적)</p>
+                                <p>
+                                    본 약관은 통신과금 서비스를 제공하는 주식회사 헥토파이낸셜(이하 ‘회사’라고 합니다)과 통신과금서비스 이용자 (이하 ‘이용자’라고 합니다) 간에 통신과금서비스에 관한
+                                    회사와 이용자의 권리의무, 기타 제반 사항을 정함을 목적으로 합니다.
+                                </p>
+                                <p class="terms-title-sub">제 2조 (용어의 정의)</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+
+                                <p class="terms-title-sub">제 3조 (용어의 정의)</p>
+                                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                            </div>
+                            <!-- //게시판 상세 -->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-wrap">
+                            <button type="button" class="btn btn-xl btn-secondary" data-dismiss="modal">확인</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //modal - 공지사항 상세 -->
+    </body>
+    <script>
+        $(document).ready(function () {
+            // 초기 상태: 첫 번째 li만 열림
+            const $accordionItems = $(".accordion-list li"); // 모든 li 요소 선택
+            let currentIndex = 0; // 현재 노출 중인 li의 인덱스
+
+            function showNextItem() {
+                if (currentIndex < $accordionItems.length) {
+                    // 현재 항목을 fadeIn으로 부드럽게 나타냄
+                    $accordionItems.eq(currentIndex).fadeIn(250, function () {
+                        // fadeIn 후 active 클래스 추가
+                        $(this).addClass("active");
+                    });
+                    currentIndex++; // 다음 인덱스로 이동
+                    setTimeout(showNextItem, 250); // 1초 후에 다음 li를 보여줌
+                }
+            }
+
+            // 초기 설정: 모든 li 숨김
+            $accordionItems.hide();
+
+            // 첫 번째 li부터 시작
+            showNextItem();
+
+            setTimeout(() => {
+                modalOpenSlide("modal-select-title2");
+            }, 500);
+        });
+
+        // 로티 로딩
+        let svgContainer = document.querySelector(".lottie-loading");
+
+        let animItem = bodymovin.loadAnimation({
+            wrapper: svgContainer,
+            animType: "svg",
+            loop: true,
+            path: "https://ux.sbsvc.online/010pay/010pay-payment/images/lottie/loading.json",
+        });
+    </script>
+</html>

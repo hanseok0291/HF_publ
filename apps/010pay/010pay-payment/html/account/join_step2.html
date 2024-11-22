@@ -46,95 +46,26 @@
           <div class="container">
             <!-- headline -->
             <div class="headline">
-              <p>
-                <span class="change-headline">주민등록번호를</span> 알려주세요
-              </p>
+              <p>인증번호를 입력해 주세요</p>
             </div>
             <!-- //headline -->
 
             <!-- section -->
             <div class="section">
+              <div class="phoneNumberWrap">
+                <div class="agency">SKT</div>
+                <div class="number">010-1234-5678</div>
+              </div>
               <ul class="form-type">
                 <li>
-                  <div class="input-container label-n">
-                    <input
-                      type="text"
-                      class="custom-input"
-                      placeholder=" "
-                      id="phoneNumber2"
-                    />
-                    <label for="phoneNumber2" class="floating-label"
-                      >휴대폰 번호</label
-                    >
-                    <button
-                      type="button"
-                      class="icon icon-del js-text-del"
-                    ></button>
-                  </div>
-                </li>
-                <li>
-                  <div class="select-box">
-                    <button
-                      class="label"
-                      onclick="modalOpenSlide('modal-select-phone-info')"
-                    >
-                      통신사
-                    </button>
-                    <span class="floating-label">통신사</span>
-                  </div>
-                </li>
-                <li class="id-number-wrap" style="display: none;">
-                  <div class="input-container label-n id-number">
-                    <div>
-                      <input
-                        type="text"
-                        class="custom-input"
-                        placeholder=""
-                        id="idNumber"
-                        maxlength="6"
-                      />
-                      <label for="birthDate" class="floating-label first"
-                        >생년월일</label
-                      >
+                  <div class="input-container label-n type-timer">
+                    <input type="tel" class="custom-input" id="text3" maxlength="6" pattern="[0-9]*" placeholder=" ">
+                    <label for="text3" class="floating-label">6자리 숫자 입력</label>
+                    <button type="button" class="icon icon-del js-text-del"></button>
+                    <div class="type-timer-box">
+                        <span class="time">2:28</span>
+                        <button type="button" class="btn btn-small btn-send js-btn-re">재발송</button>
                     </div>
-                    <em class="dash">-</em>
-                    <div>
-                      <input
-                        type="text"
-                        class="custom-input"
-                        placeholder="0"
-                        id="accountNumber4"
-                        maxlength="1"
-                      />
-                      <!-- <label for="accountNumber4" class="floating-label"></label> -->
-                      <span class="id-mark">
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                      </span>
-                    </div>
-                    <button
-                      type="button"
-                      class="icon icon-del js-text-del"
-                    ></button>
-                  </div>
-                </li>
-                <li class="name-wrap" style="display: none;">
-                  <div class="input-container label-n">
-                    <input
-                      type="text"
-                      class="custom-input"
-                      placeholder=" "
-                      id="name"
-                    />
-                    <label for="name" class="floating-label">이름</label>
-                    <button
-                      type="button"
-                      class="icon icon-del js-text-del"
-                    ></button>
                   </div>
                 </li>
               </ul>
@@ -148,7 +79,14 @@
             <!-- container -->
             <div class="container">
               <!--<button type="button" id="send" class="btn" disabled>다음</button>-->
-              <button type="button" id="send" class="btn" disabled>다음</button>
+              <button
+                type="button"
+                id="nextBtn"
+                class="btn"
+                onclick="location.href='join_step3.html'"
+              >
+                다음
+              </button>
             </div>
             <!-- //container -->
           </div>
@@ -159,30 +97,37 @@
     </div>
     <!-- //wrap -->
 
-    <!-- loading -->
-    <div class="modal modal-loading">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="loading">
-            <span class="loading-bar"></span>
-            <span class="loading-bar"></span>
-            <span class="loading-bar"></span>
-          </div>
-          <span class="sr-only">로딩 중</span>
-        </div>
-      </div>
-    </div>
-    <!-- //loading -->
-
     <!-- common alert -->
     <div id="commonAlert" class="modal">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
             <h3 id="alertTitle"></h3>
-            <p id="alertContents"></p>
+            <p id="alertContents">
+              인증 번호가 일치하지 않습니다.<br>확인 후 다시 입력해 주세요.
+            </p>
+            <!-- <p id="alertContents">
+              입력시간을 초과하였습니다.<br>[재발송]을 눌러 다시 진행해 주세요.
+            </p> -->
+            <!-- <p id="alertContents">
+              인증 번호를 재발송하였습니다.
+            </p> -->
           </div>
           <div class="modal-footer">
+            <!-- <button
+              type="button"
+              onclick="modalClose();"
+              class="btn btn-confirm"
+            >
+              취소
+            </button> -->
+            <!-- <button
+              type="button"
+              onclick="modalClose();"
+              class="btn btn-confirm"
+            >
+              다시하기
+            </button> -->
             <button
               type="button"
               onclick="modalClose();"
@@ -190,109 +135,17 @@
             >
               확인
             </button>
+            <!-- <button
+              type="button"
+              onclick="modalClose();"
+              class="btn btn-confirm"
+            >
+              문의하기
+            </button> -->
           </div>
         </div>
       </div>
     </div>
     <!-- //common alert -->
-
-    <!-- select modal list -->
-    <div
-      id="modal-select-phone-info"
-      class="modal modal-slide type-select type-title"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-head">
-            <p class="modal-head-title">통신사 선택</p>
-            <button type="button" class="btn btn-close js-modal-close">
-              <i class="icon-close"></i>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container">
-              <ul class="btn-list">
-                <li class="option-item">
-                  <button type="button" class="btn">
-                    <em class="label">SKT</em>
-                    <i class="icon-check-on"></i>
-                  </button>
-                </li>
-                <li class="option-item">
-                  <button type="button" class="btn">
-                    <em class="label">KT</em>
-                    <i class="icon-check-on"></i>
-                  </button>
-                </li>
-                <li class="option-item">
-                  <button type="button" class="btn">
-                    <em class="label">LG U+</em>
-                    <i class="icon-check-on"></i>
-                  </button>
-                </li>
-                <li class="option-item">
-                  <button type="button" class="btn">
-                    <em class="label">SKT 알뜰폰</em>
-                    <i class="icon-check-on"></i>
-                  </button>
-                </li>
-                <li class="option-item">
-                  <button type="button" class="btn">
-                    <em class="label">KT 알뜰폰</em>
-                    <i class="icon-check-on"></i>
-                  </button>
-                </li>
-                <li class="option-item">
-                  <button type="button" class="btn">
-                    <em class="label">LG U+ 알뜰폰</em>
-                    <i class="icon-check-on"></i>
-                  </button>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- //select modal list -->
-
-    <script>
-      $(function () {
-        var headline = $(".step2 .headline .change-headline");
-
-        $("#phoneNumber2").focus(function () {
-          headline.text("휴대폰 번호를");
-        });
-        $("#idNumber").focus(function () {
-          headline.text("주민등록번호를");
-        });
-        $("#name").focus(function () {
-          headline.text("이름을");
-        });
-
-        // 텍스트 변경 감지
-        const observer = new MutationObserver(() => {
-          console.log("텍스트가 변경되었습니다:", target.textContent);
-        });
-
-        $("#modal-select-phone-info .option-item").on("click", function(){
-          $(".id-number-wrap").show().find("input").eq(0).focus();
-        });
-
-        
-        $(this).on("input change", function(){
-            var totalInputLength = 0;
-            $(".id-number input").each(function(i, e){
-              totalInputLength += e.value.length;
-            });
-            if(totalInputLength === 7){
-              $(".name-wrap").show().find("input").focus();
-            }
-          });
-        
-
-        modalOpenSlide('modal-select-phone-info')
-      });
-    </script>
   </body>
 </html>

@@ -46,7 +46,9 @@
           <div class="container">
             <!-- headline -->
             <div class="headline">
-              <p>휴대폰 번호를 알려주세요</p>
+              <p>
+                <span class="change-headline">휴대폰 번호를</span> 알려주세요
+              </p>
             </div>
             <!-- //headline -->
 
@@ -58,13 +60,77 @@
                     <input
                       type="text"
                       class="custom-input"
-                      placeholder=""
-                      id="phoneNumber1"
+                      placeholder=" "
+                      id="phoneNumber"
                       maxlength="11"
                     />
-                    <label for="phoneNumber1" class="floating-label"
+                    <label for="phoneNumber" class="floating-label"
                       >휴대폰 번호</label
                     >
+                    <button
+                      type="button"
+                      class="icon icon-del js-text-del"
+                    ></button>
+                  </div>
+                </li>
+                <li class="agency-wrap" style="display: none">
+                  <div class="select-box">
+                    <button
+                      class="label"
+                      onclick="modalOpenSlide('modal-select-phone-info')"
+                    >
+                      통신사
+                    </button>
+                    <span class="floating-label">통신사</span>
+                  </div>
+                </li>
+                <li class="id-number-wrap" style="display: none">
+                  <div class="input-container label-n id-number">
+                    <div>
+                      <input
+                        type="text"
+                        class="custom-input"
+                        placeholder=""
+                        id="idNumber"
+                        maxlength="6"
+                      />
+                      <label for="idNumber" class="floating-label first"
+                        >생년월일</label
+                      >
+                    </div>
+                    <em class="dash">-</em>
+                    <div>
+                      <input
+                        type="text"
+                        class="custom-input"
+                        placeholder="0"
+                        id="accountNumber4"
+                        maxlength="1"
+                      />
+                      <span class="id-mark">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      class="icon icon-del js-text-del"
+                    ></button>
+                  </div>
+                </li>
+                <li class="name-wrap" style="display: none">
+                  <div class="input-container label-n">
+                    <input
+                      type="text"
+                      class="custom-input"
+                      placeholder=" "
+                      id="name"
+                    />
+                    <label for="name" class="floating-label">이름</label>
                     <button
                       type="button"
                       class="icon icon-del js-text-del"
@@ -81,13 +147,21 @@
           <div class="bottom-area">
             <!-- container -->
             <div class="container">
-              <!--<button type="button" id="send" class="btn" disabled>다음</button>-->
               <button
                 type="button"
-                id="nextBtn"
+                id="agree-show"
                 class="btn"
                 disabled
                 onclick="modalOpenSlide('modal-agree')"
+              >
+                다음
+              </button>
+              <button
+                type="button"
+                id="send"
+                class="btn"
+                style="display: none"
+                onclick="location.href='join_step2.html'"
               >
                 다음
               </button>
@@ -100,21 +174,6 @@
       </div>
     </div>
     <!-- //wrap -->
-
-    <!-- loading -->
-    <div class="modal modal-loading">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="loading">
-            <span class="loading-bar"></span>
-            <span class="loading-bar"></span>
-            <span class="loading-bar"></span>
-          </div>
-          <span class="sr-only">로딩 중</span>
-        </div>
-      </div>
-    </div>
-    <!-- //loading -->
 
     <!-- common alert -->
     <div id="commonAlert" class="modal">
@@ -156,11 +215,7 @@
             <div class="container">
               <div class="check-all top">
                 <span class="checkbox">
-                  <input
-                    type="checkbox"
-                    name="checkbox_1"
-                    id="checkbox1_all"
-                  />
+                  <input type="checkbox" name="checkbox_1" id="checkbox1_all" />
                   <label for="checkbox1_all">약관 전체 동의</label>
                 </span>
               </div>
@@ -378,7 +433,69 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" id="btn-agree1" class="btn-confirm" onclick="location.href='join_step2.html'">동의하기</button>
+            <button type="button" id="agree" class="btn-confirm">
+              동의하기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //select modal list -->
+
+    <!-- select modal list -->
+    <div
+      id="modal-select-phone-info"
+      class="modal modal-slide type-select type-title"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title">통신사 선택</p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <ul class="btn-list">
+                <li class="option-item">
+                  <button type="button" class="btn">
+                    <em class="label">SKT</em>
+                    <i class="icon-check-on"></i>
+                  </button>
+                </li>
+                <li class="option-item">
+                  <button type="button" class="btn">
+                    <em class="label">KT</em>
+                    <i class="icon-check-on"></i>
+                  </button>
+                </li>
+                <li class="option-item">
+                  <button type="button" class="btn">
+                    <em class="label">LG U+</em>
+                    <i class="icon-check-on"></i>
+                  </button>
+                </li>
+                <li class="option-item">
+                  <button type="button" class="btn">
+                    <em class="label">SKT 알뜰폰</em>
+                    <i class="icon-check-on"></i>
+                  </button>
+                </li>
+                <li class="option-item">
+                  <button type="button" class="btn">
+                    <em class="label">KT 알뜰폰</em>
+                    <i class="icon-check-on"></i>
+                  </button>
+                </li>
+                <li class="option-item">
+                  <button type="button" class="btn">
+                    <em class="label">LG U+ 알뜰폰</em>
+                    <i class="icon-check-on"></i>
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -387,10 +504,55 @@
 
     <script>
       $(function () {
-        $("#phoneNumber1").on("input", function () {
-          var input = $(this).val(); // 현재 입력된 값
+        // 휴대폰 번호 입력 시 이벤트: 입력값이 11자리가 되면 '동의하기' 버튼 활성화
+        $("#phoneNumber").on("input", function () {
+          var input = $(this).val(); // 입력된 값
           if (input.length === 11) {
-            $("#nextBtn").attr("disabled", false);
+            $("#agree-show").attr("disabled", false); // '동의하기' 버튼 활성화
+          }
+        });
+
+        // '동의하기' 버튼 클릭 시 이벤트: 통신사 선택 영역 표시 및 약관 모달 닫기
+        $("#agree").on("click", function () {
+          $(".agency-wrap").show(); // 통신사 선택 영역 표시
+          $(this).closest(".modal-agree").hide(); // 약관 동의 모달 닫기
+          $("#agree-show").hide(); // '동의하기' 버튼 숨기기
+          $("#send").show(); // '다음' 버튼 표시
+        });
+
+        // 헤드라인 텍스트 변경용 변수
+        var headline = $(".step1 .headline .change-headline");
+
+        // 각 입력 필드 포커스 시 헤드라인 텍스트 변경
+        $("#phoneNumber").focus(function () {
+          headline.text("휴대폰 번호를"); // 휴대폰 번호 입력 시 헤드라인 텍스트
+        });
+        $("#idNumber").focus(function () {
+          headline.text("주민등록번호를"); // 주민등록번호 입력 시 헤드라인 텍스트
+        });
+        $("#name").focus(function () {
+          headline.text("이름을"); // 이름 입력 시 헤드라인 텍스트
+        });
+
+        // 통신사 선택 시 이벤트: 주민등록번호 입력 영역 표시
+        $("#modal-select-phone-info .option-item").on("click", function () {
+          $(".id-number-wrap").show().find("input").eq(0).focus(); // 주민등록번호 입력 필드에 포커스
+        });
+
+        // 주민등록번호 입력 시 이벤트: 이름 입력 영역 표시
+        var nameShow = false; // 이름 입력 영역 표시 여부 플래그
+        $(".id-number input").on("input change", function () {
+          var totalInputLength = 0; // 입력된 총 문자 수
+          $(".id-number input").each(function (i, e) {
+            totalInputLength += e.value.length; // 모든 주민등록번호 필드의 길이 합산
+          });
+          if (totalInputLength === 7 && !nameShow) {
+            // 총 7자리 입력 완료 시
+            $(".name-wrap").show(); // 이름 입력 영역 표시
+            setTimeout(() => {
+              $(".name-wrap input").focus(); // 이름 입력 필드에 포커스
+              nameShow = true; // 플래그 업데이트
+            }, 0);
           }
         });
       });

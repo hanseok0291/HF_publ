@@ -112,7 +112,7 @@ $(function () {
         var openBtn = $(this); // "보기" 버튼 참조
         var target = $(this).attr("data-target"); // 모달 ID
         var modal = $(target);
-        $(target).show().attr("aria-hidden", "false"); // 모달 열기, aria-hidden 설정
+        $(target).show(); // 모달 열기
         scrollOff(); // 바디 스크롤 제거
 
         // 모달 위치 조정
@@ -130,7 +130,7 @@ $(function () {
             }
 
             // 외부 콘텐츠 aria-hidden 설정
-            $("#wrap, #header, #content, #footer").attr("aria-hidden", "true");
+            // $("#wrap, #header, #content, #footer").attr("aria-hidden", "true");
         }, 300); // 모달 열림에 딜레이가 있으면 약간의 시간 지연을 줄 수 있음
 
         // 마지막 포커스된 요소 저장 (초점을 복귀할 요소)
@@ -140,11 +140,11 @@ $(function () {
     // 모달 닫기
     $("[data-dismiss='modal']").click(function () {
         var target = $(this).parents(".modal");
-        $(target).hide().attr("aria-hidden", "true"); // 모달 닫기, aria-hidden 설정
+        $(target).hide(); // 모달 닫기, aria-hidden 설정
         scrollOn(); // 바디 스크롤 제거 해제
 
         // 외부 콘텐츠 aria-hidden 해제
-        $("#wrap, #header, #content, #footer").attr("aria-hidden", "false");
+        // $("#wrap, #header, #content, #footer").attr("aria-hidden", "false");
 
         // 모달 닫힐 때 포커스 복귀
         if (lastFocusedElement) {
@@ -195,7 +195,7 @@ $(modalCont).css("bottom", modalH); // 팝업들 bottom 값 setting
 // 레이어 팝업(모달) 열기
 function modalOpen(obj) {
     var temp = $("#" + obj);
-    temp.show().attr("aria-hidden", "false").focus(); // 모달 열기, aria-hidden 설정
+    temp.show(); // 모달 열기, aria-hidden 설정
     scrollOff(); // 바디 스크롤 제거
 
     // 위치
@@ -212,7 +212,7 @@ function modalOpen(obj) {
         }
 
         // 외부 콘텐츠 aria-hidden 설정
-        $("#wrap, #header, #content, #footer").attr("aria-hidden", "true");
+        // $("#wrap, #header, #content, #footer").attr("aria-hidden", "true");
     }, 300);
 
     // 포커스 트랩 설정
@@ -221,11 +221,11 @@ function modalOpen(obj) {
 
 // 레이어 팝업(모달) 닫기
 function modalClose() {
-    $(".modal").hide().attr("aria-hidden", "true"); // 모달 닫기, aria-hidden 설정
+    $(".modal").hide(); // 모달 닫기, aria-hidden 설정
     scrollOn(); // 바디 스크롤 제거 해제
 
     // 모달 닫힐 때 aria-hidden 해제
-    $("#wrap, #header, #content, #footer").attr("aria-hidden", "false");
+    // $("#wrap, #header, #content, #footer").attr("aria-hidden", "false");
 
     // 포커스 복귀는 여기에 필요에 따라 추가
 }
@@ -235,7 +235,7 @@ function modalOpenSlide(obj) {
     var temp = $("#" + obj);
     var modalCont = $(temp).find(".modal-content");
 
-    temp.show().attr("aria-hidden", "false"); // 모달 열기, aria-hidden 설정
+    temp.show(); // 모달 열기, aria-hidden 설정
     // modalCont.focus();
     $(modalCont).animate({ bottom: 0 }, 200);
 
@@ -252,7 +252,7 @@ function modalOpenSlide(obj) {
         }
 
         // 외부 콘텐츠 aria-hidden 설정
-        $("#wrap, #header, #content, #footer").attr("aria-hidden", "true");
+        // $("#wrap, #header, #content, #footer").attr("aria-hidden", "true");
     }, 200);
 
     // 포커스 트랩 설정
@@ -280,7 +280,7 @@ function modalOpenSlide(obj) {
 
     // bottom modal 닫기
     function modalCloseSlide() {
-        temp.fadeOut(200).attr("aria-hidden", "true"); // 모달 닫기, aria-hidden 설정
+        temp.fadeOut(200); // 모달 닫기, aria-hidden 설정
         $(temp).find(".modal-content").animate({ bottom: modalH }, 200);
 
         // 이중 모달이 아닌 경우
@@ -289,7 +289,7 @@ function modalOpenSlide(obj) {
         }
 
         // 외부 콘텐츠 aria-hidden 해제
-        $("#wrap, #header, #content, #footer").attr("aria-hidden", "false");
+        // $("#wrap, #header, #content, #footer").attr("aria-hidden", "false");
     }
 
     // 푸터 고정 토글
@@ -369,7 +369,7 @@ $.toastMessage = function (title, contents, callbackFunc) {
     $(".toast-title").html(contents);
 
     // 모달 열기
-    $(target).show().attr("aria-hidden", "false").focus();
+    $(target).show();
 
     // 모달 위치
     var thisDialog = $(target).find(".modal-dialog");
@@ -377,7 +377,7 @@ $.toastMessage = function (title, contents, callbackFunc) {
     $(thisDialog).css("margin-top", "-" + marginValue + "px");
 
     setTimeout(() => {
-        $(target).fadeOut(200).attr("aria-hidden", "true");
+        $(target).fadeOut(200);
     }, 2000);
 };
 
@@ -547,13 +547,13 @@ const observer = new MutationObserver(function (mutationsList) {
             const displayStyle = window.getComputedStyle(modal).display;
             if (displayStyle === "block") {
                 // 모달이 열렸을 때 실행할 코드
-                pageContent.setAttribute("aria-hidden", "true"); // 외부 콘텐츠 숨기기
-                modal.removeAttribute("aria-hidden");
+                // pageContent.setAttribute("aria-hidden", "true"); // 외부 콘텐츠 숨기기
+                // modal.removeAttribute("aria-hidden");
                 closeButton.focus(); // 모달 내부로 스크린리더 초점 이동
             } else {
                 // 모달이 닫혔을 때 실행할 코드
-                pageContent.removeAttribute("aria-hidden"); // 외부 콘텐츠 접근 가능
-                modal.setAttribute("aria-hidden", "true");
+                // pageContent.removeAttribute("aria-hidden"); // 외부 콘텐츠 접근 가능
+                // modal.setAttribute("aria-hidden", "true");
             }
         }
     });

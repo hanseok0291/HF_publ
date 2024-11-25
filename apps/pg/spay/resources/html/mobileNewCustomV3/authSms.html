@@ -30,7 +30,7 @@
 
         <link rel="stylesheet" href="../../css/owl.carousel.min.css" />
         <link rel="stylesheet" href="../../css/slick.min.css" />
-        <link rel="stylesheet" href="../../css/common_monotone.css?ver=241122" />
+        <link rel="stylesheet" href="../../css/common_monotone.css?ver=241125" />
         <!--[if lt IE 9]>
             <script type="text/javascript" src="../../js/html5shiv.js"></script>
             <script type="text/javascript" src="../../js/respond.min.js"></script>
@@ -39,16 +39,16 @@
         <script src="../../js/jquery.placeholder.min.js"></script>
         <script src="../../js/owl.carousel.min.js"></script>
         <script src="../../js/slick.min.js"></script>
-        <script src="../../js/design_monotone.js?ver=241122" defer="defer"></script>
+        <script src="../../js/design_monotone.js?ver=241125" defer="defer"></script>
         <script src="../../js/commonmsg_monotone.js"></script>
         <script src="../../js/commonutil.js"></script>
     </head>
 
     <body class="custom-new">
         <!-- wrap -->
-        <div id="wrap" class="wrap">
+        <div id="wrap" class="">
             <!-- form -->
-            <form class="wrap" autocomplete="off">
+            <form>
                 <!-- header -->
                 <div id="header">
                     <div class="container">
@@ -200,10 +200,10 @@
                                 <div class="select-auth">
                                     <!-- select-telecom -->
                                     <div class="select-telecom col-2">
-                                        <div class="input select-input" id="selectTelecom">
+                                        <div class="input select-input">
                                             <div class="select">
                                                 <ul>
-                                                    <li><button type="button">SKT</button></li>
+                                                    <li><button type="button" id="selectTelecom">SKT</button></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -258,7 +258,7 @@
                                             <div class="form-type form-type-top auth-number-wrap">
                                                 <div class="form-col2 auth-number-box">
                                                     <div class="form-item input-btn reg-number-wrap">
-                                                        <input type="text" placeholder="인증번호 입력" />
+                                                        <input type="text" placeholder="인증번호 입력" id="authNumInput" />
                                                         <!-- <span class="count">02:59</span> -->
                                                         <div id="timer" aria-live="off">
                                                             <span id="visualTimer" tabindex="0" aria-hidden="true">03:00</span>
@@ -618,7 +618,6 @@
                     $("#modalSlide").fadeOut(200);
                     $("#modalSlide").find(".modal-content").animate({ bottom: modalH }, 200);
                     $("body").removeClass("modal-open");
-                    $("#wrap").css("top", 0);
                     $("#wrap").css("position", "relative");
 
                     // 모든 버튼의 aria-label을 초기화
@@ -643,6 +642,22 @@
             $(".btn_view").click(function () {
                 $("#noticeDetail .terms-title").attr("tabindex", 0).show().focus();
                 $this = $(this);
+            });
+
+            $("#authNumInput").on("input", function () {
+                var inputValue = $(this).val();
+
+                // 값이 4자리 이상인지 확인
+                if (inputValue.length >= 4) {
+                    // 버튼 활성화
+                    $("#send").prop("disabled", false);
+
+                    // 버튼에 포커스 이동
+                    $("#send").focus();
+                } else {
+                    // 값이 4자리 미만일 경우 버튼 비활성화
+                    $("#send").prop("disabled", true);
+                }
             });
         </script>
     </body>

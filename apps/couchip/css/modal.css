@@ -1,0 +1,437 @@
+/* ----- modal ----- */
+.modal-dialog,
+.modal-content,
+.modal-header,
+.modal-body,
+.modal-footer {
+    clear: both;
+}
+.modal-dialog:after,
+.modal-content:after,
+.modal-header:after,
+.modal-body:after,
+.modal-footer:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: center;
+    z-index: 999;
+}
+.modal:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+.modal .my-logo img {
+    width: auto;
+    max-width: inherit;
+    height: 26px;
+}
+.modal.exStyle.no-bg:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: none;
+}
+.modal-dialog {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -160px;
+    padding: 20px;
+    width: 100%;
+    z-index: 2;
+}
+.modal-content {
+    width: 100%;
+    min-width: 280px;
+    max-width: 1000px;
+    overflow: hidden;
+    display: inline-block;
+    border-radius: 18px;
+    background-color: #fff;
+    text-align: left;
+    vertical-align: top;
+}
+.modal-alert .modal-content {
+    max-width: 386px;
+    text-align: center;
+}
+.modal-header {
+    position: relative;
+}
+.modal-header .btn-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+.modal-body {
+    padding: 35px 30px 14px;
+    min-height: 90px;
+    background-color: #fff;
+    font-size: 14px;
+}
+.modal-body h3 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 21.78px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #000;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+}
+.modal-body h3 .close-btn {
+    width: 40px;
+    height: 40px;
+    background: url("../img/common/icon-close.png") no-repeat top right / 13px;
+}
+.modal-body h3:empty {
+    margin-bottom: 0;
+}
+.modal-reg .modal-body h3 {
+    border-bottom: 1px solid #e3e3e7;
+}
+.modal-footer {
+    background-color: #fff;
+}
+.modal-footer .btn {
+    display: block;
+    width: 75px;
+    max-width: 75px;
+    margin: 0 auto;
+    padding: 0;
+    background-color: #f8b400;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 42px;
+}
+.modal-footer .btn.btn-cancel {
+    font-weight: 400;
+}
+body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer {
+    padding: 0 20px 24px;
+}
+.modal-open {
+    overflow: hidden;
+}
+
+/* 풀모달 */
+.modal-full .modal-dialog {
+    top: 0;
+    bottom: 0;
+    padding: 0;
+    margin-top: 0 !important;
+    height: 100%;
+    overflow: hidden;
+    background-color: #fff;
+}
+.modal-full .modal-head {
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: -1px;
+    left: 0;
+    right: 0;
+    min-width: 320px;
+    padding: 0;
+    width: 100%;
+    height: 50px;
+    background-color: transparent;
+    text-align: center;
+    z-index: 100;
+    position: fixed;
+}
+.modal-full .modal-head > .container {
+    position: relative;
+}
+.modal-full .modal-content {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    border-radius: 0;
+    left: 0;
+}
+.modal-full .modal-head .btn-close {
+    position: absolute;
+    top: 50%;
+    right: 13px;
+    transform: translateY(-50%);
+    position: absolute;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    border: 0;
+    padding: 0;
+    top: -4px;
+    transform: none;
+    right: 14px;
+}
+.modal-full .modal-body {
+    padding: 0 0 10px;
+    height: calc(100% - 110px);
+    padding-top: 50px;
+}
+.modal-full .modal-body .title {
+    font-family: Pretendard;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24.3px;
+    text-align: center;
+}
+.modal-full .modal-body .title + .sub-title {
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20.25px;
+    text-align: center;
+    margin-top: 15px;
+}
+.modal-full .modal-head .btn-back {
+    position: absolute;
+    top: 1.5px;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+}
+.modal-full .modal-head .btn-back {
+    font-family: Pretendard;
+    font-size: 18px;
+    line-height: 21.48px;
+    font-weight: 700;
+    text-align: left;
+    padding-left: 25px;
+}
+.modal-full .modal-head .page-title {
+    font-family: Pretendard;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21.48px;
+    text-align: left;
+}
+.modal-full .modal-footer .btn {
+    width: 100%;
+}
+.modal-full .modal-footer .btn.btn-confirm {
+    background-color: #151515;
+    color: #fff;
+}
+
+.modal-full .modal-content {
+    display: flex;
+    flex-direction: column;
+}
+.modal-full .modal-footer {
+    margin-top: auto;
+}
+.modal-full .modal-head {
+    background-color: #fff;
+}
+.modal-full .modal-body {
+    overflow-y: scroll;
+    height: calc(100% - 64px);
+}
+.modal-full .header-box {
+    display: flex;
+    align-items: center;
+}
+.modal-full .modal-head .btn-close {
+    position: relative;
+    margin-left: auto;
+    top: auto;
+    right: -4px;
+}
+/* //풀모달 */
+/* common modal */
+
+/* reg-modal */
+.modal-reg .modal-dialog .modal-content {
+    border: 1px solid #e3e3e7;
+    border-radius: 10px;
+}
+.modal-reg .tableWrap {
+    border-bottom: 1px solid #000;
+}
+.modal-reg table {
+    width: 100%;
+    margin-top: 20px;
+    border-top: 1px solid #000;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+.modal-reg table thead tr {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #cbcbcb;
+}
+.modal-reg table thead th {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.36px;
+    text-align: center;
+    color: #000;
+    line-height: 40px;
+}
+.modal-reg .accordion-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    margin: 20px 0;
+}
+
+.modal-reg .accordion-table th,
+.modal-reg .accordion-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.36px;
+    text-align: left;
+    color: #666666;
+}
+
+.modal-reg .accordion-header {
+    cursor: pointer;
+    border-top: 1px solid #cbcbcb;
+}
+.modal-reg .accordion-header.open {
+    border-bottom: 0;
+}
+.modal-reg .accordion-header td {
+    min-height: 40px;
+    overflow: hidden; /* 내용이 넘칠 경우 숨김 */
+    text-overflow: ellipsis; /* 내용이 길면 말줄임 표시 */
+    white-space: nowrap; /* 한 줄로 제한 */
+}
+
+.modal-reg .accordion-header td:first-of-type {
+    text-align: center;
+    max-width: 100px; /* 최대 너비 제한 */
+    width: 100px; /* 고정 너비 */
+}
+.modal-reg .accordion-header td:nth-of-type(2) {
+    /* width: auto; 나머지 공간 차지 */
+}
+.modal-reg .accordion-header td:nth-of-type(3),
+.modal-reg .accordion-header td:nth-of-type(4) {
+    max-width: 40px; /* 최대 너비 제한 */
+    width: 40px; /* 고정 너비 */
+    height: 40px;
+    overflow: hidden; /* 넘치는 내용 숨김 */
+    text-align: center; /* 중앙 정렬 */
+}
+.accordion-header:last-of-type {
+    border-bottom: 0;
+}
+
+.modal-reg .accordion-content {
+    display: none;
+    background-color: #fff;
+    border-bottom: 1px solid #cbcbcb;
+}
+.modal-reg .accordion-content:last-of-type {
+    border-bottom: 0;
+}
+
+.modal-reg .accordion-content p {
+    margin: 0;
+    padding-bottom: 10px;
+}
+.modal-reg .accordion-toggle {
+    width: 40px;
+    height: 40px;
+    background: url("../img/common/arrow-down.png") no-repeat center / contain;
+}
+.modal-reg .accordion-toggle.open {
+    background: url("../img/common/arrow-up.png") no-repeat center / contain;
+}
+
+.modal-reg .accordion-header input[type="radio"] {
+    margin-right: 10px;
+}
+
+.modal-reg .delete-button {
+    width: 40px;
+    height: 40px;
+    background: url("../img/common/icon-del.png") no-repeat center / contain;
+}
+
+.modal-reg .register-button {
+    display: block;
+    width: 75px;
+    max-width: 75px;
+    margin: 16px auto 0;
+    padding: 0;
+    background-color: #f8b400;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.modal-reg .register-button:hover {
+    background-color: #ffa500;
+}
+.modal-reg .modal-reg thead th {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.36px;
+    text-align: center;
+    color: #000;
+    height: 40px;
+}
+/* 라디오 버튼 숨기기 */
+input[type="radio"] {
+    display: none;
+}
+
+/* 기본 라벨 스타일 */
+.image-radio {
+    text-align: left;
+}
+.image-radio label {
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background: url("../img/common/radio-off.png") no-repeat center left 25px / 16px; /* 비선택 이미지 */
+    cursor: pointer;
+    padding-left: 70px;
+}
+
+/* 선택된 상태 스타일 */
+.image-radio input[type="radio"]:checked + label {
+    background: url("../img/common/radio-on.png") no-repeat center left 25px / 16px; /* 선택된 이미지 */
+}
+/* //reg-modal */

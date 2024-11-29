@@ -443,7 +443,7 @@ function modalOpenSlide(obj) {
     let selectBox;
 
     $(".select-box").each(function (i, e) {
-        const $button = $(e).find('button'); // 현재 순회 중인 select-box의 버튼
+        const $button = $(e).find("button"); // 현재 순회 중인 select-box의 버튼
         if (obj === $button.attr("data-target")) {
             selectBox = $(e); // data-target과 obj가 일치하는 select-box 설정
         } else {
@@ -469,31 +469,6 @@ function modalOpenSlide(obj) {
     // 리사이즈
     $(window).resize(function () {
         modalContPos();
-    });
-
-    // 버튼 활성화 업데이트 함수
-    function updateConfirmButton() {
-        const allChecked = temp.find(".terms-list .checkbox.child input").length === temp.find(".terms-list .checkbox.child input:checked").length;
-        const confirmButton = temp.find(".btn-confirm");
-
-        // 모든 체크박스가 체크되었으면 버튼 활성화, 아니면 비활성화
-        if (allChecked) {
-            confirmButton.removeClass("disabled").prop("disabled", false);
-        } else {
-            confirmButton.addClass("disabled").prop("disabled", true);
-        }
-    }
-    // 전체 동의 체크박스 클릭 시, 모든 개별 약관 체크박스 상태 업데이트
-    temp.find("#checkbox_011_01").on("change", function () {
-        const isChecked = $(this).is(":checked");
-        temp.find(".terms-list .checkbox.child input").prop("checked", isChecked);
-        updateConfirmButton();
-    });
-    // 개별 체크박스 클릭 시, 전체 동의 체크박스 상태와 확인 버튼 업데이트
-    temp.find(".terms-list .checkbox.child input").on("change", function () {
-        const allChecked = temp.find(".terms-list .checkbox.child input").length === temp.find(".terms-list .checkbox.child input:checked").length;
-        temp.find("#checkbox_011_01").prop("checked", allChecked);
-        updateConfirmButton();
     });
 
     // 리스트에서 선택한 항목을 버튼에 반영

@@ -236,17 +236,12 @@ const Index = () => {
                   <li>2개 지급</li>
                   <li>3개 지급</li>
                 </ul>
-              </div>
+              </div> 
             </div>
           </div>
           <div className={styleHundredDeal.coupangWrap}>
-            <p className={styleHundredDeal.titleText}>하단 배너 클릭하고 <b>공짜 응모권 받기</b></p>
             <a href="#" className={styleHundredDeal.bannerWrap}>
-              <img src="../../images/100deal/sample/coupang-img-01.png" alt="홈플래닛 초음파 가습기 4L" />
-              <div className={styleHundredDeal.textWrap}>
-                <p className={styleHundredDeal.productName}>홈플래닛 초음파 가습기 4L (연장관/반투명 물탱크/무드등/타이머) (연장관/반투명 물탱크/무드등/타이머)</p>
-                <p className={`${styleHundredDeal.productPrice} ${styleHundredDeal.rocketDelivery}`}>37,040원</p>
-              </div>
+              쿠팡 방문하고 <b>공짜 응모권 받기</b>
             </a>
           </div>
           <h4 ref={thirdConRef}>

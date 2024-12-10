@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../../css/pay/payment.css" />
+    <script src="../../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../../js/jquery-ui.js"></script>
+    <script src="../../../js/design_renewal.js" defer="defer"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <button type="button" class="btn-back js-change-btn left-0">
+              <i class="icon-arrow-left"></i>
+            </button>
+            <h2 class="page-title">결제 수단 관리</h2>
+          </div>
+        </div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <!-- container -->
+        <div class="container payment-container">
+          <div class="tab">
+            <button type="button">계좌</button>
+            <button type="button" class="active">카드</button>
+            <button type="button">휴대폰</button>
+          </div>
+          <div class="tab-contents tab-1">
+            <ul id="sortable-list">
+              <li class="list-item">
+                <div class="list-box">
+                  <div class="img-wrap">
+                    <img src="" alt="은행" />
+                  </div>
+                  <div class="text-wrap">
+                    <p class="title-text">KB국민</p>
+                    <p class="sub-text">국민 345</p>
+                    <p class="error-text">계좌 확인이 필요해요</p>
+                  </div>
+                  <div class="right-box">
+                    <!-- <button type="button" class="handle">핸들</button> -->
+                    <button type="button" class="active-btn">활성화</button>
+                  </div>
+                  <button type="button" class="delete-btn">삭제</button>
+                </div>
+              </li>
+              <li class="list-item">
+                <div class="list-box">
+                  <div class="img-wrap">
+                    <img src="" alt="은행" />
+                  </div>
+                  <div class="text-wrap">
+                    <p class="title-text">KB국민</p>
+                    <p class="sub-text">국민 345</p>
+                  </div>
+                  <div class="right-box">
+                    <button type="button" class="handle">핸들</button>
+                  </div>
+                  <button type="button" class="delete-btn">삭제</button>
+                </div>
+              </li>
+              <li class="list-item">
+                <div class="list-box">
+                  <div class="img-wrap">
+                    <img src="" alt="은행" />
+                  </div>
+                  <div class="text-wrap">
+                    <p class="title-text">KB국민</p>
+                    <p class="sub-text">국민 345</p>
+                  </div>
+                  <div class="right-box">
+                    <button type="button" class="handle">핸들</button>
+                  </div>
+                  <button type="button" class="delete-btn">삭제</button>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- //container -->
+      </div>
+      <!-- //content -->
+    </div>
+    <!-- //wrap -->
+  </body>
+  <script>
+    let isSorting = false; // Sortable.js 동작 여부 확인
+    let isSwiping = false; // 스와이프 동작 여부 확인
+
+    // 스와이프 삭제 버튼 기능
+    document.querySelectorAll(".list-item").forEach((item) => {
+      const listBox = item.querySelector(".list-box"); // 스와이프 대상
+      const deleteBtn = item.querySelector(".delete-btn");
+      let startX = 0;
+      let currentX = 0;
+
+      // 각 리스트에서 swiped 상태를 독립적으로 관리
+      item.dataset.swiped = "false"; // 초기 상태 설정
+
+      // 다른 리스트 초기화
+      const resetOtherItems = (currentItem) => {
+        document.querySelectorAll(".list-item").forEach((otherItem) => {
+          if (
+            otherItem !== currentItem &&
+            otherItem.dataset.swiped === "true"
+          ) {
+            otherItem.querySelector(".list-box").style.transform =
+              "translateX(0)";
+            otherItem.dataset.swiped = "false"; // 상태 초기화
+          }
+        });
+      };
+
+      listBox.addEventListener("touchstart", (e) => {
+        if (isSorting) return; // Sortable.js 동작 중일 경우 스와이프 방지
+
+        startX = e.touches[0].clientX;
+        isSwiping = false;
+
+        // 다른 리스트 상태 초기화
+        resetOtherItems(item);
+      });
+
+      listBox.addEventListener("touchmove", (e) => {
+        if (isSorting) return; // Sortable.js 동작 중일 경우 스와이프 방지
+
+        const touchX = e.touches[0].clientX;
+        const deltaX = touchX - startX;
+
+        if (Math.abs(deltaX) > 10) {
+          isSwiping = true; // 스와이프 활성화
+        }
+
+        if (item.dataset.swiped === "false" && deltaX < 0) {
+          // 삭제 버튼이 숨겨진 상태에서 왼쪽 스와이프
+          currentX = Math.max(deltaX, -70); // 최대 -70px까지 이동
+          listBox.style.transform = `translateX(${currentX}px)`;
+        } else if (item.dataset.swiped === "true" && deltaX > 0) {
+          // 삭제 버튼이 노출된 상태에서 오른쪽 스와이프
+          currentX = Math.min(deltaX, 70); // 최대 70px까지 이동
+          listBox.style.transform = `translateX(${currentX - 70}px)`; // 초기 위치 조정
+        }
+      });
+
+      listBox.addEventListener("touchend", () => {
+        if (isSorting) return; // Sortable.js 동작 중일 경우 스와이프 방지
+
+        if (item.dataset.swiped === "false" && currentX <= -30) {
+          // 왼쪽 스와이프하여 삭제 버튼 노출
+          item.dataset.swiped = "true";
+          listBox.style.transform = "translateX(-70px)";
+        } else if (item.dataset.swiped === "true" && currentX >= 30) {
+          // 오른쪽 스와이프하여 삭제 버튼 숨김
+          item.dataset.swiped = "false";
+          listBox.style.transform = "translateX(0)";
+        } else {
+          // 스와이프 거리가 부족하면 현재 상태 유지
+          listBox.style.transform =
+            item.dataset.swiped === "true"
+              ? "translateX(-70px)"
+              : "translateX(0)";
+        }
+
+        // currentX 값 초기화 (불필요한 동작 방지)
+        currentX = 0;
+      });
+
+      deleteBtn.addEventListener("click", () => {
+        item.remove(); // 항목 제거
+      });
+    });
+
+    // Sortable.js 설정
+    const list = document.getElementById("sortable-list");
+
+    new Sortable(list, {
+      animation: 150, // 드래그 애니메이션
+      handle: ".handle",
+      direction: "vertical", // 수직 드래그 제한
+      onStart: () => {
+        isSorting = true; // Sortable.js 동작 시작
+      },
+      onEnd: () => {
+        isSorting = false; // Sortable.js 동작 종료
+      },
+      onMove: (evt) => {
+        if (isSwiping) {
+          // 스와이프 중일 경우 드래그 중단
+          return false;
+        }
+      },
+    });
+  </script>
+</html>

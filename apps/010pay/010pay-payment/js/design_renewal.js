@@ -118,6 +118,10 @@ $(function () {
                 }
             });
     }
+
+    $(".toggle-switch").on("click", function(){
+        $(this).toggleClass("active");
+    });
 });
 
 // 바디 스크롤 제거/해제
@@ -488,6 +492,17 @@ function modalOpenSlide(obj) {
         }
         modalCloseSlide(); // 모달 닫기
     });
+}
+
+// 토스트 팝업 노출 비노출
+function modalToastOpen(id){
+    $(".modal-toast").hide();
+    clearTimeout(toastTimeout);
+    var toastId = $("#" + id)
+    toastId.fadeIn();
+    var toastTimeout = setTimeout(function(){
+        toastId.fadeOut();
+    }, 1000)
 }
 
 // 버튼 클릭시 텍스트 변경

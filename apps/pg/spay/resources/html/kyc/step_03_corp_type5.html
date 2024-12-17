@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>헥토파이낸셜 지불서비스</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no, address=no, email=no" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+        <!-- favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="../../images/favicon/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="57x57" href="../../images/favicon/apple-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="60x60" href="../../images/favicon/apple-icon-60x60.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="../../images/favicon/apple-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="../../images/favicon/apple-icon-76x76.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="../../images/favicon/apple-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="../../images/favicon/apple-icon-120x120.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="../../images/favicon/apple-icon-144x144.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="../../images/favicon/apple-icon-152x152.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon/apple-icon-180x180.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="../../images/favicon/android-icon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="../../images/favicon/favicon-96x96.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon/favicon-16x16.png" />
+        <link rel="manifest" href="../../images/favicon/manifest.json" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="msapplication-TileImage" content="../../images/favicon/ms-icon-144x144.png" />
+        <meta name="theme-color" content="#ffffff" />
+        <!-- //favicon -->
+
+        <link rel="stylesheet" href="../../css/slick.min.css" />
+        <link rel="stylesheet" href="../../css/kyc.css" />
+        <script src="../../js/jquery-1.8.3.min.js"></script>
+        <script src="../../js/slick.min.js"></script>
+        <script src="../../js/kyc.js"></script>
+    </head>
+
+    <body>
+        <!-- wrap -->
+        <div id="wrap" class="wrap kyc sole">
+            <header>
+                <div class="container">
+                    <div class="titleWrap">
+                        <h1 class="logo"></h1>
+                        <span class="text">가맹점 서비스 계약</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content">
+                <div class="container">
+                    <h2 class="title textLeft">고객확인제도(KYC) 수집정보 등록</h2>
+
+                    <div class="stepWrap">
+                        <div class="step step-end" data-step="1">
+                            <div class="step-number">1</div>
+                        </div>
+                        <div class="step step-end line" data-step="2">
+                            <div class="step-number">2</div>
+                        </div>
+                        <div class="step line step-active" data-step="3">
+                            <div class="step-number">3</div>
+                        </div>
+                        <div class="step" data-step="4">
+                            <div class="step-number">4</div>
+                        </div>
+                    </div>
+
+                    <div class="guideWrap">
+                        <p class="title">실소유자 정보 등록</p>
+                        <ul class="guideList">
+                            <li>입점 법인의 주주 또는 출자자 지분율에 따라 아래와 같은 실소유자의 정보 입력이 필요합니다.</li>
+                            <li>아래 ‘유형’은 법인 등기 유형 선택에 따라 노출되며, 최신 정보가 아닐 경우 제출하신 서류와 일치하도록 법인 유형을 재선택해주세요.</li>
+                            <li>유형 선택이 완료되면 실소유자 등록을 진행해주세요.</li>
+                        </ul>
+                    </div>
+
+                    <div class="repTypeWrap">
+                        <p class="title">
+                            실소유자 별도 확인 필요<br />
+                            <span> 아래 실소유자 공문 양식을 작성해주세요. </span>
+                        </p>
+                        <button type="button" class="btn btnNext mlAuto openModalBtn" data-target="modalSelectType">유형 재선택</button>
+                    </div>
+
+                    <!--  -->
+                    <div id="ownerCheckWrap" class="ownerCheckWrap" style="display: block;">
+                        <h2 class="title">실소유자 확인서</h2>
+
+                        <ul class="guideList">
+                            <li>
+                                ㈜헥토파이낸셜은 해당 실제 소유자 확인서를 근거로 귀사의 실제 소유자를 확인하고자 하니 아래의 양식에 맞춰 실제소유자 정보를 작성하여 주시기 바랍니다. 
+                            </li>
+                            <li>
+                                실제 소유자 확인서만 단독으로 제출 할 수 없습니다. 주주명부와 함께 제출하여 주십시오.
+                            </li>
+                        </ul>
+
+                        <div class="formWrap">
+                            <div class="form-group">
+                                <label for="corpName">법인/단체명</label>
+                                <input type="text" id="corpName" name="corpName" placeholder="" />
+                            </div>
+                            <div class="form-group">
+                                <label for="corpNum">사업자등록번호</label>
+                                <input type="text" id="corpNum" name="corpNum" placeholder="" />
+                            </div>
+                            <div class="form-group">
+                                <label for="corpRegNum">법인등록번호</label>
+                                <input type="text" id="corpRegNum" name="corpRegNum" placeholder="" />
+                            </div>
+                            <div class="form-group">
+                                <label for="corpPhone">연락처</label>
+                                <input type="text" id="corpPhone" name="corpPhone" placeholder="" />
+                            </div>
+                        </div>
+
+                        <p class="midText">「특정 금융거래정보의 보고 및 이용 등에 관한 법률」에 따라 <strong>법인명</strong> 을/를 <br />최종적으로 지배하거나 통제하는 자연인은 아래와 같습니다.</p>
+
+                        <div class="line"></div>
+                        <!--  -->
+                        <div class="formWrap center">
+                            <div class="radioWrap">
+                                <div class="formGroup">
+                                    <label>실제 소유자 유형</label>
+                                    <div class="checkBox">
+                                        <input type="radio" id="radio1" class="checkSelect" name="radio" checked />
+                                        <label for="radio1">대표자, 업무집행사원 또는 임원 등의 과반수를 선임한 주주</label>
+                                    </div>
+                                </div>
+                                <div class="formGroup">
+                                    <label></label>
+                                    <div class="checkBox">
+                                        <input type="radio" id="radio2" class="checkSelect" name="radio" />
+                                        <label for="radio2">법인 또는 단체를 사실상 지배하는 자 </label>
+                                    </div>
+                                </div>
+                                <div class="formGroup">
+                                    <label></label>
+                                    <div class="checkBox">
+                                        <input type="radio" id="radio3" class="checkSelect" name="radio" />
+                                        <label for="radio3">대표자</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="repName">대표자명(국문)</label>
+                                <input type="text" id="repName" name="repName" placeholder="대표자명을 입력하세요" />
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="repEngName">대표자명(영문)</label>
+                                <input type="text" id="repEngName" name="repEngName" placeholder="영문 대표자명을 입력하세요" />
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="country">국적</label>
+                                <div class="selectBox">
+                                    <button class="label">국적</button>
+                                    <ul class="optionList">
+                                        <li class="optionItem">대한민국</li>
+                                        <li class="optionItem">미국</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="country">성별</label>
+                                <div class="selectBox">
+                                    <button class="label">성별</button>
+                                    <ul class="optionList">
+                                        <li class="optionItem">남성</li>
+                                        <li class="optionItem">여성</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="birthDate">생년월일 </label>
+                                <input type="date" id="birthDate" name="birthDate" placeholder="YYYY-MM-DD" />
+                            </div>
+                        </div>
+                        <!--  -->
+                        <div class="line"></div>
+
+                        <div>
+                            <p class="nameType">법인 / 단체명</p>
+                            <p class="nameTitle">국립해파리보호협회</p>
+                        </div>
+                    </div>
+                    <!--  -->
+
+                    <div class="btnWrap">
+                        <button type="button" class="btn btnPrev">이전</button>
+                        <button type="button" id="nextBtn" class="btn btnNext" disabled>다음 (저장)</button>
+                        <!-- 전체 데이터 입력 / 계좌 인증시 버튼 활성화 -->
+                        <!-- <button type="button" class="btn btnNext">실소유자 확인</button> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 법인 신원 확인 대상자(실소유주) 유형 모달 -->
+            <div id="modalSelectType" class="modal modalWide">
+                <div class="modal-content">
+                    <span class="close closeModalBtn" data-target="modalSelectType">&times;</span>
+                    <h2 id="modalTitle">법인 신원 확인 대상자(실소유주) 유형 선택</h2>
+
+                    <div class="guideWrap">
+                        <ul class="guideList">
+                            <li>아래 ‘유형’ 선택에 따라 법인 신원 확인 유형이 변경되어지며, 최신 정보 서류와 일치하도록 선택 부탁드립니다.</li>
+                            <li>확인생략대상 법인에 해당하여도 추가 확인이 필요한 경우 서류 제출을 요청할 수 있습니다.</li>
+                            <li><p class="btnLink openModalBtn" data-target="modalBusinessType">사업체 종류 확인하기</p></li>
+                        </ul>
+                    </div>
+
+                    <div class="radioWrap">
+                        <p class="infoTitle">귀 법인 · 단체가 해당하는 항목을 선택해주세요.</p>
+                        <div class="formGroup col-4">
+                            <div class="checkBox">
+                                <input type="radio" id="repType1" class="checkSelect" name="repType" />
+                                <label for="repType1">국가, 지방자치단체</label>
+                            </div>
+                            <div class="checkBox">
+                                <input type="radio" id="repType2" class="checkSelect" name="repType" />
+                                <label for="repType2">공공단체</label>
+                            </div>
+                            <div class="checkBox">
+                                <input type="radio" id="repType3" class="checkSelect" name="repType" />
+                                <label for="repType3">금융회사</label>
+                            </div>
+                            <div class="checkBox">
+                                <input type="radio" id="repType4" class="checkSelect" name="repType" />
+                                <label for="repType4">상장사 등 사업보고서 제출 대상 법인</label>
+                            </div>
+                            <div class="checkBox full-width">
+                                <input type="radio" id="repType5" class="checkSelect" name="repType" />
+                                <label for="repType5">주주명부 직접 입력</label>
+                            </div>
+                            <div class="checkBox full-width">
+                                <input type="radio" id="repType6" class="checkSelect" name="repType" />
+                                <label for="repType6">위 선택 항목에 없음 </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btnWrap">
+                        <button type="button" id="confirmBtn" class="btn btnNext" disabled>선택완료</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 법인 신원 확인 대상자(실소유주) 유형 모달 -->
+
+            <!-- 사업체 종류 확인 모달 -->
+            <div id="modalBusinessType" class="modal modalWide">
+                <div class="modal-content">
+                    <span class="close closeModalBtn" data-target="modalBusinessType">&times;</span>
+                    <h2>사업체 종류 확인하기</h2>
+
+                    <h3>사업자 구분 방법</h3>
+                    <table border="1" cellspacing="0" cellpadding="10">
+                        <tbody>
+                            <tr>
+                                <th>영리법인</th>
+                                <td>사업자번호 가운데 숫자가 81 또는 84~88이며 사업보고서 제출 대상(법인/상장사/금융회사)를 제외한 모든 영리 법인</td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    사업보고서 제출 <br />
+                                    대상 법인(상장사)
+                                </th>
+                                <td>
+                                    금융감독원 전자공시시스템(<a href="https://dart.fss.or.kr/">https://dart.fss.or.kr/</a>) 내 최근 1년 이내 ‘사업보고서’ 기 제출 법인 코스피/ 코스닥 등 국내 상장 여부
+                                    확인 가능 법인 또는 외국 증권 시장 상장 여부 확인 가능법인
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>금융회사</th>
+                                <td>금융소비자 정보포털 파인(<a href="htttps://fine.fss.or.kr/" target="_blank">htttps://fine.fss.or.kr/</a>) 내 제도권금융회사 조회 가능한 법인</td>
+                            </tr>
+                            <tr>
+                                <th>비영리법인</th>
+                                <td>사업자번호 가운데 숫자가 80,82,89 +법인등록번호가 있는 경우</td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    비영리 단체<br />
+                                    (임의단체)
+                                </th>
+                                <td>사업자번호 가운데 숫자가 80,82,89 +법인등록번호가 없는 경우</td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    공공기관<br />
+                                    (국가기관, <br />
+                                    지방자치단체)
+                                </th>
+                                <td>
+                                    사업자번호 가운데 숫자가 83 또는 공공기관 알리오(<a href="https://alio.go.kr/" target="_blank">https://alio.go.kr/</a>) 또는 지방공공기관 통합공시 클린아이(<a
+                                        href="https://www.cleaneye.go.kr"
+                                        target="_blank"
+                                        >https://www.cleaneye.go.kr</a
+                                    >) 조회 가능한 기관
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>공공단체</th>
+                                <td>
+                                    가. 『공공기관의 운영에 관한 법률』에 따른 공공기관<br />
+                                    나. 『정부출연연구기관 등의 설립 · 운영 및 육성에 관한 법률』 및 『과학기술분야 정부출연연구기관 등의 설립 · 운영 및 육성에 관한 법률』에 따라 설립된
+                                    정부출연연구기관, 과학기술분야 정부출연연구기관 및 연구회<br />
+                                    다. 『지방공기업법』에 따라 설립된 지방직영기업 · 지방공사 및 지방공단
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="btnWrap">
+                        <button type="button" class="btn btnNext closeModalBtn" data-target="modalBusinessType">닫기</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 사업체 종류 확인 모달 -->
+
+            <!-- 법인 신원 확인 대상자(실소유자) 유형 추가 선택  -->
+            <div id="beneficialOwnerType" class="modal modalWide">
+                <div class="modal-content">
+                    <span class="close closeModalBtn" data-target="beneficialOwnerType">&times;</span>
+                    <h2 id="modalTitle">법인 신원 확인 대상자(실소유자) 유형 추가 선택</h2>
+
+                    <div class="guideWrap">
+                        <ul class="guideList">
+                            <li>아래 ‘유형’ 선택에 다라 법인 신원 확인 유형이 변경되어지며, 최신 정보 서류와 일치하도록 선택 부탁드립니다.</li>
+                            <li>최대지분을 소유하고 있는 법인의 주주명부를 보고 답해주세요.</li>
+                            <li>이용 예정 가맹점의 실소유자는 주주명부 상 개인(자연인)으로 확인되어야 합니다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="radioWrap noBullet">
+                        <div class="radioStep radioStep1">
+                            <p class="infoTitle">1. 법인의 최대지분소유자가 개인입니까?</p>
+                            <div class="formGroup">
+                                <div class="checkBox">
+                                    <input type="radio" id="radioChk1_1" class="checkSelect" name="radioChk1" />
+                                    <label for="radioChk1_1">예</label>
+                                </div>
+                                <div class="checkBox">
+                                    <input type="radio" id="radioChk1_2" class="checkSelect" name="radioChk1" />
+                                    <label for="radioChk1_2">아니오</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="radioStep radioStep2">
+                            <p class="infoTitle">2. 해당 최대지분소유자의 지분율이 25% 이상입니까?</p>
+                            <div class="formGroup">
+                                <div class="checkBox">
+                                    <input type="radio" id="radioChk2_1" class="checkSelect" name="radioChk2" />
+                                    <label for="radioChk2_1">예</label>
+                                </div>
+                                <div class="checkBox">
+                                    <input type="radio" id="radioChk2_2" class="checkSelect" name="radioChk2" />
+                                    <label for="radioChk2_2">아니오</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="radioStep radioStep3">
+                            <p class="infoTitle">3. 2번 질문의 최대지분소유 법인의 최대지분소유자가 개인입니까?</p>
+                            <div class="formGroup">
+                                <div class="checkBox">
+                                    <input type="radio" id="radioChk3_1" class="checkSelect" name="radioChk3" />
+                                    <label for="radioChk3_1">예</label>
+                                </div>
+                                <div class="checkBox">
+                                    <input type="radio" id="radioChk3_2" class="checkSelect" name="radioChk3" />
+                                    <label for="radioChk3_2">아니오</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="radioStep radioStep4">
+                            <p class="infoTitle">4. 2가지 유형 중 해당되는 유형을 선택해주세요.</p>
+                            <div class="formGroup">
+                                <div class="checkBox">
+                                    <input type="radio" id="radioChk4_1" class="checkSelect" name="radioChk4" />
+                                    <label for="radioChk4_1">대표자, 업무집행사원 또는 임원 등의 과반수를 선임한 주주</label>
+                                </div>
+                                <div class="checkBox">
+                                    <input type="radio" id="radioChk4_2" class="checkSelect" name="radioChk4" />
+                                    <label for="radioChk4_2">대표자</label>
+                                </div>
+                            </div>
+                            <div class="formGroup full-width">
+                                <div class="checkBox">
+                                    <input type="radio" id="radioChk4_3" class="checkSelect" name="radioChk4" />
+                                    <label for="radioChk4_3">법인 또는 단체를 사실상 지배하는 자 </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btnWrap">
+                        <button type="button" id="confirmBtn2" class="btn btnNext" disabled>선택완료</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 법인 신원 확인 대상자(실소유자) 유형 추가 선택 -->
+        </div>
+        <!-- //wrap -->
+        <script>
+            // 모달 열기 버튼과 모달 요소, 닫기 버튼을 선택
+            const openModalBtns = document.querySelectorAll(".openModalBtn");
+            const closeModalBtns = document.querySelectorAll(".closeModalBtn");
+            const confirmBtn = document.getElementById("confirmBtn");
+            const beneficialOwnerType = document.getElementById("beneficialOwnerType");
+            const body = document.body; // body 요소 선택
+
+            // 모달 열기
+            openModalBtns.forEach((btn) => {
+                btn.addEventListener("click", function () {
+                    const targetModal = document.getElementById(this.getAttribute("data-target"));
+                    targetModal.style.display = "block";
+                    body.style.overflow = "hidden"; // 모달 열릴 때 스크롤 비활성화
+                });
+            });
+            // 모달 닫기
+            closeModalBtns.forEach((btn) => {
+                btn.addEventListener("click", function () {
+                    const targetModal = document.getElementById(this.getAttribute("data-target"));
+                    targetModal.style.display = "none";
+                    body.style.overflow = ""; // 모달 닫힐 때 스크롤 활성화
+                });
+            });
+
+            // 모달 외부 영역 클릭 시 닫기
+            window.addEventListener("click", function (event) {
+                const modals = document.querySelectorAll(".modal");
+                modals.forEach((modal) => {
+                    if (event.target === modal) {
+                        modal.style.display = "none";
+                        body.style.overflow = ""; // 모달 닫힐 때 스크롤 활성화
+                    }
+                });
+            });
+
+            // confirmBtn 클릭 이벤트 리스너
+            confirmBtn.addEventListener("click", function () {
+                const selectedType = document.querySelector('input[name="repType"]:checked');
+
+                // repType6이 선택된 경우 모달 beneficialOwnerType 열기
+                if (selectedType && selectedType.id === "repType6") {
+                    $("#modalSelectType").hide();
+                    beneficialOwnerType.style.display = "block";
+                    body.style.overflow = "hidden"; // 모달이 열리면 스크롤을 막음
+                }
+            });
+
+            // 라디오 버튼들 선택
+            const radioButtons = document.querySelectorAll('input[name="repType"]');
+            const modalBtn = document.getElementById("confirmBtn");
+            const nextBtn = document.getElementById("nextBtn");
+
+            // 라디오 버튼 선택 시 버튼 활성화
+            radioButtons.forEach((radio) => {
+                radio.addEventListener("change", function () {
+                    if (this.checked) {
+                        modalBtn.disabled = false; // 버튼 활성화
+                        nextBtn.disabled = false; // 다음버튼 활성화
+                    }
+                });
+            });
+
+            // 모달 내의 라디오 버튼과 confirmBtn
+            const confirmBtn2 = document.getElementById("confirmBtn2");
+
+            // 라디오 버튼 상태 변경 이벤트 리스너
+            function updateConfirmBtnState() {
+                // name 속성이 'radioChk1'인 라디오 버튼들 가져오기
+                const radio1 = document.getElementsByName("radioChk1");
+                // name 속성이 'radioChk2'인 라디오 버튼들 가져오기
+                const radio2 = document.getElementsByName("radioChk2");
+
+                // radioChk1과 radioChk2의 선택 상태 확인
+                const radioChk1Selected = Array.from(radio1).some((radio) => radio.checked); // radioChk1
+                const radioChk2Selected = Array.from(radio2).some((radio) => radio.checked); // radioChk2
+
+                // 둘 다 선택되면 confirmBtn의 disabled 속성 제거
+                if (radioChk1Selected && radioChk2Selected) {
+                    confirmBtn2.disabled = false;
+                } else {
+                    confirmBtn2.disabled = true;
+                }
+            }
+
+            // 라디오 버튼 클릭 이벤트 리스너 추가
+            const radio1Elements = document.getElementsByName("radioChk1");
+            const radio2Elements = document.getElementsByName("radioChk2");
+
+            radio1Elements.forEach((radio) => {
+                radio.addEventListener("change", updateConfirmBtnState);
+            });
+
+            radio2Elements.forEach((radio) => {
+                radio.addEventListener("change", updateConfirmBtnState);
+            });
+
+            // 초기 상태 업데이트
+            updateConfirmBtnState();
+
+            const radioChk1 = document.getElementsByName("radioChk1");
+            const radioChk2 = document.getElementsByName("radioChk2");
+            const radioChk3 = document.getElementsByName("radioChk3");
+            const radioChk4 = document.getElementsByName("radioChk4");
+            const ownerCheckWrap = document.getElementById("ownerCheckWrap");
+
+            const radioStep2 = document.querySelector(".radioStep2");
+            const radioStep3 = document.querySelector(".radioStep3");
+            const radioStep4 = document.querySelector(".radioStep4");
+
+            radioStep2.style.display = "none";
+            radioStep3.style.display = "none";
+            radioStep4.style.display = "none";
+
+            function resetNextSteps(startStep) {
+                if (startStep === 1) {
+                    radioStep2.style.display = "none";
+                    radioStep3.style.display = "none";
+                    radioStep4.style.display = "none";
+                    radioChk2.forEach((radio) => (radio.checked = false));
+                    radioChk3.forEach((radio) => (radio.checked = false));
+                    radioChk4.forEach((radio) => (radio.checked = false));
+                } else if (startStep === 2) {
+                    radioStep3.style.display = "none";
+                    radioStep4.style.display = "none";
+                    radioChk3.forEach((radio) => (radio.checked = false));
+                    radioChk4.forEach((radio) => (radio.checked = false));
+                } else if (startStep === 3) {
+                    radioStep4.style.display = "none";
+                    radioChk4.forEach((radio) => (radio.checked = false));
+                }
+                confirmBtn2.disabled = true;
+            }
+
+            // 첫 번째 단계에서 선택 시 두 번째 단계 표시 (radioChk1_2 선택 시에만)
+            radioChk1.forEach((radio) => {
+                radio.addEventListener("change", function () {
+                    resetNextSteps(1); // Reset steps after step 1
+                    if (radio.id === "radioChk1_2") {
+                        radioStep2.style.display = "block";
+                    }
+                });
+            });
+
+            // 두 번째 단계에서 선택 시 세 번째 단계 표시 (radioChk2_2 선택 시에만)
+            radioChk2.forEach((radio) => {
+                radio.addEventListener("change", function () {
+                    resetNextSteps(2); // Reset steps after step 2
+                    if (radio.id === "radioChk2_2") {
+                        radioStep3.style.display = "block";
+                    }
+                });
+            });
+
+            // 세 번째 단계에서 선택 시 네 번째 단계 표시 (radioChk3_1 선택 시에만)
+            radioChk3.forEach((radio) => {
+                radio.addEventListener("change", function () {
+                    resetNextSteps(3); // Reset steps after step 3
+                    if (radio.id === "radioChk3_1") {
+                        radioStep4.style.display = "block"; // radioChk3_1 선택 시 step4 활성화
+                    } else if (radio.id === "radioChk3_2") {
+                        confirmBtn2.disabled = false; // radioChk3_2 선택 시 confirmBtn2 활성화
+                    }
+                });
+            });
+
+            // 네 번째 단계에서 선택 시 버튼 활성화 확인
+            function checkAllSelected() {
+                const step1Selected = Array.from(radioChk1).some((radio) => radio.checked);
+                const step2Selected = Array.from(radioChk2).some((radio) => radio.checked);
+                const step3Selected = Array.from(radioChk3).some((radio) => radio.checked);
+                const step4Selected = Array.from(radioChk4).some((radio) => radio.checked);
+
+                if (step1Selected && step2Selected && step3Selected && step4Selected) {
+                    confirmBtn2.disabled = false;
+                } else {
+                    confirmBtn2.disabled = true;
+                }
+            }
+
+            // 네 번째 단계에서 선택 시 확인 버튼 상태 확인
+            radioChk4.forEach((radio) => {
+                radio.addEventListener("change", checkAllSelected);
+            });
+
+            confirmBtn2.addEventListener("click", function () {
+                // 열려 있는 모든 모달을 닫음
+                const modals = document.querySelectorAll(".modal");
+                modals.forEach((modal) => {
+                    modal.style.display = "none"; // 모달을 숨김
+                });
+
+                // ownerCheckWrap 표시
+                ownerCheckWrap.style.display = "block"; // ownerCheckWrap을 보여줌
+                body.style.overflow = ""; // 모달 닫힐 때 스크롤 활성화
+            });
+        </script>
+    </body>
+</html>

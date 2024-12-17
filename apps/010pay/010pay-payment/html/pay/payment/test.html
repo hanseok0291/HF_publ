@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+  <style>
+#dnd-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 200px;
+  margin: 0 auto;
+}
+
+.draggable {
+  padding: 15px;
+  text-align: center;
+  background: lightblue;
+  border: 1px solid #ccc;
+  cursor: grab;
+  user-select: none;
+}
+
+.dragging {
+  opacity: 0.5;
+  position: absolute;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.placeholder {
+  background: lightgray;
+  border: 2px dashed #aaa;
+  height: 50px;
+}
+  </style>
+</head>
+<body>
+  <div id="dnd-container">
+    <div class="draggable" draggable="false">Item 1</div>
+    <div class="draggable" draggable="false">Item 2</div>
+    <div class="draggable" draggable="false">Item 3</div>
+  </div>
+</body>
+<script>
+const container = document.getElementById('dnd-container');
+let draggedElement = null;
+let placeholder = null;
+
+// 드래그 시작
+container.addEventListener('mousedown', (e) => {
+  if (!e.target.classList.contains('draggable')) return;
+
+  draggedElement = e.target;
+  placeholder = document.createElement('div');
+  placeholder.className = 'placeholder';
+  placeholder.style.height = `${draggedElement.offsetHeight}px`;
+
+  draggedElement.classList.add('dragging');
+  container.insertBefore(placeholder, draggedElement.nextSibling);
+
+  const rect = draggedElement.getBoundingClientRect();
+  draggedElement.style.left = `${e.clientX - rect.width / 2}px`;
+  draggedElement.style.top = `${e.clientY - rect.height / 2}px`;
+
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', onMouseUp);
+});
+
+// 드래그 이동
+function onMouseMove(e) {
+  if (!draggedElement) return;
+
+  draggedElement.style.left = `${e.clientX - draggedElement.offsetWidth / 2}px`;
+  draggedElement.style.top = `${e.clientY - draggedElement.offsetHeight / 2}px`;
+
+  const siblings = [...container.children].filter(
+    (child) => child !== draggedElement && child !== placeholder
+  );
+
+  for (let sibling of siblings) {
+    const rect = sibling.getBoundingClientRect();
+    if (e.clientY > rect.top && e.clientY < rect.bottom) {
+      container.insertBefore(placeholder, sibling.nextSibling);
+      break;
+    }
+  }
+}
+
+// 드래그 종료
+function onMouseUp() {
+  if (!draggedElement) return;
+
+  placeholder.replaceWith(draggedElement);
+  draggedElement.classList.remove('dragging');
+  draggedElement.style.left = '';
+  draggedElement.style.top = '';
+  draggedElement = null;
+  placeholder = null;
+
+  document.removeEventListener('mousemove', onMouseMove);
+  document.removeEventListener('mouseup', onMouseUp);
+}
+</script>
+</html>

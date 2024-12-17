@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="../../../css/jquery-ui.css" />
+    <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../../css/pay/setting.css" />
+    <script src="../../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../../js/design_renewal.js" defer="defer"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <h2 class="page-title">설정</h2>
+            <button type="button" class="btn-close js-change-btn">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <!-- container -->
+        <div class="container setting-container">
+          <ul class="setting-list border-bottom">
+            <li>
+              <div>
+                <p class="setting-name">생체 인증</p>
+              </div>
+              <div class="toggle-switch">
+                <div class="toggle-circle"></div>
+              </div>
+            </li>
+            <li>
+              <p class="setting-name">간편 결제 비밀번호 변경</p>
+              <a href="#">
+                <i class="icon-arrow-right medium"></i>
+              </a>
+            </li>
+            <li>
+              <p class="setting-name">원터치 결제</p>
+              <a href="#">
+                <i class="icon-arrow-right medium"></i>
+              </a>
+            </li>
+          </ul>
+          <ul class="setting-list">
+            <li>
+              <div>
+                <p class="setting-name">고객 센터</p>
+              </div>
+              <a href="#">
+                <i class="icon-arrow-right medium"></i>
+              </a>
+            </li>
+            <li>
+              <p class="setting-name">FAQ</p>
+              <a href="#">
+                <i class="icon-arrow-right medium"></i>
+              </a>
+            </li>
+            <li>
+              <p class="setting-name">약관 및 정책</p>
+              <a href="#">
+                <i class="icon-arrow-right medium"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- //container -->
+      </div>
+      <!-- //content -->
+    </div>
+    <!-- //wrap -->
+
+    <!-- 생체 인증 해지 토스트 모달 -->
+    <div id="toast-bio-complete" class="modal-toast">
+      <p>생채 인증 설정이 완료되었습니다.</p>
+    </div>
+    <!-- //생체 인증 해지 토스트 모달 -->
+
+    <!-- 생체 인증 완료 토스트 모달 -->
+    <div id="toast-bio-cancel" class="modal-toast">
+      <p>생채 인증 설정이 해지되었습니다.</p>
+    </div>
+    <!-- //생체 인증 완료 토스트 모달 -->
+
+    <!-- 생체인증 정보 팝업 -->
+    <div
+      id="modal-bio-check"
+      class="modal modal-slide type-title"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content" style="bottom: 0px; position: fixed">
+          <div class="modal-head">
+            <p class="modal-head-title">
+              생체 인증
+            </p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <ul>
+                <li>설정에서 생체 인증 등록 시에만 유효해요.</li>
+                <li>생체 인증이 가능한 단말기에 생체 정보 등록이 되어있어야 사용 가능해요.</li>
+                <li>한대의 단말기에서만 설정할 수 있어요.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //생체인증 정보 팝업 -->
+
+    <!-- 간편 결제 정보 팝업 -->
+    <div
+      id="modal-easy-payment"
+      class="modal modal-slide type-title"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content" style="bottom: 0px; position: fixed">
+          <div class="modal-head">
+            <p class="modal-head-title">
+              간편 결제 비밀번호
+            </p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <p>라운드 결제수단으로 등록한 카드, 계좌, 휴대폰 충전, 머니 결제 시 비밀번호 6자리로 인증해요.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //간편 결제 정보 팝업 -->
+  </body>
+  <script>
+    $(".toggle-switch").on("click", function () {
+      if (!$(this).hasClass("active")) {
+        modalToastOpen("toast-bio-complete");
+      } else {
+        modalToastOpen("toast-bio-cancel");
+      }
+    });
+  </script>
+</html>

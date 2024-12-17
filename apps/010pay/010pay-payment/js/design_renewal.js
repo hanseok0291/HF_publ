@@ -421,7 +421,7 @@ function modalOpenSlide(obj) {
                 }
             });
 
-    // 모달 외부 클릭 시 닫기 처리 및 01 출력
+    // 모달 외부 클릭 시 닫기 처리
     temp.on("click", function (e) {
         // 외부를 클릭했는지 확인
         if (!$(e.target).closest(".modal-content").length) {

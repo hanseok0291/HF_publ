@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../../css/pay/transactionHistory.css" />
+    <script src="../../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../../js/jquery-ui.js"></script>
+    <script src="../../../js/design_renewal.js" defer="defer"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box justify-start">
+            <button type="button" class="btn-back js-change-btn">
+              <i class="icon-arrow-left"></i>
+            </button>
+            <h2 class="page-title">거래내역</h2>
+          </div>
+        </div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <!-- container -->
+        <div class="container transaction-history-container">
+          <div class="month-wrap">
+            <button type="button" class="prev-btn icon-arrow-left-rounded">이전</button>
+            <span class="month-text">7월</span>
+            <button type="button" class="next-btn icon-arrow-left-rounded gray">다음</button>
+          </div>
+          <div class="trade-tab-wrap">
+            <ul class="tab-list">
+              <li>
+                <button type="button" class="active">전체</button>
+              </li>
+              <li>
+                <button type="button">충전</button>
+              </li>
+              <li>
+                <button type="button">결제</button>
+              </li>
+              <li>
+                <button type="button">출금</button>
+              </li>
+            </ul>
+            <button type="button" class="filter-btn icon-filter"></button>
+          </div>
+          <ul class="trade-list">
+            <li>
+              <span class="date-text">11(토)</span>
+              <div class="left-text-box">
+                <div class="top-text">
+                  <p class="time-text">오후 11:56</p>
+                  <span class="line"></span>
+                  <p class="type">계좌</p>
+                </div>
+                <p class="detail-text">국민(869)</p>
+              </div>
+              <div class="right-text-box">
+                <p class="type">충전</p>
+                <p class="amount">+90,000원</p>
+              </div>
+            </li>
+            <li>
+              <span class="date-text">11(토)</span>
+              <div class="left-text-box">
+                <div class="top-text">
+                  <p class="time-text">오후 11:56</p>
+                  <span class="line"></span>
+                  <p class="type">계좌</p>
+                </div>
+                <p class="detail-text">국민(869)</p>
+              </div>
+              <div class="right-text-box">
+                <p class="type">충전</p>
+                <p class="amount">+90,000원</p>
+              </div>
+            </li>
+            <li>
+              <span class="date-text">11(토)</span>
+              <div class="left-text-box">
+                <div class="top-text">
+                  <p class="time-text">오후 11:56</p>
+                  <span class="line"></span>
+                  <p class="type">계좌</p>
+                </div>
+                <p class="detail-text">국민(869)</p>
+              </div>
+              <div class="right-text-box">
+                <p class="type">충전</p>
+                <p class="amount enter">+90,000원</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- //container -->
+      </div>
+      <!-- //content -->
+    </div>
+    <!-- //wrap -->
+
+    <!-- 필터 팝업 -->
+    <div
+      id="modal-filter"
+      class="modal modal-slide modal-filter"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content" style="bottom: 0px; position: fixed">
+          <div class="modal-body">
+            <div class="section">
+              <p>기간선택</p>
+              <div class="btn-wrap month-btn-wrap">
+                <button type="button" class="active">1개월</button>
+                <button type="button">3개월</button>
+              </div>
+            </div>
+            <div class="section">
+              <p>내역</p>
+              <div class="btn-wrap type-btn-wrap">
+                <button type="button" class="active">라운드 머니</button>
+                <button type="button">라운드 포인트</button>
+                <button type="button">계좌</button>
+                <button type="button">카드</button>
+                <button type="button">휴대폰 결제</button>
+                <button type="button">전체</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //필터 팝업 -->
+
+    <!-- 기간 팝업 -->
+    <div
+      id="modal-period"
+      class="modal modal-slide modal-period type-title"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content" style="bottom: 0px; position: fixed">
+          <div class="modal-head">
+            <p class="modal-head-title">
+              기간
+            </p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <ul class="period-list">
+              <li><button type="button">2024년 11월</button></li>
+              <li><button type="button">2024년 10월</button></li>
+              <li><button type="button">2024년 9월</button></li>
+              <li><button type="button">2024년 8월</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //기간 팝업 -->
+  </body>
+  <script>
+    $(function(){
+      $(".modal-filter .month-btn-wrap button").on("click", function(){
+        $(this).closest(".btn-wrap").find("button").removeClass("active");
+        $(this).addClass("active");
+      });
+
+      $(".modal-filter .type-btn-wrap button").on("click", function(){
+        if(!$(this).hasClass("active")){
+          $(this).addClass("active");
+        } else {
+          $(this).removeClass("active");
+        }
+      });
+    });
+  </script>
+</html>

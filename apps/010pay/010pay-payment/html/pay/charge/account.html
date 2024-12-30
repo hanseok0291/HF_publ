@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../../css/pay/charge.css" />
+    <script src="../../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../../js/jquery-ui.js"></script>
+    <script src="../../../js/design_renewal.js" defer="defer"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <h2 class="page-title">계좌 머니 충전</h2>
+            <button type="button" class="btn-close js-change-btn">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <!-- container -->
+        <div class="container charge-container">
+          <div class="input-wrap">
+            <div class="input-container label-n charge-input">
+              <input
+                type="number"
+                class="custom-input"
+                placeholder=" "
+                id="chargeAmount"
+              />
+              <label for="chargeAmount" class="floating-label"
+                >얼마를 충전할까요?</label
+              >
+              <div class="fake-label">
+                <p class="number"></p>
+                <span class="unit">만원</span>
+              </div>
+              <button type="button" class="icon icon-del js-text-del"></button>
+            </div>
+            <div class="add-money-btn-wrap">
+              <button type="button" data-money="1">1만원</button>
+              <button type="button" data-money="5">5만원</button>
+              <button type="button" data-money="10">10만원</button>
+              <button type="button" data-money="100">100만원</button>
+            </div>
+          </div>
+          <div class="money-info-wrap">
+            <dl>
+              <dt>현재 보유머니</dt>
+              <dd>190,000원</dd>
+            </dl>
+            <dl>
+              <dt>등록 계좌</dt>
+              <dd>
+                <button type="button" class="registration-btn">
+                  <img src="../../../images/payment/bank/kakao-small.png" alt="">
+                  카카오뱅크 789
+                </button>
+              </dd>
+            </dl>
+          </div>
+        </div>
+        <!-- //container -->
+        <!-- bottom area -->
+        <div class="bottom-area">
+          <!-- container -->
+          <div class="container">
+            <button type="button" class="btn" onclick="modalOpenSlide('modal-select-account')">충전하기</button>
+          </div>
+          <!-- //container -->
+        </div>
+        <!-- //bottom area -->
+      </div>
+      <!-- //content -->
+    </div>
+    <!-- //wrap -->
+
+    <!-- 계좌 선택하기 팝업 -->
+    <div
+      id="modal-select-account"
+      class="modal modal-slide type-title select-account"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content" style="bottom: 0px; position: fixed">
+          <div class="modal-head">
+            <p class="modal-head-title">
+              계좌 선택하기
+            </p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <ul class="list-wrap">
+                <li>
+                  <a href="#">
+                    <img src="../../../images/payment/bank/kakao.png" alt="카카오뱅크">
+                    <div class="text-wrap">
+                      <p class="bank-name">카카오뱅크</p>
+                      <p class="bank-number">카카오뱅크 345</p>
+                    </div>
+                    <i class="icon-star"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <img src="../../../images/payment/bank/kb.png" alt="국민은행">
+                    <div class="text-wrap">
+                      <p class="bank-name">국민은행</p>
+                      <p class="bank-number">국민 345</p>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <img src="../../../images/common/icon-add-account.svg" alt="계좌 추가">
+                    <div class="text-wrap">
+                      <p class="bank-name">계좌 추가하기</p>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //계좌 선택하기 팝업 -->
+  </body>
+  <script>
+    var input_value = 0;
+    var charge_limit = 200; // 충전 한도
+    $(".charge-input input").on("input", function () {
+      var $this = $(this);
+      var $this_wrap = $this.closest(".charge-input");
+      var $label = $this_wrap.find(".floating-label");
+      var maxlength = 15; // 최대 입력 길이
+
+      // 현재 입력된 값 가져오기 (숫자만 허용)
+      input_value = parseInt($this.val().replace(/[^0-9]/g, ""));
+
+      // 입력 값이 최대 길이를 초과하면 잘라냄
+      if (input_value.length > maxlength) {
+        input_value = input_value.substring(0, maxlength);
+        $this.val(input_value); // 잘린 값으로 업데이트
+      }
+
+      // 에러 클래스 초기화
+      $this_wrap.removeClass("error");
+      $this_wrap.find(".fake-label .number").text(input_value);
+
+      if (input_value > 0) {
+        $this_wrap.find(".fake-label .unit").show();
+      } else {
+        $this_wrap.find(".fake-label .unit").hide();
+      }
+
+      if (input_value > charge_limit) {
+        $this_wrap.addClass("error");
+        $label.text("이번 달 충전 한도를 초과하였습니다");
+      } else if (input_value >= 0) {
+        // 정상 입력
+        $label.text("충전 금액");
+      }
+
+      if(!input_value){
+        input_value = 0;
+      }
+    });
+
+    $(".charge-input input").on("focus", function () {
+      var $this = $(this);
+      var $this_wrap = $this.closest(".charge-input");
+      var $label = $this_wrap.find(".floating-label");
+      var input_value = $this.val(); // 입력된 값 확인
+
+      if (input_value.length === 0) {
+        // 입력값이 없으면 "충전 금액"으로 설정
+        $label.text("충전 금액");
+      }
+      // 입력값이 있는 경우 기존 상태 유지 (아무 작업도 하지 않음)
+    });
+
+    $(".charge-input input").on("blur", function () {
+      var $this = $(this);
+      var $label = $this.closest(".charge-input").find(".floating-label");
+      var input_value = $this.val(); // 입력된 값 확인
+
+      if (input_value.length === 0) {
+        // 입력값이 없으면 "얼마를 충전할까요?"로 설정
+        $label.text("얼마를 충전할까요?");
+      }
+    });
+
+    $(".charge-input .js-text-del").on("mousedown", function () {
+      var $this = $(this);
+      var $this_wrap = $this.closest(".charge-input");
+      var $label = $this.closest(".charge-input").find(".floating-label");
+      input_value = 0;
+      $(".fake-label .number").text(input_value);
+      $this_wrap.removeClass("error");
+      $(".fake-label .unit").hide();
+      $label.text("충전 금액");
+    });
+
+    $(".add-money-btn-wrap button").on("click", function(){
+      var $money_value = parseInt($(this).attr("data-money"));
+      input_value += $money_value;
+      $("#chargeAmount").focus();
+      $(".fake-label .unit").show();
+      $(".fake-label .number").text(input_value);
+      $("#chargeAmount").val(input_value);
+      if (input_value > charge_limit) {
+        $(".charge-input").addClass("error");
+        $(".charge-input .floating-label").text("이번 달 충전 한도를 초과하였습니다");
+      }
+    });
+  </script>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../../css/pay/transactionHistory.css" />
+    <script src="../../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../../js/jquery-ui.js"></script>
+    <script src="../../../js/design_renewal.js" defer="defer"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <button type="button" class="btn-back js-change-btn left-0">
+              <i class="icon-arrow-left"></i>
+            </button>
+            <h2 class="page-title">머니</h2>
+          </div>
+        </div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <!-- container -->
+        <div class="container money-container">
+          <div class="top-contents-wrap">
+            <div class="top-contents-box">
+              <div class="top-text-wrap">
+                <button type="button" class="money-amount" onclick="modalOpenSlide('modal-money-info')">100,000원</button>
+                <button type="button" class="connect-btn">연결하기</button>
+                <!-- <div class="bank-text">
+                  <img src="../../../images/payment/bank/kakao-small.png" alt="카카오뱅크">
+                  <p>카카오뱅크</p>
+                </div> -->
+              </div>
+              <div class="info-text-wrap">
+                <dl>
+                  <dt>소멸 예정</dt>
+                  <dd>1,010원</dd>
+                </dl>
+                <dl>
+                  <dt>미회수</dt>
+                  <dd>5,000원</dd>
+                </dl>
+              </div>
+              <div class="money-control-wrap">
+                <button type="button" class="charge-btn">출금하기</button>
+                <button type="button" class="withdraw-btn">충전하기</button>
+              </div>
+            </div>
+          </div>
+          <div class="trade-tab-wrap">
+            <ul class="tab-list">
+              <li>
+                <button type="button" class="active">전체</button>
+              </li>
+              <li>
+                <button type="button">충전</button> 
+              </li>
+              <li>
+                <button type="button">사용</button>
+              </li>
+              <li>
+                <button type="button">출금</button>
+              </li>
+              <li>
+                <button type="button">소멸</button>
+              </li>
+            </ul>
+          </div>
+          <div class="empty-list">
+            <p>이용 내역이 없어요!</p>
+          </div>
+          <!-- <div class="trade-list-wrap"> 
+            <ul class="trade-list">
+              <li>
+                <span class="date-text">11(토)</span>
+                <div class="list-contents-wrap">
+                  <div class="list-contents-box">
+                    <div class="left-text-box">
+                      <div class="top-text">
+                        <p class="time-text">오후 11:56</p>
+                        <span class="line"></span>
+                      </div>
+                      <p class="detail-text">국민(869)</p>
+                    </div>
+                    <div class="right-text-box">
+                      <p class="type">출금</p>
+                      <p class="amount">+90,000원</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="date-text">11(토)</span>
+                <div class="list-contents-wrap">
+                  <div class="list-contents-box">
+                    <div class="left-text-box">
+                      <div class="top-text">
+                        <p class="time-text">오후 11:56</p>
+                        <span class="line"></span>
+                      </div>
+                      <p class="detail-text">국민(869)</p>
+                    </div>
+                    <div class="right-text-box">
+                      <p class="type">충전</p>
+                      <p class="amount enter">+90,000원</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="date-text">11(토)</span>
+                <div class="list-contents-wrap">
+                  <div class="list-contents-box">
+                    <div class="left-text-box">
+                      <div class="top-text">
+                        <p class="time-text">오후 11:56</p>
+                        <span class="line"></span>
+                      </div>
+                      <p class="detail-text">국민(869)</p>
+                    </div>
+                    <div class="right-text-box">
+                      <p class="type">충전</p>
+                      <p class="amount enter">+90,000원</p>
+                    </div>
+                  </div>
+                  <div class="list-contents-box">
+                    <div class="left-text-box">
+                      <div class="top-text">
+                        <p class="time-text">오후 11:56</p>
+                        <span class="line"></span>
+                      </div>
+                      <p class="detail-text">국민(869)</p>
+                    </div>
+                    <div class="right-text-box">
+                      <p class="type">충전</p>
+                      <p class="amount enter">+90,000원</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="date-text">11(토)</span>
+                <div class="list-contents-wrap">
+                  <div class="list-contents-box">
+                    <div class="left-text-box">
+                      <div class="top-text">
+                        <p class="time-text">오후 11:56</p>
+                        <span class="line"></span>
+                      </div>
+                      <p class="detail-text">임직원 복지포인트 지급</p>
+                    </div>
+                    <div class="right-text-box">
+                      <p class="type">충전</p>
+                      <p class="amount enter">+90,000원</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="date-text">11(토)</span>
+                <div class="list-contents-wrap">
+                  <div class="list-contents-box">
+                    <div class="left-text-box">
+                      <div class="top-text">
+                        <p class="time-text">오후 11:56</p>
+                        <span class="line"></span>
+                      </div>
+                      <p class="detail-text">임직원 복지포인트 지급</p>
+                    </div>
+                    <div class="right-text-box">
+                      <p class="type">충전</p>
+                      <p class="amount enter">+90,000원</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="date-text">11(토)</span>
+                <div class="list-contents-wrap">
+                  <div class="list-contents-box">
+                    <div class="left-text-box">
+                      <div class="top-text">
+                        <p class="time-text">오후 11:56</p>
+                        <span class="line"></span>
+                      </div>
+                      <p class="detail-text">임직원 복지포인트 지급</p>
+                    </div>
+                    <div class="right-text-box">
+                      <p class="type">충전</p>
+                      <p class="amount enter">+90,000원</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="date-text">11(토)</span>
+                <div class="list-contents-wrap">
+                  <div class="list-contents-box">
+                    <div class="left-text-box">
+                      <div class="top-text">
+                        <p class="time-text">오후 11:56</p>
+                        <span class="line"></span>
+                      </div>
+                      <p class="detail-text">임직원 복지포인트 지급</p>
+                    </div>
+                    <div class="right-text-box">
+                      <p class="type">충전</p>
+                      <p class="amount enter">+90,000원</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="date-text">11(토)</span>
+                <div class="list-contents-wrap">
+                  <div class="list-contents-box">
+                    <div class="left-text-box">
+                      <div class="top-text">
+                        <p class="time-text">오후 11:56</p>
+                        <span class="line"></span>
+                      </div>
+                      <p class="detail-text">임직원 복지포인트 지급</p>
+                    </div>
+                    <div class="right-text-box">
+                      <p class="type">충전</p>
+                      <p class="amount enter">+90,000원</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="date-text">11(토)</span>
+                <div class="list-contents-wrap">
+                  <div class="list-contents-box">
+                    <div class="left-text-box">
+                      <div class="top-text">
+                        <p class="time-text">오후 11:56</p>
+                        <span class="line"></span>
+                      </div>
+                      <p class="detail-text">임직원 복지포인트 지급</p>
+                    </div>
+                    <div class="right-text-box">
+                      <p class="type">충전</p>
+                      <p class="amount enter">+90,000원</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <div class="add-view-btn-wrap">
+              <button type="button" class="add-view-btn">더보기</button>
+            </div>
+          </div> -->
+        </div>
+        <!-- //container -->
+      </div>
+      <!-- //content -->
+    </div>
+    <!-- //wrap -->
+
+    <!-- 보유 머니 바텀 시트 팝업 -->
+    <div
+      id="modal-money-info"
+      class="modal modal-slide type-title money-info"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content" style="bottom: 0px; position: fixed">
+          <div class="modal-head round-btn">
+            <button type="button" class="btn btn-close js-modal-close">
+            </button>
+          </div>
+          <div class="modal-body">
+            <dl class="bold-text-wrap">
+              <dt><b>보유 머니</b></dt>
+              <ddl><b>12,000원</b></ddl>
+            </dl>
+            <dl>
+              <dt>일반 머니</dt>
+              <dd>1,010원</dd>
+            </dl>
+            <dl>
+              <dt>휴대폰 충전 머니</dt>
+              <dd>5,000원</dd>
+            </dl>
+            <dl class="bold-text-wrap">
+              <dt><b>포인트</b></dt>
+              <dd><b>2,000원</b></dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //보유 머니 바텀 시트 팝업 -->
+  </body>
+  <script>
+    $(function(){
+      $(window).on("scroll", function(){
+        var scrollTop = $(window).scrollTop();
+        var tradeTabOffset = $(".trade-tab-wrap").offset().top - 64;
+        if (scrollTop >= tradeTabOffset) {
+          $(".trade-tab-wrap").addClass("fixed");
+        } else {
+          $(".trade-tab-wrap").removeClass("fixed");
+        }
+      });
+    });
+  </script>
+</html>

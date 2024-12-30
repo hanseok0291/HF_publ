@@ -1,49 +1,57 @@
 .payment-container {
   overflow: hidden;
-  padding: 0;
+  padding: 24px 0 0;
 }
 
-.payment-container .tab {
+.tab {
   display: flex;
-  width: calc(100% - 40px);
+  width: fit-content;
   margin: auto;
-  border: 2px solid #F3F4F5;
   border-radius: 48px;
-  background-color: #F3F4F5;
+  background-color: #F6F6F6;
 }
 
-.payment-container .tab button {
-  width: 33.333%;
-  height: 43px;
+.tab button { 
+  width: 84px;
+  height: 40px;
+  margin: 0 -6px;
   border-radius: 100px;
   font-size: 15px;
   font-weight: 500;
   line-height: 22.5px;
+  background-color: #F6F6F6;
 }
 
-.payment-container .tab button.active {
-  background-color: #fff;
+.tab button.active {
+  font-weight: 700;
+  background-color: #E0FF63;
+  z-index: 1;
 }
-
-.payment-container .tab-contents ul {
+.payment-container .tab-contents > div {
+  display: none;
+}
+.payment-container .tab-contents > div:first-child {
+  display: block;
+}
+.payment-container .tab-contents .drag-list ul:first-child {
   margin-top: 20px;
 }
 
-.payment-container .tab-contents ul li {
+.payment-container .tab-contents .drag-list ul li {
   /* transition: all 0.3s; */
 }
 
-.payment-container .tab-contents ul li.sortable-chosen {
+.payment-container .tab-contents .drag-list ul li.sortable-chosen {
   opacity: 1;
 }
-.payment-container .tab-contents ul li.sortable-ghost {
+.payment-container .tab-contents .drag-list ul li.sortable-ghost {
   opacity: 1;
 }
-.payment-container .tab-contents ul li.sortable-drag {
+.payment-container .tab-contents .drag-list ul li.sortable-drag {
   display: none;
 }
 
-.payment-container .tab-contents ul li .list-box {
+.payment-container .tab-contents .drag-list ul li .list-box {
   display: flex;
   align-items: center;
   position: relative;
@@ -54,31 +62,29 @@
   background-color: #fff;
 }
 
-.payment-container .tab-contents ul li.sortable-chosen .list-box {
+.payment-container .tab-contents .drag-list ul li.sortable-chosen .list-box {
   background-color: #fafafa;
   transform: translateX(0) !important;
 }
 
-.payment-container .tab-contents ul li.sortable-drag .delete-btn {
+.payment-container .tab-contents .drag-list ul li.sortable-drag .delete-btn {
   display: none;
 }
 
-.payment-container .tab-contents ul li .img-wrap {
-  width: 40px;
-  height: 40px;
+.payment-container .tab-contents .drag-list ul li .img-wrap {
+  width: 62px;
+  height: 62px;
   margin-right: 13px;
-  border-radius: 50%;
-  background-color: #d9d9d9;
 }
 
-.payment-container .tab-contents ul li .list-box .text-wrap .title-text {
+.payment-container .tab-contents .drag-list ul li .list-box .text-wrap .title-text {
   color: #000;
   font-size: 16px;
   font-weight: 700;
   line-height: 23.17px;
   letter-spacing: -0.03em;
 }
-.payment-container .tab-contents ul li .list-box .text-wrap .sub-text {
+.payment-container .tab-contents .drag-list ul li .list-box .text-wrap .sub-text {
   color: #515151;
   font-size: 13px;
   font-weight: 400;
@@ -86,7 +92,7 @@
   letter-spacing: -0.03em;
 }
 
-.payment-container .tab-contents ul li .list-box .text-wrap .error-text {
+.payment-container .tab-contents .drag-list ul li .list-box .text-wrap .error-text {
   margin-top: 2px;
   color: #ff0000;
   font-size: 12px;
@@ -95,16 +101,16 @@
   letter-spacing: -0.03em;
 }
 
-.payment-container .tab-contents ul li .list-box .right-box {
+.payment-container .tab-contents .drag-list ul li .list-box .right-box {
   display: flex;
   margin-left: auto;
   align-items: center;
 }
-
-.payment-container .tab-contents ul li .list-box .right-box .handle {
+.payment-container .tab-contents .drag-list ul li .list-box .right-box .handle {
   display: block;
   width: 24px;
   height: 24px;
+  margin-left: 12px;
   font-size: 0;
   text-indent: -9999px;
   background: url('../../images/common/icon-list-drag.svg') 0 0 / cover no-repeat;
@@ -112,7 +118,7 @@
   -webkit-user-select: none;
 }
 
-.payment-container .tab-contents ul li .list-box .right-box .active-btn {
+.payment-container .tab-contents .drag-list ul li .list-box .right-box .active-btn {
   padding: 4px 8px;
   border-radius: 8px;
   color: #222;
@@ -121,7 +127,7 @@
   background-color: #F1F1F1;
 }
 
-.payment-container .tab-contents ul li .delete-btn {
+.payment-container .tab-contents .drag-list ul li .delete-btn {
   position: absolute;
   top: 0;
   right: 0;
@@ -131,7 +137,43 @@
   background-color: #FF5959;
   transform: translateX(100%);
 }
-
+.payment-container .tab-contents .drag-list ul li .phone-btn {
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 16px;
+  color: #000;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16.8px;
+  letter-spacing: -0.02em;
+  background-color: #FFDDE1;
+}
+.payment-container .tab-contents .drag-list ul li .phone-btn.complete {
+  background-color: #DDFBE6;
+}
 .sortable-ghost {
   opacity: 0;
+}
+
+.payment-container .empty-list {
+  display: flex;
+  justify-content: center;
+}
+.payment-container .empty-list p {
+  margin-top: 100px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22.4px;
+  letter-spacing: -0.02em;
+  text-align: center;
+
+}
+.payment-container .empty-list p::before {
+  display: block;
+  content: "";
+  width: 140px;
+  height: 140px;
+  margin: auto;
+  margin-bottom: 16px;
+  background-color: #F6F6F9;
 }

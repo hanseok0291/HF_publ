@@ -90,6 +90,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
 .dFlex { display: flex; } 
 .dAlignCenter { align-items: center; } 
 .dJustifyCenter { justify-content: center; } 
+.dJustifyStart { justify-content: start; } 
 .dSpaceBetween { justify-content: space-between; } 
 .dEnd { justify-content: end; } 
 
@@ -134,6 +135,19 @@ button:disabled { background-color: #ccc; }
 .kyc .optionList::-webkit-scrollbar-thumb { background-color: rgba(203, 203, 203, 1); border-radius: 10px; border: 8px solid rgba(255,255,255,1); /* 스크롤을 적용할 영역 색깔과 border 색상을 똑같이 맞춘다 */ } 
 .kyc .optionList::-webkit-scrollbar-track { background-color: rgba(0,0,0,0); /* 스크롤바 뒷 배경을 투명 처리한다 */ } 
 
+.modal-dialog, .modal-content, .modal-header, .modal-body, .modal-footer { clear: both; } 
+.modal-dialog:after, .modal-content:after, .modal-header:after, .modal-body:after, .modal-footer:after { content: ''; clear: both; display: block; } 
+.modal { display: none; position: fixed; top: 0; left: 0; padding: 0 20px; width: 100%; height: 100%; overflow-x: hidden; overflow-y: auto; z-index: 999; } 
+.modal:before { content: ''; display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; } 
+.modal-dialog { position: absolute; top: 50%; left: 0; margin-top: -0; padding: 20px; width: 100%; z-index: 2; } 
+.modal-content { width: 100%; min-width: 280px; overflow: hidden; display: inline-block; border-radius: 18px; background-color: #fff; text-align: left; vertical-align: top; } 
+.modal-header { position: relative; padding: 20px; background-color: #fff; } 
+.modal-header .modal-title { font-size: 18px; font-weight: 800; line-height: 20px; } 
+.modal-header .btn-close { position: absolute; top: 15px; right: 15px; width: 30px; height: 30px; } 
+.modal-body { padding: 35px 24px; min-height: 90px; background-color: #fff; font-size: 14px; } 
+.modal-body h3 { margin-bottom: 13px; font-size: 18px; color: #151515; } 
+.modal-body h3:empty { margin-bottom: 0; } 
+
 /* 로그인 */
 .title { font-family: Pretendard; font-size: 20px; font-weight: 700; line-height: 23.87px; text-align: center; color: #000; } 
 .subTitle { font-family: Pretendard; font-size: 14px; font-weight: 600; line-height: 22px; text-align: left; color: #333; } 
@@ -147,9 +161,9 @@ button:disabled { background-color: #ccc; }
 /* kyc 공통 */
 .kyc .titleWrap { display: flex; align-items: baseline; justify-content: center } 
 .kyc .titleWrap .text { font-family: Pretendard; font-size: 18px; font-weight: 700; line-height: 21.48px; letter-spacing: -0.02em; text-align: center; color: #000; margin-left: 10px; } 
-.kyc .textLeft { text-align: left; } 
-.kyc .textRight { text-align: right; } 
-.kyc .textCenter { text-align: center; } 
+.kyc .textLeft { text-align: left !important; } 
+.kyc .textRight { text-align: right !important; } 
+.kyc .textCenter { text-align: center !important; } 
 .kyc .content { padding: 50px 0 70px; } 
 .kyc .content .title { font-family: Pretendard; font-size: 18px; font-weight: 700; line-height: 21.48px; text-align: left; margin-bottom: 40px; } 
 .kyc .content .title + .tableWrap { margin-top: -20px; } 
@@ -160,6 +174,7 @@ button:disabled { background-color: #ccc; }
 .kyc .stepWrap .step .step-number { position: relative; font-family: Pretendard; font-weight: 700; font-size: 18.67px; line-height: 22.28px; text-align: left; color: #CBCBCB; width: 40px; height: 40px; line-height: 40px; border: 1px solid #CBCBCB; border-radius: 100%; text-align: center; box-sizing: border-box; } 
 .kyc .stepWrap .step.step-active .step-number { background-color: #FF6114; border-color: #FF6114; color: #fff; } 
 .kyc .stepWrap .step.step-end .step-number { background-color: #3e3e3e; border-color: #3e3e3e; color: #fff; } 
+.kyc.comp .content .title { font-size: 20px; } 
 
 .kyc .guideWrap { background-color: #F5F5F7; padding: 20px; border-radius: 10px; margin-bottom: 40px; } 
 .kyc .guideWrap .title { font-family: Pretendard; font-size: 16px; font-weight: 700; line-height: 19.09px; text-align: left; color: #222; margin-bottom: 14px; } 
@@ -215,7 +230,6 @@ button:disabled { background-color: #ccc; }
 .formGroup select + input { margin-left: 10px; } 
 .formGroup .checkBox { position: relative; overflow: hidden; } 
 .formGroup .checkBox + .checkBox { margin-left: 20px; } 
-/* .formGroup .checkBox.full-width { flex: 0 0 100%; margin-top: 10px; } */
 .postalContainer,
 .accountContainer,
 .sideBtnWrap { display: flex; gap: 10px; } 
@@ -242,7 +256,7 @@ button:disabled { background-color: #ccc; }
 .kyc .tableWrap th { background-color: #f4f4f4; font-weight: bold; height: 60px; } 
 .kyc .tableWrap.type2 td:nth-of-type(1) { width: 300px; } 
 .kyc .tableWrap.type2 td:nth-of-type(3) { width: 160px; } 
-.kyc .tableWrap td .checkBox { width: 100px; white-space: nowrap; margin: 0 auto; } 
+.kyc .tableWrap td .checkBox { /*width: 100px;*/ white-space: nowrap; margin: 0 auto; } 
 .kyc .tableWrap td .checkBox > input + label { margin-bottom: 10px; color: #333; } 
 .kyc .tableWrap td .checkBox:last-of-type > input + label { margin-bottom: 0; } 
 .kyc .tableWrap thead tr { border-top: 2px solid #333; } 
@@ -260,7 +274,7 @@ button:disabled { background-color: #ccc; }
 .kyc .tableWrap .type2 tbody td:first-of-type { text-align: left; } 
 .kyc .tableWrap.type4 th { border-right: 1px solid #cbcbcb; height: 48px; } 
 .kyc .tableWrap.type4 th:last-of-type { border-right: 0; } 
-.kyc .tableWrap.type4 td .checkBox { position: relative; width: auto; height: 22px; margin: 0; } 
+.kyc .tableWrap.type4 td .checkBox { position: relative; width: auto; height: auto; margin: 0; } 
 .kyc .tableWrap.type4 .checkBox > input + label::before { left: 50%; transform: translateX(-50%); } 
 .kyc .tableWrap.type4 .checkBox.left > input + label::before { left: 0; transform: none; } 
 .kyc .tableWrap.type4 .checkBox.left + .left { margin-left: 10px; } 
@@ -290,16 +304,18 @@ button:disabled { background-color: #ccc; }
 /* 모달 */
 .kyc .modal { display: none; /* 기본적으로 보이지 않음 */
 position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */ } 
-
-.kyc .modal-content { background-color: #fff; margin: 0 auto; padding: 0 20px; border: 1px solid #888; width: 500px; max-height: 790px; overflow: hidden; border-radius: 10px; position: relative; top: 50%; transform: translateY(-50%); } 
+.kyc .modal.modal-prompt .modal-content { width: 400px; padding: 0; }
+.kyc .modal-content { background-color: #fff; margin: 0 auto; padding: 0 20px; border: 1px solid #888; width: 500px; max-height: 790px; overflow: hidden; border-radius: 10px; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.kyc .modalMd .modal-content { width: 600px; min-height: 600px; }  
 .kyc .modalWide .modal-content { width: 800px; min-height: 600px; } 
 .kyc .modalWide.modalFullHeight .modal-content { width: 840px; max-height: 898px; overflow-y: scroll; } 
 .kyc .modalWide.modalFullHeight .guideList li { padding-left: 15px; } 
 .kyc .modalWide.modalFullHeight .guideList li::before { font-size: 16px; } 
+.kyc .modalMd.modalAddress .modal-content { min-height: inherit; height: auto; }
 
 .kyc .close { position: absolute; right: 10px; top: 10px; font-size: 24px; cursor: pointer; } 
 .kyc .modal h2 { font-family: Pretendard; font-size: 18px; font-weight: 700; line-height: 58px; text-align: center; color: #000; margin-bottom: 10px; } 
-.kyc .modal h3, .kyc .modal .title { font-family: Pretendard; font-size: 15px; font-weight: 700; line-height: 17.9px; text-align: left; color: #000; margin-bottom: 14px; } 
+.kyc .modal h3, .kyc .modal .title { font-family: Pretendard; font-size: 15px; font-weight: 700; line-height: 17.9px; text-align: center; color: #000; margin-bottom: 14px; } 
 .kyc .modal .termsTitle { font-family: Pretendard; font-size: 14px; font-weight: 600; line-height: 22px; text-align: left; color: #333; margin-bottom: 10px; } 
 .kyc .modal .termsText { font-family: Pretendard; font-size: 14px; font-weight: 400; line-height: 22px; text-align: left; color: #666; margin-bottom: 56px; } 
 .kyc .modal .termsText + .title { margin-top: -40px; } 
@@ -375,8 +391,12 @@ display: flex; align-items: center; justify-content: space-between; }
 .kyc.agreement .content .title { margin-bottom: 20px; } 
 .kyc.agreement .content .agreeText { font-family: Pretendard; font-size: 14px; font-weight: 400; line-height: 16.71px; text-align: left; color: #222; margin-bottom: 50px; display: none; } 
 .kyc.agreement .content .agreeText.active { display: block; } 
-.kyc.agreement .content .agreeText .box { margin-bottom: 20px; } 
+/* .kyc.agreement .content .agreeText .box { margin-bottom: 20px; }  */
 .kyc.agreement .content .agreeText .box p { margin-bottom: 5px; } 
+.kyc.agreement .checkBox > input + label { font-size: 16px; line-height: 18px; padding-left: 28px; margin: 0; }
+.kyc.agreement .checkBox > input + label::before { width: 18px; height: 18px; }
+.kyc.agreement table .checkBox > input + label { font-size: 14px; }
+.kyc.agreement .tableWrap td .checkBox > input + label { margin-bottom: 0; }
 
 .kyc .colWrap { display: flex; justify-content: center; align-items: center; } 
 
@@ -440,3 +460,249 @@ min-width: 300px; /* 최소 너비를 설정하여 너무 작아지지 않도록
 
 .kyc .content .tableWrap .title { font-family: Pretendard; font-size: 14px; font-weight: 600; line-height: 22px; text-align: left; } 
 /* */
+
+.kyc .addressResultWrap {
+    font-family: Noto Sans KR;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 21.72px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #666;
+}
+.kyc .addressResultWrap .noResult {
+    padding: 73px 0 93px;
+}
+.kyc .addressResultWrap .addressTable {
+    width: 100%;
+}
+.kyc .modal.modalAddress table tr:last-of-type {
+    border-bottom: 1px solid #DADADA;
+}
+.kyc .addressResultWrap .addressResultContainer {
+    text-align: left;
+}
+.kyc .addressResultWrap table th {
+    border: 0;
+    text-align: center;
+}
+.kyc .addressResultWrap table td {
+    text-align: center;
+}
+.kyc .addressResultWrap table td:first-of-type {
+    font-weight: 700;
+}
+.kyc .addressResultWrap .pagination {
+    text-align: center;
+    margin: 14px 0 20px;
+}
+.kyc .addressResultWrap .pagination .page-btn {
+    background-color: transparent;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #929292;
+    line-height: 40px;
+    padding: 0 20px;
+}
+.kyc .addressResultWrap .pagination .page-btn.active {
+    color: #000;
+    font-weight: 700;
+}
+.kyc .addressResultWrap .header {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 21.72px;
+    text-align: left;
+    color: #666;
+    margin-bottom: 14px;
+}
+.kyc .addressResultWrap .header strong {
+    color: #000;
+}
+.kyc .modalAddress .formGroup input {
+    max-width: calc(100% - 126px);
+}
+.kyc .modalAddress .pagination .left,
+.kyc .modalAddress .pagination .right {
+    width: 40px;
+    height: 40px;
+    background: url('../images/custom/krc/arrow-left.svg') no-repeat center /9px;
+}
+.kyc .addressResultWrap .pagination .page-btn.right {
+    transform: rotateY(180deg);
+}
+
+.kyc .notiTextWrap {
+    margin-bottom: 40px;
+}
+.kyc .notiTextWrap p {
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 27px;
+    text-align: center;
+    color: #222;
+}
+.kyc.comp .content {
+    padding-top: 180px;
+}
+
+.kyc #commonAlert .modal-body,
+.kyc #commonPrompt .modal-body { font-family: Roboto, "Noto Sans KR"; }
+.kyc #commonAlert .modal-body h3:empty + p,
+.kyc #commonPrompt .modal-body h3:empty + p { font-size: 16px; color: #222; letter-spacing: -0.04em; }
+
+.kyc .modal-content .modal-body .title {
+    font-family: Pretendard;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21.48px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #000;
+}
+.kyc .modal-content .modal-body .sub {
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 17.9px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #000;
+}
+.kyc .modal-footer {
+    text-align: center;
+    padding-bottom: 20px;
+}
+.kyc .modal-footer .btn {
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 17.9px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #fff;
+    width: 140px;
+    height: 48px;
+    background-color: #3E3E3E;
+    border: 0;
+}
+.kyc .modal-footer .btn.btnGray {
+    background-color: #3E3E3E;
+}
+.kyc .modal-footer .btn.btnOrange {
+    background-color: #FF6114;
+}
+
+.botText {
+    margin-top: 20px;
+    font-family: Pretendard;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 20.29px;
+    letter-spacing: -0.02em;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #000;
+}
+
+.botText > p > span {
+    font-weight: 400;
+}
+.botSignWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 40px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+.botSignWrap h3 {
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.09px;
+    letter-spacing: -0.02em;
+}
+.botSignWrap.center {
+  justify-content: center;
+}
+.botSignWrap.center .company {
+  width: auto;
+}
+.botSignWrap.center .company > p {
+  justify-content: start;
+}
+.botSignWrap.center .company > p > strong {
+  width: 100px;
+}
+.botSignWrap.center .company > p span {
+  text-align: left;
+}
+.botSignWrap.center .seal {
+  margin-top: 0;
+  align-items: end;
+}
+
+.botSignWrap .company {
+    width: 45%;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.09px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    color: #000;
+}
+
+.botSignWrap .seal {
+    margin-top: -10px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    color: #000;
+}
+
+.botSignWrap .seal p {
+    font-family: Pretendard;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.32px;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #5C5C5C;
+}
+
+.botSignWrap .seal img {
+    width: 70px; /* 도장 이미지 크기 */
+    height: auto;
+    margin-bottom: 3px;
+}
+.botSignWrap .company h3 {
+    margin-bottom: 12.9px;
+}
+.botSignWrap .company > p {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin-bottom: 10px;
+}
+.botSignWrap .company > p:last-of-type {
+    margin-bottom: 0;
+}
+.botSignWrap .company > p > strong {
+    width: 60px;
+    margin-right: 10px;
+    text-align: left;
+    font-weight: 400;
+}

@@ -90,4 +90,40 @@ $(document).ready(function () {
             });
         });
     });
+
+    // 모달 열기 버튼과 모달 요소, 닫기 버튼을 선택
+    const openModalBtns = document.querySelectorAll(".openModalBtn");
+    const closeModalBtns = document.querySelectorAll(".closeModalBtn");
+    const body = document.body; // body 요소 선택
+
+    // 모달 열기
+    openModalBtns.forEach((btn) => {
+        btn.addEventListener("click", function () {
+            const targetModal = document.getElementById(this.getAttribute("data-target"));
+            targetModal.style.display = "block";
+            body.style.overflow = "hidden"; // 모달 열릴 때 스크롤 비활성화
+        });
+    });
+
+    // 모달 닫기
+    closeModalBtns.forEach((btn) => {
+        btn.addEventListener("click", function () {
+            const targetModal = document.getElementById(this.getAttribute("data-target"));
+            targetModal.style.display = "none";
+            body.style.overflow = ""; // 모달 닫힐 때 스크롤 활성화
+        });
+    });
+
+    // 모달 외부 영역 클릭 시 닫기
+    window.addEventListener("click", function (event) {
+        const modals = document.querySelectorAll(".modal");
+        modals.forEach((modal) => {
+            if (event.target === modal) {
+                modal.style.display = "none";
+                body.style.overflow = ""; // 모달 닫힐 때 스크롤 활성화
+            }
+        });
+    });
+
+// 
 });

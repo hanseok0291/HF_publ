@@ -47,10 +47,10 @@
           </div>
           <div class="tab-contents">
             <div class="drag-list">
-              <!-- <div class="empty-list">
+              <div class="empty-list">
                 <p>등록된 계좌가 없어요!</p>
-              </div> -->
-              <ul class="top-list">
+              </div>
+              <!-- <ul class="top-list">
                 <li class="list-item">
                   <div class="list-box">
                     <div class="img-wrap">
@@ -128,7 +128,7 @@
                     <button type="button" class="delete-btn">삭제</button>
                   </div>
                 </li>
-              </ul>
+              </ul> -->
               <!-- bottom area -->
               <div class="bottom-area">
                 <!-- container -->
@@ -140,10 +140,10 @@
               <!-- //bottom area -->
             </div>
             <div class="drag-list">
-              <!-- <div class="empty-list">
-                <p>등록된 계좌가 없어요!</p>
-              </div> -->
-              <ul class="top-list">
+              <div class="empty-list">
+                <p>등록된 카드가 없어요!</p>
+              </div>
+              <!-- <ul class="top-list">
                 <li class="list-item">
                   <div class="list-box">
                     <div class="img-wrap">
@@ -221,7 +221,7 @@
                     <button type="button" class="delete-btn">삭제</button>
                   </div>
                 </li>
-              </ul>
+              </ul> -->
               <!-- bottom area -->
               <div class="bottom-area">
                 <!-- container -->
@@ -233,10 +233,10 @@
               <!-- //bottom area -->
             </div>
             <div class="drag-list">
-              <!-- <div class="empty-list">
+              <div class="empty-list">
                 <p>등록된 휴대폰 간편결제가 없어<br>결제가 어려워요!</p>
-              </div> -->
-              <ul class="sortable-list">
+              </div>
+              <!-- <ul class="sortable-list">
                 <li class="list-item">
                   <div class="list-box">
                     <div class="img-wrap">
@@ -272,7 +272,7 @@
                     <button type="button" class="delete-btn">삭제</button>
                   </div>
                 </li>
-              </ul>
+              </ul> -->
               <!-- bottom area -->
               <div class="bottom-area">
                 <!-- container -->
@@ -292,6 +292,14 @@
     <!-- //wrap -->
   </body>
   <script>
+    $(".tab button").on("click", function () {
+      var tab_index = $(this).index();
+      $(this).closest(".tab").find("button").removeClass("active");
+      $(this).addClass("active");
+      $(".tab-contents > div").hide();
+      $(".tab-contents > div").eq(tab_index).show();
+    });
+
     let isSorting = false; // Sortable.js 동작 여부 확인
     let isSwiping = false; // 스와이프 동작 여부 확인
 
@@ -501,13 +509,5 @@
         }
       }, 400); // transition 시간과 맞춤
     }
-
-    $(".tab button").on("click", function () {
-      var tab_index = $(this).index();
-      $(this).closest(".tab").find("button").removeClass("active");
-      $(this).addClass("active");
-      $(".tab-contents > div").hide();
-      $(".tab-contents > div").eq(tab_index).show();
-    });
   </script>
 </html>

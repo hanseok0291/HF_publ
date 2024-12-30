@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, user-scalable=no" />
         <meta name="format-detection" content="telephone=no, address=no, email=no" />
         <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-        <script src="public/js/common/jquery-1.8.3.min.js"></script>
+        <script src="js/jquery.3.4.1.min.js"></script>
 
         <style>
             html,
@@ -199,42 +199,41 @@
         </style>
 
         <script>
-            $(document).ready(function () {
-                // 설명 영역 축약 (flip)
-                $(".btn-flip").click(function () {
-                    $(this).parents(".flip").toggleClass("open");
-                });
-                $(".btn-flip-all").click(function () {
-                    if (!$(this).hasClass("open")) {
-                        $(this).addClass("open");
-                        $(this).parents("h2").next().find(".flip").addClass("open");
-                    } else {
-                        $(this).removeClass("open");
-                        $(this).parents("h2").next().find(".flip").removeClass("open");
-                    }
-                });
+	$(document).ready(function(){
+		// 설명 영역 축약 (flip)
+		$(".btn-flip").click(function(){
+			$(this).parents(".flip").toggleClass("open");
+		});
+		$(".btn-flip-all").click(function(){
+			if(!$(this).hasClass("open")){
+				$(this).addClass("open");
+				$(this).parents("h2").next().find(".flip").addClass("open");
+			} else {
+				$(this).removeClass("open");
+				$(this).parents("h2").next().find(".flip").removeClass("open");
+			}
+		});
 
-                // 진행 상태별 셀 컬러
-                $("li.text-success").parents("tr").addClass("bg-success");
-                $("li.text-danger").parents("tr").addClass("bg-success2");
-                $(".status:contains('작업 중'), .status:contains('수정 중'), .status:contains('수정 예정')").parents("tr").removeClass("bg-success2").addClass("bg-danger");
-                $(".status:contains('검토 요청')").parents("tr").removeClass("bg-success2").addClass("bg-warning");
-                $(".status:contains('-'), .status:empty").parents("tr").addClass("bg-wait");
+		// 진행 상태별 셀 컬러
+		$("li.text-success").parents("tr").addClass("bg-success");
+		$("li.text-danger").parents("tr").addClass("bg-success2");
+		$(".status:contains('작업 중'), .status:contains('수정 중'), .status:contains('수정 예정')").parents("tr").removeClass("bg-success2").addClass("bg-danger");
+		$(".status:contains('검토 요청')").parents("tr").removeClass("bg-success2").addClass("bg-warning");
+		$(".status:contains('-'), .status:empty").parents("tr").addClass("bg-wait");
 
-                // 모바일 링크 타겟 변경
-                var filter = "win16|win32|win64|mac|macintel";
-                if (navigator.platform) {
-                    if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
-                        // mobile
-                        $("a").attr("target", "_self");
-                        // alert("[010PAY 퍼블리싱 안내]\n모바일 접속! 링크는 페이지 이동으로 적용됩니다.");
-                    } else {
-                        // pc
-                        $("a").attr("target", "_blank");
-                    }
-                }
-            });
-        </script>
+		// 모바일 링크 타겟 변경
+		var filter = "win16|win32|win64|mac|macintel"; if ( navigator.platform ) {
+			if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
+				// mobile
+				$("a").attr("target", "_self");
+				// alert("[010PAY 퍼블리싱 안내]\n모바일 접속! 링크는 페이지 이동으로 적용됩니다.");
+			} else {
+				// pc
+				$("a").attr("target", "_blank");
+			}
+		}
+	});
+</script>
     </head>
 
     <body>
@@ -282,7 +281,7 @@
                             <td><a href="html/ui/template_new.html">template_new</a></td>
                             <td>-</td>
                             <td class="date">2024-11-15</td>
-                            <td class="status">검토 요청</td>
+                            <td class="status">완료</td>
                             <td>
                                 <ul>
                                     <li>2024-11-15 : 화면 추가</li>
@@ -342,7 +341,7 @@
                             </td>
                             <td>은행선택 - 약관동의</td>
                             <td class="date">2024-11-15</td>
-                            <td class="status">검토 요청</td>
+                            <td class="status">완료</td>
                             <td>
                                 <div class="flip">
                                     <ul class="flip-body">
@@ -362,7 +361,7 @@
                             </td>
                             <td>ARS, PASS 인증</td>
                             <td class="date">2024-11-15</td>
-                            <td class="status">검토 요청</td>
+                            <td class="status">완료</td>
                             <td>-</td>
                         </tr>
                         <tr>
@@ -379,14 +378,14 @@
                             </td>
                             <td>비밀번호 설정</td>
                             <td class="date">2024-11-15</td>
-                            <td class="status">검토 요청</td>
+                            <td class="status">완료</td>
                             <td>-</td>
                         </tr>
                         <tr>
                             <td><a href="html/account/registerAccount_step4.html">registerAccount_step4</a></td>
                             <td>비밀번호 등록완료</td>
                             <td class="date">~2024-11-19</td>
-                            <td class="status">검토 요청</td>
+                            <td class="status">완료</td>
                             <td>
                                 <div class="flip">
                                     <ul class="flip-body"></ul>
@@ -404,7 +403,7 @@
                             </td>
                             <td>생체인증</td>
                             <td class="date">~2024-11-19</td>
-                            <td class="status">검토 요청</td>
+                            <td class="status">완료</td>
                             <td>
                                 <div class="flip">
                                     <ul class="flip-body"></ul>
@@ -419,7 +418,7 @@
                             <td><a href="html/account/registerCard_step1.html">registerCard_step1</a></td>
                             <td>약관 동의</td>
                             <td class="date">~2024-11-20</td>
-                            <td class="status">검토 요청</td>
+                            <td class="status">완료</td>
                             <td>
                                 <div class="flip">
                                     <ul class="flip-body"></ul>
@@ -433,7 +432,7 @@
                             <td><a href="html/account/registerCard_step2.html">registerCard_step2</a></td>
                             <td>카드번호 입력</td>
                             <td class="date">~2024-11-20</td>
-                            <td class="status">검토 요청</td>
+                            <td class="status">완료</td>
                             <td>
                                 <div class="flip">
                                     <ul class="flip-body"></ul>
@@ -447,7 +446,7 @@
                             <td><a href="html/account/registerCard_step3.html">registerCard_step3</a></td>
                             <td>카드 등록 완료</td>
                             <td class="date">~2024-11-20</td>
-                            <td class="status">검토 요청</td>
+                            <td class="status">완료</td>
                             <td>
                                 <div class="flip">
                                     <ul class="flip-body"></ul>
@@ -461,7 +460,7 @@
                             <td><a href="html/account/registerCard_step4.html">registerCard_step4</a></td>
                             <td>카드 등록 완료</td>
                             <td class="date">~2024-11-20</td>
-                            <td class="status">검토 요청</td>
+                            <td class="status">완료</td>
                             <td>
                                 <div class="flip">
                                     <ul class="flip-body"></ul>
@@ -522,7 +521,7 @@
                             <td><a href="html/account/join_step1.html">join_step1</a></td>
                             <td>-</td>
                             <td class="date">2024-11-22</td>
-                            <td class="status">검토 요청</td>
+                            <td class="status">완료</td>
                             <td></td>
                         </tr>
                         <tr>
@@ -530,7 +529,7 @@
                             <td><a href="html/account/join_step2.html">join_step2</a></td>
                             <td>-</td>
                             <td class="date">2024-11-22</td>
-                            <td class="status">검토 요청</td>
+                            <td class="status">완료</td>
                             <td></td>
                         </tr>
                         <tr>
@@ -538,6 +537,79 @@
                             <td><a href="html/account/join_step3.html">join_step3</a></td>
                             <td>-</td>
                             <td class="date">2024-11-22</td>
+                            <td class="status">완료</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="20">PAY</td>
+                            <td rowspan="">머니</td>
+                            <td><a href="html/pay/money/index.html">money</a></td>
+                            <td>-</td>
+                            <td class="date">2024-12-26</td>
+                            <td class="status">검토 요청</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="">머니 - 내역없음</td>
+                            <td><a href="html/pay/money/indexNoList.html">moneyNoList</a></td>
+                            <td>-</td>
+                            <td class="date">2024-12-26</td>
+                            <td class="status">검토 요청</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="">결제수단</td>
+                            <td><a href="html/pay/payment/index.html">payment</a></td>
+                            <td>-</td>
+                            <td class="date">2024-12-26</td>
+                            <td class="status">검토 요청</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="">결제수단 - 결제수단 없음</td>
+                            <td><a href="html/pay/payment/indexNoItem.html">paymentNoItem</a></td>
+                            <td>-</td>
+                            <td class="date">2024-12-26</td>
+                            <td class="status">검토 요청</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="">충전 - 머니</td>
+                            <td><a href="html/pay/charge/account.html">account</a></td>
+                            <td>-</td>
+                            <td class="date">2024-12-26</td>
+                            <td class="status">검토 요청</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="">충전 - 휴대폰</td>
+                            <td><a href="html/pay/charge/phone.html">phone</a></td>
+                            <td>-</td>
+                            <td class="date">2024-12-26</td>
+                            <td class="status">검토 요청</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="">충전 - 완료</td>
+                            <td><a href="html/pay/charge/complete.html">complete</a></td>
+                            <td>-</td>
+                            <td class="date">2024-12-26</td>
+                            <td class="status">검토 요청</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="">현장결제</td>
+                            <td><a href="html/pay/onSitePayment/index.html">onSitePayment</a></td>
+                            <td>-</td>
+                            <td class="date">2024-12-26</td>
+                            <td class="status">검토 요청</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="">현장결제 - 사용처 없음</td>
+                            <td><a href="html/pay/onSitePayment/indexNoList.html">onSitePaymentNoList</a></td>
+                            <td>-</td>
+                            <td class="date">2024-12-26</td>
                             <td class="status">검토 요청</td>
                             <td></td>
                         </tr>

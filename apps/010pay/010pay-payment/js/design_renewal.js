@@ -119,7 +119,7 @@ $(function () {
             });
     }
 
-    $(".toggle-switch").on("click", function(){
+    $(".toggle-switch").on("click", function () {
         $(this).toggleClass("active");
     });
 });
@@ -495,14 +495,14 @@ function modalOpenSlide(obj) {
 }
 
 // 토스트 팝업 노출 비노출
-function modalToastOpen(id){
+function modalToastOpen(id) {
     $(".modal-toast").hide();
     clearTimeout(toastTimeout);
-    var toastId = $("#" + id)
+    var toastId = $("#" + id);
     toastId.fadeIn();
-    var toastTimeout = setTimeout(function(){
+    var toastTimeout = setTimeout(function () {
         toastId.fadeOut();
-    }, 1000)
+    }, 1000);
 }
 
 // 버튼 클릭시 텍스트 변경

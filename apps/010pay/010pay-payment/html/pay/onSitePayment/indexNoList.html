@@ -18,7 +18,7 @@
     <script src="../../../js/jquery.3.4.1.min.js"></script>
     <script src="../../../js/jquery-ui.js"></script>
     <script src="../../../js/design_renewal.js" defer="defer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@latest/dist/JsBarcode.all.min.js"></script>
+    <script src="../../../js/JsBarcode.all.min.js"></script>
   </head>
 
   <body>
@@ -49,8 +49,8 @@
             <div class="payment-tab">
               <div class="barcode-wrap">
                 <div class="barcode-box">
-                  <button type="button" class="barcode-btn">
-                    <svg id="barcode"></svg>
+                  <button type="button" id="barcode-btn" class="barcode-btn" style="width: 100%; max-width: 600px; margin: 0 auto;">
+                    <svg id="barcode" style="width: 100%; height: auto;"></svg>
                   </button>
                   <div class="barcode-number-box">
                     <button
@@ -229,17 +229,68 @@
       $(this).addClass("active");
       $(".tab-contents > div").hide();
       $(".tab-contents > div").eq(tab_index).show();
+      if(tab_index === 1){
+        $(".barcode-wrap").removeClass("scale").outerHeight(barcodeBoxHeight);
+        $(".barcode-wrap .text-box").show();
+        $(".barcode-info-wrap").show();
+        barcodeOpen = false;
+      }
+    });
+    
+    function generateBarcode(value) {
+      const container = document.getElementById("barcode-btn");
+      const svg = document.getElementById("barcode");
+
+      if(svg){
+        // 바코드 생성 (여백 제거)
+        JsBarcode("#barcode", value, {
+            format: "CODE128",
+            width: 2,  // 기본 바 폭 (초기값)
+            height: 84,
+            displayValue: false,
+            margin: 0  // 여백 제거
+        });
+
+        // 바코드 생성 후 실제 너비 측정
+        const barcodeWidth = svg.getBBox().width;
+        const containerWidth = container.offsetWidth;
+
+        // 컨테이너와 바코드 너비 비율 계산
+        const scale = containerWidth / barcodeWidth;
+
+        // scale 적용 (100% 맞춤)
+        svg.style.transform = `scaleX(${scale})`;  // X축만 확대
+        svg.style.transformOrigin = 'left';  // 왼쪽 기준 확대
+      }
+    }
+
+    // 초기 바코드 생성
+    generateBarcode("58978974456423335866");
+
+    // 창 크기 변경 시 바코드 재생성
+    window.addEventListener('resize', () => {
+        generateBarcode("58978974456423335866");
     });
 
-    JsBarcode("#barcode", "58978974456423335866", {
-        format: "CODE128",
-        width: 1,
-        height: 80,
-        displayValue: false,
-    });
-
+    var barcodeOpen = false;
+    var barcodeBoxHeight = $(".barcode-wrap").outerHeight(true);
     $(".barcode-btn").on("click", function(){
-      $(".barcode-wrap").addClass("scale");
+      if(!barcodeOpen){
+        var winHeight = $(window).outerHeight();
+        var headerHeight = $("#header").outerHeight(true);
+        var tabHeight = $(".tab").outerHeight(true);
+        var calHeight = winHeight - (headerHeight + tabHeight) - 16;
+
+        $(".barcode-wrap").addClass("scale").outerHeight(calHeight);
+        $(".barcode-wrap .text-box").hide();
+        $(".barcode-info-wrap").hide();
+        barcodeOpen = true;
+      } else {
+        $(".barcode-wrap").removeClass("scale").outerHeight(barcodeBoxHeight);
+        $(".barcode-wrap .text-box").show();
+        $(".barcode-info-wrap").show();
+        barcodeOpen = false;
+      }
     });
   </script>
 </html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>RROUND</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no, address=no, email=no" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+        <link rel="stylesheet" href="../../css/jquery-ui.css" />
+        <link rel="stylesheet" href="../../css/common_renewal.css" />
+        <script src="../../js/jquery.3.4.1.min.js"></script>
+        <script src="../../js/jquery-ui.js"></script>
+        <script src="../../js/design_renewal.js" defer="defer"></script>
+        <script src="../../js/owl.carousel.min.js"></script>
+    </head>
+
+    <body>
+        <!-- wrap -->
+        <div id="wrap">
+            <!-- header -->
+            <div id="header">
+                <div class="container">
+                    <div class="header-box">
+                        <button type="button" class="btn-close js-change-btn" data-message="창을 닫으시면 결제가 취소됩니다.<br>종료하시겠습니까?" data-cancel="취소" data-confirm="확인">
+                            <i class="icon-close"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- //header -->
+
+            <!-- content -->
+            <div id="content">
+                <!-- container -->
+                <div class="container">
+                    <!-- headline -->
+                    <div class="headline">
+                        <p>계좌번호를 입력해 주세요</p>
+                        <p class="small">본인 명의의 계좌로만 인증이 가능해요.</p>
+                    </div>
+                    <!-- //headline -->
+
+                    <!-- section -->
+                    <div class="section">
+                        <ul class="form-type step-list">
+                            <li class="on">
+                                <div class="select-box">
+                                    <button type="button" id="chkSelectBtn" class="label" onclick="modalOpenSlide('modal-select-bank')" data-target="modal-select-bank">은행</button>
+                                    <span class="floating-label">은행</span>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="input-container label-n">
+                                    <input type="number" class="custom-input" placeholder=" " id="accountNumber" />
+                                    <label for="accountNumber" class="floating-label">계좌 번호</label>
+                                    <button type="button" class="icon icon-del js-text-del"></button>
+                                </div>
+                                <p class="input-info-text">계좌 인증은 1일 최대 5회까지 가능합니다.</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- //section -->
+                </div>
+                <!-- //container -->
+
+                <!-- bottom area -->
+                <div class="bottom-area">
+                    <!-- container -->
+                    <div class="container">
+                        <button type="button" class="btn js-modal-close" onclick="location.href='userCheck_accountCheck_step2.html'">다음</button>
+                    </div>
+                    <!-- //container -->
+                </div>
+                <!-- //bottom area -->
+            </div>
+            <!-- //content -->
+        </div>
+        <!-- //wrap -->
+
+        <!-- loading -->
+        <div class="modal modal-loading">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="loading">
+                        <span class="loading-bar"></span>
+                        <span class="loading-bar"></span>
+                        <span class="loading-bar"></span>
+                    </div>
+                    <span class="sr-only">로딩 중</span>
+                </div>
+            </div>
+        </div>
+        <!-- //loading -->
+
+        <!-- common alert -->
+        <div id="commonPrompt" class="modal"> 
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                    <h3 id="promptTitle"></h3>
+                    <p id="promptContents">
+                        계좌를 다시 확인해 주세요.
+                    </p>
+                    <!-- <p id="alertContents">
+                        1일 인증 가능 횟수를 초과하였습니다.<br>내일 다시 시도해주세요.
+                    </p> -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="promptNo" onclick="modalCloseAlert();" class="btn btn-cancel">취소</button>
+                        <button type="button" id="promptOk" onclick="modalCloseAlert();" class="btn btn-confirm">확인</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //common alert -->
+
+        <!-- select modal bank -->
+        <div id="modal-select-bank" class="modal modal-slide type-bank type-title">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-head">
+                        <p class="modal-head-title">은행 선택</p>
+                        <button type="button" class="btn btn-close js-modal-close"><i class="icon-close"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div>
+                                <ul class="bank-list option-list">
+                                    <li class="option-item select">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> NH농협
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_004.png" alt="" /></i> 국민
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_090.png" alt="" /></i> 카카오뱅크
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_035.png" alt="" /></i> 신한
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_020.png" alt="" /></i> 우리
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_003.png" alt="" /></i> 기업
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_089.png" alt="" /></i> 케이뱅크
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_092.png" alt="" /></i> 토스뱅크
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> NH농협
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_007.png" alt="" /></i> 수협
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_031.png" alt="" /></i> 대구
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_045.png" alt="" /></i> 새마을금고
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_039.png" alt="" /></i> 부산
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_071.png" alt="" /></i> 우체국
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_032.png" alt="" /></i> 경남
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_034.png" alt="" /></i>광주
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> NH농협
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 국민
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 카카오뱅크
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 카카오뱅크
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> NH농협
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 국민
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 카카오뱅크
+                                        </button>
+                                    </li>
+                                    <li class="option-item">
+                                        <button type="button">
+                                            <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> 카카오뱅크
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //select modal list -->
+    </body>
+    <script>
+        $(document).ready(function () {
+            // option-list 내의 모든 li 요소에 클릭 이벤트 리스너 추가
+            $(".option-list li").click(function () {
+                // 모든 li에서 select 클래스 제거
+                $(".option-list li").removeClass("select");
+
+                // 클릭한 li에만 select 클래스 추가
+                $(this).addClass("select");
+            });
+
+            // id가 modal-select-bank인 모달 내의 option-item 클릭 이벤트 추가
+            $("#modal-select-bank .option-item").on("click", function () {
+                // id가 accountNumber인 요소로 포커스 이동
+                $("#accountNumber").focus();
+            });
+
+            modalOpenSlide("modal-select-bank");
+        });
+    </script>
+</html>

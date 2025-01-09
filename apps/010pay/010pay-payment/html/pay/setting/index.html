@@ -45,7 +45,7 @@
                 <p class="setting-name">생체 인증</p>
                 <button type="button" class="icon-question-mark" onclick="modalOpenSlide('modal-bio-check')"></button>
               </div>
-              <div class="toggle-switch">
+              <div id="bio-toggle-switch" class="toggle-switch">
                 <div class="toggle-circle"></div>
               </div>
             </li>
@@ -59,10 +59,13 @@
               </a>
             </li>
             <li>
-              <p class="setting-name">원터치 결제</p>
-              <a href="#">
-                <i class="icon-arrow-right medium"></i>
-              </a>
+              <div class="btn-text-box">
+                <p class="setting-name">원터치 결제</p>
+                <button type="button" class="icon-question-mark" onclick="modalOpenSlide('modal-onetouch-payment')"></button>
+              </div>
+              <div id="onetouch-toggle-switch" class="toggle-switch">
+                <div class="toggle-circle"></div>
+              </div>
             </li>
           </ul>
           <ul class="setting-list">
@@ -105,6 +108,18 @@
       <p>생채 인증 설정이 해지되었습니다.</p>
     </div>
     <!-- //생체 인증 완료 토스트 모달 -->
+
+    <!-- 원터치 결제 해지 토스트 모달 -->
+    <div id="toast-onetouch-complete" class="modal-toast">
+      <p>원터치 결제 설정이 완료되었습니다.</p>
+    </div>
+    <!-- //원터치 결제 해지 토스트 모달 -->
+
+    <!-- 원터치 결제 완료 토스트 모달 -->
+    <div id="toast-onetouch-cancel" class="modal-toast">
+      <p>원터치 결제 설정이 해지되었습니다.</p>
+    </div>
+    <!-- //원터치 결제 완료 토스트 모달 -->
 
     <!-- 생체인증 정보 팝업 -->
     <div
@@ -159,13 +174,53 @@
       </div>
     </div>
     <!-- //간편 결제 정보 팝업 -->
+
+    <!-- 원터치 결제 정보 팝업 -->
+    <div
+      id="modal-onetouch-payment"
+      class="modal modal-slide type-title"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content" style="bottom: 0px; position: fixed">
+          <div class="modal-head">
+            <p class="modal-head-title">
+              원터치 결제
+            </p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <ul class="note-wrap">
+                <li>저장된 결제수단으로 결제 시 비밀번호 입력없이 간편하게 결제하는 방식이에요.</li>
+                <li>안전한 거래임을 확인한 경우에만 진행돼요.</li>
+                <li>부정거래방지시스템(FDS)을 통해 상시 모니터링을 진행하고있어요.</li>
+              </ul>
+              <div class="info-wrap">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //원터치 결제 정보 팝업 -->
   </body>
   <script>
-    $(".toggle-switch").on("click", function () {
+    $("#bio-toggle-switch").on("click", function () {
       if (!$(this).hasClass("active")) {
         modalToastOpen("toast-bio-complete");
       } else {
         modalToastOpen("toast-bio-cancel");
+      }
+    });
+
+    $("#onetouch-toggle-switch").on("click", function () {
+      if (!$(this).hasClass("active")) {
+        modalToastOpen("toast-onetouch-complete");
+      } else {
+        modalToastOpen("toast-onetouch-cancel");
       }
     });
   </script>

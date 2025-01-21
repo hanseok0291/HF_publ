@@ -48,7 +48,7 @@
           <div class="input-wrap">
             <div class="input-container label-n charge-input">
               <input
-                type="number"
+                type="tel"
                 class="custom-input"
                 placeholder=" "
                 id="chargeAmount"
@@ -62,6 +62,7 @@
               </div>
               <button type="button" class="icon icon-del js-text-del"></button>
             </div>
+            <p class="charge-info-text">수수료 N원(4.5%)이 추가 발생해요!</p>
             <div class="add-money-btn-wrap">
               <button type="button" data-money="1">1만원</button>
               <button type="button" data-money="5">5만원</button>
@@ -254,10 +255,10 @@
 
       // 현재 입력된 값 가져오기 (숫자만 허용)
       input_value = parseInt($this.val().replace(/[^0-9]/g, ""));
-
+      
       // 입력 값이 최대 길이를 초과하면 잘라냄
-      if (input_value.length > maxlength) {
-        input_value = input_value.substring(0, maxlength);
+      if ($this.val().length > maxlength) {
+        input_value = parseInt(String(input_value).substring(0, maxlength));
         $this.val(input_value); // 잘린 값으로 업데이트
       }
 

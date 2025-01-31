@@ -535,7 +535,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .checkbox > input + label:before {
   content: "";
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 0;
   display: block;
   width: 24px;
@@ -543,7 +543,7 @@ input[type="number"]::-webkit-inner-spin-button {
   background: url("../images/common/icon-checkbox-off.svg") no-repeat center /
     contain;
   z-index: 2;
-  transform: translateY(-50%);
+  /* transform: translateY(-50%); */
 }
 .checkbox.child .arrow-right {
   content: "";
@@ -576,8 +576,8 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 .checkbox.child > input + label:before {
   background-image: url("../images/common/icon-check-off.svg");
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
 }
 .checkbox.child > input + label:after {
   background-color: transparent;
@@ -683,6 +683,20 @@ input[type="number"]::-webkit-inner-spin-button {
   margin-left: auto;
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+
+.check-all.icon-none .checkbox > input + label {
+  padding-left: 0;
+}
+.check-all.icon-none .checkbox > input + label::before {
+  display: none;
+}
+
+.checkbox-block-group.icon-none .checkbox.child > input + label {
+  padding-left: 0;
+}
+.checkbox-block-group.icon-none .checkbox.child > input + label::before {
+  display: none;
 }
 /* round */
 
@@ -1405,6 +1419,7 @@ body > div > form.main_form {
   right: 0;
   min-width: 320px;
   z-index: 99;
+  background: linear-gradient(0deg, #ffffff 50%, rgba(255, 255, 255, 0) 100%);
 }
 .bottom-area.gray-area,
 .bottom-area.gray-area.fixed,
@@ -1723,8 +1738,8 @@ body > div > form.main_form {
 }
 
 .icon-arrow-right.disabled {
-  background: url("../images/common/icon-arrow-right-off.svg") center / 100% 100%
-    no-repeat;
+  background: url("../images/common/icon-arrow-right-off.svg") center / 100%
+    100% no-repeat;
   pointer-events: none;
 }
 
@@ -1876,7 +1891,8 @@ body > div > form.main_form {
 .icon-info-circle {
   width: 24px;
   height: 24px;
-  background: url("../images/common/icon-info-circle.svg") center center / cover no-repeat;
+  background: url("../images/common/icon-info-circle.svg") center center / cover
+    no-repeat;
   font-size: 0;
 }
 /* //라운드 추가 */
@@ -4501,6 +4517,9 @@ div.nppfs-keypad {
 .modal-slide.type-title .modal-content.scroll::after {
   opacity: 0.5;
 }
+.modal-slide.type-title .terms-wrap .check-all {
+  padding: 0 ;
+}
 .modal-slide.type-title .check-all {
   position: relative;
 }
@@ -4541,9 +4560,12 @@ div.nppfs-keypad {
   align-items: center;
   font-size: 16px;
   font-weight: 700;
-  line-height: 21.6px;
+  line-height: 24px;
   text-align: left;
   padding-left: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 }
 .modal-slide.type-title .check-all .checkbox + .sub-title {
   font-family: Pretendard;
@@ -4563,7 +4585,7 @@ div.nppfs-keypad {
   line-height: 19.6px;
   text-align: left;
   color: #575757;
-  margin-left: 5px;
+  /* margin-left: 5px; */
 }
 
 .modal-slide.type-title .terms-list + .check-all {
@@ -4576,6 +4598,7 @@ div.nppfs-keypad {
   list-style: none;
   padding: 0;
   margin: 0;
+  padding: 0 2px;
 }
 .modal-slide.type-title .terms-list:first-of-type {
   margin-bottom: 20px;
@@ -4708,10 +4731,22 @@ div.nppfs-keypad {
   display: none;
 }
 .bank-list > li > button > i {
-  width: 48px;
+  /*   width: 48px;
   height: 48px;
   margin-bottom: 4px;
-  text-align: center;
+  text-align: center; */
+  width: 48px; /* 고정된 너비 */
+  height: 48px; /* 고정된 높이 */
+  display: flex;
+  justify-content: center; /* 이미지를 가운데 정렬 */
+  align-items: center; /* 이미지를 세로 가운데 정렬 */
+  overflow: hidden; /* 부모 영역을 초과하는 이미지 숨김 */
+  margin-bottom: 4px;
+}
+.bank-list > li > button > i img {
+  width: 100%; /* 부모 영역의 너비에 맞게 조정 */
+  height: 100%; /* 부모 영역의 높이에 맞게 조정 */
+  object-fit: contain; /* 이미지 비율을 유지하면서 부모 영역에 맞춤 */
 }
 /* //은행선택 */
 
@@ -5363,31 +5398,6 @@ em.dash {
 .input-mark .mark.error i.on {
   background: #fc0626;
 }
-/* .input-mark .mark i:nth-of-type(odd) {
-  background: url("../images/common/icon-mark-odd-off.svg") no-repeat center /
-    28px;
-}
-.input-mark .mark i:nth-of-type(even) {
-  background: url("../images/common/icon-mark-even-off.svg") no-repeat center /
-    contain;
-}
-.input-mark .mark i.on:nth-of-type(odd) {
-  background: url("../images/common/icon-mark-odd-on.svg") no-repeat center /
-    28px;
-}
-.input-mark .mark i.on:nth-of-type(even) {
-  background: url("../images/common/icon-mark-even-on.svg") no-repeat center /
-    contain;
-}
-.input-mark .mark.error i.on:nth-of-type(odd) {
-  background: url("../images/common/icon-mark-error-odd-on.svg") no-repeat
-    center / 28px;
-}
-.input-mark .mark.error i.on:nth-of-type(even) {
-  background: url("../images/common/icon-mark-error-even-on.svg") no-repeat
-    center / contain;
-} */
-/* //input-mark */
 
 /* 생체정보 등록 모달 */
 .modal-step1,
@@ -5501,6 +5511,7 @@ em.dash {
   font-weight: 700;
   border-radius: 8px;
   padding: 0 8px;
+  height: 26px;
 }
 #passwordSet .password-wrap .title {
   margin-top: 60px;
@@ -5543,7 +5554,7 @@ em.dash {
   position: absolute;
   top: 0;
   left: 0;
-  max-width: 20px;
+  max-width: 24px;
   z-index: 10;
 }
 /* //로티 */
@@ -5570,8 +5581,9 @@ em.dash {
 }
 .agree-full-wrap .terms-wrap .check-all {
   position: relative;
-  line-height: 42px;
-  margin-top: 8px;
+  /* line-height: 36px; */
+  /* margin-top: 8px; */
+  padding: 8px 0;
 }
 .agree-full-wrap .terms-wrap .check-all .btn-toggle {
   position: absolute;
@@ -5592,8 +5604,12 @@ em.dash {
 .agree-full-wrap .terms-wrap .check-all .checkbox > input + label {
   font-weight: 700;
 }
+.agree-full-wrap .terms-wrap .terms-list {
+  padding: 0 2px;
+}
 .agree-full-wrap .terms-wrap .checkbox-block-group {
-  line-height: 36px;
+  /* line-height: 36px; */
+  padding: 6px 0;
 }
 .agree-full-wrap
   .terms-wrap
@@ -5614,7 +5630,7 @@ em.dash {
 .agree-full-wrap .check-all-box .checkbox > input + label:before {
   content: "";
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 0;
   display: block;
   width: 24px;
@@ -5622,7 +5638,7 @@ em.dash {
   background: url(../images/common/icon-checkbox-off.svg) no-repeat center /
     contain;
   z-index: 2;
-  transform: translateY(-50%);
+  /* transform: translateY(-50%); */
 }
 .agree-full-wrap .check-all-box .checkbox > input:checked + label:before {
   background-image: url(../images/common/icon-checkbox-on.svg);

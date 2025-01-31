@@ -348,7 +348,7 @@ $(function () {
     // 약관 페이지에서는 무조건 fixed 클래스 추가
     if (isTermsPage) {
       $(".bottom-area").addClass("fixed");
-      $("#content").css("padding-bottom", '96px');
+      $("#content").css("padding-bottom", "96px");
     } else {
       // 기존의 조건에 따라 fixed 클래스 처리
       if (fixFoot.length > 0 && (!matchesMediaQuery || matchesSpecialSize)) {
@@ -515,10 +515,16 @@ function modalOpenSlide(obj) {
     selectBox.find(".label").text(selectedBank); // 버튼에 텍스트 업데이트
     selectBox.addClass("comp");
     $("#btnHidden").hide();
+  });
 
-    // step-list에서 현재 on 클래스가 있는 li 찾고 다음 li에 on 클래스 추가
-    var currentStep = $(".step-list li.on"); // 현재 on 클래스가 있는 li
-    var nextStep = currentStep.next("li"); // 다음 li 요소 찾기
+  // 리스트에서 선택한 항목을 버튼에 반영
+  $(".option-item button").on("click", function () {
+    var selectedBank = $(this).text().trim(); // 선택한 이름 가져오기
+    if (selectBox.find(".label").length > 0) {
+      selectBox.find(".label").text(selectedBank); // 버튼에 텍스트 업데이트
+    }
+    selectBox.addClass("comp");
+    $("#btnHidden").hide();
 
     // 다음 li가 있을 경우에만 on 클래스 추가
     if (nextStep.length) {

@@ -617,6 +617,9 @@ document.addEventListener("DOMContentLoaded", function () {
           );
           parentCheckbox.checked = allChecked; // 모든 하위 체크박스가 체크된 경우 상위 체크박스 체크
 
+          // 관련 terms-list 접기/펼치기
+          toggleTermsListDisplay(groupDataAttr, !allChecked);
+
           // 콘솔 출력
           console.log("Clicked Child Checkbox:", childCheckbox);
           console.log("Parent Checkbox:", parentCheckbox);
@@ -642,11 +645,54 @@ document.addEventListener("DOMContentLoaded", function () {
           childCheckbox.checked = isChecked;
         });
 
-        // 콘솔 출력
-        console.log("Clicked Parent Checkbox:", parentCheckbox);
-        console.log("All Child Checkboxes:", childCheckboxes);
+        // 관련 terms-list 접기/펼치기
+        toggleTermsListDisplay(groupDataAttr, !isChecked);
       });
     }
+  };
+
+  // terms-list를 접거나 펼치는 함수
+  const toggleTermsListDisplay = (groupDataAttr, shouldDisplay) => {
+    const relatedTermsList = document.querySelector(
+      `.terms-list[data-group="${groupDataAttr}"]`
+    );
+
+    if (relatedTermsList) {
+      relatedTermsList.style.display = shouldDisplay ? "block" : "none";
+
+      // btn-toggle open 클래스 동기화
+      const toggleButton = document.querySelector(
+        `.btn-toggle[data-group="${groupDataAttr}"]`
+      );
+      if (toggleButton) {
+        toggleButton.classList.toggle("open", shouldDisplay);
+      }
+    }
+  };
+
+  // btn-toggle 클릭 이벤트 추가
+  const initializeToggleButtons = () => {
+    const toggleButtons = document.querySelectorAll(".btn-toggle");
+
+    toggleButtons.forEach((button) => {
+      button.addEventListener("click", function (event) {
+        // 기본 동작 방지 (체크박스 상태 변경 방지)
+        event.preventDefault();
+
+        const groupDataAttr = button.getAttribute("data-group");
+
+        // 관련 terms-list 찾기
+        const relatedTermsList = document.querySelector(
+          `.terms-list[data-group="${groupDataAttr}"]`
+        );
+
+        if (relatedTermsList) {
+          const isCurrentlyVisible =
+            window.getComputedStyle(relatedTermsList).display !== "none";
+          toggleTermsListDisplay(groupDataAttr, !isCurrentlyVisible);
+        }
+      });
+    });
   };
 
   // 동적으로 모든 data-group 값을 가져와 처리
@@ -659,4 +705,7 @@ document.addEventListener("DOMContentLoaded", function () {
     updateParentCheckboxState(group);
     updateChildCheckboxState(group);
   });
+
+  // btn-toggle 초기화
+  initializeToggleButtons();
 });

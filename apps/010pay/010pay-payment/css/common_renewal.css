@@ -1898,6 +1898,30 @@ body > div > form.main_form {
     no-repeat;
   font-size: 0;
 }
+
+.icon-detail-list {
+  width: 24px;
+  height: 24px;
+  background: url("../images/common/icon-detail-list.svg") center center / cover
+    no-repeat;
+  font-size: 0;
+}
+
+.icon-warning-red {
+  width: 16px;
+  height: 16px;
+  background: url("../images/common/icon-warning-red.svg") center center / cover
+    no-repeat;
+  font-size: 0;
+}
+
+.icon-plus {
+  width: 20px;
+  height: 20px;
+  background: url("../images/common/icon-plus.svg") center center / cover
+    no-repeat;
+  font-size: 0;
+}
 /* //라운드 추가 */
 
 /* ----- 안내문 ----- */
@@ -2090,6 +2114,12 @@ body > div > form.main_form {
 }
 .btn + .btn-transparent {
   margin-top: 10px;
+}
+.btn.tertiary {
+  color: #151515;
+  font-size: 16px;
+  border-color: #E5E5E8;
+  background-color: #fff;
 }
 .btn-hidden {
   display: none;
@@ -2755,7 +2785,7 @@ body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer {
   height: 44px;
   padding: 0 16px;
   position: fixed;
-  bottom: 50px;
+  bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -2871,6 +2901,10 @@ body:not(.custom-pass) .round-button-modal:not(.modal-slide) .modal-footer {
 /* common modal */
 #promptNo {
   display: none; /* 기본적으로 숨김 */
+}
+#commonAlert,
+#commonPrompt {
+  z-index: 1000;
 }
 #commonAlert:before,
 #commonPrompt:before {
@@ -3111,7 +3145,7 @@ body:not(.custom-pass) .round-button-modal:not(.modal-slide) .modal-footer {
 }
 .modal-slide.type-select .modal-dialog .modal-body {
   position: relative;
-  padding: 0 20px;
+  padding: 0 16px;
 }
 
 /* 하단 슬라이드 모달 - 확인/취소 모달 */
@@ -3413,43 +3447,46 @@ body:not(.custom-pass) .round-button-modal:not(.modal-slide) .modal-footer {
 }
 
 /* ----- terms ----- */
-.terms {
+.modal .terms, .modal .terms p {
+  display: block;
   font-size: 11px;
   color: #151515;
   word-break: normal;
+  text-align: left;
+  line-height: inherit;
 }
-.terms.text-lg {
+.modal .terms.text-lg {
   font-size: 14px;
   color: #575757;
   line-height: 1.6;
 }
-.terms h3,
-.terms h4,
-.terms h5 {
+.modal .terms h3,
+.modal .terms h4,
+.modal .terms h5 {
   font-weight: 400;
 }
-.terms h3 {
+.modal .terms h3 {
   font-size: 17px;
 }
-.terms h4 {
+.modal .terms h4 {
   font-size: 13px;
 }
-.terms h5 {
+.modal .terms h5 {
   font-size: 12px;
 }
-.terms h3,
-.terms h4,
-.terms h5,
-.terms p,
-.terms li,
-.terms .table {
+.modal .terms h3,
+.modal .terms h4,
+.modal .terms h5,
+.modal .terms p,
+.modal .terms li,
+.modal .terms .table {
   margin: 0.25em 0;
 }
-.terms .indent,
-.terms ul ul {
+.modal .terms .indent,
+.modal .terms ul ul {
   padding-left: 1.333em;
 }
-.terms.scroll {
+.modal .terms.scroll {
   padding-right: 4px;
 }
 
@@ -4449,9 +4486,9 @@ div.nppfs-keypad {
   line-height: 24.3px;
   text-align: left;
   color: #151515;
-  min-height: 68px;
+  min-height: 65px;
   background-color: #fff;
-  border-radius: 16px 16px 0 0;
+  border-radius: 24px 24px 0 0;
   padding: 20px;
 }
 .modal-slide.type-title .modal-head .modal-head-title {
@@ -5221,11 +5258,13 @@ em.dash {
 /* toggle-switch */
 .toggle-switch {
   display: flex;
+  position: relative;
   width: 48px;
   height: 24px;
   padding: 3px;
   border-radius: 100px;
   background-color: #d1d1d1;
+  transition: all 0.3s;
 }
 
 .toggle-switch.active {
@@ -5233,14 +5272,19 @@ em.dash {
 }
 
 .toggle-switch .toggle-circle {
+  position: absolute;
+  left: 3px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 18px;
   height: 18px;
   border-radius: 50%;
   background-color: #fff;
+  transition: all 0.3s;
 }
 
 .toggle-switch.active .toggle-circle {
-  margin-left: auto;
+  left: calc(100% - 21px);
 }
 
 /* toggle-box */
@@ -5826,21 +5870,23 @@ em.dash {
   /* margin-left: auto; */
 }
 .account-list > li {
-  padding: 14px 0;
+  padding: 8px 0;
+  height: auto;
 }
 .account-list > li:last-of-type {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 .account-list .img-bank {
-  width: 40px;
-  height: 40px;
+  width: 62px;
+  height: 62px;
   display: flex;
+  justify-content: center;
   align-items: center;
-  margin-right: 13px;
+  margin-right: 8px;
 }
 .account-list .img-bank > img {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
 }
 .account-list .text-bank {
   display: flex;
@@ -5848,24 +5894,38 @@ em.dash {
   align-items: start;
 }
 .account-list .text-bank > span:last-of-type {
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 18.82px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
   letter-spacing: -0.03em;
   text-align: left;
-  color: #515151;
+  color: #454545;
 }
 .account-list .text-bank > span:first-of-type {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
-  line-height: 23.17px;
-  letter-spacing: -0.03em;
+  line-height: 20px;
+  letter-spacing: -0.02em;
   text-align: left;
   color: #000;
 }
 .account-list .text-bank + .icon-star,
 .account-list .text-bank + .icon-arrow-right {
   margin-left: auto;
+}
+.account-list .btn-wrap .btn {
+  display: inline-block;
+  width: 100%;
+  height: 56px;
+  border: 1px solid #E5E5E8;
+  border-radius: 16px;
+  color: #151515;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 56px;
+  text-align: center;
+  letter-spacing: -0.02em;
+  background-color: #fff;
 }
 /* //account-list */
 

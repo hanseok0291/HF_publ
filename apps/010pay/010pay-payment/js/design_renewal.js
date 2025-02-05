@@ -462,7 +462,7 @@ function modalOpenSlide(obj) {
   // 모달 외부 클릭 시 닫기 처리
   temp.on("click", function (e) {
     // 외부를 클릭했는지 확인
-    if (!$(e.target).closest(".modal-content").length) {
+    if (!$(e.target).closest(".modal-content").length && !temp.hasClass("not-dim-close")) {
       // 열린 모달 확인 (display: block 기준)
       const openedModal = $(".modal:visible"); // 현재 보이는 모달 선택
       if (openedModal.attr("id") === "modal-select-bank") {

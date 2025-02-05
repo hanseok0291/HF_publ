@@ -43,7 +43,7 @@
             <li>
               <div class="btn-text-box">
                 <p class="setting-name">금액 보기</p>
-                <button type="button" class="icon-question-mark" onclick="modalOpenSlide('modal-bio-check')"></button>
+                <button type="button" class="icon-question-mark" onclick="modalOpenSlide('modal-price-check')"></button>
               </div>
               <div id="bio-toggle-switch" class="toggle-switch">
                 <div class="toggle-circle"></div>
@@ -123,8 +123,8 @@
 
     <!-- 금액보기 정보 팝업 -->
     <div
-      id="modal-bio-check"
-      class="modal modal-slide type-title"
+      id="modal-price-check"
+      class="modal modal-slide type-title price-view-modal"
     >
       <div class="modal-dialog">
         <div class="modal-content">
@@ -137,10 +137,13 @@
             </button>
           </div>
           <div class="modal-body">
-            <div class="container">
-              <ul class="note-wrap">
-                <li>금액을 자유롭게 숨길 수 있어요!</li>
-              </ul>
+            <div class="gray-box">
+              <div class="price-wrap">
+                <h2 class="text">금액보기</h2>
+                <h2 class="price">9,999,999원</h2>
+              </div>
+              <p class="main-text">[금액보기]를 터치하면 숨겨진 금액이 나와요!</p>
+              <p class="sub-text">*라운드 전용 금융상품 서비스에 적용돼요.</p>
             </div>
           </div>
         </div>
@@ -212,7 +215,7 @@
       } else {
         modalToastOpen("toast-bio-cancel");
       }
-    });
+    }); 
 
     $("#onetouch-toggle-switch").on("click", function () {
       if (!$(this).hasClass("active")) {
@@ -220,6 +223,13 @@
       } else {
         modalToastOpen("toast-onetouch-cancel");
       }
+    });
+
+    $(".price-view-modal .text").on("click", function(){
+      var $this = $(this);
+      $this.fadeOut().next().delay(300).fadeIn().delay(2700).fadeOut(function() {
+        $this.fadeIn();
+      });
     });
   </script>
 </html>

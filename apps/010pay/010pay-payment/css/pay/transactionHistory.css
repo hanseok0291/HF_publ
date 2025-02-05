@@ -61,10 +61,11 @@
 /* 상세 거래 내역 */
 .trade-list {
   padding: 0 16px;
+  margin-top: 16px;
 }
 .trade-list li {
   display: flex;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 .trade-list li:last-child {
   margin-bottom: 0;
@@ -72,6 +73,7 @@
 .trade-list li .date-text {
   flex: 0 0 auto;
   width: 50px;
+  padding-top: 4px;
   color: #575757;
   font-size: 14px;
   font-weight: 400;
@@ -82,11 +84,10 @@
   color: #888;
   font-size: 12px;
   font-weight: 400;
-  line-height: 17px;
+  line-height: 20px;
   letter-spacing: -0.02em;
 }
 .trade-list li .detail-text {
-  margin-top: 4px;
   color: #151515;
   font-size: 16px;
   font-weight: 400;
@@ -94,38 +95,47 @@
   letter-spacing: -0.02em;
 }
 .trade-list li .type {
-  color: #7d7d7d;
+  margin-left: auto;
+  color: #454545;
   font-size: 12px;
   font-weight: 400;
   line-height: 20px;
   letter-spacing: -0.04em;
 }
-.list-contents-wrap {
-  width: 100%;
-}
 .trade-list li .list-contents-box {
   display: flex;
-  justify-content: space-between;
-  padding: 6px 0 4px;
+  flex-direction: column;
+  width: 100%;
 }
-.trade-list li .list-contents-box:last-child {
-  margin-bottom: 0;
+
+.trade-list li .list-contents-box .right-text-box:first-child {
+  margin-top: 0;
 }
-.trade-list li .left-text-box .top-text {
+
+.trade-list li .right-text-box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 2px;
+  padding: 4px 0;
+}
+.trade-list li .right-text-box .top-text {
   display: flex;
   align-items: center;
-  color: #7D7D7D;
+  height: 20px;
+  color: #888888;
   font-size: 12px;
   font-weight: 400;
   line-height: 17px;
   letter-spacing: -0.04em;
 
 }
-.trade-list li .left-text-box .top-text .type-text {
+.trade-list li .right-text-box .top-text .type-text {
   display: flex;
   align-items: center;
+  line-height: 20px;
 }
-.trade-list li .left-text-box .top-text .type-text::before {
+.trade-list li .right-text-box .top-text .type-text::before {
   display: block;
   content: "";
   width: 1px;
@@ -133,25 +143,31 @@
   margin: 0 5px;
   background-color: #E5E5E8;
 }
-.trade-list li .left-text-box .detail-text {
-  margin-top: 2px;
+.trade-list li .right-text-box .detail-text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  max-height: 44px;
+  padding-right: 16px;
   color: #151515;
   font-size: 16px;
   font-weight: 700;
   line-height: 22.4px;
 }
-.trade-list li .right-text-box {
-  margin-left: auto;
-  text-align: right;
-}
-.trade-list li .right-text-box .amount {
+.trade-list li .bottom-text-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 4px;
-  color: #151515;
-  font-size: 15px;
+}
+.trade-list li .bottom-text-box .amount {
+  color: #454545;
+  font-size: 16px;
   font-weight: 700;
   line-height: 21px;
 }
-.trade-list li .right-text-box .amount.enter {
+.trade-list li .bottom-text-box .amount.enter {
   color: #8BC104;
 }
 /* 상세 거래 내역 END */
@@ -254,7 +270,7 @@
 }
 
 .modal-slide.modal-period .btn-area {
-  padding: 16px;
+  padding: 20px 16px;
 }
 /* 기간 팝업 END */
 
@@ -281,17 +297,20 @@
   line-height: 18.2px;
   letter-spacing: -0.02em;
 }
-.money-container .top-contents-wrap .top-contents-box .top-text-wrap {
-  display: flex;
-  justify-content: space-between;
+.money-container .top-contents-wrap .top-contents-box .top-text-wrap .bank-text {
+  color: #454545;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18.2px;
+  letter-spacing: -0.02em;
 }
 
 .money-container .top-contents-wrap .top-contents-box .money-amount {
   display: flex;
   align-items: center;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 700;
-  line-height: 37.8px;
+  line-height: 34px;
 }
 .money-container .top-contents-wrap .top-contents-box .money-amount::after {
   display: block;
@@ -300,24 +319,11 @@
   height: 20px;
   background: url(../../images/common/icon-arrow-right.svg) 0 0 / cover no-repeat;
 }
-.money-container .top-contents-wrap .top-contents-box .bank-text {
-  display: flex;
-  align-items: center;
-  height: 36px;
-  padding: 0 12px;
-  border: 1px solid #FFFFFF;
-  border-radius: 24px;
-  background: #FFFFFF33;
-}
-.money-container .top-contents-wrap .top-contents-box .bank-text img {
-  width: 20px;
-  height: 20px;
-  margin-right: 4px;
-}
 .money-container .top-contents-wrap .top-contents-box .money-control-wrap {
   display: flex;
   justify-content: space-between;
-  margin-top: 16px;
+  position: relative;
+  margin-top: 24px;
   border-radius: 12px;
   gap: 8px;
 }
@@ -340,8 +346,57 @@
   color: #fff;
   background-color: #151515;
 }
+.money-container .top-contents-wrap .top-contents-box .money-control-wrap .card-make-guide {
+  position: absolute;
+  left: 50%;
+  top: -22px;
+  transform: translateX(-50%);
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 16px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: -0.02em;
+  background: linear-gradient(90deg, #9A5BF1 0%, #28C85D 50%, #9A5BF1 100%);
+  background-size: 400% 100%;
+  animation: bradient-balloon 10s infinite linear;
+}
+.money-container .top-contents-wrap .top-contents-box .money-control-wrap .card-make-guide::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 6px solid #6192A7;
+
+}
+.money-container .banner-wrap {
+  margin-bottom: 20px;
+  padding: 0 16px;
+}
+.money-container .aml-info-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 38px;
+  margin-bottom: 20px;
+  padding: 0 16px;
+  border-radius: 8px;
+  background-color: #F6F6F9;
+}
+.money-container .aml-info-wrap .text-wrap {
+  display: flex;
+  color: #454545;
+  font-size: 13px;
+}
+.money-container .aml-info-wrap .text-wrap i {
+  margin-right: 4px;
+}
 .money-container .add-view-btn-wrap {
-  margin-top: 142px;
+  margin: 50px 0;
 }
 .money-container .add-view-btn-wrap .add-view-btn {
   display: flex;
@@ -442,4 +497,46 @@
   margin-top: 20px;
   padding-top: 20px;
   border-top: 1px solid #E5E5E8;
+}
+
+/* 휴대폰 충전 상세 바텀 시트 */
+.modal-slide.type-title.modal-charge-detail .modal-body {
+  padding: 20px 16px;
+}
+
+.modal-slide.type-title.modal-charge-detail .modal-body dl {
+  display: flex;
+  justify-content: space-between;
+  height: 22px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.modal-slide.type-title.modal-charge-detail .modal-body dl:last-child {
+  margin-bottom: 0;
+}
+
+.modal-slide.type-title.modal-charge-detail .modal-body dl dt {
+  color: #454545;
+}
+
+.modal-slide.type-title.modal-charge-detail .modal-body dl dd {
+  font-weight: 500;
+}
+
+.modal-slide.type-title.modal-charge-detail .modal-body dl dd.price {
+  color: #8BC104;
+}
+
+.modal-slide.type-title.modal-charge-detail .btn-wrap {
+  padding: 20px 16px;
+}
+@keyframes bradient-balloon {
+  0% {
+    background-position: 0 center;
+  }
+  100% {
+    background-position: -400% center;
+  }
 }

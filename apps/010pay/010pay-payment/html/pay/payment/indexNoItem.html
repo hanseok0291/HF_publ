@@ -31,6 +31,7 @@
               <i class="icon-back"></i>
             </button>
             <h2 class="page-title">결제 수단 관리</h2>
+            <button type="button" class="phone-info-btn" onclick="modalOpenSlide('modal-phone-change')"></button>
           </div>
         </div>
       </div>
@@ -130,10 +131,10 @@
                 </li>
               </ul> -->
               <!-- bottom area -->
-              <div class="bottom-area">
+              <div class="bottom-area fixed">
                 <!-- container -->
                 <div class="container">
-                  <button type="button" class="btn">계좌 추가하기</button>
+                  <button type="button" class="btn tertiary"><i class="icon-plus"></i> 계좌 추가하기</button>
                 </div>
                 <!-- //container -->
               </div>
@@ -223,10 +224,10 @@
                 </li>
               </ul> -->
               <!-- bottom area -->
-              <div class="bottom-area">
+              <div class="bottom-area fixed">
                 <!-- container -->
                 <div class="container">
-                  <button type="button" class="btn">카드 추가하기</button>
+                  <button type="button" class="btn tertiary"><i class="icon-plus"></i> 카드 추가하기</button>
                 </div>
                 <!-- //container -->
               </div>
@@ -234,51 +235,23 @@
             </div>
             <div class="drag-list">
               <div class="empty-list">
-                <p>등록된 휴대폰 간편결제가 없어<br>결제가 어려워요!</p>
+                <p>휴대폰 간편결제 등록하고 <br>편하게 결제하세요!</p>
+                <!-- 알뜰폰인 경우 -->
+                <!-- <p>아쉽지만, <br> 알뜰폰은 휴대폰 간편결제를 <br> 이용할 수 없어요!</p> -->
+                <!-- //알뜰폰인 경우 -->
               </div>
-              <!-- <ul class="sortable-list">
-                <li class="list-item">
-                  <div class="list-box">
-                    <div class="img-wrap">
-                      <img
-                        src="../../../images/payment/phone/t.png"
-                        alt="t"
-                      />
-                    </div>
-                    <div class="text-wrap">
-                      <p class="title-text">010 9999 9999</p>
-                      <p class="error-text">재인증이 필요해요.</p>
-                    </div>
-                    <div class="right-box">
-                      <button type="button" class="phone-btn">인증하기</button>
-                    </div>
-                    <button type="button" class="delete-btn">삭제</button>
-                  </div>
-                </li>
-                <li class="list-item">
-                  <div class="list-box">
-                    <div class="img-wrap">
-                      <img
-                        src="../../../images/payment/phone/kt.png"
-                        alt="kt"
-                      />
-                    </div>
-                    <div class="text-wrap">
-                      <p class="title-text">010 9999 9999</p>
-                    </div>
-                    <div class="right-box">
-                      <button type="button" class="phone-btn complete">인증 완료</button>
-                    </div>
-                    <button type="button" class="delete-btn">삭제</button>
-                  </div>
-                </li>
-              </ul> -->
               <!-- bottom area -->
-              <div class="bottom-area">
+              <div class="bottom-area fixed">
                 <!-- container -->
                 <div class="container">
-                  <button type="button" class="btn">휴대폰 간편 결제 등록하기</button>
+                  <button type="button" class="btn tertiary" onclick="modalOpenSlide('modal-payment-phone')"><i class="icon-plus"></i> 휴대폰 간편 결제 등록하기</button>
                 </div>
+                <!-- 통신사 변경 말풍선, 본인인증버튼 -->
+                <!-- <div class="container">
+                  <p class="balloon-text-box">혹시 통신사가 변경되었나요?</p>
+                  <button type="button" class="btn tertiary"><i class="icon-plus"></i> 본인인증하기</button>
+                </div> -->
+                <!-- //통신사 변경 말풍선, 본인인증버튼 -->
                 <!-- //container -->
               </div>
               <!-- //bottom area -->
@@ -290,6 +263,137 @@
       <!-- //content -->
     </div>
     <!-- //wrap -->
+
+    <!-- 휴대폰 간편 결제 등록 약관 동의 -->
+    <div id="modal-payment-phone" class="modal modal-slide type-title type2">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title">
+              휴대폰 간편결제 서비스 이용을 위해 <br> 약관에 동의해주세요.
+            </p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- 전체 동의 체크박스 -->
+            <div class="check-all-box container terms-list-box">
+              <!-- 체크, 접힌상태면 open 클래스 제거 -->
+              <div class="check-all top open">
+                <span class="checkbox">
+                  <input
+                    type="checkbox"
+                    name="checkbox_all2"
+                    id="checkbox_all2"
+                  />
+                  <label for="checkbox_all2">서비스 이용 약관</label>
+                </span>
+                <!-- 체크, 접힌상태면 open 클래스 제거 -->
+                <button type="button" class="btn-toggle open"></button>
+              </div>
+            </div>
+            <!-- 전체 동의 체크박스 -->
+            <div class="container">
+              <div class="terms-wrap">
+                <ul class="terms-list terms-block-list">
+                  <li>
+                    <div class="checkbox-block-group">
+                      <span class="checkbox child arrow-right">
+                        (필수) 통신과금서비스 이용약관
+                        <button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                          onclick="modalOpen('noticeDetail')"
+                          data-toggle="modal"
+                          data-target="#noticeDetail"
+                        ></button>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="checkbox-block-group">
+                      <span class="checkbox child arrow-right">
+                        (필수) 개인정보 제 3자 제공 및 위탁
+                        <button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                          onclick="modalOpen('noticeDetail')"
+                          data-toggle="modal"
+                          data-target="#noticeDetail"
+                        ></button>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="checkbox-block-group">
+                      <span class="checkbox child arrow-right">
+                        (필수) 개인정보 수집·이용
+                        <button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                          onclick="modalOpen('noticeDetail')"
+                          data-toggle="modal"
+                          data-target="#noticeDetail"
+                        ></button>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- 동의하기 버튼 -->
+            <div class="modal-footer">
+              <button
+                type="button"
+                id="btn-agree1"
+                class="btn-confirm disabled"
+                disabled
+              >
+                동의하고 계속하기
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //휴대폰 간편 결제 등록 약관 동의 -->
+
+    <!-- 번호 변경 인포 팝업 -->
+    <div
+      id="modal-phone-change"
+      class="modal modal-slide type-title modal-phone-change"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title">
+              번호 변경이 필요하신가요?
+            </p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="gray-box-wrap">
+                <div class="phone-info">
+                  <span>SKT 알뜰폰</span>
+                  <p>010 9999 9999</p>
+                </div>
+                <p class="info-text">
+                  지금 사용중인 휴대폰번호가 아니면 <br>번호를 변경해주세요!
+                </p>
+              </div>
+              <div class="btn-wrap">
+                <button type="button" class="btn">번호 변경하기</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //번호 변경 인포 팝업 -->
   </body>
   <script>
     $(".tab button").on("click", function () {

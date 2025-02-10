@@ -14,18 +14,18 @@
   width: fit-content;
   margin: 0 auto;
   border-radius: 48px;
-  background-color: #F6F6F6;
+  background: #EFEFF1;
 }
 
 .tab button { 
   width: 84px;
-  height: 40px;
+  height: 38px;
   margin: 0 -6px;
   border-radius: 100px;
   font-size: 14px;
   font-weight: 500;
   line-height: 22.5px;
-  background-color: #F6F6F6;
+  background: #EFEFF1;
 }
 
 .tab button.active {
@@ -72,7 +72,7 @@
   display: flex;
   align-items: center;
   position: relative;
-  height: 90px;
+  height: 80px;
   padding: 0 20px;
   transition: 0.2s all;
   cursor: grab;
@@ -93,12 +93,15 @@
   flex: 0 0 auto;
   justify-content: center;
   align-items: center;
+  position: relative;
   width: 62px;
   height: 62px;
   margin-right: 8px;
 }
 
 .payment-container .tab-contents .drag-list ul li .img-wrap img {
+  position: relative;
+  z-index: 1;
   width: 42px;
   height: 42px;
 }
@@ -106,6 +109,18 @@
 .payment-container .tab-contents .drag-list.card ul li .img-wrap img {
   width: auto;
   height: 50px;
+}
+
+.payment-container .tab-contents .drag-list.phone ul li .list-box .img-wrap::before {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  content: "";
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: #F6F6F9;
 }
 
 .payment-container .tab-contents .drag-list.phone ul li .list-box .text-wrap .error-text {
@@ -145,10 +160,10 @@
   display: block;
   width: 24px;
   height: 24px;
-  margin-left: 12px;
+  margin-left: 8px;
   font-size: 0;
   text-indent: -9999px;
-  background: url('../../images/common/icon-list-drag.svg') 0 0 / cover no-repeat;
+  background: url('../../images/common/icon-list-drag.svg') right center / 20px 20px no-repeat;
   user-select: none;
   -webkit-user-select: none;
 }
@@ -159,7 +174,7 @@
   border-radius: 8px;
   color: #222;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 18px;
   background-color: #fff;
 }
@@ -171,7 +186,7 @@
   width: 70px;
   height: 100%;
   color: #fff;
-  background-color: #FF5959;
+  background-color: #FF596F;
   transform: translateX(100%);
 }
 .payment-container .tab-contents .drag-list ul li .phone-btn {
@@ -191,6 +206,10 @@
 
 .payment-container .tab-contents .drag-list .sortable-list {
   margin-bottom: 20px;
+}
+
+.payment-container .tab-contents .drag-list .sortable-list li {
+  margin-top: 16px;
 }
 
 .sortable-ghost {
@@ -229,6 +248,33 @@
   position: relative;
   z-index: 10;
 }
+
+.payment-container .bottom-area .container .balloon-text-box {
+  position: absolute;
+  left: 50%;
+  top: -23px;
+  transform: translate(-50%, 0);
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 16px;
+  color: #E0FF63;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 28px;
+  letter-spacing: -2%;
+  background-color: #151515;
+}
+
+.payment-container .bottom-area .container .balloon-text-box::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 6px solid #151515;
+}
+
 .payment-container .bottom-area {
   background: linear-gradient(0deg, #FFFFFF 50%, rgba(255, 255, 255, 0) 100%);
 }

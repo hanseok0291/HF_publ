@@ -306,6 +306,12 @@ textarea:focus,
   border-color: #151515 !important;
   z-index: 2;
 }
+.label-n.type-timer.label-error input[type="text"].custom-input.focus,
+.label-n.type-timer.label-error input[type="tel"].custom-input.focus,
+.input-container.text-error input[type="text"].custom-input.focus,
+.input-container.label-error input[type="number"].custom-input.focus {
+  border: 1px solid #ff0000 !important;
+}
 select,
 .select {
   padding-right: 28px;
@@ -1748,8 +1754,7 @@ body > div > form.main_form {
 .icon-back {
   width: 24px;
   height: 24px;
-  background: url("../images/common/icon-back.svg") center / 100% 100%
-    no-repeat;
+  background: url("../images/common/icon-back.svg") center / 100% 100% no-repeat;
   font-size: 0;
 }
 
@@ -2072,7 +2077,7 @@ body > div > form.main_form {
 .btn.tertiary {
   color: #151515;
   font-size: 16px;
-  border-color: #E5E5E8;
+  border-color: #e5e5e8;
   background-color: #fff;
 }
 .btn-hidden {
@@ -3401,7 +3406,8 @@ body:not(.custom-pass) .round-button-modal:not(.modal-slide) .modal-footer {
 }
 
 /* ----- terms ----- */
-.modal .terms, .modal .terms p {
+.modal .terms,
+.modal .terms p {
   display: block;
   font-size: 11px;
   color: #151515;
@@ -4819,6 +4825,7 @@ div.nppfs-keypad {
   border-color: #f1f1f1;
   height: 34px;
   border-radius: 8px;
+  font-weight: 500;
 }
 /* label 스타일 */
 .input-container > .label {
@@ -4871,6 +4878,18 @@ div.nppfs-keypad {
   font-weight: 400;
   font-size: 16px;
 }
+.input-container.text-error > input[type="text"].custom-input {
+  border: 1px solid #ff0000;
+}
+.input-container.label-error > input[type="text"].custom-input.focus {
+  border: 1px solid #ff0000 !important;
+}
+.input-container.text-error .floating-label {
+  color: #ff0000;
+}
+.input-container.text-error.focus-on input {
+  border: 1px solid #ff0000;
+}
 .custom-input,
 input[type="text"].custom-input,
 input[type="number"].custom-input,
@@ -4902,6 +4921,14 @@ input[type="tel"].custom-input {
   ~ .icon-del {
   right: 110px;
 }
+
+.label-n.type-timer input[type="text"].custom-input:not(:placeholder-shown) {
+  border: 1px solid #ff0000;
+}
+.label-n.type-timer.label-error input[type="text"].custom-input.focus {
+  border: 1px solid #ff0000;
+}
+
 .small .custom-input,
 .small input[type="text"].custom-input {
   padding: 0 40px 0 16px;
@@ -4942,6 +4969,9 @@ input[type="tel"].custom-input {
 }
 .id-number > div:last-of-type .custom-input {
   padding-left: 10px;
+}
+.id-number.label-error {
+  border: 1px solid #ff0000;
 }
 /* //주민등록번호 input */
 
@@ -5878,7 +5908,7 @@ em.dash {
   display: inline-block;
   width: 100%;
   height: 56px;
-  border: 1px solid #E5E5E8;
+  border: 1px solid #e5e5e8;
   border-radius: 16px;
   color: #151515;
   font-size: 16px;

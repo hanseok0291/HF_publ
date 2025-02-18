@@ -61,7 +61,9 @@ $(function () {
       if (hasValue) {
         $(this).parents(".input-container").addClass("comp"); // .comp 클래스 추가 (값이 있을 때)
 
-        if (inputContainer.hasClass("label-error")) {
+        var inputContainer = $(this).closest(".input-container");
+
+        if (inputContainer.length && inputContainer.hasClass("label-error")) {
           return;
         }
 

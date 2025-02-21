@@ -221,15 +221,6 @@
                                     010PAY만의 로또로 특급 행운 만나보세요<i>!</i>
                                 </p>
                             </div>
-                            <div class="textWrap textWrap2">
-                                <p class="topText icon-5">쓰는 만큼 쌓이는 행운</p>
-                                <p class="titleText">010PAY 신용카드</p>
-                                <p class="subText">
-                                    1만원 결제마다 쌓이는 리또로<br />
-                                    1억원 당첨 확률을 높여보세요!
-                                </p>
-                            </div>
-                            <div class="retto-pagination"></div>
                         </div>
                     </div>
                 </section>
@@ -671,16 +662,15 @@
                 }
             });
             var rettoSlide = new Swiper(".retto-slide", {
-                speed: 800,
-                autoplay: {
-                    delay: 2000,
-                    disableOnInteraction: false,
-                },
-                loop: true,
+                autoplay: false,
+                loop: false,
                 slidesPerView: 1,
+                allowTouchMove: false,
+                preventClicks: true,
+                preventClicksPropagation: true,
                 pagination: {
                     el: ".retto-pagination",
-                    clickable: true,
+                    clickable: false,
                 },
                 breakpoints: {
                     767: {
@@ -728,7 +718,6 @@
             $(window).on("scroll load", function () {
                 if ($(".retto-section").hasClass("animation") && !retto_state) {
                     setTimeout(function () {
-                        rettoSlide.autoplay.start();
                         $(".jewelImg").addClass("delayInit");
                     }, 2000);
                     retto_state = true;

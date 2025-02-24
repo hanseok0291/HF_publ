@@ -401,7 +401,17 @@
       $(this).closest(".tab").find("button").removeClass("active");
       $(this).addClass("active");
       $(".tab-contents > div").hide();
-      $(".tab-contents > div").eq(tab_index).show();
+      $(".tab-contents > div").eq(tab_index).css("display","flex");
+
+      // 카드 이미지 가로 일 때 회전
+      $(".drag-list.card .img-wrap img").each(function(i,e){
+        var $this = $(this);
+        var imgWidth = $this.get(0).naturalWidth;
+        var imgHeight = $this.get(0).naturalHeight;
+        if(imgWidth > imgHeight){
+          $this.addClass("rotate");
+        }
+      });
     });
 
     let isSorting = false; // Sortable.js 동작 여부 확인

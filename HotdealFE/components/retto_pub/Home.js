@@ -50,7 +50,7 @@ const Home = ({ case1, case2, case3 }) => {
       content: ["요즘 로또 명당 다니기", "귀찮은데 리또로 받으렵니다."],
     },
   ];
-
+  const isPrevious = true; // 250218 이전 버전일 경우 true
   const winnerList = ["김헥토"];
   const mainSectionRef = useRef(null);
   const [isToast, setIsToast] = useState(true);
@@ -73,7 +73,7 @@ const Home = ({ case1, case2, case3 }) => {
   }, []);
 
   return (
-    <div className={styleHome.container}>
+    <div className={`${styleHome.container} ${isPrevious ? styleHome.previous: ''}`}>
       <div className={styleHome.visualSection}>
         <div className={styleHome.titleWrap}>
           <div className={styleHome.textWrap}>
@@ -349,7 +349,7 @@ const Home = ({ case1, case2, case3 }) => {
         <div
           className={`${styleHome.toastWrap} ${
             !toastShow ? styleHome.toastHide : ""
-          }`}
+          } ${isPrevious ? styleHome.previous : ""}`}
           ref={bottomToastRef}
         >
           <div className={styleHome.toastBox}>
@@ -367,10 +367,12 @@ const Home = ({ case1, case2, case3 }) => {
           </div>
         </div>
       )}
-
-      <div className={`${styleHome.buttonWrap}`}>
-        <Button large>리또 받기</Button>
-      </div>
+      {isPrevious && (
+        <div className={`${styleHome.buttonWrap}`}>
+          <Button large>리또 받기</Button>
+        </div>
+      )}
+      
     </div>
   );
 };

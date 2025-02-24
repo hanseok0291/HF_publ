@@ -209,7 +209,7 @@ const index = () => {
           </div>
           <Marquee>
             <ul className={styleRettoTip.slideWrap}>
-              <li>
+              <li className={styleRettoTip.slideItem1}>
                 <div className={styleRettoTip.textWrap}>
                   <p className={styleRettoTip.name}>블로거 에르*</p>
                   <p className={styleRettoTip.mainText}>
@@ -221,7 +221,7 @@ const index = () => {
                 </div>
                 <div className={styleRettoTip.imgWrap}></div>
               </li>
-              <li>
+              <li className={styleRettoTip.slideItem2}>
                 <div className={styleRettoTip.textWrap}>
                   <p className={styleRettoTip.name}>블로거 길*</p>
                   <p className={styleRettoTip.mainText}>
@@ -232,7 +232,7 @@ const index = () => {
                 </div>
                 <div className={styleRettoTip.imgWrap}></div>
               </li>
-              <li>
+              <li className={styleRettoTip.slideItem3}>
                 <div className={styleRettoTip.textWrap}>
                   <p className={styleRettoTip.name}>4월 리또 랭킹 1위 회원 곽*규</p>
                   <p className={styleRettoTip.mainText}>
@@ -244,7 +244,7 @@ const index = () => {
                 </div>
                 <div className={styleRettoTip.imgWrap}></div>
               </li>
-              <li>
+              <li className={styleRettoTip.slideItem4}>
                 <div className={styleRettoTip.textWrap}>
                   <p className={styleRettoTip.name}>블로거 혜무**</p>
                   <p className={styleRettoTip.mainText}>
@@ -255,7 +255,7 @@ const index = () => {
                 </div>
                 <div className={styleRettoTip.imgWrap}></div>
               </li>
-              <li>
+              <li className={styleRettoTip.slideItem5}>
                 <div className={styleRettoTip.textWrap}>
                   <p className={styleRettoTip.name}>4월 리또 랭킹 2위 황*철</p>
                   <p className={styleRettoTip.mainText}>
@@ -267,7 +267,7 @@ const index = () => {
                 </div>
                 <div className={styleRettoTip.imgWrap}></div>
               </li>
-              <li>
+              <li className={styleRettoTip.slideItem6}>
                 <div className={styleRettoTip.textWrap}>
                   <p className={styleRettoTip.name}>4월 리또 랭킹 4위 서*철</p>
                   <p className={styleRettoTip.mainText}>

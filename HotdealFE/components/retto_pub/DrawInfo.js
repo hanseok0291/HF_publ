@@ -390,7 +390,7 @@ const DrawInfo = ({
               <div className={styleRettoList.infoContentsContainer}>
                 <h4>리또 받는 방법</h4>
                 <ul className={styleRettoList.infoContentsWrap}>
-                  <li>
+                  <li className={styleRettoList.infoContent1}>
                     <div className={styleRettoList.textBox}>
                       <span className={styleRettoList.indexText}>1</span>
                       <p>
@@ -399,7 +399,7 @@ const DrawInfo = ({
                       </p>
                     </div>
                   </li>
-                  <li>
+                  <li className={styleRettoList.infoContent2}>
                     <div className={styleRettoList.textBox}>
                       <span className={styleRettoList.indexText}>2</span>
                       <p>
@@ -408,7 +408,7 @@ const DrawInfo = ({
                       </p>
                     </div>
                   </li>
-                  <li>
+                  <li className={styleRettoList.infoContent3}>
                     <div className={styleRettoList.textBox}>
                       <span className={styleRettoList.indexText}>3</span>
                       <p>
@@ -417,7 +417,7 @@ const DrawInfo = ({
                       </p>
                     </div>
                   </li>
-                  <li>
+                  <li className={styleRettoList.infoContent4}>
                     <div className={styleRettoList.textBox}>
                       <span className={styleRettoList.indexText}>4</span>
                       <p>
@@ -426,7 +426,7 @@ const DrawInfo = ({
                       </p>
                     </div>
                   </li>
-                  <li>
+                  <li className={styleRettoList.infoContent5}>
                     <div className={styleRettoList.textBox}>
                       <span className={styleRettoList.indexText}>5</span>
                       <p>

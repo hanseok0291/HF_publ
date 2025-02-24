@@ -12,6 +12,15 @@ $(function () {
       $(".bottom-banner-area.fixed").addClass("hidden-mobile");
       $(this).parents(".input-container").addClass("focus-on");
 
+      var floatingLabel = $(this)
+        .closest(".input-container")
+        .find(".floating-label");
+
+      // .label-error가 있으면 기존 문구 유지
+      if ($(this).closest(".input-container").hasClass("label-error")) {
+        return;
+      }
+
       // .floating-label.first 텍스트를 변경
       if ($(this).closest(".input-container").hasClass("focus-on")) {
         var floatingLabel = $(this)
@@ -51,6 +60,12 @@ $(function () {
       // input에 값이 있으면 focus-on 유지, 없으면 제거
       if (hasValue) {
         $(this).parents(".input-container").addClass("comp"); // .comp 클래스 추가 (값이 있을 때)
+
+        var inputContainer = $(this).closest(".input-container");
+
+        if (inputContainer.length && inputContainer.hasClass("label-error")) {
+          return;
+        }
 
         // id-number 하위 input인 경우, 텍스트가 "주민 등록 번호 앞 7자리"로 유지되도록 설정
         if ($(this).closest(".id-number").length) {
@@ -241,6 +256,7 @@ $(function () {
       e.preventDefault();
       const inputField =
         this.closest(".input-container").querySelectorAll(".custom-input");
+
       inputField.forEach((e, i) => {
         e.value = "";
         if (i === 0) {

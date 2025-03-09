@@ -774,12 +774,29 @@
       }, 400); // transition 시간과 맞춤
     }
 
+    // "휴대폰" 탭이 기본 active인지 확인
+    var isPhoneTabActive = $(".tab button.active").text().trim() === "휴대폰";
+
+    // 초기 로딩 시 phone-info-btn 상태 설정
+    if (isPhoneTabActive) {
+      $(".phone-info-btn").show();
+    } else {
+      $(".phone-info-btn").hide();
+    }
+
     $(".tab button").on("click", function () {
       var tab_index = $(this).index();
       $(this).closest(".tab").find("button").removeClass("active");
       $(this).addClass("active");
       $(".tab-contents > div").hide();
       $(".tab-contents > div").eq(tab_index).css("display", "flex");
+
+      // "휴대폰" 탭이 활성화되었을 때만 phone-info-btn 보이기
+      if ($(this).text().trim() === "휴대폰") {
+        $(".phone-info-btn").show();
+      } else {
+        $(".phone-info-btn").hide();
+      }
 
       // 카드 이미지 가로 일 때 회전
       $(".drag-list.card .img-wrap img").each(function (i, e) {

@@ -112,23 +112,6 @@
         </div>
         <!-- //wrap -->
 
-        <!-- common prompt -->
-        <div id="commonPrompt" class="modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <h3 id="promptTitle"></h3>
-                        <p id="promptContents"></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="promptNo" onclick="modalCloseAlert();" class="btn btn-cancel">취소</button>
-                        <button type="button" id="promptOk" onclick="modalCloseAlert();" class="btn btn-confirm">확인</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- //common prompt -->
-
         <!-- select modal list -->
         <div id="modal-select-title" class="modal modal-slide type-title type1">
             <div class="modal-dialog">
@@ -361,6 +344,67 @@
             </div>
         </div>
         <!-- //modal - 공지사항 상세 -->
+
+    <!-- common prompt -->
+    <div id="commonPrompt" class="modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <h3 id="promptTitle"></h3>
+              <p id="promptContents"></p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                id="promptNo"
+                onclick="modalCloseAlert();"
+                class="btn btn-cancel"
+              >
+                취소
+              </button>
+              <button
+                type="button"
+                id="promptOk"
+                onclick="modalCloseAlert();"
+                class="btn btn-confirm"
+              >
+                확인
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- //common prompt -->
+      <!-- common prompt -->
+      <div id="commonPrompt2" class="modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <h3 id="promptTitle2"></h3>
+              <p id="promptContents2"></p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                id=""
+                onclick="modalCloseAlert();"
+                class="btn btn-cancel"
+              >
+                취소
+              </button>
+              <button
+                type="button"
+                id="promptOk"
+                onclick="modalCloseSubAlert();"
+                class="btn btn-confirm"
+              >
+                확인
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- //common prompt2 -->
     </body>
     <script>
         $(document).ready(function () {
@@ -434,6 +478,48 @@
             animType: "svg",
             loop: true,
             path: "https://ux.sbsvc.online/010pay/010pay-payment/images/lottie/loading.json",
+        });
+
+        // 퍼블 확인용 스크립트
+        $(document).ready(function () {
+        $("#checkbox1_group").on("change", function () {
+        if ($(this).is(":checked")) {
+            $("#btn-agree1").removeClass("disabled").prop("disabled", false);
+            // 체크가 되었다면 modal-slide에서 alert-check 클래스 추가
+            $(this).closest(".modal-slide").removeClass("alert-check");
+        } else {
+            $("#btn-agree1").addClass("disabled").prop("disabled", true);
+            // 체크 해제되었다면 modal-slide에서 alert-check 클래스 제거
+            $(this).closest(".modal-slide").addClass("alert-check");
+        }
+        });
+
+        // 초기 상태 설정 (페이지 로드 시 체크 상태 확인)
+        if (!$("#checkbox1_group").is(":checked")) {
+        $("#btn-agree1").addClass("disabled").prop("disabled", true);
+        }
+
+        // js-modal-close 클릭 시 체크 상태 확인 후 동작 결정
+        $(".js-modal-close").on("click", function (e) {
+        if (!$("#checkbox1_group").is(":checked")) {
+            var $changeBtn = $(".js-change-btn"); // 변경 버튼 가져오기
+            var title = $changeBtn.attr("data-title") || "";
+            var message = $changeBtn.attr("data-message") || "";
+            var cancelText = $changeBtn.attr("data-cancel") || "취소";
+            var confirmText = $changeBtn.attr("data-confirm") || "확인";
+
+            // commonPrompt 모달 내용 설정
+            $("#promptTitle").html(title);
+            $("#promptContents").html(message);
+            $("#promptNo").text(cancelText);
+            $("#promptOk").text(confirmText);
+
+            // commonPrompt 모달 열기
+            $("#commonPrompt").show();
+        } else {
+            modalClose(); // 체크된 상태라면 기존 모달 닫기 동작 유지
+        }
+        });
         });
     </script>
 </html>

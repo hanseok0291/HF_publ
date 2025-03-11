@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../../css/pay/transactionHistory.css" />
+    <script src="../../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../../js/jquery-ui.js"></script>
+    <script src="../../../js/design_renewal.js" defer="defer"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <h2 class="page-title">거래내역</h2>
+            <button type="button" class="btn-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <!-- container -->
+        <div class="container transaction-history-container">
+          <div class="month-wrap">
+            <button type="button" class="prev-btn icon-arrow-left size-16 disabled">이전</button>
+            <button type="button" class="month-text" onclick="modalOpenSlide('modal-period')">7월</button>
+            <button type="button" class="next-btn icon-arrow-right size-16">다음</button>
+          </div>
+          <div class="trade-tab-wrap">
+            <ul class="tab-list">
+              <li>
+                <button type="button" class="active">전체</button>
+              </li>
+              <li>
+                <button type="button">머니</button>
+              </li>
+              <li>
+                <button type="button">포인트</button>
+              </li>
+              <li>
+                <button type="button">계좌</button>
+              </li>
+              <li>
+                <button type="button">카드</button>
+              </li>
+              <li>
+                <button type="button">휴대폰</button>
+              </li>
+            </ul>
+          </div>
+          <div class="empty-list">
+            <p>거래 내역이 없어요!</p>
+          </div>
+        </div>
+        <!-- //container -->
+      </div>
+      <!-- //content -->
+    </div>
+    <!-- //wrap -->
+
+    <!-- 기간 팝업 -->
+    <div
+      id="modal-period"
+      class="modal modal-slide type-title modal-period not-dim-close"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head round-btn">
+            <button type="button" class="btn btn-close js-modal-close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="year-wrap">
+              <button type="button" class="prev-btn icon-arrow-left size-20 disabled">이전</button>
+              <span class="year-text">2024년</span>
+              <button type="button" class="next-btn icon-arrow-right size-20">다음</button>
+            </div>
+            <ul class="month-list-wrap">
+              <li>
+                <button type="button" class="active">1월</button>
+              </li>
+              <li>
+                <button type="button">2월</button>
+              </li>
+              <li>
+                <button type="button">3월</button>
+              </li>
+              <li>
+                <button type="button">4월</button>
+              </li>
+              <li>
+                <button type="button">5월</button>
+              </li>
+              <li>
+                <button type="button">6월</button>
+              </li>
+              <li>
+                <button type="button">7월</button>
+              </li>
+              <li>
+                <button type="button">8월</button>
+              </li>
+              <li>
+                <button type="button">9월</button>
+              </li>
+              <li>
+                <button type="button">10월</button>
+              </li>
+              <li>
+                <button type="button">11월</button>
+              </li>
+              <li>
+                <button type="button">12월</button>
+              </li>
+            </ul>
+          </div>
+          <div class="btn-area">
+            <button type="button" class="btn" onclick="modalCloseSlide()">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //기간 팝업 -->
+  </body>
+  <script>
+    $(function(){
+      $(".modal-period .month-list-wrap button").on("click", function(){
+        $(this).closest(".month-list-wrap").find("button").removeClass("active");
+        $(this).addClass("active");
+      });
+
+      $(window).on("scroll", function(){
+        var scrollTop = $(window).scrollTop();
+        var tradeTabOffset = $(".trade-tab-wrap").offset().top - 64;
+        if (scrollTop >= tradeTabOffset) {
+          $(".trade-tab-wrap").addClass("fixed");
+        } else {
+          $(".trade-tab-wrap").removeClass("fixed");
+        }
+      });
+    });
+  </script>
+</html>

@@ -225,6 +225,15 @@ function modalAllClose() {
   $("body").removeClass("modal-open"); // 바디 스크롤 제거 해제
 }
 
+// 모달 내에서 또다른 모달이 열렸을때 닫기
+function modalCloseSubAlert() {
+  // 클릭한 버튼이 속한 모달 찾기
+  var clickedModal = $(event.target).closest(".modal");
+  
+  // 해당 모달만 닫기
+  clickedModal.hide();
+}
+
 // 레이어 애니메이션 외
 $(function () {
   // 셀렉트 옵션 선택(통신사, 머니 충전 계좌, 이용내역 필터 등)
@@ -481,8 +490,25 @@ function modalOpenSlide(obj) {
     }
   });
   // js-modal-close 버튼 클릭 시 모달 닫기 실행
-  temp.find(".js-modal-close").on("click", function () {
-    modalCloseSlide();
+  temp.find(".js-modal-close").off("click").on("click", function () {
+    if (temp.hasClass("alert-check")) {
+      const $changeBtn = $(".js-change-btn"); // 해당 버튼을 찾기
+      const title = $changeBtn.data("title") || "";
+      const message = $changeBtn.data("message") || "";
+      const cancelText = $changeBtn.data("cancel") || "취소";
+      const confirmText = $changeBtn.data("confirm") || "확인";
+
+      // `commonPrompt` 모달 내부 요소에 텍스트 설정
+      $("#promptTitle2").html(title);
+      $("#promptContents2").html(message);
+      $("#commonPrompt2 .btn-cancel").html(cancelText);
+      $("#commonPrompt2 .btn-confirm").html(confirmText);
+
+      // `commonPrompt` 모달 열기
+      modalOpen("commonPrompt2");
+    } else {
+      modalCloseSlide();
+    }
   });
 
   // 클릭된 버튼의 부모 select-box에 comp 클래스 추가

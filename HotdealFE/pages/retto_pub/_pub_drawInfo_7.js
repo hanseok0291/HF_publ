@@ -27,13 +27,11 @@ import ModalRecommendEnd from "../../components/retto_pub/common/modal/ModalReco
 import Toast from "../../components/retto_pub/common/Toast";
 // import MyPageNotJoin from "../../components/retto_pub/MyPageNotJoin";
 import DrawInfo from "../../components/retto_pub/DrawInfo";
-import HomeTab from "../../components/retto_pub/HomeTab";
 
 const index = () => {
   return (
     <>
-      <Header />
-      <HomeTab activeTab={2} />
+      <Header title="추첨 정보" sideBtn="당첨 안내"/>
       <Container isTab padding="0" backgroundColor="#fff">
         {/* HOME */}
         {/* <Home /> */}

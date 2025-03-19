@@ -18,7 +18,7 @@ function Container({children, backgroundColor="#F9F9F9", padding="30px 20px", is
   }, [])
 
   return (
-    <div className={className} style={{paddingTop: isTab ? '96px': "50px"}}>
+    <div className={className} style={{paddingTop: isTab ? '0': "50px"}}>
       <div className={`${styleCommon.container}`} style={style}>
         {children}
       </div>

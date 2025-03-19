@@ -60,30 +60,29 @@ const FillBoxMain = ({ stampInfo, rettoCase, money = false }) => {
 
   return (
     <div className={`${styleFillBoxMain.container}`}>
-      <div className={styleFillBoxMain.boostupBanner}>
-        <p className={styleFillBoxMain.bannerText}>
-          리또 부스트 업 010PAY 활동 지수에 따라 리또가 최대 100개!
-        </p>
-      </div>
       <div className={`${styleFillBoxMain.stampConBox} ${levelInfo.eng}`}>
         <FadeInSection>
           {/* ruby emerald diamond */}
           <button type="button" className={styleFillBoxMain.weekBtn}>
-            <em>{levelInfo.kor}</em> {stampCnt}주차
+            <em>{levelInfo.kor}</em> {weekUnit}주차
           </button>
-          {notiOn ? (
-            <p className={styleFillBoxMain.infoText}>
-              {stampCnt < 5 ? (
-                <>5주 이상 보관하면 매주 리또 5개!</>
-              ) : (
-                <>연속 성공으로 리또 5개씩 받고 있어요.</>
-              )}
-            </p>
-          ) : (
-            <p className={styleFillBoxMain.infoText}>
-              <a href="#">알림 설정</a>하고 리또 받으세요.
-            </p>
-          )}
+          <p className={styleFillBoxMain.infoText}>
+            {!notiOn ? (
+              // D: 마케팅 수신 동의 철회 (notiOn === false)
+              <>
+                <a href="#">알림 설정</a>하고 발소 리워드 로또 받으세요.
+              </>
+            ) : failSoon ? (
+              // B: 이번 주 실패 확정 (failSoon === true)
+              <>아쉬워요... 다음 주 월요일에 다시 시작해요.</>
+            ) : (weekUnit < 1) ? (
+              // C: 재신청 후 1주차 재시작 전 (특정 조건 추가)
+              <>다음 주 월요일부터 시작 두근두근</>
+            ) : (
+              // A: 이번 주 성공 진행 중 (failSoon === false)
+              <>머니 채워두고 매일 발소 리워드 로또 받아요.</>
+            )}
+          </p>
           <div className={styleFillBoxMain.stampContainer}>
             <ul className={styleFillBoxMain.stampWrap}>
               {stampArr.map((item, index) => {
@@ -109,16 +108,13 @@ const FillBoxMain = ({ stampInfo, rettoCase, money = false }) => {
                   >
                     {index >= weekUnit &&
                       !(index === 9 && levelInfo.eng !== "ruby") &&
-                      `${index + 1 + Math.floor(stampCnt / 10) * 10}주차`}
+                      `${index + 1 + Math.floor(weekUnit / 10) * 10}주차`}
                     {index === 9 && levelInfo.eng !== "ruby" && (
                       <img
                         src="../../images/retto/fillbox-stamp-coupon.png"
                         alt="10주차"
                       />
                     )}
-                    <span className={styleFillBoxMain.rettoLength}>
-                      <b>{stampCnt < 10 && index < 5 ? index + 1 : 5}</b>
-                    </span>
                   </li>
                 );
               })}
@@ -149,9 +145,7 @@ const FillBoxMain = ({ stampInfo, rettoCase, money = false }) => {
             <div className={styleFillBoxMain.leftCon}>
               {moneyEmpty ? (
                 <>
-                  <p className={styleFillBoxMain.text1}>
-                    리또 머니함이 비었어요.
-                  </p>
+                  <p className={styleFillBoxMain.text1}>머니함이 비었어요.</p>
                   <p className={styleFillBoxMain.text2}>
                     {failSoon ? (
                       <>월요일이 되기 전까지 다시 채워주세요.</> // 이번주 실패 확정
@@ -161,7 +155,7 @@ const FillBoxMain = ({ stampInfo, rettoCase, money = false }) => {
                   </p>
                 </>
               ) : (
-                <p className={styleFillBoxMain.text1}>리또 머니함</p>
+                <p className={styleFillBoxMain.text1}>머니함</p>
               )}
             </div>
             {moneyEmpty ? (
@@ -177,26 +171,24 @@ const FillBoxMain = ({ stampInfo, rettoCase, money = false }) => {
         </FadeInSection>
       </div>
 
-      <div className={styleFillBoxMain.rettoLevelChangeConBox}>
+      <div
+        className={styleFillBoxMain.rettoLevelChangeConBox}
+        onClick={handleTooltipToggle}
+      >
         <div className={styleFillBoxMain.textWrap}>
-          <p>리또 레벨 변경하기</p>
-          <div className={styleFillBoxMain.tooltipWrap}>
-            <button
-              className={styleFillBoxMain.tooltipBtn}
-              onClick={handleTooltipToggle}
-            ></button>
-            {isTooltip && (
-              <div className={styleFillBoxMain.tooltipBox}>
-                <div>
-                  2.11(수)부터 레벨 변경 가능 <br />
-                  레벨 변경 후 10일동안 다른 레벨로 <br />
-                  변경할 수 없어요.
-                </div>
-              </div>
-            )}
-          </div>
+          <p>레벨 변경하기</p>
+          <div className={styleFillBoxMain.tooltipWrap}></div>
         </div>
         <button type="button" className={styleFillBoxMain.moveBtn}></button>
+        {isTooltip && (
+          <div className={styleFillBoxMain.tooltipBox}>
+            <div>
+              2.11(수)부터 레벨 변경 가능 <br />
+              레벨 변경 후 10일동안 다른 레벨로 <br />
+              변경할 수 없어요.
+            </div>
+          </div>
+        )}
       </div>
       <div className={styleFillBoxMain.botConBox}>
         <div className={`${styleFillBoxMain.grayBox} ${styleFillBoxMain.box1}`}>
@@ -229,14 +221,6 @@ const FillBoxMain = ({ stampInfo, rettoCase, money = false }) => {
           <div className={styleFillBoxMain.addInfo}>
             오늘 머니 보관하면 내일 응모권 3개
           </div>
-        </div>
-        <div className={`${styleMyretto.bottomBox} ${styleMyretto.type1}`}>
-          <a href="#">
-            <p>1만원 결제마다 리또 1개</p>
-            <h4 className={styleMyretto.addArrowBlack}>
-              010PAY 우리카드로 받기
-            </h4>
-          </a>
         </div>
       </div>
     </div>

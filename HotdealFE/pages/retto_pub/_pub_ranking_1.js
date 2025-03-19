@@ -271,7 +271,7 @@ const index = () => {
             </div>
       </Container>
       {/* 회차 선택 */}
-      {/* <BottomSheetRankingTurn /> */}
+      <BottomSheetRankingTurn />
       {/* 랭킹 안내 */}
       {/* <LayerRankingInfo /> */}
     </>

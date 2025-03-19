@@ -8,6 +8,7 @@ import Button from "../Button";
 import "swiper/css";
 import styleModal from "../../../../styles/coupon_pub/Modal.module.css";
 import styleRettoModal from "../../../../styles/retto_pub/Modal.module.css";
+import styleCommon from "../../../../styles/retto_pub/Common.module.css";
 import "react-spring-bottom-sheet/dist/style.css";
 
 // success true 이후 회색 배경 emergency true 시 빨간 스타일
@@ -81,11 +82,11 @@ const BottomSheetSaveingList = ({ isHundredOpen, closeHundredPopup }) => {
       <div className={`${styleModal.modalBody} ${styleRettoModal.bottomSheetBody} ${styleRettoModal.rettoSaveingList}`}>
         <Swiper navigation={true} modules={[Navigation]}>
           <SwiperSlide>
-            {/* <h2>잘 관리하고 있어요</h2> */}
+            {/* <h2>잘 관리하고 있어요<i className={styleCommon.italic}>!</i></h2> */}
             {/* <h2>적립에 성공했네요</h2> */}{/* 성공 */}
-            {/* <h2>앗, 위기예요!</h2> */}{/* 실패중 */}
-            <h2>이런, 아쉬워요!</h2>{/* 실패 */}
-            {/* <p>1주일 다 채우면 다이아 리또 1개!</p> */}
+            {/* <h2>앗, 위기예요<i className={styleCommon.italic}>!</i></h2> */}{/* 실패중 */}
+            <h2>이런, 아쉬워요<i className={styleCommon.italic}>!</i></h2>{/* 실패 */}
+            {/* <p>1주일 다 채우면 다이아 리또 1개<i className={styleCommon.italic}>!</i></p> */}
             {/* <p>다이아 리또 1개가 쌓였어요.</p> */}{/* 성공 */}
             {/* <p>다이아 리또가 사라지고 있어요.</p> */}{/* 실패중 */}
             <p>다음주 월요일 적립 현황이 리셋돼요.</p>{/* 실패 */}
@@ -117,10 +118,10 @@ const BottomSheetSaveingList = ({ isHundredOpen, closeHundredPopup }) => {
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <h2>잘 관리하고 있어요</h2>
-            {/* <h2>적립에 성공했네요</h2> */}
-            <p>1주일 다 채우면 다이아 리또 1개!</p>
-            {/* <p>다이아 리또 1개가 쌓였어요.!</p> */}
+            <h2>잘 관리하고 있어요<i className={styleCommon.italic}>!</i></h2>
+            {/* <h2>적립에 성공했네요<i className={styleCommon.italic}>!</i></h2> */}
+            {/* <p>1주일 다 채우면 다이아 리또 1개<i className={styleCommon.italic}>!</i></p> */}
+            {/* <p>다이아 리또 1개가 쌓였어요.<i className={styleCommon.italic}>!</i></p> */}
             <div className={styleRettoModal.botContWrap}>
               {/* <p className={styleRettoModal.boxText}>한 걸음씩~</p> */}
               {/* <p className={styleRettoModal.boxText}>반짝반짝★</p> */}

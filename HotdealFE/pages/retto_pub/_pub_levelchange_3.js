@@ -34,11 +34,6 @@ const index = () => {
   return (
     <>
       <Header />
-      <ul className={styleMyretto.tabWrap}>
-        <li>HOME</li>
-        <li>추첨 정보</li>
-        <li className={styleMyretto.active}>나의 리또</li>
-      </ul>
       <Container isTab padding="0" backgroundColor="#fff">
         {/* HOME */}
         {/* <Home />  */}

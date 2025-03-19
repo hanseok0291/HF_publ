@@ -25,12 +25,12 @@ const ModalApply = ({jewel, handleModalToggle}) => {
           <div className='jewelImg'></div>
           <p className={styleRettoModal.mainText}>
             <b>{jewel.cash}만원까지</b> 채우면 <br /> 
-            <b>{jewel.level} <span className="jewelColor">{jewel.kor} 리또</span></b> 받을 준비 끝!
+            <b>{jewel.level} <span className="jewelColor">발소 리워드 로또</span></b> 받을 준비 끝!
           </p>
-          <p className={styleRettoModal.subText}>부족한 머니는 충전 후 <br />리또 머니함에 따로 넣어둘게요.</p>
+          <p className={styleRettoModal.subText}>부족한 머니는 충전 후 <br />발소 리워드 로또 머니함에 따로 넣어둘게요.</p>
           <div className={styleRettoModal.grayBox}>
             <dl>
-              <dt>내 보유 머니</dt>
+              <dt>보유 일반 머니</dt>
               <dd>15,000원</dd>
             </dl>
             <dl>

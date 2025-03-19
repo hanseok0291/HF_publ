@@ -34,12 +34,7 @@ import LayerApplyFail from "../../components/retto_pub/LayerApplyFail";
 const index = () => {
   return (
     <>
-      <Header />
-      <ul className={styleMyretto.tabWrap}>
-        <li>HOME</li>
-        <li>추첨 정보</li>
-        <li className={styleMyretto.active}>나의 리또</li>
-      </ul>
+      <Header title="발소 리워드 로또 변경"/>
       <Container isTab padding="0" backgroundColor="#fff">
         {/* HOME */}
         {/* <Home />  */}

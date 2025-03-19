@@ -12,10 +12,11 @@ const FillBoxPrev = ({ case1, case2 }) => {
       <div className={styleFillBoxPrev.visualWrap}>
         <FadeInSection>
           <div className={styleFillBoxPrev.textWrap}>
-            <p>알아서 쌓이는 리또</p>
+            <p>매일 쌓이는 혜택</p>
             <h2>
-              리또 머니함에 보관하고 <br />
-              매주 리또 받아요
+              머니함에
+              <br />
+              보관하고 매일 받아요
             </h2>
           </div>
           <div className={styleFillBoxPrev.imgBox}>
@@ -35,9 +36,10 @@ const FillBoxPrev = ({ case1, case2 }) => {
       <div className={styleFillBoxPrev.mainContentsWrap}>
         <FadeInSection delay={200}>
           <div className={styleFillBoxPrev.textWrap}>
-            <h3>리또 머니함이 뭐예요?</h3>
+            <h3>머니함이 뭐예요?</h3>
             <p>
-              010PAY 머니를 별도 보관하는 상자예요. <br />
+              010PAY 머니를 별도 보관하는 상자예요.
+              <br />
               머니를 안전하게 보관해 드릴게요.
             </p>
           </div>
@@ -57,8 +59,8 @@ const FillBoxPrev = ({ case1, case2 }) => {
               <RettoCalendar />
               <div className={styleFillBoxPrev.markWrap}>
                 <p>채우기 기간</p>
-                <p>리또 지급일</p>
-                <p>리또 추첨일</p>
+                <p>지급일</p>
+                <p>추첨일</p>
               </div>
             </div>
           </div>
@@ -74,32 +76,37 @@ const FillBoxPrev = ({ case1, case2 }) => {
                 레벨을 선택하세요.
               </h4>
               <p className={styleFillBoxPrev.subText}>
-                레벨이 높을수록 혜택 증가!
+                레벨이 높을수록 당첨 확률 증가!
               </p>
             </div>
-            <div className={`${styleCommon.grayBox} ${styleFillBoxPrev.botCon}`}>
-              <p className={styleFillBoxPrev.topText}>레벨별 최대 1등 당첨금</p>
+            <div
+              className={`${styleCommon.grayBox} ${styleFillBoxPrev.botCon}`}
+            >
+              <p className={styleFillBoxPrev.topText}>
+                레벨별 매주 최대 지급 수
+              </p>
               <div className={styleCommon.jewelWrap}>
                 <div className={styleCommon.jewelBox}>
                   <span className={styleCommon.jewelImg}></span>
                   <p>
                     Lv. 1 <span className={styleCommon.jewelColor}>루비</span>
                   </p>
-                  <strong>1백만원</strong>
+                  <strong>7개</strong>
                 </div>
                 <div className={styleCommon.jewelBox}>
                   <span className={styleCommon.jewelImg}></span>
                   <p>
-                    Lv. 2 <span className={styleCommon.jewelColor}>에메랄드</span>
+                    Lv. 2{" "}
+                    <span className={styleCommon.jewelColor}>에메랄드</span>
                   </p>
-                  <strong>1천만원</strong>
+                  <strong>14개</strong>
                 </div>
                 <div className={styleCommon.jewelBox}>
                   <span className={styleCommon.jewelImg}></span>
                   <p>
                     MAX. <span className={styleCommon.jewelColor}>다이아</span>
                   </p>
-                  <strong>1억원</strong>
+                  <strong>21개</strong>
                 </div>
               </div>
             </div>
@@ -120,8 +127,12 @@ const FillBoxPrev = ({ case1, case2 }) => {
               <div className={styleFillBoxPrev.conBox}>
                 <p>
                   머니를 계속 보관하면 <br />
-                  매주 쌓이는 리또가 최대 5개
+                  10주 성공 쿠폰 드려요.
                 </p>
+                <div className={styleFillBoxPrev.benefitBox}>
+                  <p>편의점 쿠폰</p>
+                  <p>커피 쿠폰</p>
+                </div>
               </div>
               <p className={styleFillBoxPrev.botText}>
                 10주 성공 리워드에 루비 레벨은 해당되지 않습니다.
@@ -165,7 +176,7 @@ const FillBoxPrev = ({ case1, case2 }) => {
         </FadeInSection>
       </div>
       <div className={styleFillBoxPrev.btnWrap}>
-        <Button large>머니 채우기로 리또 받기</Button>
+        <Button large>머니 채우기 시작하기</Button>
       </div>
     </div>
   );

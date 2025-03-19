@@ -24,14 +24,12 @@ import LayerRecommend from "../../components/retto_pub/LayerRecommend";
 import ModalRecommendEnd from "../../components/retto_pub/common/modal/ModalRecommendEnd";
 import Toast from "../../components/retto_pub/common/Toast";
 import DrawInfo from "../../components/retto_pub/DrawInfo";
-import HomeTab from "../../components/retto_pub/HomeTab";
 
 const index = () => {
   return (
     <>
-      <Header />
-      <HomeTab activeTab={2} />
-      <Container isTab padding="0" backgroundColor="#fff">
+      <Header title="추첨 정보" sideBtn="당첨 안내"/>
+      <Container padding="0" backgroundColor="#fff">
         {/* HOME */}
         {/* <Home /> */}
         {/* 추첨 정보 case1 리또 없음 case2 당첨 case3 미당첨 case4 추첨예정 case5 이번,다음 회차 case6 미신청자 case7 당첨금 배너 */}

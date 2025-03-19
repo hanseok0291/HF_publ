@@ -6,10 +6,9 @@ import styleRettoModal from "../../../../styles/retto_pub/Modal.module.css";
 import "react-spring-bottom-sheet/dist/style.css";
 import Button from "../Button";
 
-
 // 당첨 바텀 시트
-const BottomSheetPresent = ({ closeHundredPopup }) => {
-
+const BottomSheetPresent = ({ closeHundredPopup, jewel }) => {
+  const jewelClass = jewel ? styleRettoModal[jewel] : "";
   return (
     <BottomSheet
       open={true}
@@ -36,15 +35,25 @@ const BottomSheetPresent = ({ closeHundredPopup }) => {
         </>
       }
     >
-      {/* 선물 증발 추가 */}
-      <div className={`${styleModal.modalBody} ${styleRettoModal.bottomSheetBody} ${styleRettoModal.rettoPresent}`}>
-        <h2>10주 연속 성공하셨네요!</h2>
-        <p>쿠폰 선물함에서 선물을 확인하세요.</p>
-        <div className={`${styleRettoModal.conWrap}`}>{/*  추가 시 선물 증발 이미지 노출 */}
+      {/* 유지 성공 */}
+      {/* {<div className={`${styleModal.modalBody} ${styleRettoModal.bottomSheetBody} ${styleRettoModal.rettoPresent} ${jewelClass}`}>
+        <h2>우와 연속 10번이에요!</h2>
+        <p>축하 선물이 선물함에 도착했어요.</p>
+        <div className={`${styleRettoModal.conWrap}`}>
           <div className={`${styleRettoModal.imgWrap}`}>
           </div>
         </div>
         <Button>확인하러 가기</Button>
+      </div>} */}
+      {/* 선물 증발 */}
+      <div className={`${styleModal.modalBody} ${styleRettoModal.bottomSheetBody} ${styleRettoModal.rettoPresent} ${styleRettoModal.end}`}>
+        <h2>선물이 사라져서 아쉬워요..!</h2>
+        <p>91일 안에 받지 않아 사라졌어요.</p>
+        <div className={`${styleRettoModal.conWrap}`}>{/*  추가 시 선물 증발 이미지 노출 */}
+          <div className={`${styleRettoModal.imgWrap}`}>
+          </div>
+        </div>
+        <Button>확인했어요</Button>
       </div>
     </BottomSheet>
   );

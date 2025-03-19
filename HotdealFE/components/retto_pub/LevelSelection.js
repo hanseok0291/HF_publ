@@ -25,21 +25,18 @@ const jewelCase = [{
     kor: '루비',
     cash: '10',
     prize: '1백만원',
-    level: "Lv. 1"
   },
   {
     eng: 'emerald',
     kor: '에메랄드',
     cash: '50',
     prize: '1천만원',
-    level: "Lv. 2"
   },
   {
     eng: 'diamond',
     kor: '다이아',
     cash: '100',
     prize: '1억원',
-    level: "MAX."
   },
 ];
 
@@ -94,26 +91,26 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
       {!jewel ? (
         <div className={styleCommon.before}>
           <div className={styleCommon.topTextWrap}>
-            <p className={styleCommon.text1}>먼저 <b>리또</b>를 선택해볼까요?</p>
-            <p className={styleCommon.text2}><b>레벨이 높을수록 최대 당첨금 UP !</b></p>
+            <p className={styleCommon.text1}><b>발소 리워드 로또</b>를 선택해볼까요?</p>
+            <p className={styleCommon.text2}><b>다이아로 갈수록 당첨 확률 UP !</b></p>
           </div>
           <div className={styleCommon.grayBox}>
-            <p className={styleCommon.topText}>실제 로또 번호와 일치하면</p>
+            <p className={styleCommon.topText2}>매주 지급되는 발소 리워드 로또 수</p>
             <div className={styleCommon.jewelWrap}>
               <div className={styleCommon.jewelBox}>
                 <span className={styleCommon.jewelImg}></span>
-                <p>Lv. 1 <span className={styleCommon.jewelColor}>루비</span></p>
-                <strong>1백만원</strong>
+                <p><span className={styleCommon.jewelColor}>루비</span></p>
+                <strong>7개</strong>
               </div>
               <div className={styleCommon.jewelBox}>
                 <span className={styleCommon.jewelImg}></span>
-                <p>Lv. 2 <span className={styleCommon.jewelColor}>에메랄드</span></p>
-                <strong>1천만원</strong>
+                <p><span className={styleCommon.jewelColor}>에메랄드</span></p>
+                <strong>14개</strong>
               </div>
               <div className={styleCommon.jewelBox}>
                 <span className={styleCommon.jewelImg}></span>
-                <p>MAX. <span className={styleCommon.jewelColor}>다이아</span></p>
-                <strong>1억원</strong>
+                <p><span className={styleCommon.jewelColor}>다이아</span></p>
+                <strong>21개</strong>
               </div>
             </div>
           </div>
@@ -121,7 +118,6 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
       ) : (
         <div className={`${styleCommon.levelWrap} ${jewel.eng}`}>
           <div className="jewelImg"></div>
-          <p className={styleCommon.levelText}>{jewel.level}<button type='button'></button></p>
           <p className={styleCommon.subText}>
             {jewel.eng === 'ruby' && (
               <>
@@ -129,12 +125,11 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
                   <>
                     {/* 레벨 동일 시 적용 문구 */}
                     지금 <span className='jewelColor'>{jewel.kor}</span> 진행 중이에요. <br />
-                    더 높은 레벨로 큰 행운을 잡으세요.
+                    다이아로 변경해서 큰 행운을 잡으세요.
                   </> : 
                   <>
-                    <span className='jewelColor'>{jewel.kor}</span> 최대 1백만원 당첨! <br />
-                    {props.case1 ? <>매주 자동으로 리또를 드려요.</> : <>10주차 성공 선물을 받을 수 없어요.</>}
-                    
+                    <span className='jewelColor'>{jewel.kor}</span>가 마음에 드세요?<br />
+                    {props.case1 ? <>매일 1개씩 드려요.</> : <>10주차 성공 선물을 받을 수 없어요.</>}
                   </> 
                 }
               </>
@@ -151,7 +146,7 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
                     {
                       increase ? 
                       <>
-                      <span className='jewelColor'>{jewel.kor}</span> 최대 1천만원 당첨!<br />
+                      <span className='jewelColor'>{jewel.kor}</span>는 매주 14개씩!<br />
                       10주마다 <b>편의점 기프티콘</b>을 드려요.
                     </>
                   :
@@ -174,7 +169,7 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
                     지금 <span className='jewelColor'>{jewel.kor}</span> 진행 중이에요. <br />
                   </> :
                   <>
-                    <span className='jewelColor'>{jewel.kor}</span> 최대 1억원 당첨! <br />
+                    <span className='jewelColor'>{jewel.kor}</span>는 매주 21개씩!<br />
                   </> 
                 }
                 10주마다 <b>커피 기프티콘</b>을 드려요.
@@ -186,18 +181,18 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
                 <span className='jewelColor'>{jewel.kor}</span> 리또 받을 준비 끝! */}
                 {/* <span className={styleCommon.priceMoney}>
                   <span>최대 {jewel.prize} 당첨</span> 가능해요. <br />
-                  채운 금액은 리또 머니함에 보관할게요.
+                  채운 금액은 머니함에 보관할게요.
                 </span> */} 
                 {!props.case3 && props.case4 && increase && 
                   <span className={styleCommon.priceMoney}>
                     부족한 금액은 연결 계좌에서 충전해 <br />
-                    <span>리또 머니함에 보관</span>할게요.
+                    <span>머니함</span>에 보관할게요.
                   </span>
                 }
                 {!props.case3 && props.case5 && increase && 
                   <span className={styleCommon.priceMoney}>
                     <span>최소 1천원부터 충전 가능</span>해요. <br />
-                    채운 금액은 리또 머니함에 보관할게요.
+                    <span>머니함</span>에 보관할게요.
                   </span>
                 }
                 {decrease && 
@@ -212,7 +207,7 @@ const LevelSelection = ({change, buttonText, jewel, setJewel, full, handleModalT
           <div className={styleCommon.moneyWrap}>
             {!increase &&
               <dl>
-                <dt>리또 머니함</dt>
+                <dt>머니함</dt>
                 <dd>100,000원</dd>
               </dl>
             }

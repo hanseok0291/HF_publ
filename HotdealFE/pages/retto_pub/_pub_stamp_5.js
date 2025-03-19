@@ -30,6 +30,8 @@ import Home from "../../components/retto_pub/Home";
 import DrawInfo from "../../components/retto_pub/DrawInfo";
 import HomeTab from "../../components/retto_pub/HomeTab";
 
+const jewel = "diamond"; // "diamond" 또는 "emerald", 값이 없으면 기본값(undefined)
+
 const index = () => {
   return (
     <>
@@ -58,7 +60,7 @@ const index = () => {
       {/* 스탬프 주차 확인 바텀 시트 */}
       {/* <BottomSheetSaveingList /> */}
       {/* 스탬프 10주차 유지 성공 바텀 시트 */}
-      <BottomSheetPresent />
+      <BottomSheetPresent jewel={jewel} />
       {/* 보너스 미션 바텀 시트 */}
       {/* <BottomSheetMission /> */}
       {/* 추천 코드 입력하기 */}

@@ -21,7 +21,7 @@ const LayerLevelSelection = ({full, rettoLevel=26, case1, case2, case3, case4, c
   return (
     <div className={`${styleCommon.layer} ${styleCommon.levelSelectionWrap}`}>
       <div className={styleCommon.layerHeader}>
-        <h2>리또 레벨 변경</h2>
+        <h2>발소 리워드 로또 변경</h2>
         <button type="button" className={styleCommon.closeBtn}>
           닫기
         </button>
@@ -29,7 +29,7 @@ const LayerLevelSelection = ({full, rettoLevel=26, case1, case2, case3, case4, c
       <div className={styleCommon.borderBox} style={{margin: "20px 20px 82px", paddingBottom: 0}}>
         <LevelSelection 
           change={true}
-          buttonText="이 리또로 바꿀게요"
+          buttonText="이 레벨로 바꿀게요"
           jewel={jewel}
           setJewel={setJewel}
           handleModalToggle={handleModalToggle}
@@ -45,9 +45,9 @@ const LayerLevelSelection = ({full, rettoLevel=26, case1, case2, case3, case4, c
 
     <div className={styleCommon.noteWrap}>
         <ul>
-          <li>- <b>진행 중인 레벨이 초기화</b>되고 변경된 레벨로 새로 시작해요.</li>
+          <li>- <b>진행 중인 단계는 초기화</b>되고 새로 시작해요.</li>
           <li>
-            - 레벨 변경 후 <b>10일 동안</b> 다른 레벨로 변경할 수 없어요. 
+            - 변경하면 <b>10일 동안</b> 다시 변경할 수 없어요.
           </li>
         </ul>
       </div>

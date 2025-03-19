@@ -8,7 +8,6 @@ import styleApply from "../../styles/retto_pub/Apply.module.css";
 // component
 import LevelSelection from "../../components/retto_pub/LevelSelection";
 import Header from "../../components/retto_pub/common/Header";
-import BottomSheetRettoInfo from "../../components/retto_pub/common/modal/BottomSheetRettoInfo";
 import ModalApply from "../../components/retto_pub/common/modal/ModalApply";
 import BottomSheetAccount from "../../components/retto_pub/common/modal/BottomSheetAccount";
 import ApplyComplete from "../../components/retto_pub/ApplyComplete";

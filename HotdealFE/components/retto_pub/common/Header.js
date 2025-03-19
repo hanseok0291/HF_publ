@@ -3,7 +3,7 @@ import React from 'react';
 //style
 import styleCommon from '../../../styles/retto_pub/Common.module.css';
 
-const Header = ({title = "리또", sideBtn="리또란?", isborder=false}) => {
+const Header = ({title = "발소 리워드 로또", sideBtn="안내", isborder=false}) => {
   
   return (
     <div className={`${styleCommon.header} ${isborder ? styleCommon.headerBorder : ""}`}> 

@@ -28,14 +28,14 @@ import Toast from "../../components/retto_pub/common/Toast";
 import MyPageNotJoin from "../../components/retto_pub/MyPageNotJoin";
 import Home from "../../components/retto_pub/Home";
 import DrawInfo from "../../components/retto_pub/DrawInfo";
-import HomeTab from "../../components/retto_pub/HomeTab";
+
+const jewel = "diamond"; // "diamond" 또는 "emerald", 값이 없으면 기본값(undefined)
 
 const index = () => {
   return (
     <>
       <Header />
-      <HomeTab activeTab={3} />
-      <Container isTab padding="0" backgroundColor="#fff">
+      <Container padding="0" backgroundColor="#fff">
         {/* HOME */}
         {/* <Home /> */}
         {/* 추첨 정보 case1 리또 없음 case2 당첨 case3 미당첨 case4 추첨예정 case5 이번,다음 회차 case6 미신청자 case7 당첨금 배너 */}
@@ -58,7 +58,7 @@ const index = () => {
       {/* 스탬프 주차 확인 바텀 시트 */}
       {/* <BottomSheetSaveingList /> */}
       {/* 스탬프 10주차 유지 성공 바텀 시트 */}
-      {/* <BottomSheetPresent case1 /> */}
+      <BottomSheetPresent case1 jewel={jewel} />
       {/* 보너스 미션 바텀 시트 */}
       {/* <BottomSheetMission /> */}
       {/* 추천 코드 입력하기 */}

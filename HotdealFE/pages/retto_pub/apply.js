@@ -23,7 +23,7 @@ const index = () => {
 
   return (
     <>
-      <Header />
+      <Header title="발소 리워드 로또 신청" />
       <Container>
         <span className={styleApply.visualImg1}></span>
         <span className={styleApply.visualImg2}></span>
@@ -32,7 +32,7 @@ const index = () => {
             머니만 채워도 알아서 쌓여요 <br />
             <b>
               매주 최대{" "}
-              <em className={styleCommon.highlightBg}>1억 행운 리또</em> !
+              <em className={styleCommon.highlightBg}>4백만원 당첨금!</em>
             </b>
           </h2>
         </div>

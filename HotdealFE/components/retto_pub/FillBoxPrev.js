@@ -14,9 +14,9 @@ const FillBoxPrev = ({ case1, case2 }) => {
           <div className={styleFillBoxPrev.textWrap}>
             <p>매일 쌓이는 혜택</p>
             <h2>
-              머니함에
+              머니함에 보관하고
               <br />
-              보관하고 매일 받아요
+              매일 받아요
             </h2>
           </div>
           <div className={styleFillBoxPrev.imgBox}>
@@ -42,27 +42,6 @@ const FillBoxPrev = ({ case1, case2 }) => {
               <br />
               머니를 안전하게 보관해 드릴게요.
             </p>
-          </div>
-        </FadeInSection>
-        <FadeInSection delay={400}>
-          <div
-            className={`${styleFillBoxPrev.grayBox} ${styleFillBoxPrev.firstConBox}`}
-          >
-            <div className={styleFillBoxPrev.topCon}>
-              <div className={styleFillBoxPrev.imgBox}></div>
-              <h4 className={styleFillBoxPrev.mainText}>
-                월 ~ 일요일 보관하고 <br />
-                다음 주말 추첨 기다려요.
-              </h4>
-            </div>
-            <div className={styleFillBoxPrev.botCon}>
-              <RettoCalendar />
-              <div className={styleFillBoxPrev.markWrap}>
-                <p>채우기 기간</p>
-                <p>지급일</p>
-                <p>추첨일</p>
-              </div>
-            </div>
           </div>
         </FadeInSection>
         <FadeInSection>
@@ -119,8 +98,17 @@ const FillBoxPrev = ({ case1, case2 }) => {
             <div className={styleFillBoxPrev.topCon}>
               <div className={styleFillBoxPrev.imgBox}></div>
               <h4 className={styleFillBoxPrev.mainText}>
-                에메랄드, 다이아 레벨은 <br />
-                <em>10주마다 쿠폰</em> 받아요.
+                <span className="break-320">
+                  에메랄드, 다이아 레벨은 <br />
+                  월 ~ 일요일 연속 보관하고
+                  <br />
+                  <em>10주마다 쿠폰</em> 받아요.
+                </span>
+                <span className="break-321">
+                  에메랄드, 다이아 레벨은 월 ~ 일요일
+                  <br />
+                  연속 보관하고 <em>10주마다 쿠폰</em> 받아요.
+                </span>
               </h4>
             </div>
             <div className={styleFillBoxPrev.botCon}>
@@ -178,81 +166,6 @@ const FillBoxPrev = ({ case1, case2 }) => {
       <div className={styleFillBoxPrev.btnWrap}>
         <Button large>머니 채우기 시작하기</Button>
       </div>
-    </div>
-  );
-};
-
-const RettoCalendar = () => {
-  useEffect(() => {
-    const createCalendar = (startDate, endDate) => {
-      const calendar = document.getElementById("calendar");
-      calendar.innerHTML = ""; // 이전에 생성된 캘린더를 초기화합니다.
-
-      let currentDate = new Date(startDate);
-
-      const table = document.createElement("table");
-      const thead = document.createElement("thead");
-      const tbody = document.createElement("tbody");
-      const headerRow = document.createElement("tr");
-
-      const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
-
-      daysOfWeek.forEach((day) => {
-        const th = document.createElement("th");
-        const p = document.createElement("p");
-        p.textContent = day;
-        th.appendChild(p);
-        headerRow.appendChild(th);
-      });
-
-      thead.appendChild(headerRow);
-      table.appendChild(thead);
-
-      let row = document.createElement("tr");
-
-      while (currentDate <= endDate) {
-        const cell = document.createElement("td");
-        const p = document.createElement("p");
-        p.textContent = currentDate.getDate();
-        cell.appendChild(p);
-        row.appendChild(cell);
-
-        if (currentDate.getDay() === 6) {
-          tbody.appendChild(row);
-          row = document.createElement("tr");
-        }
-
-        currentDate.setDate(currentDate.getDate() + 1);
-      }
-
-      // 마지막 줄 추가 (남은 날짜)
-      if (row.children.length > 0) {
-        tbody.appendChild(row);
-      }
-
-      table.appendChild(tbody);
-      calendar.appendChild(table);
-    };
-
-    const today = new Date();
-    const currentDayOfWeek = today.getDay();
-    const startDate = new Date(
-      today.getFullYear(),
-      today.getMonth(),
-      today.getDate() - currentDayOfWeek
-    ); // 이번 주 시작 날짜
-    const endDate = new Date(
-      startDate.getFullYear(),
-      startDate.getMonth(),
-      startDate.getDate() + 13
-    ); // 2주 후 종료 날짜
-
-    createCalendar(startDate, endDate);
-  }, []);
-
-  return (
-    <div className={styleFillBoxPrev.calendarWrap}>
-      <div id="calendar" className={styleFillBoxPrev.calendar} />
     </div>
   );
 };

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../../css/pay/transactionHistory.css" />
+    <script src="../../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../../js/jquery-ui.js"></script>
+    <script src="../../../js/design_renewal.js" defer="defer"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <button type="button" class="btn-back js-change-btn left-0">
+              <i class="icon-back"></i>
+            </button>
+            <h2 class="page-title">010PAY 카드 내역</h2>
+            <a href="#" class="btn-right-menu">관리</a>
+          </div>
+        </div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <!-- container -->
+        <div
+          class="container money-container card-transaction-history transaction-history-container"
+        >
+          <div class="top-contents-wrap">
+            <div class="top-contents-box">
+              <div class="top-text-wrap">
+                <p class="bank-text">총 이용금액</p>
+                <button type="button" class="money-count">100,000원</button>
+              </div>
+              <div class="info-text-wrap">
+                <dl>
+                  <dt>선불충전결제</dt>
+                  <dd>900,000원</dd>
+                </dl>
+                <dl>
+                  <dt>계좌결제</dt>
+                  <dd>100,000원</dd>
+                </dl>
+              </div>
+              <div class="money-control-wrap">
+                <button type="button" class="withdraw-btn">
+                  머니 상세 내역 보기
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="month-wrap">
+            <button
+              type="button"
+              class="prev-btn icon-arrow-left size-16 disabled"
+            >
+              이전
+            </button>
+            <button
+              type="button"
+              class="month-text"
+              onclick="modalOpenSlide('modal-period')"
+            >
+              7월
+            </button>
+            <button type="button" class="next-btn icon-arrow-right size-16">
+              다음
+            </button>
+          </div>
+
+          <div class="trade-tab-wrap">
+            <ul class="tab-list">
+              <li>
+                <button type="button" class="active">전체</button>
+              </li>
+              <li>
+                <button type="button">선불 충전 결제</button>
+              </li>
+              <li>
+                <button type="button">계좌결제</button>
+              </li>
+            </ul>
+          </div>
+          <!-- <div class="empty-list">
+            <i class="icon-exclamation-circle"></i>
+            <p>이용 내역이 없어요!</p>
+          </div> -->
+          <!-- 체크카드는 결제시 -10,000 -->
+          <!-- 신용카드는 결제시 10,000 -->
+          <!-- 결체 취소시 list-contents-box에 cancel 클래스 추가 -->
+          <div class="trade-list-wrap">
+            <ul class="trade-list">
+              <li>
+                <span class="date-text">11(토)</span>
+                <div class="list-contents-box">
+                  <div class="right-text-box">
+                    <div class="top-text">
+                      <p class="time-text">오후 11:56</p>
+                      <p class="type pay">결제</p>
+                    </div>
+                    <div class="bottom-text-box" onclick="modalOpenSlide('modal-charge-detail')">
+                      <p class="detail-text">체크카드 결제</p>
+                      <p class="amount minus">-90,000원</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="date-text">11(토)</span>
+                <div class="list-contents-box cancel">
+                  <div class="right-text-box">
+                    <div class="top-text">
+                      <p class="time-text">오후 11:56</p>
+                      <p class="type pay">결제 취소</p>
+                    </div>
+                    <div class="bottom-text-box">
+                      <p class="detail-text">취소시엔 이렇게</p>
+                      <p class="amount minus">90,000원</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="date-text">11(토)</span>
+                <div class="list-contents-box">
+                  <div class="right-text-box">
+                    <div class="top-text">
+                      <p class="time-text">오후 11:56</p>
+                      <p class="type pay">결제</p>
+                    </div>
+                    <div class="bottom-text-box">
+                      <p class="detail-text">신용카드 결제</p>
+                      <p class="amount minus">90,000원</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <!-- 최대 20개 노출 후 더보기 버튼 노출 -->
+            <div class="add-view-btn-wrap">
+              <button type="button" class="add-view-btn">더보기</button>
+            </div>
+          </div>
+        </div>
+        <!-- //container -->
+      </div>
+      <!-- //content -->
+    </div>
+    <!-- //wrap -->
+
+    <!-- 기간 팝업 -->
+    <div
+      id="modal-period"
+      class="modal modal-slide type-title modal-period not-dim-close"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head round-btn">
+            <button type="button" class="btn btn-close js-modal-close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="year-wrap">
+              <button
+                type="button"
+                class="prev-btn icon-arrow-left size-20 disabled"
+              >
+                이전
+              </button>
+              <span class="year-text">2024년</span>
+              <button type="button" class="next-btn icon-arrow-right size-20">
+                다음
+              </button>
+            </div>
+            <ul class="month-list-wrap">
+              <li>
+                <button type="button" class="active">1월</button>
+              </li>
+              <li>
+                <button type="button">2월</button>
+              </li>
+              <li>
+                <button type="button">3월</button>
+              </li>
+              <li>
+                <button type="button" disabled>4월</button>
+              </li>
+              <li>
+                <button type="button" disabled>5월</button>
+              </li>
+              <li>
+                <button type="button" disabled>6월</button>
+              </li>
+              <li>
+                <button type="button" disabled>7월</button>
+              </li>
+              <li>
+                <button type="button" disabled>8월</button>
+              </li>
+              <li>
+                <button type="button" disabled>9월</button>
+              </li>
+              <li>
+                <button type="button" disabled>10월</button>
+              </li>
+              <li>
+                <button type="button" disabled>11월</button>
+              </li>
+              <li>
+                <button type="button" disabled>12월</button>
+              </li>
+            </ul>
+          </div>
+          <div class="btn-area">
+            <button type="button" class="btn" onclick="modalCloseSlide()">
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //기간 팝업 -->
+    <!-- 충전 상세 취소 팝업 -->
+    <div
+      id="modal-charge-detail"
+      class="modal modal-slide type-title modal-charge-detail"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title">체크카드 결제</p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <dl>
+              <dt>금액</dt>
+              <dd class=""><b>-90,000원</b></dd>
+            </dl>
+            <dl>
+              <dt>일시</dt>
+              <dd>2024. 11. 20 오후 11:45</dd>
+            </dl>
+            <dl>
+              <dt>거래 구분</dt>
+              <dd>결제</dd>
+            </dl>
+            <dl>
+              <dt>수수료</dt>
+              <dd><b>0원</b></dd>
+            </dl>
+          </div>
+          <div class="btn-wrap">
+            <button type="button" class="btn tertiary">결제 취소하기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //충전 상세 취소 팝업 -->
+  </body>
+  <script>
+    $(function () {
+      $(window).on("scroll", function () {
+        var scrollTop = $(window).scrollTop();
+        var tradeTabOffset = $(".trade-tab-wrap").offset().top - 64;
+        if (scrollTop >= tradeTabOffset) {
+          $(".trade-tab-wrap").addClass("fixed");
+        } else {
+          $(".trade-tab-wrap").removeClass("fixed");
+        }
+      });
+
+      $(".tab-list button").on("click", function () {
+        $(this).closest(".tab-list").find("button").removeClass("active");
+        $(this).addClass("active");
+      });
+    });
+  </script>
+</html>

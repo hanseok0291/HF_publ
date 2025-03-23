@@ -57,8 +57,7 @@ const ModalApply = ({jewel, handleModalToggle}) => {
       </div>
       {agree && <Toast>
         2023.08.31 <br />
-        권아현님이 010리또 마케팅
-        수신을 동의하셨습니다.
+        010PAY 마케팅 수신을 동의하셨습니다.
       </Toast>}
       {agree === false && <Toast>
         2023.08.31 <br />

@@ -29,6 +29,7 @@ import MyPageNotJoin from "../../components/retto_pub/MyPageNotJoin";
 import Home from "../../components/retto_pub/Home";
 import DrawInfo from "../../components/retto_pub/DrawInfo";
 import HomeTab from "../../components/retto_pub/HomeTab";
+import BottomSheetSaveingList_Pub from "@/components/retto_pub/common/modal/BottomSheetSaveingList_Pub";
 
 const index = () => {
   return (
@@ -40,7 +41,7 @@ const index = () => {
         {/* 추첨 정보 case1 리또 없음 case2 당첨 case3 미당첨 case4 추첨예정 case5 이번,다음 회차 case6 미신청자 case7 당첨금 배너 */}
         {/* <DrawInfo case2 case4 case6/> */}
         {/* 나의 리또 case1 미신청자 case2 스탬프 10주까지만 */}
-        <Stamp case1 />
+        {/* <Stamp case1 /> */}
       </Container>
       {/* 리또 신청 */}
       {/* <Apply /> */}
@@ -55,7 +56,7 @@ const index = () => {
       {/* 레벨 변경 확인 */}
       {/* <ModalLevelChange /> */}
       {/* 스탬프 주차 확인 바텀 시트 */}
-      {/* <BottomSheetSaveingList /> */}
+      <BottomSheetSaveingList_Pub />
       {/* 스탬프 10주차 유지 성공 바텀 시트 */}
       {/* <BottomSheetPresent /> */}
       {/* 보너스 미션 바텀 시트 */}

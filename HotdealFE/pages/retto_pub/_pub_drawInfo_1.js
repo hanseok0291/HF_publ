@@ -43,7 +43,7 @@ const index = () => {
       {/* 리또 신청 */}
       {/* <Apply /> */}
       {/* 당첨 */}
-      <BottomSheetPrize />
+      {/* <BottomSheetPrize /> */}
       {/* 미참여자 */}
       {/* <BottomSheetBanner /> */}
       {/* 기기알림 */}

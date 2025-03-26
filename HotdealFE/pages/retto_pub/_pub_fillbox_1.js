@@ -43,7 +43,7 @@ const index = () => {
   // }, [isToolTip]);
   return (
     <>
-      <FillBox case2 />
+      <FillBox  />
       {/* <ModalFillBox /> */}
       {/* <LayerFillFail /> */}
       {/* <LayerEmptyFail /> */}

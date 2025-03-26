@@ -142,15 +142,21 @@ const stampInfo = [
     rewardBrandNm: null,
     rewardProductNm: null,
     failType: "MOCH",
-  }
+  },
 ];
 
 const index = () => {
   return (
     <>
-      <Header title="발소 리워드 로또 머니함" sideBtn=""/>
+      <Header title="발소 리워드 로또 머니함" sideBtn="" />
       <Container padding="0" backgroundColor="#fff">
-        <FillBoxMain stampInfo={stampInfo} rettoCase={2} />
+        <FillBoxMain
+          stampInfo={{ weekOrder: 8, succYn: "Y" }}
+          rettoCase={1}
+          money={false}
+          noti={true}
+          fail={false}
+        />
         {/* <FillBoxPrev /> */}
       </Container>
     </>

@@ -128,40 +128,6 @@ const FillBoxPrev = ({ case1, case2 }) => {
             </div>
           </div>
         </FadeInSection>
-        <FadeInSection>
-          <div
-            className={`${styleFillBoxPrev.grayBox} ${styleFillBoxPrev.fourthConBox}`}
-          >
-            <div className={styleFillBoxPrev.topCon}>
-              <div className={styleFillBoxPrev.imgBox}></div>
-              <h4 className={styleFillBoxPrev.mainText}>
-                매일 무료로 <br />
-                <em>100원딜 응모권</em> 받아요.
-              </h4>
-            </div>
-            <div className={styleFillBoxPrev.botCon}>
-              <div className={styleFillBoxPrev.conBox}>
-                <button type="button" className={styleFillBoxPrev.buttonBox}>
-                  <strong>레벨별 응모권 지급 개수</strong>
-                  <span className={styleFillBoxPrev.rightTextWrap}>
-                    <span className={styleFillBoxPrev.text}>100원딜</span>
-                  </span>
-                </button>
-                <ul className={styleFillBoxPrev.giveInfoWrap}>
-                  <li>
-                    <p>1개 지급</p>
-                  </li>
-                  <li>
-                    <p>2개 지급</p>
-                  </li>
-                  <li>
-                    <p>3개 지급</p>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </FadeInSection>
       </div>
       <div className={styleFillBoxPrev.btnWrap}>
         <Button large>머니 채우기 시작하기</Button>

@@ -37,7 +37,7 @@ const index = () => {
         {/* HOME */}
         {/* <Home /> */}
         {/* 추첨 정보 case1 리또 없음 case2 당첨 case3 미당첨 case4 추첨예정 case5 이번,다음 회차 case6 미신청자 case7 당첨금 배너 */}
-        <DrawInfo case2 case3/>
+        <DrawInfo case4/>
         {/* <Stamp case1/> */}
       </Container>
       {/* 리또 신청 */}

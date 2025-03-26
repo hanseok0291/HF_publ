@@ -43,9 +43,9 @@ import LayerRankingMoneyGet from "@/components/retto_pub/LayerRankingMoneyGet";
 const index = () => {
   return (
     <>
-      <Header />
+      <Header title="리또" isborder sideBtn="리또란?" />
       <HomeTab activeTab={1} />
-      <Container isTab padding="0" backgroundColor="#fff" className={styleCommon.hidden}>
+      <Container padding="0" paddingTop="97px" backgroundColor="#fff" className={styleCommon.hidden}>
         {/* HOME */}
         <Home case1 case2 /> 
       </Container>

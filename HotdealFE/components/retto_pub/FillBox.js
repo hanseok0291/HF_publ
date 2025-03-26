@@ -41,10 +41,10 @@ const FillBox = ({ case1, case2 }) => {
             >
               {/* ruby emerald diamond stone(실패) className 추가 시 보석 변경 overlay className 추가 시 실패 위기  */}
               <div className="jewelImg"></div>
-              {/* <p className={`${styleCommon.subText} ${styleFillBox.subText}`}>
+              <p className={`${styleCommon.subText} ${styleFillBox.subText}`}>
                 보관만 하면 매주 월요일<br />
                 <span><b>발소 리워드 로또를 받아요!</b></span>
-              </p> */}
+              </p>
               {/* 실패 */}
               {/* <p className={`${styleCommon.subText} ${styleFillBox.subText}`}>
                 이번 기회는 아쉽게 놓쳤어요! <br />
@@ -52,13 +52,12 @@ const FillBox = ({ case1, case2 }) => {
                 발소 리워드 로또를 받아요!</b></span>
               </p> */}
               {/* 실패 위기(시간 지나지 않은 시점) */}
-              <p className={`${styleCommon.subText} ${styleFillBox.subText}`}>
-                다음주 발소 리워드 로또를 받으려면
-                <br />
+              {/* <div className={`${styleCommon.subText} ${styleFillBox.subText}`}>
+                <p className={styleFillBox.midText}>다음주 발소 리워드 로또를 받으려면</p>
                 <span>
                   <b>{levelAmounts[currentLevel]}만원이 채워져 있어야 해요.</b>
                 </span>
-              </p>
+              </div> */}
               {/* 마케팅 수신 동의(혜택 알림 포함) 전체 해제로 실패 확정 */}
               {/* <p className={`${styleCommon.subText} ${styleFillBox.subText}`}>
                 이번 기회는 아쉽게 놓쳤어요! <br />
@@ -73,9 +72,8 @@ const FillBox = ({ case1, case2 }) => {
             </div>
             {/* <Button>머니 채우기</Button> */}
             {/* 마케팅 수신 동의(혜택 알림 포함) 전체 해제로 실패 확정 */}
-            <Button>알림 켜기</Button>
+            {/* <Button>알림 켜기</Button> */}
           </div>
-          <HundredDealEntry />
         </div>
         <div className={styleFillBox.noteWrap}>
           <p>안내사항</p>

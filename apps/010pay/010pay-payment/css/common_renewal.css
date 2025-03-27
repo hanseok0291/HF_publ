@@ -415,6 +415,12 @@ input[type="number"]::-webkit-inner-spin-button {
 .gap-x-2 {
   column-gap: 8px;
 }
+.gap-x-3 {
+  column-gap: 12px;
+}
+.gap-x-4 {
+  column-gap: 16px;
+}
 .mt-auto {
   margin-top: auto !important;
 }
@@ -756,7 +762,7 @@ input[type="number"]::-webkit-inner-spin-button {
   margin-top: 20px;
 }
 .checkbox-block-group + .gray-box.button-one {
-  background: #F6F6F9;
+  background: #f6f6f9;
 }
 
 /* 계좌 관리 > 계좌 목록 좌측 체크박스 */
@@ -1892,6 +1898,13 @@ body > div > form.main_form {
     no-repeat;
   font-size: 0;
 }
+.icon-money {
+  width: 20px;
+  height: 20px;
+  background: url("../images/common/icon-money.svg") center center / cover
+    no-repeat;
+  font-size: 0;
+}
 /* //라운드 추가 */
 
 /* ----- 안내문 ----- */
@@ -2586,10 +2599,35 @@ body > div > form.main_form {
 .modal-body h3:empty {
   margin-bottom: 0;
 }
+.modal-body .execute-title {
+  font-family: Pretendard;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: -2%;
+  text-align: center;
+  text-decoration: underline;
+  color: #7cac04;
+  margin-bottom: 16px;
+}
+.modal-body .execute-wrap {
+  width: 100%;
+  border-radius: 16px;
+  background: #f6f6f9;
+  padding: 12px 0;
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 140%;
+  letter-spacing: -2%;
+  text-align: center;
+  color: #454545;
+}
 .modal-body p {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   color: #454545;
   font-size: 16px;
   font-weight: 400;
@@ -2600,6 +2638,11 @@ body > div > form.main_form {
 .modal-footer {
   display: flex;
   gap: 8px;
+}
+.modal-footer.vertical,
+body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer.vertical {
+  flex-direction: column;
+  padding-bottom: 4px;
 }
 .modal-footer .btn {
   width: 100%;
@@ -2620,6 +2663,17 @@ body > div > form.main_form {
 .modal-footer .btn.btn-confirm {
   color: #e0ff63;
   background-color: #151515;
+}
+.modal-footer .btn.btn-noShow {
+  background-color: #fff;
+  border: 0;
+  font-family: Pretendard;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 140%;
+  letter-spacing: -2%;
+  text-align: center;
+  color: #888888;
 }
 body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer {
   padding: 0 20px 20px;
@@ -2683,7 +2737,6 @@ body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer {
 .modal-full .modal-body {
   padding: 0 0 10px;
   height: calc(100% - 110px);
-  padding-top: 50px;
 }
 .modal-full .modal-body .title {
   font-family: Pretendard;
@@ -2742,18 +2795,22 @@ body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer {
 }
 .modal-full .modal-body {
   overflow-y: scroll;
-  height: calc(100% - 64px);
+  /* height: calc(100% - 64px); */
+  height: 100%;
+  padding-top: 50px;
+  padding-bottom: 20px;
 }
 .modal-full .header-box {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
-.modal-full .modal-head .btn-close {
+/* .modal-full .modal-head .btn-close {
   position: relative;
   margin-left: auto;
   top: auto;
   right: -4px;
-}
+} */
 /* //풀모달 */
 
 /* 토스트 모달 */
@@ -2815,7 +2872,7 @@ body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer {
   color: #151515;
   border-bottom: 1px solid #151515;
 }
-.modal .modal-body .btn-wrap  {
+.modal .modal-body .btn-wrap {
   display: flex;
   align-items: center;
   height: 96px;
@@ -2831,7 +2888,7 @@ body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer {
   text-align: center;
   width: 100%;
   background-color: #151515;
-  color: #E0FF63;
+  color: #e0ff63;
 }
 
 /* 라운드버튼 모달 */
@@ -4560,6 +4617,7 @@ div.nppfs-keypad {
   color: #888;
   margin-top: 4px;
   justify-content: start;
+  align-items: start;
 }
 .modal-slide.type-title .optional {
   font-family: Pretendard;
@@ -5203,6 +5261,22 @@ em.dash {
   width: 16px;
   height: 16px;
 }
+.gray-box .label {
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 140%;
+  letter-spacing: -2%;
+  color: #e0ff63;
+  background-color: #151515;
+  border-radius: 16px;
+  width: 42px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+}
 .gray-box.bank-box .swiper-container {
   width: 42px; /* 이미지 크기에 맞게 설정 */
   height: 42px;
@@ -5546,7 +5620,7 @@ em.dash {
   text-align: center;
 }
 #passwordSet .password-wrap .title .error-count {
-  color: #FC0626;
+  color: #fc0626;
 }
 #passwordSet .password-wrap .modal-step2 .title {
   margin-top: 150px;

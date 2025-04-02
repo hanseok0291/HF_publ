@@ -638,8 +638,15 @@ function showAlertModal({
   const cancelButton = document.getElementById("executeNo");
   cancelButton.style.display = showCancel ? "inline-block" : "none";
 
-  const footer = document.querySelector("#commonExecute .modal-footer");
+  const modal = document.getElementById("commonExecute");
+  const footer = modal.querySelector(".modal-footer");
   footer.classList.toggle("vertical", vertical);
+
+  // styleType 처리
+  modal.classList.remove("type2");
+  if (styleType && styleType !== "default") {
+    modal.classList.add(styleType);
+  }
 
   modalOpen("commonExecute");
 
@@ -743,10 +750,26 @@ document.querySelectorAll(".js-alert-btn").forEach((btn) => {
         vertical: true,
       });
 
-      if (noShowBtn) {
-        noShowBtn.style.display = "none";
+        if (noShowBtn) {
+          noShowBtn.style.display = "none";
+        }
+      } else if (type === "type2") {
+        showAlertModal({
+          title: "본인인증으로 로그인할까요?",
+          message:
+            "<div class='execute-text-wrap'>휴대폰 본인인증으로 로그인할 경우 <br>앱 잠금이 해제됩니다.</div>",
+          confirmText: "본인인증으로 로그인하기",
+          cancelText: "취소",
+          showCancel: true,
+          vertical: true,
+          styleType: "type2",
+        });
+      
+        const noShowBtn = document.getElementById("executeNoShow");
+        if (noShowBtn) {
+          noShowBtn.style.display = "none";
+        }
       }
-    }
   });
 });
 

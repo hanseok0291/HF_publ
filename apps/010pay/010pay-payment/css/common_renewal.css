@@ -1419,6 +1419,7 @@ body > div > form.main_form {
 .bottom-area,
 .modal-bottom-area,
 .bottom-banner-area {
+  position: relative; /* relative 있어야 하단 버튼영역 그라데이션 bg 적용됨 4/2 추가 */
   clear: both;
   padding: 20px 0 0;
 }
@@ -1887,6 +1888,13 @@ body > div > form.main_form {
   width: 16px;
   height: 16px;
   background: url("../images/common/icon-warning-red.svg") center center / cover
+    no-repeat;
+  font-size: 0;
+}
+.icon-warning-red2 {
+  width: 16px;
+  height: 16px;
+  background: url("../images/common/icon-warning-round-red.svg") center center / cover
     no-repeat;
   font-size: 0;
 }
@@ -2623,6 +2631,15 @@ body > div > form.main_form {
   text-align: center;
   color: #454545;
 }
+.modal-body .execute-text-wrap {
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: -2%;
+  text-align: center;
+  margin: 16px 0 0;
+}
 .modal-body p {
   display: flex;
   align-items: center;
@@ -2875,7 +2892,7 @@ body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer {
 .modal .modal-body .btn-wrap {
   display: flex;
   align-items: center;
-  height: 96px;
+  height: 72px; /* 3/31 계좌추가하기 버튼영역때문에 72px로 수정 */
 }
 .modal .modal-body .btn-wrap .btn {
   width: 100%;
@@ -2889,6 +2906,21 @@ body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer {
   width: 100%;
   background-color: #151515;
   color: #e0ff63;
+}
+.modal .modal-body .btn-wrap .btn.btn-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;  
+  color: #151515;
+}
+.modal .modal-body .btn-wrap .btn.btn-add::before {
+  content: '';
+  display: block;
+  background: url(../images/common/icon-plus.svg) no-repeat center / contain;
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
 }
 
 /* 라운드버튼 모달 */

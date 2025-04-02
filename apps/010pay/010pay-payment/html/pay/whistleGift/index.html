@@ -70,13 +70,16 @@
               </div>
               <button type="button" class="icon icon-del js-text-del"></button>
             </div>
-            <p class="charge-info-text">머니 충전 예정 금액: 0원 (수수료 5% 차감)</p>
-          </div>
-          <div class="charge-money-wrap">
-            <dl>
-              <dt>충전 후 보유 머니<i class="icon-money"></i></dt>
-              <dd>100,000원</dd>
-            </dl>
+            <div class="money-info-wrap">
+              <dl>
+                <dt>현재 보유 머니</dt>
+                <dd>0원</dd>
+              </dl>
+              <dl>
+                <dt>머니 충전 예정 금액<p class="sub-text">(수수료5% 차감)</p></dt>
+                <dd>1,995,000원</dd>
+              </dl>
+            </div>
           </div>
         </div>
         <!-- //container -->
@@ -157,6 +160,12 @@
     </div>
     <!-- //휘슬 상품권 머니 전환 안내 팝업 -->
 
+    <!-- 미성년자 토스트 모달 -->
+    <div id="toast-change-aaccount" class="modal-toast is-btn">
+      <p>미성년자 충전 한도는 50만원이에요</p>
+    </div>
+    <!-- //미성년자 토스트 모달 -->
+
   </body>
   <script>
     var input_value = 0;
@@ -236,6 +245,11 @@
       $this_wrap.removeClass("error");
       $(".fake-label .unit").hide();
       $label.text("전환 금액");
+    });
+    
+    // 확인용 토스트 모달 노출
+    $(document).ready(function () {
+      modalToastOpen("toast-change-aaccount");
     });
 
   </script>

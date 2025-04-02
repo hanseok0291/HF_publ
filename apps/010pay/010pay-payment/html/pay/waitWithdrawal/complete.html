@@ -18,6 +18,7 @@
     <script src="../../../js/jquery.3.4.1.min.js"></script>
     <script src="../../../js/jquery-ui.js"></script>
     <script src="../../../js/design_renewal.js" defer="defer"></script>
+    <script src="../../../js/lottie.min.js"></script>
   </head>
 
   <body>
@@ -36,16 +37,25 @@
       <div id="content">
         <!-- container -->
         <div class="container charge-container">
-          <div class="complete-text fail">
+          <div class="complete-text">
+            <i class="lottie-check"></i>
             <p>
-              충전을 실패하였습니다.
+              출금이 완료되었어요
             </p>
           </div>
-          <div class="fail-text">
-            <p class="sub-text">
-              실패 케이스 문구가 들어갑니다 <br>
-              실패 케이스 문구가 들어갑니다
-            </p>
+          <div class="comp-info-wrap">
+            <div class="comp-info">
+              <p><b>출금 금액</b></p>
+              <p class="bold-text">10,000원</p>
+            </div>
+            <div class="comp-info">
+              <p><b>수수료</b> *월 5회무료</p>
+              <p class="bold-text">500원</p>
+            </div>
+            <div class="comp-info last">
+              <p><b>최종 출금 금액</b></p>
+              <p class="bold-text">10,000원</p>
+            </div>
           </div>
         </div>
         <!-- //container -->
@@ -69,5 +79,16 @@
     <!-- //wrap -->
   </body>
   <script>
+    $(document).ready(function () {
+      // 로티 완료
+      let svgContainer = document.querySelector(".lottie-check");
+
+      let animItem = bodymovin.loadAnimation({
+        wrapper: svgContainer,
+        animType: "svg",
+        loop: false,
+        path: "https://ux.sbsvc.online/010pay/010pay-payment/images/lottie/check.json",
+      });
+    });
   </script>
 </html>

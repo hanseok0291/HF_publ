@@ -28,7 +28,7 @@ const stampInfo = {
 const index = () => {
   return (
     <>
-      <Header sideBtn="" />
+      <Header title="발소 리워드 로또 머니함" sideBtn="" />
       <Container padding="0" backgroundColor="#fff">
         {/* <FillBoxMain stampInfo={stampInfo} rettoCase={2} money={false} /> */}
         <FillBoxPrev />

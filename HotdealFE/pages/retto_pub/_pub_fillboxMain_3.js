@@ -168,7 +168,7 @@ const index = () => {
       <Header title="발소 리워드 로또 머니함" sideBtn="" />
       <Container padding="0" backgroundColor="#fff">
         <FillBoxMain
-          stampInfo={{ weekOrder: 10, succYn: "Y" }}
+          stampInfo={{ weekOrder: 9, succYn: "Y" }}
           rettoCase={2}
           money={false}
           noti={true}

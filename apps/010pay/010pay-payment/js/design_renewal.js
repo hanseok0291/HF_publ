@@ -623,6 +623,7 @@ function showAlertModal({
   message,
   confirmText = "확인",
   cancelText = "취소",
+  noShowBtn = "7일 동안 안보기",
   showCancel = true,
   vertical = false,
   styleType = "default",
@@ -632,6 +633,7 @@ function showAlertModal({
   document.getElementById("executeContents").innerHTML = message || "";
   document.getElementById("executeOk").innerHTML = confirmText;
   document.getElementById("executeNo").innerHTML = cancelText;
+  document.getElementById("executeNoShow").innerHTML = noShowBtn;
 
   const cancelButton = document.getElementById("executeNo");
   cancelButton.style.display = showCancel ? "inline-block" : "none";

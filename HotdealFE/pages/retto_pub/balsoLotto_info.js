@@ -4,6 +4,7 @@ import BallLottie from "../../public/lotties/balso-lotto-intro";
 import ConfettiLottie from "../../public/lotties/confetti_winner";
 import LottieComponent from "@/components/retto_pub/LottieComponent";
 import BottomSheetLottoAgree from "@/components/retto_pub/common/modal/BottomSheetLottoAgree";
+import SlotCounter from 'react-slot-counter';
 
 const FadeInSection = ({ children, sectionClass }) => {
   const sectionRef = useRef(null);
@@ -48,12 +49,35 @@ const FadeInSection = ({ children, sectionClass }) => {
 };
 
 const index = () => {
+  const valueArr = [
+    { amount: ' 4,075,100', index: 1 },
+    { amount: ' 2,075,100', index: 2 },
+    { amount: '10,075,100', index: 3 },
+  ];
   const [openAgreeBs, setOpenAgreeBs] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [value, setValue] = useState(' 4,075,100');
+  const [hideClass, setHideClass] = useState(false);
 
   const handleAgreeBsClose = () => {
     setOpenAgreeBs(false);
   }
   
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % valueArr.length);
+      
+    }, 2600); // 2초마다 변경
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const newValue = 
+      valueArr[currentIndex].amount;
+    setHideClass(currentIndex === 0 || currentIndex === 1 ? true : false);
+    setValue(newValue);
+  }, [currentIndex]);
+
   return (
     <>
       <div>
@@ -74,7 +98,8 @@ const index = () => {
             />
             <div className={balsoLottoInfo.botTextWrap}>
               <p className={balsoLottoInfo.topText}>이번주 총 예상 당첨금</p>
-              <p className={balsoLottoInfo.boxText}>10,425,243원</p>
+              
+              <div className={`${balsoLottoInfo.boxText} ${hideClass ? balsoLottoInfo.hide : '' }`}><SlotCounter value={value} animateUnchanged useMonospaceWidth duration={1} /><p>원</p></div>
             </div>
           </FadeInSection>
           <FadeInSection sectionClass={balsoLottoInfo.section_2}>

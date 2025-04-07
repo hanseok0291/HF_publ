@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import balsoLottoInfo from "../../styles/retto_pub/balsoLottoInfo.module.css";
 import balsoLottoReceive from "../../styles/retto_pub/balsoLottoReceive.module.css";
-import Image from "next/image";
 
 const index = () => {
   
@@ -17,10 +16,7 @@ const index = () => {
         <span className={balsoLottoReceive.bgImg3}></span>
         <div className={balsoLottoReceive.topWrap}>
           <h3>많이 모아 1등 확률 올려요!</h3>
-          <div className={balsoLottoReceive.textBox}>
-            <p className={balsoLottoReceive.topText}>이번주 1등 당첨금</p>
-            <p className={balsoLottoReceive.botText}>5,000,000원</p>
-          </div>
+          <p>미션하고 발소 리워드 로또 받기</p>
         </div>
         <ul className={balsoLottoReceive.botWrap}>
           <li>
@@ -38,6 +34,22 @@ const index = () => {
               <p className={balsoLottoReceive.subText}>하루에 최대 10줄 받기</p>
             </div>
             <button type="button" className={balsoLottoReceive.viewBtn}>구경하기</button>
+          </li>
+          <li>
+            <img src="../../images/retto/balso-lotto-receive-list-3.png" alt="머니함" />
+            <div className={balsoLottoReceive.textBox}>
+              <p className={balsoLottoReceive.titleText}>발소 리워드 로또 머니함</p>
+              <p className={balsoLottoReceive.subText}>채워만 둬도 매일 최대 3줄 받기</p>
+            </div>
+            <button type="button" className={balsoLottoReceive.receiveBtn}>받기</button>
+          </li>
+          <li>
+            <img src="../../images/retto/balso-lotto-receive-list-4.png" alt="쿠팡" />
+            <div className={balsoLottoReceive.textBox}>
+              <p className={balsoLottoReceive.titleText}>쿠팡 상품 구경하고</p>
+              <p className={balsoLottoReceive.subText}>매일 1줄 받기</p>
+            </div>
+            <button type="button" className={balsoLottoReceive.receiveBtn}>받기</button>
           </li>
         </ul>
       </div>

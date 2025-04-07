@@ -1,5 +1,7 @@
 import React from "react";
 
+import Header from "../../components/retto_pub/common/Header";
+
 import styleApply from "../../styles/retto_pub/Apply.module.css";
 import styleCommon from "../../styles/retto_pub/Common.module.css";
 
@@ -13,19 +15,16 @@ const ApplyComplete = ({
 }) => {
   return (
     <div className={`${styleCommon.layer} ${styleApply.applyComplete} ${jewel.eng}`}>
-      <div className={styleCommon.layerHeader}>
-        <h2>신청 완료</h2>
-        <button type="button" className={styleCommon.closeBtn}>
-          닫기
-        </button>
-      </div>
+      <Header title="발소 리워드 로또 머니함" sideBtn="비우기" />
       <div className={`${styleCommon.container}`}>
         <div className={`${styleApply.borderBox}`}>
           <span className="jewelImg"></span>
-          <p className={styleApply.subText}>
+          <p className={styleApply.smallText}>
             <b>{jewel.cash}만원</b>을 머니함에 넣어뒀어요. <br />
-            보관만 하면<br />
-            <b>매일 발소 리워드 로또</b>를 받아요!
+          </p>
+          <p className={styleApply.subText}>
+            보관만 하면 <br />
+            <b>매일 발소 리워드 로또를 받아요!</b>
           </p>
         </div>
         <div className={styleApply.tipWrap}>

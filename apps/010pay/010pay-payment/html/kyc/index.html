@@ -325,6 +325,24 @@
       </div>
       <div class="full-screen-content" id="postcodeContainer"></div>
     </div>
+
+    <div id="commonExecute" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="executeTitle"></h3>
+            <p id="executeContents"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="executeOk" class="btn btn-confirm" onclick="modalCloseAlert();"></button>
+            <button type="button" id="executeNo" class="btn btn-cancel" onclick="modalCloseAlert();"></button>
+            <button type="button" id="executeNoShow" class="btn btn-noShow" onclick="modalCloseAlert();"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </body>
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script>
@@ -375,5 +393,29 @@
     function closePostcode() {
       document.getElementById("postcodeOverlay").style.display = "none";
     }
+
+    
+  document.addEventListener("DOMContentLoaded", function () {
+    showAlertModal({
+        title: "고객확인제도 재이행 대상이에요.",
+        message:
+          "<p class='execute-title'>재이행 기간: YYYY-MM-DD까지</p>" +
+          "<div class='execute-wrap'>" +
+          "[특정금융정보법] 시행령 재 10조6에 따라<br>" +
+          "고객확인 재이행 기간이 도래하여<br>" +
+          "정보 재등록이 필요해요.<br>" +
+          "기한 내 고객확인을 이행하지 않을 경우 관련 법에<br>" +
+          "따라 서비스 이용이 제한됩니다." +
+          "</div>" +
+          "<p class='execute-text-wrap'>고객확인 중 추가 심사가 진행될 수 있으며,<br>" +
+          "추가 심사 결과는 별도로 안내해드릴게요.</p>",
+        confirmText: "재입력하기",
+        cancelText: "다음에",
+        noShowBtn: "7일 동안 안보기",
+        showCancel: true,
+        vertical: true,
+      });
+
+    });
   </script>
 </html>

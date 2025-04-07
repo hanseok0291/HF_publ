@@ -11,7 +11,7 @@ import Button from "../../components/retto_pub/common/Button";
 import LayerRettoInfo from "../../components/retto_pub/LayerRettoInfo";
 import LayerRettoMoneyGet from "../../components/retto_pub/LayerRettoMoneyGet";
 import LayerReceive from "../../components/retto_pub/LayerReceive";
-import FillBox from "../../components/retto_pub/FillBox";
+import FillBox_Pub4 from "../../components/retto_pub/FillBox_Pub4";
 import LayerEmptyFail from "../../components/retto_pub/LayerEmptyFail";
 import ModalFillBox from "../../components/retto_pub/common/modal/ModalFillBox";
 import LayerFillFail from "../../components/retto_pub/LayerFillFail";
@@ -43,9 +43,9 @@ const index = () => {
   // }, [isToolTip]);
   return (
     <>
-      <FillBox />
+      <FillBox_Pub4 />
       {/* <ModalFillBox /> */}
-      <LayerFillFail />
+      {/* <LayerFillFail /> */}
       {/* <LayerEmptyFail /> */}
     </>
   );

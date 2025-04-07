@@ -32,7 +32,7 @@ const index = () => {
   return (
     <>
       <Header title="추첨 정보" sideBtn="당첨 안내"/>
-      <Container isTab padding="0" backgroundColor="#fff">
+      <Container paddingTop="50px" padding="0" backgroundColor="#fff">
         {/* HOME */}
         {/* <Home /> */}
         {/* 추첨 정보 case1 리또 없음 case2 당첨 case3 미당첨 case4 추첨예정 case5 이번,다음 회차 case6 미신청자 case7 당첨금 배너 */}

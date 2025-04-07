@@ -341,7 +341,7 @@ const DrawInfo = ({
               </div>
             </div>
           </FadeInSection>
-          <FadeInSection>
+          {/* <FadeInSection>
             <div className={styleRettoList.winnerListWrap}>
               <div className={styleRettoList.listhead}>당첨을 축하드려요!</div>
               {Object.entries(filteredWinnerList).map(([_, names], index) => (
@@ -367,7 +367,7 @@ const DrawInfo = ({
                 </div>
               ))}
             </div>
-          </FadeInSection>
+          </FadeInSection> */}
           <FadeInSection delay={200}>
             {case5 && (
               <div

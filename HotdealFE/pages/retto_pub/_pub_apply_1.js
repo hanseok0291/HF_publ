@@ -30,7 +30,7 @@ const index = () => {
 
   return (
     <>
-      <Apply full case1 />
+      <Apply full case2 />
     </>
   );
 };

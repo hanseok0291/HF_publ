@@ -15,7 +15,7 @@ function getInternetVersion(ver) {
 }
 
 // body 폰트사이트
-var winW = $(window).width();
+/* var winW = $(window).width();
 function fontSize(w) {
 	var fontSize = w / 5.12;
 	$('html').css('font-size', Math.floor(fontSize*100)/100 + '%');	
@@ -24,7 +24,7 @@ fontSize(winW);
 $(window).resize(function(){
 	var winW = $(window).width();
 	fontSize(winW);
-});
+}); */
 
 //Layer Popup
 function layer_open(obj){

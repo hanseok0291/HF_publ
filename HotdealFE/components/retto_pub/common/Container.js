@@ -4,7 +4,7 @@ import { useState } from 'react';
 //style
 import styleCommon from '../../../styles/retto_pub/Common.module.css';
 
-function Container({children, backgroundColor="#F9F9F9", padding="30px 20px", isTab, className=""}) {// 탭 영역이 있으면 isTab 추가
+function Container({children, backgroundColor="#F9F9F9", padding="30px 20px", paddingTop = "50px", isTab, className=""}) {// 탭 영역이 있으면 isTab 추가
   const [winHeight, setWinHeight] = useState(null);
   const style = {
     display: "flex",
@@ -18,7 +18,7 @@ function Container({children, backgroundColor="#F9F9F9", padding="30px 20px", is
   }, [])
 
   return (
-    <div className={className} style={{paddingTop: isTab ? '0': "50px"}}>
+    <div className={className} style={{ paddingTop: isTab ? "0" : paddingTop }}>
       <div className={`${styleCommon.container}`} style={style}>
         {children}
       </div>

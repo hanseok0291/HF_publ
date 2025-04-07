@@ -17,6 +17,7 @@ import BottomSheetBanner from "../../components/retto_pub/common/modal/BottomShe
 import Stamp from "../../components/retto_pub/Stamp";
 import BottomSheetSaveingList from "../../components/retto_pub/common/modal/BottomSheetSaveingList";
 import BottomSheetPresent from "../../components/retto_pub/common/modal/BottomSheetPresent";
+import BottomSheetPresent_Pub from "../../components/retto_pub/common/modal/BottomSheetPresent_pub";
 import BottomSheetMission from "../../components/retto_pub/common/modal/BottomSheetMission";
 import Result from "../../components/retto_pub/Result";
 import BottomSheetMissionFail from "../../components/retto_pub/common/modal/BottomSheetMissionFail";
@@ -29,19 +30,21 @@ import MyPageNotJoin from "../../components/retto_pub/MyPageNotJoin";
 import Home from "../../components/retto_pub/Home";
 import DrawInfo from "../../components/retto_pub/DrawInfo";
 import HomeTab from "../../components/retto_pub/HomeTab";
+import BottomSheetSaveingList_Pub from "@/components/retto_pub/common/modal/BottomSheetSaveingList_Pub";
+
+const jewel = "diamond"; // "diamond" 또는 "emerald", 값이 없으면 기본값(undefined)
 
 const index = () => {
   return (
     <>
       <Header />
-      <HomeTab activeTab={3} />
-      <Container isTab padding="0" backgroundColor="#fff">
+      <Container padding="0" backgroundColor="#fff">
         {/* HOME */}
         {/* <Home /> */}
         {/* 추첨 정보 case1 리또 없음 case2 당첨 case3 미당첨 case4 추첨예정 case5 이번,다음 회차 case6 미신청자 case7 당첨금 배너 */}
         {/* <DrawInfo case2 case4 case6/> */}
         {/* 나의 리또 case1 미신청자 case2 스탬프 10주까지만 */}
-        <Stamp case2 />
+        {/* <Stamp case2 /> */}
       </Container>
       {/* 리또 신청 */}
       {/* <Apply /> */}
@@ -56,9 +59,10 @@ const index = () => {
       {/* 레벨 변경 확인 */}
       {/* <ModalLevelChange /> */}
       {/* 스탬프 주차 확인 바텀 시트 */}
-      {/* <BottomSheetSaveingList /> */}
+      {/* <BottomSheetSaveingList_Pub /> */}
       {/* 스탬프 10주차 유지 성공 바텀 시트 */}
-      {/* <BottomSheetPresent /> */}
+      <BottomSheetPresent_Pub case1 jewel={jewel} />
+      {/* <BottomSheetPresent case1 jewel={jewel} /> */}
       {/* 보너스 미션 바텀 시트 */}
       {/* <BottomSheetMission /> */}
       {/* 추천 코드 입력하기 */}

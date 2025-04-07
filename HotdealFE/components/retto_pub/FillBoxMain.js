@@ -20,14 +20,14 @@ const rettoJewelCase = [
   },
 ];
 
-const FillBoxMain = ({ stampInfo, rettoCase, money = false }) => {
+const FillBoxMain = ({ stampInfo, rettoCase, money = false, noti = true, fail = false }) => {
   const [isTooltip, setIsTooltip] = useState(false);
   const [stampArr, setStampArr] = useState(Array(10).fill(undefined)); // 스탬프 정보
   const [stampCnt, setStampCnt] = useState(0); // 스탬프 개수
   const [isFail, setIsFail] = useState(null); // 실패 상태 확인
   const [weekUnit, setWeekUnit] = useState(null); // 주차 1의 자리
-  const notiOn = true; // 알림 설정
-  const failSoon = true;
+  const notiOn = noti; // 알림 설정
+  const failSoon = fail;
   const moneyEmpty = money; // 머니함 상태 true 비어있음 false 채워져 있음
   const levelInfo = rettoJewelCase[rettoCase]; // 0 ruby 1 emelard 2 diamond
 
@@ -201,26 +201,6 @@ const FillBoxMain = ({ stampInfo, rettoCase, money = false }) => {
             </p>
           </div>
           <a href="#" className={styleFillBoxMain.moveBtn}></a>
-        </div>
-        <div className={`${styleFillBoxMain.grayBox} ${styleFillBoxMain.box2}`}>
-          <div className={styleFillBoxMain.innerBox}>
-            <div className={styleFillBoxMain.textWrap}>
-              <p className={styleFillBoxMain.titleText}>
-                100원딜 응모권{" "}
-                <button
-                  type="button"
-                  className={styleFillBoxMain.questionMark}
-                ></button>
-              </p>
-              <p className={styleFillBoxMain.subText}>
-                사용 가능 <em>12개</em>
-              </p>
-            </div>
-            <a href="#" className={styleFillBoxMain.moveBtn}></a>
-          </div>
-          <div className={styleFillBoxMain.addInfo}>
-            오늘 머니 보관하면 내일 응모권 3개
-          </div>
         </div>
       </div>
     </div>

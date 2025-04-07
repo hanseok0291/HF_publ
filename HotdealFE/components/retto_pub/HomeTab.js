@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import styleMyretto from "../../styles/retto_pub/Myretto.module.css";
 
 const HomeTab = ({ activeTab }) => {
-  const tabList = ["HOME", "추첨 정보", "리또 머니함", "랭킹", "리또 TIP"];
+  const tabList = ["HOME", "추첨 정보", "리또 머니함", "리또 TIP"];
   const tabWrapRef = useRef(null);
   
   useEffect(() => {

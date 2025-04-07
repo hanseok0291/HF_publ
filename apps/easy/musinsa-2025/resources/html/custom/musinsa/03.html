@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link
+      rel="stylesheet"
+      href="../../../css/common/css/custom/musinsa/musinsa.css"
+    />
+    <script src="../../../js/jquery-1.8.3.min.js"></script>
+    <script src="../../../js/design.js" defer="defer"></script>
+    <title>간편결제</title>
+  </head>
+
+  <body class="musinsa pc">
+    <header id="header">
+      <h1>신규/추가 등록</h1>
+    </header>
+
+    <div id="ct" class="bankskip">
+      <div class="container tc">
+        <p class="tit">입력하신 계좌로 1원을 보냈습니다.</p>
+        <p class="tit_sub mt60">
+          은행앱 또는 텔레뱅킹으로 입금내역을 확인하고<br />
+          ‘무신사’ 앞 <span class="fc_reg txt_bold">세 자리 숫자</span>를
+          입력해주세요.
+        </p>
+        <p class="img">
+          <img
+            src="../../../images/account_chk.png"
+            alt="보낸 사람 ***(세자리 숫자)무신사 입금 1원"
+          />
+        </p>
+        <p class="mt70">
+          <input
+            type="tel"
+            name=""
+            id="numChk"
+            placeholder="숫자 세 자리 입력"
+            maxlength="3"
+          />
+        </p>
+        <div class="btn_area">
+          <button type="button" class="btn full" disabled>다음</button>
+        </div>
+      </div>
+    </div>
+    <!-- //content -->
+
+    <script>
+      // numChk input 요소를 선택합니다.
+      const numChkInput = document.getElementById("numChk");
+
+      // numChk input에 input 이벤트를 추가합니다.
+      numChkInput.addEventListener("input", function () {
+        // 입력된 값의 길이가 3이면 버튼의 disabled 속성을 제거합니다.
+        if (this.value.length === 3) {
+          document.querySelector(".btn").removeAttribute("disabled");
+        } else {
+          // 입력된 값의 길이가 3이 아니면 버튼의 disabled 속성을 추가합니다.
+          document.querySelector(".btn").setAttribute("disabled", true);
+        }
+      });
+    </script>
+  </body>
+</html>

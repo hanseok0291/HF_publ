@@ -415,6 +415,12 @@ input[type="number"]::-webkit-inner-spin-button {
 .gap-x-2 {
   column-gap: 8px;
 }
+.gap-x-3 {
+  column-gap: 12px;
+}
+.gap-x-4 {
+  column-gap: 16px;
+}
 .mt-auto {
   margin-top: auto !important;
 }
@@ -756,7 +762,7 @@ input[type="number"]::-webkit-inner-spin-button {
   margin-top: 20px;
 }
 .checkbox-block-group + .gray-box.button-one {
-  background: #F6F6F9;
+  background: #f6f6f9;
 }
 
 /* 계좌 관리 > 계좌 목록 좌측 체크박스 */
@@ -1413,6 +1419,7 @@ body > div > form.main_form {
 .bottom-area,
 .modal-bottom-area,
 .bottom-banner-area {
+  position: relative; /* relative 있어야 하단 버튼영역 그라데이션 bg 적용됨 4/2 추가 */
   clear: both;
   padding: 20px 0 0;
 }
@@ -1884,11 +1891,25 @@ body > div > form.main_form {
     no-repeat;
   font-size: 0;
 }
+.icon-warning-red2 {
+  width: 16px;
+  height: 16px;
+  background: url("../images/common/icon-warning-round-red.svg") center center / cover
+    no-repeat;
+  font-size: 0;
+}
 
 .icon-plus {
   width: 20px;
   height: 20px;
   background: url("../images/common/icon-plus.svg") center center / cover
+    no-repeat;
+  font-size: 0;
+}
+.icon-money {
+  width: 20px;
+  height: 20px;
+  background: url("../images/common/icon-money.svg") center center / cover
     no-repeat;
   font-size: 0;
 }
@@ -2299,7 +2320,7 @@ body > div > form.main_form {
   align-items: center;
   justify-content: space-between;
   position: relative;
-  height: 60px;
+  height: 48px; /* 60px에서 48px로 변경됨 4/2 수정 */
   padding: 0;
   border: 0;
   background-color: #fff;
@@ -2586,10 +2607,44 @@ body > div > form.main_form {
 .modal-body h3:empty {
   margin-bottom: 0;
 }
+.modal-body .execute-title {
+  font-family: Pretendard;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: -2%;
+  text-align: center;
+  text-decoration: underline;
+  color: #7cac04;
+  margin-bottom: 16px;
+}
+.modal-body .execute-wrap {
+  width: 100%;
+  border-radius: 16px;
+  background: #f6f6f9;
+  padding: 12px 0;
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 140%;
+  letter-spacing: -2%;
+  text-align: center;
+  color: #454545;
+}
+.modal-body .execute-text-wrap {
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: -2%;
+  text-align: center;
+  margin: 16px 0 0;
+}
 .modal-body p {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   color: #454545;
   font-size: 16px;
   font-weight: 400;
@@ -2600,6 +2655,11 @@ body > div > form.main_form {
 .modal-footer {
   display: flex;
   gap: 8px;
+}
+.modal-footer.vertical,
+body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer.vertical {
+  flex-direction: column;
+  padding-bottom: 4px;
 }
 .modal-footer .btn {
   width: 100%;
@@ -2617,9 +2677,27 @@ body > div > form.main_form {
   color: #151515;
   background-color: #fff;
 }
+.type2 .modal-footer .btn.btn-cancel {
+  border: 0;
+  font-weight: 500;
+  font-size: 14px;
+  color: #888;
+  height: 44px;
+}
 .modal-footer .btn.btn-confirm {
   color: #e0ff63;
   background-color: #151515;
+}
+.modal-footer .btn.btn-noShow {
+  background-color: #fff;
+  border: 0;
+  font-family: Pretendard;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 140%;
+  letter-spacing: -2%;
+  text-align: center;
+  color: #888888;
 }
 body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer {
   padding: 0 20px 20px;
@@ -2683,7 +2761,6 @@ body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer {
 .modal-full .modal-body {
   padding: 0 0 10px;
   height: calc(100% - 110px);
-  padding-top: 50px;
 }
 .modal-full .modal-body .title {
   font-family: Pretendard;
@@ -2742,18 +2819,22 @@ body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer {
 }
 .modal-full .modal-body {
   overflow-y: scroll;
-  height: calc(100% - 64px);
+  /* height: calc(100% - 64px); */
+  height: 100%;
+  padding-top: 50px;
+  padding-bottom: 20px;
 }
 .modal-full .header-box {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
-.modal-full .modal-head .btn-close {
+/* .modal-full .modal-head .btn-close {
   position: relative;
   margin-left: auto;
   top: auto;
   right: -4px;
-}
+} */
 /* //풀모달 */
 
 /* 토스트 모달 */
@@ -2814,6 +2895,39 @@ body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer {
 .modal .modal-body .note-wrap li .open-link {
   color: #151515;
   border-bottom: 1px solid #151515;
+}
+.modal .modal-body .btn-wrap {
+  display: flex;
+  align-items: center;
+  height: 72px; /* 3/31 계좌추가하기 버튼영역때문에 72px로 수정 */
+}
+.modal .modal-body .btn-wrap .btn {
+  width: 100%;
+  height: 56px;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22.4px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  width: 100%;
+  background-color: #151515;
+  color: #e0ff63;
+}
+.modal .modal-body .btn-wrap .btn.btn-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;  
+  color: #151515;
+}
+.modal .modal-body .btn-wrap .btn.btn-add::before {
+  content: '';
+  display: block;
+  background: url(../images/common/icon-plus.svg) no-repeat center / contain;
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
 }
 
 /* 라운드버튼 모달 */
@@ -3127,6 +3241,9 @@ body:not(.custom-pass) .round-button-modal:not(.modal-slide) .modal-footer {
 .modal-slide.type-select .modal-dialog .modal-body {
   position: relative;
   padding: 0 16px;
+}
+.modal-slide.type-select .modal-dialog .modal-body .btn-list {
+  padding-bottom: 16px; /* 리스트 메뉴 하단에 패딩바텀 16px 추가되어야함 4/2 추가 */
 }
 
 /* 하단 슬라이드 모달 - 확인/취소 모달 */
@@ -4542,6 +4659,7 @@ div.nppfs-keypad {
   color: #888;
   margin-top: 4px;
   justify-content: start;
+  align-items: start;
 }
 .modal-slide.type-title .optional {
   font-family: Pretendard;
@@ -5185,12 +5303,29 @@ em.dash {
   width: 16px;
   height: 16px;
 }
-.gray-box.bank-box .swiper-container {
+.gray-box .label {
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 140%;
+  letter-spacing: -2%;
+  color: #e0ff63;
+  background-color: #151515;
+  border-radius: 16px;
+  width: 42px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+}
+.gray-box.bank-box .swiper-container, .sortable-list .swiper-container {
   width: 42px; /* 이미지 크기에 맞게 설정 */
   height: 42px;
+  overflow: auto;
 }
 
-.gray-box.bank-box .swiper-slide {
+.gray-box.bank-box .swiper-slide , .sortable-list .swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -5528,7 +5663,7 @@ em.dash {
   text-align: center;
 }
 #passwordSet .password-wrap .title .error-count {
-  color: #FC0626;
+  color: #fc0626;
 }
 #passwordSet .password-wrap .modal-step2 .title {
   margin-top: 150px;
@@ -5570,7 +5705,7 @@ em.dash {
   display: block;
   width: 20px;
   height: 20px;
-  background: url("../images/common/icon-checkbox-green.svg") no-repeat center /
+  background: url("../images/common/icon-checkbox-on.svg") no-repeat center /
     contain;
   margin-right: 5px;
 }
@@ -5579,21 +5714,21 @@ em.dash {
 }
 #passwordSet .checkbox.bio > input + label {
   padding-left: 25px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 20px;
   letter-spacing: -0.02em;
-  color: #454545;
+  color: #151515;
 }
 #passwordSet .checkbox.bio > input + label:before {
   width: 20px;
   height: 20px;
-  background: url("../images/common/icon-check-off.svg") no-repeat center /
+  background: url("../images/common/icon-checkbox-off.svg") no-repeat center /
     contain;
   margin-right: 5px;
 }
 #passwordSet .checkbox.bio > input:checked + label:before {
-  background: url("../images/common/icon-checkbox-green.svg") no-repeat center /
+  background: url("../images/common/icon-checkbox-on.svg") no-repeat center /
     contain;
 }
 
@@ -5829,6 +5964,9 @@ em.dash {
 }
 .account-list > li:last-of-type {
   margin-bottom: 30px;
+}
+.account-list > li.btn-wrap {
+  margin-bottom: 0; /* 바텀시트 > 버튼영역에 하단 여백생겨서 추가 4/2 */
 }
 .account-list .img-bank {
   width: 62px;

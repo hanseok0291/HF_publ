@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../../css/pay/charge.css" />
+    <script src="../../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../../js/jquery-ui.js"></script>
+    <script src="../../../js/design_renewal.js" defer="defer"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <button type="button" class="btn-back left-0">
+              <i class="icon-back"></i>
+            </button>
+            <h2 class="page-title">출금</h2>
+            <button
+              type="button"
+              class="right-0"
+              onclick="modalOpenSlide('modal-withdrawalt-info')"
+            >
+              <i class="icon-info-circle"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <!-- container -->
+        <div class="container charge-container">
+          <div class="input-wrap border-bottom-0"> <!-- 대기머니일때 border-bottom-0 클래스 추가 -->
+            <div class="input-container label-n charge-input wait-input focus-on">
+              <input
+                type="tel"
+                class="custom-input focus"
+                placeholder="19,000원"
+                id="chargeAmount"
+                disabled
+              />
+              <label for="chargeAmount" class="floating-label"
+                >대기머니</label
+              >
+              <div class="fake-label">
+                <p class="number"></p>
+                <span class="unit">19,000원</span>
+              </div>
+              <button type="button" class="icon icon-del js-text-del"></button>
+            </div>
+          </div>
+          <div class="money-info-wrap">
+            <dl>
+              <!-- <dt>등록 계좌</dt> -->
+              <!-- 계좌 연결하지 않았을땐 출금 계좌 문구 노출 -->
+              <dt>출금 계좌</dt>
+              <dd>
+                <button type="button" class="registration-btn" onclick="modalOpenSlide('modal-select-account')">
+                  <img
+                    src="../../../images/payment/bank/kakao-small.png"
+                    alt=""
+                  />
+                  카카오뱅크 789
+                  <i class="icon-arrow-down size-16"></i>
+                </button>
+                <!-- 계좌 연결하지 않았을때 노출 -->
+                <!-- <button type="button" class="btn-small">연결하기</button> -->
+              </dd>
+            </dl>
+          </div>
+        </div>
+        <!-- //container -->
+        <!-- bottom area -->
+        <div class="bottom-area">
+          <!-- container -->
+          <div class="container">
+            <button type="button" class="btn" disabled>출금하기</button>
+            <!-- 연결 계좌 없을때 모달 버튼 -->
+            <!-- <button
+              type="button"
+              class="btn js-change-btn"
+              data-title="잠깐만요!"
+              data-message="연결 계좌가 있어야 출금할 수 있어요<br/>계좌를 추가할까요?"
+              data-cancel="다음에"
+              data-confirm="계좌 추가하기"
+            >
+              출금하기
+            </button> -->
+          </div>
+          <!-- //container -->
+        </div>
+        <!-- //bottom area -->
+      </div>
+      <!-- //content -->
+    </div>
+    <!-- //wrap -->
+
+    <!-- common prompt -->
+    <div id="commonPrompt" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="promptTitle"></h3>
+            <p id="promptContents"></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="promptNo"
+              onclick="modalCloseAlert();"
+              class="btn btn-cancel"
+            >
+              취소
+            </button>
+            <button
+              type="button"
+              id="promptOk"
+              onclick="modalCloseAlert();"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //common prompt -->
+
+    <!-- 출금 안내 팝업 -->
+    <div id="modal-withdrawalt-info" class="modal modal-slide type-title">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title">출금 안내</p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <ul class="note-wrap">
+                <li>
+                  안전한 거래를 위해 머니를 출금한 계좌로의 출금을 원칙으로
+                  합니다
+                </li>
+                <li>
+                  연결계좌로 출금한 일반 머니만 출금 가능하며, 휴대폰 출금 머니
+                  금액은 제외됩니다
+                </li>
+                <li>
+                  은행 점검 시간에는 출금이 제한될 수 있습니다 (평균 23시 50분 ~
+                  00시 10분)
+                </li>
+                <li>월 5회 무료 출금 이후 건당 500원의 수수료가 부과됩니다</li>
+                <li>출금 가능머니가 수수료보다 많을 때만 출금이 가능합니다</li>
+              </ul>
+              <div class="info-wrap"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //출금 안내 팝업 -->
+
+    <!-- 계좌 선택하기 팝업 -->
+    <div id="modal-select-account" class="modal modal-slide type-select type-title">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-head">
+                  <p class="modal-head-title">계좌 선택하기</p>
+                  <button type="button" class="btn-close js-modal-close">
+                      <i class="icon-close"></i>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <!-- 전체 동의 체크박스 -->
+                  <div class="container">
+                      <ul class="btn-list account-list">
+                          <li class="option-item">
+                              <button type="button" class="flex items-center js-modal-close">
+                                  <p class="img-bank">
+                                      <img src="../../../images/bank/bank_new/logo-bank-kb.png" alt="" />
+                                  </p>
+                                  <p class="text-bank">
+                                      <span>국민</span>
+                                      <span>345</span>
+                                  </p>
+                                  <p class="icon-star"></p>
+                              </button>
+                          </li>
+                          <li class="option-item">
+                              <button type="button" class="flex items-center js-modal-close">
+                                  <p class="img-bank">
+                                      <img src="../../../images/bank/bank_new/logo-bank-kb.png" alt="" />
+                                  </p>
+                                  <p class="text-bank">
+                                      <span>국민</span>
+                                      <span>345</span>
+                                  </p>
+                              </button>
+                          </li>
+                          <li class="btn-wrap">
+                              <button type="button" class="btn btn-add">
+                                  계좌 추가하기
+                              </button>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <!-- //계좌 선택하기 팝업 -->
+  </body>
+  <script>
+    var input_value = 0;
+    var charge_limit = 200; // 출금 한도
+    $(".charge-input input").on("input", function () {
+      var $this = $(this);
+      var $this_wrap = $this.closest(".charge-input");
+      var $label = $this_wrap.find(".floating-label");
+      var maxlength = 15; // 최대 입력 길이
+
+      // 현재 입력된 값 가져오기 (숫자만 허용)
+      var input_value = $this.val().replace(/[^0-9]/g, ""); // 숫자만 남기기
+
+      // 입력 값이 최대 길이를 초과하면 잘라냄
+      if (input_value.length > maxlength) {
+        input_value = input_value.substring(0, maxlength); // 잘라냄
+      }
+
+      // 쉼표 추가 (금액 형식으로 변환)
+      var formatted_value = input_value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+      $this.val(formatted_value); // 형식화된 값으로 업데이트
+
+      // 에러 클래스 초기화
+      $this_wrap.removeClass("error");
+      $this_wrap.find(".fake-label .number").text(formatted_value);
+
+      if (input_value > 0) {
+        $this_wrap.find(".fake-label .unit").show();
+      } else {
+        $this_wrap.find(".fake-label .unit").hide();
+      }
+
+      if (input_value > charge_limit) {
+        $this_wrap.addClass("error");
+        $label.text("출금 가능한 머니를 초과했어요");
+      } else if (input_value >= 0) {
+        // 정상 입력
+        $label.text("출금 금액");
+      }
+
+      if (!input_value) {
+        input_value = 0;
+      }
+    });
+
+    $(".charge-input input").on("focus", function () {
+      var $this = $(this);
+      var $this_wrap = $this.closest(".charge-input");
+      var $label = $this_wrap.find(".floating-label");
+      var input_value = $this.val(); // 입력된 값 확인
+
+      if (input_value.length === 0) {
+        // 입력값이 없으면 "출금 금액"으로 설정
+        $label.text("출금 금액");
+      }
+      // 입력값이 있는 경우 기존 상태 유지 (아무 작업도 하지 않음)
+    });
+
+    $(".charge-input input").on("blur", function () {
+      var $this = $(this);
+      var $label = $this.closest(".charge-input").find(".floating-label");
+      var input_value = $this.val(); // 입력된 값 확인
+
+      if (input_value.length === 0) {
+        // 입력값이 없으면 "얼마를 출금할까요?"로 설정
+        $label.text("얼마를 출금할까요?");
+      }
+    });
+
+    $(".charge-input .js-text-del").on("mousedown", function () {
+      var $this = $(this);
+      var $this_wrap = $this.closest(".charge-input");
+      var $label = $this.closest(".charge-input").find(".floating-label");
+      input_value = 0;
+      $(".fake-label .number").text(input_value);
+      $this_wrap.removeClass("error");
+      $(".fake-label .unit").hide();
+      $label.text("출금 금액");
+    });
+
+    $(".add-money-btn-wrap button").on("click", function () {
+      var $money_value = parseInt($(this).attr("data-money"));
+      input_value += $money_value;
+      $("#chargeAmount").focus();
+      $(".fake-label .unit").show();
+      $(".fake-label .number").text(input_value);
+      $("#chargeAmount").val(input_value);
+      if (input_value > charge_limit) {
+        $(".charge-input").addClass("error");
+        $(".charge-input .floating-label").text(
+          "출금 가능한 머니를 초과 했어요"
+        );
+      }
+    });
+  </script>
+</html>

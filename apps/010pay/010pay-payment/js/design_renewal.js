@@ -190,6 +190,12 @@ function modalOpen(obj) {
 function modalCloseAlert() {
   $(".modal").hide();
   scrollOn(); // 바디 스크롤 제거 해제
+
+  // vertical 클래스 제거
+  const footer = document.querySelector("#commonPrompt .modal-footer");
+  if (footer && footer.classList.contains("vertical")) {
+    footer.classList.remove("vertical");
+  }
 }
 
 // 레이어 팝업(풀모달) 닫기
@@ -229,7 +235,7 @@ function modalAllClose() {
 function modalCloseSubAlert() {
   // 클릭한 버튼이 속한 모달 찾기
   var clickedModal = $(event.target).closest(".modal");
-  
+
   // 해당 모달만 닫기
   clickedModal.hide();
 }
@@ -490,26 +496,29 @@ function modalOpenSlide(obj) {
     }
   });
   // js-modal-close 버튼 클릭 시 모달 닫기 실행
-  temp.find(".js-modal-close").off("click").on("click", function () {
-    if (temp.hasClass("alert-check")) {
-      const $changeBtn = $(".js-change-btn"); // 해당 버튼을 찾기
-      const title = $changeBtn.data("title") || "";
-      const message = $changeBtn.data("message") || "";
-      const cancelText = $changeBtn.data("cancel") || "취소";
-      const confirmText = $changeBtn.data("confirm") || "확인";
+  temp
+    .find(".js-modal-close")
+    .off("click")
+    .on("click", function () {
+      if (temp.hasClass("alert-check")) {
+        const $changeBtn = $(".js-change-btn"); // 해당 버튼을 찾기
+        const title = $changeBtn.data("title") || "";
+        const message = $changeBtn.data("message") || "";
+        const cancelText = $changeBtn.data("cancel") || "취소";
+        const confirmText = $changeBtn.data("confirm") || "확인";
 
-      // `commonPrompt` 모달 내부 요소에 텍스트 설정
-      $("#promptTitle2").html(title);
-      $("#promptContents2").html(message);
-      $("#commonPrompt2 .btn-cancel").html(cancelText);
-      $("#commonPrompt2 .btn-confirm").html(confirmText);
+        // `commonPrompt` 모달 내부 요소에 텍스트 설정
+        $("#promptTitle2").html(title);
+        $("#promptContents2").html(message);
+        $("#commonPrompt2 .btn-cancel").html(cancelText);
+        $("#commonPrompt2 .btn-confirm").html(confirmText);
 
-      // `commonPrompt` 모달 열기
-      modalOpen("commonPrompt2");
-    } else {
-      modalCloseSlide();
-    }
-  });
+        // `commonPrompt` 모달 열기
+        modalOpen("commonPrompt2");
+      } else {
+        modalCloseSlide();
+      }
+    });
 
   // 클릭된 버튼의 부모 select-box에 comp 클래스 추가
   let button;
@@ -605,5 +614,184 @@ document.querySelectorAll(".js-change-btn").forEach((button) => {
 
     // 모달 표시 (여기서 modalOpen은 모달을 여는 함수로 가정)
     modalOpen("commonPrompt");
+  });
+});
+
+// 공통 얼럿 호출 함수
+function showAlertModal({
+  title,
+  message,
+  confirmText = "확인",
+  cancelText = "취소",
+  noShowBtn = "7일 동안 안보기",
+  showCancel = true,
+  vertical = false,
+  styleType = "default",
+  onConfirm = null,
+} = {}) {
+  document.getElementById("executeTitle").innerHTML = title || "";
+  document.getElementById("executeContents").innerHTML = message || "";
+  document.getElementById("executeOk").innerHTML = confirmText;
+  document.getElementById("executeNo").innerHTML = cancelText;
+  document.getElementById("executeNoShow").innerHTML = noShowBtn;
+
+  const cancelButton = document.getElementById("executeNo");
+  cancelButton.style.display = showCancel ? "inline-block" : "none";
+
+  const modal = document.getElementById("commonExecute");
+  const footer = modal.querySelector(".modal-footer");
+  footer.classList.toggle("vertical", vertical);
+
+  // styleType 처리
+  modal.classList.remove("type2");
+  if (styleType && styleType !== "default") {
+    modal.classList.add(styleType);
+  }
+
+  modalOpen("commonExecute");
+
+  const okButton = document.getElementById("executeOk");
+  const clone = okButton.cloneNode(true);
+  okButton.parentNode.replaceChild(clone, okButton);
+
+  clone.addEventListener("click", function () {
+    modalCloseAlert();
+    if (typeof onConfirm === "function") {
+      onConfirm();
+    }
+  });
+}
+
+// 버튼 클릭 시 분기 처리
+document.querySelectorAll(".js-alert-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const type = btn.dataset.execute;
+    const noShowBtn = document.getElementById("executeNoShow");
+
+    if (type === "long") {
+      showAlertModal({
+        title: "고객확인제도 재이행 대상이에요.",
+        message:
+          "<p class='execute-title'>재이행 기간: YYYY-MM-DD까지</p>" +
+          "<div class='execute-wrap'>" +
+          "[특정금융정보법] 시행령 재 10조6에 따라<br>" +
+          "고객확인 재이행 기간이 도래하여<br>" +
+          "정보 재등록이 필요해요.<br>" +
+          "기한 내 고객확인을 이행하지 않을 경우 관련 법에<br>" +
+          "따라 서비스 이용이 제한됩니다." +
+          "</div>" +
+          "<p class='execute-text-wrap'>고객확인 중 추가 심사가 진행될 수 있으며,<br>" +
+          "추가 심사 결과는 별도로 안내해드릴게요.</p>",
+        confirmText: "재입력하기",
+        cancelText: "다음에",
+        showCancel: true,
+        vertical: true,
+      });
+
+      if (noShowBtn) {
+        noShowBtn.style.display = "block";
+        noShowBtn.innerText = "7일 동안 안보기";
+        noShowBtn.onclick = function () {
+          modalCloseAlert();
+          localStorage.setItem(
+            "hideExecuteModal",
+            Date.now() + 7 * 24 * 60 * 60 * 1000
+          );
+        };
+      }
+    } else if (type === "soon") {
+      showAlertModal({
+        title: "고객확인제도 재이행 대상이에요.",
+        message:
+          "<p class='execute-title'>재이행 기간: YYYY-MM-DD까지</p>" +
+          "<div class='execute-wrap'>" +
+          "[특정금융정보법] 시행령 재 10조6에 따라<br>" +
+          "고객확인 재이행 기간이 도래하여<br>" +
+          "정보 재등록이 필요해요.<br>" +
+          "기한 내 고객확인을 이행하지 않을 경우 관련 법에<br>" +
+          "따라 서비스 이용이 제한됩니다." +
+          "</div>" +
+          "<p class='execute-text-wrap'>고객확인 중 추가 심사가 진행될 수 있으며,<br>" +
+          "추가 심사 결과는 별도로 안내해드릴게요.</p>",
+        confirmText: "재입력하기",
+        cancelText: "다음에",
+        showCancel: true,
+        vertical: true,
+      });
+
+      if (noShowBtn) {
+        noShowBtn.style.display = "block";
+        noShowBtn.innerText = "하루 동안 안보기";
+        noShowBtn.onclick = function () {
+          modalCloseAlert();
+          // 여기에 '하루 동안 안보기' 기능 추가
+          localStorage.setItem(
+            "hideExecuteModal",
+            Date.now() + 1 * 24 * 60 * 60 * 1000
+          );
+        };
+      }
+    } else if (type === "info") {
+      showAlertModal({
+        title: "안전한 서비스 이용을 위해 고객확인을<br>먼저 진행해주세요.",
+        message:
+          "<div class='execute-wrap'>" +
+          "라운드 페이에서는 자금 세탁 등으로부터 계좌를<br>" +
+          " 보호하기 위해 고객님의 정보와 실제 계좌 소유 여부를정기적으로 확인하고 있습니다<br>" +
+          "지금 바로 고객님의 정보를 업데이트 해주세요." +
+          "</div>" +
+          "<p class='execute-text-wrap'>고객확인을 통해 수집된 정보는 안전하게<br>" +
+          "보호되고 있으며, 라운드 페이에서 제공하는<br>" +
+          "모든 서비스에 함께 활용돼요.</p>",
+        confirmText: "동의하고 진행하기",
+        cancelText: "다음에",
+        showCancel: true,
+        showHideText: true,
+        vertical: true,
+      });
+
+        if (noShowBtn) {
+          noShowBtn.style.display = "none";
+        }
+      } else if (type === "type2") {
+        showAlertModal({
+          title: "본인인증으로 로그인할까요?",
+          message:
+            "<div class='execute-text-wrap'>휴대폰 본인인증으로 로그인할 경우 <br>앱 잠금이 해제됩니다.</div>",
+          confirmText: "본인인증으로 로그인하기",
+          cancelText: "취소",
+          showCancel: true,
+          vertical: true,
+          styleType: "type2",
+        });
+      
+        const noShowBtn = document.getElementById("executeNoShow");
+        if (noShowBtn) {
+          noShowBtn.style.display = "none";
+        }
+      }
+  });
+});
+
+// 아이콘 버튼 클릭 시 > 형제 .pop-wrap 열기/닫기
+document.querySelectorAll(".js-pop-toggle-btn").forEach((btn) => {
+  btn.addEventListener("click", function () {
+    const pop = this.parentElement.querySelector(".pop-wrap");
+    if (!pop) return;
+
+    const isVisible = getComputedStyle(pop).display !== "none";
+    pop.style.display = isVisible ? "none" : "block";
+  });
+});
+
+// 닫기 버튼 클릭 시 > 툴팁 닫기
+document.querySelectorAll(".js-pop-close-btn").forEach((closeBtn) => {
+  closeBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+
+    const pop = this.closest(".pop-wrap.tooltip-wrap");
+    if (pop) {
+      pop.style.display = "none";
+    }
   });
 });

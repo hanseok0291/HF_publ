@@ -73,7 +73,11 @@ const Home = ({ case1, case2, case3 }) => {
   }, []);
 
   return (
-    <div className={`${styleHome.container} ${isPrevious ? styleHome.previous: ''}`}>
+    <div
+      className={`${styleHome.container} ${
+        isPrevious ? styleHome.previous : ""
+      }`}
+    >
       <div className={styleHome.visualSection}>
         <div className={styleHome.titleWrap}>
           <div className={styleHome.textWrap}>
@@ -148,6 +152,18 @@ const Home = ({ case1, case2, case3 }) => {
         />
       </div>
       <div className={styleHome.mainSectionWrap}>
+        <div className={styleHome.mainNotiWrap}>
+          <p className={styleHome.mainText}>
+            4월 14일부터 리또가 새롭게 시작해요
+          </p>
+          <p className={styleHome.subText}>
+            당첨 확률이 <span>40배 UP</span>
+          </p>
+          <button type="button" className={styleHome.linkText}>
+            바뀐 지급 방식과 당첨 기준을 확인해 주세요
+            <i className={`${styleHome.iconArrowRight}`}></i>
+          </button>
+        </div>
         <Swiper {...reviewParams} className={styleHome.reviewWrap}>
           {reviews.map((item, index) => (
             <SwiperSlide key={index} className={styleHome.reviewContent}>
@@ -372,7 +388,6 @@ const Home = ({ case1, case2, case3 }) => {
           <Button large>리또 받기</Button>
         </div>
       )}
-      
     </div>
   );
 };

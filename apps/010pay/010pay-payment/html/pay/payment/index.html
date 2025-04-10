@@ -31,11 +31,6 @@
               <i class="icon-back"></i>
             </button>
             <h2 class="page-title">결제 수단 관리</h2>
-            <button
-              type="button"
-              class="phone-info-btn"
-              onclick="modalOpenSlide('modal-phone-change')"
-            ></button>
           </div>
         </div>
       </div>
@@ -95,33 +90,6 @@
                     <div class="text-wrap">
                       <p class="title-text">국민</p>
                       <p class="sub-text">456</p>
-                    </div>
-                    <div class="right-box">
-                      <span class="icon-star-off"></span>
-                      <button type="button" class="handle">핸들</button>
-                    </div>
-                    <button
-                      type="button"
-                      class="delete-btn js-change-btn"
-                      data-message="등록된 계좌를 삭제할까요?"
-                      data-cancel="취소"
-                      data-confirm="확인"
-                    >
-                      삭제
-                    </button>
-                  </div>
-                </li>
-                <li class="list-item">
-                  <div class="list-box">
-                    <div class="img-wrap">
-                      <img
-                        src="../../../images/payment/bank/kb.png"
-                        alt="은행"
-                      />
-                    </div>
-                    <div class="text-wrap">
-                      <p class="title-text">국민</p>
-                      <p class="sub-text">678</p>
                     </div>
                     <div class="right-box">
                       <span class="icon-star-off"></span>
@@ -213,7 +181,8 @@
                     <div class="text-wrap">
                       <p class="title-text">010PAY 체크카드</p>
                       <p class="sub-text">체크 5312</p>
-                      <p class="error-text">유효기간 만료까지 90일 남았어요</p> <!-- 유효기간 만료 케이스 추가 -->
+                      <p class="error-text">유효기간 만료까지 90일 남았어요</p>
+                      <!-- 유효기간 만료 케이스 추가 -->
                     </div>
                     <div class="right-box">
                       <span class="icon-star-off"></span>
@@ -373,40 +342,6 @@
       <p>대표계좌가 변경되었습니다</p>
     </div>
     <!-- //대표 계좌 변경 토스트 모달 -->
-
-    <!-- 번호 변경 인포 팝업 -->
-    <div
-      id="modal-phone-change"
-      class="modal modal-slide type-title modal-phone-change"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-head">
-            <p class="modal-head-title">번호 변경이 필요하신가요?</p>
-            <button type="button" class="btn btn-close js-modal-close">
-              <i class="icon-close"></i>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container">
-              <div class="gray-box-wrap">
-                <div class="phone-info">
-                  <span>SKT 알뜰폰</span>
-                  <p>010 9999 9999</p>
-                </div>
-                <p class="info-text">
-                  지금 사용중인 휴대폰번호가 아니면 <br />번호를 변경해주세요!
-                </p>
-              </div>
-              <div class="btn-wrap">
-                <button type="button" class="btn">번호 변경하기</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- //번호 변경 인포 팝업 -->
     <!-- common prompt -->
     <div id="modal-delete-confirm" class="modal">
       <div class="modal-dialog">
@@ -439,6 +374,33 @@
     <!-- //common prompt -->
   </body>
   <script>
+    $(document).ready(function () {
+      // 모든 sortable-list를 선택
+      document.querySelectorAll(".sortable-list").forEach((sortableList) => {
+        // 각 sortable-list 내의 list-item 개수 확인
+        const listItems = sortableList.querySelectorAll(".list-item");
+
+        // list-item 개수 출력
+        console.log(`sortable-list 내 list-item 개수: ${listItems.length}`);
+
+        // list-item의 개수가 1일 경우 handle 버튼 숨기기
+        if (listItems.length === 1) {
+          const handleButton = listItems[0].querySelector(".handle");
+          if (handleButton) {
+            handleButton.style.display = "none"; // handle 버튼 숨기기
+          }
+        } else {
+          // 1개가 아닌 경우 handle 버튼 보이게
+          listItems.forEach((item) => {
+            const handleButton = item.querySelector(".handle");
+            if (handleButton) {
+              handleButton.style.display = "block"; // handle 버튼 보이기
+            }
+          });
+        }
+      });
+    });
+
     let isSorting = false; // Sortable.js 동작 여부 확인
     let isSwiping = false; // 스와이프 동작 여부 확인
 
@@ -528,10 +490,10 @@
         setTimeout(() => {
           // 개별 drag-list의 top-list와 sortable-list 아이템 개수 확인
           const topListCount = dragList.querySelectorAll(
-            ".top-list .list-item"
+            ".top-list .list-item",
           ).length;
           const sortableListCount = dragList.querySelectorAll(
-            ".sortable-list .list-item"
+            ".sortable-list .list-item",
           ).length;
 
           const totalItems = topListCount + sortableListCount; // 현재 리스트 내 총 아이템 개수
@@ -645,36 +607,40 @@
     });
 
     function handleStarOffClick(event, dragList) {
-      const clickedItem = event.target.closest(".list-item"); // 클릭된 li
-      const topList = dragList.querySelector(".top-list"); // 해당 drag-list 내의 top-list
-      const sortableList = dragList.querySelector(".sortable-list"); // 해당 drag-list 내의 sortable-list
-      const listItems = Array.from(sortableList.children); // 현재 drag-list 하단 ul의 모든 li 목록
-      const itemHeight = 90; // li 높이
+      const clickedItem = event.target.closest(".list-item");
+      const topList = dragList.querySelector(".top-list");
+      const sortableList = dragList.querySelector(".sortable-list");
+      const listItems = Array.from(sortableList.children);
+      const itemHeight = 90;
 
       const topListItem = topList.querySelector(".list-item");
 
-      // === right-box 내용 변경 (클릭 즉시) ===
+      // === 오른쪽 아이콘 변경 ===
       const clickedRightBox = clickedItem.querySelector(".right-box");
       const topRightBox = topListItem.querySelector(".right-box");
 
-      clickedRightBox.innerHTML = `<span class="icon-star"></span>`; // 클릭된 li는 icon-star로 변경
-      topRightBox.innerHTML = `
+      clickedRightBox.innerHTML = `<span class="icon-star"></span>`;
+
+      const sortableCount = sortableList.querySelectorAll(".list-item").length;
+
+      if (sortableCount > 1) {
+        console.log(sortableCount);
+        topRightBox.innerHTML = `
       <span class="icon-star-off"></span>
       <button type="button" class="handle">핸들</button>
-    `; // 기존 li는 icon-star-off + handle 추가
+    `;
+      } else {
+        topRightBox.innerHTML = `<span class="icon-star-off"></span>`;
+      }
 
-      // === 전체 인덱스 계산 (top-list와 sortable-list 통합 기준) ===
+      const clickedIndex = listItems.indexOf(clickedItem);
       const topListCount = topList.querySelectorAll(".list-item").length;
-      const clickedIndex = listItems.indexOf(clickedItem); // 클릭된 li의 인덱스 (sortable-list 기준)
-      const totalIndex = topListCount + clickedIndex; // 전체 인덱스 = 상단 li 개수 + 클릭된 인덱스
+      const totalIndex = topListCount + clickedIndex;
+      const offsetUp = totalIndex * itemHeight;
 
-      const offsetUp = totalIndex * itemHeight; // 전체 인덱스 기반 이동 거리
-
-      // 1. 클릭된 li 위로 이동 (애니메이션)
       clickedItem.style.transition = "transform 0.4s ease";
-      clickedItem.style.transform = `translateY(-${offsetUp}px)`; // 음수로 위로 이동
+      clickedItem.style.transform = `translateY(-${offsetUp}px)`;
 
-      // 2. 클릭된 li보다 위에 있는 li들 아래로 이동 (상단 li 포함)
       listItems.forEach((item, index) => {
         if (index < clickedIndex) {
           item.style.transition = "transform 0.4s ease";
@@ -685,47 +651,37 @@
       topListItem.style.transition = "transform 0.4s ease";
       topListItem.style.transform = `translateY(${itemHeight}px)`;
 
-      // === 애니메이션 종료 후 DOM 재배치 ===
+      // === 애니메이션 후 DOM 재배치 및 상태 정리 ===
       setTimeout(() => {
-        // === 1. 기존 상단 li를 먼저 sortable-list로 이동 ===
         sortableList.insertBefore(topListItem, sortableList.firstChild);
-
-        // === 2. 클릭된 li를 top-list로 이동 ===
         topList.appendChild(clickedItem);
 
-        // === DOM 참조 갱신 ===
         const updatedListItems = Array.from(sortableList.children);
 
-        // transform 초기화 (겹침 방지)
         requestAnimationFrame(() => {
           clickedItem.style.transition = "none";
           clickedItem.style.transform = "translateY(0px)";
         });
 
-        // 아래로 밀린 나머지 li 초기화
         updatedListItems.forEach((item) => {
           item.style.transition = "";
           item.style.transform = "";
         });
 
-        // 새로 추가된 icon-star-off에 이벤트 리스너 등록 (dragList 내에서만 동작)
         const newIcon = topRightBox.querySelector(".icon-star-off");
         if (newIcon) {
           newIcon.addEventListener("click", (event) =>
-            handleStarOffClick(event, dragList)
+            handleStarOffClick(event, dragList),
           );
         }
-      }, 400); // transition 시간과 맞춤
-    }
 
-    // "휴대폰" 탭이 기본 active인지 확인
-    var isPhoneTabActive = $(".tab button.active").text().trim() === "휴대폰";
-
-    // 초기 로딩 시 phone-info-btn 상태 설정
-    if (isPhoneTabActive) {
-      $(".phone-info-btn").show();
-    } else {
-      $(".phone-info-btn").hide();
+        const updatedSortableCount =
+          sortableList.querySelectorAll(".list-item").length;
+        if (updatedSortableCount === 0) {
+          const handleButtons = dragList.querySelectorAll(".handle");
+          handleButtons.forEach((btn) => btn.remove());
+        }
+      }, 400);
     }
 
     $(".tab button").on("click", function () {
@@ -734,13 +690,6 @@
       $(this).addClass("active");
       $(".tab-contents > div").hide();
       $(".tab-contents > div").eq(tab_index).css("display", "flex");
-
-      // "휴대폰" 탭이 활성화되었을 때만 phone-info-btn 보이기
-      if ($(this).text().trim() === "휴대폰") {
-        $(".phone-info-btn").show();
-      } else {
-        $(".phone-info-btn").hide();
-      }
 
       // 카드 이미지 가로 일 때 회전
       $(".drag-list.card .img-wrap img").each(function (i, e) {

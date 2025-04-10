@@ -439,6 +439,15 @@ input[type="number"]::-webkit-inner-spin-button {
 .h-full {
   height: 100%;
 }
+.red-text {
+  color: #FC0626;
+}
+.d-block {
+  display: block !important;
+}
+.d-none {
+  display: none !important;
+}
 
 /* select-box (통신사 + 휴대폰번호, 은행 + 계좌번호) */
 .select-box {
@@ -606,6 +615,14 @@ input[type="number"]::-webkit-inner-spin-button {
   margin-top: 5px;
   display: inline-block;
 }
+.checkbox + .checkbox-bottom-text {
+  margin-top: 4px;
+  padding-left: 32px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+  color: #151515;
+}
 
 /* square */
 .checkbox.square > input + label {
@@ -762,7 +779,7 @@ input[type="number"]::-webkit-inner-spin-button {
   margin-top: 20px;
 }
 .checkbox-block-group + .gray-box.button-one {
-  background: #f6f6f9;
+  background: #fff; /* ars 인증 탭 1개일 경우 배경색 수정 */
 }
 
 /* 계좌 관리 > 계좌 목록 좌측 체크박스 */
@@ -1232,7 +1249,7 @@ body > div > form.main_form {
   left: 0;
   min-width: 320px;
   width: 100%;
-  height: 64px;
+  height: 56px; /* 헤더높이 피그마 56px 4/8 수정 */
   padding: 13.5px 0 13.5px;
   background-color: #fff;
   text-align: center;
@@ -2359,7 +2376,9 @@ body > div > form.main_form {
 .btn-list.left .btn > i {
   margin-left: 20px;
 }
-
+.btn-list.account-list > li:last-of-type {
+  margin-bottom: 0; /* 결제수단 선택하기 리스트에 하단여백 제거필요 4/3 추가 */
+}
 /* 버튼 그룹 */
 .btn-group {
   clear: both;
@@ -2591,21 +2610,29 @@ body > div > form.main_form {
 }
 .modal-body {
   padding: 24px 20px;
-  min-height: 90px;
+  /* min-height: 90px; 모달 텍스트 1줄일때 필요없으므로 주석처리 4/4 */
   background-color: #fff;
   font-size: 14px;
 }
 .modal-body h3 {
-  margin-bottom: 8px;
   color: #151515;
   font-size: 18px;
   font-weight: 700;
   line-height: 25.2px;
   letter-spacing: -0.03em;
   text-align: center;
+  max-height: 50px;
+  overflow: hidden; 
+  /* 최대 2줄만 노출되어야함 4/4 */
 }
 .modal-body h3:empty {
   margin-bottom: 0;
+}
+.modal-body h3:empty + p {
+  margin-top: 0;
+}
+.modal-body h3 + p {
+  margin-top: 8px;
 }
 .modal-body .execute-title {
   font-family: Pretendard;
@@ -2630,6 +2657,7 @@ body > div > form.main_form {
   letter-spacing: -2%;
   text-align: center;
   color: #454545;
+  margin-top: 16px;
 }
 .modal-body .execute-text-wrap {
   font-family: Pretendard;
@@ -2896,6 +2924,10 @@ body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer {
   color: #151515;
   border-bottom: 1px solid #151515;
 }
+.modal-slide .modal-body .container .note-wrap + .division-text {
+  margin-top: 12px;
+  padding-left: 11px;
+}
 .modal .modal-body .btn-wrap {
   display: flex;
   align-items: center;
@@ -3003,10 +3035,7 @@ body:not(.custom-pass) .round-button-modal:not(.modal-slide) .modal-footer {
   position: fixed;
 }
 #commonPrompt #promptContents {
-  min-height: 64px;
-}
-#commonPrompt #promptTitle + #promptContents {
-  min-height: auto;
+  /* min-height: 52px; 모달 한줄일경우 최소값 지정 4/4 */
 }
 
 #commonAlert .modal-dialog,
@@ -3077,6 +3106,15 @@ body:not(.custom-pass) .round-button-modal:not(.modal-slide) .modal-footer {
 .modal-slide .modal-body .container {
   position: relative;
   height: 100%;
+}
+.modal-slide .modal-body .container .division-text {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 140%;
+  letter-spacing: -2%;
+  color: #151515;
+  margin: 24px 0 8px;
+  align-items: start;
 }
 .modal-slide .modal-body .btn-close,
 .modal-banklist .modal-body .btn-close {
@@ -3681,7 +3719,7 @@ body:not(.custom-pass) .round-button-modal:not(.modal-slide) .modal-footer {
 ------------------------------------------------------------*/
 /* ----- main content ----- */
 #content {
-  padding: 64px 0 24px;
+  padding: 56px 0 24px;
   min-height: 100%;
 }
 
@@ -3727,6 +3765,12 @@ h5 {
   font-size: 26px;
   font-weight: 700;
   line-height: 35.1px;
+}
+.headline.pt-0 {
+  padding-top: 0; /* 회원가입 flow 상단 여백 0 4/7  수정 */
+}
+.headline > p {
+  margin-top: 16px;
 }
 .headline .small,
 .headline .medium {
@@ -3913,6 +3957,9 @@ div.nppfs-keypad {
 
 .form-type.card-reg li {
   margin-top: 24px;
+}
+.form-type.card-reg li:first-of-type {
+  margin-top: 0; /* 카드등록 첫번째 li 상단여백 제거 */
 }
 .form-type.type2 li {
   margin-top: 30px;
@@ -4958,6 +5005,9 @@ div.nppfs-keypad {
 .input-container.label-error > .custom-input {
   border: 1px solid #ff0000 !important;
 }
+.input-container.label-error .col-box > .custom-input:nth-of-type(-n+2) {
+  border: 1px solid #ff0000 !important;
+}
 .input-container.text-error .floating-label {
   color: #ff0000;
 }
@@ -4976,7 +5026,7 @@ input[type="tel"].custom-input {
   outline: none;
   font-weight: 700;
   background-color: #fff;
-  border: 1px solid #ddd;
+  border: 1px solid rgba(229, 229, 232, 1); /* 보더 컬러 4/8 수정 */
 }
 .label-n .custom-input,
 .label-n input[type="text"].custom-input.focus,
@@ -5048,6 +5098,22 @@ input[type="tel"].custom-input {
   border: 1px solid #ff0000;
 }
 /* //주민등록번호 input */
+/* 카드등록 */
+/* 기본 상태: dual-input 숨기기 */
+.input-container.expiration .dual-input {
+  display: none;
+}
+
+/* 삼성카드일 경우: single-input 숨기고 dual-input 보이기 */
+.input-container.expiration.samsung .single-input {
+  display: none;
+}
+
+.input-container.expiration.samsung .dual-input {
+  display: flex; /* 혹은 inline-flex */
+  gap: 8px;
+}
+/* //카드등록 */
 
 .small.label-n .custom-input,
 .small.label-n input[type="text"].custom-input.focus,
@@ -5188,16 +5254,49 @@ input[type="tel"].custom-input {
 .input-container.col .col-box {
   display: flex;
   gap: 0 8px;
+  align-items: center;
 }
-.input-container.col .col-box .custom-input {
+.input-container.col .col-box .logo-box {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  background: #F6F6F9;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.input-container.col .col-box .logo-box img {
+  width: 24px;
+  height: 24px;
+}
+.input-container.col .col-box .logo-box.size-up img {
+  width: auto;
+  height: auto;
+}
+.input-container.col .col-box .custom-input,
+.input-container .col-box .custom-input
+ {
   font-family: Pretendard;
   font-size: 16px;
   font-weight: 400;
   line-height: 21.6px;
-  height: 52px;
+  height: 48px;
   padding: 0 6px;
   text-align: center;
 }
+.input-container .col-box .custom-input {
+  text-align: left;
+  padding: 0 16px;
+}
+.input-container .col-box .custom-input::placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: -2%;
+}
+
 /* 인풋 정보 텍스트 추가 */
 .input-container + .input-info-text {
   margin-top: 8px;
@@ -5322,7 +5421,7 @@ em.dash {
 .gray-box.bank-box .swiper-container, .sortable-list .swiper-container {
   width: 42px; /* 이미지 크기에 맞게 설정 */
   height: 42px;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .gray-box.bank-box .swiper-slide , .sortable-list .swiper-slide {
@@ -5374,21 +5473,20 @@ em.dash {
   text-align: center;
   margin: 24px auto;
 }
-.toggle-buttons {
+.toggle-buttons { /* pass 인증 사라지면서 스타일 수정됨 4/4 */
   display: flex;
   justify-content: space-between;
   border-radius: 12px;
-  background: #f6f6f9;
-  padding: 2px;
-  max-width: 181px;
-  margin: 0 auto 15px;
+  padding: 0;
+  max-width: 86px;
+  margin: 0 auto 4px; /* ars 인증 간격 수정 4/4 */
 }
 .button-one .toggle-buttons {
   max-width: 86px;
   padding: 0;
 }
 .toggle-button {
-  padding: 13px 10px;
+  padding: 11px 10px;
   border-radius: 10px;
   color: #888;
   cursor: pointer;
@@ -5396,7 +5494,7 @@ em.dash {
   font-family: Pretendard;
   font-size: 14px;
   font-weight: 400;
-  line-height: 19.6px;
+  line-height: 140%;
   letter-spacing: -0.02em;
   text-align: center;
   white-space: nowrap;
@@ -5454,11 +5552,6 @@ em.dash {
   margin: 10px auto 0;
 }
 
-/* .call-button:hover,
-.pass-button:hover {
-  background-color: #D1D1D5;
-} */
-
 .call-button:disabled,
 .pass-button:disabled {
   opacity: 40%;
@@ -5476,6 +5569,9 @@ em.dash {
 
 .toggle-content.active {
   display: block;
+}
+.toggle-content .instruction {
+  margin: 0; /* ars 인증 간격 수정 4/4 */
 }
 /* //toggle-box */
 
@@ -5533,10 +5629,10 @@ em.dash {
 }
 #passwordSet .password-wrap .input-mark .btn {
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 500;
   border-radius: 8px;
-  padding: 0 8px;
-  height: 26px;
+  padding: 4px 12px;
+  height: auto;
 }
 
 /* 생체정보 등록 모달 */
@@ -5779,6 +5875,9 @@ em.dash {
   position: relative;
   padding: 8px 0;
 }
+.agree-full-wrap .terms-wrap .check-all + .check-all {
+  margin-top: 8px;
+}
 .agree-full-wrap .terms-wrap .check-all .btn-toggle {
   position: absolute;
   top: 50%;
@@ -5968,6 +6067,11 @@ em.dash {
 .account-list > li.btn-wrap {
   margin-bottom: 0; /* 바텀시트 > 버튼영역에 하단 여백생겨서 추가 4/2 */
 }
+.account-list > li > a {
+  display: block;
+  height: 32px;
+  line-height: 32px;
+}
 .account-list .img-bank {
   width: 62px;
   height: 62px;
@@ -6123,3 +6227,42 @@ em.dash {
   color: #000;
 }
 /* //result-wrap */
+
+/* 에러 페이지 */
+.error-container .complete-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  color: #000;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 33.6px;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+.error-container .complete-text .load-error {
+  display: block;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 12px;
+  transform-origin: center;
+}
+.error-container .complete-text .title {
+  font-family: Pretendard;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 140%;
+  text-align: center;
+  color: #151515;
+}
+.error-container .complete-text .small-text {
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+  text-align: center;
+  color: #151515;
+  margin-top: 4px;
+}
+/* 에러 페이지 */

@@ -76,7 +76,6 @@
                                     <div class="toggle-box">
                                         <div class="toggle-buttons">
                                             <button class="toggle-button active" onclick="selectToggle('ars')">ARS 인증</button>
-                                            <button class="toggle-button" onclick="selectToggle('pass')">PASS 인증</button>
                                         </div>
 
                                         <!-- ARS 인증 내용 -->
@@ -84,25 +83,6 @@
                                             <p class="instruction">버튼을 누른 후, 인증번호를 입력해주세요.</p>
                                             <div class="verification-code">25</div>
                                             <button class="call-button js-call-button" onclick="window.location.href='./registerAccount_step3.html'">인증 전화 요청</button>
-                                        </div>
-
-                                        <!-- PASS 인증 내용 -->
-                                        <div class="pass-content toggle-content">
-                                            <p class="instruction">
-                                                PASS앱을 통해<br />
-                                                비밀번호 또는 지문, Face ID 등<br />
-                                                생체 정보로 인증할 수 있습니다.
-                                            </p>
-                                            <button type="button" class=""></button>
-                                            <button
-                                                type="button"
-                                                class="pass-button js-pass-button js-change-btn"
-                                                data-message="정상적으로 처리되지 않았어요.<br>다시 시도해주세요!"
-                                                data-cancel="확인"
-                                                data-confirm="재인증하기"
-                                            >
-                                                PASS 인증 요청
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -189,20 +169,5 @@
             this.disabled = true;
         });
 
-        // pass 인증 버튼
-        const passButton = document.querySelector(".js-pass-button");
-        passButton.addEventListener("click", function () {
-            // 버튼의 텍스트를 변경
-            this.innerHTML = "PASS 재인증";
-
-            // 버튼을 비활성화
-            this.disabled = true;
-
-            // 3초 후 작업 실행
-            setTimeout(() => {
-                // 버튼 비활성화 해제
-                this.disabled = false;
-            }, 3000);
-        });
     </script>
 </html>

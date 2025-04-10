@@ -362,7 +362,7 @@ $(function () {
 
   // 하단 고정 영역 여백 확보
   function wrapPadding() {
-    var fixFoot = $(".bottom-area.fixed");
+    var fixFoot = $(".bottom-area.fixed:visible");
     const matchesMediaQuery = window.matchMedia(
       "(max-width:999px) and (orientation:landscape)"
     ).matches;

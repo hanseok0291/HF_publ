@@ -72,32 +72,17 @@
                                     </span>
                                 </div>
 
-                                <!-- 버튼이 1개일 경우 button-one 클래스 추가 -->
                                 <div class="gray-box">
                                     <div class="toggle-box">
                                         <div class="toggle-buttons">
                                             <button class="toggle-button active" onclick="selectToggle('ars')">ARS 인증</button>
-                                            <button class="toggle-button" onclick="selectToggle('pass')">PASS 인증</button>
                                         </div>
-                                        <!-- <div class="toggle-buttons">
-                                            <button class="toggle-button active" onclick="selectToggle('ars')">ARS 인증</button>
-                                        </div>  -->
 
                                         <!-- ARS 인증 내용 -->
                                         <div class="ars-content toggle-content active">
                                             <p class="instruction">버튼을 누른 후, 인증번호를 입력해주세요.</p>
                                             <div class="verification-code">25</div>
                                             <button class="call-button js-call-button" onclick="window.location.href='./registerAccount_step3.html'">인증 전화 요청</button>
-                                        </div>
-
-                                        <!-- PASS 인증 내용 -->
-                                        <div class="pass-content toggle-content">
-                                            <p class="instruction">
-                                                PASS앱을 통해<br />
-                                                비밀번호 또는 지문, Face ID 등<br />
-                                                생체 정보로 인증할 수 있습니다.
-                                            </p>
-                                            <button type="button" class="pass-button js-pass-button">PASS 인증 요청</button>
                                         </div>
                                     </div>
                                 </div>
@@ -431,40 +416,10 @@
             showNextItem();
         });
 
-        // 토글버튼
-        function selectToggle(type) {
-            const arsButton = document.querySelector(".toggle-buttons .toggle-button:first-child");
-            const passButton = document.querySelector(".toggle-buttons .toggle-button:last-child");
-
-            const arsContent = document.querySelector(".ars-content");
-            const passContent = document.querySelector(".pass-content");
-
-            if (type === "ars") {
-                arsButton.classList.add("active");
-                passButton.classList.remove("active");
-                arsContent.classList.add("active");
-                passContent.classList.remove("active");
-            } else {
-                passButton.classList.add("active");
-                arsButton.classList.remove("active");
-                passContent.classList.add("active");
-                arsContent.classList.remove("active");
-            }
-        }
-
         // 전화 인증 버튼
         document.querySelector(".js-call-button").addEventListener("click", function () {
             // 버튼의 텍스트를 변경
             this.innerHTML = '전화수신 중';
-
-            // 버튼을 비활성화
-            this.disabled = true;
-        });
-
-        // pass 인증 버튼
-        document.querySelector(".js-pass-button").addEventListener("click", function () {
-            // 버튼의 텍스트를 변경
-            this.innerHTML = "PASS 재인증";
 
             // 버튼을 비활성화
             this.disabled = true;

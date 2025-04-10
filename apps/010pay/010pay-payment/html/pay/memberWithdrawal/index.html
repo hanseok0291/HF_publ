@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../../css/pay/transactionHistory.css" />
+    <script src="../../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../../js/jquery-ui.js"></script>
+    <script src="../../../js/design_renewal.js" defer="defer"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <button type="button" class="btn-back js-change-btn left-0">
+              <i class="icon-back"></i>
+            </button>
+            <h2 class="page-title">서비스 해지</h2>
+          </div>
+        </div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content" class="is-terms-page">
+        <!-- container -->
+        <div class="container">
+          <!-- headline -->
+          <div class="headline pt-0">
+            <p>
+              라운드 페이 서비스 해지 전<br />
+              아래 내용을 확인해 주세요
+            </p>
+          </div>
+          <!-- //headline -->
+
+          <!-- section -->
+          <div class="section">
+            <div class="agree-full-wrap">
+              <!-- 첫 번째 약관 그룹 -->
+              <div class="terms-wrap">
+                <div class="check-all">
+                  <span class="checkbox">
+                    <input type="checkbox" id="checkbox2_group1_all" />
+                    <label for="checkbox2_group1_all">회원 정보 및 혜택 소멸</label>
+                  </span>
+                  <p class="checkbox-bottom-text">회원 정보, 거래 내역, 페이 포인트가 모두 삭제되며
+                    복구할 수 없어요.</p>
+                </div>
+                <div class="check-all">
+                  <span class="checkbox">
+                    <input type="checkbox" id="checkbox3_group1_all" />
+                    <label for="checkbox3_group1_all">쇼핑 및 결제 제한</label>
+                  </span>
+                  <p class="checkbox-bottom-text">라운드에서 결제를 할 수 없어요.</p>
+                </div>
+                <div class="check-all">
+                  <span class="checkbox">
+                    <input type="checkbox" id="checkbox4_group1_all" />
+                    <label for="checkbox4_group1_all">라운드 페이 포인트 소멸</label>
+                  </span>
+                  <p class="checkbox-bottom-text">라운드 휘슬, NNN과 연결된 통합 포인트가 모두 삭제되며
+                    복구할 수 없어요.</p>
+                </div>
+                <div class="check-all">
+                  <span class="checkbox">
+                    <input type="checkbox" id="checkbox5_group1_all" />
+                    <label for="checkbox5_group1_all">카드 및 이벤트 혜택 중단</label>
+                  </span>
+                  <p class="checkbox-bottom-text">전용 카드 혜택과 이벤트, 결제 혜택을 받을 수 없어요.</p>
+                </div>
+                <div class="check-all">
+                  <span class="checkbox">
+                    <input type="checkbox" id="checkbox6_group1_all" />
+                    <label for="checkbox6_group1_all">서비스 재가입 제한</label>
+                  </span>
+                  <p class="checkbox-bottom-text">해지 후 30일 동안 다시 이용할 수 없어요.</p>
+                </div>
+                <div class="check-all">
+                  <span class="checkbox">
+                    <input type="checkbox" id="checkbox7_group1_all" />
+                    <label for="checkbox7_group1_all">연계 서비스 이용</label>
+                  </span>
+                  <p class="checkbox-bottom-text">라운드와 내통장결제는 탈퇴되지 않아요.
+                    별도 서비스 이용이 가능합니다.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- //section -->
+        </div>
+        <!-- //container -->
+
+        <!-- bottom area -->
+        <div class="bottom-area fixed">
+          <!-- container -->
+          <div class="container">
+            <button
+              id="send"
+              class="btn"
+              disabled
+            >
+            서비스 해지하기
+            </button>
+          </div>
+          <!-- //container -->
+        </div>
+        <!-- //bottom area -->
+      </div>
+      <!-- //content -->
+    </div>
+    <!-- //wrap -->
+
+    <!-- loading -->
+    <div class="modal modal-loading">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="loading">
+            <span class="loading-bar"></span>
+            <span class="loading-bar"></span>
+            <span class="loading-bar"></span>
+          </div>
+          <span class="sr-only">로딩 중</span>
+        </div>
+      </div>
+    </div>
+    <!-- //loading -->
+
+    <!-- common prompt -->
+    <div id="commonPrompt" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="promptTitle"></h3>
+            <p id="promptContents"></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="promptNo"
+              onclick="modalCloseAlert();"
+              class="btn btn-cancel"
+            >
+              취소
+            </button>
+            <button
+              type="button"
+              id="promptOk"
+              onclick="modalCloseAlert();"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //common prompt -->
+
+  </body>
+  <script>
+    $(document).ready(function () {
+      // 모든 체크박스를 제어하고, 모든 체크박스가 체크되었을 때 버튼 활성화
+      document.querySelectorAll("input").forEach((checkbox) => {
+        checkbox.addEventListener("change", function () {
+          // 모든 체크박스를 확인
+          const allCheckboxes = document.querySelectorAll("input");
+          const allChecked = Array.from(allCheckboxes).every(
+            (checkbox) => checkbox.checked,
+          );
+
+          // send 버튼을 활성화 또는 비활성화
+          const sendButton = document.getElementById("send");
+          if (allChecked) {
+            sendButton.classList.remove("disabled");
+            sendButton.disabled = false;
+          } else {
+            sendButton.classList.add("disabled");
+            sendButton.disabled = true;
+          }
+        });
+      });
+    });
+  </script>
+</html>

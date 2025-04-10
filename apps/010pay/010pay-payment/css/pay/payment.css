@@ -283,7 +283,7 @@
   flex: 1;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20%;
+  /* margin-bottom: 20%; */ /* 내역없음 아이콘 위로 뜨는 현상으로 4/9 수정 */
 }
 .payment-container .empty-list p {
   color: #454545;
@@ -317,7 +317,7 @@
   z-index: 10;
 }
 .payment-container .drag-list.history .banner-wrap {
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
 }
 
 .payment-container .bottom-area .container .balloon-text-box {
@@ -425,10 +425,91 @@
 }
 
 /* 정기결제 추가 */
-.toggle-wrap .toggle-row {
-  padding: 0 20px;
+.toggle-wrap {
+  border-bottom: 8px solid #F6F6F9;
+}
+.toggle-wrap .toggle-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  height: 52px;
+}
+.toggle-wrap .toggle-line .title {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: -2%;
+  color: #151515;
+} 
+.toggle-wrap .toggle-box {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 4px;
+  font-size: 14px;
+  color: #454545;
+  margin: 0;
 }
+.toggle-wrap .switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+}
+
+.toggle-wrap .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-wrap .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 999px;
+  transition: 0.4s;
+}
+
+.toggle-wrap .slider::before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.2s;
+  border-radius: 50%;
+}
+
+.toggle-wrap .switch input:checked + .slider {
+  background-color: #151515;
+}
+
+.toggle-wrap .switch input:checked + .slider::before {
+  transform: translateX(24px);
+}
+.payment-sort-wrap {
+  padding: 16px 16px 8px;
+}
+.payment-sort-wrap .title {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 140%;
+  letter-spacing: -2%;
+  color: #888;  
+}
+.payment-container .tab-contents .drag-list .payment-sort-wrap + .sortable-list li:first-of-type {
+  margin-top: 0;
+}
+
+.payment-container .tab-contents .drag-list ul li .img-wrap {
+  width: 42px;
+  height: 42px;
+} 
 /* //정기결제 추가 */

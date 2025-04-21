@@ -53,7 +53,7 @@
                 <div id="header">
                     <div class="container">
                         <h1 class="brand-name">
-                            <span class="my-logo"><img src="../../images/logo-hecto-orange.png?ver=1.0" alt="헥토파이낸셜" /></span>
+                            <span class="my-logo"><img src="../../images/logo-hecto_black.svg" alt="헥토파이낸셜" /></span>
                         </h1>
                         <button type="button" id="closeWindow" class="btn-close" data-toggle="modal" aria-label="닫기">
                             <span class="blind">닫기</span>
@@ -255,7 +255,7 @@
                                                         <input type="tel" maxlength="6" placeholder="생년월일(6자리)" class="birth-wrap" />
                                                         <span class="text-dash">-</span>
                                                         <div class="last-input-wrap">
-                                                            <input class="last-input" type="tel" maxlength="1" pattern="[0-9]*" />
+                                                            <input class="last-input" type="tel" maxlength="1" pattern="[0-9]*" aria-label="주민등록번호 뒷 첫번째 자리" />
                                                             <div class="input-dot">
                                                                 <!-- span에 fill Class 추가 시 입력 -->
                                                                 <span></span>
@@ -766,7 +766,15 @@
 
                 $(".check-group input").click(function () {
                     var chkVal = $(this).attr("id");
-                    console.log(chkVal);
+
+                    // 탭 상태를 업데이트하는 함수
+                    function updateTabs(tabToShow, tabTitle) {
+                        $(".tab").hide(); // 모든 탭 숨기기
+                        $(tabToShow).show(); // 선택한 탭 보이기
+                        $(".tab").attr("title", ""); // 모든 탭의 title 속성 초기화
+                        $(tabToShow).attr("title", tabTitle); // 선택한 탭의 title 속성 설정
+                    }
+
                     if (chkVal == "authTypePass") {
                         $(".tab1").show();
                         $(".tab2").hide();
@@ -780,6 +788,19 @@
                         $(".tab1").hide();
                         $(".tab2").hide();
                     }
+
+                    // 각 체크박스에 따라 탭 상태 업데이트
+                    switch (chkVal) {
+                        case "authTypePass":
+                            updateTabs(".tab1", "현재 탭 선택 됨");
+                            break;
+                        case "authTypeSms":
+                            updateTabs(".tab2", "현재 탭 선택 됨");
+                            break;
+                        case "authTypeEasy":
+                            updateTabs(".tab3", "현재 탭 선택 됨");
+                            break;
+                    }
                 });
                 // 결제하기 버튼 활성화
 
@@ -791,6 +812,7 @@
                 const checkPay = document.getElementById("check-pay");
                 // send 버튼 요소를 가져옵니다.
                 const sendButton = document.getElementById("send");
+
                 // CPC 광고 팝업
                 const cpcChk1 = document.getElementById("chk4");
                 const cpcChk2 = document.getElementById("chk5");
@@ -970,11 +992,6 @@
             $(".btn_view").click(function () {
                 $("#noticeDetail .terms-title").attr("tabindex", 0).show().focus();
                 $this = $(this);
-            });
-
-            // 리또 이벤트 팝업 닫기
-            $(".pop-wrap .btn-close").on("click", function () {
-                $(".pop-wrap").hide();
             });
 
             // 결제 보상 약관 체크

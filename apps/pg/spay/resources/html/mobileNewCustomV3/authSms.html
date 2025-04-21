@@ -53,7 +53,7 @@
                 <div id="header">
                     <div class="container">
                         <h1 class="brand-name">
-                            <span class="my-logo"><img src="../../images/logo-hecto-orange.png?ver=1.0" alt="헥토파이낸셜" /></span>
+                            <span class="my-logo"><img src="../../images/logo-hecto_black.svg" alt="헥토파이낸셜" /></span>
                         </h1>
                         <button type="button" id="closeWindow" class="btn-close" data-toggle="modal" data-target="#commonConfirm" aria-label="닫기"></button>
                     </div>
@@ -135,10 +135,28 @@
                                                 </li>
                                                 <li class="list-item">
                                                     <div class="check-box">
-                                                        <input type="checkbox" id="chk4" class="checkSelect" name="chk4" value="Y" title="간편 인증 인증 동의 (필수)" />
-                                                        <label for="chk4">간편 인증 인증 동의 (필수)</label>
+                                                        <input type="checkbox" id="chk4" class="checkSelect" name="chk4" value="Y" title="광고성 정보 전송을 위한 개인정보 수집·이용(선택)" />
+                                                        <label for="chk4">광고성 정보 전송을 위한 개인정보 수집·이용(선택)</label>
                                                     </div>
-                                                    <span class="btn-right" id=""
+                                                    <span class="btn-right"
+                                                        ><a href="javascript:;" data-toggle="modal" data-target="#noticeDetail"><span class="btn_view">보기</span></a></span
+                                                    >
+                                                </li>
+                                                <li class="list-item">
+                                                    <div class="check-box">
+                                                        <input type="checkbox" id="chk5" class="checkSelect" name="chk5" value="Y" title="결제 보상 알림을 위한 개인정보 활용 (선택)" />
+                                                        <label for="chk5">결제 보상 알림을 위한 개인정보 활용 (선택)</label>
+                                                    </div>
+                                                    <span class="btn-right"
+                                                        ><a href="javascript:;" data-toggle="modal" data-target="#noticeDetail"><span class="btn_view">보기</span></a></span
+                                                    >
+                                                </li>
+                                                <li class="list-item">
+                                                    <div class="check-box">
+                                                        <input type="checkbox" id="chk6" class="checkSelect" name="chk6" value="Y" title="결제 보상 알림을 위한 수신 (선택)" />
+                                                        <label for="chk6">결제 보상 알림을 위한 수신 (선택)</label>
+                                                    </div>
+                                                    <span class="btn-right"
                                                         ><a href="javascript:;" data-toggle="modal" data-target="#noticeDetail"><span class="btn_view">보기</span></a></span
                                                     >
                                                 </li>
@@ -337,7 +355,7 @@
                             <p class="brand-name">
                                 <span class="my-logo"><img src="../../images/logo-hecto.png?ver=1.0" alt="헥토파이낸셜" /></span>
                             </p>
-                            <button type="button" class="btn btn-close" data-dismiss="modal" data-target="#noticeDetail"></button>
+                            <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="모달 닫기"></button>
                         </div>
                     </div>
                     <div class="modal-body">
@@ -451,6 +469,23 @@
         </div>
         <!-- //slide modal -->
 
+        <!-- popup modal -->
+        <div id="modalPopup" class="modal new popup v2" aria-live="polite" aria-labelledby="popupTitle2">
+            <span id="popupTitle2" class="blink" tabindex="0">광고 팝업</span>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <button type="button" class="btn-close btn-cancel" onclick="modalClose();" aria-label="닫기"></button>
+                    <div class="modal-body">
+                        <img src="../../images/custom/new/popup.png" alt="새로운 시도를 담은 공간 일상을 더 풍요롭게 일상의틈에서 경험해 보세요!" />
+                        <button type="button" id="promptOk" onclick="modalClose();" class="btn btn-confirm text-red">할인 받기</button>
+                        <button type="button" id="" onclick="modalClose();" class="btn-transparent"></button>
+                        <div class="container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //popup modal -->
+
         <script>
             $(document).ready(function () {
                 // 통신사 선택
@@ -466,6 +501,20 @@
                         $(tabToShow).show(); // 선택한 탭 보이기
                         $(".tab").attr("title", ""); // 모든 탭의 title 속성 초기화
                         $(tabToShow).attr("title", tabTitle); // 선택한 탭의 title 속성 설정
+                    }
+
+                    if (chkVal == "authTypePass") {
+                        $(".tab1").show();
+                        $(".tab2").hide();
+                        $(".tab3").hide();
+                    } else if (chkVal == "authTypeSms") {
+                        $(".tab2").show();
+                        $(".tab1").hide();
+                        $(".tab3").hide();
+                    } else if (chkVal == "authTypeEasy") {
+                        $(".tab3").show();
+                        $(".tab1").hide();
+                        $(".tab2").hide();
                     }
 
                     // 각 체크박스에 따라 탭 상태 업데이트
@@ -492,6 +541,13 @@
                 // send 버튼 요소를 가져옵니다.
                 const sendButton = document.getElementById("send");
 
+                // CPC 광고 팝업
+                const cpcChk1 = document.getElementById("chk4");
+                const cpcChk2 = document.getElementById("chk5");
+                const cpcChk3 = document.getElementById("chk6");
+                // 팝업이 열렸는지 여부를 저장하는 변수
+                // let isPopupOpened = false;
+
                 // 함수를 만들어 체크 상태를 확인하고 클래스를 추가합니다.
                 function updateSendButtonClass() {
                     // 변경된 상태를 콘솔에 출력합니다.
@@ -513,6 +569,20 @@
                             document.getElementById("send").disabled = true;
                         }
                     }
+
+                    // 모든 CPC 체크박스가 체크되었을 때 팝업을 보여줍니다.
+                    // if (cpcChk1.checked && cpcChk2.checked && cpcChk3.checked) {
+                    //     // CPC 체크박스가 모두 체크된 상태에서만 팝업을 보여줍니다.
+                    //     if (!isPopupOpened) {
+                    //         // 팝업이 아직 열리지 않았다면
+                    //         $("#modalPopup").show();
+                    //         $("#modalPopup").attr("tabindex", 0).show().focus();
+                    //         isPopupOpened = true; // 팝업이 열렸음을 기록
+                    //     }
+                    // } else {
+                    //     $("#modalPopup").hide();
+                    //     isPopupOpened = false; // 팝업이 닫혔음을 기록
+                    // }
                 }
 
                 // "check-all" 체크박스의 변경 이벤트를 감지합니다.
@@ -551,6 +621,11 @@
                         }
                         updateSendButtonClass();
                     });
+                });
+
+                // CPC 체크박스의 변경 이벤트를 추가하여 상태를 업데이트합니다.
+                [cpcChk1, cpcChk2, cpcChk3].forEach(function (checkbox) {
+                    checkbox.addEventListener("change", updateSendButtonClass);
                 });
 
                 $("#send").click(function () {
@@ -653,7 +728,9 @@
                     $("#send").prop("disabled", false);
 
                     // 버튼에 포커스 이동
-                    $("#send").focus();
+                    setTimeout(function () {
+                        $("#send").focus();
+                    }, 10);
                 } else {
                     // 값이 4자리 미만일 경우 버튼 비활성화
                     $("#send").prop("disabled", true);

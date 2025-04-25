@@ -70,21 +70,28 @@
                         <p class="title">서류 제출</p>
                         <ul class="guideList">
                             <li>사업자 등록증은 최근 1년 이내 발급한 서류로 제출해 주세요.</li>
+                            <li>파일 첨부 시 10MB 이하의 PNG, JPG, JPGE, PDF 파일만 가능합니다. </li>
                             <li>
                                 제출 신분증 종류 <br />
                                 국내 : 주민등록증 또는 운전면허증 택 1 <br />
                                 국외 : 재외국민 주민증록증, 외국인등록증, 외국국적동포 국내거소 신고증, 영주증 중 택 1
                             </li>
                             <li>「특정 금융거래정보의 보고 및 이용 등에 관한 법률 및 동법 시행령」에 따라 고객확인 및 검증을 위하여 추가 서류 제출을 요구할 수 있습니다.</li>
+                            <li>심사된 서류 중 진위 확인이 완료된 서류는 등록/수정이 불가능 합니다. </li>
                         </ul>
                     </div>
 
                     <div class="tableWrap">
-                        <!-- <div class="btnWrap">
-                            <button type="button" class="btn btnOrange mlAuto">+ 대표자 추가 등록</button>
-                        </div> -->
+                        <div class="btnWrap">
+                            <button type="button" class="btn btnOrange mlAuto openModalBtn">+ 공동 대표자 서류 추가 등록</button>
+                        </div>
                         <!--  -->
                         <table>
+                            <colgroup>
+                                <col style="width: 300px;" />
+                                <col />
+                                <col style="width: 160px;" />
+                              </colgroup>
                             <thead>
                                 <tr>
                                     <th>제출 서류</th>
@@ -141,7 +148,7 @@
 
                     <div class="btnWrap">
                         <button type="button" class="btn btnPrev">이전</button>
-                        <button type="button" id="nextBtn" class="btn btnNext btnOrange" disabled>심사요청</button>
+                        <button type="button" id="nextBtn" class="btn btnNext btnOrange openModalBtn" disabled data-target="modalAlert">심사요청</button>
                         <!-- 전체서류 등록시 버튼 활성화 -->
                         <!-- <button type="button" class="btn btnNext">심사요청</button> -->
                     </div>
@@ -150,7 +157,7 @@
 
             <!--  -->
             <!-- 모달창 -->
-            <div id="modal" class="modal">
+            <div id="modal1" class="modal">
                 <div class="modal-content">
                     <span id="closeModalBtn" class="close">&times;</span>
                     <h2 id="modalTitle">대표자 정보</h2>
@@ -263,8 +270,46 @@
                 </div>
             </div>
             <!--  -->
+            <!-- modal - alert -->
+            <div id="modalAlert" class="modal modal-alert modal-full" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <h3 id="alertTitle">심사 요청 안내</h3>
+                            <div id="alertContents">
+                                심사 요청이 완료되면 정보 수정이 불가합니다.<br>
+                                심사 요청을 하시겠습니까?
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-xl btn-secondary btnCancel closeModalBtn" data-target="modalAlert">취소</button>
+                            <button type="button" class="btn btn-xl btnOrange btnCancel closeModalBtn" data-target="modalAlert">확인</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- //modal - alert -->
         </div>
         <!-- //wrap -->
+
+        <div class="footerWrap">
+            <div class="container">
+                <div class="footerInfo">
+                    <strong class="companyName">(주)헥토파이낸셜</strong>
+                    <p>
+                        서울특별시 강남구 테헤란로34길 6, 9~10층(역삼동, 태경타워)<br />
+                        사업자등록번호 : 101-81-63363<br />
+                        통신판매업 신고번호 : 제2017-서울강남-00914호
+                    </p>
+                    <p class="contact">
+                        <span><strong>고객센터 문의</strong> 1600-5220 (상담 시간: 평~금 9:00~18:00)</span>
+                        <span><strong>이메일 문의</strong> <a href="mailto:settle_rm@hecto.co.kr">settle_rm@hecto.co.kr</a></span>
+                    </p>
+                    </div>
+            </div>
+        </div>
+                
+        
         <script>
             // 등록/수정 확인 버튼 클릭 이벤트
             confirmBtn.addEventListener("click", () => {
@@ -298,6 +343,16 @@
 
             // 페이지 로드 시 초기 상태 확인
             checkAllSelected();
+
+            $(document).ready(function () {
+                $('#nextBtn').on('click', function () {
+                    // $('#modalAlert').modal('show');
+                });
+                $('.modal-alert .btnCancel').on('click', function () {
+                    $('.modal').hide();
+                });
+            });
+
         </script>
     </body>
 </html>

@@ -121,7 +121,7 @@
   margin-top: 8px;
 }
 .trade-list li {
-  display: flex;
+  /* display: flex; */
   margin-bottom: 24px;
 }
 .trade-list li:last-child {
@@ -131,18 +131,44 @@
   flex: 0 0 auto;
   width: 50px;
   padding-top: 4px;
-  color: #575757;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  letter-spacing: -0.02em;
+  color: #454545;
+  font-family: Pretendard;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: -2%;
 }
 .trade-list li .time-text {
+  display: flex;
+  align-items: center;
+  position: relative;
   color: #888;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 140%;
   letter-spacing: -0.02em;
+}
+.trade-list li .info-text {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0; /* 핵심! flex 아이템이 넘칠 수 있도록 허용 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 140%;
+  color: #888;
+}
+.trade-list li .info-text::before {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 10px;
+  background: #E5E5E8;
+  margin: 0 8px;
+  flex-shrink: 0;
 }
 .trade-list li .detail-text {
   color: #151515;
@@ -158,6 +184,7 @@
   font-weight: 400;
   line-height: 20px;
   letter-spacing: -0.04em;
+  padding-left: 16px;
 }
 .trade-list li .type.pay {
   color: #888;
@@ -214,7 +241,6 @@
   font-size: 16px;
   font-weight: 700;
   line-height: 22.4px;
-  max-width: 60.88vw;
 }
 .trade-list li .bottom-text-box {
   display: flex;
@@ -227,7 +253,6 @@
   font-size: 16px;
   font-weight: 700;
   line-height: 21px;
-  max-width: 33.9vw;
 }
 .trade-list li .bottom-text-box .amount.enter {
   color: #8BC104;
@@ -517,6 +542,9 @@
   border-radius: 16px;
   background: #FFFFFFCC;
 }
+.info-text-wrap.green {
+  background: rgba(160, 215, 11, 0.3);
+}
 .info-text-wrap dl {
   display: flex;
   justify-content: space-between;
@@ -536,6 +564,12 @@
 }
 .info-text-wrap dl dd {
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  line-height: 16px;
+}
+.info-text-wrap dl dd > button {
+  font-size: 14px;
 }
 .info-text-wrap .icon-info-circle {
   width: 16px;
@@ -583,10 +617,6 @@
   z-index: 100;
 }
 /* 보유 머니 바텀 시트 팝업 */
-.modal-slide.money-info {
-
-}
-
 .modal-slide.money-info .modal-body {
   padding: 20px 16px 30px;
 }
@@ -668,7 +698,7 @@
   line-height: 34px;
 }
 .money-container.card-transaction-history .top-contents-wrap + .month-wrap {
-  margin-top: 24px;
+  margin-top: 32px; /* 디자인 가이드 수정 4/15 */
 }
 .trade-list li .bottom-text-box .amount.minus {
   color: #454545;
@@ -691,6 +721,27 @@
   margin: 0 auto;
 }
 .point-container .top-contents-wrap + .month-wrap {
-  margin-top: 24px;
+  margin-top: 32px; /* 디자인 가이드 수정 4/15 */
 }
 /* //포인트 */
+
+/* 미회수, 소멸 예정 모달 */
+.modal-slide .gray-box {
+  padding: 15.5px 20px;
+  border-radius: 16px;
+  background: #F6F6F9;
+  border: 0;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 140%;
+  color: #151515;
+  text-align: center;
+  margin-bottom: 16px;
+}
+/* //미회수, 소멸 예정 모달 */
+
+@media screen and (max-width: 321px) {
+  .trade-list li .time-text::after {
+    margin: 0 4px;
+  }
+}

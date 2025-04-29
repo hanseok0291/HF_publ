@@ -122,7 +122,7 @@ button:disabled { background-color: #ccc; }
 .kyc .selectBox .label { display: flex; align-items: center; width: inherit; height: inherit; border: 0 none; outline: 0 none; padding-left: 15px; background: transparent; cursor: pointer; color: #acacac; max-width: inherit; } 
 .kyc .selectBox.comp .label { color: #222; } 
 
-.kyc .selectBox .optionList { position: absolute; top: 51px; left: -1px; width: 332px; background: #fff; color: #333; list-style-type: none; padding: 0; border-radius: 5px; overflow: hidden; max-height: 0; padding: 20px 10px; display: none; z-index: 1; } 
+.kyc .selectBox .optionList { position: absolute; top: 51px; left: -1px; width: 332px; background: #fff; color: #333; list-style-type: none; padding: 0; border-radius: 5px; overflow: hidden; max-height: 0; padding: 20px 10px; display: none; z-index: 10; } 
 
 .kyc .selectBox.active .optionList { max-height: 250px; border: 1px solid #dadada; display: block; overflow-y: scroll; } 
 
@@ -181,6 +181,10 @@ button:disabled { background-color: #ccc; }
 .kyc .guideSubWrap { margin-bottom: 40px; } 
 .kyc .guideSubWrap .title { font-family: Pretendard; font-size: 14px; font-weight: 600; line-height: 22px; text-align: left; color: #333333; margin-bottom: 10px; } 
 .kyc .guideSubWrap .info { font-family: Pretendard; font-size: 14px; font-weight: 400; line-height: 22px; text-align: left; color: #666; } 
+.kyc .guideWrap .guideText { font-family: Pretendard; font-weight: 600; font-size: 15px; line-height: 100%; letter-spacing: 0%; color: #000; text-align: center; margin-bottom: 22px; } 
+.kyc .guideWrap.white { background-color: #fff; border: 1px solid #dadada; } 
+.kyc .guideWrap.white .checkBox > input + label { margin-bottom: 0; } 
+.kyc .guideWrap.white .checkBox.center { text-align: center; } 
 
 .kyc .guideList li { position: relative; font-family: Pretendard; font-size: 15px; font-weight: 400; line-height: 20px; text-align: left; color: #666; margin-bottom: 10px; padding-left: 20px; } 
 .kyc .guideList li::before { content: '・'; position: absolute; font-size: 24px; left: 0; } 
@@ -203,39 +207,44 @@ button:disabled { background-color: #ccc; }
 .kyc .checkBox.box > input + label::before { background: url(../images/kyc/common/checkbox-off.svg) no-repeat center / contain; } 
 .kyc .checkBox.box > input + label:checked:before { background: url(../images/kyc/common/checkbox-on.svg) no-repeat center / contain; } 
 .kyc .checkBox > input + label + .btnLink { display: inline-block; font-family: Pretendard; font-size: 15px; font-weight: 400; line-height: 17.9px; letter-spacing: -0.02em; margin-top: 3px; margin-left: 3px; } 
-.kyc .formGroup .checkBox > input + label { margin-bottom: 0; width: auto; min-width: auto; } 
+.kyc .formGroup .checkBox > input + label { margin-bottom: 0; width: auto; min-width: auto; margin-top: 13px; font-weight: 400; } 
 .kyc .formGroup.stake > input { background: transparent url("../images/kyc/common/percentage.svg") right 15px center / 16px auto no-repeat; } 
 .kyc .checkBox.alignCenter > input + label { width: auto; display: inline-block; margin-top: 40px; margin-bottom: 40px; } 
 .kyc .tableWrap + div .checkBox.alignCenter > input + label { margin-top: 0; } 
 .kyc .formWrap + .btnWrap { margin-top: 40px; } 
+.kyc .default .checkBox > input + label::before { background: url(../images/kyc/common/radio-gray-off.svg) no-repeat center / contain; } 
+.kyc .default .checkBox > input:checked + label::before { background: url(../images/kyc/common/radio-gray-on.svg) no-repeat center / contain; } 
+.kyc .default .checkBox > input + label { color: #999; } 
 
 .kyc .btnWrap { display: flex; align-items: center; justify-content: center; } 
-.kyc .btn { font-family: Pretendard; line-height: 19.09px; text-align: center; font-size: 15px; font-weight: 700; margin: 0 5px; padding: 13px 0; color: #3e3e3e; min-width: 140px; border: 1px solid #3e3e3e; background-color: #fff; border-radius: 5px; } 
+.kyc .btn { font-family: Pretendard; line-height: 19.09px; text-align: center; font-size: 15px; font-weight: 700; margin: 0 5px; padding: 13px 10px; color: #3e3e3e; min-width: 140px; border: 1px solid #3e3e3e; background-color: #fff; border-radius: 5px; } 
 .kyc .btnNext { border-color: #3E3E3E; background-color: #3E3E3E; color: #fff; } 
 .kyc .btnLink { text-decoration: underline; cursor: pointer; } 
 .kyc .btnOrange { background-color: #FF6114 !important; border-color: #FF6114 !important; color: #fff !important; } 
 .kyc .btnOff, .kyc .btn:disabled { border-color: #DADADA !important; background-color: #DADADA !important; color: #fff; } 
 .kyc .btnHide { display: none; } 
 .formContainer { padding: 20px 0 40px; margin: 0 auto; min-width: 1024px; } 
-.formGroup { position: relative; display: flex; align-items: center; flex-wrap: wrap; margin-bottom: 20px; } 
+.formGroup { position: relative; display: flex; align-items: start; flex-wrap: wrap; margin-bottom: 20px; } 
 .formGroup:last-of-type { margin-bottom: 0; } 
-.formGroup .subBottomTitle { width: 100%; margin-top: 8px; margin-left: 126px; } 
+.formGroup .subBottomTitle { width: 100%; margin-top: 8px; margin-left: 126px; color: #5c5c5c; } 
 .kyc .formGroup.col-4 { flex-wrap: wrap; gap: 10px; /* 간격 조정 */ } 
-.kyc .formGroup label { display: block; margin-bottom: 0; font-weight: bold; width: 126px; min-width: 126px; } 
+.kyc .formGroup label { display: block; margin-bottom: 0; font-weight: bold; width: 126px; min-width: 126px; margin-top: 15px; } 
 .formGroup input,
-.formGroup select { width: 100%; min-width: 332px; max-width: 332px; height: 48px; max-height: 48px; padding: 10px; font-size: 15px; line-height: 15px; border: 1px solid #dadada; border-radius: 4px; margin-bottom: 0; } 
+.formGroup select { width: 100%; min-width: 332px; max-width: 332px; height: 48px; max-height: 48px; padding: 10px; font-size: 15px; font-weight: 400; line-height: 15px; border: 1px solid #dadada; border-radius: 4px; margin-bottom: 0; } 
 .formGroup input::placeholder, .formGroup select::placeholder { color: #acacac; } 
 .formGroup input:read-only { background-color: #F5F5F7; } 
 .formGroup .checkBox input:read-only { background-color: transparent; } 
 .formGroup select + input { margin-left: 10px; } 
 .formGroup .checkBox { position: relative; overflow: hidden; } 
 .formGroup .checkBox + .checkBox { margin-left: 20px; } 
+.formGroup .checkBox.col { margin-left: 10px; } 
+.formGroup .sub-text { font-family: Pretendard; font-weight: 400; font-size: 14px; line-height: 100%; letter-spacing: 0%; color: #5C5C5C; margin-top: 8px; } 
 .postalContainer,
 .accountContainer,
 .sideBtnWrap { display: flex; gap: 10px; } 
 .postalContainer button,
 .accountContainer button,
-.sideBtnBox button { padding: 15px 0; background-color: #fff; border: 1px solid #3e3e3e; color: #3E3E3E; border-radius: 5px; cursor: pointer; white-space: nowrap; width: 124px; max-width: 124px; max-height: 48px; } 
+.sideBtnBox button { padding: 15px 0; background-color: #fff; border: 1px solid #3e3e3e; color: #3E3E3E; border-radius: 5px; cursor: pointer; white-space: nowrap; width: 124px; max-width: 124px; max-height: 48px; font-weight: 700; font-size: 15px; } 
 
 /* 테이블 */
 .kyc .tableWrap table { width: 100%; min-width: 1024px; border-collapse: collapse; margin: 0 0 40px; font-size: 14px; text-align: center; } 
@@ -251,13 +260,14 @@ button:disabled { background-color: #ccc; }
 .kyc .tableWrap.tableCenter table td:last-of-type { width: auto; text-align: left; border-right: 0; font-weight: 400; } 
 .kyc .tableWrap.tableCenter table td[rowspan]:last-of-type { border-left: 1px solid #cbcbcb; } 
 .kyc .tableWrap th, .kyc .tableWrap td { padding: 12px 15px; } 
+.kyc .tableWrap td:first-of-type { font-size: 15px; font-weight: 700; } 
 .kyc .tableWrap td.grayText { color: #999; } 
 .kyc .tableWrap .onrageText { color: #FF6114; } 
 .kyc .tableWrap th { background-color: #f4f4f4; font-weight: bold; height: 60px; } 
 .kyc .tableWrap.type2 td:nth-of-type(1) { width: 300px; } 
 .kyc .tableWrap.type2 td:nth-of-type(3) { width: 160px; } 
-.kyc .tableWrap td .checkBox { /*width: 100px;*/ white-space: nowrap; margin: 0 auto; } 
-.kyc .tableWrap td .checkBox > input + label { margin-bottom: 10px; color: #333; } 
+.kyc .tableWrap td .checkBox { white-space: nowrap; margin: 0 auto; } 
+.kyc .tableWrap td .checkBox > input + label { margin-bottom: 10px; color: #333; font-size: 15px; } 
 .kyc .tableWrap td .checkBox:last-of-type > input + label { margin-bottom: 0; } 
 .kyc .tableWrap thead tr { border-top: 2px solid #333; } 
 .kyc .tableWrap tbody tr { border-bottom: 1px solid #CBCBCB; } 
@@ -268,9 +278,12 @@ button:disabled { background-color: #ccc; }
 .kyc .tableWrap .btnWrap .btn { margin-right: 0; } 
 .kyc .tableWrap table button { padding: 15px 0; background-color: #fff; border: 1px solid #3e3e3e; color: #3E3E3E; border-radius: 5px; cursor: pointer; white-space: nowrap; width: 98px; min-width: 98px; max-width: 98px; max-height: 48px; } 
 .kyc .tableWrap table button.btnDown { padding: 0; max-height: 38px; height: 38px; font-size: 14px; font-weight: 500; } 
-.kyc .tableWrap .type2 td .checkBox { width: auto; } 
+.kyc .tableWrap .type2 td .checkBox { width: auto; margin-bottom: 10px; } 
+.kyc .tableWrap .type2 td .checkBox:last-of-type { margin-bottom: 0; } 
+.kyc .tableWrap .type2 td .checkBox label { margin-bottom: 0; } 
 .kyc .tableWrap .type2 td .checkBox > input + label { text-align: left; } 
 .kyc .tableWrap .type2 td input + label, .kyc .tableWrap .type2 td label { font-weight: 400; } 
+.kyc .tableWrap .type2 td label .guideList { margin-top: 10px; } 
 .kyc .tableWrap .type2 tbody td:first-of-type { text-align: left; } 
 .kyc .tableWrap.type4 th { border-right: 1px solid #cbcbcb; height: 48px; } 
 .kyc .tableWrap.type4 th:last-of-type { border-right: 0; } 
@@ -304,16 +317,16 @@ button:disabled { background-color: #ccc; }
 /* 모달 */
 .kyc .modal { display: none; /* 기본적으로 보이지 않음 */
 position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */ } 
-.kyc .modal.modal-prompt .modal-content { width: 400px; padding: 0; }
-.kyc .modal-content { background-color: #fff; margin: 0 auto; padding: 0 20px; border: 1px solid #888; width: 500px; max-height: 790px; overflow: hidden; border-radius: 10px; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%); }
-.kyc .modalMd .modal-content { width: 600px; min-height: 600px; }  
-.kyc .modalWide .modal-content { width: 800px; min-height: 600px; } 
+.kyc .modal.modal-prompt .modal-content { width: 400px; padding: 0; } 
+.kyc .modal-content { background-color: #fff; margin: 0 auto; padding: 0 20px; border: 1px solid #888; width: 500px; max-height: 790px; overflow: hidden; border-radius: 10px; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%); } 
+.kyc .modalMd .modal-content { width: 600px; min-height: 600px; } 
+.kyc .modalWide .modal-content { width: 800px; min-height: 400px; } 
 .kyc .modalWide.modalFullHeight .modal-content { width: 840px; max-height: 898px; overflow-y: scroll; } 
 .kyc .modalWide.modalFullHeight .guideList li { padding-left: 15px; } 
 .kyc .modalWide.modalFullHeight .guideList li::before { font-size: 16px; } 
-.kyc .modalMd.modalAddress .modal-content { min-height: inherit; height: auto; }
+.kyc .modalMd.modalAddress .modal-content { min-height: inherit; height: auto; } 
 
-.kyc .close { position: absolute; right: 10px; top: 10px; font-size: 24px; cursor: pointer; } 
+.kyc .close { position: absolute; right: 20px; top: 10px; font-size: 24px; cursor: pointer; } 
 .kyc .modal h2 { font-family: Pretendard; font-size: 18px; font-weight: 700; line-height: 58px; text-align: center; color: #000; margin-bottom: 10px; } 
 .kyc .modal h3, .kyc .modal .title { font-family: Pretendard; font-size: 15px; font-weight: 700; line-height: 17.9px; text-align: center; color: #000; margin-bottom: 14px; } 
 .kyc .modal .termsTitle { font-family: Pretendard; font-size: 14px; font-weight: 600; line-height: 22px; text-align: left; color: #333; margin-bottom: 10px; } 
@@ -329,7 +342,7 @@ position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; back
 .kyc .modal .btnWrap:last-child { margin-top: 20px; margin-bottom: 20px; } 
 .kyc .modal .formGroup { height: 48px; margin-bottom: 14px; } 
 /* .kyc .modal .formGroup + .formGroup { margin-top: -14px; } */
-.kyc .modal .formGroup.col-4 { height: auto; } 
+.kyc .modal .formGroup.col-4 { height: auto; padding-left: 20px; } 
 .kyc .modal .formGroup:last-of-type { margin-bottom: 0; } 
 .kyc .modal .formGroup input:read-only { background-color: #F5F5F7; } 
 .kyc .modal .checkBox > input + label { margin-bottom: 0; } 
@@ -360,7 +373,7 @@ position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; back
 .kyc .repTypeWrap .moreViewWrap { flex-basis: 100%; /* 전체 너비를 차지하게 함 */
 margin-top: 20px; /* 위의 요소와 간격을 줌 */ } 
 .kyc .repTypeWrap .moreViewWrap.tableWrap { display: none; width: 100%; } 
-.kyc .repTypeWrap .moreViewWrap.tableWrap table { table-layout: fixed; } 
+.kyc .repTypeWrap .moreViewWrap.tableWrap table { table-layout: fixed; min-width: auto; } 
 .kyc .repTypeWrap .moreViewWrap.tableWrap th { color: #000; border-right: 1px solid #CBCBCB; } 
 .kyc .repTypeWrap .moreViewWrap.tableWrap th:last-of-type { border-right: 0; } 
 .kyc .repTypeWrap .moreViewWrap.tableWrap td { width: 100px; border-right: 1px solid #CBCBCB; color: #000; } 
@@ -391,12 +404,12 @@ display: flex; align-items: center; justify-content: space-between; }
 .kyc.agreement .content .title { margin-bottom: 20px; } 
 .kyc.agreement .content .agreeText { font-family: Pretendard; font-size: 14px; font-weight: 400; line-height: 16.71px; text-align: left; color: #222; margin-bottom: 50px; display: none; } 
 .kyc.agreement .content .agreeText.active { display: block; } 
-/* .kyc.agreement .content .agreeText .box { margin-bottom: 20px; }  */
+/* .kyc.agreement .content .agreeText .box { margin-bottom: 20px; } */
 .kyc.agreement .content .agreeText .box p { margin-bottom: 5px; } 
-.kyc.agreement .checkBox > input + label { font-size: 16px; line-height: 18px; padding-left: 28px; margin: 0; }
-.kyc.agreement .checkBox > input + label::before { width: 18px; height: 18px; }
-.kyc.agreement table .checkBox > input + label { font-size: 14px; }
-.kyc.agreement .tableWrap td .checkBox > input + label { margin-bottom: 0; }
+.kyc.agreement .checkBox > input + label { font-size: 16px; line-height: 18px; padding-left: 28px; margin: 0; } 
+.kyc.agreement .checkBox > input + label::before { width: 18px; height: 18px; } 
+.kyc.agreement table .checkBox > input + label { font-size: 14px; } 
+.kyc.agreement .tableWrap td .checkBox > input + label { margin-bottom: 0; } 
 
 .kyc .colWrap { display: flex; justify-content: center; align-items: center; } 
 
@@ -461,248 +474,77 @@ min-width: 300px; /* 최소 너비를 설정하여 너무 작아지지 않도록
 .kyc .content .tableWrap .title { font-family: Pretendard; font-size: 14px; font-weight: 600; line-height: 22px; text-align: left; } 
 /* */
 
-.kyc .addressResultWrap {
-    font-family: Noto Sans KR;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 21.72px;
-    text-align: center;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-    color: #666;
-}
-.kyc .addressResultWrap .noResult {
-    padding: 73px 0 93px;
-}
-.kyc .addressResultWrap .addressTable {
-    width: 100%;
-}
-.kyc .modal.modalAddress table tr:last-of-type {
-    border-bottom: 1px solid #DADADA;
-}
-.kyc .addressResultWrap .addressResultContainer {
-    text-align: left;
-}
-.kyc .addressResultWrap table th {
-    border: 0;
-    text-align: center;
-}
-.kyc .addressResultWrap table td {
-    text-align: center;
-}
-.kyc .addressResultWrap table td:first-of-type {
-    font-weight: 700;
-}
-.kyc .addressResultWrap .pagination {
-    text-align: center;
-    margin: 14px 0 20px;
-}
-.kyc .addressResultWrap .pagination .page-btn {
-    background-color: transparent;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 24px;
-    color: #929292;
-    line-height: 40px;
-    padding: 0 20px;
-}
-.kyc .addressResultWrap .pagination .page-btn.active {
-    color: #000;
-    font-weight: 700;
-}
-.kyc .addressResultWrap .header {
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 21.72px;
-    text-align: left;
-    color: #666;
-    margin-bottom: 14px;
-}
-.kyc .addressResultWrap .header strong {
-    color: #000;
-}
-.kyc .modalAddress .formGroup input {
-    max-width: calc(100% - 126px);
-}
+.kyc .addressResultWrap { font-family: Noto Sans KR; font-size: 15px; font-weight: 400; line-height: 21.72px; text-align: center; text-underline-position: from-font; text-decoration-skip-ink: none; color: #666; } 
+.kyc .addressResultWrap .noResult { padding: 73px 0 93px; } 
+.kyc .addressResultWrap .addressTable { width: 100%; } 
+.kyc .modal.modalAddress table tr:last-of-type { border-bottom: 1px solid #DADADA; } 
+.kyc .addressResultWrap .addressResultContainer { text-align: left; } 
+.kyc .addressResultWrap table th { border: 0; text-align: center; } 
+.kyc .addressResultWrap table td { text-align: center; } 
+.kyc .addressResultWrap table td:first-of-type { font-weight: 700; } 
+.kyc .addressResultWrap .pagination { text-align: center; margin: 14px 0 20px; } 
+.kyc .addressResultWrap .pagination .page-btn { background-color: transparent; font-size: 15px; font-weight: 400; line-height: 24px; color: #929292; line-height: 40px; padding: 0 20px; } 
+.kyc .addressResultWrap .pagination .page-btn.active { color: #000; font-weight: 700; } 
+.kyc .addressResultWrap .header { font-size: 15px; font-weight: 400; line-height: 21.72px; text-align: left; color: #666; margin-bottom: 14px; } 
+.kyc .addressResultWrap .header strong { color: #000; } 
+.kyc .modalAddress .formGroup input { max-width: calc(100% - 126px); } 
 .kyc .modalAddress .pagination .left,
-.kyc .modalAddress .pagination .right {
-    width: 40px;
-    height: 40px;
-    background: url('../images/custom/krc/arrow-left.svg') no-repeat center /9px;
-}
-.kyc .addressResultWrap .pagination .page-btn.right {
-    transform: rotateY(180deg);
-}
+.kyc .modalAddress .pagination .right { width: 40px; height: 40px; background: url('../images/custom/krc/arrow-left.svg') no-repeat center /9px; } 
+.kyc .addressResultWrap .pagination .page-btn.right { transform: rotateY(180deg); } 
 
-.kyc .notiTextWrap {
-    margin-bottom: 40px;
-}
-.kyc .notiTextWrap p {
-    font-family: Pretendard;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 27px;
-    text-align: center;
-    color: #222;
-}
-.kyc.comp .content {
-    padding-top: 180px;
-}
+.kyc .notiTextWrap { margin-bottom: 40px; } 
+.kyc .notiTextWrap p { font-family: Pretendard; font-size: 15px; font-weight: 400; line-height: 27px; text-align: center; color: #222; } 
+.kyc.comp .content { padding-top: 180px; } 
 
 .kyc #commonAlert .modal-body,
-.kyc #commonPrompt .modal-body { font-family: Roboto, "Noto Sans KR"; }
+.kyc #commonPrompt .modal-body { font-family: Roboto, "Noto Sans KR"; } 
 .kyc #commonAlert .modal-body h3:empty + p,
-.kyc #commonPrompt .modal-body h3:empty + p { font-size: 16px; color: #222; letter-spacing: -0.04em; }
+.kyc #commonPrompt .modal-body h3:empty + p { font-size: 16px; color: #222; letter-spacing: -0.04em; } 
 
-.kyc .modal-content .modal-body .title {
-    font-family: Pretendard;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 21.48px;
-    text-align: center;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-    color: #000;
-}
-.kyc .modal-content .modal-body .sub {
-    font-family: Pretendard;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 17.9px;
-    text-align: center;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-    color: #000;
-}
-.kyc .modal-footer {
-    text-align: center;
-    padding-bottom: 20px;
-}
-.kyc .modal-footer .btn {
-    font-family: Pretendard;
-    font-size: 15px;
-    font-weight: 700;
-    line-height: 17.9px;
-    text-align: center;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-    color: #fff;
-    width: 140px;
-    height: 48px;
-    background-color: #3E3E3E;
-    border: 0;
-}
-.kyc .modal-footer .btn.btnGray {
-    background-color: #3E3E3E;
-}
-.kyc .modal-footer .btn.btnOrange {
-    background-color: #FF6114;
-}
+.kyc .modal-content .modal-body .title { font-family: Pretendard; font-size: 18px; font-weight: 700; line-height: 21.48px; text-align: center; text-underline-position: from-font; text-decoration-skip-ink: none; color: #000; } 
+.kyc .modal-content .modal-body .sub { font-family: Pretendard; font-size: 15px; font-weight: 400; line-height: 17.9px; text-align: center; text-underline-position: from-font; text-decoration-skip-ink: none; color: #000; } 
+.kyc .modal-footer { text-align: center; padding-bottom: 20px; } 
+.kyc .modal-footer .btn { font-family: Pretendard; font-size: 15px; font-weight: 700; line-height: 17.9px; text-align: center; text-underline-position: from-font; text-decoration-skip-ink: none; color: #fff; width: 140px; height: 48px; background-color: #3E3E3E; border: 0; } 
+.kyc .modal-footer .btn.btnGray { background-color: #3E3E3E; } 
+.kyc .modal-footer .btn.btnOrange { background-color: #FF6114; } 
 
-.botText {
-    margin-top: 20px;
-    font-family: Pretendard;
-    font-size: 17px;
-    font-weight: 600;
-    line-height: 20.29px;
-    letter-spacing: -0.02em;
-    text-align: center;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-    color: #000;
-}
+.kyc .modal.modal-alert .modal-body { padding: 30px 24px 40px; } 
+.kyc .modal.modal-alert .modal-content { width: 400px; } 
+.kyc .modal.modal-alert h3, .kyc .modal.modal-alert .title { font-family: Pretendard; font-weight: 700; font-size: 18px; line-height: 100%; letter-spacing: 0%; text-align: center; } 
+.kyc .modal.modal-alert #alertContents { font-family: Pretendard; font-weight: 400; font-size: 15px; line-height: 22px; letter-spacing: 0%; text-align: center; color: #000; margin-top: 4px; } 
 
-.botText > p > span {
-    font-weight: 400;
-}
-.botSignWrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 20px;
-    gap: 40px;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    margin-top: 60px;
-}
-.botSignWrap h3 {
-    font-family: Pretendard;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 19.09px;
-    letter-spacing: -0.02em;
-}
-.botSignWrap.center {
-  justify-content: center;
-}
-.botSignWrap.center .company {
-  width: auto;
-}
-.botSignWrap.center .company > p {
-  justify-content: start;
-}
-.botSignWrap.center .company > p > strong {
-  width: 100px;
-}
-.botSignWrap.center .company > p span {
-  text-align: left;
-}
-.botSignWrap.center .seal {
-  margin-top: 0;
-  align-items: end;
-}
+.botText { margin-top: 20px; font-family: Pretendard; font-size: 17px; font-weight: 600; line-height: 20.29px; letter-spacing: -0.02em; text-align: center; text-underline-position: from-font; text-decoration-skip-ink: none; color: #000; } 
 
-.botSignWrap .company {
-    width: 45%;
-    text-align: center;
-    font-family: Pretendard;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 19.09px;
-    letter-spacing: -0.02em;
-    text-align: left;
-    color: #000;
-}
+.botText > p > span { font-weight: 400; } 
+.botSignWrap { display: flex; justify-content: space-between; align-items: flex-start; padding: 20px; gap: 40px; width: 100%; max-width: 800px; margin: 0 auto; margin-top: 60px; } 
+.botSignWrap h3 { font-family: Pretendard; font-size: 16px; font-weight: 600; line-height: 19.09px; letter-spacing: -0.02em; } 
+.botSignWrap.center { justify-content: center; } 
+.botSignWrap.center .company { width: auto; } 
+.botSignWrap.center .company > p { justify-content: start; } 
+.botSignWrap.center .company > p > strong { width: 100px; } 
+.botSignWrap.center .company > p span { text-align: left; } 
+.botSignWrap.center .seal { margin-top: 0; align-items: end; } 
 
-.botSignWrap .seal {
-    margin-top: -10px;
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    color: #000;
-}
+.botSignWrap .company { width: 45%; text-align: center; font-family: Pretendard; font-size: 16px; font-weight: 600; line-height: 19.09px; letter-spacing: -0.02em; text-align: left; color: #000; } 
 
-.botSignWrap .seal p {
-    font-family: Pretendard;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 14.32px;
-    text-align: center;
-    margin-bottom: 10px;
-    color: #5C5C5C;
-}
+.botSignWrap .seal { margin-top: -10px; display: flex; flex-direction: column; align-items: end; color: #000; } 
 
-.botSignWrap .seal img {
-    width: 70px; /* 도장 이미지 크기 */
-    height: auto;
-    margin-bottom: 3px;
-}
-.botSignWrap .company h3 {
-    margin-bottom: 12.9px;
-}
-.botSignWrap .company > p {
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    margin-bottom: 10px;
-}
-.botSignWrap .company > p:last-of-type {
-    margin-bottom: 0;
-}
-.botSignWrap .company > p > strong {
-    width: 60px;
-    margin-right: 10px;
-    text-align: left;
-    font-weight: 400;
-}
+.botSignWrap .seal p { font-family: Pretendard; font-size: 12px; font-weight: 400; line-height: 14.32px; text-align: center; margin-bottom: 10px; color: #5C5C5C; } 
+
+.botSignWrap .seal img { width: 70px; height: auto; margin-bottom: 3px; } 
+.botSignWrap .company h3 { margin-bottom: 12.9px; } 
+.botSignWrap .company > p { display: flex; flex-direction: row; justify-content: start; margin-bottom: 10px; } 
+.botSignWrap .company > p:last-of-type { margin-bottom: 0; } 
+.botSignWrap .company > p > strong { width: 60px; margin-right: 10px; text-align: left; font-weight: 400; } 
+
+.footerWrap { background-color: #f6f6f6; } 
+.footerWrap .footerInfo { font-family: 'Pretendard', sans-serif; font-size: 12px; color: #333; line-height: 1.6; padding: 50px 0; } 
+
+.footerWrap .footerInfo strong { display: block; font-weight: 700; margin-right: 4px; } 
+
+.footerWrap .footerInfo .companyName { font-family: Pretendard; font-weight: 700; font-size: 17px; line-height: 100%; letter-spacing: 0%; color: #000; margin-bottom: 20px; } 
+.footerWrap .footerInfo .contact { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 20px; color: #111; } 
+
+.footerWrap .footerInfo .contact span { display: flex; font-family: Pretendard; font-size: 13px; line-height: 100%; letter-spacing: 0%; color: #333; } 
+
+.footerWrap .footerInfo .contact a { color: #333; text-decoration: none; } 

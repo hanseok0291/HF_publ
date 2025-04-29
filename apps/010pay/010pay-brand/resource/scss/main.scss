@@ -38,6 +38,99 @@
             opacity: 1;
         }
     }
+
+    &.section-close {
+        // width: 100vw; /* 뷰포트 너비만큼 */
+        overflow: hidden; /* 좌우가 잘려도 스크롤 안 생기게 */
+        position: relative;
+        height: 100%;
+        .pc { display: block;}
+        .mo { display: none; }
+        .contents-wrap {
+            position: relative;
+            width: 100%;
+            height: 1080px;
+            background: url(../images/main/close_bg.png) no-repeat center / cover;
+            .main-content {
+                margin: 0 auto;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-direction: column;
+                .img-box {
+                    width: 465px;
+                    margin-top: 90px;
+                    img {
+                        width: 100%;
+                    }
+                }
+                .text-box {
+                    position: relative;
+                    width: 545px;
+                    border-radius: 30px;
+                    margin-top: auto;
+                    padding: 37px 26px;
+                    font-family: Pretendard;
+                    font-weight: 400;
+                    font-size: 24px;
+                    line-height: 139%;
+                    letter-spacing: -1.5px;
+                    text-align: center;
+                    color: #575757;
+                    margin-top: 42px;
+                    z-index: 10;
+                    &::after {
+                        content: "";
+                        opacity: 0.84;
+                        background: #fff;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 30px;
+                        z-index: -1;
+                    }
+                    .title {
+                        font-family: Pretendard;
+                        font-weight: 400;
+                        font-size: 20px;
+                        line-height: 139%;
+                        letter-spacing: -5%;
+                        text-align: center;
+                        color: #151515;
+                        .arrow-solid {
+                            display: inline-block;
+                            width: 16px;
+                            height: 16px;
+                            background: url(../images/main/arrow-solid.svg) no-repeat center / contain;
+                        }
+                    }
+                    .img-qr {
+                        width: 120px;
+                        height: 120px;
+                        margin: 16px auto;
+                    }
+                    .img-content {
+                        display: none;
+                    }
+                    .sub-title {
+                        font-family: Pretendard;
+                        font-weight: 400;
+                        font-size: 24px;
+                        line-height: 139%;
+                        letter-spacing: -5%;
+                        text-align: center;
+                        color: #575757;
+                    }
+                }
+                .btn-down {
+                    display: none;
+                }
+            }
+        }
+    }
     &.top-visual {
         background-color: #fff;
         height: 868px;
@@ -1199,7 +1292,6 @@
             .imgWrap {
                 display: flex;
                 align-items: center;
-
                 .phoneFrame {
                     overflow: hidden;
                     .frameBox {
@@ -1463,7 +1555,6 @@
                 justify-content: center;
                 font-size: 16px;
                 line-height: 21.6px;
-
                 &.icon-1::before {
                     width: 24px;
                     height: 16px;
@@ -1503,13 +1594,87 @@
                 font-size: 16px;
                 line-height: 21.6px;
                 margin: auto;
-
                 i {
                     font-style: italic;
                 }
             }
         }
 
+        &.section-close {
+            .contents-wrap {
+            height: auto;
+            background: url(../images/main/close_bg_mo.png) no-repeat center / cover;
+            .pc { display: none;}
+            .mo { display: block; }
+                .main-content {
+                    width: 100%;
+                    padding: 0 20px;
+                    .img-box {
+                        width: auto;
+                        margin-top: 110px;
+                        img {
+                            width: 100%;
+                            max-width: 275px;
+                        }
+                    }
+                    .text-box {
+                        width: 100%;
+                        margin-top: 30px;
+                        padding: 20px 24px;
+                        .title {
+                            display: none;
+                        }
+                        .img-qr {
+                            display: none;
+                        }
+                        .img-content {
+                            display: block;
+                            width: 165px;
+                            height: 107px;
+                            margin: 0 auto;
+                            margin-bottom: 17px;
+                        }
+                        .sub-title {
+                            font-family: Pretendard;
+                            font-weight: 400;
+                            font-size: 14px;
+                            line-height: 140%;
+                            letter-spacing: -5%;
+                            text-align: center;
+                        }
+                    }
+                    .btn-wrap {
+                        width: 100%;
+                    }
+                    .btn-down {
+                        width: 100%;
+                        font-family: Pretendard;
+                        font-weight: 700;
+                        font-size: 16px;
+                        line-height: 120%;
+                        letter-spacing: -1%;
+                        text-align: center;
+                        color: #E0FF63;
+                        background-color: #151515;
+                        margin-top: 32px;
+                        margin-bottom: 86px;
+                        border-radius: 16px;
+                        border: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 56px;
+                        .img-down {
+                            display: inline-block;
+                            width: 24px;
+                            height: 24px;
+                            background: url(../images/main/img-down.png) no-repeat center / contain;
+                        }
+                    }
+                }
+            }
+        }
+        
         &.top-visual {
             height: 580px;
             padding-top: 0;

@@ -228,14 +228,15 @@
                                     <div class="select-auth step1">
                                         <!-- select-telecom -->
                                         <div class="select-telecom col-2">
-                                            <div class="input select-input">
-                                                <div class="select">
+                                            <div class="input select-input" >
+                                                <button type="button" role="combobox" class="select">SKT</button>
+                                                <!-- <div class="select" tabindex="0">
                                                     <ul>
                                                         <li>
                                                             <button type="button" role="combobox">SKT</button>
                                                         </li>
                                                     </ul>
-                                                </div>
+                                                </div> -->
                                                 <!-- <select name="rcptIdGb_01" id="rcptIdGb_01" class="select">
 													<option value="">SKT</option>
 													<option value="">KT</option>
@@ -671,7 +672,7 @@
                     </div>
                     <div class="modal-footer type2">
                         <button type="button" onclick="modalClose();" class="btn btn-cancel">취소</button>
-                        <button type="button" id="promptOk" onclick="modalClose();" class="btn btn-confirm">이용동의하기</button>
+                        <button type="button" id="promptOk1" onclick="modalClose();" class="btn btn-confirm">이용동의하기</button>
                     </div>
                 </div>
             </div>
@@ -688,7 +689,7 @@
                     </div>
                     <div class="modal-footer type2">
                         <button type="button" onclick="modalClose();" class="btn btn-cancel">취소</button>
-                        <button type="button" id="promptOk" onclick="modalClose();" class="btn btn-confirm text-red">PASS APP설치</button>
+                        <button type="button" id="promptOk2" onclick="modalClose();" class="btn btn-confirm text-red">PASS APP설치</button>
                     </div>
                 </div>
             </div>
@@ -746,11 +747,11 @@
             <span id="popupTitle2" class="blink" tabindex="0">광고 팝업</span>
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <button type="button" class="btn-close btn-cancel" onclick="modalClose();" aria-label="닫기"></button>
+                    <button type="button" id="promptCancel3" class="btn-close btn-cancel" onclick="modalClose();" aria-label="닫기"></button>
                     <div class="modal-body">
                         <img src="../../images/custom/new/popup.png" alt="새로운 시도를 담은 공간 일상을 더 풍요롭게 일상의틈에서 경험해 보세요!" />
-                        <button type="button" id="promptOk" onclick="modalClose();" class="btn btn-confirm text-red">할인 받기</button>
-                        <button type="button" id="" onclick="modalClose();" class="btn-transparent"></button>
+                        <button type="button" id="promptOk3" onclick="modalClose();" class="btn btn-confirm text-red">할인 받기</button>
+                        <button type="button" id="promptOk4" onclick="modalClose();" class="btn-transparent"></button>
                         <div class="container"></div>
                     </div>
                 </div>
@@ -936,14 +937,20 @@
 
             $(".select-list li").on("click", function () {
                 // 클릭한 li 요소의 텍스트 값을 가져옴
-                var selectedText = $(this).text();
+                var selectedText = $(this).text().trim();
 
-                // select 요소를 선택
-                var selectInput = $(".select-input .select li");
+                // 텍스트를 <button class="select">에 설정
+                $(".select-input .select").text(selectedText);
+
+                // 포커스 가능한 상태로 만들어 포커스 이동
+                var $selectButton = $(".select-input .select");
+                $selectButton.attr("tabindex", "0"); // 명시적으로 포커스 가능하게
+                setTimeout(() => {
+                $selectButton.focus(); // 포커스 이동
+                }, 100);
 
                 // 클릭한 li의 텍스트를 rcptIdGb_01 값으로 설정
-                selectInput.text(selectedText);
-
+                // selectInput.text(selectedText);
                 // 만약 SKT가 선택되었을 때
                 if (selectedText === "SKT") {
                     $(".tab2 .skt").show();
@@ -966,8 +973,8 @@
                 // 현재 선택된 li에 bold 클래스 추가
                 $(this).addClass("bold");
 
+                // 모달 닫기 후 포커스 이동
                 $("#modalSlide").fadeOut(200);
-                $("#modalSlide").focus();
                 $("#modalSlide").find(".modal-content").animate({ bottom: modalH }, 200);
                 $("body").removeClass("modal-open");
                 $("#wrap").css("top", 0);
@@ -984,6 +991,7 @@
                     .children("button")
                     .attr("aria-label", selectedText + " 버튼 링크 선택됨");
                 // $(this).children("button").attr("aria-pressed", "true");
+
             });
 
             // 팝업 포커스
@@ -1013,6 +1021,7 @@
                     checkbox1.checked = true;
                 }
             });
+
         </script>
     </body>
 </html>

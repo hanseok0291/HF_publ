@@ -86,50 +86,70 @@
                         </div>
                     </div>
 
+                    <div class="guideWrap white">
+                        <p class="guideText">
+                            KYC 심사가 보다 신속하게 진행 될 수 있도록 오탈자는 제출해주신 서류를 기준으로 자동 정정하여 처리될 수 있음을 안내 드립니다.
+                        </p>
+                        <div class="checkBox round center">
+                            <input type="checkbox" id="chk3" class="checkSelect" name="chk3" title="동의">
+                            <label for="chk3">동의 </label>
+                        </div>
+                    </div>
+
                     <div class="btnWrap">
                         <button type="button" class="btn btnPrev">이전</button>
                         <button type="button" class="btn btnNext btnOff">다음 (저장)</button>
                     </div>
                 </div>
             </div>
+
+            <div class="footerWrap">
+                <div class="container">
+                    <div class="footerInfo">
+                        <strong class="companyName">(주)헥토파이낸셜</strong>
+                        <p>
+                          서울특별시 강남구 테헤란로34길 6, 9~10층(역삼동, 태경타워)<br />
+                          사업자등록번호 : 101-81-63363<br />
+                          통신판매업 신고번호 : 제2017-서울강남-00914호
+                        </p>
+                        <p class="contact">
+                          <span><strong>고객센터 문의</strong> 1600-5220 (상담 시간: 평~금 9:00~18:00)</span>
+                          <span><strong>이메일 문의</strong> <a href="mailto:settle_rm@hecto.co.kr">settle_rm@hecto.co.kr</a></span>
+                        </p>
+                      </div>
+                </div>
+            </div>
         </div>
         <!-- //wrap -->
         <script>
-            // 모든 라디오 버튼을 선택합니다.
-            const radioButtons = document.querySelectorAll(".checkSelect");
-
-            // 다음 버튼을 선택합니다.
-            const nextButton = document.querySelector(".btnNext");
-
-            // 라디오 버튼 체크 상태 확인 함수
-            const checkRadioButtons = () => {
-                let isChecked = false;
-
-                // 각 라디오 버튼을 확인해서 체크된 것이 있으면 isChecked를 true로 설정
-                radioButtons.forEach((radio) => {
-                    if (radio.checked) {
-                        isChecked = true;
-                    }
-                });
-
-                // 라디오 버튼이 하나라도 체크되면 btnOff 클래스를 제거하고 disabled를 해제
-                if (isChecked) {
-                    nextButton.classList.remove("btnOff");
-                    nextButton.disabled = false;
-                } else {
-                    nextButton.classList.add("btnOff");
-                    nextButton.disabled = true;
-                }
-            };
-
-            // 페이지 로드 시 버튼을 초기화 (비활성화 상태)
-            nextButton.classList.add("btnOff");
-            nextButton.disabled = true;
-
-            // 라디오 버튼이 클릭될 때마다 상태를 체크
+            // 버튼과 체크 요소들 선택
+            const radioButtons = document.querySelectorAll('input[type="radio"][name="chk1"]');
+            const agreementCheckbox = document.getElementById('chk3');
+            const nextButton = document.querySelector('.btnNext');
+          
+            function updateButtonState() {
+              const isRadioChecked = Array.from(radioButtons).some((radio) => radio.checked);
+              const isCheckboxChecked = agreementCheckbox.checked;
+          
+              if (isRadioChecked && isCheckboxChecked) {
+                nextButton.classList.remove('btnOff');
+                nextButton.disabled = false;
+              } else {
+                nextButton.classList.add('btnOff');
+                nextButton.disabled = true;
+              }
+            }
+          
+            // 이벤트 등록
             radioButtons.forEach((radio) => {
-                radio.addEventListener("change", checkRadioButtons);
+              radio.addEventListener('change', updateButtonState);
             });
-        </script>
+          
+            agreementCheckbox.addEventListener('change', updateButtonState);
+          
+            // 초기 상태 설정
+            updateButtonState();
+          </script>
+          
     </body>
 </html>

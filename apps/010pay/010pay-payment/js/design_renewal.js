@@ -556,10 +556,13 @@ function modalOpenSlide(obj) {
   // 리스트에서 선택한 항목을 버튼에 반영
   $(".option-item button").on("click", function () {
     var selectedBank = $(this).text().trim(); // 선택한 이름 가져오기
-    if (selectBox.find(".label").length > 0) {
+    var selectBox = $(".select-input");
+    if (selectBox && selectBox.find(".label").length > 0) {
       selectBox.find(".label").text(selectedBank); // 버튼에 텍스트 업데이트
     }
-    selectBox.addClass("comp");
+    if (selectBox) {
+      selectBox.addClass("comp");
+    }
     $("#btnHidden").hide();
 
     // step-list에서 현재 on 클래스가 있는 li 찾고 다음 li에 on 클래스 추가

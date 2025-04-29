@@ -70,7 +70,7 @@
   align-items: center;
   position: relative;
   height: 80px;
-  padding: 0 20px;
+  padding: 0 16px;
   cursor: grab;
   background-color: #fff;
 }
@@ -153,6 +153,11 @@
   font-size: 14px;
   line-height: 140%;
   color: #151515;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .payment-container .tab-contents .drag-list ul li .list-box .text-wrap .title-text i {
   margin-left: 4px;
@@ -189,6 +194,19 @@
   background: url("../../images/common/icon-list-drag.svg") right center / 20px 20px no-repeat;
   user-select: none;
   -webkit-user-select: none;
+}
+.payment-container .tab-contents .drag-list ul li .list-box .right-box .label {
+  background-color: #151515;
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 140%;
+  letter-spacing: -2%;
+  text-align: center;
+  vertical-align: middle;
+  color: #fff;
+  padding: 2.5px 4px;
+  border-radius: 8px;
 }
 
 .payment-container .tab-contents .drag-list ul li .list-box .right-box .active-btn {
@@ -347,6 +365,7 @@
 }
 
 .payment-container .bottom-area {
+  position: relative;
   background: linear-gradient(0deg, #ffffff 50%, rgba(255, 255, 255, 0) 100%);
 }
 
@@ -495,7 +514,11 @@
   transform: translateX(24px);
 }
 .payment-sort-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 16px 16px 8px;
+  color: #888;
 }
 .payment-sort-wrap .title {
   font-weight: 400;
@@ -504,12 +527,97 @@
   letter-spacing: -2%;
   color: #888;  
 }
+.payment-sort-wrap button {
+  color: #888;
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 140%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.payment-sort-wrap button .icon-arrow-right {
+  width: 12px;
+  height: 12px;
+  margin-left: 2.5px;
+}
 .payment-container .tab-contents .drag-list .payment-sort-wrap + .sortable-list li:first-of-type {
   margin-top: 0;
 }
-
-.payment-container .tab-contents .drag-list ul li .img-wrap {
+.sortable-list .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 62px;
+}
+.sortable-list .swiper-container {
+  width: 62px;
+  height: 62px;
+  overflow: hidden;
+}
+.payment-container .tab-contents .drag-list ul li .img-wrap img.card {
+  width: auto;
+  height: 52px;
+  overflow: hidden;
+  border-radius: 0;
+  padding: 0;
+} 
+.payment-container .tab-contents .drag-list ul li .img-wrap img.card.rotate {
+  height: auto;
+  transform: rotate(90deg);
+  width: 52px;
+    height: 33px;
+}
+.icon-arrow-right {
+  background: url("../../images/common/icon-arrow-right-off.svg") center / 100% 100% no-repeat;
+  pointer-events: none;
+}
+.modal.type-select .sortable-list li {
+  margin-top: 0;
+  padding: 0;
+}
+.modal.type-select .sortable-list li .list-box {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 80px;
+  cursor: grab;
+  background-color: #fff;
+}
+.modal.type-select .sortable-list li .list-box .img-wrap {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 62px;
+  height: 62px;
+  margin-right: 8px;
+}
+.modal.type-select .sortable-list li .list-box .img-wrap img {
+  position: relative;
+  z-index: 1;
   width: 42px;
   height: 42px;
-} 
+}
+.modal.type-select .sortable-list li .list-box .text-wrap .title-text {
+  display: flex;
+  align-items: center;
+  color: #151515;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+}
+.modal.type-select .sortable-list li .list-box .text-wrap .sub-text {
+  color: #888;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+  align-items: start;
+  justify-content: start;
+}
+
 /* //정기결제 추가 */

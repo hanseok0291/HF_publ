@@ -50,13 +50,13 @@ const FadeInSection = ({ children, sectionClass }) => {
 
 const index = () => {
   const valueArr = [
-    { amount: ' 4,075,100', index: 1 },
-    { amount: ' 2,075,100', index: 2 },
-    { amount: '10,075,100', index: 3 },
+    { amount: '4,075,100', index: 1 },
+    { amount: '2,075,100', index: 2 },
+    { amount: '7,075,100', index: 3 },
   ];
   const [openAgreeBs, setOpenAgreeBs] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [value, setValue] = useState(' 4,075,100');
+  const [value, setValue] = useState('4,075,100');
   const [hideClass, setHideClass] = useState(false);
 
   const handleAgreeBsClose = () => {

@@ -150,6 +150,22 @@ $(function () {
   $(".toggle-switch").on("click", function () {
     $(this).toggleClass("active");
   });
+
+  if($(".modal-terms").length > 0){
+    var $h2 = $(".modal-terms h2");
+    var text = $h2.text().trim();
+    $h2.html(`<span>${text}</span>`);
+    $('.modal-terms .modal-content').on('scroll', function(){
+      var terms_title = $(".modal-terms .title-text");
+      var top = terms_title.offset().top;
+      // console.log(terms_title.offset().top)
+      if(top === 16) {
+        $(this).addClass("fixed");
+      } else if(top > 17) {
+        $(this).removeClass("fixed");
+      }
+    });
+  }
 });
 
 // 바디 스크롤 제거/해제

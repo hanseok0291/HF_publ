@@ -10,6 +10,9 @@
   flex-direction: column;
   flex: 1 1 0; /* 거래내역 없음일때 아이콘 가운데 정렬 4/10 수정 */
 }
+.money-container .top-contents-wrap + .month-wrap {
+  margin-top: 32px;
+}
 .transaction-history-container .month-wrap {
   display: flex;
   justify-content: center;
@@ -81,12 +84,13 @@
   justify-content: space-between;
   align-items: center;
   position: sticky;
-  top: 63px;
+  top: 55px;
   overflow-x: auto;
   width: 100%;
   padding: 16px 16px;
   background-color: #fff;
   -ms-overflow-style: none;
+  z-index: 10;
 }
 .trade-tab-wrap::-webkit-scrollbar {
   display: none;
@@ -121,22 +125,20 @@
   margin-top: 8px;
 }
 .trade-list li {
-  /* display: flex; */
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 .trade-list li:last-child {
   margin-bottom: 0;
 }
 .trade-list li .date-text {
+  display: block;
   flex: 0 0 auto;
   width: 50px;
-  padding-top: 4px;
   color: #454545;
-  font-family: Pretendard;
   font-weight: 700;
   font-size: 16px;
-  line-height: 140%;
-  letter-spacing: -2%;
+  line-height: 30px;
+  margin-bottom: 16px;
 }
 .trade-list li .time-text {
   display: flex;
@@ -147,12 +149,10 @@
   font-weight: 400;
   line-height: 140%;
   letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 .trade-list li .info-text {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  min-width: 0; /* 핵심! flex 아이템이 넘칠 수 있도록 허용 */
+  display: inline-block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -163,7 +163,7 @@
 }
 .trade-list li .info-text::before {
   content: '';
-  display: block;
+  display: inline-block;
   width: 1px;
   height: 10px;
   background: #E5E5E8;
@@ -185,6 +185,7 @@
   line-height: 20px;
   letter-spacing: -0.04em;
   padding-left: 16px;
+  white-space: nowrap;
 }
 .trade-list li .type.pay {
   color: #888;
@@ -205,6 +206,10 @@
   width: 100%;
   margin-top: 2px;
   padding: 4px 0;
+  margin-bottom: 20px;
+}
+.trade-list li .right-text-box:last-of-type {
+  margin-bottom: 0;
 }
 .trade-list li .right-text-box .top-text {
   display: flex;
@@ -215,15 +220,16 @@
   font-weight: 400;
   line-height: 17px;
   letter-spacing: -0.04em;
-
 }
 .trade-list li .right-text-box .top-text .type-text {
-  display: flex;
-  align-items: center;
+  display: inline-block;
   line-height: 20px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .trade-list li .right-text-box .top-text .type-text::before {
-  display: block;
+  display: inline-block;
   content: "";
   width: 1px;
   height: 10px;
@@ -235,12 +241,13 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  word-break: break-all;
   max-height: 44px;
-  padding-right: 16px;
   color: #151515;
   font-size: 16px;
-  font-weight: 700;
-  line-height: 22.4px;
+  font-weight: 500;
+  line-height: 140%;
+  padding-right: 16px;
 }
 .trade-list li .bottom-text-box {
   display: flex;
@@ -249,10 +256,13 @@
   margin-top: 4px;
 }
 .trade-list li .bottom-text-box .amount {
-  color: #454545;
+  color: #151515;
   font-size: 16px;
   font-weight: 700;
   line-height: 21px;
+  width: 103px;
+  flex-shrink: 0;
+  text-align: right;
 }
 .trade-list li .bottom-text-box .amount.enter {
   color: #8BC104;
@@ -328,7 +338,7 @@
 .modal-slide.modal-period .month-list-wrap {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
   padding: 0 24px;
 }
 .modal-slide.modal-period .month-list-wrap li {
@@ -472,16 +482,25 @@
   border-radius: 8px;
   background-color: #F6F6F9;
 }
+.money-container .aml-info-wrap.banner {
+  background-color: #FFF0F2;
+  height: 46px;
+  margin-top: 20px;
+}
 .money-container .aml-info-wrap + .aml-info-wrap {
   margin-top: -12px;
 }
-.money-container .aml-info-wrap + .banner-wrap {
+.money-container .aml-info-wrap + .aml-info-wrap + .aml-info-wrap.banner, .money-container .aml-info-wrap + .banner-wrap, .money-container .aml-info-wrap + .aml-info-wrap.banner {
   margin-top: -4px;
 }
 .money-container .aml-info-wrap .text-wrap {
   display: flex;
+  align-items: center;
   color: #454545;
   font-size: 13px;
+}
+.money-container .aml-info-wrap.banner .text-wrap {
+ color: #151515;
 }
 .money-container .aml-info-wrap .text-wrap i {
   margin-right: 4px;
@@ -740,8 +759,16 @@
 }
 /* //미회수, 소멸 예정 모달 */
 
+.trade-list.history li .right-text-box.minus .bottom-text-box .amount {
+  color: #B0B0B3;
+  text-decoration: line-through;
+}
+
 @media screen and (max-width: 321px) {
   .trade-list li .time-text::after {
     margin: 0 4px;
+  }
+  .trade-list li .right-text-box .detail-text {
+    padding-right: 12px;
   }
 }

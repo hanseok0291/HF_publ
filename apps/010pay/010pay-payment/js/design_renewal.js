@@ -391,11 +391,11 @@ $(function () {
 
     if (fixFoot.length > 0 && (!matchesMediaQuery || matchesSpecialSize)) {
       var fixFootHeight = $(fixFoot).innerHeight();
-      $("#content").css("padding-bottom", fixFootHeight);
+      // $("#content").css("padding-bottom", fixFootHeight);
       $(".wrap.oneStore").removeClass("horizontal");
     } else {
       $(".wrap.oneStore").addClass("horizontal");
-      $("#content").css("padding-bottom", 24);
+      $("#content").css("padding-bottom", 20);
     }
 
     // fold 6 대응
@@ -814,3 +814,12 @@ document.querySelectorAll(".js-pop-close-btn").forEach((closeBtn) => {
     }
   });
 });
+
+// aos 하단버튼 스크롤 이슈
+function adjustViewportHeight() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+window.addEventListener('resize', adjustViewportHeight);
+window.addEventListener('load', adjustViewportHeight);
+

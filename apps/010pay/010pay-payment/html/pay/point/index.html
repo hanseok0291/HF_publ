@@ -18,6 +18,7 @@
     <script src="../../../js/jquery.3.4.1.min.js"></script>
     <script src="../../../js/jquery-ui.js"></script>
     <script src="../../../js/design_renewal.js" defer="defer"></script>
+    <script src="../../../js/lottie.min.js"></script>
   </head>
 
   <body>
@@ -122,11 +123,11 @@
               </li>
             </ul>
           </div>
-          <div class="empty-list">
+          <!-- <div class="empty-list">
             <i class="icon-exclamation-circle"></i>
             <p>이용 내역이 없어요!</p>
-          </div>
-          <div class="trade-list-wrap" style="display: none">
+          </div> -->
+          <div class="trade-list-wrap" style="display: block">
             <ul class="trade-list">
               <li>
                 <span class="date-text">11(토)</span>
@@ -134,7 +135,7 @@
                   <div class="right-text-box">
                     <div class="top-text">
                       <p class="time-text">오후 11:56</p>
-                      <p class="type-text">지급 유형</p>
+                      <p class="type-text">지급 유형지급 유형지급 유형지급 유형지급 유형지급 유형지급 유형지급 유형지급 유형지급 유형지급 유형</p>
                       <p class="type">사용</p>
                     </div>
                     <div
@@ -415,11 +416,6 @@
               </li>
             </ul>
           </div>
-          <div class="btn-area">
-            <button type="button" class="btn" onclick="modalCloseSlide()">
-              확인
-            </button>
-          </div>
         </div>
       </div>
     </div>
@@ -483,9 +479,26 @@
       </div>
     </div>
     <!-- //소멸예정 팝업 -->
+
+    <!-- lottie-spiner -->
+    <div class="lottie-spiner-wrap">
+    <span class="lottie-spiner"></span>
+    </div>
+    <!-- lottie-spiner -->
   </body>
   <script>
     $(function () {
+      
+      // 로티
+      let svgContainer = document.querySelector(".lottie-spiner");
+
+      let animItem = bodymovin.loadAnimation({
+          wrapper: svgContainer,
+          animType: "svg",
+          loop: true,
+          path: "https://ux.sbsvc.online/010pay/010pay-payment/images/lottie/spiner.json",
+      });
+      
       $(window).on("scroll", function () {
         var scrollTop = $(window).scrollTop();
         var tradeTabOffset = $(".trade-tab-wrap").offset().top - 64;

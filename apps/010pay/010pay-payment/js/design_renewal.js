@@ -391,7 +391,7 @@ $(function () {
 
     if (fixFoot.length > 0 && (!matchesMediaQuery || matchesSpecialSize)) {
       var fixFootHeight = $(fixFoot).innerHeight();
-      // $("#content").css("padding-bottom", fixFootHeight);
+      $("#content").css("padding-bottom", fixFootHeight);
       $(".wrap.oneStore").removeClass("horizontal");
     } else {
       $(".wrap.oneStore").addClass("horizontal");

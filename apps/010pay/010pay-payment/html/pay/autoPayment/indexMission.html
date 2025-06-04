@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../../css/pay/payment.css" />
+    <script src="../../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../../js/jquery-ui.js"></script>
+    <script src="../../../js/design_renewal.js" defer="defer"></script>
+    <script src="../../../js/lottie.min.js"></script>
+    <script src="../../../js/swiper.js"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <button type="button" class="btn-back js-change-btn left-0">
+              <i class="icon-back"></i>
+            </button>
+            <h2 class="page-title">정기결제</h2>
+            <button
+              type="button"
+              class="right-0"
+              onclick="modalOpenSlide('modal-withdrawalt-info')"
+            >
+              <i class="icon-info-circle"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <!-- container -->
+        <div class="container payment-container">
+          <div class="tab">
+            <button type="button" class="">이용현황</button>
+            <button type="button" class="active">결제수단</button>
+          </div>
+          <div class="tab-contents">
+            <div class="drag-list history" style="display: none">
+              <!-- <div class="empty-list">
+                <p>이용중인 정기결제가 없어요!</p>
+              </div> -->
+              <ul class="top-list">
+                <li class="list-item">
+                  <div class="list-box">
+                    <div class="img-wrap">
+                      <img
+                        src="../../../images/common/test-history-01.png"
+                        alt="디테일링 세차 할인 이용권 외부+내부+왁스 올인원 패키지"
+                      />
+                    </div>
+                    <div class="text-wrap">
+                      <p class="title-text">휘슬</p>
+                      <p class="sub-text">
+                        디테일링 세차 할인 이용권 외부+내부+왁스 올인원 패키지
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <ul id="sortable-list-1" class="sortable-list">
+                <li class="list-item">
+                  <div class="list-box">
+                    <div class="img-wrap">
+                      <img
+                        src="../../../images/common/default.png"
+                        alt="라운드 멤버십"
+                      />
+                    </div>
+                    <div class="text-wrap">
+                      <p class="title-text">RROUND</p>
+                      <p class="sub-text">라운드 멤버십</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <div class="banner-wrap">
+                <img
+                  src="../../../images/payment/samlple/payment-admin-banner.png"
+                  alt="배너"
+                  class="payment-banner"
+                />
+              </div>
+            </div>
+            <div class="drag-list account" style="display: flex">
+              <!-- <div class="empty-list">
+                <p>등록된 계좌가 없어요!</p>
+              </div> -->
+              <div class="challenge-wrap">
+                <div class="challenge-box">
+                  <p class="challenge-title">
+                    정기결제 챌린지 달성하고<br />
+                    <strong
+                      >최대
+                      <span class="color">4백만 원 당첨 <br />라운드 로또</span>
+                      받아요</strong
+                    >
+                  </p>
+                  <div class="challenge-list">
+                    <ul>
+                      <li class="">
+                        <i class="icon icon-1"></i>
+                        <p>머니 충전 계좌 등록</p>
+                        <p class="check-label comp">완료</p>
+                        <p class="check-label no"></p>
+                      </li>
+                      <li class="on">
+                        <i class="icon icon-2"></i>
+                        <p>머니 충전 계좌 등록</p>
+                        <p class="check-label comp">완료</p>
+                        <p class="check-label no"></p>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="challenge-list">
+                    <ul>
+                      <li class="on">
+                        <i class="icon icon-3"></i>
+                        <p>결제 PUSH ON</p>
+                        <div class="challenge-toggle">
+                          <div class="toggle-box">
+                            <label class="switch">
+                              <input type="checkbox" />
+                              <span class="slider"></span>
+                            </label>
+                            <span class="toggle-label"></span>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="toggle-wrap">
+                <div class="toggle-line">
+                  <span class="title">페이 포인트</span>
+                  <div class="toggle-box">
+                    <span class="toggle-label">모두 사용</span>
+                    <label class="switch">
+                      <input type="checkbox" />
+                      <span class="slider"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="payment-sort-wrap">
+                <p>1순위 결제수단</p>
+              </div>
+              <ul class="top-list">
+                <!-- 등록계좌 있을 경우 -->
+                <li class="list-item">
+                  <div class="list-box">
+                    <div class="img-wrap">
+                      <img
+                        src="../../../images/common/ico-rround-pay.png"
+                        alt="페이 머니"
+                      />
+                    </div>
+                    <div class="text-wrap">
+                      <p class="title-text">페이 머니</p>
+                      <p class="sub-text">카카오 뱅크 124</p>
+                    </div>
+                    <div class="right-box">
+                      <button
+                        type="button"
+                        class="active-btn"
+                        onclick="modalOpenSlide('modal-select-account')"
+                      >
+                        연결 계좌 변경
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <!-- //등록계좌 있을 경우 -->
+                <!-- 등록계좌 없을 경우 -->
+                <!-- <li class="list-item">
+                  <div class="list-box">
+                    <div class="img-wrap">
+                      <img
+                        src="../../../images/common/test-history-03.png"
+                        alt="은행"
+                      />
+                    </div>
+                    <div class="text-wrap">
+                      <p class="title-text">라운드 페이 머니</p>
+                      <p class="sub-text">등록된 계좌가 없어요</p>
+                    </div>
+                    <div class="right-box">
+                      <a href="#" class="active-btn">계좌 등록</a> 
+                    </div>
+                  </div>
+                </li> -->
+                <!-- //등록계좌 없을 경우 -->
+              </ul>
+              <div class="payment-sort-wrap">
+                <p>2순위 결제수단</p>
+                <button
+                  type="button"
+                  class="active-btn"
+                  onclick="modalOpenSlide('modal-select-payment-second')"
+                >
+                  변경 <i class="icon-arrow-right size-16"></i>
+                </button>
+              </div>
+              <ul id="sortable-list-2" class="sortable-list">
+                <li class="list-item">
+                  <div class="list-box">
+                    <div class="img-wrap">
+                      <img
+                        src="../../../images/payment/bank/kb.png"
+                        alt="은행"
+                      />
+                    </div>
+                    <div class="text-wrap">
+                      <p class="title-text">010PAY 체크카드</p>
+                      <p class="sub-text">체크 5312</p>
+                    </div>
+                    <div class="right-box">
+                      <p class="label">2순위</p>
+                    </div>
+                  </div>
+                </li>
+                <li class="list-item">
+                  <div class="list-box">
+                    <div class="img-wrap">
+                      <img
+                        src="../../../images/common/test-card-01.png"
+                        alt="은행"
+                        class="card"
+                      />
+                    </div>
+                    <div class="text-wrap">
+                      <p class="title-text">010PAY 체크카드</p>
+                      <p class="sub-text">체크 5312</p>
+                      <p class="error-text">유효기간 만료까지 90일 남았어요</p>
+                    </div>
+                  </div>
+                </li>
+                <li class="list-item">
+                  <div class="list-box">
+                    <div class="img-wrap">
+                      <img
+                        src="../../../images/common/test-card-02.png"
+                        alt="은행"
+                        class="card"
+                      />
+                    </div>
+                    <div class="text-wrap">
+                      <p class="title-text">010PAY 체크카드</p>
+                      <p class="sub-text">체크 5312</p>
+                    </div>
+                  </div>
+                </li>
+                <li class="list-item">
+                  <div class="list-box">
+                    <div class="img-wrap">
+                      <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                          <div class="swiper-slide">
+                            <img
+                              src="../../../images/common/img-vertical-slide-01.png"
+                              alt="결제수단 이미지1"
+                              class="icon-bank"
+                            />
+                          </div>
+                          <div class="swiper-slide">
+                            <img
+                              src="../../../images/common/img-vertical-slide-02.png"
+                              alt="결제수단 이미지2"
+                              class="icon-bank"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="text-wrap">
+                      <p class="title-text">
+                        결제 수단 추가하고<br />
+                        정기결제 설정해요!
+                      </p>
+                    </div>
+                    <div class="right-box">
+                      <button
+                        type="button"
+                        class="active-btn"
+                        onclick="modalOpenSlide('modal-select-payment')"
+                      >
+                        결제 수단 추가
+                      </button>
+                    </div>
+                    <button type="button" class="delete-btn">삭제</button>
+                  </div>
+                </li>
+              </ul>
+              <div class="banner-wrap">
+                <img
+                  src="../../../images/payment/samlple/payment-admin-banner.png"
+                  alt="배너"
+                  class="payment-banner"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- bottom area -->
+          <div class="bottom-area" style="display: none">
+            <!-- container -->
+            <div class="container">
+              <!-- 머니 연결계좌 1개 이상 등록, 2순위 카드 또는 계좌 등록 완료 버튼 활성화 -->
+              <button
+                type="button"
+                class="btn"
+                onclick="modalToastOpen('toast-change-aaccount')"
+              >
+                설정 완료
+              </button>
+              <!-- 설정완료 되었거나 변경없으면 비활성화 -->
+              <!-- <button type="button" class="btn" disabled>설정 완료</button> -->
+              <!-- 결제수단 추가되지 않았을때 비노출 -->
+              <!-- <button type="button" class="btn d-none">설정 완료</button> -->
+            </div>
+            <!-- //container -->
+          </div>
+          <!-- //bottom area -->
+        </div>
+        <!-- //container -->
+      </div>
+      <!-- //content -->
+    </div>
+    <!-- //wrap -->
+
+    <!-- 대표 계좌 변경 토스트 모달 -->
+    <div id="toast-change-aaccount" class="modal-toast is-btn">
+      <p>대표 계좌를 변경했어요</p>
+    </div>
+    <!-- //대표 계좌 변경 토스트 모달 -->
+
+    <!-- 정기결제 안내 팝업 -->
+    <div id="modal-withdrawalt-info" class="modal modal-slide type-title">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title">정기결제 안내</p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <ul class="note-wrap">
+                <li>정기결제 해지는 신청한 서비스에서 진행할 수 있어요.</li>
+                <li>
+                  1, 2순위 결제수단으로 결제 실패 시 등록된 모든 간편결제수단이
+                  결제 시도 돼요.
+                </li>
+                <li>
+                  머니가 부족한 경우 등록한 연결계좌를 통해 자동 충전 후 결제
+                  돼요.
+                </li>
+              </ul>
+              <div class="info-wrap"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //정기결제 안내 팝업 -->
+
+    <!-- common prompt -->
+    <div id="commonPrompt" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="promptTitle"></h3>
+            <p id="promptContents"></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="promptNo"
+              onclick="modalCloseAlert();"
+              class="btn btn-cancel"
+            >
+              취소
+            </button>
+            <button
+              type="button"
+              id="promptOk"
+              onclick="modalCloseAlert();"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //common prompt -->
+
+    <!-- 계좌 선택하기 팝업 -->
+    <div
+      id="modal-select-account"
+      class="modal modal-slide type-select type-title"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title">계좌 선택하기</p>
+            <button type="button" class="btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- 전체 동의 체크박스 -->
+            <div class="container">
+              <ul class="btn-list account-list">
+                <li class="option-item">
+                  <button
+                    type="button"
+                    class="flex items-center js-change-btn"
+                    data-title="대표 계좌가 함께 변경돼요"
+                    data-message="선택한 계좌는 정기결제와 <br />머니 충전에 함께 사용돼요."
+                    data-cancel="취소"
+                    data-confirm="확인"
+                  >
+                    <p class="img-bank">
+                      <img src="../../../images/bank/logo_020.png" alt="우리" />
+                    </p>
+                    <p class="text-bank">
+                      <span>우리</span>
+                      <span>345</span>
+                    </p>
+                    <p class="icon-star"></p>
+                  </button>
+                </li>
+                <li class="option-item">
+                  <button
+                    type="button"
+                    class="flex items-center js-change-btn"
+                    data-title="대표 계좌가 함께 변경돼요"
+                    data-message="선택한 계좌는 정기결제와 <br />머니 충전에 함께 사용돼요."
+                    data-cancel="취소"
+                    data-confirm="확인"
+                  >
+                    <p class="img-bank">
+                      <img src="../../../images/bank/logo_020.png" alt="우리" />
+                    </p>
+                    <p class="text-bank">
+                      <span>우리</span>
+                      <span>345</span>
+                    </p>
+                  </button>
+                </li>
+                <li class="btn-wrap">
+                  <button type="button" class="btn btn-add">
+                    계좌 추가하기
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //계좌 선택하기 팝업 -->
+
+    <!-- 결제수단 선택하기 팝업 -->
+    <div
+      id="modal-select-payment"
+      class="modal modal-slide type-select type-title"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title">결제수단 선택하기</p>
+            <button type="button" class="btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- 전체 동의 체크박스 -->
+            <div class="container">
+              <ul class="btn-list account-list">
+                <li class="option-item js-modal-close">
+                  <a href="#">계좌</a>
+                </li>
+                <li class="option-item js-modal-close">
+                  <a href="#">카드</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //결제수단 선택하기 팝업 -->
+
+    <!-- 2순위 결제수단 선택하기 팝업 -->
+    <div
+      id="modal-select-payment-second"
+      class="modal modal-slide type-select type-title"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title">변경할 2순위 결제수단 선택하기</p>
+            <button type="button" class="btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- 전체 동의 체크박스 -->
+            <div class="container">
+              <ul class="btn-list account-list sortable-list">
+                <li class="list-item js-modal-close">
+                  <div class="list-box">
+                    <div class="img-wrap">
+                      <img
+                        src="../../../images/payment/bank/kb.png"
+                        alt="은행"
+                      />
+                    </div>
+                    <div class="text-wrap">
+                      <p class="title-text">010PAY 체크카드</p>
+                      <p class="sub-text">체크 5312</p>
+                    </div>
+                  </div>
+                </li>
+                <li class="list-item js-modal-close">
+                  <div class="list-box">
+                    <div class="img-wrap">
+                      <img
+                        src="../../../images/payment/bank/kb.png"
+                        alt="은행"
+                      />
+                    </div>
+                    <div class="text-wrap">
+                      <p class="title-text">010PAY 체크카드</p>
+                      <p class="sub-text">체크 5312</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- // 2순위 결제수단 선택하기 팝업 -->
+
+    <!-- 슬라이드 모달 하단 버튼 o -->
+    <div
+      id="modal-mission"
+      class="modal modal-slide type-title modal-noti-left"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head round-btn">
+            <button type="button" class="btn btn-close js-modal-close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <p class="modal-body-title">혜택은 최초 1회만 제공돼요</p>
+              <p class="modal-img">
+                <img
+                  src="../../../images/common/modal-mission-img.png"
+                  alt=""
+                />
+              </p>
+              <p class="modal-text">
+                챌린지를 달성하면 라운드 로또를 드려요!<br />
+                설정을 완료하면 이 혜택은 사라져요.
+              </p>
+            </div>
+          </div>
+          <!-- 동의하기 버튼 -->
+          <div class="modal-footer">
+            <button
+              type="button"
+              id=""
+              onclick="modalCloseSlide();"
+              class="btn btn-cancel"
+            >
+              설정 완료
+            </button>
+            <button
+              type="button"
+              id=""
+              onclick="modalCloseSlide();"
+              class="btn btn-confirm"
+            >
+              챌린지 계속하기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //슬라이드 모달 하단 버튼 o -->
+  </body>
+  <script>
+    $(document).ready(function () {
+      modalOpenSlide("modal-mission");
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // 각 drag-list 내에서 이벤트 리스너 설정
+      document.querySelectorAll(".drag-list").forEach((dragList) => {
+        dragList.querySelectorAll(".icon-star-off").forEach((icon) => {
+          icon.addEventListener("click", (event) => {
+            modalToastOpen("toast-change-aaccount");
+            handleStarOffClick(event, dragList);
+          });
+        });
+      });
+    });
+
+    $(".tab button").on("click", function () {
+      var tab_index = $(this).index();
+      $(".tab button").removeClass("active");
+      $(this).addClass("active");
+
+      // 탭 콘텐츠 전환
+      $(".tab-contents > div").hide();
+      $(".tab-contents > div").eq(tab_index).css("display", "flex");
+
+      // 하단 영역 표시 여부 전환
+      const isAccountTab = $(this).text().trim() === "결제수단";
+      if (isAccountTab) {
+        $(".bottom-area").show().addClass("fixed");
+      } else {
+        $(".bottom-area").hide().removeClass("fixed");
+      }
+
+      // 패딩 다시 계산
+      setTimeout(() => {
+        $(window).trigger("resize"); // wrapPadding 재실행 유도
+      }, 10);
+
+      // 카드 이미지 가로 일 때 회전
+      $(".drag-list.card .img-wrap img").each(function (i, e) {
+        var $this = $(this);
+        var imgWidth = $this.get(0).naturalWidth;
+        var imgHeight = $this.get(0).naturalHeight;
+        if (imgWidth > imgHeight) {
+          $this.addClass("rotate");
+        }
+      });
+
+      // 세로방향 슬라이드 카드 이미지만 회전
+      $(".sortable-list .img-wrap img.card").each(function (i, e) {
+        var $this = $(this);
+        var imgWidth = $this.get(0).naturalWidth;
+        var imgHeight = $this.get(0).naturalHeight;
+        if (imgWidth > imgHeight) {
+          $this.addClass("rotate");
+        }
+      });
+    });
+
+    const swiper = new Swiper(".swiper-container", {
+      direction: "vertical", // 세로 방향 슬라이드
+      loop: true, // 무한 롤링
+      autoplay: {
+        delay: 3000, // 3초마다 슬라이드 전환
+        disableOnInteraction: false, // 사용자와 상호작용 후에도 자동 롤링 유지
+      },
+      slidesPerView: 1, // 한 번에 보이는 슬라이드 수
+    });
+  </script>
+</html>

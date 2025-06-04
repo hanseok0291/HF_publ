@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../../css/pay/fine.css" />
+    <script src="../../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../../js/jquery-ui.js"></script>
+    <script src="../../../js/design_renewal.js" defer="defer"></script>
+    <script src="../../../js/lottie.min.js"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <h2 class="page-title">납부하기</h2>
+            <button
+              type="button"
+              class="btn-close js-change-btn"
+              data-message="과태료 납부를 중단할까요?"
+              data-cancel="취소"
+              data-confirm="확인"
+            >
+              <i class="icon-close"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <!-- container -->
+        <div class="container fine-container">
+          <div class="complete-text">
+            <p>
+              {차량} 님에게<br />
+              10,000원을 보낼게요
+            </p>
+            <p class="small-text">
+              <span>카카오뱅크</span>
+              <span class="line"></span>
+              <span>426602 01 394958</span>
+            </p>
+          </div>
+
+          <div class="gray-box stretch">
+            <dl>
+              <dt>보유 머니</dt>
+              <dd>0원</dd>
+            </dl>
+            <dl>
+              <dt>충전 머니</dt>
+              <dd>+10,000원</dd>
+            </dl>
+            <dl>
+              <dt>수수료</dt>
+              <dd>무료</dd>
+            </dl>
+          </div>
+
+          <ul class="bottom-list">
+            <!-- 등록계좌 있을 경우 -->
+            <!-- <li class="list-item">
+              <div class="list-box">
+                <div class="img-wrap">
+                  <img
+                    src="../../../images/common/test-history-03.png"
+                    alt="은행"
+                  />
+                </div>
+                <div class="text-wrap">
+                  <p class="title-text">라운드 페이 머니</p>
+                  <p class="sub-text">카카오 뱅크 124</p>
+                </div>
+                <div class="right-box">
+                  <button
+                    type="button"
+                    class="active-btn"
+                    onclick="modalOpenSlide('modal-select-account')"
+                  >
+                    연결 계좌 변경
+                  </button>
+                </div>
+              </div>
+            </li> -->
+            <!-- //등록계좌 있을 경우 -->
+            <!-- 등록계좌 없을 경우 -->
+            <li class="list-item">
+              <div class="list-box">
+                <div class="img-wrap">
+                  <img
+                    src="../../../images/common/test-history-03.png"
+                    alt="은행"
+                  />
+                </div>
+                <div class="text-wrap">
+                  <p class="title-text">페이 머니</p>
+                  <p class="sub-text">등록된 계좌가 없어요</p>
+                </div>
+                <div class="right-box">
+                  <a href="#" class="active-btn">계좌 등록</a>
+                </div>
+              </div>
+            </li>
+            <!-- //등록계좌 없을 경우 -->
+          </ul>
+        </div>
+        <!-- //container -->
+        <!-- bottom area -->
+        <div class="bottom-area">
+          <!-- container -->
+          <div class="container">
+            <button type="button" class="btn btn-cancel">취소</button>
+            <button type="button" class="btn">보내기</button>
+          </div>
+          <!-- //container -->
+        </div>
+        <!-- //bottom area -->
+      </div>
+      <!-- //content -->
+    </div>
+    <!-- //wrap -->
+
+    <!-- common prompt -->
+    <div id="commonPrompt" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="promptTitle"></h3>
+            <p id="promptContents"></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="promptNo"
+              onclick="modalCloseAlert();"
+              class="btn btn-cancel"
+            >
+              취소
+            </button>
+            <button
+              type="button"
+              id="promptOk"
+              onclick="modalCloseAlert();"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //common prompt -->
+
+    <!-- common prompt -->
+    <div id="commonPrompt2" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="promptTitle2">
+              보유 머니가 부족해요<br />충전계좌를 등록해 주세요
+            </h3>
+            <p id="promptContents2"></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="promptNo"
+              onclick="modalCloseAlert();"
+              class="btn btn-cancel"
+            >
+              취소하기
+            </button>
+            <button
+              type="button"
+              id="promptOk"
+              onclick="modalCloseAlert();"
+              class="btn btn-confirm"
+            >
+              등록하기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //common prompt -->
+
+    <!-- 계좌 선택하기 팝업 -->
+    <div
+      id="modal-select-account"
+      class="modal modal-slide type-select type-title"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title">계좌 선택하기</p>
+            <button type="button" class="btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- 전체 동의 체크박스 -->
+            <div class="container">
+              <ul class="btn-list account-list">
+                <li class="option-item">
+                  <button
+                    type="button"
+                    class="flex items-center js-change-btn"
+                    data-title="대표 계좌가 함께 변경돼요"
+                    data-message="선택한 계좌는 정기결제와 <br />머니 충전에 함께 사용돼요."
+                    data-cancel="취소"
+                    data-confirm="확인"
+                  >
+                    <p class="img-bank">
+                      <img src="../../../images/bank/logo_020.png" alt="우리" />
+                    </p>
+                    <p class="text-bank">
+                      <span>우리</span>
+                      <span>345</span>
+                    </p>
+                    <p class="icon-star"></p>
+                  </button>
+                </li>
+                <li class="option-item">
+                  <button
+                    type="button"
+                    class="flex items-center js-change-btn"
+                    data-title="대표 계좌가 함께 변경돼요"
+                    data-message="선택한 계좌는 정기결제와 <br />머니 충전에 함께 사용돼요."
+                    data-cancel="취소"
+                    data-confirm="확인"
+                  >
+                    <p class="img-bank">
+                      <img src="../../../images/bank/logo_020.png" alt="우리" />
+                    </p>
+                    <p class="text-bank">
+                      <span>우리</span>
+                      <span>345</span>
+                    </p>
+                  </button>
+                </li>
+                <li class="btn-wrap">
+                  <button type="button" class="btn btn-add">
+                    계좌 추가하기
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //계좌 선택하기 팝업 -->
+  </body>
+  <script>
+    $(document).ready(function () {});
+  </script>
+</html>

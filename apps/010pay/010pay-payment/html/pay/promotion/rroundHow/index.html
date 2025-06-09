@@ -19,7 +19,7 @@
     <script src="../../../../js/jquery.3.4.1.min.js"></script>
     <script src="../../../../js/jquery-ui.js"></script>
     <script src="../../../../js/design_renewal.js" defer="defer"></script>
-    <script src="../../../../js/swiper.js"></script>
+    <script src="../../../../js/swiper-bundle.min.js"></script>
   </head>
 
   <body>
@@ -88,7 +88,9 @@
             <div class="sec sec-2 scroll-fade-up">
               <span class="label">정기결제</span>
               <p class="title">
-                정기적으로 필요한 상품·<br class="mo-br" />서비스를<br class="pc-br" />
+                정기적으로 필요한 상품·<br class="mo-br" />서비스를<br
+                  class="pc-br"
+                />
                 놓치지 않도록 꼭 성공할게요!
               </p>
               <div>
@@ -219,17 +221,69 @@
       targets.forEach((target) => observer.observe(target));
 
       document.addEventListener("DOMContentLoaded", () => {
-        const swiper = new Swiper(".swiper-container", {
-          loop: true, // 무한 롤링
-          autoplay: {
-            delay: 2000, // 3초마다 슬라이드 전환
-            disableOnInteraction: false, // 사용자와 상호작용 후에도 자동 롤링 유지
+        // 슬라이더1
+        const swiper1El = document.querySelector(".swiper-container");
+        let swiper1;
+        if (swiper1El) {
+          swiper1 = new Swiper(swiper1El, {
+            loop: true,
+            autoplay: {
+              delay: 2000,
+              disableOnInteraction: false,
+            },
+            slidesPerView: 1,
+            pagination: {
+              el: ".sec-1 .swiper-pagination",
+            },
+          });
+          swiper1.autoplay && swiper1.autoplay.stop();
+        }
+
+        // 슬라이더2
+        const swiper2El = document.querySelector(".swiper2");
+        let swiper2;
+        if (swiper2El) {
+          swiper2 = new Swiper(swiper2El, {
+            loop: true,
+            autoplay: {
+              delay: 2000,
+              disableOnInteraction: false,
+            },
+            slidesPerView: 1,
+            pagination: {
+              el: ".sec-2 .swiper-pagination",
+            },
+          });
+          swiper2.autoplay && swiper2.autoplay.stop();
+        }
+
+        // IntersectionObserver 등록
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                if (
+                  entry.target.classList.contains("sec-1") &&
+                  swiper1?.autoplay
+                ) {
+                  swiper1.autoplay.start();
+                }
+                if (
+                  entry.target.classList.contains("sec-2") &&
+                  swiper2?.autoplay
+                ) {
+                  swiper2.autoplay.start();
+                }
+                observer.unobserve(entry.target);
+              }
+            });
           },
-          slidesPerView: 1, // 한 번에 보이는 슬라이드 수
-          pagination: {
-            el: ".swiper-pagination",
-          },
-        });
+          { threshold: 0.5 },
+        );
+
+        document
+          .querySelectorAll(".sec-1, .sec-2")
+          .forEach((el) => observer.observe(el));
       });
     </script>
   </body>

@@ -106,46 +106,67 @@
               </div> -->
               <div class="challenge-wrap">
                 <div class="challenge-box">
+                  <div class="challenge-tooltip-wrap">
+                    <div class="swiper-container2">
+                      <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                          <p class="challenge-tooltip-box">
+                            ⭐️ 지금만 가능한 최초 1회 혜택 ⭐️
+                          </p>
+                        </div>
+                        <div class="swiper-slide">
+                          <p class="challenge-tooltip-box">
+                            3개 중 1개 완료! 거의 다 왔어요🔥
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   <p class="challenge-title">
                     정기결제 챌린지 달성하고<br />
                     <strong
                       >최대
-                      <span class="color">4백만 원 당첨 <br />라운드 로또</span>
+                      <span class="color">4백만 원 당첨 라운드 로또</span>
                       받아요</strong
                     >
                   </p>
                   <div class="challenge-list">
                     <ul>
                       <li class="">
-                        <i class="icon icon-1"></i>
-                        <p>머니 충전 계좌 등록</p>
-                        <p class="check-label comp">완료</p>
-                        <p class="check-label no"></p>
-                      </li>
-                      <li class="on">
-                        <i class="icon icon-2"></i>
-                        <p>머니 충전 계좌 등록</p>
-                        <p class="check-label comp">완료</p>
-                        <p class="check-label no"></p>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="challenge-list">
-                    <ul>
-                      <li class="on">
-                        <i class="icon icon-3"></i>
-                        <p>결제 PUSH ON</p>
-                        <div class="challenge-toggle">
-                          <div class="toggle-box">
-                            <label class="switch">
-                              <input type="checkbox" />
-                              <span class="slider"></span>
-                            </label>
-                            <span class="toggle-label"></span>
+                        <a href="#">
+                          <div class="check-item">
+                            <span class="icon"></span>
+                            <span class="text">머니 충전 계좌 등록</span>
                           </div>
+                        </a>
+                      </li>
+                      <li class="on">
+                        <a href="#">
+                          <div class="check-item">
+                            <span class="icon"></span>
+                            <span class="text">신용카드 등록</span>
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <div class="check-item">
+                          <span class="icon"></span>
+                          <span class="text">페이 PUSH ON</span>
                         </div>
                       </li>
                     </ul>
+                  </div>
+                  <div class="challenge-toggle">
+                    <div class="toggle-box">
+                      <label class="switch">
+                        <input type="checkbox" />
+                        <span class="slider"></span>
+                      </label>
+                      <span class="toggle-label"
+                        >결제 내역 및 혜택 알림을 받을게요</span
+                      >
+                    </div>
                   </div>
                 </div>
               </div>
@@ -683,6 +704,77 @@
         disableOnInteraction: false, // 사용자와 상호작용 후에도 자동 롤링 유지
       },
       slidesPerView: 1, // 한 번에 보이는 슬라이드 수
+    });
+
+    const swiper2 = new Swiper(".swiper-container2", {
+      direction: "vertical", // 세로 방향 슬라이드
+      loop: true, // 무한 롤링
+      autoplay: {
+        delay: 2000, // 3초마다 슬라이드 전환
+        disableOnInteraction: false, // 사용자와 상호작용 후에도 자동 롤링 유지
+      },
+      slidesPerView: 1, // 한 번에 보이는 슬라이드 수
+    });
+
+    // 토글시 토글영역 사라짐
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggleInput = document.querySelector(
+        ".challenge-toggle input[type='checkbox']",
+      );
+      const challengeToggle = document.querySelector(".challenge-toggle");
+      const challengeItems = document.querySelectorAll(".challenge-list ul li");
+      const tooltipBox = document.querySelector(".challenge-tooltip-box");
+
+      const thirdLi = challengeItems[2]; // 결제 PUSH ON 항목
+
+      function updateCompletionCount() {
+        const completedCount = document.querySelectorAll(
+          ".challenge-list ul li.on",
+        ).length;
+        const tooltipBoxes = document.querySelectorAll(
+          ".challenge-tooltip-box",
+        );
+
+        tooltipBoxes.forEach((el) => {
+          if (el.textContent.includes("3개 중")) {
+            el.textContent = `3개 중 ${completedCount}개 완료! 거의 다 왔어요🔥`;
+          }
+        });
+      }
+
+      // 토글 이벤트
+      if (toggleInput && thirdLi) {
+        toggleInput.addEventListener("change", function () {
+          if (this.checked) {
+            thirdLi.classList.add("on");
+            challengeToggle.style.display = "none";
+          } else {
+            thirdLi.classList.remove("on");
+            challengeToggle.style.display = "";
+          }
+
+          updateCompletionCount();
+        });
+      }
+
+      // 초기 실행
+      if (toggleInput.checked) {
+        thirdLi.classList.add("on");
+        challengeToggle.style.display = "none";
+      }
+
+      updateCompletionCount();
+    });
+
+    // li에 on 클래스가 있을 때 a 태그 이동 막기
+    document.addEventListener("click", function (e) {
+      const anchor = e.target.closest("a");
+      if (!anchor) return;
+
+      const li = anchor.closest("li");
+      if (li && li.classList.contains("on")) {
+        e.preventDefault(); // 이동 막기
+      }
     });
   </script>
 </html>

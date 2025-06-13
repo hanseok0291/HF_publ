@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="../../css/jquery-ui.css" />
+    <link rel="stylesheet" href="../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../css/storageBox.css" />
+    <script src="../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/design_renewal.js" defer="defer"></script>
+    <script src="../../js/date.js" defer="defer"></script>
+  </head>
+  <body>
+    <!-- wrap -->
+    <div id="wrap" class="reward-history">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <h2 class="page-title">비상금 보관함</h2>
+            <!-- [2025.05.28] 변경 시작 -->
+            <button
+              type="button"
+              class="btn-close js-change-btn"
+              data-title="비상금을<br>안전하게 숨겨놓고 기다릴게요!"
+              data-cancel="취소"
+              data-confirm="확인"
+            >
+              <i class="icon-close"></i>
+            </button>
+            <!-- [2025.05.28] 변경 끝 -->
+          </div>
+        </div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <div class="tab-content-wrap">
+          <div class="container">
+            <!-- 보관 금액 탭 -->
+            <div class="tab-content active">
+              <div class="card-box">
+                <div class="top vertical align-start">
+                  <div class="title">보관 금액</div>
+                  <div class="amount">5,000원</div>
+                </div>
+                <div class="bottom btn-wrap">
+                  <button
+                    type="button"
+                    class="btn"
+                    onclick="modalOpenSlide('modal-popup-add')"
+                  >
+                    비상금 숨기기
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-white"
+                    onclick="modalClose(); modalOpenSlide('modal-popup-minus')"
+                  >
+                    비상금 빼기
+                  </button>
+                </div>
+              </div>
+
+              <button type="button">
+                <div class="notice-area">
+                  <i class="icon"></i>
+                  <p class="gradient-text">지금까지 받은 혜택</p>
+                  <p class="right-wrap">
+                    <span>99</span>
+                    <i class="icon arrow-right"></i>
+                  </p>
+                </div>
+              </button>
+
+              <div class="month-wrap">
+                <button type="button" class="prev-btn icon-arrow-left size-16">
+                  이전
+                </button>
+                <button
+                  type="button"
+                  class="month-text"
+                  onclick="modalOpenSlide('modal-period')"
+                >
+                  2025년 5월
+                </button>
+                <button type="button" class="next-btn icon-arrow-right size-16">
+                  다음
+                </button>
+              </div>
+
+              <div class="trade-tab-wrap">
+                <ul class="tab-list">
+                  <li>
+                    <button type="button" class="active">전체</button>
+                  </li>
+                  <li>
+                    <button type="button">숨기기</button>
+                  </li>
+                  <li>
+                    <button type="button">빼기</button>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="list">
+                <div class="list-item">
+                  <div class="top-wrap flex items-center">
+                    <span class="date-text">03.20 오후 11:45</span>
+                    <span class="product">휘슬 상품권</span>
+                  </div>
+                  <div class="mid-wrap flex items-center">
+                    <div class="label">비상금 숨기기</div>
+                    <div class="point">10,000원</div>
+                  </div>
+                </div>
+
+                <div class="list-item">
+                  <div class="top-wrap flex items-center">
+                    <span class="date-text">03.20 오후 11:45</span>
+                    <span class="product">휘슬 상품권</span>
+                  </div>
+                  <div class="mid-wrap flex items-center">
+                    <div class="label">비상금 빼기</div>
+                    <div class="point minus">-20,000원</div>
+                  </div>
+                </div>
+
+                <div class="list-item">
+                  <div class="top-wrap flex items-center">
+                    <span class="date-text">03.20 오후 11:45</span>
+                    <span class="product">휘슬 상품권</span>
+                  </div>
+                  <div class="mid-wrap flex items-center">
+                    <div class="label">비상금 숨기기</div>
+                    <div class="point">10,000원</div>
+                  </div>
+                </div>
+
+                <div class="list-item">
+                  <div class="top-wrap flex items-center">
+                    <span class="date-text">03.20 오후 11:45</span>
+                    <span class="product">휘슬 상품권</span>
+                  </div>
+                  <div class="mid-wrap flex items-center">
+                    <div class="label">비상금 빼기</div>
+                    <div class="point minus">-30,000원</div>
+                  </div>
+                </div>
+
+                <div class="list-item">
+                  <div class="top-wrap flex items-center">
+                    <span class="date-text">03.20 오후 11:45</span>
+                    <span class="product">휘슬 상품권</span>
+                  </div>
+                  <div class="mid-wrap flex items-center">
+                    <div class="label">비상금 숨기기</div>
+                    <div class="point">10,000원</div>
+                  </div>
+                </div>
+
+                <div class="list-item">
+                  <div class="top-wrap flex items-center">
+                    <span class="date-text">03.20 오후 11:45</span>
+                    <span class="product">휘슬 상품권</span>
+                  </div>
+                  <div class="mid-wrap flex items-center">
+                    <div class="label">비상금 숨기기</div>
+                    <div class="point">10,000원</div>
+                  </div>
+                </div>
+
+                <div class="add-view-btn-wrap">
+                  <button type="button" class="add-view-btn">더보기</button>
+                </div>
+              </div>
+            </div>
+            <!-- //보관 금액 탭 -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 기간 팝업 -->
+    <div
+      id="modal-period"
+      class="modal modal-slide type-title modal-period"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head round-btn">
+            <button type="button" class="btn btn-close js-modal-close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="year-wrap">
+              <button type="button" class="prev-btn icon-arrow-left size-20">
+                이전
+              </button>
+              <span class="year-text">2025년</span>
+              <button type="button" class="next-btn icon-arrow-right size-20">
+                다음
+              </button>
+            </div>
+            <ul class="month-list-wrap">
+              <li>
+                <button type="button">1월</button>
+              </li>
+              <li>
+                <button type="button">2월</button>
+              </li>
+              <li>
+                <button type="button">3월</button>
+              </li>
+              <li>
+                <button type="button">4월</button>
+              </li>
+              <li>
+                <button type="button" class="active">5월</button>
+              </li>
+              <li>
+                <button type="button" disabled>6월</button>
+              </li>
+              <li>
+                <button type="button" disabled>7월</button>
+              </li>
+              <li>
+                <button type="button" disabled>8월</button>
+              </li>
+              <li>
+                <button type="button" disabled>9월</button>
+              </li>
+              <li>
+                <button type="button" disabled>10월</button>
+              </li>
+              <li>
+                <button type="button" disabled>11월</button>
+              </li>
+              <li>
+                <button type="button" disabled>12월</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //기간 팝업 -->
+
+    <!-- 광고보상 팝업 -->
+    <div id="modal-popup-01" class="modal modal-slide type-title">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="head-line" onclick="modalCloseSlide();"></div>
+          <div class="modal-head">
+            <p class="modal-head-title">비상금 보관하고 라운드 로또 당첨!</p>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="reward-wrap">
+                <img
+                  src="../../images/pedometer/coin.png"
+                  alt="동전"
+                  class="img-reward"
+                />
+                <p class="txt-reward">3,000원</p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              id=""
+              onclick="modalCloseSlide();"
+              class="btn btn-confirm"
+            >
+              지금 찾으러 가기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //광고보상 팝업 -->
+
+    <!-- 숨기기 팝업 -->
+    <div
+      id="modal-popup-add"
+      class="modal modal-slide type-title type1"
+      data-mode="add"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title text-left">비상금 숨기기</p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="coupon-wrap">
+                <ul class="coupon-list">
+                  <li class="coupon-item selected">
+                    <label for="checkbox1">
+                      <span class="checkbox check-icon">
+                        <input
+                          type="checkbox"
+                          name="checkbox1"
+                          id="checkbox1"
+                          checked
+                        />
+                      </span>
+                      <div class="coupon-info">
+                        <p class="amount"><strong>10,000</strong>원</p>
+                        <p class="from">From.홍*동</p>
+                        <p class="desc">일만원 상품권</p>
+                        <p class="date">2025년 10월 13일까지</p>
+                      </div></label
+                    >
+                  </li>
+                  <li class="coupon-item selected">
+                    <label for="checkbox2">
+                      <span class="checkbox check-icon">
+                        <input
+                          type="checkbox"
+                          name="checkbox2"
+                          id="checkbox2"
+                          checked
+                        />
+                      </span>
+                      <div class="coupon-info">
+                        <p class="amount"><strong>50,000</strong>원</p>
+                        <p class="from">From.홍*동</p>
+                        <p class="desc">오만원 상품권</p>
+                        <p class="date">2025년 10월 13일까지</p>
+                      </div></label
+                    >
+                  </li>
+                  <li class="coupon-item selected">
+                    <label for="checkbox3">
+                      <span class="checkbox check-icon">
+                        <input
+                          type="checkbox"
+                          name="checkbox3"
+                          id="checkbox3"
+                          checked
+                        />
+                      </span>
+                      <div class="coupon-info">
+                        <p class="amount"><strong>10,000</strong>원</p>
+                        <p class="from">From.홍*동</p>
+                        <p class="desc">일만원 상품권</p>
+                        <p class="date">2025년 10월 13일까지</p>
+                      </div></label
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- 버튼 -->
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="btn-agree11"
+              class="btn-confirm disabled"
+              disabled
+            >
+            <span class="btn-amount">0원 숨기기</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //숨기기 팝업 -->
+    <!-- 빼기 팝업 -->
+    <div
+      id="modal-popup-minus"
+      class="modal modal-slide type-title type1"
+      data-mode="minus"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title text-left">비상금 빼기</p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="coupon-wrap">
+                <ul class="coupon-list">
+                  <li class="coupon-item selected">
+                    <label for="checkbox1">
+                      <span class="checkbox check-icon">
+                        <input
+                          type="checkbox"
+                          name="checkbox1"
+                          id="checkbox1"
+                          checked
+                        />
+                      </span>
+                      <div class="coupon-info">
+                        <p class="amount"><strong>10,000</strong>원</p>
+                        <p class="from">From.홍*동</p>
+                        <p class="desc">일만원 상품권</p>
+                        <p class="date">2025년 10월 13일까지</p>
+                      </div></label
+                    >
+                  </li>
+                  <li class="coupon-item">
+                    <label for="checkbox2">
+                      <span class="checkbox check-icon">
+                        <input
+                          type="checkbox"
+                          name="checkbox2"
+                          id="checkbox2"
+                        />
+                      </span>
+                      <div class="coupon-info">
+                        <p class="amount"><strong>50,000</strong>원</p>
+                        <p class="from">From.홍*동</p>
+                        <p class="desc">오만원 상품권</p>
+                        <p class="date">2025년 10월 13일까지</p>
+                      </div></label
+                    >
+                  </li>
+                  <li class="coupon-item">
+                    <label for="checkbox3">
+                      <span class="checkbox check-icon">
+                        <input
+                          type="checkbox"
+                          name="checkbox3"
+                          id="checkbox3"
+                        />
+                      </span>
+                      <div class="coupon-info">
+                        <p class="amount"><strong>10,000</strong>원</p>
+                        <p class="from">From.홍*동</p>
+                        <p class="desc">일만원 상품권</p>
+                        <p class="date">2025년 10월 13일까지</p>
+                      </div></label
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- 버튼 -->
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="btn-agree22"
+              class="btn-confirm"
+              onclick="modalCloseSlide(); modalOpen('modal-minus-check')"
+            >
+              <span class="btn-amount">0원 빼기</span>
+              <span class="pop-text"
+                >비상금을 빼면 상품권으로 다시 전환돼요!</span
+              >
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //빼기 팝업 -->
+     <!-- [2025.05.28] 변경 시작 -->
+    <!-- common prompt -->
+    <div id="modal-minus-check" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="promptTitle2">정말 보관함에서 비상금을 뺄까요?</h3>
+            <p id="promptContents2">
+              비상금 빼기를 누르면 비상금 전용 혜택을<br />모두 잃게 돼요.
+            </p>
+          </div>
+          <div class="modal-footer type2">
+            <button
+              type="button"
+              id=""
+              onclick="modalCloseAlert();"
+              class="btn btn-cancel"
+            >
+              취소
+            </button>
+            <button
+              type="button"
+              id=""
+              onclick="modalCloseAlert(); modalToastOpen('toast-minus-complete');"
+              class="btn btn-confirm"
+            >
+              비상금 빼기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //common prompt -->
+    <!-- common prompt -->
+    <div id="commonPrompt" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="promptTitle"></h3>
+            <p id="promptContents"></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalCloseAlert();"
+              class="btn btn-cancel"
+            >
+              취소
+            </button>
+            <button
+              type="button"
+              onclick="modalCloseAlert();"
+              id="promptOk"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //common prompt -->
+    <!-- [2025.05.28] 변경 끝 -->
+
+    <!-- 대표 계좌 변경 토스트 모달 -->
+    <div id="toast-minus-complete" class="modal-toast">
+      <p>비상금 보관함에서 빼기를 완료했어요!</p>
+    </div>
+    <!-- //대표 계좌 변경 토스트 모달 -->
+  </body>
+  <script>
+    window.addEventListener('load', function () {
+      modalOpenSlide('modal-popup-add');
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const listContainer = document.querySelector('.list');
+      const addButtonWrap = document.querySelector('.add-view-btn-wrap');
+      const addButton = document.querySelector('.add-view-btn');
+
+      // 샘플 list-item 생성 함수
+      function createListItem() {
+        const item = document.createElement('div');
+        item.className = 'list-item';
+        item.innerHTML = `
+        <div class="top-wrap flex items-center">
+          <span class="date-text">03.20 오후 11:45</span>
+          <span class="product">휘슬 상품권</span>
+        </div>
+        <div class="mid-wrap flex items-center">
+          <div class="label">비상금 숨기기</div>
+          <div class="point">10,000원</div>
+        </div>
+      `;
+        return item;
+      }
+
+      // 버튼 클릭 시 10개 추가
+      addButton.addEventListener('click', function () {
+        for (let i = 0; i < 10; i++) {
+          const newItem = createListItem();
+          listContainer.insertBefore(newItem, addButtonWrap);
+        }
+        checkListCount(); // 버튼 클릭 후에도 다시 체크
+      });
+
+      // 리스트 개수 체크 → 10개 이하이면 버튼 숨김
+      function checkListCount() {
+        const currentItems =
+          listContainer.querySelectorAll('.list-item').length;
+        if (currentItems < 10) {
+          addButtonWrap.style.display = 'none';
+        } else {
+          addButtonWrap.style.display = 'block';
+        }
+      }
+
+      // 최초 실행
+      checkListCount();
+    });
+
+    function setupCouponModals() {
+      $('.modal[data-mode]').each(function () {
+        const $modal = $(this);
+        const mode = $modal.data('mode'); // add or minus
+        const btn = $modal.find('.btn-confirm');
+
+        function updateTotalAmount() {
+          let totalAmount = 0;
+          $modal
+            .find('.coupon-list input[type="checkbox"]:checked')
+            .each(function () {
+              const amountText = $(this)
+                .closest('.coupon-item')
+                .find('.amount strong')
+                .text()
+                .replace(/,/g, '');
+              totalAmount += parseInt(amountText, 10);
+            });
+
+          if (totalAmount > 0) {
+            btn
+              .find('.btn-amount')
+              .text(
+                `${totalAmount.toLocaleString()}원 ${
+                  mode === 'add' ? '숨기기' : '빼기'
+                }`
+              );
+            btn.removeClass('disabled').prop('disabled', false);
+          } else {
+            btn
+              .find('.btn-amount')
+              .text(`0원 ${mode === 'add' ? '숨기기' : '빼기'}`);
+            btn.addClass('disabled').prop('disabled', true);
+          }
+        }
+
+        // coupon-item 클릭시 체크박스 토글
+        $modal.find('.coupon-list .coupon-item').on('click', function (e) {
+          if (!$(e.target).is('input[type="checkbox"]')) {
+            const checkbox = $(this).find('input[type="checkbox"]');
+            checkbox
+              .prop('checked', !checkbox.prop('checked'))
+              .trigger('change');
+          }
+        });
+
+        // 체크박스 상태 변경 시 selected 클래스 관리
+        $modal
+          .find('.coupon-list input[type="checkbox"]')
+          .on('change', function () {
+            const item = $(this).closest('.coupon-item');
+            item.toggleClass('selected', $(this).is(':checked'));
+            updateTotalAmount();
+          });
+
+        // 초기 적용
+        updateTotalAmount();
+      });
+    }
+
+    // 실행
+    setupCouponModals();
+  </script>
+</html>

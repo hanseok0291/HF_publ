@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="../../css/jquery-ui.css" />
+    <link rel="stylesheet" href="../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../css/promotion.css" />
+    <script src="../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/design_renewal.js" defer="defer"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <h2 class="page-title"></h2>
+            <!-- [2025.05.28] 변경 시작 -->
+            <button
+              type="button"
+              class="btn-close js-change-btn"
+              data-title="숨기는 재미가 기다리고 있어요!"
+              data-message="그래도 종료할까요?"
+              data-cancel="취소"
+              data-confirm="확인"
+            >
+              <i class="icon-close icon-close-white"></i>
+            </button>
+            <!-- [2025.05.28] 변경 끝 -->
+          </div>
+        </div>
+        <!-- headline -->
+        <div class="headline">
+          <p>
+            어디에도 들키지 않을 나의 비상금<br />
+            <strong>안전하게 <span>[ 보관 ]</span> 하세요!</strong>
+          </p>
+        </div>
+        <!-- //headline -->
+        <!-- float img -->
+        <div class="float-wrap">
+          <span class="img img-1"></span>
+          <span class="img img-2"></span>
+          <span class="img img-3"></span>
+        </div>
+        <!-- float img -->
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <!-- container -->
+        <div class="container">
+          <!-- section -->
+          <div class="section">
+            <div class="sec sec-1 scroll-fade-up">
+              <p class="title">
+                <span class="color">휘슬 상품권</span> 구매하고
+              </p>
+              <p class="img"></p>
+              <p class="line"></p>
+              <div>
+                <ul class="list">
+                  <li>
+                    휘슬 상품권은 휘슬 서비스에서 세차부터 검사까지 <br />
+                    자유롭게 사용 가능한 상품권이에요
+                  </li>
+                  <li>향후 보관할 수 있는 다양한 재화가 추가 될 수 있어요</li>
+                </ul>
+              </div>
+            </div>
+            <div class="sec sec-2 scroll-fade-up">
+              <p class="title">
+                비상금에 <span class="color">안전하게 보관</span>하면 끝 !
+              </p>
+              <p class="sub-title">매일 라운드 로또 1줄은 덤으로 드려요</p>
+              <p class="img"></p>
+            </div>
+            <!-- [2025.05.26] 변경 시작 -->
+            <div class="sec sec-3 scroll-fade-up">
+              <p class="title">
+                쉿! <span class="color">나만 알 수 있어요</span>
+              </p>
+              <p class="sub-title">자산 조회 서비스에도 보이지 않아요</p>
+              <p class="img"></p>
+            </div>
+            <!-- [2025.05.26] 변경 끝 -->
+          </div>
+          <!-- //section -->
+        </div>
+        <!-- //container -->
+
+        <!-- bottom area -->
+        <div class="bottom-area bottom-area-fixed">
+          <!-- container -->
+          <div class="container vertical btn-wrap">
+            <!--<button type="button" id="send" class="btn" disabled>다음</button>-->
+            <!-- <button type="button" id="send" class="btn">다음</button> -->
+            <a class="btn btn-confirm" onclick="modalOpenSlide('modal-empty');">
+              비상금 보관함 가기
+              <div class="balloon">
+                <p>상품권 보관하고 매일 라운드 로또 받아요!</p>
+              </div>
+            </a>
+            <button type="button" class="btn btn-cancel">
+              휘슬 상품권 구매하기
+            </button>
+          </div>
+          <!-- //container -->
+        </div>
+        <!-- //bottom area -->
+      </div>
+      <!-- //content -->
+    </div>
+    <!-- //wrap -->
+
+    <!-- [2025.05.26] 변경 시작 -->
+    <!-- 상품권없음 팝업 -->
+    <div id="modal-empty" class="modal modal-slide type-title">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="head-line" onclick="modalCloseSlide();"></div>
+          <div class="modal-head">
+            <p class="modal-head-title text-center">
+              보유하고 있는 상품권이 없어요!
+            </p>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="reward-wrap">
+                <img
+                  src="../../images/main/modal-money.png"
+                  alt="상품권"
+                  class="img-reward"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              id=""
+              onclick="modalCloseSlide(); modalOpenSlide('modal-select-title');"
+              class="btn btn-confirm"
+            >
+              휘슬 상품권 구매하기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //상품권없음 팝업 -->
+    <!-- [2025.05.26] 변경 끝 -->
+
+    <!-- common alert -->
+    <div id="commonAlert" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="alertTitle"></h3>
+            <p id="alertContents"></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalClose();"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //common alert -->
+
+    <!-- common prompt -->
+    <div id="commonPrompt" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="promptTitle"></h3>
+            <p id="promptContents"></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalCloseAlert();"
+              class="btn btn-cancel"
+            >
+              취소
+            </button>
+            <button
+              type="button"
+              onclick="modalCloseAlert();"
+              id="promptOk"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //common prompt -->
+
+    <!-- [2025.05.26] 변경 시작 -->
+    <!-- select modal list -->
+    <div id="modal-select-title" class="modal modal-slide type-title">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title">휘슬을 이용하려면 동의가 필요해요</p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- 전체 동의 체크박스 -->
+            <div class="check-all-box container terms-list-box">
+              <!-- 체크, 접힌상태면 open 클래스 제거 -->
+              <div class="terms-wrap">
+                <div class="check-all top">
+                  <span class="checkbox">
+                    <input
+                      type="checkbox"
+                      name="checkbox_all2"
+                      id="checkbox_all2"
+                    />
+                    <label for="checkbox_all2"
+                      >휘슬 서비스 약관 및 동의사항</label
+                    >
+                  </span>
+                  <!-- 체크, 접힌상태면 open 클래스 제거 -->
+                  <button type="button" class="btn-toggle"></button>
+                </div>
+                <!-- 전체 동의 체크박스 -->
+                <ul class="terms-list terms-block-list">
+                  <li>
+                    <div class="checkbox-block-group">
+                      <span class="checkbox child">
+                        <input
+                          type="checkbox"
+                          id="checkbox4_group1_1"
+                          data-group="checkbox4_group1"
+                          checked
+                        />
+                        <label for="checkbox4_group1_1">
+                          (필수) 휘슬 서비스 이용약관
+                          <button
+                            type="button"
+                            class="arrow-right js-open-terms"
+                            onclick="modalOpen('noticeDetail')"
+                            data-toggle="modal"
+                            data-target="#noticeDetail"
+                          ></button>
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="checkbox-block-group">
+                      <span class="checkbox child">
+                        <input
+                          type="checkbox"
+                          id="checkbox4_group1_2"
+                          data-group="checkbox4_group1"
+                        />
+                        <label for="checkbox4_group1_2">
+                          (필수) 위치기반서비스 이용약관
+                          <button
+                            type="button"
+                            class="arrow-right js-open-terms"
+                            onclick="modalOpen('noticeDetail')"
+                            data-toggle="modal"
+                            data-target="#noticeDetail"
+                          ></button>
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="checkbox-block-group">
+                      <span class="checkbox child">
+                        <input
+                          type="checkbox"
+                          id="checkbox4_group1_3"
+                          data-group="checkbox4_group1"
+                        />
+                        <label for="checkbox4_group1_3">
+                          (필수) 개인정보 수집 및 이용 동의
+                          <button
+                            type="button"
+                            class="arrow-right js-open-terms"
+                            onclick="modalOpen('noticeDetail')"
+                            data-toggle="modal"
+                            data-target="#noticeDetail"
+                          ></button>
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="checkbox-block-group">
+                      <span class="checkbox child">
+                        <input
+                          type="checkbox"
+                          id="checkbox4_group1_4"
+                          data-group="checkbox4_group1"
+                        />
+                        <label for="checkbox4_group1_4">
+                          (필수) 개인정보 제3자 제공 및 위탁 동의
+                          <button
+                            type="button"
+                            class="arrow-right js-open-terms"
+                            onclick="modalOpen('noticeDetail')"
+                            data-toggle="modal"
+                            data-target="#noticeDetail"
+                          ></button>
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="checkbox-block-group">
+                      <span class="checkbox child">
+                        <input
+                          type="checkbox"
+                          id="checkbox4_group1_5"
+                          data-group="checkbox4_group1"
+                        />
+                        <label for="checkbox4_group1_5">
+                          (필수) 개인정보 제3자 제공 동의 (휘슬 연계가입)
+                          <button
+                            type="button"
+                            class="arrow-right js-open-terms"
+                            onclick="modalOpen('noticeDetail')"
+                            data-toggle="modal"
+                            data-target="#noticeDetail"
+                          ></button>
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- 동의하기 버튼 -->
+            <div class="modal-footer">
+              <button
+                type="button"
+                id="btn-agree1"
+                class="btn-confirm disabled"
+                disabled
+              >
+                동의하고 계속하기
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- [2025.05.26] 변경 끝 -->
+
+    <script>
+      const targets = document.querySelectorAll('.scroll-fade-up');
+
+      const observer = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              // 순차적으로 delay 주기
+              setTimeout(() => {
+                entry.target.classList.add('active');
+              }, index * 300); // 300ms씩 순차 delay
+              observer.unobserve(entry.target); // 1번만 실행하고 제거
+            }
+          });
+        },
+        {
+          threshold: 0.3,
+        }
+      );
+
+      targets.forEach((target) => observer.observe(target));
+
+      window.addEventListener('load', function () {
+        // 에러 모달
+        // modalOpenSlide('modal-select-title');
+        // modalOpenSlide('modal-empty');
+      });
+
+      // 250526 퍼블리싱 수정 시작
+      document.addEventListener('DOMContentLoaded', function () {
+        const checkboxAll2 = document.getElementById('checkbox_all2');
+        const childCheckboxes = document.querySelectorAll(
+          'input[type="checkbox"][data-group="checkbox4_group1"]'
+        );
+        const toggleBtn = document.querySelector(
+          '#modal-select-title .check-all .btn-toggle'
+        );
+        const termsList = document.querySelector(
+          '#modal-select-title .terms-list.terms-block-list'
+        );
+
+        // 상태 저장용
+        let isManuallyToggled = false;
+
+        checkboxAll2.checked = true;
+        childCheckboxes.forEach((cb) => (cb.checked = true));
+
+        updateAgreeButton();
+        updateTermsListVisibility();
+
+        checkboxAll2.addEventListener('change', () => {
+          childCheckboxes.forEach((cb) => (cb.checked = checkboxAll2.checked));
+          updateAgreeButton();
+          // 수동으로 열었더라도 checkbox가 바뀌면 자동 통제 우선
+          isManuallyToggled = false;
+          updateTermsListVisibility();
+        });
+
+        childCheckboxes.forEach((cb) => {
+          cb.addEventListener('change', () => {
+            const allChecked = Array.from(childCheckboxes).every(
+              (i) => i.checked
+            );
+            checkboxAll2.checked = allChecked;
+            updateAgreeButton();
+            // 하위가 바뀌어도 checkbox_all2에 따라 자동 제어
+            isManuallyToggled = false;
+            updateTermsListVisibility();
+          });
+        });
+
+        if (toggleBtn) {
+          toggleBtn.addEventListener('click', () => {
+            const isOpen = toggleBtn.classList.contains('open');
+            isManuallyToggled = true;
+
+            if (isOpen) {
+              toggleBtn.classList.remove('open');
+              termsList.style.display = 'none';
+              // ✅ check-all에서도 open 제거
+              toggleBtn.closest('.check-all').classList.remove('open');
+            } else {
+              toggleBtn.classList.add('open');
+              termsList.style.display = '';
+              // ✅ check-all에 open 추가
+              toggleBtn.closest('.check-all').classList.add('open');
+            }
+          });
+        }
+
+        function updateAgreeButton() {
+          const agreeButton = document.getElementById('btn-agree1');
+          const allChecked = Array.from(childCheckboxes).every(
+            (i) => i.checked
+          );
+          agreeButton.disabled = !allChecked;
+          agreeButton.classList.toggle('disabled', !allChecked);
+        }
+
+        function updateTermsListVisibility() {
+          if (!termsList || !toggleBtn) return;
+
+          if (!isManuallyToggled) {
+            if (checkboxAll2.checked) {
+              termsList.style.display = 'none';
+              toggleBtn.classList.remove('open');
+            } else {
+              termsList.style.display = '';
+              toggleBtn.classList.add('open');
+            }
+          }
+        }
+      });
+      // 250526 퍼블리싱 수정 끝
+    </script>
+  </body>
+</html>

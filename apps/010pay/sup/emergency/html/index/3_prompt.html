@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="../../css/jquery-ui.css" />
+    <link rel="stylesheet" href="../../css/common_renewal.css" />
+    <script src="../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/design_renewal.js" defer="defer"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <button type="button" class="btn-back left-0">
+              <i class="icon-back"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- //header -->
+      <!-- content -->
+      <div id="content">
+        <!-- container -->
+        <div class="container terms-height-full">
+          <!-- headline -->
+          <div class="headline pt-0">
+            <p class="title">비상비상~ 비상금</p>
+            <p class="sub-title">서브 타이틀 영역</p>
+          </div>
+          <!-- //headline -->
+
+          <!-- section -->
+          <div class="section">
+          </div>
+          <!-- //section -->
+        </div>
+        <!-- //container -->
+
+      </div>
+      <!-- //content -->
+    </div>
+    <!-- //wrap -->
+
+    <!-- loading -->
+    <div class="modal modal-loading">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="loading">
+            <span class="loading-bar"></span>
+            <span class="loading-bar"></span>
+            <span class="loading-bar"></span>
+          </div>
+          <span class="sr-only">로딩 중</span>
+        </div>
+      </div>
+    </div>
+    <!-- //loading -->
+
+    <!-- common prompt -->
+    <div id="commonPrompt" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="promptTitle"></h3>
+            <p id="promptContents"></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="promptNo"
+              onclick="modalCloseAlert();"
+              class="btn btn-cancel"
+            >
+              취소
+            </button>
+            <button
+              type="button"
+              id="promptOk"
+              onclick="modalCloseAlert();"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //common prompt -->
+
+    <!-- modal - 공지사항 상세 -->
+    <div
+      id="noticeDetail"
+      class="modal modal-full modal-terms"
+      tabindex="0"
+      aria-labelledby="noticeTitle"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head" tabindex="0">
+            <div class="container">
+              <div class="header-box">
+                <h2 class="page-title"></h2>
+                <button
+                  type="button"
+                  class="btn btn-close js-modal-close"
+                  data-dismiss="modal"
+                  aria-label="모달 닫기"
+                >
+                  <i class="icon-close"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <!-- 게시판 상세 -->
+              <div class="detail-wrap">
+                <h2 class="title-text big">
+                  <span>라운드 개인정보 수집 및 이용 동의</span>
+                </h2>
+                <h3 class="title-text sub">
+                  <span>수집하는 개인정보 항목</span>
+                </h3>
+                <ul class="inner-text">
+                  <li>걸음 수</li>
+                </ul>
+                <h3 class="title-text sub"><span>수집 및 이용 목적</span></h3>
+                <ul class="inner-text">
+                  <li>걸음 수 기반 리워드 지급</li>
+                </ul>
+                <h3 class="title-text sub">
+                  <span>개인정보 보유 및 이용기간</span>
+                </h3>
+                <ul class="inner-text">
+                  <li>
+                    서비스 해지, 회원 탈퇴 등 이용목적 달성시 지체없이 파기
+                  </li>
+                </ul>
+                <h3 class="title-text sub"><span>동의 거부권</span></h3>
+                <ul class="inner-text">
+                  <li>
+                    개인정보의 수집 및 이용에 대한 동의를 거부하실 수 있으나, 이
+                    경우 서비스 이용이 제한됩니다.
+                  </li>
+                </ul>
+              </div>
+              <!-- //게시판 상세 -->
+            </div>
+          </div>
+          <!-- <div class="modal-footer">
+                        <div class="btn-wrap">
+                            <button type="button" class="btn btn-confirm" data-dismiss="modal">확인</button>
+                        </div>
+                    </div> -->
+        </div>
+      </div>
+    </div>
+    <!-- //modal - 공지사항 상세 -->
+
+    <!-- 세로 버튼 모달 -->
+    <div id="commonExecute1" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="executeTitle" class="modal-title">
+              로그인 후 이용할 수 있어요
+            </h3>
+            <div id="executeContents" class="highlight-text sub-text">
+              로그인 하고 라운드에서<br />
+              다양한 기능을 이용해보세요!
+            </div>
+          </div>
+          <div class="modal-footer vertical">
+            <button
+              type="button"
+              id="executeOk"
+              onclick="modalCloseAlert();"
+              class="btn btn-confirm"
+            >
+              라운드 시작하기
+            </button>
+            <button
+              type="button"
+              id="executeNo"
+              onclick="modalCloseAlert();"
+              class="btn btn-cancel"
+            >
+              닫기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //세로 버튼 모달 -->
+
+    <!-- 세로 버튼 모달 -->
+    <div id="commonExecute2" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="executeTitle" class="modal-title">본인 인증이 필요해요</h3>
+            <div id="executeContents" class="highlight-text sub-text">
+              해당 기능을 이용하려면<br />
+              휴대폰 본인인증이 필요합니다.
+            </div>
+          </div>
+          <div class="modal-footer vertical">
+            <button
+              type="button"
+              id="executeOk"
+              onclick="modalCloseAlert();"
+              class="btn btn-confirm"
+            >
+              본인인증 시작하기
+            </button>
+            <button
+              type="button"
+              id="executeNo"
+              onclick="modalCloseAlert();"
+              class="btn btn-cancel"
+            >
+              닫기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //세로 버튼 모달 -->
+
+    <!-- select modal list -->
+    <div id="modal-qa" class="modal modal-slide type-title">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p>안전한 보관을 위해 답변해주세요!</p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="form-wrap">
+                <p class="question">가장 좋아하는 색은?</p>
+                <input
+                  type="text"
+                  id="favColorInput"
+                  class="input-text"
+                  placeholder="답변을 작성해주세요"
+                  maxlength="20"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="btn-submit-color"
+              class="btn-confirm disabled"
+              disabled
+            >
+              제출하기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // modalOpen('commonExecute1');
+      // modalOpen("commonExecute2");
+      // modalOpenSlide('modal-select-title');
+      modalOpenSlide('modal-qa');
+
+      const group1All = document.getElementById('checkbox2_group1_all');
+      const group1Items = document.querySelectorAll(
+        'input[name^="checkbox1_group2_"]'
+      );
+
+      const group2All = document.getElementById('checkbox2_group2_all');
+      const group2Items = document.querySelectorAll(
+        'input[name^="checkbox1_group3_"]'
+      );
+
+      // 전체 체크 → 세부 항목 전체 체크/해제
+      group1All.addEventListener('change', () => {
+        group1Items.forEach((cb) => (cb.checked = group1All.checked));
+      });
+
+      group2All.addEventListener('change', () => {
+        group2Items.forEach((cb) => (cb.checked = group2All.checked));
+      });
+
+      // 세부 항목 변경 → 전체 항목 체크 상태 갱신
+      group1Items.forEach((cb) => {
+        cb.addEventListener('change', () => {
+          const allChecked = Array.from(group1Items).every((i) => i.checked);
+          group1All.checked = allChecked;
+        });
+      });
+
+      group2Items.forEach((cb) => {
+        cb.addEventListener('change', () => {
+          const allChecked = Array.from(group2Items).every((i) => i.checked);
+          group2All.checked = allChecked;
+        });
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleButtons = document.querySelectorAll('.btn-toggle');
+
+      toggleButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          const termsList = button.parentElement.nextElementSibling;
+          const isOpen = button.classList.contains('open');
+
+          if (isOpen) {
+            button.classList.remove('open');
+            termsList.style.display = 'none';
+          } else {
+            button.classList.add('open');
+            termsList.style.display = '';
+          }
+        });
+      });
+    });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('favColorInput');
+    const submitBtn = document.getElementById('btn-submit-color');
+
+    input.addEventListener('input', () => {
+      const value = input.value.trim();
+      if (value.length > 0) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('disabled');
+      } else {
+        submitBtn.disabled = true;
+        submitBtn.classList.add('disabled');
+      }
+    });
+
+    submitBtn.addEventListener('click', () => {
+      const color = input.value.trim();
+      if (color) {
+        console.log('제출된 색상:', color); // 실제 동작 연결 필요시 여기에 ajax 등 추가
+        modalCloseSlide('modal-qa'); // 모달 닫기
+      }
+    });
+  });
+
+  </script>
+</html>

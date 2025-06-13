@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="../../../css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../../css/reward-history.css" />
+    <script src="../../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../../js/jquery-ui.js"></script>
+    <script src="../../../js/swiper.js"></script>
+    <script src="../../../js/design_renewal.js" defer="defer"></script>
+  </head>
+  <body>
+    <!-- wrap -->
+    <div id="wrap" class="reward-history">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <button type="button" class="btn-back js-change-btn left-0">
+              <i class="icon-back"></i>
+            </button>
+            <h2 class="page-title">적립 내역</h2>
+          </div>
+        </div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <div class="tab-wrap">
+          <div class="tab active" data-tab="shopping">쇼핑지원금</div>
+          <div class="tab" data-tab="cash">캐시</div>
+        </div>
+
+        <div class="tab-content-wrap">
+          <div class="container">
+            <!-- 쇼핑지원금 탭 -->
+            <div class="tab-content active" id="shopping">
+              <div class="card-box">
+                <div class="top">
+                  <div class="title"><i class="icon icon-s"></i>쇼핑지원금</div>
+                  <div class="amount">5,000원</div>
+                </div>
+                <div class="desc">
+                  <p class="info-text">30일 내 소멸 예정</p>
+                  <p class="price">5,000원</p>
+                </div>
+              </div>
+
+              <div class="month-wrap">
+                <button type="button" class="prev-btn icon-arrow-left size-16">
+                  이전
+                </button>
+                <button
+                  type="button"
+                  class="month-text"
+                  onclick="modalOpenSlide('modal-period')"
+                >
+                  7월
+                </button>
+                <button type="button" class="next-btn icon-arrow-right size-16">
+                  다음
+                </button>
+              </div>
+              
+
+              <div class="trade-tab-wrap">
+                <ul class="tab-list">
+                  <li>
+                    <button type="button" class="active">적립</button>
+                  </li>
+                  <li>
+                    <button type="button">소멸</button>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="empty-list">
+                <p>조회된 내역이 없습니다.</p>
+              </div>
+
+              <!-- <div class="list">
+                <div class="list-item">
+                  <div class="date">22.10.25 08:21</div>
+                  <div class="flex items-center">
+                    <div class="label">쇼핑지원금</div>
+                    <div class="desc">
+                      (기본결정) 첫번째
+                      리워드리워드리워드리워드리워드리워드리워드리워드리워드
+                    </div>
+                    <div class="point"><i class="icon icon-s"></i>230</div>
+                  </div>
+                  <div class="bottom-text">2025.08.31 소멸 예정</div>
+                </div>
+
+                <div class="list-item">
+                  <div class="date">22.10.25 08:21</div>
+                  <div class="flex items-center">
+                    <div class="label">쇼핑지원금</div>
+                    <div class="desc">정기소멸</div>
+                    <div class="point"><i class="icon icon-s"></i>-1,000</div>
+                  </div>
+                </div>
+
+                <div class="list-item">
+                  <div class="date">22.10.25 08:21</div>
+                  <div class="flex items-center">
+                    <div class="label">쇼핑지원금</div>
+                    <div class="desc">정기소멸</div>
+                    <div class="point"><i class="icon icon-s"></i>-1,000</div>
+                  </div>
+                </div>
+              </div> -->
+
+            </div>
+            <!-- //쇼핑지원금 탭 -->
+
+            <!-- 캐시 탭 -->
+            <div class="tab-content" id="cash">
+              <div class="card-box">
+                <div class="top">
+                  <div class="title"><i class="icon icon-c"></i>캐시</div>
+                  <div class="amount">10,000C</div>
+                </div>
+                <div class="desc">
+                  <p class="info-text">이번달 소멸 예정</p>
+                  <p class="price">5,000C</p>
+                </div>
+              </div>
+
+              <div class="month-wrap">
+                <button type="button" class="prev-btn icon-arrow-left size-16">
+                  이전
+                </button>
+                <button
+                  type="button"
+                  class="month-text"
+                  onclick="modalOpenSlide('modal-period')"
+                >
+                  7월
+                </button>
+                <button type="button" class="next-btn icon-arrow-right size-16">
+                  다음
+                </button>
+              </div>
+              
+              <div class="trade-tab-wrap">
+                <ul class="tab-list">
+                  <li>
+                    <button type="button" class="active">소멸</button>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="empty-list">
+                <p>조회된 내역이 없습니다.</p>
+              </div>
+
+              <!-- <div class="list">
+                <div class="list-item">
+                  <div class="flex items-center">
+                    <div>
+                      <div class="label">2025년 5월 소멸예정 캐시</div>
+                      <div class="bottom-text">2025.08.31 소멸 예정</div>
+                    </div>
+                    <div class="point">
+                      <i class="icon icon-c"></i>-999,000C
+                    </div>
+                  </div>
+                </div>
+                <div class="list-item">
+                  <div class="flex items-center">
+                    <div>
+                      <div class="label">2025년 5월 소멸예정 캐시</div>
+                      <div class="bottom-text">2025.08.31 소멸 예정</div>
+                    </div>
+                    <div class="point">
+                      <i class="icon icon-c"></i>-999,000C
+                    </div>
+                  </div>
+                </div>
+                <div class="list-item">
+                  <div class="flex items-center">
+                    <div>
+                      <div class="label">2025년 5월 소멸예정 캐시</div>
+                      <div class="bottom-text">2025.08.31 소멸 예정</div>
+                    </div>
+                    <div class="point">
+                      <i class="icon icon-c"></i>-999,000C
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+            </div>
+            <!-- //캐시 탭 -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 기간 팝업 -->
+    <!-- [2025.05.22] 변경 시작 -->
+    <div
+      id="modal-period"
+      class="modal modal-slide type-title modal-period"
+    >
+    <!-- [2025.05.22] 변경 끝 -->
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head round-btn">
+            <button type="button" class="btn btn-close js-modal-close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="year-wrap">
+              <button type="button" class="prev-btn icon-arrow-left size-20">
+                이전
+              </button>
+              <span class="year-text">2024년</span>
+              <button type="button" class="next-btn icon-arrow-right size-20">
+                다음
+              </button>
+            </div>
+            <ul class="month-list-wrap">
+              <li>
+                <button type="button" class="active">1월</button>
+              </li>
+              <li>
+                <button type="button">2월</button>
+              </li>
+              <li>
+                <button type="button">3월</button>
+              </li>
+              <li>
+                <button type="button">4월</button>
+              </li>
+              <li>
+                <button type="button">5월</button>
+              </li>
+              <li>
+                <button type="button">6월</button>
+              </li>
+              <li>
+                <button type="button">7월</button>
+              </li>
+              <li>
+                <button type="button">8월</button>
+              </li>
+              <li>
+                <button type="button">9월</button>
+              </li>
+              <li>
+                <button type="button">10월</button>
+              </li>
+              <li>
+                <button type="button">11월</button>
+              </li>
+              <li>
+                <button type="button">12월</button>
+              </li>
+            </ul>
+          </div>
+          <!-- [2025.05.22] 변경 시작 -->
+          <!-- [2025.05.22] 변경 끝 -->
+        </div>
+      </div>
+    </div>
+    <!-- //기간 팝업 -->
+  </body>
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', function () {
+        const targetId = this.getAttribute('data-tab');
+
+        // 모든 탭/콘텐츠 초기화
+        tabs.forEach((t) => t.classList.remove('active'));
+        contents.forEach((c) => c.classList.remove('active'));
+
+        // 클릭된 탭, 해당 콘텐츠 활성화
+        this.classList.add('active');
+        document.getElementById(targetId).classList.add('active');
+      });
+    });
+
+    // select-box 클릭 시 filters-wrap 토글
+    const selectBox = document.querySelector('.select-box span'); // 텍스트 있는 select-box 대상
+    const filtersWrap = document.querySelector('.filters-wrap');
+
+    if (selectBox && filtersWrap) {
+      selectBox.addEventListener('click', function () {
+        filtersWrap.classList.toggle('active'); // 클래스 기반 토글
+        this.classList.toggle('active'); // span 태그에 active 클래스 토글
+      });
+    }
+
+    const tabButtons = document.querySelectorAll('.tab-list button');
+
+    tabButtons.forEach((button) => {
+      button.addEventListener('click', function () {
+        // 기존 active 클래스 제거
+        tabButtons.forEach((btn) => btn.classList.remove('active'));
+        // 클릭한 버튼에 active 추가
+        this.classList.add('active');
+      });
+    });
+
+    // DOM이 준비된 후 실행
+    document.addEventListener('DOMContentLoaded', function () {
+      const monthButtons = document.querySelectorAll('.month-list-wrap button');
+
+      monthButtons.forEach((button) => {
+        button.addEventListener('click', function () {
+          // 모든 버튼에서 active 제거
+          monthButtons.forEach((btn) => btn.classList.remove('active'));
+
+          // 클릭한 버튼에 active 추가
+          this.classList.add('active');
+        });
+      });
+    });
+
+    // [2025.05.23] 변경 시작
+    // DOM이 준비된 후 실행
+    document.addEventListener('DOMContentLoaded', function () {
+      const today = new Date();
+      const todayYear = today.getFullYear();
+      const todayMonth = today.getMonth() + 1;
+
+      // 탭별 상태
+      const tabStates = {
+        shopping: {
+          year: todayYear,
+          month: todayMonth,
+        },
+        cash: {
+          year: todayYear,
+          month: todayMonth,
+        },
+      };
+
+      let activeTab = 'shopping';
+
+      // 탭 버튼 관리
+      const tabs = document.querySelectorAll('.tab');
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', function () {
+          activeTab = this.dataset.tab;
+          updateAll(activeTab);
+        });
+      });
+
+      // 탭별 month-wrap 처리
+      const monthWraps = document.querySelectorAll('.month-wrap');
+      monthWraps.forEach((wrap) => {
+        const parentContent = wrap.closest('.tab-content');
+        const tabKey = parentContent.id;
+
+        const prevBtn = wrap.querySelector('.prev-btn');
+        const nextBtn = wrap.querySelector('.next-btn');
+        const monthTextButton = wrap.querySelector('.month-text');
+
+        prevBtn.addEventListener('click', function () {
+          const state = tabStates[tabKey];
+          if (state.month === 1) {
+            state.month = 12;
+          } else {
+            state.month--;
+          }
+          updateMonthText(tabKey, monthTextButton, nextBtn);
+        });
+
+        nextBtn.addEventListener('click', function () {
+          const state = tabStates[tabKey];
+          if (state.year === todayYear && state.month === todayMonth) return;
+          if (state.month === 12) {
+            state.month = 1;
+          } else {
+            state.month++;
+          }
+          updateMonthText(tabKey, monthTextButton, nextBtn);
+        });
+
+        // JS에서 직접 모달 열기 바인딩
+        monthTextButton.addEventListener('click', function () {
+          openModal(tabKey);
+        });
+      });
+
+      // modal-period 관련
+      const yearText = document.querySelector('.year-text');
+      const yearPrevBtn = document.querySelector('.year-wrap .prev-btn');
+      const yearNextBtn = document.querySelector('.year-wrap .next-btn');
+      const monthButtons = document.querySelectorAll('.month-list-wrap button');
+
+      const modal = document.getElementById('modal-period');
+
+      // 모달 열기
+      function openModal(tabKey) {
+        modal.classList.add('open');
+        activeTab = tabKey;
+        updateModal(tabStates[tabKey]);
+      }
+
+      // 모달 닫기
+      function closeModal() {
+        modal.classList.remove('open');
+      }
+
+      // 연도 변경 (modal)
+      yearPrevBtn.addEventListener('click', function () {
+        const state = tabStates[activeTab];
+        state.year--;
+        updateModal(state);
+      });
+
+      yearNextBtn.addEventListener('click', function () {
+        const state = tabStates[activeTab];
+        if (state.year < todayYear) {
+          state.year++;
+          updateModal(state);
+        }
+      });
+
+      // 월 버튼 클릭 (modal)
+      monthButtons.forEach((btn, index) => {
+        btn.addEventListener('click', function () {
+          const state = tabStates[activeTab];
+          if (btn.disabled) return;
+          state.month = index + 1;
+          updateModal(state);
+          updateMonthText(
+            activeTab,
+            document.querySelector(`#${activeTab} .month-text`),
+            document.querySelector(`#${activeTab} .next-btn`)
+          );
+          modalCloseSlide();
+        });
+      });
+
+      function updateModal(state) {
+        yearText.textContent = `${state.year}년`;
+        monthButtons.forEach((btn, index) => {
+          const monthNumber = index + 1;
+          btn.disabled = state.year === todayYear && monthNumber > todayMonth;
+          btn.classList.toggle('active', state.month === monthNumber);
+        });
+
+        if (state.year >= todayYear) {
+          yearNextBtn.classList.add('disabled');
+        } else {
+          yearNextBtn.classList.remove('disabled');
+        }
+      }
+
+      function updateMonthText(tabKey, monthTextButton, nextBtn) {
+        const state = tabStates[tabKey];
+        monthTextButton.textContent = `${state.month}월`;
+
+        if (state.year === todayYear && state.month === todayMonth) {
+          nextBtn.classList.add('disabled');
+        } else {
+          nextBtn.classList.remove('disabled');
+        }
+      }
+
+      function updateAll(tabKey) {
+        const wrap = document.querySelector(`#${tabKey} .month-wrap`);
+        const monthTextButton = wrap.querySelector('.month-text');
+        const nextBtn = wrap.querySelector('.next-btn');
+        updateMonthText(tabKey, monthTextButton, nextBtn);
+      }
+
+      // 초기 렌더링
+      updateAll('shopping');
+
+      document
+        .querySelector('.js-modal-close')
+        .addEventListener('click', closeModal);
+    });
+
+    const minYear = 2000;
+    const maxYear = 2099;
+
+    function updateYearText() {
+      yearText.textContent = `${currentYear}년`;
+      prevBtn.disabled = currentYear <= minYear;
+      nextBtn.disabled = currentYear >= maxYear;
+    }
+    // [2025.05.23] 변경 끝
+  </script>
+</html>

@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="../../../css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../../css/charge.css" />
+    <script src="../../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../../js/jquery-ui.js"></script>
+    <script src="../../../js/swiper.js"></script>
+    <script src="../../../js/design_renewal.js" defer="defer"></script>
+  </head>
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <button type="button" class="btn-back left-0">
+              <i class="icon-back"></i>
+            </button>
+            <h2 class="page-title">캐시 전환하기</h2>
+          </div>
+        </div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <!-- container -->
+        <div class="container">
+          <!-- headline -->
+          <!-- [2025.05.22] 변경 시작 -->
+          <div class="headline center">
+            <h2 class="title">
+              보유한 캐시가<br />
+              <span class="highlight">페이 포인트로 전환됩니다</span>
+            </h2>
+          </div>
+          <!-- [2025.05.22] 변경 끝 -->
+          <!-- //headline -->
+        </div>
+        <!-- //container -->
+        <!-- container -->
+        <div class="container charge-container">
+          <div class="input-wrap border-bottom-0">
+            <!-- 대기머니일때 border-bottom-0 클래스 추가 -->
+            <div
+              class="input-container label-n charge-input wait-input focus-on"
+            >
+              <input
+                type="tel"
+                class="custom-input focus"
+                placeholder="10,000C"
+                id="chargeAmount"
+                disabled
+              />
+              <label for="chargeAmount" class="floating-label">보유 캐시</label>
+              <div class="fake-label">
+                <p class="number"></p>
+                <span class="unit">10,000C</span>
+              </div>
+              <button type="button" class="icon icon-del js-text-del"></button>
+            </div>
+            <div
+              class="input-container label-n charge-input wait-input focus-on switch-input"
+            >
+              <input
+                type="tel"
+                class="custom-input focus"
+                placeholder="5,000원"
+                id="chargeAmount"
+                disabled
+              />
+              <label for="chargeAmount" class="floating-label"
+                >전환되는 <strong>페이 포인트</strong></label
+              >
+              <div class="fake-label">
+                <p class="number"></p>
+                <span class="unit">5,000원</span>
+              </div>
+              <button type="button" class="icon icon-del js-text-del"></button>
+            </div>
+            <p class="switch-info-text">전환비율 1C = 0.5원</p>
+          </div>
+          <ul class="switch-info-wrap">
+            <li>
+              라운드 페이 포인트는 25년 하반기에 제휴사가 확대 될 예정입니다.
+              <p class="sub-text">오픈 예정 제휴사 : CGV, 메가박스, 롯데시네마, 한국철도공사, 에스알(SRT), 트립닷컴, 원스토어,  이동의즐거움, 펫프렌즈, 아프리카TV, KT, 
+                스마일게이트스토브, 벅스, 페이스북, 오아시스마켓, 패션플러스, 골프존, 네오위즈</p>
+            </li>
+            <li>
+              보유중인 발로소득 캐시와 쇼핑지원금 정책은
+              <a href="#" onclick="modalOpenSlide('modal-terms-01')"
+                >기존 발로소득 정책</a
+              >을 따릅니다.
+            </li>
+            <li>
+              페이 포인트 전환 금액이 5만원을 초과할 경우, 5만원 단위로 나누어 순차 지급됩니다. 예를 들어, 전환 금액이 6만원이라면 5만원과 1만원으로 두 번에 걸쳐 지급됩니다.
+            </li>
+            <li>
+              전환완료 후 취소할 수 없으며, 전환된 라운드 페이 포인트는 현금인출이 불가합니다.
+            </li>
+            <li>
+              전환된 페이 포인트는
+              <a href="#" onclick="modalOpenSlide('modal-terms-02')"
+                >페이 포인트 이용정책</a
+              >을 따릅니다.
+            </li>
+          </ul>
+        </div>
+        <!-- //container -->
+        <!-- bottom area -->
+        <div class="bottom-area">
+          <!-- container -->
+          <div class="container">
+            <!-- <button
+              type="button"
+              class="btn"
+              onclick="modalOpenSlide('modal-select-title3')"
+            >
+              페이 포인트로 전환하기
+            </button> -->
+            <button
+              type="button"
+              class="btn"
+              onclick="modalOpen('modal-switch')"
+            >
+              페이 포인트로 전환하기
+            </button>
+          </div>
+          <!-- //container -->
+        </div>
+        <!-- //bottom area -->
+      </div>
+      <!-- //content -->
+    </div>
+    <!-- //wrap -->
+
+    <div id="commonPrompt" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="promptTitle">문제가 생겼어요</h3>
+            <p id="promptContents">다시 시도해주세요.</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="promptOk"
+              onclick="modalCloseAlert();"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal-switch" class="modal modal-switch">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 class="modal-title">페이 포인트로 전환할게요</h3>
+            <p class="modal-desc">전환한 후에는 취소가 어렵습니다.</p>
+
+            <div class="conversion-box">
+              <div class="from">
+                <p class="label">캐시</p>
+                <p class="amount">10,500C</p>
+              </div>
+              <span class="arrow"></span>
+              <div class="to">
+                <p class="label">라운드 페이 포인트</p>
+                <p class="amount color-amount">10,500원</p>
+              </div>
+            </div>
+            <p class="info-text">(교환 비율 1C=0.5원)</p>
+          </div>
+          <div class="modal-footer two-btns">
+            <button
+              type="button"
+              class="btn btn-cancel"
+              onclick="modalCloseAlert()"
+            >
+              취소
+            </button>
+            <button
+              type="button"
+              class="btn btn-confirm"
+              onclick="modalCloseAlert()"
+            >
+              전환하기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 발로소득 정책 안내 팝업 -->
+    <div id="modal-terms-01" class="modal modal-slide type-title">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title">캐시/쇼핑지원금 안내</p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <p class="section-title">쇼핑지원금</p>
+              <ul class="note-wrap">
+                <li>
+                  적립 또는 교환이 완료된 쇼핑지원금은 적립일자 기준 90일간 사용
+                  가능합니다.
+                </li>
+                <li>
+                  쇼핑지원금 적립 경로 별 별도의 유효기한이 존재할 경우 해당
+                  유효기한을 따릅니다.
+                </li>
+              </ul>
+              <p class="section-title">캐시</p>
+              <ul class="note-wrap">
+                <li>
+                  적립된 캐시의 유효기간은 적립일자 기준 1년이며, 미사용된캐시는
+                  자동 소멸됩니다.
+                </li>
+                <li>
+                  90일내 캐시의 사용 이력이 없어 비활성된 고객은 보유 캐시가
+                  소멸됩니다.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //발로소득 정책 안내 팝업 -->
+
+    <!-- 페이 포인트 안내 팝업 -->
+    <div id="modal-terms-02" class="modal modal-slide type-title">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title">페이 포인트 안내</p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <ul class="note-wrap">
+                <li>
+                  구매로 적립된 포인트는 기본 유효기간이 1년이며, 이벤트나
+                  제휴를 통해 적립된 포인트는 유효기간이 각각 다를 수 있습니다.
+                </li>
+                <li>포인트는 비현금성으로 출금이 불가합니다.</li>
+                <li>주문 취소나 반품 시에는 적립된 포인트가 차감됩니다.</li>
+                <li>
+                  포인트 사용 시, 먼저 적립된 포인트부터 자동으로사용됩니다.
+                </li>
+                <li>
+                  라운드 페이를 탈퇴할 경우 적립 받았던 잔여 포인트 및 적립 예정
+                  포인트는 모두 소멸 처리됩니다.
+                </li>
+              </ul>
+              <p class="section-title">포인트 소멸 안내</p>
+              <ul class="note-wrap">
+                <li>
+                  적립된 포인트의 만료일이 지날 경우 해당 포인트는 자동으로
+                  소멸처리 되어 사용하실 수 없습니다.
+                </li>
+                <li>
+                  주문 취소나 반품으로 인해 사용된 통합포인트가 환원되어야 할
+                  경우, 기존의 유효기간을 부여하며 기간 만료 시 소멸처리됩니다.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //페이 포인트 안내 팝업 -->
+
+    <!-- select modal list -->
+    <div id="modal-select-title3" class="modal modal-slide type-title type3">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title">
+              RROUND 페이 서비스 이용약관 <br />
+              동의가 필요해요
+              <span>앞으로는 모든 보상이 라운드 페이 포인트로 적립돼요!</span>
+            </p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- 전체 동의 체크박스 -->
+            <div class="check-all-box container terms-list-box">
+              <!-- 체크, 접힌상태면 open 클래스 제거 -->
+              <div class="check-all top open">
+                <span class="checkbox">
+                  <input
+                    type="checkbox"
+                    name="checkbox3_all"
+                    id="checkbox3_all"
+                  />
+                  <label for="checkbox3_all"
+                    >페이 서비스 약관 및 동의사항</label
+                  >
+                </span>
+                <!-- 체크, 접힌상태면 open 클래스 제거 -->
+                <button
+                  type="button"
+                  class="btn-toggle open"
+                  data-group="all"
+                ></button>
+              </div>
+            </div>
+            <!-- 첫 번째 약관 그룹 -->
+            <div class="terms-wrap container mb16">
+              <ul class="terms-list terms-block-list">
+                <li>
+                  <div class="checkbox-block-group">
+                    <span class="checkbox child">
+                      <input type="checkbox" id="checkbox_group3_1" />
+                      <label for="checkbox_group3_1"
+                        >(필수) 라운드 페이 서비스이용 약관
+                        <button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                          onclick="modalOpen('noticeDetail')"
+                          data-toggle="modal"
+                          data-target="#noticeDetail"
+                        ></button
+                      ></label>
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <div class="checkbox-block-group">
+                    <span class="checkbox child">
+                      <input
+                        type="checkbox"
+                        id="checkbox_group3_2"
+                        data-group="checkbox3_group1"
+                        data-required="true"
+                      />
+                      <label for="checkbox_group3_2"
+                        >(필수)  라운드 페이 머니·포인트 이용약관
+                        <button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                          onclick="modalOpen('noticeDetail')"
+                          data-toggle="modal"
+                          data-target="#noticeDetail"
+                        ></button
+                      ></label>
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <div class="checkbox-block-group">
+                    <span class="checkbox child">
+                      <input
+                        type="checkbox"
+                        id="checkbox_group3_3"
+                        data-group="checkbox3_group1"
+                        data-required="true"
+                      />
+                      <label for="checkbox_group3_3"
+                        >(필수) 전자금융거래 이용약관
+                        <button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                          onclick="modalOpen('noticeDetail')"
+                          data-toggle="modal"
+                          data-target="#noticeDetail"
+                        ></button
+                      ></label>
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <div class="checkbox-block-group">
+                    <span class="checkbox child">
+                      <input
+                        type="checkbox"
+                        id="checkbox_group3_4"
+                        data-group="checkbox3_group1"
+                        data-required="false"
+                      />
+                      <label for="checkbox_group3_4"
+                        >(필수) 개인정보 수집 및 이용 동의
+                        <button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                          onclick="modalOpen('noticeDetail')"
+                          data-toggle="modal"
+                          data-target="#noticeDetail"
+                        ></button
+                      ></label>
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <div class="checkbox-block-group">
+                    <span class="checkbox child">
+                      <input
+                        type="checkbox"
+                        id="checkbox_group3_4"
+                        data-group="checkbox3_group1"
+                        data-required="false"
+                      />
+                      <label for="checkbox_group3_4"
+                        >(필수) 개인정보 제3자 제공 및 위탁 동의
+                        <button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                          onclick="modalOpen('noticeDetail')"
+                          data-toggle="modal"
+                          data-target="#noticeDetail"
+                        ></button
+                      ></label>
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <div class="checkbox-block-group">
+                    <span class="checkbox child">
+                      <input
+                        type="checkbox"
+                        id="checkbox_group3_4"
+                        data-group="checkbox3_group1"
+                        data-required="false"
+                      />
+                      <label for="checkbox_group3_4"
+                        >(필수) 개인정보 제3자 제공 동의(연계가입용)
+                        <button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                          onclick="modalOpen('noticeDetail')"
+                          data-toggle="modal"
+                          data-target="#noticeDetail"
+                        ></button
+                      ></label>
+                    </span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="btn-agree3" class="btn-confirm" disabled>
+              동의하고 시작하기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //select modal list -->
+
+    <!-- modal - 공지사항 상세 -->
+    <div
+      id="noticeDetail"
+      class="modal modal-full"
+      tabindex="0"
+      aria-labelledby="noticeTitle"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head" tabindex="0">
+            <div class="container">
+              <div class="header-box">
+                <h2 class="page-title">약관</h2>
+                <button
+                  type="button"
+                  class="btn btn-close js-modal-close"
+                  data-dismiss="modal"
+                  aria-label="모달 닫기"
+                >
+                  <i class="icon-close"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <!-- 게시판 상세 -->
+              <div class="terms scroll">
+                <p class="terms-title" id="focusElement" tabindex="-1">
+                  (필수) 010PAY 서비스 이용 약관
+                </p>
+                <br />
+                <p class="terms-title-sub" id="termPurpose">제 1조 (목적)</p>
+                <p>
+                  본 약관은 통신과금 서비스를 제공하는 주식회사
+                  헥토파이낸셜(이하 ‘회사’라고 합니다)과 통신과금서비스 이용자
+                  (이하 ‘이용자’라고 합니다) 간에 통신과금서비스에 관한 회사와
+                  이용자의 권리의무, 기타 제반 사항을 정함을 목적으로 합니다.
+                </p>
+                <p class="terms-title-sub">제 2조 (용어의 정의)</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+
+                <p class="terms-title-sub">제 3조 (용어의 정의)</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+              </div>
+              <!-- //게시판 상세 -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //modal - 공지사항 상세 -->
+  </body>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const checkboxAll = document.getElementById('checkbox3_all');
+      const btnToggle = document.querySelector('.btn-toggle');
+      const termsWrap = document.querySelector('.terms-wrap');
+      const groupCheckboxes = termsWrap.querySelectorAll(
+        'input[type="checkbox"]'
+      );
+      const agreeBtn = document.getElementById('btn-agree3');
+
+      // 버튼 활성화 상태 업데이트 함수
+      function updateAgreeButton() {
+        agreeBtn.disabled = !checkboxAll.checked;
+      }
+
+      // 1. 전체 동의 체크박스 클릭 시
+      checkboxAll.addEventListener('change', function () {
+        if (checkboxAll.checked) {
+          btnToggle.classList.remove('open');
+          termsWrap.style.display = 'none';
+          groupCheckboxes.forEach((cb) => (cb.checked = true));
+        } else {
+          btnToggle.classList.add('open');
+          termsWrap.style.display = '';
+          groupCheckboxes.forEach((cb) => (cb.checked = false));
+        }
+        updateAgreeButton();
+      });
+
+      // 2. 개별 체크박스 클릭 시 전체 체크박스 상태 동기화
+      groupCheckboxes.forEach((cb) => {
+        cb.addEventListener('change', function () {
+          const allChecked = Array.from(groupCheckboxes).every(
+            (box) => box.checked
+          );
+          checkboxAll.checked = allChecked;
+
+          // 모든 체크가 아니면 강제로 열기
+          if (!allChecked) {
+            btnToggle.classList.add('open');
+            termsWrap.style.display = '';
+          }
+          updateAgreeButton();
+        });
+      });
+
+      // 3. 토글 버튼 클릭 시 terms-wrap 열고 닫기
+      btnToggle.addEventListener('click', function () {
+        const isOpen = btnToggle.classList.contains('open');
+        if (isOpen) {
+          btnToggle.classList.remove('open');
+          termsWrap.style.display = 'none';
+        } else {
+          btnToggle.classList.add('open');
+          termsWrap.style.display = '';
+        }
+      });
+
+      // 초기 상태 설정
+      updateAgreeButton();
+    });
+
+    window.addEventListener('load', function () {
+      // 에러 모달
+      // modalOpen('commonPrompt');
+    });
+  </script>
+</html>

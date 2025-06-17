@@ -823,3 +823,13 @@ function adjustViewportHeight() {
 window.addEventListener('resize', adjustViewportHeight);
 window.addEventListener('load', adjustViewportHeight);
 
+// 모달 닫기
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".js-close-popup").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      document.querySelectorAll(".modal-w-360").forEach(function (modal) {
+        modal.style.display = "none";
+      });
+    });
+  });
+});

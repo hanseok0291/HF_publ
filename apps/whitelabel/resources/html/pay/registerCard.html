@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<title>헥토파이낸셜</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<!-- css -->
+<link rel="stylesheet" href="../../css/slick.min.css">
+<link rel="stylesheet" href="../../css/common.css">
+
+<!-- javascript -->
+<script src="../../js/jquery-3.6.0.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/design.js" defer="defer"></script>
+</head>
+
+<body>
+<!-- IE 브라우저 지원 안내 -->
+<!--[if lte IE 10]>
+<div class="info-ie-update">
+	<div class="container">
+		<h2>브라우저를 업데이트해 주세요.</h2>
+		<p>안전한 결제 환경을 위해 크롬, 엣지 또는<br> Internet Explorer 10 이상을 이용해 주세요.</p>
+		<p class="btn-area">
+			<a href="http://www.google.com/chrome" target="_blank" class="btn">크롬 설치</a>
+			<a href="http://windows.microsoft.com/ko-kr/internet-explorer/download-ie" target="_blank" class="btn">엣지 설치 / IE 업데이트</a>
+		</p>
+	</div>
+</div>
+<![endif]-->
+<!-- //IE 브라우저 지원 안내 -->
+
+<!-- wrap -->
+<div id="wrap" class="wrap new">
+	<!-- form -->
+	<form class="wrap" autocomplete="off">
+		<!-- header -->
+		<header>
+			<div class="container">
+				<h1 class="page-title">결제 수단 등록</h1>
+				<button type="button" id="btnBack" class="btn-icon btn-back">뒤로 가기</button>
+				<button type="button" id="closeWindow" class="btn-icon btn-close" data-toggle="modal" data-target="#commonConfirm">창 닫기</button>
+			</div>
+		</header>
+		<!-- //header -->
+
+		<!-- main content -->
+		<main>
+			<!-- container -->
+			<div class="container">
+				<!-- headline -->
+				<h2 class="headline"><strong>카드 등록을 위해 <br>
+				정보를 입력해주세요 </strong></h2>
+				<!-- //headline -->
+
+				<!-- section -->
+				<section>
+
+					<div id="passwordSection" class="form-group bank-area hidden">
+						<input type="password" id="passNumber" class="form-control" maxlength="4" placeholder="비밀번호" />
+						<div id="" class="card-name sub-text">카드 비밀번호 4자리</div>
+					</div>
+
+					<div id="cvcSection" class="form-group bank-area hidden">
+						<input type="password" id="cvcNumber" class="form-control" maxlength="3" placeholder="CVC" />
+						<div id="" class="card-name sub-text">카드 뒷면 3자리</div>
+					</div>
+
+					<div id="expirySection" class="form-group bank-area hidden">
+						<input type="password" id="expiryDate" class="form-control" maxlength="4" placeholder="유효기간 (MMYY)" />
+						<div id="" class="card-name sub-text">월/년 4자리</div>
+					</div>
+
+					<div class="form-group bank-area" style="position: relative;">
+						<input
+							type="text"
+							id="cardNumber"
+							class="form-control card-number-control"
+							maxlength="25"
+							autocomplete="off"
+						/>
+						<div
+							id="cardNumberMask"
+							class="masked-display"
+							tabindex="0"
+						>카드번호 입력</div>
+					
+						<div id="cardName" class="card-name hidden sub-text"></div>
+						<div id="cardError" class="error sub-text red hidden">등록이 지원되지 않는 카드사입니다.<br>해당 카드사에 문의해주세요.</div>
+					</div>
+
+				</section>
+				<!-- //section -->
+			</div>
+			<!-- //container -->
+		</main>
+		<!-- //main content -->
+
+		<!-- footer -->
+		<footer>
+			<!-- container -->
+			<div class="container">
+				<button type="button" id="submit" class="btn btn-lg btn-primary shadow" disabled data-toggle="modal" data-target="#commonAlert">등록하기</button>
+			</div>
+			<!-- //container -->
+		</footer>
+		<!-- //footer -->
+	</form>
+	<!-- //form -->
+</div>
+<!-- //wrap -->
+
+<!-- modal - common -->
+<div id="commonAlert" class="modal fade common new" tabindex="-1" role="dialog" data-backdrop="static">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 id="alertTitle" class="modal-title"></h3>
+			</div>
+			<div class="modal-body">
+				<div id="alertContents">카드 등록이 완료되었습니다.</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn" data-dismiss="modal">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //modal - common -->
+
+<!-- modal - common -->
+<div id="commonConfirm" class="modal fade common" tabindex="-1" role="dialog" data-backdrop="static">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 id="confirmTitle" class="modal-title">안내</h3>
+			</div>
+			<div class="modal-body">
+				<div id="confirmContents">취소하시겠습니까?</div>
+			</div>
+			<div class="modal-footer type2">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+				<button type="button" id="confirmOk" class="btn btn-md btn-primary">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //modal - common -->
+
+<!-- loading -->
+<div class="loading hidden">로딩 중</div>
+<!-- //loading -->
+
+<script>
+	const cardInput = document.getElementById("cardNumber");
+	const cardMask = document.getElementById("cardNumberMask");
+	const cardControl = document.querySelector(".form-group.bank-area .card-number-control");
+	
+	cardMask.addEventListener("click", () => cardInput.focus());
+	
+	cardInput.addEventListener("input", () => {
+		const raw = cardInput.value.replace(/\D/g, "").slice(0, 16);
+		cardInput.value = raw;
+	
+		let masked = "";
+		for (let i = 0; i < raw.length; i++) {
+			masked += (i < 8) ? raw[i] : "●";
+			if ((i + 1) % 4 === 0 && i !== 15) masked += " - ";
+		}
+	
+		cardMask.textContent = masked || "카드번호 입력";
+	
+		// 이후 BIN 체크나 다음 입력 단계도 여기서 처리
+	});
+	cardInput.addEventListener("input", () => {
+  if (cardInput.value.trim() !== "") {
+    cardControl.classList.add("not-empty");
+  } else {
+    cardControl.classList.remove("not-empty");
+  }
+});
+
+const cardName = document.getElementById("cardName");
+const cardError = document.getElementById("cardError");
+
+const expirySection = document.getElementById("expirySection");
+const expiryInput = document.getElementById("expiryDate");
+
+const cvcSection = document.getElementById("cvcSection");
+const cvcInput = document.getElementById("cvcNumber");
+
+const passwordSection = document.getElementById("passwordSection");
+const passInput = document.getElementById("passNumber");
+
+const submitBtn = document.getElementById("submit");
+
+    const binMap = {
+      "1122": "롯데카드",
+      "8234": "미지원카드",
+      "1234": "미지원카드"
+    };
+// 카드번호 입력 처리
+cardInput.addEventListener("input", () => {
+  const raw = cardInput.value.replace(/\D/g, "").slice(0, 16);
+	const formatted = raw.replace(/(\d{4})(?=\d)/g, "$1 - ");
+	cardInput.value = formatted;
+
+  const bin = raw.slice(0, 4);
+  const isValidCard = binMap[bin] && binMap[bin] !== "미지원카드";
+
+  if (raw.length >= 4) {
+    if (isValidCard) {
+      cardName.textContent = binMap[bin];
+      cardName.classList.remove("hidden");
+      cardError.classList.add("hidden");
+      expirySection.classList.remove("hidden");
+    } else {
+      cardError.classList.remove("hidden");
+      cardName.classList.add("hidden");
+      expirySection.classList.add("hidden");
+      cvcSection.classList.add("hidden");
+      passwordSection.classList.add("hidden");
+    }
+  } else {
+    cardName.classList.add("hidden");
+    cardError.classList.add("hidden");
+    expirySection.classList.add("hidden");
+    cvcSection.classList.add("hidden");
+    passwordSection.classList.add("hidden");
+  }
+
+  checkSubmitEnabled();
+});
+
+// 유효기간 입력
+expiryInput.addEventListener("input", () => {
+  expiryInput.value = expiryInput.value.replace(/\D/g, "").slice(0, 4);
+  if (expiryInput.value.length === 4) {
+    cvcSection.classList.remove("hidden");
+  } else {
+    cvcSection.classList.add("hidden");
+    passwordSection.classList.add("hidden");
+  }
+  checkSubmitEnabled();
+});
+
+// CVC 입력
+cvcInput.addEventListener("input", () => {
+  cvcInput.value = cvcInput.value.replace(/\D/g, "").slice(0, 3);
+  if (cvcInput.value.length === 3) {
+    passwordSection.classList.remove("hidden");
+  } else {
+    passwordSection.classList.add("hidden");
+  }
+  checkSubmitEnabled();
+});
+
+// 비밀번호 입력
+passInput.addEventListener("input", () => {
+  passInput.value = passInput.value.replace(/\D/g, "").slice(0, 4);
+  checkSubmitEnabled();
+});
+
+// 모든 조건 충족 시 버튼 활성화
+function checkSubmitEnabled() {
+	const rawCardNumber = cardInput.value.replace(/\D/g, "");
+  const cardHidden = cardError.classList.contains("hidden");
+  const cardValid = rawCardNumber.length === 16 && cardHidden;
+
+  const expiryValid = expiryInput.value.length === 4;
+  const cvcValid = cvcInput.value.length === 3;
+  const passValid = passInput.value.length >= 4;
+
+  const enable = cardValid && expiryValid && cvcValid && passValid;
+
+  submitBtn.disabled = !enable;
+  submitBtn.classList.toggle("active", enable);
+}
+
+document.getElementById("submit").addEventListener("click", function () {
+  modalOpen('commonAlert');
+});
+
+
+</script>
+</body>
+</html>

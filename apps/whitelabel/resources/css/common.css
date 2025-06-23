@@ -88,7 +88,7 @@ select:disabled, .select:disabled, select[readony], .select[readony] { cursor: d
 .form-group .form-label { display: block; margin-bottom: 2px; font-size: 12px; line-height: 14px; }
 .form-group .checkbox + .form-label { margin-top: 20px; }
 .form-group .form-control { height: 40px; border-bottom: 1px solid #bebebe; line-height: 24px; }
-.form-group .form-control.focus { border-color: #faa61a; }
+.form-group .form-control.focus { border-color: #222; }
 .form-group > .form-control + .form-control { margin-top: 16px; }
 .form-group .text-info { margin-top: 8px; font-size: 14px; line-height: 24px; }
 .form-group .text-error { margin-top: 10px; line-height: 1.2; }
@@ -237,6 +237,7 @@ table .text-center { text-align: center; }
 .btn-primary { border-color: #faa61a; background-color: #faa61a; color: #fff; }
 .btn-white { border-color: #fff; background-color: #fff; color: #747474; }
 .btn-dash { border: 1px dashed #bebebe; background-color: #fff; }
+.btn-primary.new { border-color: #2B2B2B; background-color: #2B2B2B; color: #fff; }
 
 /* style */
 .btn-lg { width: 100%; height: 56px; font-size: 20px; line-height: 54px; }
@@ -647,81 +648,33 @@ div.nppfs-keypad { top: 0 !important; }
 .form-group.quick-pay .owner-wrap > img { width: 100%; max-width: 311px; } 
 
 /* UI수정 250617 */
-#cardWrap.collapsed input {
-  border: 1px solid #ccc;
-}
-#cardWrap.expanded input {
-  border: 2px solid #000;
-}
-.form-group.bank-area .form-control ~ .sub-text {
-	display: block;
-	margin-top: 12px;
-	color: #818181;
-}
-.form-group.bank-area #cardNumber.form-control ~ .sub-text {
-	font-weight: 700;
-	color: #222;
-}
-.form-group.bank-area .form-control ~ .sub-text.red, .form-group.bank-area #cardNumber.form-control ~ .sub-text.red {
-	color: #FF4A4A;
-}
-.masked-display {
-  font-size: 16px;
-  border-bottom: 1px solid #bebebe;
-  cursor: text;
-	width: 100%;
-	color: #acacac;
-	font-weight: 400;
-	padding: 29px 0 12px;
-	height: 60px;
-}
-.form-group.bank-area .card-number-control {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	color: transparent;
-	caret-color: black;
-	background: transparent;
-	border: none;
-	font-size: 16px;
-	padding: 12px 0;
-	height: auto;
-	padding: 29px 0 12px;
-	height: 60px;
-}
-.form-group.bank-area .card-number-control.not-empty ~ .masked-display {
-	color: #222;
-	font-weight: 700;
-}
-.form-group.bank-area input[type="password"].form-control {
-  font-size: 34px;
-}
-.form-group.bank-area .form-control::placeholder {
-	font-size: 16px;
-}
-.modal.common.new .modal-header .modal-title {
-}
-.modal.common.new .modal-body #alertContents {
-	text-align: center;
-	color: #222;
-}
-.modal.common.new .modal-footer {
-	padding: 0;
-}
-.modal.common.new .modal-footer .btn {
-	background-color: transparent;
-	height: 58px;
-	font-weight: 400;
-	border: 1px solid #dadada;
-	border-radius: 0;
-}
-.modal.common.new .modal-dialog {
-	max-width: 350px;
-}
-.modal.common.new .modal-content {
-	border-radius: 10px;
-}
-.modal.common.new .modal-header {
-	padding: 30px 20px 10px;
-}
+#cardWrap.collapsed input { border: 1px solid #ccc; } 
+#cardWrap.expanded input { border: 2px solid #000; } 
+.form-group.bank-area .form-control ~ .sub-text {display: block;margin-top: 12px;color: #818181; } 
+.form-group.bank-area #cardNumber.form-control ~ .sub-text {font-weight: 700;color: #222; } 
+.form-group.bank-area .form-control ~ .sub-text.red, .form-group.bank-area #cardNumber.form-control ~ .sub-text.red,
+.card-number-wrap ~ .sub-text.red {color: #FF4A4A;font-weight: 700; } 
+.masked-display { font-size: 16px; border-bottom: 1px solid #bebebe; cursor: text;width: 100%;color: #acacac;font-weight: 400;padding: 29px 0 12px;height: 60px; } 
+.form-group.bank-area .card-number-control {position: absolute;top: 0;left: 0;width: 100%;color: transparent;caret-color: black;background: transparent;border: none;font-size: 16px;padding: 12px 0;height: auto;padding: 29px 0 12px;height: 60px; } 
+.form-group.bank-area .card-number-control.not-empty ~ .masked-display {color: #222;font-weight: 700; } 
+.form-group.bank-area input[type="password"].form-control {font-family: 'Pretendard', sans-serif;position: relative; } 
+.form-group.bank-area input[type="password"].form-control::placeholder { font-size: 16px;letter-spacing: 0;line-height: 16px; } 
+.form-group.bank-area .form-control::placeholder {font-size: 16px; } 
+.form-group.bank-area input[type="password"].form-control:not(empty) {/* font-size: 28px;letter-spacing: -3px; */
+position: relative;/* top: -3px; */
+left: -5px; } 
+.modal.common.new .modal-header .modal-title { } 
+.modal.common.new .modal-body #alertContents {text-align: center;color: #222; } 
+.modal.common.new .modal-footer {padding: 0; } 
+.modal.common.new .modal-footer .btn {background-color: transparent;height: 58px;font-weight: 400;border: 1px solid #dadada;border-radius: 0; } 
+.modal.common.new .modal-footer .btn + .btn {border-left: 0;color: #222;font-weight: 700; } 
+.modal.common.new .modal-dialog {max-width: 350px; } 
+.modal.common.new .modal-content {border-radius: 10px; } 
+.modal.common.new .modal-header {padding: 30px 20px 10px; } 
+.modal.common.new .modal-body {text-align: center;color: #2b2b2b; } 
+.modal.common.new .modal-footer.type2 .btn {width: 50%; } 
+.form-group.bank-area .form-control.card-number-input {width: 68px;text-align: left;border-bottom: 0;color: #333;font-weight: 700; } 
+.form-group.bank-area input[type="password"].form-control.card-number-input {font-weight: 500; } 
+.card-number-wrap {border-bottom: 1px solid #bebebe;display: flex;align-items: center;gap: 0; } 
+.card-number-wrap .dash {padding: 29px 0 12px;height: 60px;position: relative;left: -17px;color: #333;font-weight: 700; } 
+.card-number-wrap ~ .sub-text {margin-top: 12px; } 

@@ -9,7 +9,7 @@
 
 <!-- css -->
 <link rel="stylesheet" href="../../css/slick.min.css">
-<link rel="stylesheet" href="../../css/common.css">
+<link rel="stylesheet" href="../../css/common.css?v1">
 
 <!-- javascript -->
 <script src="../../js/jquery-3.6.0.min.js"></script>
@@ -74,24 +74,20 @@
 						<div id="" class="card-name sub-text">월/년 4자리</div>
 					</div>
 
-					<div class="form-group bank-area" style="position: relative;">
-						<input
-							type="text"
-							id="cardNumber"
-							class="form-control card-number-control"
-							maxlength="25"
-							autocomplete="off"
-						/>
-						<div
-							id="cardNumberMask"
-							class="masked-display"
-							tabindex="0"
-						>카드번호 입력</div>
+					<div class="form-group bank-area card-number" style="position: relative;">
+						<div class="card-number-wrap" style="display: flex; gap: 0;">
+							<input type="text" id="cardNumber1" class="form-control card-number-input" maxlength="4" inputmode="numeric" autocomplete="off" placeholder="카드번호" />
+							<span class="dash hidden">-</span>
+							<input type="text" id="cardNumber2" class="form-control card-number-input hidden" maxlength="4" inputmode="numeric" autocomplete="off" />
+							<span class="dash hidden">-</span>
+							<input type="password" id="cardNumber3" class="form-control card-number-input hidden" maxlength="4" inputmode="numeric" autocomplete="off" />
+							<span class="dash hidden">-</span>
+							<input type="password" id="cardNumber4" class="form-control card-number-input hidden" maxlength="4" inputmode="numeric" autocomplete="off" />
+						</div>
 					
 						<div id="cardName" class="card-name hidden sub-text"></div>
 						<div id="cardError" class="error sub-text red hidden">등록이 지원되지 않는 카드사입니다.<br>해당 카드사에 문의해주세요.</div>
 					</div>
-					
 
 				</section>
 				<!-- //section -->
@@ -104,7 +100,7 @@
 		<footer>
 			<!-- container -->
 			<div class="container">
-				<button type="button" id="submit" class="btn btn-lg btn-primary shadow" disabled data-toggle="modal" data-target="#commonAlert">등록하기</button>
+				<button type="button" id="submit" class="btn btn-lg btn-primary new shadow" disabled data-toggle="modal" data-target="#commonAlert">등록하기</button>
 			</div>
 			<!-- //container -->
 		</footer>
@@ -133,18 +129,18 @@
 <!-- //modal - common -->
 
 <!-- modal - common -->
-<div id="commonConfirm" class="modal fade common" tabindex="-1" role="dialog" data-backdrop="static">
+<div id="commonConfirm" class="modal fade common new" tabindex="-1" role="dialog" data-backdrop="static">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h3 id="confirmTitle" class="modal-title">안내</h3>
+				<h3 id="confirmTitle" class="modal-title"></h3>
 			</div>
 			<div class="modal-body">
 				<div id="confirmContents">취소하시겠습니까?</div>
 			</div>
-			<div class="modal-footer type2">
+			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-				<button type="button" id="confirmOk" class="btn btn-md btn-primary">확인</button>
+				<button type="button" id="confirmOk" class="btn btn-md btn-primary new"  data-dismiss="modal">확인</button>
 			</div>
 		</div>
 	</div>
@@ -156,136 +152,184 @@
 <!-- //loading -->
 
 <script>
-	const cardInput = document.getElementById("cardNumber");
-	const cardMask = document.getElementById("cardNumberMask");
-	const cardControl = document.querySelector(".form-group.bank-area .card-number-control");
+	const submitBtn = document.getElementById("submit");
+	const expiryInput = document.getElementById("expiryDate");
+	const cvcInput = document.getElementById("cvcNumber");
+	const passInput = document.getElementById("passNumber");
 	
-	cardMask.addEventListener("click", () => cardInput.focus());
+	const cardInputs = [
+		document.getElementById("cardNumber1"),
+		document.getElementById("cardNumber2"),
+		document.getElementById("cardNumber3"),
+		document.getElementById("cardNumber4"),
+	];
+	const dashElements = document.querySelectorAll(".dash");
+	const cardName = document.getElementById("cardName");
+	const cardError = document.getElementById("cardError");
+	const expirySection = document.getElementById("expirySection");
+	const cvcSection = document.getElementById("cvcSection");
+	const passwordSection = document.getElementById("passwordSection");
 	
-	cardInput.addEventListener("input", () => {
-		const raw = cardInput.value.replace(/\D/g, "").slice(0, 16);
-		cardInput.value = raw;
+	const binMap = {
+		"1122": "롯데카드",
+		"8234": "미지원카드",
+		"1234": "미지원카드"
+	};
 	
-		let masked = "";
-		for (let i = 0; i < raw.length; i++) {
-			masked += (i < 8) ? raw[i] : "●";
-			if ((i + 1) % 4 === 0 && i !== 15) masked += " - ";
+	// 카드번호 전체 연결
+	function getFullCardNumber() {
+		return cardInputs.map(input => input.value).join("");
+	}
+	
+	// 카드번호 입력 처리 + 자동 포커스 + dash 표시 + BIN 검사
+	cardInputs.forEach((input, index) => {
+		input.addEventListener("input", () => {
+			input.value = input.value.replace(/\D/g, "").slice(0, 4);
+	
+			// 다음 칸으로 포커스 이동
+			if (input.value.length === 4 && index < cardInputs.length - 1) {
+				dashElements[index].classList.remove("hidden");
+				cardInputs[index + 1].focus();
+			}
+	
+			updateCardUI();
+		});
+	
+		// 백스페이스로 지웠을 때 이전 input으로 포커스 이동
+		input.addEventListener("keydown", (e) => {
+			if (e.key === "Backspace" && input.value.length === 0 && index > 0) {
+				cardInputs[index - 1].focus();
+			}
+		});
+	});
+	
+	const cardNumber1 = document.getElementById("cardNumber1");
+	const cardNumber2 = document.getElementById("cardNumber2");
+	const cardNumber3 = document.getElementById("cardNumber3");
+	const cardNumber4 = document.getElementById("cardNumber4");
+	
+	// 카드번호 첫 번째 input 감지
+	cardNumber1.addEventListener("input", () => {
+		const value = cardNumber1.value.replace(/\D/g, "").slice(0, 4);
+		cardNumber1.value = value;
+	
+		if (value.length === 4) {
+			// 4자리 입력이 완료되면 나머지 input 표시
+			cardNumber2.classList.remove("hidden");
+			cardNumber3.classList.remove("hidden");
+			cardNumber4.classList.remove("hidden");
+			cardNumber2.focus();
+		} else {
+			// 4자리 미만이면 다시 숨김
+			cardNumber2.classList.add("hidden");
+			cardNumber3.classList.add("hidden");
+			cardNumber4.classList.add("hidden");
+		}
+		updateCardUI(); // 카드 검증 및 UI 갱신 함수 호출
+	});
+	
+	// 카드 UI 업데이트 (BIN 검사 및 섹션 표시)
+	function updateCardUI() {
+		const fullCardNumber = getFullCardNumber();
+		const firstInputVal = cardInputs[0].value.replace(/\D/g, "");
+		const bin = firstInputVal.slice(0, 4);
+		const isValid = binMap[bin] && binMap[bin] !== "미지원카드";
+	
+		// dash 표시
+		dashElements.forEach((dash, idx) => {
+			if (cardInputs[idx].value.length === 4) {
+				dash.classList.remove("hidden");
+			} else {
+				dash.classList.add("hidden");
+			}
+		});
+	
+		// BIN 검사
+		if (firstInputVal.length >= 4) {
+			if (isValid) {
+				cardName.textContent = binMap[bin];
+				cardName.classList.remove("hidden");
+				cardError.classList.add("hidden");
+				const allFilled = cardInputs.every(input => input.value.length === 4);
+				if (allFilled && expirySection.classList.contains("hidden")) {
+					expirySection.classList.remove("hidden");
+				}
+			} else {
+				cardError.classList.remove("hidden");
+				cardName.classList.add("hidden");
+				expirySection.classList.add("hidden");
+				cvcSection.classList.add("hidden");
+				passwordSection.classList.add("hidden");
+			}
 		}
 	
-		cardMask.textContent = masked || "카드번호 입력";
+		checkSubmitEnabled();
+	}
 	
-		// 이후 BIN 체크나 다음 입력 단계도 여기서 처리
+	// 유효기간 입력
+	expiryInput.addEventListener("input", () => {
+		expiryInput.value = expiryInput.value.replace(/\D/g, "").slice(0, 4);
+		if (expiryInput.value.length === 4) {
+			cvcSection.classList.remove("hidden");
+		}
+		checkSubmitEnabled();
 	});
-	cardInput.addEventListener("input", () => {
-  if (cardInput.value.trim() !== "") {
-    cardControl.classList.add("not-empty");
-  } else {
-    cardControl.classList.remove("not-empty");
-  }
-});
-
-const cardName = document.getElementById("cardName");
-const cardError = document.getElementById("cardError");
-
-const expirySection = document.getElementById("expirySection");
-const expiryInput = document.getElementById("expiryDate");
-
-const cvcSection = document.getElementById("cvcSection");
-const cvcInput = document.getElementById("cvcNumber");
-
-const passwordSection = document.getElementById("passwordSection");
-const passInput = document.getElementById("passNumber");
-
-const submitBtn = document.getElementById("submit");
-
-    const binMap = {
-      "1122": "롯데카드",
-      "8234": "미지원카드",
-      "1234": "미지원카드"
-    };
-// 카드번호 입력 처리
-cardInput.addEventListener("input", () => {
-  const raw = cardInput.value.replace(/\D/g, "").slice(0, 16);
-	const formatted = raw.replace(/(\d{4})(?=\d)/g, "$1 - ");
-	cardInput.value = formatted;
-
-  const bin = raw.slice(0, 4);
-  const isValidCard = binMap[bin] && binMap[bin] !== "미지원카드";
-
-  if (raw.length >= 4) {
-    if (isValidCard) {
-      cardName.textContent = binMap[bin];
-      cardName.classList.remove("hidden");
-      cardError.classList.add("hidden");
-      expirySection.classList.remove("hidden");
-    } else {
-      cardError.classList.remove("hidden");
-      cardName.classList.add("hidden");
-      expirySection.classList.add("hidden");
-      cvcSection.classList.add("hidden");
-      passwordSection.classList.add("hidden");
-    }
-  } else {
-    cardName.classList.add("hidden");
-    cardError.classList.add("hidden");
-    expirySection.classList.add("hidden");
-    cvcSection.classList.add("hidden");
-    passwordSection.classList.add("hidden");
-  }
-
-  checkSubmitEnabled();
-});
-
-// 유효기간 입력
-expiryInput.addEventListener("input", () => {
-  expiryInput.value = expiryInput.value.replace(/\D/g, "").slice(0, 4);
-  if (expiryInput.value.length === 4) {
-    cvcSection.classList.remove("hidden");
-  } else {
-    cvcSection.classList.add("hidden");
-    passwordSection.classList.add("hidden");
-  }
-  checkSubmitEnabled();
-});
-
-// CVC 입력
-cvcInput.addEventListener("input", () => {
-  cvcInput.value = cvcInput.value.replace(/\D/g, "").slice(0, 3);
-  if (cvcInput.value.length === 3) {
-    passwordSection.classList.remove("hidden");
-  } else {
-    passwordSection.classList.add("hidden");
-  }
-  checkSubmitEnabled();
-});
-
-// 비밀번호 입력
-passInput.addEventListener("input", () => {
-  passInput.value = passInput.value.replace(/\D/g, "").slice(0, 4);
-  checkSubmitEnabled();
-});
-
-// 모든 조건 충족 시 버튼 활성화
-function checkSubmitEnabled() {
-	const rawCardNumber = cardInput.value.replace(/\D/g, "");
-  const cardHidden = cardError.classList.contains("hidden");
-  const cardValid = rawCardNumber.length === 16 && cardHidden;
-
-  const expiryValid = expiryInput.value.length === 4;
-  const cvcValid = cvcInput.value.length === 3;
-  const passValid = passInput.value.length >= 4;
-
-  const enable = cardValid && expiryValid && cvcValid && passValid;
-
-  submitBtn.disabled = !enable;
-  submitBtn.classList.toggle("active", enable);
-}
-
-document.getElementById("submit").addEventListener("click", function () {
-  modalOpen('commonAlert');
-});
-
-
-</script>
+	
+	// CVC 입력
+	cvcInput.addEventListener("input", () => {
+		cvcInput.value = cvcInput.value.replace(/\D/g, "").slice(0, 3);
+		if (cvcInput.value.length === 3) {
+			passwordSection.classList.remove("hidden");
+		}
+		checkSubmitEnabled();
+	});
+	
+	// 비밀번호 입력
+	passInput.addEventListener("input", () => {
+		passInput.value = passInput.value.replace(/\D/g, "").slice(0, 4);
+		checkSubmitEnabled();
+	});
+	
+	// 모든 조건 충족 시 버튼 활성화
+	function checkSubmitEnabled() {
+		const rawCardNumber = getFullCardNumber().replace(/\D/g, "");
+		const cardHidden = cardError.classList.contains("hidden");
+		const cardValid = rawCardNumber.length === 16 && cardHidden;
+	
+		const expiryValid = expiryInput.value.length === 4;
+		const cvcValid = cvcInput.value.length === 3;
+		const passValid = passInput.value.length >= 4;
+	
+		const enable = cardValid && expiryValid && cvcValid && passValid;
+	
+		submitBtn.disabled = !enable;
+		submitBtn.classList.toggle("active", enable);
+	}
+	
+	// 등록하기 클릭 시 알림 모달 열기
+	submitBtn.addEventListener("click", () => {
+		modalOpen("commonAlert");
+	});
+	
+	function updateCardPlaceholder() {
+		const hasOtherInput =
+			cardInputs[1].value.length > 0 ||
+			cardInputs[2].value.length > 0 ||
+			cardInputs[3].value.length > 0;
+	
+		if (hasOtherInput) {
+			cardInputs[0].placeholder = "";
+		} else {
+			cardInputs[0].placeholder = "카드번호";
+		}
+	}
+	cardInputs.forEach((input, index) => {
+		input.addEventListener("input", () => {
+			updateCardUI();
+			updateCardPlaceholder();
+		});
+	});
+	
+	</script>
 </body>
 </html>

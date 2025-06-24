@@ -379,7 +379,7 @@ $(function () {
       $(".wrap.oneStore").removeClass("horizontal");
     } else {
       $(".wrap.oneStore").addClass("horizontal");
-      $("#content").css("padding-bottom", 24);
+      $("#content").css("padding-bottom", 0);
     }
 
     // fold 6 대응
@@ -797,4 +797,18 @@ document.querySelectorAll(".js-pop-close-btn").forEach((closeBtn) => {
       pop.style.display = "none";
     }
   });
+});
+
+// 2025.06.24 변경
+window.addEventListener("DOMContentLoaded", function () {
+  const pageHeight = document.body.scrollHeight; // 전체 문서 높이
+  const walkContainer = document.querySelector(".walk-container");
+
+  if (walkContainer && pageHeight >= 660) {
+    walkContainer.classList.add("long-se");
+  }
+
+  if (walkContainer && pageHeight >= 740) {
+    walkContainer.classList.add("long");
+  }
 });

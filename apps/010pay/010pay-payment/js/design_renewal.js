@@ -600,8 +600,14 @@ function modalToastOpen(id) {
   var toastId = $("#" + id);
   toastId.fadeIn();
   var toastTimeout = setTimeout(function () {
+    toastId.addClass('toast-view');
+  }, 100);
+  var toastTimeout = setTimeout(function () {
+    toastId.removeClass('toast-view');
+  }, 1500);
+  var toastTimeout = setTimeout(function () {
     toastId.fadeOut();
-  }, 1000);
+  }, 2500);
 }
 
 // 버튼 클릭시 텍스트 변경

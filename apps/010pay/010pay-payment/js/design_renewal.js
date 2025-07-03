@@ -830,12 +830,10 @@ window.addEventListener('resize', adjustViewportHeight);
 window.addEventListener('load', adjustViewportHeight);
 
 // 100dvh 적용 안되는 현상 수정
-function setSafeHeight() {
-  const safeHeight = window.innerHeight - 152; // 152px 제외한 나머지 높이
-  document.querySelector('.container.banner-full-container').style.height = safeHeight + 'px';
+function updateVH() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
 
-// 초기 실행
-window.addEventListener('load', setSafeHeight);
-// 화면 회전/리사이즈 시 다시 계산
-window.addEventListener('resize', setSafeHeight);
+window.addEventListener('load', updateVH);
+window.addEventListener('resize', updateVH);

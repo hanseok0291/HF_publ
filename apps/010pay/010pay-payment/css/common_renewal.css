@@ -6552,17 +6552,20 @@ margin-bottom: 16px;
 }
 /* 약관 스타일 추가 */
 .container.banner-full-container {
-  height: calc(100dvh - 152px);
+  height: calc(var(--vh, 1vh) * 100 - 152px);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* 250526 스타일 수정 */
+}
+@supports (height: 100dvh) {
+  .container.banner-full-container {
+    height: calc(100dvh - 152px);
+  }
 }
 .container.banner-full-container .complete-text {
   margin-top: auto;
   margin-bottom: auto;
-  /* 250526 스타일 수정 */
 }
 .container.banner-full-container .complete-text p {
   color: #151515;

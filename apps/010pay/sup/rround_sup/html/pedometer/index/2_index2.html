@@ -152,11 +152,12 @@
     </div>
     <!-- //wrap -->
 
+    <!-- [2025.07.03] 변경 시작 -->
     <div id="commonPrompt" class="modal">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
-            <h3 id="promptTitle">문제가 생겼어요</h3>
+            <h3 id="promptTitle">😥 앗! 문제가 생겼어요</h3>
             <p id="promptContents">다시 시도해주세요.</p>
           </div>
           <div class="modal-footer">
@@ -172,6 +173,33 @@
         </div>
       </div>
     </div>
+    <!-- [2025.07.03] 변경 끝 -->
+    
+    <!-- [2025.07.03] 변경 시작 -->
+    <!-- 광고 x 팝업 -->
+    <div id="commonPrompt2" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="promptTitle2">😥 앗! 광고가 없어요</h3>
+            <p id="promptContents2">지금은 보여드릴 광고가 없어요.<br>
+              다음에 다시 한 번 도전해 해주세요.</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="promptOk"
+              onclick="modalCloseAlert();"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //광고 x 팝업 -->
+    <!-- [2025.07.03] 변경 끝 -->
 
     <div id="modal-switch" class="modal modal-switch">
       <div class="modal-dialog">
@@ -215,7 +243,7 @@
 
     <!-- [2025.05.29] 변경 시작 -->
     <!-- 보상 팝업 -->
-    <div id="modal-terms-02" class="modal modal-slide type-title">
+    <!-- <div id="modal-terms-02" class="modal modal-slide type-title">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="head-line" onclick="modalCloseSlide();"></div>
@@ -242,9 +270,50 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- //보상 팝업 -->
     <!-- [2025.05.29] 변경 끝 -->
+
+    <!-- [2025.07.02] 변경 시작 -->
+    <!-- 광고 보상 팝업 -->
+    <div id="modal-popup-03" class="modal modal-slide type-title">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="head-line" onclick="modalCloseSlide();"></div>
+          <div class="modal-head center">
+            <p class="modal-head-title">4원 획득!</p>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="reward-wrap">
+                <i class="lottie-coin img-reward"></i>
+                <div class="txt-reward"><strong>만보기 걸음 보상</strong>을 받았어요!</div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer vertical">
+            <button
+              type="button"
+              id="executeOk"
+              onclick="modalCloseSlide();"
+              class="btn btn-confirm"
+            >
+              광고보고 한번 더 받기
+            </button>
+            <button
+              type="button"
+              id="executeNo"
+              onclick="modalCloseSlide();"
+              class="btn btn-cancel type2"
+            >
+              이미 충분해요!
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //광고 보상 팝업 -->
+    <!-- [2025.07.02] 변경 끝 -->
   </body>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -264,7 +333,9 @@
     window.addEventListener('load', function () {
       // 에러 모달
       // modalOpen('commonPrompt');
-      modalOpenSlide('modal-terms-02');
+      // modalOpen('commonPrompt2');
+      // modalOpenSlide('modal-terms-02');
+      modalOpenSlide('modal-popup-03');
     });
 
     /* Viewport height 보정 */
@@ -288,7 +359,7 @@
         wrapper: svgContainer,
         animType: 'svg',
         loop: false,
-        path: 'https://ux.sbsvc.online/010pay/sup/pedometer/images/lottie/coin_default.json',
+        path: 'https://ux.sbsvc.online/010pay/sup/rround_sup/images/lottie/coin_default.json',
       });
     });
 

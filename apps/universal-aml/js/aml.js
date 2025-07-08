@@ -86,27 +86,36 @@ function updateSendButtonClass() {
   }
 }
 
-const footerButtons = document.querySelectorAll(".modal-footer .btn");
+document.addEventListener("DOMContentLoaded", function () {
+  const footerButtons = document.querySelectorAll(".modal-footer .btn");
 
-// footer 버튼 클릭 시 이벤트 추가
-footerButtons.forEach((button) => {
-  button.addEventListener("click", function () {
-    const target = this.getAttribute("data-target"); // 클릭한 버튼의 data-target 값 가져오기
-    const targetButton = document.querySelector(`#${target}`); // 해당하는 버튼 선택
-    const allAgreeCheckbox = document.getElementById("check-all");
+  footerButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const targetId = this.getAttribute("data-target");
 
-    if (targetButton) {
-      targetButton.checked = true; // 해당하는 버튼을 체크된 상태로 만들기
-      if ([...otherCheckboxes].every((cb) => cb.checked)) {
-        allAgreeCheckbox.checked = true;
-      } else {
-        allAgreeCheckbox.checked = false;
+      if (!targetId) return;
+
+      // targetId가 'check-all'이면 그 체크박스를 체크
+      if (targetId === "check-all") {
+        const checkAllBox = document.getElementById("check-all");
+        if (checkAllBox) checkAllBox.checked = true;
       }
-      // 체크된 상태에 따라 id가 next인 버튼의 disabled 값 변경
-      updateNextButtonStatus();
-    }
+
+      // 그 외에 개별 약관 체크박스 처리
+      const targetCheckbox = document.getElementById(targetId);
+      if (targetCheckbox) {
+        targetCheckbox.checked = true;
+      }
+
+      // 모달 닫기
+      const modal = this.closest(".modal");
+      if (modal) {
+        modal.style.display = "none";
+      }
+    });
   });
 });
+
 
 // 다른 체크박스의 변경 이벤트를 감지하여 "check-all" 체크박스와 "check-pay" 체크박스의 상태를 업데이트합니다.
 otherCheckboxes.forEach(function (checkbox) {
@@ -123,4 +132,33 @@ function updateNextButtonStatus() {
   } else {
     document.getElementById("next").disabled = true;
   }
+}
+
+// 
+const nextStepButton = document.getElementById("nextStep");
+
+if (nextStepButton) {
+  nextStepButton.addEventListener("click", function () {
+    // 1. 모든 체크박스 체크
+    document.querySelectorAll(".checkSelect").forEach((cb) => (cb.checked = true));
+
+    // 2. 전체동의 체크박스도 체크 (존재할 경우)
+    if (allAgreeCheckbox) {
+      allAgreeCheckbox.checked = true;
+    }
+
+    // 3. 다음 단계로 이동하거나 모달 닫기 등
+/*     const modal = document.getElementById("modalSlide02");
+    if (modal) {
+      modal.classList.remove("modal-open");
+      modal.classList.add("modal-close");
+      setTimeout(() => {
+        modal.style.display = "none";
+        modal.classList.remove("modal-close");
+      }, 200);
+    } */
+
+    // 4. 필요하다면 다음 작업 콜백 추가
+    // ex) sendVerificationRequest();
+  });
 }

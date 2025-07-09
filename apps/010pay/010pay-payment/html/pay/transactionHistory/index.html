@@ -41,9 +41,22 @@
         <!-- container -->
         <div class="container transaction-history-container has-ad-wrap">
           <div class="month-wrap">
-            <button type="button" class="prev-btn icon-arrow-left size-16 disabled">이전</button>
-            <button type="button" class="month-text" onclick="modalOpenSlide('modal-period')">7월</button>
-            <button type="button" class="next-btn icon-arrow-right size-16">다음</button>
+            <button
+              type="button"
+              class="prev-btn icon-arrow-left size-16 disabled"
+            >
+              이전
+            </button>
+            <button
+              type="button"
+              class="month-text"
+              onclick="modalOpenSlide('modal-period')"
+            >
+              7월
+            </button>
+            <button type="button" class="next-btn icon-arrow-right size-16">
+              다음
+            </button>
           </div>
           <div class="trade-tab-wrap">
             <ul class="tab-list">
@@ -78,7 +91,10 @@
                     <p class="type">출금</p>
                   </div>
                   <div class="bottom-text-box">
-                    <p class="detail-text">국민 국민 국민 국민 국민 국민 국민 국민 국민 국민 국민 국민 국민</p>
+                    <p class="detail-text">
+                      국민 국민 국민 국민 국민 국민 국민 국민 국민 국민 국민
+                      국민 국민
+                    </p>
                     <p class="amount">90,000원</p>
                   </div>
                 </div>
@@ -89,7 +105,10 @@
                     <p class="type">결제 취소</p>
                   </div>
                   <div class="bottom-text-box">
-                    <p class="detail-text">국민 국민 국민 국민 국민 국민 국민 국민 국민 국민 국민 국민 국민</p>
+                    <p class="detail-text">
+                      국민 국민 국민 국민 국민 국민 국민 국민 국민 국민 국민
+                      국민 국민
+                    </p>
                     <p class="amount">90,000원</p>
                   </div>
                 </div>
@@ -182,11 +201,9 @@
 
           <!-- 광고영역 -->
           <div class="ad-wrap">
-            <div class="container">
-            </div>
+            <div class="container"></div>
           </div>
           <!-- //광고영역 -->
-           
         </div>
         <!-- //container -->
       </div>
@@ -195,10 +212,7 @@
     <!-- //wrap -->
 
     <!-- 필터 팝업 -->
-    <div
-      id="modal-filter"
-      class="modal modal-slide modal-filter"
-    >
+    <div id="modal-filter" class="modal modal-slide modal-filter">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
@@ -238,9 +252,16 @@
           </div>
           <div class="modal-body">
             <div class="year-wrap">
-              <button type="button" class="prev-btn icon-arrow-left size-20 disabled">이전</button>
+              <button
+                type="button"
+                class="prev-btn icon-arrow-left size-20 disabled"
+              >
+                이전
+              </button>
               <span class="year-text">2024년</span>
-              <button type="button" class="next-btn icon-arrow-right size-20">다음</button>
+              <button type="button" class="next-btn icon-arrow-right size-20">
+                다음
+              </button>
             </div>
             <ul class="month-list-wrap">
               <li>
@@ -287,22 +308,37 @@
     <!-- //기간 팝업 -->
   </body>
   <script>
-    $(function(){
-      $(".modal-period .month-list-wrap button").on("click", function(){
-        $(this).closest(".month-list-wrap").find("button").removeClass("active");
+    $(function () {
+      $(".modal-period .month-list-wrap button").on("click", function () {
+        $(this)
+          .closest(".month-list-wrap")
+          .find("button")
+          .removeClass("active");
         $(this).addClass("active");
       });
-      
-      $(window).on("scroll", function(){
+
+      $(window).on("scroll", function () {
         var scrollTop = $(window).scrollTop();
-        var tradeTabOffset = $(".trade-tab-wrap").offset().top - 64;
-        if (scrollTop >= tradeTabOffset) {
-          $(".trade-tab-wrap").addClass("fixed");
+        var tab = $(".trade-tab-wrap");
+
+        var tradeTabOffset = tab.hasClass("fixed")
+          ? tab.data("originalOffset")
+          : tab.offset().top;
+
+        if (typeof tab.data("originalOffset") === "undefined") {
+          tab.data("originalOffset", tradeTabOffset);
+        }
+
+        if (scrollTop >= tradeTabOffset - 64) {
+          tab.addClass("fixed");
+          $(".month-wrap").hide();
+          $(".trade-list.history").addClass("padding");
         } else {
-          $(".trade-tab-wrap").removeClass("fixed");
+          tab.removeClass("fixed");
+          $(".month-wrap").show();
+          $(".trade-list.history").removeClass("padding");
         }
       });
-
     });
   </script>
 </html>

@@ -67,34 +67,42 @@
           <!-- section -->
           <div class="section">
             <div class="sec sec-1 scroll-fade-up">
+              <!-- [2025.07.11] 변경 시작 -->
               <p class="title">
-                <span class="color">휘슬 상품권</span> 구매하고
+                비상금 상품권을
+                <span class="color">안전하게 보관</span>하고
               </p>
+              <!-- [2025.07.11] 변경 끝 -->
               <p class="img"></p>
               <p class="line"></p>
               <div>
+                <!-- [2025.07.11] 변경 시작 -->
                 <ul class="list">
-                  <li>
-                    휘슬 상품권은 휘슬 서비스에서 세차부터 검사까지 <br />
-                    자유롭게 사용 가능한 상품권이에요
-                  </li>
-                  <li>향후 보관할 수 있는 다양한 재화가 추가 될 수 있어요</li>
+                  <li>지금은 비상금 상품권만 보관 가능해요</li>
+                  <li>앞으로 더 다양한 재화가 추가될 수 있어요</li>
                 </ul>
+                <!-- [2025.07.11] 변경 끝 -->
               </div>
             </div>
             <div class="sec sec-2 scroll-fade-up">
+              <!-- [2025.07.11] 변경 시작 -->
               <p class="title">
-                비상금에 <span class="color">안전하게 보관</span>하면 끝 !
+                매일 <span class="color">라운드 로또 1장 </span>받아요
               </p>
-              <p class="sub-title">매일 라운드 로또 1줄은 덤으로 드려요</p>
+              <p class="sub-title">최대 400만원 당첨 기회</p>
+              <!-- [2025.07.11] 변경 끝 -->
               <p class="img"></p>
             </div>
             <!-- [2025.05.26] 변경 시작 -->
             <div class="sec sec-3 scroll-fade-up">
               <p class="title">
-                쉿! <span class="color">나만 알 수 있어요</span>
+                쉿! <span class="color">나만 볼 수 있어요</span>
               </p>
-              <p class="sub-title">자산 조회 서비스에도 보이지 않아요</p>
+              <!-- [2025.07.11] 변경 시작 -->
+              <p class="sub-title">
+                자산 조회 서비스에도 비상금은 보이지 않아요
+              </p>
+              <!-- [2025.07.11] 변경 끝 -->
               <p class="img"></p>
             </div>
             <!-- [2025.05.26] 변경 끝 -->
@@ -115,9 +123,11 @@
                 <p>상품권 보관하고 매일 라운드 로또 받아요!</p>
               </div>
             </a>
+            <!-- [2025.07.11] 변경 시작 -->
             <button type="button" class="btn btn-cancel">
-              휘슬 상품권 구매하기
+              비상금 상품권 구매하기
             </button>
+            <!-- [2025.07.11] 변경 끝 -->
           </div>
           <!-- //container -->
         </div>
@@ -150,14 +160,11 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button
-              type="button"
-              id=""
-              onclick="modalCloseSlide(); modalOpenSlide('modal-select-title');"
-              class="btn btn-confirm"
-            >
-              휘슬 상품권 구매하기
+            <!-- [2025.07.11] 변경 시작 -->
+            <button type="button" id="" onclick="modalClose();" class="btn btn-confirm">
+               상품권 구매하기
             </button>
+            <!-- [2025.07.11] 변경 끝 -->
           </div>
         </div>
       </div>
@@ -376,7 +383,7 @@
     <!-- [2025.05.26] 변경 끝 -->
 
     <script>
-      const targets = document.querySelectorAll('.scroll-fade-up');
+      const targets = document.querySelectorAll(".scroll-fade-up");
 
       const observer = new IntersectionObserver(
         (entries, observer) => {
@@ -384,7 +391,7 @@
             if (entry.isIntersecting) {
               // 순차적으로 delay 주기
               setTimeout(() => {
-                entry.target.classList.add('active');
+                entry.target.classList.add("active");
               }, index * 300); // 300ms씩 순차 delay
               observer.unobserve(entry.target); // 1번만 실행하고 제거
             }
@@ -392,28 +399,28 @@
         },
         {
           threshold: 0.3,
-        }
+        },
       );
 
       targets.forEach((target) => observer.observe(target));
 
-      window.addEventListener('load', function () {
+      window.addEventListener("load", function () {
         // 에러 모달
         // modalOpenSlide('modal-select-title');
         // modalOpenSlide('modal-empty');
       });
 
       // 250526 퍼블리싱 수정 시작
-      document.addEventListener('DOMContentLoaded', function () {
-        const checkboxAll2 = document.getElementById('checkbox_all2');
+      document.addEventListener("DOMContentLoaded", function () {
+        const checkboxAll2 = document.getElementById("checkbox_all2");
         const childCheckboxes = document.querySelectorAll(
-          'input[type="checkbox"][data-group="checkbox4_group1"]'
+          'input[type="checkbox"][data-group="checkbox4_group1"]',
         );
         const toggleBtn = document.querySelector(
-          '#modal-select-title .check-all .btn-toggle'
+          "#modal-select-title .check-all .btn-toggle",
         );
         const termsList = document.querySelector(
-          '#modal-select-title .terms-list.terms-block-list'
+          "#modal-select-title .terms-list.terms-block-list",
         );
 
         // 상태 저장용
@@ -425,7 +432,7 @@
         updateAgreeButton();
         updateTermsListVisibility();
 
-        checkboxAll2.addEventListener('change', () => {
+        checkboxAll2.addEventListener("change", () => {
           childCheckboxes.forEach((cb) => (cb.checked = checkboxAll2.checked));
           updateAgreeButton();
           // 수동으로 열었더라도 checkbox가 바뀌면 자동 통제 우선
@@ -434,9 +441,9 @@
         });
 
         childCheckboxes.forEach((cb) => {
-          cb.addEventListener('change', () => {
+          cb.addEventListener("change", () => {
             const allChecked = Array.from(childCheckboxes).every(
-              (i) => i.checked
+              (i) => i.checked,
             );
             checkboxAll2.checked = allChecked;
             updateAgreeButton();
@@ -447,31 +454,31 @@
         });
 
         if (toggleBtn) {
-          toggleBtn.addEventListener('click', () => {
-            const isOpen = toggleBtn.classList.contains('open');
+          toggleBtn.addEventListener("click", () => {
+            const isOpen = toggleBtn.classList.contains("open");
             isManuallyToggled = true;
 
             if (isOpen) {
-              toggleBtn.classList.remove('open');
-              termsList.style.display = 'none';
+              toggleBtn.classList.remove("open");
+              termsList.style.display = "none";
               // ✅ check-all에서도 open 제거
-              toggleBtn.closest('.check-all').classList.remove('open');
+              toggleBtn.closest(".check-all").classList.remove("open");
             } else {
-              toggleBtn.classList.add('open');
-              termsList.style.display = '';
+              toggleBtn.classList.add("open");
+              termsList.style.display = "";
               // ✅ check-all에 open 추가
-              toggleBtn.closest('.check-all').classList.add('open');
+              toggleBtn.closest(".check-all").classList.add("open");
             }
           });
         }
 
         function updateAgreeButton() {
-          const agreeButton = document.getElementById('btn-agree1');
+          const agreeButton = document.getElementById("btn-agree1");
           const allChecked = Array.from(childCheckboxes).every(
-            (i) => i.checked
+            (i) => i.checked,
           );
           agreeButton.disabled = !allChecked;
-          agreeButton.classList.toggle('disabled', !allChecked);
+          agreeButton.classList.toggle("disabled", !allChecked);
         }
 
         function updateTermsListVisibility() {
@@ -479,11 +486,11 @@
 
           if (!isManuallyToggled) {
             if (checkboxAll2.checked) {
-              termsList.style.display = 'none';
-              toggleBtn.classList.remove('open');
+              termsList.style.display = "none";
+              toggleBtn.classList.remove("open");
             } else {
-              termsList.style.display = '';
-              toggleBtn.classList.add('open');
+              termsList.style.display = "";
+              toggleBtn.classList.add("open");
             }
           }
         }

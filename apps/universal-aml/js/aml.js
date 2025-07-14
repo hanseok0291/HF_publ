@@ -50,72 +50,70 @@ document.querySelectorAll(".select-list li").forEach((item) => {
   });
 });
 
-// 전체약관동의 체크박스
-const allAgreeCheckbox = document.getElementById("check-all");
-// 나머지 체크박스들
+// 약관 체크박스 제어
 const otherCheckboxes = document.querySelectorAll(".checkSelect");
 
-// "check-all" 체크박스의 변경 이벤트를 감지합니다.
-if (allAgreeCheckbox) {
-  allAgreeCheckbox.addEventListener("change", function () {
-    otherCheckboxes.forEach(function (checkbox) {
-      checkbox.checked = allAgreeCheckbox.checked;
-    });
-    updateSendButtonClass();
-  });
-}
-
-// 다른 체크박스의 변경 이벤트를 감지하여 "check-all" 체크박스와 "check-pay" 체크박스의 상태를 업데이트합니다.
-otherCheckboxes.forEach(function (checkbox) {
-  checkbox.addEventListener("change", function () {
-    if ([...otherCheckboxes].every((cb) => cb.checked)) {
-      allAgreeCheckbox.checked = true;
-    } else {
-      allAgreeCheckbox.checked = false;
-    }
-    updateSendButtonClass();
-  });
-});
-
-// 함수를 만들어 체크 상태를 확인하고 클래스를 추가합니다.
 function updateSendButtonClass() {
-  if (allAgreeCheckbox.checked) {
-    document.getElementById("next").disabled = false;
-  } else {
-    document.getElementById("next").disabled = true;
+  const allAgreeCheckbox = document.getElementById("check-all");
+  const nextStep = document.getElementById("nextStep");
+  if (allAgreeCheckbox && nextStep) {
+    nextStep.disabled = !allAgreeCheckbox.checked;
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const footerButtons = document.querySelectorAll(".modal-footer .btn");
+function updateNextButtonStatus() {
+  const allAgreeCheckbox = document.getElementById("check-all");
+  const next = document.getElementById("next");
+  if (!allAgreeCheckbox || !next) return;
 
-  footerButtons.forEach((button) => {
-    button.addEventListener("click", function () {
-      const targetId = this.getAttribute("data-target");
+  const allChecked = [...otherCheckboxes].every((cb) => cb.checked);
+  next.disabled = !(allChecked && allAgreeCheckbox.checked);
+}
 
-      if (!targetId) return;
-
-      // targetId가 'check-all'이면 그 체크박스를 체크
-      if (targetId === "check-all") {
-        const checkAllBox = document.getElementById("check-all");
-        if (checkAllBox) checkAllBox.checked = true;
-      }
-
-      // 그 외에 개별 약관 체크박스 처리
-      const targetCheckbox = document.getElementById(targetId);
-      if (targetCheckbox) {
-        targetCheckbox.checked = true;
-      }
-
-      // 모달 닫기
-      const modal = this.closest(".modal");
-      if (modal) {
-        modal.style.display = "none";
-      }
+// 전체동의 체크박스
+const allAgreeCheckbox = document.getElementById("check-all");
+if (allAgreeCheckbox) {
+  allAgreeCheckbox.addEventListener("change", function () {
+    otherCheckboxes.forEach((cb) => {
+      cb.checked = allAgreeCheckbox.checked;
     });
+    updateSendButtonClass();
+    updateNextButtonStatus();
+  });
+}
+
+// 개별 체크박스 상태 변경
+otherCheckboxes.forEach((checkbox) => {
+  checkbox.addEventListener("change", () => {
+    const allAgreeCheckbox = document.getElementById("check-all");
+    if (allAgreeCheckbox) {
+      allAgreeCheckbox.checked = [...otherCheckboxes].every((cb) => cb.checked);
+    }
+    updateSendButtonClass();
+    updateNextButtonStatus();
   });
 });
 
+const footerButtons = document.querySelectorAll(".modal-footer .btn");
+
+// footer 버튼 클릭 시 이벤트 추가
+footerButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    const target = this.getAttribute("data-target"); // 클릭한 버튼의 data-target 값 가져오기
+    const targetButton = document.getElementById(target); // 해당하는 버튼 선택
+    const allAgreeCheckbox = document.getElementById("check-all");
+
+    if (targetButton) {
+      targetButton.checked = true; // 해당하는 버튼을 체크된 상태로 만들기
+    }
+
+    if (allAgreeCheckbox) {
+      allAgreeCheckbox.checked = [...otherCheckboxes].every((cb) => cb.checked);
+    }
+
+    updateNextButtonStatus(); // 항상 상태 갱신 시도
+  });
+});
 
 // 다른 체크박스의 변경 이벤트를 감지하여 "check-all" 체크박스와 "check-pay" 체크박스의 상태를 업데이트합니다.
 otherCheckboxes.forEach(function (checkbox) {
@@ -127,38 +125,26 @@ otherCheckboxes.forEach(function (checkbox) {
 // 함수를 만들어 체크 상태를 확인하고 "next" 버튼의 disabled 값을 변경합니다.
 function updateNextButtonStatus() {
   const allChecked = [...otherCheckboxes].every((cb) => cb.checked);
+  const allAgreeCheckbox = document.getElementById("check-all");
+  const nextBtn = document.getElementById("next");
+
+  if (!allAgreeCheckbox || !nextBtn) return; // null 체크
+
   if (allChecked && allAgreeCheckbox.checked) {
-    document.getElementById("next").disabled = false;
+    nextBtn.disabled = false;
   } else {
-    document.getElementById("next").disabled = true;
+    nextBtn.disabled = true;
   }
 }
 
 // 
-const nextStepButton = document.getElementById("nextStep");
-
-if (nextStepButton) {
-  nextStepButton.addEventListener("click", function () {
-    // 1. 모든 체크박스 체크
-    document.querySelectorAll(".checkSelect").forEach((cb) => (cb.checked = true));
-
-    // 2. 전체동의 체크박스도 체크 (존재할 경우)
-    if (allAgreeCheckbox) {
-      allAgreeCheckbox.checked = true;
-    }
-
-    // 3. 다음 단계로 이동하거나 모달 닫기 등
-/*     const modal = document.getElementById("modalSlide02");
-    if (modal) {
-      modal.classList.remove("modal-open");
-      modal.classList.add("modal-close");
-      setTimeout(() => {
-        modal.style.display = "none";
-        modal.classList.remove("modal-close");
-      }, 200);
-    } */
-
-    // 4. 필요하다면 다음 작업 콜백 추가
-    // ex) sendVerificationRequest();
-  });
-}
+ // ✅ "이용약관 전체 동의" 버튼 클릭 시 전체 체크
+ const nextStepButton = document.getElementById("nextStep");
+ if (nextStepButton) {
+   nextStepButton.addEventListener("click", function () {
+     otherCheckboxes.forEach((cb) => (cb.checked = true));
+     if (allAgreeCheckbox) allAgreeCheckbox.checked = true;
+     updateSendButtonClass();
+     updateNextButtonStatus();
+   });
+ }

@@ -106,8 +106,9 @@ $(function () {
   $("[data-dismiss='modal']").click(function () {
     var target = $(this).parents(".modal");
     $(target).hide(); // 모달 닫기
-    scrollOn(); // 바디 스크롤 제거 해제
+    // scrollOn(); // 바디 스크롤 제거 해제
     // scrollOff(); // 바디 스크롤 제거
+    $("#wrap").css("position", "relative");
   });
 
   // 배너 닫기(플로팅 배너)

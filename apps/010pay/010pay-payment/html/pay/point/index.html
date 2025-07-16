@@ -135,7 +135,10 @@
                   <div class="right-text-box">
                     <div class="top-text">
                       <p class="time-text">오후 11:56</p>
-                      <p class="type-text">지급 유형지급 유형지급 유형지급 유형지급 유형지급 유형지급 유형지급 유형지급 유형지급 유형지급 유형</p>
+                      <p class="type-text">
+                        지급 유형지급 유형지급 유형지급 유형지급 유형지급
+                        유형지급 유형지급 유형지급 유형지급 유형지급 유형
+                      </p>
                       <p class="type">사용</p>
                     </div>
                     <div
@@ -482,31 +485,34 @@
 
     <!-- lottie-spiner -->
     <div class="lottie-spiner-wrap">
-    <span class="lottie-spiner"></span>
+      <span class="lottie-spiner"></span>
     </div>
     <!-- lottie-spiner -->
   </body>
   <script>
     $(function () {
-      
       // 로티
       let svgContainer = document.querySelector(".lottie-spiner");
 
       let animItem = bodymovin.loadAnimation({
-          wrapper: svgContainer,
-          animType: "svg",
-          loop: true,
-          path: "https://ux.sbsvc.online/010pay/010pay-payment/images/lottie/spiner.json",
+        wrapper: svgContainer,
+        animType: "svg",
+        loop: true,
+        path: "https://ux.sbsvc.online/010pay/010pay-payment/images/lottie/spiner.json",
       });
-      
-      $(window).on("scroll", function () {
-        var scrollTop = $(window).scrollTop();
-        var tradeTabOffset = $(".trade-tab-wrap").offset().top - 64;
-        if (scrollTop >= tradeTabOffset) {
-          $(".trade-tab-wrap").addClass("fixed");
-        } else {
-          $(".trade-tab-wrap").removeClass("fixed");
-        }
+
+      $(function () {
+        const tradeTabOffset = $(".trade-tab-wrap").offset().top - 64;
+
+        $(window).on("scroll", function () {
+          const scrollTop = $(window).scrollTop();
+
+          if (scrollTop >= tradeTabOffset) {
+            $(".trade-tab-wrap").addClass("fixed");
+          } else {
+            $(".trade-tab-wrap").removeClass("fixed");
+          }
+        });
       });
 
       $(".tab-list button").on("click", function () {

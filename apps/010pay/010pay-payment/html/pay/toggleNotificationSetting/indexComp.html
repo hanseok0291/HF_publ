@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="../../../css/jquery-ui.css" />
+    <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../../css/pay/setting.css" />
+    <script src="../../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../../js/design_renewal.js" defer="defer"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <button type="button" class="btn-back js-change-btn left-0">
+              <i class="icon-back"></i>
+            </button>
+            <h2 class="page-title">거래내역 수신 설정</h2>
+          </div>
+        </div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <!-- container -->
+        <div class="container setting-container email">
+          <div class="toggle-wrap">
+            <div class="toggle-line">
+              <span class="title">이메일로 거래내역 안 받을게요</span>
+              <div class="toggle-box">
+                <span class="toggle-label"></span>
+                <label class="switch">
+                  <input type="checkbox" class="js-toggle-switch" id="noti-email-toggle" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <ul class="setting-list noti-list d-none">
+            <li>
+              <div class="input-container small">
+                <input type="text" class="custom-input" placeholder="이메일을 입력해 주세요" id="text_01">
+                <button type="button" class="icon icon-del js-text-del"></button>
+              </div>
+              <span class="helper-text">이메일을 다시 확인해 주세요</span>
+            </li>
+          </ul>
+
+          <ul class="setting-list q-list comp-list">
+            <li>
+              <div>
+                <p class="setting-name">이메일 주소</p>
+                <p>rr****@r***.com</p>
+              </div>
+              <button type="button" class="active-btn js-change-btn">
+                변경
+              </button>
+            </li>
+          </ul>
+
+        </div>
+        <!-- //container -->
+      
+        <!-- bottom area -->
+        <div class="bottom-area">
+          <!-- container -->
+          <div class="container">
+            <button
+              type="button"
+              id="send"
+              class="btn"
+            >
+              완료
+            </button>
+          </div>
+          <!-- //container -->
+        </div>
+        <!-- //bottom area -->
+      </div>
+      <!-- //content -->
+    </div>
+    <!-- //wrap -->
+
+    <!-- 이메일 주소 팝업 -->
+    <div
+    id="modal-select-email"
+    class="modal modal-slide type-select type-title"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-head">
+          <p class="modal-head-title">이메일을 선택해 주세요</p>
+          <button type="button" class="btn-close js-modal-close">
+            <i class="icon-close"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- 전체 동의 체크박스 -->
+          <div class="container">
+            <ul class="btn-list account-list sortable-list">
+              <li class="list-item js-modal-close">
+                <div class="list-box">
+                  <div class="text-wrap">
+                    <p class="title-text">직접입력</p>
+                  </div>
+                </div>
+              </li>
+              <li class="list-item js-modal-close">
+                <div class="list-box">
+                  <div class="text-wrap">
+                    <p class="title-text">네이버 (naver.com)</p>
+                  </div>
+                </div>
+              </li>
+              <li class="list-item js-modal-close">
+                <div class="list-box">
+                  <div class="text-wrap">
+                    <p class="title-text">구글 (gmail.com)</p>
+                  </div>
+                </div>
+              </li>
+              <li class="list-item js-modal-close">
+                <div class="list-box">
+                  <div class="text-wrap">
+                    <p class="title-text">네이트 (nate.com)</p>
+                  </div>
+                </div>
+              </li>
+              <li class="list-item js-modal-close">
+                <div class="list-box">
+                  <div class="text-wrap">
+                    <p class="title-text">다음 (daum.net)</p>
+                  </div>
+                </div>
+              </li>
+              <li class="list-item js-modal-close">
+                <div class="list-box">
+                  <div class="text-wrap">
+                    <p class="title-text">카카오 (kakao.com)</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- //이메일 주소 팝업 -->
+    
+  </body>
+  <script>
+    
+    $("#noti-email-toggle").on("click", function () {
+      if ($(this).is(":checked")) {
+        $(".setting-list.noti-list").show();
+        $(".toggle-line .title").text("이메일로 거래내역 받을게요");
+        // q-list, comp-list 보이기
+        $(".setting-list.q-list").removeClass("d-none");
+        $(".setting-list.comp-list").removeClass("d-none");
+      } else {
+        $(".setting-list.noti-list").hide();
+        $(".toggle-line .title").text("이메일로 거래내역 안 받을게요");
+        // q-list, comp-list 숨기기
+        $(".setting-list.q-list").addClass("d-none");
+        $(".setting-list.comp-list").addClass("d-none");
+      }
+    });
+    // 페이지 로드 시 체크박스 상태에 따라 noti-list 표시/숨김 및 텍스트 설정
+    $(function() {
+      if ($("#noti-email-toggle").is(":checked")) {
+        $(".setting-list.noti-list").show();
+        $(".toggle-line .title").text("이메일로 거래내역 받을게요");
+        // q-list, comp-list 보이기
+        $(".setting-list.q-list").removeClass("d-none");
+        $(".setting-list.comp-list").removeClass("d-none");
+      } else {
+        $(".setting-list.noti-list").hide();
+        $(".toggle-line .title").text("이메일로 거래내역 안 받을게요");
+        // q-list, comp-list 숨기기
+        $(".setting-list.q-list").addClass("d-none");
+        $(".setting-list.comp-list").addClass("d-none");
+      }
+      $(".bottom-area").hide();
+    });
+
+    // js-change-btn 버튼 클릭 시 noti-list 보이기, q-list/comp-list 숨기기
+    $(document).on('click', '.js-change-btn', function() {
+      $('.setting-list.noti-list').removeClass('d-none');
+      $('.setting-list.q-list').addClass('d-none');
+      $('.setting-list.comp-list').addClass('d-none');
+    });
+
+    // 이메일 입력 필드에서 @ 입력 시 모달 열기 (한 번만)
+    $("#text_01").on("input", function() {
+      var value = $(this).val();
+      var prev = $(this).data("prev-value") || "";
+      // bottom-area 노출 조건 체크
+      var showBottom = false;
+      var atIdx = value.indexOf("@");
+      var valid = false;
+      if (atIdx > 0) {
+        var beforeAt = value.substring(0, atIdx);
+        var afterAt = value.substring(atIdx + 1);
+        var dotIdx = afterAt.lastIndexOf(".");
+        if (beforeAt.length >= 1 && dotIdx > 0) {
+          var domain = afterAt.substring(0, dotIdx);
+          var afterDot = afterAt.substring(dotIdx + 1);
+          if (domain.length >= 1 && afterDot.length >= 2) {
+            showBottom = true;
+            valid = true;
+          }
+        }
+      }
+      if (showBottom) {
+        $(".bottom-area").show();
+      } else {
+        $(".bottom-area").hide();
+      }
+      // 에러 메시지 및 클래스 처리
+      var inputContainer = $(this).closest('.input-container');
+      if (!valid && value.length > 0) {
+        inputContainer.addClass('label-error');
+        inputContainer.find('.helper-text').show();
+      } else {
+        inputContainer.removeClass('label-error');
+        inputContainer.find('.helper-text').hide();
+      }
+      // @를 새로 입력한 경우에만 모달
+      if (!prev.includes("@") && value.includes("@")) {
+        modalOpenSlide('modal-select-email');
+      }
+      $(this).data("prev-value", value);
+    });
+
+    // 이메일 도메인 선택 시 입력란에 자동 완성
+    $(document).on("click", "#modal-select-email .list-item", function() {
+      var text = $(this).find(".title-text").text();
+      if (text === "직접입력") {
+        $("#text_01").focus();
+        return; // 직접입력은 포커스만 이동
+      }
+      var match = text.match(/\(([^)]+)\)/); // 괄호 안 도메인 추출
+      if (!match) return;
+      var domain = match[1];
+      var input = $("#text_01");
+      var val = input.val();
+      var atIdx = val.indexOf("@");
+      if (atIdx !== -1) {
+        input.val(val.substring(0, atIdx + 1) + domain);
+        // bottom-area 노출 조건 즉시 체크
+        var afterAt = domain;
+        var showBottom = false;
+        if (afterAt.length >= 1) {
+          var dotIdx = afterAt.lastIndexOf(".");
+          if (dotIdx > 0 && afterAt.length - (dotIdx + 1) >= 2) {
+            showBottom = true;
+          }
+        }
+        if (showBottom) {
+          $(".bottom-area").show();
+        } else {
+          $(".bottom-area").hide();
+        }
+        // 자동완성 후 유효성 검사 및 에러 제거
+        var completedEmail = input.val();
+        var valid = false;
+        var atIdx2 = completedEmail.indexOf("@");
+        if (atIdx2 > 0) {
+          var beforeAt2 = completedEmail.substring(0, atIdx2);
+          var afterAt2 = completedEmail.substring(atIdx2 + 1);
+          var dotIdx2 = afterAt2.lastIndexOf(".");
+          if (beforeAt2.length >= 1 && dotIdx2 > 0) {
+            var domain2 = afterAt2.substring(0, dotIdx2);
+            var afterDot2 = afterAt2.substring(dotIdx2 + 1);
+            if (domain2.length >= 1 && afterDot2.length >= 2) {
+              valid = true;
+            }
+          }
+        }
+        var inputContainer = input.closest('.input-container');
+        if (valid) {
+          inputContainer.removeClass('label-error');
+          inputContainer.find('.helper-text').hide();
+        }
+      }
+    });
+  </script>
+</html>

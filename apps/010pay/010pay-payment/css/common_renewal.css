@@ -2721,7 +2721,7 @@ body > div > form.main_form {
 .modal-footer.vertical,
 body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer.vertical {
   flex-direction: column;
-  padding-bottom: 12px;
+  padding-bottom: 4px;
 }
 .modal-footer .btn {
   width: 100%;
@@ -3373,7 +3373,7 @@ body:not(.custom-pass) .round-button-modal:not(.modal-slide) .modal-footer {
   padding: 0;
 }
 .modal-slide .modal-footer .btn {
-  line-height: 60px;
+  line-height: 1.2;
   padding: 0;
 }
 .modal-slide .modal-footer .btn-cancel, .modal-slide .modal-footer.type2 .btn-cancel {
@@ -5078,6 +5078,9 @@ input[type="tel"].custom-input {
   font-size: 16px;
   font-weight: 400;
 }
+.small input[type="text"].custom-input::placeholder {
+  color: #B0B0B3;
+}
 
 .small .custom-input.error,
 .small input[type="text"].custom-input.error {
@@ -6571,17 +6574,34 @@ margin-bottom: 16px;
   align-items: center;
   flex-direction: column;
 }
+.container.banner-full-container.type2 {
+  height: calc(var(--vh, 1vh) * 100 - 216px);
+}
 @supports (height: 100dvh) {
   .container.banner-full-container {
     height: calc(100dvh - 152px);
+  }
+  .container.banner-full-container.type2 {
+    height: calc(100dvh - 216px);
   }
 }
 .container.banner-full-container .complete-text {
   margin-top: auto;
   margin-bottom: auto;
 }
-.container.banner-full-container .complete-text p {
+.container.banner-full-container .complete-text p, .container.banner-full-container .complete-text .main-text {
   color: #151515;
+  font-family: Pretendard;
+  font-weight: 700;
+  font-size: 24px;
+}
+.container.banner-full-container .complete-text .sub-text {
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 16px;
+  color: #151515;
+  line-height: 22px;
+  margin-top: 4px;
 }
 .container.banner-full-container .rround-banner-wrap {
   margin-top: auto;
@@ -6590,6 +6610,33 @@ margin-bottom: 16px;
   left: auto;
   bottom: auto;
   padding: 0;
+  text-align: center;
+}
+.container.banner-full-container .rround-banner-wrap .banner-text {
+  font-family: Pretendard;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 14px;
+  line-height: 140%;
+  letter-spacing: -2%;
+  text-align: center;
+  color: #454545;
+}
+.container.banner-full-container .rround-banner-wrap .banner-text > p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 20px;
+}
+.container.banner-full-container .rround-banner-wrap .banner-text .icon-acct {
+  width: 24px;
+  height: 24px;
+  background: url('../images/common/ico-acct.png') no-repeat center / contain;
+  margin-right: 2px;
+}
+.container.banner-full-container .rround-banner-wrap .banner-text .color-text {
+  color: #8BC104;
+  font-weight: 500;
 }
 .modal.change-info .modal-body .note-wrap li {
   color: #454545;
@@ -6611,4 +6658,32 @@ margin-bottom: 16px;
   width: 100%;
   margin-top: auto;
   top: 4px;
+}
+
+.container.vertical {
+  display: flex;
+  flex-direction: column;
+}
+.container.vertical .btn-text {
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 160%;
+  text-align: center;
+  color: #888;
+  background: none;
+  border: 0;
+  margin-top: 8px;
+}
+.modal-slide.type-title.modal-noti-left .modal-body .modal-img {
+  height: 140px;
+}
+.modal-slide.type-title.modal-noti-left .modal-body .modal-img img {
+  height: 100%;
+}
+.modal-slide.type-title.modal-noti-left .modal-footer {
+  gap: 8px;
+}
+.modal-slide.type-title.modal-noti-left .modal-body .modal-text {
+  margin-top: 16px;
 }

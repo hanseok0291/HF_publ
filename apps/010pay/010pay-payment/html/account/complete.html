@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <link rel="stylesheet" href="../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../css/pay/charge.css" />
+    <script src="../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/design_renewal.js" defer="defer"></script>
+    <script src="../../js/lottie.min.js"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <button type="button" class="btn-close js-change-btn">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <!-- container -->
+        <div class="container charge-container banner-full-container type2">
+          <div class="complete-text">
+            <i class="lottie-check"></i>
+            <p class="main-text">등록이 완료되었어요</p>
+            <p class="sub-text">3초 후 계좌 등록 화면으로 이동해요</p>
+          </div>
+          <div class="rround-banner-wrap">
+            <!-- <img
+              src="../../images/payment/samlple/lotto-banner.png"
+              alt="당첨금 최대 400만원 라운드 로또 받기 성공!"
+            /> -->
+            <div class="banner-text">
+              <p><i class="icon-acct"></i>지금 주거래 계좌 등록하면</p>
+              <p><span class="color-text">라운드 로또 10장</span>을 추가로 드려요!</p>
+            </div>
+          </div>
+        </div>
+        <!-- //container -->
+      </div>
+      <!-- bottom area -->
+      <div class="bottom-area">
+        <!-- container -->
+        <div class="container vertical">
+          <button type="button" class="btn">계좌등록하고 로또 10장 받기</button>
+          <button type="button" class="btn btn-text">나중에 하기</button>
+        </div>
+        <!-- //container -->
+      </div>
+      <!-- //bottom area -->
+      <!-- //content -->
+    </div>
+    <!-- //wrap -->
+
+    
+    <!-- 슬라이드 모달 하단 버튼 o -->
+    <div
+      id="modal-mission"
+      class="modal modal-slide type-title modal-noti-left"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head round-btn">
+            <button type="button" class="btn btn-close js-modal-close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <p class="modal-body-title text-center">지금 등록하지 않으면 최대 400만원<br>
+                당첨 라운드 로또가 사라져요!</p>
+              <p class="modal-img">
+                <img
+                  src="../../images/common/modal-mission-img.png"
+                  alt=""
+                />
+              </p>
+            </div>
+          </div>
+          <!-- 동의하기 버튼 -->
+          <div class="modal-footer">
+            <button
+              type="button"
+              id=""
+              onclick="modalCloseSlide();"
+              class="btn btn-cancel"
+            >
+            괜찮아요
+            </button>
+            <button
+              type="button"
+              id=""
+              onclick="modalCloseSlide();"
+              class="btn btn-confirm"
+            >
+            계좌 등록하기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //슬라이드 모달 하단 버튼 o -->
+
+
+  </body>
+  <script>
+    
+    $(document).ready(function () {
+      modalOpenSlide("modal-mission");
+    });
+
+    $(document).ready(function () {
+      // 로티 완료
+      let svgContainer = document.querySelector(".lottie-check");
+
+      let animItem = bodymovin.loadAnimation({
+        wrapper: svgContainer,
+        animType: "svg",
+        loop: false,
+        path: "https://ux.sbsvc.online/010pay/010pay-payment/images/lottie/check.json",
+      });
+    });
+  </script>
+</html>

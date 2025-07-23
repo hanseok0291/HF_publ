@@ -1,252 +1,3 @@
-// form
-$(function () {
-  var input = $(
-    "input[type=text], input[type=password], input[type=tel], input[type=email], input[type=number], select, textarea, .input"
-  );
-  var row = $(".input input, .input select, .input .select");
-
-  // input Focus
-  input
-    .on("focus", function () {
-      $(this).addClass("focus");
-      $(".bottom-banner-area.fixed").addClass("hidden-mobile");
-      $(this).parents(".input-container").addClass("focus-on");
-
-      var floatingLabel = $(this)
-        .closest(".input-container")
-        .find(".floating-label");
-
-      // .label-error가 있으면 기존 문구 유지
-      if ($(this).closest(".input-container").hasClass("label-error")) {
-        return;
-      }
-
-      // .floating-label.first 텍스트를 변경
-      if ($(this).closest(".input-container").hasClass("focus-on")) {
-        var floatingLabel = $(this)
-          .closest(".input-container")
-          .find(".floating-label");
-
-        // id-number 클래스 처리
-        if ($(this).closest(".id-number").length) {
-          floatingLabel.text("주민 등록 번호 앞 7자리");
-        }
-        // type-text 클래스 처리
-        else if ($(this).closest(".type-text").length) {
-          floatingLabel.text("텍스트");
-        }
-        // type-timer 클래스 처리
-        else if ($(this).closest(".type-timer").length) {
-          floatingLabel.text("인증 번호");
-        }
-      }
-    })
-    .on("blur", function () {
-      $(this).removeClass("focus");
-      $(".bottom-banner-area.fixed").removeClass("hidden-mobile");
-      $(this).parents(".input-container").removeClass("focus-on");
-
-      // id-number 하위 input인 경우, 값이 비어 있지 않으면 focus-on 유지
-      var hasValue = false;
-      $(this)
-        .parents(".input-container")
-        .find("input, select, textarea")
-        .each(function () {
-          if ($(this).val().trim() !== "") {
-            hasValue = true;
-          }
-        });
-
-      // input에 값이 있으면 focus-on 유지, 없으면 제거
-      if (hasValue) {
-        $(this).parents(".input-container").addClass("comp"); // .comp 클래스 추가 (값이 있을 때)
-
-        var inputContainer = $(this).closest(".input-container");
-
-        if (inputContainer.length && inputContainer.hasClass("label-error")) {
-          return;
-        }
-
-        // id-number 하위 input인 경우, 텍스트가 "주민 등록 번호 앞 7자리"로 유지되도록 설정
-        if ($(this).closest(".id-number").length) {
-          $(this).parents(".input-container").addClass("fill");
-          var floatingLabel = $(this)
-            .closest(".input-container")
-            .find(".floating-label");
-          floatingLabel.text("주민 등록 번호 앞 7자리");
-        }
-      } else {
-        $(this).parents(".input-container").removeClass("focus-on");
-        $(this).parents(".input-container").removeClass("comp");
-
-        // id-number 하위 input인 경우, 원래 텍스트로 복원 ("생년월일")
-        if ($(this).closest(".id-number").length) {
-          $(this).parents(".input-container").removeClass("fill");
-          var floatingLabel = $(this)
-            .closest(".input-container")
-            .find(".floating-label");
-          floatingLabel.text("생년월일");
-        }
-        // type-text 하위 input인 경우, 원래 텍스트로 복원 ("텍스트 입력")
-        else if ($(this).closest(".type-text").length) {
-          var floatingLabel = $(this)
-            .closest(".input-container")
-            .find(".floating-label");
-          floatingLabel.text("텍스트를 입력 하세요");
-        }
-        // type-timer 하위 input인 경우, 원래 텍스트로 복원 ("6자리 숫자 입력")
-        else if ($(this).closest(".type-timer").length) {
-          var floatingLabel = $(this)
-            .closest(".input-container")
-            .find(".floating-label");
-          floatingLabel.text("6자리 숫자 입력");
-        }
-      }
-    });
-
-  row
-    .on("focus", function () {
-      $(this).parents(".input").addClass("focus");
-      $(this).removeClass("focus");
-    })
-    .blur(function () {
-      $(this).parents(".input").removeClass("focus");
-    })
-    .blur();
-
-  var totalInputLength = 0;
-  if ($(".id-number").length) {
-    $(".id-number input")
-      .on("input change", function () {
-        totalInputLength = 0;
-        var inputContainer = $(this).closest(".id-number");
-        var input = inputContainer.find("input");
-        input.each(function (i, e) {
-          var inputLength = $(e).val().length;
-          totalInputLength += inputLength;
-          if (i === 0 && inputLength === 6) {
-            input[1].focus();
-            inputContainer.addClass("focus-on");
-          }
-        });
-        if (totalInputLength > 0) {
-          inputContainer.find(".icon-del").show();
-        } else {
-          inputContainer.find(".icon-del").hide();
-        }
-      })
-      .on("blur", function () {
-        $(this).closest(".id-number").find(".icon-del").hide();
-      })
-      .on("focus", function () {
-        if (totalInputLength > 0) {
-          $(this).closest(".id-number").find(".icon-del").show();
-        } else {
-          $(this).closest(".id-number").find(".icon-del").hide();
-        }
-      });
-  }
-
-  $(".toggle-switch").on("click", function () {
-    $(this).toggleClass("active");
-  });
-
-  if($(".modal-terms").length > 0){
-    var $h2 = $(".modal-terms h2");
-    var text = $h2.text().trim();
-    $h2.html(`<span>${text}</span>`);
-    $('.modal-terms .modal-content').on('scroll', function(){
-      var terms_title = $(".modal-terms .title-text");
-      var top = terms_title.offset().top;
-      // console.log(terms_title.offset().top)
-      if(top === 16) {
-        $(this).addClass("fixed");
-      } else if(top > 17) {
-        $(this).removeClass("fixed");
-      }
-    });
-  }
-});
-
-// 바디 스크롤 제거/해제
-var scrollHeight = 0;
-function scrollOff() {
-  scrollHeight = $(document).scrollTop();
-  $("body").addClass("modal-open");
-  $("#wrap").css("position", "fixed");
-  $("#wrap").css("top", -scrollHeight);
-  $("#header").css("top", "-0.9px");
-}
-function scrollOn() {
-  $("body").removeClass("modal-open");
-  $("#wrap").css("top", 0);
-  $("#wrap").css("position", "relative");
-  $("#header").css("top", "-1px");
-  $(document).scrollTop(scrollHeight);
-}
-
-// 레이어 팝업(모달) 열기
-function modalOpen(obj) {
-  var temp = $("#" + obj);
-  temp.show();
-  scrollOff(); // 바디 스크롤 제거
-
-  // 위치
-  var thisDialog = temp.children(".modal-dialog");
-  var marginValue = thisDialog.outerHeight() / 2;
-  $(thisDialog).css("margin-top", "-" + marginValue + "px");
-
-  // js-modal-close 버튼 클릭 시 모달 닫기 실행
-  temp.find(".js-modal-close").on("click", function () {
-    modalClose();
-  });
-}
-
-// 얼럿 (모달) 닫기
-function modalCloseAlert() {
-  $(".modal").hide();
-  scrollOn(); // 바디 스크롤 제거 해제
-
-  // vertical 클래스 제거
-  const footer = document.querySelector("#commonPrompt .modal-footer");
-  if (footer && footer.classList.contains("vertical")) {
-    footer.classList.remove("vertical");
-  }
-}
-
-// 레이어 팝업(풀모달) 닫기
-function modalClose() {
-  $(".modal-full").hide();
-  scrollOn(); // 바디 스크롤 제거 해제
-}
-
-// bottom modal(슬라이드모달) 닫기
-function modalCloseSlide() {
-  $(".modal-slide").fadeOut(200);
-  $(".modal-slide").find(".modal-content").animate({ bottom: modalH }, 200);
-
-  // 이중 모달이 아닌 경우
-  if (!$(".modal-slide").hasClass("depth2")) {
-    scrollOn(); // 바디 스크롤 제거 해제
-  }
-}
-
-function modalClose(obj) {
-  if (obj != null && obj != undefined && obj != "") {
-    var temp = $("#" + obj);
-    temp.hide();
-  } else {
-    $(".modal-full").hide();
-  }
-  scrollOn(); // 바디 스크롤 제거 해제
-}
-
-// 레이어 팝업(모달) 닫기 (오류 페이지 외)
-function modalAllClose() {
-  $(".modal").hide();
-  $("body").removeClass("modal-open"); // 바디 스크롤 제거 해제
-}
-
 // 모달 내에서 또다른 모달이 열렸을때 닫기
 function modalCloseSubAlert() {
   // 클릭한 버튼이 속한 모달 찾기
@@ -378,7 +129,7 @@ $(function () {
 
   // 하단 고정 영역 여백 확보
   function wrapPadding() {
-    var fixFoot = $(".bottom-area.fixed:visible");
+    var fixFoot = $("#footer:visible");
     const matchesMediaQuery = window.matchMedia(
       "(max-width:999px) and (orientation:landscape)"
     ).matches;
@@ -391,10 +142,8 @@ $(function () {
 
     if (fixFoot.length > 0 && (!matchesMediaQuery || matchesSpecialSize)) {
       var fixFootHeight = $(fixFoot).innerHeight();
-      // $("#content").css("padding-bottom", fixFootHeight);
-      $(".wrap.oneStore").removeClass("horizontal");
+      $("#content").css("padding-bottom", fixFootHeight);
     } else {
-      $(".wrap.oneStore").addClass("horizontal");
       $("#content").css("padding-bottom", 20);
     }
 
@@ -481,7 +230,6 @@ function modalOpenSlide(obj) {
   $(modalCont).animate({ bottom: 0 }, 200);
   // 이중 모달이 아닌 경우
   if (obj === "modal-useCoupon") {
-    $("body").addClass("modal-open");
   } else if (!$(this).hasClass("depth2")) {
     scrollOff(); // 바디 스크롤 제거
   }
@@ -820,6 +568,17 @@ document.querySelectorAll(".js-pop-close-btn").forEach((closeBtn) => {
     }
   });
 });
+
+// bottom modal(슬라이드모달) 닫기
+function modalCloseSlide() {
+  $(".modal-slide").fadeOut(200);
+  $(".modal-slide").find(".modal-content").animate({ bottom: modalH }, 200);
+
+  // 이중 모달이 아닌 경우
+  if (!$(".modal-slide").hasClass("depth2")) {
+    scrollOn(); // 바디 스크롤 제거 해제
+  }
+}
 
 // aos 하단버튼 스크롤 이슈
 function adjustViewportHeight() {

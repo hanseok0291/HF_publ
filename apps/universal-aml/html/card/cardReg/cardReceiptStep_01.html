@@ -27,16 +27,11 @@
       <header class="header">
         <div class="container">
           <button type="button" class="btn-back btn"></button>
-          <h1 class="brand-name">선불 카드 발급</h1>
+          <h1 class="brand-name">소유자 정보 입력</h1>
           <button type="button" class="btn-close btn"></button>
         </div>
       </header>
       <!-- //header -->
-      <div class="step-bar">
-        <div class="step-wrap">
-          <span class="step step-01"></span>
-        </div>
-      </div>
       <!-- section -->
       <section>
         <!-- container -->
@@ -44,32 +39,93 @@
           <div class="tit-wrap">
             <!-- tit -->
             <h2 class="tit pb-100">
-              김헥토님의 <br />
-              선불 PIN 번호를 입력해주세요.
+              카드 소유자 정보를 입력해주세요. 
             </h2>
             <!-- //tit -->
           </div>
 
           <div class="form-wrap">
-            <div class="input-mark">
-              <span class="mark"
-                ><i id="pwd_01" class="on"></i><i id="pwd_02"></i
-                ><i id="pwd_03"></i><i id="pwd_04"></i
-              ></span>
+            
+            <div class="custom-input value">
+              <p class="sub-tit">이름</p>
+              <p class="tit">김헥토</p>
             </div>
+            <div class="custom-input value">
+              <p class="sub-tit">휴대폰번호</p>
+              <p class="tit">010-1234-4321</p>
+            </div>
+            <div class="custom-input value">
+              <p class="sub-tit">국적</p>
+              <div class="radio-wrap type2">
+                <div class="check-box check-all w-full">
+                  <input
+                    type="radio"
+                    id="registration"
+                    name="check-all"
+                    checked
+                    disabled
+                  />
+                  <label for="registration">내국인</label>
+                </div>
+                <div class="check-box check-all w-full">
+                  <input
+                    type="radio"
+                    id="foreigner"
+                    name="check-all"
+                    disabled
+                  />
+                  <label for="foreigner">외국인</label>
+                </div>
+              </div>
+            </div>
+            <div class="custom-input custom-number-wrap comp">
+              <div class="number-wrap">
+                <input
+                  type="text"
+                  id="selectField"
+                  class="birth-wrap"
+                  maxlength="6"
+                  value="901020"
+                  readonly
+                />
+                <label for="selectField" class="custom-label"
+                  >주민등록번호</label
+                >
+                <span class="text-dash">-</span>
+                <div class="flex-wrap">
+                  <input
+                    type="text"
+                    class="birth-wrap auto-width"
+                    maxlength="1"
+                    value="2"
+                    readonly
+                  />
+                  <input
+                    type="text"
+                    class="birth-wrap flex-grow"
+                    maxlength="6"
+                    placeholder="뒷자리 입력"
+                  />
+                </div>
+              </div>
+            </div>
+            
           </div>
         </div>
         <!-- //container -->
 
-        <div class="nppfs-keypad-div">
-          
-          <div class="kpd-wrap kpd-image">
-            <img
-              src="../../../images/common/keypad.png"
-              alt="보안키패드 샘플"
-            />
+        <!-- footer -->
+        <div id="footer">
+          <!-- container -->
+          <div class="btn-wrap">
+            <button type="button" id="send" class="btn btn-default" disabled>
+              다음
+            </button>
           </div>
+          <!-- //container -->
         </div>
+        <!-- //footer -->
+
       </section>
       <!-- //section -->
     </div>
@@ -280,7 +336,7 @@
     <!-- //common prompt -->
     <script>
       $(window).on("load", function () {
-        formatPhoneNumber();
+
       });
 
       $("#send").click(function () {
@@ -288,7 +344,7 @@
       });
 
       $(document).ready(function () {
-        modalOpenSlide("modalSlide02");
+        // modalOpenSlide("modalSlide02");
       });
     </script>
   </body>

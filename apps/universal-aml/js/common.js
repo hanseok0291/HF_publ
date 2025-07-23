@@ -2,12 +2,16 @@
 var scrollHeight = 0;
 function scrollOff() {
   scrollHeight = $(document).scrollTop();
+  $("body").addClass("modal-open");
   $("#wrap").css("position", "fixed");
   $("#wrap").css("top", -scrollHeight);
+  $("#header").css("top", "-0.9px");
 }
 function scrollOn() {
+  $("body").removeClass("modal-open");
   $("#wrap").css("top", 0);
   $("#wrap").css("position", "relative");
+  $("#header").css("top", "-1px");
   $(document).scrollTop(scrollHeight);
 }
 
@@ -50,6 +54,7 @@ function modalOpen(obj1, obj2) {
 
 // 모달 닫기 함수
 function modalClose() {
+  $("body").removeClass("modal-open");
   $(".modal").removeClass("modal-open");
   $(".modal").addClass("modal-close");
   setTimeout(function () {
@@ -190,11 +195,21 @@ $(document).ready(function () {
   });
 });
 
-$.alertMessage = function (title, contents, alertObj) {
-  $("#alertTitle").html(title);
-  $("#alertContents").html(contents);
+$.alertMessage = function (title, ...rest) {
+  const alertObj = rest.pop(); // 마지막 인자는 alert 객체
+  const contents = rest;       // 나머지는 문단 텍스트
+
+  alertObj.find(".alert-title").html(title);
+
+  const formattedContents = contents
+    .map((line) => `<p class="line">${line}</p>`)
+    .join("");
+
+  alertObj.find(".alert-contents").html(formattedContents);
+
   modalOpen(alertObj.attr("id"));
 };
+
 
 $.popupMessage = function (title, contents, alertObj) {
   $("#popupTitle").html(title);
@@ -206,16 +221,23 @@ $.popupMessage = function (title, contents, alertObj) {
   }, 1000);
 };
 
-$.promptMessage = function (title, contents, promptObj) {
-  $("#promptTitle").html(title);
-  $("#promptContents").html(contents);
+$.promptMessage = function (title, ...rest) {
+  // 마지막 인자는 promptObj, 나머지는 콘텐츠로 처리
+  const promptObj = rest.pop(); // 마지막은 모달 요소
+  const contents = rest; // 나머지는 문단 내용
 
-  // var clickEvent = new Function(callbackFunc);
-  // promptOkObj.prop("onclick", null).off("click"); //기존에 등록된 함수가 반복 실행을 막음. reset
-  // promptOkObj.prop("onclick", "").click(clickEvent); //callback 함수 등록
+  promptObj.find(".prompt-title").html(title);
+
+  // 각각의 문장을 <p>로 감싸기
+  const formattedContents = contents
+    .map((line) => `<p class="line">${line}</p>`)
+    .join("");
+
+  promptObj.find(".prompt-contents").html(formattedContents);
 
   modalOpen(promptObj.attr("id"));
 };
+
 
 document.addEventListener("DOMContentLoaded", function () {
   var btnGroup = document.querySelectorAll(".btn-group li");
@@ -278,4 +300,28 @@ inputs.forEach(function (input) {
 // Blur initially
 inputs.forEach(function (input) {
   input.blur();
+});
+
+// 툴팁 버튼
+$(".btn-tooltip").click(function (e) {
+  e.preventDefault();
+
+  // 모든 popover 숨기기
+  $(".popover").hide();
+
+  // 클릭된 버튼의 다음 요소가 popover인지 확인 후 토글
+  const $popover = $(this).next(".popover");
+  if ($popover.length) {
+    $popover.toggle();
+  }
+});
+
+// 툴팁 영역 외 클릭시 툴팁 닫기
+$(document).click(function (e) {
+  if (
+    !$(e.target).closest(".btn-tooltip").length &&
+    !$(e.target).closest(".popover").length
+  ) {
+    $(".popover").hide();
+  }
 });

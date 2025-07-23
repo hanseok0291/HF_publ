@@ -12,6 +12,7 @@
     <script src="../../../js/jquery-1.8.3.min.js"></script>
     <script src="../../../js/common.js" defer></script>
     <script src="../../../js/aml.js" defer></script>
+    <script src="../../../js/design_renewal.js" defer></script>
     <script src="../../../js/postcode.v2.js"></script>
     <script src="../../../js/swiper.js"></script>
   </head>
@@ -19,14 +20,23 @@
   <body>
     <!-- wrap -->
     <div id="wrap" class="card step">
+      <!-- header -->
+      <header class="header">
+        <div class="container">
+          <button type="button" class="btn-back btn"></button>
+          <h1 class="brand-name">카드 이용 정보 입력 </h1>
+          <button type="button" class="btn-close btn"></button>
+        </div>
+      </header>
+      <!-- //header -->
       <!-- section -->
       <section id="">
         <div id="content">
           <div class="card-complete-wrap">
             <div class="icon-complete"></div>
-            <h2 class="complete-title">선불카드 신청 완료</h2>
+            <h2 class="complete-title">신청 정보 확인</h2>
             <p class="complete-subtext">
-              선불카드 발급이 신청되었습니다.<br />아래 내용을 확인해주세요.
+              선불 카드를 신청하시겠습니까?
             </p>
 
             <div class="card-info-table">
@@ -60,7 +70,8 @@
         <div id="footer">
           <!-- container -->
           <div class="btn-wrap">
-            <button type="button" id="send" class="btn">신청 완료</button>
+            <button type="button" id="prev" class="btn btn-white">수정</button>
+            <button type="button" id="" class="btn btn-dark btn-confirmComp">신청</button>
           </div>
           <!-- //container -->
         </div>
@@ -264,13 +275,29 @@
       </div>
     </div>
     <!-- //modal - 공지사항 상세 -->
+    <!-- modal - common alert -->
+    <div id="commonAlert" class="modal modal-new" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div id="promptContents">
+              <p class="text-info"></p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="confirmOk" class="btn" data-dismiss="modal">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //modal - common alert -->
     <!-- common prompt -->
     <div id="commonPrompt" class="modal">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
-            <h3 id="promptTitle"></h3>
-            <p id="promptContents"></p>
+            <h3 class="prompt-title"></h3>
+            <p class="prompt-contents"></p>
           </div>
           <div class="modal-footer">
             <button
@@ -293,6 +320,39 @@
       </div>
     </div>
     <!-- //common prompt -->
+
+    <!-- confirmComp -->
+    <div id="confirmComp" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 class="prompt-title"></h3>
+            <p class="prompt-contents"></p>
+            <!-- <h3 class="prompt-title"></h3>
+            <p class="prompt-contents"></p> -->
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalClose();"
+              class="btn btn-cancel"
+            >
+              아니오
+            </button>
+            <button
+              type="button"
+              onclick="modalClose();"
+              id="promptOk"
+              class="btn btn-confirm"
+            >
+              예
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //confirmComp -->
+
     <!-- 주소검색 -->
     <div
       id="modalAddr"
@@ -364,11 +424,11 @@
         formatPhoneNumber();
       });
 
-      $(".btn-close.btn").click(function () {
+      $(".btn-confirmComp").click(function () {
         $.promptMessage(
           "",
-          "선불충전서비스를 이용하기 위해서는<br>본인확인이 필요합니다.<br><br><b>본인확인을 계속 하시겠습니까?</b>",
-          $("#commonPrompt"),
+          "카드 발급을<br>정말로 취소하시겠습니까?",
+          $("#confirmComp"),
         );
       });
 

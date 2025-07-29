@@ -51,7 +51,7 @@
                 <!--  -->
                 <div>
                   <div class="card select">
-                    <div class="card-select-title">해지 카드 선택 </div>
+                    <div class="card-select-title">해지 카드 선택</div>
 
                     <div class="card-box">
                       <div class="card-summary">
@@ -112,9 +112,7 @@
                           </div>
                           <div class="info-row">
                             <span class="label">카드명</span>
-                            <span class="value"
-                              >선불카드</span
-                            >
+                            <span class="value">선불카드</span>
                           </div>
                         </div>
                       </div>
@@ -122,7 +120,6 @@
                   </div>
                 </div>
                 <!--  -->
-              
               </div>
               <!-- //카드 o -->
             </div>
@@ -137,6 +134,7 @@
               type="button"
               id="send"
               class="btn btn-default js-modal-slide"
+              disabled
             >
               다음
             </button>
@@ -510,6 +508,18 @@
           "선불충전서비스를 이용하기 위해서는<br>본인확인이 필요합니다.<br><br><b>본인확인을 계속 하시겠습니까?</b>",
           $("#commonPrompt"),
         );
+      });
+
+      // 체크 후 다음 버튼 활성화
+      document.addEventListener("DOMContentLoaded", function () {
+        const checkAll = document.querySelector("#check-all");
+        const sendButton = document.querySelector("#send");
+
+        if (checkAll && sendButton) {
+          checkAll.addEventListener("change", function () {
+            sendButton.disabled = !this.checked;
+          });
+        }
       });
 
       document.addEventListener("DOMContentLoaded", function () {

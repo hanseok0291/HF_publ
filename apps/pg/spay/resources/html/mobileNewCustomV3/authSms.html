@@ -30,7 +30,7 @@
 
         <link rel="stylesheet" href="../../css/owl.carousel.min.css" />
         <link rel="stylesheet" href="../../css/slick.min.css" />
-        <link rel="stylesheet" href="../../css/common_monotone.css?ver=241125" />
+        <link rel="stylesheet" href="../../css/common_monotone.css?ver=250733" />
         <!--[if lt IE 9]>
             <script type="text/javascript" src="../../js/html5shiv.js"></script>
             <script type="text/javascript" src="../../js/respond.min.js"></script>
@@ -278,9 +278,9 @@
                                                     <div class="form-item input-btn reg-number-wrap">
                                                         <input type="text" placeholder="인증번호 입력" id="authNumInput" />
                                                         <!-- <span class="count">02:59</span> -->
-                                                        <div id="timer" aria-live="off">
-                                                            <span id="visualTimer" tabindex="0" aria-hidden="true">03:00</span>
-                                                            <span class="sr-only" id="accessibleTimer">3분 00초</span>
+                                                        <div id="timer" aria-live="polite">
+                                                            <span id="visualTimer" tabindex="0" role="timer" aria-label="인증번호 제한시간" aria-hidden="true">03:00</span>
+                                                            <span class="accessible-timer" id="accessibleTimer" tabindex="0">3분 00초</span>
                                                         </div>
                                                     </div>
                                                     <div class="auth-btn-box">
@@ -643,6 +643,10 @@
                             $(".step1").hide();
                             $(".step2").show();
                             $("#send").text("결제완료");
+                            // 인증번호 입력창에 포커스 이동 추가
+                            setTimeout(function () {
+                                $("#authNumInput").focus();
+                            }, 100);
                         } else {
                             // "check-all" 체크박스가 체크되어 있지 않을 때
                             // $.alertMessage("", "휴대폰결제 이용을 위해 <br>필수 약관 전체 동의가 필요합니다.", $("#commonAlert"));
@@ -656,18 +660,40 @@
 
                 $(".select-input > .select").on("click", function () {
                     modalOpenSlide("modalSlide");
+
+                    // 닫기 버튼 초점 제거
+                    $("#modalSlide .btn-close").attr("tabindex", "-1");
+                    // 모든 버튼의 aria-label 초기화
+                    $(".select-list li button").each(function () {
+                        var defaultText = $(this).text();
+                        $(this).attr("aria-label", defaultText + " 버튼");
+                    });
+                    // 첫 항목 강조
+                    $(".select-list li:first-child button").attr("aria-label", "SKT 버튼 선택됨");
+                    // SR 강제 안내 및 포커스
+                    setTimeout(function () {
+                        const $sktBtn = $("#modalSlide .select-list li:first-child button");
+                        $sktBtn.focus();
+                        $("#sr-announcer").text("SKT 버튼 선택됨");
+                    }, 300);
                 });
 
                 $(".select-list li").on("click", function () {
                     // 클릭한 li 요소의 텍스트 값을 가져옴
-                    var selectedText = $(this).text();
+                    var selectedText = $(this).text().trim();
 
-                    // select 요소를 선택
-                    var selectInput = $(".select-input .select li button");
+                    // 텍스트를 <button class="select">에 설정
+                    $(".select-input .select").text(selectedText);
+
+                    // 포커스 가능한 상태로 만들어 포커스 이동
+                    var $selectButton = $(".select-input .select");
+                    $selectButton.attr("tabindex", "0"); // 명시적으로 포커스 가능하게
+                    setTimeout(() => {
+                        $selectButton.focus(); // 포커스 이동
+                    }, 100);
 
                     // 클릭한 li의 텍스트를 rcptIdGb_01 값으로 설정
-                    selectInput.text(selectedText);
-
+                    // selectInput.text(selectedText);
                     // 만약 SKT가 선택되었을 때
                     if (selectedText === "SKT") {
                         $(".tab2 .skt").show();
@@ -690,25 +716,98 @@
                     // 현재 선택된 li에 bold 클래스 추가
                     $(this).addClass("bold");
 
+                    // 모달 닫기 후 포커스 이동
                     $("#modalSlide").fadeOut(200);
                     $("#modalSlide").find(".modal-content").animate({ bottom: modalH }, 200);
                     $("body").removeClass("modal-open");
+                    $("#wrap").css("top", 0);
                     $("#wrap").css("position", "relative");
 
                     // 모든 버튼의 aria-label을 초기화
                     $(".select-list li button").each(function () {
                         var defaultText = $(this).text();
-                        $(this).attr("aria-label", defaultText + "버튼");
+                        $(this).attr("aria-label", defaultText + "버튼 링크");
                         // $(this).attr("aria-pressed", "false");
                     });
                     // 선택된 버튼의 aria-label 업데이트
                     $(this)
                         .children("button")
-                        .attr("aria-label", selectedText + " 버튼 선택됨");
+                        .attr("aria-label", selectedText + " 버튼 링크 선택됨");
                     // $(this).children("button").attr("aria-pressed", "true");
-
-                    $("#selectTelecom").focus();
                 });
+
+                // 인증방식 라디오 aria-label 동적 처리
+                function updateAuthTypeAria() {
+                    const radios = [
+                        { id: "authTypePass", label: "pass 인증" },
+                        { id: "authTypeSms", label: "SMS 인증" },
+                        { id: "authTypeEasy", label: "간편 인증" },
+                    ];
+                    radios.forEach((r) => {
+                        const checked = $("#" + r.id).is(":checked");
+                        const state = checked ? "선택버튼 선택됨" : "선택버튼 선택 안 됨";
+                        $("label[for='" + r.id + "']").attr("aria-label", r.label + " " + state);
+                    });
+                }
+                $(".check-group input[type=radio]").on("change", updateAuthTypeAria);
+                $(document).ready(updateAuthTypeAria);
+
+                // 모달 aria-hidden 처리 및 포커스 이동
+                $(".btn_view").click(function () {
+                    const modal = $("#noticeDetail");
+                    modal.attr("aria-hidden", "false");
+                    // 모달 외부 비활성화
+                    $("#wrap").attr("aria-hidden", "true");
+                    // 약관 제목에 초점
+                    modal.find(".terms-title").attr("tabindex", 0).focus();
+                });
+                // 모달 닫을 때
+                $("#noticeDetail .btn-close, #noticeDetail [data-dismiss='modal']").click(function () {
+                    $("#noticeDetail").attr("aria-hidden", "true");
+                    $("#wrap").attr("aria-hidden", "false");
+                    // 필요시, 닫기 버튼 등 원래 위치로 포커스 복귀
+                    $("#wrap").focus();
+                });
+
+                // 타이머 접근성(한자어식 발화)
+                function numberToKorean(num) {
+                    const korNums = ["", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"];
+                    if (num < 10) return korNums[num];
+                    if (num < 20) return "십" + korNums[num % 10];
+                    if (num < 60) return korNums[Math.floor(num / 10)] + "십" + korNums[num % 10];
+                    return num; // fallback
+                }
+                function updateAccessibleTimer(min, sec) {
+                    let minKor = min > 0 ? numberToKorean(min) + "분 " : "";
+                    let secKor = numberToKorean(sec) + "초";
+                    $("#accessibleTimer").text(minKor + secKor);
+                }
+                // 타이머에 초점 이동 함수
+                function focusTimer() {
+                    setTimeout(function () {
+                        $("#accessibleTimer").focus();
+                    }, 100);
+                }
+
+                // 타이머 갱신 함수 내에서 호출
+                function updateTimerDisplay(min, sec) {
+                    $("#visualTimer").text((min < 10 ? "0" : "") + min + ":" + (sec < 10 ? "0" : "") + sec);
+                    updateAccessibleTimer(min, sec);
+
+                    // visualTimer의 aria-label도 동적으로 업데이트
+                    let timeText = "";
+                    if (min > 0) {
+                        timeText = numberToKorean(min) + "분 ";
+                    }
+                    timeText += numberToKorean(sec) + "초";
+                    $("#visualTimer").attr("aria-label", "인증번호 제한시간 " + timeText);
+
+                    // 타이머가 업데이트될 때 초점 이동 (스크린리더가 변경사항을 인식하도록)
+                    if (min === 0 && sec <= 30) {
+                        // 30초 이하일 때만 초점 이동
+                        focusTimer();
+                    }
+                }
             });
 
             // 팝업 포커스
@@ -737,8 +836,10 @@
                 }
             });
 
-            document.querySelector('.js-btn-auth').addEventListener('click', () => {
-                document.getElementById('authNumInput').focus();
+            document.querySelector(".js-btn-auth").addEventListener("click", () => {
+                setTimeout(function () {
+                    document.getElementById("authNumInput").focus();
+                }, 200);
             });
         </script>
     </body>

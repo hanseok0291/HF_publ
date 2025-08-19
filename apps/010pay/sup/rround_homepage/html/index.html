@@ -13,19 +13,24 @@
     />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <link rel="stylesheet" href="../css/jquery-ui.css" />
-    <link rel="stylesheet" href="../css/common.css?v1" />
+    <link rel="stylesheet" href="../css/common.css" />
+    <!-- [2025.06.19] 변경 시작 -->
+    <link rel="stylesheet" href="../css/main.css" />
+    <!-- [2025.06.19] 변경 끝 -->
     <link rel="stylesheet" href="../css/move.css" />
     <script src="../js/jquery.3.4.1.min.js"></script>
     <script src="../js/jquery-ui.js"></script>
     <script src="../js/design_renewal.js"></script>
   </head>
   <style></style>
-  <body>
+  <!-- [2025.06.19] 변경 시작 -->
+  <body class="main">
+    <!-- [2025.06.19] 변경 끝 -->
     <div class="header">
       <div class="header-wrap">
         <div class="logo-wrap">
           <h1 class="logo"></h1>
-          <span class="beta"></span>
+          <span class="partners-logo"></span>
         </div>
 
         <!-- PC 메뉴 -->
@@ -36,7 +41,7 @@
               <!-- <span class="dot"></span> -->
             </p>
           </a>
-          <a href="#" class="partners">Partners</a>
+          <a href="#" class="partners">Partners <i class="ico-right"></i></a>
         </div>
 
         <button class="btn-down" onclick="modalOpen('commonAlert')">
@@ -327,13 +332,13 @@
               <div class="phoneFrame"></div>
               <div class="imgFrame">
                 <img
-                src="../images/section/section-6.png"
+                  src="../images/section/section-6.png"
                   alt=""
                   class="screen"
-                  />
-                </div>
-                <span class="img img-01"></span>
-                <span class="img img-02"></span>
+                />
+              </div>
+              <span class="img img-01"></span>
+              <span class="img img-02"></span>
               <span class="img img-03"></span>
             </div>
           </div>
@@ -385,39 +390,62 @@
       </div>
       <div class="slide slide-8">
         <!-- 푸터 -->
+        <!-- [2025.08.14] 변경 시작 -->
         <footer class="footer">
           <div class="footer-inner">
             <div class="footer-left">
               <div class="box">
                 <h3 class="main-text">Contact Us</h3>
-                <p class="sub-text">입점 및 제휴, 광고, 서비스 문의</p>
+                <div class="sub-text-wrap">
+                  <dl>
+                    <dt>입점 문의</dt>
+                    <dd>
+                      <a href="mailto:t_116nl@hecto.co.kr"
+                        >t_116nl@hecto.co.kr</a
+                      >
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>광고 문의</dt>
+                    <dd>
+                      <a href="mailto:t_522dh@hecto.co.kr"
+                        >t_522dh@hecto.co.kr</a
+                      >
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>서비스 문의</dt>
+                    <dd>
+                      <a href="mailto:seller_cs@hecto.co.kr"
+                        >seller_cs@hecto.co.kr</a
+                      >
+                    </dd>
+                  </dl>
+                </div>
               </div>
-              <a
-                href="javascript:void(0);"
-                class="contact-btn"
-                onclick="modalToastOpen('toast-wait')"
-                >문의하기</a
-              >
               <!-- <a href="mailto:" class="contact-btn">문의하기</a> -->
             </div>
             <div class="footer-right">
-              <div class="box">
+              <div class="box flow-1">
                 <p class="company">(주) 헥토이노베이션</p>
-                <ul class="footer-links">
-                  <li><a href="#">이용약관</a></li>
-                  <li><a href="#">개인정보처리방침</a></li>
-                </ul>
               </div>
-              <address class="addr-text">
-                서울특별시 강남구 테헤란로 34길 6, 태광타워 12,13층<br />
-                사업자등록번호 214-88-39177
-              </address>
-              <p class="copy-text">
-                Copyright © Hecto Innovation Co., Ltd. All rights reserved
-              </p>
+              <div class="flow-2">
+                <address class="addr-text">
+                  서울특별시 강남구 테헤란로 34길 6, 태광타워 12,13층<br />
+                  사업자등록번호 214-88-39177
+                </address>
+                <p class="copy-text">
+                  Copyright © Hecto Innovation Co., Ltd. All rights reserved
+                </p>
+              </div>
+              <ul class="footer-links flow-3">
+                <li><a href="#">이용약관</a></li>
+                <li><a href="#">개인정보처리방침</a></li>
+              </ul>
             </div>
           </div>
         </footer>
+        <!-- [2025.08.14] 변경 끝 -->
       </div>
     </div>
 
@@ -456,37 +484,39 @@
     <script src="../js/jquery.pagepiling.js"></script>
   </body>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const slides = document.querySelectorAll('.slide');
-      const bulletContainer = document.getElementById('bullet-nav');
-      const menuToggle = document.getElementById('menuToggle');
-      const mobileMenu = document.getElementById('mobileMenu');
-      const closeBtn = document.querySelector('.close-btn');
-      const scrollNav = document.querySelector('.scrollNav');
-      const fixedImgWrap = document.querySelector('.fixed-img-wrap');
-      const slide7 = document.querySelector('.slide-7');
+    document.addEventListener("DOMContentLoaded", () => {
+      const slides = document.querySelectorAll(".slide");
+      const bulletContainer = document.getElementById("bullet-nav");
+      const menuToggle = document.getElementById("menuToggle");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const closeBtn = document.querySelector(".close-btn");
+      const scrollNav = document.querySelector(".scrollNav");
+      const fixedImgWrap = document.querySelector(".fixed-img-wrap");
+      // [2025.06.19] 변경 끝
+      const slide8 = document.querySelector(".slide-8");
+      //  [2025.06.19] 변경 시작
 
       let current = 0;
       let isAnimating = false;
-      let isPC = window.matchMedia('(min-width: 769px)').matches;
+      let isPC = window.matchMedia("(min-width: 769px)").matches;
       let observer = null;
       let autoSlideTimeout = null;
 
       /* 공통 유틸 */
-      const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
-      const isPCMode = () => window.matchMedia('(min-width: 769px)').matches;
+      const isMobile = () => window.matchMedia("(max-width: 768px)").matches;
+      const isPCMode = () => window.matchMedia("(min-width: 769px)").matches;
 
       /* 초기 클래스 */
       if (isPCMode() && fixedImgWrap) {
-        fixedImgWrap.classList.add('ani-slide-1');
+        fixedImgWrap.classList.add("ani-slide-1");
       }
 
       /* Bullet nav 생성 */
       slides.forEach((_, i) => {
-        const bullet = document.createElement('div');
-        bullet.classList.add('bullet');
-        if (i === 0) bullet.classList.add('active');
-        bullet.addEventListener('click', () => jumpToSlide(i));
+        const bullet = document.createElement("div");
+        bullet.classList.add("bullet");
+        if (i === 0) bullet.classList.add("active");
+        bullet.addEventListener("click", () => jumpToSlide(i));
         bulletContainer.appendChild(bullet);
       });
 
@@ -494,15 +524,15 @@
       function handleSlide(direction) {
         if (isAnimating) return;
 
-        if (direction === 'down' && current < slides.length - 1) {
+        if (direction === "down" && current < slides.length - 1) {
           isAnimating = true;
           current++;
           const nextSlide = slides[current];
-          nextSlide.classList.add('active');
-          nextSlide.style.transform = 'translateY(100%)';
+          nextSlide.classList.add("active");
+          nextSlide.style.transform = "translateY(100%)";
 
           setTimeout(() => {
-            nextSlide.style.transform = 'translateY(0)';
+            nextSlide.style.transform = "translateY(0)";
             updatePhoneImage(current);
           }, 20);
           setTimeout(() => (isAnimating = false), 800);
@@ -510,11 +540,11 @@
           updateBullets(current);
         }
 
-        if (direction === 'up' && current > 0) {
+        if (direction === "up" && current > 0) {
           isAnimating = true;
           const currentSlide = slides[current];
           current--;
-          currentSlide.style.transform = 'translateY(100%)';
+          currentSlide.style.transform = "translateY(100%)";
           setTimeout(() => (isAnimating = false), 700);
 
           updateBullets(current);
@@ -528,11 +558,11 @@
 
         slides.forEach((slide, index) => {
           if (index <= targetIndex) {
-            slide.classList.add('active');
-            slide.style.transform = 'translateY(0)';
+            slide.classList.add("active");
+            slide.style.transform = "translateY(0)";
           } else {
-            slide.classList.remove('active');
-            slide.style.transform = 'translateY(100%)';
+            slide.classList.remove("active");
+            slide.style.transform = "translateY(100%)";
           }
         });
 
@@ -547,69 +577,69 @@
       // <!-- [2025.06.11] 변경 시작 -->
       function updateBullets(index) {
         document
-          .querySelectorAll('.bullet')
-          .forEach((b, i) => b.classList.toggle('active', i === index));
-        bulletContainer.style.display = index === 7 ? 'none' : 'flex';
+          .querySelectorAll(".bullet")
+          .forEach((b, i) => b.classList.toggle("active", i === index));
+        bulletContainer.style.display = index === 7 ? "none" : "flex";
       }
-      
+
       function updatePhoneImage(index) {
-        const phoneWrap = document.querySelector('.fixed-img-wrap');
-        const changeImg = document.getElementById('change-img');
+        const phoneWrap = document.querySelector(".fixed-img-wrap");
+        const changeImg = document.getElementById("change-img");
         if (!changeImg || !phoneWrap || isMobile()) return;
 
         const validIndexes = [0, 1, 2, 3, 4, 5];
-        
+
         if (!validIndexes.includes(index)) {
-          phoneWrap.style.display = 'none';
+          phoneWrap.style.display = "none";
           return;
         }
 
-        phoneWrap.style.display = 'block';
+        phoneWrap.style.display = "block";
 
         phoneWrap.classList.forEach((cls) => {
           if (/^ani-slide-\d+$/.test(cls)) phoneWrap.classList.remove(cls);
         });
-        
-        const existingImgs = phoneWrap.querySelectorAll('.img');
+
+        const existingImgs = phoneWrap.querySelectorAll(".img");
         existingImgs.forEach((el) => el.remove());
 
         const sectionMap = {
-          0: 'section-1.png',
-          1: 'section-2.png',
-          2: 'section-3.png',
-          3: 'section-4.png',
-          4: 'section-5.png',
-          5: 'section-6.png',
+          0: "section-1.png",
+          1: "section-2.png",
+          2: "section-3.png",
+          3: "section-4.png",
+          4: "section-5.png",
+          5: "section-6.png",
         };
-        
+
         const extraImgMap = {
           0: [],
-          1: ['img-01', 'img-02', 'img-03'],
-          2: ['img-01', 'img-02', 'img-03'],
+          1: ["img-01", "img-02", "img-03"],
+          2: ["img-01", "img-02", "img-03"],
           3: [],
-          4: ['img-01', 'img-02', 'img-03'],
-          5: ['img-01', 'img-02', 'img-03'],
+          4: ["img-01", "img-02", "img-03"],
+          5: ["img-01", "img-02", "img-03"],
         };
-        
+
         if (sectionMap[index]) {
           changeImg.src = `../images/section/${sectionMap[index]}`;
         }
-        
+
         // 추가 이미지 span 삽입
         extraImgMap[index]?.forEach((cls) => {
-          const span = document.createElement('span');
+          const span = document.createElement("span");
           span.className = `img ${cls}`;
           phoneWrap.appendChild(span);
-          setTimeout(() => span.classList.add('visible'), 1000);
+          setTimeout(() => span.classList.add("visible"), 1000);
         });
-        
+
         // 애니메이션 클래스 추가
         phoneWrap.classList.add(`ani-slide-${index + 1}`);
       }
       // <!-- [2025.06.11] 변경 끝 -->
 
       function updateImgWrapClassByCurrent() {
-        const imgWrap = document.querySelector('.img-wrap.fixed');
+        const imgWrap = document.querySelector(".img-wrap.fixed");
         if (!imgWrap) return;
 
         [...imgWrap.classList].forEach((cls) => {
@@ -626,15 +656,15 @@
       }
 
       function addSlideEvents() {
-        document.addEventListener('wheel', onWheelHandler);
-        document.addEventListener('touchstart', onTouchStart);
-        document.addEventListener('touchend', onTouchEnd);
+        document.addEventListener("wheel", onWheelHandler);
+        document.addEventListener("touchstart", onTouchStart);
+        document.addEventListener("touchend", onTouchEnd);
       }
 
       function removeSlideEvents() {
-        document.removeEventListener('wheel', onWheelHandler);
-        document.removeEventListener('touchstart', onTouchStart);
-        document.removeEventListener('touchend', onTouchEnd);
+        document.removeEventListener("wheel", onWheelHandler);
+        document.removeEventListener("touchstart", onTouchStart);
+        document.removeEventListener("touchend", onTouchEnd);
       }
 
       let touchStartY = null;
@@ -645,7 +675,7 @@
         if (touchStartY === null) return;
         const deltaY = touchStartY - e.changedTouches[0].clientY;
         if (Math.abs(deltaY) >= 100) {
-          handleSlide(deltaY > 0 ? 'down' : 'up');
+          handleSlide(deltaY > 0 ? "down" : "up");
         }
         touchStartY = null;
       }
@@ -656,10 +686,10 @@
           (entries) =>
             entries.forEach((entry) => {
               if (entry.isIntersecting && !isPCMode()) {
-                entry.target.classList.add('active');
+                entry.target.classList.add("active");
               }
             }),
-          { threshold: 0.4 }
+          { threshold: 0.4 },
         );
         slides.forEach((slide) => observer.observe(slide));
       }
@@ -674,37 +704,37 @@
       function resetSlidesForPC() {
         current = 0;
         slides.forEach((slide) => {
-          slide.classList.remove('active');
-          slide.style.transition = 'none';
-          slide.style.transform = 'translateY(100%)';
+          slide.classList.remove("active");
+          slide.style.transition = "none";
+          slide.style.transform = "translateY(100%)";
         });
-        slides[0].classList.add('active');
-        slides[0].style.transform = 'translateY(0)';
+        slides[0].classList.add("active");
+        slides[0].style.transform = "translateY(0)";
         void slides[0].offsetHeight;
-        slides.forEach((slide) => (slide.style.transition = ''));
+        slides.forEach((slide) => (slide.style.transition = ""));
         updateBullets(0);
         isAnimating = false;
       }
 
       function resetSlidesForMobile() {
         slides.forEach((slide, i) => {
-          slide.style.transition = 'none';
+          slide.style.transition = "none";
           slide.style.transform = `translateY(${i * 100}%)`;
         });
       }
 
       function checkDeviceMode() {
         const nowIsPC = isPCMode();
-        const fixedImgWrap = document.querySelector('.fixed-img-wrap');
-        const allSlides = document.querySelectorAll('#stack-container .slide');
-        allSlides.forEach((slide) => slide.classList.remove('active'));
+        const fixedImgWrap = document.querySelector(".fixed-img-wrap");
+        const allSlides = document.querySelectorAll("#stack-container .slide");
+        allSlides.forEach((slide) => slide.classList.remove("active"));
         if (nowIsPC !== isPC) {
           if (nowIsPC) {
             removeMobileObserver();
             addSlideEvents();
             resetSlidesForPC();
             if (fixedImgWrap) {
-              fixedImgWrap.classList.add('ani-slide-1');
+              fixedImgWrap.classList.add("ani-slide-1");
             }
           } else {
             removeSlideEvents();
@@ -712,7 +742,7 @@
             resetSlidesForMobile();
             observeSlidesOnMobile();
             if (fixedImgWrap) {
-              fixedImgWrap.classList.remove('ani-slide-1');
+              fixedImgWrap.classList.remove("ani-slide-1");
             }
           }
           updateBodyClass(nowIsPC);
@@ -727,25 +757,25 @@
       }
 
       function updateBodyClass(nowIsPC) {
-        document.body.classList.toggle('mo', !nowIsPC);
+        document.body.classList.toggle("mo", !nowIsPC);
       }
 
       function onWheelHandler(e) {
         if (!isPCMode()) return;
-        const direction = e.deltaY > 0 ? 'down' : 'up';
+        const direction = e.deltaY > 0 ? "down" : "up";
         handleSlide(direction);
       }
 
       function setViewportHeight() {
         const vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
+        document.documentElement.style.setProperty("--vh", `${vh}px`);
       }
 
       function startAutoSlideIfIdle() {
         if (!isPCMode() || current !== 0) return;
         clearTimeout(autoSlideTimeout);
         autoSlideTimeout = setTimeout(() => {
-          if (current === 0 && !isAnimating) handleSlide('down');
+          if (current === 0 && !isAnimating) handleSlide("down");
         }, 6500);
       }
 
@@ -754,18 +784,20 @@
       }
 
       /* 스크롤 네비게이션 show/hide */
-      if (scrollNav && slide7) {
+      // [2025.06.19] 변경 시작
+      if (scrollNav && slide8) {
         const observer = new IntersectionObserver(
           (entries) => {
             if (!isPCMode()) return;
             entries.forEach((entry) => {
-              scrollNav.classList.toggle('hide', entry.isIntersecting);
+              scrollNav.classList.toggle("hide", entry.isIntersecting);
             });
           },
-          { threshold: 0.3 }
+          { threshold: 0.3 },
         );
-        observer.observe(slide7);
+        observer.observe(slide8);
       }
+      // [2025.06.19] 변경 끝
 
       function onScrollForMobileScrollNav() {
         if (isPCMode()) return;
@@ -773,32 +805,58 @@
         const windowHeight = window.innerHeight;
         const bodyHeight = document.body.offsetHeight;
         const isBottom = scrollTop + windowHeight >= bodyHeight - 10;
-        scrollNav.classList.toggle('hide', isBottom);
+        scrollNav.classList.toggle("hide", isBottom);
       }
 
       /* 초기화 실행 */
       setViewportHeight();
       checkDeviceMode();
-      if (fixedImgWrap && isPCMode()) fixedImgWrap.classList.add('ani-slide-1');
+      if (fixedImgWrap && isPCMode()) fixedImgWrap.classList.add("ani-slide-1");
 
       // 이벤트 등록
-      window.addEventListener('resize', setViewportHeight);
-      window.addEventListener('orientationchange', setViewportHeight);
-      window.addEventListener('resize', checkDeviceMode);
-      window.addEventListener('resize', onScrollForMobileScrollNav);
-      window.addEventListener('scroll', onScrollForMobileScrollNav);
+      window.addEventListener("resize", setViewportHeight);
+      window.addEventListener("orientationchange", setViewportHeight);
+      window.addEventListener("resize", checkDeviceMode);
+      window.addEventListener("resize", onScrollForMobileScrollNav);
+      window.addEventListener("scroll", onScrollForMobileScrollNav);
 
-      menuToggle.addEventListener('click', () =>
-        mobileMenu.classList.add('active')
+      menuToggle.addEventListener("click", () =>
+        mobileMenu.classList.add("active"),
       );
-      closeBtn.addEventListener('click', () =>
-        mobileMenu.classList.remove('active')
+      closeBtn.addEventListener("click", () =>
+        mobileMenu.classList.remove("active"),
       );
-      document.addEventListener('wheel', resetAutoSlide);
-      document.addEventListener('touchstart', resetAutoSlide);
-      document.addEventListener('click', resetAutoSlide);
+      document.addEventListener("wheel", resetAutoSlide);
+      document.addEventListener("touchstart", resetAutoSlide);
+      document.addEventListener("click", resetAutoSlide);
 
       startAutoSlideIfIdle();
+
+      // [2025.06.19] 변경 시작
+      // ex) index.html?slide=0 일 경우 1번 슬라이드로 이동
+      // ex) index.html?slide=1 일 경우 2번 슬라이드로 이동
+      function getSlideIndexFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        const slide = parseInt(params.get("slide"), 10);
+        return isNaN(slide) ? 0 : slide;
+      }
+
+      /* 초기화 실행 */
+      setViewportHeight();
+      checkDeviceMode();
+      if (fixedImgWrap && isPCMode()) fixedImgWrap.classList.add("ani-slide-1");
+
+      // 슬라이드 인덱스 설정
+      const initialSlideIndex = getSlideIndexFromURL();
+      jumpToSlide(initialSlideIndex);
+
+      function getSlideIndexFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        const slide = parseInt(params.get("slide"), 10);
+        const maxIndex = document.querySelectorAll(".slide").length - 1;
+        return !isNaN(slide) && slide >= 0 && slide <= maxIndex ? slide : 0;
+      }
     });
+    // [2025.06.19] 변경 끝
   </script>
 </html>

@@ -349,6 +349,7 @@
 
 .section {
   text-align: center;
+  overflow: visible;
 }
 .section .title {
   font-family: Pretendard;
@@ -1060,22 +1061,100 @@
   display: none;
 }
 #wrap.rroundPaymentReg .headline {
+  position: relative;
   margin: 0 auto;
   height: 530px;
   background: url(../images/promotion/rroundPaymentReg/main.png) no-repeat
     center / cover;
   text-align: center;
   padding-top: 60px;
+  overflow: hidden;
+}
+#wrap.rroundPaymentReg .headline::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 160px;
+  left: 50%;
+  width: 90px;
+  height: 112px;
+  background: url(../images/promotion/rroundPaymentReg/main_bg_01.png) no-repeat
+    center / contain;
+    transform: translateX(-50%);
+    margin-left: 170px;
+}
+#wrap.rroundPaymentReg .headline::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 266px;
+  left: 50%;
+  width: 70px;
+  height: 70px;
+  background: url(../images/promotion/rroundPaymentReg/main_bg_02.png) no-repeat center / contain;
+  transform: translateX(-50%);
+  margin-left: -170px;
 }
 #wrap.rroundPaymentReg #content,
 #wrap.rroundPaymentReg .sec {
   background: #030704;
 }
 #wrap.rroundPaymentReg .sec {
+  position: relative;
   padding: 40px 0;
+  overflow: hidden;
 }
 #wrap.rroundPaymentReg .sec:last-of-type {
   padding-bottom: 80px;
+}
+#wrap.rroundPaymentReg .section::before {  
+  content: "";
+  display: block;
+  position: absolute;
+  top: 977px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 121px;
+  height: 121px;
+  background: url(../images/promotion/rroundPaymentReg/sec01_bg_01.png) no-repeat center / contain;
+  margin-left: -170px;
+  z-index: 1;
+}
+#wrap.rroundPaymentReg .sec-1::after {  
+  content: "";
+  display: block;
+  position: absolute;
+  top: 125px;
+  right: 0;
+  width: 114px;
+  height: 118px;
+  background: url(../images/promotion/rroundPaymentReg/main_bg_01.png) no-repeat center / contain;
+  right: auto;
+  left: 50%;
+  transform: translateX(100px);
+}
+#wrap.rroundPaymentReg .sec-2::after {  
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  width: 248px;
+  height: 558px;
+  background: url(../images/promotion/rroundPaymentReg/sec02_bg_01.png) no-repeat center / contain;
+  z-index: -1;
+}
+#wrap.rroundPaymentReg .sec-3::after {  
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 243px;
+  background: url(../images/promotion/rroundPaymentReg/sec03_bg_01.png) no-repeat center / contain;
+  z-index: -1;
 }
 #wrap.rroundPaymentReg .tab-scroll-wrap {
   overflow-x: auto;
@@ -1083,11 +1162,18 @@
   top: 0;
   z-index: 10;
   background: #3d3d3d;
+  width: 100%;
+  left: 0;
+  right: 0;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 #wrap.rroundPaymentReg .tab-buttons {
   display: inline-flex;
   min-width: max-content;
   width: 100%;
+  max-width: 343px;
+  margin: 0 auto;
   justify-content: space-around;
 }
 #wrap.rroundPaymentReg .tab-btn.on {
@@ -1140,11 +1226,29 @@
   margin-top: 8px;
 }
 #wrap.rroundPaymentReg .benefit-container {
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
   background: rgba(148, 148, 148, 0.2);
   border-radius: 24px;
   padding: 32px 20px;
   width: calc(100% - 32px);
   max-width: 343px;
+
+}
+#wrap.rroundPaymentReg .benefit-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 1px; /* 보더 두께 */
+  background: linear-gradient(132.22deg, #B0B0B0 -2.47%, #4A4A4A 25.35%);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
 }
 #wrap.rroundPaymentReg .benefit-list {
   display: flex;
@@ -1179,8 +1283,9 @@
 #wrap.rroundPaymentReg .benefit-item-text {
   font-family: Pretendard;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 140%;
+  text-align: center;
   color: #fff;
 }
 #wrap.rroundPaymentReg .table-note {
@@ -1214,6 +1319,7 @@
 }
 
 #wrap.rroundPaymentReg .service-item {
+  position: relative;
   display: flex;
   align-items: center;
   background: rgba(148, 148, 148, 0.2);
@@ -1222,7 +1328,18 @@
   gap: 10px;
   width: 100%;
 }
-
+#wrap.rroundPaymentReg .service-item::after {
+content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    padding: 1px;
+    background: linear-gradient(132.22deg, #B0B0B0 -2.47%, #4A4A4A 25.35%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
 #wrap.rroundPaymentReg .service-item-img {
   width: 70px;
   height: 70px;
@@ -1307,5 +1424,12 @@
 }
 #wrap.rroundPaymentReg .sec-3 .swiper-pagination-bullets.swiper-pagination-horizontal {
   bottom: 180px;
+}
+@media all and (max-width: 321px) {
+  .swiper-container .swiper-slide img {
+    max-width: 248px;
+    width: 100% !important;
+    height: auto !important;
+  }
 }
 /* //rroundPaymentReg */

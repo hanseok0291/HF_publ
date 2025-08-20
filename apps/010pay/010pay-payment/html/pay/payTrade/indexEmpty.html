@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../../css/pay/payTrade.css" />
+    <link rel="stylesheet" href="../../../css/pay/transactionHistory.css" />
+    <script src="../../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../../js/jquery-ui.js"></script>
+    <script src="../../../js/design_renewal.js" defer="defer"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <button type="button" class="btn-back js-change-btn left-0">
+              <i class="icon-back"></i>
+            </button>
+            <button
+              type="button"
+              class="right-0"
+              onclick="modalOpenSlide('trade-info-slide-modal')"
+            >
+              <i class="icon-info-circle"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <!-- container -->
+        <div class="container payTrade-container">
+          <div class="input-warp">
+            <h2>
+              보유한 페이 교환권을 등록하고 <br />
+              머니와 포인트 받아보세요
+            </h2>
+            <div class="input-area">
+              <input
+                id="exchangeCode"
+                class="exchangeCode"
+                placeholder="교환권 번호"
+                type="text"
+              />
+              <!-- <button type="button" class="register-btn disabled" onclick="modalOpen('register-alert-modal')">등록</button> -->
+              <button
+                type="button"
+                class="register-btn disabled"
+                onclick="modalOpen('register-kyc-modal')"
+              >
+                등록
+              </button>
+            </div>
+          </div>
+
+          <div class="couponlist-wrap">
+            <div class="month-container">
+              <div class="month-wrap">
+                <button
+                  type="button"
+                  class="prev-btn icon-arrow-left size-16 disabled"
+                >
+                  이전
+                </button>
+                <button
+                  type="button"
+                  class="month-text"
+                  onclick="modalOpenSlide('modal-period')"
+                >
+                  2025년 8월
+                </button>
+                <button type="button" class="next-btn icon-arrow-right size-16 disabled">
+                  다음
+                </button>
+              </div>
+              <div class="month-wrap-dummy"></div>
+            </div>
+
+            <!-- 교환권 없음 -->
+            <div class="no-list-wrap">
+              <img src="../../../images/payment/trade/no-list-img.png" alt="쿠폰">
+              <p>이달 등록된 교환권이 없어요</p>
+            </div>
+          </div>
+        </div>
+        <!-- //container -->
+      </div>
+      <!-- //content -->
+    </div>
+    <!-- //wrap -->
+
+    <!-- 최초 노출 팝업 -->
+    <!-- <div
+      id="trade-intro-modal"
+      class="modal normal-modal trade-intro-modal"
+      style="display: block"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <img
+              src="../../../images/payment/trade/trade-coupon-img.png"
+              alt="coupon"
+            />
+            <h3>교환권 등록하고 혜택 받으세요!</h3>
+            <p>
+              보유한 페이 교환권을 등록하면 <br />
+              머니 또는 포인트로 자동 전환돼요.
+            </p>
+          </div>
+          <div class="modal-footer vertical">
+            <button
+              type="button"
+              class="btn btn-confirm"
+              onclick="modalCloseAlert();"
+            >
+              교환권 등록하기
+            </button>
+            <button
+              type="button"
+              class="btn btn-noShow"
+              onclick="modalCloseFor7Days();"
+            >
+              7일 동안 안보기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- // 최초 노출 팝업 -->
+
+    <!-- 페이 교환권 안내 팝업 -->
+    <div id="trade-info-slide-modal" class="modal modal-slide type-title">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title">페이 교환권 안내</p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <ul class="note-wrap">
+                <li>
+                  페이 머니 교환권 등록 시 라운드 페이 머니로 충전되며, 충전된
+                  머니의 유효기간은 교환권을 등록한 시점으로부터 10년입니다.
+                  교환권으로 충전된 머니는 출금이 가능합니다.
+                </li>
+                <li>
+                  보유한 라운드 페이 머니와 등록할 교환권의 합산 금액이 머니
+                  보유 한도를 초과할 경우 교환권을 등록할 수 없습니다. 페이 머니
+                  출금 후 다시 시도해 주세요.
+                </li>
+                <li>
+                  페이 포인트 교환권 등록 시 라운드 페이 포인트로 적립되며,
+                  적립된 포인트의 기본 유효기간은 교환권을 등록한 시점으로부터
+                  1년이나, 이벤트나 제휴를 통해 지급된 교환권의 유효기간은 다를
+                  수 있습니다. 포인트는 비현금성으로 출금이 불가합니다.
+                </li>
+                <li>
+                  교환권은 1회성 사용이며, 등록된 후에는 다시 사용할 수
+                  없습니다.
+                </li>
+                <li>
+                  고객확인 상태에 따라 교환권 등록이 불가할 수 있습니다. 안전한
+                  서비스 이용을 위해 [페이 > 설정 > 고객정보확인(KYC)]에서 고객
+                  확인을 먼저 진행 후 다시 시도해 주세요.
+                </li>
+              </ul>
+              <p class="division-text">주의사항</p>
+              <ul class="note-wrap">
+                <li>
+                  교환권은 유효기간이 지나면 자동으로 소멸되며, 유효기간은 임의
+                  복구나 연장이 불가합니다.
+                </li>
+                <li>
+                  교환 완료 후에는 변경, 취소, 재사용이 불가능하니 꼭 확인 후
+                  사용해 주세요. (등록된 머니와 포인트는 다시 교환권으로 되돌릴
+                  수 없습니다.)
+                </li>
+                <li>
+                  충전 대상(머니 또는 포인트)은 교환권 종류에 따라 자동으로
+                  정해지며 다른 형태로 변경 불가하니 교환 전 반드시 확인해
+                  주세요.
+                </li>
+                <li>
+                  비정상적인 방법으로 등록된 교환권은 사전 통보 없이 회수 될 수
+                  있으며, 부정한 등록 시도가 감지될 경우 교환권 서비스 이용이
+                  제한됩니다.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //페이 교환권 안내 팝업 -->
+
+    <!-- 기간 팝업 -->
+    <div
+      id="modal-period"
+      class="modal modal-slide type-title modal-period not-dim-close"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head round-btn js-modal-close">
+            <button type="button" class="btn btn-close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="year-wrap">
+              <button
+                type="button"
+                class="prev-btn icon-arrow-left size-20 disabled"
+              >
+                이전
+              </button>
+              <span class="year-text">2025년</span>
+              <button type="button" class="next-btn icon-arrow-right size-20">
+                다음
+              </button>
+            </div>
+            <ul class="month-list-wrap">
+              <li>
+                <button type="button" class="active">1월</button>
+              </li>
+              <li>
+                <button type="button">2월</button>
+              </li>
+              <li>
+                <button type="button">3월</button>
+              </li>
+              <li>
+                <button type="button" disabled>4월</button>
+              </li>
+              <li>
+                <button type="button" disabled>5월</button>
+              </li>
+              <li>
+                <button type="button" disabled>6월</button>
+              </li>
+              <li>
+                <button type="button" disabled>7월</button>
+              </li>
+              <li>
+                <button type="button" disabled>8월</button>
+              </li>
+              <li>
+                <button type="button" disabled>9월</button>
+              </li>
+              <li>
+                <button type="button" disabled>10월</button>
+              </li>
+              <li>
+                <button type="button" disabled>11월</button>
+              </li>
+              <li>
+                <button type="button" disabled>12월</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //기간 팝업 -->
+
+    <!-- 등록 팝업 -->
+    <div id="register-alert-modal" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3>입력한 교환권을 등록할까요?</h3>
+            <p>
+              1회 등록 후에 포인트 50,000원이 적립되며, <br />
+              교환권 재사용이 불가합니다.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalClose('register-alert-modal');"
+              class="btn btn-cancel"
+            >
+              다음에
+            </button>
+            <button
+              type="button"
+              onclick="modalClose('register-alert-modal');"
+              class="btn btn-confirm"
+            >
+              등록하기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- // 등록 팝업 -->
+
+    <!-- 등록 팝업 -->
+    <div id="register-alert-modal" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3>비정상적인 접근이 감지되었어요!</h3>
+            <p>
+              반복 시도로 등록이 일시 제한됐어요. <br />
+              잠시 후 다시 시도해 주세요
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalClose('register-alert-modal');"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- // 등록 팝업 -->
+
+    <!-- 등록 팝업 -->
+    <div id="register-alert-modal" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3>
+              [오류사유] <br />
+              교환권 등록이 불가합니다
+            </h3>
+            <p>[해결 방법] 후 다시 시도해 주세요.</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalClose('register-alert-modal');"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- // 등록 팝업 -->
+
+    <!-- 등록 팝업 -->
+    <div id="register-alert-modal" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3>
+              N원 교환권이 <br />
+              머니로 충전되었어요!
+            </h3>
+            <p>머니 충전 내역을 확인해 보세요.</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalClose('register-alert-modal');"
+              class="btn btn-cancel"
+            >
+              다음에
+            </button>
+            <button
+              type="button"
+              onclick="modalClose('register-alert-modal');"
+              class="btn btn-confirm"
+            >
+              머니 보기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- // 등록 팝업 -->
+
+    <!-- 등록 팝업 -->
+    <div id="register-alert-modal" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3>
+              100,000,000원 교환권이 <br />
+              포인트로 적립되었어요!
+            </h3>
+            <p>포인트 적립 내역을 확인해 보세요.</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalClose('register-alert-modal');"
+              class="btn btn-cancel"
+            >
+              다음에
+            </button>
+            <button
+              type="button"
+              onclick="modalClose('register-alert-modal');"
+              class="btn btn-confirm"
+            >
+              포인트 보기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- // 등록 팝업 -->
+
+    <!-- 등록 팝업 -->
+    <div id="register-alert-modal" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3>비밀번호 설정이 필요해요</h3>
+            <p>설정 완료 후 다시 시도해 주세요.</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalClose('register-alert-modal');"
+              class="btn btn-cancel"
+            >
+              다음에
+            </button>
+            <button
+              type="button"
+              onclick="modalClose('register-alert-modal');"
+              class="btn btn-confirm"
+            >
+              설정하기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- // 등록 팝업 -->
+
+    <!-- 등록 팝업 -->
+    <div id="register-alert-modal" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3>
+              고객확인제도 이행기간이 경과했어요 <br />
+              서비스 이용을 위해 재등록해 주세요
+            </h3>
+            <p>고객정보 재입력 전까지 선불 사용이 제한돼요.</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalClose('register-alert-modal');"
+              class="btn btn-cancel"
+            >
+              닫기
+            </button>
+            <button
+              type="button"
+              onclick="modalClose('register-alert-modal');"
+              class="btn btn-confirm"
+            >
+              재입력하기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- // 등록 팝업 -->
+
+    <!-- 등록 팝업 -->
+    <div id="register-alert-modal" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3>소중한 정보를 확인하고 있어요</h3>
+            <p>
+              확인 완료 시 별도로 안내드릴게요. <br />
+              결과에 따라 거래가 제한될 수 있어요.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalClose('register-alert-modal');"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- // 등록 팝업 -->
+
+    <!-- 등록 팝업 -->
+    <div id="register-alert-modal" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <p>
+              고객님의 정보 확인 결과, <br />내부 정책에 의해 라운드 페이 선불
+              사용이 <br />제한되었어요.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalClose('register-alert-modal');"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- // 등록 팝업 -->
+
+    <!-- 등록 팝업2 -->
+    <div id="register-kyc-modal" class="modal normal-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3>
+              페이 머니 교환권 등록을 위해 <br />
+              고객확인을 먼저 진행해 주세요
+            </h3>
+            <p class="kyc-info-text">
+              라운드 페이에서는 자금 세탁 등으로부터 계좌를 보호하기 위해
+              고객님의 정보와 <br />
+              실제 계좌 소유 여부를 확인하고 있습니다.
+            </p>
+            <p>
+              고객확인을 통해 수집된 정보는 라운드 페이에서 제공하는 서비스에
+              함께 활용돼요.
+            </p>
+          </div>
+          <div class="modal-footer vertical">
+            <button
+              type="button"
+              class="btn btn-confirm"
+              onclick="modalCloseAlert();"
+            >
+              동의하고 진행하기
+            </button>
+            <button
+              type="button"
+              class="btn btn-cancel"
+              onclick="modalCloseAlert();"
+            >
+              다음에
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- // 등록 팝업2 -->
+  </body>
+  <script>
+    $(function () {
+      // input 이벤트
+      const $exchangeCode = $("#exchangeCode");
+      let $exchangeCode_length = 0;
+
+      $exchangeCode.on("focus", function () {
+        $(this).parent().addClass("active");
+      });
+
+      $exchangeCode.on("blur", function () {
+        $(this).parent().removeClass("active");
+      });
+
+      $exchangeCode.on("input", function (e) {
+        // 필터링: 영문, 숫자, 하이픈만 허용
+        const filtered = e.target.value.replace(/[^a-zA-Z0-9-]/g, "");
+
+        e.target.value = filtered;
+
+        const $input = $(this);
+        const $exchangeCode_length = filtered.length;
+
+        if ($exchangeCode_length > 0) {
+          $input.next().removeClass("disabled");
+        } else {
+          $input.next().addClass("disabled");
+        }
+      });
+
+      // list fixed
+      const list = document.querySelector(".couponlist-wrap");
+      const target = document.querySelector(".month-wrap");
+
+      window.addEventListener("scroll", () => {
+        const scrollTop = window.scrollY;
+        const listTop = list.getBoundingClientRect().top - 56;
+        if (listTop < 0) {
+          target.classList.add("fixed");
+        } else {
+          target.classList.remove("fixed");
+        }
+      });
+    });
+
+    // 7일 동안 비노출 상태값 저장
+    function modalCloseFor7Days() {
+      const now = new Date();
+      const hideUntil = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+
+      localStorage.setItem("hideModalUntil", hideUntil.toISOString());
+      modalCloseAlert(); // 기존 모달 닫기 함수 호출
+    }
+  </script>
+</html>

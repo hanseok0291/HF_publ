@@ -196,9 +196,28 @@ function modalOpen(obj) {
   var marginValue = thisDialog.outerHeight() / 2;
   $(thisDialog).css("margin-top", "-" + marginValue + "px");
 
+  // company-list가 있는 경우 맨 위로 스크롤
+  var companyList = temp.find(".company-list");
+  if (companyList.length > 0) {
+    companyList.scrollTop(0);
+  }
+
   // js-modal-close 버튼 클릭 시 모달 닫기 실행
   temp.find(".js-modal-close").on("click", function () {
     modalClose();
+  });
+
+  // 모달 외부 클릭 시 닫기 처리
+  temp.on("click", function (e) {
+    // 외부를 클릭했는지 확인
+    if (
+      !$(e.target).closest(".modal-content").length &&
+      !temp.hasClass("not-dim-close")
+    ) {
+      // modalOpen으로 열린 모달만 닫기
+      temp.hide();
+      scrollOn(); // 바디 스크롤 제거 해제
+    }
   });
 }
 

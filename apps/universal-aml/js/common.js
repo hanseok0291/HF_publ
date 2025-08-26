@@ -3,14 +3,24 @@ var scrollHeight = 0;
 function scrollOff() {
   scrollHeight = $(document).scrollTop();
   $("body").addClass("modal-open");
-  $("#wrap").css("position", "fixed");
-  $("#wrap").css("top", -scrollHeight);
+  $("#wrap").css({
+    "position": "fixed",
+    "top": -scrollHeight + "px",
+    "width": "100%",
+    "left": "0",
+    "right": "0"
+  });
   $("#header").css("top", "-0.9px");
 }
 function scrollOn() {
   $("body").removeClass("modal-open");
-  $("#wrap").css("top", 0);
-  $("#wrap").css("position", "relative");
+  $("#wrap").css({
+    "position": "relative",
+    "top": "0",
+    "width": "auto",
+    "left": "auto",
+    "right": "auto"
+  });
   $("#header").css("top", "-1px");
   $(document).scrollTop(scrollHeight);
 }
@@ -104,7 +114,12 @@ $(function () {
       // scrollOff(); // 바디 스크롤 제거
     });
 
-    $("#wrap").css("position", "fixed");
+    $("#wrap").css({
+      "position": "fixed",
+      "width": "100%",
+      "left": "0",
+      "right": "0"
+    });
   });
 
   // 모달 닫기
@@ -113,7 +128,12 @@ $(function () {
     $(target).hide(); // 모달 닫기
     // scrollOn(); // 바디 스크롤 제거 해제
     // scrollOff(); // 바디 스크롤 제거
-    $("#wrap").css("position", "relative");
+    $("#wrap").css({
+      "position": "relative",
+      "width": "auto",
+      "left": "auto",
+      "right": "auto"
+    });
   });
 
   // 배너 닫기(플로팅 배너)
@@ -194,22 +214,6 @@ $(document).ready(function () {
     }
   });
 });
-
-$.alertMessage = function (title, ...rest) {
-  const alertObj = rest.pop(); // 마지막 인자는 alert 객체
-  const contents = rest;       // 나머지는 문단 텍스트
-
-  alertObj.find(".alert-title").html(title);
-
-  const formattedContents = contents
-    .map((line) => `<p class="line">${line}</p>`)
-    .join("");
-
-  alertObj.find(".alert-contents").html(formattedContents);
-
-  modalOpen(alertObj.attr("id"));
-};
-
 
 $.popupMessage = function (title, contents, alertObj) {
   $("#popupTitle").html(title);

@@ -71,7 +71,7 @@
                         </div>
                       </div>
                     </a>
-                    <div class="toggle-box">
+                    <div class="toggle-box" data-toggle-type="domestic">
                       <label class="switch">
                         <span class="toggle-label">OFF</span>
                         <input type="checkbox" />
@@ -97,7 +97,7 @@
                         </div>
                       </div>
                     </a>
-                    <div class="toggle-box">
+                    <div class="toggle-box" data-toggle-type="overseas">
                       <label class="switch">
                         <span class="toggle-label">OFF</span>
                         <input type="checkbox" />
@@ -123,7 +123,7 @@
                         </div>
                       </div>
                     </a>
-                    <div class="toggle-box">
+                    <div class="toggle-box" data-toggle-type="dcc">
                       <label class="switch">
                         <span class="toggle-label">OFF</span>
                         <input type="checkbox" />
@@ -397,7 +397,6 @@
                 <p class="terms-title-sub">제 3조 (용어의 정의)</p>
                 <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
                 <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
-                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
               </div>
               <!-- //게시판 상세 -->
             </div>
@@ -564,6 +563,29 @@
       </div>
     </div>
     <!-- //common prompt -->
+    <!-- modal - common alert -->
+    <div id="commonAlert" class="modal modal-new" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div id="alertContents">
+              <p class="text-info"></p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="confirmOk"
+              class="btn"
+              data-dismiss="modal"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //modal - common alert -->
     <script>
       $(window).on("load", function () {
         formatPhoneNumber();
@@ -576,7 +598,7 @@
           $("#commonPrompt"),
         );
       });
-      
+
       // 내 카드 정보 클릭 -> 보유 카드 없을 경우
       /* $(".btn-card-info").click(function () {
         $.promptMessage(
@@ -609,6 +631,30 @@
             label.textContent = "OFF";
             box.classList.remove("active");
           }
+        });
+
+        // 토글 박스 클릭 시 알림 메시지 표시
+        box.addEventListener("click", function () {
+          const toggleType = this.getAttribute("data-toggle-type");
+          const checkbox = this.querySelector('input[type="checkbox"]');
+          const isChecked = checkbox.checked;
+          let message = "";
+          
+          switch(toggleType) {
+            case "domestic":
+              message = isChecked ? "국내 결제가<br>차단 되었습니다." : "국내 결제가<br>해제 되었습니다.";
+              break;
+            case "overseas":
+              message = isChecked ? "해외결제가<br>차단 되었습니다." : "해외결제가<br>해제 되었습니다.";
+              break;
+            case "dcc":
+              message = isChecked ? "해외 원화 결제가<br>차단 되었습니다." : "해외 원화 결제가<br>해제 되었습니다.";
+              break;
+            default:
+              message = "설정이 변경되었습니다.";
+          }
+          
+          $.alertMessage("", message);
         });
       });
     </script>

@@ -1,3 +1,4 @@
+/* 250825 */
 .header { padding: 16px; border-bottom: 1px solid #eee; text-align: center; font-weight: bold; position: relative; } 
 .back-btn { position: absolute; left: 16px; top: 16px; } 
 .tab { display: flex; justify-content: center; gap: 8px; margin: 16px 0; } 
@@ -18,7 +19,7 @@
 .list-item { padding: 24px 0; } 
 .list-item .date { font-family: Pretendard; font-weight: 400; font-size: 13px; line-height: 140%; letter-spacing: -2%; color: #888; margin-bottom: 8px; } 
 .list-item .label { font-family: Pretendard; font-weight: 700; font-size: 16px; line-height: 140%; letter-spacing: -2%; color: #151515; } 
-.list-item .desc { font-family: Pretendard; font-weight: 400; font-size: 14px; line-height: 160%; letter-spacing: -2%; color: #888; margin-left: 4px; } 
+.list-item .desc { font-family: Pretendard; font-weight: 400; font-size: 14px; line-height: 160%; letter-spacing: -2%; color: #888; margin-left: 4px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; } 
 .list-item .point { display: flex; align-items: center; font-family: Pretendard; font-weight: 700; font-size: 16px; line-height: 140%; text-align: right; color: #151515; margin-left: auto; } 
 .list-item .point .icon { width: 16px; height: 16px; } 
 .list-item .bottom-text { font-family: Pretendard; font-weight: 400; font-size: 14px; line-height: 160%; letter-spacing: -2%; color: #888; margin-top: 8px; } 
@@ -31,8 +32,17 @@
 .reward-history .tab.active::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: calc(100% - 20px); height: 2px; background: #151515; } 
 .reward-history .tab-content { display: none; } 
 
-.reward-history .tab-content.active { display: block; } 
-
+.reward-history .empty-list p { font-size: 16px; font-weight: 500; line-height: 22.4px; letter-spacing: -0.02em; text-align: center; }
+.reward-history .empty-list p::before {
+  display: block;
+  content: "";
+  width: 64px;
+  height: 64px;
+  margin: auto;
+  margin-bottom: 8px;
+  background: url(../images/common/icon-exclamation-circle.svg) 0 0 / cover no-repeat;
+}
+.reward-history .tab-content.active { display: flex; flex-direction: column; flex: 1 1 0; }  
 .reward-history .icon { width: 16px; height: 16px; display: flex; justify-content: center; align-items: center; margin-right: 4px; } 
 .reward-history .icon-s { background: url(../images/conversion/icon-s.png) no-repeat center / contain; } 
 .reward-history .icon-c { background: url(../images/conversion/icon-c.png) no-repeat center / contain; } 
@@ -49,3 +59,188 @@ select, .select { overflow: hidden; background: transparent url(../images/common
 .select-box > span.active { background: transparent url(../images/common/icon-arrow-up.svg) right center no-repeat; background-size: 16px auto; } 
 
 .select-box + .select-box { margin-left: 16px; } 
+
+/* setting-container */
+.setting-container .setting-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 54px;
+}
+.setting-container .setting-list li .btn-text-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.setting-container .setting-list li .btn-text-box .setting-name {
+  font-family: Pretendard;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: -2%;
+  color: #454545;
+  display: flex;
+  flex-direction: column;
+}
+.setting-container .setting-list li .btn-text-box .sub-text {
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 140%;
+  letter-spacing: -2%;
+  text-align: center;
+  color: #888;
+  margin-top: 4px;
+}
+.toggle-wrap .toggle-line {
+  display: flex;
+  align-items: center;
+}
+.toggle-wrap .switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+}
+.toggle-wrap .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 999px;
+  transition: 0.4s;
+}
+
+.toggle-wrap .slider::before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.2s;
+  border-radius: 50%;
+}
+
+.toggle-wrap .switch input:checked + .slider {
+  background-color: #151515;
+}
+
+.toggle-wrap .switch input:checked + .slider::before {
+  transform: translateX(24px);
+}
+/* //setting-container */
+
+.reward-history .top-contents-wrap + .month-wrap {
+  margin-top: 32px;
+}
+.reward-history .month-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 33px;
+  margin-bottom: 16px;
+}
+.reward-history .month-wrap .month-text {
+  margin: 0 28px;
+  color: #151515;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 25.2px;
+}
+.reward-history .month-wrap {
+  margin-top: 32px;
+}
+
+/* 거래 내역 */
+#wrap.reward-history {
+  padding: 0;
+}
+#content {
+  padding: 56px 0 20px;
+  min-height: calc(var(--vh, 1vh) * 100);
+}
+#content {
+  display: flex;
+  flex-direction: column;
+}
+.reward-history {
+  padding: 16px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+}
+.reward-history .tab-content-wrap {
+  display: flex;
+  flex: 1 1 0;
+}
+.reward-history .tab-content-wrap > .container {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+}
+.reward-history .tab-content .empty-list {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  /* margin-bottom: 10%; */
+}
+/* 거래 내역 END */
+
+/* 거래 내역 탭 */
+.trade-tab-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  top: 0;
+  overflow-x: auto;
+  width: 100%;
+  min-height: 68px;
+  padding: 16px 0;
+  height: auto; /* 또는 제거 */
+  box-sizing: border-box;
+  background-color: #fff;
+  -ms-overflow-style: none;
+  z-index: 10;
+}
+.trade-tab-wrap::-webkit-scrollbar {
+  display: none;
+}
+.trade-tab-wrap.fixed {
+  box-shadow: 0px 4px 4px 0px #E5E5E880;
+  position: fixed;
+  top: 55px;
+}
+.trade-tab-wrap .tab-list {
+  display: flex;
+  gap: 8px;
+}
+.trade-tab-wrap .tab-list button {
+  border: 1px solid #D6D6D6;
+  border-radius: 40px;
+  color: #1C1B1F;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  height: 36px; 
+  line-height: 1;  
+  padding: 0 16px; 
+}
+.trade-tab-wrap .tab-list button.active {
+  border: 1px solid #333333;
+  color: #fff;
+  background-color: #333333;
+}
+.trade-tab-wrap + .list {
+  margin: 0;
+}
+.has-ad-wrap .trade-list.padding {
+  padding-top: 56px;
+}
+/* 거래 내역 탭 END */

@@ -13,8 +13,8 @@
     />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <link rel="stylesheet" href="../../../css/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="../../../css/common_renewal.css?v1" />
-    <link rel="stylesheet" href="../../../css/pedometer.css?v1" />
+    <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../../css/pedometer.css" />
     <script src="../../../js/jquery.3.4.1.min.js"></script>
     <script src="../../../js/jquery-ui.js"></script>
     <script src="../../../js/swiper.js"></script>
@@ -45,9 +45,7 @@
         <div class="walk-bg">
           <span class="bg bg1"></span>
           <span class="bg bg2"></span>
-          <!-- [2025.05.29] 변경 시작 -->
           <span class="bg bg3"></span>
-          <!-- [2025.05.29] 변경 끝 -->
           <div class="walk-container">
             <!-- 헤더 -->
             <div class="walk-header">
@@ -78,24 +76,23 @@
               <!-- //문구 모음 -->
             </div>
 
-            <!-- 걸음 경로 및 리워드 -->
-            <div class="walk-map">
-              <!-- [2025.05.29] 변경 시작 -->
+          <!-- [2025.07.29] 변경 시작 -->
+            <div class="image-map-container">
               <img
                 src="../../../images/pedometer/map2.png"
-                alt="지도 배경"
-                class="bg-image"
-              />
-              <!-- [2025.05.29] 변경 끝 -->
-              <!-- base, receive, gift -->
-              <ul class="walk-step-list">
+                alt="지도 배경">
+
+              <button type="button" class="btn-challenge">
+                <div class="dot challenge"></div>
+              </button>
+
+              <!-- base, before(걸음수), gift(리워드 받기), receive(리워드 수령 후), ticket -->
+              <ul class="pedo-step-list">
                 <!-- 걸음수 달성 후 -->
-                <li class="step base gift" data-step="10" style="">
+                <li class="step base receive" data-step="10" style="">
                   <button type="button">
                     <div class="dot gift"></div>
                     <div class="lottie-pulse"></div>
-                    <div class="label">10걸음</div>
-                    <div class="label complete">리워드 받기</div>
                   </button>
                 </li>
                 <!-- //걸음수 달성 후 -->
@@ -104,38 +101,30 @@
                   <button type="button">
                     <div class="dot gift"></div>
                     <div class="lottie-pulse"></div>
-                    <div class="label">4,000걸음</div>
-                    <div class="label complete">리워드 받기</div>
-                  </button>
-                </li>
-                <!-- //걸음수 달성 -->
-                <!-- 걸음수 달성 -->
-                <li class="step base gift" data-step="6000" style="">
-                  <button type="button">
-                    <div class="dot gift"></div>
-                    <div class="lottie-pulse"></div>
-                    <div class="label">6,000걸음</div>
-                    <div class="label complete">리워드 받기</div>
                   </button>
                 </li>
                 <!-- //걸음수 달성 -->
                 <!-- 걸음수 달성 전 -->
-                <li class="step base gift" data-step="9000" style="">
+                <li class="step base before" data-step="6000" style="">
                   <button type="button">
                     <div class="dot gift"></div>
                     <div class="lottie-pulse"></div>
-                    <div class="label">9,000걸음</div>
-                    <div class="label complete">리워드 받기</div>
                   </button>
                 </li>
                 <!-- //걸음수 달성 전 -->
                 <!-- 걸음수 달성 전 -->
-                <li class="step base gift" data-step="10000" style="">
+                <li class="step base before" data-step="9000" style="">
                   <button type="button">
                     <div class="dot gift"></div>
                     <div class="lottie-pulse"></div>
-                    <div class="label">10,000걸음</div>
-                    <div class="label complete">리워드 받기</div>
+                  </button>
+                </li>
+                <!-- //걸음수 달성 전 -->
+                <!-- 걸음수 달성 전 -->
+                <li class="step base before" data-step="10000" style="">
+                  <button type="button">
+                    <div class="dot gift"></div>
+                    <div class="lottie-pulse"></div>
                   </button>
                 </li>
                 <!-- //걸음수 달성 전 -->
@@ -143,12 +132,17 @@
             </div>
           </div>
         </div>
-
         <!-- //container -->
       </div>
       <!-- //content -->
     </div>
     <!-- //wrap -->
+
+    <!-- adWrap -->
+    <div class="adWrap"></div>
+    <!-- //adWrap -->
+
+    <!-- [2025.07.29] 변경 끝 -->
 
     <div id="commonPrompt" class="modal">
       <div class="modal-dialog">
@@ -504,39 +498,39 @@
     <!-- //modal - 공지사항 상세 -->
   </body>
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const pulseElements = document.querySelectorAll('.lottie-pulse');
+    document.addEventListener("DOMContentLoaded", function () {
+      const pulseElements = document.querySelectorAll(".lottie-pulse");
 
       pulseElements.forEach((el) => {
         bodymovin.loadAnimation({
           container: el,
-          renderer: 'svg',
+          renderer: "svg",
           loop: true,
           autoplay: true,
-          path: 'https://ux.sbsvc.online/010pay/sup/pedometer/images/lottie/gift.json',
+          path: "https://ux.sbsvc.online/010pay/sup/pedometer/images/lottie/gift.json",
         });
       });
     });
 
-    window.addEventListener('load', function () {
+    window.addEventListener("load", function () {
       // 에러 모달
       // modalOpen('commonPrompt');
 
-      $('.label.complete').click(function () {
-        alert('22');
+      $(".label.complete").click(function () {
+        alert("22");
       });
     });
 
     /* Viewport height 보정 */
     function setViewportHeight() {
       const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', vh + 'px');
+      document.documentElement.style.setProperty("--vh", vh + "px");
     }
 
-    window.addEventListener('resize', setViewportHeight);
-    window.addEventListener('orientationchange', setViewportHeight);
-    window.addEventListener('load', setViewportHeight);
-    document.addEventListener('DOMContentLoaded', setViewportHeight);
+    window.addEventListener("resize", setViewportHeight);
+    window.addEventListener("orientationchange", setViewportHeight);
+    window.addEventListener("load", setViewportHeight);
+    document.addEventListener("DOMContentLoaded", setViewportHeight);
 
     setViewportHeight();
   </script>

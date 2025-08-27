@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <title>헥토파이낸셜</title>
+    <link rel="stylesheet" href="../../../css/reset.css" />
+    <link rel="stylesheet" href="../../../css/common.css" />
+    <link rel="stylesheet" href="../../../css/card.css" />
+    <link rel="stylesheet" href="../../../css/swiper-bundle.min.css" />
+    <script src="../../../js/jquery-1.8.3.min.js"></script>
+    <script src="../../../js/common.js" defer></script>
+    <script src="../../../js/aml.js" defer></script>
+    <script src="../../../js/design_renewal.js" defer></script>
+    <script src="../../../js/postcode.v2.js"></script>
+    <script src="../../../js/swiper.js"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap" class="card">
+      <!-- header -->
+      <header class="header">
+        <div class="container">
+          <button type="button" class="btn-back btn"></button>
+          <h1 class="brand-name">카드 이용 관리</h1>
+          <button type="button" class="btn-close btn"></button>
+        </div>
+      </header>
+      <!-- //header -->
+
+      <!-- section -->
+      <section>
+        <!-- card-section -->
+        <div class="bottom-line">
+          <div class="container">
+            <div class="my-info-wrap">
+              <p class="info-wrap-title">내 카드 정보 관리</p>
+              <ul>
+                <li>
+                  <a href="#" class="btn-card-info">내 카드 정보</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- //card-section -->
+        <!-- container -->
+        <div class="">
+          <div id="content" class="container pb-20">
+            <div class="my-info-wrap">
+              <p class="info-wrap-title">결제 이용 등록/해제</p>
+              <ul class="toggle-list">
+                <li>
+                  <div class="label-with-tooltip">
+                    <a href="">
+                      <span class="label-text">국내 결제 차단 </span>
+                      <div class="tooltip-wrap mr-auto">
+                        <button type="button" class="btn btn-tooltip"></button>
+                        <div class="popover none-arrow setting setting1">
+                          <div class="popover-content">
+                            <div class="popover-body">
+                              분실 또는 도난 우려가 있을 경우, ON 설정을 통해
+                              부정사용을 예방할 수 있습니다.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                    <div class="toggle-box">
+                      <label class="switch">
+                        <span class="toggle-label">OFF</span>
+                        <input type="checkbox" />
+                        <span class="slider"></span>
+                      </label>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <!-- 항목별로 flex로 묶어 정렬 -->
+                  <div class="label-with-tooltip">
+                    <a href="">
+                      <span class="label-text">해외결제 차단</span>
+                      <div class="tooltip-wrap mr-auto">
+                        <button type="button" class="btn btn-tooltip"></button>
+                        <div class="popover none-arrow setting setting2">
+                          <div class="popover-content">
+                            <div class="popover-body">
+                              해외 결제가 불필요할 경우, OFF 설정을 통해 부정
+                              사용을 예방할 수 있습니다.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                    <div class="toggle-box">
+                      <label class="switch">
+                        <span class="toggle-label">OFF</span>
+                        <input type="checkbox" />
+                        <span class="slider"></span>
+                      </label>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <!-- 항목별로 flex로 묶어 정렬 -->
+                  <div class="label-with-tooltip">
+                    <a href="">
+                      <span class="label-text">해외 원화 결제(DCC) 차단</span>
+                      <div class="tooltip-wrap mr-auto">
+                        <button type="button" class="btn btn-tooltip"></button>
+                        <div class="popover none-arrow setting setting3">
+                          <div class="popover-content">
+                            <div class="popover-body">
+                              해외 결제 이용 시, 현지 화폐가 아닌 원화로
+                              결제되는 상황을 차단할 수 있습니다.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                    <div class="toggle-box">
+                      <label class="switch">
+                        <span class="toggle-label">OFF</span>
+                        <input type="checkbox" />
+                        <span class="slider"></span>
+                      </label>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- guide-wrap -->
+            <div class="guide-wrap">
+              <div>
+                <ul class="accordion-list type2">
+                  <li>
+                    <div class="list-header accordion-title">
+                      <h3 class="subject mb-14">꼭 알아두세요!</h3>
+                    </div>
+                    <ul class="guide-wrap-list">
+                      <li>
+                        카드를 분실한 것이 확실하지 않은 경우, 잠시 OFF로
+                        설정하세요. 찾은 후에 ON으로 설정하면 번거롭게 재발급할
+                        필요가 없습니다.
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- //guide-wrap -->
+          </div>
+        </div>
+        <!-- //container -->
+      </section>
+      <!-- //section -->
+    </div>
+    <!-- //wrap -->
+
+    <div id="modalTelecom" class="modal modal-slide">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="container">
+              <ul class="select-list">
+                <li class="bold">SKT</li>
+                <li>KT</li>
+                <li>LG U+</li>
+                <li>KCT</li>
+                <li>SK7mobile</li>
+                <li>헬로모바일</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="modalSlide02" class="modal modal-slide">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="container">
+              <ul class="accordion-list">
+                <li>
+                  <div class="list-header accordion-title">
+                    <h3 class="subject">
+                      <div class="check-box check-all w-full">
+                        <input
+                          type="checkbox"
+                          id="check-all"
+                          name="check-all"
+                        />
+                        <label for="check-all">선불충전서비스 이용 약관</label>
+                      </div>
+                    </h3>
+                  </div>
+                  <div class="list-body accordion-item">
+                    <div class="content">
+                      <ul class="list-sub">
+                        <li class="list-item">
+                          <div class="check-box child">
+                            <input
+                              type="checkbox"
+                              id="chk1"
+                              class="checkSelect"
+                              name="chk1"
+                              value="Y"
+                            />
+                            <label for="chk1"
+                              >통신과금서비스 이용약관(필수)</label
+                            >
+                          </div>
+                          <span class="btn-right" id=""
+                            ><a
+                              href="javascript:;"
+                              data-toggle="modal"
+                              data-target="#noticeDetail01"
+                              ><span class="btn_view">보기</span></a
+                            ></span
+                          >
+                        </li>
+                        <li class="list-item">
+                          <div class="check-box child">
+                            <input
+                              type="checkbox"
+                              id="chk2"
+                              class="checkSelect"
+                              name="chk2"
+                              value="Y"
+                            />
+                            <label for="chk2">개인정보 수집·이용(필수)</label>
+                          </div>
+                          <span class="btn-right" id=""
+                            ><a
+                              href="javascript:;"
+                              data-toggle="modal"
+                              data-target="#noticeDetail02"
+                              ><span class="btn_view">보기</span></a
+                            ></span
+                          >
+                        </li>
+                        <li class="list-item">
+                          <div class="check-box child">
+                            <input
+                              type="checkbox"
+                              id="chk3"
+                              class="checkSelect"
+                              name="chk3"
+                              value="Y"
+                            />
+                            <label for="chk3"
+                              >개인정보 제3자 제공 및 위탁 안내(필수)</label
+                            >
+                          </div>
+                          <span class="btn-right" id=""
+                            ><a
+                              href="javascript:;"
+                              data-toggle="modal"
+                              data-target="#noticeDetail03"
+                              ><span class="btn_view">보기</span></a
+                            ></span
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <div class="btn-wrap">
+                <button
+                  type="button"
+                  id="next"
+                  class="btn btn-default"
+                  disabled
+                >
+                  다음
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal - 공지사항 상세 -->
+    <div
+      id="noticeDetail01"
+      class="modal modal-full"
+      tabindex="-1"
+      role="dialog"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <div class="container">
+              <h1 class="brand-name">
+                <span class="my-logo"
+                  ><img
+                    src="../../../images/common/logo.svg"
+                    alt="헥토파이낸셜"
+                /></span>
+              </h1>
+              <button
+                type="button"
+                class="btn btn-close"
+                data-dismiss="modal"
+                data-target="#noticeDetail"
+              ></button>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <!-- 게시판 상세 -->
+              <div class="terms scroll">
+                <p class="terms-title">통신과금 서비스 이용약관(필수)</p>
+                <p class="terms-title-sub">제 1조 (목적)</p>
+                <p>
+                  본 약관은 통신과금 서비스를 제공하는 주식회사
+                  헥토파이낸셜(이하 ‘회사’라고 합니다)과 통신과금서비스 이용자
+                  (이하 ‘이용자’라고 합니다) 간에 통신과금서비스에 관한 회사와
+                  이용자의 권리의무, 기타 제반 사항을 정함을 목적으로 합니다.
+                </p>
+                <p class="terms-title-sub">제 2조 (용어의 정의)</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p class="terms-title-sub">제 3조 (용어의 정의)</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+              </div>
+              <!-- //게시판 상세 -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="btn-wrap">
+          <button
+            type="button"
+            class="btn btn-xl btn-secondary"
+            data-dismiss="modal"
+            data-target="chk1"
+          >
+            동의 후 닫기
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- //modal - 공지사항 상세 -->
+    <!-- modal - 공지사항 상세 -->
+    <div
+      id="noticeDetail02"
+      class="modal modal-full"
+      tabindex="-1"
+      role="dialog"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <div class="container">
+              <h1 class="brand-name">
+                <span class="my-logo"
+                  ><img
+                    src="../../../images/common/logo.svg"
+                    alt="헥토파이낸셜"
+                /></span>
+              </h1>
+              <button
+                type="button"
+                class="btn btn-close"
+                data-dismiss="modal"
+                data-target="#noticeDetail"
+              ></button>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <!-- 게시판 상세 -->
+              <div class="terms scroll">
+                <p class="terms-title">통신과금 서비스 이용약관(필수)</p>
+                <p class="terms-title-sub">제 1조 (목적)</p>
+                <p>
+                  본 약관은 통신과금 서비스를 제공하는 주식회사
+                  헥토파이낸셜(이하 ‘회사’라고 합니다)과 통신과금서비스 이용자
+                  (이하 ‘이용자’라고 합니다) 간에 통신과금서비스에 관한 회사와
+                  이용자의 권리의무, 기타 제반 사항을 정함을 목적으로 합니다.
+                </p>
+                <p class="terms-title-sub">제 2조 (용어의 정의)</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p class="terms-title-sub">제 3조 (용어의 정의)</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+              </div>
+              <!-- //게시판 상세 -->
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="btn-wrap">
+              <button
+                type="button"
+                class="btn btn-xl btn-secondary"
+                data-dismiss="modal"
+                data-target="chk2"
+              >
+                동의 후 닫기
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //modal - 공지사항 상세 -->
+    <!-- modal - 공지사항 상세 -->
+    <div
+      id="noticeDetail03"
+      class="modal modal-full"
+      tabindex="-1"
+      role="dialog"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <div class="container">
+              <h1 class="brand-name">
+                <span class="my-logo"
+                  ><img
+                    src="../../../images/common/logo.svg"
+                    alt="헥토파이낸셜"
+                /></span>
+              </h1>
+              <button
+                type="button"
+                class="btn btn-close"
+                data-dismiss="modal"
+                data-target="#noticeDetail"
+              ></button>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <!-- 게시판 상세 -->
+              <div class="terms scroll">
+                <p class="terms-title">통신과금 서비스 이용약관(필수)</p>
+                <p class="terms-title-sub">제 1조 (목적)</p>
+                <p>
+                  본 약관은 통신과금 서비스를 제공하는 주식회사
+                  헥토파이낸셜(이하 ‘회사’라고 합니다)과 통신과금서비스 이용자
+                  (이하 ‘이용자’라고 합니다) 간에 통신과금서비스에 관한 회사와
+                  이용자의 권리의무, 기타 제반 사항을 정함을 목적으로 합니다.
+                </p>
+                <p class="terms-title-sub">제 2조 (용어의 정의)</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p class="terms-title-sub">제 3조 (용어의 정의)</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+              </div>
+              <!-- //게시판 상세 -->
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="btn-wrap">
+              <button
+                type="button"
+                class="btn btn-xl btn-secondary"
+                data-dismiss="modal"
+                data-target="chk3"
+              >
+                동의 후 닫기
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //modal - 공지사항 상세 -->
+
+    <div id="modalDetail" class="modal modal-slide modal-delivery-detail">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <h2 class="modal-title">실시간 배송 상세 조회</h2>
+            <button type="button" class="btn-close">닫기</button>
+          </div>
+
+          <div class="modal-body">
+            <div class="delivery-info">
+              <div class="info-row">
+                <span class="label">수령인</span>
+                <span class="value">본인 수령</span>
+              </div>
+              <div class="info-row">
+                <span class="label">배송지</span>
+                <span class="value">
+                  서울 헥토시 헥토구 헥토동 1-23<br />
+                  헥토파이낸셜 123호
+                </span>
+              </div>
+            </div>
+
+            <div class="delivery-table-wrap">
+              <p class="section-title">실시간 배송 정보</p>
+              <table class="delivery-table">
+                <thead>
+                  <tr>
+                    <th>처리일시</th>
+                    <th>처리일시</th>
+                    <th>처리일시</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>2025.05.30<br />21:00:20</td>
+                    <td>배송업체<br />본사도착</td>
+                    <td>집화점으로 이동<br />배송원: 김헥토</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-confirm">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- common prompt -->
+    <div id="commonPrompt" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 class="prompt-title"></h3>
+            <p class="prompt-contents"></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalClose();"
+              class="btn btn-cancel"
+            >
+              취소
+            </button>
+            <button
+              type="button"
+              onclick="modalClose();"
+              id="promptOk"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //common prompt -->
+    <script>
+      $(window).on("load", function () {
+        formatPhoneNumber();
+      });
+
+      $(".btn-close.btn").click(function () {
+        $.promptMessage(
+          "",
+          "선불충전서비스를 이용하기 위해서는<br>본인확인이 필요합니다.<br><br><b>본인확인을 계속 하시겠습니까?</b>",
+          $("#commonPrompt"),
+        );
+      });
+      
+      var swiper = new Swiper(".mySwiper", {
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+        },
+      });
+
+      // on, off 토글버튼
+      document.querySelectorAll(".toggle-box").forEach((box) => {
+        const checkbox = box.querySelector('input[type="checkbox"]');
+        const label = box.querySelector(".toggle-label");
+
+        checkbox.addEventListener("change", function () {
+          if (checkbox.checked) {
+            label.textContent = "ON";
+            box.classList.add("active");
+          } else {
+            label.textContent = "OFF";
+            box.classList.remove("active");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

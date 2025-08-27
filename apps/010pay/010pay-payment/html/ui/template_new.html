@@ -2301,6 +2301,37 @@
                 <li>내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용</li>
               </ul>
             </div>
+            <!-- 이전 목록 보기 -->
+            <div class="terms-tit prev-list">이전 개인정보 처리 방침</div>
+            <div class="custom-select-box">
+              <button
+                type="button"
+                class="select-toggle"
+                aria-haspopup="listbox"
+              >
+                <span class="selected-value">옵션을 선택하세요</span>
+                <span class="icon-arrow-down"></span>
+                <!-- ▼ -->
+              </button>
+              <ul class="select-options" role="listbox">
+                <li role="option" tabindex="0">
+                  <a href="#">옵션 타이틀을 넣어주세요1</a>
+                </li>
+                <li role="option" tabindex="0">
+                  <a href="#">옵션 타이틀을 넣어주세요2</a>
+                </li>
+                <li role="option" tabindex="0">
+                  <a href="#">옵션 타이틀을 넣어주세요3</a>
+                </li>
+                <li role="option" tabindex="0">
+                  <a href="#">옵션 타이틀을 넣어주세요4</a>
+                </li>
+                <li role="option" tabindex="0">
+                  <a href="#">옵션 타이틀을 넣어주세요5</a>
+                </li>
+              </ul>
+            </div>
+            <!-- //이전 목록 보기 -->
             <!-- //게시판 상세 -->
           </div>
           <!-- <div class="modal-footer">
@@ -2428,5 +2459,53 @@
         });
       });
     });
+
+    // 
+    const toggle = document.querySelector(".select-toggle");
+    const options = document.querySelector(".select-options");
+    const selectedValue = document.querySelector(".selected-value");
+    const modalDialog = document.querySelectorAll(".modal-dialog"); // 추가
+
+    toggle.addEventListener("click", () => {
+      const isOpen = options.style.display === "block";
+      options.style.display = isOpen ? "none" : "block";
+      toggle.classList.toggle("open", !isOpen);
+
+      // modal-dialog에 padding-bottom 40px 추가/제거
+      modalDialog.forEach((dialog) => {
+        if (!isOpen) {
+          dialog.style.setProperty("padding-bottom", "40px");
+        } else {
+          dialog.style.removeProperty("padding-bottom");
+        }
+      });
+    });
+
+    // 옵션 클릭 시 닫기 및 padding 제거
+    document.querySelectorAll(".select-options li").forEach((option) => {
+      option.addEventListener("click", () => {
+        selectedValue.textContent = option.textContent;
+        options.style.display = "none";
+        toggle.classList.remove("open");
+        modalDialog.forEach((dialog) => {
+          dialog.style.removeProperty("padding-bottom");
+        });
+      });
+    });
+
+    // 외부 클릭 시 닫기 및 padding 제거
+    document.addEventListener("click", (e) => {
+      const isInside = document
+        .querySelector(".custom-select-box")
+        .contains(e.target);
+      if (!isInside) {
+        options.style.display = "none";
+        toggle.classList.remove("open");
+        modalDialog.forEach((dialog) => {
+          dialog.style.removeProperty("padding-bottom");
+        });
+      }
+    });
+    // 
   </script>
 </html>

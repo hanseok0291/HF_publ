@@ -53,7 +53,7 @@
 				<!-- 계좌 -->
 				<div class="section">
 					<div class="account-box type2">
-						<span class="account-number"><img src="../../images/bank/logo_090.png" alt="카카오뱅크"> 카카오뱅크 <em class="number"><i>****</i>123</em></span>
+						<span class="account-number"><img src="../../images/bank/logo_090.png" alt="카카오뱅크"> 카카오뱅크 <em class="number">3333<i>****</i>123</em></span>
 						<button type="button" id="account" class="info-chg change-btn"><span class="text-dark">변경</span></button>
 					</div>
 					<!-- <p class="info">계좌 인증은 1일 5회까지 가능합니다.</p> -->
@@ -140,28 +140,28 @@
 						<li>
 							<button type="button" class="btn on">
 								<span class="account-number"><img src="../../images/bank/logo_090.png" alt="카카오뱅크" />
-									카카오뱅크 <em class="number"><i>****</i>123</em></span>
+									카카오뱅크 <em class="number">3333<i>****</i>123</em></span>
 								<span class="check-primary"><span>선택 계좌</span> <i class="icon-check primary"></i></span>
 							</button>
 						</li>
 						<li>
 							<button type="button" class="btn">
 								<span class="account-number"><img src="../../images/bank/logo_004.png" alt="국민" />
-									국민 <em class="number"><i>****</i>123</em></span>
+									카카오뱅크 <em class="number">3333<i>****</i>123</em></span>
 								<span class="check-primary"><span>선택 계좌</span> <i class="icon-check primary"></i></span>
 							</button>
 						</li>
 						<li>
 							<button type="button" class="btn">
 								<span class="account-number"><img src="../../images/bank/logo_004.png" alt="국민" />
-									국민 <em class="number"><i>****</i>123</em></span>
+									국민 <em class="number">2333<i>****</i>123</em></span>
 								<span class="check-primary"><span>선택 계좌</span> <i class="icon-check primary"></i></span>
 							</button>
 						</li>
 						<li>
 							<button type="button" class="btn">
 								<span class="account-number"><img src="../../images/bank/logo_004.png" alt="국민" />
-									국민 <em class="number"><i>****</i>123</em></span>
+									국민 <em class="number">2333<i>****</i>123</em></span>
 								<span class="check-primary"><span>선택 계좌</span> <i class="icon-check primary"></i></span>
 							</button>
 						</li>
@@ -179,4 +179,30 @@
 <!-- //계좌 선택 -->
 	
 </body>
+<script>
+	$("#modal-account .btn-list .btn").click(function () {
+  // 클릭된 버튼에서 필요한 요소 추출
+  const $btn = $(this);
+  const $accountNumber = $btn.find(".account-number");
+  const bankImgSrc = $accountNumber.find("img").attr("src");
+  const bankImgAlt = $accountNumber.find("img").attr("alt");
+  const bankName = $accountNumber.contents().filter(function () {
+    return this.nodeType === 3; // 텍스트 노드만 추출
+  }).text().trim();
+  const accountDigits = $accountNumber.find("em").html(); // <em> 내용 전체
+
+  // 상단 account-box 에 주입
+  $(".account-box.type2 .account-number").html(`
+    <img src="${bankImgSrc}" alt="${bankImgAlt}"> ${bankName} <em class="number">${accountDigits}</em>
+  `);
+
+  // on 클래스 토글
+  $btn.closest(".btn-list").find(".btn").removeClass("on");
+  $btn.addClass("on");
+
+  // 모달 닫기
+  modalClose("modal-account");
+});
+
+</script>
 </html>

@@ -812,3 +812,12 @@ window.addEventListener("DOMContentLoaded", function () {
     walkContainer.classList.add("long");
   }
 });
+
+function setVhUnit() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+setVhUnit();
+
+// 브라우저 창 크기 변경시에도 갱신
+window.addEventListener('resize', setVhUnit);

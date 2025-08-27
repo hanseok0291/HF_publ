@@ -1,8 +1,14 @@
-/* 250609 */
-html, body, #wrap{ height: calc(var(--vh, 1vh) * 100); } 
+/* 250821 */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* ✅ 필요시 제거하거나 유지 */
+  overflow: hidden; /* ✅ 전체 스크롤 방지 */
+}
 
-#content { width: 100%; background: url('../images/pedometer/bg.png') center/cover no-repeat; display: flex; justify-content: center; height: calc(100vh - 56px); } 
-.walk-bg { position: relative; width: 100%; display: flex; justify-content: center; background-position-y: 152px; background-size: 375px auto; overflow: hidden; height: 100%;  user-select: none; -webkit-user-select: none; } 
+#content { width: 100%; min-height: 100%; background: url('../images/pedometer/bg.png') center/cover no-repeat; display: flex; justify-content: start; } 
+.walk-bg { position: relative; width: 100%; min-height: calc(var(--vh, 1vh) * 100 - 56px); display: flex; justify-content: center; background-position-y: 152px; background-size: 375px auto; overflow: hidden; height: 100%;  user-select: none; -webkit-user-select: none; overflow-y: scroll; } 
 .walk-bg .bg { position: absolute; } 
 .walk-bg .bg.bg1 { width: 58px; height: 54px; background: url(../images/pedometer/bg1.png) no-repeat center / contain; left: 50%; transform: translateX(-50%); margin-left: 170px; top: 150px; } 
 .walk-bg .bg.bg2 { width: 150px; height: 150px; background: url(../images/pedometer/bg2.png) no-repeat center / contain; left: 50%; transform: translateX(-50%); margin-left: 110px; bottom: -17px; } 
@@ -10,7 +16,7 @@ html, body, #wrap{ height: calc(var(--vh, 1vh) * 100); }
 
 .walk-container { width: 100%; position: relative; } 
 
-.walk-header { text-align: left; padding: 20px 16px 18px; height: 165px; box-sizing: border-box; position: absolute; width: 100%; z-index: 10; } 
+.walk-header { text-align: left; padding: 20px 16px 18px; /* height: 125px; */ box-sizing: border-box; position: absolute; width: 100%; z-index: 10; } 
 
 .walk-distance { color: #888; font-family: Pretendard; font-weight: 500; font-size: 16px; line-height: 140%; letter-spacing: -2%; } 
 .walk-distance strong { font-family: Pretendard; font-weight: 500; font-size: 16px; line-height: 140%; color: #454545; } 
@@ -20,19 +26,18 @@ html, body, #wrap{ height: calc(var(--vh, 1vh) * 100); }
 
 .walk-message { margin-top: 12px; background: rgba(255, 255, 255, 0.6); border-radius: 16px; padding: 12px 16px; font-family: Pretendard; font-weight: 400; font-size: 16px; line-height: 140%; color: #000; box-shadow: 0px 4px 12px 0px #0000000D; backdrop-filter: blur(30px) } 
 
-.walk-map { position: relative; width: 100%; height: 100%; margin: 0 auto; overflow: hidden; } 
-.walk-map .bg-image { position: absolute; width: 375px; height: 549px; top: 0; left: 50%; object-fit: contain; z-index: 0; pointer-events: none; pointer-events: none; transform: translateX(-50%);  } 
+.walk-map { position: relative; width: 375px; height: 567px; margin: 0 auto; overflow: hidden; } 
+.walk-map .bg-image { position: absolute; width: 375px; height: 567px; top: 0; left: -0; object-fit: contain; z-index: 0; pointer-events: none; pointer-events: none; } 
 
-
-.walk-step-list { list-style: none; padding: 0; position: relative; max-width: 375px; height: 549px; margin: 0 auto; } 
+.walk-step-list { list-style: none; padding: 0; position: relative; min-height: calc(var(--vh, 1vh) * 100 - 222px); max-width: 375px; margin: 0 auto; } 
 
 .step { position: absolute; text-align: center; transform: translate(-50%, -50%); user-select: none; -webkit-user-select: none; } 
 .step.gift { min-width: 79px; } 
 
-.step > button { position: relative; z-index: 100; overflow: visible; } 
+.step > button { position: relative; z-index: 100; overflow: visible; width: 100%; height: 100%; } 
 
-.dot { width: 64px; height: 64px; background: #fff; border-radius: 50%; margin: 0 auto; position: relative; display: flex; align-items: center; justify-content: center; } 
-.dot::after { content: ''; display: block; position: absolute; width: 13px; height: 13px; background: #CAF625; border-radius: 50%; } 
+.dot { width: 64px; height: 64px; background: #fff;margin: 0 auto; position: relative; display: flex; align-items: center; justify-content: center; } 
+/* .dot::after { content: ''; display: block; position: absolute; width: 13px; height: 13px; background: #CAF625; border-radius: 50%; }  */
 
 .step.base .dot { position: relative; width: 32px; height: 32px; } 
 .step.base .lottie-pulse { display: none; } 
@@ -45,11 +50,24 @@ html, body, #wrap{ height: calc(var(--vh, 1vh) * 100); }
 .step.gift .dot::after { display: none; } 
 .step.gift .lottie-pulse { display: block; width: 183px; height: 183px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); margin-top: -21px; margin-left: 2px; z-index: -999; pointer-events: none; } 
 
-.label { margin-top: 8px; padding: 4px 6px; font-family: Pretendard; font-weight: 400; font-size: 14px; line-height: 140%; color: #505866; background: rgba(255, 255, 255, 0.55); border-radius: 20px; white-space: nowrap; } 
-.step.gift .label { color: #7CAC04; border-radius: 8px; font-family: Pretendard; font-weight: 700; font-size: 14px; line-height: 20px; padding: 6px 8px; background: #fff; } 
+.step.challenge .dot { width: 72px; height: 56px; background: url(../images/pedometer/ticket.png) no-repeat center / contain; z-index: 10; border-radius: 0; } 
+.step.challenge .label { color: #7CAC04; border-radius: 8px; font-family: Pretendard; font-weight: 700; font-size: 14px; line-height: 20px; padding: 0 8px; background: #fff; } 
+.step.challenge .label button { color: #7CAC04; line-height: 32px; font-weight: 700; }
+.step.challenge .dot::after { display: none; } 
+.step.challenge .label { display: none; } 
+.step.challenge .label.challenge { display: block; margin-top: 0; } 
+
+.label { margin-top: 8px; padding: 4px 6px; font-family: Pretendard; font-weight: 400; font-size: 14px; line-height: 140%; color: #505866; background: rgba(255, 255, 255, 0.55); border-radius: 20px; white-space: nowrap;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 21px;
+} 
+.step.gift .label { color: #7CAC04; border-radius: 8px; font-family: Pretendard; font-weight: 700; font-size: 14px; line-height: 20px; padding: 6px 8px; background: #fff; display: none; } 
 .step .label:last-of-type { display: none; } 
 .step.gift .label { display: none; } 
-.step.gift .label.complete { display: block; } 
+.step.gift .label.complete { display: none; } 
 
 .walk-box { display: flex; flex-direction: column; justify-content: start; } 
 .permission-box { display: flex; align-items: center; background: white; border-radius: 16px; padding: 12px 16px; box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.05); backdrop-filter: blur(30px); font-family: Pretendard; font-weight: 400; font-size: 14px; line-height: 160%; text-align: center; justify-content: space-between; gap: 4px; height: 67px; } 
@@ -68,20 +86,47 @@ html, body, #wrap{ height: calc(var(--vh, 1vh) * 100); }
  }
 
  .walk-header { position: relative; } 
- .step { transform: none; width: 79px; height: 104px; display: flex; align-items: center; flex-direction: column; justify-content: center; } 
-/* 기준: map2.png = 375px × 549px */
-.step[data-step="10"]     { top: 12%; left: 25.33%; }
-.step[data-step="4000"]   { top: 13.12%; left: 63.2%; }
-.step[data-step="6000"]   { top: 35.15%; left: 86.13%; }
-.step[data-step="9000"]   { top: 56.65%; left: 57.33%; }
-.step[data-step="10000"]  { top: 71.22%; left: 22.93%; }
-.walk-step-list,
-.walk-map .bg-image {
-  width: 100%;
-  max-width: 375px;
-  height: auto;
-  aspect-ratio: 375 / 549;
+ .step { transform: none; width: 117px; height: 104px; display: flex; align-items: center; flex-direction: column; justify-content: center; } 
+ .step[data-step="10"].base, .step[data-step="10"].receive {
+  top: 12%;
+  left: 26%;
+ }
+.step[data-step="10"].gift {
+  top: 13.4%;
+} 
+.step[data-step="4000"].base {
+  top: 13.8%;
+  left: 66.86%;
 }
+.step[data-step="4000"].receive {
+  top: 15.2%;
+  left: 66.86%;
+}
+.step[data-step="4000"].gift { 
+  top: 14.2%;
+} 
+.step[data-step="6000"].base, .step[data-step="6000"].receive {
+  top: 35.2%;
+  left: 86.86%;
+}
+.step[data-step="6000"].gift { 
+  top: 38.2%;
+  left: 85.86%;
+} 
+.step[data-step="9000"].base, .step[data-step="9000"].receive { 
+  top: 56.6%;
+  left: 58.86%;
+} 
+.step[data-step="9000"].gift { 
+  top: 56.6%;
+} 
+.step[data-step="10000"].base, .step[data-step="10000"].receive { 
+  top: 67.6%;
+  left: 24.2%;
+} 
+.step[data-step="10000"].gift { 
+  top: 72.6%;
+} 
 
 .modal-slide.type-title .modal-head { min-height: auto; } 
 .modal-slide.type-title .modal-head.center { text-align: center; justify-content: center; } 
@@ -89,24 +134,200 @@ html, body, #wrap{ height: calc(var(--vh, 1vh) * 100); }
 
 .step { position: absolute; transform: translate(-50%, -50%); } 
 
-@media all and (max-width: 360px){
- }
-
-.modal-terms .modal-content .modal-body ul > li::before { width: 4px; height: 4px; } 
-.walk-main-box { height: calc(100% - 165px);}
-.walk-container.long-se .bg-image {
-  margin-top: -2%;
-}
-.walk-container.long-se .walk-step-list {
-  margin-top: -2%;
-}
-.walk-container.long .bg-image {
-  margin-top: 8%;
-}
-.walk-container.long .walk-step-list {
-  margin-top: 8%;
+@media all and (max-width: 400px){
+.step[data-step="6000"].gift { left: 84% !important; } 
 }
 
- @supports (-webkit-touch-callout: none) {
-  html, body, #wrap { height: -webkit-fill-available; } 
+ .modal-terms .modal-content .modal-body ul > li::before { width: 4px; height: 4px; } 
+ 
+@media (min-height: 660px) and (max-height: 700px) {
+  .step[data-step="6000"].gift { 
+    top: 38.2%;
+    left: 80.86%;
+  } 
+}
+
+.walk-bg {
+  height: calc(var(--vh, 1vh) * 100 - 56px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.walk-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.walk-header {
+  height: 150px;
+  flex: 0 0 auto;
+}
+
+.map-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 375px; /* 디자인 기준 */
+  margin: 0 auto;
+  aspect-ratio: 375 / 549; /* 실제 디자인 map 이미지 비율 */
+}
+.map-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.receive-icon {
+  position: absolute;
+  width: 40px;
+  top: 28.4%;
+  left: 50.8%;
+  transform: translate(-50%, -50%);
+}
+
+.step {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Pretendard, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  width: 31.2%;
+  height: 28.53%;
+}
+
+.pedo-step-list li {
+  display: block;
+}
+
+.image-map-container {
+  max-width: 375px;
+  margin: 0 auto;
+  position: relative;
+}
+.walk-container {
+  padding-bottom: 81px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.pedo-step-list {
+  /* position: absolute; */
+}
+
+.step .dot {
+  width: 100% !important;
+  height: 100% !important;
+}
+.step.ticket .dot {
+  background: url(../images/pedometer/ticket-test.png) no-repeat center / contain;
+}
+.step.before .dot {
+  background: url(../images/pedometer/step-before.png) no-repeat center / contain;
+}
+.step.gift .dot {
+ background: url(../images/pedometer/gift-new.png) no-repeat center / contain !important;
+}
+.step.receive .dot {
+ background: url(../images/pedometer/receive-new.png) no-repeat center / contain !important;
+}
+
+.btn-challenge {
+  position: absolute;
+  width: 26.4%;
+  height: 26.26%;
+  background: url(../images/pedometer/challenge.png) no-repeat center / contain;
+  left: 11%;
+  top: 20%;
+}
+.btn-challenge .dot {
+  background: transparent;
+  width: 100%;
+  height: 100%;
+}
+
+/* Swiper 모달 스타일 */
+.reward-swiper {
+  width: 100%;
+  height: auto !important;
+  margin: 0 auto;
+}
+
+.reward-swiper .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: auto !important;
+  margin-left: 0;
+  padding: 0;
+}
+
+.reward-swiper .swiper-pagination {
+  position: relative;
+  margin-top: 12px;
+}
+
+.reward-swiper .swiper-pagination-bullet {
+  width: 6px;
+  height: 6px;
+  background: #E5E5E8;
+  margin: 0 2px !important;
+  opacity: 1;
+}
+
+.reward-swiper .swiper-pagination-bullet-active {
+  background: #888;
+  opacity: 1;
+}
+
+.reward-swiper .txt-reward {
+  font-family: Pretendard;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 16px;
+  leading-trim: NONE;
+  line-height: 140%;
+  letter-spacing: -2%;
+  text-align: center;
+}
+.reward-swiper .txt-reward .txt-color {
+  font-weight: 700;
+  color: #28C85D;
+}
+
+/* 모달 내 swiper 컨테이너 */
+.modal-body .swiper {
+  padding-bottom: 0;
+}
+.modal-slide.type-title.reward-modal .modal-head {
+  min-height: 56px;
+  background-color: #fff;
+  border-radius: 24px 24px 0 0;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-slide.type-title.reward-modal .btn-confirm {
+  font-family: Pretendard;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 16px;
+  leading-trim: NONE;
+  line-height: 140%;
+  letter-spacing: -2%;
+  text-align: center;
+}
+
+.lottie-loading {
+  width: 150px;
+  height: 47px;
+  margin: 0 auto;
 }

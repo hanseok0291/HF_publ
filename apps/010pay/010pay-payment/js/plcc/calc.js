@@ -210,7 +210,7 @@ $(document).ready(function () {
     // 동작 전/후 문구 업데이트
     if (actionText2) {
       const amountInMan = amount / 10000;
-      actionText2.innerHTML = `매달 일반결제로로 ${amountInMan}만원 씩 쓰면`;
+      actionText2.innerHTML = `매달 일반 가맹점에서 ${amountInMan}만원 씩 쓰면`;
     }
   }
 

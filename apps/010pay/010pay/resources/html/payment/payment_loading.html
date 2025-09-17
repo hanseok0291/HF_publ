@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>결제 처리 중</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="../../css/jquery-ui.css" />
+    <link rel="stylesheet" href="../../css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="../../css/common.css?ezauthver=5.0" />
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="../../js/html5shiv.js"></script>
+      <script type="text/javascript" src="../../js/respond.min.js"></script>
+    <![endif]-->
+    <script src="../../js/jquery-1.8.3.min.js"></script>
+    <script src="../../js/jquery.placeholder.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/jquery.ui.touch-punch.min.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+    <script src="../../js/design.js?ezauthver=5.0" defer="defer"></script>
+    <script src="../../js/commonmsg.js?ezauthver=5.0"></script>
+    <script src="../../js/commonutil.js?ezauthver=5.0"></script>
+    <style>
+      /* 로딩 페이지 전용 스타일 */
+      body {
+        background-color: #ffffff;
+        font-family: 'Pretendard', 'Malgun Gothic', 'Dotum', 'Apple SD Gothic Neo', sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .loading-container {
+        text-align: center;
+        padding: 20px;
+        max-width: 400px;
+        width: 100%;
+      }
+
+      .loading-spinner {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 40px;
+        border: 4px solid #f0f0f0;
+        border-top: 4px solid transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        background: conic-gradient(from 0deg, #ff6b35, #f7931e, #ff6b35);
+        -webkit-mask: radial-gradient(circle, transparent 30px, black 30px);
+        mask: radial-gradient(circle, transparent 30px, black 30px);
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      .loading-text {
+        color: #333333;
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 8px;
+      }
+
+      .loading-text:last-child {
+        margin-bottom: 0;
+      }
+
+      .loading-text.warning {
+        color: #ff4600;
+        font-weight: 600;
+      }
+
+      .loading-text.info {
+        color: #666666;
+        font-size: 14px;
+      }
+
+      /* 반응형 디자인 */
+      @media (max-width: 480px) {
+        .loading-spinner {
+          width: 60px;
+          height: 60px;
+          margin-bottom: 30px;
+        }
+
+        .loading-text {
+          font-size: 14px;
+        }
+
+        .loading-text.info {
+          font-size: 13px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="loading-container">
+      <!-- 로딩 스피너 -->
+      <div class="loading-spinner"></div>
+      
+      <!-- 안내 텍스트 -->
+      <div class="loading-text warning">
+        화면을 벗어나면 결제 실패
+      </div>
+      <div class="loading-text warning">
+        또는 중복 결제가 발생할 수 있습니다.
+      </div>
+      <div class="loading-text">
+        안전한 결제를 위해
+      </div>
+      <div class="loading-text">
+        최대 1분 이상 소요될 수 있으니
+      </div>
+      <div class="loading-text">
+        잠시만 기다려 주십시오.
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        // 페이지 로드 후 3초 뒤에 결제 완료 페이지로 이동 (테스트용)
+        // 실제 구현 시에는 결제 상태를 확인하는 API 호출로 대체
+        setTimeout(function() {
+          // 결제 완료 또는 실패 페이지로 리다이렉트
+          // window.location.href = '결제완료페이지.html';
+          console.log('결제 처리 완료');
+        }, 3000);
+
+        // 뒤로가기 버튼 방지
+        history.pushState(null, null, location.href);
+        window.onpopstate = function(event) {
+          history.go(1);
+        };
+
+        // 새로고침 방지
+        window.addEventListener('beforeunload', function(e) {
+          e.preventDefault();
+          e.returnValue = '결제 중입니다. 페이지를 벗어나시겠습니까?';
+        });
+      });
+    </script>
+  </body>
+</html> 

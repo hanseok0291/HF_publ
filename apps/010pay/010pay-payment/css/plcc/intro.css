@@ -6,7 +6,7 @@
   display: block;
   width: 40px;
   height: 40px;
-  margin: 100px auto 0;
+  margin: 54px auto 0;
   background: url(../../images/plcc/icon/icon-down-arrow-40.svg) no-repeat center center / contain;
   animation: float 2s ease-in-out infinite;
 }
@@ -56,7 +56,7 @@
 }
 
 .intro-container.out-version .top-contents-wrap .contents-wrap.seventh-content {
-  padding: 150px 0;
+  padding: 150px 0 0;
 }
 
 .intro-container .top-contents-wrap .contents-wrap.ninth-content {
@@ -65,7 +65,7 @@
 
 
 .intro-container.out-version .top-contents-wrap .contents-wrap.ninth-content {
-  padding: 0 0 50px;
+  padding: 150px 0 50px;
 }
 
 
@@ -119,40 +119,57 @@
   color: #454545;
 }
 
+.intro-container .top-contents-wrap .contents-wrap.first-content {
+  padding-top: 40px;
+}
+
 .intro-container .top-contents-wrap .contents-wrap.first-content .text-wrap .title-text {
   font-size: 32px; 
 }
 
 .intro-container .top-contents-wrap .contents-wrap.first-content .img-wrap {
   position: relative;
-  width: 200px;
-  height: 296px;
-  margin: 62px auto 0;
-}
-
-.intro-container.out-version .top-contents-wrap .contents-wrap.first-content .img-wrap {
-  position: relative;
-  width: 200px;
-  height: 296px;
-  margin: 100px auto 0;
+  width: 375px;
+  height: 375px;
+  margin: 30px auto 0;
 }
 
 .intro-container .top-contents-wrap .contents-wrap.first-content .img-wrap img {
+  width: 100%;
+}
+
+/* old 버전일 때 3D 카드 회전 애니메이션 적용 */
+.intro-container.old .top-contents-wrap .contents-wrap.first-content .img-wrap {
+  position: relative;
+  width: 200px;
+  height: 296px;
+  margin: 62px auto 0;
+  animation: cardRotate 3s ease-in-out infinite;
+}
+
+.intro-container.old .top-contents-wrap .contents-wrap.first-content .img-wrap img {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 172px;
+  width: 171px;
+  height: 271px;
+  backface-visibility: hidden;
   transition: transform 0.3s 0.5s ease-in-out;
 }
 
-.intro-container .top-contents-wrap .contents-wrap.first-content.active .img-wrap img:first-child {
+.intro-container.old .top-contents-wrap .contents-wrap.first-content .img-wrap img:first-child {
+  z-index: 1;
+}
+
+.intro-container.old .top-contents-wrap .contents-wrap.first-content.active .img-wrap img:first-child {
+  transform: translate(calc(-50% + 14px), calc(-50% - 14px));
+}
+
+.intro-container.old .top-contents-wrap .contents-wrap.first-content.active .img-wrap img:last-child {
   transform: translate(calc(-50% - 14px), calc(-50% + 14px));
 }
 
-.intro-container .top-contents-wrap .contents-wrap.first-content.active .img-wrap img:last-child {
-  transform: translate(calc(-50% + 14px), calc(-50% - 14px));
-}
 
 .intro-container .top-contents-wrap .contents-wrap.second-content .img-wrap {
   width: 315px;
@@ -305,6 +322,7 @@
   justify-content: center;
   gap: 40px;
   margin-top: 30px;
+  margin-bottom: 24px;
 }
 
 
@@ -499,12 +517,11 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 40px 30px;
+  padding: 40px 30px 20px;
 }
 
 .intro-container.out-version .bottom-contents-wrap .terms-wrap {
   background-color: #F6F6F9;
-  padding-bottom: 0;
 }
 
 .intro-container .bottom-contents-wrap .point-example-text {
@@ -548,4 +565,111 @@
   100% { transform: translateX(0); }
 }
 
+/* old */
+.intro-container.old .top-contents-wrap .contents-wrap.first-content {
+  padding-bottom: 0;
+}
 
+.intro-container.old .top-contents-wrap .contents-wrap.first-content .text-wrap .title-text {
+  font-size: 32px;
+}
+
+.intro-container.old .top-contents-wrap .contents-wrap.second-content {
+  padding: 150px 0 100px;
+}
+
+.intro-container.old .top-contents-wrap .contents-wrap.third-content {
+  padding: 0;
+} 
+
+.intro-container.old .top-contents-wrap .contents-wrap.fourth-content {
+  padding: 100px 0;
+}
+
+.intro-container.old .top-contents-wrap .contents-wrap.fifth-content {
+  padding: 0;
+}
+
+.intro-container.old .top-contents-wrap .contents-wrap.eighth-content {
+  padding: 100px 0;
+}
+
+.intro-container.old .top-contents-wrap .contents-wrap .text-wrap .sub-title-text {
+  font-weight: 400;
+}
+
+.intro-container.old .top-contents-wrap .contents-wrap .text-wrap .title-text {
+  font-size: 20px;
+}
+
+.intro-container.old .top-contents-wrap .contents-wrap.ninth-content .benefit-list li {
+  flex-direction: row;
+  align-items: center;
+}
+
+.intro-container.old .top-contents-wrap .contents-wrap.ninth-content .benefit-list li:first-child {
+  background-color: #EEF5FF;
+}
+
+.intro-container.old .top-contents-wrap .contents-wrap.ninth-content .benefit-list li:first-child .img-wrap {
+  background: url(../../images/plcc/old/intro-img-old-small-01.png) no-repeat center center / contain;
+}
+
+.intro-container.old .top-contents-wrap .contents-wrap.ninth-content .benefit-list li:last-child .img-wrap {
+  background: url(../../images/plcc/old/intro-img-old-small-02.png) no-repeat center center / contain;
+}
+
+.intro-container.old .bottom-contents-wrap {
+  background-color: #fff;
+}
+
+.intro-container.old .bottom-contents-wrap .card-info-list {
+  width: calc(100% - 60px);
+  margin: 0 auto;
+  padding: 13px 0 40px;
+  background-color: #fff;
+  border-bottom: none;
+}
+
+.intro-container.old .bottom-contents-wrap .terms-wrap {
+  background-color: #F6F6F9;
+}
+
+/* old 외부*/
+.intro-container.out-version.old .top-contents-wrap {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.intro-container.out-version.old .top-contents-wrap .contents-wrap {
+  background-color: #F6F6F9;
+  margin-bottom: 16px;
+  padding: 30px 0;
+  border-radius: 16px;
+}
+
+.intro-container.out-version.old .top-contents-wrap .contents-wrap.first-content {
+  background-color: #fff;
+  margin-bottom: 0;
+  padding: 40px 0 150px;
+}
+
+.intro-container.out-version.old .top-contents-wrap .contents-wrap.ninth-content {
+  background-color: #fff;
+  padding: 0;
+  margin-bottom: 50px;
+  margin-top: 100px
+}
+
+.intro-container.out-version.old .top-contents-wrap .contents-wrap.ninth-content.pay .benefit-list li:first-child {
+  background-color: #F6F6F9;
+}
+
+.intro-container.out-version.old .top-contents-wrap .contents-wrap.ninth-content.pay .benefit-list li:first-child .img-wrap {
+  background: url(../../images/plcc/old/intro-img-old-04-1.png) no-repeat center center / contain;
+}
+
+.intro-container.out-version.old .top-contents-wrap .contents-wrap .text-wrap .sub-title-text {
+  font-weight: 500;
+  font-size: 14px;
+}

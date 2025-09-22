@@ -710,7 +710,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initializeToggleButtons();
 });
 
-document.addEventListener("DOMContentLoaded", function () {
+$(document).ready(function () {
   const modals = document.querySelectorAll(".modal-slide.type5"); // 모든 type5 모달 선택
 
   modals.forEach((modal) => {
@@ -718,18 +718,22 @@ document.addEventListener("DOMContentLoaded", function () {
     const agreeButton = modal.querySelector("#btn-agree4"); // 동의 버튼
     const toggleButtons = modal.querySelectorAll(".btn-toggle"); // 모든 btn-toggle 버튼
 
-    // 초기화: btn-toggle과 check-all의 상태 동기화
+    // 각 terms-list의 상태를 추적하는 객체 (초기값: false = 숨김 상태)
+    const termsListStates = {};
+
+    // 초기화: 모든 terms-list를 숨김 상태로 설정
     toggleButtons.forEach((button, index) => {
       const termsWrap = modal.querySelectorAll(".terms-list")[index];
       if (termsWrap) {
-        const isCurrentlyVisible =
-          window.getComputedStyle(termsWrap).display !== "none";
-
-        // btn-toggle과 상위 check-all에 동일한 open 클래스 설정
+        const groupName = button.getAttribute("data-group");
+        // 초기 상태를 false로 설정 (CSS에서 display: none이므로)
+        termsListStates[groupName] = false;
+        
+        // btn-toggle과 상위 check-all에 동일한 open 클래스 설정 (초기값: false)
         const checkAll = button.closest(".check-all");
         if (checkAll) {
-          checkAll.classList.toggle("open", isCurrentlyVisible);
-          button.classList.toggle("open", isCurrentlyVisible);
+          checkAll.classList.toggle("open", false);
+          button.classList.toggle("open", false);
         }
       }
     });
@@ -797,6 +801,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // 버튼 활성화 여부 확인
         updateAgreeButtonState();
+      });
+    });
+
+    // btn-toggle 클릭 이벤트 추가
+    toggleButtons.forEach((button) => {
+      button.addEventListener("click", function (event) {
+        // 기본 동작 방지 (체크박스 상태 변경 방지)
+        event.preventDefault();
+        event.stopPropagation();
+
+        const groupName = button.getAttribute("data-group");
+        
+        // 관련 terms-list 찾기
+        const termsList = modal.querySelector(
+          `.terms-list[data-group="${groupName}"]`
+        );
+        
+        if (termsList) {
+          // 상태 추적 변수 사용 (CSS 우선순위 문제 해결)
+          const currentState = termsListStates[groupName] || false;
+          
+          // 상태 토글
+          termsListStates[groupName] = !currentState;
+          
+          // terms-list 접기/펼치기
+          termsList.style.display = termsListStates[groupName] ? "block" : "none";
+
+          // btn-toggle open 클래스 토글
+          button.classList.toggle("open", termsListStates[groupName]);
+
+          // check-all의 open 클래스도 동기화
+          const checkAll = button.closest(".check-all");
+          if (checkAll) {
+            checkAll.classList.toggle("open", termsListStates[groupName]);
+          }
+        }
       });
     });
 

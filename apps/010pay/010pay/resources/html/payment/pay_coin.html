@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>내통장결제</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="../../css/jquery-ui.css" />
+    <link rel="stylesheet" href="../../css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="../../css/common.css?ezauthver=5.5" />
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="../../js/html5shiv.js"></script>
+      <script type="text/javascript" src="../../js/respond.min.js"></script>
+    <![endif]-->
+    <script src="../../js/jquery-1.8.3.min.js"></script>
+    <script src="../../js/jquery.placeholder.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/jquery.ui.touch-punch.min.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+    <script src="../../js/design.js?ezauthver=5.0" defer="defer"></script>
+    <script src="../../js/commonmsg.js?ezauthver=5.0"></script>
+    <script src="../../js/commonutil.js?ezauthver=5.0"></script>
+  </head>
+
+  <body>
+    <!-- form -->
+    <form class="main_form" action="javascript: void(0);" autocomplete="off">
+      <!-- wrap -->
+      <div id="wrap" class="wrap">
+        <!-- header -->
+        <div id="header">
+          <div class="container">
+            <button type="button" id="btnBack" class="btn-back hidden">
+              <i class="icon-angle-left">뒤로가기</i>
+            </button>
+            <h1 class="brand-name">
+              <a href="#"
+                ><span class="my-logo"
+                  ><img
+                    src="../../images/logo-myaccount.png"
+                    class="logo"
+                    alt="내통장결제" /></span
+              ></a>
+            </h1>
+            <h2 class="page-title hidden">결제</h2>
+            <button type="button" id="closeWindow" class="btn-close">
+              <i class="icon-times">창닫기</i>
+            </button>
+          </div>
+        </div>
+        <!-- //header -->
+
+        <!-- content -->
+        <div id="content" class="exStyle newType">
+          <!-- container -->
+          <div class="container">
+            <!-- headline -->
+            <div class="headline">
+              <p>
+                <strong>헥토헬스케어</strong>에서<br />
+                <strong class="text-primary">88,000원</strong> 결제합니다.
+              </p>
+              <p class="small">오투부스터 포커스(14포)</p>
+            </div>
+            <!-- //headline -->
+            <!-- 계좌정보 -->
+            <div class="section account-info">
+              <p class="title">계좌정보</p>
+              <div class="round-box">
+                <img
+                  src="../../images/bank/logo_090.png"
+                  alt="카카오뱅크"
+                /><span class="bank">카카오뱅크</span>
+                <em class="number">123</em>
+                <button id="account" type="button" class="btn btn-sm info-chg">
+                  계좌변경
+                </button>
+              </div>
+              <div class="checkbox-wrap round-box">
+                <span class="checkbox square">
+                  <input
+                    type="checkbox"
+                    name="checkbox-rlusd"
+                    id="checkbox-rlusd"
+                  />
+                  <label for="checkbox-rlusd"
+                    ><i class="icon-rlusd"></i>
+                    <strong>스테이블 코인 사용하기 </strong></label
+                  >
+                </span>
+              </div>
+            </div>
+            <!-- //계좌정보 -->
+          </div>
+          <!-- //container -->
+
+          <!-- bottom area -->
+          <div class="bottom-area">
+            <!-- container -->
+            <div class="container pay-wrap">
+              <!-- 정보 입력 -->
+              <div class="section pay-sec">
+                <ul class="check-type retto accordion-list">
+                  <li class="">
+                    <div class="list-header accordion-title">
+                      <span class="checkbox square">
+                        <input
+                          type="checkbox"
+                          name="checkbox-all"
+                          id="checkbox-all"
+                        />
+                        <label for="checkbox-all"
+                          >결제조건 확인 및 결제 정보 제품 동의(필수)
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <!-- 0월 결제 시 미노출 -->
+                  <li>
+                    <span class="checkbox square">
+                      <input
+                        type="checkbox"
+                        name="checkbox-receipt"
+                        id="checkbox-receipt"
+                        checked
+                      />
+                      <label for="checkbox-receipt">현금영수증 발급</label>
+                    </span>
+                    <span class="receipt">
+                      <i>010****1234</i>
+                      <button
+                        type="button"
+                        id="receipt"
+                        class="text-link info-chg"
+                      >
+                        변경
+                      </button>
+                    </span>
+                  </li>
+                  <!-- // 0월 결제 시 미노출 -->
+                </ul>
+              </div>
+              <!-- //정보 입력 -->
+
+              <button type="button" id="send" class="btn" disabled>
+                88,000원 결제하기
+              </button>
+            </div>
+            <!-- //container -->
+          </div>
+          <!-- //bottom area -->
+        </div>
+        <!-- //content -->
+      </div>
+      <!-- //wrap -->
+    </form>
+    <!-- //form -->
+
+    <!-- slide modal -->
+    <div
+      id="modalSlideExchange"
+      class="modal modal-slide type-title type1 modal-exchange exStyle"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content" style="bottom: 0px; position: fixed">
+          <div class="modal-head">
+            <p class="modal-head-title">환전하기</p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <!-- RLUSD Input Section -->
+              <div class="exchange-section">
+                <div class="exchange-item">
+                  <div class="exchange-header">
+                    <div class="exchange-icon rlusd-icon">
+                      <i class="icon-rlusd"></i>
+                    </div>
+                    <div class="exchange-info">
+                      <span class="exchange-label">RLUSD</span>
+                      <span class="exchange-amount"
+                        >현재 보유 수량 : <em class="highlight-text">20</em>
+                        <strong>RLUSD</strong></span
+                      >
+                    </div>
+                  </div>
+                  <!-- 에러 상태 error 클래스 추가 -->
+                  <div class="exchange-input">
+                    <div class="input-wrapper">
+                      <input
+                        type="text"
+                        id="rlusd-input"
+                        class="form-control"
+                        placeholder="0.5 단위로 입력 (예: 1.5, 2.0)"
+                        inputmode="decimal"
+                      />
+                      <button
+                        type="button"
+                        class="btn-clear"
+                        id="clear-rlusd"
+                      ></button>
+                    </div>
+                    <p class="error-text">
+                      보유 수량을 초과하여 입력할 수 없습니다.
+                    </p>
+                  </div>
+                  <!-- //에러 상태 error 클래스 추가 -->
+                </div>
+
+                <!-- Exchange Separator -->
+                <div class="exchange-separator">
+                  <div class="exchange-arrow">
+                    <i class="icon-exchange"></i>
+                  </div>
+                </div>
+
+                <!-- KRW Output Section -->
+                <div class="exchange-item">
+                  <div class="exchange-header">
+                    <div class="exchange-icon krw-icon">
+                      <i class="icon-krw"></i>
+                    </div>
+                    <div class="exchange-info">
+                      <span class="exchange-label">KRW</span>
+                      <span class="exchange-rate"
+                        >1 <strong>RLUSD =</strong>
+                        <em class="highlight-text">1,389</em>원</span
+                      >
+                    </div>
+                  </div>
+                  <div class="exchange-input exchange-input-krw">
+                    <input
+                      type="text"
+                      id="krw-input"
+                      class="form-control"
+                      placeholder=""
+                      readonly
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Payment Details -->
+              <div class="payment-details">
+                <div class="detail-item bottom-line">
+                  <span class="detail-label wallet-address">지갑 주소</span>
+                  <span class="detail-value">X1424245000000**</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">코인 사용 금액</span>
+                  <span class="detail-value" id="coin-usage-amount">0 KRW</span>
+                </div>
+                <div class="detail-item total-payment">
+                  <span class="detail-label">계좌 결제 금액</span>
+                  <span class="detail-value">137,200 KRW</span>
+                </div>
+              </div>
+
+              <!-- Guidance Messages -->
+              <div class="guidance-messages">
+                <ul class="guidance-list">
+                  <li>
+                    RLUSD 사용 수량은 0.5 단위로 입력할 수 있으며, 총 결제
+                    금액을 넘을 수 없습니다.
+                  </li>
+                  <li>
+                    RLUSD 사용에 실패했을 경우 선택한 결제수단으로 전체 금액이
+                    결제됩니다.
+                  </li>
+                </ul>
+              </div>
+
+              <!--  -->
+              <div class="agree-detail">
+                <!-- Consent Checkbox -->
+                <div class="consent-section">
+                  <div class="checkbox-wrap">
+                    <span class="checkbox square">
+                      <input
+                        type="checkbox"
+                        name="checkbox-consent"
+                        id="checkbox-consent"
+                      />
+                      <label for="checkbox-consent"
+                        >개인정보 제3자 제공 동의(필수)</label
+                      >
+                    </span>
+                  </div>
+                  <div class="guidance-messages">
+                    <ul class="guidance-list">
+                      <li>개인정보 제공 목적 :  결제서비스</li>
+                      <li>
+                        수집된 개인정보를 제공 받는 자  : 주식회사 안랩블록체인컴퍼니 
+                      </li>
+                      <li>제공되는 개인 정보 : CI </li>
+                      <li>보유기간 : 목적 달성시 파기</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Action Button -->
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="btn-pay"
+              class="btn-confirm disabled"
+              disabled=""
+            >
+              137,200원 결제하기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //slide modal -->
+
+    <!-- 머니 사용하기 -->
+    <div id="modal-useMoney" class="modal modal-slide modal-info exStyle">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body my-info">
+            <div class="title_wrap">
+              <p class="modal-title">
+                보유 머니 <span class="price text-error">2,500원</span>
+              </p>
+              <p class="modal-sub">1원 단위로 사용할 수 있습니다.</p>
+            </div>
+            <button type="button" id="closeWindow" class="btn-close">
+              <i class="icon-times">창닫기</i>
+            </button>
+            <div class="pay-sec">
+              <ul class="form-type">
+                <li class="with-input">
+                  <div class="form-desc">
+                    <div class="position-relative">
+                      <input
+                        type="tel"
+                        class="input-text-lg text-primary text-error"
+                        placeholder="사용할 금액 입력"
+                      /><!-- 에러 시 text-error 클래스 추가 -->
+                      <span class="form-control-clear hidden"
+                        ><i class="icon-times-circle sr-only">삭제</i></span
+                      >
+                    </div>
+                    <button type="button" class="alluse-btn">
+                      <span class="text-dark">전액사용</span>
+                    </button>
+                  </div>
+                  <p class="text-error">보유 머니를 초과하였습니다.</p>
+                  <!-- 머니 입력 오류 -->
+                  <p class="text-error">결제 금액을 초과하였습니다.</p>
+                  <!-- 머니 입력 오류 2 -->
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn" disabled>사용하기</button>
+          </div>
+          <ul class="number-area">
+            <li><button>1</button></li>
+            <li><button>2</button></li>
+            <li><button>3</button></li>
+            <li><button>4</button></li>
+            <li><button>5</button></li>
+            <li><button>6</button></li>
+            <li><button>7</button></li>
+            <li><button>8</button></li>
+            <li><button>9</button></li>
+            <li></li>
+            <li><button>0</button></li>
+            <li>
+              <button class="del-btn"><span class="icon-del"></span></button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- //머니 사용하기 -->
+
+    <!-- 계좌 선택 -->
+    <div id="modal-account" class="modal modal-slide modal-info">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body my-info">
+            <button type="button" class="btn btn-close">취소</button>
+            <div class="account-info">
+              <ul class="btn-list">
+                <li>
+                  <button type="button" class="btn on">
+                    <span class="account-number"
+                      ><img
+                        src="../../images/bank/logo_090.png"
+                        alt="카카오뱅크"
+                      />
+                      카카오뱅크 <em class="number"><i>****</i>123</em></span
+                    >
+                    <span class="check-primary"
+                      ><span>머니 충전</span> <i class="icon-check primary"></i
+                    ></span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn">
+                    <span class="account-number"
+                      ><img src="../../images/bank/logo_004.png" alt="국민" />
+                      국민 <em class="number"><i>****</i>123</em></span
+                    >
+                    <span class="check-primary"
+                      ><span>머니 충전</span> <i class="icon-check primary"></i
+                    ></span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn">
+                    <span class="account-number"
+                      ><img src="../../images/bank/logo_004.png" alt="국민" />
+                      국민 <em class="number"><i>****</i>123</em></span
+                    >
+                    <span class="check-primary"
+                      ><span>머니 충전</span> <i class="icon-check primary"></i
+                    ></span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn">
+                    <span class="account-number"
+                      ><img src="../../images/bank/logo_004.png" alt="국민" />
+                      국민 <em class="number"><i>****</i>123</em></span
+                    >
+                    <span class="check-primary"
+                      ><span>머니 충전</span> <i class="icon-check primary"></i
+                    ></span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn">
+                    <span class="account-number"
+                      ><img src="../../images/bank/logo_004.png" alt="국민" />
+                      국민 <em class="number"><i>****</i>123</em></span
+                    >
+                    <span class="check-primary"
+                      ><span>머니 충전</span> <i class="icon-check primary"></i
+                    ></span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn">
+                    <span class="account-number"
+                      ><img src="../../images/bank/logo_004.png" alt="국민" />
+                      국민 <em class="number"><i>****</i>123</em></span
+                    >
+                    <span class="check-primary"
+                      ><span>머니 충전</span> <i class="icon-check primary"></i
+                    ></span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn">
+                    <span class="account-number"
+                      ><img src="../../images/bank/logo_004.png" alt="국민" />
+                      국민 <em class="number"><i>****</i>123</em></span
+                    >
+                    <span class="check-primary"
+                      ><span>머니 충전</span> <i class="icon-check primary"></i
+                    ></span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn">
+                    <span class="account-number"
+                      ><img src="../../images/bank/logo_004.png" alt="국민" />
+                      국민 <em class="number"><i>****</i>123</em></span
+                    >
+                    <span class="check-primary"
+                      ><span>머니 충전</span> <i class="icon-check primary"></i
+                    ></span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn">
+                    <span class="account-number"
+                      ><img src="../../images/bank/logo_004.png" alt="국민" />
+                      국민 <em class="number"><i>****</i>123</em></span
+                    >
+                    <span class="check-primary"
+                      ><span>머니 충전</span> <i class="icon-check primary"></i
+                    ></span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="container mgt20">
+              <button type="button" class="btn btn-outline">
+                <i class="icon icon-plus"></i> <span>계좌 추가</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //계좌 선택 -->
+
+    <!-- 비밀번호 변경 팝업 -->
+    <div
+      id="modalSlideType1"
+      class="modal modal-slide modal-info modal-view-only"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <!-- <button type="button" class="btn btn-close hide"><i class="icon-close">닫기</i></button> -->
+            <div class="container">
+              <h4>비밀번호 변경 안내</h4>
+              <p class="content">
+                강화된 회원 보안 정책의 일환으로, 취약한 조합의 <br />
+                결제 비밀번호는 초기화되었습니다.<br />
+                회원님의 개인정보를 안전하게 보호하기 위한 조치이오니<br />
+                <strong>
+                  반드시 기존과 다른 결제 비밀번호로 <br />
+                  재등록해 주시기 바랍니다.
+                </strong>
+              </p>
+              <div class="btn-wrap">
+                <button type="button" class="bot-btn apply">
+                  결제 비밀번호 변경하기
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //비밀번호 변경 팝업 -->
+
+    <!-- 현금영수증 발급정보 -->
+    <div id="modal-receipt" class="modal modal-slide modal-info">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body my-info">
+            <button type="button" class="btn btn-close">취소</button>
+            <div class="chg-info">
+              <h4>현금영수증 발급정보를 입력하세요.</h4>
+              <ul class="checkbox-group checked-one">
+                <li>
+                  <span class="checkbox">
+                    <input
+                      type="checkbox"
+                      name="checkbox_01"
+                      id="checkbox_01_01"
+                    />
+                    <label for="checkbox_01_01">개인소득공제(휴대폰)</label>
+                  </span>
+                </li>
+                <li>
+                  <span class="checkbox">
+                    <input
+                      type="checkbox"
+                      name="checkbox_01"
+                      id="checkbox_01_02"
+                    />
+                    <label for="checkbox_01_02"
+                      >개인소득공제(현금영수증카드)</label
+                    >
+                  </span>
+                </li>
+                <li>
+                  <span class="checkbox">
+                    <input
+                      type="checkbox"
+                      name="checkbox_01"
+                      id="checkbox_01_03"
+                    />
+                    <label for="checkbox_01_03">지출증빙(사업자용)</label>
+                  </span>
+                </li>
+                <li>
+                  <span class="checkbox">
+                    <input
+                      type="checkbox"
+                      name="checkbox_01"
+                      id="checkbox_01_04"
+                    />
+                    <label for="checkbox_01_04">지출증빙(현금영수증카드)</label>
+                  </span>
+                </li>
+              </ul>
+              <ul class="form-type">
+                <li class="">
+                  <div class="position-relative">
+                    <input
+                      type="tel"
+                      placeholder="010 1234 5678"
+                      class="input-text-lg"
+                    />
+                    <span class="form-control-clear hidden"
+                      ><i class="icon-times-circle sr-only">삭제</i></span
+                    >
+                  </div>
+                </li>
+              </ul>
+              <p class="info">
+                현금영수증은 등록한 정보 기준으로 자동 발행됩니다.
+              </p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn" id="confirmButton">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //현금영수증 발급정보 -->
+
+    <!-- 리또 지급관련 약관 -->
+    <div id="modal-terms" class="modal modal-terms modal-slide modal-info">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body my-info">
+            <button type="button" class="btn btn-close">취소</button>
+            <div class="container">
+              <div class="nav owl-carousel">
+                <div class="item">
+                  <h2>이용약관</h2>
+                </div>
+                <div class="item">
+                  <h2>전자금융거래 이용약관</h2>
+                </div>
+                <div class="item">
+                  <h2>개인정보 수집·이용</h2>
+                </div>
+                <div class="item">
+                  <h2>개인정보 제3자 제공 및 위탁</h2>
+                </div>
+                <div class="item">
+                  <h2>마케팅 정보 수신(문자)</h2>
+                </div>
+              </div>
+              <div
+                class="terms scroll termsContents"
+                id=""
+                style="display: block; font-size: 14px"
+              >
+                <h4>
+                  <span style="color: inherit; letter-spacing: -0.02em"
+                    >제1조 (목적)</span
+                  ><br />
+                </h4>
+                <p>
+                  본 약관은 (주)헥토파이낸셜(이하 ‘회사’라 합니다)이 제공하는
+                  010PAY 서비스의 이용과 관련하여 회사와 회원 사이의 권리, 의무
+                  및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.
+                </p>
+                <p>&nbsp;</p>
+                <h4>제2조 (용어의 정의)</h4>
+                <ul>
+                  <li>
+                    ① 본 약관에서 사용하는 용어의 의미는 다음과 같습니다.
+                    <ul class="indent">
+                      <li>
+                        1. ‘<span style="letter-spacing: -0.24px">010PAY</span
+                        >&nbsp;서비스’라 함은 회원이 제휴사와 상품 또는
+                        용역(이하 ‘상품 등’이라 합니다)을 거래함에 있어서 회사가
+                        제공하는 결제 서비스,&nbsp;<span
+                          style="letter-spacing: -0.24px"
+                          >010PAY</span
+                        >&nbsp;포인트 서비스, 쿠폰 서비스, 통합 조회 서비스 등
+                        회사가 회원에게 제공하는 서비스를 총칭합니다.
+                      </li>
+                      <li>
+                        2. ‘회원’이라 함은 본 약관에 동의하고 적법한 절차에
+                        따라&nbsp;<span style="letter-spacing: -0.24px"
+                          >010PAY</span
+                        >&nbsp;서비스에 가입한 자로, 회사가 제공하는&nbsp;<span
+                          style="letter-spacing: -0.24px"
+                          >010PAY</span
+                        >&nbsp;서비스를 이용하는 자를 말합니다.
+                      </li>
+                      <li>
+                        3. ‘제휴사’라 함은 회사와 계약을 체결하고&nbsp;<span
+                          style="letter-spacing: -0.24px"
+                          >010PAY</span
+                        >&nbsp;서비스를 이용하여 회원에게 상품 등을 판매하거나
+                        쿠폰 등의 혜택을 제공하는 사업자를 말합니다.
+                      </li>
+                      <li>
+                        4. ‘결제방법’이라 함은 회원이 결제서비스를 통하여 전자적
+                        방법으로 상품 등을 구입 및 이용 시 선택한 지불방법을
+                        말합니다.
+                      </li>
+                      <li>
+                        5. ‘비밀번호’라 함은&nbsp;<span
+                          style="letter-spacing: -0.24px"
+                          >010PAY</span
+                        >&nbsp;서비스 이용 시 필요로 하는 인증 수단으로서 회원이
+                        본인임을 사전에 확인하고 스스로 설정하여 회사에 등록한
+                        숫자를 말합니다.
+                      </li>
+                      <li>
+                        6. ‘<span style="letter-spacing: -0.24px">010PAY</span
+                        >&nbsp;머니’라 함은 회원이 상품 등을 구매하기 위하여
+                        지급하는 선불전자지급수단으로, 회원은 유상으로
+                        충전하거나 다른 회원으로부터 양도받을 수 있으며, 이벤트
+                        및 프로모션을 통해 무상으로 지급받을 수도 있습니다.
+                      </li>
+                      <li>
+                        7. ‘<span style="letter-spacing: -0.24px">010PAY</span
+                        >&nbsp;포인트’라 함은 회원이 제휴사에서 상품 등을
+                        구매하거나 이벤트 등에 참여하는 등 일정한 조건을 달성한
+                        경우 회사가 무상으로 지급하는 포인트로, 회사가 지정한
+                        방법(사용처, 구매 대상 상품 등 및 기타 사용 방법)으로
+                        사용할 수 있는 가상의 데이터를 말합니다.
+                      </li>
+                      <li>
+                        8. ‘쿠폰’이라 함은 회원이 제휴사를 통해 상품 등을 구매할
+                        때 제공 받을 수 있는 혜택이 전자적 방법으로
+                        저장·기록되어 있는 증표를 말합니다.
+                      </li>
+                      <li>
+                        9. ‘쿠키’라 함은 특정 웹사이트에서 웹서버가
+                        웹브라우저에게 전달하는 작은 텍스트 파일을 말합니다.
+                      </li>
+                      <li>
+                        10. ‘접근매체’라 함은 전자금융거래에 있어서 거래지시를
+                        하거나 이용자 및 거래내용의 진실성과 정확성을 확보하기
+                        위하여 사용되는 전자금융거래법 제2조 제10호의 각 목의
+                        어느 하나에 해당하는 수단 또는 정보를 말합니다.
+                      </li>
+                      <li>
+                        11. '카드 정보'라 함은 회원의 보유 카드와 관련된
+                        정보로써 사용 내역, 포인트 내역, 한도, 결제예정금액,
+                        청구서, 또는 승인내역 등에 관한 정보를 의미합니다.
+                      </li>
+                      <li>
+                        12. '예약충전'이라 함은 회원이 보유한&nbsp;<span
+                          style="letter-spacing: -0.24px"
+                          >010PAY</span
+                        >&nbsp;머니가 회원이 정한 기준금액 또는 일자에 도달하는
+                        경우 회원이 사전에 등록한 지불수단을 통해&nbsp;<span
+                          style="letter-spacing: -0.24px"
+                          >010PAY</span
+                        >&nbsp;머니를 자동으로 충전하는 서비스를 말합니다.
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    ② 본 약관에서 사용하는 용어 중 본 조에서 정하지 아니한
+                    것은&nbsp;<span style="letter-spacing: -0.24px">010PAY</span
+                    >&nbsp;서비스 웹페이지 안내 및 관계법령에서 정하는 바에
+                    따르며, 그 외에는 일반 상관례에 따릅니다.
+                  </li>
+                </ul>
+                <p>&nbsp;</p>
+                <h4>제13조 (회사의 의무)</h4>
+                <ul>
+                  <li>
+                    ① 회사는 관련 법령과 본 약관이 금지하거나 미풍양속에 반하는
+                    행위를 하지 않으며, 계속적이고 안정적으로&nbsp;<span
+                      style="letter-spacing: -0.24px"
+                      >010PAY</span
+                    >&nbsp;서비스를 제공하기 위하여 최선을 다하여 노력합니다.
+                  </li>
+                  <li>
+                    ② 회사는 회원이 안전하게&nbsp;<span
+                      style="letter-spacing: -0.24px"
+                      >010PAY</span
+                    >&nbsp;서비스를 이용할 수 있도록 개인정보보호를 위한
+                    보안시스템을 갖추며, 개인정보처리방침을 공지하고 이를
+                    준수합니다.
+                  </li>
+                  <li>
+                    ③ 회사는&nbsp;<span style="letter-spacing: -0.24px"
+                      >010PAY</span
+                    >&nbsp;서비스 이용과 관련하여 회원으로부터 제기된 의견이나
+                    불만이 정당하다고 인정할 경우에는 이를 처리하여야 합니다.
+                    회원이 제기한 의견이나 불만사항에 대해서는 게시판을
+                    활용하거나 전자우편 등을 통하여 회원에게 처리과정 및 결과를
+                    전달합니다.
+                  </li>
+                </ul>
+                <p>&nbsp;</p>
+                <h4>제14조 (회원의 의무)</h4>
+                <ul>
+                  <li>
+                    ① 회원은 상품 등을 구매하기 전에 상품 등의 상세 내용과
+                    거래의 조건을 정확하게 확인한 후 구매를 하여야 합니다.
+                    회원은 구매하려는 상품 등의 내용과 거래의 조건을 확인하지
+                    않고 구매하여 발생한 손실·손해에 대한 책임을 부담할 수
+                    있습니다.
+                  </li>
+                  <li>
+                    ② 회원은 본 약관 및 회사가&nbsp;<span
+                      style="letter-spacing: -0.24px"
+                      >010PAY</span
+                    >&nbsp;서비스 화면에서 고지하는 내용을 준수하여야 하며, 본
+                    약관 및 고지내용을 위반하거나 이행하지 아니하여 발생하는
+                    손실 및 손해에 대하여 책임을 부담합니다.
+                  </li>
+                  <li>
+                    ③ 회원은 상품 등 구매 시 스스로의 책임 하에 상품 등을
+                    구매하여야 하며, 회사는 제휴사의 상품 등의 내용과 거래
+                    조건에 대해서 보증이나 책임을 부담하지 않습니다.
+                  </li>
+                  <li>
+                    ④ 회원은 자신의 명의가 도용되거나 제3자에게 부정하게 사용된
+                    것을 인지한 경우 즉시 그 사실을 회사에게 통보하여야 합니다.
+                  </li>
+                  <li>
+                    ⑤ 회원은 상품 등의 구매 시 결제방법을 사용함에 있어 반드시
+                    본인 명의의 결제수단을 사용하여야 하며, 타인의 결제수단의
+                    임의사용 등을 하여서는 안됩니다. 타인의 결제수단을 임의
+                    사용함으로써 발생하는 손실과 손해에 대하여 회원이 책임을
+                    부담할 수 있습니다.
+                  </li>
+                  <li>
+                    ⑥ 회원은&nbsp;<span style="letter-spacing: -0.24px"
+                      >010PAY</span
+                    >&nbsp;서비스에서 사용하는 계좌 결제정보 그리고 통장
+                    비밀번호 등에 대한 관리책임이 있으며, 이를 제 3자에게 제공,
+                    누설하거나 이와 유사한 행위를 하여서는 안됩니다.
+                  </li>
+                  <li>
+                    ⑦&nbsp;<span style="letter-spacing: -0.24px">010PAY</span
+                    >&nbsp;서비스 이용 시 결제와 관련하여 회원이 입력한 정보 및
+                    그 정보와 관련하여 발생한 책임과 불이익은 회원이 부담할 수
+                    있습니다.
+                  </li>
+                  <li>
+                    ⑧ 회원은&nbsp;<span style="letter-spacing: -0.24px"
+                      >010PAY</span
+                    >&nbsp;서비스를 이용 중인 스마트폰 및 USIM 칩 등의 분실,
+                    도난 및 비밀번호 등의 누설 등 사고 발생 시에는 그 사실을
+                    회사에 신고하여야 합니다.
+                  </li>
+                  <li>
+                    ⑨ 회원은 결제 서비스 이용 시 정당하고, 적법한 사용권한을
+                    가지고 있는 결제수단을 사용하여야 하며, 회사는 그 여부를
+                    확인할 수 있습니다. 또한 회사는 회원 결제수단의 적법성 등에
+                    대한 확인이 완료될 때까지 거래진행을 중지하거나 해당 거래를
+                    취소할 수 있습니다.
+                  </li>
+                  <li>
+                    ⑩ 회원은 제휴사와 상품 등 구매 절차에서 분쟁이 발생한 경우
+                    분쟁 해결을 위하여 성실히 임하여야 하며, 분쟁해결의 불성실로
+                    인하여 제휴사와 회사에 발행한 손실, 손해를 부담할 수
+                    있습니다.
+                  </li>
+                  <li>
+                    ⑪ 회원은 회사가 정하고 인정하는 방식에 따라&nbsp;<span
+                      style="letter-spacing: -0.24px"
+                      >010PAY</span
+                    >&nbsp;포인트 또는 쿠폰 등을 사용하여야 합니다.
+                  </li>
+                  <li>
+                    ⑫ 회원은&nbsp;<span style="letter-spacing: -0.24px"
+                      >010PAY</span
+                    >&nbsp;서비스를 이용하여 얻은 정보를 회사의 사전 동의 없이
+                    영리목적으로 이용하거나 제3자에게 이용하게 하는 행위를 할 수
+                    없으며,&nbsp;<span style="letter-spacing: -0.24px"
+                      >010PAY</span
+                    >&nbsp;서비스의 이용권한 및 그 밖의 이용 계약상 지위를
+                    타인에게 양도, 증여할 수 없습니다.
+                  </li>
+                  <li>
+                    ⑬ 회원은 회사가&nbsp;<span style="letter-spacing: -0.24px"
+                      >010PAY</span
+                    >&nbsp;서비스를 안전하게 제공할 수 있도록 회사에 협조하여야
+                    하며, 회사가 회원의 본 약관 위반행위를 발견하여 회원에게
+                    해당 위반행위에 대하여 소명을 요청할 경우 회원은 회사의
+                    요청에 적극 응하여야 합니다.
+                  </li>
+                </ul>
+                <p><br /></p>
+                <p><span style="font-weight: 700">부칙</span></p>
+                <p>본 약관은 2024년 02월 15일부터 적용됩니다.</p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn" onclick="closeTermsModal();">
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //리또 지급관련 약관 -->
+
+    <!-- loading -->
+    <div class="modal modal-loading">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="loading">
+              <div class="loading-bar"></div>
+              <div class="loading-bar"></div>
+              <div class="loading-bar"></div>
+              <div class="loading-bar"></div>
+            </div>
+            <span class="text">로딩 중</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //loading -->
+
+    <!-- common alert -->
+    <div id="commonAlert" class="modal modal-center">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="alertTitle"></h3>
+            <p id="alertContents"></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalClose();"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //common alert -->
+    <!-- common alert -->
+    <div id="commonAlert2" class="modal modal-center">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="alertTitle"></h3>
+            <p id="alertContents">
+              일시적인 오류가 발생했습니다.<br />
+              잠시 후 다시 시도해주세요.<br />
+              ‘확인’ 선택 시<br />
+              010머니 조회내역은 초기화 됩니다.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalClose();"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //common alert -->
+
+    <!-- common prompt -->
+    <div id="commonPrompt" class="modal modal-center">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="promptTitle"></h3>
+            <p id="promptContents"></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalClose();"
+              class="btn btn-cancel"
+            >
+              취소
+            </button>
+            <button type="button" id="promptOk" class="btn btn-confirm">
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //common prompt -->
+    <script>
+      // 약관 모달 닫기 함수 (가장 최근에 열린 약관 모달만 닫기) - 전역 함수
+      function closeTermsModal() {
+        // 현재 열려있는 약관 모달들 중 가장 최근에 열린 것 찾기
+        var openTermsModals = $(".modal-terms:visible");
+        if (openTermsModals.length > 0) {
+          // 가장 마지막에 열린 약관 모달만 닫기
+          var lastTermsModal = openTermsModals.last();
+          lastTermsModal.hide();
+
+          // 스크롤 복원
+          if (typeof scrollOn === "function") {
+            scrollOn();
+          }
+        }
+      }
+
+      $(document).ready(function () {
+        // 페이지 로드 시 'check-type-sub' 표시 후 바로 숨기기
+        $(".check-type-sub").show();
+        setTimeout(function () {
+          $(".check-type-sub").hide();
+        }, 0);
+
+        // 페이지 로드 시 RLUSD 체크박스 상태에 따라 버튼 텍스트 설정
+        if ($("#checkbox-rlusd").is(":checked")) {
+          $("#send").text("확인");
+        } else {
+          $("#send").text("88,000원 결제하기");
+        }
+
+        // 모달 포커스 시 스크롤 처리
+        $("#modal-phone").on("focus", function () {
+          console.log($("body").height());
+          $("html, body").scrollTop(200);
+        });
+
+        // 팝업 닫기 버튼 클릭 이벤트
+        $(".pop-wrap .btn-close").on("click", function () {
+          $(".pop-wrap").hide();
+        });
+
+        // 아코디언 리스트 토글
+        $(".accordion-list .list-header .arrow-toggle").click(function () {
+          var thisItem = $(this).closest("li");
+          thisItem.toggleClass("active");
+          $(".check-type-sub").slideToggle(300);
+          $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+        });
+
+        // 리워드 체크박스 처리
+        var checkboxAll = document.getElementById("checkbox-all");
+        var subCheckBoxes = document.querySelectorAll(".checkbox_agree_set");
+
+        Array.prototype.forEach.call(subCheckBoxes, function (checkbox) {
+          checkbox.addEventListener("change", function () {
+            var allChecked = true;
+            Array.prototype.forEach.call(subCheckBoxes, function (cb) {
+              if (!cb.checked) {
+                allChecked = false;
+              }
+            });
+            checkboxAll.checked = allChecked;
+          });
+        });
+
+        // "모두 선택" 체크박스 상태 변경 이벤트 핸들러
+        if (checkboxAll) {
+          checkboxAll.addEventListener("change", function () {
+            Array.prototype.forEach.call(subCheckBoxes, function (cb) {
+              cb.checked = checkboxAll.checked;
+            });
+          });
+        }
+
+        // 개별 체크박스 이벤트 핸들러
+        if (subCheckBoxes) {
+          var individualCheckBoxes = document.querySelectorAll(
+            "#checkbox_agree, #checkbox_agree02, #checkbox_agree03",
+          );
+          Array.prototype.forEach.call(
+            individualCheckBoxes,
+            function (checkbox) {
+              checkbox.addEventListener("change", function () {
+                if (!this.checked) {
+                  if (checkboxAll) {
+                    checkboxAll.checked = false;
+                  }
+                } else {
+                  var allChecked = true;
+                  Array.prototype.forEach.call(subCheckBoxes, function (cb) {
+                    if (!cb.checked) {
+                      allChecked = false;
+                    }
+                  });
+                  if (allChecked && checkboxAll) {
+                    checkboxAll.checked = true;
+                  }
+                }
+              });
+            },
+          );
+        }
+
+        // 사용 머니 토글
+        $("#checkbox-money").change(function () {
+          $("#useMoneyWrap").toggle(this.checked);
+        });
+
+        // RLUSD 체크박스 토글
+        $("#checkbox-rlusd").change(function () {
+          updateButtonState();
+
+          // 상위 checkbox-wrap round-box에 selected 클래스 토글
+          var $checkboxWrap = $(this).closest(".checkbox-wrap.round-box");
+          if ($(this).is(":checked")) {
+            $checkboxWrap.addClass("selected");
+          } else {
+            $checkboxWrap.removeClass("selected");
+          }
+        });
+
+        // RLUSD 입력 필드 이벤트
+        $(document).on("input", "#rlusd-input", function () {
+          var inputValue = $(this).val();
+
+          // " RLUSD" 부분이 있으면 제거
+          var cleanValue = inputValue.replace(" RLUSD", "");
+
+          // 숫자와 소수점만 허용
+          var numericValue = cleanValue.replace(/[^0-9.]/g, "");
+
+          // 소수점만 입력된 경우 처리
+          if (numericValue === ".") {
+            $(this).val(".");
+            $("#clear-rlusd").show();
+            $("#krw-input").val("");
+            $("#coin-usage-amount").text("0 KRW");
+            $(".exchange-input").removeClass("error");
+            return;
+          }
+
+          // 빈 값인 경우
+          if (numericValue === "" || numericValue === "0") {
+            $(this).val("");
+            $("#clear-rlusd").hide();
+            $("#krw-input").val("");
+            $("#coin-usage-amount").text("0 KRW");
+            $(".exchange-input").removeClass("error");
+            return;
+          }
+
+          // 불완전한 입력 (예: "1.", "2.") 처리
+          if (numericValue.endsWith(".")) {
+            $(this).val(numericValue);
+            $("#clear-rlusd").show();
+            $("#krw-input").val("");
+            $("#coin-usage-amount").text("0 KRW");
+            $(".exchange-input").removeClass("error");
+            return;
+          }
+
+          // 완전한 숫자인 경우에만 0.5 단위 반올림 적용
+          var numValue = parseFloat(numericValue);
+          if (isNaN(numValue)) {
+            $(this).val(numericValue);
+            $("#clear-rlusd").show();
+            $("#krw-input").val("");
+            $("#coin-usage-amount").text("0 KRW");
+            return;
+          }
+
+          // 0.5 단위로 제한하는 함수
+          function roundToHalf(value) {
+            return Math.round(value * 2) / 2;
+          }
+
+          // 0.5 단위로 반올림
+          var roundedValue = roundToHalf(numValue);
+
+          // 보유 수량 (20 RLUSD)
+          var maxBalance = 20;
+
+          // 보유 수량 초과 여부 확인
+          var isOverBalance = roundedValue > maxBalance;
+
+          // 최소값 0 제한
+          if (roundedValue < 0) {
+            roundedValue = 0;
+          }
+
+          var exchangeRate = 1389; // 1 RLUSD = 1,389 KRW
+          var krwAmount = roundedValue * exchangeRate;
+
+          // 입력값이 있으면 숫자만 표시
+          if (roundedValue > 0) {
+            // 소수점이 있는 경우와 없는 경우를 구분하여 표시
+            var displayValue = roundedValue.toString();
+            $(this).val(displayValue);
+            $("#clear-rlusd").show();
+          } else {
+            $(this).val("");
+            $("#clear-rlusd").hide();
+          }
+
+          // 보유 수량 초과 시 error 클래스 토글
+          if (isOverBalance) {
+            $(".exchange-input").addClass("error");
+          } else {
+            $(".exchange-input").removeClass("error");
+          }
+
+          // KRW 금액에서 소수점 이하 절삭
+          var krwAmountInt = Math.floor(krwAmount);
+          $("#krw-input").val(krwAmountInt.toLocaleString());
+          $("#coin-usage-amount").text(krwAmountInt.toLocaleString() + " KRW");
+        });
+
+        // RLUSD 입력 필드 keydown 이벤트 (백스페이스 처리)
+        $(document).on("keydown", "#rlusd-input", function (e) {
+          // 백스페이스나 Delete 키는 기본 동작 사용
+          // "RLUSD" 텍스트가 없으므로 특별한 처리 불필요
+        });
+
+        // RLUSD 입력 필드 클리어 버튼
+        $(document).on("click", "#clear-rlusd", function () {
+          $("#rlusd-input").val("").trigger("input");
+          $(this).hide();
+        });
+
+        // 동의 체크박스 이벤트
+        $("#checkbox-consent").change(function () {
+          updateButtonState();
+        });
+
+        // RLUSD 사용 체크박스 이벤트
+        $("#checkbox-rlusd").change(function () {
+          updateButtonState();
+        });
+
+        // checkbox-all 체크박스 이벤트
+        $("#checkbox-all").change(function () {
+          updateButtonState();
+        });
+
+        // 버튼 상태 업데이트 함수
+        function updateButtonState() {
+          var isConsentChecked = $("#checkbox-consent").is(":checked");
+          var isRlusdChecked = $("#checkbox-rlusd").is(":checked");
+          var isAllChecked = $("#checkbox-all").is(":checked");
+          var $btnPay = $("#btn-pay");
+          var $confirmButton = $("#confirmButton");
+          var $sendButton = $("#send");
+
+          // 결제하기 버튼 활성화 조건: 필수 이용약관 동의
+          if (isConsentChecked) {
+            $btnPay.removeClass("disabled").prop("disabled", false);
+          } else {
+            $btnPay.addClass("disabled").prop("disabled", true);
+          }
+
+          // send 버튼 활성화 조건: checkbox-all 체크
+          if (isAllChecked) {
+            $sendButton.removeClass("disabled").prop("disabled", false);
+          } else {
+            $sendButton.addClass("disabled").prop("disabled", true);
+          }
+
+          // send 버튼 텍스트 변경: RLUSD 사용 체크 시 "확인"으로 변경
+          if (isRlusdChecked) {
+            $sendButton.text("확인");
+          } else {
+            $sendButton.text("88,000원 결제하기");
+          }
+
+          // 확인 버튼 텍스트 변경: RLUSD 사용 체크 시 "확인"으로 변경
+          if (isRlusdChecked) {
+            $confirmButton.text("확인");
+          } else {
+            $confirmButton.text("결제하기");
+          }
+        }
+
+        // 페이지 로드 시 초기 버튼 상태 설정
+        updateButtonState();
+
+        $(".btn-toggle.btn-q").click(function () {
+          $(this).next(".toggle-box").toggle();
+        });
+
+        // 확인 버튼 클릭 이벤트
+        $("#confirmButton").click(function () {
+          // RLUSD 체크박스가 체크되어 있는지 확인
+          if ($("#checkbox-rlusd").is(":checked")) {
+            // modalOpenSlide 함수 호출
+            modalOpenSlide("modalSlideExchange");
+          }
+        });
+
+        // 얼럿 버튼
+        $("#send").click(function () {
+          // RLUSD 체크박스가 체크되어 있는지 확인
+          if ($("#checkbox-rlusd").is(":checked")) {
+            // modalOpenSlide 함수 호출
+            modalOpenSlide("modalSlideExchange");
+          } else {
+            $.alertMessage(
+              "",
+              "사용가능한 보유머니 잔액이 없습니다.",
+              $("#commonAlert"),
+            );
+            // $.alertMessage("", "일시적인 오류가 발생했습니다.<br>잠시 후 다시 시도해주세요.<br>'확인' 선택 시 <br>010머니 조회내역은 초기화 됩니다.", $("#commonAlert"));
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

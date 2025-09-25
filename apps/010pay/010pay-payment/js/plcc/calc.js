@@ -57,7 +57,7 @@ $(document).ready(function () {
     if (actionText) {
       // 금액을 만원 단위로 변환 (모든 단계에서 동일하게 표시)
       const amountInMan = amount / 10000;
-      actionText.innerHTML = `매달 라운드에서 ${amountInMan}만원 씩 쓰면`;
+      actionText.innerHTML = `매달 ${amountInMan}만 원씩 결제하면면`;
     }
   }
 
@@ -210,7 +210,7 @@ $(document).ready(function () {
     // 동작 전/후 문구 업데이트
     if (actionText2) {
       const amountInMan = amount / 10000;
-      actionText2.innerHTML = `매달 일반 가맹점에서 ${amountInMan}만원 씩 쓰면`;
+      actionText2.innerHTML = `매달 ${amountInMan}만 원씩 결제하면면`;
     }
   }
 

@@ -188,7 +188,7 @@
                     <div class="exchange-info">
                       <span class="exchange-label">RLUSD</span>
                       <span class="exchange-amount"
-                        >현재 보유 수량 : <em class="highlight-text">20</em>
+                        >현재 보유 수량 : <em id="max-rlusd" class="highlight-text">100</em>
                         <strong>RLUSD</strong></span
                       >
                     </div>
@@ -257,11 +257,11 @@
                 </div>
                 <div class="detail-item">
                   <span class="detail-label">코인 사용 금액</span>
-                  <span class="detail-value" id="coin-usage-amount">0 KRW</span>
+                  <span class="detail-value" id="coin-usage-amount">0</span><span>KRW</span>
                 </div>
                 <div class="detail-item total-payment">
                   <span class="detail-label">계좌 결제 금액</span>
-                  <span class="detail-value">137,200 KRW</span>
+                  <span id="acct-usage-amount" class="detail-value point-color">137,200</span><span class="point-color">KRW</span>
                 </div>
               </div>
 
@@ -269,8 +269,7 @@
               <div class="guidance-messages">
                 <ul class="guidance-list">
                   <li>
-                    RLUSD 사용 수량은 0.5 단위로 입력할 수 있으며, 총 결제
-                    금액을 넘을 수 없습니다.
+                    RLUSD 사용 수량은 0.5 단위로 입력할 수 있으며, 최소 500원 이상 계좌로 결제 되어야 합니다.
                   </li>
                   <li>
                     RLUSD 사용에 실패했을 경우 선택한 결제수단으로 전체 금액이
@@ -317,7 +316,7 @@
               class="btn-confirm disabled"
               disabled=""
             >
-              137,200원 결제하기
+              <span id="acct-usage-amount-text">137,200</span>원 결제하기
             </button>
           </div>
         </div>
@@ -1124,8 +1123,10 @@
             $(this).val(".");
             $("#clear-rlusd").show();
             $("#krw-input").val("");
-            $("#coin-usage-amount").text("0 KRW");
+            $("#coin-usage-amount").text("0");
+            $("#acct-usage-amount").text("137,200");
             $(".exchange-input").removeClass("error");
+            updateButtonState(); // 버튼 상태 업데이트 추가
             return;
           }
 
@@ -1134,8 +1135,10 @@
             $(this).val("");
             $("#clear-rlusd").hide();
             $("#krw-input").val("");
-            $("#coin-usage-amount").text("0 KRW");
+            $("#coin-usage-amount").text("0");
+            $("#acct-usage-amount").text("137,200");
             $(".exchange-input").removeClass("error");
+            updateButtonState(); // 버튼 상태 업데이트 추가
             return;
           }
 
@@ -1144,8 +1147,10 @@
             $(this).val(numericValue);
             $("#clear-rlusd").show();
             $("#krw-input").val("");
-            $("#coin-usage-amount").text("0 KRW");
+            $("#coin-usage-amount").text("0");
+            $("#acct-usage-amount").text("137,200");
             $(".exchange-input").removeClass("error");
+            updateButtonState(); // 버튼 상태 업데이트 추가
             return;
           }
 
@@ -1155,7 +1160,9 @@
             $(this).val(numericValue);
             $("#clear-rlusd").show();
             $("#krw-input").val("");
-            $("#coin-usage-amount").text("0 KRW");
+            $("#coin-usage-amount").text("0");
+            $("#acct-usage-amount").text("137,200");
+            updateButtonState(); // 버튼 상태 업데이트 추가
             return;
           }
 
@@ -1167,8 +1174,8 @@
           // 0.5 단위로 반올림
           var roundedValue = roundToHalf(numValue);
 
-          // 보유 수량 (20 RLUSD)
-          var maxBalance = 20;
+          // 보유 수량 (100 RLUSD)
+          var maxBalance = parseInt($("#max-rlusd").text());
 
           // 보유 수량 초과 여부 확인
           var isOverBalance = roundedValue > maxBalance;
@@ -1192,17 +1199,33 @@
             $("#clear-rlusd").hide();
           }
 
-          // 보유 수량 초과 시 error 클래스 토글
-          if (isOverBalance) {
-            $(".exchange-input").addClass("error");
-          } else {
-            $(".exchange-input").removeClass("error");
-          }
-
           // KRW 금액에서 소수점 이하 절삭
           var krwAmountInt = Math.floor(krwAmount);
           $("#krw-input").val(krwAmountInt.toLocaleString());
-          $("#coin-usage-amount").text(krwAmountInt.toLocaleString() + " KRW");
+          $("#coin-usage-amount").text(krwAmountInt.toLocaleString());
+          
+          // 계좌 결제 금액 계산 (총 결제 금액 - 코인 사용 금액)
+          var totalPayment = 137200; // 총 결제 금액
+          var accountPayment = totalPayment - krwAmountInt;
+          
+          // 계좌 결제 금액이 500원 미만인지 확인
+          var isAccountPaymentTooLow = accountPayment < 500;
+          
+          // 에러 상태 설정
+          if (isOverBalance || isAccountPaymentTooLow) {
+            $(".exchange-input").addClass("error");
+            if (isAccountPaymentTooLow) {
+              $(".error-text").text("계좌 결제 금액이 최소 500원 이상 되어야 합니다.");
+            } else {
+              $(".error-text").text("보유 수량을 초과하여 입력할 수 없습니다.");
+            }
+          } else {
+            $(".exchange-input").removeClass("error");
+          }
+          
+          $("#acct-usage-amount").text(accountPayment.toLocaleString());
+          
+          updateButtonState(); // 버튼 상태 업데이트 추가
         });
 
         // RLUSD 입력 필드 keydown 이벤트 (백스페이스 처리)
@@ -1237,15 +1260,33 @@
           var isConsentChecked = $("#checkbox-consent").is(":checked");
           var isRlusdChecked = $("#checkbox-rlusd").is(":checked");
           var isAllChecked = $("#checkbox-all").is(":checked");
+          var rlusdInputValue = $("#rlusd-input").val().trim();
+          var hasRlusdInput = rlusdInputValue !== "" && parseFloat(rlusdInputValue) > 0;
           var $btnPay = $("#btn-pay");
           var $confirmButton = $("#confirmButton");
           var $sendButton = $("#send");
 
-          // 결제하기 버튼 활성화 조건: 필수 이용약관 동의
-          if (isConsentChecked) {
-            $btnPay.removeClass("disabled").prop("disabled", false);
+          // 계좌 결제 금액이 500원 미만인지 확인
+          var accountPaymentText = $("#acct-usage-amount").text().replace(/,/g, "");
+          var accountPayment = parseInt(accountPaymentText);
+          var isAccountPaymentValid = accountPayment >= 500;
+
+          // btn-pay 버튼 활성화 조건: RLUSD 사용 시 rlusd-input에 값이 있고 checkbox-consent 체크, 
+          // RLUSD 미사용 시 checkbox-consent 체크, 그리고 계좌 결제 금액이 500원 이상
+          if (isRlusdChecked) {
+            // RLUSD 사용 시: rlusd-input에 값이 있고 checkbox-consent 체크되어야 활성화, 계좌 결제 금액도 500원 이상
+            if (hasRlusdInput && isConsentChecked && isAccountPaymentValid) {
+              $btnPay.removeClass("disabled").prop("disabled", false);
+            } else {
+              $btnPay.addClass("disabled").prop("disabled", true);
+            }
           } else {
-            $btnPay.addClass("disabled").prop("disabled", true);
+            // RLUSD 미사용 시: checkbox-consent 체크되어야 활성화
+            if (isConsentChecked) {
+              $btnPay.removeClass("disabled").prop("disabled", false);
+            } else {
+              $btnPay.addClass("disabled").prop("disabled", true);
+            }
           }
 
           // send 버튼 활성화 조건: checkbox-all 체크

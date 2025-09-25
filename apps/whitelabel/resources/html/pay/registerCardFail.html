@@ -85,8 +85,8 @@
 							<input type="password" id="cardNumber4" class="form-control card-number-input hidden" maxlength="4" inputmode="numeric" autocomplete="off" />
 						</div>
 					
-						<div id="cardName" class="card-name hidden sub-text"></div>
-						<div id="cardError" class="error sub-text red hidden">등록이 지원되지 않는 카드사입니다.<br>해당 카드사에 문의해주세요.</div>
+						<div id="cardName" class="card-name sub-text">롯데카드</div>
+						<div id="cardError" class="error sub-text red ">선택하신 카드사 정보를 입력해주세요. </div>
 					</div>
 
 				</section>
@@ -118,7 +118,8 @@
 				<h3 id="alertTitle" class="modal-title">카드 등록 실패</h3>
 			</div>
 			<div class="modal-body">
-				<div id="alertContents">카드정보를 확인해주세요.</div>
+				<div id="alertContents">카드정보를 확인해주세요.<br>
+					(유효기간)</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn" data-dismiss="modal">확인</button>
@@ -253,10 +254,11 @@
 				const allFilled = cardInputs.every(input => input.value.length === 4);
 				if (allFilled && expirySection.classList.contains("hidden")) {
 					expirySection.classList.remove("hidden");
+					expiryInput.focus();
 				}
 			} else {
 				cardError.classList.remove("hidden");
-				cardName.classList.add("hidden");
+				// cardName.classList.add("hidden");
 				expirySection.classList.add("hidden");
 				cvcSection.classList.add("hidden");
 				passwordSection.classList.add("hidden");
@@ -271,6 +273,7 @@
 		expiryInput.value = expiryInput.value.replace(/\D/g, "").slice(0, 4);
 		if (expiryInput.value.length === 4) {
 			cvcSection.classList.remove("hidden");
+			cvcInput.focus();
 		}
 		checkSubmitEnabled();
 	});
@@ -280,6 +283,7 @@
 		cvcInput.value = cvcInput.value.replace(/\D/g, "").slice(0, 3);
 		if (cvcInput.value.length === 3) {
 			passwordSection.classList.remove("hidden");
+			passInput.focus();
 		}
 		checkSubmitEnabled();
 	});

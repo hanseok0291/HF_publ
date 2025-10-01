@@ -207,6 +207,10 @@ $.alertMessage = function (title, contents, callbackFunc) {
 };
 
 $(document).ready(function () {
+  // 페이지 로드 시 스크롤 위치 초기화
+  scrollHeight = 0;
+  $(document).scrollTop(0);
+  
   $(".modal").on("click", function (event) {
     if ($(event.target).closest(".modal-dialog").length > 0) {
     } else {
@@ -306,26 +310,40 @@ inputs.forEach(function (input) {
   input.blur();
 });
 
-// 툴팁 버튼
-$(".btn-tooltip").click(function (e) {
-  e.preventDefault();
+// 모든 popover 숨기기 함수
+function hideAllPopovers() {
+  document.querySelectorAll('.popover').forEach(popover => {
+    popover.style.display = 'none';
+  });
+}
 
-  // 모든 popover 숨기기
-  $(".popover").hide();
-
-  // 클릭된 버튼의 다음 요소가 popover인지 확인 후 토글
-  const $popover = $(this).next(".popover");
-  if ($popover.length) {
-    $popover.toggle();
+// 툴팁 토글 함수
+function toggleTooltip(button) {
+  hideAllPopovers();
+  
+  const popover = button.nextElementSibling;
+  if (popover && popover.classList.contains('popover')) {
+    const isVisible = popover.style.display !== 'none';
+    popover.style.display = isVisible ? 'none' : 'block';
   }
-});
+}
 
-// 툴팁 영역 외 클릭시 툴팁 닫기
-$(document).click(function (e) {
+// 외부 클릭 시 툴팁 닫기 함수
+function closeTooltipOnOutsideClick(e) {
   if (
-    !$(e.target).closest(".btn-tooltip").length &&
-    !$(e.target).closest(".popover").length
+    !e.target.closest('.btn-tooltip') &&
+    !e.target.closest('.popover')
   ) {
-    $(".popover").hide();
+    hideAllPopovers();
+  }
+}
+
+// 이벤트 리스너 등록
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('btn-tooltip')) {
+    e.preventDefault();
+    toggleTooltip(e.target);
   }
 });
+
+document.addEventListener('click', closeTooltipOnOutsideClick);

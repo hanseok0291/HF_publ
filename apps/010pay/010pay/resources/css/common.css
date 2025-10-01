@@ -3148,49 +3148,72 @@ body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer {
   font-size: 0;
   text-align: center;
 }
-.loading-bar {
-  display: inline-block;
-  margin: 0 2px;
-  width: 6px;
-  height: 18px;
-  border-radius: 3px;
-  background-color: #ff7e00;
-  -webkit-animation: loading 1s ease-in-out infinite;
-  animation: loading 1s ease-in-out infinite;
+.loading-spinner {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 40px;
+  border-radius: 50%;
+  /* conic-gradient로 그라디언트 스피너 */
+  background: conic-gradient(from 180deg at 50% 50%, #FF6114 0deg, #FFFFFF 360deg);
+  /* iOS Safari를 위한 추가 속성 */
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  /* 애니메이션 적용 */
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+  /* 마스크를 위한 내부 원 */
+  position: relative;
 }
-.loading > .loading-bar:nth-child(1) {
-  opacity: 1;
+
+/* 내부 원으로 마스크 효과 */
+.loading-spinner::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  border-radius: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
-.loading > .loading-bar:nth-child(2) {
-  -webkit-animation-delay: 0.2s;
-  animation-delay: 0.2s;
-  opacity: 0.5;
-}
-.loading > .loading-bar:nth-child(3) {
-  -webkit-animation-delay: 0.3s;
-  animation-delay: 0.3s;
-  opacity: 0.2;
-}
-@-webkit-keyframes loading {
+
+/* 웹킷 벤더 프리픽스가 포함된 keyframes */
+@-webkit-keyframes spin {
   0% {
-    transform: scale(1);
+    -webkit-transform: translate3d(0, 0, 0) rotate(0deg);
+    transform: translate3d(0, 0, 0) rotate(0deg);
   }
-  20% {
-    transform: scale(1, 1.7);
-  }
-  40% {
-    transform: scale(1);
+  100% {
+    -webkit-transform: translate3d(0, 0, 0) rotate(360deg);
+    transform: translate3d(0, 0, 0) rotate(360deg);
   }
 }
-@keyframes loading {
+
+@keyframes spin {
   0% {
-    transform: scale(1);
+    -webkit-transform: translate3d(0, 0, 0) rotate(0deg);
+    transform: translate3d(0, 0, 0) rotate(0deg);
   }
-  20% {
-    transform: scale(1, 1.7);
+  100% {
+    -webkit-transform: translate3d(0, 0, 0) rotate(360deg);
+    transform: translate3d(0, 0, 0) rotate(360deg);
   }
-  40% {
-    transform: scale(1);
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0) rotate(0deg);
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0) rotate(360deg);
+    transform: translate3d(0, 0, 0) rotate(360deg);
   }
 }
 /* ----- scroll ----- */
@@ -9559,9 +9582,6 @@ div.nppfs-keypad {
 .wrap-v2 .section-notice .accordion-item.item-reward .accordion-header button {
   background-position: 0 0;
 }
-.wrap-v2 .section-notice .accordion-item.active .accordion-header {
-  border-radius: 10px 10px 0 0;
-}
 .wrap-v2 .section-notice .accordion-body {
   display: none;
   padding: 20px;
@@ -9577,13 +9597,6 @@ div.nppfs-keypad {
   margin: 5px 0;
   background-color: #f1f1f1;
   line-height: 1.3;
-}
-.wrap-v2 .section-notice .accordion-body .box-list {
-  padding: 12px 0;
-}
-.wrap-v2 .section-notice .accordion-body .box-list li {
-  position: relative;
-  padding-left: 70px;
 }
 .wrap-v2 .section-notice .accordion-body .box-list li .dt {
   display: block;
@@ -10365,10 +10378,6 @@ div:not(.wrap-v2) .content-promotion .container {
   margin-bottom: 15px;
   font-size: 18px;
   font-weight: 700;
-  color: #fff;
-}
-.promotion-card .section-notice .note strong {
-  font-weight: 400;
   color: #fff;
 }
 .promotion-card .section-notice .note .ul-list {
@@ -14372,10 +14381,6 @@ body:not(.custom-pass) .modal.modal-result .modal-footer {
   margin-bottom: 8px;
   border-bottom: 1px solid #e2e2e2;
 }
-.wrap-app.guide .section-retto-list li.no-line > .title {
-  border-bottom: 0;
-  padding-bottom: 0;
-}
 .wrap-app.guide .section-retto-list li > .title::after {
   content: "";
   position: absolute;
@@ -15770,10 +15775,13 @@ body:not(.custom-pass) .modal.modal-center .modal-footer .btn.btn-cancel {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  margin-left: auto;
+  margin-right: 2px;
 }
 
-.detail-item.total-payment .detail-value {
+.detail-item.total-payment .detail-value, .detail-item.total-payment .point-color {
   color: #ff6b35;
+  font-weight: 700;
 }
 
 /* Guidance Messages */
@@ -16107,16 +16115,75 @@ body:not(.custom-pass) .modal.modal-center .modal-footer .btn.btn-cancel {
   height: 70px;
   margin: 0 auto 40px;
   border-radius: 50%;
+  /* conic-gradient로 그라디언트 스피너 */
+  background: conic-gradient(from 180deg at 50% 50%, #FF6114 0deg, #FFFFFF 360deg);
+  /* iOS Safari를 위한 추가 속성 */
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  /* 애니메이션 적용 */
+  -webkit-animation: spin 1s linear infinite;
   animation: spin 1s linear infinite;
-  background: url(../images/stablecoin/loading.png) center / contain no-repeat;
+  /* 마스크를 위한 내부 원 */
+  position: relative;
+}
+
+/* 내부 원으로 마스크 효과 */
+.loading-spinner::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  border-radius: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.loading-spinner .spin-animation {
+  width: 100%;
+  height: 100%;
+  /* 웹킷 벤더 프리픽스 추가 */
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+  /* GPU 가속 강제 활성화 - iOS Safari 전용 */
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  /* will-change 속성으로 성능 최적화 */
+  will-change: transform;
+  /* iOS Safari 렌더링 최적화 */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* 이미지 렌더링 최적화 */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* 웹킷 벤더 프리픽스가 포함된 keyframes */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0) rotate(0deg);
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0) rotate(360deg);
+    transform: translate3d(0, 0, 0) rotate(360deg);
+  }
 }
 
 @keyframes spin {
   0% {
-    transform: rotate(0deg);
+    -webkit-transform: translate3d(0, 0, 0) rotate(0deg);
+    transform: translate3d(0, 0, 0) rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
+    -webkit-transform: translate3d(0, 0, 0) rotate(360deg);
+    transform: translate3d(0, 0, 0) rotate(360deg);
   }
 }
 

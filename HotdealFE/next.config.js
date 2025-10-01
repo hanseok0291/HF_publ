@@ -4,6 +4,10 @@ module.exports = {
   reactStrictMode: true,
   basePath: local ? "/nfe" : "/010pay/react/test",
   trailingSlash: true,
+  images: {
+    loader: 'custom',
+    unoptimized: true,
+  },
   webpack(config) {
     if (!local) {
       config.name === "client"

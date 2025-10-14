@@ -1,0 +1,985 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+
+<jsp:include page="/WEB-INF/views/terms/common/header.jsp" />
+
+<div class="modal-body">
+    <!-- 게시판 상세 -->
+    <div class="blank-box" style="height: 72px"></div>
+    <h2 class="title-text">라운드 스토어 판매자 개인정보처리방침</h2>
+    <br />
+    <div class="terms-con">
+        ㈜헥토이노베이션(이하 ‘회사’)은 회사가 운영하는 라운드 스토어
+        서비스의 입점 판매자님의 개인정보를 소중하게 생각합니다. 회사는
+        『정보통신망 이용촉진 및 정보보호 등에 관한 법률』,
+        『개인정보보호법』 등의 관련 법률을 준수하고 있으며, 그에 의거한
+        개인정보처리방침을 정하여 판매자님들의 권익보호에 최선을 다하고
+        있습니다. 회사는 판매자님들의 개인정보 처리에 관한 절차와 기준을
+        안내하고, 이와 관련하여 신속하고 원활하게 처리할 수 있도록 아래와
+        같이 개인정보처리방침을 공개하고 있습니다.
+    </div>
+    <div class="rround-table-scroll">
+        <table class="rround-terms-table">
+            <thead>
+            <tr>
+                <th colspan="4">주요 개인정보 처리 표시(라벨링)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="cell-content cell-img">
+                    <img src="${resourcePath}terms/images/label/label_1.png" alt="처리 항목" />
+                    <span>처리 항목</span>
+                </td>
+                <td class="cell-content top-left" colspan="3">
+                    일반 수집 항목 : 담당자명, 아이디, 연락처, 이메일, 정산
+                    계좌 정보 등
+                    <br />
+                    <span class="small-text"
+                    >* 자세한 내용은 개인정보처리방침 본문 확인</span
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td class="cell-content cell-img">
+                    <img src="${resourcePath}terms/images/label/label_2.png" alt="처리 목적" />
+                    <span>처리 목적</span>
+                </td>
+                <td class="cell-content top-left" colspan="3">
+                    회사에서 수집한 판매자의 개인정보는 판매자 관련 서비스
+                    제공을 위해 필요한 목적으로만 이용합니다. 개인정보의 수집
+                    시 판매자에게 처리 목적을 고지하여 동의를 받고 있습니다.
+                    <br />
+                    <span class="small-text"
+                    >* 자세한 내용은 개인정보처리방침 본문 확인</span
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td class="cell-content cell-img">
+                    <img src="${resourcePath}terms/images/label/label_3.png" alt="보유 기간" />
+                    <span>보유 기간</span>
+                </td>
+                <td class="cell-content top-left" colspan="3">
+                    회사는 판매자의 개인정보를 고지 및 동의 받은 사항에 따라
+                    개인정보를 수집 및 이용하고 있으며, 각 사항은 개별 보유
+                    기간에 따라 관리합니다.
+                    <br />
+                    <span class="small-text"
+                    >* 자세한 내용은 개인정보처리방침 본문 확인</span
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td class="cell-content cell-img">
+                    <img src="${resourcePath}terms/images/label/label_4.png" alt="처리 위탁" />
+                    <span>처리 위탁</span>
+                </td>
+                <td class="cell-content top-left" colspan="3">
+                    판매자에게 서비스 제공을 위해 필요한 경우 개인정보의 처리
+                    업무 중 일부를 외부에 위탁할 수 있습니다. 위탁 받은 업체가
+                    위탁 받은 업무 목적 외로 개인정보를 처리하는 것을
+                    제한하고, 개인정보를 안전하게 처리하는지 관리 감독하고
+                    있습니다.
+                    <br />
+                    <span class="small-text"
+                    >* 자세한 내용은 개인정보처리방침 본문 확인</span
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td class="cell-content cell-img">
+                    <img src="${resourcePath}terms/images/label/label_5.png" alt="제3자 제공" />
+                    <span>제3자 제공</span>
+                </td>
+                <td class="cell-content top-left" colspan="3">
+                    회사는 판매자의 개인정보를 동의 없이 제3자에게 제공하지
+                    않습니다. 개인정보를 제3자에게 제공할 경우 사전에
+                    판매자에게 안내하고 동의를 받습니다.
+
+                    <br />
+                    <span class="small-text"
+                    >* 자세한 내용은 개인정보처리방침 본문 확인</span
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td class="cell-content cell-img">
+                    <img src="${resourcePath}terms/images/label/label_6.png" alt="권리 의무" />
+                    <span>권리 의무</span>
+                </td>
+                <td class="cell-content top-left" colspan="3">
+                    회사는 개인정보 처리에 대해 정보주체의 권리 의무를
+                    보장합니다. 판매자는 본인의 개인정보를 조회하거나 수정할
+                    수 있으며, 수집/이용/제공에 대해 동의를 철회 요청할 수
+                    있습니다.
+                    <br />
+                    <span class="small-text"
+                    >* 자세한 내용은 개인정보처리방침 본문 확인</span
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td class="cell-content cell-img">
+                    <img src="${resourcePath}terms/images/label/label_7.png" alt="개인정보 보호 책임자" />
+                    <span>개인정보 보호 책임자</span>
+                </td>
+                <td class="cell-content top-left">
+                    성명 : 박철광<br />
+                    소속 부서 : 기술연구소
+                </td>
+                <td class="cell-content cell-img">
+                    <img src="${resourcePath}terms/images/label/label_8.png" alt="고충처리부서" />
+                    <span>고충처리부서</span>
+                </td>
+                <td class="cell-content top-left">
+                    담당부서 : 라이프기획팀<br />
+                    이메일 : privacy@rround.com<br />
+                    전화번호 : 02-1551-1020
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p>
+        ※ 자세한 내용은 아래의 개인정보처리방침 본문을 확인하시기
+        바랍니다.
+    </p>
+    <br />
+    <div class="rround-table-scroll">
+        <table class="rround-terms-table">
+            <tbody>
+            <tr>
+                <td class="cell-content">
+                    제 1 조(개인정보의 수집 및 이용)
+                </td>
+                <td class="cell-content cell-img">
+                    <img src="${resourcePath}terms/images/label/label_1.png" alt="" />
+                    <img src="${resourcePath}terms/images/label/label_2.png" alt="" />
+                </td>
+                <td class="cell-content">
+                    제 2 조(개인정보 보유 및 이용기간)
+                </td>
+                <td class="cell-content cell-img">
+                    <img src="${resourcePath}terms/images/label/label_3.png" alt="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="cell-content">
+                    제 3 조(수집한 개인정보의 파기 절차)
+                </td>
+                <td class="cell-content cell-img">
+                    <img src="${resourcePath}terms/images/label/label_9.png" alt="" />
+                </td>
+                <td class="cell-content">제 4 조(개인정보 처리 위탁)</td>
+                <td class="cell-content cell-img">
+                    <img src="${resourcePath}terms/images/label/label_4.png" alt="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="cell-content">제 5 조(개인정보 제 3 자 제공)</td>
+                <td class="cell-content cell-img">
+                    <img src="${resourcePath}terms/images/label/label_5.png" alt="" />
+                </td>
+                <td class="cell-content">
+                    제 6 조(정보주체의 권리 의무 및 행사 방법)
+                </td>
+                <td class="cell-content cell-img">
+                    <img src="${resourcePath}terms/images/label/label_6.png" alt="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="cell-content">
+                    제 7 조(개인정보의 추가적인 이용 · 제공 판단 기준)
+                </td>
+                <td class="cell-content cell-img">
+                    <img src="${resourcePath}terms/images/label/label_10.png" alt="" />
+                </td>
+                <td class="cell-content">
+                    제 8 조(개인정보의 안전성 확보 조치)
+                </td>
+                <td class="cell-content cell-img">
+                    <img src="${resourcePath}terms/images/label/label_11.png" alt="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="cell-content">제 9 조(가명정보의 처리)</td>
+                <td class="cell-content cell-img">
+                    <img src="${resourcePath}terms/images/label/label_12.png" alt="" />
+                </td>
+                <td class="cell-content">
+                    제 10 조(개인정보보호 책임자 및 담당 연락처)
+                </td>
+                <td class="cell-content cell-img">
+                    <img src="${resourcePath}terms/images/label/label_7.png" alt="" />
+                    <img src="${resourcePath}terms/images/label/label_8.png" alt="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="cell-content">
+                    제 11 조(판매자 권익침해에 대한 구제 방법)
+                </td>
+                <td class="cell-content cell-img">
+                    <img src="${resourcePath}terms/images/label/label_13.png" alt="" />
+                </td>
+                <td class="cell-content">
+                    제 12 조(개인정보처리방침의 변경)
+                </td>
+                <td class="cell-content cell-img">
+                    <img src="${resourcePath}terms/images/label/label_14.png" alt="" />
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <br/><br/>
+    <div class="terms-tit">제 1 조(개인정보의 수집 및 이용)</div>
+    <div class="terms-con">
+        회사는 개인정보 보호법에 따라 서비스 제공을 위해 필요 최소한의
+        범위 내에서 개인정보를 수집 • 이용하고 있습니다.
+        <ul class="inner-text no-desc">
+            <li>
+                1. 정보주체의 동의를 받지 않고 처리하는 개인정보
+                <ul class="inner-text no-desc">
+                    <li>
+                        <p class="table-tit">
+                            회사는 『개인정보 보호법』에 따라 다음 개인정보 항목에
+                            대하여 정보주체의 동의 없이 처리하고 있습니다.
+                        </p>
+                        <div class="rround-table-scroll">
+                            <table class="rround-terms-table">
+                                <thead>
+                                <tr>
+                                    <th>연번</th>
+                                    <th>분류</th>
+                                    <th>이용 목적</th>
+                                    <th>수집 • 이용 항목</th>
+                                    <th>이용 및 보유기간</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="cell-content">1</td>
+                                    <td class="cell-content">
+                                        담당자 계정 생성 및 로그인 관리
+                                    </td>
+                                    <td class="cell-content">
+                                        파트너 어드민 서비스 이용을 위한 계정 발급 및
+                                        관리, 부정 가입 또는 이용의 방지, 재가입 시의
+                                        가입자 확인
+                                    </td>
+                                    <td class="cell-content">
+                                        담당자명 • 연락처 • 이메일, 아이디, 비밀번호,
+                                        정산 계좌 정보(은행명, 예금주명, 계좌번호)
+                                    </td>
+                                    <td class="cell-content">
+                                        <strong>서비스 탈퇴 시까지</strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="cell-content">2</td>
+                                    <td class="cell-content">
+                                        사업자 정보 설정 및 관리
+                                    </td>
+                                    <td class="cell-content">
+                                        파트너 어드민 내 사업자 정보의 추가 등록 및 관리
+                                    </td>
+                                    <td class="cell-content">
+                                        <strong>회계/정산 담당자 정보</strong><br />
+                                        (회계/..정산 담당자명, 연락처, 이메일)<br />
+                                        <strong>CS담당자 정보</strong><br />
+                                        (CS 담당자명, 연락처, 이메일)<br />
+                                        <strong>개인정보 담당자 정보</strong><br />
+                                        (개인정보보호책임자명, 연락처, 이메일)<br />
+                                        <br />
+
+                                        * 해당 항목은 선택 입력 항목, 입력 시 수집 •
+                                        이용
+                                    </td>
+                                    <td class="cell-content">
+                                        <strong>서비스 탈퇴 시까지</strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="cell-content">3</td>
+                                    <td class="cell-content">
+                                        정산 및 세금계산서 발행
+                                    </td>
+                                    <td class="cell-content">
+                                        라운드 스토어 서비스 내의 판매 활동을 통한
+                                        판매대금 및 쿠폰•포인트•배송비의 정산처리, 요금
+                                        추심, 계산서 또는 청구서의 발송 등
+                                    </td>
+                                    <td class="cell-content">
+                                        <strong>1. 담당자 정보</strong><br />
+                                        1) 회계/정산 담당자 정보 입력 시<br />
+                                        회계/정산 담당자명 • 연락처 • 이메일<br />
+                                        <br />
+
+                                        2) 회계/정산 담당자 정보 미입력 시<br />
+                                        담당자명 • 연락처 • 이메일<br />
+                                        <br />
+
+                                        <strong>2. 계좌 정보</strong><br />
+                                        은행명, 예금주명, 계좌번호
+                                    </td>
+                                    <td class="cell-content">
+                                        <strong>
+                                            서비스 탈퇴 시까지 (관련 법령에 따른 보존
+                                            기한이 있을 경우 그 기한 우선)
+                                        </strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="cell-content">4</td>
+                                    <td class="cell-content">
+                                        배송정책 등록 및 관리
+                                    </td>
+                                    <td class="cell-content">
+                                        라운드 스토어 서비스 등록 상품의 배송 정보 등록
+                                        관리
+                                    </td>
+                                    <td class="cell-content">
+                                        <strong>출고지 정보</strong><br />
+                                        (출고지명, 담당자명, 연락처, 출고지 주소, 출고지
+                                        상세 주소, 우편번호)<br />
+                                        <br />
+
+                                        <strong>교환/반품지 정보</strong><br />
+                                        (교환/반품지명, 담당자명, 연락처, 교환/반품지
+                                        주소, 교환/반품지 상세 주소, 우편번호)
+                                    </td>
+                                    <td class="cell-content">
+                                        <strong
+                                        >서비스 탈퇴 시까지(관련 법령에 따른 보존 기한
+                                            이 있을 경우 그 기한 우선)</strong
+                                        >
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="cell-content">5</td>
+                                    <td class="cell-content">
+                                        파트너/브랜드 스토어 운영 및 관리
+                                    </td>
+                                    <td class="cell-content">
+                                        라운드 스토어 내의 ‘파트너/브랜드’ 스토어의 운영
+                                        관리, 파트너/브랜드 스토어 정보 관리
+                                    </td>
+                                    <td class="cell-content">
+                                        스토어 정보 <br />
+                                        (스토어명, 스토어 URL, 스토어 연락처)
+                                    </td>
+                                    <td class="cell-content">
+                                        <strong>서비스 탈퇴 시까지</strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="cell-content">6</td>
+                                    <td class="cell-content">판매자 고충 처리</td>
+                                    <td class="cell-content">
+                                        라운드 스토어 입점 판매자의 본인 확인, 민원 사항
+                                        확인 및 처리
+                                    </td>
+                                    <td class="cell-content">
+                                        담당자 정보, 연락처, 이름, 이메일
+                                    </td>
+                                    <td class="cell-content">
+                                        <strong
+                                        >서비스 탈퇴 후 3년까지(관련 법령에 따른 보존
+                                            기한이 있을 경우 그 기한 우선)</strong
+                                        >
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>
+                            ● 법적 근거<br />
+                            1 ~ 6 : 개인정보 보호법 제 15 조 제 1 항 제 4 호(계약의
+                            이행),
+                        </p>
+                    </li>
+                    <li>
+                        2. 정보주체의 동의를 받고 처리하는 개인정보
+                        <ul class="inner-text no-desc">
+                            <li>
+                                <p class="table-tit">
+                                    회사는 『개인정보 보호법』에 따라 다음 개인정보
+                                    항목에 대하여 정보주체의 동의를 받아 처리하고
+                                    있습니다.
+                                </p>
+                                <div class="rround-table-scroll">
+                                    <table class="rround-terms-table">
+                                        <thead>
+                                        <tr>
+                                            <th>연번</th>
+                                            <th>분류</th>
+                                            <th>이용 목적</th>
+                                            <th>수집 • 이용 항목</th>
+                                            <th>이용 및 보유기간</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="cell-content">1</td>
+                                            <td class="cell-content">
+                                                입점 신청 및 심사, 판매자 계약 체결
+                                            </td>
+                                            <td class="cell-content">
+                                                입점 자격 확인, 계약 체결 및 정보의 관리,
+                                                파트너 어드민 계정 내 정보 등록
+                                            </td>
+                                            <td class="cell-content">
+                                                <strong>사업자 정보</strong><br />
+                                                (사업자 유형, 업체명, 대표자명, 사업자번호,
+                                                업태, 업종, 통신판매업번호, 대표자 연락처,
+                                                대표자 이메일, 사업자 소재지)
+                                                <strong>담당자 정보</strong><br />
+                                                (담당자명, 아이디, 연락처, 이메일, 정산
+                                                계좌)<br />
+                                                <strong>스토어 정보</strong><br />
+                                                (스토어명, 스토어 URL, 스토어 연락처)
+                                                <strong>계약 첨부 서류</strong><br />
+                                                (사업자등록증, 통장사본, 통신판매업신고증,
+                                                인감증명서, 상표권리증빙자료(선택))
+                                            </td>
+                                            <td class="cell-content">
+                                                <strong>
+                                                    (1)입점 승인 시 : 계약 종료 및 서비스 탈퇴
+                                                    시까지 (단, 판매자 고충 처리를 위해 담당자
+                                                    정보는 3년까지 보관 후 파기하며, 관련
+                                                    법령에 따른 보존 기한이 있을 경우 그 기한
+                                                    우선)
+                                                    <br />
+                                                    <br />
+                                                    (2)입점 반려 시 : 즉시 파기
+                                                </strong>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p>
+                                    ● 법적 근거<br />
+                                    1 : 개인정보 보호법 제 15 조 제 1 항 제 1
+                                    호(정보주체의 동의)
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <br/><br/>
+    <div class="terms-tit">제 2 조(개인정보 보유 및 이용기간)</div>
+    <div class="terms-con">
+        <ul class="inner-text no-desc">
+            <li>
+                1. 회사는 판매자로부터 개인정보를 수집 시에 동의 받은 개인정보
+                이용 및 보유기간 내에서 개인정보를 보관 및 이용합니다.
+            </li>
+            <li>
+                2. 회사는 서비스 이용에 따른 채권/채무 관계가 잔존하는
+                경우에는 해당 채권/채무 관계가 정산될 때까지 필요한 개인정보를
+                보관 및 이용할 수 있습니다.
+            </li>
+            <li>
+                3. 판매자가 서비스 계약 해지를 요청하거나 개인정보 수집 및
+                이용에 대한 동의를 철회하는 경우 및 개인정보의 삭제를 요청하는
+                경우 철회/삭제를 요청한 범위의 개인정보를 지체없이 파기합니다.
+                단, 상법, 국세기본법 등 전자상거래 등에서의 소비자 보호에 관한
+                법률 등 관계 법령에 따라 개인정보를 계속 보존하여야 하는
+                경우에는, 해당 개인정보를 별도로 분리하여 저장•관리합니다. 이
+                경우 회사는 보관하는 정보를 그 보관의 목적으로만 이용하며 보존
+                기간은 다음과 같습니다.
+
+                <div class="rround-table-scroll">
+                    <table class="rround-terms-table">
+                        <thead>
+                        <tr>
+                            <th>근거법령</th>
+                            <th>보존정보</th>
+                            <th>보존기간</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="cell-content">
+                                『전자상거래 등에서의 소비자보호에 관한 법률
+                                시행령』 제 6 조 제1항 제2호
+                            </td>
+                            <td class="cell-content">
+                                계약 또는 청약철회 등에 관한 기록
+                            </td>
+                            <td class="cell-content">5년</td>
+                        </tr>
+                        <tr>
+                            <td class="cell-content">
+                                『전자상거래 등에서의 소비자보호에 관한 법률
+                                시행령』 제 6 조 제1항 제3호
+                            </td>
+                            <td class="cell-content">
+                                대금결제 및 재화 등의 공급에 관한 기록
+                            </td>
+                            <td class="cell-content">5년</td>
+                        </tr>
+                        <tr>
+                            <td class="cell-content">
+                                『상법』제 33 조 제1항, 『국세기본법』제 85 조의 3
+                                제2항, 『소득세법』제160조의2 제1항,
+                                『부가가치세법』제 71 조 제3항, 『법인세법』 제116조
+                                제1항
+                            </td>
+                            <td class="cell-content">
+                                거래에 관한 장부 및 증빙 서류
+                            </td>
+                            <td class="cell-content">5년</td>
+                        </tr>
+                        <tr>
+                            <td class="cell-content">
+                                『전자상거래 등에서의 소비자보호에 관한 법률
+                                시행령』 제 6 조 제1항 제4호
+                            </td>
+                            <td class="cell-content">
+                                소비자의 불만 또는 분쟁처리에 관한 기록
+                            </td>
+                            <td class="cell-content">3년</td>
+                        </tr>
+                        <tr>
+                            <td class="cell-content">
+                                『전자상거래 등에서의 소비자보호에 관한 법률
+                                시행령』 제 6 조 제1항 제1호
+                            </td>
+                            <td class="cell-content">표시/광고에 관한 기록</td>
+                            <td class="cell-content">6개월</td>
+                        </tr>
+                        <tr>
+                            <td class="cell-content">
+                                『통신비밀보호법 시행령』 제41조 제2항 제2호
+                            </td>
+                            <td class="cell-content">
+                                접속에 관한 기록 등 통신사실확인자료
+                            </td>
+                            <td class="cell-content">3개월</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <br/><br/>
+    <div class="terms-tit">제 3 조(수집한 개인정보의 파기 절차)</div>
+    <div class="terms-con">
+        <ul class="inner-text no-desc">
+            <li>
+                1. 회사는 수집한 개인정보를 개인정보 보유기간의 경과,
+                이용목적의 달성 등 개인정보가 불필요하게 되었을 때에는
+                지체없이 해당 개인정보를 파기합니다. 파기절차 및 방법은 다음과
+                같습니다.
+                <ul class="inner-text no-desc">
+                    <li>
+                        ① 파기절차: 회사는 파기 사유가 발생한 개인정보를 선정하고,
+                        회사의 개인정보 보호책임자의 승인을 받아 개인정보를
+                        파기합니다.
+                    </li>
+                    <li>
+                        ②파기기한: 판매자의 개인정보 보유기간이 경과 시
+                        삭제합니다. 다만, 타인의 개인정보를 도용하여 회원가입 등을
+                        하였음을 알게 된 때 회사는 지체없이 해당 판매자에게 필요한
+                        조치를 취할 수 있습니다. 또 판매자 중 자신의
+                        개인정보도용을 인지한 판매자가 해당 판매자에 대해 서비스
+                        이용정지 또는 탈퇴를 요구하는 경우에도 필요한 조치를 취할
+                        수 있으며, 소정의 절차를 거쳐 유관기관 혹은 관계기관에 그
+                        내용이 제출될 수 있습니다.
+                    </li>
+                    <li>
+                        ③파기방법: 종이에 출력된 개인정보는 분쇄기로 분쇄 또는
+                        소각하거나 화학약품 처리를 하여 용해하여 파기하고, 전자적
+                        파일형태로 저장된 개인정보는 기록을 재생할 수 없는 기술적
+                        방법을 사용하여 삭제합니다.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                2. 판매자로부터 동의 받은 개인정보의 보유기간이 경과하거나
+                처리목적이 달성되었음에도 불구하고 다른 법령에 따라 개인정보를
+                계속 보존하여야 하는 경우에는, 해당 개인정보를 별도의
+                데이터베이스(DB)로 옮기거나 보관장소를 달리하여 보존합니다.
+            </li>
+        </ul>
+        <p>
+            ※ 다른 법령에 따라 보존하는 개인정보의 항목과 보존 근거는
+            개인정보처리방침 내 제 2 조(개인정보 보유 및 이용기간)에서 확인
+            가능합니다.
+        </p>
+    </div>
+    <br/><br/>
+    <div class="terms-tit">제 4 조(개인정보 처리 위탁)</div>
+    <div class="terms-con">
+        회사는 서비스 향상을 위해서 아래와 같이 개인정보를 위탁하고
+        있으며, 관계 법령에 따라 개인정보가 안전하게 관리될 수 있도록
+        필요한 사항을 규정하고 있습니다. 회사의 개인정보 위탁 업체 및 위탁
+        업무 내용은 아래와 같습니다.
+        <ul class="inner-text no-desc">
+            <li>
+                1. 회사는 원활한 개인정보 업무 처리를 위해 다음과 같이
+                개인정보 처리 업무를 위탁하고 있습니다.
+                <p class="table-tit">[수탁업체]</p>
+                <div class="rround-table-scroll">
+                    <table class="rround-terms-table">
+                        <thead>
+                        <tr>
+                            <th>수탁자</th>
+                            <th>위탁업무의 내용</th>
+                            <th>보유 기간</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="cell-content">인포뱅크 주식회사</td>
+                            <td class="cell-content">
+                                알림톡, 문자메시지 발송 대행
+                            </td>
+                            <td class="cell-content">위탁 계약 종료 시까지</td>
+                        </tr>
+                        <tr>
+                            <td class="cell-content">네이버클라우드 주식회사</td>
+                            <td class="cell-content">이메일 발송 대행</td>
+                            <td class="cell-content">
+                                <strong>이메일 발송 완료 시 즉시 파기</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="cell-content">㈜드림베이</td>
+                            <td class="cell-content">
+                                회원제 서비스 이용에 따른 본인 확인, 판매자 상담,
+                                불만 처리 등 판매자 지원 업무
+                            </td>
+                            <td class="cell-content">
+                                <strong>
+                                    회원 탈퇴 시 또는 위탁 계약 종료 시까지 단, 관계
+                                    법령에 따른 보존기간이 있을 경우 해당 기간까지
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="cell-content">㈜헥토파이낸셜</td>
+                            <td class="cell-content">
+                                전자지급결제대행 및 결제대금 예치서비스, 결제대금
+                                정산지급의 대행
+                            </td>
+                            <td class="cell-content">
+                                <strong>
+                                    회원 탈퇴 시 또는 위탁 계약 종료 시까지 단, 관계
+                                    법령에 따른 보ㄷ존기간이 있을 경우 해당 기간까지
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="cell-content">㈜다우기술</td>
+                            <td class="cell-content">
+                                주문관리서비스(사방넷)의 판매자 정보 확인, 파트너
+                                어드민 내 정보의 처리 대행
+                            </td>
+                            <td class="cell-content">
+                                <strong>
+                                    회원 탈퇴 시 또는 위탁 계약 종료 시까지 단, 관계
+                                    법령에 따른 보존기간이 있을 경우 해당 기간까지
+                                </strong>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="table-tit">[재수탁업체]</p>
+                <div class="rround-table-scroll">
+                    <table class="rround-terms-table">
+                        <thead>
+                        <tr>
+                            <th>수탁자</th>
+                            <th>재수탁자</th>
+                            <th>재위탁 업무의 내용</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="cell-content">㈜다우기술</td>
+                            <td class="cell-content">㈜굿스플로</td>
+                            <td class="cell-content">택배 송장 출력 서비스</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <br/><br/>
+    <div class="terms-tit">제 5 조(개인정보 제3자 제공)</div>
+    <ul class="inner-text no-desc">
+        <li>
+            1. 회사는 판매자의 개인정보를 개인정보의 처리 목적에서 명시한
+            범위 내에서만 처리하며, 판매자의 동의, 법률의 특별한 규정 등
+            『개인정보 보호법』 제 17 조 및 제 18 조에 해당하는 경우에만
+            개인정보를 제 3자에게 제공하고 그 이외에는 판매자의 개인정보를
+            제 3자에게 제공하지 않습니다.
+        </li>
+        <li>
+            2. 회사는 『개인정보 보호법』 제 15 조 제 3 항 또는 제 17 조 제
+            4 항에 따라 당 초 수집 목적과 합리적으로 관련된 범위에서
+            판매자의 동의 없이 개인정보를 이용 또는 제공할 수 있습니다. 이
+            때 당 초 수집 목적과 관련성이 있는지, 수집한 정황 또는 처리
+            관행에 비추어 볼 때 개인정보의 추가적인 이용 또는 제공에 대한
+            예측 가능성이 있는지, 판매자의 이익을 부당하게 침해하는지,
+            가명처리 또는 암호화 안전성 확보에 필요한 조치를 하였는지를
+            종합적으로 고려합니다.
+        </li>
+        <li>
+            3. 라운드 스토어 서비스의 특성상 각 판매자의 정보가 라운드
+            스토어 서비스 이용자에게 공개 또는 제공될 수 있습니다. 다만,
+            해당 정보는 판매자가 각 스토어 또는 상품에 게시한 정보의 범위에
+            한정되고, 회사는 판매자가 별도로 공개하지 않은 정보를 제 3자에게
+            공개하거나 제공하지 않습니다.
+        </li>
+    </ul>
+    <br/><br/>
+    <div class="terms-tit">
+        제 6 조(정보주체의 권리 의무 및 행사 방법)
+    </div>
+    <ul class="inner-text no-desc">
+        <li>
+            1. 판매자는 언제든지 개인정보의 열람 • 정정 • 삭제 • 처리정지 및
+            동의 철회 요구 등의 정보주체로서의 권리를 행사할 수 있습니다.
+            <ul class="inner-text no-desc">
+                <li>
+                    1) 판매자는 언제든 개인정보 열람 • 정정을 언제든지 요청할 수
+                    있습니다. 단, 등록이 완료된 서류 또는 사업자 정보 등은
+                    정정이 불가능하나, 행정상의 문제로 인한 정보의 변경이 있을
+                    경우 예외적으로 허용될 수 있습니다.
+
+                    <ul class="inner-text no-desc">
+                        <li>① 파트너 어드민 > 기본정보 관리 > 사업자정보 설정</li>
+                        <li>② 전자우편 또는 서면으로 요청</li>
+                    </ul>
+                </li>
+                <li>
+                    2) 판매자는 언제든지 개인정보 처리의 정지를 요청할 수
+                    있습니다. 다만, 아래 사유에 해당하는 경우 회사는 처리정지
+                    요구를 반려할 수 있습니다.
+                    <ul class="inner-text no-desc">
+                        <li>
+                            ① 법률에 특별한 규정이 있거나 법령상의 의무를 준수하기
+                            위하여 불가피한 경우
+                        </li>
+                        <li>
+                            ② 다른 사람의 생명 및 신체를 해할 우려가 있거나, 다른
+                            사람의 재산과 그 밖의 이익을 부당하게 침해할 우려가 있는
+                            경우
+                        </li>
+                        <li>
+                            ③ 개인정보를 처리하지 아니하면 정보주체와의 약정된
+                            서비스를 제공하지 못하는 등의 계약 이행이 곤란한 경우로,
+                            정보주체가 그 계약의 해지 의사를 명확하게 밝히지 않은
+                            경우
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    3) 판매자는 언제든지 개인정보의 수집 및 이용 • 제공에 대해
+                    동의한 내용을 철회할 수 있습니다.
+                    <ul class="inner-text no-desc">
+                        <li>
+                            ① 삭제 및 회원 탈퇴 : 전자우편 또는 서면을 통한 삭제,
+                            탈퇴 요청
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    4) 권리의 행사는 대리인을 통해 진행할 수 있으나, 이 경우
+                    『개인정보 처리 방법에 관한 고시』 별지 제 11 호 서식에 따른
+                    위임장 제출이 필요합니다.
+                </li>
+                <li>
+                    5) 정보주체의 개인정보 열람 및 처리정지 요구는 『개인정보
+                    보호법』 제 35 조 제 4항 및 제 37 조 제 2 항에 의하여 제한될
+                    수 있고, 기타 법령에서 그 개인정보가 수집대상으로 명시되어
+                    있을 경우 해당 개인정보의 삭제를 요구할 수 없습니다.
+                </li>
+                <li>
+                    6) 권리행사의 접수 • 처리부서에 대한 추가 안내는 제10조
+                    개인정보 보호책임자 및 담당 연락처에서 확인할 수 있습니다.
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <br/><br/>
+    <div class="terms-tit">
+        제 7 조(개인정보의 추가적인 이용 • 제공 판단 기준)
+    </div>
+    <div class="terms-con">
+        회사는 『개인정보 보호법』 제15조 제3항 또는 제17조 제4항에 따라
+        동법 시행령 제14조의2에 따른 사항을 고려하여 판매자의 동의 없이
+        개인정보를 추가적으로 이용 • 제공할 수 있습니다.<br />
+        <br />
+        회사는 사용자의 동의 없이 추가적인 이용 • 제공을 하기 위해서
+        다음과 같은 사항을 고려합니다.
+
+        <ul class="inner-text no-desc">
+            <li>
+                - 개인정보를 추가적으로 이용 • 제공하려는 목적이 당초 수집
+                목적과 관련성이 있는지 여부
+            </li>
+            <li>
+                - 개인정보를 수집한 정황 또는 처리 관행에 비추어 볼 때
+                추가적인 이용 • 제공에 대한 예측 가능성이 있는지 여부
+            </li>
+            <li>
+                - 개인정보의 추가적인 이용 • 제공이 판매자의 이익을 부당하게
+                침해하는지 여부
+            </li>
+            <li>
+                - 가명처리 또는 암호화 등 안전성 확보에 필요한 조치를 하였는지
+                여부
+            </li>
+        </ul>
+    </div>
+    <br/><br/>
+    <div class="terms-tit">제 8 조(개인정보의 안전성 확보 조치)</div>
+    <div class="terms-con">
+        회사는 개인정보의 안전성 확보를 위해 다음과 같은 조치를 취하고
+        있습니다.
+        <ul class="inner-text no-desc">
+            <li>
+                1. 관리적 조치 : 내부관리계획수립 및 시행, 정기적 직원 교육 등
+            </li>
+            <li>
+                2. 기술적 조치 : 개인정보처리시스템 등의 접근 권한 관리, 접근
+                통제 시스템 설치, 개인정보의 암호화, 보안프로그램 설치
+            </li>
+            <li>3. 물리적 조치 : 전산실, 자료 보관실 등 접근 통제</li>
+        </ul>
+    </div>
+    <br/><br/>
+    <div class="terms-tit">제 9 조(가명정보의 처리)</div>
+    <ul class="inner-text no-desc">
+        <li>
+            1. 회사는 통계 작성, 과학적 연구, 공익적 기록 보존 등을 위하여
+            필요한 경우 수집한 개인정보를 특정 개인이 알아볼 수 없도록 가명
+            처리할 수 있습니다.
+        </li>
+        <li>
+            2. 『개인정보 보호법』 제 28 조의 2부터 제 28 조의 7에 따라
+            가명정보 처리, 위탁, 제 3자 제공을 하는 경우, 본
+            개인정보처리방침을 통하여 공개하겠습니다.
+        </li>
+        <li>
+            3. 회사가 가명처리를 하는 경우, 회사는 최소한의 항목을 가명
+            처리하며, 가명 정보가 재식별되지 않도록 분리 및 관리하고 제 8
+            조와 같은 기술적, 관리적 보호조치를 취하겠습니다.
+        </li>
+    </ul>
+    <br/><br/>
+    <div class="terms-tit">
+        제 10 조(개인정보 보호책임자 및 담당 연락처)
+    </div>
+    <ul class="inner-text no-desc">
+        <li>
+            1. 회사는 개인정보 처리에 관한 업무를 총괄해서 책임지고,
+            개인정보 처리와 관련한 판매자의 불만 처리 및 피해 구제 등을
+            위하여 아래와 같이 개인정보 보호책임자 등을 지정하고 있습니다.
+            <div class="rround-table-scroll">
+                <table class="rround-terms-table">
+                    <thead>
+                    <tr>
+                        <th>개인정보보호책임자</th>
+                        <th>개인정보 고충 처리 담당 부서</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="cell-content">
+                            - 성명: 박철광<br>
+                            - 직책: CPO / CISO<br>
+                            - 소속 기술연구소
+                        </td>
+                        <td class="cell-content">
+                            - 담당부서: 라이프기획팀<br>
+                            - 전화: 1151-1020<br>
+                            - 팩스: 02-6203-4425<br>
+                            - 이메일: privacy@rround.com
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </li>
+        <li>
+            2. 판매자는 회사의 서비스를 이용하면서 발생한 모든 개인정보보호
+            관련 문의, 불만처리, 상담 및 피해구제 등에 관한 사항을 개인정보
+            보호책임자 및 개인정보 보호책임자의 담당부서로 신고 또는 문의할
+            수 있습니다. 회사는 판매자의 문의에 대해 지체 없이 답변 및
+            처리하겠습니다.
+        </li>
+    </ul>
+    <br/><br/>
+    <div class="terms-tit">
+        제 11 조(판매자 권익 침해에 대한 구제 방법)
+    </div>
+    <ul class="inner-text no-desc">
+        <li>
+            1. 판매자는 열람청구 접수 • 처리부서 이외에 개인정보 침해 신고나
+            상담이 필요한 경우 다음의 관련 기관으로 문의하여 도움을 받을 수
+            있습니다.
+
+            <div class="rround-table-scroll">
+                <table class="rround-terms-table">
+                    <thead>
+                    <tr>
+                        <th>개인정보분쟁조정위원회</th>
+                        <th>개인정보침해신고센터</th>
+                        <th>대검찰청 사이버수사과</th>
+                        <th>경찰청 사이버수사국</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="cell-content">(국번없이) 1833-6972</td>
+                        <td class="cell-content">(국번없이) 118</td>
+                        <td class="cell-content">(국번없이) 1301</td>
+                        <td class="cell-content">(국번없이) 182</td>
+                    </tr>
+                    <tr>
+                        <td class="cell-content"><a href="https://kopico.go.kr" target="_blank">http://kopico.go.kr</a></td>
+                        <td class="cell-content"><a href="https://privacy.kisa.or.kr" target="_blank">http://privacy.kisa.or.kr</a></td>
+                        <td class="cell-content"><a href="https://spo.go.kr" target="_blank">http://spo.go.kr</a></td>
+                        <td class="cell-content"><a href="https://ecrm.police.go.kr" target="_blank">http://ecrm.police.go.kr</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </li>
+        <li>
+            2. 개인정보 보호법에 따라 개인정보의 열람, 정정, 삭제, 처리정지
+            등의 요구에 대하여 공공기관의 장이 행한 처분 또는 부작위로
+            인하여 권리 또는 이익의 침해는 받은 자는 행정심판법이 정하는
+            바에 따라 행정심판을 청구할 수 있습니다. <br />
+            <br />
+            - 중앙행정심판위원회 : (국번없이) 110 (<a href="https://www.simpan.go.kr" target="_blank">www.simpan.go.kr</a>)
+        </li>
+    </ul>
+    <br/><br/>
+    <div class="terms-tit">
+        제 11 조(개인정보처리방침의 변경)
+    </div>
+    <div class="terms-con">
+        이 개인정보처리방침은 2025년 6월 12일부터 적용됩니다. <br />
+        이전 개인정보처리방침은 이력에서 확인하실 수 있습니다.
+    </div>
+    <div class="terms-con">
+        공고일자 : 2025년 6월 12일<br />
+        시행일자 : 2025년 6월 12일
+    </div>
+    <!-- //게시판 상세 -->
+</div>
+
+<jsp:include page="/WEB-INF/views/terms/common/footer.jsp" />

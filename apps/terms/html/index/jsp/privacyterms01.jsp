@@ -1,0 +1,771 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8"
+pageEncoding="UTF-8" %>
+
+<jsp:include page="/WEB-INF/views/terms/common/header.jsp" />
+
+<div class="modal-body">
+  <!-- 게시판 상세 -->
+  <div class="blank-box" style="height: 72px"></div>
+  <h2 class="title-text"><span>개인정보 처리방침</span></h2>
+  <div class="detail-wrap">
+    <div>
+      주식회사 이노베이션(이하 “회사”)은 라운드를 이용하는 이용자의
+      개인정보보호를 소중하게 생각하고, 개인정보를 보호하기 위해 항상 최선을
+      다하고 있습니다.<br />
+      회사는 개인정보보호법 등 준수하여야 할
+      <strong>관련 법령*</strong>상의 개인정보 규정을 지키며 본
+      개인정보처리방침을 회사가 운영하는 서비스(웹, 모바일 사이트 및 스마트폰 앱
+      포함)에 공개하여 이용자가 언제나 용이하게 열람할 수 있도록 하고
+      있습니다.<br /><br />
+      회사는 정보의 법률 및 지침 변경 등에 따라 수시로 개인정보처리방침을 수정할
+      수 있고, 이에 따른 개인정보처리방침의 지속적인 개선을 위하여 필요한 절차를
+      정하고 있습니다.<br /><br />
+      본 개인정보처리방침은 라운드 서비스를 이용하는 이용자에게 적용되며,
+      이용자가 제공하는 개인정보가 어떠한 용도와 방식으로 이용되고, 개인정보
+      보호를 위해 어떠한 조치를 취하고 있는지에 대한 내용을 담고 있습니다.<br /><br />
+      <strong>*관련 법령</strong> : 「개인정보보호법」, 「신용정보법」,
+      「전자금융거래법」, 「전자상거래법」, 「전자서명법」, 「정보통신망법」 등
+    </div>
+  </div>
+  <p class="table-tit">[주요 개인정보 처리 표시(라벨링)]</p>
+  <div class="rround-table-scroll">
+    <table class="rround-terms-table rround-center-table">
+      <tbody>
+        <tr>
+          <td class="cell-content cell-img">
+            <img
+              src="${resourcePath}terms/images/label/label_1.png"
+              alt="처리항목"
+            />
+            <br />
+            <a
+              href="#"
+              onclick="event.preventDefault(); openTerm('privacyterms011');"
+              >일반 개인정보 수집</a
+            >
+            ※ 세부 항목은 개인정보 처리방침 본문 확인
+          </td>
+          <td class="cell-content cell-img">
+            <img
+              src="${resourcePath}terms/images/label/label_2.png"
+              alt="처리목적"
+            />
+            <br />
+            <a
+              href="#"
+              onclick="event.preventDefault(); openTerm('privacyterms011');"
+              >개인정보 처리목적</a
+            >
+            ※ 세부 항목은 개인정보 처리방침 본문 확인
+          </td>
+          <td class="cell-content cell-img">
+            <img
+              src="${resourcePath}terms/images/label/label_3.png"
+              alt="보유기간"
+            />
+            <br />
+            개인정보의 보유 기간<br />
+            ※ 세부 항목은 개인정보 처리방침 본문 확인
+          </td>
+        </tr>
+        <tr>
+          <td class="cell-content cell-img">
+            <img
+              src="${resourcePath}terms/images/label/label_5.png"
+              alt="제3자 제공"
+            />
+            <br />
+            <a
+              href="#"
+              onclick="event.preventDefault(); openTerm('privacyterms012');"
+              >개인정보의 제공</a
+            >
+            ※ 세부 항목은 개인정보 처리방침 본문 확인
+          </td>
+          <td class="cell-content cell-img">
+            <img
+              src="${resourcePath}terms/images/label/label_4.png"
+              alt="처리 위탁"
+            />
+            <a
+              href="#"
+              onclick="event.preventDefault(); openTerm('privacyterms013');"
+              >처리 위탁</a
+            >
+            ※ 세부 항목은 개인정보 처리방침 본문 확인
+          </td>
+          <td class="cell-content cell-img">
+            <img
+              src="${resourcePath}terms/images/label/label_7.png"
+              alt="고충처리부서"
+            />
+            <img
+              src="${resourcePath}terms/images/label/label_8.png"
+              alt="고충처리부서"
+            />
+            <span>고충처리부서</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-tit">[목차]</p>
+  <ul class="inner-text no-desc">
+    <li>
+      <button type="button" data-target="section-1">
+        ① 개인정보 수집과 이용
+      </button>
+    </li>
+    <li>
+      <button type="button" data-target="section-2">
+        ② 제3자 제공 및 위탁
+      </button>
+    </li>
+    <li>
+      <button type="button" data-target="section-3">③ 보유기간 및 파기</button>
+    </li>
+    <li>
+      <button type="button" data-target="section-4">
+        ④ 개인정보의 안전성 확보 조치
+      </button>
+    </li>
+    <li>
+      <button type="button" data-target="section-5">
+        ⑤ 개인위치정보에 관한 처리
+      </button>
+    </li>
+    <li>
+      <button type="button" data-target="section-5">
+        ⑥ 이용자 및 법정대리인의 권리와 의무 행사 방법
+      </button>
+    </li>
+    <li>
+      <button type="button" data-target="section-6">
+        ⑦ 개인정보보호책임자 및 담당 부서
+      </button>
+    </li>
+    <li>
+      <button type="button" data-target="section-7">
+        ⑧ 개인정보처리방침 변경 고지 및 시행 
+      </button>
+    </li>
+  </ul>
+  <br /><br />
+  <div class="terms-tit" id="section-1">① 개인정보 수집과 이용</div>
+  <div>
+    라운드는 서비스 이용에 반드시 필요한 최소한의 정보를 이용자의 동의를 받아
+    수집하고 있습니다. 서비스 이용에 반드시 필요한 항목은 필수 동의로, 그 외에는
+    선택 동의로 나누어 동의받고 있습니다. 또한, 수집한 항목을 목적 외의 용도로는
+    이용하고 있지 않으며, 처리 항목과 목적이 변경될 경우 개인정보처리방침을
+    지속적으로 업데이트하고 있습니다. 동의를 했더라도 동의를 철회하고 싶다면
+    설정 메뉴(라운드 마이 페이지 &gt; ⚙️설정 &gt; 약관 및 개인정보 처리
+    동의)에서 언제든지 철회할 수 있습니다.
+  </div>
+  <p class="table-tit">
+    라운드에서는 4가지 유형의 개인정보를 수집 및 처리하고 있습니다.
+  </p>
+  <ul class="inner-text no-desc">
+    <li>
+      1. 라운드 앱에서 수집하는 정보
+      <ul class="inner-text no-desc">
+        <li>
+          <strong
+            ><a
+              href="#"
+              onclick="event.preventDefault(); openTerm('privacyterms011');"
+              >🔍 서비스별 개인정보 수집 내역 자세히 보기</a
+            ></strong
+          >
+        </li>
+      </ul>
+    </li>
+    <li>
+      2. 정보주체 이외로부터 수집한 정보(제휴사로부터 제공받는 정보)
+      <ul class="inner-text no-desc">
+        <li>
+          라운드는 정보주체 이외로부터 개인정보를 제공(제3자 제공 및 위수탁 처리
+          등) 받아 서비스를 제공하고 있습니다.<br />
+
+          <strong class="toggle-table">
+            <span class="arrow">▶</span> 🔍 정보주체 이외로부터 수집한 개인정보
+            자세히 보기</strong
+          >
+          <div class="rround-table-scroll hide">
+            <table class="rround-terms-table">
+              <thead>
+                <tr>
+                  <th>분류</th>
+                  <th>서비스명(구분)</th>
+                  <th>제공받는 목적</th>
+                  <th>제공하는 자</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="cell-content">알림</td>
+                  <td class="cell-content">푸시 알림</td>
+                  <td class="cell-content">
+                    라운드 휘슬 고객 알림 메시지 발송<br />
+                    - 단속알림, 검사 알림, 세차 알림 등 차량 관리 서비스
+                  </td>
+                  <td class="cell-content">(주)모노플랫폼</td>
+                </tr>
+                <tr>
+                  <td class="cell-content">알림</td>
+                  <td class="cell-content">푸시 알림</td>
+                  <td class="cell-content">
+                    라운드 페이 고객 알림 메시지 발송
+                  </td>
+                  <td class="cell-content">(주)헥토파이낸셜</td>
+                </tr>
+                <tr>
+                  <td class="cell-content">계정</td>
+                  <td class="cell-content">SNS 간편로그인</td>
+                  <td class="cell-content">
+                    서비스 이용을 위한 본인 확인 및 식별
+                  </td>
+                  <td class="cell-content">(주)카카오, (주)네이버</td>
+                </tr>
+                <tr>
+                  <td class="cell-content">계정</td>
+                  <td class="cell-content">SNS 간편로그인</td>
+                  <td class="cell-content">서비스 이용을 위한 계정 식별</td>
+                  <td class="cell-content">Google LLC, Apple Inc.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li>
+      3. 상담 및 민원 처리 과정에서 수집한 정보
+      <p class="table-tit">
+        1:1 문의 등, 라운드 고객센터를 통한 피해 사고 신고 및 민원 접수
+        과정에서도 개인정보를 수집하고 있습니다.
+      </p>
+      <ul class="inner-text no-desc">
+        <li>
+          <strong class="toggle-table"
+            ><span class="arrow">▶</span> 🔍 상담 및 민원 처리 과정에서 수집된
+            개인정보 자세히 보기</strong
+          >
+          <div class="rround-table-scroll hide">
+            <table class="rround-terms-table">
+              <thead>
+                <tr>
+                  <th>구분</th>
+                  <th>처리 목적</th>
+                  <th>처리 항목</th>
+                  <th>보유 기간</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="cell-content">라운드 앱 내 고객센터</td>
+                  <td class="cell-content">고객 민원 해결</td>
+                  <td class="cell-content">
+                    이름(국문 및 영문), 휴대전화번호, 서비스 이용 정보
+                  </td>
+                  <td class="cell-content">
+                    전자상거래법에 근거한 기간 보존 후 파기<br />
+                    (탈퇴 후 3년 동안 분리보관하여 파기)
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li>
+      4. 자동 생성으로 수집된 정보 (및 행태 정보의 처리)
+      <p class="table-tit">
+        서비스 이용 과정이나 개인정보 처리 과정에서도 정보들이 자동으로 생성 및
+        수집될 수 있습니다.
+      </p>
+      <strong
+        ><a
+          href="#"
+          onclick="event.preventDefault(); openTerm('privacyterms014');"
+          >🔍 자동 생성으로 수집된 정보 자세히 보기</a
+        ></strong
+      >
+      <div class="terms-con">
+        추가 안내 사항
+        <ul class="inner-text">
+          <li>
+            이용자의 라운드 서비스 이용이 처음인 경우 필수적인 정보 입력을
+            요청할 수 있으며, 라운드가 이미 보유하고 있는 정보가 있다면 입력을
+            생략하거나 이용자를 위하여 입력 편의성을 제공할 수 있습니다.
+          </li>
+          <li>
+            관계 법령에 따라 정보 및 기능성 메시지(결제 내역, 개인정보 처리
+            정기적 안내, 광고·마케팅 수신 동의 고지 등)는 이용자의 동의 없이
+            발송될 수 있습니다. 이는 등록된 연락처를 통해 발송되며, 광고성
+            정보에 대한 것은 선택적으로 동의한 이용자에게만 전송됩니다.
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+  <div class="terms-tit" id="section-2">② 제3자 제공 및 위탁</div>
+  <div>
+    라운드는 제휴사에게 개인정보를 제공하기도 하고, 개인정보 업무를 위탁하여
+    처리하기도 합니다. 제3자 제공과 위탁 처리 사항이 변경될 시
+    개인정보처리방침을 지속적으로 업데이트하고 있습니다. 개인정보의 처리
+    목적에서 명시한 범위 내에서만 처리하며, 제3자 제공과 위탁 목적 외에는
+    개인정보를 제공하지 않습니다. 목적 외에 제공/위탁이 발생할 경우,
+    정보주체에게 추가 동의를 받거나 법률의 특별한 규정 등 「개인정보 보호법」
+    제17조 및 제18조에 해당하는 경우에만 제공하고 있습니다.
+  </div>
+  <br />
+  <p class="table-tit">1) 제3자 제공</p>
+  <p>
+    라운드는 이용자의 제3자 정보 제공 동의를 얻어 제휴사에게 정보를 제공하는
+    경우, 반드시 필요한 최소의 정보만 제공하고 있습니다.
+  </p>
+  <ul class="inner-text no-desc">
+    <li>
+      <div>
+        <strong>
+          <a
+            href="#"
+            onclick="event.preventDefault(); openTerm('privacyterms012');"
+            >🔍 개인정보 제3자 제공 목록 자세히 보기</a
+          >
+        </strong>
+      </div>
+    </li>
+  </ul>
+  <!--  -->
+
+  <!--  -->
+  <br />
+  <p class="table-tit">2) 위탁(및 재위탁)</p>
+  <p>
+    라운드는 위탁 및 재위탁 계약 체결 시 수탁자가 개인정보를 안전하게 관리할 수
+    있도록 확인하고 있습니다.
+  </p>
+  <ul class="inner-text no-desc">
+    <li>
+      <strong
+        ><a
+          href="#"
+          onclick="event.preventDefault(); openTerm('privacyterms013');"
+          >🔍 개인정보 위탁 처리 목록 자세히 보기</a
+        >
+      </strong>
+    </li>
+  </ul>
+  <div class="terms-tit" id="section-3">③ 보유기간 및 파기</div>
+  <p class="table-tit">1) 보유기간</p>
+  <p>
+    라운드는 이용자에게 동의 받은 ‘이용 및 보유기간’ 또는 관련 법령에 따라
+    개인정보를 보유 및 이용합니다. 서비스마다 수집되는 개인정보에 대한
+    보유기간은 &lt;① 개인정보 수집과 이용&gt;에서 확인할 수 있습니다.
+  </p>
+  <ul class="inner-text no-desc">
+    <li>
+      <strong class="toggle-table">
+        <span class="arrow">▶</span> 🔍 관련 법령 및 회사 내부 방침에 따른
+        보존기간 자세히 보기
+      </strong>
+      <div class="rround-table-scroll hide">
+        <p class="table-tit">1) 관련 법령에 따른 보존</p>
+        <table class="rround-terms-table">
+          <thead>
+            <tr>
+              <th>구분</th>
+              <th>보유기간</th>
+              <th>관련 법령</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="cell-content">거래에 관한 장부 및 증빙 서류</td>
+              <td class="cell-content">5년</td>
+              <td class="cell-content">
+                상법 제33조, 국세기본법 제85조의 3, 소득세법 제160조의 2,
+                법인세법 제116조, 부가가치세법 제71조
+              </td>
+            </tr>
+            <tr>
+              <td class="cell-content">
+                계약 또는 청약철회, 대금결제, 재화 등의 공급기록
+              </td>
+              <td class="cell-content">5년</td>
+              <td class="cell-content">전자상거래법 제6조</td>
+            </tr>
+            <tr>
+              <td class="cell-content">
+                소비자 불만 또는 분쟁처리에 관한 기록
+              </td>
+              <td class="cell-content">3년</td>
+              <td class="cell-content">전자상거래법 제6조</td>
+            </tr>
+            <tr>
+              <td class="cell-content">표시ㆍ 광고에 관한 기록</td>
+              <td class="cell-content">6개월</td>
+              <td class="cell-content">전자상거래법 제6조</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="table-tit">2) 회사 내부 방침에 따른 보존</p>
+        <div class="rround-table-scroll">
+          <table class="rround-terms-table">
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th>보유기간</th>
+                <th>보존 근거</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="cell-content">
+                  부정 이용 기록(부정가입, 규정 위반 기록, 어뷰징 등 비정상적인
+                  서비스 이용 기록)
+                </td>
+                <td class="cell-content">1년</td>
+                <td class="cell-content">라운드 부정사용 방지</td>
+              </tr>
+              <tr>
+                <td class="cell-content">
+                  고객 문의 내역(안내 메일, 1:1문의 등 CS 이용 기록)
+                </td>
+                <td class="cell-content">1년</td>
+                <td class="cell-content">라운드 민원 대응</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <p class="table-tit">2) 파기</p>
+  <div class="terms-con">
+    (1) 파기 절차
+    <p>
+      파기 사유가 발생한 개인정보를 선정하고, 다음 사항에 대해 지체 없이(5일
+      이내) 파기하고 있습니다.
+    </p>
+    <ul class="inner-text no-desc">
+      <li>
+        <strong>1. 개인정보 수집・이용에 대한 동의를 철회하는 경우</strong>
+      </li>
+      <li><strong>2. 수집ㆍ이용 목적이 달성된 경우</strong></li>
+      <li><strong>3. 이용 및 보유기간이 종료된 경우</strong></li>
+      <li>
+        <strong
+          >4. 개인정보가 불필요하게 되었을 경우(해당 서비스의 종료 등)</strong
+        >
+      </li>
+    </ul>
+    <p>
+      위 경우에도, 관련 법령에 따라 계속 보존이 필요한 경우 별도의
+      데이터베이스(DB)로 옮기거나, 보관장소를 달리하여 보존하고 있습니다.
+    </p>
+  </div>
+  <div class="terms-con">
+    (2) 파기 방법
+    <ul class="inner-text no-desc">
+      <li>
+        전자적 파일 형태로 저장된 개인정보는 관련 법령에 따라 복구되지 않도록
+        파기하며, 종이 문서에 기록된 개인정보는 세절하는 방법으로 파기하고
+        있습니다.
+      </li>
+    </ul>
+  </div>
+
+  <div class="terms-con">
+    💡 서비스 장기 미이용에 대한 사항
+    <p class="table-tit">
+      개인정보보호법이 개정*(2024년 03월 15일 시행)됨에 따라 라운드는 장기
+      미이용자의 데이터를 파기하거나 분리 보관하지 않습니다.
+    </p>
+    <ul class="inner-text">
+      <li>
+        <strong>
+          개인정보보호법 제39조의6(개인정보의 파기에 대한 특례), 개인정보 보호법
+          시행령 제48조의5(개인정보의 파기 등에 관한 특례) 조항 삭제
+        </strong>
+      </li>
+    </ul>
+    <p>
+      라운드 서비스를 장기간 이용하지 않더라도, 언제든지 서비스에 접속하시면
+      다양한 혜택을 받을 수 있습니다. 데이터 보관을 원하지 않는 고객께서는
+      라운드 앱 설정 메뉴(마이페이지 → ⚙️설정 → 약관 및 개인정보 처리 동의)에서
+      탈퇴를 진행할 수 있습니다.
+    </p>
+  </div>
+  <div class="terms-tit" id="section-4">④ 개인정보의 안전성 확보 조치</div>
+  <p>
+    라운드는 개인정보 관리체계의 수립과 지속적인 개선을 위해 노력하고 있으며,
+    개인정보의 안전성 확보를 위해 다음과 같이 관리적, 기술적, 물리적으로
+    조치하고 있습니다.
+  </p>
+  <p class="table-tit"><strong>1) 관리적 조치</strong></p>
+  <ul class="inner-text">
+    <li>내부관리계획을 수립 및 시행</li>
+    <li>
+      정기적인 개인정보 보호 교육을 통한 직원들의 개인정보보호 인식 제고 활동
+      진행
+    </li>
+  </ul>
+  <p class="table-tit"><strong>2) 기술적 조치</strong></p>
+  <ul class="inner-text">
+    <li>개인정보처리시스템에 대한 접근 권한 관리</li>
+    <li>접근통제 시스템 설치 및 사용</li>
+    <li>외부 인터넷망 차단(망분리)</li>
+    <li>
+      안전한 비밀번호 관리(비밀번호 생성 방법 및 변경 주기 등의 기준 설정 및
+      운영)
+    </li>
+    <li>접속 로그 기록 관리</li>
+    <li>개인정보를 암호화하여 안전하게 저장</li>
+    <li>백신 소프트웨어 등 보안 프로그램 설치 및 주기적 점검</li>
+  </ul>
+  <p class="table-tit">3) 물리적 조치</p>
+  <ul class="inner-text">
+    <li>전산실 및 자료 보관실 등 접근 통제</li>
+  </ul>
+  <!--  -->
+  <div class="terms-tit" id="section-5">
+    ⑤ 이용자 및 법정대리인의 권리와 의무 행사 방법
+  </div>
+  <p class="table-tit"><strong>1) 처리목적 및 보유기간</strong></p>
+  <ul class="inner-text">
+    <li>
+      라운드는 관련 법률 및 라운드의 위치기반 서비스를 안전하게 처리합니다.
+      개인위치정보 처리에 관한 세부 내용은 [위치기반 서비스 이용약관]을 참고해
+      주세요.
+    </li>
+    <li>
+      위치정보를 사용하는 서비스에 한해, 별도의 위치기반 서비스 이용약관에 대한
+      동의를 받아 개인위치정보를 처리하며, 위치정보는 개별 서비스를 사용하는
+      동안 이용 및 보유됩니다.
+    </li>
+    <li>
+      개인위치정보의 수집, 이용 또는 제공 목적을 달성한 경우, 위치정보법 제16조
+      제2항에 의해 기록 및 보존하여야 하는 위치정보이용 제공사실 확인자료 외의
+      개인 위치정보는 지체 없이 파기합니다.
+    </li>
+  </ul>
+  <p class="table-tit">
+    <strong>2) 수집・이용・제공사실 확인자료의 보유근거 및 보유기간</strong>
+  </p>
+  <ul class="inner-text">
+    <li>고객님께서는 개인위치정보의 이용·제공에 대한 사실 확인 자료를 요구할 수 있습니다.</li>
+    <li>라운드는 위치정보의 보호 및 이용 등에 관한 법률 제16조 제2항에 따라, 고객님에 대한 위치정보 수집·이용·제공사실 확인자료를 위치정보시스템에 자동으로 기록하고 보존하며, 「위치정보의 관리적·기술적 보호조치 기준」 제6조에 따라 개인위치정보 이용·제공사실 확인자료를 6개월 이상 보관합니다.</li>
+  </ul>
+  <p class="table-tit">
+    <strong>3) 파기 절차 및 방법</strong>
+  </p>
+  <ul class="inner-text">
+    <li>위치정보는 라운드에서 필요한 서비스에 따라, 위치기반 서비스 이용약관에 동의하신 고객님에 한해 처리되며, 이용 목적이 달성될 경우 지체없이 파기합니다.
+        <ul class="inner-text no-desc">
+            <li>전자적 파일 형태로 저장된 개인위치정보는 복구되지 않도록 파기하며, 종이 문서에 기록된 개인정보는 세절하는 방법으로 파기</li>
+        </ul>
+    </li>
+  </ul>
+  <p class="table-tit">
+    <strong>4) 제3자 제공에 관한 사항</strong>
+  </p>
+  <ul class="inner-text">
+    <li>라운드는 제3자 제공 서비스를 제공하는 경우에는 제공받는 자 및 제공 목적을 사전에 고객님께 고지하고 동의를 받고 있습니다.</li>
+    <li>만약 개인위치정보를 고객님이 지정하는 제3자에게 제공하는 경우, 개인위치정보를 수집한 통신단말장치로 매회 고객님께 제공받는 자, 제공일시 및 제공목적을 알려드립니다. 다만, 다음의 경우는 고객님께서 미리 특정하여 지정한 통신단말장치 또는 전자우편주소 등으로 알려드리겠습니다.
+        <ul class="inner-text no-desc">
+            <li>개인위치정보를 수집한 당해 통신단말장치가 문자, 음성 또는 영상의 수신기능을 갖추지 아니한 경우</li>
+            <li>고객님께서 온라인 게시 등의 방법으로 통보할 것을 미리 요청한 경우</li>
+        </ul>
+    </li>
+  </ul>
+  <div class="terms-tit">💡 추가 안내 사항</div>
+  <p>
+    위치정보 관리책임자는 <[⑦ 개인정보보호책임자 및 고충처리 담당부서]>의 개인정보보호책임자인 CPO/CISO가 겸직하고 있습니다.
+  </p>
+  <p>
+    '8세 이하의 아동', '피성년후견인', '장애인복지법에 따른 장애인에 해당하는 사람'의 생명 또는 신체보호를 위하여 개인위치정보의 이용 또는 제공에 동의하는 경우에는 본인의 동의가 필요합니다. 이에 따라 보호의무자는 위에 해당하는 사람에 대한 개인위치정보 이용 또는 제공을 서면 동의를 통해 동의하는 경우, 위치 서비스 약관 상 이용자의 권리를 모두 가지게 됩니다.
+  </p>
+  <!--  -->
+  <div class="terms-tit" id="section-6">⑥ 개인정보보호책임자 및 담당 부서</div>
+  <p class="table-tit"><strong>1) 권리・의무 및 행사 안내</strong></p>
+  <ul class="inner-text">
+    <li>
+      이용자는 언제든지 다음 사항의 개인정보 보호 관련 권리를 행사할 수
+      있습니다. 단, 개인정보보호법 등 관계 법령에 따라 이용자의 권리가 제한될 수
+      있습니다.
+      <ul class="inner-text no-desc">
+        <li><strong>1. 개인정보 열람 요구</strong></li>
+        <li><strong>2. 오류 등이 있을 경우 정정 요구</strong></li>
+        <li><strong>3. 삭제 및 철회 요구</strong></li>
+        <li><strong>4. 처리정지 요구</strong></li>
+        <li>
+          <strong>5. 신용정보 이용 및 제공사실 통보 요구 </strong>
+        </li>
+      </ul>
+    </li>
+    <li>
+      라운드는 정보주체 이외로부터 수집한 개인정보를 처리하는 때에는 정당한
+      사유가 없는 한 정보주체의 요구가 있는 날로부터 3개월 이내에 수집 출처,
+      처리 목적, 개인정보 처리의 정지를 요구할 권리가 있다는 사실을 이용자에게
+      알려 드립니다.
+    </li>
+    <li>
+      이용자가 개인정보의 오류 등에 대한 정정 또는 삭제를 요구한 경우에는
+      라운드는 정정 또는 삭제를 완료할 때까지 개인정보를 이용하거나 제공하지
+      않습니다.
+    </li>
+    <li>
+      권리 행사는 회사에 대해 서면(우편), 전화, 이메일, FAX, 라운드 앱 고객센터
+      상담(1:1 문의) 등을 통하여 할 수 있습니다. 상세 연락처는 ⑥
+      개인정보보호책임자 및 담당 부서 정보를 참고해 주세요.
+    </li>
+    <li>
+      대리인을 통해서도 권리 행사를 하실 수 있습니다. 이 경우
+      <a href="https://law.go.kr" target="_blank"
+        >&lt;개인정보 처리 방법에 관한 고시의 별지 제11호 서식&gt;</a
+      >에 따른 위임장을 제출해야 합니다.
+    </li>
+    <li>
+      라운드는 개인정보 보호법 제20조 제4항 각 호에 근거하여 정보주체의 요구를
+      거부하는 경우에는 정당한 사유가 없는 한 정보주체의 요구가 있은 날로부터
+      3일 이내에 그 거부의 근거와 사유를 정보주체에게 알려 드립니다.
+    </li>
+  </ul>
+
+  <div class="terms-tit">💡 개인정보 동의 철회 방법</div>
+  <p>
+    라운드는 서비스 이용에 필요한 일부 필수 동의 내용을 제외하고 대부분의
+    개인정보 동의를 쉽게 확인하고 철회할 수 있는 방법을 제공하고 있습니다. 다만,
+    금융거래를 정상적으로 처리하기 위해서 일부 관련 서비스의 경우 동의 철회가
+    즉시 처리되지 않을 수 있습니다.
+  </p>
+  <ul class="inner-text no-desc">
+    <li>
+      <strong
+        >1. 회원 탈퇴 시 필수 동의를 포함하여 모든 동의가 자동으로 철회됩니다.
+        2. 마이페이지 → 설정 → 약관 및 개인정보 처리 동의 → (서비스별) 약관 및
+        동의문 내 [동의 철회하기] 버튼을 통해 동의를 철회할 수 있습니다. 3.
+        광고/마케팅 수신 동의의 경우 마이페이지 → 설정 → 알림 설정에서 원하는
+        발송 채널(앱 푸시, 문자, 이메일)의 알림을 각각 On/Off 할 수 있으며, 모두
+        Off 할 경우 수신 동의를 철회한 것으로 간주합니다.
+      </strong>
+    </li>
+  </ul>
+  <div class="terms-tit" id="section-7">⑦ 개인정보보호책임자 및 담당 부서</div>
+  <p class="table-tit">1) 개인정보보호책임자(CPO) 및 고충 처리 담당 부서</p>
+  <ul class="inner-text no-desc">
+    <li>
+      라운드는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와
+      관련한 정보주체의 불만처리 및 피해구제 등을 위하여 아래와 같이
+      개인정보보호책임자(CPO) 및 관리 부서를 지정하여 운영하고 있습니다.
+      이용자는 회사의 서비스를 이용하면서 발생한 모든 개인정보보호 관련 문의,
+      불만 처리, 상담 및 피해규제 등에 관한 사항을 개인정보보호 책임자 및 담당
+      부서로 신고 또는 문의할 수 있습니다. 회사는 이용자의 문의에 대해 지체없이
+      답변 및 처리해 드리겠습니다.
+    </li>
+  </ul>
+  <div class="rround-table-scroll">
+    <table class="rround-terms-table">
+      <thead>
+        <tr>
+          <th>개인정보보호책임자</th>
+          <th>개인정보 고충 처리 담당 부서</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="cell-content">
+            - 성명: 박철광<br />
+            - 직책: CPO / CISO<br />
+            - 소속: 기술연구소
+          </td>
+          <td class="cell-content">
+            - 담당부서: CX팀<br />
+            - 전화: 1551-1020<br />
+            - 팩스: 02-6203-4425<br />
+            - 이메일: privacy@rround.com
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-tit">2) 권익침해 구제방법</p>
+  <ul class="inner-text no-desc">
+    <li>
+      이용자는 개인정보침해로 인한 구제를 위해 아래의 기관으로 문의할 수
+      있습니다. 아래의 기관은 라운드와는 관련이 없으며, 라운드의 자체적인
+      개인정보 불만 처리 및 구제 결과에 만족하지 못 하였거나 추가적인 도움이
+      필요하신 경우 문의하시기 바랍니다.
+    </li>
+  </ul>
+  <div class="rround-table-scroll">
+    <table class="rround-terms-table">
+      <thead>
+        <tr>
+          <th>기관</th>
+          <th>연락처</th>
+          <th>사이트</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="cell-content">개인정보침해 신고센터</td>
+          <td class="cell-content">(국번없이) 118</td>
+          <td class="cell-content">
+            <a href="https://privacy.kisa.or.kr" target="_blank"
+              >privacy.kisa.or.kr</a
+            >
+          </td>
+        </tr>
+        <tr>
+          <td class="cell-content">개인정보 분쟁조정위원회</td>
+          <td class="cell-content">1833-6972</td>
+          <td class="cell-content">
+            <a href="https://www.kopico.go.kr" target="_blank"
+              >www.kopico.go.kr</a
+            >
+          </td>
+        </tr>
+        <tr>
+          <td class="cell-content">대검찰청 사이버수사과</td>
+          <td class="cell-content">(국번없이) 1301</td>
+          <td class="cell-content">
+            <a href="https://www.spo.go.kr" target="_blank">www.spo.go.kr</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="cell-content">경찰청 사이버안전국(경찰민원콜센터)</td>
+          <td class="cell-content">(국번없이) 182</td>
+          <td class="cell-content">
+            <a href="https://ecrm.cyber.go.kr" target="_blank"
+              >ecrm.cyber.go.kr</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="terms-tit" id="section-8">
+    ⑧ 개인정보처리방침 변경 고지 및 시행
+  </div>
+  <p class="table-tit">
+    이 &lt;개인정보처리방침&gt; 은 2025. 10. 15. 부터 적용됩니다.
+    <br />
+    이전 개인정보처리방침은 이력에서 확인할 수 있습니다.
+  </p>
+  <ul class="inner-text no-desc">
+    <li>
+      <a
+        href="https://lifeweb-dev.hectoinnovation.co.kr/pub/v1/term/privacyterms01_0929"
+        >이전 버전 바로가기(2025. 9. 29.)</a
+      >
+    </li>
+  </ul>
+  <!-- //게시판 상세 -->
+</div>
+
+<jsp:include page="/WEB-INF/views/terms/common/footer.jsp" />

@@ -1,0 +1,92 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+
+<jsp:include page="/WEB-INF/views/terms/common/header.jsp" />
+
+<div class="modal-body">
+    <!-- 게시판 상세 -->
+    <div class="blank-box" style="height: 72px"></div>
+    <h2 class="title-text">마케팅 목적 개인정보 수집 · 이용</h2>
+    <br />
+    <div class="terms-con">
+        <div>
+            (주)헥토이노베이션은 더 좋은 라운드 서비스 제공을 위해 관계
+            법령(개인정보 보호법 제22조 제4항, 제39조의 3, 정보통신망법
+            제50조 등)에 따라, <strong class="underline">광고성 정보 수신</strong>과 이에 따른
+            <strong class="underline">개인정보 처리에 대한 동의</strong>를 받고 있습니다.
+        </div>
+        <br />
+        <div class="rround-table-scroll">
+            <table class="rround-terms-table">
+                <tbody>
+                <tr>
+                    <td class="cell-content bgGray bd">처리 항목</td>
+                    <td class="cell-content">
+                        - 일반개인정보: 이름, 생년월일, 성별, 휴대전화번호,
+                        이메일주소, 접속기기정보(단말기명, OS, 기기식별정보),
+                        PUSH 토큰, 광고 식별자 정보(ADID, IDFA), 고객식별정보
+                        <br />
+                        - 앱사용정보: 쿠키에 의한 자동수집 정보,
+                        행태정보(IP주소, 클릭 로그 정보, 이용자의 웹사이트/앱
+                        서비스 방문 이력, 검색 이력과 같은 사용 이력, 고객의 관심ㆍ기호ㆍ흥미 등의 성향 정보), 서비스
+                        이용 상태 정보(알림 수신 동의 여부, 결제수단 등록 정보,
+                        라운드 페이 포인트 및 라운드 머니 보유/이용 현황) <br />
+                        ※ 결제수단 등록 정보는 등록 여부 및 등록한 수단의 유형을
+                        포함하며, 카드번호, 계좌번호 등의 세부 정보는 포함하지
+                        않음 <br />
+                        - 구매 정보(물품 구매시) : 구매 기록, 결제 정보 및 이력,
+                        이름(주문자 또는 수령인), 배송지 정보, 배송 및 거래내역
+                        <br />
+                        - 차량 정보(차량 등록시) : 차량번호, 차명, 차종,
+                        주행거리, 연식, 연료정보, 등록일 및 소유권 변경일 정보
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cell-content bgGray bd">처리 목적</td>
+                    <td class="cell-content">
+                        마케팅 광고에 활용<br />
+                        1) 라운드의 맞춤형 상품 · 서비스 및 혜택 정보 제공<br />
+                        2) 이벤트 또는 광고성 정보 제공 및 참여 기회 제공 (제3자
+                        광고 포함) <br />
+                        3) 고객 분석, 상품·서비스 분석, 설문조사 등 통계 분석을
+                        통한 서비스 개선 및 개발
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cell-content bgGray bd">보유 및 이용 기간</td>
+                    <td class="cell-content">
+                        <strong>회원 탈퇴 또는 동의 철회 시까지</strong>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <br /><br />
+        <div class="table-tit">
+            <strong>[동의 여부 선택 및 변경]</strong>
+        </div>
+        <div>
+            광고 · 마케팅 수신 동의는 선택 사항이며, 동의하지 않아도 서비스
+            이용에는 제한이 없습니다. 또한, 광고 · 마케팅 수신 동의는 설정 >
+            알림 > 혜택 · 마케팅 메뉴 또는 고객센터(1:1 문의)를 통해 원하는
+            언제든지 변경하거나 철회할 수 있습니다.<br />
+            <br />
+            수신 거부 후에도 일부 필수 알림(예: 결제 정보, 서비스 이용 안내
+            등)은 계속 제공될 수 있습니다.<br />
+            <br />
+            광고 · 마케팅 수신 동의를 유지하면, 2년마다 광고 · 마케팅 수신
+            동의 상태를 알려드리고 있습니다. <br />
+            <br />
+            ※ 본 마케팅 수신 동의는 라운드 서비스에서 제공하는 각종 서비스
+            및 이벤트에 활용되는 정보를 포함하며, 제공하는 서비스의 주체는
+            주식회사 헥토이노베이션, 주식회사 헥토파이낸셜, 주식회사
+            모노플랫폼이 포함됩니다. <br />
+            <br />
+            ※ 법령에 따른 개인정보의 수집/이용, 계약의 이행/편의 증진을 위한
+            개인정보 처리위탁 및 개인정보 처리와 관련된 일반 사항은
+            “주식회사 헥토이노베이션”의 개인정보처리방침에 따릅니다.
+        </div>
+    </div>
+    <!-- //게시판 상세 -->
+</div>
+
+<jsp:include page="/WEB-INF/views/terms/common/footer.jsp" />

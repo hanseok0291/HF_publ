@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../css/mass/main.css" />
+    <link rel="stylesheet" href="../../css/mass/eventList.css" />
+    <script src="../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/design_renewal.js" defer="defer"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <button type="button" class="btn-back js-change-btn left-0">
+              <i class="icon-back"></i>
+            </button>
+            <h2 class="page-title">지난 이벤트</h2>
+          </div>
+        </div> 
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <!-- container -->
+        <div class="container event-list-container prev-list">
+          <div class="theme-content">
+            <div class="theme-list-wrap">
+              <div class="title-text-wrap">
+                <h2 class="title-text" onclick="modalOpenSlide('modal-event-list')">
+                  25년 11월
+                  <i class="icon-arrow-down"></i>
+                </h2>
+              </div>
+              <div class="theme-list">
+                <button type="button" class="theme-item active">전체</button>
+                <button type="button" class="theme-item">신용</button>
+                <button type="button" class="theme-item">체크</button>
+              </div>
+            </div>
+            <div class="empty-list alert">
+              <p class="empty-text">지난 이벤트가 없어요</p>
+            </div>
+          </div>
+        </div>
+        <!-- //container -->
+      </div>
+      <!-- //content -->
+    </div>
+    <!-- //wrap -->
+
+    <!-- 지난 이벤트 팝업 -->
+    <div id="modal-event-list" class="modal modal-slide type-title modal-event-list">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title">지난 이벤트</p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <ul class="event-list-wrap">
+                <li>
+                  25년 11월
+                </li>
+                <li>
+                  25년 10월
+                </li>
+                <li>
+                  25년 9월
+                </li>
+                <li>
+                  25년 8월
+                </li>
+                <li>
+                  25년 7월
+                </li>
+                <li>
+                  25년 6월
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //지난 이벤트 팝업 -->
+  </body>
+  <script>
+    $(function () {
+      $(".card-tab-list .card-tab-item").on("click", function () {
+        $(this).addClass("active").siblings().removeClass("active");
+        $(".card-tab-content .card-tab-item-content").removeClass("active");
+        $(".card-tab-content .card-tab-item-content")
+          .eq($(this).index())
+          .addClass("active");
+      });
+
+      $(".theme-list .theme-item").on("click", function () {
+        $(this).addClass("active").siblings().removeClass("active");
+      });
+
+      var lastScrollTop = 0;
+      var isFixed = false;
+      
+      $(window).on("scroll", function() {
+        var scrollTop = $(window).scrollTop();
+        var headerHeight = $("#header").outerHeight();
+        var themeListWrap = $(".theme-list-wrap");
+        var themeListWrapOffset = themeListWrap.offset();
+        var themeListWrapHeight = themeListWrap.outerHeight();
+        
+        // 헤더의 bottom 위치 계산 (헤더 높이)
+        var headerBottom = headerHeight;
+        
+        // theme-list-wrap의 bottom 위치 계산
+        var themeListWrapBottom = themeListWrapOffset.top + themeListWrapHeight;
+        
+        // theme-list-wrap의 top 위치 계산
+        var themeListWrapTop = themeListWrapOffset.top;
+        
+        // 스크롤 방향 감지
+        var scrollDirection = scrollTop > lastScrollTop ? 'down' : 'up';
+        
+        if (!isFixed) {
+          // fixed가 아닐 때: 스크롤 다운으로 theme-list-wrap의 bottom이 헤더의 bottom에 도달하면 fixed 추가
+          if (scrollDirection === 'down' && scrollTop >= themeListWrapBottom - headerBottom) {
+            themeListWrap.addClass("fixed");
+            isFixed = true;
+          }
+        } else {
+          // fixed일 때: 스크롤 업으로 헤더의 bottom이 theme-list-wrap의 top에 도달하면 fixed 제거
+          if (scrollDirection === 'up' && scrollTop <= themeListWrapTop - headerBottom) {
+            themeListWrap.removeClass("fixed scroll-up");
+            isFixed = false;
+          } else if (scrollDirection === 'up') {
+            // 스크롤 업 중일 때 scroll-up 클래스 추가
+            themeListWrap.addClass("scroll-up");
+          } else {
+            // 스크롤 다운 중일 때 scroll-up 클래스 제거
+            themeListWrap.removeClass("scroll-up");
+          }
+        }
+        
+        lastScrollTop = scrollTop;
+      });
+    });
+  </script>
+</html>

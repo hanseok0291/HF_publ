@@ -585,6 +585,32 @@
       // 전역 함수로 노출 (서버에서 탭 데이터 로드 후 호출 가능)
       window.reinitTabs = initTabs;
 
+      // tab-btn 너비 자동 조정 함수
+      function adjustTabButtonWidth() {
+        var $buttons = $('.tab-btn');
+        var buttonCount = $buttons.length;
+        var deviceWidth = $(window).width();
+        var totalButtonWidth = 0;
+        
+        // 각 버튼의 실제 너비 계산
+        $buttons.each(function() {
+          totalButtonWidth += $(this).outerWidth(true);
+        });
+        
+        // 디바이스 너비보다 작으면 100/버튼개수 % 적용
+        if (totalButtonWidth < deviceWidth) {
+          var buttonWidthPercent = 100 / buttonCount;
+          $buttons.css('width', buttonWidthPercent + '%');
+        } else {
+          // 원래 너비로 복원
+          $buttons.css('width', '');
+        }
+      }
+
+      // 초기 실행 및 리사이즈 이벤트
+      adjustTabButtonWidth();
+      $(window).on('resize', adjustTabButtonWidth);
+
       // 탭 버튼 클릭 시 해당 notice-content 영역으로 스크롤
       $(document).on("click", ".tab-btn", function () {
         var currentTime = Date.now();

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="../../css/jquery-ui.css" />
+    <link rel="stylesheet" href="../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../css/web/password.css" />
+    <link rel="stylesheet" href="../../css/web/layout.css" />
+    <script src="../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/design_renewal.js" defer="defer"></script>
+    <script src="../../js/commonutil.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <h2 class="page-title">
+              <img class="rrpay-logo" src="../../images/web/round_pay_logo.svg" alt="RROUND PAY">
+            </h2>
+            <button type="button" class="btn-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <!-- container -->
+        <div class="container password-container email-container">
+          <!-- headline -->
+          <div class="headline pt-0">
+            <p>
+              거래 내역을 이메일로 받을까요?
+            </p>
+          </div>
+          <!-- //headline -->
+
+          <div class="checkbox-wrap">
+            <div class="checkbox-group">
+              <div class="checkbox-item">
+                <div class="checkbox circle">
+                  <input type="radio" name="radio_01" id="radio_01_01" class="radio-receive" checked/>
+                  <label for="radio_01_01">받을래요</label>
+                </div>
+                <div class="checkbox-item-content">
+                  <div class="input-container email-input label-n">
+                    <input
+                      type="text"
+                      class="custom-input"
+                      placeholder=""
+                      id="email_input"
+                    />
+                    <label for="email_input" class="floating-label"
+                      >이메일</label
+                    >
+                    <button
+                      type="button"
+                      class="icon icon-del js-text-del"
+                    ></button>
+                  </div>
+                </div>
+              </div>
+              <div class="checkbox-item">
+                <div class="checkbox circle">
+                  <input type="radio" name="radio_01" id="radio_01_02" class="radio-not-receive" />
+                  <label for="radio_01_02">안받을래요</label>
+                  <p class="sub-title-text">이메일은 유지되며 거래 내역만 수신되지 않습니다.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- //container -->
+
+        <!-- bottom area -->
+        <div class="bottom-area">
+          <!-- container -->
+          <div class="container">
+            <button
+              type="button"
+              id="agree-show"
+              class="btn"
+              disabled
+            >
+              저장하기
+            </button>
+          </div>
+          <!-- //container -->
+        </div>
+        <!-- //bottom area -->
+      </div>
+      <!-- //content -->
+    </div>
+    <!-- //wrap -->
+
+    <script>
+      $(function () {
+        // 이메일 형식 검증
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const $emailInput = $('#email_input');
+        const $emailContainer = $emailInput.closest('.input-container');
+        const $emailError = $emailContainer.siblings('.email-error');
+        const $emailLabel = $emailContainer.find('.floating-label');
+        const originalEmailLabel = $emailLabel.text();
+        const $radioReceive = $('.radio-receive');
+        const $radioNotReceive = $('.radio-not-receive');
+        
+        let isEmailValid = false;
+        
+        // 이메일 검증 함수
+        function validateEmail() {
+          const emailValue = $emailInput.val().trim();
+          
+          // 라디오 버튼이 "받을래요"로 선택되어 있고 이메일이 입력된 경우에만 검증
+          if ($radioReceive.prop('checked') && emailValue.length > 0) {
+            if (emailRegex.test(emailValue)) {
+              $emailContainer.removeClass('label-error');
+              $emailInput.removeClass('error');
+              $emailError.hide();
+              $emailLabel.text(originalEmailLabel);
+              isEmailValid = true;
+            } else {
+              $emailContainer.addClass('label-error');
+              $emailInput.addClass('error');
+              $emailError.hide(); // helper-text는 사용하지 않음
+              $emailLabel.text('이메일을 다시 확인해 주세요');
+              isEmailValid = false;
+            }
+          } else {
+            // 라디오 버튼이 선택되지 않았거나 이메일이 비어있으면 에러 제거 및 라벨 원복
+            $emailContainer.removeClass('label-error');
+            $emailInput.removeClass('error');
+            $emailError.hide();
+            $emailLabel.text(originalEmailLabel);
+            // 받을래요 선택했지만 이메일이 비어있는 경우는 유효하지 않음
+            isEmailValid = false;
+          }
+        }
+        
+        // 버튼 상태 업데이트 함수
+        const $nextBtn = $('#agree-show');
+        function updateButtonState() {
+          // 라디오 버튼 상태 확인
+          const isReceiveSelected = $radioReceive.prop('checked');
+          const isNotReceiveSelected = $radioNotReceive.prop('checked');
+          
+          // 안받을래요를 선택한 경우 → 버튼 활성화
+          if (isNotReceiveSelected) {
+            $nextBtn.prop('disabled', false);
+            $nextBtn.removeClass('disabled');
+            return;
+          }
+          
+          // 받을래요를 선택한 경우 → 이메일이 올바르게 입력되어야 활성화
+          if (isReceiveSelected) {
+            if (isEmailValid) {
+              $nextBtn.prop('disabled', false);
+              $nextBtn.removeClass('disabled');
+            } else {
+              $nextBtn.prop('disabled', true);
+              $nextBtn.addClass('disabled');
+            }
+            return;
+          }
+          
+          // 아무것도 선택되지 않은 경우 → 버튼 비활성화
+          $nextBtn.prop('disabled', true);
+          $nextBtn.addClass('disabled');
+        }
+        
+        // 이메일 입력 시 실시간 검증 (에러 표시 없음, 버튼 상태만 업데이트)
+        $emailInput.on('input', function() {
+          const emailValue = $emailInput.val().trim();
+          
+          // 받을래요가 선택되어 있고 이메일이 입력된 경우에만 검증 (에러 표시 없이)
+          if ($radioReceive.prop('checked') && emailValue.length > 0) {
+            isEmailValid = emailRegex.test(emailValue);
+          } else {
+            isEmailValid = false;
+          }
+          
+          // 버튼 상태 업데이트
+          updateButtonState();
+        });
+        
+        // 이메일 포커스 아웃 시 검증 및 오류 표시
+        $emailInput.on('blur', function() {
+          validateEmail();
+        });
+        
+        // 라디오 버튼 변경 시 이메일 필드 표시/숨김 및 검증
+        $radioReceive.on('change', function() {
+          const $checkboxItemContent = $('.checkbox-item-content');
+          const $subTitleText = $('.radio-not-receive').closest('.checkbox-item').find('.sub-title-text');
+          if ($(this).prop('checked')) {
+            // 받을래요 선택 시 이메일 필드 활성화
+            $checkboxItemContent.show();
+            $emailInput.prop('disabled', false);
+            $emailInput.focus();
+            // 이메일 라벨 원복
+            $emailContainer.removeClass('label-error');
+            $emailInput.removeClass('error');
+            $emailError.hide();
+            $emailLabel.text(originalEmailLabel);
+            // sub-title-text 숨김
+            $subTitleText.hide();
+            validateEmail();
+            updateButtonState();
+          }
+        });
+        
+        // 안받을래요 라디오 버튼 변경 시
+        $radioNotReceive.on('change', function() {
+          if ($(this).prop('checked')) {
+            const $checkboxItemContent = $('.checkbox-item-content');
+            const $subTitleText = $(this).closest('.checkbox-item').find('.sub-title-text');
+            const emailValue = $emailInput.val().trim();
+            if (emailValue.length > 0) {
+              // 이메일 값이 있으면 필드 숨기지 않고 비활성화만
+              $checkboxItemContent.show(); // 필드 표시 유지
+              $emailInput.prop('disabled', true);
+              $emailContainer.removeClass('label-error');
+              $emailInput.removeClass('error');
+              $emailError.hide();
+              $emailLabel.text(originalEmailLabel);
+              // sub-title-text 표시
+              $subTitleText.show();
+            } else {
+              // 이메일 값이 없으면 필드 숨김
+              $checkboxItemContent.hide();
+              $emailContainer.removeClass('label-error');
+              $emailInput.removeClass('error');
+              $emailError.hide();
+              $emailLabel.text(originalEmailLabel);
+              // sub-title-text 숨김
+              $subTitleText.hide();
+            }
+            isEmailValid = false; // 안받을래요 선택 시 이메일은 유효하지 않지만 버튼 활성화
+            updateButtonState();
+          }
+        });
+        
+        // 초기 상태: 받을래요가 체크되어 있으면 이메일 필드 표시
+        const $subTitleText = $('.radio-not-receive').closest('.checkbox-item').find('.sub-title-text');
+        if ($radioReceive.prop('checked')) {
+          $('.checkbox-item-content').show();
+          $emailInput.prop('disabled', false);
+          // sub-title-text 숨김
+          $subTitleText.hide();
+          // 이미 입력된 이메일이 있으면 검증
+          validateEmail();
+        } else {
+          // 안받을래요가 선택되어 있고 이메일 값이 있으면 비활성화만, 없으면 숨김
+          const emailValue = $emailInput.val().trim();
+          if (emailValue.length > 0) {
+            $emailInput.prop('disabled', true);
+            // sub-title-text 표시
+            $subTitleText.show();
+          } else {
+            $('.checkbox-item-content').hide();
+            // sub-title-text 숨김
+            $subTitleText.hide();
+          }
+        }
+        
+        // 초기 버튼 상태 확인
+        updateButtonState();
+      });
+    </script>
+  </body>
+</html>

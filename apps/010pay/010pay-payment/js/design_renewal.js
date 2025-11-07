@@ -287,7 +287,7 @@ $(function () {
       e.preventDefault();
       const inputField =
         this.closest(".input-container").querySelectorAll(".custom-input");
-
+      $(this).closest(".input-container").find(".icon-eye").hide();
       inputField.forEach((e, i) => {
         e.value = "";
         if (i === 0) {
@@ -298,6 +298,24 @@ $(function () {
         this.style.display = "none";
       }
     });
+  });
+
+  $(".input-container.password input").on("input", function () {
+    if ($(this).val().length > 0) {
+      $(this).closest(".input-container").find(".icon-eye").show();
+    } else {
+      $(this).closest(".input-container").find(".icon-eye").hide();
+    }
+  });
+
+  $(".icon-eye").on("mousedown", function () {
+    if ($(this).hasClass("icon-eye-on")) {
+      $(this).parent().find("input").attr("type", "text");
+      $(this).removeClass("icon-eye-on").addClass("icon-eye-off");
+    } else {
+      $(this).parent().find("input").attr("type", "password");
+      $(this).removeClass("icon-eye-off").addClass("icon-eye-on");
+    }
   });
 
   // 검색 인풋
@@ -356,6 +374,15 @@ $(function () {
     $input.val(selectedCountry); // 선택한 텍스트를 <input> 값으로 설정
     $(this).closest(".search-list").hide(); // 리스트 숨기기
   });
+
+  /* 비밀번호 입력 */
+  // $(".input-container.password input").on("input", function () {
+  //   if ($(this).val().length > 0) {
+  //     $(this).closest(".input-container").find(".icon-eye").show();
+  //   } else {
+  //     $(this).closest(".input-container").find(".icon-eye").hide();
+  //   }
+  // });
 });
 
 // 레이아웃, 토글

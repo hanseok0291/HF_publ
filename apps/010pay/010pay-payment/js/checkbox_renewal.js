@@ -759,6 +759,7 @@ $(document).ready(function () {
         );
         if (termsList) {
           termsList.style.display = isChecked ? "none" : "block";
+          termsListStates[groupName] = !isChecked;
         }
 
         // btn-toggle open 클래스 동기화
@@ -767,6 +768,11 @@ $(document).ready(function () {
         );
         if (toggleButton) {
           toggleButton.classList.toggle("open", !isChecked);
+        }
+
+        const checkAllWrap = checkAllCheckbox.closest(".check-all");
+        if (checkAllWrap) {
+          checkAllWrap.classList.toggle("open", !isChecked);
         }
 
         // 버튼 활성화 여부 확인
@@ -797,6 +803,38 @@ $(document).ready(function () {
             (cb) => cb.checked
           );
           groupCheckAllCheckbox.checked = allChecked;
+
+          const termsList = modal.querySelector(
+            `.terms-list[data-group="${groupName}"]`
+          );
+          const toggleButton = modal.querySelector(
+            `.btn-toggle[data-group="${groupName}"]`
+          );
+          const checkAllWrap = groupCheckAllCheckbox.closest(".check-all");
+
+          if (allChecked) {
+            if (termsList) {
+              termsList.style.display = "none";
+              termsListStates[groupName] = false;
+            }
+            if (toggleButton) {
+              toggleButton.classList.remove("open");
+            }
+            if (checkAllWrap) {
+              checkAllWrap.classList.remove("open");
+            }
+          } else {
+            if (termsList) {
+              termsList.style.display = "block";
+              termsListStates[groupName] = true;
+            }
+            if (toggleButton) {
+              toggleButton.classList.add("open");
+            }
+            if (checkAllWrap) {
+              checkAllWrap.classList.add("open");
+            }
+          }
         }
 
         // 버튼 활성화 여부 확인

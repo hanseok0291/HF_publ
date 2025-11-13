@@ -309,12 +309,12 @@ $(function () {
   });
 
   $(".icon-eye").on("mousedown", function () {
-    if ($(this).hasClass("icon-eye-on")) {
+    if ($(this).hasClass("icon-eye-off")) {
       $(this).parent().find("input").attr("type", "text");
-      $(this).removeClass("icon-eye-on").addClass("icon-eye-off");
+      $(this).removeClass("icon-eye-off").addClass("icon-eye-on");
     } else {
       $(this).parent().find("input").attr("type", "password");
-      $(this).removeClass("icon-eye-off").addClass("icon-eye-on");
+      $(this).removeClass("icon-eye-on").addClass("icon-eye-off");
     }
   });
 

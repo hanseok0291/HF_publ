@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="../../css/jquery-ui.css" />
+    <link rel="stylesheet" href="../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../css/web/auth.css" />
+    <link rel="stylesheet" href="../../css/web/layout.css" />
+
+    <script src="../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/design_renewal.js" defer="defer"></script>
+    <script src="../../js/checkbox_renewal.js" defer="defer"></script>
+    <!-- <script src="../../js/agreement_checkboxes.js" defer="defer"></script> -->
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <div class="step1">
+        <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <h2 class="page-title">
+              <img class="rrpay-logo" src="../../images/web/round_pay_logo.svg" alt="RROUND PAY">
+            </h2>
+            <button type="button" class="btn-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- //header -->
+
+        <!-- content -->
+        <div id="content">
+          <!-- container -->
+          <div class="container auth-container">
+            <!-- headline -->
+            <div class="headline pt-0">
+              <p>
+                본인인증을 진행해 주세요
+              </p>
+            </div>
+            <!-- //headline -->
+
+            <!-- section -->
+            <div class="section">
+              <ul class="form-type">
+                <!-- 에러일 경우 input-container에 label-error 클래스 추가 -->
+                <li class="name-wrap">
+                  <div class="input-container label-n">
+                    <input
+                      type="text"
+                      class="custom-input"
+                      placeholder=" "
+                      id="name"
+                    />
+                    <label for="name" class="floating-label">이름</label>
+                    <button
+                      type="button"
+                      class="icon icon-del js-text-del"
+                    ></button>
+                  </div>
+                </li>
+                <!-- 에러일 경우 input-container에 label-error 클래스 추가 -->
+                <li class="id-number-wrap">
+                  <div class="input-container label-n id-number">
+                    <div>
+                      <input
+                        type="text"
+                        class="custom-input"
+                        placeholder=""
+                        id="idNumber"
+                        maxlength="6"
+                      />
+                      <label for="idNumber" class="floating-label first"
+                        >생년월일</label
+                      >
+                    </div>
+                    <em class="dash">-</em>
+                    <div>
+                      <input
+                        type="text"
+                        class="custom-input"
+                        placeholder="0"
+                        id="accountNumber4"
+                        maxlength="1"
+                      />
+                      <span class="id-mark">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      class="icon icon-del js-text-del"
+                    ></button>
+                  </div>
+                </li>
+                <li class="agency-wrap">
+                  <div class="select-box">
+                    <button
+                      class="label"
+                      onclick="modalOpenSlide('modal-select-phone-info')"
+                      data-target="modal-select-phone-info"
+                    >
+                      통신사
+                    </button>
+                    <span class="floating-label">통신사</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="input-container label-n">
+                    <input
+                      type="tel"
+                      class="custom-input"
+                      placeholder=" "
+                      id="phoneNumber"
+                      maxlength="11"
+                    />
+                    <label for="phoneNumber" class="floating-label"
+                      >휴대폰 번호</label
+                    >
+                    <button
+                      type="button"
+                      class="icon icon-del js-text-del"
+                    ></button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!-- //section -->
+          </div>
+          <!-- //container -->
+
+          <!-- bottom area -->
+          <div class="bottom-wrap">
+            <div class="container">
+              <!-- 전체 동의 체크박스 -->
+              <div class="check-all-box show">
+                <div class="check-all" onclick="modalOpenSlide('modal-agree')">
+                  <span class="checkbox">
+                    <input
+                      type="checkbox"
+                      name="checkbox2_all"
+                      id="checkbox_all"
+                    />
+                    <label for="checkbox_all">(필수) 본인 확인 이용 약관 전체 동의</label>
+                  </span>
+                  <!-- 체크, 접힌 상태면 open 클래스 제거 -->
+                  <button
+                    type="button"
+                    class="icon- btn-toggle"
+                  ></button>
+                </div>
+              </div>
+              <button
+                type="button"
+                id="continue-btn"
+                class="btn"
+                disabled
+              >
+                다음
+              </button>
+            </div>
+            <!-- //container -->
+          </div>
+          <!-- //bottom area -->
+        </div>
+        <!-- //content -->
+      </div>
+    </div>
+    <!-- //wrap -->
+
+    <!-- 통신사 선택 list -->
+    <div
+      id="modal-select-phone-info"
+      class="modal modal-slide type-select type-title"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title">통신사 선택</p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <ul class="btn-list">
+                <li class="option-item">
+                  <button type="button" class="btn">
+                    <em class="label">SKT</em>
+                    <i class="icon-check-on"></i>
+                  </button>
+                </li>
+                <li class="option-item">
+                  <button type="button" class="btn">
+                    <em class="label">KT</em>
+                    <i class="icon-check-on"></i>
+                  </button>
+                </li>
+                <li class="option-item">
+                  <button type="button" class="btn">
+                    <em class="label">LG U+</em>
+                    <i class="icon-check-on"></i>
+                  </button>
+                </li>
+                <li class="option-item">
+                  <button type="button" class="btn">
+                    <em class="label">SKT 알뜰폰</em>
+                    <i class="icon-check-on"></i>
+                  </button>
+                </li>
+                <li class="option-item">
+                  <button type="button" class="btn">
+                    <em class="label">KT 알뜰폰</em>
+                    <i class="icon-check-on"></i>
+                  </button>
+                </li>
+                <li class="option-item">
+                  <button type="button" class="btn">
+                    <em class="label">LG U+ 알뜰폰</em>
+                    <i class="icon-check-on"></i>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //통신사 선택 list -->
+
+    <!-- modal - 약관 동의 -->
+    <div id="modal-agree" class="modal modal-slide type-title type2">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title">
+              본인 확인을 위해 약관에 동의해 주세요
+            </p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- 전체 동의 체크박스 -->
+            <div class="check-all-box container terms-list-box">
+              <!-- 체크, 접힌상태면 open 클래스 제거 -->
+              <div class="check-all top open">
+                <span class="checkbox">
+                  <input
+                    type="checkbox"
+                    name="checkbox_all2"
+                    id="checkbox_all2"
+                  />
+                  <label for="checkbox_all2">본인 확인 이용약관</label>
+                </span>
+                <!-- 체크, 접힌상태면 open 클래스 제거 -->
+                <button type="button" class="btn-toggle open"></button>
+              </div>
+            </div>
+            <!-- 전체 동의 체크박스 -->
+            <div class="container">
+              <div class="terms-wrap">
+                <ul class="terms-list terms-block-list">
+                  <li>
+                    <div class="checkbox-block-group">
+                      <span class="checkbox child">
+                        <input
+                          type="checkbox"
+                          id="checkbox1_group1_1"
+                          data-group="checkbox1_group1"
+                        />
+                        <label for="checkbox1_group1_1">
+                          (필수) 휴대폰 본인 확인 이용약관
+                          <button
+                            type="button"
+                            class="arrow-right js-open-terms"
+                            onclick="modalOpen('noticeDetail')"
+                            data-toggle="modal"
+                            data-target="#noticeDetail"
+                          ></button>
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="checkbox-block-group">
+                      <span class="checkbox child">
+                        <input
+                          type="checkbox"
+                          id="checkbox1_group1_2"
+                          data-group="checkbox1_group1"
+                        />
+                        <label for="checkbox1_group1_2">
+                          (필수) 본인인증 개인 정보 수집·이용
+                          <button
+                            type="button"
+                            class="arrow-right js-open-terms"
+                            onclick="modalOpen('noticeDetail')"
+                            data-toggle="modal"
+                            data-target="#noticeDetail"
+                          ></button>
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="checkbox-block-group">
+                      <span class="checkbox child">
+                        <input
+                          type="checkbox"
+                          id="checkbox1_group1_3"
+                          data-group="checkbox1_group1"
+                        />
+                        <label for="checkbox1_group1_3">
+                          (필수) 본인인증 고유 식별 처리
+                          <button
+                            type="button"
+                            class="arrow-right js-open-terms"
+                            onclick="modalOpen('noticeDetail')"
+                            data-toggle="modal"
+                            data-target="#noticeDetail"
+                          ></button>
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="checkbox-block-group">
+                      <span class="checkbox child">
+                        <input
+                          type="checkbox"
+                          id="checkbox1_group1_4"
+                          data-group="checkbox1_group1"
+                        />
+                        <label for="checkbox1_group1_4">
+                          (필수) 개인정보 제3자 제공 동의
+                          <button
+                            type="button"
+                            class="arrow-right js-open-terms"
+                            onclick="modalOpen('noticeDetail')"
+                            data-toggle="modal"
+                            data-target="#noticeDetail"
+                          ></button>
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- 동의하기 버튼 -->
+            <div class="modal-footer">
+              <button
+                type="button"
+                id="btn-agree1"
+                class="btn-confirm disabled"
+                disabled
+              >
+                동의하고 계속하기
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //modal - 약관 동의 -->
+
+    <!-- modal - 공지사항 상세 -->
+    <div
+      id="noticeDetail"
+      class="modal modal-full"
+      tabindex="0"
+      aria-labelledby="noticeTitle"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head" tabindex="0">
+            <div class="container">
+              <div class="header-box">
+                <h2 class="page-title">약관</h2>
+                <button
+                  type="button"
+                  class="btn btn-close js-modal-close"
+                  data-dismiss="modal"
+                  aria-label="모달 닫기"
+                >
+                  <i class="icon-close"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <!-- 게시판 상세 -->
+              <div class="terms scroll">
+                <p class="terms-title" id="focusElement" tabindex="-1">
+                  (필수) 010PAY 서비스 이용 약관
+                </p>
+                <br />
+                <p class="terms-title-sub" id="termPurpose">제 1조 (목적)</p>
+                <p>
+                  본 약관은 통신과금 서비스를 제공하는 주식회사
+                  헥토파이낸셜(이하 ‘회사’라고 합니다)과 통신과금서비스 이용자
+                  (이하 ‘이용자’라고 합니다) 간에 통신과금서비스에 관한 회사와
+                  이용자의 권리의무, 기타 제반 사항을 정함을 목적으로 합니다.
+                </p>
+                <p class="terms-title-sub">제 2조 (용어의 정의)</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+
+                <p class="terms-title-sub">제 3조 (용어의 정의)</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+              </div>
+              <!-- //게시판 상세 -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //modal - 공지사항 상세 -->
+
+    <script>
+      $(function () {
+        // 통신사 모달에서 선택 시 select-box에 값 채우기
+        $("#modal-select-phone-info .option-item button").on("click", function () {
+          var selectedAgency = $(this).find(".label").text().trim(); // 선택한 통신사 이름 가져오기
+          
+          // 통신사 select-box 찾기
+          var $selectBox = $(".agency-wrap .select-box");
+          
+          if ($selectBox.length > 0) {
+            // label 버튼에 선택한 통신사 이름 업데이트
+            $selectBox.find(".label").text(selectedAgency);
+            
+            // comp 클래스 추가 (선택 완료 상태 표시)
+            $selectBox.addClass("comp");
+          }
+          
+          // 모달 닫기
+          modalCloseSlide();
+          
+          // 버튼 상태 확인 (자동 체크 포함)
+          checkAgreeButtonState(true);
+        });
+        
+        // 입력 필드와 체크박스 상태를 확인하여 버튼 활성화하는 함수
+        // autoCheck: true면 입력 필드가 채워졌을 때 자동으로 체크박스 체크, false면 버튼 상태만 확인
+        function checkAgreeButtonState(autoCheck) {
+          var $continueBtn = $("#continue-btn");
+          var $checkboxAll = $("#checkbox_all");
+          
+          // 입력 필드 검증
+          var isNameFilled = $("#name").val().trim().length > 0;
+          var isIdNumberFilled = $("#idNumber").val().trim().length === 6;
+          var isAccountNumber4Filled = $("#accountNumber4").val().trim().length === 1;
+          var isPhoneNumberFilled = $("#phoneNumber").val().trim().length === 11;
+          var isAgencySelected = $(".agency-wrap .select-box").hasClass("comp");
+          
+          var allFieldsFilled = isNameFilled && isIdNumberFilled && isAccountNumber4Filled && isPhoneNumberFilled && isAgencySelected;
+          
+          // 모든 조건 충족 시 버튼 활성화
+          if (allFieldsFilled && $("#checkbox_all").prop("checked")) {
+            $continueBtn.prop("disabled", false);
+            $continueBtn.removeClass("disabled");
+            $("#continue-btn").text("동의하고 인증하기");
+          } else if(allFieldsFilled) {
+            $continueBtn.prop("disabled", false);
+            $continueBtn.removeClass("disabled");
+          } else {
+            $continueBtn.prop("disabled", true);
+            $continueBtn.addClass("disabled");
+            $("#continue-btn").text("다음");
+          }
+        }
+        
+        // 입력 필드 변경 시 자동 체크 및 버튼 상태 확인
+        $("#name, #idNumber, #accountNumber4, #phoneNumber").on("input", function () {
+          checkAgreeButtonState(true); // autoCheck = true
+        });
+        
+        // 체크박스 변경 시 버튼 상태만 확인 (자동 체크 안 함)
+        $(document).on("change", "#checkbox_all", function() {
+          if($(this).prop("checked")) {
+            $("#modal-agree input[type='checkbox']").prop("checked", true);
+            $("#modal-agree .btn-confirm").prop("disabled", false);
+          } else {
+            $("#modal-agree .btn-confirm").prop("disabled", true);
+          }
+          setTimeout(function() {
+            checkAgreeButtonState(false); // autoCheck = false
+          }, 10);
+        });
+
+        $("#continue-btn").on("click", function() {
+          $(this).text("동의하고 인증하기");
+          $("#checkbox_all").prop("checked", true);
+          $("#modal-agree input[type='checkbox']").prop("checked", true);
+          $("#modal-agree .btn-confirm").prop("disabled", false);
+        });
+        
+        // select-box의 comp 클래스 변경 감지
+        var $selectBox = $(".agency-wrap .select-box");
+        if ($selectBox.length > 0) {
+          var observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+              if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                checkAgreeButtonState(true); // 통신사 선택 시 자동 체크
+              }
+            });
+          });
+          
+          observer.observe($selectBox[0], {
+            attributes: true,
+            attributeFilter: ['class']
+          });
+        }
+        
+        // 초기 상태 확인 (자동 체크 포함)
+        setTimeout(function() {
+          checkAgreeButtonState(true);
+        }, 100);
+        
+        // 이름 입력 후 Tab 키 눌렀을 때 생년월일 필드로 포커스 이동
+        $("#name").on("keydown", function(e) {
+          if (e.keyCode === 9 || e.which === 9) { // Tab 키
+            e.preventDefault();
+            $("#idNumber").focus();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

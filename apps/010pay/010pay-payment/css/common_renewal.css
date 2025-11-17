@@ -277,7 +277,6 @@ select,
   vertical-align: top;
 }
 input[type="text"],
-input[type="password"],
 input[type="number"],
 input[type="email"],
 input[type="tel"],
@@ -338,6 +337,11 @@ input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
 }
 
 /* input help */
@@ -468,7 +472,7 @@ input[type="number"]::-webkit-inner-spin-button {
   padding-left: 15px;
   background: transparent;
   cursor: pointer;
-  color: #ccc;
+  color: #B0B0B3;
   max-width: inherit;
   font-family: Pretendard;
   font-size: 20px;
@@ -562,14 +566,19 @@ input[type="number"]::-webkit-inner-spin-button {
 .checkbox > input + label:before {
   content: "";
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 0;
+  transform: translateY(-50%);
   display: block;
   width: 24px;
   height: 24px;
   background: url("../images/common/icon-checkbox-off.svg") no-repeat center /
     contain;
   z-index: 2;
+}
+.checkbox > input[type="radio"] + label:before {
+  background: url("../images/common/icon-radio-off.svg") no-repeat center /
+    contain;
 }
 .checkbox.child .arrow-right {
   content: "";
@@ -591,6 +600,10 @@ input[type="number"]::-webkit-inner-spin-button {
   background: url("../images/common/icon-checkbox-on.svg") no-repeat center /
     contain;
 }
+.checkbox > input[type="radio"]:checked + label:before {
+  background: url("../images/common/icon-radio-on.svg") no-repeat center /
+    contain;
+}
 .checkbox > input + label {
   padding-left: 32px;
 }
@@ -598,12 +611,14 @@ input[type="number"]::-webkit-inner-spin-button {
   font-size: 12px;
   color: #575757;
   font-weight: 400;
-  padding-left: 24px;
+  padding-left: 32px;
 }
 .checkbox.child > input + label:before {
+  top: 50%;
+  transform: translateY(-50%);
   background-image: url("../images/common/icon-check-off.svg");
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 }
 .checkbox.child > input + label:after {
   background-color: transparent;
@@ -678,6 +693,9 @@ input[type="number"]::-webkit-inner-spin-button {
   align-items: center;
 }
 .checkbox-block-group .checkbox.child {
+  display: flex;
+  align-items: center;
+  height: 24px;
   font-size: 14px;
   color: #454545;
 }
@@ -1283,8 +1301,15 @@ body > div > form.main_form {
   justify-content: start;
 }
 #header .header-box .page-title {
+  display: flex;
+  align-items: center;
   padding-left: 0;
 }
+
+#header .header-box .page-title .rrpay-logo {
+  width: 121px;
+}
+
 #header .header-box.center .page-title {
   margin-left: auto;
 }
@@ -1747,6 +1772,12 @@ body > div > form.main_form {
   background: url("../images/common/icon-close.svg") center / 24px no-repeat;
   font-size: 0;
 }
+.icon-close-gray {
+  width: 20px;
+  height: 20px;
+  background: url("../images/common/icon-close-gray.svg") center / 20px no-repeat;
+  font-size: 0;
+}
 .icon-close-white {
   width: 24px;
   height: 24px;
@@ -1885,6 +1916,13 @@ body > div > form.main_form {
   font-size: 0;
 }
 
+.icon-exclamation-circle-line {
+  width: 16px;
+  height: 16px;
+  background: url("../images/common/icon-exclamation-circle-line.svg") center / contain no-repeat;
+  font-size: 0;
+}
+
 .icon-reload {
   width: 20px;
   height: 20px;
@@ -1959,6 +1997,22 @@ body > div > form.main_form {
   width: 24px;
   height: 24px;
   background: url("../images/common/icon-cash.svg") center center / cover
+    no-repeat;
+  font-size: 0;
+}
+
+.icon-eye-on {
+  width: 24px;
+  height: 24px;
+  background: url("../images/common/icon-eye-on.svg") center center / cover
+    no-repeat;
+  font-size: 0;
+}
+
+.icon-eye-off {
+  width: 24px;
+  height: 24px;
+  background: url("../images/common/icon-eye-off.svg") center center / cover
     no-repeat;
   font-size: 0;
 }
@@ -2568,8 +2622,7 @@ body > div > form.main_form {
 .modal-dialog:after,
 .modal-content:after,
 .modal-header:after,
-.modal-body:after,
-.modal-footer:after {
+.modal-body:after {
   content: "";
   clear: both;
   display: block;
@@ -2723,7 +2776,7 @@ body > div > form.main_form {
 .modal-footer.vertical,
 body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer.vertical {
   flex-direction: column;
-  padding-bottom: 4px;
+  padding-bottom: 20px;
 }
 .modal-footer .btn {
   width: 100%;
@@ -4771,13 +4824,14 @@ div.nppfs-keypad {
 }
 
 .modal-slide.type-title .modal-footer {
-  padding: 20px;
+  padding: 20px 16px;
   text-align: center;
 }
 
 .modal-slide.type-title .btn-confirm {
   display: inline-block;
   width: 100%;
+  height: 56px;
   padding: 18px 30px;
   color: #e0ff63;
   background-color: #151515;
@@ -4785,9 +4839,9 @@ div.nppfs-keypad {
   border-radius: 16px;
   cursor: not-allowed;
   font-family: Pretendard;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
-  line-height: 21.48px;
+  line-height: 1.4;
   text-align: center;
   z-index: 1;
 }
@@ -4916,9 +4970,9 @@ div.nppfs-keypad {
 .input-container.focus-on {
   border-color: #151515;
 }
-.input-container.focus-on > button {
+/* .input-container.focus-on > button {
   display: block;
-}
+} */
 
 .input-container.label-n > button {
   top: 50%;
@@ -4937,7 +4991,7 @@ div.nppfs-keypad {
   line-height: 18px;
   letter-spacing: -0.04em;
   text-align: left;
-  color: #7d7d7d;
+  color: #888;
   margin-top: 8px;
 }
 
@@ -5034,13 +5088,21 @@ div.nppfs-keypad {
 .input-container.text-error.focus-on input {
   border: 1px solid #ff0000;
 }
+
+.input-container.password .icon-del{
+  right: 48px;
+}
+.input-container.password .icon-eye {
+  display: none;
+  right: 16px;
+}
+
 .custom-input,
 input[type="text"].custom-input,
 input[type="number"].custom-input,
 input[type="tel"].custom-input {
   width: 100%;
   padding: 21.5px 16px;
-  padding-top: 20px; /* 위쪽 여백을 추가하여 label과 겹치지 않도록 함 */
   font-size: 20px;
   border-radius: 12px;
   outline: none;
@@ -5117,15 +5179,34 @@ input[type="tel"].custom-input {
 .id-number > div {
   position: relative;
 }
+.id-number > div:first-of-type {
+  width: 100%;
+}
+.id-number.focus-on > div:first-of-type,
+.id-number.fill > div:first-of-type {
+  width: auto;
+}
 .id-number > div:first-of-type input {
-  width: 102px;
+  width: 100%;
   padding-right: 6px;
+}
+.id-number.focus-on > div:first-of-type input,
+.id-number.fill > div:first-of-type input {
+  width: 102px;
 }
 .id-number > div:last-of-type .custom-input {
   padding-left: 6px;
 }
 .id-number.label-error {
   border: 1px solid #ff0000;
+}
+.id-number .dash, .id-number .dash + div {
+  display: none;
+}
+
+.id-number.focus-on .dash, .id-number.focus-on .dash + div,
+.id-number.fill .dash, .id-number.fill .dash + div {
+  display: block;
 }
 /* //주민등록번호 input */
 /* 카드등록 */
@@ -5192,7 +5273,7 @@ input[type="tel"].custom-input {
   color: #575757;
 }
 .fill em.dash {
-  top: 11.5px;
+  top: 10px;
 }
 .fill.comp em.dash {
   color: #575757;
@@ -5981,7 +6062,7 @@ em.dash {
   padding: 0 2px;
 }
 .agree-full-wrap .terms-wrap .checkbox-block-group {
-  padding: 6px 0;
+  padding: 8px 0;
 }
 .agree-full-wrap
   .terms-wrap
@@ -5995,6 +6076,7 @@ em.dash {
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+  line-height: 1;
 }
 .agree-full-wrap .check-all-box .checkbox > input + label {
   font-weight: 700;
@@ -6002,7 +6084,7 @@ em.dash {
 .agree-full-wrap .check-all-box .checkbox > input + label:before {
   content: "";
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 0;
   display: block;
   width: 24px;

@@ -31,6 +31,9 @@
               <i class="icon-back"></i>
             </button>
             <h2 class="page-title">롯데카드 6월 이벤트</h2>
+            <button type="button" class="right-0">
+              <i class="icon-share"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -45,8 +48,8 @@
           </button>
           <div class="event-content-wrap">
             <h3 class="event-title">
-              롯데카드 쓰고 <br />
-              최대 <b>15만원</b> 혜택 받자
+              <span>롯데카드 쓰고</span> 
+              <span>최대 <b>15만원</b> 혜택 받자</span>
             </h3>
             <div class="event-content">
               <div class="event-num-wrap">
@@ -255,13 +258,6 @@
               </div>
             </div>
           </div>
-          <div class="share-wrap">
-            <div class="text-wrap">
-              <p class="text-title">나만 알기 아까운 이벤트!</p>
-              <p class="text-sub">친구에게 공유해주세요</p>
-            </div>
-            <button type="button" class="share-btn">공유하기</button>
-          </div>
           <div id="toast-move-lotte" class="modal-toast is-btn">
             <p>정보제공을 위해 <b>롯데카드</b>로 이동할게요</p>
           </div>
@@ -323,25 +319,27 @@
       var toastTimeout;
       
       $(".event-list li").on("click", function() {
-        clearTimeout(toastTimeout);
-        
-        // 토스트 메시지 표시
-        $("#toast-move-lotte").show();
-        
-        // 100ms 후 toast-view 클래스 추가
-        toastTimeout = setTimeout(function () {
-          $("#toast-move-lotte").addClass('toast-view');
-        }, 100);
-        
-        // 2초 후 toast-view 클래스 제거
-        toastTimeout = setTimeout(function () {
-          $("#toast-move-lotte").removeClass('toast-view');
-        }, 4000);
-        
-        // 2.5초 후 토스트 메시지 완전히 숨기기
-        toastTimeout = setTimeout(function () {
-          $("#toast-move-lotte").fadeOut();
-        }, 4500);
+        if(!$(this).find(".view-btn").is(":disabled")) {
+          clearTimeout(toastTimeout);
+          
+          // 토스트 메시지 표시
+          $("#toast-move-lotte").show();
+          
+          // 100ms 후 toast-view 클래스 추가
+          toastTimeout = setTimeout(function () {
+            $("#toast-move-lotte").addClass('toast-view');
+          }, 100);
+          
+          // 2초 후 toast-view 클래스 제거
+          toastTimeout = setTimeout(function () {
+            $("#toast-move-lotte").removeClass('toast-view');
+          }, 4000);
+          
+          // 2.5초 후 토스트 메시지 완전히 숨기기
+          toastTimeout = setTimeout(function () {
+            $("#toast-move-lotte").fadeOut();
+          }, 4500);
+        }
       });
     });
   </script>

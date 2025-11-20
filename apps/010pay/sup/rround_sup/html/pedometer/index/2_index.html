@@ -85,13 +85,72 @@
                 <div class="dot challenge"></div>
               </button> -->
 
-              <!-- [2025.10.31] 변경 시작 -->
-              <button type="button" class="btn-buy">
-                <img src="../../../images/pedometer/ticket-text-v2.png" alt="최저가 보장 챌린지 참여하기!" class="ticket-text">
-                <div class="dot buy lottie-group-buy">
-                </div>
+              <!--
+                [퍼블 참고용 미션 버튼 템플릿]
+                아래 버튼들은 랜덤 노출용 대기 상태이며, 필요 시 주석을 해제해 사용하세요.
+              -->
+
+              <!-- <button type="button" class="btn-buy btn-mission-challenge">
+                <span class="ticket-text">최저가 도전권 줍기!
+                  <i class="ico-triangle"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="6" viewBox="0 0 21 6" fill="none">
+                    <path d="M16 0H21V6L19 3.5L16 0Z" fill="#151515"/>
+                  </svg></i>
+                </span>
+                <div class="dot buy animation-challenge"></div>
+              </button> -->
+
+              <!-- <button type="button" class="btn-buy btn-mission-energy">
+                <span class="ticket-text">에너지 줍기!
+                  <i class="ico-triangle"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="6" viewBox="0 0 21 6" fill="none">
+                    <path d="M16 0H21V6L19 3.5L16 0Z" fill="#151515"/>
+                  </svg></i>
+                </span>
+                <div class="dot buy animation-energy"></div>
+              </button> -->
+
+              <!-- <button type="button" class="btn-buy btn-mission-lotto">
+                <span class="ticket-text">로또 줍기!
+                  <i class="ico-triangle"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="6" viewBox="0 0 21 6" fill="none">
+                    <path d="M16 0H21V6L19 3.5L16 0Z" fill="#151515"/>
+                  </svg></i>
+                </span>
+                <div class="dot buy animation-lotto"></div>
+              </button> -->
+
+              <button type="button" class="btn-buy btn-mission-point">
+                <span class="ticket-text"
+                  >포인트 줍기!
+                  <i class="ico-triangle"
+                    ><svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="21"
+                      height="6"
+                      viewBox="0 0 21 6"
+                      fill="none"
+                    >
+                      <path d="M16 0H21V6L19 3.5L16 0Z" fill="#151515" /></svg></i>
+                </span>
+                <div class="dot buy animation-point"></div>
               </button>
-              <!-- [2025.10.31] 변경 끝 -->
+
+              <button
+                type="button"
+                class="btn-buy btn-mission-coin position-bottom"
+              >
+                <span class="ticket-text"
+                  >클릭하고 +1원 받기
+                  <i class="ico-triangle"
+                    ><svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="21"
+                      height="6"
+                      viewBox="0 0 21 6"
+                      fill="none"
+                    >
+                      <path d="M16 0H21V6L19 3.5L16 0Z" fill="#151515" /></svg></i>
+                </span>
+                <div class="dot buy lottie-group-buy"></div>
+              </button>
 
               <!-- base, receive, gift -->
               <ul class="pedo-step-list">
@@ -475,7 +534,7 @@
           <div class="modal-body">
             <div class="container">
               <div class="reward-wrap">
-                <i class="lottie-coin img-reward"></i>
+                <i class="img-reward reward-point" aria-hidden="true"></i>
                 <div class="txt-reward">
                   <strong>만보기 걸음 보상</strong>을 받았어요!
                 </div>
@@ -557,7 +616,7 @@
           <div class="modal-body">
             <div class="container">
               <div class="reward-wrap">
-                <i class="lottie-coin img-reward"></i>
+                <i class="img-reward reward-point" aria-hidden="true"></i>
                 <div class="txt-reward">
                   <strong>만보기 걸음 보상</strong>을 받았어요!
                 </div>
@@ -1074,38 +1133,113 @@
       </div>
     </div>
     <!-- //최저가 도전권 줍기 팝업 -->
-    <!--  -->
+
+    <!-- 광고 보상 팝업 -->
+    <div id="modal-popup-07" class="modal modal-slide type-title">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="head-line" onclick="modalCloseSlide();"></div>
+          <div class="modal-head center">
+            <p class="modal-head-title">포인트 줍기!</p>
+            <!-- <p class="modal-head-title">로또 줍기!</p> -->
+            <!-- <p class="modal-head-title">에너지 줍기!</p> -->
+            <!-- <p class="modal-head-title">최저가 도전권 줍기</p> -->
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="reward-wrap">
+                <i class="img-reward reward-point" aria-hidden="true"></i>
+                <!-- <i class="img-reward reward-lotto" aria-hidden="true"></i> -->
+                <!-- <i class="img-reward reward-energy" aria-hidden="true"></i> -->
+                <!-- <i class="img-reward reward-challenge" aria-hidden="true"></i> -->
+                <div class="txt-reward">
+                  <strong>자주 오는 기회가 아니에요!</strong>
+                  <div class="txt-reward-sub">
+                    최저가 도전권을 모아,<br />
+                    나만의 가격으로 경매에 도전하세요
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer vertical">
+            <button
+              type="button"
+              id="executeOk"
+              onclick="modalCloseSlide();"
+              class="btn btn-confirm"
+            >
+              30초 광고보고 {재화명} 줍기
+            </button>
+            <button
+              type="button"
+              id="executeNo"
+              onclick="modalCloseSlide();"
+              class="btn btn-cancel type2"
+            >
+              닫기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //광고 보상 팝업 -->
+
+    <!-- [2025.11.17] 변경 시작 -->
+    <div id="commonPrompt4" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="promptTitle4">{재화명}을 놓쳤어요</h3>
+            <p id="promptContents4">
+              광고가 정상적으로 끝나지 않았어요. <br />다시 시도하면 보상을 받을
+              수 있어요.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="promptOk4"
+              onclick="modalCloseAlert();"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //[2025.11.17] 변경 끝 -->
 
     <!-- select modal list -->
     <div id="modal-alarm-chk" class="modal modal-slide type-title type5">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-head">
-            <p class="modal-head-title">
-              만보기 보상을 놓치지 않도록 <br />
-              알려드릴게요
+          <!-- <div class="modal-head"> -->
+          <p class="modal-head-title">
+            만보기 보상을 놓치지 않도록 <br />
+            알려드릴게요
+          </p>
+          <button type="button" class="btn btn-close js-modal-close">
+            <i class="icon-close"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <p class="permission-text margin">
+              만보기 보상을 놓치지 않도록 알려드릴게요. <br />
+              알림은 언제든지 해제할 수 있어요
             </p>
-            <button type="button" class="btn btn-close js-modal-close">
-              <i class="icon-close"></i>
-            </button>
           </div>
-          <div class="modal-body">
-            <div class="container">
-              <p class="permission-text margin">
-                만보기 보상을 놓치지 않도록 알려드릴게요. <br />
-                알림은 언제든지 해제할 수 있어요
-              </p>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              id="btn-agree4"
-              class="btn-confirm js-modal-close js-modal-alarm-chk"
-            >
-              동의하고 알림받기
-            </button>
-          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            id="btn-agree4"
+            class="btn-confirm js-modal-close js-modal-alarm-chk"
+          >
+            동의하고 알림받기
+          </button>
         </div>
       </div>
     </div>
@@ -1117,7 +1251,7 @@
     </div>
     <!-- //토스트 모달 -->
     <!-- [2025.08.25] 변경 끝 -->
-     
+
     <!-- [2025.08.21] 변경 시작 -->
     <!-- 전체화면 로딩 팝업 -->
     <div id="modal-loading" class="modal">
@@ -1149,6 +1283,8 @@
       // modalOpen("commonPrompt");
       // 광고 x 모달
       // modalOpen("commonPrompt2");
+      // 광고 놓침 모달
+      modalOpen("commonPrompt4");
       // 보상획득 모달
       // modalOpenSlide('modal-terms-02');
       // 보상획득 광고보기 모달
@@ -1159,6 +1295,8 @@
       // modalOpenSlide("modal-popup-05");
       // 최저가 도전권 준비 팝업
       // modalOpenSlide("modal-popup-06");
+      // 최저가 도전권 줍기 팝업
+      // modalOpenSlide("modal-popup-07");
       // 에러모달
       // modalOpen("commonFail");
       // 에러 1:1문의 모달
@@ -1166,7 +1304,7 @@
       // 로딩 모달
       // modalOpen("modal-loading");
       // 알람 동의 모달
-      modalOpenSlide("modal-alarm-chk");
+      // modalOpenSlide("modal-alarm-chk");
 
       // 알람 설정 버튼 클릭 이벤트
       $(document).ready(function () {
@@ -1192,14 +1330,15 @@
 
     $(document).ready(function () {
       // 로티 모달 내 코인
-      let svgContainer = document.querySelector(".lottie-coin");
-
-      let animItem = bodymovin.loadAnimation({
-        wrapper: svgContainer,
-        animType: "svg",
-        loop: false,
-        path: "https://ux.sbsvc.online/010pay/sup/pedometer/images/lottie/coin_default.json",
-      });
+      const svgContainer = document.querySelector(".lottie-coin");
+      if (svgContainer) {
+        bodymovin.loadAnimation({
+          wrapper: svgContainer,
+          animType: "svg",
+          loop: false,
+          path: "https://ux.sbsvc.online/010pay/sup/pedometer/images/lottie/coin_default.json",
+        });
+      }
 
       // [2025.08.25] 변경 시작
       // Swiper 초기화

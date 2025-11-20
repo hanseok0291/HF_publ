@@ -84,8 +84,8 @@
                   </div>
                 </div>
               </div>
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
+              <!-- <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div> -->
               <div class="swiper-pagination"></div>
             </div>
             <!-- //카드 x -->
@@ -102,7 +102,7 @@
                 </a>
               </li>
               <li>
-                <a href="#"
+                <a href="#" class="btn-alert"
                   >카드 사용/수령 등록 
                 </a>
               </li>
@@ -485,6 +485,22 @@
     </div>
     <!-- //common prompt -->
 
+    <!-- modal - common alert -->
+    <div id="commonAlert" class="modal modal-new" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="alertTitle"></h3>
+            <div class="prompt-contents"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="confirmOk" class="btn" data-dismiss="modal">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //modal - common alert -->
+
     <!-- confirmCancel -->
     <div id="confirmCancel" class="modal">
       <div class="modal-dialog">
@@ -528,6 +544,13 @@
           "카드 발급을<br>정말로 취소하시겠습니까?",
           $("#confirmCancel"),
         );
+      });
+
+      $(".btn-alert").click(function () {
+        // a2 얼럿
+        $.alertMessage("", `<p class="line">현재 사용중인 카드가 없습니다.<br>카드 발급 후 등록하시기 바랍니다.</p>`, $("#commonAlert"));
+        // a3 얼럿
+        /* $.alertMessage("", `<p class="line">현재 사용중인 카드가 있습니다.<br>본인이 수령한 카드는 <br>자동으로 등록 처리 됩니다.</p>`, $("#commonAlert")); */
       });
 
       var swiper = new Swiper(".mySwiper", {

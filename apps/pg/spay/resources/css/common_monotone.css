@@ -604,15 +604,23 @@ body.custom-new .select-type .check-group input:disabled + label { background: #
 #content .pay-password { width: 100%; display: flex; align-items: center; border-bottom: 1px solid #ebebeb; } 
 #content .pay-password .reg-number-wrap, #content .pay-password input[type="password"] { height: 100%; } 
 
-/* next 클래스가 있을 때 select-telecom, select-birth, check-group의 input 요소들과 select-input 버튼들을 비활성화 */
+/* next 클래스가 있을 때 모든 입력 요소들과 버튼들을 비활성화 */
 #content.next .select-telecom input,
 #content.next .select-birth input,
 #content.next .check-group input,
+#content.next .check-group label,
+#content.next .check-group li,
 #content.next .select-input button,
-#content.next .select-input .select {
+#content.next .select-input .select,
+#content.next .select-telecom button,
+#content.next .select-telecom .select {
     pointer-events: none;
-    opacity: 0.5;
     cursor: not-allowed;
+}
+
+/* check-group 전체 영역 비활성화 */
+#content.next .check-group {
+    pointer-events: none;
 } 
 
 /* 하단버튼 가려짐 이슈로 추가 */
@@ -631,6 +639,6 @@ body.custom-new .accordion-list .arrow-toggle { position: absolute; right: 0; }
 body.custom-new #timer { position: relative; } 
 /* visualTimer 포커스 영역 확장 */
 
-body.custom-new #timer .accessible-timer { position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; min-width: 40px; min-height: 4px; overflow: hidden; border: 0; display: block; background: transparent; cursor: pointer; /* iOS 스크린리더 최적화 */
+body.custom-new #timer .accessible-timer { position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; min-width: 40px; min-height: 4px; overflow: hidden; border: 0; display: block; background: transparent; /* iOS 스크린리더 최적화 */
  -webkit-tap-highlight-color: transparent; /* 텍스트를 투명하게 만들어 시각적으로는 보이지 않게 함 */
  color: transparent; text-shadow: none; } 

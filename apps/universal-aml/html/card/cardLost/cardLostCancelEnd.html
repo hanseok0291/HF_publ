@@ -23,79 +23,57 @@
   <body>
     <!-- wrap -->
     <div id="wrap" class="card step">
-      <!-- header -->
       <header class="header">
         <div class="container">
-          <h1 class="brand-name">카드 이용 정보 확인</h1>
+          <button type="button" class="btn-back btn"></button>
+          <h1 class="brand-name"></h1>
           <button type="button" class="btn-close btn"></button>
         </div>
       </header>
-      <!-- //header -->
-      <div class="step-bar">
-        <div class="step-wrap">
-          <span class="step step-03"></span>
-        </div>
-      </div>
       <!-- section -->
-      <section id="">
-        <div id="content" class="container">
-          <div class="tit-wrap">
-            <!-- tit -->
-            <h2 class="tit">
-              기존에 작성된 이용정보를<br />
-              확인해주세요.
-            </h2>
-            <!-- //tit -->
-          </div>
+      <section id="" class="">
 
-          <div class="card-complete-wrap type2">
-            <div class="card-info-table">
-              <div class="row">
-                <div class="label">카드 배송지</div>
-                <div class="value">
-                  <p>서울 강남구 테헤란로34길 6</p>
-                  <p>9층 헥토파이낸셜</p>
+        <div class="container">
+          <div id="content">
+            <div class="card-complete-wrap">
+              <div class="icon-complete big"></div>
+              <h2 class="complete-title">해제 정보 확인</h2>
+              <p class="complete-subtext">
+                분실 신고를 해제 하시겠습니까?
+              </p>
+            </div>
+            
+            <div class="card-complete-wrap type2">
+              <div class="card-info-table">
+                <div class="row">
+                  <div class="label">해제 카드</div>
+                  <div class="value">
+                    <p>
+                      메리어트 본보이™ 더 베스트 신한카드</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="label">
+                    카드번호</div>
+                  <div class="value">
+                    1234-5678-****-3456</div>
+                </div>
+                <div class="row">
+                  <div class="label">
+                    카드 기능</div>
+                  <div class="value">
+                    해외겸용<br>
+                    선불교통카드 신청 </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="label">수령인</div>
-                <div class="value">본인</div>
-              </div>
-              <div class="row">
-                <div class="label">페이서비스</div>
-                <div class="value">페이북, 네이버페이</div>
-              </div>
-              <div class="row">
-                <div class="label">해외결제차단</div>
-                <div class="value">등록</div>
-              </div>
-              <div class="row">
-                <div class="label">해외원화결제 차단</div>
-                <div class="value">신청</div>
-              </div>
-              <div class="row">
-                <div class="label">선불 교통기능</div>
-                <div class="value">미신청</div>
-              </div>
-              <div class="row">
-                <div class="label">해외겸용/국내전용</div>
-                <div class="value">해외겸용</div>
-              </div>
             </div>
-
-            <p class="card-guide-text title">기존 정보로 신청할까요?</p>
-            <p class="card-guide-text">
-              기존정보 확인 후, 수정이 필요한 경우 <strong>[수정]</strong>버튼을
-              눌러 수정해주세요.
-            </p>
           </div>
         </div>
 
         <div id="footer">
           <!-- container -->
           <div class="btn-wrap">
-            <button type="button" id="d" class="btn btn-re">수정</button>
-            <button type="button" id="send" class="btn">다음</button>
+            <button type="button" id="send" class="btn">해제하기</button>
           </div>
           <!-- //container -->
         </div>
@@ -320,13 +298,69 @@
               id="promptOk"
               class="btn btn-confirm"
             >
-              예
+              확인
             </button>
           </div>
         </div>
       </div>
     </div>
     <!-- //common prompt -->
+    <!-- common prompt -->
+    <div id="commonPopup" class="modal modal-popup-new">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="promptTitle1">
+              KYC 재이행 여부 확인
+              <button
+                type="button"
+                class="popup-new-close-btn"
+                onclick="modalClose();"
+              ></button>
+            </h3>
+            <p id="promptContents1">
+              선불 카드 발급 시 여권상의<br />영문명이 필요합니다.<br />
+              정확하지 않은 영문명 발급으로 인해 발생하는 불이익은 책임지지
+              않습니다.<br />KYC를 재이행 하지 않고<br />
+              발급을 진행하시겠습니까?
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalClose();"
+              class="btn btn-left-color"
+            >
+              KYC 재이행
+            </button>
+            <button
+              type="button"
+              onclick="modalClose();"
+              id="promptOk"
+              class="btn btn-confirm"
+            >
+              네
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //common prompt -->
+    <!-- modal - common alert -->
+    <div id="commonAlert" class="modal modal-new" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="alertTitle"></h3>
+            <div class="prompt-contents"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="confirmOk" class="btn" data-dismiss="modal">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //modal - common alert -->
     <!-- 주소검색 -->
     <div
       id="modalAddr"
@@ -398,26 +432,21 @@
         formatPhoneNumber();
       });
 
-      $(".btn-close.btn").click(function () {
+      $(".btn-back.btn").click(function () {
         $.promptMessage(
           "",
-          "선불충전서비스를 이용하기 위해서는<br>본인확인이 필요합니다.<br><br><b>본인확인을 계속 하시겠습니까?</b>",
+          "분실/도난 신고 해제를 <br>중단하시겠습니까?<br>입력한 내용은 저장되지 않습니다.",
           $("#commonPrompt"),
         );
       });
 
-      var swiper = new Swiper(".mySwiper", {
-        slidesPerView: "auto",
-        centeredSlides: true,
-        spaceBetween: 70,
-        loop: true,
-        /*         navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-        pagination: {
-        el: ".swiper-pagination",
-      }, */
+      // 얼럿 버튼
+      $("#send").click(function () {
+        $.alertMessage(
+          "",
+          "<strong>분실 신고 해제 완료</strong><br><br>분실/도난 신고가 해제되었습니다.",
+          $("#commonAlert")
+        );
       });
 
       let buttonClicked = "";
@@ -446,6 +475,7 @@
           });
         });
       });
+
     </script>
   </body>
 </html>

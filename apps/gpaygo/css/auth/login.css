@@ -1,0 +1,408 @@
+/* ============================================
+   로그인 페이지 스타일 (Mobile First)
+   ============================================ */
+
+.login-page {
+  min-height: 100vh;
+  background-color: var(--color-brand-main);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 7.1875rem; /* 115px - 하단 고정 버튼 영역 높이 */
+}
+
+/* PC 버전 왼쪽 이미지 영역 (기본 숨김) */
+.login-image-area {
+  display: none;
+}
+
+.login-content-area {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* 상단 탭 메뉴 */
+.login-tabs {
+  display: flex;
+  width: 100%;
+  background-color: var(--color-gray-0);
+  border-bottom: 1px solid var(--color-line-default);
+}
+
+.login-tab-item {
+  flex: 1;
+  height: 3.375rem; /* 54px */
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-family: var(--font-family-base);
+  font-size: 1.125rem; /* 18px */
+  font-weight: 600; /* SemiBold */
+  color: var(--color-gray-500);
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.login-tab-item.active {
+  color: var(--color-brand-main);
+  border-bottom-color: var(--color-brand-main);
+}
+
+/* 로고 영역 */
+.login-logo-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0 1rem;
+  position: relative;
+}
+
+.login-logo-img {
+  width: 11.25rem; /* 180px */
+  height: 1.6875rem; /* 27px */
+  object-fit: contain;
+}
+
+.login-logo-placeholder {
+  width: 11.25rem;
+  height: 1.6875rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gray-0);
+  font-size: 0.875rem;
+}
+
+/* 로그인 폼 카드 */
+.login-card {
+  flex: 1;
+  background-color: var(--color-gray-0);
+  border-radius: 1rem 1rem 0 0;
+  margin: 0 1rem;
+  padding: 2.5rem 1.5rem 2rem;
+  margin-top: auto;
+}
+
+.login-content-area .login-card {
+  margin-top: 0;
+}
+
+.login-card-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.login-subtitle {
+  font-family: var(--font-family-base);
+  font-size: 0.875rem; /* 14px */
+  font-weight: 500; /* Medium */
+  color: var(--color-gray-700);
+  margin: 0 0 0.5rem;
+  line-height: 1.45; /* 20.3px */
+}
+
+.login-title {
+  font-family: var(--font-family-base);
+  font-size: 1.75rem; /* 28px */
+  font-weight: 600; /* SemiBold */
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: 1.45; /* 40.6px */
+}
+
+/* 로그인 폼 */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.login-label {
+  font-family: var(--font-family-base);
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 600; /* SemiBold */
+  color: var(--color-gray-800);
+  line-height: 1.33; /* 20px */
+}
+
+.login-input-group .textfield {
+  width: 100%;
+  height: 3rem; /* 48px */
+  padding: 0.875rem 1rem; /* 14px 16px */
+  font-family: var(--font-family-base);
+  font-size: 0.875rem; /* 14px */
+  font-weight: 500; /* Medium */
+  color: var(--color-text-primary);
+  background-color: var(--color-gray-0);
+  border: 1px solid var(--color-line-default);
+  border-radius: 0.25rem; /* 4px */
+  line-height: 1.45; /* 20.3px */
+  transition: border-color 0.2s ease;
+}
+
+.login-input-group .textfield:focus {
+  outline: none;
+  border-color: var(--input-border-focus);
+}
+
+.login-input-group .textfield::placeholder {
+  color: var(--input-placeholder-color);
+}
+
+/* 에러 알럿 */
+.login-alert {
+  display: flex;
+  align-items: center;
+  background-color: rgba(245, 67, 54, 0.08);
+  border: 1px solid rgba(245, 67, 54, 0.2);
+  border-radius: 0.75rem; /* 12px */
+  padding: 0.75rem 1rem;
+  margin-top: 1.25rem;
+}
+
+.login-alert-icon {
+  width: 2.625rem; /* 42px */
+  height: 2.625rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+  background-color: var(--color-state-error);
+  color: var(--color-gray-0);
+  font-family: var(--font-family-base);
+  font-size: 1.125rem; /* 18px */
+  font-weight: 700;
+}
+
+.login-alert-text {
+  font-family: var(--font-family-base);
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.45; /* 20.3px */
+  color: var(--color-state-error);
+}
+
+.login-alert-text p {
+  margin: 0;
+}
+
+/* 체크박스 영역 */
+.login-checkbox-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.login-checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.login-checkbox {
+  width: 1.25rem; /* 20px */
+  height: 1.25rem; /* 20px */
+  cursor: pointer;
+  accent-color: var(--color-brand-main);
+}
+
+.login-checkbox-text {
+  font-family: var(--font-family-base);
+  font-size: 0.875rem; /* 14px */
+  font-weight: 400; /* Regular */
+  color: var(--color-gray-800);
+  line-height: 1.19; /* 16.7px */
+  user-select: none;
+}
+
+/* 하단 고정 버튼 영역 */
+.login-sticky-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-gray-0);
+  padding: 1rem 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 -0.125rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.btn-sticky {
+  width: 100%;
+  height: 3rem; /* 48px */
+  font-family: var(--font-family-base);
+  font-size: 1rem; /* 16px */
+  font-weight: 600; /* SemiBold */
+  color: var(--color-gray-0);
+  background-color: var(--color-brand-main);
+  border: none;
+  border-radius: 0.25rem; /* 4px */
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  line-height: 1.19; /* 19.1px */
+}
+
+.btn-sticky:hover {
+  background-color: #2d6ae8;
+}
+
+.btn-sticky:active {
+  background-color: #1e5fd9;
+}
+
+.btn-sticky:disabled,
+.btn-sticky[aria-disabled="true"] {
+  background-color: var(--color-gray-300);
+  color: var(--color-gray-0);
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.login-find-link {
+  text-align: center;
+  font-family: var(--font-family-base);
+  font-size: 1rem; /* 16px */
+  font-weight: 500; /* Medium */
+  color: var(--color-gray-600);
+  text-decoration: none;
+  line-height: 1.45; /* 23.2px */
+  transition: color 0.2s ease;
+}
+
+.login-find-link:hover {
+  color: var(--color-brand-main);
+}
+
+/* 반응형: Desktop (1440px 이상) - PC 버전 */
+@media (min-width: 90rem) {
+  .login-page {
+    background: linear-gradient(180deg, #f2f7ff 0%, #bdd3ff 100%);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 90rem; /* 1440px */
+    margin: 0 auto;
+    min-height: 100vh;
+    padding: 0;
+    padding-bottom: 0;
+  }
+
+  /* PC 버전 왼쪽 이미지 영역 */
+  .login-image-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-brand-main);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .login-image-logo {
+    position: relative;
+    z-index: 1;
+    width: 12.0625rem; /* 193px */
+    height: 1.8125rem; /* 29px */
+    object-fit: contain;
+  }
+
+  .login-image-placeholder {
+    position: relative;
+    z-index: 1;
+    width: 12.0625rem;
+    height: 1.8125rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gray-0);
+    font-size: 0.875rem;
+  }
+
+  /* PC 버전에서는 탭 메뉴 숨김 */
+  .login-tabs {
+    display: none;
+  }
+
+  /* 로고 영역 숨김 (PC에서는 왼쪽 이미지 영역 사용) */
+  .login-logo-area {
+    display: none;
+  }
+
+  /* 로그인 컨텐츠 영역 */
+  .login-content-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  /* 로그인 카드 */
+  .login-card {
+    max-width: 33.75rem; /* 540px */
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 0;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+    padding: 3.5rem 3rem 3rem;
+    margin: 0;
+  }
+
+  .login-card-header {
+    margin-bottom: 3rem;
+  }
+
+  .login-subtitle {
+    font-size: 1rem; /* 16px */
+  }
+
+  .login-title {
+    font-size: 2rem; /* 32px */
+    line-height: 1.45; /* 46.4px */
+  }
+
+  .login-form {
+    gap: 1.25rem;
+  }
+
+  .login-label {
+    font-size: 1rem; /* 16px */
+  }
+
+  .login-checkbox-group {
+    margin-top: 0.75rem;
+  }
+
+  .login-sticky-footer {
+    position: relative;
+    box-shadow: none;
+    padding: 0;
+    margin-top: 2.5rem;
+  }
+
+  .btn-sticky {
+    max-width: unset;
+    height: 3.5rem; /* 56px */
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.45; /* 26.1px */
+    
+  }
+
+  .login-find-link {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+}
+

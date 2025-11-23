@@ -23,24 +23,59 @@
   <body>
     <!-- wrap -->
     <div id="wrap" class="card step">
+      <header class="header">
+        <div class="container">
+          <button type="button" class="btn-back btn"></button>
+          <h1 class="brand-name"></h1>
+          <button type="button" class="btn-close btn"></button>
+        </div>
+      </header>
       <!-- section -->
-      <section id="" class="h-full-center">
-        <div id="content">
+      <section id="" class="">
+        <div id="content" class="w-full container">
           <div class="card-complete-wrap">
             <div class="icon-complete big"></div>
-            <h2 class="complete-title">카드 해지 완료</h2>
+            <h2 class="complete-title">해지 정보 확인</h2>
             <p class="complete-subtext">
-              교통카드 기능이 완전히 정지되기까지<br />
-              최대 3 영업일이 소요됩니다.<br />
-              안전을 위해 카드를 바로 폐기하시기 바랍니다.
+              카드를 정말로 해지 하시겠습니까?
             </p>
           </div>
+          
+          <div class="card-complete-wrap type2">
+            <div class="card-info-table">
+              <div class="row">
+                <div class="label">해지 카드</div>
+                <div class="value">
+                  <p>
+                    메리어트 본보이™ 더 베스트 신한카드</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="label">
+                  카드번호</div>
+                <div class="value">
+                  1234-5678-****-3456</div>
+              </div>
+              <div class="row">
+                <div class="label">
+                  카드 기능</div>
+                <div class="value">
+                  해외겸용<br>
+                  선불교통카드 신청 </div>
+              </div>
+            </div>
+            <ul class="guide-list">
+              <li>해지할 경우, 카드 사용이 즉시 중지되며 해지 신청 후에는 취소가 불가능합니다. </li>
+              <li>해지 후 동일한 카드로 다시 발급을 원하실 경우 재발급 비용 2,500원이 청구됩니다. </li>
+            </ul>
+          </div>
+
         </div>
 
         <div id="footer">
           <!-- container -->
           <div class="btn-wrap">
-            <button type="button" id="send" class="btn">확인</button>
+            <button type="button" id="send" class="btn">해지하기</button>
           </div>
           <!-- //container -->
         </div>
@@ -265,7 +300,7 @@
               id="promptOk"
               class="btn btn-confirm"
             >
-              예
+              확인
             </button>
           </div>
         </div>
@@ -313,6 +348,21 @@
       </div>
     </div>
     <!-- //common prompt -->
+    <!-- modal - common alert -->
+    <div id="commonAlert" class="modal modal-new" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="alertTitle"></h3>
+            <div class="prompt-contents"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="confirmOk" class="btn" data-dismiss="modal">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //modal - common alert -->
     <!-- 주소검색 -->
     <div
       id="modalAddr"
@@ -384,12 +434,17 @@
         formatPhoneNumber();
       });
 
-      $(".btn-close.btn").click(function () {
+      $(".btn-back.btn").click(function () {
         $.promptMessage(
           "",
-          "선불충전서비스를 이용하기 위해서는<br>본인확인이 필요합니다.<br><br><b>본인확인을 계속 하시겠습니까?</b>",
+          "분실/도난 신고 해제를 <br>중단하시겠습니까?<br>입력한 내용은 저장되지 않습니다.",
           $("#commonPrompt"),
         );
+      });
+
+      // 얼럿 버튼
+      $("#send").click(function () {
+        $.alertMessage("카드 해지 완료", `<p class="line">카드가 정상적으로 해지되었습니다.<br>정기결제가 등록되어 있을 경우<br>반드시 해지하시기 바랍니다.</p>`, $("#commonAlert"));
       });
 
       let buttonClicked = "";
@@ -419,9 +474,6 @@
         });
       });
 
-      // 얼럿 버튼
-      $("#send").click(function () {
-      });
     </script>
   </body>
 </html>

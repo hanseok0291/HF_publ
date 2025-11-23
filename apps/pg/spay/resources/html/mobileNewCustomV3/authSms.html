@@ -181,13 +181,9 @@
                                             <input type="radio" name="authType" id="authTypePass" class="fixedFooterJS" />
                                             <label for="authTypePass">PASS 인증</label>
                                         </li>
-                                        <li aria-label="SMS 인증 탭 버튼">
+                                        <li aria-label="일반 인증 탭 버튼">
                                             <input type="radio" name="authType" id="authTypeSms" class="fixedFooterJS" checked />
-                                            <label for="authTypeSms">SMS 인증</label>
-                                        </li>
-                                        <li aria-label="간편 인증 탭 버튼">
-                                            <input type="radio" name="authType" id="authTypeEasy" class="fixedFooterJS" />
-                                            <label for="authTypeEasy">간편 인증</label>
+                                            <label for="authTypeSms">일반 인증</label>
                                         </li>
                                     </ul>
                                     <!-- //3개일 경우 -->
@@ -230,7 +226,7 @@
                                         </div>
                                     </div>
                                     <!-- //select-telecom -->
-                                    <div>
+                                    <div class="select-birth">
                                         <ul class="form-type form-type-top">
                                             <li class="form-col2">
                                                 <div class="form-item input-btn reg-number-wrap">
@@ -288,10 +284,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-type form-type-top skt pay-password">
+                                            <div class="form-type form-type-top safe-password">
                                                 <div class="form-col2">
-                                                    <div class="input-btn reg-number-wrap">
-                                                        <input type="password" placeholder="결제 비밀번호 입력(등록자)" />
+                                                    <div class="form-item input-btn reg-number-wrap">
+                                                        <input type="password" id="" maxlength="4" placeholder="안심결제 비밀번호 입력" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -491,6 +487,8 @@
                 // 통신사 선택
                 $(".form-type-top .mypass").hide();
                 $(".select-auth li").show();
+                
+                // 초기 상태에서는 next 클래스가 없으므로 모든 요소가 활성화됨
 
                 $(".check-group input").click(function () {
                     var chkVal = $(this).attr("id");
@@ -630,6 +628,8 @@
 
                 $("#send").click(function () {
                     $("#content").addClass("next");
+                    
+                    // next 클래스 추가로 CSS에서 자동으로 모든 요소들이 비활성화됨
                     updateSendButtonClass();
                     const isStep1Visible = $(".step1").is(":visible");
                     const isStep2Visible = $(".step2").is(":visible");
@@ -652,6 +652,9 @@
                             // $.alertMessage("", "휴대폰결제 이용을 위해 <br>필수 약관 전체 동의가 필요합니다.", $("#commonAlert"));
                             // $.alertMessage("", "휴대폰결제 이용을 위해 <br>[이용동의(T월드)]를 통해 T월드에서 간편하게 동의한 뒤 다시 결제를 시도해주세요.<br><br>ARS로 휴대폰결제 이용동의: <br>명의자 본인의 휴대폰으로 1509로 통화 ", $("#commonAlert"));
                             $.alertMessage("", "휴대폰결제 이용을 위해 <br><br>kt.com(마이페이지>요금조회>소액결제 내역)에서 이용동의 후 다시 결제를 시도해주세요. ", $("#commonAlert"));
+                            
+                            // 약관 동의가 안된 경우 next 클래스 제거하여 모든 요소들 다시 활성화
+                            $("#content").removeClass("next");
                         }
                         let sendButtonClicked = true;
                     } else {

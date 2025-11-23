@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>Swiper 배너 예시</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/swiper-bundle.min.css" />
+    <script src="../js/jquery-1.8.3.min.js"></script>
+    <script src="../js/common.js" defer></script>
+    <script src="../js/swiper.js"></script>
+    <style>
+      /* 배너 영역 스타일 */
+      .banner-section {
+        width: 100%;
+        margin: 20px 0;
+      }
+      
+      .banner-swiper {
+        width: 100%;
+        height: 200px;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      
+      .banner-swiper .swiper-slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #fff;
+        font-size: 24px;
+        font-weight: bold;
+      }
+      
+      .banner-swiper .swiper-slide:nth-child(2) {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      }
+      
+      .banner-swiper .swiper-slide:nth-child(3) {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      }
+      
+      .banner-swiper .swiper-slide:nth-child(4) {
+        background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+      }
+      
+      /* 배너 이미지가 있는 경우 */
+      .banner-swiper .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      
+      /* Pagination 스타일 */
+      .banner-swiper .swiper-pagination {
+        bottom: 10px;
+      }
+      
+      .banner-swiper .swiper-pagination-bullet {
+        width: 8px;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.5);
+        opacity: 1;
+      }
+      
+      .banner-swiper .swiper-pagination-bullet-active {
+        background: #fff;
+        width: 24px;
+        border-radius: 4px;
+      }
+      
+      /* Navigation 버튼 스타일 */
+      .banner-swiper .swiper-button-next,
+      .banner-swiper .swiper-button-prev {
+        color: #fff;
+        width: 40px;
+        height: 40px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 50%;
+      }
+      
+      .banner-swiper .swiper-button-next:after,
+      .banner-swiper .swiper-button-prev:after {
+        font-size: 18px;
+        font-weight: bold;
+      }
+      
+      .banner-swiper .swiper-button-next:hover,
+      .banner-swiper .swiper-button-prev:hover {
+        background: rgba(0, 0, 0, 0.5);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <header class="header">
+        <div class="container">
+          <h1 class="brand-name">Swiper 배너 예시</h1>
+        </div>
+      </header>
+      <!-- //header -->
+
+      <!-- section -->
+      <section>
+        <div class="container">
+          <h2 style="margin: 30px 0 20px; font-size: 20px; font-weight: bold;">기본 배너 (자동 재생)</h2>
+          
+          <!-- 배너 영역 1: 기본 자동 재생 -->
+          <div class="banner-section">
+            <div class="swiper banner-swiper" id="bannerSwiper1">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div>배너 1</div>
+                </div>
+                <div class="swiper-slide">
+                  <div>배너 2</div>
+                </div>
+                <div class="swiper-slide">
+                  <div>배너 3</div>
+                </div>
+                <div class="swiper-slide">
+                  <div>배너 4</div>
+                </div>
+              </div>
+              <!-- Pagination -->
+              <div class="swiper-pagination"></div>
+              <!-- Navigation -->
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
+          </div>
+
+          <h2 style="margin: 50px 0 20px; font-size: 20px; font-weight: bold;">이미지 배너 (페이드 효과)</h2>
+          
+          <!-- 배너 영역 2: 이미지 배너 -->
+          <div class="banner-section">
+            <div class="swiper banner-swiper" id="bannerSwiper2">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="../images/common/logo.svg" alt="배너 이미지 1" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="../images/common/logo.svg" alt="배너 이미지 2" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="../images/common/logo.svg" alt="배너 이미지 3" />
+                </div>
+              </div>
+              <!-- Pagination -->
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <h2 style="margin: 50px 0 20px; font-size: 20px; font-weight: bold;">간단한 배너 (페이지만)</h2>
+          
+          <!-- 배너 영역 3: 간단한 배너 -->
+          <div class="banner-section">
+            <div class="swiper banner-swiper" id="bannerSwiper3">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div style="padding: 20px;">
+                    <h3 style="font-size: 20px; margin-bottom: 10px;">프로모션 1</h3>
+                    <p style="font-size: 14px; opacity: 0.9;">특별한 혜택을 만나보세요</p>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div style="padding: 20px;">
+                    <h3 style="font-size: 20px; margin-bottom: 10px;">프로모션 2</h3>
+                    <p style="font-size: 14px; opacity: 0.9;">새로운 서비스를 경험하세요</p>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div style="padding: 20px;">
+                    <h3 style="font-size: 20px; margin-bottom: 10px;">프로모션 3</h3>
+                    <p style="font-size: 14px; opacity: 0.9;">지금 바로 확인하세요</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Pagination -->
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+      <!-- //section -->
+    </div>
+    <!-- //wrap -->
+
+    <script>
+      // 배너 1: 기본 자동 재생 배너
+      var bannerSwiper1 = new Swiper("#bannerSwiper1", {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: true,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: "#bannerSwiper1 .swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: "#bannerSwiper1 .swiper-button-next",
+          prevEl: "#bannerSwiper1 .swiper-button-prev",
+        },
+      });
+
+      // 배너 2: 이미지 배너 (페이드 효과)
+      var bannerSwiper2 = new Swiper("#bannerSwiper2", {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: true,
+        effect: "fade",
+        fadeEffect: {
+          crossFade: true,
+        },
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: "#bannerSwiper2 .swiper-pagination",
+          clickable: true,
+        },
+      });
+
+      // 배너 3: 간단한 배너
+      var bannerSwiper3 = new Swiper("#bannerSwiper3", {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: true,
+        autoplay: {
+          delay: 3500,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: "#bannerSwiper3 .swiper-pagination",
+          clickable: true,
+        },
+      });
+    </script>
+  </body>
+</html>
+
+

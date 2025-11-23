@@ -190,20 +190,23 @@ buttons.forEach(function (button) {
 
 // 공통 모달 열기 (메시지 추가, 모달 버튼 포커스)
 // Common Alert Modal
-$.alertMessage = function (title, contents, callbackFunc) {
-  var target = $("#commonAlert");
+$.alertMessage = function (title, contents, alertObj) {
+  // 모달 제목 설정
+  alertObj.find("#alertTitle").html(title);
 
-  // 모달 제목/내용
-  $("#alertTitle").html(title);
-  $("#alertContents > p").html(contents);
+  // 내용을 HTML로 설정 (br 태그 등이 포함된 경우를 위해)
+  alertObj.find(".prompt-contents").html(contents);
 
   // 모달 열기
-  $(target).show().focus();
-
-  // 모달 위치
-  var thisDialog = $(target).find(".modal-dialog");
+  alertObj.show().focus();
+  
+  // 모달 위치 조정
+  var thisDialog = alertObj.find(".modal-dialog");
   var marginValue = thisDialog.outerHeight() / 2;
-  $(thisDialog).css("margin-top", "-" + marginValue + "px");
+  thisDialog.css("margin-top", "-" + marginValue + "px");
+  
+  // 바디 스크롤 제거
+  scrollOff();
 };
 
 $(document).ready(function () {
@@ -236,9 +239,9 @@ $.promptMessage = function (title, ...rest) {
 
   promptObj.find(".prompt-title").html(title);
 
-  // 각각의 문장을 <p>로 감싸기
+  // 각각의 문장을 <div>로 감싸기 (p 태그 중첩 방지)
   const formattedContents = contents
-    .map((line) => `<p class="line">${line}</p>`)
+    .map((line) => `<div class="line">${line}</div>`)
     .join("");
 
   promptObj.find(".prompt-contents").html(formattedContents);

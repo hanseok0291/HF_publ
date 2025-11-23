@@ -28,7 +28,6 @@
         <div class="container">
           <button type="button" class="btn-back btn"></button>
           <h1 class="brand-name">카드 발급/신청 현황</h1>
-          <button type="button" class="btn-close btn"></button>
         </div>
       </header>
       <!-- //header -->
@@ -45,7 +44,7 @@
                   <a href="#" class="default">발급 </a>
                 </li>
                 <li>
-                  <a href="#" class="">재발급 </a>
+                  <a href="#" class="btn-alert">재발급 </a>
                 </li>
               </ul>
             </div>
@@ -70,20 +69,31 @@
                 <ul class="accordion-list type2">
                   <li>
                     <div class="list-header accordion-title">
-                      <h3 class="subject">꼭 알아두세요!</h3>
+                      <h3 class="subject">꼭 확인해주세요!</h3>
                     </div>
                     <ul class="guide-wrap-list">
                       <li>
-                        카드 발급 취소는 신청 접수 당일에만 가능합니다. <br />단
-                        처리 상태가 ‘발급 완료’인 경우 취소 불가
+                        카드 발급 취소는 신청 접수 당일에만 가능합니다. 단 처리
+                        상태가 ‘배송중’ 또는 ‘배송완료’인 경우 취소 불가
                       </li>
-                      <li>
-                        카드 수령은 ‘발급완료’ 후 3~5 영업일 정도 소요됩니다.
-                      </li>
+                      <li>카드 수령은 영업일 기준 3~5일 정도 소요됩니다.</li>
                       <li>
                         주말, 공휴일, 택배사 파업 등 예외적인 상황이 발생 시
                         배송지연의 원인이 될 수 있으며, 도서산간 지역 등 특정
                         지역은 배송 기간이 추가 소요될 수 있습니다.
+                      </li>
+                      <li>
+                        1개 이상의 카드를 발급할 수 없으므로 다른 카드 상품으로
+                        발급을 원할 경우 기존의 카드 해지 후 발급 하시기
+                        바랍니다.
+                      </li>
+                      <li>
+                        카드 재발급 또는 해지 후 동일한 카드 신청 시 2,500원의
+                        머니가 사용되며, 당일 신청 취소 시 환불처리됩니다.
+                      </li>
+                      <li>
+                        분실/도난으로 인한 재발급의 경우 분실/도난 신고 후
+                        재발급하시기 바랍니다
                       </li>
                     </ul>
                   </li>
@@ -431,10 +441,6 @@
           <div class="modal-body">
             <div class="delivery-info">
               <div class="info-row">
-                <span class="label">수령인</span>
-                <span class="value">본인 수령</span>
-              </div>
-              <div class="info-row">
                 <span class="label">배송지</span>
                 <span class="value">
                   서울 헥토시 헥토구 헥토동 1-23<br />
@@ -485,7 +491,7 @@
               onclick="modalClose();"
               class="btn btn-cancel"
             >
-              아니오
+              취소
             </button>
             <button
               type="button"
@@ -493,16 +499,38 @@
               id="promptOk"
               class="btn btn-confirm"
             >
-              예
+              확인
             </button>
           </div>
         </div>
       </div>
     </div>
     <!-- //common prompt -->
+
+    <!-- modal - common alert -->
+    <div id="commonAlert" class="modal modal-new" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="alertTitle"></h3>
+            <div class="prompt-contents"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="confirmOk" class="btn" data-dismiss="modal">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //modal - common alert -->
+
     <script>
       $(window).on("load", function () {
         formatPhoneNumber();
+        
+        // a1 얼럿
+        $.alertMessage("", `<p class="line">최대 입력 횟수를 초과하였습니다.<br>비밀번호 변경 후 다시 시도해주세요.</p>`, $("#commonAlert"));
+        // a2 얼럿
+        /* $.alertMessage("", `<p class="line">머니 잔액 부족으로<br>재발급이 불가합니다.</p><p class="line">잔액 충전 후 다시 시도해주세요.</p>`, $("#commonAlert")); */
       });
 
       $(".btn-close.btn").click(function () {
@@ -511,6 +539,27 @@
           "선불충전서비스를 이용하기 위해서는<br>본인확인이 필요합니다.<br><br><b>본인확인을 계속 하시겠습니까?</b>",
           $("#commonPrompt"),
         );
+      });
+      
+      $(".btn-alert").click(function () {
+        // c1 얼럿
+        $.promptMessage(
+          "",
+          `<p class="line">카드 재발급 신청 시<br>2,500원의 비용이 발생하며,<br>보유 잔액에서 차감됩니다.</p><p class="line">잔액이 부족한 경우 신청이 불가합니다.</p><p class="line">재발급 하시겠습니까?</p>`,
+          $("#commonPrompt"),
+        );
+        // c2 얼럿
+        /* $.promptMessage(
+          "",
+          `<p class="line">매장에서 수령하신 카드는<br>재발급이 어려우므로 해지 후<br>새로운 카드를 발급하시기 바랍니다.</p><p class="line">카드를 해지하시겠습니까?</p>`,
+          $("#commonPrompt"),
+        ); */
+        // c3 얼럿
+        /* $.promptMessage(
+          "",
+          `<p class="line">카드 비밀번호 횟수를 초과하여<br>재발급을 진행할 수 없습니다.</p><p class="line">비밀번호를 변경하시겠습니까?</p>`,
+          $("#commonPrompt"),
+        ); */
       });
 
       var swiper = new Swiper(".mySwiper", {

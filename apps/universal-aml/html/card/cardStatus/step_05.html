@@ -24,7 +24,7 @@
       <header class="header">
         <div class="container">
           <button type="button" class="btn-back btn"></button>
-          <h1 class="brand-name">카드 이용 정보 입력 </h1>
+          <h1 class="brand-name"></h1>
           <button type="button" class="btn-close btn"></button>
         </div>
       </header>
@@ -32,7 +32,7 @@
       <!-- section -->
       <section id="">
         <div id="content">
-          <div class="card-complete-wrap">
+          <div class="container">
             <div class="icon-complete"></div>
             <h2 class="complete-title">신청 정보 확인</h2>
             <p class="complete-subtext">
@@ -60,17 +60,17 @@
               </div>
             </div>
 
-            <p class="card-guide-text">
-              카드 발급 현황은 선불 홈 또는 <strong>[내 카드] - [카드발급/신청 현황]</strong>
-              메뉴에서 확인할 수 있습니다.
-            </p>
+            <ul class="guide-list">
+              <li>카드 발급 현황은 선불 홈 또는 <strong>[내 카드] - [카드발급/신청 현황]</strong> 메뉴에서 확인할 수 있습니다.</li>
+              <li>최근 해지한 카드와 동일 상품 신청 시 재발급 비용 2,500원이 발생됩니다</li>
+            </ul>
           </div>
         </div>
 
         <div id="footer">
           <!-- container -->
           <div class="btn-wrap">
-            <button type="button" id="prev" class="btn btn-white">수정</button>
+            <!-- <button type="button" id="prev" class="btn btn-white">수정</button> -->
             <button type="button" id="" class="btn btn-dark btn-confirmComp">신청</button>
           </div>
           <!-- //container -->
@@ -280,9 +280,8 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
-            <div id="promptContents">
-              <p class="text-info"></p>
-            </div>
+            <h3 id="alertTitle"></h3>
+            <div class="prompt-contents"></div>
           </div>
           <div class="modal-footer">
             <button type="button" id="confirmOk" class="btn" data-dismiss="modal">확인</button>
@@ -424,12 +423,12 @@
         formatPhoneNumber();
       });
 
+/*       $(".btn-confirmComp").click(function () {
+        $.alertMessage("카드 신청 완료", `<p class="line">고객님의 신원사항에 대해<br> 추가확인이 필요합니다.<br> 촬영을 위해 신분증을 준비해주세요</p>`, $("#commonAlert"));
+      }); */
+
       $(".btn-confirmComp").click(function () {
-        $.promptMessage(
-          "",
-          "카드 발급을<br>정말로 취소하시겠습니까?",
-          $("#confirmComp"),
-        );
+        $.alertMessage("카드 신청 완료", `<p class="line">신청하신 카드의 재고가 일시적으로부족하여 배송이 지연되고 있습니다.</p><p class="line">신청 순서에 따라 순차적으로 배송될 예정이니 이용에 참고하시기 바랍니다.</p>`, $("#commonAlert"));
       });
 
       var swiper = new Swiper(".mySwiper", {

@@ -26,7 +26,7 @@
       <!-- header -->
       <header class="header">
         <div class="container">
-          <button type="button" class="btn-back btn"></button>
+          <!-- <button type="button" class="btn-back btn"></button> -->
           <h1 class="brand-name">내 카드 정보</h1>
           <button type="button" class="btn-close btn"></button>
         </div>
@@ -37,20 +37,39 @@
       <section>
         <!-- card-section -->
         <div class="card-section">
-          <div class="container">
-            <div class="swiper mySwiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <div>
-                    <p class="card-img">
-                      <img src="../../../images/card/card.png" alt="" />
-                    </p>
-                    <p class="card-name">프리페이드 온캐시 선불 충전 카드</p>
-                  </div>
+          <!-- 카드 o -->
+          <div class="swiper mySwiper center">
+            <div class="swiper-wrapper">
+              <div
+                class="swiper-slide"
+                data-card-info="해외 겸용 · 선불 교통 · 발급비 <span class='color'>5000원</span>"
+              >
+                <div>
+                  <p class="card-img">
+                    <img src="../../../images/card/card.png" alt="" />
+                  </p>
+                </div>
+              </div>
+              <div
+                class="swiper-slide"
+                data-card-info="해외 겸용 · 선불 교통 · 발급비 <span class='color'>5000원</span>"
+              >
+                <div>
+                  <p class="card-img">
+                    <img src="../../../images/card/card.png" alt="" />
+                  </p>
                 </div>
               </div>
             </div>
+            <div class="swiper-pagination"></div>
+            <p class="card-info">
+              해외 겸용 · 선불 교통 · 발급비
+              <span class="color">5000원</span>
+            </p>
+          </div>
+          <!-- //카드 o -->
 
+          <div class="container">
             <div class="card-complete-wrap type2">
               <div class="card-info-table">
                 <div class="row">
@@ -66,10 +85,6 @@
                 <div class="row">
                   <div class="label">카드번호</div>
                   <div class="value">0123-4567-8910-1234</div>
-                </div>
-                <div class="row">
-                  <div class="label">유효기간</div>
-                  <div class="value">02/30</div>
                 </div>
               </div>
             </div>
@@ -444,14 +459,40 @@
       });
 
       var swiper = new Swiper(".mySwiper", {
-        navigation: {
+        slidesPerView: "auto",
+        centeredSlides: true,
+        spaceBetween: 70,
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination",
+        },
+        /*         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
         },
         pagination: {
-          el: ".swiper-pagination",
-        },
+        el: ".swiper-pagination",
+      }, */
       });
+
+      function updateCardInfo(swiperInstance) {
+        const cardInfo = document.querySelector(".card-info");
+        if (!cardInfo) return;
+
+        // loop 모드일 때는 realIndex 사용
+        const index = swiperInstance.params.loop
+          ? swiperInstance.realIndex
+          : swiperInstance.activeIndex;
+        const allSlides = document.querySelectorAll(".mySwiper .swiper-slide");
+        const activeSlide = allSlides[index];
+
+        if (activeSlide) {
+          const cardInfoData = activeSlide.getAttribute("data-card-info");
+          if (cardInfoData) {
+            cardInfo.innerHTML = cardInfoData;
+          }
+        }
+      }
     </script>
   </body>
 </html>

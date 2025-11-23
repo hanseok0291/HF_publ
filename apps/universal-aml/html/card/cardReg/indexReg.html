@@ -25,7 +25,6 @@
         <div class="container">
           <button type="button" class="btn-back btn"></button>
           <h1 class="brand-name">카드 사용/수령 등록</h1>
-          <button type="button" class="btn-close btn"></button>
         </div>
       </header>
       <!-- //header -->
@@ -70,7 +69,7 @@
             <!-- 카드사용, 카드수령 등록 -->
             <ul class="sub-title-list">
               <li>
-                <a href="#"
+                <a href="#" class="btn-alert"
                   >카드 사용 등록
                   <span class="sub-tit" >모바일로 발급 후, 대리인이 수령 하셨나요?</span>
                 </a>
@@ -440,6 +439,23 @@
       </div>
     </div>
     <!-- //common prompt -->
+
+    <!-- modal - common alert -->
+    <div id="commonAlert" class="modal modal-new" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="alertTitle"></h3>
+            <div class="prompt-contents"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="confirmOk" class="btn" data-dismiss="modal">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //modal - common alert -->
+
     <script>
       $(window).on("load", function () {
         formatPhoneNumber();
@@ -451,6 +467,17 @@
           "선불충전서비스를 이용하기 위해서는<br>본인확인이 필요합니다.<br><br><b>본인확인을 계속 하시겠습니까?</b>",
           $("#commonPrompt"),
         );
+      });
+
+      $(".btn-alert").click(function () {
+        // a1 얼럿
+        $.alertMessage("", `<p class="line">카드를 배송 받지 못한 경우<br>사용 등록을 진행할 수 없습니다.</p><p class="line">카드 수령 후 다시 시도해<br>주시기 바랍니다. </p>`, $("#commonAlert"));
+        // a2 얼럿
+        /* $.alertMessage("머니 잔액 부족", `<p class="line">머니 잔액 부족으로 재발급이 불가합니다.<br>잔액 충전 후 다시 시도해주세요.</p>`, $("#commonAlert")); */
+        // a3 얼럿
+        /* $.alertMessage("", `<p class="line">카드 비밀번호가 일치하지 않습니다.<br>다시 입력해주세요. </p><p class="line"><strong>(1/5)</strong></p>`, $("#commonAlert")); */
+        // a4 얼럿
+        /* $.alertMessage("", `<p class="line">최대 입력 횟수를 초과하였습니다.<br>비밀번호 변경 후 다시 시도해주세요.</p>`, $("#commonAlert")); */
       });
 
       var swiper = new Swiper(".mySwiper", {

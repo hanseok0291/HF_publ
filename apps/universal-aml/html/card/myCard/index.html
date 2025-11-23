@@ -25,7 +25,6 @@
         <div class="container">
           <button type="button" class="btn-back btn"></button>
           <h1 class="brand-name">내 카드</h1>
-          <button type="button" class="btn-close btn"></button>
         </div>
       </header>
       <!-- //header -->
@@ -65,8 +64,8 @@
                   </div>
                 </div>
               </div>
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
+              <!-- <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div> -->
               <div class="swiper-pagination"></div>
             </div>
             <!-- //카드 o -->
@@ -120,7 +119,7 @@
                 </a>
               </li>
               <li>
-                <a href="#"
+                <a href="#" class="btn-alert"
                   >분실/도난
                 </a>
               </li>
@@ -487,6 +486,21 @@
       </div>
     </div>
     <!-- //common prompt -->
+    <!-- modal - common alert -->
+    <div id="commonAlert" class="modal modal-alert modal-new" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="alertTitle"></h3>
+            <div class="prompt-contents"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="confirmOk" class="btn" data-dismiss="modal">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //modal - common alert -->
     <script>
       $(window).on("load", function () {
         formatPhoneNumber();
@@ -499,12 +513,16 @@
           $("#commonPrompt"),
         );
       });
+      
+      $(".btn-alert").click(function () {
+        $.alertMessage(
+          "",
+          "카드를 배송 받지 못한 경우<br>분실/도난 신고를 진행할 수 없습니다.<br><br>카드 수령 후 다시 시도해주시기<br>바랍니다. ",
+          $("#commonAlert"),
+        );
+      });
 
       var swiper = new Swiper(".mySwiper", {
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
         pagination: {
         el: ".swiper-pagination",
       },

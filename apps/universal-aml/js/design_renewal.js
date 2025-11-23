@@ -102,10 +102,41 @@ $(function () {
 
   // <li> 클릭 시 해당 항목의 텍스트를 <input>에 설정하고 <ul> 숨기기
   $(document).on("click", ".search-list li", function () {
-    var selectedCountry = $(this).text();
+    var selectedCountry = $(this).find("p:first").text();
     var $input = $(this).closest(".input-container").find("input");
     $input.val(selectedCountry); // 선택한 텍스트를 <input> 값으로 설정
     $(this).closest(".search-list").hide(); // 리스트 숨기기
+  });
+
+  // 카드 선택 리스트에서 첫 번째 p 태그의 텍스트만 가져오기
+  $(document).on("click", ".select-list li", function () {
+    var selectedCard = $(this).find("p:first").text();
+    
+    // 여러 가능한 input 요소들에 텍스트 설정
+    var $input = $(this).closest(".modal").find("input");
+    var $selectInput = $(".select-input");
+    var $cashTypeList = $("#cashTypeList .select ul li");
+    
+    if ($input.length > 0) {
+      $input.val(selectedCard);
+    }
+    if ($selectInput.length > 0) {
+      $selectInput.find(".label").text(selectedCard);
+      $selectInput.addClass("comp");
+    }
+    if ($cashTypeList.length > 0) {
+      $cashTypeList.text(selectedCard).addClass("selected");
+    }
+    
+    // 모달 닫기
+    modalCloseSlide();
+    
+    // 다른 이벤트가 실행된 후에 다시 올바른 텍스트 설정
+    setTimeout(function() {
+      if ($cashTypeList.length > 0) {
+        $cashTypeList.text(selectedCard);
+      }
+    }, 100);
   });
 });
 
@@ -319,7 +350,7 @@ function modalOpenSlide(obj) {
 
   // 리스트에서 선택한 항목을 버튼에 반영
   $(".option-item button").on("click", function () {
-    var selectedBank = $(this).text().trim(); // 선택한 이름 가져오기
+    var selectedBank = $(this).find("p:first").text().trim(); // 선택한 이름 가져오기
     var selectBox = $(".select-input");
     if (selectBox && selectBox.find(".label").length > 0) {
       selectBox.find(".label").text(selectedBank); // 버튼에 텍스트 업데이트

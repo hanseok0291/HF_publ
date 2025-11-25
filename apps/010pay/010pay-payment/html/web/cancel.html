@@ -127,14 +127,19 @@
               라운드페이 서비스 해지를 위해 <br>
               비밀번호를 입력해 주세요
             </h3>
-
+            <div class="input-container password label-n small">
+              <input type="password" class="custom-input" placeholder="비밀번호" id="password">
+              <button type="button" class="icon icon-del js-text-del"></button>
+              <button type="button" class="icon icon-eye icon-eye-off"></button>
+            </div>
           </div>
           <div class="modal-footer vertical">
             <button
               type="button"
               id="password-modal-ok"
               onclick="modalCloseAlert();"
-              class="btn btn-confirm"
+              class="btn"
+              disabled
             >
               입력 완료
             </button>
@@ -233,6 +238,22 @@
             sendButton.disabled = true;
           }
         });
+      });
+
+      // 패스워드 초기화
+      const password = $("#password");
+      const passwordModalOk = $("#password-modal-ok");
+
+      password.on("input", function () {
+        if (password.val().length > 0) {
+          passwordModalOk.prop("disabled", false);
+        } else {
+          passwordModalOk.prop("disabled", true);
+        }
+      });
+
+      $(".icon-del").on("mousedown", function () {
+        passwordModalOk.prop("disabled", true);
       });
     });
   </script>

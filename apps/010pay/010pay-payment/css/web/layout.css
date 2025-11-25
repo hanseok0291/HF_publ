@@ -1,3 +1,17 @@
+br.view-mo {
+  display: none;
+}
+
+@media all and (max-width: 768px) {
+  br.view-mo {
+    display: block;
+  }
+}
+
+.flex-1 {
+  flex: 1;
+}
+
 #header {
   max-width: 768px;
   position: sticky;
@@ -12,12 +26,13 @@
 #wrap {
   overflow-y: auto;
   background: #0000004D;
+  min-height: calc(var(--vh, 1vh) * 100);
 }
 
 #content {
   max-width: 768px;
   width: 100%;
-  min-height: calc(100vh - 56px);
+  min-height: calc((var(--vh, 1vh) * 100) - 56px);
   margin: auto;
   padding-top: 0;
   background-color: #fff;
@@ -39,12 +54,59 @@
   max-width: 580px;
 }
 
+.modal-slide:not(.modal-agree) .modal-content {
+  left: 50%;
+  bottom: 50% !important;
+  transform: translate(-50%, 50%) !important;
+  border-radius: 24px !important;
+  width: calc(100% - 32px);
+  max-height: calc((var(--vh, 1vh) * 100) - 200px);
+}
+
+.modal-slide:not(.modal-agree) .modal-dialog .modal-content .modal-body {
+  max-height: calc((var(--vh, 1vh) * 100) - 268px);
+  padding-bottom: 12px;
+} 
+
+.modal.modal-full::before {
+  background-color: transparent;
+}
+
+.modal.modal-full .modal-head,
+.modal.modal-full .modal-dialog {
+  max-width: 768px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.modal.modal-full .modal-head .container {
+  max-width: 100%;
+}
+
+.modal.modal-full .modal-body {
+  padding-top: 56px;
+}
+
+.modal.modal-full .modal-body .container {
+  padding-top: 16px;
+}
+
+.modal.modal-full .modal-body .container p {
+  display: block;
+  text-align: left;
+}
+
+#wrap #content div.nppfs-keypad-div {
+  height: auto !important;
+  margin-top: auto;
+}
+
 @media all and (min-width: 768px) {
-  .modal-slide:not(.modal-agree) .modal-content {
-    left: 50%;
-    bottom: 50% !important;
-    transform: translate(-50%, 50%) !important;
-    border-radius: 24px !important;
-    max-height: calc(100vh - 200px);
+  .modal-terms .modal-content .modal-body .title-text {
+    width: 100%;
+  }
+
+  .modal-terms .modal-content.fixed .modal-body .title-text span {
+    transform: translateX(calc(736px / 2 - 50%));
   }
 }

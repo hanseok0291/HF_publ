@@ -350,7 +350,7 @@
                                 <h3>결제 금액</h3>
                                 <div class="total-amount">88,000원</div>
                             </div>
-                            
+
                             <div class="point-deductions">
                                 <div class="deduction-item">
                                     <span class="deduction-label">삼성카드 포인트</span>
@@ -369,9 +369,9 @@
                                     <span class="deduction-amount">- 100 P</span>
                                 </div>
                             </div>
-                            
+
                             <div class="summary-divider"></div>
-                            
+
                             <div class="final-payment">
                                 <span class="final-label">최종 결제 금액</span>
                                 <span class="final-amount">86,520원</span>
@@ -382,11 +382,17 @@
                         <div class="privacy-notice">
                             <div class="notice-item">
                                 <span class="bullet">•</span>
-                                <span class="notice-text">위 개인정보 제공에 대하여 거부할 권리가 있으나, 거부 시 네이버페이를 이용한 상품 및 디지털콘텐츠 구매가 불가능합니다. 기타 내용은 네이버페이 가맹점의 이용약관 및 개인정보처리방침에 따릅니다.</span>
+                                <span class="notice-text"
+                                    >위 개인정보 제공에 대하여 거부할 권리가 있으나, 거부 시 네이버페이를 이용한 상품 및 디지털콘텐츠 구매가 불가능합니다. 기타 내용은 네이버페이 가맹점의 이용약관 및
+                                    개인정보처리방침에 따릅니다.</span
+                                >
                             </div>
                             <div class="notice-item">
                                 <span class="bullet">•</span>
-                                <span class="notice-text">위 개인정보 제공에 대하여 거부할 권리가 있으나, 거부 시 네이버페이를 이용한 상품 및 디지털콘텐츠 구매가 불가능합니다. 기타 내용은 네이버페이 가맹점의 이용약관 및 개인정보처리방침에 따릅니다.</span>
+                                <span class="notice-text"
+                                    >위 개인정보 제공에 대하여 거부할 권리가 있으나, 거부 시 네이버페이를 이용한 상품 및 디지털콘텐츠 구매가 불가능합니다. 기타 내용은 네이버페이 가맹점의 이용약관 및
+                                    개인정보처리방침에 따릅니다.</span
+                                >
                             </div>
                         </div>
                     </div>
@@ -467,6 +473,39 @@
             <!-- //modal - 약관 상세보기 -->
         </div>
         <!-- //wrap -->
+
+        <!-- modal - common confirm -->
+        <div id="commonConfirm" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h3 id="confirmTitle"></h3>
+                        <div id="confirmContents"></div>
+                    </div>
+                    <div class="modal-footer type2">
+                        <button type="button" class="btn" data-dismiss="modal">취소</button>
+                        <button type="button" id="confirmOk" data-dismiss="modal" class="btn">확인</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //modal - common confirm -->
+
+        <!-- modal - common alert -->
+        <div id="commonAlert" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h3 id="alertTitle"></h3>
+                        <div id="alertContents"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-dismiss="modal">확인</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //modal - common alert -->
         <script>
             $(document).ready(function () {
                 // 전액 사용하기 체크박스 기능
@@ -641,7 +680,7 @@
                             top: "0",
                         });
                         const popupHeight = $popup.outerHeight();
-                        
+
                         // 팝업 위치 계산 (info-btn 위쪽, 화면 중앙)
                         const left = (screenWidth - popupWidth) / 2;
                         const top = btnTop - popupHeight - 10; // info-btn 위쪽 10px
@@ -679,6 +718,10 @@
                 // 스크롤 시 팝업 닫기
                 $(window).scroll(function () {
                     $(".info-popup").removeClass("active");
+                });
+
+                $(".btnNext").click(function (e) {
+                    $.alertMessage("", "결제를 완료할 수 없습니다.<br> 다시 시도해주세요.", "");
                 });
             });
         </script>

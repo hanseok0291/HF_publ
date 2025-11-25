@@ -50,6 +50,13 @@
                 <div class="container">
                     <h2 class="title-main textCenter">내통장결제/포인트다모아 서비스 신청하기</h2>
 
+                    <div class="notiBox">
+                        <p>
+                            작성하신 내용을 <strong>다시 한번 확인</strong>해 주세요.<br>
+                            <strong class="colorRed">제출 완료 후 추후 수정이 불가</strong>합니다.
+                        </p>
+                    </div>
+
                     <h2 class="title textLeft">가맹점 정보 입력</h2>
                     <div class="formWrap">
                         <!--  -->
@@ -193,7 +200,15 @@
 
                     <div class="btnWrap">
                         <button type="button" class="btn">수정하기</button>
-                        <button type="button" class="btn btnNext">결제하기</button>
+                        <button
+                            type="button"
+                            id="submitApplicationBtn"
+                            class="btn btnNext openModalBtn"
+                            data-target="commonPrompt"
+                            aria-controls="commonPrompt"
+                        >
+                            결제하기
+                        </button>
                     </div>
                 </div>
             </div>
@@ -383,6 +398,26 @@
                 </div>
             </div>
             <!-- 개인정보 제 3자 제공 및 위탁 안내 -->
+
+            <!-- 신청서 제출 안내 모달 -->
+            <div id="commonPrompt" class="modal modal-prompt" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <h3 id="promptTitle" class="title">신청서 제출 안내</h3>
+                            <p id="promptContents" class="sub">
+                                신청서 제출 이후 정보 수정이 불가합니다.<br />
+                                신청서를 제출하시겠습니까?
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn closeModalBtn btnGray" data-target="commonPrompt">취소</button>
+                            <button type="button" class="btn closeModalBtn btnOrange" data-target="commonPrompt">확인</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 신청서 제출 안내 모달 -->
         </div>
         <!-- //wrap -->
         <script>
@@ -428,6 +463,7 @@
             const openModalBtns = document.querySelectorAll(".openModalBtn");
             const closeModalBtns = document.querySelectorAll(".closeModalBtn");
             const body = document.body; // body 요소 선택
+            const submitGuideConfirmBtn = document.querySelector("#commonPrompt .btnOrange"); // 공통 모달 확인 버튼
 
             // 모달 열기
             openModalBtns.forEach((btn) => {
@@ -437,6 +473,29 @@
                     body.style.overflow = "hidden"; // 모달 열릴 때 스크롤 비활성화
                 });
             });
+
+            // 신청서 제출 버튼 클릭 시 안내 모달 열기
+            if (submitApplicationBtn) {
+                submitApplicationBtn.addEventListener("click", function () {
+                    toggleSubmitGuideModal(true);
+                });
+            }
+
+            // 안내 모달 취소 버튼
+            if (submitGuideCancelBtn) {
+                submitGuideCancelBtn.addEventListener("click", function () {
+                    toggleSubmitGuideModal(false);
+                });
+            }
+
+            // 안내 모달 확인 버튼
+            if (submitGuideConfirmBtn) {
+                submitGuideConfirmBtn.addEventListener("click", function () {
+                    // 실제 제출로직이 연결될 경우 이 위치에서 처리
+                    console.log("신청서 제출을 진행합니다.");
+                    toggleSubmitGuideModal(false);
+                });
+            }
 
             // 모달 닫기
             closeModalBtns.forEach((btn) => {
@@ -457,6 +516,13 @@
                     }
                 });
             });
+
+            // 신청서 제출 확인 버튼 클릭 시 실제 제출 로직을 연결할 수 있도록 후킹
+            if (submitGuideConfirmBtn) {
+                submitGuideConfirmBtn.addEventListener("click", function () {
+                    console.log("신청서 제출을 진행합니다."); // 실제 제출 로직 연결 위치
+                });
+            }
         </script>
     </body>
 </html>

@@ -1,0 +1,201 @@
+# This file is a template, and might need editing before it works on your project.
+# This is a sample GitLab CI/CD configuration file that should run without any modifications.
+# It demonstrates a basic 3 stage CI/CD pipeline. Instead of real tests or scripts,
+# it uses echo commands to simulate the pipeline execution.
+#
+# A pipeline is composed of independent jobs that run scripts, grouped into stages.
+# Stages run in sequential order, but jobs within stages run in parallel.
+#
+# For more information, see: https://docs.gitlab.com/ee/ci/yaml/index.html#stages
+#
+# You can copy and paste this template into a new `.gitlab-ci.yml` file.
+# You should not add this template to an existing `.gitlab-ci.yml` file by using the `include:` keyword.
+#
+# To contribute improvements to CI/CD templates, please follow the Development guide at:
+# https://docs.gitlab.com/ee/development/cicd/templates.html
+# This specific template is located at:
+# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
+
+#################################################################
+## Pre script 설정
+#################################################################
+
+# 파이프라인 스테이지
+stages:
+  - testbed_package
+  - testbed_deploy
+  - tag_branch
+  - prod_package
+  - prod_deploy
+
+#################################################################
+## Develop Branch에 푸시 & 머니 된 경우 파이프라인 생성 및 자동 실행
+#################################################################
+
+# Testbed 패키징
+testbed:package:
+  stage: testbed_package
+  variables:
+    TARGET_DIR: $GIT_PACKAGE_DIR
+    PREFIX_FILENAME: "tb_src"
+  script:
+    - DATE=$(date +%Y%m%d)
+    - echo "[Testbed] 소스 코드 패키징 시작 ("${DATE}")"
+    - FILENAME="${PREFIX_FILENAME}_${DATE}.tar.gz"
+    - tar -czf "$FILENAME" src/
+    - mkdir -p $TARGET_DIR
+    - mv "$FILENAME" "$TARGET_DIR"
+    - echo "[Testbed] 소스 코드 패키징 완료 !!"
+  only:
+    - develop
+
+# Testbed 배포
+testbed:deploy:
+  stage: testbed_deploy
+  variables:
+    SOURCE_DIR: $GIT_PACKAGE_DIR
+    TARGET_DIR: $WAS_TARGET_DIR
+    SCRIPT_PATH: $WAS_DEPLOY_SCRIPT_PATH
+    PREFIX_FILENAME: "tb_src"
+    PASSWORD: $DEPLOY_PWD_TEST
+    USERNAME: $DEPLOY_USER_TEST
+    OPTION: "StrictHostKeyChecking=no"
+    HOST: $DEPLOY_HOST_TEST
+    PORT: $DEPLOY_PORT_TEST
+  script:
+    - DATE=$(date +%Y%m%d)
+    - echo "[Testbed] 배포 시작 ("${DATE}")"
+    - echo "[Testbed] 파일 전송 시작"
+    - FILENAME="${PREFIX_FILENAME}_${DATE}.tar.gz"
+    - sshpass -p $PASSWORD scp -P $PORT -o $OPTION "$SOURCE_DIR$FILENAME" "$USERNAME@$HOST:$TARGET_DIR"
+    - echo "[Testbed] 배포 스크립트 실행"
+    - sshpass -p $PASSWORD ssh -p $PORT -o $OPTION "$USERNAME@$HOST" "export TARGET_FILE="$TARGET_DIR$FILENAME" && bash "$SCRIPT_PATH""
+    - echo "[Testbed] 배포 완료 !!"
+  only:
+    - develop
+
+#################################################################
+## main Branch에 tag가 추가 된 경우 파이프라인 생성 및 수동 실행
+## 1. tag_branch 작업을 통한 main 브랜치 및 TAG 확인
+## 2. 1에 충족 된 경우 Prod_was01, Prod_was02 패키징 및 배포 진행
+#################################################################
+
+# 브랜치 및 TAG 확인
+tag_branch:info:
+  stage: tag_branch
+  variables:
+    CHECK_BRANCH: "main"
+  script:
+    - |
+      echo "[TAG_BRANCH] $CHECK_BRANCH 브랜치에 $CI_COMMIT_TAG가 있는지 확인..."
+      git fetch origin $CHECK_BRANCH
+      ORIGIN_BRANCH_HASH=$(git rev-parse origin/$CHECK_BRANCH)
+      TAG_HASH=$(git rev-parse $CI_COMMIT_TAG)
+      if [ "$ORIGIN_BRANCH_HASH" == "$TAG_HASH" ]; then
+        echo "[TAG_BRANCH] $CHECK_BRANCH 브랜치에 TAG가 같습니다."
+      else
+        echo "[TAG_BRANCH] $CHECK_BRANCH 브랜치에 TAG가 다릅니다. 브랜치를 확인해 주세요.!!"
+        exit 1
+      fi
+  rules:
+    - if: $CI_COMMIT_TAG
+      when: manual
+      allow_failure: false
+
+# 운영 WAS01 패키징
+prod_was01:package:
+  stage: prod_package
+  needs:
+    - tag_branch:info
+  variables:
+    TARGET_DIR: $GIT_PACKAGE_DIR
+    PREFIX_FILENAME: "prod_was01_src"
+  script:
+    - DATE=$(date +%Y%m%d)
+    - echo "[Production][WAS1] 소스 코드 패키징 시작 ("${CI_COMMIT_TAG}_${DATE}")"
+    - FILENAME="${PREFIX_FILENAME}_${CI_COMMIT_TAG}_${DATE}.tar.gz"
+    - tar -czf "$FILENAME" src/
+    - mv "$FILENAME" "$TARGET_DIR"
+    - echo "[Production][WAS1] 소스 코드 패키징 완료 !!"
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v\d+(\.\d+)*$/'
+      when: manual
+      allow_failure: false
+
+# 운영 WAS01 배포
+prod_was01:deploy:
+  stage: prod_deploy
+  needs:
+    - prod_was01:package
+  variables:
+    SOURCE_DIR: $GIT_PACKAGE_DIR
+    TARGET_DIR: $WAS_TARGET_DIR
+    SCRIPT_PATH: $WAS_DEPLOY_SCRIPT_PATH
+    PREFIX_FILENAME: "prod_was01_src"
+    PASSWORD: $DEPLOY_PWD_PROD_WAS01
+    USERNAME: $DEPLOY_USER_PROD_WAS01
+    OPTION: "StrictHostKeyChecking=no"
+    HOST: $DEPLOY_HOST_PROD_WAS01
+    PORT: $DEPLOY_PORT_PROD_WAS01
+  script:
+    - DATE=$(date +%Y%m%d)
+    - echo "[Production][WAS01] 배포 시작 ("${CI_COMMIT_TAG}_${DATE}")"
+    - echo "[Production][WAS01] 파일 전송 시작"
+    - FILENAME="${PREFIX_FILENAME}_${CI_COMMIT_TAG}_${DATE}.tar.gz"
+    - sshpass -p $PASSWORD scp -P $PORT -o $OPTION "$SOURCE_DIR$FILENAME" "$USERNAME@$HOST:$TARGET_DIR"
+    - echo "[Production][WAS01] 배포 스크립트 실행"
+    - sshpass -p $PASSWORD ssh -p $PORT -o $OPTION "$USERNAME@$HOST" "export TARGET_FILE="$TARGET_DIR$FILENAME" && bash "$SCRIPT_PATH""
+    - echo "[Production][WAS01] 배포 완료 !!"
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v\d+(\.\d+)*$/'
+      when: manual
+      allow_failure: false
+
+# 운영 WAS02 패키징
+prod_was02:package:
+  stage: prod_package
+  needs:
+    - tag_branch:info
+  variables:
+    TARGET_DIR: $GIT_PACKAGE_DIR
+    PREFIX_FILENAME: "prod_was02_src"
+  script:
+    - DATE=$(date +%Y%m%d)
+    - echo "[Production][WAS02] 소스 코드 패키징 시작 ("${CI_COMMIT_TAG}_${DATE}")"
+    - FILENAME="${PREFIX_FILENAME}_${CI_COMMIT_TAG}_${DATE}.tar.gz"
+    - tar -czf "$FILENAME" src/
+    - mv "$FILENAME" "$TARGET_DIR"
+    - echo "[Production][WAS02] 소스 코드 패키징 완료 !!"
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v\d+(\.\d+)*$/'
+      when: manual
+      allow_failure: false
+
+# 운영 WAS02 배포
+prod_was02:deploy:
+  stage: prod_deploy
+  needs:
+    - prod_was02:package
+  variables:
+    SOURCE_DIR: $GIT_PACKAGE_DIR
+    TARGET_DIR: $WAS_TARGET_DIR
+    SCRIPT_PATH: $WAS_DEPLOY_SCRIPT_PATH
+    PREFIX_FILENAME: "prod_was02_src"
+    PASSWORD: $DEPLOY_PWD_PROD_WAS02
+    USERNAME: $DEPLOY_USER_PROD_WAS02
+    OPTION: "StrictHostKeyChecking=no"
+    HOST: $DEPLOY_HOST_PROD_WAS02
+    PORT: $DEPLOY_PORT_PROD_WAS02
+  script:
+    - DATE=$(date +%Y%m%d)
+    - echo "[Production][WAS2] 배포 시작 ("${CI_COMMIT_TAG}_${DATE}")"
+    - echo "[Production][WAS2] 파일 전송 시작"
+    - FILENAME="${PREFIX_FILENAME}_${CI_COMMIT_TAG}_${DATE}.tar.gz"
+    - sshpass -p $PASSWORD scp -P $PORT -o $OPTION "$SOURCE_DIR$FILENAME" "$USERNAME@$HOST:$TARGET_DIR"
+    - echo "[Production][WAS2] 배포 스크립트 실행"
+    - sshpass -p $PASSWORD ssh -p $PORT -o $OPTION "$USERNAME@$HOST" "export TARGET_FILE="$TARGET_DIR$FILENAME" && bash "$SCRIPT_PATH""
+    - echo "[Production][WAS2] 배포 완료 !!"
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v\d+(\.\d+)*$/'
+      when: manual
+      allow_failure: false

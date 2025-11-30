@@ -389,19 +389,34 @@ $(function () {
 $(function () {
   // 짧은 화면 버튼 하단 고정
   function fixFootBtn() {
-    var winHeight = $(window).innerHeight();
-    var contentHeight = $("#content").innerHeight();
-    var gap = winHeight - contentHeight; // 콘텐츠가 짧은 경우
+    // requestAnimationFrame으로 DOM 렌더링 완료 후 실행
+    requestAnimationFrame(function () {
+      // visualViewport API가 있으면 사용 (모바일에서 더 정확)
+      var winHeight = window.visualViewport 
+        ? window.visualViewport.height 
+        : $(window).innerHeight();
+      
+      // 콘텐츠 높이 계산 (스크롤 포함)
+      var contentHeight = $("#content").outerHeight(true);
+      var gap = winHeight - contentHeight; // 콘텐츠가 짧은 경우
 
-    if (gap >= 0) {
-      $(".bottom-area").addClass("fixed");
-      $("#content.newType .bottom-area").removeClass("fixed");
-      $(".layout-payment .bottom-area").removeClass("fixed");
-    } else {
-      $(".bottom-area").removeClass("fixed");
-    }
+      if (gap >= 0) {
+        $(".bottom-area").addClass("fixed");
+        $("#content.newType .bottom-area").removeClass("fixed");
+        $(".layout-payment .bottom-area").removeClass("fixed");
+      } else {
+        $(".bottom-area").removeClass("fixed");
+      }
+    });
   }
-  fixFootBtn();
+  
+  // 초기 실행 (약간의 지연을 주어 DOM이 완전히 렌더링된 후 실행)
+  setTimeout(fixFootBtn, 100);
+  
+  // 이미지 로딩 완료 후에도 재계산
+  $(window).on('load', function() {
+    setTimeout(fixFootBtn, 100);
+  });
 
   // 하단 고정 영역 여백 확보
   function wrapPadding() {
@@ -460,11 +475,33 @@ $(function () {
   }
   keypadOffset();
 
-  // 리사이즈
-  $(window).resize(function () {
-    fixFootBtn();
-    wrapPadding();
-    keypadOffset();
+  // 리사이즈 debounce 함수
+  var resizeTimer;
+  function handleResize() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      fixFootBtn();
+      wrapPadding();
+      keypadOffset();
+    }, 150);
+  }
+
+  // 리사이즈 이벤트
+  $(window).on('resize', handleResize);
+  
+  // visualViewport 이벤트 (모바일 브라우저 주소창 변화 대응)
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', handleResize);
+    window.visualViewport.addEventListener('scroll', handleResize);
+  }
+  
+  // 화면 회전 이벤트
+  $(window).on('orientationchange', function () {
+    setTimeout(function () {
+      fixFootBtn();
+      wrapPadding();
+      keypadOffset();
+    }, 300);
   });
 
   // popover

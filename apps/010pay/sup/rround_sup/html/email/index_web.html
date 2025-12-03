@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no, address=no, email=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+
+      /* 이메일 템플릿 스타일 */
+      .email-template-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        background-color: #ffffff;
+        padding: 30px 16px;
+      }
+
+      .email-template {
+        width: 700px;
+        max-width: 100%;
+        border-radius: 20px 20px 0 0;
+        background-color: #ffffff;
+        overflow: hidden;
+        border: 1px solid #E5E5E8;
+      }
+
+      .email-header {
+        background-color: #e0ff63;
+        padding: 20px 30px;
+        border-radius: 20px 20px 0 0;
+        margin-bottom: 10px;
+      }
+
+      .email-header-logo {
+        width: auto;
+        height: 17px;
+        font-family: Pretendard, sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.4;
+        letter-spacing: -0.02em;
+        color: #151515;
+        margin-bottom: 4px;
+        background: url("../../images/common/logo.svg") no-repeat;
+      }
+
+      .email-header-title {
+        font-family: Pretendard, sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.4;
+        letter-spacing: -0.32px;
+        color: #151515;
+      }
+
+      .email-content {
+        padding: 30px;
+      }
+
+      .email-section {
+        margin-bottom: 24px;
+      }
+
+      .email-section:last-child {
+        margin-bottom: 0;
+      }
+
+      .email-section-title {
+        font-family: Pretendard, sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.4;
+        letter-spacing: -0.32px;
+        color: #454545;
+        margin-bottom: 16px;
+      }
+
+      .email-section-text {
+        font-family: Pretendard, sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.4;
+        letter-spacing: -0.28px;
+        color: #454545;
+        margin-bottom: 16px;
+      }
+
+      .email-section.faq-section .email-section-title {
+        margin-bottom: 24px;
+      }
+
+      .email-divider {
+        width: 100%;
+        height: 1px;
+        background-color: #e5e5e8;
+        margin: 24px 0;
+      }
+
+      .email-table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        margin-top: 16px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .email-table {
+        width: 100%;
+        min-width: 640px;
+        border-collapse: collapse;
+        border: 1px solid #e5e5e8;
+      }
+
+      .email-table th,
+      .email-table td {
+        padding: 12px;
+        border: 1px solid #e5e5e8;
+        text-align: left;
+        font-family: Pretendard, sans-serif;
+        font-size: 14px;
+        line-height: 1.4;
+        letter-spacing: -0.28px;
+        vertical-align: top;
+        box-sizing: border-box;
+      }
+
+      .email-table th {
+        background-color: #f6f6f9;
+        font-weight: 500;
+        color: #151515;
+        text-align: center;
+      }
+
+      .email-table td {
+        color: #454545;
+      }
+
+      .email-table-link-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        margin-top: 16px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .email-table-link-list {
+        display: flex;
+        flex-direction: column;
+        width: 480px;
+        min-width: 480px;
+        border: 1px solid #e5e5e8;
+        background-color: #ffffff;
+      }
+
+      .email-table-link-row {
+        display: flex;
+        border-bottom: 1px solid #e5e5e8;
+      }
+
+      .email-table-link-row:last-child {
+        border-bottom: none;
+      }
+
+      .email-table-link-label {
+        width: 169px;
+        padding: 12px;
+        background-color: #f6f6f9;
+        border-right: 1px solid #e5e5e8;
+        font-family: Pretendard, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.4;
+        letter-spacing: -0.28px;
+        color: #151515;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+      }
+
+      .email-table-link-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .email-table-link-item {
+        display: flex;
+        align-items: center;
+        padding: 12px;
+        border-bottom: 1px solid #e5e5e8;
+      }
+
+      .email-table-link-item:last-child {
+        border-bottom: none;
+      }
+
+      .email-table-link-item a {
+        font-family: Pretendard, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.4;
+        letter-spacing: -0.28px;
+        color: #2465ff;
+        text-decoration: underline;
+      }
+
+      .email-faq-item {
+        margin-bottom: 24px;
+      }
+
+      .email-faq-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .email-faq-question {
+        font-family: Pretendard, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.4;
+        letter-spacing: -0.28px;
+        color: #454545;
+        margin-bottom: 12px;
+      }
+
+      .email-faq-answer {
+        font-family: Pretendard, sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.4;
+        letter-spacing: -0.28px;
+        color: #454545;
+      }
+
+      .email-faq-answer-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .email-faq-answer-item {
+        display: flex;
+        gap: 8px;
+      }
+
+      .email-faq-answer-bullet {
+        width: 4px;
+        height: 4px;
+        background-color: #888;
+        border-radius: 50%;
+        margin-top: 7px;
+        flex-shrink: 0;
+      }
+
+      .email-faq-answer-text {
+        flex: 1;
+      }
+
+      .email-faq-answer-text .link-text {
+        font-weight: 700;
+        color: #2465ff;
+      }
+
+      .email-footer {
+        background-color: #f6f6f9;
+        padding: 30px;
+      }
+
+      .email-footer-notice-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+
+      .email-footer-notice-item {
+        display: flex;
+        gap: 8px;
+      }
+
+      .email-footer-notice-bullet {
+        width: 4px;
+        height: 4px;
+        background-color: #D1D1D5;
+        border-radius: 50%;
+        margin-top: 7px;
+        flex-shrink: 0;
+      }
+
+      .email-footer-notice-text {
+        font-family: Pretendard, sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.4;
+        letter-spacing: -0.24px;
+        color: #888888;
+        flex: 1;
+      }
+
+      .email-footer-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding-top: 20px;
+        border-top: 1px solid #e5e5e8;
+      }
+
+      .email-footer-info-left {
+        font-family: Pretendard, sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.4;
+        letter-spacing: -0.24px;
+        color: #888888;
+      }
+
+      .email-footer-info-right {
+        font-family: Pretendard, sans-serif;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 1.4;
+        letter-spacing: -0.22px;
+        color: #888888;
+        text-align: right;
+      }
+
+      .email-link {
+        color: #2465ff;
+        text-decoration: underline;
+        font-weight: 700;
+      }
+
+      @media (max-width: 768px) {
+        .email-content {
+          padding: 30px 16px;
+        }
+
+        .email-table-link-wrapper {
+          margin-left: -16px;
+          margin-right: -16px;
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+
+        .email-table-wrapper {
+          margin-left: -16px;
+          margin-right: -16px;
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+
+        .email-footer-info {
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .email-footer-info-left {
+          width: 100%;
+        }
+
+        .email-footer-info-right {
+          width: 100%;
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="wrap">
+      <!-- header -->
+      <div id="header">
+        <div class="container"></div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <div class="email-template-wrapper">
+          <div class="email-template">
+            <!-- 헤더 -->
+            <div class="email-header">
+              <div class="email-header-logo"></div>
+              <div class="email-header-title">2025년 라운드 개인정보 이용내역 · 수집출처 안내</div>
+            </div>
+            <!-- //헤더 -->
+
+            <!-- 본문 -->
+            <div class="email-content">
+              <!-- 인사말 섹션 -->
+              <div class="email-section">
+                <div class="email-section-text">
+                  <p>
+                    안녕하세요 회원님, 라운드입니다.
+                    <br />
+                    저희 서비스를 이용해주시는 회원님께 깊은 감사를 드립니다.
+                    <br />
+                  </p>
+
+                  <p>
+                    라운드 서비스 이용 시 수집된 개인정보는 안전하게 보호되고 있으며,
+                    <br />
+                    당사는 회원님의 소중한 개인정보를 안전하게 관리하기 위하여 최선을 다하겠습니다.
+                  </p>
+                  <p>
+                    자세한 내용은 라운드 홈페이지 또는 앱 내
+                    <a href="https://www.rround.com/pub/v1/term/privacyterms01?inapp=N" class="email-link" target="_blank">[개인정보처리방침]</a>
+                    에서 언제든지 확인하실 수 있습니다.
+                  </p>
+                </div>
+              </div>
+              <!-- //인사말 섹션 -->
+
+              <!-- 구분선 -->
+              <div class="email-divider"></div>
+
+              <!-- 개인정보 이용 · 제공 내역 안내 섹션 1 -->
+              <div class="email-section">
+                <div class="email-section-title">[개인정보 이용 · 제공 내역 안내]</div>
+                <div class="email-section-text">『개인정보 보호법』 제20조의 2(개인정보 이용 · 제공 내역의 통지)에 의거하여 고객님의 개인정보 이용 · 제공 내역을 안내해드립니다.</div>
+
+                <!-- 링크 테이블 -->
+                <div class="email-table-link-wrapper">
+                  <div class="email-table-link-list">
+                    <div class="email-table-link-row">
+                      <div class="email-table-link-label">주요 내용</div>
+                      <div class="email-table-link-content">
+                        <div class="email-table-link-item">
+                          <a href="https://www.rround.com/pub/v1/term/privacyterms011?inapp=N" target="_blank">서비스별 개인정보의 수집 · 이용 목적 및 항목</a>
+                        </div>
+                        <div class="email-table-link-item">
+                          <a href="https://www.rround.com/pub/v1/term/privacyterms012?inapp=N" target="_blank">개인정보의 제3자 제공</a>
+                        </div>
+                        <div class="email-table-link-item">
+                          <a href="https://www.rround.com/pub/v1/term/privacyterms013?inapp=N" target="_blank">개인정보 위탁 처리</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- //링크 테이블 -->
+              </div>
+              <!-- //개인정보 이용 · 제공 내역 안내 섹션 1 -->
+
+              <!-- 개인정보 이용 · 제공 내역 안내 섹션 2 -->
+              <div class="email-section">
+                <div class="email-section-title">[개인정보 이용 · 제공 내역 안내]</div>
+                <div class="email-section-text">
+                  『개인정보 보호법』 제20조(정보주체 이외로부터 수집한 개인정보의 수집 출처 등 통지)에 의거하여 고객님 이외로부터 수집(제3자 제공 및 위수탁)한 개인정보의 수집 출처를 안내해 드립니다.
+                </div>
+
+                <!-- 수집 출처 테이블 -->
+                <div class="email-table-wrapper">
+                  <table class="email-table">
+                    <thead>
+                      <tr>
+                        <th style="width: 169px">서비스명(구분)</th>
+                        <th style="width: 311px">제공받는 목적</th>
+                        <th style="width: 160px">제공하는 자</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>푸시 알림</td>
+                        <td>
+                          <div style="font-weight: 700">라운드 휘슬 고객 알림 메시지 발송</div>
+                          <div style="margin-top: 4px;font-weight: 700">- 단속 알림, 검사 알림, 세차 알림 등 차량 관리 서비스</div>
+                        </td>
+                        <td style="font-weight: 700">(주)모노플랫폼</td>
+                      </tr>
+                      <tr>
+                        <td>푸시 알림</td>
+                        <td style="font-weight: 700">라운드 페이 고객 알림 메시지 발송</td>
+                        <td style="font-weight: 700">(주)헥토파이낸셜</td>
+                      </tr>
+                      <tr>
+                        <td>SNS 간편로그인</td>
+                        <td style="font-weight: 700">서비스 이용을 위한 본인 확인 및 식별</td>
+                        <td style="font-weight: 700">(주)카카오, (주)네이버</td>
+                      </tr>
+                      <tr>
+                        <td>SNS 간편로그인</td>
+                        <td style="font-weight: 700">서비스 이용을 위한 계정 식별</td>
+                        <td style="font-weight: 700">Google LLC, Apple inc</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- //수집 출처 테이블 -->
+              </div>
+              <!-- //개인정보 이용 · 제공 내역 안내 섹션 2 -->
+
+              <!-- 구분선 -->
+              <div class="email-divider"></div>
+
+              <!-- 자주 묻는 질문 섹션 -->
+              <div class="email-section faq-section">
+                <div class="email-section-title">자주 묻는 질문</div>
+
+                <div class="email-faq-item">
+                  <div class="email-faq-question">1. 라운드에 회원가입하지 않았는데 안내를 받았습니다.</div>
+                  <div class="email-faq-answer">
+                    <div class="email-faq-answer-item">
+                      <div class="email-faq-answer-bullet"></div>
+                      <div class="email-faq-answer-text">
+                        다른 이용자가 회원 정보를 오기입했을 수 있습니다. 정확한 확인을 위하여 고객센터에 문의해주세요.
+                        <br />
+                        (문의처 : support@rround.com)
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="email-faq-item">
+                  <div class="email-faq-question">2. 개인정보 이용안내를 더 이상 받고 싶지 않아요.</div>
+                  <div class="email-faq-answer">
+                    <div class="email-faq-answer-list">
+                      <div class="email-faq-answer-item">
+                        <div class="email-faq-answer-bullet"></div>
+                        <div class="email-faq-answer-text">개인정보 이용안내는 관계 법령에 따라 고객님의 수신 여부 동의와 무관히 필수로 발송됩니다.</div>
+                      </div>
+                      <div class="email-faq-answer-item">
+                        <div class="email-faq-answer-bullet"></div>
+                        <div class="email-faq-answer-text">
+                          다만, 해당 안내의 수신 이후 더 이상 안내를 받고 싶지 않으실 경우
+                          <span class="link-text">[링크]</span>
+                          를 클릭하여 수신 거부를 진행해주세요.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- //자주 묻는 질문 섹션 -->
+            </div>
+            <!-- //본문 -->
+
+            <!-- 푸터 -->
+            <div class="email-footer">
+              <div class="email-footer-notice-list">
+                <div class="email-footer-notice-item">
+                  <div class="email-footer-notice-bullet"></div>
+                  <div class="email-footer-notice-text">본 메일은 발송일자 기준 라운드 서비스를 이용 중인 회원을 대상으로 발송되나, 발로소득의 가입 유지자 또한 발송 대상에 포함될 수 있습니다.</div>
+                </div>
+                <div class="email-footer-notice-item">
+                  <div class="email-footer-notice-bullet"></div>
+                  <div class="email-footer-notice-text">본 메일은 개인정보가 어떤 목적으로 이용되는지 안내하기 위해 연 1회 정기적으로 발송됩니다.</div>
+                </div>
+                <div class="email-footer-notice-item">
+                  <div class="email-footer-notice-bullet"></div>
+                  <div class="email-footer-notice-text">본 메일은 발송 전용 메일로 본 메일에 회신하실 경우라도 답장을 받을 수 없습니다.</div>
+                </div>
+                <div class="email-footer-notice-item">
+                  <div class="email-footer-notice-bullet"></div>
+                  <div class="email-footer-notice-text">자세한 문의는 라운드 앱 내 고객센터 또는 고객센터 메일(support@rround.com)을 이용해주시기 바랍니다.</div>
+                </div>
+              </div>
+
+              <div class="email-footer-info">
+                <div class="email-footer-info-left">
+                  서울특별시 강남구 테헤란로 223 큰길타워빌딩 20F
+                  <br />
+                  사업자등록번호 214-88-39117
+                </div>
+                <div class="email-footer-info-right">
+                  Copyright © Hecto Innovation Co., Ltd.
+                  <br />
+                  All rights reserved
+                </div>
+              </div>
+            </div>
+            <!-- //푸터 -->
+          </div>
+        </div>
+      </div>
+      <!-- //content -->
+    </div>
+  </body>
+  <script></script>
+</html>

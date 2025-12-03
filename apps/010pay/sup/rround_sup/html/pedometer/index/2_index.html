@@ -80,7 +80,6 @@
             <div class="image-map-container">
               <img src="../../../images/pedometer/map2.png" alt="지도 배경" />
 
-              <!-- [2025.11.19] 변경 시작 -->
               <!-- <button type="button" class="btn-challenge">
                 <div class="dot challenge"></div>
               </button> -->
@@ -112,7 +111,7 @@
                 <div class="dot buy animation-lotto"></div>
               </button> -->
 
-              <button type="button" class="btn-buy btn-mission-point">
+              <!-- <button type="button" class="btn-buy btn-mission-point">
                 <span class="ticket-text">
                   포인트 줍기!
                   <i class="ico-triangle">
@@ -122,7 +121,21 @@
                   </i>
                 </span>
                 <div class="dot buy animation-point"></div>
+              </button> -->
+
+              <!-- [2025.12.02] 변경 시작 -->
+              <button type="button" class="btn-buy btn-mission-coupon">
+                <span class="ticket-text">
+                  라운드 쿠폰 줍기!
+                  <i class="ico-triangle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="6" viewBox="0 0 21 6" fill="none">
+                      <path d="M16 0H21V6L19 3.5L16 0Z" fill="#151515" />
+                    </svg>
+                  </i>
+                </span>
+                <div class="dot buy animation-coupon"></div>
               </button>
+              <!-- [2025.12.02] 변경 끝 -->
 
               <button type="button" class="btn-buy btn-mission-coin position-bottom">
                 <span class="ticket-text">
@@ -135,7 +148,6 @@
                 </span>
                 <div class="dot buy lottie-group-buy"></div>
               </button>
-              <!-- //[2025.11.19] 변경 끝 -->
 
               <!-- base, receive, gift -->
               <ul class="pedo-step-list">
@@ -446,7 +458,6 @@
     </div>
     <!-- //보상 팝업 -->
 
-    <!-- [2025.11.25] 변경 시작 -->
     <!-- 보상 팝업 -->
     <div id="modal-terms-03" class="modal modal-slide type-title">
       <div class="modal-dialog">
@@ -480,7 +491,53 @@
       </div>
     </div>
     <!-- //보상 팝업 -->
-    <!-- [2025.11.25] 변경 끝 -->
+
+    <!-- [2025.12.02] 변경 시작 -->
+    <!-- 보상 팝업 -->
+    <div id="modal-terms-04" class="modal modal-slide type-title">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="head-line" onclick="modalCloseSlide();"></div>
+          <div class="modal-head center">
+            <p class="modal-head-title">라운드 쿠폰 획득!</p>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="reward-wrap">
+                <!-- 최저가경매 로티 -->
+                <!-- <div class="lottie-img lottie-auction"></div> -->
+                <!-- 에너지 로티 -->
+                <!-- <div class="lottie-img lottie-energy"></div> -->
+                <!-- 로또 로티 -->
+                <!-- <div class="lottie-img lottie-lotto"></div> -->
+                <!-- 쿠폰 로티 -->
+                <div class="lottie-img lottie-coupon">
+                 <!-- 상품영역 -->
+                 <div class="img-product">
+                  <img
+                    src="../../../images/pedometer/sample.png"
+                    alt="제품 샘플"
+                      />
+                    <span class="label-img-coupon"></span>
+                  </div>
+                </div>
+                <div class="txt-reward">
+                  생수 10% 할인 쿠폰!
+                  <br />
+                  목마를 땐 생수로 바로 채워보세요.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer vertical">
+            <button type="button" id="executeOk" onclick="modalCloseSlide();" class="btn btn-confirm">생수 최저가 구매하기</button>
+            <button type="button" id="executeNo" onclick="modalCloseSlide();" class="btn btn-cancel type2">닫기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //보상 팝업 -->
+    <!-- [2025.12.02] 변경 끝 -->
 
     <div id="commonPrompt" class="modal">
       <div class="modal-dialog">
@@ -985,7 +1042,6 @@
     </div>
     <!-- //광고 보상 팝업 -->
 
-    <!-- [2025.11.19] 변경 시작 -->
     <div id="commonPrompt4" class="modal">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -1003,7 +1059,6 @@
         </div>
       </div>
     </div>
-    <!-- //[2025.11.19] 변경 끝 -->
 
     <!-- select modal list -->
     <div id="modal-alarm-chk" class="modal modal-slide type-title type5">
@@ -1073,10 +1128,12 @@
       // modalOpen("commonPrompt4");
       // 보상획득 모달
       // modalOpenSlide('modal-terms-02');
-      // [2025.11.24] 변경 시작
       // 보상획득 모달
-      modalOpenSlide("modal-terms-03");
-      // [2025.11.24] 변경 끝
+      // modalOpenSlide("modal-terms-03");
+      // [2025.12.02] 변경 시작
+      // 보상획득 모달
+      modalOpenSlide("modal-terms-04");
+      // [2025.12.02] 변경 끝
       // 보상획득 광고보기 모달
       // modalOpenSlide('modal-popup-03');
       // 최저가 도전권 획득 팝업
@@ -1192,7 +1249,6 @@
         });
       });
 
-      // [2025.11.25] 변경 시작
       // 로티 모달 내 로또
       const lottoElements = document.querySelectorAll(".lottie-lotto");
 
@@ -1205,7 +1261,22 @@
           path: "https://ux.sbsvc.online/010pay/sup/rround_sup/images/lottie/lotto.json",
         });
       });
-      // [2025.11.25] 변경 끝
+      
+      // [2025.12.02] 변경 시작
+      // 로티 모달 내 로또
+      const couponElements = document.querySelectorAll(".lottie-coupon");
+
+      couponElements.forEach((el) => {
+        bodymovin.loadAnimation({
+          container: el,
+          renderer: "svg",
+          loop: true,
+          autoplay: true,
+          path: "https://ux.sbsvc.online/010pay/sup/rround_sup/images/lottie/confetti.json",
+        });
+      });
+      // [2025.12.02] 변경 끝
     });
+    
   </script>
 </html>

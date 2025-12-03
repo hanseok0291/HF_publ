@@ -50,7 +50,26 @@ function modalCloseSlide(modalElement) {
 
         // 이중 모달이 아닌 경우
         if (!$modal.hasClass("depth2")) {
-            scrollOn(); // 바디 스크롤 제거 해제
+            // 열린 슬라이드 모달이 더 이상 없으면 스크롤 복원
+            var $openSlideModals = $(".modal-slide.modal-open");
+            var $openRegularModals = $(".modal.modal-open").not(".modal-slide");
+            
+            // 슬라이드 모달과 일반 모달이 모두 닫혔을 때만 스크롤 복원
+            if ($openSlideModals.length === 0 && $openRegularModals.length === 0) {
+                // 추가 안전 체크: display:none인 모달도 제외
+                var $visibleModals = $(".modal").filter(function() {
+                    var display = $(this).css("display");
+                    return display !== "none" && display !== "" && 
+                           ($(this).hasClass("modal-open") || $(this).hasClass("show"));
+                });
+                
+                if ($visibleModals.length === 0) {
+                    // 약간의 지연을 두고 스크롤 복원 (CSS transition 완료 보장)
+                    setTimeout(function() {
+                        scrollOn(); // 바디 스크롤 제거 해제
+                    }, 50);
+                }
+            }
         }
     }, 300); // CSS transition 시간과 동일하게
 }
@@ -82,15 +101,40 @@ function modalOpen(obj1, obj2) {
         }, 10);
 
         // 바깥 영역 클릭 시 팝업 닫힘
-        temp.off("click.modal-slide").on("click.modal-slide", function (e) {
-            // 모달 다이얼로그나 모달 콘텐츠 밖을 클릭했고, 클릭한 요소가 모달 자체이거나 모달의 자식 요소인 경우
-            if (!modalDialog.has(e.target).length && (e.target === this || $(e.target).hasClass("modal"))) {
-                e.stopPropagation();
-                modalCloseSlide(temp);
-            }
-        });
+        // prevent-close 클래스가 있는 모달은 외부 클릭 시 닫히지 않음
+        temp.off("click.modal-slide");
+        if (!temp.hasClass("prevent-close")) {
+            temp.on("click.modal-slide", function (e) {
+                // prevent-close 클래스가 다시 확인 (동적으로 추가될 수 있음)
+                if ($(this).hasClass("prevent-close")) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    return false;
+                }
+                // 모달 다이얼로그나 모달 콘텐츠 밖을 클릭했고, 클릭한 요소가 모달 자체이거나 모달의 자식 요소인 경우
+                if (!modalDialog.has(e.target).length && (e.target === this || $(e.target).hasClass("modal"))) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    modalCloseSlide(temp);
+                    return false;
+                }
+            });
+        } else {
+            // prevent-close 클래스가 있는 경우 외부 클릭만 차단 (내부 요소는 정상 작동)
+            temp.on("click.modal-slide", function (e) {
+                // 모달 다이얼로그 밖의 모달 배경을 클릭한 경우만 차단
+                if (!modalDialog.has(e.target).length && (e.target === this || $(e.target).hasClass("modal"))) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    return false;
+                }
+                // 내부 요소 클릭은 정상적으로 작동하도록 이벤트 전파 허용
+            });
+        }
 
-        // 모달 닫기 버튼 클릭 시
+        // 모달 닫기 버튼 클릭 시 (prevent-close 클래스가 있어도 닫기 버튼은 작동)
         temp.find(".btn-close, [data-dismiss='modal'], .modal-close")
             .off("click.modal-slide")
             .on("click.modal-slide", function (e) {
@@ -116,7 +160,10 @@ function modalOpen(obj1, obj2) {
                     $clickedItem.addClass("bold");
 
                     // 선택된 값 표시
-                    $selectUl.html("<li>" + selectedText + "</li>");
+                    $selectUl.html("<li><button type='button'>" + selectedText + "</button></li>");
+
+                    // 선택 완료 상태 클래스 추가
+                    $selectContainer.addClass("selected");
 
                     // 모달 닫기
                     modalCloseSlide(temp);
@@ -444,10 +491,14 @@ $(function () {
     });
 
     // 모달 외부 클릭 시 닫기 (일반 모달만 처리, 슬라이드 모달은 modalOpen 내부에서 처리)
-    $(".modal").on("click", function (event) {
+    $(document).off("click.modal-outside").on("click.modal-outside", ".modal", function (event) {
         var $modal = $(this);
         // 슬라이드 모달은 modalOpen 내부에서 이미 처리되므로 제외
         if ($modal.hasClass("modal-slide")) {
+            return;
+        }
+        // prevent-close 클래스가 있는 모달은 외부 클릭 시 닫히지 않음
+        if ($modal.hasClass("prevent-close")) {
             return;
         }
 

@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../../css/common_renewal.css" />
     <link rel="stylesheet" href="../../css/pay/transactionHistory.css" />
     <link rel="stylesheet" href="../../css/web/layout.css" />
-    <link rel="stylesheet" href="../../css/web/payment.css" />
+    <link rel="stylesheet" href="../../css/web/payment.css?v=202512091512" />
     <link rel="stylesheet" href="../../css/swiper-bundle.min.css" />
     <script src="../../js/jquery.3.4.1.min.js"></script>
     <script src="../../js/jquery-ui.js"></script>
@@ -90,7 +90,13 @@
                 </div>
               </div>
               <div class="input-wrap">
-                <input type="text" placeholder="0원" />
+                <div class="input-container">
+                  <input type="text" placeholder="0원" id="pointAmount" />
+                  <div class="fake-label">
+                    <p class="number"></p>
+                    <span class="unit">원</span>
+                  </div>
+                </div>
                 <!-- <input type="text" placeholder="포인트 사용 불가 가맹 점이에요" /> -->
                 <button type="button">전액사용</button>
               </div>
@@ -1578,6 +1584,28 @@
         }
       });
 
+      // 포인트 입력 fake-label 기능
+      $("#pointAmount").on("input", function () {
+        var $this = $(this);
+        var $inputWrap = $this.closest(".input-wrap");
+        var $fakeLabel = $inputWrap.find(".fake-label");
+        
+        // 현재 입력된 값 가져오기 (숫자만 허용)
+        var inputValue = parseInt($this.val().replace(/[^0-9]/g, "")) || 0;
+        
+        // fake-label에 값 표시
+        $fakeLabel.find(".number").text(inputValue);
+        
+        // 값이 0보다 크면 unit 표시, 아니면 숨김
+        if (inputValue > 0) {
+          $fakeLabel.find(".unit").show();
+          $inputWrap.addClass("writable");
+        } else {
+          $fakeLabel.find(".unit").hide();
+          $inputWrap.removeClass("writable");
+        }
+      });
+
       // 로딩 로티
       var svgContainer = document.querySelector(".loading-dot");
 
@@ -1587,6 +1615,10 @@
         loop: true,
         path: "../../images/lottie/dot-loading.json",
       });
+    });
+
+    $(window).on("scroll", function () {
+      console.log("scroll");
     });
   </script>
 </html>

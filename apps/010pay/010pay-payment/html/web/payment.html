@@ -311,7 +311,7 @@
           <div class="payment-receipt-section border-top">
             <div class="title-wrap">
               <p class="title-text">현금영수증</p>
-              <div class="radio-wrap">
+              <!-- <div class="radio-wrap">
                 <div class="checkbox circle">
                   <input type="radio" name="receipt" id="receipt_01" checked />
                   <label for="receipt_01">신청</label>
@@ -320,8 +320,8 @@
                   <input type="radio" name="receipt" id="receipt_02" />
                   <label for="receipt_02">미신청</label>
                 </div>
-              </div>
-              <!-- <p class="info-text"><b>{가맹점명}</b>에서 발급해요</p> -->
+              </div> -->
+              <p class="info-text"><b>{일이삼사오육칠팔구십일이삼사오육칠팔구십}</b> <span>에서 발급해요</span></p>
             </div>
             <div class="contents-wrap">
               <div class="receipt-tab">
@@ -1617,8 +1617,26 @@
       });
     });
 
-    $(window).on("scroll", function () {
-      console.log("scroll");
+    // 현금 영수증 가맹점명 줄바꿈 JS
+    var $paymentReceiptSection = $(".payment-receipt-section");
+    var $infoText = $paymentReceiptSection.find(".info-text");
+    var $infoTextHeight;
+
+    function checkInfoTextHeight() {
+      $infoTextHeight = $infoText.height();
+      if($infoTextHeight > 30) {
+        $paymentReceiptSection.addClass("double-line");
+      } else {
+        $paymentReceiptSection.removeClass("double-line");
+      }
+    }
+    
+    setTimeout(function() {
+      checkInfoTextHeight();
+    }, 0);
+    
+    $(window).on("resize", function () {
+      checkInfoTextHeight();
     });
   </script>
 </html>

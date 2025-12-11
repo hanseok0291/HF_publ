@@ -14,8 +14,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <link rel="stylesheet" href="../../css/jquery-ui.css" />
     <link rel="stylesheet" href="../../css/common_renewal.css" />
-    <link rel="stylesheet" href="../../css/web/auth.css" />
     <link rel="stylesheet" href="../../css/web/layout.css" />
+    <link rel="stylesheet" href="../../css/web/auth.css" />
 
     <script src="../../js/jquery.3.4.1.min.js"></script>
     <script src="../../js/jquery-ui.js"></script>
@@ -82,7 +82,7 @@
                     <input
                       type="text"
                       class="custom-input"
-                      placeholder=""
+                      placeholder=" "
                       id="idNumber"
                       maxlength="6"
                     />
@@ -153,25 +153,113 @@
         <!-- bottom area -->
         <div class="bottom-wrap">
           <div class="container">
-            <!-- 전체 동의 체크박스 -->
-            <div class="check-all-box">
-              <div class="check-all" onclick="modalOpenSlide('modal-agree')">
-                <span class="checkbox">
-                  <input
-                    type="checkbox"
-                    name="checkbox2_all"
-                    id="checkbox_all"
-                  />
-                  <label for="checkbox_all"
-                    >(필수) 본인 확인 이용 약관 전체 동의</label
-                  >
-                </span>
-                <!-- 체크, 접힌 상태면 open 클래스 제거 -->
-                <button type="button" class="icon- btn-toggle"></button>
+            <div class="terms-wrap">
+              <!-- 전체 동의 체크박스 -->
+              <div class="check-all-box">
+                <div class="check-all">
+                  <span class="checkbox">
+                    <input
+                      type="checkbox"
+                      name="checkbox2_all"
+                      id="checkbox_all"
+                    />
+                    <label for="checkbox_all"
+                      >(필수) 본인 확인 이용 약관 전체 동의</label
+                    >
+                  </span>
+                  <!-- 체크, 접힌 상태면 open 클래스 제거 -->
+                  <button type="button" class="btn-toggle"></button>
+                </div>
               </div>
+              <ul class="terms-list terms-block-list">
+                <li>
+                  <!-- 체크박스 필요없을시 icon-none 클래스 추가 -->
+                  <div class="checkbox-block-group">
+                    <span class="checkbox child">
+                      <input
+                        type="checkbox"
+                        id="checkbox_group1_1"
+                        data-group="checkbox2_group1"
+                      />
+                      <label for="checkbox_group1_1"
+                        >(필수) 본인확인 서비스 이용약관<button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                          onclick="modalOpen('noticeDetail1')"
+                          data-toggle="modal"
+                          data-target="#noticeDetail"
+                        ></button
+                      ></label>
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <!-- 체크박스 필요없을시 icon-none 클래스 추가 -->
+                  <div class="checkbox-block-group">
+                    <span class="checkbox child">
+                      <input
+                        type="checkbox"
+                        id="checkbox_group1_2"
+                        data-group="checkbox2_group1"
+                      />
+                      <label for="checkbox_group1_2"
+                        >(필수) 개인정보 수집 및 이용 동의<button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                          onclick="modalOpen('noticeDetail1')"
+                          data-toggle="modal"
+                          data-target="#noticeDetail"
+                        ></button
+                      ></label>
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <!-- 체크박스 필요없을시 icon-none 클래스 추가 -->
+                  <div class="checkbox-block-group">
+                    <span class="checkbox child">
+                      <input
+                        type="checkbox"
+                        id="checkbox_group1_3"
+                        data-group="checkbox2_group1"
+                      />
+                      <label for="checkbox_group1_3"
+                        >(필수) 고유식별정보 처리 동의<button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                          onclick="modalOpen('noticeDetail1')"
+                          data-toggle="modal"
+                          data-target="#noticeDetail"
+                        ></button
+                      ></label>
+                    </span>
+                  </div>
+                </li>
+                <li>
+                  <!-- 체크박스 필요없을시 icon-none 클래스 추가 -->
+                  <div class="checkbox-block-group">
+                    <span class="checkbox child">
+                      <input
+                        type="checkbox"
+                        id="checkbox_group1_4"
+                        data-group="checkbox2_group1"
+                      />
+                      <label for="checkbox_group1_4"
+                        >(필수) 통신사 이용약관<button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                          onclick="modalOpen('noticeDetail1')"
+                          data-toggle="modal"
+                          data-target="#noticeDetail"
+                        ></button
+                      ></label>
+                    </span>
+                  </div>
+                </li>
+              </ul>
             </div>
             <button type="button" id="continue-btn" class="btn" disabled>
-              다음
+              인증하기
             </button>
           </div>
           <!-- //container -->
@@ -242,153 +330,12 @@
     </div>
     <!-- //통신사 선택 list -->
 
-    <!-- modal - 약관 동의 -->
-    <div
-      id="modal-agree"
-      class="modal modal-slide type-title modal-agree type2"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-head">
-            <p class="modal-head-title">
-              본인 확인을 위해 약관에 동의해 주세요
-            </p>
-            <button type="button" class="btn btn-close js-modal-close">
-              <i class="icon-close"></i>
-            </button>
-          </div>
-          <div class="modal-body">
-            <!-- 전체 동의 체크박스 -->
-            <div class="check-all-box container terms-list-box">
-              <!-- 체크, 접힌상태면 open 클래스 제거 -->
-              <div class="check-all top open">
-                <span class="checkbox">
-                  <input
-                    type="checkbox"
-                    name="checkbox_all2"
-                    id="checkbox_all2"
-                  />
-                  <label for="checkbox_all2">본인 확인 이용약관</label>
-                </span>
-                <!-- 체크, 접힌상태면 open 클래스 제거 -->
-                <button type="button" class="btn-toggle open"></button>
-              </div>
-            </div>
-            <!-- 전체 동의 체크박스 -->
-            <div class="container">
-              <div class="terms-wrap">
-                <ul class="terms-list terms-block-list">
-                  <li>
-                    <div class="checkbox-block-group">
-                      <span class="checkbox child">
-                        <input
-                          type="checkbox"
-                          id="checkbox1_group1_1"
-                          data-group="checkbox1_group1"
-                        />
-                        <label for="checkbox1_group1_1">
-                          (필수) 휴대폰 본인 확인 이용약관
-                          <button
-                            type="button"
-                            class="arrow-right js-open-terms"
-                            onclick="modalOpen('noticeDetail')"
-                            data-toggle="modal"
-                            data-target="#noticeDetail"
-                          ></button>
-                        </label>
-                      </span>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="checkbox-block-group">
-                      <span class="checkbox child">
-                        <input
-                          type="checkbox"
-                          id="checkbox1_group1_2"
-                          data-group="checkbox1_group1"
-                        />
-                        <label for="checkbox1_group1_2">
-                          (필수) 본인인증 개인 정보 수집·이용
-                          <button
-                            type="button"
-                            class="arrow-right js-open-terms"
-                            onclick="modalOpen('noticeDetail')"
-                            data-toggle="modal"
-                            data-target="#noticeDetail"
-                          ></button>
-                        </label>
-                      </span>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="checkbox-block-group">
-                      <span class="checkbox child">
-                        <input
-                          type="checkbox"
-                          id="checkbox1_group1_3"
-                          data-group="checkbox1_group1"
-                        />
-                        <label for="checkbox1_group1_3">
-                          (필수) 본인인증 고유 식별 처리
-                          <button
-                            type="button"
-                            class="arrow-right js-open-terms"
-                            onclick="modalOpen('noticeDetail')"
-                            data-toggle="modal"
-                            data-target="#noticeDetail"
-                          ></button>
-                        </label>
-                      </span>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="checkbox-block-group">
-                      <span class="checkbox child">
-                        <input
-                          type="checkbox"
-                          id="checkbox1_group1_4"
-                          data-group="checkbox1_group1"
-                        />
-                        <label for="checkbox1_group1_4">
-                          (필수) 개인정보 제3자 제공 동의
-                          <button
-                            type="button"
-                            class="arrow-right js-open-terms"
-                            onclick="modalOpen('noticeDetail')"
-                            data-toggle="modal"
-                            data-target="#noticeDetail"
-                          ></button>
-                        </label>
-                      </span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <!-- 동의하기 버튼 -->
-            <div class="modal-footer">
-              <button
-                type="button"
-                id="btn-agree1"
-                class="btn-confirm disabled"
-                disabled
-              >
-                동의하고 계속하기
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- //modal - 약관 동의 -->
-
     <!-- modal - 공지사항 상세 -->
     <div
       id="noticeDetail1"
       class="modal modal-full modal-terms"
       tabindex="0"
       aria-labelledby="noticeTitle"
-      style="display: block"
     >
       <div class="modal-dialog">
         <div class="modal-content">
@@ -796,18 +743,20 @@
             isPhoneNumberFilled &&
             isAgencySelected;
 
-          // 모든 조건 충족 시 버튼 활성화
-          if (allFieldsFilled && $("#checkbox_all").prop("checked")) {
-            $continueBtn.prop("disabled", false);
-            $continueBtn.removeClass("disabled");
-            $("#continue-btn").text("동의하고 인증하기");
-          } else if (allFieldsFilled) {
+          // 체크박스 검증
+          var isCheckboxAllChecked = $("#checkbox_all").prop("checked");
+          var $allTermsCheckboxes = $(".terms-list input[type='checkbox']");
+          var $checkedTermsCheckboxes = $(".terms-list input[type='checkbox']:checked");
+          var allTermsChecked = $allTermsCheckboxes.length > 0 && 
+                                $allTermsCheckboxes.length === $checkedTermsCheckboxes.length;
+
+          // 모든 필드가 채워지고 전체 동의 체크박스가 체크되어야 버튼 활성화
+          if (allFieldsFilled && isCheckboxAllChecked && allTermsChecked) {
             $continueBtn.prop("disabled", false);
             $continueBtn.removeClass("disabled");
           } else {
             $continueBtn.prop("disabled", true);
             $continueBtn.addClass("disabled");
-            $("#continue-btn").text("다음");
           }
         }
 
@@ -819,14 +768,31 @@
           }
         );
 
-        // 체크박스 변경 시 버튼 상태만 확인 (자동 체크 안 함)
+        // 전체 동의 체크박스 변경 시 개별 체크박스 동기화
         $(document).on("change", "#checkbox_all", function () {
           if ($(this).prop("checked")) {
-            $("#modal-agree input[type='checkbox']").prop("checked", true);
-            $("#modal-agree .btn-confirm").prop("disabled", false);
+            $(".terms-list input[type='checkbox']").prop("checked", true);
           } else {
-            $("#modal-agree .btn-confirm").prop("disabled", true);
+            $(".terms-list input[type='checkbox']").prop("checked", false);
           }
+          setTimeout(function () {
+            checkAgreeButtonState(false); // autoCheck = false
+          }, 10);
+        });
+
+        // 개별 체크박스 변경 시 전체 동의 체크박스 동기화
+        $(document).on("change", ".terms-list input[type='checkbox']", function () {
+          var $allCheckboxes = $(".terms-list input[type='checkbox']");
+          var $checkedCheckboxes = $(".terms-list input[type='checkbox']:checked");
+          var $checkboxAll = $("#checkbox_all");
+          
+          // 모든 개별 체크박스가 체크되면 전체 동의도 체크
+          if ($allCheckboxes.length === $checkedCheckboxes.length) {
+            $checkboxAll.prop("checked", true);
+          } else {
+            $checkboxAll.prop("checked", false);
+          }
+          
           setTimeout(function () {
             checkAgreeButtonState(false); // autoCheck = false
           }, 10);
@@ -836,8 +802,7 @@
           $(this).text("동의하고 인증하기");
           $(".check-all-box").addClass("show");
           $("#checkbox_all").prop("checked", true);
-          $("#modal-agree input[type='checkbox']").prop("checked", true);
-          $("#modal-agree .btn-confirm").prop("disabled", false);
+          $(".terms-list input[type='checkbox']").prop("checked", true);
         });
 
         // select-box의 comp 클래스 변경 감지
@@ -860,10 +825,52 @@
           });
         }
 
+        // bottom-wrap 높이를 auth-container의 padding-bottom으로 설정하는 함수
+        function updateAuthContainerPadding() {
+          var $bottomWrap = $(".bottom-wrap");
+          var $authContainer = $(".auth-container");
+          
+          if ($bottomWrap.length && $authContainer.length) {
+            // bottom-wrap의 실제 높이 계산
+            var bottomWrapHeight = $bottomWrap.outerHeight(true);
+            $authContainer.css("padding-bottom", bottomWrapHeight + "px");
+          }
+        }
+
+        // btn-toggle 클릭 시 하위 약관 토글
+        $(".check-all .btn-toggle").on("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          var $termsList = $(".terms-list");
+          var isCurrentlyVisible = $termsList.css("display") !== "none";
+          
+          // terms-list 토글
+          $termsList.css("display", isCurrentlyVisible ? "none" : "block");
+          
+          // btn-toggle의 open 클래스 토글
+          $(this).toggleClass("open", !isCurrentlyVisible);
+          
+          // check-all의 open 클래스도 동기화
+          $(this).closest(".check-all").toggleClass("open", !isCurrentlyVisible);
+          
+          // DOM 업데이트 후 padding-bottom 업데이트
+          setTimeout(function () {
+            updateAuthContainerPadding();
+          }, 10);
+        });
+
         // 초기 상태 확인 (자동 체크 포함)
         setTimeout(function () {
           checkAgreeButtonState(true);
+          // 초기 로드 시 padding-bottom 설정
+          updateAuthContainerPadding();
         }, 100);
+
+        // 윈도우 리사이즈 시 padding-bottom 업데이트
+        $(window).on("resize", function () {
+          updateAuthContainerPadding();
+        });
 
         // 이름 입력 후 Tab 키 눌렀을 때 생년월일 필드로 포커스 이동
         $("#name").on("keydown", function (e) {

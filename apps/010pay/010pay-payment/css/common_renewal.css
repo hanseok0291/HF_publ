@@ -5097,6 +5097,10 @@ div.nppfs-keypad {
 .input-container.label-error > .custom-input {
   border: 1px solid #ff0000 !important;
 }
+.input-container.label-error.password > input[type="text"].custom-input.focus,
+.input-container.label-error.password > .custom-input {
+  border: none !important;
+}
 .input-container.label-error .col-box > .custom-input:nth-of-type(-n+2) {
   border: 1px solid #ff0000 !important;
 }
@@ -5106,7 +5110,14 @@ div.nppfs-keypad {
 .input-container.text-error.focus-on input {
   border: 1px solid #ff0000;
 }
-
+.input-container.password {
+  border: 1px solid rgba(229, 229, 232, 1);
+  border-radius: 12px;
+  padding-right: 80px;
+}
+.input-container.password.focus-on {
+  border: 1px solid #151515;
+}
 .input-container.password .icon-del{
   right: 48px;
 }
@@ -5114,7 +5125,13 @@ div.nppfs-keypad {
   display: none;
   right: 16px;
 }
-
+.input-container.password .custom-input {
+  border: none !important;
+  padding-right: 0;
+}
+.input-container.password.label-error {
+  border: 1px solid #ff0000;
+}
 .custom-input,
 input[type="text"].custom-input,
 input[type="number"].custom-input,
@@ -6687,7 +6704,7 @@ margin-bottom: 16px;
 }
 @supports (height: 100dvh) {
   .container.banner-full-container {
-    height: calc(var(--vh, 1vh) * 100 - 152px);
+    height: calc(var(--dvh, 1dvh) * 100 - 152px);
   }
   .container.banner-full-container.type2 {
     height: calc(100dvh - 216px);

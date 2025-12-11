@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../../css/common_renewal.css" />
     <link rel="stylesheet" href="../../css/pay/transactionHistory.css" />
     <link rel="stylesheet" href="../../css/web/layout.css" />
-    <link rel="stylesheet" href="../../css/web/payment.css" />
+    <link rel="stylesheet" href="../../css/web/payment.css?v=202512091512" />
     <link rel="stylesheet" href="../../css/swiper-bundle.min.css" />
     <script src="../../js/jquery.3.4.1.min.js"></script>
     <script src="../../js/jquery-ui.js"></script>
@@ -90,7 +90,13 @@
                 </div>
               </div>
               <div class="input-wrap">
-                <input type="text" placeholder="0원" />
+                <div class="input-container">
+                  <input type="text" placeholder="0원" id="pointAmount" />
+                  <div class="fake-label">
+                    <p class="number"></p>
+                    <span class="unit">원</span>
+                  </div>
+                </div>
                 <!-- <input type="text" placeholder="포인트 사용 불가 가맹 점이에요" /> -->
                 <button type="button">전액사용</button>
               </div>
@@ -123,8 +129,9 @@
                       <div class="border-box">
                         <div class="img-wrap">
                           <img
-                            src="../../images/web/payment/card-img-01.png"
+                            src="../../images/web/payment/card-img-01-90.png"
                             alt="카드"
+                            class="rotate"
                           />
                         </div>
                         <div class="right-wrap">
@@ -218,7 +225,7 @@
                         src="../../images/common/rr-black.svg"
                         alt="RROUND"
                       />
-                      Pay 포인트
+                      Pay 머니
                     </span>
                   </label>
                   <span class="point-text">최대 1% 적립!</span>
@@ -282,17 +289,29 @@
                   </ul>
                 </div>
               </div>
-              <img
-                class="banner-img"
-                src="../../images/web/payment/banner.png"
-                alt="배너"
-              />
+              <div class="swiper-container banner-swiper-container">
+                <ul class="swiper-wrapper">
+                  <li class="swiper-slide">
+                    <p>라운드 페이를 소개합니다!</p>
+                    <img src="../../images/web/sample/banner-bg-img-01.png" alt="배너 배경" class="banner-bg-img">
+                  </li>
+                  <li class="swiper-slide">
+                    <p>라운드 페이를 소개합니다!</p>
+                    <img src="../../images/web/sample/banner-bg-img-01.png" alt="배너 배경" class="banner-bg-img">
+                  </li>
+                </ul>
+                <div class="swiper-slide-counter">
+                  <span class="current-slide">1</span>
+                  <span class="separator"></span>
+                  <span class="total-slides">2</span>
+                </div>
+              </div>
             </div>
           </div>
           <div class="payment-receipt-section border-top">
             <div class="title-wrap">
               <p class="title-text">현금영수증</p>
-              <div class="radio-wrap">
+              <!-- <div class="radio-wrap">
                 <div class="checkbox circle">
                   <input type="radio" name="receipt" id="receipt_01" checked />
                   <label for="receipt_01">신청</label>
@@ -301,8 +320,8 @@
                   <input type="radio" name="receipt" id="receipt_02" />
                   <label for="receipt_02">미신청</label>
                 </div>
-              </div>
-              <!-- <p class="info-text"><b>{가맹점명}</b>에서 발급해요</p> -->
+              </div> -->
+              <p class="info-text"><b>{일이삼사오육칠팔구십일이삼사오육칠팔구십}</b> <span>에서 발급해요</span></p>
             </div>
             <div class="contents-wrap">
               <div class="receipt-tab">
@@ -1176,6 +1195,38 @@
         initSwiperForItem($(this));
       });
 
+      const $bannerSwiperContainer = $(".banner-swiper-container");
+      const $slideCounter = $bannerSwiperContainer.find(".swiper-slide-counter");
+      const $currentSlide = $slideCounter.find(".current-slide");
+      const $totalSlides = $slideCounter.find(".total-slides");
+      
+      // HTML에서 실제 슬라이드 개수 계산
+      const totalSlidesCount = $bannerSwiperContainer.find(".swiper-slide").length;
+      $totalSlides.text(totalSlidesCount);
+      
+      // 슬라이드가 1개일 때는 카운터 숨기기
+      if (totalSlidesCount <= 1) {
+        $slideCounter.hide();
+      }
+      
+      const bannerSwiper = new Swiper($bannerSwiperContainer[0], {
+        loop: true,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+        slidesPerView: 1,
+        spaceBetween: 16,
+        on: {
+          init: function() {
+            $currentSlide.text(this.realIndex + 1);
+          },
+          slideChange: function() {
+            $currentSlide.text(this.realIndex + 1);
+          }
+        }
+      });
+
       // 섹션 토글
       $(".title-wrap .icon-arrow-down").on("click", function () {
         if ($(this).hasClass("close")) {
@@ -1533,6 +1584,28 @@
         }
       });
 
+      // 포인트 입력 fake-label 기능
+      $("#pointAmount").on("input", function () {
+        var $this = $(this);
+        var $inputWrap = $this.closest(".input-wrap");
+        var $fakeLabel = $inputWrap.find(".fake-label");
+        
+        // 현재 입력된 값 가져오기 (숫자만 허용)
+        var inputValue = parseInt($this.val().replace(/[^0-9]/g, "")) || 0;
+        
+        // fake-label에 값 표시
+        $fakeLabel.find(".number").text(inputValue);
+        
+        // 값이 0보다 크면 unit 표시, 아니면 숨김
+        if (inputValue > 0) {
+          $fakeLabel.find(".unit").show();
+          $inputWrap.addClass("writable");
+        } else {
+          $fakeLabel.find(".unit").hide();
+          $inputWrap.removeClass("writable");
+        }
+      });
+
       // 로딩 로티
       var svgContainer = document.querySelector(".loading-dot");
 
@@ -1542,6 +1615,28 @@
         loop: true,
         path: "../../images/lottie/dot-loading.json",
       });
+    });
+
+    // 현금 영수증 가맹점명 줄바꿈 JS
+    var $paymentReceiptSection = $(".payment-receipt-section");
+    var $infoText = $paymentReceiptSection.find(".info-text");
+    var $infoTextHeight;
+
+    function checkInfoTextHeight() {
+      $infoTextHeight = $infoText.height();
+      if($infoTextHeight > 30) {
+        $paymentReceiptSection.addClass("double-line");
+      } else {
+        $paymentReceiptSection.removeClass("double-line");
+      }
+    }
+    
+    setTimeout(function() {
+      checkInfoTextHeight();
+    }, 0);
+    
+    $(window).on("resize", function () {
+      checkInfoTextHeight();
     });
   </script>
 </html>

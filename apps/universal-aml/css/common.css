@@ -95,19 +95,22 @@ body.modal-open #wrap {
 .modal-footer .btn-cancel { color: #929292 !important; } 
 
 .modal-slide .modal-body { height: 100%; } 
-.modal-slide .modal-dialog { top: auto; bottom: 0; padding: 0; height: auto; max-height: 80%; transform: none; } 
-.modal-slide .modal-content { min-width: inherit; max-width: none; border-radius: 20px 20px 0 0; height: 100%; } 
+.modal-slide .modal-dialog { top: auto; bottom: 0; padding: 0; height: auto; max-height: 80vh; transform: none; } 
+.modal-slide .modal-content { min-width: inherit; max-width: none; border-radius: 20px 20px 0 0; max-height: 80vh; display: flex; flex-direction: column; overflow: hidden; } 
 .modal-slide .select-list li { font-size: 22px; font-weight: 300; margin-bottom: 34px; text-align: left; } 
 .modal-slide .select-list li > p:first-of-type { text-align: left; font-size: 20px; font-weight: 700; }
 .modal-slide .select-list li.bold { font-weight: 700; } 
 .modal-slide .select-list li:last-of-type { margin-bottom: 0; } 
 .modal-slide .select-list li .info { font-family: Pretendard; font-weight: 400; font-size: 16px; line-height: 100%; letter-spacing: -0.41px; color: #8a8a8a; text-align: left; margin-top: 4px; }
-.modal.modal-slide .modal-body { padding: 26px 0 32px; overflow-y: scroll; -ms-overflow-style: none; /* 인터넷 익스플로러 */ scrollbar-width: none; /* 파이어폭스 */ text-align: left; } 
+.modal.modal-slide .modal-head { flex-shrink: 0; }
+.modal.modal-slide .modal-body { padding: 26px 0 32px; flex: 1; overflow-y: auto; -ms-overflow-style: none; /* 인터넷 익스플로러 */ scrollbar-width: none; /* 파이어폭스 */ text-align: left; min-height: 0; }
+.modal.modal-slide .modal-body::-webkit-scrollbar { display: none; }
+.modal.modal-slide .modal-footer { flex-shrink: 0; } 
 .modal-popup.modal-slide .modal-dialog { height: auto; } 
 .modal-popup.modal-slide .modal-content { height: auto; } 
 .modal-popup.modal-slide.full .modal-dialog { height: 100%; } 
 .modal-popup.modal-slide.full .modal-content { height: 100%; } 
-.modal.modal-slide .modal-body .container > .select-list { margin-top: 16px; } 
+/* .modal.modal-slide .modal-body .container > .select-list { margin-top: 16px; }  */
 .modal .btn-wrap { width: 100%; padding: 0; } 
 .modal .accordion-item .list-sub .list-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; } 
 .modal .accordion-item .list-sub .list-item:last-of-type { margin-bottom: 0; } 
@@ -123,9 +126,11 @@ body.modal-open #wrap {
 .modal-full .modal-dialog { top: 0; bottom: 0; padding: 0; margin-top: 0 !important; height: 100%; overflow: hidden; background-color: #fff; } 
 .modal-full .modal-content { width: 100%; max-width: 100%; overflow-y: hidden; border-radius: 0; } 
 .modal-full .modal-head { display:flex; align-items:center; position:relative; top:0; left:0; right:0; min-width:320px; padding:0; width:100%; height:60px; background-color:transparent; text-align:center; position: fixed; z-index: 1; background: #fff; } 
-.modal-full .modal-head>.container { position:relative; height:auto; } .modal-full .modal-head .brand-name { padding:0; font-size:0; height: 15px; } 
-.modal-full .modal-head .btn-close { position:absolute; top:-7px; right:20px; width:32px; height:32px; background:url('../images/common/icon-close.svg') no-repeat center / 18px auto; } 
-.modal-full .modal-head .btn-back { display: inline-block; width: 40px; height: 40px; background: url('../images/common/btn-back.png') no-repeat center / 40px auto; top: -11px; left: 20px; position: absolute; } 
+.modal-full .modal-head>.container { position:relative; height:100%; display: flex; align-items: center; justify-content: center; text-align: center; } 
+.modal-full .modal-head .brand-name { padding:0; font-size:0; height: 15px; } 
+.modal-full .modal-head .brand-name.text { font-size: 20px; font-weight: 700; line-height: 142.9%; letter-spacing: 0.29px; height: auto; color: #000; } 
+.modal-full .modal-head .btn-close { position:absolute; top:10px; right:20px; width:40px; height:40px; background:url('../images/common/icon-close.svg') no-repeat center / 18px auto; } 
+.modal-full .modal-head .btn-back { display: inline-block; width: 40px; height: 40px; background: url('../images/common/btn-back.png') no-repeat center / 40px auto; top: 10px; left: 20px; position: absolute; } 
 .modal-full .modal-body { padding: 20px 0 30px; } 
 .modal-full .modal-body .terms-title { font-size: 22px; font-weight: 700; color: #2b2b2b; margin-bottom: 20px; text-align: left; } 
 .modal-full .modal-body .terms-title-sub { font-size: 14px; font-weight: 700; color: #2A2A2A; } 
@@ -381,7 +386,7 @@ div.nppfs-keypad { top: 0 !important; }
 .guide-wrap .accordion-list .accordion-title { display: flex; justify-content: space-between; align-items: center; } 
 .guide-wrap .accordion-list h3 { font-family: Pretendard; font-weight: 700; font-size: 14px; : #222; width: 100%; display: flex; align-items: center; } 
 .guide-wrap .accordion-list.type2 h3 { font-family: Pretendard; font-weight: 700; font-style: Bold; font-size: 16px; line-height: 100%; letter-spacing: -0.41px; } 
-.guide-wrap .accordion-list.type2 h3.mb-14, .guide-wrap .accordion-list.type2 h3 { margin-bottom: 14px; } 
+.guide-wrap .accordion-list.type2 h3.mb-14 { margin-bottom: 14px; } 
 .guide-wrap .btn-right { width: 30px; height: 21px; margin-left: auto; } 
 .guide-wrap .check-box > input + label:after { width: 20px; height: 20px; } 
 .guide-wrap .check-box > input + label { padding: 0 0 0 28px; font-size: 18px; } 
@@ -653,7 +658,7 @@ div.nppfs-keypad { top: 0 !important; }
 .switch input:checked + .slider { background-color: #FF6114; } 
 .switch .toggle-label { position: absolute; font-family: Pretendard; font-weight: 700; font-size: 13px; line-height: 100%; letter-spacing: 0%; top: 11px; right: 10px; z-index: 1; color: #fff; } 
 .toggle-box.active .switch .toggle-label { right: auto; left: 12px; } 
-.label-with-tooltip { display: flex; justify-content: space-between; align-items: center; } 
+.label-with-tooltip { display: flex; justify-content: space-between; align-items: center; width: 100%; } 
 .tooltip-wrap { position: relative; } 
 .tooltip-wrap.mr-auto { margin-right: auto; } 
 .h-full-center { display: flex; width: 100%; height: 100%; justify-content: center; align-items: center; } 

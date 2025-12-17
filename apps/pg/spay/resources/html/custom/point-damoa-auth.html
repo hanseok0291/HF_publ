@@ -100,7 +100,7 @@
                             </div>
                         </div>
                         <div class="custom-input">
-                            <input id="phone" type="tel" pattern="\d*" maxlength="11" oninput="maxLengthCheck(this)" onblur="formatPhoneNumber()" placeholder="'-' 없이 입력" />
+                            <input id="phone" type="tel" pattern="[0-9-]*" maxlength="13" placeholder="'-' 없이 입력" />
                             <label for="phone" class="custom-label">휴대폰번호</label>
                         </div>
                     </div>
@@ -110,106 +110,107 @@
             <div class="btnWrap">
                 <button type="button" class="btn btnNext" disabled>확인</button>
             </div>
+
+            <div id="modalTelecom" class="modal modal-slide">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="container">
+                                <ul class="select-list">
+                                    <li class="bold"><button type="button">SKT</button></li>
+                                    <li><button type="button">KT</button></li>
+                                    <li><button type="button">LG U+</button></li>
+                                    <li><button type="button">SKT 알뜰폰</button></li>
+                                    <li><button type="button">KT 알뜰폰</button></li>
+                                    <li><button type="button">LG U+ 알뜰폰</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--  -->
+            <div id="modalTerms" class="modal modal-slide prevent-close">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="container">
+                                <h3>헥토파이낸셜 이용약관</h3>
+                                <div class="">
+                                    <!-- accordion list -->
+                                    <ul class="accordion-list">
+                                        <li>
+                                            <div class="list-header accordion-title">
+                                                <span class="subject">
+                                                    <div class="check-box check-all w-full">
+                                                        <input type="checkbox" id="check-all" name="check-all" title="본인확인 이용 약관(필수)" />
+                                                        <label for="check-all">본인확인 이용 약관(필수)</label>
+                                                    </div>
+                                                </span>
+                                                <button type="button" class="accordion-btn" data-target="accordion-content">
+                                                    <span class="sr-only">약관 목록 펼치기/접기</span>
+                                                    <i class="icon-arrow-down"></i>
+                                                </button>
+                                            </div>
+                                            <div class="list-body accordion-item" id="accordion-content">
+                                                <div class="">
+                                                    <ul class="list-sub">
+                                                        <li class="list-item">
+                                                            <div class="check-box">
+                                                                <input type="checkbox" id="chk1" class="checkSelect" name="chk1" value="Y" title="(필수) 휴대폰 본인 확인 이용 약관" />
+                                                                <label for="chk1">(필수) 휴대폰 본인 확인 이용 약관</label>
+                                                            </div>
+                                                            <span class="btn-right"
+                                                                ><a href="javascript:;" data-toggle="modal" data-target="#noticeDetail"><span class="btn_view">보기</span></a></span
+                                                            >
+                                                        </li>
+                                                        <li class="list-item">
+                                                            <div class="check-box">
+                                                                <input type="checkbox" id="chk2" class="checkSelect" name="chk2" value="Y" title="(필수) 본인 인증 개인 정보 수집 이용" />
+                                                                <label for="chk2">(필수) 본인 인증 개인 정보 수집 이용</label>
+                                                            </div>
+                                                            <span class="btn-right"
+                                                                ><a href="javascript:;" data-toggle="modal" data-target="#noticeDetail"><span class="btn_view">보기</span></a></span
+                                                            >
+                                                        </li>
+                                                        <li class="list-item">
+                                                            <div class="check-box">
+                                                                <input type="checkbox" id="chk3" class="checkSelect" name="chk3" value="Y" title="(필수) 본인 인증 개인 정보 제공 위탁" />
+                                                                <label for="chk3">(필수) 본인 인증 개인 정보 제공 위탁</label>
+                                                            </div>
+                                                            <span class="btn-right"
+                                                                ><a href="javascript:;" data-toggle="modal" data-target="#noticeDetail"><span class="btn_view">보기</span></a></span
+                                                            >
+                                                        </li>
+                                                        <li class="list-item">
+                                                            <div class="check-box">
+                                                                <input type="checkbox" id="chk4" class="checkSelect" name="chk4" value="Y" title="(필수) 본인 인증 고유 식별 정보 처리" />
+                                                                <label for="chk4">(필수) 본인 인증 고유 식별 정보 처리</label>
+                                                            </div>
+                                                            <span class="btn-right"
+                                                                ><a href="javascript:;" data-toggle="modal" data-target="#noticeDetail"><span class="btn_view">보기</span></a></span
+                                                            >
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <!-- //accordion list -->
+                                </div>
+                                <div class="btn-wrap">
+                                    <button type="button" class="btn btn-xl btnNext" id="btnTermsConfirm" disabled>다음</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
         </div>
         <!-- //wrap -->
 
-        <div id="modalTelecom" class="modal modal-slide">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="container">
-                            <ul class="select-list">
-                                <li class="bold"><button type="button">SKT</button></li>
-                                <li><button type="button">KT</button></li>
-                                <li><button type="button">LG U+</button></li>
-                                <li><button type="button">SKT 알뜰폰</button></li>
-                                <li><button type="button">KT 알뜰폰</button></li>
-                                <li><button type="button">LG U+ 알뜰폰</button></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--  -->
-        <div id="modalTerms" class="modal modal-slide prevent-close">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="container">
-                            <h3>헥토파이낸셜 이용약관</h3>
-                            <div class="">
-                                <!-- accordion list -->
-                                <ul class="accordion-list">
-                                    <li>
-                                        <div class="list-header accordion-title">
-                                            <span class="subject">
-                                                <div class="check-box check-all w-full">
-                                                    <input type="checkbox" id="check-all" name="check-all" title="본인확인 이용 약관(필수)" />
-                                                    <label for="check-all">본인확인 이용 약관(필수)</label>
-                                                </div>
-                                            </span>
-                                            <button type="button" class="accordion-btn" data-target="accordion-content">
-                                                <span class="sr-only">약관 목록 펼치기/접기</span>
-                                                <i class="icon-arrow-down"></i>
-                                            </button>
-                                        </div>
-                                        <div class="list-body accordion-item" id="accordion-content">
-                                            <div class="">
-                                                <ul class="list-sub">
-                                                    <li class="list-item">
-                                                        <div class="check-box">
-                                                            <input type="checkbox" id="chk1" class="checkSelect" name="chk1" value="Y" title="(필수) 휴대폰 본인 확인 이용 약관" />
-                                                            <label for="chk1">(필수) 휴대폰 본인 확인 이용 약관</label>
-                                                        </div>
-                                                        <span class="btn-right"
-                                                            ><a href="javascript:;" data-toggle="modal" data-target="#noticeDetail"><span class="btn_view">보기</span></a></span
-                                                        >
-                                                    </li>
-                                                    <li class="list-item">
-                                                        <div class="check-box">
-                                                            <input type="checkbox" id="chk2" class="checkSelect" name="chk2" value="Y" title="(필수) 본인 인증 개인 정보 수집 이용" />
-                                                            <label for="chk2">(필수) 본인 인증 개인 정보 수집 이용</label>
-                                                        </div>
-                                                        <span class="btn-right"
-                                                            ><a href="javascript:;" data-toggle="modal" data-target="#noticeDetail"><span class="btn_view">보기</span></a></span
-                                                        >
-                                                    </li>
-                                                    <li class="list-item">
-                                                        <div class="check-box">
-                                                            <input type="checkbox" id="chk3" class="checkSelect" name="chk3" value="Y" title="(필수) 본인 인증 개인 정보 제공 위탁" />
-                                                            <label for="chk3">(필수) 본인 인증 개인 정보 제공 위탁</label>
-                                                        </div>
-                                                        <span class="btn-right"
-                                                            ><a href="javascript:;" data-toggle="modal" data-target="#noticeDetail"><span class="btn_view">보기</span></a></span
-                                                        >
-                                                    </li>
-                                                    <li class="list-item">
-                                                        <div class="check-box">
-                                                            <input type="checkbox" id="chk4" class="checkSelect" name="chk4" value="Y" title="(필수) 본인 인증 고유 식별 정보 처리" />
-                                                            <label for="chk4">(필수) 본인 인증 고유 식별 정보 처리</label>
-                                                        </div>
-                                                        <span class="btn-right"
-                                                            ><a href="javascript:;" data-toggle="modal" data-target="#noticeDetail"><span class="btn_view">보기</span></a></span
-                                                        >
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <!-- //accordion list -->
-                            </div>
-                            <div class="btn-wrap">
-                                <button type="button" class="btn btn-xl btnNext" id="btnTermsConfirm" disabled>다음</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--  -->
         <!-- modal - 약관 상세보기 -->
         <div id="noticeDetail" class="modal modal-full" tabindex="0" aria-labelledby="noticeTitle">
             <div class="modal-dialog">
@@ -326,6 +327,10 @@
         </div>
         <!-- //common prompt -->
 
+        <!-- loading -->
+        <div class="loading hidden">로딩 중</div>
+        <!-- //loading -->
+
         <script>
             $(document).ready(function () {
                 // 팝업 외부 클릭 시 닫기
@@ -348,8 +353,9 @@
                     var telecom = $(".custom-select.js-modal-slide .select ul li").text().trim();
                     var phone = $("#phone").val().trim();
 
-                    // 모든 필드가 입력되었는지 확인
-                    var allFieldsFilled = name.length > 0 && birthFirst.length === 6 && birthLast.length === 1 && telecom.length > 0 && phone.length >= 10; // 전화번호는 최소 10자리 (010-1234-5678 형식이면 13자리)
+                    // 전화번호 검증: 숫자만 추출하여 10자리 이상인지 확인 (포맷팅 후 "-" 포함 시 13자리)
+                    var phoneDigits = phone.replace(/\D/g, ""); // 숫자만 추출
+                    var allFieldsFilled = name.length > 0 && birthFirst.length === 6 && birthLast.length === 1 && telecom.length > 0 && phoneDigits.length >= 10; // 전화번호는 최소 10자리
 
                     // 버튼 활성화/비활성화
                     var $btnNext = $(".btn.btnNext");

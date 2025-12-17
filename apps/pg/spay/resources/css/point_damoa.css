@@ -1409,6 +1409,9 @@ label {
     margin-bottom: 10px;
 }
 
+.noti-list {
+    margin-top: 10px;
+}
 .noti-list li {
     position: relative;
     padding-left: 10px;
@@ -1419,7 +1422,7 @@ label {
     leading-trim: NONE;
     line-height: 22px;
     letter-spacing: 0%;
-    color: #303030;
+    color: #8A8A8A;
 }
 .noti-list li::before {
     content: "";
@@ -1428,7 +1431,7 @@ label {
     top: 9px;
     width: 3px;
     height: 3px;
-    background-color: #000;
+    background-color: #8A8A8A;
     border-radius: 50%;
 }
 .noti-list.no-desc li {
@@ -1612,19 +1615,6 @@ label {
     margin-left: auto;
 }
 
-.point-damoa .btn_view {
-    display: block;
-    width: 29px;
-    height: 30px;
-    background: url("../images/custom/new/button_arrow_left.svg") no-repeat center;
-    background-size: 29px 30px;
-    text-indent: -9999px;
-    overflow: hidden;
-    cursor: pointer;
-    pointer-events: auto;
-    position: relative;
-    z-index: 10;
-}
 .modal .btn_view {
     font-family: Inter;
     font-weight: 400;
@@ -2082,7 +2072,7 @@ label {
     width: 100%;
     background-color: #303030;
     color: #fff;
-    height: 60px;
+    height: 66.51px;
     font-family: Pretendard;
     font-weight: 600;
     font-style: SemiBold;
@@ -2092,6 +2082,28 @@ label {
     letter-spacing: -0.44px;
     border-radius: 8px;
     margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+.point-damoa .btn.btnNext .btn-amount,
+.modal .btn.btnNext .btn-amount {
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 23px;
+    letter-spacing: -0.44px;
+    color: #fff;
+}
+.point-damoa .btn.btnNext .btn-text,
+.modal .btn.btnNext .btn-text {
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 23px;
+    letter-spacing: -0.44px;
+    color: #fff;
 }
 .point-damoa .btn.btnNext:disabled,
 .modal .btn.btnNext:disabled {
@@ -2178,6 +2190,12 @@ label {
     padding: 0;
     border: 0;
 }
+.point-damoa .modal-slide .modal-content {
+    border-radius: 16px 16px 0 0;
+}
+#wrap.point-damoa-auth .modal-slide .container {
+    padding: 0 20px;
+}
 .modal-full .modal-head {
     display: flex;
     align-items: center;
@@ -2196,7 +2214,7 @@ label {
 }
 .modal-full .modal-head > .container {
     position: relative;
-    height: 30px;
+    height: 18px;
 }
 .my-logo,
 .my-logo img {
@@ -2204,7 +2222,7 @@ label {
     vertical-align: top;
 }
 .modal-full .modal-head .brand-name {
-    padding: 7px 0;
+    padding: 0;
     font-size: 0;
 }
 .modal-full .modal-body {
@@ -2222,8 +2240,9 @@ label {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 16.38%);
     z-index: 10;
     display: flex;
-    align-items: center;
+    align-items: end;
     justify-content: center;
+    padding-bottom: 30px;
 }
 .point-damoa .modal-dialog {
     margin-top: 0 !important;
@@ -2270,6 +2289,7 @@ label {
 }
 .point-damoa .amount-label {
     color: #303030;
+    font-weight: 500;
 }
 
 .point-damoa .total-points-section {
@@ -2354,7 +2374,10 @@ label {
 }
 
 .point-damoa .info-popup {
-    position: fixed;
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
     background: #fff;
     border: 1px solid #000;
     border-radius: 4px;
@@ -2362,10 +2385,18 @@ label {
     z-index: 10;
     display: none;
     text-align: left;
+    box-sizing: border-box;
+    min-width: 120px;
+    max-width: 320px;
+    width: max-content; /* 내용 길이에 맞게 확장 */
+    white-space: normal;
+    word-break: break-word; /* 긴 단어도 줄바꿈 */
 }
 .point-damoa .popup-arrow {
     position: absolute;
     bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 0;
     height: 0;
     border-left: 6px solid transparent;
@@ -2374,7 +2405,6 @@ label {
     background: #fff;
     z-index: 11;
     border-bottom: 1px solid transparent;
-    margin-left: -2px;
 }
 .point-damoa .popup-arrow::after {
     content: "";
@@ -2570,39 +2600,150 @@ label {
     text-align: right;
 }
 
+/* 현대카드 전용: 2개 input 구조 */
+.point-damoa .hyundai-input-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+}
+.point-damoa .hyundai-input-group .point-input-section {
+    flex: 1;
+    position: relative;
+    min-width: 0;
+}
+.point-damoa .hyundai-input-group .hyundai-input-left .point-input-wrapper {
+    width: 100%;
+}
+.point-damoa .hyundai-input-group .hyundai-input-right .point-input-wrapper {
+    width: 100%;
+}
+.point-damoa .hyundai-equals {
+    flex-shrink: 0;
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 19px;
+    color: #474747;
+    text-align: center;
+    padding: 0 4px;
+    line-height: 1;
+}
+/* 현대카드 input 기본 스타일 */
+.point-damoa .hyundai-input-group .point-input {
+    text-align: right;
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 19px;
+    color: #474747;
+}
+/* 현대카드 좌측 input (삭제 버튼 있음, 단위 M 표시) */
+.point-damoa .hyundai-input-group .hyundai-point-input {
+    padding-right: 40px;
+}
+/* 현대카드 좌측 input에 값이 입력되었을 때 (M 단위 표시) */
+.point-damoa .hyundai-input-group .hyundai-point-input.has-value {
+    padding-right: 60px;
+}
+/* 현대카드 우측 input (P 텍스트만, 삭제 버튼 없음) */
+.point-damoa .hyundai-input-group .hyundai-won-input {
+    padding-right: 40px;
+}
+/* 현대카드 input placeholder 스타일 */
+.point-damoa .hyundai-input-group .point-input::placeholder {
+    color: #b0b0b0;
+    text-align: right;
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 19px;
+}
+.point-damoa .hyundai-input-group .point-input::-webkit-input-placeholder {
+    color: #b0b0b0;
+    text-align: right;
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 19px;
+}
+.point-damoa .hyundai-input-group .point-input::-moz-placeholder {
+    color: #b0b0b0;
+    text-align: right;
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 19px;
+    opacity: 1;
+}
+.point-damoa .hyundai-input-group .point-input:-ms-input-placeholder {
+    color: #b0b0b0;
+    text-align: right;
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 19px;
+}
+/* 현대카드 좌측 input 단위 (값이 입력되었을 때 표시) */
+.point-damoa .hyundai-input-group .hyundai-input-left .point-input-wrapper {
+    position: relative;
+}
+.point-damoa .hyundai-input-group .hyundai-input-left .point-input-wrapper .point-unit {
+    position: absolute;
+    right: 40px;
+    font-size: 19px;
+    color: #474747;
+    font-family: Pretendard;
+    font-weight: 600;
+    pointer-events: none;
+    z-index: 1;
+    line-height: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    white-space: nowrap;
+    margin-top: 0;
+}
+.point-damoa .hyundai-input-group .hyundai-won-input {
+    cursor: not-allowed;
+}
+.point-damoa .hyundai-input-group .hyundai-won-input:disabled {
+    color: #474747;
+    -webkit-text-fill-color: #474747;
+    opacity: 1;
+}
+.point-damoa .hyundai-input-group .hyundai-input-right {
+    position: relative;
+}
+.point-damoa .hyundai-input-group .hyundai-input-right .point-unit {
+    position: absolute;
+    right: 16px;
+    font-size: 19px;
+    color: #474747;
+    font-family: Pretendard;
+    font-weight: 600;
+    pointer-events: none;
+    z-index: 1;
+    line-height: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+}
+/* 현대카드 오류 상태 */
+.point-damoa .point-usage-controls.error .hyundai-input-group .point-input {
+    border-color: #ff4242;
+    color: #ff4242;
+}
+.point-damoa .point-usage-controls.error .hyundai-input-group .hyundai-equals {
+    color: #ff4242;
+}
+.point-damoa .point-usage-controls.error .hyundai-input-group .hyundai-input-right .point-unit {
+    color: #ff4242;
+}
+
 /* 결제 금액 요약 */
 .point-damoa .payment-summary {
     background: #f4f4f5;
     border-radius: 8px;
-    padding: 20px 20px 28px;
+    padding: 20px 20px 14px;
     margin-top: 40px;
 }
-.point-damoa .summary-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px;
-}
-.point-damoa .summary-header h3 {
-    font-family: Pretendard;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 100%;
-    letter-spacing: -0.41px;
-    color: #303030;
-    margin: 0;
-}
-.point-damoa .total-amount {
-    font-family: Pretendard;
-    font-weight: 700;
-    font-style: Bold;
-    font-size: 18px;
-    line-height: 100%;
-    letter-spacing: -0.41px;
-    color: #303030;
-}
 .point-damoa .point-deductions {
-    margin-bottom: 10px;
+    margin-bottom: 14px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -2612,48 +2753,142 @@ label {
     justify-content: space-between;
     align-items: center;
     font-family: Pretendard;
+    font-size: 16px;
+    line-height: normal;
+    letter-spacing: -0.408px;
+}
+.point-damoa .deduction-label {
+    font-family: Pretendard;
     font-weight: 400;
     font-size: 16px;
-    line-height: 17px;
-    letter-spacing: -0.41px;
+    line-height: normal;
+    letter-spacing: -0.408px;
     color: #5c5c5c;
 }
 .point-damoa .deduction-amount {
     font-family: Pretendard;
     font-weight: 700;
-    font-style: Bold;
     font-size: 16px;
-    line-height: 100%;
-    letter-spacing: -0.41px;
-    color: #ff6114;
+    line-height: normal;
+    letter-spacing: -0.408px;
+    color: #303030;
+    text-align: right;
 }
 .point-damoa .summary-divider {
     height: 1px;
     background-image: repeating-linear-gradient(to right, #cbcbcb 0px, #cbcbcb 4px, transparent 4px, transparent 8px);
     margin: 14px 0;
 }
+/* 포인트 총액 */
+.point-damoa .total-point-amount {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Pretendard;
+    margin-bottom: 8px;
+}
+.point-damoa .total-label {
+    font-family: Pretendard;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: normal;
+    letter-spacing: -0.408px;
+    color: #303030;
+}
+.point-damoa .total-amount {
+    font-family: Pretendard;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: normal;
+    letter-spacing: -0.408px;
+    color: #303030;
+    text-align: right;
+}
+/* 사용자 부담 수수료 (연동용) */
+.point-damoa .user-fee-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Pretendard;
+    margin-bottom: 8px;
+}
+.point-damoa .fee-label {
+    font-family: Pretendard;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: normal;
+    letter-spacing: -0.408px;
+    color: #303030;
+}
+.point-damoa .fee-amount {
+    font-family: Pretendard;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: normal;
+    letter-spacing: -0.408px;
+    color: #303030;
+    text-align: right;
+}
 .point-damoa .final-payment {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 16px;
-    font-weight: 600;
+    font-family: Pretendard;
 }
 .point-damoa .final-label {
     font-family: Pretendard;
     font-weight: 700;
     font-size: 16px;
-    line-height: 100%;
-    letter-spacing: -0.41px;
-    color: #303030;
+    line-height: normal;
+    letter-spacing: -0.408px;
+    color: #ff6114;
 }
 .point-damoa .final-amount {
     font-family: Pretendard;
     font-weight: 700;
     font-size: 18px;
-    line-height: 100%;
-    letter-spacing: -0.41px;
-    color: #303030;
+    line-height: normal;
+    letter-spacing: -0.408px;
+    color: #ff6114;
+    text-align: right;
+}
+
+/* 포인트 적용 안내 */
+.point-damoa .point-guide-notice {
+    margin-top: 30px;
+    padding: 0;
+}
+.point-damoa .guide-title {
+    position: relative;
+    padding-left: 10px;
+    font-family: Pretendard;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: normal;
+    letter-spacing: -0.03em;
+    color: #5c5c5c;
+}
+.point-damoa .guide-title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 3px;
+    height: 3px;
+    background-color: #5c5c5c;
+    border-radius: 100%;
+}
+.point-damoa .guide-content {
+    padding-left: 12px;
+    font-family: Pretendard;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: normal;
+    letter-spacing: -0.03em;
+    color: #5c5c5c;
+}
+.point-damoa .guide-content p:last-child {
+    margin-bottom: 0;
 }
 
 /* 개인정보 제공 동의 안내 */
@@ -2991,4 +3226,61 @@ label {
     letter-spacing: -0.44px;
     border-radius: 8px;
     margin: 0;
+}
+
+/* loading */
+.loading.hidden {
+    display: none;
+}
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 0;
+    line-height: 0;
+    text-align: center;
+    z-index: 9999;
+    background: rgba(0, 0, 0, .5);
+}
+.loading:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -45px 0 0 -45px;
+    animation: spin 1s linear infinite;
+    background: url(../images/custom//new/loading.png) no-repeat center / contain;
+    width: 90px;
+    height: 90px;
+}
+.loading .text {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: 20px;
+    width: 100%;
+    font-size: 13px;
+    text-indent: 0;
+    color: #fff;
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }

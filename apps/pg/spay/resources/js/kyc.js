@@ -53,19 +53,18 @@ function modalCloseSlide(modalElement) {
             // 열린 슬라이드 모달이 더 이상 없으면 스크롤 복원
             var $openSlideModals = $(".modal-slide.modal-open");
             var $openRegularModals = $(".modal.modal-open").not(".modal-slide");
-            
+
             // 슬라이드 모달과 일반 모달이 모두 닫혔을 때만 스크롤 복원
             if ($openSlideModals.length === 0 && $openRegularModals.length === 0) {
                 // 추가 안전 체크: display:none인 모달도 제외
-                var $visibleModals = $(".modal").filter(function() {
+                var $visibleModals = $(".modal").filter(function () {
                     var display = $(this).css("display");
-                    return display !== "none" && display !== "" && 
-                           ($(this).hasClass("modal-open") || $(this).hasClass("show"));
+                    return display !== "none" && display !== "" && ($(this).hasClass("modal-open") || $(this).hasClass("show"));
                 });
-                
+
                 if ($visibleModals.length === 0) {
                     // 약간의 지연을 두고 스크롤 복원 (CSS transition 완료 보장)
-                    setTimeout(function() {
+                    setTimeout(function () {
                         scrollOn(); // 바디 스크롤 제거 해제
                     }, 50);
                 }
@@ -491,21 +490,23 @@ $(function () {
     });
 
     // 모달 외부 클릭 시 닫기 (일반 모달만 처리, 슬라이드 모달은 modalOpen 내부에서 처리)
-    $(document).off("click.modal-outside").on("click.modal-outside", ".modal", function (event) {
-        var $modal = $(this);
-        // 슬라이드 모달은 modalOpen 내부에서 이미 처리되므로 제외
-        if ($modal.hasClass("modal-slide")) {
-            return;
-        }
-        // prevent-close 클래스가 있는 모달은 외부 클릭 시 닫히지 않음
-        if ($modal.hasClass("prevent-close")) {
-            return;
-        }
+    $(document)
+        .off("click.modal-outside")
+        .on("click.modal-outside", ".modal", function (event) {
+            var $modal = $(this);
+            // 슬라이드 모달은 modalOpen 내부에서 이미 처리되므로 제외
+            if ($modal.hasClass("modal-slide")) {
+                return;
+            }
+            // prevent-close 클래스가 있는 모달은 외부 클릭 시 닫히지 않음
+            if ($modal.hasClass("prevent-close")) {
+                return;
+            }
 
-        if ($(event.target).closest(".modal-dialog, .modal-content").length === 0) {
-            modalClose();
-        }
-    });
+            if ($(event.target).closest(".modal-dialog, .modal-content").length === 0) {
+                modalClose();
+            }
+        });
 });
 
 // maxlength
@@ -515,19 +516,81 @@ function maxLengthCheck(object) {
     }
 }
 
-// 전화번호 체크
-function formatPhoneNumber() {
-    var phoneChk = document.getElementById("phone");
-    if (phoneChk) {
-        phoneChk.addEventListener("input", function () {
-            // 현재 입력된 값
-            var inputValue = this.value;
-            // 숫자 이외의 문자는 모두 제거
-            var phoneNumber = inputValue.replace(/\D/g, "");
-            // 전화번호 형식에 맞게 "-" 추가
-            var formattedNumber = phoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3");
-            // 입력된 값을 형식에 맞게 업데이트
-            this.value = formattedNumber;
-        });
+// 전화번호 포맷팅 함수
+function formatPhoneNumber(inputElement) {
+    if (!inputElement) {
+        inputElement = document.getElementById("phone");
+    }
+    if (inputElement) {
+        // 현재 커서 위치 저장
+        var cursorPosition = inputElement.selectionStart;
+        var inputValue = inputElement.value;
+        
+        // 숫자 이외의 문자는 모두 제거
+        var phoneNumber = inputValue.replace(/\D/g, "");
+        
+        // 입력 전 커서 위치에서 제거된 문자의 개수 계산
+        var digitsBeforeCursor = inputValue.substring(0, cursorPosition).replace(/\D/g, "").length;
+        
+        // 최대 11자리까지만 허용 (숫자만)
+        if (phoneNumber.length > 11) {
+            phoneNumber = phoneNumber.slice(0, 11);
+        }
+        
+        // 전화번호 형식에 맞게 "-" 추가
+        var formattedNumber = "";
+        if (phoneNumber.length === 0) {
+            formattedNumber = "";
+        } else if (phoneNumber.length <= 3) {
+            // 1~3자리: 그대로
+            formattedNumber = phoneNumber;
+        } else if (phoneNumber.length <= 7) {
+            // 4~7자리: 010-1234 형식
+            formattedNumber = phoneNumber.replace(/(\d{3})(\d+)/, "$1-$2");
+        } else {
+            // 8~11자리: 010-1234-5678 형식
+            formattedNumber = phoneNumber.replace(/(\d{3})(\d{4})(\d+)/, "$1-$2-$3");
+        }
+        
+        // 포맷팅된 값으로 업데이트
+        inputElement.value = formattedNumber;
+        
+        // 커서 위치 복원 (포맷팅으로 추가된 "-" 개수 고려)
+        var digitsInFormatted = formattedNumber.replace(/\D/g, "").length;
+        var dashesBeforeCursor = 0;
+        var currentDigitCount = 0;
+        
+        for (var i = 0; i < formattedNumber.length; i++) {
+            if (currentDigitCount >= digitsBeforeCursor) {
+                break;
+            }
+            if (formattedNumber[i] === "-") {
+                dashesBeforeCursor++;
+            } else {
+                currentDigitCount++;
+            }
+        }
+        
+        var newCursorPosition = digitsBeforeCursor + dashesBeforeCursor;
+        // 커서 위치가 포맷팅된 문자열 길이를 초과하지 않도록
+        newCursorPosition = Math.min(newCursorPosition, formattedNumber.length);
+        
+        inputElement.setSelectionRange(newCursorPosition, newCursorPosition);
     }
 }
+
+// 전화번호 입력 필드 초기화 (페이지 로드 시 한 번만 실행)
+$(document).ready(function () {
+    var phoneInput = document.getElementById("phone");
+    if (phoneInput) {
+        // input 이벤트에서 포맷팅 처리
+        phoneInput.addEventListener("input", function () {
+            formatPhoneNumber(this);
+        });
+        
+        // blur 이벤트에서도 포맷팅 처리 (입력 완료 후)
+        phoneInput.addEventListener("blur", function () {
+            formatPhoneNumber(this);
+        });
+    }
+});

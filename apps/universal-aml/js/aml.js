@@ -17,13 +17,22 @@ document.querySelectorAll(".select-list li").forEach((item) => {
     var parentId = item.closest("[id]").id; // 부모 요소의 id 값을 가져옴
     var targetElement = document.querySelector("[data-target='" + parentId + "']"); // 해당 parentId 값을 가진 요소를 찾음
 
+    // balance-standard-list는 제외
+    if (item.closest(".balance-standard-list")) {
+      return;
+    }
+
     modalOther = 1;
     // 클릭한 li 요소의 텍스트 값을 가져옴
     const selectedText = item.textContent;
 
     // select 요소를 선택
     // const selectInput = document.querySelectorAll(".custom-select .select li");
-    const selectInput = document.querySelector("[data-target='" + parentId + "']").querySelectorAll(".select li");
+    const targetQuery = document.querySelector("[data-target='" + parentId + "']");
+    if (!targetQuery) {
+      return;
+    }
+    const selectInput = targetQuery.querySelectorAll(".select li");
 
     // 클릭한 li의 텍스트를 rcptIdGb_01 값으로 설정
     selectInput.forEach((input) => {

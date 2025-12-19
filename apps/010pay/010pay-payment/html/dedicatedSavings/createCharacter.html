@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND - 내 캐릭터 만들기</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="../../css/jquery-ui.css" />
+    <link rel="stylesheet" href="../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../css/dedicatedSavings/createCharacter.css" />
+    <script src="../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/design_renewal.js" defer="defer"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap" class="create-character-wrap">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <h2 class="page-title">내 캐릭터 만들기</h2>
+            <button type="button" class="btn-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- //header -->  
+
+      <!-- content -->
+      <div id="content">
+        <div class="container">
+          <!-- section -->
+          <div class="section">
+            <!-- Title Section -->
+            <div class="title-section">
+              <h1 class="main-title">
+                사진 한 장으로 만드는<br />
+                나만의 캐릭터
+              </h1>
+              <p class="sub-title">
+                캐릭터 만들고 친구들한테 자랑해요!
+              </p>
+            </div>
+            <!-- //Title Section -->
+
+            <!-- Photo Upload Section -->
+            <div class="upload-section">
+              <div class="upload-box" id="uploadBox">
+                <div class="upload-placeholder">
+                  <i class="icon-camera"></i>
+                  <p class="upload-text">대표 사진 올리기</p>
+                </div>
+                <input
+                  type="file"
+                  id="photoInput"
+                  accept="image/*"
+                  style="display: none"
+                />
+              </div>
+            </div>
+            <!-- //Photo Upload Section -->
+
+            <!-- Instructions Section -->
+            <div class="instructions-section">
+              <div class="instruction-item">
+                <i class="icon-camera-small"></i>
+                <p class="instruction-text">
+                  밝은 조명에서 찍은 정면 사진을 권장해요
+                </p>
+              </div>
+              <div class="instruction-item">
+                <i class="icon-warning"></i>
+                <p class="instruction-text">
+                  사물이나 동물 사진은 인식이 어려워요
+                </p>
+              </div>
+            </div>
+            <!-- //Instructions Section -->
+          </div>
+          <!-- //section -->
+        </div>
+        <!-- //container -->
+      </div>
+      <!-- //content -->
+
+      <!-- bottom area -->
+      <div class="bottom-area">
+        <div class="container">
+          <button type="button" class="btn btn-disabled" id="submitBtn" disabled>
+            사진을 먼저 올려주세요
+          </button>
+        </div>
+      </div>
+      <!-- //bottom area -->
+    </div>
+    <!-- //wrap -->
+
+    <!-- common alert -->
+    <div id="commonAlert" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="alertTitle"></h3>
+            <p id="alertContents"></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalClose();"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //common alert -->
+
+    <!-- common prompt -->
+    <div id="commonPrompt" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="promptTitle"></h3>
+            <p id="promptContents"></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalCloseAlert();"
+              class="btn btn-cancel"
+            >
+              취소
+            </button>
+            <button
+              type="button"
+              onclick="modalCloseAlert();"
+              id="promptOk"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //common prompt -->
+
+    <!-- Photo Upload Bottom Sheet Modal -->
+    <div id="photoUploadModal" class="modal modal-slide type-title">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title">사진 올리기</p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <ul class="btn-list">
+                <li>
+                  <button type="button" class="btn" id="selectFromAlbum">
+                    <i class="icon-album"></i>
+                    <span>내 앨범에서 고르기</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="btn" id="takePhoto">
+                    <i class="icon-camera"></i>
+                    <span>사진 촬영하기</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //Photo Upload Bottom Sheet Modal -->
+
+    <script>
+      // 사진 업로드 기능
+      const uploadBox = document.getElementById("uploadBox");
+      const photoInput = document.getElementById("photoInput");
+      const submitBtn = document.getElementById("submitBtn");
+      const selectFromAlbum = document.getElementById("selectFromAlbum");
+      const takePhoto = document.getElementById("takePhoto");
+
+      // 업로드 박스 클릭 시 모달 열기
+      uploadBox.addEventListener("click", function () {
+        modalOpenSlide("photoUploadModal");
+      });
+
+      // 앨범에서 선택
+      selectFromAlbum.addEventListener("click", function () {
+        photoInput.click();
+        modalCloseSlide();
+      });
+
+      // 사진 촬영 (카메라 열기)
+      takePhoto.addEventListener("click", function () {
+        photoInput.setAttribute("capture", "environment");
+        photoInput.click();
+        modalCloseSlide();
+      });
+
+      photoInput.addEventListener("change", function (e) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const uploadBox = document.getElementById("uploadBox");
+            uploadBox.innerHTML = `
+              <img src="${e.target.result}" alt="업로드된 사진" class="uploaded-image" />
+              <button type="button" class="btn-remove-image">
+                <i class="icon-close"></i>
+              </button>
+            `;
+
+            // 이미지 제거 버튼 이벤트
+            const removeBtn = uploadBox.querySelector(".btn-remove-image");
+            removeBtn.addEventListener("click", function (e) {
+              e.stopPropagation();
+              resetUploadBox();
+            });
+
+            // 버튼 활성화
+            submitBtn.disabled = false;
+            submitBtn.classList.remove("btn-disabled");
+            submitBtn.textContent = "캐릭터 만들기";
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      function resetUploadBox() {
+        const uploadBox = document.getElementById("uploadBox");
+        uploadBox.innerHTML = `
+          <div class="upload-placeholder">
+            <i class="icon-camera"></i>
+            <p class="upload-text">대표 사진 올리기</p>
+          </div>
+        `;
+        photoInput.value = "";
+
+        // 버튼 비활성화
+        submitBtn.disabled = true;
+        submitBtn.classList.add("btn-disabled");
+        submitBtn.textContent = "사진을 먼저 올려주세요";
+      }
+
+      // 캐릭터 만들기 버튼 클릭 시 creatingCharacter.html로 이동
+      submitBtn.addEventListener("click", function () {
+        if (!submitBtn.disabled) {
+          window.location.href = "creatingCharacter.html";
+        }
+      });
+    </script>
+  </body>
+</html>
+

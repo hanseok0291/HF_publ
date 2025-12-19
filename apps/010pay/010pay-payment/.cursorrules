@@ -1,0 +1,489 @@
+/* ============================================
+   010PAY Payment 프로젝트 개발 가이드
+   ============================================ */
+
+/* ==================== HTML 구조 패턴 ==================== */
+
+/* 기본 HTML 구조 */
+/*
+  <!DOCTYPE html>
+  <html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no, address=no, email=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../css/[섹션]/[페이지].css" />
+    <script src="../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/design_renewal.js" defer="defer"></script>
+  </head>
+  <body>
+    <!-- wrap -->
+    <div id="wrap" class="[페이지별-wrap]">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <button type="button" class="btn-back js-change-btn left-0">
+              <i class="icon-back"></i>
+            </button>
+            <h2 class="page-title">페이지 제목</h2>
+          </div>
+        </div>
+      </div>
+      <!-- //header -->
+      
+      <!-- content -->
+      <div id="content">
+        <div class="container">
+          <!-- section -->
+          <div class="section">
+            <!-- 내용 -->
+          </div>
+          <!-- //section -->
+        </div>
+        <!-- //container -->
+      </div>
+      <!-- //content -->
+      
+      <!-- bottom area -->
+      <div class="bottom-area">
+        <div class="container">
+          <button type="button" class="btn">버튼</button>
+        </div>
+      </div>
+      <!-- //bottom area -->
+    </div>
+    <!-- //wrap -->
+  </body>
+  </html>
+*/
+
+/* 필수 구조 요소 */
+/*
+  1. #wrap: 최상위 래퍼, 페이지별 클래스 추가 (예: plcc-main-wrap)
+  2. #header: 고정 헤더 (position: fixed, height: 56px)
+  3. .container: 콘텐츠 래퍼 (max-width: 700px, padding: 0 16px)
+  4. .header-box: 헤더 내부 flex 컨테이너
+  5. #content: 메인 콘텐츠 영역
+  6. .section: 콘텐츠 섹션 단위
+  7. .bottom-area: 하단 버튼 영역
+*/
+
+/* 주석 스타일 */
+/*
+  - 시작: <!-- [이름] -->
+  - 종료: <!-- //[이름] -->
+  - 예: <!-- header --> ... <!-- //header -->
+*/
+
+/* ==================== CSS 네이밍 패턴 ==================== */
+
+/* BEM 스타일 네이밍 */
+/*
+  - Block: .card-box
+  - Element: .card-box .card-info-area
+  - Modifier: .card-box.card-info, .card-status.cancel
+  
+  패턴:
+  .block { }
+  .block__element { }  (하지만 실제로는 .block .element 사용)
+  .block--modifier { }  (하지만 실제로는 .block.modifier 사용)
+*/
+
+/* 접미사 패턴 */
+/*
+  - -wrap: 래퍼 요소 (예: .contents-wrap, .text-wrap)
+  - -box: 박스/카드 요소 (예: .card-box, .white-box)
+  - -area: 영역 요소 (예: .card-info-area, .amount-point-area)
+  - -section: 섹션 요소 (예: .hero-section, .benefits-section)
+  - -container: 컨테이너 (예: .main-container, .home-container)
+  - -list: 리스트 (예: .benefits-list, .btn-list)
+  - -item: 리스트 아이템 (예: .benefit-item)
+*/
+
+/* 클래스 네이밍 규칙 */
+/*
+  1. 소문자와 하이픈 사용: .card-box (O), .cardBox (X)
+  2. 의미있는 이름 사용: .card-info-area (O), .box1 (X)
+  3. 페이지별 prefix: .plcc-main-wrap, .web-home-container
+  4. 상태 클래스: .active, .disabled, .hidden, .close
+*/
+
+/* ==================== 레이아웃 패턴 ==================== */
+
+/* Container */
+/*
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    width: 100%;
+    max-width: 700px;
+  }
+  
+  - 모든 콘텐츠는 .container 내부에 배치
+  - #content > .container 구조 사용
+*/
+
+/* Header */
+/*
+  #header {
+    position: fixed;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 56px;
+    padding: 13.5px 0;
+    background-color: #fff;
+    z-index: 100;
+  }
+  
+  #header .header-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  - 고정 헤더 사용
+  - .header-box는 flex 컨테이너
+  - .btn-back, .page-title, .btn-close 배치
+*/
+
+/* Content */
+/*
+  #content {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0 !important;
+  }
+  
+  - flex 컨테이너로 세로 배치
+  - 헤더 높이만큼 padding-top 필요할 수 있음
+*/
+
+/* Section */
+/*
+  .section {
+    clear: both;
+    margin-top: 30px; (템플릿에서)
+  }
+  
+  - 콘텐츠를 섹션 단위로 구분
+  - .section-title로 제목 스타일링
+*/
+
+/* Bottom Area */
+/*
+  .bottom-area {
+    padding: 20px 0;
+  }
+  
+  .bottom-area .container {
+    padding: 0 16px;
+  }
+  
+  - 하단 버튼 영역
+  - .container 내부에 버튼 배치
+  
+  Bottom Area 필수 규칙:
+  - .bottom-area가 있을 때 반드시 #content에 padding-bottom: 96px !important 적용 필수
+  - 이유: 하단 버튼 영역이 콘텐츠를 가리지 않도록 하기 위함
+  
+  CSS 작성 예시:
+  .bottom-area ~ #content,
+  #content:has(~ .bottom-area) {
+    padding-bottom: 96px !important;
+  }
+  
+  또는 페이지별 CSS에서:
+  #content {
+    padding-bottom: 96px !important;
+  }
+  (단, .bottom-area가 있을 때만)
+*/
+
+/* ==================== 버튼 스타일 패턴 ==================== */
+
+/* 기본 버튼 */
+/*
+  .btn {
+    display: inline-block;
+    padding: 14px 10px;
+    width: 100%;
+    height: 56px;
+    border: 1px solid #151515;
+    border-radius: 16px;
+    background-color: #151515;
+    color: #e0ff63;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 22.4px;
+    letter-spacing: -0.02em;
+    text-align: center;
+  }
+*/
+
+/* 버튼 변형 */
+/*
+  크기:
+  - .btn.medium: height: 48px, border-radius: 12px
+  - .btn-sm: padding: 0 12px, width: auto, border-radius: 15px
+  - .btn-md: padding: 0 12px, width: auto, border-radius: 24px
+  - .btn-xs: padding: 0 12px, width: auto, border-radius: 13px
+  
+  스타일:
+  - .btn-primary: 배경 #ff5a00
+  - .btn-secondary: 배경 #f2f2f2, 텍스트 #151515
+  - .btn-outline: 투명 배경, 테두리만
+  - .btn-outline-bg: 배경 #f2f2f2
+  - .btn-tertiary: 배경 #fff, 테두리 #e5e5e8
+  - .btn-transparent: 완전 투명
+  
+  특수:
+  - .btn-back: 뒤로가기 버튼
+  - .btn-close: 닫기 버튼
+  - .btn-icon: 아이콘만 있는 버튼
+  - .btn-nobg: 배경 없는 버튼
+*/
+
+/* ==================== 폰트 패턴 ==================== */
+
+/* 기본 폰트 */
+/*
+  body {
+    font-family: "Pretendard", "Malgun Gothic", "Dotum", "Apple SD Gothic Neo", sans-serif !important;
+    font-size: 13px;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    color: #575757;
+  }
+*/
+
+/* 폰트 크기 */
+/*
+  - 기본: 13px (body)
+  - 작은 텍스트: 11px, 12px
+  - 중간: 14px, 15px, 16px
+  - 큰 텍스트: 18px, 20px, 24px
+  - 제목: 16px (h2), 18px (h3), 20px (h4)
+*/
+
+/* Letter Spacing */
+/*
+  - 기본: -0.02em
+  - 큰 텍스트: -0.03em
+  - 제목: -0.32px ~ -0.6px (px 단위도 사용)
+*/
+
+/* Font Weight */
+/*
+  - 400: Regular (기본)
+  - 500: Medium
+  - 700: Bold (제목, 강조)
+*/
+
+/* ==================== 색상 패턴 ==================== */
+
+/* 주요 색상 */
+/*
+  텍스트:
+  - #151515: 기본 다크 텍스트
+  - #575757: 보조 텍스트
+  - #454545: 중간 텍스트
+  - #888888: 연한 텍스트
+  - #6b7684: 설명 텍스트
+  - #4e5968: 라벨 텍스트
+  
+  배경:
+  - #fff: 기본 배경
+  - #f6f6f9: 연한 회색 배경
+  - #f2f2f2: 회색 배경
+  - #f9fafb: 매우 연한 회색
+  
+  강조:
+  - #e0ff63: 라임 그린 (버튼 텍스트)
+  - #ff5a00: 오렌지 (Primary)
+  - #3182f6: 파란색 (링크)
+  - #F04806: 빨간색 (에러, 취소)
+  
+  테두리:
+  - #151515: 다크 테두리
+  - #e5e5e8: 연한 테두리
+  - #d4d4d4: 중간 테두리
+*/
+
+/* ==================== 아이콘 패턴 ==================== */
+
+/* 아이콘 클래스 */
+/*
+  - .icon-back: 뒤로가기
+  - .icon-close: 닫기
+  - .icon-arrow-right: 오른쪽 화살표
+  - .icon-arrow-left: 왼쪽 화살표
+  - .icon-arrow-down: 아래 화살표
+  - .icon-check: 체크
+  - .icon-check-on: 체크 온
+  - .icon-info: 정보
+  - .icon-plus: 더하기
+  
+  사용법:
+  <i class="icon-back"></i>
+  <i class="icon-arrow-right"></i>
+*/
+
+/* ==================== Flexbox 패턴 ==================== */
+
+/* Flex 사용 규칙 */
+/*
+  - gap 속성 사용 금지 (flex 컨테이너에서)
+  - margin/padding으로 spacing 처리
+  - justify-content, align-items로 정렬
+  
+  예시:
+  .flex-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .flex-item {
+    margin-right: 16px;
+  }
+  
+  .flex-item:last-child {
+    margin-right: 0;
+  }
+*/
+
+/* ==================== 이미지 경로 패턴 ==================== */
+
+/* 이미지 경로 구조 */
+/*
+  - 공통 이미지: ../../images/common/
+  - 섹션별 이미지: ../../images/[섹션]/
+    예: ../../images/plcc/
+    예: ../../images/web/
+    예: ../../images/pay/
+  - SVG 아이콘: ../../images/common/*.svg
+  - Lottie: ../../images/lottie/
+*/
+
+/* ==================== 반응형 패턴 ==================== */
+
+/* 미디어 쿼리 */
+/*
+  - 모바일 우선 설계
+  - 최소 너비: 320px
+  - Container max-width: 700px
+  
+  예시:
+  @media (max-width: 375px) {
+    /* 모바일 스타일 */
+  }
+*/
+
+/* ==================== JavaScript 패턴 ==================== */
+
+/* 필수 스크립트 */
+/*
+  1. jQuery: ../../js/jquery.3.4.1.min.js
+  2. jQuery UI: ../../js/jquery-ui.js
+  3. Design Renewal: ../../js/design_renewal.js (defer)
+  
+  추가 라이브러리:
+  - Swiper: ../../js/swiper-bundle.min.js
+  - Lottie: ../../js/lottie.min.js
+  - Owl Carousel: ../../js/owl.carousel.min.js
+*/
+
+/* 이벤트 핸들러 클래스 */
+/*
+  - .js-change-btn: 변경 버튼 (모달 등)
+  - .js-modal-close: 모달 닫기
+  - .js-text-del: 텍스트 삭제
+  - .js-open-modal: 모달 열기
+*/
+
+/* ==================== 파일 구조 패턴 ==================== */
+
+/* 디렉토리 구조 */
+/*
+  html/
+    [섹션]/
+      [페이지].html
+  css/
+    common_renewal.css (공통)
+    [섹션]/
+      [페이지].css
+  images/
+    common/ (공통 이미지)
+    [섹션]/ (섹션별 이미지)
+  js/
+    [공통 스크립트]
+    [섹션]/ (섹션별 스크립트)
+*/
+
+/* ==================== Figma MCP 디자인 적용 규칙 ==================== */
+
+/* 상태바 영역 무시 */
+/*
+  Figma MCP로부터 디자인을 구현할 때:
+  1. iOS/Android 상태바(OS Status Bar) 영역은 완전히 제외
+  2. .os-status-bar, .status-bar-content 등 상태바 관련 HTML/CSS 구현 금지
+  3. 상태바는 실제 네이티브 앱 환경에서만 필요하며 웹에서는 불필요
+  4. Figma 디자인에 상태바가 포함되어 있어도 무시하고 #header부터 시작
+  
+  금지:
+  - <div class="os-status-bar">...</div>
+  - .os-status-bar { ... }
+  - .status-bar-content { ... }
+  - 시간, 배터리, 신호 아이콘 등 상태바 요소
+  
+  올바른 시작:
+  - <div id="wrap"> 바로 시작
+  - 또는 <div id="header">부터 시작
+*/
+
+/* Figma 디자인 적용 시 체크리스트 */
+/*
+  1. 상태바 제거 확인
+  2. #header 구조 확인 (프로젝트 패턴 준수)
+  3. .container 래퍼 사용 확인
+  4. 이미지 경로를 로컬 경로로 변경
+  5. gap 속성 사용하지 않았는지 확인
+  6. BEM 네이밍 패턴 준수 확인
+  7. 이미지 alt 속성 필수 (의미있는 설명 제공)
+  8. #content padding-top 확인 (헤더가 fixed인 경우 56px 필요)
+  9. Hero section 등 전체 너비 섹션은 container 밖에 배치 가능
+*/
+
+/* ==================== 주의사항 ==================== */
+
+/* 금지 사항 */
+/*
+  1. gap 속성 사용 금지 (flex 컨테이너에서)
+  2. 인라인 스타일 지양 (필요시 data 속성 사용)
+  3. !important 남용 금지
+  4. 상대 경로 대신 ../../ 패턴 사용
+  5. 섹션별 CSS 파일 분리 유지
+  6. 상태바(OS Status Bar) 구현 금지 (Figma MCP 디자인 적용 시)
+  7. 빈 alt 속성 사용 금지 (alt=""는 장식용 이미지에만 허용)
+*/
+
+/* 권장 사항 */
+/*
+  1. 항상 .container 래퍼 사용 (단, Hero section 등 전체 너비 섹션은 예외)
+  2. Header 구조 일관성 유지
+  3. BEM 스타일 네이밍 준수
+  4. 주석 스타일 일관성 유지
+  5. 공통 클래스 우선 사용 (.btn, .section 등)
+  6. 페이지별 wrap 클래스 추가
+  7. 모든 이미지에 의미있는 alt 속성 제공
+  8. 반응형 디자인 시 모바일 우선 설계
+  9. 고정 헤더 사용 시 #content에 padding-top: 56px 적용
+  10. .bottom-area 사용 시 반드시 #content에 padding-bottom: 96px !important 적용 필수
+*/

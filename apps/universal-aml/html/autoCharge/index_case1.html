@@ -1,0 +1,1983 @@
+<!--
+  케이스 1: 자동충전 OFF 상태
+  - 자동충전 사용: OFF
+  - 계좌 섹션: 숨김
+  - 두 번째 섹션 (결제 시 부족 금액 충전하기, 기준충전 설정): 숨김
+  - 유의사항 아코디언만 표시
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <title>헥토파이낸셜 - 케이스1 (자동충전 OFF)</title>
+    <link rel="stylesheet" href="../../css/reset.css" />
+    <link rel="stylesheet" href="../../css/common.css" />
+    <link rel="stylesheet" href="../../css/card.css" />
+    <link rel="stylesheet" href="../../css/autoCharge.css" />
+    <link rel="stylesheet" href="../../css/swiper-bundle.min.css" />
+    <script src="../../js/jquery-1.8.3.min.js"></script>
+    <script src="../../js/common.js" defer></script>
+    <script src="../../js/aml.js" defer></script>
+    <script src="../../js/design_renewal.js" defer></script>
+    <script src="../../js/postcode.v2.js"></script>
+    <script src="../../js/swiper.js"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap" class="">
+      <!-- header -->
+      <header class="header">
+        <div class="container">
+          <button type="button" class="btn-back btn"></button>
+          <h1 class="brand-name">자동충전 설정</h1>
+          <button type="button" class="btn-close btn"></button>
+        </div>
+      </header>
+      <!-- //header -->
+
+      <!-- section -->
+      <section>
+        <!-- container -->
+        <div id="content" class="">
+          <!-- 첫 번째 섹션: 자동충전 사용 -->
+          <div class="auto-charge-section">
+            <div class="auto-charge-item">
+              <div class="label-with-tooltip">
+                <span class="label-text">자동충전 사용</span>
+                <div class="toggle-box" data-toggle-type="auto-charge">
+                  <label class="switch">
+                    <span class="toggle-label">OFF</span>
+                    <input type="checkbox" />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- 주계좌/보조 계좌 섹션 (자동충전 사용 ON일 때만 표시) -->
+            <div class="account-section-wrap" id="accountSection" style="display: none;">
+              <div class="account-section-header">
+                <span class="label-text">자동 충전 계좌</span>
+                <button
+                  type="button"
+                  class="btn-account-manage"
+                  id="btnAccountManage"
+                >
+                  계좌 관리
+                </button>
+              </div>
+              <div class="account-box">
+                <!-- 주계좌 -->
+                <div class="account-item-box">
+                  <div class="account-label">
+                    <span class="label-text">주계좌</span>
+                  </div>
+                  <div class="account-content-row" id="primaryAccount">
+                    <!-- 케이스 1: 등록된 계좌가 없을 경우 (디폴트) -->
+                    <div class="account-empty">
+                      <p class="empty-text">등록된 계좌가 없습니다.</p>
+                      <button
+                        type="button"
+                        class="btn-account-register js-modal-slide"
+                        data-target="modalAccountSelect"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="9"
+                          height="9"
+                          viewBox="0 0 9 9"
+                          fill="none"
+                        >
+                          <path
+                            d="M3.84995 0H5.14995V9H3.84995V0Z"
+                            fill="#5C5C5C"
+                          />
+                          <path
+                            d="M9 3.85V5.15L0 5.15L5.68252e-08 3.85L9 3.85Z"
+                            fill="#5C5C5C"
+                          />
+                        </svg>
+                        계좌 등록
+                      </button>
+                    </div>
+
+                    <!-- 케이스 2: 주계좌만 등록된 경우 -->
+                    <!-- <div class="account-registered">
+                      <div class="account-info">
+                        <img
+                          src="../../images/logo/bank/logo_004.png"
+                          alt="국민은행"
+                          class="bank-logo"
+                        />
+                        <span class="account-text">국민은행 587</span>
+                      </div>
+                      <span class="arrow-icon"></span>
+                    </div> -->
+
+                    <!-- 케이스 3: 주계좌와 보조계좌 모두 등록된 경우 (주계좌) -->
+                    <!-- <div class="account-registered">
+                      <div class="account-info">
+                        <img
+                          src="../../images/logo/bank/logo_004.png"
+                          alt="국민은행"
+                          class="bank-logo"
+                        />
+                        <span class="account-text">국민은행 587</span>
+                      </div>
+                      <span class="arrow-icon"></span>
+                    </div> -->
+                  </div>
+                </div>
+
+                <!-- 보조 계좌 -->
+                <div class="account-item-box">
+                  <div class="account-label">
+                    <span class="label-text">보조 계좌</span>
+                  </div>
+                  <div class="account-content-row" id="secondaryAccount">
+                    <!-- 케이스 1: 주계좌가 등록되지 않은 경우 (디폴트) -->
+                    <div class="account-empty">
+                      <p class="empty-text">주 계좌를 먼저 등록하세요.</p>
+                    </div>
+
+                    <!-- 케이스 2: 주계좌가 등록되고 보조계좌가 없는 경우 -->
+                    <!-- <div class="account-empty">
+                      <p class="empty-text">등록된 계좌가 없습니다.</p>
+                      <button
+                        type="button"
+                        class="btn-account-register js-modal-slide"
+                        data-target="modalAccountSelect"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="9"
+                          height="9"
+                          viewBox="0 0 9 9"
+                          fill="none"
+                        >
+                          <path
+                            d="M3.84995 0H5.14995V9H3.84995V0Z"
+                            fill="#5C5C5C"
+                          />
+                          <path
+                            d="M9 3.85V5.15L0 5.15L5.68252e-08 3.85L9 3.85Z"
+                            fill="#5C5C5C"
+                          />
+                        </svg>
+                        계좌 등록
+                      </button>
+                    </div> -->
+
+                    <!-- 케이스 3: 주계좌와 보조계좌 모두 등록된 경우 (보조계좌) -->
+                    <!-- <div class="account-registered">
+                      <div class="account-info">
+                        <img
+                          src="../../images/logo/bank/logo_011.png"
+                          alt="신한은행"
+                          class="bank-logo"
+                        />
+                        <span class="account-text">신한은행 656</span>
+                      </div>
+                      <span class="arrow-icon"></span>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- 안내 박스 -->
+              <div class="account-notice-box">
+                <ul class="account-notice-list">
+                  <li>
+                    주 계좌로 충전이 실패할 경우를 대비해 보조계좌를 추가로 등록 할 수 있습니다. 
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- 구분선 (항상 표시) -->
+          <div class="section-divider" id="sectionDivider"></div>
+
+          <!-- 두 번째 섹션: 결제 시 부족 금액 충전하기 + 예약충전 설정 (자동충전 사용 ON일 때만 표시) -->
+          <div class="auto-charge-section" id="secondSection" style="display: none;">
+            <div class="auto-charge-item">
+              <div class="label-with-tooltip">
+                <span class="label-text">결제 시 부족 금액 충전하기</span>
+                <div
+                  class="toggle-box active"
+                  data-toggle-type="insufficient-charge"
+                >
+                  <label class="switch">
+                    <span class="toggle-label">ON</span>
+                    <input type="checkbox" checked />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="auto-charge-item">
+              <a
+                href="#"
+                class="reservation-link js-modal-slide"
+                data-target="modalReservationEdit"
+                id="reservationLink"
+              >
+                <span class="label-text">기준충전 설정</span>
+                <span class="arrow-icon"></span>
+              </a>
+            </div>
+          </div>
+
+          <!-- guide-wrap -->
+          <div class="guide-wrap-wrap">
+            <div class="guide-wrap">
+              <div>
+                <ul class="accordion-list type2">
+                  <li>
+                    <div class="list-header accordion-title">
+                      <h3 class="subject">자동 충전 시 유의사항</h3>
+                      <span class="accordion-arrow"></span>
+                    </div>
+                    <div class="list-body accordion-item">
+                      <ul class="guide-wrap-list">
+                        <li>
+                          자동 충전은 결제 시 부족 금액이 자동 충전되는
+                          결제부족금액 자동충전과 선불 잔액을 기준으로 충전하는
+                          기준금액 방식, 지정일을 기준으로 충전하는 기준일자
+                          방식의 3가지를 제공합니다.
+                        </li>
+                        <li>
+                          자동충전 사유가 발생하면 등록 계좌에서 자동 충전이
+                          이루어집니다.
+                        </li>
+                        <li>
+                          결제부족금액 자동충전은 이용자가 결제할 때, 충전된
+                          잔액이 결제대상 금액보다 부족하면 자동충전 사유가
+                          발생합니다.
+                        </li>
+                        <li>
+                          자동충전 사용 on/Off 기능을 통해 등록된 자동 충전을
+                          삭제하지 않고도 일시정지가 가능합니다.
+                        </li>
+                        <li>
+                          선택한 충전 계좌를 통해 자동충전이 발생하므로 설정
+                          항목 중 결제 수단 변경을 원하시면 다른 충전 계좌를
+                          선택해주시기 바랍니다.
+                        </li>
+                        <li>
+                          등록된 충전 계좌 상태(해지, 정지, 분실 신고, 잔액 부족
+                          등)에 따라 자동충전이 실행되지 않을 수 있습니다.
+                        </li>
+                        <li>
+                          다음의 경우 자동 충전 설정은 자동으로 해지됩니다.<br />-
+                          자동 충전에 의해 결제 시도 시, 연속으로 2회 결제
+                          실패하는 경우<br />- 안심선불서비스를 탈퇴하는 경우
+                        </li>
+                        <li>
+                          위에서 별도 언급되지 않은 사항은 일반 충전 규정과
+                          동일하게 적용됩니다.
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- //guide-wrap -->
+        </div>
+        <!-- //container -->
+      </section>
+      <!-- //section -->
+    </div>
+    <!-- //wrap -->
+
+    <!-- 계좌 선택 모달 -->
+    <div id="modalAccountSelect" class="modal modal-slide modal-account-select">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head account-select-modal-head">
+            <h2 class="modal-title">자동충전 계좌를 선택해주세요.</h2>
+          </div>
+          <div class="modal-body account-select-modal-body">
+            <div class="account-select-content">
+              <div class="account-select-list-wrapper">
+              <ul class="account-select-list">
+                <li class="account-item-select">
+                  <div class="account-select-info">
+                    <div class="account-select-left">
+                        <div class="bank-logo-wrapper">
+                      <img
+                        src="../../images/logo/bank/logo_004.png"
+                        alt="국민은행"
+                        class="bank-logo-select"
+                      />
+                        </div>
+                      <span class="account-text-select">국민은행 587</span>
+                    </div>
+                    <span class="account-type-select">주계좌</span>
+                  </div>
+                </li>
+                <li class="account-item-select">
+                  <div class="account-select-info">
+                    <div class="account-select-left">
+                        <div class="bank-logo-wrapper">
+                      <img
+                        src="../../images/logo/bank/logo_011.png"
+                        alt="신한은행"
+                        class="bank-logo-select"
+                      />
+                    </div>
+                        <span class="account-text-select">신한은행 656</span>
+                      </div>
+                      <button type="button" class="btn-deregister-select">등록해제</button>
+                    </div>
+                  </li>
+                  <li class="account-item-select">
+                    <div class="account-select-info">
+                      <div class="account-select-left">
+                        <div class="bank-logo-wrapper">
+                          <img
+                            src="../../images/logo/bank/logo_011.png"
+                            alt="신한은행"
+                            class="bank-logo-select"
+                          />
+                        </div>
+                        <span class="account-text-select">신한은행 656</span>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="account-item-select">
+                    <div class="account-select-info">
+                      <div class="account-select-left">
+                        <div class="bank-logo-wrapper">
+                          <img
+                            src="../../images/logo/bank/logo_011.png"
+                            alt="신한은행"
+                            class="bank-logo-select"
+                          />
+                        </div>
+                        <span class="account-text-select">신한은행 656</span>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="account-item-select">
+                    <div class="account-select-info">
+                      <div class="account-select-left">
+                        <div class="bank-logo-wrapper">
+                          <img
+                            src="../../images/logo/bank/logo_020.png"
+                            alt="우리은행"
+                            class="bank-logo-select"
+                          />
+                        </div>
+                        <span class="account-text-select">우리은행 123</span>
+                      </div>
+                  </div>
+                </li>
+              </ul>
+              </div>
+            </div>
+            <div class="account-select-buttons-wrapper">
+              <div class="account-select-buttons">
+                <button type="button" class="btn-register-modal">등록</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //계좌 선택 모달 -->
+
+    <!-- 계좌 등록 모달 -->
+    <div
+      id="modalAccountRegister"
+      class="modal modal-full"
+      tabindex="-1"
+      role="dialog"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <div class="container">
+              <button type="button" class="btn-back btn"></button>
+              <h1 class="brand-name text">계좌 등록</h1>
+              <button
+                type="button"
+                class="btn btn-close"
+                data-dismiss="modal"
+                aria-label="모달 닫기"
+              ></button>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="tit-wrap">
+                <h2 class="tit">계좌 등록을 위해 은행을 선택해 주세요.</h2>
+              </div>
+
+              <div class="bank-select-grid">
+                <div class="bank-item" data-bank="nh">
+                  <div class="bank-icon">
+                    <img
+                      src="../../images/logo/bank/logo_001.png"
+                      alt="NH농협"
+                    />
+                  </div>
+                  <span class="bank-name">NH농협</span>
+                </div>
+                <div class="bank-item" data-bank="kakao">
+                  <div class="bank-icon">
+                    <img
+                      src="../../images/logo/bank/logo_kakao.png"
+                      alt="카카오뱅크"
+                    />
+                  </div>
+                  <span class="bank-name">카카오뱅크</span>
+                </div>
+                <div class="bank-item" data-bank="kb">
+                  <div class="bank-icon">
+                    <img src="../../images/logo/bank/logo_004.png" alt="국민" />
+                  </div>
+                  <span class="bank-name">국민</span>
+                </div>
+                <div class="bank-item" data-bank="sh">
+                  <div class="bank-icon">
+                    <img src="../../images/logo/bank/logo_011.png" alt="신한" />
+                  </div>
+                  <span class="bank-name">신한</span>
+                </div>
+                <div class="bank-item" data-bank="woori">
+                  <div class="bank-icon">
+                    <img src="../../images/logo/bank/logo_020.png" alt="우리" />
+                  </div>
+                  <span class="bank-name">우리</span>
+                </div>
+                <div class="bank-item" data-bank="hana">
+                  <div class="bank-icon">
+                    <img src="../../images/logo/bank/logo_081.png" alt="하나" />
+                  </div>
+                  <span class="bank-name">하나</span>
+                </div>
+                <div class="bank-item" data-bank="ibk">
+                  <div class="bank-icon">
+                    <img
+                      src="../../images/logo/bank/logo_027.png"
+                      alt="IBK기업"
+                    />
+                  </div>
+                  <span class="bank-name">IBK기업</span>
+                </div>
+                <div class="bank-item" data-bank="sc">
+                  <div class="bank-icon">
+                    <img
+                      src="../../images/logo/bank/logo_023.png"
+                      alt="SC제일"
+                    />
+                  </div>
+                  <span class="bank-name">SC제일</span>
+                </div>
+                <div class="bank-item" data-bank="citi">
+                  <div class="bank-icon">
+                    <img
+                      src="../../images/logo/bank/logo_003.png"
+                      alt="한국씨티"
+                    />
+                  </div>
+                  <span class="bank-name">한국씨티</span>
+                </div>
+                <div class="bank-item" data-bank="kdb">
+                  <div class="bank-icon">
+                    <img
+                      src="../../images/logo/bank/logo_002.png"
+                      alt="KDB산업"
+                    />
+                  </div>
+                  <span class="bank-name">KDB산업</span>
+                </div>
+                <div class="bank-item" data-bank="suhyup">
+                  <div class="bank-icon">
+                    <img src="../../images/logo/bank/logo_007.png" alt="수협" />
+                  </div>
+                  <span class="bank-name">수협</span>
+                </div>
+                <div class="bank-item" data-bank="kbank">
+                  <div class="bank-icon">
+                    <img
+                      src="../../images/logo/bank/logo_kbank.png"
+                      alt="케이뱅크"
+                    />
+                  </div>
+                  <span class="bank-name">케이뱅크</span>
+                </div>
+                <div class="bank-item" data-bank="toss">
+                  <div class="bank-icon">
+                    <img
+                      src="../../images/logo/bank/logo_toss.png"
+                      alt="토스뱅크"
+                    />
+                  </div>
+                  <span class="bank-name">토스뱅크</span>
+                </div>
+                <div class="bank-item" data-bank="post">
+                  <div class="bank-icon">
+                    <img
+                      src="../../images/logo/bank/logo_071.png"
+                      alt="우체국"
+                    />
+                  </div>
+                  <span class="bank-name">우체국</span>
+                </div>
+                <div class="bank-item" data-bank="mg">
+                  <div class="bank-icon">
+                    <img
+                      src="../../images/logo/bank/logo_045.png"
+                      alt="새마을금고"
+                    />
+                  </div>
+                  <span class="bank-name">새마을금고</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //계좌 등록 모달 -->
+
+    <!-- 계좌 관리 모달 -->
+    <div
+      id="modalAccountManage"
+      class="modal modal-full"
+      tabindex="-1"
+      role="dialog"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <div class="container">
+              <button type="button" class="btn-back btn"></button>
+              <h1 class="brand-name text">자동충전 계좌 관리</h1>
+              <button
+                type="button"
+                class="btn btn-close"
+                data-dismiss="modal"
+                aria-label="모달 닫기"
+              ></button>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <ul class="account-manage-list">
+                <!-- 주계좌 (삭제 불가) -->
+                <li class="account-manage-item">
+                  <div class="account-manage-info">
+                    <div class="bank-logo-wrapper">
+                      <img
+                        src="../../images/logo/bank/logo_004.png"
+                        alt="국민은행"
+                        class="bank-logo-manage"
+                      />
+                    </div>
+                    <span class="account-text-manage">국민은행 587</span>
+                  </div>
+                  <span class="account-type-manage primary">주계좌</span>
+                </li>
+                <!-- 보조계좌 (삭제 가능) -->
+                <li class="account-manage-item">
+                  <div class="account-manage-info">
+                    <div class="bank-logo-wrapper">
+                      <img
+                        src="../../images/logo/bank/logo_011.png"
+                        alt="신한은행"
+                        class="bank-logo-manage"
+                      />
+                    </div>
+                    <span class="account-text-manage">신한은행 343</span>
+                  </div>
+                  <button type="button" class="btn-account-delete">삭제</button>
+                </li>
+                <li class="account-manage-item">
+                  <div class="account-manage-info">
+                    <div class="bank-logo-wrapper">
+                      <img
+                        src="../../images/logo/bank/logo_020.png"
+                        alt="우리은행"
+                        class="bank-logo-manage"
+                      />
+                    </div>
+                    <span class="account-text-manage">우리은행 123</span>
+                  </div>
+                  <button type="button" class="btn-account-delete">삭제</button>
+                </li>
+                <li class="account-manage-item">
+                  <div class="account-manage-info">
+                    <div class="bank-logo-wrapper">
+                      <img
+                        src="../../images/logo/bank/logo_081.png"
+                        alt="하나은행"
+                        class="bank-logo-manage"
+                      />
+                    </div>
+                    <span class="account-text-manage">하나은행 133</span>
+                  </div>
+                  <button type="button" class="btn-account-delete">삭제</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="btn-wrap">
+              <button
+                type="button"
+                class="btn btn-xl btn-secondary btn-add-account"
+              >
+                <span class="btn-add-icon">+</span>
+                계좌 추가
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //계좌 관리 모달 -->
+
+    <!-- 예약충전 설정 모달 (등록용) -->
+    <div
+      id="modalReservationAmount"
+      class="modal modal-slide modal-reservation-amount"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head reservation-modal-head">
+            <h2 class="modal-title">기준 금액 예약</h2>
+          </div>
+          <div class="modal-body reservation-modal-body">
+            <div class="reservation-info-text">
+              <p>
+                잔액이 <span class="highlight-amount">10만원</span> 이하인 경우
+                <br />
+                <span class="highlight-amount">3만원</span>이 자동 충전 됩니다.
+              </p>
+            </div>
+
+            <div class="reservation-amount-groups">
+              <div class="reservation-amount-group">
+                <p class="reservation-amount-label">기준금액</p>
+                <div class="reservation-amount-buttons">
+                  <button
+                    type="button"
+                    class="reservation-amount-btn"
+                    data-amount="10000"
+                  >
+                    1만원
+                  </button>
+                  <button
+                    type="button"
+                    class="reservation-amount-btn"
+                    data-amount="50000"
+                  >
+                    5만원
+                  </button>
+                  <button
+                    type="button"
+                    class="reservation-amount-btn active"
+                    data-amount="100000"
+                  >
+                    10만원
+                  </button>
+                </div>
+              </div>
+
+              <div class="reservation-amount-group">
+                <p class="reservation-amount-label">충전금액</p>
+                <div class="reservation-amount-buttons">
+                  <button
+                    type="button"
+                    class="reservation-amount-btn"
+                    data-amount="10000"
+                  >
+                    1만원
+                  </button>
+                  <button
+                    type="button"
+                    class="reservation-amount-btn active"
+                    data-amount="30000"
+                  >
+                    3만원
+                  </button>
+                  <button
+                    type="button"
+                    class="reservation-amount-btn"
+                    data-amount="50000"
+                  >
+                    5만원
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-register-reservation">
+              등록
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //예약충전 설정 모달 (등록용) -->
+
+    <!-- 기준충전 설정 모달 -->
+    <div
+      id="modalReservationEdit"
+      class="modal modal-full modal-standard-charge"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <div class="container">
+              <button type="button" class="btn-back btn"></button>
+              <h1 class="brand-name text">기준충전 설정</h1>
+                    <button
+                      type="button"
+                class="btn btn-close"
+                data-dismiss="modal"
+                aria-label="모달 닫기"
+              ></button>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <ul class="charge-method-list">
+                <li
+                  class="charge-method-item active"
+                  data-method="balance-maintain"
+                >
+                  <div class="charge-method-label">충전방식</div>
+                  <div class="charge-method-value selected">
+                    원하는 잔액 유지하기
+                  </div>
+                  <span class="arrow-icon"></span>
+                </li>
+                <li class="charge-method-item" data-method="balance-standard">
+                  <div class="charge-method-label">충전방식</div>
+                  <div class="charge-method-value">
+                    잔액 기준을 선택해주세요.
+                  </div>
+                  <span class="arrow-icon"></span>
+                </li>
+                <li class="charge-method-item" data-method="charge-standard">
+                  <div class="charge-method-label">충전방식</div>
+                  <div class="charge-method-value">
+                    충전 기준을 선택해주세요.
+                  </div>
+                  <span class="arrow-icon"></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="btn-wrap">
+              <button type="button" class="btn btn-default btn-register-charge">
+                등록
+                    </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //기준충전 설정 모달 -->
+
+    <!-- 잔액 기준 바텀시트 모달 -->
+    <div
+      id="modalBalanceStandard"
+      class="modal modal-slide modal-balance-standard"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <div class="container">
+              <h2 class="modal-title">머니 잔액 기준을 선택해주세요.</h2>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <ul class="select-list balance-standard-list">
+                <li class="balance-option" data-value="1000000">
+                  100만원 이하
+                </li>
+                <li class="balance-option" data-value="500000">50만원 이하</li>
+                <li class="balance-option" data-value="400000">40만원 이하</li>
+                <li class="balance-option bold" data-value="300000">
+                  30만원 이하
+                </li>
+                <li class="balance-option" data-value="200000">20만원 이하</li>
+                <li class="balance-option" data-value="100000">10만원 이하</li>
+                <li class="balance-option" data-value="50000">5만원 이하</li>
+                <li class="balance-option" data-value="10000">1만원 이하</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //잔액 기준 바텀시트 모달 -->
+
+    <!-- 충전 금액 입력 모달 -->
+    <div id="modalChargeAmount" class="modal modal-full modal-charge-amount">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <div class="container">
+                    <button
+                      type="button"
+                class="btn-back btn"
+                data-dismiss="modal"
+              ></button>
+              <h1 class="brand-name text">기준충전 설정</h1>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="charge-amount-form">
+                <div class="charge-amount-label">충전 금액</div>
+                <div class="charge-amount-input-wrap">
+                  <div class="charge-amount-display">
+                    <input
+                      type="text"
+                      id="chargeAmountInput"
+                      class="charge-amount-input"
+                      numberOnlyMinComma="true"
+                      koreanCurrency="true"
+                      placeholder="충전 금액을 입력해주세요."
+                      inputmode="numeric"
+                    />
+                    <span class="charge-amount-unit" style="display: none"
+                      >원</span
+                    >
+                  </div>
+                    <button
+                      type="button"
+                    class="btn-amount-delete"
+                    id="btnAmountDelete"
+                    >
+                    <span class="sr-only">삭제</span>
+                    </button>
+                </div>
+                <div class="charge-amount-error" id="chargeAmountError" style="display: none;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="btn-wrap">
+                    <button
+                      type="button"
+                class="btn btn-default btn-amount-confirm"
+                id="btnAmountConfirm"
+              >
+                확인
+                    </button>
+                  </div>
+                </div>
+              </div>
+      </div>
+    </div>
+    <!-- //충전 금액 입력 모달 -->
+
+    <!-- 약관동의 바텀시트 모달 -->
+    <div id="modalTermsAgreement" class="modal modal-slide">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="container">
+              <ul class="accordion-list">
+                <li>
+                  <div class="list-header accordion-title">
+                    <h3 class="subject">
+                      자동충전 기능을 사용하시려면 <br />
+                      최초 1회 이용 동의가 필요합니다.
+                    </h3>
+                  </div>
+                  <div class="list-body accordion-item">
+                    <div class="content">
+                      <ul class="list-sub">
+                        <li class="list-item">
+                          <div class="check-box child">
+                            <input
+                              type="checkbox"
+                              id="chk1"
+                              class="checkSelect"
+                              name="chk1"
+                              value="Y"
+                            />
+                            <label for="chk1"
+                              >(필수) 자동충전 서비스 이용 동의</label
+                            >
+                          </div>
+                          <span class="btn-right" id=""
+                            ><a
+                              href="javascript:;"
+                              data-toggle="modal"
+                              data-target="#noticeDetail01"
+                              ><span class="btn_view">보기</span></a
+                            ></span
+                          >
+                        </li>
+                      </ul>
+                  </div>
+                  </div>
+                </li>
+              </ul>
+              <div class="btn-wrap">
+                    <button
+                      type="button"
+                  id="nextStep"
+                  class="btn btn-default"
+                  data-action="checkAll"
+                  disabled
+                >
+                  이용약관 전체 동의
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+    <!-- //약관동의 바텀시트 모달 -->
+
+    <!-- common prompt -->
+    <div id="commonPrompt" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 class="prompt-title"></h3>
+            <p class="prompt-contents"></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalClose();"
+              class="btn btn-cancel"
+            >
+              취소
+            </button>
+            <button
+              type="button"
+              onclick="modalClose();"
+              id="promptOk"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //common prompt -->
+
+    <!-- common alert -->
+    <div id="commonAlert" class="modal modal-new" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="alertTitle"></h3>
+            <div class="prompt-contents"></div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="confirmOk"
+              class="btn"
+              data-dismiss="modal"
+              onclick="modalClose();"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //modal - common alert -->
+
+    <!-- 자동충전 계좌 중복 선택 알럿 -->
+    <div
+      id="modalAccountDuplicateAlert"
+      class="modal modal-new"
+      tabindex="-1"
+      role="dialog"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <button
+              type="button"
+              class="btn btn-close"
+              data-dismiss="modal"
+              onclick="modalClose();"
+              aria-label="모달 닫기"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <h3>Alert</h3>
+            <div class="prompt-contents">
+              충전 주계좌로 등록된 계좌입니다. 보조 충전계좌로는 다른 계좌로
+              선택해 주세요.
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn"
+              data-dismiss="modal"
+              onclick="modalClose();"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //자동충전 계좌 중복 선택 알럿 -->
+
+    <!-- modal - 약관 상세 -->
+    <div
+      id="noticeDetail01"
+      class="modal modal-full"
+      tabindex="-1"
+      role="dialog"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <div class="container">
+              <button type="button" class="btn-back btn"></button>
+              <h1 class="brand-name text">약관 상세보기</h1>
+              <button
+                type="button"
+                class="btn btn-close"
+                data-dismiss="modal"
+                aria-label="모달 닫기"
+              ></button>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <!-- 게시판 상세 -->
+              <div class="terms scroll">
+                <p class="terms-title">(필수) 개인정보 수집 및 이용 동의</p>
+                <p class="terms-title-sub">제 1조 (목적)</p>
+                <p>
+                  본 약관은 통신과금 서비스를 제공하는 주식회사
+                  헥토파이낸셜(이하 '회사'라고 합니다)과 통신과금서비스 이용자
+                  (이하 '이용자'라고 합니다) 간에 통신과금서비스에 관한 회사와
+                  이용자의 권리의무, 기타 제반 사항을 정함을 목적으로 합니다.
+                </p>
+                <p class="terms-title-sub">제 2조 (용어의 정의)</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>
+                  1. '통신과금서비스'라 함은 타인을 위하여 전자적 지급수단을
+                  이용하여 자금을 지급하거나 수취하는 서비스 또는 그 대가의
+                  정산을 대행하거나 매개하는 서비스를 말합니다.
+                </p>
+                <p>
+                  2. '결제대행업체'라 함은 전자적 지급수단을 이용한 거래에 있어
+                  지급의뢰인과 지급수단 발행기관 간에 자금의 이동이 원활하게
+                  이루어질 수 있도록 결제정보를 전송하거나 중계하는 업체를
+                  말합니다.
+                </p>
+                <p>
+                  3. '이용자'라 함은 회사가 제공하는 서비스를 이용하는 자를
+                  말합니다.
+                </p>
+                <p>
+                  4. '거래지시'라 함은 이용자가 결제대행업체 또는 회사에 대하여
+                  통신과금서비스의 이용을 지시하는 것을 말합니다.
+                </p>
+                <p>
+                  5. '접근매체'라 함은 통신과금거래에 있어서 거래지시를 위하여
+                  이용자가 사용하는 수단 또는 정보로서 전화번호, 결제비밀번호 등
+                  회사에 등록된 이용자 번호와 그에 수반되는 정보 등을 말합니다.
+                </p>
+                <p class="terms-title-sub">제 3조 (용어의 정의)</p>
+                <p>본 약관에서 사용되는 용어의 정의는 다음 각 호와 같습니다.</p>
+                <p>
+                  1. '통신과금서비스'라 함은 타인을 위하여 전자적 지급수단을
+                  이용하여 자금을 지급하거나 수취하는 서비스 또는 그 대가의
+                  정산을 대행하거나 매개하는 서비스를 말합니다.
+                </p>
+                <p>
+                  2. '결제대행업체'라 함은 전자적 지급수단을 이용한 거래에 있어
+                  지급의뢰인과 지급수단 발행기관 간에 자금의 이동이 원활하게
+                  이루어질 수 있도록 결제정보를 전송하거나 중계하는 업체를
+                  말합니다.
+                </p>
+                <p>
+                  3. '이용자'라 함은 회사가 제공하는 서비스를 이용하는 자를
+                  말합니다.
+                </p>
+                <p>
+                  4. '거래지시'라 함은 이용자가 결제대행업체 또는 회사에 대하여
+                  통신과금서비스의 이용을 지시하는 것을 말합니다.
+                </p>
+                <p>
+                  5. '접근매체'라 함은 통신과금거래에 있어서 거래지시를 위하여
+                  이용자가 사용하는 수단 또는 정보로서 전화번호, 결제비밀번호 등
+                  회사에 등록된 이용자 번호와 그에 수반되는 정보 등을 말합니다.
+                </p>
+                <p class="terms-title-sub">제 1조 (목적)</p>
+                <p>
+                  본 약관은 통신과금 서비스를 제공하는 주식회사
+                  헥토파이낸셜(이하 '회사'라고 합니다)과 통신과금서비스 이용자
+                  (이하 '이용자'라고 합니다) 간에 통신과금서비스에 관한 회사와
+                  이용자의 권리의무, 기타 제반 사항을 정함을 목적으로 합니다.
+                </p>
+              </div>
+              <!-- //게시판 상세 -->
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="btn-wrap">
+              <button
+                type="button"
+                class="btn btn-xl btn-secondary"
+                data-dismiss="modal"
+              >
+                동의 후 닫기
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //modal - 약관 상세 -->
+
+    <script>
+      $(window).on("load", function () {
+        formatPhoneNumber();
+      });
+
+      // 아코디언 토글
+      document.querySelectorAll(".accordion-title").forEach((title) => {
+        const parent = title.closest("li");
+          const item = parent.querySelector(".accordion-item");
+        const arrow = title.querySelector(".accordion-arrow");
+
+        // 약관동의 모달의 아코디언은 기본적으로 열림
+        const isTermsModal = title.closest("#modalTermsAgreement") !== null;
+
+        if (isTermsModal) {
+          // 약관동의 모달: 기본적으로 열림
+          if (item) {
+            item.style.display = "block";
+          }
+          if (arrow) {
+            arrow.style.transform = "rotate(180deg)";
+          }
+          parent.classList.add("active");
+        } else {
+          // 일반 아코디언: 기본적으로 닫힘
+          if (item) {
+            item.style.display = "none";
+          }
+          if (arrow) {
+            arrow.style.transform = "rotate(0deg)";
+          }
+        }
+
+        title.addEventListener("click", function (e) {
+          // 약관동의 모달의 아코디언은 클릭해도 토글되지 않음
+          if (isTermsModal) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+          }
+
+          parent.classList.toggle("active");
+          if (parent.classList.contains("active")) {
+            item.style.display = "block";
+            arrow.style.transform = "rotate(180deg)";
+          } else {
+            item.style.display = "none";
+            arrow.style.transform = "rotate(0deg)";
+          }
+        });
+      });
+
+      // 계좌 선택 모달 - 계좌 항목 클릭
+      document.querySelectorAll(".account-item-select").forEach((item) => {
+        item.addEventListener("click", function () {
+          // 선택된 계좌 표시 (체크 표시 등 추가 가능)
+          document.querySelectorAll(".account-item-select").forEach((i) => {
+            i.classList.remove("selected");
+          });
+          this.classList.add("selected");
+        });
+      });
+
+      // 모달 닫기
+      $(".modal").on("click", function (e) {
+        if ($(e.target).hasClass("modal")) {
+          $(this).fadeOut();
+        }
+      });
+
+      // 예약충전 모달 - 금액 버튼 선택
+      document.querySelectorAll(".reservation-amount-btn").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const group = this.closest(".reservation-amount-group");
+          const buttons = group.querySelectorAll(".reservation-amount-btn");
+          buttons.forEach((b) => b.classList.remove("active"));
+          this.classList.add("active");
+
+          // 설명 텍스트 업데이트
+          updateReservationInfo();
+        });
+      });
+
+      // 예약충전 설명 텍스트 업데이트
+      function updateReservationInfo() {
+        const thresholdGroup = document.querySelector(
+          ".reservation-amount-group:first-of-type",
+        );
+        const chargeGroup = document.querySelector(
+          ".reservation-amount-group:last-of-type",
+        );
+        const thresholdBtn = thresholdGroup.querySelector(
+          ".reservation-amount-btn.active",
+        );
+        const chargeBtn = chargeGroup.querySelector(
+          ".reservation-amount-btn.active",
+        );
+
+        if (thresholdBtn && chargeBtn) {
+          const threshold = thresholdBtn.textContent;
+          const charge = chargeBtn.textContent;
+          const infoText = document.querySelector(".reservation-info-text p");
+          infoText.innerHTML = `잔액이 <span class="highlight-amount">${threshold}</span> 이하인 경우<br><span class="highlight-amount">${charge}</span>이 자동 충전 됩니다.`;
+        }
+      }
+
+      // 예약충전 등록 버튼 - 외부 클릭과 동일하게 modalCloseSlide() 호출
+      $(document).on(
+        "click",
+        "#modalReservationAmount .btn-register-reservation",
+        function (e) {
+          e.preventDefault();
+          modalCloseSlide();
+        },
+      );
+
+      // 기준충전 설정 모달 - 충전방식 개별 동작
+      $(document).on(
+        "click",
+        "#modalReservationEdit .charge-method-item",
+        function (e) {
+          e.preventDefault();
+          const method = $(this).data("method");
+
+          // 1) balance-maintain: 이번 작업에서는 고정 (선택 상태 유지, 별도 동작 없음)
+          if (method === "balance-maintain") {
+            return;
+          }
+
+          // 2) balance-standard: 잔액 기준 드롭다운 (잔액 기준 선택) - 추후 구현
+          if (method === "balance-standard") {
+            modalOpenSlide("modalBalanceStandard");
+            return;
+          }
+
+          // 3) charge-standard: 충전 금액 입력 (시스템 키패드 사용)
+          if (method === "charge-standard") {
+            // 입력값 초기화
+            $("#chargeAmountInput").val("");
+            // "원" 문구 숨기기
+            $("#modalChargeAmount .charge-amount-unit").hide();
+            // 에러 상태 초기화
+            $("#modalChargeAmount .charge-amount-input-wrap").removeClass("error");
+            $("#chargeAmountError").hide().text("");
+            // 입력 필드 너비 초기화
+            $("#chargeAmountInput").css("width", "auto");
+            modalOpen("modalChargeAmount");
+            return;
+          }
+        },
+      );
+
+      // 기준충전 설정 모달 - 등록 버튼 (현재는 선택된 방식 고정이므로 단순 닫기)
+      $(document).on("click", ".btn-register-charge", function (e) {
+        e.preventDefault();
+        modalCloseSlide();
+      });
+
+      // 잔액 기준 바텀시트 - 옵션 선택 시 자동으로 값 업데이트 및 모달 닫기
+      $(document).on(
+        "click",
+        "#modalBalanceStandard .balance-option",
+        function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          // 기존 선택 제거
+          $("#modalBalanceStandard .balance-option").removeClass("bold");
+          // 현재 선택 추가
+          $(this).addClass("bold");
+
+          // 선택한 텍스트 가져오기
+          const text = $(this).text().trim();
+          console.log("선택한 텍스트:", text);
+
+          // modalReservationEdit 모달 내의 balance-standard 항목 찾기
+          const modalReservationEdit = $("#modalReservationEdit");
+
+          if (modalReservationEdit.length) {
+            const targetItem = modalReservationEdit.find(
+              '.charge-method-item[data-method="balance-standard"]',
+            );
+
+            if (targetItem.length) {
+              const valueElement = targetItem.find(".charge-method-value");
+
+              if (valueElement.length) {
+                // 텍스트 업데이트
+                valueElement.text(text);
+                valueElement.addClass("selected");
+                targetItem.addClass("active");
+
+                console.log("값 업데이트 완료:", text);
+              }
+            }
+          }
+
+          // 모달 닫기
+          setTimeout(function () {
+            modalCloseSlide();
+          }, 200);
+        },
+      );
+
+      // 충전 금액 입력 모달 - 삭제 버튼 클릭
+      $(document).on(
+        "click",
+        "#modalChargeAmount .btn-amount-delete",
+        function (e) {
+          e.preventDefault();
+          $("#chargeAmountInput").val("");
+          // "원" 문구 숨기기
+          $("#modalChargeAmount .charge-amount-unit").hide();
+          // 에러 상태 초기화
+          $("#modalChargeAmount .charge-amount-input-wrap").removeClass("error");
+          $("#chargeAmountError").hide().text("");
+          // 입력 필드 너비 초기화
+          $("#chargeAmountInput").css("width", "auto");
+        },
+      );
+
+      // 충전 금액 입력 모달 - 입력값 변경 시 "원" 문구 표시/숨김, 입력 필드 너비 조정, 에러 검증
+      $(document).on("input", "#chargeAmountInput", function () {
+        const $input = $(this);
+        const inputValue = $input.val().replace(/[^0-9]/g, ""); // 숫자만 추출
+        const unitElement = $("#modalChargeAmount .charge-amount-unit");
+        const $inputWrap = $input.closest(".charge-amount-input-wrap");
+        const $errorElement = $("#chargeAmountError");
+        const minAmount = 10000; // 최소 1만원
+        const maxAmount = 1000000; // 최대 100만원
+        
+        // 에러 상태 초기화
+        $inputWrap.removeClass("error");
+        $errorElement.hide().text("");
+        
+        if (inputValue && inputValue !== "0") {
+          const amount = parseInt(inputValue);
+          
+          // 숫자가 입력된 경우 "원" 표시
+          unitElement.show();
+          
+          // 입력 필드 너비를 입력된 텍스트에 맞게 조정
+          // 임시 span을 생성하여 텍스트 너비 측정
+          const $tempSpan = $("<span>")
+            .css({
+              position: "absolute",
+              visibility: "hidden",
+              whiteSpace: "nowrap",
+              fontSize: $input.css("fontSize"),
+              fontFamily: $input.css("fontFamily"),
+              fontWeight: $input.css("fontWeight"),
+              padding: "0",
+              margin: "0",
+              border: "0",
+            })
+            .text($input.val() || "0");
+          
+          $("body").append($tempSpan);
+          const textWidth = $tempSpan.outerWidth();
+          $tempSpan.remove();
+          
+          // 입력 필드 너비 설정 (최소 50px)
+          $input.css("width", Math.max(50, textWidth + 5) + "px");
+          
+          // 에러 검증
+          if (amount < minAmount) {
+            // 최소 금액 미만
+            $inputWrap.addClass("error");
+            $errorElement.html('최소 <strong>1만원</strong> 이상 입력해주세요.').show();
+          } else if (amount > maxAmount) {
+            // 최대 금액 초과
+            $inputWrap.addClass("error");
+            $errorElement.html('1회 충전 가능 한도는 <strong>1,000,000</strong> 원 입니다.').show();
+          }
+        } else {
+          // 입력값이 없거나 0인 경우 "원" 숨김
+          unitElement.hide();
+          // placeholder가 보일 때는 기본 너비 유지
+          $input.css("width", "auto");
+        }
+      });
+
+      // 충전 금액 입력 모달 - 확인 버튼 클릭
+      $(document).on(
+        "click",
+        "#modalChargeAmount .btn-amount-confirm",
+        function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const input = $("#chargeAmountInput");
+          const $inputWrap = input.closest(".charge-amount-input-wrap");
+          let amount = input.val().replace(/[^0-9]/g, ""); // 숫자만 추출
+          const minAmount = 10000; // 최소 1만원
+          const maxAmount = 1000000; // 최대 100만원
+
+          if (!amount || amount === "0") {
+            $inputWrap.addClass("error");
+            $("#chargeAmountError").html('최소 <strong>1만원</strong> 이상 입력해주세요.').show();
+            return false;
+          }
+          
+          const amountNum = parseInt(amount);
+          if (amountNum < minAmount) {
+            $inputWrap.addClass("error");
+            $("#chargeAmountError").html('최소 <strong>1만원</strong> 이상 입력해주세요.').show();
+            return false;
+          }
+          
+          if (amountNum > maxAmount) {
+            $inputWrap.addClass("error");
+            $("#chargeAmountError").html('1회 충전 가능 한도는 <strong>1,000,000</strong> 원 입니다.').show();
+            return false;
+          }
+
+          // 금액 포맷팅 (콤마 포함)
+          const formattedAmount = parseInt(amount).toLocaleString() + "원";
+
+          // modalReservationEdit 모달 내의 charge-standard 항목 찾기
+          const modalReservationEdit = $("#modalReservationEdit");
+          if (modalReservationEdit.length) {
+            const targetItem = modalReservationEdit.find(
+              '.charge-method-item[data-method="charge-standard"]',
+            );
+
+            if (targetItem.length) {
+              const valueElement = targetItem.find(".charge-method-value");
+
+              if (valueElement.length) {
+                // 텍스트 업데이트
+                valueElement.text(formattedAmount);
+                valueElement.addClass("selected");
+                targetItem.addClass("active");
+
+                console.log("충전 금액 업데이트 완료:", formattedAmount);
+              }
+            }
+          }
+
+          // 모달 닫기
+          modalClose();
+          return false;
+        },
+      );
+
+      // 예약충전 삭제 버튼
+      $(document).on("click", ".btn-delete-reservation", function (e) {
+        e.preventDefault();
+        // 삭제 확인 메시지
+        $.promptMessage(
+          "",
+          "예약 충전 설정을 삭제하시겠습니까?",
+          $("#commonPrompt"),
+          function (result) {
+            if (result) {
+              // 삭제 로직 추가
+              modalCloseSlide();
+            }
+          },
+        );
+      });
+
+      // 예약충전 수정 버튼
+      $(document).on("click", ".btn-update-reservation", function (e) {
+        e.preventDefault();
+        // 수정 로직 추가
+        modalCloseSlide();
+      });
+
+      // 페이지 로드 시 상태 초기화 함수
+      function resetPageState() {
+        // 모든 토글 버튼 초기화
+        document.querySelectorAll(".toggle-box").forEach((box) => {
+          const checkbox = box.querySelector('input[type="checkbox"]');
+          const label = box.querySelector(".toggle-label");
+          const toggleType = box.getAttribute("data-toggle-type");
+
+          // 자동충전 사용 토글은 OFF로 초기화
+          if (toggleType === "auto-charge") {
+            checkbox.checked = false;
+            label.textContent = "OFF";
+            box.classList.remove("active");
+
+            // 계좌 섹션, 두 번째 섹션 숨김
+            const accountSection = document.getElementById("accountSection");
+            const secondSection = document.getElementById("secondSection");
+            if (accountSection) accountSection.style.display = "none";
+            if (secondSection) secondSection.style.display = "none";
+          }
+          // 결제 시 부족 금액 충전하기 토글은 기본값 유지 (ON)
+          // 다른 토글들도 필요시 여기서 초기화
+        });
+      }
+
+      // 페이지 로드 시 초기화 (accountReg.html에서 돌아온 경우)
+      if (sessionStorage.getItem("resetAutoChargePage") === "true") {
+        resetPageState();
+        // 초기화 플래그 제거
+        sessionStorage.removeItem("resetAutoChargePage");
+      }
+
+      // 케이스 1: 자동충전 OFF 상태로 고정
+      $(window).on("load", function () {
+        const autoChargeToggle = document.querySelector('[data-toggle-type="auto-charge"]');
+        const checkbox = autoChargeToggle.querySelector('input[type="checkbox"]');
+        const label = autoChargeToggle.querySelector(".toggle-label");
+        checkbox.checked = false;
+        label.textContent = "OFF";
+        autoChargeToggle.classList.remove("active");
+        document.getElementById("accountSection").style.display = "none";
+        document.getElementById("secondSection").style.display = "none";
+      });
+
+      // 토글 버튼 기능
+      document.querySelectorAll(".toggle-box").forEach((box) => {
+        const checkbox = box.querySelector('input[type="checkbox"]');
+        const label = box.querySelector(".toggle-label");
+        const toggleType = box.getAttribute("data-toggle-type");
+
+        // 초기 상태 설정
+        function updateToggleState() {
+          if (checkbox.checked) {
+            label.textContent = "ON";
+            box.classList.add("active");
+          } else {
+            label.textContent = "OFF";
+            box.classList.remove("active");
+          }
+        }
+
+        // 초기 상태 적용
+        updateToggleState();
+
+        // 자동충전 사용 토글인 경우 계좌 섹션, 두 번째 섹션 표시/숨김 처리
+        // 구분선은 항상 표시됨
+        if (toggleType === "auto-charge") {
+          const accountSection = document.getElementById("accountSection");
+          const secondSection = document.getElementById("secondSection");
+
+          function toggleSections() {
+            if (checkbox.checked) {
+              accountSection.style.display = "block";
+              secondSection.style.display = "block";
+            } else {
+              accountSection.style.display = "none";
+              secondSection.style.display = "none";
+            }
+          }
+
+          // 초기 상태 적용
+          toggleSections();
+        }
+
+        // 토글 클릭 이벤트 (케이스 1: 자동충전 OFF 상태로 고정, 토글 비활성화)
+        if (toggleType === "auto-charge") {
+          // 자동충전 토글은 클릭해도 동작하지 않도록 함
+          box.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+          });
+          return; // 자동충전 토글은 여기서 종료
+        }
+        
+        box.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const currentState = checkbox.checked;
+          let message = "";
+          let needConfirm = false;
+
+          // 확인 메시지 설정
+          switch (toggleType) {
+            case "auto-charge":
+              if (currentState) {
+                // OFF로 변경: 얼럿 팝업 표시
+                message =
+                  "<p>자동충전 기능을 비활성화 하시겠습니까?</p><p>등록한 자동/예약충전 기능이 다음 활성화 시 까지 일시정지됩니다.</p>";
+                needConfirm = true;
+              } else {
+                // ON으로 변경: 약관동의 바텀시트 모달 표시
+                needConfirm = false; // 약관동의 모달을 직접 표시하므로 여기서는 처리하지 않음
+              }
+              break;
+            case "insufficient-charge":
+              if (currentState) {
+                message =
+                  "결제 시 부족 금액 충전 기능을 비활성화 하시겠습니까?";
+                needConfirm = true;
+              } else {
+                message =
+                  "결제 시 충전 잔액이 부족한 경우<br>부족한 금액만큼 충전하시겠습니까?";
+                needConfirm = true;
+              }
+              break;
+            default:
+              needConfirm = false;
+          }
+
+          // 자동충전 사용 ON으로 변경 시 약관동의 모달 표시
+          if (toggleType === "auto-charge" && !currentState) {
+            // 약관동의 바텀시트 모달 표시
+            const targetModal = "modalTermsAgreement";
+            const modalElement = $("#" + targetModal);
+            const modalCont = modalElement.find(".modal-content");
+
+            // 처음 열 때 애니메이션을 위해 초기 bottom 값 설정
+            // modal-info 클래스가 없어서 초기 설정이 안 되어 있을 수 있음
+            if (
+              !modalCont.css("bottom") ||
+              modalCont.css("bottom") === "0px" ||
+              modalCont.css("bottom") === "auto"
+            ) {
+              const modalH = $(window).height() * -1;
+              modalCont.css("bottom", modalH);
+            }
+
+            modalOpenSlide(targetModal);
+
+            // 약관동의 모달이 열릴 때 아코디언을 기본적으로 열어둠
+            setTimeout(function () {
+              const termsAccordion = $(
+                "#modalTermsAgreement .accordion-list li",
+              );
+              const termsItem = termsAccordion.find(".accordion-item");
+              const termsArrow = termsAccordion.find(".accordion-arrow");
+
+              if (termsAccordion.length && termsItem.length) {
+                termsAccordion.addClass("active");
+                termsItem.css("display", "block");
+                if (termsArrow.length) {
+                  termsArrow.css("transform", "rotate(180deg)");
+                }
+              }
+            }, 100);
+
+            return; // 여기서 종료하여 토글이 변경되지 않도록 함
+          }
+
+          // 확인이 필요한 경우
+          if (needConfirm && message) {
+            // 확인 다이얼로그 표시
+            $.promptMessage("", message, $("#commonPrompt"));
+
+            // 확인 버튼에 이벤트 바인딩 (기존 이벤트 제거 후 새로 바인딩)
+            $("#promptOk")
+              .off("click.toggleConfirm")
+              .on("click.toggleConfirm", function () {
+                checkbox.checked = !currentState;
+                updateToggleState();
+
+                // 자동충전 사용 토글인 경우 계좌 섹션, 두 번째 섹션 표시/숨김
+                // 구분선은 항상 표시됨
+                if (toggleType === "auto-charge") {
+                  const accountSection =
+                    document.getElementById("accountSection");
+                  const secondSection =
+                    document.getElementById("secondSection");
+                  if (checkbox.checked) {
+                    accountSection.style.display = "block";
+                    secondSection.style.display = "block";
+                  } else {
+                    accountSection.style.display = "none";
+                    secondSection.style.display = "none";
+                  }
+                }
+
+                modalClose();
+                // 이벤트 제거
+                $(this).off("click.toggleConfirm");
+              });
+
+            // 취소 버튼 클릭 시 이벤트 제거
+            $(".btn-cancel")
+              .off("click.toggleCancel")
+              .on("click.toggleCancel", function () {
+                $("#promptOk").off("click.toggleConfirm");
+                $(this).off("click.toggleCancel");
+              });
+          } else {
+            // 확인이 필요 없는 경우 바로 토글
+            checkbox.checked = !currentState;
+            updateToggleState();
+
+            // 자동충전 사용 토글인 경우 계좌 섹션, 두 번째 섹션 표시/숨김
+            // 구분선은 항상 표시됨
+            if (toggleType === "auto-charge") {
+              const accountSection = document.getElementById("accountSection");
+              const secondSection = document.getElementById("secondSection");
+              if (checkbox.checked) {
+                accountSection.style.display = "block";
+                secondSection.style.display = "block";
+              } else {
+                accountSection.style.display = "none";
+                secondSection.style.display = "none";
+              }
+            }
+          }
+        });
+
+        // checkbox 직접 변경 방지 (토글 박스를 통해서만 변경)
+        checkbox.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        });
+      });
+
+      // 계좌 관리 버튼 클릭 이벤트
+      $(document).on("click", "#btnAccountManage", function () {
+        modalOpen("modalAccountManage");
+      });
+
+      // 계좌 관리 모달 - 뒤로가기 버튼 클릭 이벤트
+      $("#modalAccountManage .btn-back").on("click", function () {
+        modalClose();
+      });
+
+      // 계좌 등록 모달 - 뒤로가기 버튼 클릭 이벤트
+      $("#modalAccountRegister .btn-back").on("click", function () {
+        modalClose();
+      });
+
+      // 계좌 등록 모달 - 은행 선택 이벤트
+      $(document).on("click", "#modalAccountRegister .bank-item", function () {
+        const bankCode = $(this).data("bank");
+        const bankName = $(this).find(".bank-name").text();
+
+        // 계좌 등록 모달 닫기
+        modalClose();
+
+        // accountReg.html 페이지로 이동하고 단계 2로 이동 (은행 정보 전달)
+        const url = `accountReg.html?bank=${bankCode}&bankName=${encodeURIComponent(
+          bankName,
+        )}&step=2`;
+        window.location.href = url;
+      });
+
+      // 계좌 관리 모달 - 계좌 삭제 버튼 클릭 이벤트
+      $(document).on("click", ".btn-account-delete", function () {
+        const accountText = $(this)
+          .closest(".account-manage-item")
+          .find(".account-text-manage")
+          .text();
+        $.promptMessage(
+          "",
+          `등록된 계좌 <strong>${accountText}</strong>를 삭제하시겠습니까?`,
+          function () {
+            // 삭제 처리 로직
+            $(this).closest(".account-manage-item").remove();
+            modalClose();
+          },
+        );
+      });
+
+      // 계좌 관리 모달 - 계좌 추가 버튼 클릭 이벤트
+      $(document).on("click", ".btn-add-account", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // 계좌 관리 모달 닫기
+        $("#modalAccountManage")
+          .removeClass("modal-open")
+          .css("display", "none");
+        scrollOn();
+
+        // 약간의 딜레이 후 계좌 등록 모달 열기
+        setTimeout(function () {
+          const targetModal = $("#modalAccountRegister");
+          if (targetModal.length) {
+            targetModal.addClass("modal-open");
+            targetModal.css("display", "block");
+            scrollOff();
+          } else {
+            console.error("계좌 등록 모달을 찾을 수 없습니다.");
+          }
+        }, 200);
+      });
+
+      // 약관동의 모달 체크박스 로직
+      $(document).ready(function () {
+        // 약관동의 모달 내 아코디언 토글 비활성화 (항상 열려있어야 함)
+        $("#modalTermsAgreement .accordion-title").on("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          // 약관동의 모달에서는 아코디언이 항상 열려있어야 하므로 토글 비활성화
+          return false;
+        });
+
+        // 전체 선택 체크박스
+        $("#check-all-terms").on("change", function () {
+          const isChecked = $(this).is(":checked");
+          $("#modalTermsAgreement .checkSelect").prop("checked", isChecked);
+          updateTermsAgreeButton();
+        });
+
+        // 개별 체크박스
+        $("#modalTermsAgreement .checkSelect").on("change", function () {
+          const totalCheckboxes = $("#modalTermsAgreement .checkSelect").length;
+          const checkedCheckboxes = $(
+            "#modalTermsAgreement .checkSelect:checked",
+          ).length;
+
+          // 전체 선택 체크박스 상태 업데이트
+          $("#check-all-terms").prop(
+            "checked",
+            totalCheckboxes === checkedCheckboxes,
+          );
+
+          updateTermsAgreeButton();
+        });
+
+        // 약관동의 버튼 활성화/비활성화
+        function updateTermsAgreeButton() {
+          const allChecked =
+            $("#modalTermsAgreement .checkSelect:checked").length ===
+            $("#modalTermsAgreement .checkSelect").length;
+          $("#nextStep").prop("disabled", !allChecked);
+        }
+
+        // 약관동의 버튼 클릭 시
+        $("#nextStep").on("click", function () {
+          // 약관동의 완료 후 자동충전 사용 토글을 ON으로 변경
+          const autoChargeToggle = document.querySelector(
+            '[data-toggle-type="auto-charge"]',
+          );
+          const checkbox = autoChargeToggle.querySelector(
+            'input[type="checkbox"]',
+          );
+          const label = autoChargeToggle.querySelector(".toggle-label");
+
+          checkbox.checked = true;
+          label.textContent = "ON";
+          autoChargeToggle.classList.add("active");
+
+          // 계좌 섹션, 두 번째 섹션 표시
+          const accountSection = document.getElementById("accountSection");
+          const secondSection = document.getElementById("secondSection");
+          accountSection.style.display = "block";
+          secondSection.style.display = "block";
+
+          // 약관동의 모달 닫기
+          modalCloseSlide();
+        });
+      });
+
+      // 계좌 선택 모달 - 스크롤 가능 여부에 따른 그라데이션 페이드 효과 처리
+      function updateAccountSelectScrollFade() {
+        const listWrapper = $(
+          "#modalAccountSelect .account-select-list-wrapper",
+        );
+        const buttonsWrapper = $("#modalAccountSelect .account-select-buttons-wrapper");
+        if (listWrapper.length && buttonsWrapper.length) {
+          const scrollHeight = listWrapper[0].scrollHeight;
+          const clientHeight = listWrapper[0].clientHeight;
+
+          // 스크롤 가능한 경우에만 그라데이션 표시
+          if (scrollHeight > clientHeight) {
+            buttonsWrapper.addClass("has-scroll");
+          } else {
+            buttonsWrapper.removeClass("has-scroll");
+          }
+        }
+      }
+
+      // 계좌 선택 모달 열릴 때 스크롤 상태 확인
+      $(document).on(
+        "click",
+        '[data-target="modalAccountSelect"]',
+        function () {
+          setTimeout(function () {
+            updateAccountSelectScrollFade();
+          }, 100);
+        },
+      );
+
+      // 계좌 선택 모달 내 스크롤 이벤트 처리
+      $(document).on(
+        "scroll",
+        "#modalAccountSelect .account-select-list-wrapper",
+        function () {
+          const listWrapper = $(this);
+          const buttonsWrapper = $("#modalAccountSelect .account-select-buttons-wrapper");
+          const scrollTop = listWrapper.scrollTop();
+          const scrollHeight = listWrapper[0].scrollHeight;
+          const clientHeight = listWrapper[0].clientHeight;
+
+          // 스크롤이 맨 아래에 도달했는지 확인
+          if (scrollTop + clientHeight >= scrollHeight - 5) {
+            buttonsWrapper.removeClass("has-scroll");
+          } else {
+            buttonsWrapper.addClass("has-scroll");
+          }
+        },
+      );
+
+      // 계좌 선택 모달 - 등록해제 버튼 클릭 이벤트
+      $(document).on("click", "#modalAccountSelect .btn-deregister-select", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const $item = $(this).closest(".account-item-select");
+        const accountText = $item.find(".account-text-select").text();
+        
+        $.promptMessage(
+          "",
+          `등록된 계좌 <strong>${accountText}</strong>를 등록해제 하시겠습니까?`,
+          function () {
+            // 등록해제 처리 로직
+            $item.remove();
+            
+            // 계좌가 모두 삭제된 경우 모달 닫기 또는 다른 처리
+            const remainingAccounts = $("#modalAccountSelect .account-item-select").length;
+            if (remainingAccounts === 0) {
+              modalCloseSlide();
+            }
+          },
+        );
+        
+        return false;
+      });
+    </script>
+  </body>
+</html>

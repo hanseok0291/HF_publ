@@ -1,0 +1,227 @@
+@charset "UTF-8";
+
+/* 위챗페이 전용 스타일 */
+
+/* 로딩 화면 */
+.wrap.wechatpay.wechatpay-loading .loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 0;
+  line-height: 0;
+  text-align: center;
+  z-index: 9999;
+  background: rgba(0, 0, 0, .5);
+}
+
+.wrap.wechatpay.wechatpay-loading .loading.hidden {
+  display: none;
+}
+
+.wrap.wechatpay.wechatpay-loading .loading:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -45px 0 0 -45px;
+  animation: wechatpay-spin 1s linear infinite;
+  background: url(../images/custom/new/loading.png) no-repeat center / contain;
+  width: 90px;
+  height: 90px;
+}
+
+@keyframes wechatpay-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 헤더 스타일 */
+#wrap.wechatpay header {
+  height: 60px;
+  background-color: #fff;
+}
+
+#wrap.wechatpay .titleWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+
+#wrap.wechatpay .titleWrap .logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 121px;
+  height: 18px;
+  background-image: url(../images/custom/logo-hecto.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  text-indent: -9999px;
+}
+
+#wrap.wechatpay header [class|="btn"] {
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  font-size: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+#wrap.wechatpay header .btn-close {
+  background: url("../images/close.svg") center/24px no-repeat;
+  top: 10px;
+  right: 10px;
+}
+
+#wrap.wechatpay header .btn-back {
+  background: url("../images/back.svg") center/24px no-repeat;
+  top: 10px;
+  left: 10px;
+}
+
+/* 컨텐츠 영역 */
+#wrap.wechatpay .content {
+  padding: 30px 0 130px;
+  min-height: calc(100vh - 60px);
+}
+
+#wrap.wechatpay .container {
+  padding: 0 20px;
+  width: 100%;
+}
+
+/* 결제 실패 메시지 */
+.wechatpay-fail-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: calc(100vh - 60px - 130px);
+  padding: 40px 0;
+}
+
+.wechatpay-fail-message p {
+  color: var(--HF-Color-Neutral-Neutral10, #303030);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: -0.408px;
+}
+
+/* 결과 확인 메시지 */
+.wechatpay-result-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - 60px - 130px);
+  padding: 40px 0;
+}
+
+.wechatpay-result-message .result-title {
+  color: var(--HF-Color-Neutral-Neutral10, #303030);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+  /* 33px */
+  letter-spacing: -0.408px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.wechatpay-result-message .result-description {
+  color: var(--HF-Color-Neutral-Neutral10, #303030);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 27px */
+  letter-spacing: -0.408px;
+  padding: 0;
+}
+
+/* PC 불가 메시지 */
+.wechatpay-pc-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: calc(100vh - 60px - 130px);
+  padding: 40px 30px;
+}
+
+.wechatpay-pc-message p {
+  color: var(--HF-Color-Neutral-Neutral10, #303030);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 33px */
+  letter-spacing: -0.408px;
+}
+
+/* 버튼 영역 */
+.wechatpay-btn-wrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px 20px;
+  height: 128px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 16.38%);
+  z-index: 10;
+}
+
+.wechatpay-btn {
+  width: 100%;
+  height: 66px;
+  background-color: #303030;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Pretendard', 'Nanum Square Round', 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.wechatpay-btn:hover {
+  background-color: #333;
+}
+
+.wechatpay-btn:active {
+  background-color: #2a2a2a;
+}
+
+.wechatpay-btn:disabled {
+  background-color: #e5e5e5;
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* 반응형 */
+@media (max-width: 480px) {}

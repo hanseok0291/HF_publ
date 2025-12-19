@@ -289,7 +289,7 @@ header .container .brand-name {
   line-height: 120%;
   letter-spacing: -0.28px;
   color: #5C5C5C;
-  padding-left: 21px;
+  padding-left: 10px;
   position: relative;
 }
 
@@ -356,10 +356,11 @@ header .container .brand-name {
 }
 
 .modal.modal-slide.modal-account-select .modal-head.account-select-modal-head {
-  padding: 20px 30px 16px;
+  padding: 16px 30px;
   text-align: center;
   border-bottom: none;
   flex-shrink: 0;
+  margin-top: 20px;
 }
 
 .modal.modal-slide.modal-account-select .modal-head.account-select-modal-head .modal-title {
@@ -374,7 +375,7 @@ header .container .brand-name {
 }
 
 .modal.modal-slide.modal-account-select .modal-body.account-select-modal-body {
-  padding: 10px 30px 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -394,7 +395,22 @@ header .container .brand-name {
   flex: 1;
   margin-bottom: 20px;
   overflow: hidden;
+  position: relative;
+  padding: 10px 30px 0;
 }
+
+.modal.modal-account-select .account-select-list-wrapper {
+  position: relative;
+  max-height: 224px; /* 4개 아이템 높이만큼만 표시 (약 56px * 4) */
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.modal.modal-account-select .account-select-list-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
 
 .modal.modal-account-select .account-select-list {
   list-style: none;
@@ -403,28 +419,12 @@ header .container .brand-name {
   display: flex;
   flex-direction: column;
   gap: 0;
-  max-height: 224px; /* 4개 아이템 높이만큼만 표시 (약 56px * 4) */
-  overflow-y: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.modal.modal-account-select .account-select-list::-webkit-scrollbar {
-  display: none;
 }
 
 .modal.modal-account-select .account-item-select {
   padding: 12px 0;
   cursor: pointer;
   transition: background-color 0.2s;
-}
-
-.modal.modal-account-select .account-item-select:hover {
-  background-color: #F7F7F8;
-}
-
-.modal.modal-account-select .account-item-select.selected {
-  background-color: #F7F7F8;
 }
 
 .modal.modal-account-select .account-select-info {
@@ -479,12 +479,86 @@ header .container .brand-name {
   margin-left: 30px;
 }
 
+.modal.modal-account-select .btn-deregister-select {
+  color: #5A5C63;
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 100%;
+  letter-spacing: 0px;
+  background: #EAEBEC;
+  border: none;
+  border-radius: 30px;
+  padding: 7px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  margin-left: auto;
+  transition: background-color 0.2s ease;
+}
+
+.modal.modal-account-select .btn-deregister-select:hover {
+  background: #E5E5E5;
+}
+
+.modal.modal-account-select .btn-deregister-select:active {
+  background: #D0D0D0;
+}
+
+.modal.modal-account-select .account-select-buttons-wrapper {
+  position: relative;
+  flex-shrink: 0;
+  padding: 0 30px 20px;
+}
+
+/* 스크롤 가능할 때 하단 그라데이션 페이드 효과 */
+.modal.modal-account-select .account-select-buttons-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: -30px;
+  right: -30px;
+  height: 40px;
+  /* 아래쪽은 거의 흰색이지만 약간 투명하게, 위로 갈수록 투명하게 부드럽게 전환 (경계선 제거) */
+  background: linear-gradient(to bottom, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.02) 2%, 
+    rgba(255, 255, 255, 0.05) 5%, 
+    rgba(255, 255, 255, 0.08) 8%, 
+    rgba(255, 255, 255, 0.12) 12%, 
+    rgba(255, 255, 255, 0.18) 18%, 
+    rgba(255, 255, 255, 0.25) 25%, 
+    rgba(255, 255, 255, 0.35) 35%, 
+    rgba(255, 255, 255, 0.45) 45%, 
+    rgba(255, 255, 255, 0.55) 55%, 
+    rgba(255, 255, 255, 0.65) 65%, 
+    rgba(255, 255, 255, 0.75) 75%, 
+    rgba(255, 255, 255, 0.82) 82%, 
+    rgba(255, 255, 255, 0.88) 88%, 
+    rgba(255, 255, 255, 0.92) 92%, 
+    rgba(255, 255, 255, 0.96) 96%, 
+    rgba(255, 255, 255, 0.98) 98%, 
+    rgba(255, 255, 255, 0.99) 99.5%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  /* background: url(../images/common/bg-bottom.png) no-repeat center / contain; */
+  pointer-events: none;
+  display: none;
+  z-index: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal.modal-account-select .account-select-buttons-wrapper.has-scroll::before {
+  display: block;
+}
+
 .modal.modal-account-select .account-select-buttons {
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 100%;
   flex-shrink: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .modal.modal-account-select .btn-add-account-modal {
@@ -948,19 +1022,19 @@ header .container .brand-name {
 }
 
 /* ARS 인증 재요청 버튼 */
-.btn-ars-retry {
+.btn-ars-retry, #footer .btn-ars-retry {
   font-family: Pretendard;
   font-weight: 600;
   font-size: 18px;
   line-height: 140%;
   letter-spacing: -0.44px;
-  color: #5c5c5c;
+  color: #5C5C5C;
   background: #ffffff;
-  border: 1px solid #b0b0b0;
+  border: 1px solid #B0B0B0;
   border-radius: 8px;
   width: 100%;
   height: 60px;
-  margin-bottom: 10px;
+  margin-bottom: 0;
 }
 
 /* 단계 3 버튼 영역 */
@@ -968,6 +1042,12 @@ header .container .brand-name {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
+}
+
+/* 버튼이 2개일 때 푸터 높이 220px */
+#footer.has-two-buttons {
+  height: 220px;
 }
 
 #btnStep3 .btn-default {
@@ -975,12 +1055,13 @@ header .container .brand-name {
   height: 60px;
   font-family: Pretendard;
   font-weight: 600;
-  font-size: 22px;
-  line-height: 23px;
+  font-size: 18px;
+  line-height: 140%;
   letter-spacing: -0.44px;
-  background: #303030;
+  background: #2B2B2B;
   color: #ffffff;
   border-radius: 8px;
+  border: none;
 }
 
 .auth-info {
@@ -1125,33 +1206,6 @@ header .container .brand-name {
   white-space: nowrap;
 }
 
-.btn-account-delete {
-  padding: 6px 12px;
-  background: #F7F7F8;
-  border: 1px solid #B0B0B0;
-  border-radius: 6px;
-  font-family: Pretendard;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 100%;
-  letter-spacing: -0.28px;
-  color: #5C5C5C;
-  cursor: pointer;
-  white-space: nowrap;
-}
-.modal-body .btn-account-delete {
-  background: #F4F4F5;
-  font-size: 16px;
-  line-height: 143%;
-  color: #5C5C5C;
-  border: 0;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.btn-account-delete:hover {
-  background: #EAEBEC;
-}
 
 .modal-footer .btn-add-account {
   display: flex;
@@ -1223,6 +1277,26 @@ header .container .brand-name {
   letter-spacing: -0.28px;
   color: #424346;
   text-align: center;
+}
+
+/* 계좌 등록 모달 스크롤 활성화 */
+#modalAccountRegister.modal-full .modal-content {
+  overflow-y: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#modalAccountRegister.modal-full .modal-body {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding-top: 60px;
+  padding-bottom: 20px;
+}
+
+#modalAccountRegister.modal-full .modal-body .container {
+  height: auto;
 }
 
 #modalAccountRegister .tit-wrap {
@@ -1306,6 +1380,7 @@ header .container .brand-name {
 .modal-standard-charge .modal-footer .btn-wrap {
   display: flex;
   gap: 0;
+  padding: 0;
 }
 
 .modal-standard-charge .modal-footer .btn {
@@ -1348,15 +1423,15 @@ header .container .brand-name {
 }
 
 .modal-balance-standard .modal-body {
-  padding-top: 56px !important;
+  padding-top: 0 !important;
   padding-bottom: 56px !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
+  justify-content: start;
 }
 
 .modal-balance-standard .modal-body .container {
   padding: 0 30px;
-  padding-top: 20px;
 }
 
 .balance-standard-list {
@@ -1403,4 +1478,258 @@ header .container .brand-name {
   letter-spacing: -0.44px;
   background: #303030;
   color: #ffffff;
+}
+
+/* 충전 금액 입력 모달 (풀팝업) */
+.modal-charge-amount .modal-head {
+  /* modal-full의 공통 스타일 사용 */
+}
+
+.modal-charge-amount .modal-body {
+  padding-top: 60px;
+  padding-bottom: 30px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.modal-charge-amount .modal-body .container {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.modal-charge-amount .charge-amount-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.modal-charge-amount .charge-amount-label {
+  font-family: Pretendard;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 142.9%;
+  color: #222222;
+  padding: 4px 0;
+  text-align: left;
+}
+
+.modal-charge-amount .charge-amount-input-wrap {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1.5px solid #e5e5e5;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  overflow: hidden;
+  height: 56px;
+  transition: border-color 0.3s ease;
+}
+
+.modal-charge-amount .charge-amount-input-wrap.error {
+  border-bottom-color: #f33838;
+}
+
+.modal-charge-amount .charge-amount-display {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 0;
+  overflow: visible;
+}
+
+.modal-charge-amount .charge-amount-input {
+  flex: 0 0 auto;
+  min-width: 0;
+  width: auto;
+  border: none;
+  outline: none;
+  font-family: Pretendard;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: normal;
+  color: #303030;
+  background: transparent;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+}
+
+.modal-charge-amount .charge-amount-input-wrap.error .charge-amount-input {
+  color: #ff4242;
+}
+
+.modal-charge-amount .charge-amount-input::placeholder {
+  color: #c4c4c4;
+}
+
+.modal-charge-amount .charge-amount-unit {
+  flex: 0 0 auto;
+  font-family: Pretendard;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: normal;
+  color: #303030;
+  white-space: nowrap;
+  margin: 0;
+  margin-left: 0;
+  padding: 0;
+  vertical-align: middle;
+}
+
+.modal-charge-amount .charge-amount-input-wrap.error .charge-amount-unit {
+  color: #ff4242;
+}
+
+.modal-charge-amount .charge-amount-error {
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: -0.64px;
+  color: #ff4242;
+  padding: 0;
+  margin-top: 14px;
+  text-align: left;
+}
+
+.modal-charge-amount .charge-amount-error strong {
+  font-weight: 700;
+  color: #ff4242;
+}
+
+.modal-charge-amount .btn-amount-delete {
+  width: 20px;
+  height: 20px;
+  background: url('../images/common/ico-del2.png') no-repeat center / 20px auto;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-size: 0;
+  margin-left: auto;
+}
+.sr-only {
+  display: none;
+  font-size: 0;
+}
+
+.modal-charge-amount .modal-footer {
+  padding: 16px 30px;
+}
+
+.modal-charge-amount .modal-footer .btn-wrap {
+  padding: 0;
+}
+
+.modal-charge-amount .btn-amount-confirm {
+  width: 100%;
+}
+
+/* 예약 충전 등록 완료 페이지 */
+.reservation-complete-wrap {
+  padding: 0 30px;
+  text-align: center;
+  font-family: Pretendard;
+  margin-top: 30px;
+}
+
+.reservation-complete-wrap .icon-complete.big {
+  width: 65px;
+  height: 65px;
+  margin: 43px auto 40px;
+  background: url('../images/card/ico-check-circle.png') no-repeat center/contain;
+}
+
+.reservation-complete-wrap .complete-title {
+  font-family: Pretendard;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 40px;
+  letter-spacing: 0px;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.reservation-complete-wrap .complete-subtext {
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #5c5c5c;
+  margin-bottom: 40px;
+}
+
+.reservation-info-list {
+  margin-top: 40px;
+  text-align: left;
+}
+
+.reservation-info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #B0B0B0;
+}
+
+.reservation-info-item:first-child {
+  border-top: 2px solid #303030;
+}
+
+.reservation-info-item:last-child {
+  border-bottom: 2px solid #303030;
+}
+
+.reservation-info-item .info-label {
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: #303030;
+  flex-shrink: 0;
+}
+
+.reservation-info-item .info-value {
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  color: #303030;
+  text-align: right;
+  flex: 1;
+  margin-left: 20px;
+}
+
+/* 공통 얼럿/프롬프트 모달 (#commonPrompt) - 바텀시트 위에 뜨는 C7 스타일 카드 정렬 */
+#commonPrompt .modal-dialog {
+  /* 기본 modal-dialog의 padding(20px) 제거해서 카드 폭을 정확히 맞춤 */
+  padding: 0;
+}
+
+#commonPrompt .modal-content {
+  max-width: 330px; /* Figma C7 컴포넌트 폭 */
+  width: 100%;
+}
+
+#commonPrompt .modal-body {
+  padding: 30px 24px 24px; /* 상단 여백 30px, 좌우 24px 정도로 카드 느낌 강화 */
+}
+
+#commonPrompt .modal-footer {
+  height: 68px; /* 기본 footer 높이 유지 */
+}
+
+#commonPrompt .modal-footer.type2 .btn {
+  /* 두 버튼이 정확히 반씩 차지하도록 보장 (C7: 165px + 165px) */
+  width: 50%;
+  height: 68px;
+  line-height: 48px; /* 기존 라인하이트 유지 */
 }

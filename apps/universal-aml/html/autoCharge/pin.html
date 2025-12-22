@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <title>헥토파이낸셜</title>
+    <link rel="stylesheet" href="../../css/reset.css" />
+    <link rel="stylesheet" href="../../css/common.css" />
+    <link rel="stylesheet" href="../../css/card.css" />
+    <link rel="stylesheet" href="../../css/autoCharge.css" />
+    <link rel="stylesheet" href="../../css/swiper-bundle.min.css" />
+    <script src="../../js/jquery-1.8.3.min.js"></script>
+    <script src="../../js/common.js" defer></script>
+    <script src="../../js/aml.js" defer></script>
+    <script src="../../js/design_renewal.js" defer></script>
+    <script src="../../js/postcode.v2.js"></script>
+    <script src="../../js/swiper.js"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap" class="card step">
+      <!-- header -->
+      <header class="header">
+        <div class="container">
+          <button type="button" class="btn-back btn"></button>
+          <h1 class="brand-name">선불 PIN 번호 입력</h1>
+          <button type="button" class="btn-close btn"></button>
+        </div>
+      </header>
+      <!-- //header -->
+
+      <!-- section -->
+      <section>
+        <!-- container -->
+        <div id="content" class="container">
+          <div class="tit-wrap">
+            <h2 class="tit pb-100">선불 PIN 번호를 입력해주세요.</h2>
+          </div>
+          
+          <div class="form-wrap">
+            <div class="input-mark">
+              <span class="mark"
+                ><i id="pwd_01"></i><i id="pwd_02"></i
+                ><i id="pwd_03"></i><i id="pwd_04"></i><i id="pwd_05"></i
+                ><i id="pwd_06"></i
+              ></span>
+            </div>
+          </div>
+
+        </div>
+        <!-- //container -->
+
+        <div class="nppfs-keypad-div">
+          <div class="kpd-wrap kpd-image">
+            <img
+              src="../../images/common/keypad.png"
+              alt="보안키패드 샘플"
+            />
+          </div>
+        </div>
+
+      </section>
+      <!-- //section -->
+    </div>
+    <!-- //wrap -->
+
+    <!-- common prompt -->
+    <div id="commonPrompt" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 class="prompt-title"></h3>
+            <p class="prompt-contents"></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="modalClose();"
+              class="btn btn-cancel"
+            >
+              취소
+            </button>
+            <button
+              type="button"
+              onclick="modalClose();"
+              id="promptOk"
+              class="btn btn-confirm"
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //common prompt -->
+
+    <script>
+      $(window).on("load", function () {
+        formatPhoneNumber();
+      });
+
+      let pinValue = "";
+      const pinDots = document.querySelectorAll(".mark i");
+
+      // PIN 표시 업데이트
+      function updatePinDisplay() {
+        pinDots.forEach((dot, index) => {
+          if (index < pinValue.length) {
+            dot.classList.add("on");
+          } else {
+            dot.classList.remove("on");
+          }
+        });
+      }
+
+      // 키패드 이미지 클릭 이벤트 (실제 키패드 구현 시 사용)
+      // 현재는 보안키패드 이미지만 있으므로, 실제 구현 시 키패드 버튼 클릭 이벤트를 추가해야 합니다.
+
+      // 초기 상태 설정
+      updatePinDisplay();
+    </script>
+  </body>
+</html>
+

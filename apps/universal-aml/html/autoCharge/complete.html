@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <title>헥토파이낸셜</title>
+    <link rel="stylesheet" href="../../css/reset.css" />
+    <link rel="stylesheet" href="../../css/common.css" />
+    <link rel="stylesheet" href="../../css/card.css" />
+    <link rel="stylesheet" href="../../css/autoCharge.css" />
+    <link rel="stylesheet" href="../../css/swiper-bundle.min.css" />
+    <script src="../../js/jquery-1.8.3.min.js"></script>
+    <script src="../../js/common.js" defer></script>
+    <script src="../../js/aml.js" defer></script>
+    <script src="../../js/design_renewal.js" defer></script>
+    <script src="../../js/postcode.v2.js"></script>
+    <script src="../../js/swiper.js"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap" class="">
+      <!-- header -->
+      <header class="header">
+        <div class="container">
+          <button type="button" class="btn-back btn"></button>
+          <h1 class="brand-name"></h1>
+          <button type="button" class="btn-close btn"></button>
+        </div>
+      </header>
+      <!-- //header -->
+
+      <!-- section -->
+      <section>
+        <div id="content" class="container">
+          <div class="reservation-complete-wrap">
+            <div class="icon-complete big"></div>
+            <h2 class="complete-title">예약 충전 등록 완료</h2>
+            <p class="complete-subtext">
+              선택한 기준 금액으로 자동 충전 됩니다.
+            </p>
+
+            <div class="reservation-info-list">
+              <div class="reservation-info-item">
+                <span class="info-label">잔액기준</span>
+                <span class="info-value" id="reservationBalance">30만원보다 적을 때</span>
+              </div>
+              <div class="reservation-info-item">
+                <span class="info-label">충전 금액</span>
+                <span class="info-value" id="reservationAmount">20만원</span>
+              </div>
+              <div class="reservation-info-item">
+                <span class="info-label">충전 계좌</span>
+                <span class="info-value" id="reservationAccount">국민 587</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- //container -->
+
+        <!-- footer -->
+        <div id="footer">
+          <!-- container -->
+          <div class="btn-wrap">
+            <button
+              type="button"
+              id="send"
+              class="btn btn-default"
+              onclick="location.href='index.html'"
+            >
+              확인
+            </button>
+          </div>
+          <!-- //container -->
+        </div>
+        <!-- //footer -->
+      </section>
+      <!-- //section -->
+    </div>
+    <!-- //wrap -->
+
+    <script>
+      $(window).on("load", function () {
+        // URL 파라미터에서 예약 정보 가져오기 (선택사항)
+        const urlParams = new URLSearchParams(window.location.search);
+        const balance = urlParams.get("balance");
+        const amount = urlParams.get("amount");
+        const account = urlParams.get("account");
+
+        if (balance) {
+          $("#reservationBalance").text(balance);
+        }
+        if (amount) {
+          $("#reservationAmount").text(amount);
+        }
+        if (account) {
+          $("#reservationAccount").text(account);
+        }
+      });
+    </script>
+  </body>
+</html>

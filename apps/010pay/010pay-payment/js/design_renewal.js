@@ -668,10 +668,10 @@ function modalToastOpen(id) {
   }, 100);
   var toastTimeout = setTimeout(function () {
     toastId.removeClass('toast-view');
-  }, 1500);
+  }, 2000);
   var toastTimeout = setTimeout(function () {
     toastId.fadeOut();
-  }, 2500);
+  }, 3000);
 }
 
 // 버튼 클릭시 텍스트 변경

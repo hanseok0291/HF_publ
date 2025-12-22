@@ -166,7 +166,7 @@
   padding-left: 32px;
 }
 
-.event-container .event-content-wrap .event-list-wrap::before {
+.event-container .event-content-wrap .line-wrap {
   content: "";
   position: absolute;
   top: -8px;
@@ -177,7 +177,16 @@
   background-color: #f6f6f9;
 }
 
-.event-container .event-content-wrap .event-content:last-child .event-list-wrap::before {
+.event-container .event-content-wrap .line-wrap .line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: red;
+}
+
+.event-container .event-content-wrap .event-content:last-child .event-list-wrap .line-wrap {
   display: none;
 }
 
@@ -243,17 +252,6 @@
 .event-container .event-content-wrap .event-info {
   position: relative;
   padding-left: 32px;
-}
-
-.event-container .event-content-wrap .event-info::before {
-  content: "";
-  position: absolute;
-  top: 4px;
-  left: 11px;
-  width: 2px;
-  height: calc(100% + 12px);
-  border-radius: 4px;
-  background-color: #f6f6f9;
 }
 
 .event-container .event-content-wrap .event-content:last-child .event-info::before {
@@ -597,4 +595,39 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+/* 슬롯 카운터 스타일 */
+.event-title .slot-counter {
+  display: inline-block;
+  position: relative;
+  vertical-align: baseline;
+}
+
+.event-title .slot-counter .slot-digit {
+  display: inline-block;
+  position: relative;
+  top: 3px;
+  vertical-align: baseline;
+  overflow: hidden;
+  height: 1em;
+  line-height: 1em;
+}
+
+.event-title .slot-counter .slot-digit .slot-wrapper {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.5s ease-out;
+}
+
+.event-title .slot-counter .slot-digit .slot-item {
+  display: block;
+  height: 1em;
+  line-height: 1em;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.event-title .slot-counter .slot-unit {
+  display: inline;
 }

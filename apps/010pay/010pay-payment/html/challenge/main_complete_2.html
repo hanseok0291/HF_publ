@@ -13,7 +13,7 @@
     />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <link rel="stylesheet" href="../../css/common_renewal.css" />
-    <link rel="stylesheet" href="../../css/challenge/main.css?v=202512231454" />
+    <link rel="stylesheet" href="../../css/challenge/main.css" />
     <link rel="stylesheet" href="../../css/swiper-bundle.min.css" />
     <script src="../../js/jquery.3.4.1.min.js"></script>
     <script src="../../js/jquery-ui.js"></script>
@@ -114,7 +114,6 @@
                   <button type="button" class="btn-more">
                     스토어 구경가기
                   </button>
-                  <button type="button" class="btn-next">다음</button>
                 </div>
                 <div class="swiper-slide swiper-slide-2">
                   <span class="step-text">참여방법 2</span>
@@ -127,10 +126,9 @@
                     <span class="sub-img-2"></span>
                     <span class="main-img"></span>
                   </div>
-                  <button type="button" class="btn-prev">이전</button>
                 </div>
               </div>
-              
+              <button type="button" class="btn-next">다음</button>
             </div>
           </div>
         </div>
@@ -231,7 +229,7 @@
     <!-- // 이벤트 참여 완료 카드 X 팝업 -->
 
     <!-- 이벤트 참여 완료 카드 O 팝업 -->
-    <div id="event-complete-card-o-modal" class="modal normal-modal">
+    <div id="event-complete-card-o-modal" class="modal normal-modal" style="display: block;">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
@@ -295,36 +293,29 @@
                 <ul class="terms-list terms-block-list">
                   <li>
                     <div class="checkbox-block-group">
-                      <span class="checkbox child">
-                        <input type="checkbox" id="checkbox_group3_1" />
-                        <label for="checkbox_group3_1"
-                          >(필수) (주)헥토파이낸셜 개인정보 제 3자 제공 동의
-                          <button
-                            type="button"
-                            class="arrow-right js-open-terms"
-                            onclick="modalOpen('noticeDetail')"
-                            data-toggle="modal"
-                            data-target="#noticeDetail"
-                          ></button
-                        ></label>
+                      <span class="checkbox child arrow-right">
+                        (필수) (주)헥토파이낸셜 개인정보 제 3자 제공 동의
+                        <button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                          onclick="modalOpen('noticeDetail')"
+                          data-toggle="modal"
+                          data-target="#noticeDetail"
+                        ></button>
                       </span>
                     </div>
                   </li>
                   <li>
                     <div class="checkbox-block-group">
-                      <span class="checkbox child">
-                        <input type="checkbox" id="checkbox_group3_2" />
-                        <label for="checkbox_group3_2"
-                          >(필수) (주)헥토이노베이션 개인정보 제 3자 제공
-                          동의
-                          <button
-                            type="button"
-                            class="arrow-right js-open-terms"
-                            onclick="modalOpen('noticeDetail')"
-                            data-toggle="modal"
-                            data-target="#noticeDetail"
-                          ></button
-                        ></label>
+                      <span class="checkbox child arrow-right">
+                        (필수) (주)헥토이노베이션 개인정보 제 3자 제공 동의
+                        <button
+                          type="button"
+                          class="arrow-right js-open-terms"
+                          onclick="modalOpen('noticeDetail')"
+                          data-toggle="modal"
+                          data-target="#noticeDetail"
+                        ></button>
                       </span>
                     </div>
                   </li>
@@ -411,20 +402,15 @@
     $(function () {
       var swiper = new Swiper(".swiper-container", {
         loop: true,
-        autoplay: {
-          delay: 2500,
-          disableOnInteraction: false,
-        },
+        // autoplay: {
+        //   delay: 2500,
+        //   disableOnInteraction: false,
+        // },
       });
 
       // 다음 버튼 클릭 시 다음 슬라이드로 이동
       $(".btn-next").on("click", function () {
         swiper.slideNext();
-      });
-
-      // 이전 버튼 클릭 시 다음 슬라이드로 이동
-      $(".btn-prev").on("click", function () {
-        swiper.slidePrev();
       });
 
       $(".title-section").addClass("active");

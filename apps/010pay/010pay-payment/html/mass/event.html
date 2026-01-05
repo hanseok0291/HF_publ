@@ -49,16 +49,16 @@
           <button type="button" class="card-move-btn">
             <span><b>라운드 페이 X 디지로카</b> 신규 카드 출시</span>
           </button>
-          <div class="event-content-wrap">
-            <h3 class="event-title">
-              <span>롯데카드 쓰고고고고고고고고</span>
-              <span
-                >최대
-                <b class="slot-number">15만원</b>
-                혜택 받자</span
+          <h3 class="event-title">
+            <span>롯데카드 쓰고고고고고고고고</span>
+            <span
               >
-            </h3>
-            <div class="event-content">
+              <b>최대 <i>15</i>만원</b>
+              혜택 받자</span
+            >
+          </h3>
+          <div class="event-content-wrap">
+            <div class="event-content active-event-content">
               <div class="event-num-wrap">
                 <span class="event-num">1</span>
                 <p class="event-text">이벤트 대상 카드로</p>
@@ -78,9 +78,9 @@
                     <div class="list-text-wrap">
                       <p class="sub-text">
                         <b>주유비 리터당 최대 150원 캐시백 최대 150원 캐시백</b>
-                        <b
+                        <i
                           >주유비 리터당 최대 150원 캐시백 주유비 리터당 최대
-                          150원 캐시백주유비 리터당 최대 150원 캐시백</b
+                          150원 캐시백주유비 리터당 최대 150원 캐시백</i
                         >
                       </p>
                       <p class="sub-text">디지로카 Auto</p>
@@ -130,7 +130,7 @@
                 </div>
               </div>
             </div>
-            <div class="event-content">
+            <div class="event-content active-event-content">
               <div class="event-num-wrap">
                 <span class="event-num">2</span>
                 <h4 class="event-info-title">
@@ -152,11 +152,11 @@
                 </button>
               </div>
             </div>
-            <div class="event-content">
+            <div class="event-content active-event-content">
               <div class="event-num-wrap">
                 <span class="event-num">3</span>
                 <h4 class="event-info-title">
-                  자동이체 신청 시 최대 <b>2만원</b> 추가 캐시백
+                  자동이체 신청 시 최대 <b><i>2만원</i> 추가 캐시백</b>
                 </h4>
               </div>
               <div class="event-info">
@@ -170,10 +170,10 @@
               </div>
             </div>
           </div>
-          <div class="event-detail-wrap">
+          <div class="event-detail-wrap active-event-content">
             <div class="event-detail-title">
               <span class="event-bg-text">이벤트 1</span>
-              <p class="title-text">13만원 쓰면 <b>13만원 받아요</b></p>
+              <p class="title-text">13만원 쓰면 <b>13만원</b> 받아요</p>
             </div>
             <dl class="event-detail-list">
               <dt>이벤트 기간</dt>
@@ -200,11 +200,11 @@
               <dd>25. 05. 31 이내 결제계좌로 지급</dd>
             </dl>
           </div>
-          <div class="event-detail-wrap">
+          <div class="event-detail-wrap active-event-content">
             <div class="event-detail-title">
               <span class="event-bg-text">이벤트 2</span>
               <p class="title-text">
-                자동이체 신청 시 최대 <b>2만원 받아요</b>
+                자동이체 신청 시 최대 <b>2만원</b> 받아요
               </p>
             </div>
             <dl class="event-detail-list">
@@ -232,7 +232,7 @@
               <dd>25. 05. 31 이내 결제계좌로 지급</dd>
             </dl>
           </div>
-          <div class="notice-wrap">
+          <div class="notice-wrap active-event-content">
             <h4 class="notice-title">유의사항을 꼭 확인해 주세요!</h4>
             <div class="notice-content-wrap">
               <div class="notice-content-inner">
@@ -887,6 +887,63 @@
         });
       }
 
+      // event-list li에 순차 애니메이션 delay 적용
+      function applySequentialAnimation() {
+        $(".event-content.active").each(function() {
+          var $eventContent = $(this);
+          var $listItems = $eventContent.find(".event-list li");
+          var $infoTexts = $eventContent.find(".info-text-wrap p");
+          
+          // li에 순차 애니메이션 delay 적용
+          $listItems.each(function(index) {
+            var delay = index * 0.2; // 각 항목마다 0.2초씩 지연
+            $(this).css("animation-delay", delay + "s");
+          });
+          
+          // li 애니메이션이 끝난 후 info-text-wrap의 p 요소들에 순차 애니메이션 적용
+          if ($listItems.length > 0 && $infoTexts.length > 0) {
+            // 마지막 li의 애니메이션이 끝나는 시점 계산
+            // (마지막 li의 delay + 애니메이션 duration)
+            var lastLiDelay = ($listItems.length - 1) * 0.2;
+            var animationDuration = 0.2; // fadeInUp 애니메이션 duration
+            var infoTextStartDelay = lastLiDelay + animationDuration;
+            
+            // info-text-wrap의 p 요소들에 순차 애니메이션 delay 적용
+            $infoTexts.each(function(index) {
+              var delay = infoTextStartDelay + (index * 0.2);
+              $(this).css("animation-delay", delay + "s");
+            });
+          }
+        });
+      }
+
+      // viewportCenter 기준으로 event-content active 클래스 토글
+      function updateEventContentActive() {
+        var scrollTop = $(window).scrollTop();
+        var windowHeight = $(window).height();
+        // 기존 라인 계산과 동일하게 화면 3/4 지점을 감지 기준으로 사용
+        var viewportCenter = scrollTop + (windowHeight * 3) / 4;
+
+        $(".active-event-content").each(function () {
+          var $eventContent = $(this);
+          var elementTop = $eventContent.offset().top;
+          var wasActive = $eventContent.hasClass("active");
+
+          // viewportCenter가 elementTop을 지나면 active 추가, 아니면 제거
+          if (viewportCenter > elementTop) {
+            if (!wasActive) {
+              $eventContent.addClass("active");
+              // active가 추가된 직후 순차 애니메이션 delay 적용
+              setTimeout(function() {
+                applySequentialAnimation();
+              }, 10);
+            }
+          } else if($eventContent.hasClass("event-content")) {
+            $eventContent.removeClass("active");
+          }
+        });
+      }
+
       // 스크롤 이벤트에 line 높이 업데이트 추가
       $(window).on("scroll", function () {
         clearTimeout(lineAnimationTimeout);
@@ -894,30 +951,34 @@
         // requestAnimationFrame을 사용하여 부드러운 업데이트
         requestAnimationFrame(function () {
           updateAllLineHeights();
+          updateEventContentActive();
         });
       });
 
       // 초기 로드 시에도 업데이트
       updateAllLineHeights();
+      updateEventContentActive();
+      // 초기 로드 시에도 순차 애니메이션 적용
+      applySequentialAnimation();
 
       // 리사이즈 시에도 업데이트
       $(window).on("resize", function () {
         updateAllLineHeights();
+        updateEventContentActive();
       });
 
       // ============================================
       // 슬롯 카운터 설정 (여기서 애니메이션 속도 조절 가능)
       // ============================================
-      var SLOT_ANIMATION_DURATION = "0.5s"; // 슬롯 숫자 회전 애니메이션 시간 (예: "0.3s", "0.5s", "1s" 등)
-      var SLOT_ANIMATION_EASING = "ease-out"; // 애니메이션 이징 (예: "ease-out", "ease-in-out", "linear" 등)
-      var SLOT_ROLLING_DURATION = 2000; // 슬롯이 시작되고 목표 숫자에 도달하기까지 걸리는 시간(밀리초) (예: 1000 = 1초, 2000 = 2초, 3000 = 3초)
-      var SLOT_ROTATION_COUNT = 10; // 슬롯이 도는 바퀴 수 (목표 숫자와 관계없이 이 만큼 돌면서 도달, 예: 3 = 3바퀴)
+      var SLOT_ANIMATION_DURATION = "0.8s"; // 슬롯 숫자 회전 애니메이션 기본 시간 (조금 더 여유 있게)
+      var SLOT_ANIMATION_EASING = "cubic-bezier(0.33, 1, 0.68, 1)"; // 마지막에 천천히 멈추는 부드러운 감속
+      var SLOT_ROTATION_COUNT = 5; // 슬롯이 도는 바퀴 수 (목표 숫자와 관계없이 이 만큼 돌면서 도달, 예: 3 = 3바퀴)
       // ============================================
 
       // 자동 슬롯 카운터 변환 함수 (class="slot-number"를 가진 b 태그를 자동 변환)
       function autoConvertToSlotCounter() {
         // slot-number 클래스를 가진 b 태그 찾기
-        $('b.slot-number').each(function() {
+        $('.event-title i').each(function() {
           var $bTag = $(this);
           
           // 이미 변환된 경우 스킵
@@ -941,12 +1002,14 @@
             var slotHTML = '';
             targetDigits.forEach(function(digit, index) {
               var slotItems = '';
-              // SLOT_ROTATION_COUNT + 1 만큼 숫자 세트를 복제 (여러 바퀴를 돌 수 있도록)
-              for (var copy = 0; copy <= SLOT_ROTATION_COUNT; copy++) {
-                for (var i = 0; i <= 9; i++) {
-                  slotItems += '<span class="slot-item">' + i + '</span>';
-                }
+              // 모든 slot-item을 0으로 설정하고 충분한 개수 생성
+              // SLOT_ROTATION_COUNT 바퀴만큼 0 생성 (1바퀴 = 10개)
+              var totalZeros = SLOT_ROTATION_COUNT + digit; // 예: 3바퀴 = 30개
+              for (var i = 0; i < totalZeros; i++) {
+                slotItems += '<span class="slot-item">0</span>';
               }
+              // 마지막에 목표 숫자 추가
+              slotItems += '<span class="slot-item">' + digit + '</span>';
               slotHTML += '<span class="slot-digit" data-digit="' + index + '">' +
                          '<span class="slot-wrapper">' + slotItems + '</span>' +
                          '</span>';
@@ -977,18 +1040,14 @@
               var itemHeight = $slotItems.first().outerHeight();
               $slotWrapper.css("height", itemHeight + "px");
 
-              // 각 슬롯을 랜덤 위치에서 시작
-              var randomStart = Math.floor(Math.random() * 10);
-              var translateY = -(randomStart * itemHeight);
+              // 모든 슬롯은 0에서 시작 (항상 0을 보이도록)
               $slotWrapper.css({
-                transform: "translateY(" + translateY + "px)",
+                transform: "translateY(0px)",
                 transition: "none",
               });
 
               // 목표 숫자 저장
               $slotDigit.data("target-digit", targetDigits[index] || 0);
-              // 랜덤 시작 위치 저장 (updateSlotCounter에서 사용)
-              $slotDigit.data("start-random-index", randomStart);
             }
           });
         });
@@ -1019,57 +1078,52 @@
 
               var itemHeight = $slotItems.first().outerHeight();
 
-              // 슬롯 시작 시간 확인 (처음 진입 시)
-              var startTime = $slotDigit.data("start-time");
-              var startRandomIndex = $slotDigit.data("start-random-index");
-              
-              // startRandomIndex가 없으면 initSlotCounter에서 설정한 값이 없으므로 새로 생성
-              if (startRandomIndex === undefined || startRandomIndex === null) {
-                startRandomIndex = Math.floor(Math.random() * 10);
-                $slotDigit.data("start-random-index", startRandomIndex);
-              }
-              
-              if (!startTime) {
-                startTime = Date.now();
-                $slotDigit.data("start-time", startTime);
-              }
+              // 스크롤 진행도 계산
+              var scrollProgress = (viewportCenter - elementTop) / (elementBottom - elementTop);
+              scrollProgress = Math.max(0, Math.min(1, scrollProgress));
 
-              // 현재 시간 기준으로 경과 시간 계산
-              var elapsedTime = Date.now() - startTime;
+              // 진행도에 따라 현재 위치 계산
+              var totalItems = $slotItems.length;
+              var targetItemIndex = totalItems - 1; // 목표 숫자의 인덱스 (마지막에 추가된 숫자)
+              var currentIndex;
               
-              // SLOT_ROLLING_DURATION에 따라 진행도 계산 (0 ~ 1)
-              var rollingProgress = Math.min(1, elapsedTime / SLOT_ROLLING_DURATION);
-
-              // 목표 숫자까지의 거리 계산 (시계 방향)
-              var startToTarget;
-              if (targetDigit >= startRandomIndex) {
-                startToTarget = targetDigit - startRandomIndex;
+              if (scrollProgress < 0.9) {
+                // 회전 중: 항상 0을 보이도록 (같은 바퀴 수만큼 돌기)
+                // 진행도에 따라 회전 (0.9까지는 0을 보이도록)
+                var rotationProgress = scrollProgress / 0.9; // 0 ~ 1
+                var rotationDistance = targetItemIndex * rotationProgress;
+                // 0부터 시작해서 회전 (더 부드럽게: 소수점 허용하되 0의 배수에 가깝게)
+                // 5의 배수로 이동하여 더 부드러운 회전 효과
+                currentIndex = Math.floor(rotationDistance / 5) * 5; // 5의 배수로 이동 (더 부드러운 회전)
               } else {
-                startToTarget = (10 - startRandomIndex) + targetDigit; // 한 바퀴 돌아서 도달
+                // 마지막 10%: 목표 숫자로 이동
+                currentIndex = targetItemIndex;
               }
-
-              // 총 이동 거리 = 여러 바퀴 + 목표까지 거리
-              var totalRotation = SLOT_ROTATION_COUNT * 10; // 전체 바퀴 수
-              var totalDistance = totalRotation + startToTarget; // 총 이동 거리
               
-              // 진행도에 따라 현재 위치 계산 (부드러운 애니메이션을 위해 소수점 사용)
-              var currentDistance = totalDistance * rollingProgress;
-              // 시작 위치에서 현재까지 이동한 거리만큼 translateY 계산 (여러 바퀴를 돌 수 있도록)
-              var totalTranslateDistance = startRandomIndex + currentDistance;
-              var translateY = -(totalTranslateDistance * itemHeight);
+              // translateY 계산 (0부터 시작)
+              var translateY = -(currentIndex * itemHeight);
 
-              // 슬롯 애니메이션 적용 (롤링 중에는 transition 없이 즉시 업데이트)
-              if (rollingProgress < 1) {
+              // 슬롯 애니메이션 적용
+              // scrollProgress가 1에 도달했거나 거의 도달한 경우 목표 숫자로 강제 이동
+              if (scrollProgress >= 0.99) {
+                // 거의 완료: 목표 숫자 위치로 강제 이동
+                currentIndex = targetItemIndex;
+                translateY = -(currentIndex * itemHeight);
+              }
+              
+              // 마지막 구간(0.9 이상)에서만 transition + easing 적용해서 부드럽게 감속
+              if (scrollProgress < 0.9) {
                 // 롤링 중: transition 없이 즉시 업데이트
                 $slotWrapper.css({
                   transform: "translateY(" + translateY + "px)",
                   transition: "none",
                 });
               } else {
-                // 롤링 완료 후: 부드러운 transition 적용
+                // 마지막 10% 구간: 고정된 duration + easing으로 한 번만 감속
+                var transitionDuration = parseFloat(SLOT_ANIMATION_DURATION); // 설정한 시간만 사용
                 $slotWrapper.css({
                   transform: "translateY(" + translateY + "px)",
-                  transition: "transform " + SLOT_ANIMATION_DURATION + " " + SLOT_ANIMATION_EASING,
+                  transition: "transform " + transitionDuration + "s " + SLOT_ANIMATION_EASING,
                 });
               }
             });
@@ -1084,22 +1138,14 @@
               if ($slotItems.length === 0) return;
 
               var itemHeight = $slotItems.first().outerHeight();
-              var targetIndex = targetDigit;
-              var translateY = -(targetIndex * itemHeight);
+              var totalItems = $slotItems.length;
+              var targetItemIndex = totalItems - 1; // 목표 숫자의 인덱스 (마지막에 추가된 숫자)
+              var translateY = -(targetItemIndex * itemHeight);
 
               $slotWrapper.css({
                 transform: "translateY(" + translateY + "px)",
                 transition: "transform " + SLOT_ANIMATION_DURATION + " " + SLOT_ANIMATION_EASING,
               });
-              
-              // 완료 후 시작 시간 초기화 (다시 진입 시 재시작)
-              $slotDigit.removeData("start-time");
-            });
-          } else {
-            // 요소 영역 밖에 있을 때 시작 시간 초기화
-            $slotCounter.find(".slot-digit").each(function () {
-              var $slotDigit = $(this);
-              $slotDigit.removeData("start-time");
             });
           }
         });

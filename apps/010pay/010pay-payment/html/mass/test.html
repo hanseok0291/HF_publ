@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Bar Chart UI</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", sans-serif;
+        background: #f6f7f8;
+        padding: 24px;
+      }
+
+      .graph-list{
+  display:flex;
+  gap:28px;
+  align-items:flex-start; /* li 전체를 바닥정렬하지 않게(중요) */
+}
+
+.graph-item{
+  width:90px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* ✅ 막대 “기준면”은 여기서 고정 */
+.graph-area{
+  height:180px;                 /* 차트 높이(원하는 값) */
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-end;     /* 막대를 아래로 붙임 */
+  gap:10px;
+  position:relative;
+}
+
+/* 말풍선 */
+.amount-text{
+  background:#b7e600;
+  padding:6px 12px;
+  border-radius:999px;
+  font-weight:700;
+  line-height:1;
+}
+
+/* 막대 */
+.graph-bar{
+  width:52px;
+  border-radius:999px;
+  background:#b7e600;
+}
+
+/* 라벨은 흐름에 두기 => 길어지면 li만 커지고 막대는 그대로 */
+.card-text{
+  margin-top:8px;
+  text-align:center;
+  line-height:1.2;
+  word-break:keep-all;
+}
+
+    </style>
+  </head>
+
+  <body>
+    <ul class="graph-list">
+      <li class="graph-item">
+        <div class="graph-area">
+          <span class="amount-text">99만</span>
+          <div class="graph-bar" style="height: 77px"></div>
+        </div>
+        <p class="card-text">국민카드</p>
+      </li>
+    
+      <li class="graph-item">
+        <div class="graph-area">
+          <span class="amount-text">99만</span>
+          <div class="graph-bar" style="height: 90px"></div>
+        </div>
+        <p class="card-text">롯데카드</p>
+      </li>
+    
+      <li class="graph-item">
+        <div class="graph-area">
+          <span class="amount-text">99만</span>
+          <div class="graph-bar" style="height: 90px"></div>
+        </div>
+        <p class="card-text">아주아주 긴 카드명이라서 두 줄이 될 수도 있음</p>
+      </li>
+    </ul>
+  </body>
+</html>

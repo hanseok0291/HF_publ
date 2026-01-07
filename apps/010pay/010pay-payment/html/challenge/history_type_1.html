@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>RROUND</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../css/challenge/history.css" />
+    <script src="../../js/jquery.3.4.1.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <div id="header">
+        <div class="container">
+          <div class="header-box">
+            <h2 class="page-title">나의 활동 내역</h2>
+            <button type="button" class="btn-close js-change-btn">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- //header -->
+
+      <!-- content -->
+      <div id="content">
+        <!-- container -->
+        <div class="container history-container">
+          <!-- 적립 미대상 -->
+          <div class="event-target off">
+            <p class="main-text">5배 적립 대상자가 아니에요</p>
+            <p class="sub-text">
+              챌린지 참여는 카드가 필요해요
+            </p>
+            <button type="button">카드 자세히 보기</button>
+          </div>
+          <!-- <div class="event-target off">
+            <p class="main-text">아직 이용내역이 없어요</p>
+            <p class="sub-text">
+              카드를 이용하여 1만원 이상 결제가 필요해요
+            </p>
+            <button type="button">스토어 바로가기</button>
+          </div> -->
+          <!-- 적립 대상 -->
+          <!-- <div class="event-target on">
+            <p class="main-text">5배 적립을 받을 수 있어요</p>
+          </div> -->
+          
+          <div class="history-wrap">
+            <!-- <p class="empty-list">
+              이벤트 진행 중에는 <br>
+              확인할 수 없어요
+            </p> -->
+            <p class="empty-list">적립내역이 없어요</p>
+            <!-- <div class="month-wrap">
+              <button type="button" class="prev-btn icon-arrow-left size-16">이전</button>
+              <button type="button" class="month-text">7월</button>
+              <button type="button" class="next-btn icon-arrow-right size-16 disabled">다음</button>
+            </div>
+            <div class="list-contents-wrap">
+              <dl class="total-point-box">
+                <dt>총 적립 포인트</dt>
+                <dd>3,000P</dd>
+              </dl>
+              <ul class="list-wrap">
+                <li>
+                  <dl class="info-box">
+                    <dt>챌린지</dt>
+                    <dd>웹툰 보고 포인트 받기</dd>
+                  </dl>
+                  <div class="detail-point-box">
+                    <dl class="final-point-box">
+                      <dt>최종 적립 포인트(x5배)</dt>
+                      <dd>+500P</dd>
+                    </dl>
+                    <dl class="basic-point-box">
+                      <dt>기본 적립 포인트</dt>
+                      <dd>+100P</dd>
+                    </dl>
+                    <dl class="basic-point-box">
+                      <dt>추가 적립 포인트</dt>
+                      <dd>+400P</dd>
+                    </dl>
+                  </div>
+                </li>
+              </ul>
+            </div> -->
+          </div>
+        </div>
+        <!-- //container -->
+      </div>
+      <!-- //content -->
+    </div>
+    <!-- //wrap -->
+  </body>
+  <script>
+    $(function () {
+      var $prevBtn = $('.prev-btn');
+      var $nextBtn = $('.next-btn');
+      var $monthText = $('.month-text');
+      
+      // 현재 월 추출 (초기값: "7월" -> 7)
+      var currentMonth = parseInt($monthText.text().replace('월', ''));
+      
+      // 월 업데이트 함수
+      function updateMonth(month) {
+        currentMonth = month;
+        $monthText.text(currentMonth + '월');
+        
+        // 이전 버튼: 1월일 때 disabled
+        if (currentMonth <= 1) {
+          $prevBtn.addClass('disabled');
+        } else {
+          $prevBtn.removeClass('disabled');
+        }
+        
+        // 다음 버튼: 12월일 때 disabled (또는 현재 월에 도달했을 때)
+        if (currentMonth >= 12) {
+          $nextBtn.addClass('disabled');
+        } else {
+          $nextBtn.removeClass('disabled');
+        }
+      }
+      
+      // 이전 버튼 클릭
+      $prevBtn.on('click', function() {
+        if ($(this).hasClass('disabled')) return;
+        
+        if (currentMonth > 1) {
+          updateMonth(currentMonth - 1);
+        }
+      });
+      
+      // 다음 버튼 클릭
+      $nextBtn.on('click', function() {
+        if ($(this).hasClass('disabled')) return;
+        
+        if (currentMonth < 12) {
+          updateMonth(currentMonth + 1);
+        }
+      });
+      
+      // 초기 상태 설정
+      updateMonth(currentMonth);
+    });
+  </script>
+</html>

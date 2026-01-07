@@ -19,12 +19,14 @@ export const isWebView = (): boolean => {
 };
 
 export const isMobile = (): boolean => {
+  if (typeof navigator === "undefined") return false;
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
     navigator.userAgent
   );
 };
 
 export const isSafari = (): boolean => {
+  if (typeof navigator === "undefined") return false;
   return (
     /Safari/i.test(navigator.userAgent) &&
     !/Chrome|Edg/i.test(navigator.userAgent)
@@ -32,10 +34,12 @@ export const isSafari = (): boolean => {
 };
 
 export const isEdge = (): boolean => {
+  if (typeof navigator === "undefined") return false;
   return /Edg(e|A|iOS)?\/\d+/.test(navigator.userAgent);
 };
 
 export const isiOS = (): boolean => {
+  if (typeof navigator === "undefined") return false;
   return /(iPhone|iPad)/i.test(navigator.userAgent);
 };
 

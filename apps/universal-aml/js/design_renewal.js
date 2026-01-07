@@ -276,20 +276,41 @@ function modalOpenSlide(obj) {
       });
 
   // 모달 외부 클릭 시 닫기 처리
-  temp.on("click", function (e) {
-    // 외부를 클릭했는지 확인
-    if (
-      !$(e.target).closest(".modal-content").length &&
-      !temp.hasClass("not-dim-close")
-    ) {
-      // 열린 모달 확인 (display: block 기준)
-      const openedModal = $(".modal:visible"); // 현재 보이는 모달 선택
-      if (openedModal.attr("id") === "modal-select-bank") {
-        $("#btnHidden").show();
+  // modalBalanceStandard의 경우 해당 모달만 닫기 위해 별도 이벤트 핸들러 사용
+  if (temp.attr("id") === "modalBalanceStandard") {
+    temp.on("click.modalBalanceStandard", function (e) {
+      // 외부를 클릭했는지 확인
+      if (
+        !$(e.target).closest(".modal-content").length &&
+        !temp.hasClass("not-dim-close")
+      ) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        const modalContent = temp.find(".modal-content");
+        modalContent.animate({ bottom: modalH }, 200, function() {
+          temp.fadeOut(0);
+        });
+        return false;
       }
-      modalCloseSlide(); // 모달 닫기
-    }
-  });
+    });
+  } else {
+    // 다른 슬라이드 모달의 경우
+    temp.on("click", function (e) {
+      // 외부를 클릭했는지 확인
+      if (
+        !$(e.target).closest(".modal-content").length &&
+        !temp.hasClass("not-dim-close")
+      ) {
+        // 열린 모달 확인 (display: block 기준)
+        const openedModal = $(".modal:visible"); // 현재 보이는 모달 선택
+        if (openedModal.attr("id") === "modal-select-bank") {
+          $("#btnHidden").show();
+        }
+        modalCloseSlide(); // 모달 닫기
+      }
+    });
+  }
   // js-modal-close 버튼 클릭 시 모달 닫기 실행
   temp
     .find(".js-modal-close")

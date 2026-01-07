@@ -19,7 +19,7 @@
 
   <body>
     <!-- wrap -->
-    <div id="wrap" class="card">
+    <div id="wrap" class="card card-my-card">
       <!-- header -->
       <header class="header">
         <div class="container">
@@ -104,7 +104,7 @@
                 </a>
               </li>
               <li>
-                <a href="#"
+                <a href="#" class="js-modal-slide" data-target="modalCardRegistration"
                   >카드 사용/수령 등록 
                 </a>
               </li>
@@ -501,6 +501,54 @@
       </div>
     </div>
     <!-- //modal - common alert -->
+
+    <!-- 카드 등록 선택 모달 -->
+    <div id="modalCardRegistration" class="modal modal-full">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <div class="container">
+              <button type="button" class="btn-back btn"></button>
+              <h1 class="brand-name">카드 등록</h1>
+              <button type="button" class="btn-close btn"></button>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <!-- 카드 등록 선택 영역 -->
+              <div class="card-registration-options">
+                <!-- 카드 사용 등록 -->
+                <a href="cardReg/cardUseStep_01.html" class="registration-card registration-card-use">
+                  <div class="registration-card-icon">
+                    <!-- 카드 아이콘 - 실제 아이콘 이미지로 교체 필요: icon-card-use.svg 또는 .png -->
+                    <img src="../../../images/card/ico-right.svg" alt="카드 사용 등록" style="opacity: 0.3;">
+                  </div>
+                  <span class="registration-card-text">카드 사용 등록</span>
+                  <span class="registration-card-arrow"></span>
+                </a>
+                
+                <!-- 카드 수령 등록 -->
+                <a href="cardReg/cardReceiptStep_01.html" class="registration-card registration-card-receipt">
+                  <div class="registration-card-icon">
+                    <!-- 박스/패키지 아이콘 - 실제 아이콘 이미지로 교체 필요: icon-card-receipt.svg 또는 .png -->
+                    <img src="../../../images/card/ico-right.svg" alt="카드 수령 등록" style="opacity: 0.3;">
+                  </div>
+                  <span class="registration-card-text">카드 수령 등록</span>
+                  <span class="registration-card-arrow"></span>
+                </a>
+              </div>
+
+              <!-- 카드 등록 안내 링크 -->
+              <div class="card-registration-guide">
+                <a href="#" class="guide-link" id="cardRegistrationGuide">카드 등록 안내</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //카드 등록 선택 모달 -->
+
     <script>
       $(window).on("load", function () {
         formatPhoneNumber();
@@ -526,6 +574,24 @@
         pagination: {
         el: ".swiper-pagination",
       },
+      });
+
+      // 카드 등록 모달 - 뒤로가기 버튼
+      $("#modalCardRegistration .btn-back").on("click", function() {
+        modalClose();
+      });
+
+      // 카드 등록 모달 - 닫기 버튼
+      $("#modalCardRegistration .btn-close").on("click", function() {
+        modalClose();
+      });
+
+      // 카드 등록 안내 링크 클릭 이벤트
+      $(document).on("click", "#cardRegistrationGuide", function(e) {
+        e.preventDefault();
+        // 안내 모달 열기 또는 안내 페이지로 이동
+        // TODO: 카드 등록 안내 모달/페이지 구현 필요
+        console.log("카드 등록 안내 클릭");
       });
     </script>
   </body>

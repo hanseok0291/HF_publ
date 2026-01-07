@@ -18,7 +18,7 @@ export default function VerifyInput({ control, name }: VerifyInputProps) {
       onChange={onChange}
       value={value as string}
     >
-      <InputOTPGroup className="w-full justify-between">
+      <InputOTPGroup className="w-full justify-center lg:justify-between gap-[14px]">
         <InputOTPSlot index={0} />
         <InputOTPSlot index={1} />
         <InputOTPSlot index={2} />

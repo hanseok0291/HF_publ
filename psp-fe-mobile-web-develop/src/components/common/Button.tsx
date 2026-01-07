@@ -13,7 +13,7 @@ const Button: FC<
     HTMLButtonElement
   > &
     ButtonType
-> = ({ children, className = "", buttonType = "default", ...bttonAttr }) => {
+> = ({ children, className = "", buttonType = "default", disabled, ...bttonAttr }) => {
   const buttonStyles = {
     default:
       "flex justify-center items-center h-[52px] border-none rounded bg-main text-white font-semibold",
@@ -22,10 +22,16 @@ const Button: FC<
     cancel:
       "flex justify-center items-center w-[108px] h-[52px] border-none rounded bg-gray40 text-black font-semibold"
   };
-  const BUTTON_STYLE = cn(buttonStyles[buttonType], className);
+  
+  // disabled 상태일 때 스타일 오버라이드 (className으로 전달된 스타일이 우선)
+  const BUTTON_STYLE = cn(
+    buttonStyles[buttonType],
+    disabled && buttonType === "default" && "bg-gray40 text-gray60 cursor-not-allowed",
+    className
+  );
 
   return (
-    <button {...bttonAttr} className={BUTTON_STYLE}>
+    <button {...bttonAttr} disabled={disabled} className={BUTTON_STYLE}>
       {children}
     </button>
   );

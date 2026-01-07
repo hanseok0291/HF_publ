@@ -29,7 +29,7 @@ const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        "flex flex-1 items-center justify-between py-2 text-sm transition-all text-left [&[data-state=open]>svg]:rotate-180",
+        "flex flex-1 items-center justify-between py-[14px] text-sm transition-all text-left [&[data-state=open]>svg]:rotate-180",
         className
       )}
       {...props}
@@ -37,11 +37,11 @@ const AccordionTrigger = React.forwardRef<
       {position === "after" ? (
         <>
           {children}
-          <ChevronDown className="h-4 w-4 mr-4 shrink-0 text-muted-foreground transition-transform duration-200" />
+          <ChevronDown className="h-5 w-5 mr-0 shrink-0 text-muted-foreground transition-transform duration-200" />
         </>
       ) : (
         <>
-          <ChevronDown className="h-4 w-4 mr-4 shrink-0 text-muted-foreground transition-transform duration-200" />
+          <ChevronDown className="h-5 w-5 mr-0 shrink-0 text-muted-foreground transition-transform duration-200" />
           {children}
         </>
       )}

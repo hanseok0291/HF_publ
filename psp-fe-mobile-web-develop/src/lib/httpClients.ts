@@ -96,7 +96,38 @@ async function httpRequest({
 
       // 리트라이 못 하는데 실패 떨어졌을 때
       if (!response.ok || ![0, 200].includes(response.status)) {
-        const error = await response.json();
+        // Content-Type 확인
+        const contentType = response.headers.get("content-type");
+        let error: any;
+        
+        try {
+          if (contentType?.includes("application/json")) {
+            error = await response.json();
+          } else {
+            // JSON이 아닌 경우 (HTML 에러 페이지 등)
+            const text = await response.text();
+            error = {
+              code: response.status,
+              error: "SERVER_ERROR",
+              message: text.includes("Internal Server Error") 
+                ? "서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요."
+                : `서버 오류 (${response.status})`,
+              path: response.url,
+              timeStamp: new Date().toISOString()
+            };
+          }
+        } catch (parseError) {
+          // JSON 파싱 실패 시 (퍼블리싱 작업 중 API 연결 없을 때 등)
+          console.warn("API 응답 파싱 실패:", parseError);
+          error = {
+            code: response.status || 500,
+            error: "PARSE_ERROR",
+            message: "서버 응답을 처리할 수 없습니다.",
+            path: response.url || url,
+            timeStamp: new Date().toISOString()
+          };
+        }
+        
         throw error as {
           code: number;
           error: string;

@@ -44,17 +44,22 @@ export default function WasteStickerTable({ pushLink }: any) {
   }, [selectedList]);
 
   return (
-    <div className="flex flex-col flex-grow overflow-y-auto">
-      <div className="flex-grow">
+    <div className="flex flex-col h-full">
+      <div className="flex-1 overflow-y-auto">
         {query === "trash-bag" ? <TrashBagTable /> : <StickerTable />}
       </div>
-      {selectedList.length > 0 && (
-        <div className="px-[20px] mt-[52px] mb-[40px]">
-          <Button className="w-full" onClick={() => router.push(pushLink)}>
-            다음
-          </Button>
-        </div>
-      )}
+      {/* 하단 고정 다음 버튼 */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-[16px] z-10">
+        <Button 
+          disabled={selectedList.length === 0}
+          className="w-full h-[52px] text-[16px] font-semibold disabled:bg-gray40 disabled:cursor-not-allowed disabled:text-white"
+          onClick={() => router.push(pushLink)}
+        >
+          다음
+        </Button>
+      </div>
+      {/* 버튼 공간 확보 */}
+      <div className="h-[84px]"></div>
     </div>
   );
 }

@@ -141,6 +141,48 @@ export const useVerifyUtil = () => {
 
       return { success: false, error: loginResponse.code };
     } catch (error: any) {
+      // 퍼블리싱 작업 중 서버 연결 없을 때 500 에러는 모킹 데이터로 처리
+      if (error?.code === 500) {
+        console.warn("서버 연결 없음 (퍼블리싱 작업 중):", error.message);
+        
+        // 모킹 데이터 생성
+        const now = new Date();
+        const expireDate = new Date(now.getTime() + 24 * 60 * 60 * 1000); // 24시간 후
+        
+        const mockLoginResponse = {
+          code: 0,
+          content: {
+            adminId: adminId || "mock-admin-id",
+            name: "테스트 사용자",
+            roleCode: service === "store" ? "ROLE_STORE" : "ROLE_ISTT",
+            roleTitle: service === "store" ? "판매소" : "수거업체",
+            accessToken: "mock-access-token",
+            accessDate: now.toISOString(),
+            expireDate: expireDate.toISOString(),
+            accessExpireIn: "86400",
+            refreshToken: "mock-refresh-token",
+            refreshExpireIn: "604800",
+            passwordChangeRequireYn: false,
+            localGovernmentId: null,
+            positionName: "테스트",
+            institutionId: "mock-institution-id",
+            storeId: service === "store" ? "mock-store-id" : ""
+          } as VerificationLoginType
+        };
+
+        try {
+          // 모킹 쿠키 설정
+          setUserInfoToBrowser(mockLoginResponse.content, undefined);
+          setUserCookies(mockLoginResponse.content);
+          handleLoginRole(mockLoginResponse.content);
+          
+          return { success: true, data: mockLoginResponse };
+        } catch (cookieError) {
+          console.error("Error while setting mock cookies:", cookieError);
+          return { success: false, error: "쿠키 설정에 실패했습니다." };
+        }
+      }
+
       [400, 401, 403].includes(error?.code) &&
         setFormError((error as ApiError).message);
       return { success: false, error: (error as ApiError).message };

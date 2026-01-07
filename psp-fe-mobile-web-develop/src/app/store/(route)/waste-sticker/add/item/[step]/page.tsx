@@ -54,7 +54,7 @@ export default function Page({ params }: AddItemType) {
   }
 
   if (step === "1") {
-    Object.assign(headerOption, { title: "구매 희망 스티커 분류 선택" });
+    Object.assign(headerOption, { title: "스티커 권종 및 세부 규격 선택" });
   }
 
   if (step === "2") {
@@ -144,17 +144,17 @@ export default function Page({ params }: AddItemType) {
   }, [topId, middleId, keyword]);
 
   return (
-    <div className="animate-fade-in flex flex-col h-svh overflow-y-auto">
+    <div className="flex flex-col h-svh bg-white">
       <CloseHeader
-        title={`${headerOption.title} (${step}/2)`}
+        title={headerOption.title}
         onClose={() => router.back()}
       />
 
-      <div className="flex-grow flex flex-col">
+      <div className="flex-1 flex flex-col overflow-hidden">
         {step === "1" && (
           <AddFirstStep
             setKeyword={setKeyword}
-            SearchInputPlaceholder="스티커 권종 이름을 검색해 주세요."
+            SearchInputPlaceholder="분류명을 검색해 주세요."
             dataList={dataList}
             pushLink={`/store/waste-sticker/add/item/${2}`}
           />

@@ -26,32 +26,34 @@ export default function AddFirstStep({
   const form = useForm<StickerListParams>({ mode: "onChange" });
   const { control } = form;
   return (
-    <>
-      <div className="px-[20px] mb-[16px]">
-        <div className="grid grid-cols-2 gap-[8px] [&>*:last-child]:col-span-2">
-          <Controller
-            control={control}
-            name="standardName"
-            render={({ field: { value, onChange } }) => (
-              <SearchInput
-                placeholder={SearchInputPlaceholder}
-                initialValue={value ? decodeURIComponent(value) : ""}
-                className="h-[40px] flex-[1_0_0%] border-gray40 rounded"
-                useInstantSearch={false}
-                setKeyword={(newValue) => {
-                  const processedValue = newValue
-                    ? decodeURIComponent(newValue)
-                    : "";
-                  setKeyword(processedValue);
-                  onChange(processedValue);
-                }}
-              />
-            )}
-          />
-        </div>
+    <div className="flex flex-col flex-1 overflow-hidden">
+      {/* 검색 바 */}
+      <div className="px-[20px] py-[16px]">
+        <Controller
+          control={control}
+          name="standardName"
+          render={({ field: { value, onChange } }) => (
+            <SearchInput
+              placeholder={SearchInputPlaceholder}
+              initialValue={value ? decodeURIComponent(value) : ""}
+              className="h-[40px] w-full border-gray40 rounded-[4px]"
+              useInstantSearch={false}
+              setKeyword={(newValue) => {
+                const processedValue = newValue
+                  ? decodeURIComponent(newValue)
+                  : "";
+                setKeyword(processedValue);
+                onChange(processedValue);
+              }}
+            />
+          )}
+        />
       </div>
 
-      <WasteStickerTable data={dataList} pushLink={pushLink} />
-    </>
+      {/* 리스트 영역 */}
+      <div className="flex-1 overflow-y-auto">
+        <WasteStickerTable data={dataList} pushLink={pushLink} />
+      </div>
+    </div>
   );
 }

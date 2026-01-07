@@ -10,8 +10,8 @@
     <title>헥토파이낸셜</title>
     <link rel="stylesheet" href="../../css/reset.css" />
     <link rel="stylesheet" href="../../css/common.css" />
-    <link rel="stylesheet" href="../../css/card.css" />
-    <link rel="stylesheet" href="../../css/autoCharge.css" />
+    <link rel="stylesheet" href="../../css/card.css?ver=25" />
+    <link rel="stylesheet" href="../../css/autoCharge.css?ver=25" />
     <link rel="stylesheet" href="../../css/swiper-bundle.min.css" />
     <script src="../../js/jquery-1.8.3.min.js"></script>
     <script src="../../js/common.js" defer></script>
@@ -53,10 +53,10 @@
               </div>
             </div>
 
-            <!-- 주계좌/보조 계좌 섹션 (자동충전 사용 ON일 때만 표시) -->
+            <!-- 주계좌/보조계좌 섹션 (자동충전 사용 ON일 때만 표시) -->
             <div class="account-section-wrap" id="accountSection" style="display: none;">
               <div class="account-section-header">
-                <span class="label-text">자동 충전 계좌</span>
+                <span class="label-text">자동충전 계좌</span>
                 <button
                   type="button"
                   class="btn-account-manage"
@@ -128,15 +128,15 @@
                   </div>
                 </div>
 
-                <!-- 보조 계좌 -->
+                <!-- 보조계좌 -->
                 <div class="account-item-box">
                   <div class="account-label">
-                    <span class="label-text">보조 계좌</span>
+                    <span class="label-text">보조계좌</span>
                   </div>
                   <div class="account-content-row" id="secondaryAccount">
                     <!-- 케이스 1: 주계좌가 등록되지 않은 경우 (디폴트) -->
                     <div class="account-empty">
-                      <p class="empty-text">주 계좌를 먼저 등록하세요.</p>
+                      <p class="empty-text">주계좌를 먼저 등록하세요.</p>
                     </div>
 
                     <!-- 케이스 2: 주계좌가 등록되고 보조계좌가 없는 경우 -->
@@ -187,7 +187,7 @@
               <div class="account-notice-box">
                 <ul class="account-notice-list">
                   <li>
-                    주 계좌로 충전이 실패할 경우를 대비해 보조계좌를 추가로 등록 할 수 있습니다. 
+                    주계좌로 충전이 실패할 경우를 대비해 보조계좌를 추가로 등록 할 수 있습니다. 
                   </li>
                 </ul>
               </div>
@@ -216,12 +216,14 @@
             <div class="auto-charge-item">
               <a
                 href="#"
-                class="reservation-link js-modal-slide"
-                data-target="modalReservationEdit"
+                class="reservation-link"
                 id="reservationLink"
               >
                 <span class="label-text">기준충전 설정</span>
-                <span class="arrow-icon"></span>
+                <div class="reservation-link-right">
+                  <span class="reservation-status-badge">사용 중</span>
+                  <span class="arrow-icon"></span>
+                </div>
               </a>
             </div>
           </div>
@@ -239,13 +241,13 @@
                     <div class="list-body accordion-item">
                       <ul class="guide-wrap-list">
                         <li>
-                          자동 충전은 결제 시 부족 금액이 자동 충전되는
+                          자동충전은 결제 시 부족 금액이 자동충전되는
                           결제부족금액 자동충전과 선불 잔액을 기준으로 충전하는
                           기준금액 방식, 지정일을 기준으로 충전하는 기준일자
                           방식의 3가지를 제공합니다.
                         </li>
                         <li>
-                          자동충전 사유가 발생하면 등록 계좌에서 자동 충전이
+                          자동충전 사유가 발생하면 등록 계좌에서 자동충전이
                           이루어집니다.
                         </li>
                         <li>
@@ -254,7 +256,7 @@
                           발생합니다.
                         </li>
                         <li>
-                          자동충전 사용 on/Off 기능을 통해 등록된 자동 충전을
+                          자동충전 사용 on/off 기능을 통해 등록된 자동충전을
                           삭제하지 않고도 일시정지가 가능합니다.
                         </li>
                         <li>
@@ -267,8 +269,8 @@
                           등)에 따라 자동충전이 실행되지 않을 수 있습니다.
                         </li>
                         <li>
-                          다음의 경우 자동 충전 설정은 자동으로 해지됩니다.<br />-
-                          자동 충전에 의해 결제 시도 시, 연속으로 2회 결제
+                          다음의 경우 자동충전 설정은 자동으로 해지됩니다.<br />-
+                          자동충전에 의해 결제 시도 시, 연속으로 2회 결제
                           실패하는 경우<br />- 안심선불서비스를 탈퇴하는 경우
                         </li>
                         <li>
@@ -652,7 +654,7 @@
               <p>
                 잔액이 <span class="highlight-amount">10만원</span> 이하인 경우
                 <br />
-                <span class="highlight-amount">3만원</span>이 자동 충전 됩니다.
+                <span class="highlight-amount">3만원</span>이 자동충전 됩니다.
               </p>
             </div>
 
@@ -685,7 +687,7 @@
               </div>
 
               <div class="reservation-amount-group">
-                <p class="reservation-amount-label">충전금액</p>
+                <p class="reservation-amount-label">충전 금액</p>
                 <div class="reservation-amount-buttons">
                   <button
                     type="button"
@@ -733,12 +735,6 @@
             <div class="container">
               <button type="button" class="btn-back btn"></button>
               <h1 class="brand-name text">기준충전 설정</h1>
-                    <button
-                      type="button"
-                class="btn btn-close"
-                data-dismiss="modal"
-                aria-label="모달 닫기"
-              ></button>
             </div>
           </div>
           <div class="modal-body">
@@ -748,21 +744,21 @@
                   class="charge-method-item active"
                   data-method="balance-maintain"
                 >
-                  <div class="charge-method-label">충전방식</div>
+                  <div class="charge-method-label">충전 방식</div>
                   <div class="charge-method-value selected">
                     원하는 잔액 유지하기
                   </div>
                   <span class="arrow-icon"></span>
                 </li>
                 <li class="charge-method-item" data-method="balance-standard">
-                  <div class="charge-method-label">충전방식</div>
+                  <div class="charge-method-label">충전 방식</div>
                   <div class="charge-method-value">
                     잔액 기준을 선택해주세요.
                   </div>
                   <span class="arrow-icon"></span>
                 </li>
                 <li class="charge-method-item" data-method="charge-standard">
-                  <div class="charge-method-label">충전방식</div>
+                  <div class="charge-method-label">충전 방식</div>
                   <div class="charge-method-value">
                     충전 기준을 선택해주세요.
                   </div>
@@ -772,16 +768,85 @@
             </div>
           </div>
           <div class="modal-footer">
-            <div class="btn-wrap">
-              <button type="button" class="btn btn-default btn-register-charge">
+            <div class="btn-wrap btn-wrap-register">
+              <button type="button" class="btn btn-default btn-register-charge" disabled>
                 등록
-                    </button>
+              </button>
+            </div>
+            <div class="btn-wrap btn-wrap-edit" style="display: none;">
+              <button type="button" class="btn btn-secondary btn-delete-charge">
+                삭제
+              </button>
+              <button type="button" class="btn btn-primary btn-edit-charge">
+                수정
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
     <!-- //기준충전 설정 모달 -->
+
+    <!-- 기준충전 설정 리스트 모달 -->
+    <div
+      id="modalReservationList"
+      class="modal modal-full modal-reservation-list"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+              <div class="modal-head">
+                <div class="container">
+                  <button type="button" class="btn-back btn"></button>
+                  <h1 class="brand-name text">기준충전 설정</h1>
+                </div>
+              </div>
+          <div class="modal-body">
+            <div class="container">
+              <!-- 기준 잔액 충전 카드 -->
+              <div class="reservation-charge-section">
+                <h2 class="section-title">기준 잔액 충전</h2>
+                <div class="reservation-charge-card" data-charge-type="balance">
+                  <div class="charge-card-content">
+                    <div class="charge-card-text">
+                      <span class="charge-amount">20만원</span>
+                      <span class="charge-desc">유지되도록 충전하기</span>
+                    </div>
+                    <div class="toggle-box active" data-toggle-type="reservation-balance">
+                      <label class="switch">
+                        <span class="toggle-label">ON</span>
+                        <input type="checkbox" checked />
+                        <span class="slider"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 기준 일자 충전 카드 -->
+              <!-- <div class="reservation-charge-section">
+                <h2 class="section-title">기준 일자 충전</h2>
+                <div class="reservation-charge-card" data-charge-type="date">
+                  <div class="charge-card-content">
+                    <div class="charge-card-text">
+                      <span class="charge-amount">20만원</span>
+                      <span class="charge-desc">유지되도록 충전하기</span>
+                    </div>
+                    <div class="toggle-box active" data-toggle-type="reservation-date">
+                      <label class="switch">
+                        <span class="toggle-label">ON</span>
+                        <input type="checkbox" checked />
+                        <span class="slider"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //기준충전 설정 리스트 모달 -->
 
     <!-- 잔액 기준 바텀시트 모달 -->
     <div
@@ -955,7 +1020,7 @@
               onclick="modalClose();"
               class="btn btn-cancel"
             >
-              취소
+              아니오
             </button>
             <button
               type="button"
@@ -963,7 +1028,7 @@
               id="promptOk"
               class="btn btn-confirm"
             >
-              확인
+              예
             </button>
           </div>
         </div>
@@ -984,8 +1049,6 @@
               type="button"
               id="confirmOk"
               class="btn"
-              data-dismiss="modal"
-              onclick="modalClose();"
             >
               확인
             </button>
@@ -1016,8 +1079,8 @@
           <div class="modal-body">
             <h3>Alert</h3>
             <div class="prompt-contents">
-              충전 주계좌로 등록된 계좌입니다. 보조 충전계좌로는 다른 계좌로
-              선택해 주세요.
+              충전 주계좌로 등록된 계좌입니다.<br>
+              다른 계좌를 선택해 주세요.
             </div>
           </div>
           <div class="modal-footer">
@@ -1241,6 +1304,17 @@
       // 모달 닫기
       $(".modal").on("click", function (e) {
         if ($(e.target).hasClass("modal")) {
+          // modalBalanceStandard만 제외 (design_renewal.js에서 처리)
+          // modal-slide는 design_renewal.js의 modalOpenSlide에서 처리되지만,
+          // modalAccountSelect는 외부 클릭 닫기가 동작해야 하므로 제외하지 않음
+          if ($(this).attr("id") === "modalBalanceStandard") {
+            return false;
+          }
+          // modal-slide 클래스를 가진 모달 중 modalAccountSelect는 제외하지 않음
+          // 다른 modal-slide 모달들은 design_renewal.js에서 처리
+          if ($(this).hasClass("modal-slide") && $(this).attr("id") !== "modalAccountSelect") {
+            return false;
+          }
           $(this).fadeOut();
         }
       });
@@ -1277,7 +1351,7 @@
           const threshold = thresholdBtn.textContent;
           const charge = chargeBtn.textContent;
           const infoText = document.querySelector(".reservation-info-text p");
-          infoText.innerHTML = `잔액이 <span class="highlight-amount">${threshold}</span> 이하인 경우<br><span class="highlight-amount">${charge}</span>이 자동 충전 됩니다.`;
+          infoText.innerHTML = `잔액이 <span class="highlight-amount">${threshold}</span> 이하인 경우<br><span class="highlight-amount">${charge}</span>이 자동충전 됩니다.`;
         }
       }
 
@@ -1291,16 +1365,88 @@
         },
       );
 
-      // 기준충전 설정 모달 - 충전방식 개별 동작
+      // 기준충전 설정 링크 클릭 - 등록 여부에 따라 다른 모달 열기
+      $(document).on("click", "#reservationLink", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // 기준충전 설정 등록 여부 확인 (localStorage 사용)
+        const hasReservationCharge = localStorage.getItem("hasReservationCharge") === "true";
+        
+        if (hasReservationCharge) {
+          // 등록된 경우: 리스트 화면 모달 열기 (modal-full)
+          const $modal = $("#modalReservationList");
+          $modal.css("display", "block");
+          scrollOff();
+        } else {
+          // 등록되지 않은 경우: 등록 화면 모달 열기 (modal-full)
+          const $modal = $("#modalReservationEdit");
+          $modal.css("display", "block");
+          scrollOff();
+          
+          // 등록 모드로 전환 (등록 버튼 표시, 삭제/수정 버튼 숨김)
+          $("#modalReservationEdit .btn-wrap-register").show();
+          $("#modalReservationEdit .btn-wrap-edit").hide();
+        }
+      });
+
+      // 기준충전 설정 리스트 모달 - 카드 클릭 시 수정 화면으로 이동
+      $(document).on("click", ".reservation-charge-card", function(e) {
+        // 토글 버튼 클릭 시에는 이벤트 무시
+        if ($(e.target).closest(".toggle-box").length) {
+          return;
+        }
+        
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // modalReservationList 닫기
+        $("#modalReservationList").css("display", "none");
+        scrollOn();
+        
+        // modalReservationEdit 열기 (수정 모드)
+        $("#modalReservationEdit").css("display", "block");
+        scrollOff();
+        
+        // 수정 모드로 전환 (삭제/수정 버튼 표시, 등록 버튼 숨김)
+        $("#modalReservationEdit .btn-wrap-register").hide();
+        $("#modalReservationEdit .btn-wrap-edit").show();
+      });
+
+      // 기준충전 설정 리스트 모달 - 뒤로가기 버튼
+      $(document).on("click", "#modalReservationList .btn-back", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $("#modalReservationList").css("display", "none");
+        scrollOn();
+      });
+
+      // 기준충전 설정 모달 - 뒤로가기 버튼 클릭 이벤트
+      $(document).on("click", "#modalReservationEdit .btn-back", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // modalReservationEdit 닫기
+        $("#modalReservationEdit").css("display", "none");
+        scrollOn();
+      });
+
+      // 기준충전 설정 모달 - 충전 방식 개별 동작
       $(document).on(
         "click",
         "#modalReservationEdit .charge-method-item",
         function (e) {
           e.preventDefault();
           const method = $(this).data("method");
+          const $clickedItem = $(this);
 
           // 1) balance-maintain: 이번 작업에서는 고정 (선택 상태 유지, 별도 동작 없음)
           if (method === "balance-maintain") {
+            // balance-maintain 선택 시 다른 항목들 active 제거하고 이 항목만 active
+            $("#modalReservationEdit .charge-method-item").removeClass("active");
+            $clickedItem.addClass("active");
+            // 등록 버튼 활성화 (balance-maintain은 항상 활성화)
+            $("#modalReservationEdit .btn-register-charge").prop("disabled", false);
             return;
           }
 
@@ -1321,16 +1467,186 @@
             $("#chargeAmountError").hide().text("");
             // 입력 필드 너비 초기화
             $("#chargeAmountInput").css("width", "auto");
+            // 확인 버튼 비활성화 및 btn-default 클래스 추가
+            const $confirmBtn = $("#btnAmountConfirm");
+            const confirmBtn = document.getElementById("btnAmountConfirm");
+            $confirmBtn.prop("disabled", true);
+            $confirmBtn.addClass("btn-default");
+            if (confirmBtn) confirmBtn.classList.add("btn-default");
             modalOpen("modalChargeAmount");
+            // 모달이 열린 후에도 한 번 더 체크 (입력값이 있을 경우 대비)
+            setTimeout(function() {
+              checkChargeAmountInput();
+            }, 300);
             return;
           }
         },
       );
 
-      // 기준충전 설정 모달 - 등록 버튼 (현재는 선택된 방식 고정이므로 단순 닫기)
+      // 기준충전 설정 모달 - 등록 버튼 활성화 체크 함수
+      function checkRegisterChargeButton() {
+        const $registerBtn = $("#modalReservationEdit .btn-register-charge");
+        const $chargeMethodList = $("#modalReservationEdit .charge-method-list");
+        
+        // balance-maintain이 선택되어 있으면 항상 활성화
+        const $balanceMaintain = $chargeMethodList.find('.charge-method-item[data-method="balance-maintain"]');
+        if ($balanceMaintain.hasClass("active")) {
+          $registerBtn.prop("disabled", false);
+          return;
+        }
+        
+        // balance-standard가 선택된 경우
+        const $balanceStandard = $chargeMethodList.find('.charge-method-item[data-method="balance-standard"]');
+        if ($balanceStandard.hasClass("active")) {
+          const $valueElement = $balanceStandard.find(".charge-method-value");
+          const valueText = $valueElement.text().trim();
+          // "잔액 기준을 선택해주세요."가 아닌 경우 활성화
+          if (valueText !== "잔액 기준을 선택해주세요." && $valueElement.hasClass("selected")) {
+            $registerBtn.prop("disabled", false);
+          } else {
+            $registerBtn.prop("disabled", true);
+          }
+          return;
+        }
+        
+        // charge-standard가 선택된 경우
+        const $chargeStandard = $chargeMethodList.find('.charge-method-item[data-method="charge-standard"]');
+        if ($chargeStandard.hasClass("active")) {
+          const $valueElement = $chargeStandard.find(".charge-method-value");
+          const valueText = $valueElement.text().trim();
+          // "충전 기준을 선택해주세요."가 아닌 경우 활성화
+          if (valueText !== "충전 기준을 선택해주세요." && $valueElement.hasClass("selected")) {
+            $registerBtn.prop("disabled", false);
+          } else {
+            $registerBtn.prop("disabled", true);
+          }
+          return;
+        }
+        
+        // 아무것도 선택되지 않은 경우
+        $registerBtn.prop("disabled", true);
+      }
+
+      // 모달이 열릴 때 등록 버튼 상태 확인
+      $(document).on("click", "[data-target='modalReservationEdit']", function() {
+        setTimeout(function() {
+          // balance-maintain이 기본 선택되어 있으면 활성화
+          const $balanceMaintain = $("#modalReservationEdit .charge-method-item[data-method='balance-maintain']");
+          if ($balanceMaintain.hasClass("active")) {
+            $("#modalReservationEdit .btn-register-charge").prop("disabled", false);
+          } else {
+            checkRegisterChargeButton();
+          }
+        }, 100);
+      });
+
+      // 기준충전 설정 모달 - 삭제 버튼 클릭 (C3 팝업)
+      $(document).on("click", ".btn-delete-charge", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // 다른 모달이 열려있는지 확인하여 commonPrompt의 배경 dim 숨기기
+        const $otherModals = $(".modal").not("#commonPrompt").filter(function() {
+          return $(this).css("display") !== "none" && $(this).css("display") !== "";
+        });
+        
+        if ($otherModals.length > 0) {
+          $("#commonPrompt").addClass("no-backdrop");
+        }
+        
+        $.promptMessage(
+          "",
+          "설정된 충전 내역을 삭제할까요?",
+          $("#commonPrompt")
+        );
+        
+        // 확인 버튼의 기본 onclick 제거 및 이벤트 바인딩
+        const $promptOk = $("#promptOk");
+        $promptOk.attr("onclick", "");
+        $promptOk.off("click.deleteCharge").on("click.deleteCharge", function() {
+          // 삭제 로직 수행 후 localStorage에서 등록 플래그 제거
+          localStorage.removeItem("hasReservationCharge");
+          
+          // 모달 닫기
+          $("#modalReservationEdit").css("display", "none");
+          scrollOn();
+          $("#commonPrompt").css("display", "none").removeClass("no-backdrop");
+        });
+        
+        // 취소 버튼 클릭 시
+        $("#commonPrompt .btn-cancel").off("click.deleteChargeCancel").on("click.deleteChargeCancel", function() {
+          $("#commonPrompt").css("display", "none").removeClass("no-backdrop");
+        });
+      });
+
+      // 기준충전 설정 모달 - 수정 버튼 클릭
+      $(document).on("click", ".btn-edit-charge", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // 수정 버튼 클릭 시: PIN 입력 화면으로 이동
+        window.location.href = "pin.html";
+      });
+
+      // 기준충전 설정 모달 - 등록 버튼 클릭
       $(document).on("click", ".btn-register-charge", function (e) {
         e.preventDefault();
+        // 비활성화 상태면 클릭 무시
+        if ($(this).prop("disabled")) {
+          return false;
+        }
+        
+        // 충전 금액과 잔액 기준 비교 체크
+        const $chargeMethodList = $("#modalReservationEdit .charge-method-list");
+        const $chargeStandard = $chargeMethodList.find('.charge-method-item[data-method="charge-standard"]');
+        let hasError = false;
+        
+        // charge-standard가 선택되어 있고, balance-standard도 설정되어 있는 경우 체크
+        if ($chargeStandard.hasClass("active")) {
+          const $balanceStandard = $chargeMethodList.find('.charge-method-item[data-method="balance-standard"]');
+          
+          // balance-standard가 설정되어 있는지 확인
+          if ($balanceStandard.hasClass("active")) {
+            const chargeValueText = $chargeStandard.find(".charge-method-value").text().trim();
+            const balanceValueText = $balanceStandard.find(".charge-method-value").text().trim();
+            
+            // "충전 기준을 선택해주세요." 또는 "잔액 기준을 선택해주세요."가 아닌 경우에만 비교
+            if (chargeValueText !== "충전 기준을 선택해주세요." && balanceValueText !== "잔액 기준을 선택해주세요.") {
+              // 충전 금액: 숫자만 추출 (예: "100,000원" -> 100000)
+              const chargeAmount = parseInt(chargeValueText.replace(/[^0-9]/g, ""), 10);
+              
+              // 잔액 기준: 텍스트에서 숫자와 "만원" 또는 "이하" 처리 (예: "5만원 이하" -> 50000)
+              let balanceStandard = parseInt(balanceValueText.replace(/[^0-9]/g, ""), 10);
+              // "만원"이 포함되어 있으면 10000을 곱함
+              if (balanceValueText.includes("만원")) {
+                balanceStandard = balanceStandard * 10000;
+              }
+              
+              // 충전 금액이 잔액 기준보다 작으면 얼럿 표시
+              if (!isNaN(chargeAmount) && !isNaN(balanceStandard) && chargeAmount < balanceStandard) {
+                hasError = true;
+                $.alertMessage(
+                  "",
+                  "충전 금액은 잔액 기준 이상으로 설정해 주세요.",
+                  $("#commonAlert")
+                );
+              }
+            }
+          }
+        }
+        
+        // 에러가 있으면 모달 닫지 않음
+        if (hasError) {
+          return false;
+        }
+        
+        // 에러가 없으면 등록 완료 처리
+        // localStorage에 등록 완료 플래그 저장
+        localStorage.setItem("hasReservationCharge", "true");
+        
+        // 모달 닫기
         modalCloseSlide();
+        return false;
       });
 
       // 잔액 기준 바텀시트 - 옵션 선택 시 자동으로 값 업데이트 및 모달 닫기
@@ -1366,8 +1682,16 @@
                 valueElement.text(text);
                 valueElement.addClass("selected");
                 targetItem.addClass("active");
+                
+                // 다른 항목들 active 제거
+                $("#modalReservationEdit .charge-method-item").not(targetItem).removeClass("active");
 
                 console.log("값 업데이트 완료:", text);
+                
+                // 등록 버튼 활성화 체크
+                setTimeout(function() {
+                  checkRegisterChargeButton();
+                }, 100);
               }
             }
           }
@@ -1393,68 +1717,167 @@
           $("#chargeAmountError").hide().text("");
           // 입력 필드 너비 초기화
           $("#chargeAmountInput").css("width", "auto");
+          // 확인 버튼 비활성화 및 btn-default 클래스 추가
+          const $confirmBtn = $("#btnAmountConfirm");
+          const confirmBtn = document.getElementById("btnAmountConfirm");
+          $confirmBtn.prop("disabled", true);
+          $confirmBtn.addClass("btn-default");
+          if (confirmBtn) confirmBtn.classList.add("btn-default");
         },
       );
 
-      // 충전 금액 입력 모달 - 입력값 변경 시 "원" 문구 표시/숨김, 입력 필드 너비 조정, 에러 검증
-      $(document).on("input", "#chargeAmountInput", function () {
-        const $input = $(this);
-        const inputValue = $input.val().replace(/[^0-9]/g, ""); // 숫자만 추출
+      // 충전 금액 입력 모달 - 입력값 변경 시 "원" 문구 표시/숨김, 입력 필드 너비 조정, 에러 검증, 확인 버튼 활성화
+      function checkChargeAmountInput() {
+        const $input = $("#chargeAmountInput");
+        const rawValue = $input.val() || "";
+        const inputValue = rawValue.replace(/[^0-9]/g, ""); // 숫자만 추출
         const unitElement = $("#modalChargeAmount .charge-amount-unit");
         const $inputWrap = $input.closest(".charge-amount-input-wrap");
         const $errorElement = $("#chargeAmountError");
+        // ID를 직접 사용하여 버튼 선택
+        const $confirmBtn = $("#btnAmountConfirm");
+        const confirmBtn = document.getElementById("btnAmountConfirm");
         const minAmount = 10000; // 최소 1만원
         const maxAmount = 1000000; // 최대 100만원
+        
+        // 버튼이 존재하는지 확인
+        if (!$confirmBtn.length || !confirmBtn) {
+          return;
+        }
         
         // 에러 상태 초기화
         $inputWrap.removeClass("error");
         $errorElement.hide().text("");
         
-        if (inputValue && inputValue !== "0") {
-          const amount = parseInt(inputValue);
+        if (inputValue && inputValue !== "0" && inputValue.length > 0) {
+          const amount = parseInt(inputValue, 10);
+          
+          // NaN 체크
+          if (isNaN(amount)) {
+            $confirmBtn.prop("disabled", true);
+            $confirmBtn.addClass("btn-default");
+            confirmBtn.classList.add("btn-default");
+            return;
+          }
           
           // 숫자가 입력된 경우 "원" 표시
           unitElement.show();
           
-          // 입력 필드 너비를 입력된 텍스트에 맞게 조정
-          // 임시 span을 생성하여 텍스트 너비 측정
-          const $tempSpan = $("<span>")
-            .css({
-              position: "absolute",
-              visibility: "hidden",
-              whiteSpace: "nowrap",
-              fontSize: $input.css("fontSize"),
-              fontFamily: $input.css("fontFamily"),
-              fontWeight: $input.css("fontWeight"),
-              padding: "0",
-              margin: "0",
-              border: "0",
-            })
-            .text($input.val() || "0");
+          // 입력 필드 너비를 입력된 텍스트에 맞게 조정 (성능 최적화)
+          // requestAnimationFrame을 사용하여 브라우저 렌더링 최적화
+          requestAnimationFrame(function() {
+            // 콤마가 포함된 포맷팅된 값으로 너비 측정
+            const formattedValue = inputValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            // 임시 span을 생성하여 텍스트 너비 측정
+            const $tempSpan = $("<span>")
+              .css({
+                position: "absolute",
+                visibility: "hidden",
+                whiteSpace: "nowrap",
+                fontSize: $input.css("fontSize"),
+                fontFamily: $input.css("fontFamily"),
+                fontWeight: $input.css("fontWeight"),
+                padding: "0",
+                margin: "0",
+                border: "0",
+              })
+              .text(formattedValue || "0");
+            
+            $("body").append($tempSpan);
+            const textWidth = $tempSpan.outerWidth();
+            $tempSpan.remove();
+            
+            // 입력 필드 너비 설정 (최소 50px)
+            $input.css("width", Math.max(50, textWidth + 5) + "px");
+          });
           
-          $("body").append($tempSpan);
-          const textWidth = $tempSpan.outerWidth();
-          $tempSpan.remove();
-          
-          // 입력 필드 너비 설정 (최소 50px)
-          $input.css("width", Math.max(50, textWidth + 5) + "px");
-          
-          // 에러 검증
+          // 에러 검증 및 확인 버튼 활성화/비활성화
           if (amount < minAmount) {
             // 최소 금액 미만
             $inputWrap.addClass("error");
             $errorElement.html('최소 <strong>1만원</strong> 이상 입력해주세요.').show();
+            $confirmBtn.prop("disabled", true);
+            $confirmBtn.addClass("btn-default");
+            confirmBtn.classList.add("btn-default");
           } else if (amount > maxAmount) {
             // 최대 금액 초과
             $inputWrap.addClass("error");
             $errorElement.html('1회 충전 가능 한도는 <strong>1,000,000</strong> 원 입니다.').show();
+            $confirmBtn.prop("disabled", true);
+            $confirmBtn.addClass("btn-default");
+            confirmBtn.classList.add("btn-default");
+          } else {
+            // 유효한 금액 범위 내 - btn-default 클래스 제거 및 버튼 활성화
+            // 먼저 disabled 속성 해제
+            confirmBtn.disabled = false;
+            $confirmBtn.prop("disabled", false);
+            // 네이티브 DOM으로 강제 클래스 제거
+            confirmBtn.classList.remove("btn-default");
+            // jQuery로도 클래스 제거
+            $confirmBtn.removeClass("btn-default");
           }
         } else {
           // 입력값이 없거나 0인 경우 "원" 숨김
           unitElement.hide();
           // placeholder가 보일 때는 기본 너비 유지
           $input.css("width", "auto");
+          // 확인 버튼 비활성화
+          $confirmBtn.prop("disabled", true);
+          $confirmBtn.addClass("btn-default");
+          confirmBtn.classList.add("btn-default");
         }
+      }
+
+      // input 이벤트 처리 (천단위 콤마 추가 및 debounce 적용)
+      let chargeAmountInputTimeout;
+      $(document).on("input", "#chargeAmountInput", function () {
+        const $input = $(this);
+        const rawValue = $input.val() || "";
+        
+        // 숫자만 추출
+        const numbersOnly = rawValue.replace(/[^0-9]/g, "");
+        
+        // 천단위 콤마 추가
+        if (numbersOnly) {
+          const formattedValue = numbersOnly.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          const inputElement = this;
+          const cursorPosition = inputElement.selectionStart;
+          
+          // 포맷팅 전 커서 앞의 숫자 개수 계산
+          const valueBeforeCursor = rawValue.substring(0, cursorPosition);
+          const numbersBeforeCursor = valueBeforeCursor.replace(/[^0-9]/g, "").length;
+          
+          // 포맷팅된 값으로 업데이트
+          $input.val(formattedValue);
+          
+          // 커서 위치 재설정 (포맷팅 후 해당 숫자 위치 찾기)
+          let newCursorPosition = 0;
+          let numberCount = 0;
+          for (let i = 0; i < formattedValue.length; i++) {
+            if (formattedValue[i].match(/\d/)) {
+              numberCount++;
+              if (numberCount === numbersBeforeCursor) {
+                newCursorPosition = i + 1;
+                break;
+              }
+            } else {
+              newCursorPosition = i + 1;
+            }
+          }
+          if (numberCount < numbersBeforeCursor) {
+            newCursorPosition = formattedValue.length;
+          }
+          
+          // 커서 위치 설정
+          inputElement.setSelectionRange(newCursorPosition, newCursorPosition);
+        }
+        
+        // 기존 타이머 취소
+        clearTimeout(chargeAmountInputTimeout);
+        // 최소한의 지연으로 포맷팅 완료 후 처리 (성능 최적화)
+        chargeAmountInputTimeout = setTimeout(function() {
+          checkChargeAmountInput();
+        }, 50);
       });
 
       // 충전 금액 입력 모달 - 확인 버튼 클릭
@@ -1490,11 +1913,43 @@
             return false;
           }
 
+          // 충전 금액과 잔액 기준 비교 체크
+          const modalReservationEdit = $("#modalReservationEdit");
+          if (modalReservationEdit.length) {
+            const $chargeMethodList = modalReservationEdit.find(".charge-method-list");
+            const $balanceStandard = $chargeMethodList.find('.charge-method-item[data-method="balance-standard"]');
+            
+            // balance-standard가 설정되어 있는지 확인
+            if ($balanceStandard.hasClass("active")) {
+              const balanceValueText = $balanceStandard.find(".charge-method-value").text().trim();
+              
+              // "잔액 기준을 선택해주세요."가 아닌 경우에만 비교
+              if (balanceValueText !== "잔액 기준을 선택해주세요.") {
+                // 잔액 기준: 텍스트에서 숫자와 "만원" 또는 "이하" 처리 (예: "5만원 이하" -> 50000)
+                let balanceStandard = parseInt(balanceValueText.replace(/[^0-9]/g, ""), 10);
+                // "만원"이 포함되어 있으면 10000을 곱함
+                if (balanceValueText.includes("만원")) {
+                  balanceStandard = balanceStandard * 10000;
+                }
+                
+                // 충전 금액이 잔액 기준보다 작으면 얼럿 표시
+                if (!isNaN(balanceStandard) && amountNum < balanceStandard) {
+                  $.alertMessage(
+                    "",
+                    "충전 금액은 잔액 기준 이상으로 설정해 주세요.",
+                    $("#commonAlert")
+                  );
+                  e.stopImmediatePropagation();
+                  return false;
+                }
+              }
+            }
+          }
+
           // 금액 포맷팅 (콤마 포함)
           const formattedAmount = parseInt(amount).toLocaleString() + "원";
 
           // modalReservationEdit 모달 내의 charge-standard 항목 찾기
-          const modalReservationEdit = $("#modalReservationEdit");
           if (modalReservationEdit.length) {
             const targetItem = modalReservationEdit.find(
               '.charge-method-item[data-method="charge-standard"]',
@@ -1508,13 +1963,19 @@
                 valueElement.text(formattedAmount);
                 valueElement.addClass("selected");
                 targetItem.addClass("active");
+                
+                // 다른 항목들 active 제거
+                $("#modalReservationEdit .charge-method-item").not(targetItem).removeClass("active");
 
                 console.log("충전 금액 업데이트 완료:", formattedAmount);
+                
+                // 등록 버튼 활성화 체크
+                checkRegisterChargeButton();
               }
             }
           }
 
-          // 모달 닫기
+          // 충전 금액 입력 모달만 닫기 (기준충전 설정 모달은 유지)
           modalClose();
           return false;
         },
@@ -1649,6 +2110,16 @@
                 needConfirm = true;
               }
               break;
+            case "reservation-balance":
+              // 기준 잔액 충전 토글: OFF -> ON으로 변경 시 수정 화면 열기
+              if (!currentState) {
+                // OFF -> ON으로 변경하는 경우
+                needConfirm = false; // 확인 없이 바로 처리
+              } else {
+                // ON -> OFF로 변경하는 경우는 기본 동작 수행
+                needConfirm = false;
+              }
+              break;
             default:
               needConfirm = false;
           }
@@ -1691,6 +2162,27 @@
             }, 100);
 
             return; // 여기서 종료하여 토글이 변경되지 않도록 함
+          }
+
+          // 기준 잔액 충전 토글 ON으로 변경 시 수정 화면 열기
+          if (toggleType === "reservation-balance" && !currentState) {
+            // OFF -> ON으로 변경하는 경우
+            checkbox.checked = true;
+            updateToggleState();
+            
+            // modalReservationList 닫기
+            $("#modalReservationList").css("display", "none");
+            scrollOn();
+            
+            // modalReservationEdit 열기 (수정 모드)
+            $("#modalReservationEdit").css("display", "block");
+            scrollOff();
+            
+            // 수정 모드로 전환 (삭제/수정 버튼 표시, 등록 버튼 숨김)
+            $("#modalReservationEdit .btn-wrap-register").hide();
+            $("#modalReservationEdit .btn-wrap-edit").show();
+            
+            return; // 여기서 종료하여 토글 이벤트 종료
           }
 
           // 확인이 필요한 경우
@@ -1994,6 +2486,23 @@
           });
         
         return false;
+      });
+
+      // commonAlert 확인 버튼 클릭 시 얼럿만 닫기 (기준충전 설정 모달은 유지)
+      $(document).on("click", "#confirmOk", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        // commonAlert만 닫기
+        $("#commonAlert").hide();
+        // 기준충전 설정 모달이 열려있으면 유지
+        if ($("#modalReservationEdit").is(":visible")) {
+          // 모달 유지 (닫지 않음)
+        } else if ($("#modalChargeAmount").is(":visible")) {
+          // modalChargeAmount가 열려있으면 유지 (입력 화면 유지)
+        } else {
+          // 다른 경우는 기존 동작
+          modalClose();
+        }
       });
     </script>
   </body>

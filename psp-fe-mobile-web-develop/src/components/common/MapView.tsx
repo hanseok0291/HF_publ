@@ -121,6 +121,12 @@ const MapView = ({
 
   useEffect(() => {
     if (isLoading || !naverMaps) return;
+    
+    // 퍼블리싱 작업 중: naver.maps가 없으면 지도 영역만 표시
+    if (typeof window === "undefined" || !window.naver?.maps) {
+      console.warn("네이버 지도 API가 로드되지 않았습니다. (퍼블리싱 작업 중)");
+      return;
+    }
 
     /**
      * 중앙좌표
@@ -143,7 +149,7 @@ const MapView = ({
           });
 
     const mapOptions = {
-      center: new naver.maps.LatLng(centerCoords.lat, centerCoords.lng),
+      center: new window.naver.maps.LatLng(centerCoords.lat, centerCoords.lng),
       zoom: 15
     };
 
@@ -151,8 +157,8 @@ const MapView = ({
 
     //NOTE : center 값이 있을 때만 기본 마커 생성하는 로직 추가
     if (center?.lat && center?.lng) {
-      new naver.maps.Marker({
-        position: new naver.maps.LatLng(centerCoords.lat, centerCoords.lng),
+      new window.naver.maps.Marker({
+        position: new window.naver.maps.LatLng(centerCoords.lat, centerCoords.lng),
         map: map
       });
     }
@@ -176,13 +182,13 @@ const MapView = ({
           title: data.title,
           icon: {
             url: icon,
-            size: new naver.maps.Size(50, 50),
-            scaledSize: new naver.maps.Size(50, 50),
-            origin: new naver.maps.Point(0, 0),
-            anchor: new naver.maps.Point(12, 37)
+            size: new window.naver.maps.Size(50, 50),
+            scaledSize: new window.naver.maps.Size(50, 50),
+            origin: new window.naver.maps.Point(0, 0),
+            anchor: new window.naver.maps.Point(12, 37)
           }
         });
-        naver.maps.Event.addListener(marker, "click", function () {
+        window.naver.maps.Event.addListener(marker, "click", function () {
           sessionStorage.setItem("prevPath", window.location.pathname);
           router.push(
             `/collector/collector-status?requestId=${coord.requestId}&thisDisposeDate=${coord.thisDisposeDate}`

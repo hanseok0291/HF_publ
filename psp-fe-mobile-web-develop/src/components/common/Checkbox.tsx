@@ -25,7 +25,7 @@ const Checkbox: FC<
   );
 
   const CHECKBOX_STYLE = cn(
-    "flex items-center justify-center size-[20px] p-[5px] border-none rounded-[4.444px] cursor-pointer bg-gray30 peer-checked:bg-main",
+    "flex items-center justify-center size-[20px] p-[5px] border border-gray40 rounded-[4px] cursor-pointer bg-white peer-checked:bg-main peer-checked:border-main",
     className
   );
 
@@ -38,12 +38,14 @@ const Checkbox: FC<
         className={"peer hidden"}
       />
       <label htmlFor={componentId} className={CHECKBOX_STYLE}>
-        <Image
-          src="/icons/check_icon.svg"
-          alt="Checked"
-          width={10}
-          height={10}
-        />
+        {inputAttr.checked && (
+          <Image
+            src="/icons/check_icon.svg"
+            alt="Checked"
+            width={10}
+            height={10}
+          />
+        )}
       </label>
     </div>
   );

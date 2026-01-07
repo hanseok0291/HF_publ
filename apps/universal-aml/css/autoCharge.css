@@ -1,6 +1,8 @@
-.container {
+/* auto-charge-section 내부의 container만 20px 패딩 적용 */
+.auto-charge-section .container {
   padding: 0 20px;
 }
+
 header .container .brand-name {
   color: #000;
   font-family: Pretendard;
@@ -312,11 +314,26 @@ header .container .brand-name {
   text-decoration: none;
 }
 
+.reservation-link-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .reservation-link .arrow-icon {
   width: 14px;
   height: 14px;
   background: url(../images/card/ico-right.svg) no-repeat center / contain;
   display: inline-block;
+  flex-shrink: 0;
+}
+
+.reservation-status-badge {
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  color: #ff6114;
 }
 
 .reservation-list li {
@@ -540,7 +557,6 @@ header .container .brand-name {
     rgba(255, 255, 255, 0.99) 99.5%,
     rgba(255, 255, 255, 0) 100%
   );
-  /* background: url(../images/common/bg-bottom.png) no-repeat center / contain; */
   pointer-events: none;
   display: none;
   z-index: 0;
@@ -1383,6 +1399,12 @@ header .container .brand-name {
   padding: 0;
 }
 
+.modal-standard-charge .modal-footer .btn-wrap-edit {
+  display: flex;
+  gap: 10px;
+  padding: 0;
+}
+
 .modal-standard-charge .modal-footer .btn {
   width: 100%;
   height: 60px;
@@ -1394,6 +1416,92 @@ header .container .brand-name {
   background: #303030;
   color: #ffffff;
   border-radius: 8px;
+}
+
+.modal-standard-charge .modal-footer .btn-wrap-edit .btn {
+  flex: 1;
+}
+
+.modal-standard-charge .modal-footer .btn-secondary, .modal-full.modal-standard-charge .modal-footer .btn-secondary {
+  background: #fff;
+  color: #303030;
+  border: 1px solid #303030;
+}
+
+.modal-standard-charge .modal-footer .btn-primary {
+  background: #303030;
+  color: #fff;
+}
+
+/* 기준충전 설정 리스트 모달 */
+.modal-reservation-list .modal-body {
+  padding: 20px 0;
+  padding-top: 60px;
+}
+
+.reservation-charge-section {
+  margin-bottom: 40px;
+}
+
+.reservation-charge-section:last-child {
+  margin-bottom: 0;
+}
+
+.reservation-charge-section .section-title {
+  color: var(--HF-Color-Neutral-Neutral10, #303030);
+  font-feature-settings: 'ss10' on;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 18px */
+  color: #303030;
+  text-align: left;
+  padding: 20px 0;
+}
+
+.reservation-charge-card {
+  border: 2px solid #303030;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.reservation-charge-card:hover {
+  opacity: 0.8;
+}
+
+.charge-card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 20px;
+}
+
+.charge-card-text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.charge-card-text .charge-amount {
+  font-family: Pretendard;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 140%;
+  color: #ff6114;
+}
+
+.charge-card-text .charge-desc {
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 140%;
+  color: #303030;
+}
+
+.reservation-charge-card .toggle-box {
+  flex-shrink: 0;
 }
 
 /* 잔액 기준 바텀시트 */
@@ -1631,8 +1739,13 @@ header .container .brand-name {
 }
 
 /* 예약 충전 등록 완료 페이지 */
+#content.container {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 .reservation-complete-wrap {
-  padding: 0 30px;
+  padding: 0;
   text-align: center;
   font-family: Pretendard;
   margin-top: 30px;
@@ -1690,7 +1803,7 @@ header .container .brand-name {
 
 .reservation-info-item .info-label {
   font-family: Pretendard;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 16px;
   line-height: 100%;
   color: #303030;

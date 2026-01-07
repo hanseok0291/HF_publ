@@ -84,7 +84,7 @@ export default function LogoHeader({
         className={`${service === "collector" ? "p-[16px_20px]" : ""} relative z-[50]`}
       >
         <div className="flex items-center gap-[10px]">
-          {cookieData.logoImage ? (
+          {cookieData.logoImage && cookieData.logoImage !== "-" ? (
             <Image
               src={cookieData.logoImage}
               alt="로고 이미지"
@@ -92,16 +92,18 @@ export default function LogoHeader({
               height={42}
             />
           ) : (
-            <span className="bg-black inline-block text-white text-[12px] rounded-md p-[2px_8px]">
-              지자체
-              <br />
-              LOGO
-            </span>
+            // 로그인 후 첫 화면에서는 컬러 로고 사용
+            <Image
+              src="/images/logo_color.svg"
+              alt="greenOne Logo"
+              width={127}
+              height={22}
+              className="object-contain"
+            />
           )}
-
-          <p className="text-[16px] max-w-[15ch] truncate font-bold text-black">
+          {/* <p className="text-[16px] max-w-[15ch] truncate font-bold text-black">
             {cookieData.positionName}
-          </p>
+          </p> */}
         </div>
 
         <button

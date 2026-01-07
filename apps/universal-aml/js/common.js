@@ -217,6 +217,15 @@ $(document).ready(function () {
   $(".modal").on("click", function (event) {
     if ($(event.target).closest(".modal-dialog").length > 0) {
     } else {
+      // modalBalanceStandard의 경우 이 핸들러는 실행하지 않음 (design_renewal.js에서 처리)
+      if ($(this).attr("id") === "modalBalanceStandard") {
+        return false;
+      }
+      // modal-slide 클래스를 가진 모달 중 modalAccountSelect는 제외하지 않음 (외부 클릭 닫기 동작해야 함)
+      // 다른 modal-slide 모달들은 design_renewal.js에서 처리하므로 제외
+      if ($(this).hasClass("modal-slide") && $(this).attr("id") !== "modalAccountSelect") {
+        return false;
+      }
       modalClose();
     }
   });

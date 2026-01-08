@@ -42,12 +42,12 @@
           <div class="stick-graph-wrap">
             <div class="top-contents-wrap">
               <div class="text-wrap">
-                <p class="title-text">이번달 캐시백 추이 요약</p>
+                <p class="title-text">이번달 캐시백 요약</p>
               </div>
               <div class="select-wrap">
                 <button type="button" class="select-btn">
                   <span>1월</span>
-                  <i class="icon-arrow-down"></i>
+                  <i class="icon-arrow-down-gray"></i>
                 </button>
                 <div class="option-wrap">
                   <button type="button" class="option-btn active">
@@ -143,7 +143,7 @@
               <div class="select-wrap">
                 <button type="button" class="select-btn">
                   <span>KB국민</span>
-                  <i class="icon-arrow-down"></i>
+                  <i class="icon-arrow-down-gray"></i>
                 </button>
                 <div class="option-wrap">
                   <button type="button" class="option-btn active">
@@ -211,6 +211,29 @@
     <!-- //wrap -->
   </body>
   <script>
+    function updateSelectWrapWrappedClass() {
+      document.querySelectorAll('.top-contents-wrap').forEach((wrap) => {
+        const textWrap = wrap.querySelector('.text-wrap');
+        const selectWrap = wrap.querySelector('.select-wrap');
+        if (!textWrap || !selectWrap) return;
+
+        const textBottom = textWrap.getBoundingClientRect().bottom;
+        const selectTop = selectWrap.getBoundingClientRect().top;
+
+        // select-wrap이 text-wrap 아래로 내려간 상태면 class 추가
+        const isWrapped = selectTop > textBottom + 1; // +1은 소수점/경계 오차 방지
+        selectWrap.classList.toggle('is-wrapped', isWrapped);
+      });
+    }
+
+    // 최초 1회
+    updateSelectWrapWrappedClass();
+
+    // 리사이즈 시 (레이아웃 반영 후 측정)
+    window.addEventListener('resize', () => {
+      requestAnimationFrame(updateSelectWrapWrappedClass);
+    });
+    
     $(function () {
       /* =========================================================
        * 1) 퍼블리싱용 셀렉트 UI 공통 동작 (개발 정책 반영)
@@ -265,6 +288,7 @@
                 window.__BENEFIT_SELECT_CHANGED__(label);
               }
             }
+            requestAnimationFrame(updateSelectWrapWrappedClass);
           }
         );
 

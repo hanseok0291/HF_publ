@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useShallow } from "zustand/react/shallow";
 import { Controller, useForm } from "react-hook-form";
 import { getCookie } from "cookies-next/client";
@@ -14,6 +14,7 @@ import { X } from "lucide-react";
 import DropDownMenu from "@/components/common/DropDownMenu";
 import SearchInput from "@/components/common/SearchInput";
 import Button from "@/components/common/Button";
+import Checkbox from "@/components/common/Checkbox";
 import usePurcase from "@/stores/usePurcase";
 import {
   getStickerList,
@@ -23,6 +24,7 @@ import {
 import { ExtractParam } from "@/types/HttpClient.type";
 import { getStickerList as getStickerListType } from "@/apis/waste-sticker/wasteStickerApis";
 import StickerTable from "@/components/common/table/StickerTable";
+import { WasteStickerDataType } from "@/components/table-columns/stores/waste-sticker/WasteStickerColumns";
 
 type StickerListParams = ExtractParam<typeof getStickerListType>;
 
@@ -42,13 +44,95 @@ export default function PurchaseTypeModal({
   onOpenChange,
   onNext
 }: PurchaseTypeModalProps) {
-  const { dataList, setDataList, selectedList } = usePurcase(
+  const { dataList, setDataList, selectedList, setSelectedList } = usePurcase(
     useShallow((state) => ({
       dataList: state.dataList,
       setDataList: state.setDataList,
-      selectedList: state.selectedList
+      selectedList: state.selectedList,
+      setSelectedList: state.setSelectedList
     }))
   );
+
+  // StickerTable과 동일한 mockData (임시 데이터)
+  const mockData: WasteStickerDataType[] = [
+    {
+      id: "mock-1",
+      topStandardName: "재사용봉투",
+      middleStandardName: "재사용봉투2",
+      standardName: "규격명 사이즈",
+      fee: 0,
+      holdInventory: 100,
+      singlenessStandardYn: false,
+      type: "accordion"
+    },
+    {
+      id: "mock-2",
+      topStandardName: "재사용봉투",
+      middleStandardName: "재사용봉투2",
+      standardName: "양문형 냉장고 600L 이상",
+      fee: 0,
+      holdInventory: 50,
+      singlenessStandardYn: false,
+      type: "accordion"
+    },
+    {
+      id: "mock-3",
+      topStandardName: "음식물 쓰레기",
+      middleStandardName: "",
+      standardName: "음식물 쓰레기 봉투",
+      fee: 0,
+      holdInventory: 200,
+      singlenessStandardYn: false,
+      type: "text"
+    },
+    {
+      id: "mock-4",
+      topStandardName: "일반폐기물",
+      middleStandardName: "대형폐기물",
+      standardName: "가전제품",
+      fee: 5000,
+      holdInventory: 30,
+      singlenessStandardYn: false,
+      type: "accordion"
+    },
+    {
+      id: "mock-5",
+      topStandardName: "일반폐기물",
+      middleStandardName: "대형폐기물",
+      standardName: "가구류",
+      fee: 10000,
+      holdInventory: 15,
+      singlenessStandardYn: false,
+      type: "accordion"
+    }
+  ];
+
+  // StickerTable과 동일한 displayData 로직
+  const displayData = useMemo(() => {
+    return dataList.length > 0 ? dataList : mockData;
+  }, [dataList]);
+
+  // 전체 선택 상태 계산 (displayData 기준)
+  const allChecked = displayData.length > 0 && displayData.every((item) => 
+    selectedList.some((selected) => selected.id === item.id)
+  );
+
+  // 전체 선택/해제 핸들러
+  const handleSelectAll = (checked: boolean) => {
+    if (checked) {
+      // 모든 아이템 선택 (displayData 기준)
+      const newSelectedList = [...selectedList];
+      displayData.forEach((item) => {
+        if (!newSelectedList.some((selected) => selected.id === item.id)) {
+          newSelectedList.push(item);
+        }
+      });
+      setSelectedList(newSelectedList);
+    } else {
+      // 모든 아이템 해제
+      setSelectedList([]);
+    }
+  };
 
   const form = useForm<StickerListParams>({ mode: "onChange" });
   const { control } = form;
@@ -231,17 +315,38 @@ export default function PurchaseTypeModal({
           </div>
 
           {/* 테이블 영역 */}
-          <div className="flex-1 overflow-y-auto mb-[16px] border border-gray-200 rounded-[4px]">
+          <div className="flex-1 mb-[16px] lg:overflow-y-auto lg:overflow-visible">
             <div className="bg-[#F4F4F4] border-b border-gray-200">
-              <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-[16px] px-[16px] py-[12px]">
-                <span className="text-[13px] font-medium text-[#777]">품목 / 세부품목</span>
-                <span className="text-[13px] font-medium text-[#777]">규격</span>
-                <span className="text-[13px] font-medium text-[#777]">개당 수수료</span>
-                <span className="text-[13px] font-medium text-[#777]">보유 재고</span>
-                <span className="text-[13px] font-medium text-[#777]">수량</span>
+              {/* PC 버전 헤더 */}
+              <div className="hidden lg:grid grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-[16px] px-[16px] py-[12px]">
+                <div className="flex items-center text-left">
+                  <Checkbox
+                    className="mr-[12px] flex-shrink-0"
+                    checked={allChecked}
+                    onChange={(e) => {
+                      handleSelectAll(e.target.checked);
+                    }}
+                  />
+                  <span className="text-[13px] font-medium text-[#777]">품목 / 세부품목</span>
+                </div>
+                <span className="text-[13px] font-medium text-[#777] text-center">규격</span>
+                <span className="text-[13px] font-medium text-[#777] text-center">개당 수수료</span>
+                <span className="text-[13px] font-medium text-[#777] text-center">보유 재고</span>
+                <span className="text-[13px] font-medium text-[#777] text-center">수량</span>
+              </div>
+              {/* 모바일 버전 헤더 */}
+              <div className="lg:hidden flex items-center justify-between py-[12px] px-[20px]">
+                <div className="flex items-center">
+                  <span className="text-[#777] text-[13px] font-medium">
+                    품목 / 세부품목 / 규격
+                  </span>
+                </div>
+                <span className="text-[#777] text-[13px] font-medium">
+                  개당 수수료
+                </span>
               </div>
             </div>
-            <div className="p-[16px]">
+            <div className="p-[0px_16px] lg:p-[0px_16px]">
               <StickerTable />
             </div>
           </div>

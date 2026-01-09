@@ -81,6 +81,26 @@ export default function Page({ params }: AddItemType) {
     fetchData();
   }, [keyword]);
 
+  // PC 사이즈로 변경 시 자동으로 뒤로 가기
+  useEffect(() => {
+    const checkScreenSize = () => {
+      // PC 사이즈(1024px 이상)로 변경되면 뒤로 가기
+      if (window.innerWidth >= 1024) {
+        router.back();
+      }
+    };
+
+    // 초기 체크
+    checkScreenSize();
+
+    // 리사이즈 이벤트 리스너 추가
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => {
+      window.removeEventListener("resize", checkScreenSize);
+    };
+  }, [router]);
+
   return (
     <div className="animate-fade-in h-svh">
       <CloseHeader

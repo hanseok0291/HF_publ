@@ -16,9 +16,11 @@
 .trend-container .top-contents-wrap {
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   padding: 0 16px;
+  gap: 8px;
 }
 
 .trend-container .top-contents-wrap .text-wrap {
@@ -46,7 +48,7 @@
   display: block;
   width: 20px;
   height: 20px;
-  background-image: url(../../images/mass/icon/icon-up.svg);
+  background-image: url(../../images/mass/icon/icon-up.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -57,17 +59,14 @@
   display: block;
   width: 20px;
   height: 20px;
-  background-image: url(../../images/mass/icon/icon-down.svg);
+  background-image: url(../../images/mass/icon/icon-down.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .trend-container .top-contents-wrap .select-wrap {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
+  position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -85,6 +84,7 @@
   border: 1px solid #e5e5e8;
   background-color: #fff;
   border-radius: 24px;
+  font-size: 14px;
 }
 
 .trend-container .top-contents-wrap .select-wrap .option-wrap {
@@ -99,6 +99,12 @@
   width: 128px;
   max-height: 188px;
   padding: 4px 0;
+  box-shadow: 0px 0px 8px 0px #15151533;
+}
+
+.trend-container .top-contents-wrap .select-wrap.is-wrapped .option-wrap {
+  right: auto;
+  left: 0;
 }
 
 .trend-container
@@ -171,7 +177,7 @@
   position: relative;
   display: flex;
   justify-content: flex-start;
-  gap: 12px;
+  gap: 5px;
   border-bottom: 1px solid #e5e5e8;
   width: fit-content;
   min-width: 100%;
@@ -187,7 +193,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  width: 56px;
+  width: 59px;
   flex: 0 0 auto;
 }
 
@@ -276,7 +282,7 @@
 .trend-container .stick-graph-wrap .graph-wrap .card-list {
   display: flex;
   justify-content: flex-start;
-  gap: 12px;
+  gap: 5px;
   margin-top: 8px;
   width: fit-content;
   min-width: 100%;
@@ -293,7 +299,7 @@
   .card-list
   .card-item
   .card-text {
-  width: 56px;
+  width: 59px;
   font-size: 12px;
   color: #454545;
   font-weight: 500;
@@ -481,7 +487,7 @@
 }
 
 .trend-container .notice-content {
-  padding: 24px 0 0;
+  padding: 32px 0 0;
 }
 
 .trend-container .notice-content.fixed-notice-content {
@@ -546,7 +552,7 @@
   width: 64px;
   height: 64px;
   margin-bottom: 8px;
-  background: url(../../images/mass/empty-img.svg) 0 0 / cover no-repeat;
+  background: url(../../images/mass/empty-img.png) 0 0 / cover no-repeat;
 }
 
 .trend-container .empty-wrap .empty-text {
@@ -556,16 +562,14 @@
 
 /** 320px 해상도 대응 */
 @media (max-width: 320px) {
-  .trend-container .benefit-chart-wrap .chart-container {
+  .trend-container .benefit-chart-wrap .chart-container,
+  .trend-container .benefit-chart-wrap .top-contents-wrap,
+  .trend-container .benefit-chart-wrap .graph-info-wrap {
     padding: 0 12px;
   }
 }
 
 /* 막대 그래프 초기 로딩 플리커 방지 */
-.stick-graph-wrap.is-loading .empty-wrap {
-  display: none !important;
-}
-
-.stick-graph-wrap.is-loading .graph-wrap-wrap {
+.trend-container.is-loading .empty-wrap {
   display: none !important;
 }

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <title>RROUND</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no, address=no, email=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <link rel="stylesheet" href="../../../css/jquery-ui.css" />
+  <link rel="stylesheet" href="../../../css/common_renewal.css" />
+  <script src="../../../js/jquery.3.4.1.min.js"></script>
+  <script src="../../../js/jquery-ui.js"></script>
+  <script src="../../../js/design_renewal.js" defer="defer"></script>
+  <script src="../../../js/owl.carousel.min.js"></script>
+  <script src="../../../js/lottie.min.js"></script>
+</head>
+
+<body>
+  <!-- wrap -->
+  <div id="wrap">
+    <!-- header -->
+    <div id="header">
+      <div class="container">
+        <div class="header-box">
+          <h2 class="page-title">카드 등록</h2>
+          <button type="button" class="btn-close js-change-btn"
+            data-title="카드 등록을 중단하면 결제 시 <br /> 포인트 적립 혜택을 받을 수 없어요!" data-message="이대로 취소할까요?" data-cancel="취소하기"
+            data-confirm="계속하기" data-show-cancel="true">
+            <i class="icon-close"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- //header -->
+
+    <!-- content -->
+    <div id="content">
+      <!-- container -->
+      <div class="container">
+        <!-- section -->
+        <div class="section">
+          <ul class="form-type card-reg">
+            <!-- 에러 아닐 경우 -->
+            <li>
+              <div class="input-container col">
+                <label class="label" for="text_04">카드번호</label>
+                <div class="col-box">
+                  <input type="tel" class="custom-input" id="card1" maxlength="4" value="2222" />
+                  <input type="tel" class="custom-input" id="card2" maxlength="4" value="222" />
+                  <input type="tel" class="custom-input" id="card3" maxlength="4" value="111" />
+                  <input type="tel" class="custom-input" id="card4" maxlength="4" value="2222" />
+                  <span class="logo-box size-up">
+                    <img src="../../../images/bank/logo_071.png" alt="카드 이미지" id="cardLogo">
+                  </span>
+                </div>
+              </div>
+            </li>
+            <!-- //에러 아닐 경우 -->
+            <!-- 에러일 경우 -->
+            <!-- <li>
+              <div class="input-container col label-error text-error"> 
+                <label class="label" for="text_04">카드번호</label>
+                <div class="col-box">
+                  <input type="tel" class="custom-input" id="card1" maxlength="4" value="2222" />
+                  <input type="tel" class="custom-input" id="card2" maxlength="4" value="2222" />
+                  <input type="tel" class="custom-input" id="card3" maxlength="4" />
+                  <input type="tel" class="custom-input" id="card4" maxlength="4" />
+                  <span class="logo-box">
+                    <img src="../../images/common/icon-credit-card.svg" alt="카드 이미지" id="cardLogo">
+                  </span>
+                </div>
+              </div>
+              <span class="helper-text">카드사를 찾지 못했어요</span>
+            </li> -->
+            <!-- //에러일 경우 -->
+            <li>
+              <div class="input-container label-y expiration "> <!-- samsung 클래스 추가시 dual-input 영역 보여짐 -->
+                <label class="label" for="text_03">유효기간</label>
+                <!-- 기본 input (삼성이 아닐 때 보여짐) -->
+                <div class="col-box single-input">
+                  <input type="tel" id="expiry" placeholder="MM/YY" class="custom-input" value="09/26" />
+                </div>
+
+                <!-- 삼성카드일 때 보여질 두 개의 input -->
+                <div class="col-box dual-input">
+                  <input type="tel" placeholder="YY" class="custom-input" />
+                  <input type="tel" placeholder="MM" class="custom-input" />
+                </div>
+                <!-- <input type="text" class="custom-input" placeholder="" id="text_03" />
+                                    <button type="button" class="icon icon-del js-text-del"></button> -->
+              </div>
+            </li>
+            <li>
+              <div class="input-container label-y">
+                <label class="label" for="text_05">CVC</label>
+                <input type="text" class="custom-input" placeholder="3자리 숫자" id="text_05" value="353" />
+                <button type="button" class="icon icon-del js-text-del"></button>
+              </div>
+            </li>
+            <li>
+              <div class="input-container label-y">
+                <label class="label" for="text_06">비밀번호</label>
+                <input type="text" class="custom-input" placeholder="앞 2자리" id="text_06" value="99" />
+                <button type="button" class="icon icon-del js-text-del"></button>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- //section -->
+      </div>
+      <!-- //container -->
+      <!-- bottom area -->
+      <div class="bottom-area">
+        <!-- container -->
+        <div class="container">
+          <!-- <button id="send" class="btn" onclick="window.location.href='./registerCard_step3.html'">확인</button> -->
+          <button id="send" class="btn" onclick="modalOpenSlide('modal-select-title2')">확인</button>
+        </div>
+        <!-- //container -->
+      </div>
+      <!-- //bottom area -->
+    </div>
+    <!-- //content -->
+  </div>
+  <!-- //wrap -->
+
+  <!-- common prompt -->
+  <div id="commonPrompt" class="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h3 id="promptTitle"></h3>
+          <p id="promptContents"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="promptNo" onclick="modalCloseAlert();" class="btn btn-cancel">취소</button>
+          <button type="button" id="promptOk" onclick="modalCloseAlert();" class="btn btn-confirm">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- //common prompt -->
+
+  <!-- common prompt -->
+  <div id="commonPrompt2" class="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h3 id="promptTitle2"></h3>
+          <p id="promptContents3">이미 등록된 카드에요</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="promptNo2" onclick="modalCloseAlert();" class="btn btn-cancel">문의하기</button>
+          <button type="button" id="promptOk2" onclick="modalCloseAlert();" class="btn btn-confirm">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- //common prompt -->
+
+  <!-- common alert -->
+  <div id="commonAlert" class="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h3 id="alertTitle"></h3>
+          <p id="alertContents">고객 요청으로 앱카드 사용중지되었습니다.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" onclick="modalCloseAlert();" class="btn btn-confirm">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- //common alert -->
+</body>
+<script>
+  $(document).ready(function () {
+    /* 카드사 오류 일 경우 바로 바텀 노출 */;
+    // modalOpenSlide('modal-select-title2')
+    /* 이미 등록된 카드 모달 */;
+    /* modalOpen('commonPrompt2') */
+    /* 사용 중지 모달 */;
+    /* modalOpen('commonAlert'); */
+
+    $(document).on('click', '.option-item button', function () {
+      const imgSrc = $(this).find('img').attr('src'); // 클릭된 버튼 내부 이미지 src
+      $('#cardLogo').attr('src', imgSrc); // logo-box 아래 이미지 변경
+      modalCloseSlide();
+      const logoBox = document.querySelector('.logo-box');
+      logoBox.classList.add('size-up');
+    });
+
+  });
+
+  const cardInputs = document.querySelectorAll('.col-box .custom-input');
+  const cardLogoImg = document.getElementById('cardLogo');
+
+  // 카드 BIN별 카드사 매칭 예시
+  const cardCompanies = [
+    { name: 'Visa', bins: ['4'], logo: 'visa.png' },
+    { name: 'MasterCard', bins: ['51', '52', '53', '54', '55'], logo: 'mastercard.png' },
+    { name: 'Amex', bins: ['34', '37'], logo: 'amex.png' },
+    { name: 'BC', bins: ['95'], logo: 'logo_bc.png' },
+    { name: 'KB', bins: ['94'], logo: 'logo_kb.png' },
+    // 필요시 BIN 추가
+  ];
+
+  function detectCardCompany(cardNumber) {
+    for (const company of cardCompanies) {
+      if (company.bins.some(bin => cardNumber.startsWith(bin))) {
+        return company.logo;
+      }
+    }
+    return null;
+  }
+
+  function handleCardInput() {
+    const cardNumber = Array.from(cardInputs).map(input => input.value).join('');
+    const logoBox = document.querySelector('.logo-box');
+
+    if (cardNumber.length >= 6) {
+      const logo = detectCardCompany(cardNumber);
+      if (logo) {
+        cardLogoImg.src = `../../images/logo/${logo}`; // 카드사 이미지 경로 예시
+        if (logoBox) logoBox.classList.add('size-up');
+      } else {
+        cardLogoImg.src = '../../images/common/icon-credit-card.svg';
+        if (logoBox) logoBox.classList.remove('size-up');
+      }
+    } else {
+      cardLogoImg.src = '../../images/common/icon-credit-card.svg';
+      if (logoBox) logoBox.classList.remove('size-up');
+    }
+  }
+
+  cardInputs.forEach(input => {
+    input.addEventListener('input', handleCardInput);
+  });
+</script>
+
+</html>

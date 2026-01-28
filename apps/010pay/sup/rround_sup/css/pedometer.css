@@ -1,14 +1,22 @@
 /* 251031 */
-html,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* iOS pull to refresh를 위해 body에서 스크롤 가능하도록 설정 */
 body {
   margin: 0;
   padding: 0;
-  height: 100%; /* ✅ 필요시 제거하거나 유지 */
-  overflow: hidden; /* ✅ 전체 스크롤 방지 */
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: auto;
 }
 
 #content { width: 100%; min-height: 100%; background: url('../images/pedometer/bg.png') center/cover no-repeat; display: flex; justify-content: start; } 
-.walk-bg { position: relative; width: 100%; min-height: calc(var(--vh, 1vh) * 100 - 56px); display: flex; justify-content: center; background-position-y: 152px; background-size: 375px auto; overflow: hidden; height: 100%;  user-select: none; -webkit-user-select: none; overflow-y: scroll; } 
+.walk-bg { position: relative; width: 100%; min-height: calc(var(--vh, 1vh) * 100 - 56px); display: flex; justify-content: center; background-position-y: 152px; background-size: 375px auto; overflow: visible; height: auto; min-height: calc(var(--vh, 1vh) * 100 - 56px); user-select: none; -webkit-user-select: none; } 
 .walk-bg .bg { position: absolute; } 
 .walk-bg .bg.bg1 { width: 58px; height: 54px; background: url(../images/pedometer/bg1.png) no-repeat center / contain; left: 50%; transform: translateX(-50%); margin-left: 170px; top: 150px; } 
 .walk-bg .bg.bg2 { width: 150px; height: 150px; background: url(../images/pedometer/bg2.png) no-repeat center / contain; left: 50%; transform: translateX(-50%); margin-left: 110px; bottom: -17px; } 
@@ -148,7 +156,7 @@ body {
 }
 
 .walk-bg {
-  height: calc(var(--vh, 1vh) * 100 - 56px);
+  min-height: calc(var(--vh, 1vh) * 100 - 56px);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -214,7 +222,6 @@ body {
 }
 .walk-container {
   padding-bottom: 81px;
-  overflow-y: scroll;
   overflow-x: hidden;
 }
 .pedo-step-list {

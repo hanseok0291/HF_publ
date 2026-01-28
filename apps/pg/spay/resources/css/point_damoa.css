@@ -49,6 +49,10 @@ html,
 body {
     width: 100%;
     height: 100%;
+    overflow-y: scroll;
+    /* 스크롤바 숨기기 (기능은 유지) */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
 }
 body {
     background-color: #fff;
@@ -195,7 +199,6 @@ textarea[readonly],
 .readonly {
     background-color: transparent;
     color: #9a9a9a;
-    -webkit-text-fill-color: #9a9a9a;
     opacity: 1;
 }
 code {
@@ -1571,12 +1574,12 @@ label {
 .point-damoa .check-box label {
     font-family: Pretendard;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.25;
     letter-spacing: 0px;
     cursor: pointer;
     margin-bottom: 0;
-    color: #303030;
+    color: #747474;
     min-height: 30px;
     display: flex;
     align-items: center;
@@ -1601,9 +1604,8 @@ label {
 .point-damoa .check-box.check-all label,
 .modal .check-box.check-all label {
     font-family: Pretendard;
-    font-weight: 600;
-    font-style: SemiBold;
-    font-size: 18px;
+    font-weight: 700;
+    font-size: 16px;
     leading-trim: NONE;
     line-height: 100%;
     letter-spacing: -0.41px;
@@ -1613,6 +1615,24 @@ label {
 .point-damoa .btn-right,
 .modal .btn-right {
     margin-left: auto;
+}
+
+.point-damoa .btn-right > a,
+.modal .btn-right > a {
+    display: flex;
+    align-items: center;
+    font-family: Inter;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 14px;
+    leading-trim: NONE;
+    line-height: 100%;
+    letter-spacing: -0.41px;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-offset: 0%;
+    text-decoration-thickness: 0%;
+    color: #747474;
 }
 
 .modal .btn_view {
@@ -1729,9 +1749,10 @@ label {
     margin: 0;
     width: 100%;
 }
+
 .modal-full .modal-content .modal-body {
     text-align: left;
-    padding: 20px 20px 130px;
+    padding: 20px 30px 130px;
 }
 
 .point-damoa #commonConfirm .modal-body {
@@ -2072,11 +2093,11 @@ label {
     width: 100%;
     background-color: #303030;
     color: #fff;
-    height: 66.51px;
+    height: 60px;
     font-family: Pretendard;
     font-weight: 600;
     font-style: SemiBold;
-    font-size: 22px;
+    font-size: 16px;
     leading-trim: NONE;
     line-height: 23px;
     letter-spacing: -0.44px;
@@ -2115,7 +2136,7 @@ label {
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 0 20px;
+    padding: 0 30px;
     height: 128px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 16.38%);
     z-index: 10;
@@ -2235,7 +2256,7 @@ label {
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 0 20px;
+    padding: 0 30px;
     height: 128px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 16.38%);
     z-index: 10;
@@ -3294,4 +3315,1762 @@ label {
     -o-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+/* ============================================
+   포인트다모아 KYC 약관 동의 페이지 스타일
+   ============================================ */
+/* iframe 최적화 스타일 */
+body.point-damoa-kyc-body {
+    margin: 0;
+    padding: 0;
+    width: 692px;
+    height: 300px;
+    overflow: hidden;
+}
+#wrap.point-damoa-kyc {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#wrap.point-damoa-kyc .kyc-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 30px;
+    background: #fff;
+    border-radius: 20px 20px 0 0;
+}
+#wrap.point-damoa-kyc .kyc-header {
+    position: relative;
+    margin-bottom: 10px;
+}
+#wrap.point-damoa-kyc .kyc-title {
+    font-family: Pretendard;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    letter-spacing: -0.408px;
+    color: #303030;
+    margin: 0;
+}
+#wrap.point-damoa-kyc .btn-close-kyc {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background: url("../images/custom/new/btn_close.svg") no-repeat center;
+    background-size: 24px 24px;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+#wrap.point-damoa-kyc .terms-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+#wrap.point-damoa-kyc .terms-main-item {
+    margin-bottom: 6px;
+}
+#wrap.point-damoa-kyc .terms-main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+#wrap.point-damoa-kyc .terms-main-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#wrap.point-damoa-kyc .terms-main-label {
+    font-family: Inter, "Noto Sans KR", sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: normal;
+    letter-spacing: -0.408px;
+    color: #303030;
+}
+#wrap.point-damoa-kyc .btn-arrow {
+    width: 32px;
+    height: 32px;
+    background: url("../images/custom/new/arrow_down.svg") no-repeat center;
+    background-size: 20px 20px;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.3s;
+}
+#wrap.point-damoa-kyc .btn-arrow.active {
+    transform: rotate(180deg);
+}
+#wrap.point-damoa-kyc .terms-sub-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: none;
+}
+#wrap.point-damoa-kyc .terms-sub-list.active {
+    display: block;
+}
+#wrap.point-damoa-kyc .terms-sub-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0;
+}
+#wrap.point-damoa-kyc .terms-sub-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+#wrap.point-damoa-kyc .terms-sub-label {
+    font-family: Inter, "Noto Sans KR", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: normal;
+    letter-spacing: -0.408px;
+    color: #747474;
+}
+#wrap.point-damoa-kyc .btn-view {
+    font-family: Inter, "Noto Sans KR", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: normal;
+    letter-spacing: -0.408px;
+    color: #747474;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+#wrap.point-damoa-kyc .kyc-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: #fff;
+    border-top: 1px solid #dadada;
+}
+#wrap.point-damoa-kyc .btn-next {
+    width: 100%;
+    max-width: 632px;
+    height: 60px;
+    background-color: #303030;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 23px;
+    letter-spacing: -0.44px;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+}
+#wrap.point-damoa-kyc .btn-next:disabled {
+    background-color: #cbcbcb;
+    cursor: not-allowed;
+}
+/* 체크박스 커스텀 스타일 */
+#wrap.point-damoa-kyc .check-box-kyc input[type="checkbox"] {
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: url("../images/custom/new/check_sm_off.svg") no-repeat center;
+    background-size: 24px 24px;
+    cursor: pointer;
+    position: relative;
+    margin: 0;
+    min-width: 24px;
+    max-width: 24px;
+    flex-shrink: 0;
+}
+#wrap.point-damoa-kyc .check-box-kyc input[type="checkbox"]:checked {
+    background: url("../images/custom/new/check_sm_on.svg") no-repeat center;
+    background-size: 24px 24px;
+}
+#wrap.point-damoa-kyc .check-box-kyc.main input[type="checkbox"]:checked {
+    background: url("../images/custom/new/check_sm_on_gray.svg") no-repeat center;
+    background-size: 24px 24px;
+}
+#wrap.point-damoa-kyc .check-box-kyc.sub input[type="checkbox"]:checked {
+    background: url("../images/custom/new/check_sm_on.svg") no-repeat center;
+    background-size: 24px 24px;
+}
+/* 스크롤바 스타일 */
+#wrap.point-damoa-kyc .kyc-content::-webkit-scrollbar {
+    width: 6px;
+}
+#wrap.point-damoa-kyc .kyc-content::-webkit-scrollbar-thumb {
+    background-color: rgba(203, 203, 203, 1);
+    border-radius: 3px;
+}
+#wrap.point-damoa-kyc .kyc-content::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+/* ============================================
+   포인트다모아 KYC 인증정보 입력 페이지 스타일
+   ============================================ */
+/* iframe 최적화 스타일 */
+body.point-damoa-kyc-input-body {
+    margin: 0;
+    padding: 0;
+    width: 692px;
+    height: 300px;
+    overflow: hidden;
+}
+#wrap.point-damoa-kyc-input {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 20px 20px 0 0;
+}
+#wrap.point-damoa-kyc-input .kyc-input-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 0px 20px;
+}
+#wrap.point-damoa-kyc-input .kyc-input-header {
+    position: relative;
+    margin-bottom: 20px;
+}
+#wrap.point-damoa-kyc-input .kyc-input-title {
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 40px;
+    letter-spacing: 0px;
+    color: #1c1c1c;
+    margin: 0;
+}
+#wrap.point-damoa-kyc-input .btn-close-kyc-input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background: url("../images/custom/new/btn_close.svg") no-repeat center;
+    background-size: 24px 24px;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+#wrap.point-damoa-kyc-input .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#wrap.point-damoa-kyc-input .input-row {
+    display: flex;
+    gap: 20px;
+}
+#wrap.point-damoa-kyc-input .input-field {
+    display: flex;
+    flex-direction: column;
+}
+#wrap.point-damoa-kyc-input .input-field.name {
+    width: 212px;
+}
+#wrap.point-damoa-kyc-input .input-field.rrn {
+    flex: 1;
+}
+#wrap.point-damoa-kyc-input .input-field.telecom {
+    width: 212px;
+}
+#wrap.point-damoa-kyc-input .input-field.phone {
+    flex: 1;
+}
+#wrap.point-damoa-kyc-input .input-label {
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.429;
+    letter-spacing: 0.261px;
+    color: #9b9b9b;
+    margin-bottom: 0;
+}
+#wrap.point-damoa-kyc-input .input-wrapper {
+    position: relative;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+#wrap.point-damoa-kyc-input .input-wrapper input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-bottom: 1.5px solid #cbcbcb;
+    background: transparent;
+    font-family: Pretendard;
+    font-size: 18px;
+    font-weight: 400;
+    color: #303030;
+    padding: 0;
+    outline: none;
+}
+#wrap.point-damoa-kyc-input .input-wrapper input::placeholder {
+    color: #b0b0b0;
+}
+#wrap.point-damoa-kyc-input .input-wrapper input:focus {
+    border-bottom-color: #303030;
+}
+/* 주민등록번호 입력 필드 */
+#wrap.point-damoa-kyc-input .rrn-input-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 40px;
+    position: relative;
+    overflow: hidden;
+}
+#wrap.point-damoa-kyc-input .rrn-input-first {
+    width: 219px;
+    height: 40px;
+    border-bottom: 1px solid #cbcbcb;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+#wrap.point-damoa-kyc-input .rrn-input-first input {
+    border-bottom: none;
+    text-align: center;
+}
+#wrap.point-damoa-kyc-input .rrn-dash {
+    width: 16px;
+    height: 2px;
+    background: #303030;
+    flex-shrink: 0;
+}
+#wrap.point-damoa-kyc-input .rrn-dots {
+    width: 138px;
+    height: 31px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+}
+#wrap.point-damoa-kyc-input .rrn-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #e2e2e2;
+}
+#wrap.point-damoa-kyc-input .rrn-dot.fill {
+    background: #929292;
+}
+/* 통신사 선택 필드 */
+#wrap.point-damoa-kyc-input .select-wrapper {
+    position: relative;
+    height: 40px;
+    border-bottom: 1.5px solid #cbcbcb;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+#wrap.point-damoa-kyc-input .select-wrapper.active {
+    border-bottom-color: #303030;
+}
+#wrap.point-damoa-kyc-input .select-value {
+    flex: 1;
+    font-family: Pretendard;
+    font-size: 18px;
+    font-weight: 700;
+    color: #303030;
+    padding: 0;
+}
+#wrap.point-damoa-kyc-input .select-value.placeholder {
+    color: #b0b0b0;
+}
+#wrap.point-damoa-kyc-input .select-arrow {
+    width: 30px;
+    height: 30px;
+    background: transparent url(../images/custom/select-bg.svg) right 10px center no-repeat;
+    background-size: 24px auto;
+    flex-shrink: 0;
+}
+/* 통신사 선택 모달 */
+#wrap.point-damoa-kyc-input .telecom-modal {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #cbcbcb;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    display: none;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 4px;
+}
+#wrap.point-damoa-kyc-input .telecom-modal.active {
+    display: block;
+}
+#wrap.point-damoa-kyc-input .telecom-list {
+    list-style: none;
+    margin: 0;
+    padding: 10px 0;
+}
+#wrap.point-damoa-kyc-input .telecom-item {
+    padding: 12px 20px;
+    font-family: Pretendard;
+    font-size: 18px;
+    color: #303030;
+    cursor: pointer;
+}
+#wrap.point-damoa-kyc-input .telecom-item:hover {
+    background: #f5f5f5;
+}
+/* 인증요청 버튼 */
+#wrap.point-damoa-kyc-input .kyc-input-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 30px;
+    background: #fff;
+}
+#wrap.point-damoa-kyc-input .btn-auth-request {
+    width: 100%;
+    max-width: 632px;
+    height: 60px;
+    background-color: #cbcbcb;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 23px;
+    letter-spacing: -0.44px;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+}
+#wrap.point-damoa-kyc-input .btn-auth-request:enabled {
+    background-color: #303030;
+}
+#wrap.point-damoa-kyc-input .btn-auth-request:disabled {
+    background-color: #cbcbcb;
+    cursor: not-allowed;
+}
+/* 스크롤바 스타일 */
+#wrap.point-damoa-kyc-input .kyc-input-content::-webkit-scrollbar {
+    width: 6px;
+}
+#wrap.point-damoa-kyc-input .kyc-input-content::-webkit-scrollbar-thumb {
+    background-color: rgba(203, 203, 203, 1);
+    border-radius: 3px;
+}
+#wrap.point-damoa-kyc-input .kyc-input-content::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+/* ============================================
+   포인트다모아 KYC 인증번호 입력 페이지 스타일
+   ============================================ */
+/* iframe 최적화 스타일 */
+body.point-damoa-kyc-verify-body {
+    margin: 0;
+    padding: 0;
+    width: 692px;
+    height: 300px;
+    overflow: hidden;
+}
+#wrap.point-damoa-kyc-verify {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 20px 20px 0 0;
+}
+#wrap.point-damoa-kyc-verify .kyc-verify-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px 30px 110px;
+}
+#wrap.point-damoa-kyc-verify .kyc-verify-header {
+    position: relative;
+    margin-bottom: 30px;
+}
+#wrap.point-damoa-kyc-verify .kyc-verify-title {
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 40px;
+    letter-spacing: 0px;
+    color: #1c1c1c;
+    margin: 0;
+}
+#wrap.point-damoa-kyc-verify .btn-close-kyc-verify {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background: url("../images/custom/new/btn_close.svg") no-repeat center;
+    background-size: 24px 24px;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+#wrap.point-damoa-kyc-verify .verify-input-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-direction: column;
+}
+#wrap.point-damoa-kyc-verify .verify-input-field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+#wrap.point-damoa-kyc-verify .verify-input-label {
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.429;
+    letter-spacing: 0.261px;
+    color: #8a8a8a;
+    margin-bottom: 0;
+}
+#wrap.point-damoa-kyc-verify .verify-input-wrapper {
+    position: relative;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1.5px solid #cbcbcb;
+}
+#wrap.point-damoa-kyc-verify .verify-input-wrapper input {
+    flex: 1;
+    height: 100%;
+    border: none;
+    background: transparent;
+    font-family: Pretendard;
+    font-size: 18px;
+    font-weight: 400;
+    color: #303030;
+    padding: 0;
+    outline: none;
+    text-align: left;
+}
+#wrap.point-damoa-kyc-verify .verify-input-wrapper input::placeholder {
+    color: #b0b0b0;
+}
+#wrap.point-damoa-kyc-verify .verify-input-wrapper input:focus {
+    border-bottom-color: #303030;
+}
+#wrap.point-damoa-kyc-verify .verify-timer-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1;
+    min-width: 0;
+}
+#wrap.point-damoa-kyc-verify .verify-timer {
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.5;
+    letter-spacing: 0.114px;
+    color: #ff6363;
+}
+#wrap.point-damoa-kyc-verify .btn-resend {
+    height: 40px;
+    padding: 0 30px;
+    background: #fff;
+    border: 1px solid #303030;
+    border-radius: 8px;
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1;
+    color: #303030;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+#wrap.point-damoa-kyc-verify .btn-resend:disabled {
+    cursor: not-allowed;
+}
+#wrap.point-damoa-kyc-verify .btn-resend:enabled:hover {
+    background: #f5f5f5;
+}
+/* 다음 버튼 */
+#wrap.point-damoa-kyc-verify .kyc-verify-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 30px;
+    background: #fff;
+}
+#wrap.point-damoa-kyc-verify .btn-next-verify {
+    width: 100%;
+    max-width: 632px;
+    height: 60px;
+    background-color: #303030;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 23px;
+    letter-spacing: -0.44px;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+}
+#wrap.point-damoa-kyc-verify .btn-next-verify:disabled {
+    background-color: #cbcbcb;
+    cursor: not-allowed;
+}
+/* 스크롤바 스타일 */
+#wrap.point-damoa-kyc-verify .kyc-verify-content::-webkit-scrollbar {
+    width: 6px;
+}
+#wrap.point-damoa-kyc-verify .kyc-verify-content::-webkit-scrollbar-thumb {
+    background-color: rgba(203, 203, 203, 1);
+    border-radius: 3px;
+}
+#wrap.point-damoa-kyc-verify .kyc-verify-content::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+/* ============================================
+   포인트다모아 KYC 포인트 입력 페이지 스타일
+   ============================================ */
+/* iframe 최적화 스타일 */
+body.point-damoa-kyc-point-input-body {
+    margin: 0;
+    padding: 0;
+    width: 692px;
+    height: 300px;
+    overflow: hidden;
+}
+#wrap.point-damoa-kyc-point-input {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 20px 20px 0 0;
+}
+#wrap.point-damoa-kyc-point-input .kyc-point-input-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 0px 70px;
+    max-width: 550px;
+    width: 100%;
+    margin: 0 auto;
+}
+#wrap.point-damoa-kyc-point-input .kyc-point-input-header {
+    position: relative;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 10px;
+}
+#wrap.point-damoa-kyc-point-input .btn-back-kyc-point-input {
+    width: 40px;
+    height: 40px;
+    background: url("../images/custom/new/arrow_left.svg") no-repeat center;
+    background-size: 32px 32px;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+}
+#wrap.point-damoa-kyc-point-input .product-amount-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    min-height: 24px;
+    flex: 1;
+    max-width: 550px;
+    width: 100%;
+    margin: 0 auto;
+}
+#wrap.point-damoa-kyc-point-input .product-amount-text {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    font-family: Pretendard;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1;
+    color: #303030;
+    flex: 1;
+}
+#wrap.point-damoa-kyc-point-input .product-amount-label {
+    color: #303030;
+}
+#wrap.point-damoa-kyc-point-input .product-amount-value {
+    color: #ff6114;
+}
+#wrap.point-damoa-kyc-point-input .product-amount-unit {
+    color: #303030;
+}
+#wrap.point-damoa-kyc-point-input .point-guide-link {
+    font-family: Pretendard;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: normal;
+    letter-spacing: -1px;
+    color: #303030;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    white-space: nowrap;
+}
+#wrap.point-damoa-kyc-point-input .btn-close-kyc-point-input {
+    width: 40px;
+    height: 40px;
+    background: url("../images/custom/new/btn_close.png") no-repeat center;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+}
+/* 포인트 요약 섹션 */
+#wrap.point-damoa-kyc-point-input .point-summary-section {
+    background: #f4f4f5;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+#wrap.point-damoa-kyc-point-input .point-summary-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: Pretendard;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: normal;
+    letter-spacing: -0.408px;
+}
+#wrap.point-damoa-kyc-point-input .point-summary-label {
+    color: #303030;
+}
+#wrap.point-damoa-kyc-point-input .point-summary-value {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-align: right;
+}
+#wrap.point-damoa-kyc-point-input .point-amount {
+    font-family: Pretendard;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: normal;
+    letter-spacing: -0.408px;
+}
+#wrap.point-damoa-kyc-point-input .point-amount.highlight {
+    color: #ff6114;
+}
+#wrap.point-damoa-kyc-point-input .point-unit {
+    font-family: Pretendard;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: normal;
+    letter-spacing: -0.408px;
+    color: #303030;
+}
+#wrap.point-damoa-kyc-point-input .point-summary-value .point-amount {
+    color: #ff6114;
+}
+#wrap.point-damoa-kyc-point-input .point-summary-value .point-unit {
+    color: #303030;
+}
+#wrap.point-damoa-kyc-point-input .point-summary-divider {
+    height: 1px;
+    background-image: repeating-linear-gradient(to right, #cbcbcb 0px, #cbcbcb 4px, transparent 4px, transparent 8px);
+    margin: 10px 0;
+}
+#wrap.point-damoa-kyc-point-input .point-summary-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+#wrap.point-damoa-kyc-point-input .point-summary-detail-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-family: Pretendard;
+    font-size: 16px;
+    line-height: normal;
+    letter-spacing: -0.408px;
+}
+#wrap.point-damoa-kyc-point-input .point-detail-left {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+#wrap.point-damoa-kyc-point-input .point-detail-label {
+    font-weight: 400;
+    color: #303030;
+}
+#wrap.point-damoa-kyc-point-input .point-detail-separator {
+    font-weight: 400;
+    color: #5c5c5c;
+}
+#wrap.point-damoa-kyc-point-input .point-detail-count {
+    font-weight: 400;
+    font-size: 14px;
+    color: #5c5c5c;
+}
+#wrap.point-damoa-kyc-point-input .point-detail-value {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-align: right;
+}
+#wrap.point-damoa-kyc-point-input .point-detail-value .point-amount {
+    font-weight: 700;
+    font-size: 16px;
+    color: #303030;
+}
+#wrap.point-damoa-kyc-point-input .point-detail-value .point-unit {
+    font-weight: 400;
+    font-size: 16px;
+    color: #303030;
+}
+#wrap.point-damoa-kyc-point-input .point-summary-item .point-detail-value .point-amount {
+    font-weight: 700;
+    font-size: 18px;
+}
+#wrap.point-damoa-kyc-point-input .point-summary-item .point-detail-value .point-unit {
+    font-weight: 700;
+    font-size: 18px;
+}
+/* 전액 사용하기 */
+#wrap.point-damoa-kyc-point-input .full-usage-section {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+#wrap.point-damoa-kyc-point-input .full-usage-checkbox {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: none;
+    background: url("../images/custom/new/check_sm_off_gray.svg") no-repeat center;
+    background-size: 18px 18px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+#wrap.point-damoa-kyc-point-input .full-usage-checkbox:checked {
+    background: url("../images/custom/new/check_sm_on_gray.svg") no-repeat center;
+    background-size: 18px 18px;
+}
+#wrap.point-damoa-kyc-point-input .full-usage-label {
+    font-family: Pretendard;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: normal;
+    letter-spacing: -1px;
+    color: #303030;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+/* 포인트 카드 버튼 섹션 */
+#wrap.point-damoa-kyc-point-input .point-cards-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+#wrap.point-damoa-kyc-point-input .point-cards-row {
+    display: flex;
+    gap: 8px;
+}
+#wrap.point-damoa-kyc-point-input .point-card-btn {
+    flex: 1;
+    height: 58px;
+    padding: 14px 10px 14px 20px;
+    border: 1px solid #cbcbcb;
+    border-radius: 8px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    font-family: Pretendard;
+    transition: all 0.2s;
+}
+#wrap.point-damoa-kyc-point-input .point-card-btn.active {
+    border-color: #ff6114;
+}
+#wrap.point-damoa-kyc-point-input .point-card-btn .card-name {
+    font-weight: 700;
+    font-size: 18px;
+    color: #303030;
+    flex-shrink: 0;
+}
+#wrap.point-damoa-kyc-point-input .point-card-btn:not(.active) .card-name {
+    color: #9b9b9b;
+}
+#wrap.point-damoa-kyc-point-input .point-card-btn .card-points {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    justify-content: flex-end;
+}
+#wrap.point-damoa-kyc-point-input .point-card-btn .point-value {
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: -0.16px;
+    color: #303030;
+}
+#wrap.point-damoa-kyc-point-input .point-card-btn:not(.active) .point-value {
+    color: #9b9b9b;
+}
+#wrap.point-damoa-kyc-point-input .point-card-btn .point-unit {
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: -0.16px;
+    color: #303030;
+}
+#wrap.point-damoa-kyc-point-input .point-card-btn:not(.active) .point-unit {
+    color: #9b9b9b;
+}
+#wrap.point-damoa-kyc-point-input .point-card-btn .card-arrow {
+    width: 9px;
+    height: 13px;
+    background: url("../images/custom/new/arrow_right.svg") no-repeat center;
+    background-size: contain;
+    flex-shrink: 0;
+    margin-left: 6px;
+}
+/* 하단 버튼 */
+#wrap.point-damoa-kyc-point-input .kyc-point-input-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 16.38%);
+    display: flex;
+    gap: 8px;
+    height: 72px;
+    align-items: flex-start;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    max-width: 550px;
+    width: 100%;
+    margin: 0 auto;
+}
+#wrap.point-damoa-kyc-point-input .btn-fold {
+    flex: 1;
+    height: 58px;
+    background: #eaebec;
+    border: none;
+    border-radius: 8px;
+    font-family: Pretendard;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 23px;
+    letter-spacing: -0.44px;
+    color: #303030;
+    cursor: pointer;
+}
+#wrap.point-damoa-kyc-point-input .btn-convert {
+    flex: 1;
+    height: 58px;
+    background: #303030;
+    border: none;
+    border-radius: 8px;
+    font-family: Pretendard;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 23px;
+    letter-spacing: -0.44px;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#wrap.point-damoa-kyc-point-input .convert-amount {
+    font-weight: 700;
+}
+#wrap.point-damoa-kyc-point-input .convert-text {
+    font-weight: 700;
+}
+/* 스크롤바 스타일 */
+#wrap.point-damoa-kyc-point-input .kyc-point-input-content::-webkit-scrollbar {
+    width: 6px;
+}
+#wrap.point-damoa-kyc-point-input .kyc-point-input-content::-webkit-scrollbar-thumb {
+    background-color: rgba(203, 203, 203, 1);
+    border-radius: 3px;
+}
+#wrap.point-damoa-kyc-point-input .kyc-point-input-content::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+/* 포인트 입력 모달 */
+.point-input-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.point-input-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+.point-input-modal-content {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    background: #fff;
+    z-index: 10001;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.point-input-modal-back {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+    background: url("../images/custom/new/arrow_left.svg") no-repeat center;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10002;
+}
+.point-input-modal-close {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background: url("../images/custom/new/btn_close.png") no-repeat center;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10002;
+}
+.point-input-modal-body {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 20px 0;
+    -webkit-overflow-scrolling: touch;
+    max-width: 550px;
+    width: 100%;
+    margin: 0 auto;
+}
+.point-input-modal-available {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: #f4f4f5;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    flex-direction: column;
+}
+.point-input-modal-available > p {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3px;
+}
+.point-input-modal-available > p:last-of-type {
+    margin-bottom: 0;
+}
+.point-input-modal-available-label {
+    color: var(--HF-Color-Neutral-Neutral10, #303030);
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.408px;
+    color: #303030;
+}
+.point-input-modal-available-value {
+    font-family: Pretendard;
+    font-weight: 700;
+    font-size: 16px;
+    color: #303030;
+    margin-left: auto;
+}
+.point-input-modal-full-usage {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+}
+.point-input-modal-full-usage-checkbox {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: none;
+    background: url("../images/custom/new/check_sm_off_gray.svg") no-repeat center;
+    background-size: 18px 18px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.point-input-modal-full-usage-checkbox:checked {
+    background: url("../images/custom/new/check_sm_on_gray.svg") no-repeat center;
+    background-size: 18px 18px;
+}
+.point-input-modal-full-usage-label {
+    font-family: Pretendard;
+    font-weight: 400;
+    font-size: 14px;
+    color: #303030;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+.point-input-modal-input-section {
+    position: relative;
+}
+.point-input-modal-input-section .point-input-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.point-input-modal-input-section .point-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.point-input-modal-input-section .point-input-wrapper .point-unit {
+    position: absolute;
+    right: 40px;
+    font-size: 19px;
+    color: #474747;
+    font-family: Pretendard;
+    font-weight: 700;
+    pointer-events: none;
+    display: none;
+    z-index: 100;
+}
+.point-input-modal-input-section .point-input {
+    width: 100%;
+    padding: 10px 40px 10px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 19px;
+    font-weight: 600;
+    font-family: Pretendard;
+    color: #474747;
+    background: #fff;
+    text-align: right;
+}
+/* 값이 입력되지 않은 상태에서는 padding-right 20px 유지 */
+.point-input-modal-input-section .point-input:placeholder-shown:not(:focus) {
+    padding-right: 20px;
+    text-align: left;
+}
+/* 포커스 상태: padding-right 60px (모든 경우) */
+.point-input-modal-input-section .point-input:focus {
+    padding-right: 60px !important;
+}
+/* 값이 입력된 경우 padding-right 60px */
+.point-input-modal-input-section .point-input:not(:placeholder-shown) {
+    padding-right: 60px;
+}
+.point-input-modal-input-section .point-input:focus {
+    border-color: #ff6114;
+    outline: none;
+}
+.point-input-modal-input-section .clear-btn {
+    position: absolute;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: url("../images/custom/new/btn_del.svg") no-repeat center;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    z-index: 100;
+}
+.point-input-modal-input-section .error-message {
+    margin-top: 8px;
+    font-family: Pretendard;
+    font-weight: 400;
+    font-size: 12px;
+    color: #ff4242;
+    line-height: 1.4;
+}
+.point-input-modal-footer {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+    padding: 7px 0 7px 0;
+    max-width: 550px;
+    width: 100%;
+    margin: 0 auto;
+}
+.point-input-modal-confirm {
+    flex: 1;
+    height: 56px;
+    background: #303030;
+    border: none;
+    border-radius: 8px;
+    font-family: Pretendard;
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+}
+.point-input-modal-confirm:disabled {
+    background: #cbcbcb;
+    cursor: not-allowed;
+}
+/* 모달 현대카드 input 스타일 */
+.point-input-modal-input-section .hyundai-input-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+}
+.point-input-modal-input-section .hyundai-input-group .point-input-section {
+    flex: 1;
+    position: relative;
+    min-width: 0;
+}
+.point-input-modal-input-section .hyundai-equals {
+    flex-shrink: 0;
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 19px;
+    color: #474747;
+    text-align: center;
+    padding: 0 4px;
+    line-height: 1;
+}
+.point-input-modal-input-section .hyundai-input-group .point-input {
+    text-align: right;
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 100%;
+    color: #474747;
+}
+.point-input-modal-input-section .hyundai-input-group .hyundai-point-input {
+    padding-right: 16px;
+}
+/* 현대카드 input 포커스 상태 */
+.point-input-modal-input-section .hyundai-input-group .hyundai-point-input:focus {
+    padding-right: 60px;
+}
+.point-input-modal-input-section .hyundai-input-group .hyundai-point-input:focus:placeholder-shown {
+    padding-right: 40px;
+}
+.point-input-modal-input-section .hyundai-input-group .hyundai-point-input:not(:placeholder-shown) {
+  padding-right: 60px;
+}
+.point-input-modal-input-section .hyundai-input-group .hyundai-point-input.has-value {
+    padding-right: 60px;
+}
+.point-input-modal-input-section .hyundai-input-group .hyundai-won-input {
+    padding-right: 60px;
+}
+.point-input-modal-input-section .hyundai-input-group .hyundai-input-right .hyundai-won-input {
+  padding-right: 40px;
+}
+.point-input-modal-input-section .hyundai-input-group .hyundai-won-input:disabled {
+    color: #303030;
+}
+.point-input-modal-input-section .hyundai-input-group .point-input-wrapper .point-unit {
+    position: absolute;
+    right: 16px;
+    font-size: 19px;
+    color: #474747;
+    font-family: Pretendard;
+    font-weight: 600;
+    pointer-events: none;
+    display: block;
+    z-index: 100;
+}
+.point-input-modal-input-section .hyundai-input-group .hyundai-input-left .point-input-wrapper .point-unit {
+  right: 36px;
+}
+/* 포인트 입력 모달 내 info 버튼 */
+.point-input-modal-available p {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: start;
+}
+.info-btn-modal {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    background: url("../images/custom/new/info.svg") no-repeat center center;
+    background-size: contain;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    flex-shrink: 0;
+    overflow: visible;
+}
+.info-btn-modal .info-popup {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 12px 10px;
+    z-index: 10003;
+    display: none;
+    text-align: left;
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 320px;
+    white-space: normal;
+    word-break: break-word;
+}
+/* 호버 시 팝업 표시 제거 - 포인트 입력 페이지에서는 클릭 시에만 모달 표시 */
+.info-btn-modal .info-popup {
+    display: none !important;
+}
+.info-btn-modal .popup-arrow {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 7px solid #000;
+    z-index: 11;
+}
+.info-btn-modal .popup-arrow::after {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: -5px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #fff;
+}
+.info-btn-modal .info-popup .info-item {
+    margin-bottom: 4px;
+    padding-left: 10px;
+    position: relative;
+}
+.info-btn-modal .info-popup .info-item:last-of-type {
+    margin-bottom: 0;
+}
+.info-btn-modal .info-popup .info-item p {
+    font-family: Pretendard;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #333;
+    margin: 0;
+}
+.info-btn-modal .info-popup .info-item::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 3px;
+    height: 3px;
+    background-color: #303030;
+    border-radius: 100%;
+}
+.info-btn-modal .info-popup .info-item.no-desc {
+    padding-left: 0;
+}
+.info-btn-modal .info-popup .info-item.no-desc::after {
+    display: none;
+}
+
+/* 정보 모달 (툴팁 클릭 시 표시되는 전체 화면 모달) */
+.info-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10004;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.info-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+/* 정보 모달에만 적용되도록 스코프 제한 */
+.info-modal .info-modal-content {
+    position: relative;
+    background: #fff;
+    border-radius: 12px;
+    width: 310px;
+    max-height: calc(100vh - 68px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 10005;
+}
+/* 헤더 제거 - 닫기 버튼만 absolute로 배치 */
+.info-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: url("../images/custom/new/btn_close.png") no-repeat center;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10006;
+}
+.info-modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 30px 10px;
+    -webkit-overflow-scrolling: touch;
+    text-align: center;
+}
+.info-modal-item {
+    margin-bottom: 0;
+}
+.info-modal-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+.info-modal-label {
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 14px;
+    color: #5c5c5c;
+    margin: 0 0 8px 0;
+}
+.info-modal-text {
+    font-family: Pretendard;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000;
+    line-height: 1.5;
+    margin: 0;
+}
+.info-modal-text > p {
+  margin-bottom: 8px;
+  color: var(--hecto_black01, #2B2B2B);
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 157.143% */
+  letter-spacing: -0.408px;
+}
+.info-modal-text > p:last-of-type {
+  margin-bottom: 0;
+}
+.info-modal-text > p.info-modal-card-name {
+  color: var(--hecto_black01, #2B2B2B);
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 157.143% */
+  letter-spacing: -0.408px;
+}
+.info-modal-footer {
+    padding: 10px;
+    border-top: 1px solid #DADADA;
+    flex-shrink: 0;
+}
+.info-modal-confirm {
+    width: 100%;
+    height: 38px;
+    background: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: Pretendard;
+    color: var(--HF-Style-Neutral-05, #222);
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.408px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.point-input-modal-input-section .hyundai-input-group .hyundai-input-left .point-input-wrapper .point-unit {
+    display: none;
+}
+.point-input-modal-input-section .hyundai-input-group .hyundai-input-left .point-input-wrapper .point-input.has-value ~ .point-unit {
+    display: block;
+}
+
+#wrap.point-damoa.iframe .content {
+  padding-top: 0;
+}
+#wrap.point-damoa.iframe .order-wrap {
+  margin-top: 0;
+}
+#wrap.point-damoa.iframe .list-header.accordion-title {
+  padding-bottom: 6px;
+}
+.point-damoa.iframe .check-box label {
+  min-height: 24px;
+}
+#wrap.point-damoa.iframe .title-main {
+  color: var(--HF-Color-Neutral-Neutral10, #303030);
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px;
+  letter-spacing: -0.408px;
+}
+#wrap.point-damoa.iframe header {
+  height: 29px;
+}
+#wrap.point-damoa.iframe {
+  padding: 10px 30px 20px;
+}
+#wrap.point-damoa.iframe .container {
+  padding: 0;
+}
+#wrap.point-damoa.iframe header .btn-close {
+  right: -10px;
+  top: -5px;
+}
+#wrap.point-damoa-kyc-input .rrn-input-first input {
+  border: 0;
+}
+#wrap.point-damoa-kyc-input .kyc-input-content {
+  padding-bottom: 100px;
+}
+#wrap.point-damoa.iframe input[type="text"] {
+}
+#wrap.point-damoa.iframe input[type="text"]:not(:placeholder-shown) {
+  width: auto;
+}
+#wrap.point-damoa-kyc-input .input-field.name input[type="text"] {
+  width: 100%;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 700;
+}
+#wrap.point-damoa-kyc-input .input-field.rrn .rrn-input-first input[type="text"] {
+  width: 149px;
+  height: 100%;
+  text-align: left;
+  padding-right: 35px;
+}
+#wrap.point-damoa-kyc-input .input-field.rrn input[type="text"] {
+  border: 0;
+}
+.point-damoa.iframe input[type="text"] {
+  font-size: 26px;
+  font-weight: 400;
+}
+#wrap.point-damoa-kyc-input .input-field.rrn .rrn-input-first .rrn-dash + input[type="text"] {
+  padding: 0;
+  width: 50px;
+  right: 0;
+  padding-left: 10px;
+}
+/* .point-damoa.iframe .custom-input.custom-number-wrap .number-wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.point-damoa.iframe .custom-input.custom-number-wrap .number-input-wrap {
+  border-bottom: 1px solid #cbcbcb;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.point-damoa.iframe .custom-input.custom-number-wrap .number-wrap input.birth-wrap:first-of-type {
+  width: 90px;
+  min-width: 90px;
+  width: 70%;
+}
+.point-damoa.iframe .custom-label {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 2px;
+  left: 0;
+  font-size: 18px;
+  color: #929292;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+.point-damoa.iframe .custom-input.custom-number-wrap .number-wrap .text-dash {
+  margin: 0 4px;
+  flex-shrink: 0;
+}
+.point-damoa.iframe .custom-input.custom-number-wrap .number-wrap input:nth-of-type(2) {
+  width: 20px;
+  min-width: 20px;
+  margin-left: 0;
+} */
+
+/* 약관 동의 간단 페이지 스타일 */
+.terms-simple-wrap {
+    padding: 20px;
+}
+.terms-main-agree {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.terms-main-agree .check-box {
+    display: flex;
+    align-items: flex-start;
+}
+.terms-main-agree .check-box label {
+    font-family: Pretendard;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #303030;
+    margin-left: 10px;
+}
+.terms-simple-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.terms-simple-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.terms-simple-item:last-child {
+    border-bottom: none;
+}
+.terms-simple-item .check-box {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+.terms-simple-item .check-box label {
+    font-family: Pretendard;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #303030;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.terms-view-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-left: 12px;
+    flex-shrink: 0;
+    text-decoration: none;
+    color: #9b9b9b;
+}
+.terms-view-btn .icon-arrow-right,
+.btn-view .icon-arrow-right {
+    display: inline-block;
+    width: 9px;
+    height: 13px;
+    background: url("../images/custom/new/arrow_right.svg") no-repeat center;
+    background-size: contain;
+}
+/* 포인트다모아 약관동의 페이지 전용 - button_arrow_left.svg */
+.btn-view .icon-arrow-left {
+    display: inline-block;
+    width: 29px;
+    height: 30px;
+    background: url("../images/custom/new/button_arrow_left.svg") no-repeat center;
+    background-size: contain;
+}
+.terms-view-btn:hover {
+    opacity: 0.7;
+}
+
+.point-damoa .accordion-list.no-accordion, .modal .accordion-list.no-accordion .list-header .subject {
+  padding: 10px 0 26px;
+}
+
+.point-damoa .accordion-list.no-accordion .list-header {
+  padding-bottom: 6px;
+  margin-bottom: 0;
+  line-height: 38px;
+  height: 38px;
+}
+
+.modal h2.title-main {
+  padding: 0 30px;
+  line-height: 40px;
+  margin-bottom: 0;
+  margin-top: 5px;
+  font-size: 20px;
+}
+.modal h2.title-main + .btn-close {
+  top: 5px;
+  right: 5px;
 }

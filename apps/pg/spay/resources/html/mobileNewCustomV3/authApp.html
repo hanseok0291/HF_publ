@@ -30,7 +30,7 @@
 
         <link rel="stylesheet" href="../../css/owl.carousel.min.css" />
         <link rel="stylesheet" href="../../css/slick.min.css" />
-        <link rel="stylesheet" href="../../css/common_monotone.css" />
+        <link rel="stylesheet" href="../../css/common_monotone.css?ver=260120" />
         <!--[if lt IE 9]>
             <script type="text/javascript" src="../../js/html5shiv.js"></script>
             <script type="text/javascript" src="../../js/respond.min.js"></script>
@@ -44,7 +44,11 @@
         <script src="../../js/commonutil.js"></script>
     </head>
 
-    <body class="custom-new">
+    <!-- 광고별 개별 색상 설정 예시: style="--cpc-bg-color-type1: #FF0000; --cpc-bg-color-type2: #00FF00; --cpc-bg-color-type3: #0000FF;" -->
+    <!-- 테스트용: 각 광고별로 다른 색상 적용 (띠배너: 빨강, 슬라이드: 초록, 전체화면: 파랑) -->
+    <body class="custom-new" style="--cpc-bg-color-type1: #ff0000; --cpc-bg-color-type2: #00D8F3; --cpc-bg-color-type3: #0000ff;">
+    <!-- <body class="custom-new"> -->
+      
         <!-- wrap -->
         <div id="wrap" class="wrap">
             <!-- form -->
@@ -177,6 +181,17 @@
                             <!-- //accordion list -->
                             <!-- //섹션 영역 -->
                         </div>
+                        <!-- CPC 띠배너 -->
+                        <!-- ad-type1, ad-type2, ad-type3 클래스를 추가하여 각 광고별 배경색 지정 가능 -->
+                        <!-- 백오피스에서 --cpc-bg-color-type1, --cpc-bg-color-type2, --cpc-bg-color-type3 등을 설정하면 해당 색상 적용 -->
+                        <div id="cpcBanner" class="cpc-banner ad-type1">
+                            <div class="container">
+                                <a href="javascript:;" class="cpc-banner-link" aria-label="드시모네 25주년 기념 정기구독 혜택 배너">
+                                    <img src="../../images/custom/new/cpc-banner.png" alt="드시모네 25주년 기념 정기구독 혜택" />
+                                </a>
+                            </div>
+                        </div>
+                        <!-- //CPC 띠배너 -->
                         <div class="line"></div>
                         <div class="container">
                             <div class="content">
@@ -745,6 +760,26 @@
         </div>
         <!-- //slide modal -->
 
+        <!-- slide modal 샘플 - 드시모네 광고 -->
+        <!-- ad-type1, ad-type2, ad-type3 클래스를 추가하여 각 광고별 배경색 지정 가능 -->
+        <!-- 백오피스에서 --cpc-bg-color-type1, --cpc-bg-color-type2 등을 설정하면 해당 색상 적용 -->
+        <div id="modalSlideSample" class="modal new modal-slide modal-desimone ad-type2" aria-live="polite" aria-labelledby="popupTitleSample" tabindex="0">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <span id="popupTitleSample" class="blink" tabindex="0">드시모네 정기구독 혜택 팝업</span>
+                    <div class="modal-body">
+                        <div class="desimone-ad-content">
+                            <img src="../../images/custom/new/cpc-slide-ad.png" alt="드시모네 25주년 기념 정기구독 혜택" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-close-desimone" aria-label="닫기">닫기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //slide modal 샘플 - 드시모네 광고 -->
+
         <!-- popup modal -->
         <div id="modalPopup" class="modal new popup v2" aria-live="polite" aria-labelledby="popupTitle2">
             <span id="popupTitle2" class="blink" tabindex="0">광고 팝업</span>
@@ -764,6 +799,20 @@
 
         <!-- 스크린리더 강제 읽힘용 aria-live 영역 -->
         <div id="sr-announcer" class="sr-only" aria-live="polite"></div>
+
+        <!-- CPC 전체화면 광고 -->
+        <!-- ad-type1, ad-type2, ad-type3 클래스를 추가하여 각 광고별 배경색 지정 가능 -->
+        <!-- 백오피스에서 --cpc-bg-color-type1, --cpc-bg-color-type2 등을 설정하면 해당 색상 적용 -->
+        <div id="cpcFullscreenAd" class="cpc-fullscreen-ad ad-type3" role="dialog" aria-labelledby="cpcAdTitle" aria-modal="true">
+            <div class="cpc-fullscreen-ad-content">
+                <a href="javascript:;" class="cpc-fullscreen-ad-link" aria-label="드시모네 25주년 기념 정기구독 혜택">
+                    <div class="cpc-fullscreen-ad-inner">
+                        <img src="../../images/custom/new/cpc-fullscreen-ad.png" alt="드시모네 25주년 기념 정기구독 혜택" />
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- //CPC 전체화면 광고 -->
 
         <script>
             $(document).ready(function () {
@@ -1126,6 +1175,35 @@
                     focusTimer();
                 }
             }
+
+            // CPC 광고 관련 기능
+            $(document).ready(function () {
+                const $fullscreenAd = $("#cpcFullscreenAd");
+
+                // 페이지 진입 시 전체화면 광고 표시
+                $fullscreenAd.show();
+                $("body").addClass("modal-open");
+
+                // 1.2초 후 자동으로 전체화면 광고 사라지기
+                setTimeout(function () {
+                    if ($fullscreenAd.is(":visible")) {
+                        $fullscreenAd.fadeOut(300, function () {
+                            $("body").removeClass("modal-open");
+                        });
+                    }
+                }, 900);
+
+                modalOpenSlide("modalSlideSample");
+
+                // 드시모네 모달 닫기 버튼 클릭 이벤트
+                $(".btn-close-desimone").on("click", function() {
+                    var temp = $("#modalSlideSample");
+                    var modalH = $(window).height() * -1;
+                    temp.fadeOut(200);
+                    temp.find(".modal-content").animate({ bottom: modalH }, 200);
+                    scrollOn();
+                });
+            });
         </script>
     </body>
 </html>

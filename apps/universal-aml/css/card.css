@@ -61,7 +61,22 @@
 .card .empty-text-wrap { font-family: Pretendard; font-weight: 400; font-size: 16px; line-height: 100%; letter-spacing: -0.41px; color: #1C1C1C; text-align: center; line-height: 100px; } 
 .card .empty-text-wrap > p { color: #8a8a8a; } 
 
-.card-delivery-status { border-radius: 10px; background: #F7F7F8; padding: 30px 20px; } 
+.card-delivery-status { 
+  border-radius: 10px; 
+  background: #F7F7F8; 
+  padding: 30px 20px; 
+  display: block; /* 기본값: 보이기 */
+}
+
+/* active 클래스가 없는 경우 숨기기 */
+.card .my-info-wrap > ul li:not(.active) .card-delivery-status {
+  display: none;
+}
+
+/* active 클래스가 있는 경우 보이기 */
+.card .my-info-wrap > ul li.active .card-delivery-status {
+  display: block;
+} 
 
 .card-delivery-status .status-message { text-align: center; font-size: 16px; margin-bottom: 50px; color: #1C1C1C; } 
 

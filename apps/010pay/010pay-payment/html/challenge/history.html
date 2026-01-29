@@ -1,163 +1,289 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <title>RROUND</title>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
-    />
-    <meta
-      name="format-detection"
-      content="telephone=no, address=no, email=no"
-    />
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <link rel="stylesheet" href="../../css/common_renewal.css" />
-    <link rel="stylesheet" href="../../css/challenge/history.css" />
-    <script src="../../js/jquery.3.4.1.min.js"></script>
-    <script src="../../js/jquery-ui.js"></script>
-  </head>
 
-  <body>
-    <!-- wrap -->
-    <div id="wrap">
-      <!-- header -->
-      <div id="header">
-        <div class="container">
-          <div class="header-box">
-            <h2 class="page-title">나의 활동 내역</h2>
-            <button type="button" class="btn-close js-change-btn">
-              <i class="icon-close"></i>
-            </button>
-          </div>
+<head>
+  <title>RROUND</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no, address=no, email=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <link rel="stylesheet" href="../../css/common_renewal.css" />
+  <link rel="stylesheet" href="../../css/challenge/history.css" />
+  <script src="../../js/jquery.3.4.1.min.js"></script>
+  <script src="../../js/jquery-ui.js"></script>
+  <script src="../../js/design_renewal.js" defer="defer"></script>
+</head>
+
+<body>
+  <!-- wrap -->
+  <div id="wrap">
+    <!-- header -->
+    <div id="header">
+      <div class="container">
+        <div class="header-box">
+          <button type="button" class="btn-back js-change-btn left-0">
+            <i class="icon-back"></i>
+          </button>
+          <h2 class="page-title">포인트 파워 적립</h2>
+          <button type="button" class="right-0 text-btn">
+            참여 방법
+          </button>
         </div>
       </div>
-      <!-- //header -->
-
-      <!-- content -->
-      <div id="content">
-        <!-- container -->
-        <div class="container history-container">
-          <!-- 적립 미대상 -->
-          <div class="event-target off">
-            <p class="main-text">5배 적립 대상자가 아니에요</p>
-            <p class="sub-text">
-              챌린지 참여는 카드가 필요해요
-            </p>
-            <button type="button">카드 자세히 보기</button>
-          </div>
-          <!-- <div class="event-target off">
-            <p class="main-text">아직 이용내역이 없어요</p>
-            <p class="sub-text">
-              카드를 이용하여 1만원 이상 결제가 필요해요
-            </p>
-            <button type="button">스토어 바로가기</button>
-          </div> -->
-          <!-- 적립 대상 -->
-          <!-- <div class="event-target on">
-            <p class="main-text">5배 적립을 받을 수 있어요</p>
-          </div> -->
-          
-          <div class="history-wrap">
-            <!-- <p class="empty-list">
-              이벤트 진행 중에는 <br>
-              확인할 수 없어요
-            </p> -->
-            <!-- <p class="empty-list">적립내역이 없어요</p> -->
-            <div class="month-wrap">
-              <button type="button" class="prev-btn icon-arrow-left size-16">이전</button>
-              <button type="button" class="month-text">1월</button>
-              <button type="button" class="next-btn icon-arrow-right size-16 disabled">다음</button>
-            </div>
-            <div class="list-contents-wrap">
-              <dl class="total-point-box">
-                <dt>총 적립 포인트</dt>
-                <dd>3,000P</dd>
-              </dl>
-              <ul class="list-wrap">
-                <li>
-                  <dl class="info-box">
-                    <dt>챌린지</dt>
-                    <dd>웹툰 보고 포인트 받기</dd>
-                  </dl>
-                  <dl class="basic-point-box">
-                    <dt>보상 기준일</dt>
-                    <dd>1월 5일</dd>
-                  </dl>
-                  <div class="detail-point-box">
-                    <dl class="final-point-box">
-                      <dt>최종 적립 포인트(x5배)</dt>
-                      <dd>+500P</dd>
-                    </dl>
-                    <dl class="basic-point-box">
-                      <dt>기본 적립 포인트</dt>
-                      <dd>+100P</dd>
-                    </dl>
-                    <dl class="basic-point-box">
-                      <dt>추가 적립 포인트</dt>
-                      <dd>+400P</dd>
-                    </dl>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- //container -->
-      </div>
-      <!-- //content -->
     </div>
-    <!-- //wrap -->
-  </body>
-  <script>
-    $(function () {
-      var $prevBtn = $('.prev-btn');
-      var $nextBtn = $('.next-btn');
-      var $monthText = $('.month-text');
-      
-      // 현재 월 추출 (초기값: "7월" -> 7)
-      var currentMonth = parseInt($monthText.text().replace('월', ''));
-      
-      // 월 업데이트 함수
-      function updateMonth(month) {
-        currentMonth = month;
-        $monthText.text(currentMonth + '월');
-        
-        // 이전 버튼: 1월일 때 disabled
-        if (currentMonth <= 1) {
-          $prevBtn.addClass('disabled');
-        } else {
-          $prevBtn.removeClass('disabled');
-        }
-        
-        // 다음 버튼: 12월일 때 disabled (또는 현재 월에 도달했을 때)
-        if (currentMonth >= 12) {
-          $nextBtn.addClass('disabled');
-        } else {
-          $nextBtn.removeClass('disabled');
-        }
+    <!-- //header -->
+
+    <!-- content -->
+    <div id="content">
+      <!-- container -->
+      <div class="container history-container">
+        <div class="price-wrap">
+          <div class="price-text">
+            <p>지금까지 받은 혜택</p>
+            <div class="tooltip-wrap">
+              <button type="button" class="btn-tooltip">더 보기</button>
+              <div class="tooltip-content">
+                <p>이벤트를 신청한 달부터 지금까지 받은 기본 적립과 파워 적립을 합산한 금액이에요.</p>
+                <button type="button" class="icon icon-close-gray"></button>
+              </div>
+            </div>
+          </div>
+          <p class="price-amount">1,000원</p>
+        </div>
+        <div class="history-wrap">
+          <!-- warning-type class 추가 시 경고 타입 -->
+          <!-- <div class="history-wrap warning-type"> -->
+          <div class="month-wrap">
+            <button type="button" class="prev-btn icon-arrow-left size-16">이전</button>
+            <button type="button" class="month-text">1월</button>
+            <button type="button" class="next-btn icon-arrow-right size-16 disabled">다음</button>
+          </div>
+          <div class="save-amount-wrap">
+            <dl class="basic-text">
+              <dt>기본 적립 <span class="multiple-text">x 1</span></dt>
+              <dd>1,000원</dd>
+            </dl>
+            <dl class="highlight-text">
+              <!-- 챌린지 적립 조회 월 조건 미달성 & 조회 월 적립 내역 미보유 through-text 추가 -->
+              <!-- <dl class="highlight-text through-text"> -->
+              <dt>파워 적립 (예상) <span class="multiple-text">x 4</span></dt>
+              <dd>4,000원</dd>
+            </dl>
+          </div>
+          <!-- <div class="bottom-info-wrap">
+            <div>조건 미충족으로 파워 적립이 적용되지 않았어요</div>
+            <div><i class="icon-fire"></i>파워 적립 챌린지로 <b>포인트 5배 적립 받아요!</b></div>
+            <div><i class="icon-coin"></i>3월 10일에 <b>4,000원 적립돼요</b></div>
+            <div><i class="icon-coin"></i>2월 10일에 <b>파워 적립 4,000원을 받았어요</b></div>
+            <div>챌린지 미참여로 파워 적립이 적용되지 않았어요</div>
+          </div> -->
+        </div>
+
+        <button type="button" class="btn-power-earn-info" onclick="modalOpenSlide('modal-power-earn-info');">
+          <span>지금 나에게 필요한 <b>파워 적립 조건은?</b></span>
+          <i class="icon-arrow-right-white size-16"></i>
+        </button>
+
+        <div class="challenge-wrap">
+          <div class="text-wrap">
+            <h4 class="title-text">파워 적립 챌린지</h4>
+            <p class="sub-text">참여할수록 적립 금액이 늘어나요!</p>
+          </div>
+          <ul class="challenge-list">
+            <li class="challenge-item">
+              <img src="../../images/challenge/challenge-img-1.png" alt="매일 걷고" class="challenge-img">
+              <div class="text-wrap">
+                <p class="challenge-title">매일 걷고</p>
+                <p class="challenge-point-text">걸음 수 구간마다 포인트</p>
+              </div>
+              <button type="button" class="icon-arrow-right-888 size-16"></button>
+            </li>
+            <li class="challenge-item">
+              <img src="../../images/challenge/challenge-img-2.png" alt="쿠팡 방문하고" class="challenge-img">
+              <div class="text-wrap">
+                <p class="challenge-title">쿠팡 방문하고</p>
+                <p class="challenge-point-text">매일 3번 포인트</p>
+              </div>
+              <button type="button" class="icon-arrow-right-888 size-16"></button>
+            </li>
+            <li class="challenge-item">
+              <img src="../../images/challenge/challenge-img-3.png" alt="두뇌 게임하고" class="challenge-img">
+              <div class="text-wrap">
+                <p class="challenge-title">두뇌 게임하고</p>
+                <p class="challenge-point-text">카드 짝 맞추고 포인트</p>
+              </div>
+              <button type="button" class="icon-arrow-right-888 size-16"></button>
+            </li>
+            <li class="challenge-item">
+              <img src="../../images/challenge/challenge-img-4.png" alt="OX퀴즈 풀고" class="challenge-img">
+              <div class="text-wrap">
+                <p class="challenge-title">OX퀴즈 풀고</p>
+                <p class="challenge-point-text">매일 한 번 포인트</p>
+              </div>
+              <button type="button" class="icon-arrow-right-888 size-16"></button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- //container -->
+    </div>
+    <!-- //content -->
+  </div>
+  <!-- //wrap -->
+
+  <!-- 카드 X 팝업 -->
+  <div id="event-card-x-modal" class="modal normal-modal challenge-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <img class="modal-img" src="../../images/challenge/modal-img-1.png" alt="coupon" />
+          <h3>이벤트 대상 카드가 필요해요</h3>
+          <p>
+            라운드 이벤트 카드 만들면 <br>
+            매월 최대 <b>23,000원</b> 까지 받아요.
+          </p>
+        </div>
+        <div class="modal-footer vertical">
+          <button type="button" class="btn btn-confirm" onclick="modalCloseAlert();">
+            이벤트 카드 보러 가기
+          </button>
+          <button type="button" class="btn btn-noShow" onclick="modalCloseAlert();">닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- // 카드 X 팝업 -->
+
+  <!-- 월 실적 미달성 팝업 -->
+  <div id="event-month-achievement-modal" class="modal normal-modal challenge-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <img class="modal-img" src="../../images/challenge/modal-img-2.png" alt="coupon" />
+          <h3>파워 적립까지 얼마 남지 않았어요</h3>
+          <p>
+            이벤트 카드로 라운드에서 1만원 쇼핑하면 <br>
+            <b>포인트 5배</b>를 적립받아요.
+          </p>
+        </div>
+        <div class="modal-footer vertical">
+          <button type="button" class="btn btn-confirm" onclick="modalCloseAlert();">
+            쇼핑하고 혜택받기
+          </button>
+          <button type="button" class="btn btn-noShow" onclick="modalCloseAlert();">닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- // 월 실적 미달성 팝업 -->
+
+  <!-- 파워적립 안내 팝업 -->
+  <div id="modal-power-earn-info" class="modal modal-slide type-title modal-power-earn-info not-dim-close">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="title-wrap">
+            <img src="../../images/challenge/modal-tooltip.png" alt="포인트 5배 적립" class="tooltip-img">
+            <h3>파워 적립까지 <span>1단계</span> 남았어요</h3>
+            <!-- <h3>파워 적립까지 <span>2단계</span> 남았어요</h3> -->
+            <p class="sub-text">
+              이벤트 대상 카드 발급하면 <b>파워 적립 대상</b>이 돼요.
+            </p>
+            <!-- <p class="sub-text">
+              지금까지 적립한 포인트 <b>1,200원</b>
+            </p> -->
+            <!-- <p class="sub-text">
+              이번 달 누적 1만원 이상 쇼핑하면 <br>
+              <b>파워 적립</b> 받을 수 있어요.
+            </p> -->
+          </div>
+          <ul class="step-list">
+            <li>
+              <div class="img-wrap">1</div>
+              <p>이벤트 참여 신청 완료</p>
+            </li>
+            <li class="">
+              <div class="img-wrap">2</div>
+              <p>이벤트 대상 카드 발급</p>
+            </li>
+            <li class="active">
+              <div class="img-wrap">3</div>
+              <p>1만원 이상 쇼핑</p>
+            </li>
+            <li class="number">
+              <div class="img-wrap">4</div>
+              <p>챌린지하고 파워 적립 받기</p>
+            </li>
+          </ul>
+          <div class="btn-wrap">
+            <button type="button" class="btn js-modal-close">이벤트 카드 보러 가기</button>
+            <!-- <button type="button" class="btn js-modal-close">쇼핑하고 혜택 받기</button> -->
+             <button type="button" class="btn btn-noShow js-modal-close" onclick="modal();">다음에 하기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- //파워적립 안내 팝업 -->
+</body>
+<script>
+  $(function () {
+    var $prevBtn = $('.prev-btn');
+    var $nextBtn = $('.next-btn');
+    var $monthText = $('.month-text');
+
+    // 현재 월 추출 (초기값: "7월" -> 7)
+    var currentMonth = parseInt($monthText.text().replace('월', ''));
+
+    // 월 업데이트 함수
+    function updateMonth(month) {
+      currentMonth = month;
+      $monthText.text(currentMonth + '월');
+
+      // 이전 버튼: 1월일 때 disabled
+      if (currentMonth <= 1) {
+        $prevBtn.addClass('disabled');
+      } else {
+        $prevBtn.removeClass('disabled');
       }
-      
-      // 이전 버튼 클릭
-      $prevBtn.on('click', function() {
-        if ($(this).hasClass('disabled')) return;
-        
-        if (currentMonth > 1) {
-          updateMonth(currentMonth - 1);
-        }
-      });
-      
-      // 다음 버튼 클릭
-      $nextBtn.on('click', function() {
-        if ($(this).hasClass('disabled')) return;
-        
-        if (currentMonth < 12) {
-          updateMonth(currentMonth + 1);
-        }
-      });
-      
-      // 초기 상태 설정
-      updateMonth(currentMonth);
+
+      // 다음 버튼: 12월일 때 disabled (또는 현재 월에 도달했을 때)
+      if (currentMonth >= 12) {
+        $nextBtn.addClass('disabled');
+      } else {
+        $nextBtn.removeClass('disabled');
+      }
+    }
+
+    // 이전 버튼 클릭
+    $prevBtn.on('click', function () {
+      if ($(this).hasClass('disabled')) return;
+
+      if (currentMonth > 1) {
+        updateMonth(currentMonth - 1);
+      }
     });
-  </script>
+
+    // 다음 버튼 클릭
+    $nextBtn.on('click', function () {
+      if ($(this).hasClass('disabled')) return;
+
+      if (currentMonth < 12) {
+        updateMonth(currentMonth + 1);
+      }
+    });
+
+    // 초기 상태 설정
+    updateMonth(currentMonth);
+
+    // 툴팁: .btn-tooltip 클릭 시 노출, close 버튼 클릭 시 닫기
+    $('.btn-tooltip').on('click', function () {
+      $(this).closest('.tooltip-wrap').find('.tooltip-content').css('display', 'flex');
+    });
+    $('.tooltip-content .icon-close-gray').on('click', function () {
+      $(this).closest('.tooltip-wrap').find('.tooltip-content').hide();
+    });
+  });
+</script>
+
 </html>

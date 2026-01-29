@@ -1,6 +1,10 @@
+#wrap, #content, .challenge-container, .section {
+  overflow-anchor: none;
+}
+
 #content {
   background-color: #17181D;
-  padding: 55px 0 0;
+  padding: 55px 0 0 !important;
 }
 
 .challenge-container {
@@ -11,491 +15,266 @@
 }
 
 .challenge-container .title-section {
-  position: relative;
-  margin: 0;
-  padding: 36px 0 62px;
+  margin-top: 0;
+  padding: 40px 0 0;
+}
+
+.section > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section.active > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.challenge-container .title-section .title-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   text-align: center;
 }
 
-.challenge-container .title-section .title-text-wrap {
-  position: relative;
-  z-index: 1;
+.challenge-container .title-section .title-wrap .title-img {
+  width: 248px;
 }
 
-.challenge-container .title-section .top-text {
-  color: #FFFFFFCC;
-  font-family: Pretendard;
-  font-weight: 400;
-  font-size: 14px;
+.challenge-container .title-section .title-wrap .title-text {
+  color: #E0FF63;
+  margin-top: 4px;
+  font-weight: 700;
+  font-size: 18px;
   line-height: 1.4;
-  letter-spacing: -0.02em;
-  opacity: 0.7;
+  letter-spacing: -0.05em;
+  text-align: center;
 }
 
-.challenge-container .title-section .title-text {
-  width: 327px;
-  margin: 0 0 4px;
+.challenge-container .title-section .visual-img-wrap {
+  width: 336px;
+  margin: 12px auto 0;
+  transition-delay: 0.25s;
 }
 
-.challenge-container .title-section .sub-text {
-  color: #FFFFFFCC;
+.challenge-container .title-section .visual-img-wrap .visual-img {
+  width: 100%;
+}
+
+.challenge-container .title-section .sub-text-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  transition-delay: 0.5s;
+}
+
+.challenge-container .title-section .sub-text-wrap .sub-text-1 {
+  color: #fff;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.4;
   letter-spacing: -0.02em;
+  opacity: 0.6;
 }
 
-.challenge-container .title-section .sub-text span {
-  color: #E0FF63;
+.challenge-container .title-section .sub-text-wrap .sub-text-2 {
+  color: #fff;
   font-weight: 700;
+  font-size: 24px;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  text-align: center;
 }
 
-.challenge-container .title-section .img-wrap {
-  position: absolute;
-  bottom: -76px;
-  left: calc(50% + 9px);
-  transform: translateX(-50%);
-  width: 424px;
-  height: 180px;
+.challenge-container .title-section .sub-text-wrap .sub-text-2 span {
+  color: #E0FF63;
 }
 
-.challenge-container .title-section .img-wrap span {
-  position: absolute;
-  transition: all 0.5s ease-in-out;
-  opacity: 0;
+.challenge-container .title-section .challenge-list-wrap {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 24px;
+  transition-delay: 0.75s;
 }
 
-.challenge-container .title-section .img-wrap span.img-1 {
-  left: 15px;
-  top: -95px;
-  width: 99px;
-  height: 108px;
-  background: url(../../images/challenge/visual-img-1.png) center / 100% 100% no-repeat;
-}
-
-.challenge-container .title-section .img-wrap span.img-2 {
-  left: 57px;
-  top: 4px;
-  width: 49px;
-  height: 53px;
-  background: url(../../images/challenge/visual-img-2.png) center / 100% 100% no-repeat;
-}
-
-.challenge-container .title-section .img-wrap span.img-3 {
-  left: 69px;
-  top: -146px;
-  width: 119px;
-  height: 105px;
-  background: url(../../images/challenge/visual-img-3.png) center / 100% 100% no-repeat;
-}
-
-.challenge-container .title-section .img-wrap span.img-4 {
-  left: 157px;
-  top: -26px;
-  width: 117px;
-  height: 78px;
-  background: url(../../images/challenge/visual-img-4.png) center / 100% 100% no-repeat;
-}
-
-.challenge-container .title-section .img-wrap span.img-5 {
-  left: 249px;
-  top: -165px;
-  width: 87px;
-  height: 113px;
-  background: url(../../images/challenge/visual-img-5.png) center / 100% 100% no-repeat;
-}
-
-.challenge-container .title-section .img-wrap span.img-6 {
-  left: 261px;
-  top: -87px;
-  width: 127px;
-  height: 127px;
-  background: url(../../images/challenge/visual-img-6.png) center / 100% 100% no-repeat;
-}
-
-.challenge-container .title-section .img-wrap span.img-7 {
-  left: 291px;
-  top: -136px; 
-  width: 99px;
-  height: 101px;
-  background: url(../../images/challenge/visual-img-7.png) center / 100% 100% no-repeat;
-}
-
-.challenge-container .title-section.active .img-wrap span {
-  opacity: 1;
-}
-
-.challenge-container .title-section.active .img-wrap span.img-1 {
-  top: 15px;
-}
-
-.challenge-container .title-section.active .img-wrap span.img-2 {
-  top: 64px;
-}
-
-.challenge-container .title-section.active .img-wrap span.img-3 {
-  top: 51px;
-}
-
-.challenge-container .title-section.active .img-wrap span.img-4 {
-  top: 47px;
-}
-
-.challenge-container .title-section.active .img-wrap span.img-5 {
-  top: 15px;
-}
-
-.challenge-container .title-section.active .img-wrap span.img-6 {
-  top: 52px;
-}
-
-.challenge-container .title-section.active .img-wrap span.img-7 {
-  top: 30px; 
-}
-
-.challenge-container .title-section .point-text-wrap {
+.challenge-container .title-section .challenge-list-wrap .challenge-list-item {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  height: 105px;
+  border-radius: 16px;
+  background-color: #333333;
+  gap: 8px;
+}
+
+.challenge-container .title-section .challenge-list-wrap .challenge-list-item .challenge-icon-wrap {
+  width: 36px;
+  height: 36px;
+}
+
+.challenge-container .title-section .challenge-list-wrap .challenge-list-item:nth-child(1) .challenge-icon-wrap {
+  background: url(../../images/challenge/main-icon-img-1.png) 0 0 / 100% 100% no-repeat;
+}
+
+.challenge-container .title-section .challenge-list-wrap .challenge-list-item:nth-child(2) .challenge-icon-wrap {
+  background: url(../../images/challenge/main-icon-img-2.png) 0 0 / 100% 100% no-repeat;
+}
+
+.challenge-container .title-section .challenge-list-wrap .challenge-list-item:nth-child(3) .challenge-icon-wrap {
+  background: url(../../images/challenge/main-icon-img-3.png) 0 0 / 100% 100% no-repeat;
+}
+
+.challenge-container .title-section .challenge-list-wrap .challenge-list-item:nth-child(4) .challenge-icon-wrap {
+  background: url(../../images/challenge/main-icon-img-4.png) 0 0 / 100% 100% no-repeat;
+}
+
+.challenge-container .title-section .challenge-list-wrap .challenge-list-item .challenge-title {
+  font-size: 15px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.challenge-container .title-section .challenge-list-wrap .challenge-list-item .challenge-point {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  width: 34px;
+  height: 21px;
+  border-radius: 16px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 21px;
+  letter-spacing: -0.02em;
+  color: #E0FF63;
+  background-color: #090909;
+}
+
+.challenge-container .title-section .info-text {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #B0B0B3;
+  margin-top: 24px;
+  transition-delay: 1s;
+}
+
+.challenge-container .event-info-section {
+  margin-top: 60px;
+}
+
+.challenge-container .event-info-section h4 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.challenge-container .event-info-section .event-info-list-wrap {
+  padding: 0 20px;
+  border-radius: 12px;
+  background-color: #333333;
+  transition-delay: 0.25s;
+}
+
+.challenge-container .event-info-section .event-info-list-wrap .event-info-list-item {
+  padding-bottom: 16px;
+}
+
+.challenge-container .event-info-section .event-info-list-wrap .event-info-list-item .step-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 55px;
+  height: 22px;
+  background-color: #151515;
+  border-radius: 0 0 8px 8px;
+}
+
+.challenge-container .event-info-section .event-info-list-wrap .event-info-list-item .step-wrap .step {
+  width: 43px;
+}
+
+.challenge-container .event-info-section .event-info-list-wrap .event-info-list-item .event-info-text {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #fff;
   margin-top: 12px;
 }
 
-.challenge-container .title-section .point-text-wrap p {
-  color: #E0FF63;
-  font-weight: 700;
-  font-size: 26px;
-  line-height: 1.4;
-  letter-spacing: -0.03em;
-  margin-right: 7px;
-}
-
-.challenge-container .title-section .point-text-wrap img {
-  width: 70px;
-  height: auto;
-}
-
-.challenge-container .info-section {
-  position: relative;
-  z-index: 2;
-  overflow: hidden;
-  border-radius: 16px;
-  padding: 24px 0 20px;
-}
-
-.challenge-container .info-section .title-text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #151515;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 1.4;
-  letter-spacing: -0.03em;
-}
-
-.challenge-container .info-section .title-text span {
-  color: #8BC104;
-}
-
-.challenge-container .info-section .rolling-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin: 20px 0;
-  width: 100%;
-}
-
-.challenge-container .info-section .bottom-text {
-  color: #888;
+.challenge-container .event-info-section .event-info-list-wrap .event-info-list-item .event-info-sub-text {
   font-size: 12px;
-  font-weight: 400;
-  line-height: 1.4;
-  letter-spacing: -0.02em;
-  text-align: center;
+  line-height: 1.3;
+  color: #FFFFFFCC;
+  margin-top: 2px;
 }
 
-.rolling-item-wrap {
+.challenge-container .event-info-section .tip-info-wrap {
   position: relative;
-  height: 64px;
-}
-
-.rolling-item {
   display: flex;
-  width: fit-content;
-  white-space: nowrap;
-  position: absolute;
-}
-
-.rolling-item img {
-  display: inline-block;
-  flex-shrink: 0;
-  height: auto;
-  margin: 0 -18px;
-}
-
-.challenge-container .btn-more {
-  display: block;
-  width: 174px;
-  height: 44px;
-  margin: 20px auto 0;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  padding: 20px;
   border-radius: 12px;
-  background-color: #151515;
-  color: #fff;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 1.4;
-  letter-spacing: -0.02em;
+  background-color: #333333;
+  transition-delay: 0.5s;
 }
 
-/* 왼쪽에서 오른쪽으로 롤링 (rolling-item-1) */
-.rolling-item-1 {
-  top: -30px;
-  animation: roll-right 20s linear infinite;
-}
-
-.rolling-item-1 img {
-  width: 868px;
-  max-width: none;
-}
-
-/* 오른쪽에서 왼쪽으로 롤링 (rolling-item-2) */
-.rolling-item-2 {
-  top: -20px;;
-  /* 638px / 868px * 20s = 14.7s (같은 속도로 롤링되도록 조정) */
-  animation: roll-left 14.7s linear infinite;
-}
-
-.rolling-item-2 img {
-  width: 638px;
-  max-width: none;
-}
-
-@keyframes roll-right {
-  0% {
-    transform: translateX(-50%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes roll-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.challenge-container .step-section {
-  overflow: hidden;
-  border-radius: 16px;
-  background-color: #fff;
-}
-
-.challenge-container .step-section .swiper-container {
-  position: relative;
-}
-
-.challenge-container .step-section .swiper-container .btn-next {
+.challenge-container .event-info-section .tip-info-wrap::before {
+  content: "";
   position: absolute;
-  z-index: 10;
-  right: 16px;
-  top: 151px;
-  display: block;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%) ;
   width: 24px;
   height: 24px;
-  font-size: 0;
-  text-indent: -9999px;
-  background: url(../../images/challenge/icon-arrow-right-gray.svg) center / 100% 100% no-repeat;
+  background: url(../../images/challenge/icon-plus.png) 0 0 / 100% 100% no-repeat;
 }
 
-.challenge-container .step-section .swiper-container .btn-prev {
-  position: absolute;
-  z-index: 10;
-  left: 16px;
-  top: 151px;
-  display: block;
-  width: 24px;
-  height: 24px;
-  font-size: 0;
-  text-indent: -9999px;
-  background: url(../../images/challenge/icon-arrow-right-gray.svg) center / 100% 100% no-repeat;
-  transform: rotate(180deg);
-}
-
-.challenge-container .step-section .swiper-slide {
+.challenge-container .event-info-section .tip-info-wrap .tip-icon-wrap {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  padding: 24px 0 0;
-  height: 283px;
-}
-
-.challenge-container .step-section .swiper-slide .step-text {
-  display: flex;
   justify-content: center;
-  align-items: center;
-  width: 88px;
-  height: 30px;
-  margin-bottom: 10px;
-  border-radius: 20px;
-  color: #45A037;
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: -2%;
-  background-color: #E9FE83;
+  padding: 3px 8px;
+  border-radius: 100px;
+  color: #E0FF63;
+  background-color: #151515;
 }
 
-.challenge-container .step-section .swiper-slide .step-title {
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 1.4;
-  letter-spacing: -0.03em;
-  color: #151515;
-  text-align: center;
+.challenge-container .event-info-section .tip-info-wrap .tip-icon-wrap .tip-text {
+  width: 18px;
 }
 
-.challenge-container .step-section .swiper-slide .img-wrap {
-  position: relative;
-}
-
-.challenge-container .step-section .swiper-slide .img-wrap {
-  width: 263px;
-  height: 131px;
-  margin-top: 10px;
-}
-
-.challenge-container .step-section .swiper-slide.swiper-slide-1 .img-wrap .main-img {
-  display: block;
-  margin: auto;
-  width: 149px;
-  height: 114px;
-  background: url(../../images/challenge/step-img-1.png) center / 100% 100% no-repeat;
-}
-
-.challenge-container .step-section .swiper-slide.swiper-slide-1 .img-wrap .sub-img-1 {
-  display: block;
-  position: absolute;
-  left: 44px;
-  top: 6px;
-  width: 43px;
-  height: 38px;
-  background: url(../../images/challenge/step-img-1-1.png) center / 100% 100% no-repeat;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out 0s, transform 0.5s ease-in-out;
-}
-
-.challenge-container .step-section .swiper-slide.swiper-slide-1 .img-wrap .sub-img-2 {
-  display: block;
-  position: absolute;
-  right: 30px;
-  top: 52px;
-  width: 43px;
-  height: 38px;
-  background: url(../../images/challenge/step-img-1-2.png) center / 100% 100% no-repeat;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out 0.5s, transform 0.5s ease-in-out;
-}
-
-.challenge-container .step-section .swiper-slide.swiper-slide-2 .img-wrap .main-img {
-  display: block;
-  margin: -14px auto 0;
-  width: 168px;
-  height: 168px;
-  background: url(../../images/challenge/step-img-2.png) center / 100% 100% no-repeat;
-}
-
-.challenge-container .step-section .swiper-slide.swiper-slide-2 .img-wrap .sub-img-1 {
-  display: block;
-  position: absolute;
-  left: 50%;
-  top: 12px;
-  width: 54px;
-  height: 54px;
-  background: url(../../images/challenge/step-img-2-1.png) center / 100% 100% no-repeat;
-  opacity: 0;
-  transform: translate(-50%, 10px);
-  transition: opacity 0.8s ease-in-out 0.2s, transform 0.6s ease-in-out 0.2s;
-}
-
-.challenge-container .step-section .swiper-slide.swiper-slide-2 .img-wrap .sub-img-2 {
-  display: block;
-  position: absolute;
-  left: 50%;
-  top: 55px;
-  z-index: -1;
-  width: 54px;
-  height: 51px;
-  background: url(../../images/challenge/step-img-2-2.png) center / 100% 100% no-repeat;
-  opacity: 0;
-  transform: translate(-50%, 10px);
-  transition: opacity 0.8s ease-in-out 0.4s, transform 0.6s ease-in-out 0.4s;
-}
-
-.challenge-container .step-section .btn-more {
-  position: relative;
-  z-index: 1;
-  margin-top: -36px;
-}
-
-.challenge-container .step-section .swiper-slide.swiper-slide-1.swiper-slide-active .img-wrap .sub-img-1 {
-  opacity: 1;
-}
-
-.challenge-container .step-section .swiper-slide.swiper-slide-1.swiper-slide-active .img-wrap .sub-img-2 {
-  opacity: 1;
-}
-
-.challenge-container .step-section .swiper-slide.swiper-slide-2.swiper-slide-active .img-wrap .sub-img-1 {
-  opacity: 1;
-  /* 중앙(131.5px)에서 원래 위치(47px + 27px = 74px)로 이동: -57.5px */
-  transform: translate(-50%, 0) translateX(-57.5px);
-}
-
-.challenge-container .step-section .swiper-slide.swiper-slide-2.swiper-slide-active .img-wrap .sub-img-2 {
-  opacity: 1;
-  /* 중앙(131.5px)에서 원래 위치(263px - 50px - 27px = 186px)로 이동: +54.5px */
-  transform: translate(-50%, 0) translateX(54.5px);
-}
-
-/* 위아래 무한 애니메이션 */
-@keyframes float-up-down-1 {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-}
-
-@keyframes float-up-down-2 {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-12px);
-  }
+.challenge-container .event-info-section .tip-info-wrap .tip-info-text {
+  font-size: 15px;
+  line-height: 1.3;
+  color: #FFFFFF;
 }
 
 .notice-section {
-  padding: 24px 16px 128px;
+  padding: 20px 16px 96px;
   background-color: #F6F6F9;
 }
 
-.notice-section .notice-container {
-  max-width: 700px;
-  margin: auto;
-}
-
 .notice-section .notice-title {
-  margin-bottom: 8px;
-  font-weight: 700;
   font-size: 14px;
   line-height: 1.4;
   letter-spacing: -0.02em;
   color: #151515;
+  margin-bottom: 16px;
 }
 
 .notice-section .notice-item-list {
@@ -506,38 +285,28 @@
 
 .notice-section .notice-item-list li {
   position: relative;
-  padding-left: 12px;
   font-size: 12px;
   line-height: 1.4;
   letter-spacing: -0.02em;
   color: #454545;
+  padding-left: 12px;
 }
 
 .notice-section .notice-item-list li::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 6px;
   left: 0;
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background-color: #D1D1D5;
+  background-color: #d1d1d5;
 }
 
-.notice-section .notice-item-list li .dot-text {
-  position: relative;
-  padding-left: 12px;
-}
-
-.notice-section .notice-item-list li .dot-text::before {
-  content: '';
-  position: absolute;
-  top: 7px;
-  left: 3px;
+.notice-section .notice-item-list li .add-dot {
   width: 2px;
   height: 2px;
   border-radius: 50%;
-  background-color: #454545;
 }
 
 .btn-wrap {
@@ -547,7 +316,7 @@
   width: 100%;
   padding: 20px 16px;
   z-index: 100;
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
 }
 
 .btn-wrap::before {
@@ -559,7 +328,7 @@
   height: 100%;
   background: linear-gradient(0deg, #17181D 50%, rgba(23, 24, 29, 0) 100%);
   pointer-events: none;
-  transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.1s ease-in-out;
   z-index: -1;
 }
 
@@ -576,60 +345,50 @@
 }
 
 .btn-wrap .btn {
-  background-color: #E0FF63;
   color: #151515;
+  background-color: #E0FF63;
   border: none;
 }
 
-.modal.normal-modal .modal-dialog {
-  margin-top: 0 !important;
-  transform: translateY(-50%);
+
+/* 슬롯 카운터 필수 스타일 */
+.slot-counter{
+  display:inline-flex;
+  align-items:baseline;
+  font-variant-numeric: tabular-nums;
 }
 
-.top-banner-wrap {
-  display: flex;
-  position: sticky;
-  top: 55px;
-  left: 0;
-  width: 100%;
-  height: 57px;
-  padding: 0 16px;
-  background-color: #EEFF95;
-  z-index: 100;
+.slot-digit{
+  display:inline-block;
+  position:relative;
+  height: 1em;         /* 한 칸 높이 */
+  line-height: 1em;
+  overflow:hidden;
+  vertical-align:bottom;
+  width: 16px;       /* 숫자 폭 */
 }
 
-.top-banner-wrap .banner-text-wrap {
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: flex-start;
-  max-width: 700px;
-  width: 100%;
-  margin: auto;
+.slot-digit .reel{
+  display:block;
+  will-change: transform;
+  transform: translateY(0);
 }
 
-.top-banner-wrap .banner-icon {
-  width: 27px;
-  height: 25px;
-  margin-right: 8px;
-  background: url(../../images/challenge/icon-top-banner.svg) center / 100% 100% no-repeat;
+.slot-digit .reel span{
+  display:block;       /* <- 이게 핵심 */
+  height: 1em;         /* slot-digit과 동일 */
+  line-height: 1em;
+  text-align: right;
 }
 
-.top-banner-wrap .banner-text {
-  color: #151515;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 1.4;
-  letter-spacing: -0.02em;
+.slot-sep{
+  display:inline-block;
+  text-align:center;
+  margin-right: -2px;;
 }
 
-.top-banner-wrap .banner-text-wrap::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
-  background: url(../../images/common/icon-arrow-right-gray.svg) center / 100% 100% no-repeat;
+.slot-counter .slot-digit:nth-child(1) {
+  margin-right: -2px;
 }
+
+.slot-counter { font-variant-numeric: tabular-nums; }

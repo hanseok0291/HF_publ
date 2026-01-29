@@ -182,8 +182,7 @@
 }
 
 .intro-container .top-contents-wrap .contents-wrap.first-content {
-  padding-top: 40px;
-  padding-bottom: 195px;
+  padding: 40px 16px 146px;
 }
 
 .intro-container .top-contents-wrap .contents-wrap.first-content .text-wrap .title-text {
@@ -192,9 +191,9 @@
 
 .intro-container .top-contents-wrap .contents-wrap.first-content .img-wrap {
   position: relative;
-  width: 375px;
-  height: 375px;
-  margin: 50px auto 0;
+  width: 269px;
+  height: 269px;
+  margin: 32px auto 0;
 }
 
 .intro-container .top-contents-wrap .contents-wrap.first-content .img-wrap img {
@@ -685,7 +684,7 @@
 }
 
 .intro-container .bottom-contents-wrap {
-  padding-bottom: 158px;
+  padding-bottom: 100px;
   background-color: #F6F6F9;
 }
 
@@ -771,15 +770,17 @@
   flex-direction: column;
   gap: 12px;
   position: fixed;
-  left: 0;
+  left: 50%;
   bottom: 0;
+  transform: translateX(-50%);
   width: 100%;
+  max-width: 700px;
   padding: 20px 16px;
   z-index: 100;
   background-color: transparent;
 }
 
-.intro-container .btn-wrap .btn-cashback {
+.intro-container .btn-cashback {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -789,37 +790,62 @@
   border: none;
 }
 
-.intro-container .btn-wrap .btn-cashback {
+.intro-container .btn-cashback {
   text-align: left;
 }
 
-.intro-container .btn-wrap .btn-cashback b {
+.intro-container .btn-cashback b {
   color: #187D3A;
   font-size: 14px;
 }
 
-.intro-container .btn-wrap .btn-cashback .btn-cashback-text {
+.intro-container .btn-cashback .btn-cashback-text {
   display: flex;
   flex-direction: column;
 }
 
-.intro-container .btn-wrap .btn-cashback .bottom-text {
+.intro-container .btn-cashback .bottom-text {
   color: #151515;
   font-size: 12px;
   font-weight: 400;
 }
 
-.intro-container .btn-wrap .btn-cashback .bottom-text i {
+.intro-container .btn-cashback .bottom-text i {
   width: 12px;
 }
 
-.intro-container .btn-wrap .btn-cashback::before {
+.intro-container .btn-cashback::before {
   flex-shrink: 0;
   display: block;
   content: "";
   width: 52px;
   height: 52px;
   background: url(../../images/plcc/cashback-img.png) no-repeat center center / contain;
+}
+
+.intro-container .first-content .btn-cashback {
+  
+  margin-top: 22px;
+}
+
+.intro-container .btn-wrap.challenge-btn-wrap {
+  gap: 80px;
+} 
+
+.intro-container .btn-wrap.challenge-btn-wrap .btn.challenge-balloon {
+  overflow: visible;
+  position: relative;
+}
+
+.intro-container .btn-wrap.challenge-btn-wrap .btn.challenge-balloon::before {
+  content: "";
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 255px;
+  height: 36px;
+  background: url(../../images/plcc/challenge-balloon-box.png) no-repeat center center / contain;
 }
 
 /* 애니메이션 */
@@ -1156,4 +1182,51 @@
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.3s 0.9s ease-in-out, transform 0.3s 0.9s ease-in-out;
+}
+
+.intro-container .challenge-banner-wrap {
+  height: 42px;
+  color: #fff;
+  font-size: 16px;
+  line-height: 42px;
+  letter-spacing: -0.02em;
+  background: linear-gradient(90deg, #9A5BF1 0%, #28C85D 100%);
+  padding: 0 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.intro-container .challenge-banner-wrap b {
+  font-weight: 700;
+  color: #F8FF2E;
+  animation: challengeBannerHighlight 1.2s ease-in-out infinite;
+}
+
+@keyframes challengeBannerHighlight {
+  0%, 100% {
+    color: #F8FF2E;
+  }
+  50% {
+    color: #FFFFFF;
+  }
+}
+
+.intro-container .challenge-banner-wrap .challenge-banner-inner {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: challengeBannerMarquee 10s linear infinite;
+}
+
+.intro-container .challenge-banner-wrap .challenge-banner-text {
+  display: inline-block;
+  padding: 0 16px;
+}
+
+@keyframes challengeBannerMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }

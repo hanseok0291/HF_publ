@@ -96,10 +96,59 @@
 }
 
 .ai-editor-container .ai-editor-list li .list-img {
+  position: relative;
   flex-shrink: 0;
   width: 80px;
   height: 80px;
   margin-right: 12px;
+}
+
+.ai-editor-container .ai-editor-list li .list-img.badge-new::before {
+  content: "NEW";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 24px;
+  padding: 0 8px;
+  line-height: 24px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: -0.02em;
+  background-color: #8BC104;
+  border-radius: 8px;
+}
+
+.ai-editor-container .ai-editor-list li .list-img.badge-best::before {
+  content: "BEST";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 24px;
+  padding: 0 8px;
+  line-height: 24px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: -0.02em;
+  background: linear-gradient(90deg, #FF2643 0%, #FF8537 100%);
+  border-radius: 8px;
+}
+
+.ai-editor-container .ai-editor-list li .list-img.badge-hot::before {
+  content: "HOT";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 24px;
+  padding: 0 8px;
+  line-height: 24px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: -0.02em;
+  background: #FF2643;
+  border-radius: 8px;
 }
 
 .ai-editor-container .ai-editor-list li .list-text-wrap {
@@ -155,25 +204,98 @@
   padding: 0;
 }
 
+.ai-editor-detail-container .main-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 225px;
+  overflow: hidden;
+}
+
+.ai-editor-detail-container .main-img-wrap img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.ai-editor-detail-container .main-img-wrap.badge-new::before {
+  content: "NEW";
+  position: absolute;
+  z-index: 1;
+  top: 16px;
+  left: 16px;
+  height: 24px;
+  padding: 0 8px;
+  line-height: 24px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: -0.02em;
+  background-color: #8BC104;
+  border-radius: 8px;
+}
+
+.ai-editor-detail-container .main-img-wrap.badge-best::before {
+  content: "BEST";
+  position: absolute;
+  z-index: 1;
+  top: 16px;
+  left: 16px;
+  height: 24px;
+  padding: 0 8px;
+  line-height: 24px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: -0.02em;
+  background: linear-gradient(90deg, #FF2643 0%, #FF8537 100%);
+  border-radius: 8px;
+}
+
+.ai-editor-detail-container .main-img-wrap.badge-hot::before {
+  content: "HOT";
+  position: absolute;
+  z-index: 1;
+  top: 16px;
+  left: 16px;
+  height: 24px;
+  padding: 0 8px;
+  line-height: 24px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: -0.02em;
+  background: #FF2643;
+  border-radius: 8px;
+}
+
 .ai-editor-detail-container .contents-wrap {
-  padding: 0 16px;
+  padding: 0;
 }
 
 .ai-editor-detail-container .contents-wrap .title-wrap {
+  width: calc(100% - 32px);
+  margin: 0 auto;
   padding: 12px 0;
   border-bottom: 2px solid #E5E5E8;
 }
 
 .ai-editor-detail-container .contents-wrap .title-wrap .route-text {
-  display: flex;
-  align-items: center;
+  display: block;
   font-size: 13px;
-  line-height: 1.4;
+  line-height: 20px;
   letter-spacing: -0.02em;
   color: #151515;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .ai-editor-detail-container .contents-wrap .title-wrap .route-text i {
+  flex: 0 0 auto;
   width: 12px;
   margin: 0 4px;
 }
@@ -212,33 +334,33 @@
 }
 
 .ai-editor-detail-container .contents-wrap .inner-contents-wrap {
-  padding: 16px 0;
+  padding: 16px 16px 32px;
 }
 
-.ai-editor-detail-container .contents-wrap .inner-contents-wrap .card-area {
+.ai-editor-detail-container .contents-wrap .card-area {
   display: flex;
   align-items: center;
-  margin: 32px 0;
+  margin: 32px 0 0;
   padding: 15px 16px;
   background-color: #F6F6F9;
   border-radius: 8px;
 }
 
-.ai-editor-detail-container .contents-wrap .inner-contents-wrap .card-area .img-wrap {
+.ai-editor-detail-container .contents-wrap .card-area .img-wrap {
   flex-shrink: 0;
   width: 34px;
   height: 47px;
   margin-right: 12px;
 }
 
-.ai-editor-detail-container .contents-wrap .inner-contents-wrap .card-area .text-wrap {
+.ai-editor-detail-container .contents-wrap .card-area .text-wrap {
   display: flex;
   flex-direction: column;
   gap: 2px;
   padding-right: 12px;
 }
 
-.ai-editor-detail-container .contents-wrap .inner-contents-wrap .card-area .text-wrap .card-name {
+.ai-editor-detail-container .contents-wrap .card-area .text-wrap .card-name {
   font-weight: 700;
   font-size: 16px;
   line-height: 1.4;
@@ -246,14 +368,14 @@
   color: #151515;
 }
 
-.ai-editor-detail-container .contents-wrap .inner-contents-wrap .card-area .text-wrap .card-text {
+.ai-editor-detail-container .contents-wrap .card-area .text-wrap .card-text {
   font-size: 14px;
   line-height: 1.4;
   letter-spacing: -0.02em;
   color: #454545;
 }
 
-.ai-editor-detail-container .contents-wrap .inner-contents-wrap .card-area .detail-btn {
+.ai-editor-detail-container .contents-wrap .card-area .detail-btn {
   flex-shrink: 0;
   height: 28px;
   margin-left: auto;
@@ -264,7 +386,12 @@
   font-size: 13px;
 }
 
+.ai-editor-detail-container .contents-wrap > .card-area {
+  margin: 0;
+}
+
 .ai-editor-detail-container .divider {
+  margin-top: 32px;
   width: 100%;
   height: 2px;
   margin-bottom: 32px;
@@ -273,6 +400,7 @@
 
 .ai-editor-detail-container .blur-contents-wrap {
   position: relative;
+  overflow: hidden;
   height: 220px;
 }
 
@@ -309,7 +437,7 @@
   position: absolute;
   padding: 40px 0 20px;
   width: 100%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0, #FFFFFF 60%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0, #FFFFFF 40%);
 }
 
 .ai-editor-detail-container .blur-contents-wrap .more-contents-wrap .title-text {
@@ -326,6 +454,7 @@
   font-size: 16px;
   line-height: 1.4;
   letter-spacing: -0.02em;
+  text-align: center;
 }
 
 .ai-editor-detail-container .blur-contents-wrap .more-contents-wrap .btn {
@@ -333,12 +462,13 @@
 }
 
 .recommend-contens-wrap {
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
   background-color: #F6F6F9;
 }
 
 .recommend-contens-wrap-inner {
-  max-width: 700px;
-  margin: 0 auto;
   padding: 32px 16px;
 }
 

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>헥토파이낸셜</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/kyc.css" />
+    <script src="../js/jquery-1.8.3.min.js"></script>
+    <script src="../js/common.js" defer></script>
+    <script src="../js/aml.js" defer></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap">
+      <!-- header -->
+      <header class="header">
+        <div class="container">
+          <h1 class="brand-name">
+            <span class="my-logo"><img src="../images/common/logo.svg" alt="헥토파이낸셜" /></span>
+          </h1>
+          <button type="button" class="btn-close btn"></button>
+        </div>
+      </header>
+      <!-- //header -->
+
+      <!-- section -->
+      <section>
+        <!-- container -->
+        <div id="content" class="container">
+          <div class="tit-wrap">
+            <!-- tit -->
+            <h2 class="tit">
+              이름과 이메일만으로 <br>
+              간편하게 가입하실 수 있습니다.
+            </h2>
+            <!-- //tit -->
+            <p class="sub-tit">처음 가입하시면 선불금 보유 한도는 50만원으로 설정되지만, 가입 완료 후 <b>[내정보 → 보유한도 변경]</b> 메뉴를 이용하시면 최대 200만원까지 한도를 높이실 수 있습니다.</p>
+          </div>
+
+          <div class="form-wrap">
+            <div class="custom-input">
+              <input type="text" id="inputField01" />
+              <label for="inputField01" class="custom-label">이름</label>
+            </div>
+            <div class="custom-input next-hide register-email-input">
+              <input type="text" id="inputField02"/>
+              <label for="inputField02" class="custom-label">이메일</label>
+              <button type="button" class="btn btn-register-email">인증</button>
+            </div>
+            <div class="custom-input">
+              <input type="text" id="inputField03" placeholder="6자리를 입력해주세요." maxlength="6" />
+              <label for="inputField03" class="custom-label">인증번호</label>
+              <span class="btn-label time">2:37</span>
+              <button type="button" class="btn btn-re">인증번호 재발송</button>
+            </div>
+          </div>
+        </div>
+        <!-- //container -->
+
+        <!-- footer -->
+        <div id="footer">
+          <!-- container -->
+          <div class="btn-wrap">
+            <button type="button" id="send" class="btn btn-default" disabled>다음</button>
+          </div>
+          <!-- //container -->
+        </div>
+        <!-- //footer -->
+      </section>
+      <!-- //section -->
+    </div>
+    <!-- //wrap -->
+
+    <script>
+      // input 요소에 대한 NodeList를 가져옵니다.
+      var inputs = document.querySelectorAll('input[type="text"]');
+      // send 버튼의 요소를 가져옵니다.
+      var sendButton = document.getElementById("send");
+
+      // input 요소에 대해 각각의 입력 이벤트를 추가합니다.
+      inputs.forEach(function (input) {
+        input.addEventListener("input", function () {
+          // 입력할 때마다 모든 input 요소에 값이 있는지 확인합니다.
+          var allValuesEntered = true;
+          inputs.forEach(function (input) {
+            if (input.value.trim() === "") {
+              allValuesEntered = false;
+            }
+          });
+
+          // 만약 모든 input 요소에 값이 들어가 있으면 send 버튼의 disabled 속성을 해제합니다.
+          if (allValuesEntered) {
+            sendButton.removeAttribute("disabled");
+          } else {
+            sendButton.setAttribute("disabled", "disabled");
+          }
+        });
+      });
+
+      // 인증 버튼 클릭
+      document.querySelector('.btn-register-email').addEventListener('click', function () {
+        const email = document.querySelector('#inputField02').value;
+        if (email === '' || !email.includes('@')) {
+          return;
+        } else {
+          const input = document.querySelector('.register-email-input');
+          input.classList.remove('next-hide');
+          this.classList.add('on');
+          return;
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -46,12 +46,12 @@
           <div class="drop-down-wrap">
             <div class="drop-down-text-wrap">
               <p class="drop-down-title">카드사 선택</p>
-              <p class="drop-down-text">알림 받고 싶은 카드사를 선택해 주세요</p>
+              <p class="drop-down-text">알림 받고 싶은 카드사를 선택해 주세요 <span>(중복 선택 가능)</span></p>
             </div>
           </div>
           <div class="open-contents">
             <div class="card-list">
-              <button type="button">
+              <button type="button" class="active">
                 전체
               </button>
               <button type="button">
@@ -82,25 +82,25 @@
           <div class="input-wrap open-contents">
             <div class="input-container label-n charge-input">
               <input type="text" class="custom-input" placeholder=" " id="chargeAmount" maxlength="10" />
-              <label for="chargeAmount" class="floating-label">알림 받을 금액</label>
+              <label for="chargeAmount" class="floating-label">얼마를 알림 받을까요?</label>
               <div class="fake-label">
                 <p class="number"></p>
-                <span class="unit">만 원</span>
+                <span class="unit">만원</span>
               </div>
               <button type="button" class="icon icon-del js-text-del"></button>
             </div>
             <div class="add-money-btn-wrap">
-              <button type="button" data-money="1">1만 원</button>
-              <button type="button" data-money="5">5만 원</button>
-              <button type="button" data-money="10">10만 원</button>
-              <button type="button" data-money="50">50만 원</button>
+              <button type="button" data-money="1">1만원</button>
+              <button type="button" data-money="5">5만원</button>
+              <button type="button" data-money="10">10만원</button>
+              <button type="button" data-money="50">50만원</button>
             </div>
             <ul class="info-list-wrap">
               <li>
-                1만 원 단위로 입력 가능해요
+                1만원 단위로 입력 가능해요
               </li>
               <li>
-                최대 100만 원까지 설정 할 수 있어요
+                최대 100만원까지 설정 할 수 있어요
               </li>
             </ul>
           </div>
@@ -152,43 +152,16 @@
     </div>
   </div>
   <!-- // 알림 설정 완료 팝업 -->
+
+  
 </body>
 <script>
   $(function () {
-    // 카드사 탭 선택 시 drop-down-text 갱신 (전체 제외, 선택한 카드사만 표시)
-    var $cardDropText = $(".card-select-wrap .drop-down-text");
-    var placeholder = "알림 받고 싶은 카드사를 선택해 주세요";
     var $cardList = $(".card-select-wrap .card-list");
     var $totalBtn = $cardList.find("button").filter(function () {
       return $(this).text().trim() === "전체";
     }).first();
     var $otherBtns = $cardList.find("button").not($totalBtn);
-
-    function updateCardSelectText() {
-      var names = [];
-      if ($totalBtn.hasClass("active")) {
-        $otherBtns.each(function () {
-          names.push($(this).text().trim());
-        });
-      } else {
-        $otherBtns.each(function () {
-          if ($(this).hasClass("active")) {
-            names.push($(this).text().trim());
-          }
-        });
-      }
-      $cardDropText.text(names.length ? names.join(" · ") : placeholder);
-    }
-
-    function syncTotalTab() {
-      var n = $otherBtns.length;
-      var activeCount = $otherBtns.filter(".active").length;
-      if (activeCount === n && n > 0) {
-        $totalBtn.addClass("active");
-      } else {
-        $totalBtn.removeClass("active");
-      }
-    }
 
     function hasCardSelection() {
       return $totalBtn.hasClass("active") || $otherBtns.filter(".active").length > 0;
@@ -201,22 +174,22 @@
       $(".js-btn-confirm-alert").prop("disabled", !(amountOk && cardOk));
     };
 
+    // 전체 선택 시: 전체만 active, 나머지 비활성화
     $totalBtn.on("click", function () {
-      var willActive = !$totalBtn.hasClass("active");
-      $totalBtn.toggleClass("active", willActive);
-      $otherBtns.toggleClass("active", willActive);
-      updateCardSelectText();
-      updateConfirmAlertButton();
-    });
-
-    $otherBtns.on("click", function () {
       $(this).toggleClass("active");
-      syncTotalTab();
-      updateCardSelectText();
+      if ($(this).hasClass("active")) {
+        $otherBtns.removeClass("active");
+      }
       updateConfirmAlertButton();
     });
 
-    updateCardSelectText();
+    // 나머지 선택 시: 전체 비활성화, 개별 카드는 여러 개 중복 선택 가능
+    $otherBtns.on("click", function () {
+      $totalBtn.removeClass("active");
+      $(this).toggleClass("active");
+      updateConfirmAlertButton();
+    });
+
     updateConfirmAlertButton();
   });
 
@@ -227,7 +200,7 @@
 
   function formatManwon(val) {
     if (val == null || val < 1 || val > 100) return "???";
-    return val + "만 원";
+    return val + "만원";
   }
 
   $(".charge-input input").on("input", function () {
@@ -253,10 +226,10 @@
       $label.text("알림 받을 금액");
     } else if (parsed > charge_limit) {
       $this_wrap.addClass("error");
-      $label.text("최대 100만 원까지 입력할 수 있어요");
+      $label.text("최대 100만원까지 입력할 수 있어요");
     } else if (parsed < min_amount) {
       $this_wrap.addClass("error");
-      $label.text("1만 원 이상부터 입력할 수 있어요");
+      $label.text("1만원 이상부터 입력할 수 있어요");
     } else {
       $label.text("알림 받을 금액");
     }
@@ -300,7 +273,7 @@
     $(".fake-label .number").text("");
     $this_wrap.removeClass("error");
     $(".fake-label .unit").hide();
-    $label.text("알림 받을 금액");
+    $label.text("얼마를 알림 받을까요?");
     $(".cashback-amount").text("???");
     if (typeof updateConfirmAlertButton === "function") {
       updateConfirmAlertButton();

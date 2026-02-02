@@ -1,4 +1,6 @@
 #content {
+  display: flex;
+  flex-direction: column;
   padding-bottom: 0 !important;
 }
 
@@ -57,13 +59,17 @@
 }
 
 .drop-down-wrap .drop-down-text-wrap .drop-down-text {
-  display: block;
-  text-align: left;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   margin-top: 2px;
   font-size: 14px;
   line-height: 1.4;
   letter-spacing: -0.02em;
   color: #454545;
+  gap: 3px;
 }
 
 .drop-down-wrap i {
@@ -83,8 +89,8 @@
   overflow: auto;
   display: flex;
   gap: 8px;
-  margin-top: 16px;
-  padding: 0 20px;
+  margin-top: 8px;
+  padding: 8px 20px;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -114,7 +120,7 @@
 }
 
 .cashback-amount-wrap .input-wrap {
-  margin-top: 20px;
+  margin-top: 16px;
   padding-bottom: 0;
   border-bottom: none;
 }
@@ -164,6 +170,7 @@
   position: relative;
   margin-bottom: 8px;
   padding-left: 13px;
+  font-size: 14px;
 }
 
 .cashback-alert-container .note-wrap .note-list-wrap li .underline {
@@ -186,15 +193,20 @@
 .cashback-alert-container .btn-wrap {
   position: fixed;
   bottom: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   right: 0;
   z-index: 10;
   width: 100%;
+  max-width: 700px;
   padding: 20px 16px;
 }
 
 /* 캐시백 알림 목록 */
 .cashback-alert-list-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   padding-top: 20px;
 }
 
@@ -286,6 +298,15 @@
 }
 
 /* 캐시백 알림 수정 팝업 */
+@media (min-width: 700px) {
+  .modal-edit-cashback.modal-slide.type-title .modal-dialog .modal-content,
+  .modal.modal-alert-edit .modal-dialog .modal-content {
+    max-width: 700px;
+    left: calc(50%);
+    transform: translateX(-50%);
+  }
+}
+
 .modal.modal-alert-edit .modal-dialog .modal-content .modal-body {
   padding: 0 16px;
 }
@@ -331,7 +352,7 @@
 
 .modal-edit-cashback.modal-slide.type-title .modal-body .info-img-wrap {
   position: relative;
-  margin: 24px 0;
+  margin: 24px 0 16px;
   height: 84px;
 }
 
@@ -620,6 +641,28 @@
   margin: 0 auto 8px;
 }
 
-.input-wrap .input-container.charge-input {
+.empty-list.alert {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 28px 0;
+}
 
+.empty-list .empty-text {
+  color: #151515;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.empty-list.alert::before {
+  content: "";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 8px;
+  background: url(../../images/mass/icon-alert-empty.png) 0 0 / cover no-repeat;
 }

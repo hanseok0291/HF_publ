@@ -217,11 +217,19 @@
 }
 
 .cashback-alert-list-container .cashback-alert-list li {
+  overflow: hidden;
+  position: relative;
   display: flex;
   justify-content: space-between;
   padding: 24px;
   background-color: #F6F6F9;
   border-radius: 16px;
+}
+
+.cashback-alert-list-container .cashback-alert-list li .toggle-switch {
+  position: absolute;
+  top: 24px;
+  right: 24px;
 }
 
 .cashback-alert-list-container .cashback-alert-list li .left-wrap .cashback-price {
@@ -366,10 +374,10 @@
   height: 72px;
   border-radius: 12px;
   background: url(../../images/mass/alert-ani-img-01.png) no-repeat center center / contain;
-  animation: img0Animation 1.8s 0.5s forwards ease-in-out;
+  animation: img0Animation 1.2s 0.5s forwards ease-in-out;
 }
 
-/* 2→3→1: 0→2 유지, 2→3→1 1.4s 간격. duration 4.3으로 1→2 미세 당김 */
+/* 0(1.2s) 78% 시 2 시작. 2→3→1: 이전 33.33% 시 다음 시작, 간격 동일 */
 .modal-edit-cashback.modal-slide.type-title .modal-body .info-img-wrap .img-1 {
   position: absolute;
   left: 50%;
@@ -379,7 +387,7 @@
   height: 72px;
   border-radius: 12px;
   background: url(../../images/mass/alert-ani-img-01.png) no-repeat center center / contain;
-  animation: img1Loop 4.1s 4.9s infinite both ease-in-out;
+  animation: img1Loop 4.1s 4.18s infinite both ease-in-out;
 }
 
 .modal-edit-cashback.modal-slide.type-title .modal-body .info-img-wrap .img-2 {
@@ -391,7 +399,7 @@
   height: 72px;
   border-radius: 12px;
   background: url(../../images/mass/alert-ani-img-02.png) no-repeat center center / contain;
-  animation: img2Loop 4.1s 2.1s infinite both ease-in-out;
+  animation: img2Loop 4.1s 1.44s infinite both ease-in-out;
 }
 
 .modal-edit-cashback.modal-slide.type-title .modal-body .info-img-wrap .img-3 {
@@ -403,7 +411,7 @@
   height: 72px;
   border-radius: 12px;
   background: url(../../images/mass/alert-ani-img-03.png) no-repeat center center / contain;
-  animation: img3Loop 4.1s 3.5s infinite both ease-in-out;
+  animation: img3Loop 4.1s 2.81s infinite both ease-in-out;
 }
 
 @keyframes img0Animation {
@@ -416,7 +424,7 @@
   20% {
     transform: translateX(-50%) scale(1);
   }
-  80% {
+  70% {
     top: 0;
     transform: translateX(-50%) scale(1);
     background: url(../../images/mass/alert-ani-img-01.png) no-repeat center center / contain;
@@ -428,7 +436,7 @@
   }
 }
 
-/* 2→3→1 루프: duration 4.3s, 온 40%. 3% 등장 → 6% 펄스 → 10% 홀드 ~ 26% → 34% 회색 → 40% 사라짐 */
+/* 2→3→1 루프: 33.33%에 다음 시작. 0-3% 등장 → 6% 펄스 → 10-30% 홀드 → 30-36% 회색전환 → 38% 사라짐 */
 @keyframes img2Loop {
   0% {
     opacity: 0;
@@ -445,18 +453,18 @@
   10% {
     transform: translateX(-50%) scale(1);
   }
-  10%, 26% {
+  10%, 30% {
     top: 0;
     transform: translateX(-50%) scale(1);
     background: url(../../images/mass/alert-ani-img-02.png) no-repeat center center / contain;
   }
-  34% {
+  36% {
     top: 11px;
     transform: translateX(-50%) scale(0.9);
     background: #E5E5E8;
     opacity: 1;
   }
-  40%, 100% {
+  38%, 100% {
     opacity: 0;
   }
 }
@@ -477,18 +485,18 @@
   10% {
     transform: translateX(-50%) scale(1);
   }
-  10%, 26% {
+  10%, 30% {
     top: 0;
     transform: translateX(-50%) scale(1);
     background: url(../../images/mass/alert-ani-img-03.png) no-repeat center center / contain;
   }
-  34% {
+  36% {
     top: 11px;
     transform: translateX(-50%) scale(0.9);
     background: #E5E5E8;
     opacity: 1;
   }
-  40%, 100% {
+  38%, 100% {
     opacity: 0;
   }
 }
@@ -509,18 +517,18 @@
   10% {
     transform: translateX(-50%) scale(1);
   }
-  10%, 26% {
+  10%, 30% {
     top: 0;
     transform: translateX(-50%) scale(1);
     background: url(../../images/mass/alert-ani-img-01.png) no-repeat center center / contain;
   }
-  34% {
+  36% {
     top: 11px;
     transform: translateX(-50%) scale(0.9);
     background: #E5E5E8;
     opacity: 1;
   }
-  40%, 100% {
+  38%, 100% {
     opacity: 0;
   }
 }

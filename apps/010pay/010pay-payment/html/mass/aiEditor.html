@@ -55,24 +55,24 @@
           </li>
         </ul>
         <div class="tab-list">
-          <button type="button">
+          <button type="button" class="active">
             전체
           </button>
           <button type="button">
-            가전
+            가전전체전체
           </button>
           <button type="button">
-            여행
+            여행전체전체
           </button>
           <button type="button">
-            자동차
+            자동차전체전체전체자동차전체전체전체자동차전체전체전체
           </button>
         </div>
         <div class="ai-editor-list-wrap">
           <ul class="ai-editor-list">
             <li>
               <div class="list-img badge-new">
-                <img src="../../images/mass/sample/ai-editor-img-01.png" alt="AI 에디터">
+                <img src="../../images/mass/sample/ai-editor-detail-img-01.png" alt="AI 에디터">
               </div>
               <div class="list-text-wrap">
                 <p class="list-category">생활밀착</p>
@@ -89,7 +89,7 @@
             </li>
             <li>
               <div class="list-img badge-best">
-                <img src="../../images/mass/sample/ai-editor-img-01.png" alt="AI 에디터">
+                <img src="../../images/mass/sample/ai-card-img-01.png" alt="AI 에디터">
               </div>
               <div class="list-text-wrap">
                 <p class="list-category">생활밀착</p>
@@ -143,9 +143,44 @@
       $(this).addClass('active').siblings().removeClass('active');
     });
 
-    // 2. tab-list: 클릭 시 토글, 중복 선택 가능
-    $('.tab-list button').on('click', function () {
+    // 2. tab-list: 전체와 나머지 상호 배타 (캐시백 탭과 동일)
+    var $tabList = $('.tab-list');
+    var $totalTab = $tabList.find('button').first();
+    var $otherTabs = $tabList.find('button').not($totalTab);
+
+    $totalTab.on('click', function () {
       $(this).toggleClass('active');
+      if ($(this).hasClass('active')) {
+        $otherTabs.removeClass('active');
+      }
+    });
+
+    $otherTabs.on('click', function () {
+      $totalTab.removeClass('active');
+      $(this).toggleClass('active');
+    });
+
+    // 3. list-img: 이미지 비율에 따라 landscape / portrait 클래스 추가
+    $('.list-img img').each(function () {
+      var $img = $(this);
+      var $wrap = $img.closest('.list-img');
+      function applyRatioClass() {
+        var w = this.naturalWidth || this.width;
+        var h = this.naturalHeight || this.height;
+        $wrap.removeClass('landscape portrait square');
+        if (w > h) {
+          $wrap.addClass('landscape');
+        } else if (h > w) {
+          $wrap.addClass('portrait');
+        } else if (w === h) {
+          $wrap.addClass('square');
+        }
+      }
+      if (this.complete) {
+        applyRatioClass.call(this);
+      } else {
+        $img.on('load', applyRatioClass);
+      }
     });
   });
 </script>

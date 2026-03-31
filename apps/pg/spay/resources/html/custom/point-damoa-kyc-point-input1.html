@@ -1,0 +1,2094 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>포인트 입력</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+        <meta name="format-detection" content="telephone=no, address=no, email=no" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+        <!-- favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="../../images/favicon/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="57x57" href="../../images/favicon/apple-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="60x60" href="../../images/favicon/apple-icon-60x60.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="../../images/favicon/apple-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="../../images/favicon/apple-icon-76x76.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="../../images/favicon/apple-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="../../images/favicon/apple-icon-120x120.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="../../images/favicon/apple-icon-144x144.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="../../images/favicon/apple-icon-152x152.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon/apple-icon-180x180.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="../../images/favicon/android-icon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="../../images/favicon/favicon-96x96.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon/favicon-16x16.png" />
+        <link rel="manifest" href="../../images/favicon/manifest.json" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="msapplication-TileImage" content="../../images/favicon/ms-icon-144x144.png" />
+        <meta name="theme-color" content="#ffffff" />
+        <!-- //favicon -->
+
+        <link rel="stylesheet" href="../../css/point_damoa.css?ver=2602022" />
+        <script src="../../js/jquery-1.8.3.min.js"></script>
+        <script src="../../js/commonutil.js"></script>
+    </head>
+
+    <body class="point-damoa-kyc-point-input-body">
+        <!-- wrap -->
+        <div id="wrap" class="wrap point-damoa point-damoa-kyc-point-input iframe">
+            <div class="kyc-point-input-header">
+                <button type="button" class="btn-back-kyc-point-input" aria-label="뒤로 가기" onclick="window.parent.postMessage('backKycPointInput', '*')"></button>
+                <div class="product-amount-section">
+                    <div class="product-amount-text">
+                        <span class="product-amount-label">상품 금액은 </span>
+                        <p>
+                          <span class="product-amount-value"><span id="productAmount">569,000</span>원</span>
+                          <span class="product-amount-unit">입니다.</span>
+                        </p>
+                    </div>
+                    <a href="javascript:;" class="point-guide-link" id="pointGuideLink">포인트 적용 안내</a>
+                </div>
+                <!-- 전환 가능 포인트 한도: 부모 창에서 postMessage(updatePointData)로 설정. 0이면 한도 없음. 초기값 0. -->
+                <span id="totalAvailablePoints" style="display:none" aria-hidden="true">0</span>
+                <button type="button" class="btn-close-kyc-point-input" aria-label="닫기" id="btnCloseKycPointInput"></button>
+            </div>
+            <div class="kyc-point-input-content">
+                <div class="point-summary-section">
+                    <div class="point-summary-item">
+                        <span class="point-summary-label">총 보유 포인트</span>
+                        <span class="point-summary-value">
+                            <span class="point-amount" id="totalPoints">233,000,000,000</span>
+                            <span class="point-unit"> P</span>
+                        </span>
+                    </div>
+                    <div class="point-summary-divider"></div>
+                    <div class="point-summary-details">
+                        <div class="point-summary-detail-item">
+                            <div class="point-detail-left">
+                                <span class="point-detail-label">사용 포인트 총액</span>
+                                <span class="point-detail-separator">|</span>
+                                <span class="point-detail-count" id="usedPointCount">삼성 외 1건</span>
+                            </div>
+                            <span class="point-detail-value">
+                                <span class="point-amount" id="usedPointsTotal">1,000,000</span>
+                                <span class="point-unit">P</span>
+                            </span>
+                        </div>
+                        <div class="point-summary-detail-item">
+                            <span class="point-detail-label">사용자 부담 수수료</span>
+                            <span class="point-detail-value">
+                                <span class="point-amount" id="userFee">110,000</span>
+                                <span class="point-unit">P</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="point-summary-divider"></div>
+                    <div class="point-summary-item">
+                        <span class="point-summary-label">최종 전환 금액</span>
+                        <span class="point-summary-value">
+                            <span class="point-amount highlight" id="finalAmount">1,000,000</span>
+                            <span class="point-unit"> P</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="full-usage-section" id="fullUsageSection" style="display: none;">
+                    <input type="checkbox" id="fullUsageCheck" class="full-usage-checkbox" checked />
+                    <label for="fullUsageCheck" class="full-usage-label">전액 사용하기</label>
+                </div>
+
+                <div class="point-cards-section" id="pointCardsSection" style="display: none;">
+                    <div class="point-cards-row">
+                        <button type="button" class="point-card-btn active" data-card="samsung">
+                            <span class="card-name">삼성</span>
+                            <span class="card-points">
+                                <span class="point-value">550,000</span>
+                                <span class="point-unit"> P</span>
+                            </span>
+                            <span class="card-arrow"></span>
+                        </button>
+                        <button type="button" class="point-card-btn" data-card="hyundai">
+                            <span class="card-name">현대</span>
+                            <span class="card-points">
+                                <span class="point-value">30,000</span>
+                                <span class="point-unit"> M</span>
+                            </span>
+                            <span class="card-arrow"></span>
+                        </button>
+                        <button type="button" class="point-card-btn" data-card="shinhan">
+                            <span class="card-name">신한</span>
+                            <span class="card-points">
+                                <span class="point-value">500,000</span>
+                                <span class="point-unit"> P</span>
+                            </span>
+                            <span class="card-arrow"></span>
+                        </button>
+                    </div>
+                    <div class="point-cards-row">
+                        <button type="button" class="point-card-btn" data-card="hana">
+                            <span class="card-name">하나</span>
+                            <span class="card-points">
+                                <span class="point-value">0</span>
+                                <span class="point-unit"> P</span>
+                            </span>
+                            <span class="card-arrow"></span>
+                        </button>
+                        <button type="button" class="point-card-btn" data-card="bc">
+                            <span class="card-name">비씨</span>
+                            <span class="card-points">
+                                <span class="point-value">500,000</span>
+                                <span class="point-unit"> P</span>
+                            </span>
+                            <span class="card-arrow"></span>
+                        </button>
+                        <!-- <button type="button" class="point-card-btn" data-card="nh">
+                            <span class="card-name">농협</span>
+                            <span class="card-points">
+                                <span class="point-value">0</span>
+                                <span class="point-unit"> P</span>
+                            </span>
+                            <span class="card-arrow"></span>
+                        </button> -->
+                        <button type="button" class="point-card-btn" data-card="woori">
+                          <span class="card-name">우리</span>
+                          <span class="card-points">
+                              <span class="point-value">0</span>
+                              <span class="point-unit"> P</span>
+                          </span>
+                          <span class="card-arrow"></span>
+                      </button>
+                    </div>
+                    <div class="point-cards-row">
+                        <button type="button" class="point-card-btn" data-card="kb">
+                            <span class="card-name">국민</span>
+                            <span class="card-points">
+                                <span class="point-value">0</span>
+                                <span class="point-unit"> P</span>
+                            </span>
+                            <span class="card-arrow"></span>
+                        </button>
+                        <button type="button" class="point-card-btn" data-card="lotte">
+                            <span class="card-name">롯데</span>
+                            <span class="card-points">
+                                <span class="point-value">0</span>
+                                <span class="point-unit"> P</span>
+                            </span>
+                            <span class="card-arrow"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kyc-point-input-footer">
+                <div class="btnWrap">
+                  <div class="btn-group">
+                    <button type="button" class="btn-fold" id="btnFold">포인트 직접 입력하기</button>
+                    <button type="button" class="btn-convert" id="btnConvert">
+                        <span class="convert-amount" id="convertAmount">5,000,000</span>
+                        <span class="convert-text">&nbsp;포인트 전환</span>
+                    </button>
+                  </div>
+                  <div class="payment-error" id="paymentError" style="display: none; color: #ff4242; font-size: 14px; margin-top: 8px;">전환 가능한 포인트를 초과했습니다. 금액을 확인해주세요.</div>
+                </div>
+            </div>
+        </div>
+        <!-- //wrap -->
+
+        <!-- 포인트 입력 모달 -->
+        <div class="point-input-modal" id="pointInputModal" style="display: none;">
+            <div class="point-input-modal-overlay"></div>
+            <div class="point-input-modal-content">
+                <button type="button" class="point-input-modal-back" id="modalBackBtn" aria-label="뒤로 가기"></button>
+                <button type="button" class="point-input-modal-close" id="modalCloseBtn" aria-label="닫기"></button>
+                <div class="point-input-modal-body">
+                    <div class="point-input-modal-available">
+                        <p>
+                          <span class="point-input-modal-available-label" id="modalTotalLabel">[카드사명] 총 보유 포인트</span>
+                          <button type="button" class="info-btn-modal" id="modalInfoBtn" aria-label="정보 보기">
+                            <div class="info-popup">
+                                <div class="info-item no-desc"><p>전환시, 결제 SMS 발송되나, 결제되지 않습니다</p></div>
+                                <p class="popup-arrow"></p>
+                            </div>
+                          </button>
+                          <span class="point-input-modal-available-value" id="modalTotalAvailable">900,000 P</span>
+                        </p>
+                        <p>
+                          <span class="point-input-modal-available-label" id="modalConvertibleLabel">[카드사명] 전환가능 포인트</span>
+                          <span class="point-input-modal-available-value" id="modalConvertibleAvailable">900,000 P</span>
+                        </p>
+                    </div>
+                    <div class="point-input-modal-full-usage">
+                        <input type="checkbox" id="modalFullUsage" class="point-input-modal-full-usage-checkbox" />
+                        <label for="modalFullUsage" class="point-input-modal-full-usage-label">전액 사용하기</label>
+                    </div>
+                    <div class="point-input-modal-input-section" id="modalInputSection">
+                        <!-- 일반 카드용 input -->
+                        <div class="point-input-section" id="modalNormalInput">
+                            <div class="point-input-wrapper">
+                                <input type="text" class="point-input" id="modalPointInput" placeholder="사용할 포인트를 입력해주세요." />
+                                <span class="point-unit" id="modalPointUnit">P</span>
+                            </div>
+                            <button type="button" class="clear-btn" id="modalClearBtn"></button>
+                        </div>
+                        <!-- 현대카드용 2개 input -->
+                        <div class="hyundai-input-group" id="modalHyundaiInput" style="display: none;">
+                            <div class="point-input-section hyundai-input-left">
+                                <div class="point-input-wrapper">
+                                    <input type="text" class="point-input hyundai-point-input" id="modalHyundaiPointInput" placeholder="M" />
+                                    <span class="point-unit">M</span>
+                                </div>
+                                <button type="button" class="clear-btn" id="modalHyundaiClearBtn"></button>
+                            </div>
+                            <div class="hyundai-equals">=</div>
+                            <div class="point-input-section hyundai-input-right">
+                                <div class="point-input-wrapper">
+                                    <input type="text" class="point-input hyundai-won-input" id="modalHyundaiWonInput" placeholder="" readonly disabled />
+                                    <span class="point-unit">P</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="error-message" id="modalErrorMessage" style="display: none;"></div>
+                    </div>
+                </div>
+                <div class="point-input-modal-footer">
+                    <button type="button" class="point-input-modal-confirm" id="modalConfirmBtn">확인</button>
+                </div>
+            </div>
+        </div>
+        <!-- //포인트 입력 모달 -->
+
+        <!-- 정보 모달 (툴팁 클릭 시 표시) -->
+        <div class="info-modal" id="infoModal" style="display: none;">
+            <div class="info-modal-overlay"></div>
+            <div class="info-modal-content">
+                <div class="info-modal-body" id="infoModalBody">
+                    <!-- 카드사별 내용이 동적으로 삽입됩니다 -->
+                </div>
+                <div class="info-modal-footer">
+                    <button type="button" class="info-modal-confirm" id="infoModalConfirmBtn">확인</button>
+                </div>
+            </div>
+        </div>
+        <!-- //정보 모달 -->
+
+        <!-- 포인트 적용 안내 모달 -->
+        <div class="info-modal" id="pointGuideModal" style="display: none;">
+            <div class="info-modal-overlay"></div>
+            <div class="info-modal-content">
+                <div class="info-modal-body" id="pointGuideModalBody">
+                    <!-- 내용은 사용자가 채울 예정 -->
+                    <div class="info-modal-item">
+                      <div class="info-modal-text">
+                        <p>포인트 전환 비율은</p>
+                      </div>
+                    </div>
+                    <div class="info-modal-item">
+                      <div class="info-modal-text">
+                        <p>
+                        금액 : 포인트 = 9 : 10 입니다.<br />
+                        <span id="feeExampleText">예) 1,000P 사용 = 900원 전환 (수수료 100P)</span>
+                        </p>
+                      </div>
+                    </div>
+                </div>
+                <div class="info-modal-footer">
+                    <button type="button" class="info-modal-confirm" id="pointGuideModalConfirmBtn">확인</button>
+                </div>
+            </div>
+        </div>
+        <!-- //포인트 적용 안내 모달 -->
+
+        <!-- confirm modal - 종료 확인 -->
+        <div id="closeConfirmModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="closeConfirmTitle" aria-modal="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>고객님의 포인트는 현금처럼<br aria-hidden="true" />바로 사용 가능합니다.</p>
+                        <p>종료하시겠습니까?</p>
+                    </div>
+                    <div class="modal-footer type2">
+                        <button type="button" class="btn btn-cancel" id="closeConfirmCancel">취소</button>
+                        <button type="button" class="btn" id="closeConfirmOk">확인</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //confirm modal -->
+
+        <!-- 포인트 전환 얼럿 모달 (결제 완료 불가 안내) -->
+        <div id="convertAlertModal" class="modal modal-alert" tabindex="-1" role="dialog" aria-labelledby="convertAlertTitle" aria-modal="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p id="convertAlertTitle" class="blind">안내</p>
+                        <p>결제를 완료할 수 없습니다.<br aria-hidden="true" />다시 시도해주세요.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" id="convertAlertConfirmBtn">확인</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //포인트 전환 얼럿 모달 -->
+
+        <!-- modal - common alert (commonutil.js $.alertMessage 사용) -->
+        <div id="commonAlert" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h3 id="alertTitle"></h3>
+                        <div id="alertContents"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-dismiss="modal">확인</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //modal - common alert -->
+
+        <script>
+            $(document).ready(function () {
+                // 상품금액 천 단위 콤마 표시 (초기값 및 부모 전달값은 숫자만 올 수 있으므로 표시 시 포맷)
+                (function formatProductAmountDisplay() {
+                    const $el = $("#productAmount");
+                    const num = parseInt($el.text().replace(/,/g, ""), 10);
+                    if (!isNaN(num)) $el.text(num.toLocaleString());
+                })();
+
+                // ========== 상수 (수수료·비율·한도) ==========
+                // DEBUG: true 시 카드/전액/전환 관련 console.log·console.table 출력 (운영 시 false 권장)
+                const DEBUG = true;
+                // USER_FEE_RATE: 사용자 부담 수수료율. 10 = 10%. 최종 전환 금액 = 사용포인트총액×(100-비율)/100 → 정수 → 원 단위 절사, 수수료 = 총액−최종.
+                const USER_FEE_RATE = 10;
+                // calcFinalAmountAndFee(totalPoints): 사용 포인트 총액으로 최종 전환 금액·사용자 부담 수수료 계산. 최종 = 총액×(100-수수료율)/100 → 정수형 변환 → 10원 단위 절사. 거래 단위는 사용 포인트 총액 기준이므로 최종 금액은 10원 단위만 적용.
+                function calcFinalAmountAndFee(totalPoints) {
+                    const raw = totalPoints * (100 - USER_FEE_RATE) / 100;
+                    const asInt = Math.floor(raw);
+                    const baseUnit = 10;
+                    const finalAmount = Math.floor(asInt / baseUnit) * baseUnit;
+                    const userFee = totalPoints - finalAmount;
+                    return { finalAmount: finalAmount, userFee: userFee };
+                }
+                // HYUNDAI_RATE: 현대 M→P 변환 비율 (M:P=3:2). M 포인트 × rate = P 포인트.
+                const HYUNDAI_RATE = 2 / 3;
+                // MIN_POINT_USE_PER_CARD: 카드당 최소 사용 포인트(P). 이 값 미만이면 사용 0으로 처리.
+                const MIN_POINT_USE_PER_CARD = 1000;
+                // merchantTransactionUnit: 가맹점 거래 단위(사용 포인트 총액 기준). 부모에서 설정. 0이면 단위 미적용. 사용 포인트 총액이 이 단위 배수인지 검증할 때 사용.
+                let merchantTransactionUnit = 100;
+                // merchantMinTransactionAmount: 가맹점 최소 거래 금액. 최종 전환 금액이 이 값 이상이어야 함. 0이면 미적용.
+                let merchantMinTransactionAmount = 1000;
+                // merchantMaxTransactionAmount: 가맹점 최대 거래 금액. 최종 전환 금액이 이 값 이하여야 함. 0이면 미적용.
+                let merchantMaxTransactionAmount = 500000;
+
+                // 반올림 모드 적용 함수
+                function applyRound(value, mode) {
+                    switch (mode) {
+                        case 'FLOOR': return Math.floor(value);
+                        case 'CEIL':  return Math.ceil(value);
+                        case 'ROUND': return Math.round(value);
+                        default: return value;
+                    }
+                }
+                
+                // 포인트 → 금액 (올림) - M 포인트를 P 포인트로 변환
+                function toAmountFromPoint(pnt, rate, mode = 'CEIL') {
+                    return applyRound(pnt * rate, mode);
+                }
+                
+                // 금액 → 포인트 (내림) - P 포인트를 M 포인트로 변환
+                function toPointFromAmount(amount, rate, mode = 'FLOOR') {
+                    return applyRound(amount / rate, mode);
+                }
+
+                // 현대 M 포인트를 거래 단위로 맞춤. minPoint부터 transactionUnit 간격(예: 1500, 1650, 1800…)으로 내림.
+                function roundHyundaiMToUnit(mValue, transactionUnit, minPoint) {
+                    const unit = (transactionUnit && transactionUnit > 0) ? transactionUnit : 1;
+                    if (minPoint != null && minPoint > 0) {
+                        if (mValue < minPoint) return 0;
+                        return minPoint + Math.floor((mValue - minPoint) / unit) * unit;
+                    }
+                    return Math.floor(mValue / unit) * unit;
+                }
+
+                // getGlobalMaxFinalAmount(): 최종 전환 금액 기준 전역 한도.
+                // - 상품 금액(productAmount)
+                // - 부모에서 내려주는 totalAvailablePoints
+                // - 가맹점 최대 거래 금액(merchantMaxTransactionAmount)
+                // - 카드사별 limitPoint(전환 한도)를 모두 고려하여 "가장 작은 값"으로 한도 설정.
+                function getGlobalMaxFinalAmount() {
+                    const fromParent = parseInt($("#totalAvailablePoints").text().replace(/,/g, "")) || 0;
+                    const productAmount = parseInt($("#productAmount").text().replace(/,/g, "")) || 0;
+                    let cap = productAmount > 0 ? productAmount : 0;
+
+                    if (fromParent > 0) {
+                        cap = cap > 0 ? Math.min(cap, fromParent) : fromParent;
+                    }
+                    if (merchantMaxTransactionAmount > 0) {
+                        cap = cap > 0 ? Math.min(cap, merchantMaxTransactionAmount) : merchantMaxTransactionAmount;
+                    }
+
+                    // 카드사별 limitPoint(전환 한도)를 모두 합산한 뒤 수수료 규칙을 적용한 "최대 전환 가능 금액" 계산
+                    let totalPointsLimit = 0;
+                    Object.keys(cardInfo).forEach(function (cardId) {
+                        const info = cardInfo[cardId];
+                        if (!info) return;
+                        let maxUnit = info.available || 0; // 기본은 보유 포인트
+                        if (info.limitPoint && info.limitPoint > 0) {
+                            maxUnit = Math.min(maxUnit, info.limitPoint);
+                        }
+                        if (maxUnit <= 0) return;
+                        if (info.isHyundai) {
+                            totalPointsLimit += toAmountFromPoint(maxUnit, HYUNDAI_RATE, 'CEIL');
+                        } else {
+                            totalPointsLimit += maxUnit;
+                        }
+                    });
+                    if (totalPointsLimit > 0) {
+                        const computed = calcFinalAmountAndFee(totalPointsLimit);
+                        const fromCardLimits = computed.finalAmount;
+                        if (fromCardLimits > 0) {
+                            cap = cap > 0 ? Math.min(cap, fromCardLimits) : fromCardLimits;
+                        }
+                    }
+                    return cap;
+                }
+
+                // getTotalAvailablePoints(): 상품 한도(최종 전환금액 기준). 전역 한도(getGlobalMaxFinalAmount)를 기준으로,
+                // 가맹점 거래 단위가 있으면 해당 단위로 내림.
+                function getTotalAvailablePoints() {
+                    let cap = getGlobalMaxFinalAmount();
+                    if (merchantTransactionUnit > 0 && cap > 0) {
+                        cap = Math.floor(cap / merchantTransactionUnit) * merchantTransactionUnit;
+                    }
+                    return cap;
+                }
+
+                // getMaxPointTotalForProductAmount(): 상품금액(최종전환금액 한도)을 채우기 위한 최대 사용포인트 총액(cap).
+                // 수수료=사용포인트총액의 10% → 최종=포인트−수수료=포인트×0.9 → cap ≈ 상품금액 / 0.9
+                function getMaxPointTotalForProductAmount() {
+                    const totalAvailableFinalAmount = getTotalAvailablePoints();
+                    if (totalAvailableFinalAmount <= 0) return Infinity;
+                    const denominator = 1 - (USER_FEE_RATE / 100);
+                    let capByFinalAmount = Math.ceil(totalAvailableFinalAmount / denominator);
+                    // 가맹점 최대 거래 금액은 "사용 포인트" 상한으로도 동작해야 하므로,
+                    // 수수료를 무시하고 merchantMaxTransactionAmount 자체를 포인트 상한으로 한 번 더 적용.
+                    if (merchantMaxTransactionAmount > 0 && capByFinalAmount > merchantMaxTransactionAmount) {
+                        capByFinalAmount = merchantMaxTransactionAmount;
+                    }
+                    return capByFinalAmount;
+                }
+
+                // getEffectiveUsagePerCard(excludeCardIdForFallback): 카드별 "실제 반영되는 사용 포인트"(P). 상품 한도 내에서 cardInputPoints·cardModalFullUsage 반영.
+                // 동작: 메인 전액 체크 시 1단계) 전액 확정 카드만 금액 고정 2단계) 남은 한도를 CARD_DISPLAY_ORDER 순으로 다른 카드에 배분. excludeCardIdForFallback: 모달 저장 시 해당 카드만 제외(다른 카드 금액 유지).
+                function getEffectiveUsagePerCard(excludeCardIdForFallback) {
+                    const cap = getMaxPointTotalForProductAmount();
+                    const isMainFullUsage = $("#fullUsageCheck").is(":checked");
+                    const cardIds = getCardIdsInDisplayOrder();
+                    const effective = {};
+
+                    if (isMainFullUsage) {
+                        // 1단계: 사용자가 이미 선택/입력한 카드(cardInputPoints>0)는 그대로 두고(cap 한도까지만 컷)
+                        // 2단계: 나머지 전액 카드(cardModalFullUsage===true && cardInputPoints 없음)가 있으면 남은 한도 안에서만 채움
+                        // → 사용자가 미리 활성화해둔 카드는 유지되고, 앞쪽 카드가 그 금액을 빼앗지 않음.
+                        let usedByChecked = 0;
+
+                        // 1-1: 직접 입력된 카드들(사용자가 명시적으로 활성화한 카드)을 먼저 배분
+                        cardIds.forEach(function (cardId) {
+                            if (cardId === excludeCardIdForFallback) {
+                                effective[cardId] = 0;
+                                return;
+                            }
+                            const hasDirectInput = cardId in cardInputPoints && cardInputPoints[cardId] > 0;
+                            if (!hasDirectInput) return;
+
+                            const info = cardInfo[cardId];
+                            const perCardLimitP = getPerCardPointLimit(info);
+                            let stored = cardInputPoints[cardId] || 0;
+                            if (perCardLimitP > 0 && stored > perCardLimitP) {
+                                stored = perCardLimitP;
+                            }
+                            let useAmount = 0;
+                            if (stored > 0) {
+                                useAmount = Math.min(stored, Math.max(0, cap - usedByChecked));
+                            }
+                            if (useAmount > 0 && useAmount < MIN_POINT_USE_PER_CARD) useAmount = 0;
+                            effective[cardId] = useAmount;
+                            usedByChecked += useAmount;
+                        });
+
+                        // 1-2: 전액 카드이지만 직접 입력된 값이 없는 카드들에 대해 남은 한도 내에서만 채움 (모달 전액과 동일하게 거래 단위 적용)
+                        cardIds.forEach(function (cardId) {
+                            if (cardId === excludeCardIdForFallback) return;
+                            const hasDirectInput = cardId in cardInputPoints && cardInputPoints[cardId] > 0;
+                            const isFullUsageCard = cardModalFullUsage[cardId] === true;
+                            if (hasDirectInput || !isFullUsageCard) return;
+
+                            const info = cardInfo[cardId];
+                            const perCardLimitP = getPerCardPointLimit(info);
+                            let stored = cardInputPoints[cardId] || 0;
+                            if (stored === 0) {
+                                if (info && info.available > 0) {
+                                    stored = info.isHyundai
+                                        ? toAmountFromPoint(info.available, HYUNDAI_RATE, 'CEIL')
+                                        : info.available;
+                                }
+                            }
+                            if (perCardLimitP > 0 && stored > perCardLimitP) {
+                                stored = perCardLimitP;
+                            }
+                            let useAmount = 0;
+                            if (stored > 0) {
+                                useAmount = Math.min(stored, Math.max(0, cap - usedByChecked));
+                                const effectiveUnit = getEffectiveTransactionUnit(info);
+                                if (effectiveUnit > 0 && useAmount > 0) {
+                                    useAmount = Math.floor(useAmount / effectiveUnit) * effectiveUnit;
+                                }
+                            }
+                            if (useAmount > 0 && useAmount < MIN_POINT_USE_PER_CARD) useAmount = 0;
+                            effective[cardId] = useAmount;
+                            usedByChecked += useAmount;
+                        });
+
+                        // 나머지 카드는 모두 0으로 (빈 금액을 다른 카드가 메우지 않음)
+                        cardIds.forEach(function (cardId) {
+                            if (cardId === excludeCardIdForFallback) return;
+                            const hasDirectInput = cardId in cardInputPoints && cardInputPoints[cardId] > 0;
+                            const isFullUsageCard = cardModalFullUsage[cardId] === true;
+                            if (hasDirectInput || isFullUsageCard) return;
+                            effective[cardId] = 0;
+                        });
+                        return effective;
+                    }
+
+                    // 메인 전액 미체크: 저장된 카드만 한도(cap) 안에서 배분. 입력(저장) 순서 우선(cardInputPointsOrder), 없으면 표시 순서.
+                    let remaining = cap;
+                    const orderForDistribution = cardInputPointsOrder.filter(function (id) { return id in cardInputPoints; });
+                    cardIds.forEach(function (cardId) {
+                        if (cardId in cardInputPoints && orderForDistribution.indexOf(cardId) === -1) {
+                            orderForDistribution.push(cardId);
+                        }
+                    });
+                    orderForDistribution.forEach(function (cardId) {
+                        const info = cardInfo[cardId];
+                        const perCardLimitP = getPerCardPointLimit(info);
+                        let storedValue = cardInputPoints[cardId] || 0;
+                        if (perCardLimitP > 0 && storedValue > perCardLimitP) {
+                            storedValue = perCardLimitP;
+                        }
+                        let useAmount = 0;
+                        if (storedValue > 0) {
+                            useAmount = Math.min(storedValue, Math.max(0, remaining));
+                        }
+                        if (useAmount > 0 && useAmount < MIN_POINT_USE_PER_CARD) useAmount = 0;
+                        effective[cardId] = useAmount;
+                        remaining -= useAmount;
+                    });
+                    cardIds.forEach(function (cardId) {
+                        if (effective[cardId] === undefined) effective[cardId] = 0;
+                    });
+                    return effective;
+                }
+
+                // getUsedPointsTotalExcept(excludeCardId): "제외 카드" 빼고 나머지 카드들의 유효 사용 포인트 합계. getEffectiveUsagePerCard 결과 합산.
+                function getUsedPointsTotalExcept(excludeCardId) {
+                    const effective = getEffectiveUsagePerCard();
+                    let usedPointsTotal = 0;
+                    Object.keys(effective).forEach(function (cardId) {
+                        if (cardId === excludeCardId) return;
+                        usedPointsTotal += effective[cardId];
+                    });
+                    return usedPointsTotal;
+                }
+
+                // getDisplayTotalPoints(effective): pointCardsSection 카드 버튼에 보이는 값과 동일한 "정리된" P 합계. 현대는 M 150 단위 맞춘 뒤 P로 환산한 값을 합산. point-summary-section 표시용.
+                function getDisplayTotalPoints(effective) {
+                    let total = 0;
+                    Object.keys(effective).forEach(function (cardId) {
+                        const p = effective[cardId] || 0;
+                        const info = cardInfo[cardId];
+                        if (info && info.isHyundai && p > 0) {
+                            const mVal = Math.ceil(p / HYUNDAI_RATE);
+                            const mRounded = roundHyundaiMToUnit(mVal, info.transactionUnit, info.minPoint);
+                            total += toAmountFromPoint(mRounded, HYUNDAI_RATE, 'CEIL');
+                        } else {
+                            total += p;
+                        }
+                    });
+                    return total;
+                }
+
+                // getUsedPointsTotalExceptInDisplayOrder(excludeCardId): 표시 순서(삼성→현대→…)에서 excludeCardId "앞"에 있는 카드들만 유효 사용량 합계. 전액 시 앞순서 카드가 먼저 채워진 분만 반영할 때 사용.
+                function getUsedPointsTotalExceptInDisplayOrder(excludeCardId) {
+                    const effective = getEffectiveUsagePerCard();
+                    const cardIds = getCardIdsInDisplayOrder();
+                    let usedPointsTotal = 0;
+                    for (let i = 0; i < cardIds.length; i++) {
+                        if (cardIds[i] === excludeCardId) break;
+                        usedPointsTotal += effective[cardIds[i]] || 0;
+                    }
+                    return usedPointsTotal;
+                }
+
+                // getAvailableConvertiblePoints(excludeCardId, useDisplayOrder): "이 카드가 더 쓸 수 있는 포인트 상한". 이미 다른 카드가 쓴 만큼 빼고, 상품 한도까지 남은 금액을 포인트로 역산. useDisplayOrder true면 표시 순서 기준으로 앞 카드 사용분만 반영.
+                function getAvailableConvertiblePoints(excludeCardId, useDisplayOrder) {
+                    // 상단에 표시된 전환 가능한 포인트는 최종 전환금액 기준. 0이면 부모 미설정 → 한도 없음(무제한).
+                    const totalAvailableFinalAmount = getTotalAvailablePoints();
+                    if (totalAvailableFinalAmount <= 0) {
+                        return Infinity;
+                    }
+                    const usedPointsTotal = useDisplayOrder
+                        ? getUsedPointsTotalExceptInDisplayOrder(excludeCardId)
+                        : getUsedPointsTotalExcept(excludeCardId);
+                    // 최종 = 사용포인트×(100-수수료율)/100 → 정수 → 원 단위 절사. 남은 포인트 = 남은 최종금액 / 0.9
+                    const currentComputed = calcFinalAmountAndFee(usedPointsTotal);
+                    const currentFinalAmount = currentComputed.finalAmount;
+                    const remainingFinalAmount = Math.max(0, totalAvailableFinalAmount - currentFinalAmount);
+                    const denominator = 1 - (USER_FEE_RATE / 100);
+                    const remainingPointsTotal = Math.ceil(remainingFinalAmount / denominator);
+                    return remainingPointsTotal;
+                }
+
+                // cardInfo: 카드사 ID별 정보. name, unit(P/M), available(보유), isHyundai, minPoint, limitPoint, transactionUnit(거래 단위). 실제 보유량은 부모/API로 갱신됨.
+                // transactionUnit 테스트용 현대 M: minPoint(1500)부터 transactionUnit(150) 단위.
+                const cardInfo = {
+                    samsung: { name: "삼성카드 포인트", unit: "P", available: 650000, isHyundai: false, minPoint: 1, limitPoint: 500000, transactionUnit: 1 },
+                    hyundai: { name: "현대카드 포인트", unit: "M", available: 500000, isHyundai: true, minPoint: 1500, limitPoint: 450000, transactionUnit: 150 },
+                    shinhan: { name: "신한카드 포인트", unit: "P", available: 1000000, isHyundai: false, minPoint: 1, limitPoint: 100000, transactionUnit: 1 },
+                    hana: { name: "하나카드 포인트", unit: "P", available: 10000, isHyundai: false, minPoint: 1, limitPoint: 500000, transactionUnit: 1 },
+                    bc: { name: "비씨카드 포인트", unit: "P", available: 500000, isHyundai: false, minPoint: 1, limitPoint: 500000, transactionUnit: 1 },
+                    woori: { name: "우리카드 포인트", unit: "P", available: 5000, isHyundai: false, minPoint: 1, limitPoint: 500000, transactionUnit: 1 },
+                    kb: { name: "국민카드 포인트", unit: "P", available: 1000, isHyundai: false, minPoint: 1, limitPoint: 300000, transactionUnit: 1 },
+                    lotte: { name: "롯데카드 포인트", unit: "P", available: 5000, isHyundai: false, minPoint: 100, limitPoint: 500000, transactionUnit: 100 },
+                };
+
+                // CARD_DISPLAY_ORDER: 카드 노출·배분 순서. 전액 시 "남은 한도"를 이 순서대로 삼성→현대→신한… 에 채움.
+                const CARD_DISPLAY_ORDER = ["samsung", "hyundai", "shinhan", "hana", "bc", "nh", "woori", "kb", "lotte"];
+                // getCardIdsInDisplayOrder(): cardInfo에 있는 카드 ID만 위 순서대로 배열로 반환.
+                function getCardIdsInDisplayOrder() {
+                    return CARD_DISPLAY_ORDER.filter(function (id) { return cardInfo[id]; });
+                }
+
+                // getPerCardPointLimit(info): 카드 1장당 P 기준 최대 사용 가능 포인트(limitPoint 반영).
+                // - 일반 카드: limitPoint 그대로 사용
+                // - 현대카드: limitPoint(M)를 P로 변환해 사용
+                // - limitPoint가 0/undefined이면 0 반환(별도 제한 없음)
+                function getPerCardPointLimit(info) {
+                    if (!info || !info.limitPoint || info.limitPoint <= 0) return 0;
+                    if (info.isHyundai) {
+                        return toAmountFromPoint(info.limitPoint, HYUNDAI_RATE, 'CEIL');
+                    }
+                    return info.limitPoint;
+                }
+
+                // getEffectiveTransactionUnit(info): 카드별 입력/배분용 거래 단위. 카드사 transactionUnit만 반환. 가맹점 100은 사용 포인트 총액 검증에서만 적용. 0이면 배수 검증 안 함. 현대는 minPoint/transactionUnit으로 별도 검증하므로 0 반환.
+                function getEffectiveTransactionUnit(info) {
+                    if (info && info.isHyundai) return 0;
+                    const cardUnit = (info && info.transactionUnit) ? info.transactionUnit : 0;
+                    return cardUnit;
+                }
+
+                // cardInputPoints: { 카드ID: 사용P } 모달에서 "확인"으로 저장한 금액. 있으면 직접 입력/전액 확정분, 없으면 자동 배분만(전액 해제 시 비움).
+                let cardInputPoints = {};
+                // cardInputPointsOrder: 메인 전액 미체크 시 cap 배분 순서. 저장(확인)한 순서대로 넣음 → 먼저 입력한 카드가 우선 배분.
+                let cardInputPointsOrder = [];
+                // cardModalFullUsage: { 카드ID: true|false } 해당 카드 모달에서 "전액 사용" 체크 여부. true면 1단계에서 금액 고정, false/없으면 2단계 배분 대상.
+                let cardModalFullUsage = {};
+
+                // syncMainFullUsageCheck(): 메인 전액 사용 체크박스를 "파생 상태"로 동기화. "모든 사용 가능 카드가 전액 플래그"일 때만 체크 (현대/삼성 등 카드별 저장 단위 차이로 effectivelyFullUsage만 쓰면 불일치 발생하므로 제거).
+                function syncMainFullUsageCheck() {
+                    let allCardsFullUsage = true;
+                    let hasAnyCardPoints = false;
+                    Object.keys(cardInfo).forEach(function (cardId) {
+                        const info = cardInfo[cardId];
+                        if (info && info.available > 0) {
+                            hasAnyCardPoints = true;
+                            if (cardModalFullUsage[cardId] !== true) allCardsFullUsage = false;
+                        }
+                    });
+                    const shouldCheck = allCardsFullUsage && hasAnyCardPoints;
+                    $("#fullUsageCheck").prop("checked", shouldCheck);
+                    return shouldCheck;
+                }
+
+                // updateCardButton(cardId, pointValue): 한 개 카드 버튼에 표시할 값 갱신. pointValue>0이면 그대로, 0이면 전액/보유 등 상태에 따라 문구 표시.
+                function updateCardButton(cardId, pointValue) {
+                    const $btn = $(`.point-card-btn[data-card="${cardId}"]`);
+                    const info = cardInfo[cardId];
+                    if (!$btn.length || !info) return;
+
+                    const $pointValue = $btn.find(".point-value");
+                    const $pointUnit = $btn.find(".point-unit");
+                    const isFullUsage = $("#fullUsageCheck").is(":checked");
+                    // cardInputPoints에 해당 카드가 있는지 확인 (직접 입력 여부)
+                    const hasDirectInput = cardId in cardInputPoints;
+                    // 해당 카드사의 모달 전액 사용하기 상태 확인 (메인 해제 시 미저장 카드는 전액 아님)
+                    const cardModalFullUsageState = cardModalFullUsage[cardId] !== undefined
+                        ? cardModalFullUsage[cardId]
+                        : (isFullUsage && !hasDirectInput && info.available > 0);
+
+                    if (pointValue > 0) {
+                        // 입력된 포인트가 있으면 active 및 입력값 표시.
+                        // 현대카드는 "사용자로부터 선택된 상태"(직접 입력 또는 카드 모달 전액 true)가 아닐 때는
+                        // 메인에서 M 값으로만 유지하고 P로 바꾸지 않는다.
+                        const isSelectedHyundai = info.isHyundai && (hasDirectInput || cardModalFullUsageState);
+                        if (info.isHyundai && !isSelectedHyundai) {
+                            // 자동 배분 등으로 pointValue>0이어도, 현대가 선택되지 않았다면 보유 M 그대로 표시
+                            $btn.removeClass("active");
+                            $pointValue.text(info.available.toLocaleString());
+                            $pointUnit.text(" " + info.unit);
+                        } else {
+                            // 일반 카드 또는 선택된 현대카드는 P 단위로 표시. 현대는 M 150 단위 맞춘 뒤 P로 환산해 모달과 동일하게 표시
+                            $btn.addClass("active");
+                            let displayP = pointValue;
+                            if (info.isHyundai && pointValue > 0) {
+                                const mVal = Math.ceil(pointValue / HYUNDAI_RATE);
+                                const mRounded = roundHyundaiMToUnit(mVal, info.transactionUnit, info.minPoint);
+                                displayP = toAmountFromPoint(mRounded, HYUNDAI_RATE, 'CEIL');
+                            }
+                            $pointValue.text(displayP.toLocaleString());
+                            $pointUnit.text(" P");
+                        }
+                    } else {
+                        // 입력된 포인트가 없으면 보유/유효 포인트 표시
+                        if (hasDirectInput) {
+                            $btn.removeClass("active");
+                            // 전액 해제 등으로 0이 된 경우 보유 포인트로 표시. 현대는 체크된 상태에서만 P, 해제 시 M.
+                            if (info.isHyundai) {
+                                if (isFullUsage || cardModalFullUsageState) {
+                                    const pValue = toAmountFromPoint(info.available, HYUNDAI_RATE, 'CEIL');
+                                    $pointValue.text(pValue.toLocaleString());
+                                    $pointUnit.text(" P");
+                                } else {
+                                    $pointValue.text(info.available.toLocaleString());
+                                    $pointUnit.text(" " + info.unit);
+                                }
+                            } else {
+                                $pointValue.text(info.available.toLocaleString());
+                                $pointUnit.text(" P");
+                            }
+                        } else if ((isFullUsage || cardModalFullUsageState) && info.available > 0) {
+                            // 전액 사용 시 상품 금액 한도 적용된 유효 사용량만 표시. 유효 사용량이 0이면 active 제거(다른 카드가 한도 채움)
+                            const effective = getEffectiveUsagePerCard();
+                            const effectiveVal = effective[cardId] || 0;
+                            if (effectiveVal > 0) {
+                                $btn.addClass("active");
+                                let displayP = effectiveVal;
+                                if (info.isHyundai) {
+                                    const mVal = Math.ceil(effectiveVal / HYUNDAI_RATE);
+                                    const mRounded = roundHyundaiMToUnit(mVal, info.transactionUnit, info.minPoint);
+                                    displayP = toAmountFromPoint(mRounded, HYUNDAI_RATE, 'CEIL');
+                                }
+                                $pointValue.text(displayP.toLocaleString());
+                                $pointUnit.text(" P");
+                            } else {
+                                // effective[cardId]가 0이면 "실제 사용 중 아님"으로 간주.
+                                // 현대카드는 이 경우 항상 보유 M 기준으로만 표시(P로 변환하지 않음).
+                                $btn.removeClass("active");
+                                if (info.isHyundai) {
+                                    $pointValue.text(info.available.toLocaleString());
+                                    $pointUnit.text(" " + info.unit);
+                                } else {
+                                    $pointValue.text(info.available.toLocaleString());
+                                    $pointUnit.text(" P");
+                                }
+                            }
+                        } else {
+                            $btn.removeClass("active");
+                            // 전액 해제 상태: 현대는 M으로만 표시, 체크된 상태에서만 P(위 분기에서 처리)
+                            if (info.isHyundai) {
+                                $pointValue.text(info.available.toLocaleString());
+                                $pointUnit.text(" " + info.unit);
+                            } else {
+                                $pointValue.text(info.available.toLocaleString());
+                                $pointUnit.text(" P");
+                            }
+                        }
+                    }
+                }
+
+                // updateAllCardButtons(): getEffectiveUsagePerCard()로 카드별 유효 사용량 구한 뒤, 각 카드 버튼 UI 일괄 갱신.
+                function updateAllCardButtons() {
+                    const effective = getEffectiveUsagePerCard();
+                    Object.keys(cardInfo).forEach(cardId => {
+                        updateCardButton(cardId, effective[cardId] || 0);
+                    });
+                }
+
+                // getCardShortName(cardName): "삼성카드 포인트" → "삼성". 사용 카드사 요약 문구용.
+                function getCardShortName(cardName) {
+                    // "삼성카드 포인트" -> "삼성카드" -> "삼성"
+                    const nameWithoutPoint = cardName.replace(" 포인트", "");
+                    // "카드" 제거 (예: "삼성카드" -> "삼성")
+                    const shortName = nameWithoutPoint.replace("카드", "");
+                    return shortName;
+                }
+
+                // getUsedPointCountText(): 사용 중인 카드사 요약 문구. "삼성" 또는 "삼성 외 2건" 형태. 전액 사용 시: 전액 체크된 카드 중 유효 사용량>0만, 표시 순서로 포함.
+                function getUsedPointCountText() {
+                    const isFullUsage = $("#fullUsageCheck").is(":checked");
+                    let usedCards = [];
+
+                    if (isFullUsage) {
+                        const effective = getEffectiveUsagePerCard();
+                        const cardIds = getCardIdsInDisplayOrder();
+                        cardIds.forEach(function (cardId) {
+                            if (cardModalFullUsage[cardId] === true && (effective[cardId] || 0) > 0) {
+                                const info = cardInfo[cardId];
+                                usedCards.push({
+                                    id: cardId,
+                                    name: getCardShortName(info.name)
+                                });
+                            }
+                        });
+                    } else {
+                        // 직접 입력 모드: 전액 체크된 카드 중 유효 사용량>0 또는 직접 입력>0만, 표시 순서로 포함 (현대 외 1건 등 순서 일치)
+                        const isMainFullUsage = $("#fullUsageCheck").is(":checked");
+                        const effective = getEffectiveUsagePerCard();
+                        const cardIds = getCardIdsInDisplayOrder();
+                        cardIds.forEach(function (cardId) {
+                            const info = cardInfo[cardId];
+                            const hasDirectInput = cardId in cardInputPoints;
+                            const cardModalFullUsageState = cardModalFullUsage[cardId] !== undefined
+                                ? cardModalFullUsage[cardId]
+                                : (isMainFullUsage && !hasDirectInput && info.available > 0);
+                            const hasUsage = (effective[cardId] || 0) > 0 || (hasDirectInput && (cardInputPoints[cardId] || 0) > 0);
+                            if (cardModalFullUsageState && info.available > 0 && hasUsage) {
+                                usedCards.push({ id: cardId, name: getCardShortName(info.name) });
+                            } else if (!cardModalFullUsageState && hasDirectInput && (cardInputPoints[cardId] || 0) > 0) {
+                                usedCards.push({ id: cardId, name: getCardShortName(info.name) });
+                            }
+                        });
+                    }
+
+                    // 카드사 목록 텍스트 생성
+                    if (usedCards.length === 0) {
+                        return "";
+                    } else if (usedCards.length === 1) {
+                        return usedCards[0].name;
+                    } else {
+                        // 첫 번째 카드사 이름 + " 외 N건"
+                        const firstCardName = usedCards[0].name;
+                        const otherCount = usedCards.length - 1;
+                        return firstCardName + " 외 " + otherCount + "건";
+                    }
+                }
+
+                // updateFeeExampleText(): 안내 문구. 최종=총액×(100-수수료율)/100→정수→원 단위 절사, 수수료=총액−최종.
+                function updateFeeExampleText() {
+                    const exampleUsedPoints = 1000;
+                    const computed = calcFinalAmountAndFee(exampleUsedPoints);
+                    const exampleText = "예) " + exampleUsedPoints.toLocaleString() + "P 사용 = " + computed.finalAmount.toLocaleString() + "원 전환 (수수료 " + computed.userFee.toLocaleString() + "P)";
+                    $("#feeExampleText").text(exampleText);
+                }
+
+                // 총 보유 포인트 계산 (모든 카드사의 포인트 합계)
+                function calculateTotalPoints() {
+                    let total = 0;
+                    Object.keys(cardInfo).forEach(cardId => {
+                        const info = cardInfo[cardId];
+                        if (info.isHyundai) {
+                            // 현대카드: M → P 변환
+                            total += toAmountFromPoint(info.available, HYUNDAI_RATE, 'CEIL');
+                        } else {
+                            // 일반 카드: P 포인트 그대로 사용
+                            total += info.available;
+                        }
+                    });
+                    // UI 업데이트
+                    $("#totalPoints").text(total.toLocaleString());
+                    return total;
+                }
+
+                // calculateFinalAmount(): 사용포인트총액·수수료·최종전환금액 계산 후 UI 갱신.
+                // 실제 합계(totalPoints)는 cap/한도 판정에, point-summary-section 표시는 정리된 합계(displayTotal, 카드 버튼과 동일) 사용.
+                function calculateFinalAmount() {
+                    const effective = getEffectiveUsagePerCard();
+                    let totalPoints = 0;
+                    Object.keys(effective).forEach(function (cardId) {
+                        totalPoints += effective[cardId];
+                    });
+                    const displayTotal = getDisplayTotalPoints(effective);
+                    const cap = getMaxPointTotalForProductAmount();
+                    const productAmount = getTotalAvailablePoints();
+                    let userFee, finalAmount;
+                    // cap 도달 분기: 실제 사용 포인트로 상품금액 이상 전환이 가능할 때만 적용 (totalPoints*0.9 >= productAmount). 그렇지 않으면 수수료가 0으로 잘못 나옴.
+                    const minPointsForProduct = productAmount > 0 ? Math.ceil(productAmount / (1 - USER_FEE_RATE / 100)) : 0;
+                    if (productAmount > 0 && totalPoints >= cap - 1 && totalPoints >= minPointsForProduct) {
+                        // 포인트가 cap이고 전환 가능 금액이 상품금액 이상이면 최종=상품금액, 수수료=사용포인트−최종(동일 스케일).
+                        finalAmount = productAmount;
+                        userFee = displayTotal - finalAmount;
+                    } else {
+                        // 최종 = 사용포인트총액×(100-수수료율)/100 → 정수 → 원 단위 절사, 수수료 = 총액−최종. summary는 displayTotal 기준.
+                        const computed = calcFinalAmountAndFee(displayTotal);
+                        finalAmount = computed.finalAmount;
+                        userFee = computed.userFee;
+                    }
+
+                    // UI 업데이트 (point-summary-section: 카드와 동일한 정리된 값 사용)
+                    $("#usedPointsTotal").text(displayTotal.toLocaleString());
+                    $("#userFee").text(userFee.toLocaleString());
+                    $("#finalAmount").text(finalAmount.toLocaleString());
+                    $("#convertAmount").text(finalAmount.toLocaleString());
+                    
+                    // 사용된 카드사 목록 업데이트 (사용된 카드가 있으면 point-detail-count 표시)
+                    const usedPointCountText = getUsedPointCountText();
+                    $("#usedPointCount").text(usedPointCountText);
+                    if (usedPointCountText) {
+                        $("#usedPointCount").show();
+                    } else {
+                        $("#usedPointCount").hide();
+                    }
+                    
+                    // 버튼 활성/비활성: 0포인트면 비활성, 전환 한도 초과 시 비활성, 가맹점 정책(최소/최대/거래 단위) 미충족 시 비활성 + 에러 문구
+                    const totalAvailable = getTotalAvailablePoints();
+                    const allowedTolerance = 10;
+                    const isOverLimit = totalAvailable > 0 && finalAmount > totalAvailable + allowedTolerance;
+                    let merchantErrorMsg = "";
+                    const globalMaxFinalAmount = getGlobalMaxFinalAmount();
+                    if (finalAmount > 0) {
+                        if (merchantMinTransactionAmount > 0 && finalAmount < merchantMinTransactionAmount) {
+                            merchantErrorMsg = "최소 거래 금액(" + merchantMinTransactionAmount.toLocaleString() + "원) 이상으로 전환해 주세요.";
+                        } else if (globalMaxFinalAmount > 0 && finalAmount > globalMaxFinalAmount) {
+                            merchantErrorMsg = "최대 거래 금액(" + globalMaxFinalAmount.toLocaleString() + "원)을 초과할 수 없습니다.";
+                        } else if (merchantTransactionUnit > 0 && totalPoints % merchantTransactionUnit !== 0) {
+                            merchantErrorMsg = merchantTransactionUnit.toLocaleString() + "P 단위로만 전환 가능합니다. (사용 포인트 총액 기준)";
+                        }
+                    }
+                    if (finalAmount <= 0) {
+                        $("#btnConvert").prop("disabled", true);
+                        $("#paymentError").hide();
+                    } else if (isOverLimit) {
+                        $("#btnConvert").prop("disabled", true);
+                        $("#paymentError").hide();
+                    } else if (merchantErrorMsg) {
+                        $("#btnConvert").prop("disabled", true);
+                        $("#paymentError").hide();
+                    } else {
+                        $("#btnConvert").prop("disabled", false);
+                        $("#paymentError").hide();
+                    }
+                }
+
+                // 카드 버튼 클릭 이벤트 - 모달 열기
+                $(".point-card-btn").on("click", function () {
+                    const cardId = $(this).data("card");
+                    const info = cardInfo[cardId] || { name: "카드 포인트", unit: "P", available: 0, isHyundai: false };
+                    let currentInput = cardInputPoints[cardId] || 0;
+                    
+                    // 카드사명 추출 (예: "삼성카드 포인트" -> "삼성카드")
+                    const cardNameShort = info.name.replace(" 포인트", "");
+                    
+                    // 총 보유 포인트 및 전환가능 포인트 설정
+                    $("#modalTotalLabel").text("[" + cardNameShort + "] 총 보유 포인트");
+                    $("#modalTotalAvailable").text(info.available.toLocaleString() + " " + info.unit);
+                    $("#modalConvertibleLabel").text("[" + cardNameShort + "] 전환가능 포인트");
+                    $("#modalConvertibleAvailable").text(info.available.toLocaleString() + " " + info.unit);
+                    
+                    // 해당 카드사의 모달 전액 사용하기 상태 복원
+                    // cardModalFullUsage에 저장된 값이 있으면 사용, 없으면 직접 입력값 여부로만 판단
+                    // (메인 화면 상태를 참조하지 않음 - 각 카드사는 독립적으로 관리)
+                    let cardModalFullUsageState;
+                    
+                    // 보유 포인트가 없으면 전액 사용하기를 체크할 수 없음
+                    if (info.available <= 0) {
+                        cardModalFullUsageState = false;
+                    } else if (cardModalFullUsage[cardId] !== undefined) {
+                        // 이미 저장된 상태가 있으면 사용 (카드사별로 독립적으로 관리)
+                        cardModalFullUsageState = cardModalFullUsage[cardId];
+                    } else {
+                        // 저장된 상태가 없으면 직접 입력값이 있는지 확인
+                        const hasDirectInput = cardId in cardInputPoints && cardInputPoints[cardId] > 0;
+                        if (hasDirectInput) {
+                            // 직접 입력값이 있으면 전액 사용하기 해제
+                            cardModalFullUsageState = false;
+                        } else {
+                            // 직접 입력값이 없으면 전액 사용하기 활성화 (기본값)
+                            // 각 카드사는 처음 열 때 항상 전액 사용하기가 체크된 상태로 시작
+                            cardModalFullUsageState = true;
+                        }
+                        // 확인 버튼을 누르기 전에는 cardModalFullUsage에 쓰지 않음 → 다른 카드(예: 국민)가 0으로 밀리지 않도록
+                    }
+                    // 유효 사용량이 0인 카드(다른 카드가 상품 금액 한도 채움)는 전액 사용 해제·빈 입력으로 열기
+                    const effective = getEffectiveUsagePerCard();
+                    let openedWithForcedUncheck = false;
+                    if ((effective[cardId] || 0) === 0 && cardModalFullUsageState) {
+                        cardModalFullUsageState = false;
+                        cardModalFullUsage[cardId] = false;
+                        openedWithForcedUncheck = true; // 확인 시 '다른 카드 전부 채우기' 로직 스킵용
+                    }
+                    // 전액 사용 체크된 카드인데 저장값이 없으면(메인 전액 배분 등) 유효 사용량을 표시용으로 사용
+                    if (cardModalFullUsageState && currentInput === 0 && (effective[cardId] || 0) > 0) {
+                        currentInput = effective[cardId];
+                    }
+                    // 사용 포인트가 보유 포인트와 정확히 같은 경우에는 과거에 전액 사용을 해제했더라도
+                    // 현재 상태를 전액 사용으로 간주하여 체크 상태로 연다.
+                    if (info.available > 0) {
+                        const usedP = effective[cardId] || currentInput || 0;
+                        const isSameAsAvailable = info.isHyundai
+                            ? (function () {
+                                const usedM = roundHyundaiMToUnit(toPointFromAmount(usedP, HYUNDAI_RATE, 'FLOOR'), info.transactionUnit, info.minPoint);
+                                return usedM === info.available;
+                            }())
+                            : (usedP === info.available);
+                        if (isSameAsAvailable) {
+                            cardModalFullUsageState = true;
+                            cardModalFullUsage[cardId] = true;
+                        }
+                    }
+                    // 모달 전액 사용하기 체크박스 설정 (prop은 change 이벤트를 발생시키지 않음)
+                    $("#modalFullUsage").prop("checked", cardModalFullUsageState);
+                    // 보유 포인트가 없으면 체크박스 비활성화
+                    $("#modalFullUsage").prop("disabled", info.available <= 0);
+                    $("#modalErrorMessage").hide();
+                    $("#modalConfirmBtn").prop("disabled", false); // 모달 열 때 확인 버튼 활성화
+                    $("#pointInputModal").data("cardId", cardId);
+                    $("#pointInputModal").data("cardInfo", info);
+                    $("#pointInputModal").data("openedWithForcedUncheck", openedWithForcedUncheck);
+                    
+                    // 현대카드인지 확인하여 input 구조 변경
+                    if (info.isHyundai) {
+                        // 현대카드: 2개 input 구조 표시
+                        $("#modalNormalInput").hide();
+                        $("#modalHyundaiInput").show();
+                        
+                        if (currentInput > 0) {
+                            // 기존 입력값이 있으면 표시 (현대 M은 minPoint부터 transactionUnit 단위로 표시)
+                            let mValue = Math.ceil(currentInput / HYUNDAI_RATE);
+                            mValue = roundHyundaiMToUnit(mValue, info.transactionUnit, info.minPoint);
+                            mValue = Math.min(mValue, info.available); // 표시 M은 보유를 넘지 않도록 cap
+                            $("#modalHyundaiPointInput").val(mValue.toLocaleString());
+                            $("#modalHyundaiPointInput").addClass("has-value");
+                            $("#modalHyundaiPointInput").siblings(".point-unit").show();
+                            calculateHyundaiWonModal();
+                        } else if (cardModalFullUsageState) {
+                            // 전액 사용하기: 메인 전액과 동일하게 cap 기준 남은 한도 사용 (수수료 역산 rounding 방지)
+                            const cap = getMaxPointTotalForProductAmount();
+                            const remainingPoints = Math.max(0, cap - getUsedPointsTotalExcept(cardId));
+                            const limitCap = info.limitPoint === undefined ? Infinity : info.limitPoint;
+                            const availableP = toAmountFromPoint(info.available, HYUNDAI_RATE, 'CEIL');
+                            let usePoints = Math.min(limitCap, availableP, remainingPoints);
+                            usePoints = Math.max(0, usePoints);
+                            if (usePoints > 0 && usePoints < MIN_POINT_USE_PER_CARD) usePoints = 0;
+                            if (remainingPoints <= 0 || usePoints <= 0) {
+                                $("#modalErrorMessage").text(usePoints === 0 && remainingPoints > 0 ? "카드사별 최소 1,000P 이상 사용해야 합니다." : "전환 가능금액이 없습니다.").show();
+                                $("#modalConfirmBtn").prop("disabled", true);
+                                $("#modalHyundaiPointInput").val("").removeClass("has-value").prop("disabled", true);
+                                $("#modalHyundaiWonInput").val("").prop("disabled", true);
+                                $("#modalHyundaiPointInput").siblings(".point-unit").hide();
+                            } else {
+                                let mPoints = toPointFromAmount(usePoints, HYUNDAI_RATE, 'FLOOR');
+                                mPoints = roundHyundaiMToUnit(mPoints, info.transactionUnit, info.minPoint);
+                                if (mPoints > info.available) mPoints = info.available;
+                                $("#modalHyundaiPointInput").val(mPoints.toLocaleString()).addClass("has-value").prop("disabled", false);
+                                $("#modalHyundaiWonInput").prop("disabled", false);
+                                $("#modalHyundaiPointInput").siblings(".point-unit").show();
+                                calculateHyundaiWonModal();
+                                $("#modalErrorMessage").hide();
+                            }
+                        } else {
+                            $("#modalHyundaiPointInput").val("");
+                            $("#modalHyundaiPointInput").removeClass("has-value");
+                            $("#modalHyundaiWonInput").val("");
+                            $("#modalHyundaiPointInput").siblings(".point-unit").hide();
+                        }
+                    } else {
+                        // 일반 카드: 1개 input 구조 표시
+                        $("#modalNormalInput").show();
+                        $("#modalHyundaiInput").hide();
+                        $("#modalPointUnit").text(info.unit);
+                        
+                        if (currentInput > 0) {
+                            // 기존 입력값이 있으면 표시
+                            $("#modalPointInput").val(currentInput.toLocaleString());
+                            $("#modalPointInput").addClass("has-value");
+                            $("#modalPointUnit").show();
+                        } else if (cardModalFullUsageState) {
+                            // 전액 사용하기: 메인 전액과 동일하게 cap 기준 남은 한도 사용 (수수료 역산 rounding 방지)
+                            const cap = getMaxPointTotalForProductAmount();
+                            const remainingPoints = Math.max(0, cap - getUsedPointsTotalExcept(cardId));
+                            const limitCap = info.limitPoint === undefined ? Infinity : info.limitPoint;
+                            let usePoints = Math.min(limitCap, info.available, remainingPoints);
+                            usePoints = Math.max(0, usePoints);
+                            // 카드/가맹점 거래 단위(effectiveUnit)에 맞게 아래로 맞춤
+                            const effectiveUnit = getEffectiveTransactionUnit(info);
+                            if (effectiveUnit > 0 && usePoints > 0) {
+                                usePoints = Math.floor(usePoints / effectiveUnit) * effectiveUnit;
+                            }
+                            if (usePoints > 0 && usePoints < MIN_POINT_USE_PER_CARD) usePoints = 0;
+                            if (remainingPoints <= 0 || usePoints <= 0) {
+                                $("#modalErrorMessage").text(usePoints === 0 && remainingPoints > 0 ? "카드사별 최소 1,000P 이상 사용해야 합니다." : "전환 가능금액이 없습니다.").show();
+                                $("#modalConfirmBtn").prop("disabled", true);
+                                $("#modalPointInput").val("").removeClass("has-value").prop("disabled", true);
+                                $("#modalPointUnit").hide();
+                            } else {
+                                $("#modalPointInput").val(usePoints.toLocaleString()).addClass("has-value").prop("disabled", false);
+                                $("#modalPointUnit").show();
+                                $("#modalErrorMessage").hide();
+                            }
+                        } else {
+                            $("#modalPointInput").val("");
+                            $("#modalPointInput").removeClass("has-value");
+                            $("#modalPointUnit").hide();
+                        }
+                    }
+                    
+                    // 모달 표시
+                    $("#pointInputModal").fadeIn(300);
+                });
+
+                // saveModalInputValue(): 모달 "확인" 시 호출. 현재 카드의 입력값/전액 여부를 cardInputPoints·cardModalFullUsage에 반영하고, 다른 카드는 이미 저장된 것만 유지. 전액인데 0이면 유효 사용금액 계산해 저장. 이후 updateAllCardButtons·calculateFinalAmount 호출. 가맹점 정책(최소/최대/거래단위) 미충족 시 저장 롤백 후 모달 내 에러 표시.
+                function saveModalInputValue() {
+                    const cardId = $("#pointInputModal").data("cardId");
+                    const info = $("#pointInputModal").data("cardInfo");
+                    if (!cardId || !info) return false;
+                    // 저장 전 상태 백업 (가맹점 정책 위반 시 롤백용)
+                    const backupCardInputPoints = JSON.parse(JSON.stringify(cardInputPoints));
+                    const backupCardModalFullUsage = JSON.parse(JSON.stringify(cardModalFullUsage));
+                    const backupCardInputPointsOrder = cardInputPointsOrder.slice();
+                    const backupFullUsageCheck = $("#fullUsageCheck").prop("checked");
+                    // 이 카드에 대해 이전에 저장된 값이 있었는지 여부 (사용자가 명시적으로 활성화했던 카드인지 판단용)
+                    const hadStored = cardId in cardInputPoints;
+                    
+                    // 에러 메시지가 표시되어 있으면 저장하지 않음
+                    const $errorMessage = $("#modalErrorMessage");
+                    if ($errorMessage.is(":visible") && $errorMessage.text().trim() !== "") {
+                        return false; // 에러가 있으면 저장하지 않음
+                    }
+                    
+                    let pointValue = 0;
+                    
+                    if (info.isHyundai) {
+                        // 현대카드: 우측 P 포인트 값 사용
+                        const inputValue = $("#modalHyundaiWonInput").val().replace(/,/g, "");
+                        pointValue = parseInt(inputValue) || 0;
+                    } else {
+                        // 일반 카드: 입력값 사용
+                        const inputValue = $("#modalPointInput").val().replace(/,/g, "");
+                        pointValue = parseInt(inputValue) || 0;
+                    }
+                    
+                    // 전액 사용하기 상태 확인 (검증 전에 확인)
+                    const isModalFullUsage = $("#modalFullUsage").is(":checked");
+                    const isMainFullUsage = $("#fullUsageCheck").is(":checked");
+                    
+                    // [카드사 모달 확인] 콘솔 — 변경 전
+                    const cardIdsModal = getCardIdsInDisplayOrder();
+                    const effectiveModalBefore = getEffectiveUsagePerCard();
+                    if (DEBUG) console.log("[카드사 모달 확인] " + cardId + " — 전액 " + (isModalFullUsage ? "체크" : "해제") + " 반영 — 변경 전");
+                    if (DEBUG) console.log("  cardModalFullUsage(변경 전):", JSON.parse(JSON.stringify(cardModalFullUsage)));
+                    if (DEBUG) console.log("  cardInputPoints(변경 전):", JSON.parse(JSON.stringify(cardInputPoints)));
+                    const summaryModalBefore = {};
+                    cardIdsModal.forEach(function (cid) {
+                        summaryModalBefore[cid] = {
+                            fullUsage: cardModalFullUsage[cid],
+                            stored: cardInputPoints[cid] != null ? cardInputPoints[cid] : "-",
+                            effective: effectiveModalBefore[cid] || 0
+                        };
+                    });
+                    if (DEBUG) console.table(summaryModalBefore);
+                    
+                    // 입력값 관련 검증은 validateModalPointInput에서 수행되며,
+                    // 여기서는 에러 메시지 표시 여부만 보고 저장 여부를 결정한다.
+                    
+                    if (!isModalFullUsage) {
+                        if (pointValue > 0) {
+                            // 수동 입력: 전액 미체크 상태로 입력한 금액을 항상 저장(첫 진입 자동 배분 카드라도 예외 없이 부분 사용으로 인정)
+                            cardModalFullUsage[cardId] = false;
+                            cardInputPoints[cardId] = pointValue;
+                            if (cardInputPointsOrder.indexOf(cardId) === -1) cardInputPointsOrder.push(cardId);
+                        } else {
+                            // 전액 해제 + 입력값 0: 이 카드는 "사용하지 않겠다"는 의도로 보고 완전히 비활성화.
+                            // 해제 전 배분을 먼저 저장한 뒤 해당 카드만 제거. false를 먼저 넣으면 getEffective가 1-2로 해제분을 신한 등이 채움.
+                            // 다른 카드에 넣는 값은 "재배분"이므로 사용자가 모달에서 전액을 선택한 게 아님 → 전액 플래그 false 유지(건드린 적 없는 카드가 전액으로 활성화되지 않도록)
+                            const effectiveBeforeUncheck = getEffectiveUsagePerCard();
+                            cardModalFullUsage[cardId] = false;
+                            cardInputPointsOrder = cardInputPointsOrder.filter(function (id) { return id !== cardId; });
+                            Object.keys(cardInfo).forEach(function (oid) {
+                                if (oid === cardId) {
+                                    delete cardInputPoints[oid];
+                                    return;
+                                }
+                                const val = effectiveBeforeUncheck[oid] || 0;
+                                if (val > 0) {
+                                    cardInputPoints[oid] = val;
+                                    cardModalFullUsage[oid] = false; // 재배분으로 받은 카드는 전액이 아님
+                                    if (cardInputPointsOrder.indexOf(oid) === -1) cardInputPointsOrder.push(oid);
+                                } else {
+                                    delete cardInputPoints[oid];
+                                    cardInputPointsOrder = cardInputPointsOrder.filter(function (id) { return id !== oid; });
+                                    cardModalFullUsage[oid] = false;
+                                }
+                            });
+                        }
+                    } else {
+                        // 전액 사용 체크: 플래그만 켜고, 금액은 사용자가 직접 입력. (cap−다른카드합) 자동 저장 안 함.
+                        cardModalFullUsage[cardId] = true;
+                        if (pointValue > 0) {
+                            cardInputPoints[cardId] = pointValue;
+                            if (cardInputPointsOrder.indexOf(cardId) === -1) cardInputPointsOrder.push(cardId);
+                        } else {
+                            delete cardInputPoints[cardId];
+                            cardInputPointsOrder = cardInputPointsOrder.filter(function (id) { return id !== cardId; });
+                        }
+                    }
+                    
+                    // 메인 전액 사용하기: 파생 상태로 동기화 (syncMainFullUsageCheck). 100원 단위 오차 허용.
+                    syncMainFullUsageCheck();
+                    if ($("#fullUsageCheck").is(":checked") && isModalFullUsage && cardId) {
+                        const inf = cardInfo[cardId];
+                        if (inf && inf.available >= MIN_POINT_USE_PER_CARD) cardModalFullUsage[cardId] = true;
+                    }
+                    
+                    // 카드사 박스 및 최종 금액 업데이트 (저장값 반영 후 한도 적용된 유효 사용량으로 통일)
+                    updateAllCardButtons();
+                    calculateFinalAmount();
+                    
+                    // [카드사 모달 확인] 콘솔 — 변경 후
+                    const effectiveModalAfter = getEffectiveUsagePerCard();
+                    if (DEBUG) console.log("[카드사 모달 확인] " + cardId + " — 전액 " + (isModalFullUsage ? "체크" : "해제") + " 반영 — 변경 후");
+                    if (DEBUG) console.log("  cardModalFullUsage(변경 후):", JSON.parse(JSON.stringify(cardModalFullUsage)));
+                    if (DEBUG) console.log("  cardInputPoints(변경 후):", JSON.parse(JSON.stringify(cardInputPoints)));
+                    const summaryModalAfter = {};
+                    cardIdsModal.forEach(function (cid) {
+                        summaryModalAfter[cid] = {
+                            fullUsage: cardModalFullUsage[cid],
+                            stored: cardInputPoints[cid] != null ? cardInputPoints[cid] : "-",
+                            effective: effectiveModalAfter[cid] || 0
+                        };
+                    });
+                    if (DEBUG) console.table(summaryModalAfter);
+                    if (DEBUG) console.log("  cap:", getMaxPointTotalForProductAmount(), "usedTotal:", cardIdsModal.reduce(function (sum, id) { return sum + (effectiveModalAfter[id] || 0); }, 0));
+                    
+                    // 가맹점 정책 검증: 최종 전환 금액이 최소/최대 기준에 맞는지 확인. 거래 단위(100P) 검증은 모달에서는 하지 않고, 메인 포인트 전환 버튼 클릭 시에만 적용.
+                    let totalPointsAfter = 0;
+                    Object.keys(effectiveModalAfter).forEach(function (id) { totalPointsAfter += effectiveModalAfter[id] || 0; });
+                    const computedAfter = calcFinalAmountAndFee(totalPointsAfter);
+                    const finalAmountAfter = computedAfter.finalAmount;
+                    const userFeeAfter = computedAfter.userFee;
+                    let merchantErrorMsg = "";
+                    const globalMaxFinalAmount = getGlobalMaxFinalAmount();
+                    if (finalAmountAfter > 0) {
+                        if (merchantMinTransactionAmount > 0 && finalAmountAfter < merchantMinTransactionAmount) {
+                            merchantErrorMsg = "최소 거래 금액(" + merchantMinTransactionAmount.toLocaleString() + "원) 이상으로 전환해 주세요.";
+                        } else if (globalMaxFinalAmount > 0 && finalAmountAfter > globalMaxFinalAmount) {
+                            merchantErrorMsg = "최대 거래 금액(" + globalMaxFinalAmount.toLocaleString() + "원)을 초과할 수 없습니다.";
+                        }
+                    }
+                    if (merchantErrorMsg) {
+                        Object.keys(cardInputPoints).forEach(function (id) { delete cardInputPoints[id]; });
+                        Object.keys(backupCardInputPoints).forEach(function (id) { cardInputPoints[id] = backupCardInputPoints[id]; });
+                        Object.keys(cardModalFullUsage).forEach(function (id) { delete cardModalFullUsage[id]; });
+                        Object.keys(backupCardModalFullUsage).forEach(function (id) { cardModalFullUsage[id] = backupCardModalFullUsage[id]; });
+                        cardInputPointsOrder.length = 0;
+                        backupCardInputPointsOrder.forEach(function (id) { cardInputPointsOrder.push(id); });
+                        $("#fullUsageCheck").prop("checked", backupFullUsageCheck);
+                        updateAllCardButtons();
+                        calculateFinalAmount();
+                        $("#modalErrorMessage").text(merchantErrorMsg).show();
+                        $("#modalConfirmBtn").prop("disabled", true);
+                        return false;
+                    }
+                    
+                    // 부모 창에 포인트 입력 메시지 전송
+                    window.parent.postMessage(
+                        {
+                            type: "kycPointInput",
+                            data: {
+                                cardId: cardId,
+                                pointValue: pointValue
+                            }
+                        },
+                        "*"
+                    );
+                    return true; // 저장 완료
+                }
+
+                // 모달 닫기 버튼 / 오버레이: 확인 버튼이 아니므로 저장하지 않고 모달만 닫음
+                $("#modalCloseBtn, .point-input-modal-overlay").on("click", function () {
+                    $("#pointInputModal").fadeOut(300);
+                });
+
+                // 모달 뒤로가기 버튼: 확인 버튼이 아니므로 저장하지 않고 모달만 닫음
+                $("#modalBackBtn").on("click", function () {
+                    $("#pointInputModal").fadeOut(300);
+                });
+
+                // 모달 확인 버튼: 저장이 성공한 경우에만 모달 닫기 (오류 시 모달 유지)
+                $("#modalConfirmBtn").on("click", function () {
+                    // 에러가 있으면 저장하지 않음
+                    const $errorMessage = $("#modalErrorMessage");
+                    if ($errorMessage.is(":visible") && $errorMessage.text().trim() !== "") {
+                        return; // 에러가 있으면 저장하지 않음
+                    }
+                    if (saveModalInputValue()) {
+                        $("#pointInputModal").fadeOut(300);
+                    }
+                });
+
+                // 모달 전액 사용하기 체크박스 (pay 페이지 applyFullUsage 로직 반영)
+                // cardModalFullUsage는 확인 버튼 클릭 시에만 저장 → 해제 시 다른 카드 금액이 바뀌지 않도록 함
+                $("#modalFullUsage").on("change", function () {
+                    const $checkbox = $(this);
+                    const cardId = $("#pointInputModal").data("cardId");
+                    const info = $("#pointInputModal").data("cardInfo");
+                    
+                    // 보유 포인트가 없으면 체크할 수 없음
+                    if (info.available <= 0) {
+                        $checkbox.prop("checked", false);
+                        return;
+                    }
+                    
+                    if (DEBUG) console.log("[카드사 모달] " + cardId + " 전액 사용하기 " + ($checkbox.is(":checked") ? "체크" : "해제") + " (확인 클릭 시 반영)");
+                    
+                    if ($checkbox.is(":checked")) {
+                        $("#pointInputModal").data("settingFullUsage", true);
+                        // 메인 전액과 동일: cap 기준 남은 한도 사용 (수수료 역산 rounding 방지)
+                        const cap = getMaxPointTotalForProductAmount();
+                        const remainingPoints = Math.max(0, cap - getUsedPointsTotalExcept(cardId));
+                        const limitCap = info.limitPoint === undefined ? Infinity : info.limitPoint;
+                        if (info.isHyundai) {
+                            const availableP = toAmountFromPoint(info.available, HYUNDAI_RATE, 'CEIL');
+                            let usePoints = Math.min(limitCap, availableP, remainingPoints);
+                            usePoints = Math.max(0, usePoints);
+                            if (usePoints > 0 && usePoints < MIN_POINT_USE_PER_CARD) usePoints = 0;
+                            if (remainingPoints <= 0 || usePoints <= 0) {
+                                $("#modalErrorMessage").text(usePoints === 0 && remainingPoints > 0 ? "카드사별 최소 1,000P 이상 사용해야 합니다." : "전환 가능금액이 없습니다.").show();
+                                $("#modalConfirmBtn").prop("disabled", true);
+                                $("#modalHyundaiPointInput").val("").removeClass("has-value").prop("disabled", true);
+                                $("#modalHyundaiWonInput").val("").prop("disabled", true);
+                                $("#modalHyundaiPointInput").siblings(".point-unit").hide();
+                              } else {
+                                let mPoints = toPointFromAmount(usePoints, HYUNDAI_RATE, 'FLOOR');
+                                mPoints = roundHyundaiMToUnit(mPoints, info.transactionUnit, info.minPoint);
+                                if (mPoints > info.available) mPoints = info.available;
+                                $("#modalHyundaiPointInput").val(mPoints.toLocaleString()).addClass("has-value").prop("disabled", false);
+                                $("#modalHyundaiWonInput").prop("disabled", false);
+                                $("#modalHyundaiPointInput").siblings(".point-unit").show();
+                                calculateHyundaiWonModal();
+                                $("#modalErrorMessage").hide();
+                                $("#modalConfirmBtn").prop("disabled", false);
+                            }
+                        } else {
+                            let usePoints = Math.min(limitCap, info.available, remainingPoints);
+                            usePoints = Math.max(0, usePoints);
+                            const effectiveUnit = getEffectiveTransactionUnit(info);
+                            if (effectiveUnit > 0 && usePoints > 0) {
+                                usePoints = Math.floor(usePoints / effectiveUnit) * effectiveUnit;
+                            }
+                            if (usePoints > 0 && usePoints < MIN_POINT_USE_PER_CARD) usePoints = 0;
+                            if (remainingPoints <= 0 || usePoints <= 0) {
+                                $("#modalErrorMessage").text(usePoints === 0 && remainingPoints > 0 ? "카드사별 최소 1,000P 이상 사용해야 합니다." : "전환 가능금액이 없습니다.").show();
+                                $("#modalConfirmBtn").prop("disabled", true);
+                                $("#modalPointInput").val("").removeClass("has-value").prop("disabled", true);
+                                $("#modalPointUnit").hide();
+                            } else {
+                                $("#modalPointInput").val(usePoints.toLocaleString()).addClass("has-value").prop("disabled", false);
+                                $("#modalPointUnit").show();
+                                $("#modalErrorMessage").hide();
+                                $("#modalConfirmBtn").prop("disabled", false);
+                            }
+                        }
+                        setTimeout(function () { $("#pointInputModal").data("settingFullUsage", false); }, 0);
+                    } else {
+                        if (info.isHyundai) {
+                            $("#modalHyundaiPointInput").val("").removeClass("has-value").prop("disabled", false);
+                            $("#modalHyundaiWonInput").val("").prop("disabled", false);
+                            $("#modalHyundaiPointInput").siblings(".point-unit").hide();
+                        } else {
+                            $("#modalPointInput").val("").removeClass("has-value").prop("disabled", false);
+                            $("#modalPointUnit").hide();
+                        }
+                        $("#modalErrorMessage").hide();
+                        $("#modalConfirmBtn").prop("disabled", false);
+                    }
+                });
+
+                // 현대카드 좌측 input 입력 시 우측 input 자동 계산 (3:2 비율, 올림 정책)
+                function calculateHyundaiWonModal() {
+                    const $leftInput = $("#modalHyundaiPointInput");
+                    const $rightInput = $("#modalHyundaiWonInput");
+                    const $leftUnit = $leftInput.siblings(".point-unit");
+                    // 콤마를 제거한 후 숫자로 변환
+                    const inputValue = parseInt($leftInput.val().replace(/,/g, "")) || 0;
+                    if (inputValue > 0) {
+                        // M 포인트 → P 포인트 변환 (올림 정책 사용)
+                        const wonValue = toAmountFromPoint(inputValue, HYUNDAI_RATE, 'CEIL');
+                        const formattedWon = wonValue.toLocaleString();
+                        $rightInput.val(formattedWon);
+                        // 좌측 단위 표시
+                        $leftUnit.show();
+                    } else {
+                        $rightInput.val("");
+                        // 좌측 단위 숨김
+                        $leftUnit.hide();
+                    }
+                }
+
+                // 모달 포인트 입력 필드 이벤트 (일반 카드)
+                // 입력 시 처리
+                $("#modalPointInput").on("input", function () {
+                    const $input = $(this);
+                    const value = $input.val().replace(/,/g, "");
+                    const cardId = $("#pointInputModal").data("cardId");
+                    const info = $("#pointInputModal").data("cardInfo");
+                    
+                    // 전액 사용하기를 체크할 때 발생하는 input 이벤트는 무시
+                    if ($("#pointInputModal").data("settingFullUsage")) {
+                        return;
+                    }
+                    
+                    // 숫자만 입력 허용 및 콤마 추가
+                    if (value && !isNaN(value)) {
+                        const numValue = parseInt(value);
+                        $input.val(numValue.toLocaleString());
+                        $input.addClass("has-value"); // 값이 있을 때 클래스 추가
+                        $("#modalPointUnit").show();
+                        
+                        // 입력값이 해당 카드사의 최대 금액(보유 포인트)과 같으면 전액 사용하기 체크 (메인 전액 체크 시에는 자동 체크 안 함 → 확인 시 오류 노출)
+                        if (info && numValue === info.available && !$("#fullUsageCheck").is(":checked")) {
+                            $("#modalFullUsage").prop("checked", true);
+                            if (cardId) {
+                                cardModalFullUsage[cardId] = true;
+                            }
+                        } else if (!info || numValue !== info.available) {
+                            $("#modalFullUsage").prop("checked", false);
+                            // 해당 카드사의 모달 전액 사용하기 상태 업데이트
+                            if (cardId) {
+                                cardModalFullUsage[cardId] = false;
+                            }
+                        }
+                        // 입력값 검증
+                        validateModalPointInput($input);
+                    } else if (value === "") {
+                        $input.removeClass("has-value"); // 값이 없을 때 클래스 제거
+                        $("#modalPointUnit").hide();
+                        // 에러 메시지 숨김
+                        $("#modalErrorMessage").hide();
+                    }
+                });
+                
+                // 포커스 해제 시 값이 없으면 단위 숨김
+                $("#modalPointInput").on("blur", function () {
+                    const value = $(this).val().replace(/,/g, "");
+                    if (value === "") {
+                        $(this).removeClass("has-value");
+                        $("#modalPointUnit").hide();
+                    }
+                });
+
+                // 모달 현대카드 좌측 input 이벤트
+                // 입력 시 처리
+                $("#modalHyundaiPointInput").on("input", function () {
+                    const $input = $(this);
+                    const value = $input.val().replace(/,/g, "");
+                    const cardId = $("#pointInputModal").data("cardId");
+                    const info = $("#pointInputModal").data("cardInfo");
+                    
+                    // 전액 사용하기를 체크할 때 발생하는 input 이벤트는 무시
+                    if ($("#pointInputModal").data("settingFullUsage")) {
+                        return;
+                    }
+                    
+                    // 숫자만 입력 허용 및 콤마 추가
+                    if (value && !isNaN(value)) {
+                        const numValue = parseInt(value);
+                        $input.val(numValue.toLocaleString());
+                        $input.addClass("has-value"); // 값이 있을 때 클래스 추가
+                        $input.siblings(".point-unit").show();
+                        
+                        // 입력값이 해당 카드사의 최대 금액(보유 포인트)과 같으면 전액 사용하기 체크 (메인 전액 체크 시에는 자동 체크 안 함 → 확인 시 오류 노출)
+                        if (info && numValue === info.available && !$("#fullUsageCheck").is(":checked")) {
+                            $("#modalFullUsage").prop("checked", true);
+                            if (cardId) {
+                                cardModalFullUsage[cardId] = true;
+                            }
+                        } else if (!info || numValue !== info.available) {
+                            $("#modalFullUsage").prop("checked", false);
+                            // 해당 카드사의 모달 전액 사용하기 상태 업데이트
+                            if (cardId) {
+                                cardModalFullUsage[cardId] = false;
+                            }
+                        }
+                        calculateHyundaiWonModal();
+                        // 입력값 검증
+                        validateModalPointInput($input);
+                    } else if (value === "") {
+                        $input.removeClass("has-value"); // 값이 없을 때 클래스 제거
+                        $input.siblings(".point-unit").hide();
+                        $("#modalHyundaiWonInput").val("");
+                        // 에러 메시지 숨김 및 확인 버튼 활성화
+                        $("#modalErrorMessage").hide();
+                        $("#modalConfirmBtn").prop("disabled", false);
+                    }
+                });
+                
+                // 포커스 해제 시 값이 없으면 단위 숨김
+                $("#modalHyundaiPointInput").on("blur", function () {
+                    const value = $(this).val().replace(/,/g, "");
+                    if (value === "") {
+                        $(this).removeClass("has-value");
+                        $(this).siblings(".point-unit").hide();
+                    }
+                });
+
+                // 포인트 입력 유효성 검사 함수 (모달용)
+                function validateModalPointInput($input) {
+                    const cardId = $("#pointInputModal").data("cardId");
+                    const info = $("#pointInputModal").data("cardInfo");
+                    const $errorMessage = $("#modalErrorMessage");
+                    if (!cardId || !info) return;
+                    // 현대카드 우측 input은 읽기 전용이므로 검증하지 않음
+                    if ($input.hasClass("hyundai-won-input")) return;
+                    // 현대카드인 경우 좌측 input만 검증
+                    let inputValue = 0;
+                    if (info.isHyundai) {
+                        if ($input.attr("id") === "modalHyundaiPointInput") {
+                            inputValue = parseInt($input.val().replace(/,/g, "")) || 0;
+                        } else return;
+                    } else {
+                        if ($input.attr("id") === "modalPointInput") {
+                            inputValue = parseInt($input.val().replace(/,/g, "")) || 0;
+                        } else return;
+                    }
+                    // 콤마를 제거한 후 숫자로 변환
+                    const availableValue = info.available || 0;
+                    // 각 카드별 전환 규칙 정보 (cardInfo에서 가져옴)
+                    const minPoint = info.minPoint || 0; // 최소 전환 포인트
+                    const limitPoint = info.limitPoint || 0; // 전환 한도 (0이면 한도 없음)
+                    // 유효 거래 단위 (max(가맹점, 카드사)). 0이면 단위 검증 생략
+                    const effectiveUnit = getEffectiveTransactionUnit(info);
+
+                    let errorType = null;
+                    let errorMsg = "";
+
+                    // 입력값이 있을 때만 검증 (P 포인트 기준 최소 1000 적용)
+                    if (inputValue > 0) {
+                        const pointValueInP = info.isHyundai
+                            ? toAmountFromPoint(inputValue, HYUNDAI_RATE, 'CEIL')
+                            : inputValue;
+                        // 케이스 1: 보유 포인트 초과 (최우선 체크)
+                        if (inputValue > availableValue) {
+                            errorType = "exceed_available";
+                            errorMsg = "보유 포인트를 초과하여 입력할 수 없습니다.";
+                        }
+                        // 카드사별 최소 사용 포인트 (1,000P 이상 사용해야 함)
+                        else if (pointValueInP > 0 && pointValueInP < MIN_POINT_USE_PER_CARD) {
+                            errorType = "below_min_use";
+                            errorMsg = "카드사별 최소 1,000P 이상 사용해야 합니다.";
+                        }
+                        // 케이스 3: 최소 전환 포인트 미만 (보유 포인트 이하이지만 최소값보다 작은 경우)
+                        else if (minPoint > 0 && inputValue < minPoint) {
+                            errorType = "below_minimum";
+                            errorMsg = "최소 전환 포인트이상 입력해주세요.";
+                        }
+                        // 케이스 2: 전환 한도 초과 (보유 포인트 이하이지만 한도를 넘는 경우)
+                        else if (limitPoint > 0 && inputValue > limitPoint) {
+                            errorType = "exceed_limit";
+                            errorMsg = "전환가능한 한도를 넘었습니다.";
+                        }
+                        // 케이스 4: 전환 한도(cap) 초과 또는 남은 cap 없음 (다른 카드가 이미 상품금액을 채운 경우)
+                        else {
+                            // 이 카드가 더 쓸 수 있는 상한(P 기준). 0 또는 음수면 남은 cap 없음.
+                            const remainingConvertibleP = getAvailableConvertiblePoints(cardId, false);
+                            if (remainingConvertibleP <= 0) {
+                                errorType = "no_cap";
+                                errorMsg = "전환 가능금액이 없습니다.";
+                            } else if (pointValueInP > remainingConvertibleP) {
+                                errorType = "exceed_cap";
+                                errorMsg = "전환 가능금액이 없습니다.";
+                            }
+                          }
+                        // 거래 단위 검증 (현대: minPoint + transactionUnit 배수, 그 외: effectiveUnit 배수)
+                        if (!errorType) {
+                            if (info.isHyundai) {
+                                const tu = info.transactionUnit || 150;
+                                const minP = info.minPoint != null ? info.minPoint : 1500;
+                                if (inputValue < minP || (inputValue - minP) % tu !== 0) {
+                                    errorType = "invalid_unit";
+                                    errorMsg = "최소 " + minP.toLocaleString() + "M부터 " + tu.toLocaleString() + " 단위로만 입력 가능합니다.";
+                                }
+                            } else if (effectiveUnit > 0 && inputValue % effectiveUnit !== 0) {
+                                errorType = "invalid_unit";
+                                errorMsg = effectiveUnit.toLocaleString() + " 단위로만 입력 가능합니다.";
+                            }
+                        }
+                    }
+                    
+                    // 오류 처리
+                    if (errorType) {
+                        $errorMessage.text(errorMsg);
+                        $errorMessage.show();
+                        // 에러가 있으면 확인 버튼 비활성화
+                        $("#modalConfirmBtn").prop("disabled", true);
+                    } else {
+                        // 정상 상태
+                        $errorMessage.hide();
+                        // 에러가 없으면 확인 버튼 활성화
+                        $("#modalConfirmBtn").prop("disabled", false);
+                    }
+                }
+                
+                // 확인 버튼 활성화/비활성화 업데이트 함수
+                function updateModalConfirmButton() {
+                    const $errorMessage = $("#modalErrorMessage");
+                    const hasError = $errorMessage.is(":visible") && $errorMessage.text().trim() !== "";
+                    $("#modalConfirmBtn").prop("disabled", hasError);
+                }
+
+                // 모달 초기화 버튼
+                $("#modalClearBtn").on("click", function () {
+                    const cardId = $("#pointInputModal").data("cardId");
+                    $("#modalPointInput").val("");
+                    $("#modalPointInput").removeClass("has-value");
+                    $("#modalPointUnit").hide();
+                    $("#modalFullUsage").prop("checked", false);
+                    // 해당 카드사의 모달 전액 사용하기 상태 업데이트
+                    if (cardId) {
+                        cardModalFullUsage[cardId] = false;
+                    }
+                    $("#modalErrorMessage").hide();
+                    $("#modalConfirmBtn").prop("disabled", false); // 에러 해제 시 확인 버튼 활성화
+                    // 입력값을 0으로 설정하여 즉시 반영
+                    saveModalInputValue();
+                });
+
+                // 모달 현대카드 초기화 버튼
+                $("#modalHyundaiClearBtn").on("click", function () {
+                    const cardId = $("#pointInputModal").data("cardId");
+                    $("#modalHyundaiPointInput").val("");
+                    $("#modalHyundaiPointInput").removeClass("has-value");
+                    $("#modalHyundaiWonInput").val("");
+                    $("#modalHyundaiPointInput").siblings(".point-unit").hide();
+                    $("#modalFullUsage").prop("checked", false);
+                    // 해당 카드사의 모달 전액 사용하기 상태 업데이트
+                    if (cardId) {
+                        cardModalFullUsage[cardId] = false;
+                    }
+                    $("#modalErrorMessage").hide();
+                    $("#modalConfirmBtn").prop("disabled", false); // 에러 해제 시 확인 버튼 활성화
+                    // 입력값을 0으로 설정하여 즉시 반영
+                    saveModalInputValue();
+                });
+
+                // [전액 사용하기] 체크/해제 시: 체크 시 보유 있는 모든 카드 전액(true), stored 초기화. 해제 시 cardModalFullUsage false, stored도 초기값(없음)으로.
+                $("#fullUsageCheck").on("change", function () {
+                    const isChecked = $(this).is(":checked");
+                    const cardIds = getCardIdsInDisplayOrder();
+
+                    // 변경 전 상태 (콘솔 확인용)
+                    const effectiveBefore = getEffectiveUsagePerCard();
+                    if (DEBUG) console.log("[전액 사용하기] " + (isChecked ? "체크" : "해제") + " — 변경 전");
+                    if (DEBUG) console.log("  cardModalFullUsage(변경 전):", JSON.parse(JSON.stringify(cardModalFullUsage)));
+                    if (DEBUG) console.log("  cardInputPoints(변경 전):", JSON.parse(JSON.stringify(cardInputPoints)));
+                    const summaryBefore = {};
+                    cardIds.forEach(function (cardId) {
+                        summaryBefore[cardId] = {
+                            fullUsage: cardModalFullUsage[cardId],
+                            stored: cardInputPoints[cardId] != null ? cardInputPoints[cardId] : "-",
+                            effective: effectiveBefore[cardId] || 0,
+                            available: (cardInfo[cardId] && cardInfo[cardId].available) != null ? cardInfo[cardId].available : "-"
+                        };
+                    });
+                    if (DEBUG) console.table(summaryBefore);
+
+                    if (isChecked) {
+                        // 메인 전액 체크 시: 수동으로 저장한 카드(롯데 등) stored 유지, 보유 있는 모든 카드 전액 true → 1-1에서 저장값 반영 후 1-2에서 나머지를 다른 카드가 채움
+                        Object.keys(cardInfo).forEach(cardId => {
+                            const info = cardInfo[cardId];
+                            const canUse = info.available >= MIN_POINT_USE_PER_CARD;
+                            cardModalFullUsage[cardId] = canUse;
+                        });
+                    } else {
+                        // 전액 사용하기 비활성화: cardModalFullUsage false, stored도 초기값(없음)으로
+                        Object.keys(cardInfo).forEach(cardId => {
+                            cardModalFullUsage[cardId] = false;
+                        });
+                        cardInputPoints = {};
+                        cardInputPointsOrder = [];
+                    }
+
+                    // 카드사 박스 및 최종 금액 업데이트 후, 메인 전액 체크박스를 파생 상태로 동기화 (동일 규칙 적용)
+                    updateAllCardButtons();
+                    calculateFinalAmount();
+                    syncMainFullUsageCheck();
+
+                    // 변경 후 상태 (콘솔 확인용)
+                    const effectiveAfter = getEffectiveUsagePerCard();
+                    if (DEBUG) console.log("[전액 사용하기] " + (isChecked ? "체크" : "해제") + " — 변경 후");
+                    if (DEBUG) console.log("  cardModalFullUsage(변경 후):", JSON.parse(JSON.stringify(cardModalFullUsage)));
+                    if (DEBUG) console.log("  cardInputPoints(변경 후):", JSON.parse(JSON.stringify(cardInputPoints)));
+                    const summaryAfter = {};
+                    cardIds.forEach(function (cardId) {
+                        summaryAfter[cardId] = {
+                            fullUsage: cardModalFullUsage[cardId],
+                            stored: cardInputPoints[cardId] != null ? cardInputPoints[cardId] : "-",
+                            effective: effectiveAfter[cardId] || 0,
+                            available: (cardInfo[cardId] && cardInfo[cardId].available) != null ? cardInfo[cardId].available : "-"
+                        };
+                    });
+                    if (DEBUG) console.table(summaryAfter);
+                    if (DEBUG) console.log("  cap(getMaxPointTotalForProductAmount):", getMaxPointTotalForProductAmount());
+                    if (DEBUG) console.log("  usedTotal:", cardIds.reduce(function (sum, id) { return sum + (effectiveAfter[id] || 0); }, 0));
+                    
+                    // 부모 창에 전액 사용하기 메시지 전송 (동기화된 체크 상태 기준)
+                    window.parent.postMessage(
+                        {
+                            type: "kycFullUsage",
+                            data: {
+                                enabled: $("#fullUsageCheck").is(":checked"),
+                            },
+                        },
+                        "*"
+                    );
+                });
+
+                // 포인트 직접 입력하기 / 접기 버튼 토글
+                $("#btnFold").on("click", function () {
+                    const $pointCardsSection = $("#pointCardsSection");
+                    const $fullUsageSection = $(".full-usage-section");
+                    const $wrap = $("#wrap.point-damoa-kyc-point-input");
+                    const isVisible = $pointCardsSection.is(":visible");
+                    
+                    if (isVisible) {
+                        // 접기: 섹션 숨기기, 전액 사용하기 버튼도 숨기기
+                        $pointCardsSection.slideUp(300);
+                        $fullUsageSection.slideUp(300);
+                        $(this).text("포인트 직접 입력하기");
+                        $wrap.removeClass("point-input-open");
+                    } else {
+                        // 펼치기: 섹션 보이기, 전액 사용하기 버튼도 보이기
+                        $pointCardsSection.slideDown(300, function() {
+                            // slideDown 애니메이션 완료 후 스크롤 이동
+                            const $content = $(".kyc-point-input-content");
+                            const contentScrollTop = $content.scrollTop();
+                            const contentOffset = $content.offset().top;
+                            const sectionOffset = $pointCardsSection.offset().top;
+                            
+                            // kyc-point-input-content 컨테이너 기준으로 상대 위치 계산
+                            const relativeOffset = sectionOffset - contentOffset + contentScrollTop;
+                            const scrollTarget = relativeOffset - 20; // 상단 여백 20px
+                            
+                            // kyc-point-input-content 컨테이너 내에서 스크롤 이동
+                            $content.animate({
+                                scrollTop: scrollTarget
+                            }, 400);
+                        });
+                        $fullUsageSection.slideDown(300);
+                        $(this).text("포인트 입력창 접기");
+                        $wrap.addClass("point-input-open");
+                    }
+                    
+                    // 부모 창에 토글 메시지 전송
+                    window.parent.postMessage(
+                        {
+                            type: "kycFoldPointInput",
+                            data: {
+                                isVisible: !isVisible
+                            }
+                        },
+                        "*"
+                    );
+                });
+
+                // 포인트 전환 버튼: 클릭 시 가맹점 정책 검증 후 실패 시 에러 메시지 표시하고 전송하지 않음
+                $("#btnConvert").on("click", function () {
+                    const effectivePerCard = getEffectiveUsagePerCard();
+                    const totalPoints = Object.keys(effectivePerCard).reduce(function (sum, id) { return sum + (effectivePerCard[id] || 0); }, 0);
+                    const computed = calcFinalAmountAndFee(totalPoints);
+                    const finalAmount = computed.finalAmount;
+                    const usedPoints = totalPoints;
+                    const userFee = computed.userFee;
+
+                    let merchantErrorMsg = "";
+                    const globalMaxFinalAmount = getGlobalMaxFinalAmount();
+                    if (finalAmount > 0) {
+                        if (merchantMinTransactionAmount > 0 && finalAmount < merchantMinTransactionAmount) {
+                            merchantErrorMsg = "최소 거래 금액(" + merchantMinTransactionAmount.toLocaleString() + "원) 이상으로 전환해 주세요.";
+                        } else if (globalMaxFinalAmount > 0 && finalAmount > globalMaxFinalAmount) {
+                            merchantErrorMsg = "최대 거래 금액(" + globalMaxFinalAmount.toLocaleString() + "원)을 초과할 수 없습니다.";
+                        } else if (merchantTransactionUnit > 0 && totalPoints % merchantTransactionUnit !== 0) {
+                            merchantErrorMsg = merchantTransactionUnit.toLocaleString() + "P 단위로만 전환 가능합니다. (사용 포인트 총액 기준)";
+                        }
+                    }
+                    const totalAvailable = getTotalAvailablePoints();
+                    const allowedTolerance = 10;
+                    const isOverLimit = totalAvailable > 0 && finalAmount > totalAvailable + allowedTolerance;
+                    if (finalAmount <= 0) {
+                        return;
+                    } else if (isOverLimit) {
+                        $("#paymentError").text("전환 가능한 포인트를 초과했습니다. 금액을 확인해주세요.").show();
+                        return;
+                    } else if (merchantErrorMsg) {
+                        $("#paymentError").text(merchantErrorMsg).show();
+                        return;
+                    }
+                    $("#paymentError").hide();
+
+                    // 카드별 최종 전환 포인트 (객체: cardId -> points 또는 현대만 { p, m }, 전환량이 있는 카드만)
+                    const conversionPerCard = {};
+                    Object.keys(effectivePerCard).forEach(function (cardId) {
+                        const pointsP = effectivePerCard[cardId] || 0;
+                        if (pointsP <= 0) return;
+                        const info = cardInfo[cardId];
+                        if (info && info.isHyundai) {
+                            conversionPerCard[cardId] = { p: pointsP, m: toPointFromAmount(pointsP, HYUNDAI_RATE, 'FLOOR') };
+                        } else {
+                            conversionPerCard[cardId] = pointsP;
+                        }
+                    });
+
+                    // 전환 버튼 클릭 시 콘솔 출력
+                    if (DEBUG) console.log("[포인트 전환] usedPoints:", usedPoints, "finalAmount:", finalAmount, "userFee:", userFee, "conversionPerCard:", conversionPerCard);
+
+                    // 부모 창에 포인트 전환 메시지 전송
+                    window.parent.postMessage(
+                        {
+                            type: "kycConvertPoints",
+                            data: {
+                                usedPoints: usedPoints,
+                                finalAmount: finalAmount,
+                                userFee: userFee,
+                                conversionPerCard: conversionPerCard,
+                            },
+                        },
+                        "*"
+                    );
+
+                    // 포인트 전환 얼럿 모달 표시 (HTML 내장 모달)
+                    $("#convertAlertModal").fadeIn(300);
+                    $("#convertAlertModal").attr("tabindex", "0").focus();
+                });
+
+                // 부모 창에서 데이터 업데이트 메시지 수신
+                window.addEventListener("message", function (event) {
+                    if (event.data && event.data.type === "updatePointData") {
+                        const data = event.data.data;
+                        if (data.productAmount !== undefined) {
+                            $("#productAmount").text(Number(data.productAmount).toLocaleString());
+                        }
+                        // 전환 가능 포인트 한도: 부모에서 여기로 설정함 (초기값은 HTML 0)
+                        if (data.totalAvailablePoints !== undefined) {
+                            $("#totalAvailablePoints").text(String(data.totalAvailablePoints));
+                        }
+                        // 가맹점별 거래 단위: 부모에서 변수로 설정 (0이면 단위 미적용)
+                        if (data.merchantTransactionUnit !== undefined) {
+                            merchantTransactionUnit = parseInt(data.merchantTransactionUnit, 10) || 0;
+                        }
+                        // 가맹점 최소/최대 거래 금액: 부모에서 설정 (0이면 미적용)
+                        if (data.merchantMinTransactionAmount !== undefined) {
+                            merchantMinTransactionAmount = parseInt(data.merchantMinTransactionAmount, 10) || 0;
+                        }
+                        if (data.merchantMaxTransactionAmount !== undefined) {
+                            merchantMaxTransactionAmount = parseInt(data.merchantMaxTransactionAmount, 10) || 0;
+                        }
+                        if (data.totalPoints !== undefined) {
+                            $("#totalPoints").text(data.totalPoints.toLocaleString());
+                        }
+                        if (data.usedPointsTotal !== undefined) {
+                            $("#usedPointsTotal").text(data.usedPointsTotal.toLocaleString());
+                        }
+                        if (data.userFee !== undefined) {
+                            $("#userFee").text(data.userFee.toLocaleString());
+                        }
+                        if (data.finalAmount !== undefined) {
+                            $("#finalAmount").text(data.finalAmount.toLocaleString());
+                        }
+                        if (data.convertAmount !== undefined) {
+                            $("#convertAmount").text(data.convertAmount.toLocaleString());
+                        }
+                        if (data.usedPointCount) {
+                            $("#usedPointCount").text(data.usedPointCount);
+                        }
+                    }
+                });
+
+                // 초기화: 전액 사용하기는 보유 기준으로 켠 뒤, 실제 배분 결과로 동기화(앞쪽 카드가 cap 채우면 뒤쪽은 true인데 사용 0인 상황 방지)
+                Object.keys(cardInfo).forEach(cardId => {
+                    const info = cardInfo[cardId];
+                    if (info.available > 0) {
+                        cardModalFullUsage[cardId] = true;
+                    } else {
+                        cardModalFullUsage[cardId] = false;
+                    }
+                });
+                calculateTotalPoints();
+                updateAllCardButtons();
+                // 상품금액(cap) 배분 후 실제로 금액을 받은 카드만 전액 사용 true로 맞춤 (뒷순서 카드는 보유 있어도 사용 0이면 false)
+                const effectiveInit = getEffectiveUsagePerCard();
+                Object.keys(cardInfo).forEach(cardId => {
+                    const info = cardInfo[cardId];
+                    const canUse = info.available >= MIN_POINT_USE_PER_CARD;
+                    const hasUsage = (effectiveInit[cardId] || 0) > 0;
+                    cardModalFullUsage[cardId] = hasUsage && canUse;
+                });
+                updateAllCardButtons();
+                calculateFinalAmount();
+                updateFeeExampleText();
+
+                // 카드사별 정보 모달 내용 정의
+                const cardInfoModalContent = {
+                    samsung: {
+                        items: [
+                            { type: "no-desc", text: "전환 시, 결제 SMS만 발송, 실제 결제는 발생하지 않음" }
+                        ]
+                    },
+                    hyundai: {
+                        items: [
+                            { type: "normal", text: "전환비율: 1,500M = 1,000P" },
+                            { type: "normal", text: "전환단위: 1,500M 부터 1M 단위" },
+                            { type: "normal", text: "전환한도: 45만 M포인트/월" }
+                        ]
+                    },
+                    bc: {
+                        items: [
+                            { type: "normal", text: "없음" },
+                        ]
+                    },
+                    shinhan: {
+                        items: [
+                            { type: "no-desc", text: "충전한도: 10만P/월" }
+                        ]
+                    },
+                    kb: {
+                        items: [
+                            { type: "no-desc", text: "충전한도: 30만P/월" }
+                        ]
+                    },
+                    woori: {
+                        items: [
+                            { type: "no-desc", text: "전환한도: 50만원/일, 200만원" }
+                        ]
+                    },
+                    lotte: {
+                        items: [
+                            { type: "no-desc", text: "결제단위: 1,000P" }
+                        ]
+                    },
+                    nh: {
+                        items: [
+                            { type: "normal", text: "사용포인트의 2% 재적립" },
+                            { type: "normal", text: "거래단위 및 최소 거래 포인트: 1,000P" }
+                        ]
+                    },
+                    hana: {
+                        items: [
+                            { type: "no-desc", text: "충전한도 50만원/월, 10회/일" }
+                        ]
+                    }
+                };
+
+                // 정보 모달 내용 렌더링 함수
+                function renderInfoModal(cardId) {
+                    const content = cardInfoModalContent[cardId];
+                    if (!content) return;
+
+                    // 카드사명 가져오기
+                    const cardInfoData = cardInfo[cardId] || { name: "카드 포인트" };
+                    const cardNameShort = cardInfoData.name.replace(" 포인트", "");
+
+                    const $body = $("#infoModalBody");
+                    $body.empty();
+
+                    // 카드사명 추가
+                    $body.append(
+                        '<div class="info-modal-item">' +
+                        '<div class="info-modal-text">' +
+                        '<p class="info-modal-card-name">[' + cardNameShort + ']</p>' +
+                        '</div>' +
+                        '</div>'
+                    );
+
+                    // 카드사별 정보 항목 추가
+                    content.items.forEach(function(item) {
+                        $body.append(
+                            '<div class="info-modal-item">' +
+                            '<div class="info-modal-text">' +
+                            '<p>' + item.text + '</p>' +
+                            '</div>' +
+                            '</div>'
+                        );
+                    });
+                }
+
+                // 정보 모달 열기 (툴팁 버튼 클릭)
+                $("#modalInfoBtn").on("click", function(e) {
+                    e.stopPropagation();
+                    // 현재 포인트 입력 모달에 저장된 카드사 ID 가져오기
+                    const currentCardId = $("#pointInputModal").data("cardId") || "samsung";
+                    renderInfoModal(currentCardId);
+                    $("#infoModal").fadeIn(200);
+                });
+
+                // 정보 모달 닫기
+                $("#infoModalConfirmBtn, #infoModal .info-modal-overlay").on("click", function() {
+                    $("#infoModal").fadeOut(200);
+                });
+
+                // 정보 모달 내부 클릭 시 닫기 방지
+                $("#infoModal .info-modal-content").on("click", function(e) {
+                    e.stopPropagation();
+                });
+
+                // 포인트 적용 안내 모달 열기
+                $("#pointGuideLink").on("click", function(e) {
+                    e.preventDefault();
+                    $("#pointGuideModal").fadeIn(200);
+                });
+
+                // 포인트 적용 안내 모달 닫기
+                $("#pointGuideModalConfirmBtn, #pointGuideModal .info-modal-overlay").on("click", function() {
+                    $("#pointGuideModal").fadeOut(200);
+                });
+
+                // 포인트 적용 안내 모달 내부 클릭 시 닫기 방지
+                $("#pointGuideModal .info-modal-content").on("click", function(e) {
+                    e.stopPropagation();
+                });
+
+                // 닫기 버튼 클릭 이벤트 - 확인 모달 표시
+                $(".btn-close-kyc-point-input").on("click", function() {
+                    $("#closeConfirmModal").fadeIn(300);
+                    $("#closeConfirmModal").attr("tabindex", "0").focus();
+                });
+
+                // 확인 모달 취소 버튼
+                $("#closeConfirmCancel").on("click", function () {
+                    $("#closeConfirmModal").fadeOut(300);
+                });
+
+                // 확인 모달 확인 버튼
+                $("#closeConfirmOk").on("click", function () {
+                    $("#closeConfirmModal").fadeOut(300, function () {
+                        // 부모 창에 닫기 메시지 전송
+                        window.parent.postMessage('closeKycPointInput', '*');
+                    });
+                });
+
+                // 모달 외부 클릭 시 닫기
+                $(document).on("click", "#closeConfirmModal", function(e) {
+                    if ($(e.target).is("#closeConfirmModal")) {
+                        $("#closeConfirmModal").fadeOut(300);
+                    }
+                });
+
+                // 포인트 전환 얼럿 모달 확인 버튼
+                $("#convertAlertConfirmBtn").on("click", function () {
+                    $("#convertAlertModal").fadeOut(300);
+                });
+
+                // 포인트 전환 얼럿 모달 외부 클릭 시 닫기
+                $(document).on("click", "#convertAlertModal", function(e) {
+                    if ($(e.target).is("#convertAlertModal")) {
+                        $("#convertAlertModal").fadeOut(300);
+                    }
+                });
+
+                // commonAlert 확인 버튼 클릭 시 닫기 (commonutil.js $.alertMessage용, Bootstrap 미사용)
+                $(document).on("click", "#commonAlert .modal-footer .btn", function() {
+                    $("#commonAlert").hide();
+                });
+            });
+        </script>
+    </body>
+</html>

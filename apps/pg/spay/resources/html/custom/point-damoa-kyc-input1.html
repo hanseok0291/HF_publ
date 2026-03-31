@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>본인확인 정보 입력</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no, address=no, email=no" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+        <!-- favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="../../images/favicon/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="57x57" href="../../images/favicon/apple-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="60x60" href="../../images/favicon/apple-icon-60x60.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="../../images/favicon/apple-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="../../images/favicon/apple-icon-76x76.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="../../images/favicon/apple-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="../../images/favicon/apple-icon-120x120.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="../../images/favicon/apple-icon-144x144.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="../../images/favicon/apple-icon-152x152.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon/apple-icon-180x180.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="../../images/favicon/android-icon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="../../images/favicon/favicon-96x96.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon/favicon-16x16.png" />
+        <link rel="manifest" href="../../images/favicon/manifest.json" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="msapplication-TileImage" content="../../images/favicon/ms-icon-144x144.png" />
+        <meta name="theme-color" content="#ffffff" />
+        <!-- //favicon -->
+
+        <link rel="stylesheet" href="../../css/point_damoa.css?ver=2602026" />
+        <script src="../../js/jquery-1.8.3.min.js"></script>
+        <script src="../../js/commonutil.js"></script>
+    </head>
+
+    <body class="point-damoa-kyc-input-body">
+        <!-- wrap -->
+        <div id="wrap" class="wrap point-damoa point-damoa-kyc-input iframe">
+            <div class="kyc-input-content">
+                <div class="kyc-input-header">
+                    <h2 class="kyc-input-title">본인확인을 위해 정확한 정보를 입력해주세요</h2>
+                    <button type="button" class="btn-close-kyc-input" aria-label="닫기" id="btnCloseKycInput"></button>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-row">
+                        <!-- 이름 입력 -->
+                        <div class="input-field name">
+                            <label for="inputName" class="input-label">이름</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="inputName" name="name" placeholder="" />
+                            </div>
+                        </div>
+
+                        <!-- 주민등록번호 입력 -->
+                        <div class="input-field rrn">
+                            <label for="inputRrnFirst" class="input-label">주민등록번호</label>
+                            <div class="rrn-input-group">
+                                <div class="rrn-input-first">
+                                    <input type="text" id="inputRrnFirst" name="rrnFirst" maxlength="6" placeholder="" />
+                                    <div class="rrn-dash"></div>
+                                    <input type="text" id="inputRrnLast" name="rrnLast" maxlength="1" />
+                                </div>
+                                <div class="rrn-dots" id="rrnDots">
+                                    <span class="rrn-dot fill"></span>
+                                    <span class="rrn-dot fill"></span>
+                                    <span class="rrn-dot fill"></span>
+                                    <span class="rrn-dot fill"></span>
+                                    <span class="rrn-dot fill"></span>
+                                    <span class="rrn-dot fill"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <!-- 통신사 선택 -->
+                        <div class="input-field telecom">
+                            <label for="selectTelecom" class="input-label">통신사</label>
+                            <div class="select-wrapper" id="selectTelecomWrapper">
+                                <span class="select-value placeholder" id="selectTelecomValue">선택</span>
+                                <span class="select-arrow"></span>
+                            </div>
+                        </div>
+
+                        <!-- 휴대폰번호 입력 -->
+                        <div class="input-field phone">
+                            <label for="inputPhone" class="input-label">휴대폰번호</label>
+                            <div class="input-wrapper">
+                                <input type="tel" id="inputPhone" name="phone" placeholder="'-'없이 입력해주세요." maxlength="11" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kyc-input-footer">
+                <button type="button" class="btn-auth-request" id="btnAuthRequest" disabled>인증요청</button>
+            </div>
+        </div>
+        <!-- //wrap -->
+
+        <!-- slide modal - 통신사 선택 -->
+        <div id="modalSlide" class="modal new modal-slide modal-info modal-telecom" aria-live="polite" aria-labelledby="popupTitle" tabindex="0">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="container">
+                            <ul class="select-list" role="listbox" tabindex="0">
+                                <li class="bold" role="none">
+                                    <button type="button" role="option" aria-label="KT 버튼" aria-pressed="false" data-value="KT">KT</button>
+                                </li>
+                                <li class="" role="none">
+                                    <button type="button" role="option" aria-label="SKT 버튼" aria-pressed="false" data-value="SKT">SKT</button>
+                                </li>
+                                <li role="none">
+                                    <button type="button" role="option" aria-label="LG U+ 버튼" aria-pressed="false" data-value="LGU+">LG U+</button>
+                                </li>
+                                <li role="none">
+                                    <button type="button" role="option" aria-label="KT 알뜰폰 버튼" aria-pressed="false" data-value="KT알뜰폰">KT 알뜰폰</button>
+                                </li>
+                                <li role="none">
+                                    <button type="button" role="option" aria-label="SKT 알뜰폰 버튼" aria-pressed="false" data-value="SKT알뜰폰">SKT 알뜰폰</button>
+                                </li>
+                                <li role="none">
+                                    <button type="button" role="option" aria-label="LG U+ 알뜰폰 버튼" aria-pressed="false" data-value="LGU+알뜰폰">LG U+ 알뜰폰</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //slide modal -->
+
+        <!-- confirm modal - 종료 확인 -->
+        <div id="closeConfirmModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="closeConfirmTitle" aria-modal="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>고객님의 포인트는 현금처럼<br aria-hidden="true" />바로 사용 가능합니다.</p>
+                        <p>종료하시겠습니까?</p>
+                    </div>
+                    <div class="modal-footer type2">
+                        <button type="button" class="btn btn-cancel" id="closeConfirmCancel">취소</button>
+                        <button type="button" class="btn" id="closeConfirmOk">확인</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //confirm modal -->
+
+        <script>
+            $(document).ready(function () {
+                // 입력 필드 참조
+                const nameInput = document.getElementById("inputName");
+                const rrnFirstInput = document.getElementById("inputRrnFirst");
+                const rrnLastInput = document.getElementById("inputRrnLast");
+                const phoneInput = document.getElementById("inputPhone");
+                const selectTelecomWrapper = document.getElementById("selectTelecomWrapper");
+                const selectTelecomValue = document.getElementById("selectTelecomValue");
+                const modalSlide = document.getElementById("modalSlide");
+                const btnAuthRequest = document.getElementById("btnAuthRequest");
+                const rrnDots = document.querySelectorAll(".rrn-dot");
+
+                let selectedTelecom = "";
+
+                // 주민등록번호 뒷자리 입력 처리
+                rrnFirstInput.addEventListener("input", function () {
+                    const value = this.value.replace(/\D/g, "");
+                    this.value = value;
+                    if (value.length === 6) {
+                        // 6자리 입력 완료 시 뒷자리 입력 필드로 포커스 이동
+                        // rrnLastInput.style.position = "absolute";
+                        rrnLastInput.style.opacity = "1";
+                        rrnLastInput.style.pointerEvents = "auto";
+                        rrnLastInput.focus();
+                    }
+                    updateRrnDots();
+                    checkAllFields();
+                });
+
+                // 주민등록번호 뒷자리 입력 처리
+                rrnLastInput.addEventListener("input", function () {
+                    const value = this.value.replace(/\D/g, "");
+                    this.value = value;
+                    if (value.length === 1) {
+                        // 1자리 입력 완료 시 다음 필드로 포커스 이동
+                        this.blur();
+                    }
+                    updateRrnDots();
+                    checkAllFields();
+                });
+
+                // 주민등록번호 점 업데이트 (항상 fill 상태 유지)
+                function updateRrnDots() {
+                    // 항상 모든 dot에 fill 클래스 유지
+                    rrnDots.forEach(function (dot) {
+                        dot.classList.add("fill");
+                    });
+                }
+
+                // 모달 닫기 함수
+                function closeModalSlide() {
+                    const $modal = $("#modalSlide");
+                    const modalH = -$modal.find(".modal-content").outerHeight();
+                    $modal.fadeOut(200);
+                    $modal.find(".modal-content").animate({ bottom: modalH }, 200);
+                }
+
+                // 통신사 선택 - 모달 슬라이드 열기
+                selectTelecomWrapper.addEventListener("click", function (e) {
+                    e.stopPropagation();
+                    const $modal = $("#modalSlide");
+                    const $modalContent = $modal.find(".modal-content");
+                    const modalH = -$modalContent.outerHeight();
+                    
+                    if (typeof modalOpenSlide === "function") {
+                        modalOpenSlide("modalSlide");
+                    } else {
+                        // modalOpenSlide 함수가 없으면 직접 구현
+                        $modal.show();
+                        $modalContent.css("bottom", modalH).animate({ bottom: 0 }, 200);
+                    }
+                    
+                    // 모달 외부 클릭 시 닫기 (기존 이벤트 제거 후 재등록)
+                    // modalOpenSlide 함수가 이미 이벤트를 등록했을 수 있으므로 제거 후 재등록
+                    $modal.off("click.modal-outside");
+                    // 약간의 지연을 두어 modalOpenSlide 함수의 이벤트 등록 후에 실행
+                    setTimeout(function() {
+                        $modal.on("click.modal-outside", function (e) {
+                            // modal-content 내부 클릭이 아닌 경우에만 닫기
+                            const $target = $(e.target);
+                            if (!$target.closest(".modal-content").length) {
+                                e.stopPropagation();
+                                e.preventDefault();
+                                closeModalSlide();
+                                return false;
+                            }
+                        });
+                    }, 200);
+                    
+                    // 닫기 버튼 초점 제거
+                    $("#modalSlide .btn-close").attr("tabindex", "-1");
+                    // 모든 버튼의 aria-label 초기화
+                    $("#modalSlide .select-list li button").each(function () {
+                        var defaultText = $(this).text();
+                        $(this).attr("aria-label", defaultText + " 버튼");
+                    });
+                    
+                    // 선택된 통신사가 있으면 해당 항목에 bold 클래스 추가
+                    if (selectedTelecom) {
+                        $("#modalSlide .select-list li").removeClass("bold");
+                        $("#modalSlide .select-list li button[data-value='" + selectedTelecom + "']").closest("li").addClass("bold");
+                        $("#modalSlide .select-list li button[data-value='" + selectedTelecom + "']").attr("aria-label", $("#modalSlide .select-list li button[data-value='" + selectedTelecom + "']").text() + " 버튼 선택됨");
+                    } else {
+                        // 선택된 항목이 없으면 첫 항목 강조
+                        $("#modalSlide .select-list li:first-child button").attr("aria-label", "SKT 버튼 선택됨");
+                    }
+                });
+                
+                // document 레벨에서 모달 외부 클릭 처리 (더 확실한 방법)
+                // 모달이 보일 때만 작동하도록 체크
+                $(document).on("click.modal-outside-doc", function (e) {
+                    const $modal = $("#modalSlide");
+                    if ($modal.is(":visible")) {
+                        const $target = $(e.target);
+                        // modal-content 내부 클릭이 아닌 경우에만 닫기
+                        // 모달 자체를 클릭했거나 모달의 배경을 클릭한 경우
+                        if ($target.closest("#modalSlide").length && !$target.closest(".modal-content").length) {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            closeModalSlide();
+                            return false;
+                        }
+                    }
+                });
+
+                // 통신사 항목 클릭
+                $(document).on("click", "#modalSlide .select-list li button[role='option']", function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    selectedTelecom = $(this).data("value");
+                    selectTelecomValue.textContent = selectedTelecom;
+                    selectTelecomValue.classList.remove("placeholder");
+                    
+                    // 선택된 항목에 bold 클래스 추가, 다른 항목에서 제거
+                    $("#modalSlide .select-list li").removeClass("bold");
+                    $(this).closest("li").addClass("bold");
+                    
+                    // 모달 닫기
+                    closeModalSlide();
+                    
+                    checkAllFields();
+                });
+
+                // 모달 닫기 버튼
+                $(document).on("click", "#modalSlide .btn-close, #modalSlide .btn-cancel", function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    closeModalSlide();
+                });
+
+                // 모든 필드 입력 확인
+                function checkAllFields() {
+                    const name = nameInput.value.trim();
+                    const rrnFirst = rrnFirstInput.value.trim();
+                    const rrnLast = rrnLastInput.value.trim();
+                    const phone = phoneInput.value.replace(/\D/g, "");
+
+                    const allFilled = name.length > 0 && rrnFirst.length === 6 && rrnLast.length === 1 && selectedTelecom.length > 0 && phone.length >= 10;
+
+                    btnAuthRequest.disabled = !allFilled;
+                }
+
+                // 각 입력 필드 이벤트 리스너
+                nameInput.addEventListener("input", checkAllFields);
+                phoneInput.addEventListener("input", function () {
+                    // 숫자만 입력 허용
+                    this.value = this.value.replace(/\D/g, "");
+                    checkAllFields();
+                });
+
+                // 인증요청 버튼 클릭
+                btnAuthRequest.addEventListener("click", function () {
+                    if (!this.disabled) {
+                        // 부모 창에 인증요청 메시지 전송
+                        window.parent.postMessage(
+                            {
+                                type: "kycAuthRequest",
+                                data: {
+                                    name: nameInput.value.trim(),
+                                    rrnFirst: rrnFirstInput.value.trim(),
+                                    rrnLast: rrnLastInput.value.trim(),
+                                    telecom: selectedTelecom,
+                                    phone: phoneInput.value.replace(/\D/g, ""),
+                                },
+                            },
+                            "*"
+                        );
+                    }
+                });
+
+                // 초기 상태 설정
+                checkAllFields();
+
+                // 닫기 버튼 클릭 이벤트 - 확인 모달 표시
+                $("#btnCloseKycInput").on("click", function() {
+                    $("#closeConfirmModal").fadeIn(300);
+                    $("#closeConfirmModal").attr("tabindex", "0").focus();
+                });
+
+                // 확인 모달 취소 버튼
+                $("#closeConfirmCancel").on("click", function() {
+                    $("#closeConfirmModal").fadeOut(300);
+                });
+
+                // 확인 모달 확인 버튼
+                $("#closeConfirmOk").on("click", function() {
+                    $("#closeConfirmModal").fadeOut(300, function() {
+                        // 부모 창에 닫기 메시지 전송
+                        window.parent.postMessage('closeKycInput', '*');
+                    });
+                });
+
+                // 모달 외부 클릭 시 닫기
+                $(document).on("click", "#closeConfirmModal", function(e) {
+                    if ($(e.target).is("#closeConfirmModal")) {
+                        $("#closeConfirmModal").fadeOut(300);
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
+

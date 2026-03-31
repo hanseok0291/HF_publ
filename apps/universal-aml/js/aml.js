@@ -10,6 +10,50 @@ $(document).ready(function () {
       inputDotBox.focus();
     });
   }
+
+  // 주민등록번호 입력 필드 제한 (안드로이드 대응)
+  var selectField = document.getElementById("selectField");
+  var inputDotBox = document.getElementById("inputDotBox");
+
+  // selectField (앞자리 6자리) 제한
+  if (selectField) {
+    selectField.addEventListener("input", function () {
+      // 숫자만 허용
+      this.value = this.value.replace(/[^0-9]/g, "");
+      // maxlength 초과 시 자르기
+      if (this.value.length > 6) {
+        this.value = this.value.slice(0, 6);
+      }
+    });
+
+    // paste 이벤트 처리 (붙여넣기 시에도 제한)
+    selectField.addEventListener("paste", function (e) {
+      e.preventDefault();
+      var pastedText = (e.clipboardData || window.clipboardData).getData("text");
+      var numericText = pastedText.replace(/[^0-9]/g, "").slice(0, 6);
+      this.value = numericText;
+    });
+  }
+
+  // inputDotBox (뒷자리 첫 번째 자리) 제한
+  if (inputDotBox) {
+    inputDotBox.addEventListener("input", function () {
+      // 숫자만 허용
+      this.value = this.value.replace(/[^0-9]/g, "");
+      // maxlength 초과 시 자르기
+      if (this.value.length > 1) {
+        this.value = this.value.slice(0, 1);
+      }
+    });
+
+    // paste 이벤트 처리 (붙여넣기 시에도 제한)
+    inputDotBox.addEventListener("paste", function (e) {
+      e.preventDefault();
+      var pastedText = (e.clipboardData || window.clipboardData).getData("text");
+      var numericText = pastedText.replace(/[^0-9]/g, "").slice(0, 1);
+      this.value = numericText;
+    });
+  }
 });
 
 document.querySelectorAll(".select-list li").forEach((item) => {

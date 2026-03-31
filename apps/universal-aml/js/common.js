@@ -81,7 +81,17 @@ $(".js-modal-slide").click(function () {
   var target = $(this).attr("data-target"); // 모달 ID
   if (chk == "false") {
   } else {
-    modalOpen(target);
+    // modal-slide 클래스를 가진 모달은 modalOpenSlide 함수 사용
+    var targetModal = $("#" + target);
+    if (targetModal.hasClass("modal-slide")) {
+      if (typeof modalOpenSlide === "function") {
+        modalOpenSlide(target);
+      } else {
+        modalOpen(target);
+      }
+    } else {
+      modalOpen(target);
+    }
   }
 });
 
@@ -221,7 +231,16 @@ $(document).ready(function () {
       if ($(this).attr("id") === "modalBalanceStandard") {
         return false;
       }
-      // modal-slide 클래스를 가진 모달 중 modalAccountSelect는 제외하지 않음 (외부 클릭 닫기 동작해야 함)
+      // modal-slide 클래스를 가진 모달 중 modalAccountSelect와 modalSlide02는 제외하지 않음 (외부 클릭 닫기 동작해야 함)
+      // modalSlide02는 슬라이드 모달이므로 modalCloseSlide()로 닫기
+      if ($(this).attr("id") === "modalSlide02") {
+        if (typeof modalCloseSlide === "function") {
+          modalCloseSlide();
+        } else {
+          modalClose();
+        }
+        return false;
+      }
       // 다른 modal-slide 모달들은 design_renewal.js에서 처리하므로 제외
       if ($(this).hasClass("modal-slide") && $(this).attr("id") !== "modalAccountSelect") {
         return false;
@@ -359,3 +378,38 @@ document.addEventListener('click', function(e) {
 });
 
 document.addEventListener('click', closeTooltipOnOutsideClick);
+
+// progress-steps의 step 개수에 따라 클래스 자동 추가
+$(document).ready(function() {
+  $('.progress-steps').each(function() {
+    var stepCount = $(this).find('.step').length;
+    // 기존 클래스 제거
+    $(this).removeClass('steps-2 steps-3 steps-4');
+    // step 개수에 따라 클래스 추가
+    if (stepCount === 2) {
+      $(this).addClass('steps-2');
+    } else if (stepCount === 3) {
+      $(this).addClass('steps-3');
+    } else if (stepCount === 4) {
+      $(this).addClass('steps-4');
+    }
+  });
+});
+
+// 키패드 열릴 때
+document.getElementById("wrap").classList.add("keypad-on");
+
+// 키패드 닫힐 때
+document.getElementById("wrap").classList.remove("keypad-on");
+
+(function () {
+  var ua = navigator.userAgent || navigator.vendor || window.opera;
+
+  // iPhone / iPad / iPod 체크
+  var isIOS = /iP(hone|ad|od)/i.test(ua);
+
+  if (isIOS) {
+    // <html class="is-ios"> 형태로 클래스 추가
+    document.documentElement.classList.add('is-ios');
+  }
+})();

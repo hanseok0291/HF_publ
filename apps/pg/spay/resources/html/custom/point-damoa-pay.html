@@ -601,34 +601,11 @@
                         usedPointsTotal += pointValue;
                     });
 
-                    // 현재 사용한 포인트 총액에서 최종 전환금액 계산
-                    const currentFinalAmount = usedPointsTotal - Math.floor(usedPointsTotal * (USER_FEE_RATE / 100));
-                    
-                    // 남은 최종 전환금액
+                    // 수수료 = floor(포인트×10%/1.1), 최종 = 포인트 - 수수료. 남은 포인트 = 남은 최종금액 + 수수료
+                    const currentFee = Math.floor(usedPointsTotal * (USER_FEE_RATE / 100) / (1 + USER_FEE_RATE / 100));
+                    const currentFinalAmount = usedPointsTotal - currentFee;
                     const remainingFinalAmount = Math.max(0, totalAvailableFinalAmount - currentFinalAmount);
-                    
-                    // 남은 최종 전환금액을 포인트 총액으로 역산
-                    // 최종 전환금액 = 포인트 총액 - (포인트 총액 × 수수료율 / 100)
-                    // remainingFinalAmount = remainingPointsTotal × (1 - USER_FEE_RATE / 100)
-                    // remainingPointsTotal = remainingFinalAmount / (1 - USER_FEE_RATE / 100)
-                    const exactRemainingPoints = remainingFinalAmount / (1 - USER_FEE_RATE / 100);
-                    
-                    // 정확히 목표 최종 전환금액이 되도록 포인트 총액 계산
-                    let remainingPointsTotal = Math.floor(exactRemainingPoints);
-                    let testFee = Math.floor(remainingPointsTotal * (USER_FEE_RATE / 100));
-                    let testFinal = remainingPointsTotal - testFee;
-                    
-                    // 목표값보다 작으면 1P 추가
-                    if (testFinal < remainingFinalAmount) {
-                        remainingPointsTotal = Math.ceil(exactRemainingPoints);
-                        testFee = Math.floor(remainingPointsTotal * (USER_FEE_RATE / 100));
-                        testFinal = remainingPointsTotal - testFee;
-                        // 여전히 목표값보다 크면 1P 감소
-                        if (testFinal > remainingFinalAmount) {
-                            remainingPointsTotal = Math.floor(exactRemainingPoints);
-                        }
-                    }
-                    
+                    const remainingPointsTotal = remainingFinalAmount + Math.floor(remainingFinalAmount * (USER_FEE_RATE / 100));
                     return remainingPointsTotal;
                 }
 
@@ -1146,10 +1123,8 @@
                     // 사용자 입력 포인트 합계 계산 (포인트 총액과 동일)
                     const inputPoints = calculateTotalPoints();
                     
-                    // 사용자 부담 수수료 계산
-                    const userFeeAmount = Math.floor(inputPoints * (USER_FEE_RATE / 100));
-                    
-                    // 최종 전환금액 = 포인트 총액 - 사용자 부담 수수료
+                    // 수수료 = floor(포인트총액 × 10% / 1.1) → 1,000P 시 90, 최종 = 포인트총액 - 수수료
+                    const userFeeAmount = Math.floor(inputPoints * (USER_FEE_RATE / 100) / (1 + USER_FEE_RATE / 100));
                     const finalAmount = inputPoints - userFeeAmount;
                     
                     // 버튼에 최종 전환금액 표시
@@ -1286,14 +1261,12 @@
                     updateFeeExampleText();
                 }
                 
-                // 수수료 예시 텍스트 업데이트 함수
+                // 수수료 예시 텍스트 업데이트 함수 (수수료 = 사용포인트 총액의 10%)
                 function updateFeeExampleText() {
-                    // 수수료율에 따른 예시 계산
-                    // 예: 1,000원 기준, 수수료율 10%인 경우
-                    const exampleAmount = 1000;
-                    const feeAmount = Math.floor(exampleAmount * (USER_FEE_RATE / 100));
-                    const totalWithFee = exampleAmount + feeAmount;
-                    const exampleText = `예) ${exampleAmount.toLocaleString()}원 = ${totalWithFee.toLocaleString()}P 사용`;
+                    const exampleFinalAmount = 1000;
+                    const feeAmount = Math.floor(exampleFinalAmount * (USER_FEE_RATE / 100));
+                    const totalPoints = exampleFinalAmount + feeAmount;
+                    const exampleText = `예) ${exampleFinalAmount.toLocaleString()}원 = ${totalPoints.toLocaleString()}P 사용 (수수료 ${feeAmount.toLocaleString()}원)`;
                     $("#feeExampleText").text(exampleText);
                 }
 
@@ -1319,29 +1292,12 @@
                         if (hasFullUsage) {
                             // 전액 사용하기로 입력된 값은 조정하지 않음
                         } else {
-                            let userFeeAmount = Math.floor(inputPoints * (USER_FEE_RATE / 100));
-                            let finalAmount = inputPoints - userFeeAmount;
+                            const userFeeTemp = Math.floor(inputPoints * (USER_FEE_RATE / 100) / (1 + USER_FEE_RATE / 100));
+                            let finalAmount = inputPoints - userFeeTemp;
                             
-                            // 최종 전환금액이 목표값을 초과하는 경우 포인트 총액 조정
+                            // 최종 전환금액이 목표값을 초과하는 경우 포인트 총액 조정 (포인트 = 목표최종 + 수수료)
                             if (finalAmount > totalAvailable) {
-                                // 목표 최종 전환금액에 맞는 포인트 총액 계산
-                                const exactTotalPoints = totalAvailable / (1 - USER_FEE_RATE / 100);
-                                
-                                // 정확히 목표 최종 전환금액이 되도록 포인트 총액 계산
-                                let adjustedPoints = Math.floor(exactTotalPoints);
-                                let testFee = Math.floor(adjustedPoints * (USER_FEE_RATE / 100));
-                                let testFinal = adjustedPoints - testFee;
-                                
-                                // 목표값보다 작으면 1P 추가
-                                if (testFinal < totalAvailable) {
-                                    adjustedPoints = Math.ceil(exactTotalPoints);
-                                    testFee = Math.floor(adjustedPoints * (USER_FEE_RATE / 100));
-                                    testFinal = adjustedPoints - testFee;
-                                    // 여전히 목표값보다 크면 1P 감소
-                                    if (testFinal > totalAvailable) {
-                                        adjustedPoints = Math.floor(exactTotalPoints);
-                                    }
-                                }
+                                let adjustedPoints = totalAvailable + Math.floor(totalAvailable * (USER_FEE_RATE / 100));
                                 
                                 // 조정된 포인트 총액이 현재 입력값과 다르면 조정
                                 if (adjustedPoints !== inputPoints && adjustedPoints > 0) {
@@ -1372,18 +1328,15 @@
                         }
                     }
                     
-                    // 사용자 부담 수수료 계산 (선택한 값 기준으로 수수료율 적용)
-                    const userFeeAmount = Math.floor(inputPoints * (USER_FEE_RATE / 100));
+                    // 수수료 = floor(포인트총액 × 10% / 1.1), 최종 = 포인트총액 - 수수료
+                    const userFeeAmount = Math.floor(inputPoints * (USER_FEE_RATE / 100) / (1 + USER_FEE_RATE / 100));
+                    const finalAmount = inputPoints - userFeeAmount;
                     const formattedFee = userFeeAmount.toLocaleString();
                     if (userFeeAmount > 0) {
                         $("#userFeeAmount").text("-" + formattedFee + " P");
                     } else {
                         $("#userFeeAmount").text("0 P");
                     }
-                    
-                    // 최종 전환금액 = 선택한 값 - 사용자 부담 수수료
-                    // 포인트 총액(inputPoints)에서 수수료를 뺀 값
-                    const finalAmount = inputPoints - userFeeAmount;
                     const $finalAmount = $("#finalAmount");
                     if (finalAmount > 0) {
                         $finalAmount.text(finalAmount.toLocaleString() + " P");
@@ -1392,34 +1345,9 @@
                     }
                 }
 
-                // 최종 전환금액이 목표값이 되도록 포인트 자동 분배 함수
+                // 최종 전환금액이 목표값이 되도록 포인트 자동 분배. 수수료 = 최종의 10% → requiredTotalPoints = targetFinalAmount + 수수료
                 function distributePointsToTargetFinalAmount(targetFinalAmount) {
-                    // 목표 최종 전환금액에서 필요한 포인트 총액 역산
-                    // 최종 전환금액 = 포인트 총액 - (포인트 총액 × 수수료율 / 100)
-                    // targetFinalAmount = totalPoints - (totalPoints × USER_FEE_RATE / 100)
-                    // targetFinalAmount = totalPoints × (1 - USER_FEE_RATE / 100)
-                    // totalPoints = targetFinalAmount / (1 - USER_FEE_RATE / 100)
-                    const exactTotalPoints = targetFinalAmount / (1 - USER_FEE_RATE / 100);
-                    
-                    // 정확히 목표 최종 전환금액이 되도록 포인트 총액 계산
-                    // Math.floor를 사용하여 수수료 계산 시 정확히 목표값이 되도록 함
-                    let requiredTotalPoints = Math.floor(exactTotalPoints);
-                    
-                    // Math.floor로 인해 부족할 수 있으므로, 최종 전환금액이 정확히 목표값이 되는지 확인
-                    let testFee = Math.floor(requiredTotalPoints * (USER_FEE_RATE / 100));
-                    let testFinal = requiredTotalPoints - testFee;
-                    
-                    // 목표값보다 작으면 1P 추가
-                    if (testFinal < targetFinalAmount) {
-                        requiredTotalPoints = Math.ceil(exactTotalPoints);
-                        // 다시 확인
-                        testFee = Math.floor(requiredTotalPoints * (USER_FEE_RATE / 100));
-                        testFinal = requiredTotalPoints - testFee;
-                        // 여전히 목표값보다 크면 1P 감소
-                        if (testFinal > targetFinalAmount) {
-                            requiredTotalPoints = Math.floor(exactTotalPoints);
-                        }
-                    }
+                    const requiredTotalPoints = targetFinalAmount + Math.floor(targetFinalAmount * (USER_FEE_RATE / 100));
                     
                     // 각 카드의 보유 포인트와 한도 정보 수집
                     const cardInfoList = [];
@@ -1569,8 +1497,8 @@
                     const targetFinalAmount = 700000; // 목표 최종 전환금액
                     const totalAvailable = getTotalAvailablePoints();
                     
-                    // 목표 최종 전환금액에 필요한 포인트 총액 계산
-                    const requiredTotalPoints = Math.ceil(targetFinalAmount / (1 - USER_FEE_RATE / 100));
+                    // 수수료 = 최종 전환금액의 10% → requiredTotalPoints = targetFinalAmount + 수수료
+                    const requiredTotalPoints = targetFinalAmount + Math.floor(targetFinalAmount * (USER_FEE_RATE / 100));
                     
                     // 전환 가능한 포인트가 충분하면 자동 분배
                     if (totalAvailable >= requiredTotalPoints) {

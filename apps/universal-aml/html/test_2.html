@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>계좌 등록</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+    <style>
+      /* 계좌 등록 · 은행 선택 (Figma 계좌등록 시퀀스01) */
+      /* 헤더 좌우: Figma 20px — common.css header .container 기본 30px와 불일치하므로 이 화면만 보정 */
+      header.header .container {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      /* 카드 내 텍스트 넘침: 20-style-convention · 30-design-guide-foundation(말줄임·넘침 방지) */
+      #content.bank-reg-page {
+        max-width: 430px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 48px;
+      }
+      .bank-reg-heading {
+        margin: 0 0 30px;
+        padding-left: 10px;
+        font-family: Pretendard, sans-serif;
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 38px;
+        color: #1c1c1c;
+        letter-spacing: -0.02em;
+      }
+      /* 3열 레이아웃 · 항목 간격 10px (flex + margin, grid·gap 미사용 — 20-style-convention) */
+      .bank-select-grid {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+      .bank-select-grid > li {
+        /* 가로 2칸 간격 10px×2 = 20px */
+        width: calc((100% - 20px) / 3);
+        margin-right: 10px;
+        margin-bottom: 10px;
+        min-width: 0;
+        box-sizing: border-box;
+      }
+      .bank-select-grid > li:nth-child(3n) {
+        margin-right: 0;
+      }
+      .bank-select-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-width: 0;
+        min-height: 120px;
+        padding: 12px 8px;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        background: #fff;
+        cursor: pointer;
+        font-family: Pretendard, sans-serif;
+        box-sizing: border-box;
+        transition: border-color 0.15s ease, background-color 0.15s ease;
+      }
+      /* 피그마: 선택된 은행 — 1px, 비선택과 동일 두께·색만 #303030 */
+      .bank-select-card.is-selected {
+        border: 1px solid #303030;
+        background: #fff;
+      }
+      .bank-select-card:hover:not(.is-selected) {
+        border-color: #c4c4c4;
+        background: #fafafa;
+      }
+      .bank-select-card.is-selected:hover {
+        border-color: #303030;
+        background: #fafafa;
+      }
+      .bank-select-card:focus-visible {
+        outline: 2px solid #ff6114;
+        outline-offset: 2px;
+      }
+      .bank-select-card__logo {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 700;
+        color: #fff;
+        overflow: hidden;
+      }
+      .bank-select-card__logo--circle {
+        border-radius: 50%;
+      }
+      /* 은행명: Figma typo/Body/body3(reg) — 14 / Regular / lh 1.5 / text/basic #424346 */
+      .bank-select-card__name {
+        margin: 10px 0 0;
+        min-width: 0;
+        width: 100%;
+        max-width: 100%;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.5;
+        letter-spacing: 0;
+        color: #424346;
+        text-align: center;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+      }
+      /* 로고 플레이스홀더(실제 은행 SVG·PNG로 교체 가능) */
+      .bank-select-card__logo--nh {
+        background: linear-gradient(145deg, #009639 0%, #f7c600 55%);
+      }
+      .bank-select-card__logo--kakao {
+        background: #ffe812;
+        color: #191919;
+        font-size: 18px;
+        font-weight: 800;
+        border-radius: 10px;
+      }
+      .bank-select-card__logo--kb {
+        background: linear-gradient(180deg, #ffbc00 0%, #f5a800 100%);
+        color: #5032f0;
+        font-size: 10px;
+      }
+      .bank-select-card__logo--shinhan {
+        background: #0046ff;
+      }
+      .bank-select-card__logo--woori {
+        background: #0047a0;
+      }
+      .bank-select-card__logo--ibk {
+        background: #0066cc;
+        font-size: 9px;
+        border-radius: 4px;
+      }
+      .bank-select-card__logo--kbank {
+        background: #5032f0;
+        font-size: 12px;
+        letter-spacing: -0.05em;
+      }
+      .bank-select-card__logo--toss {
+        background: #0064ff;
+        font-size: 13px;
+        font-weight: 800;
+      }
+      .bank-select-card__logo--suhyup {
+        background: #0085ca;
+        font-size: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- wrap -->
+    <div id="wrap" class="card">
+      <!-- header -->
+      <header class="header">
+        <div class="container">
+          <button type="button" class="btn-back" aria-label="이전 화면으로 이동"></button>
+          <h1 class="brand-name text"><span>계좌 등록</span></h1>
+          <button type="button" class="btn-close" aria-label="닫기"></button>
+        </div>
+      </header>
+      <!-- //header -->
+
+      <!-- section -->
+      <section>
+        <!-- main -->
+        <main id="main-content">
+        <!-- container -->
+        <div id="content" class="container bank-reg-page">
+          <!-- bank-select -->
+          <h2 class="bank-reg-heading">
+            계좌 등록을 위해<br />
+            은행을 선택해 주세요.
+          </h2>
+
+          <ul class="bank-select-grid" role="radiogroup" aria-label="은행 선택">
+            <li role="presentation">
+              <button type="button" class="bank-select-card is-selected" role="radio" aria-checked="true" aria-label="NH농협 선택">
+                <span class="bank-select-card__logo bank-select-card__logo--circle bank-select-card__logo--nh" aria-hidden="true">NH</span>
+                <span class="bank-select-card__name">NH농협</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="bank-select-card" role="radio" aria-checked="false" aria-label="카카오뱅크 선택">
+                <span class="bank-select-card__logo bank-select-card__logo--kakao" aria-hidden="true">B</span>
+                <span class="bank-select-card__name">카카오뱅크</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="bank-select-card" role="radio" aria-checked="false" aria-label="KB국민은행 선택">
+                <span class="bank-select-card__logo bank-select-card__logo--circle bank-select-card__logo--kb" aria-hidden="true">KB</span>
+                <span class="bank-select-card__name">KB국민</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="bank-select-card" role="radio" aria-checked="false" aria-label="신한은행 선택">
+                <span class="bank-select-card__logo bank-select-card__logo--circle bank-select-card__logo--shinhan" aria-hidden="true"></span>
+                <span class="bank-select-card__name">신한은행</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="bank-select-card" role="radio" aria-checked="false" aria-label="우리은행 선택">
+                <span class="bank-select-card__logo bank-select-card__logo--circle bank-select-card__logo--woori" aria-hidden="true">W</span>
+                <span class="bank-select-card__name">우리은행</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="bank-select-card" role="radio" aria-checked="false" aria-label="IBK기업은행 선택">
+                <span class="bank-select-card__logo bank-select-card__logo--ibk" aria-hidden="true">IBK</span>
+                <span class="bank-select-card__name">IBK기업은행</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="bank-select-card" role="radio" aria-checked="false" aria-label="케이뱅크 선택">
+                <span class="bank-select-card__logo bank-select-card__logo--kbank" aria-hidden="true">K</span>
+                <span class="bank-select-card__name">케이뱅크</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="bank-select-card" role="radio" aria-checked="false" aria-label="케이뱅크 선택">
+                <span class="bank-select-card__logo bank-select-card__logo--kbank" aria-hidden="true">K</span>
+                <span class="bank-select-card__name">케이뱅크</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="bank-select-card" role="radio" aria-checked="false" aria-label="토스뱅크 선택">
+                <span class="bank-select-card__logo bank-select-card__logo--toss" aria-hidden="true">toss</span>
+                <span class="bank-select-card__name">토스뱅크</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="bank-select-card" role="radio" aria-checked="false" aria-label="수협은행 선택">
+                <span class="bank-select-card__logo bank-select-card__logo--circle bank-select-card__logo--suhyup" aria-hidden="true">Sh</span>
+                <span class="bank-select-card__name">수협은행</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="bank-select-card" role="radio" aria-checked="false" aria-label="NH농협 선택">
+                <span class="bank-select-card__logo bank-select-card__logo--circle bank-select-card__logo--nh" aria-hidden="true">NH</span>
+                <span class="bank-select-card__name">NH농협</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="bank-select-card" role="radio" aria-checked="false" aria-label="NH농협 선택">
+                <span class="bank-select-card__logo bank-select-card__logo--circle bank-select-card__logo--nh" aria-hidden="true">NH</span>
+                <span class="bank-select-card__name">NH농협</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="bank-select-card" role="radio" aria-checked="false" aria-label="NH농협 선택">
+                <span class="bank-select-card__logo bank-select-card__logo--circle bank-select-card__logo--nh" aria-hidden="true">NH</span>
+                <span class="bank-select-card__name">NH농협</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="bank-select-card" role="radio" aria-checked="false" aria-label="NH농협 선택">
+                <span class="bank-select-card__logo bank-select-card__logo--circle bank-select-card__logo--nh" aria-hidden="true">NH</span>
+                <span class="bank-select-card__name">NH농협</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="bank-select-card" role="radio" aria-checked="false" aria-label="NH농협 선택">
+                <span class="bank-select-card__logo bank-select-card__logo--circle bank-select-card__logo--nh" aria-hidden="true">NH</span>
+                <span class="bank-select-card__name">NH농협</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="bank-select-card" role="radio" aria-checked="false" aria-label="NH농협 선택">
+                <span class="bank-select-card__logo bank-select-card__logo--circle bank-select-card__logo--nh" aria-hidden="true">NH</span>
+                <span class="bank-select-card__name">NH농협</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="bank-select-card" role="radio" aria-checked="false" aria-label="NH농협 선택">
+                <span class="bank-select-card__logo bank-select-card__logo--circle bank-select-card__logo--nh" aria-hidden="true">NH</span>
+                <span class="bank-select-card__name">NH농협</span>
+              </button>
+            </li>
+            <li role="presentation">
+              <button type="button" class="bank-select-card" role="radio" aria-checked="false" aria-label="NH농협 선택">
+                <span class="bank-select-card__logo bank-select-card__logo--circle bank-select-card__logo--nh" aria-hidden="true">NH</span>
+                <span class="bank-select-card__name">NH농협</span>
+              </button>
+            </li>
+          </ul>
+          <!-- //bank-select -->
+        </div>
+        <!-- //container -->
+        </main>
+        <!-- //main -->
+      </section>
+      <!-- //section -->
+    </div>
+    <!-- //wrap -->
+
+    <script>
+      (function () {
+        // 은행 단일 선택: is-selected + aria-checked 동기화
+        var grid = document.querySelector(".bank-select-grid");
+        if (!grid) return;
+        var cards = grid.querySelectorAll(".bank-select-card");
+        cards.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            cards.forEach(function (b) {
+              b.classList.remove("is-selected");
+              b.setAttribute("aria-checked", "false");
+            });
+            btn.classList.add("is-selected");
+            btn.setAttribute("aria-checked", "true");
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

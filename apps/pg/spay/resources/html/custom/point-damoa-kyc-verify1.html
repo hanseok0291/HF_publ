@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>인증번호 입력</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <meta name="format-detection" content="telephone=no, address=no, email=no" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+        <!-- favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="../../images/favicon/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="57x57" href="../../images/favicon/apple-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="60x60" href="../../images/favicon/apple-icon-60x60.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="../../images/favicon/apple-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="../../images/favicon/apple-icon-76x76.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="../../images/favicon/apple-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="../../images/favicon/apple-icon-120x120.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="../../images/favicon/apple-icon-144x144.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="../../images/favicon/apple-icon-152x152.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../../images/favicon/apple-icon-180x180.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="../../images/favicon/android-icon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="../../images/favicon/favicon-96x96.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon/favicon-16x16.png" />
+        <link rel="manifest" href="../../images/favicon/manifest.json" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="msapplication-TileImage" content="../../images/favicon/ms-icon-144x144.png" />
+        <meta name="theme-color" content="#ffffff" />
+        <!-- //favicon -->
+
+        <link rel="stylesheet" href="../../css/point_damoa.css?ver=2602025" />
+        <script src="../../js/jquery-1.8.3.min.js"></script>
+        <script src="../../js/commonutil.js"></script>
+    </head>
+
+    <body class="point-damoa-kyc-verify-body">
+        <!-- wrap -->
+        <div id="wrap" class="wrap point-damoa point-damoa-kyc-verify">
+            <div class="kyc-verify-content">
+                <div class="kyc-verify-header">
+                    <h2 class="kyc-verify-title">전송받은 인증번호를 입력해주세요.</h2>
+                    <button type="button" class="btn-close-kyc-verify" aria-label="닫기" id="btnCloseKycVerify"></button>
+                </div>
+
+                <div class="verify-input-group">
+                    <div class="verify-input-field">
+                        <label for="inputVerifyCode" class="verify-input-label">인증번호</label>
+                        <div class="verify-input-wrapper">
+                            <input type="text" id="inputVerifyCode" name="verifyCode" maxlength="6" placeholder="인증번호 6자리 입력" />
+                            <div class="verify-timer-wrapper">
+                                <span class="verify-timer" id="verifyTimer">3:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-resend" id="btnResend" disabled>재발송</button>
+                </div>
+            </div>
+
+            <div class="kyc-verify-footer">
+                <button type="button" class="btn-next-verify" id="btnNextVerify" disabled>다음</button>
+            </div>
+        </div>
+        <!-- //wrap -->
+
+        <!-- confirm modal - 종료 확인 -->
+        <div id="closeConfirmModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="closeConfirmTitle" aria-modal="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>고객님의 포인트는 현금처럼<br aria-hidden="true" />바로 사용 가능합니다.</p>
+                        <p>종료하시겠습니까?</p>
+                    </div>
+                    <div class="modal-footer type2">
+                        <button type="button" class="btn btn-cancel" id="closeConfirmCancel">취소</button>
+                        <button type="button" class="btn" id="closeConfirmOk">확인</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //confirm modal -->
+
+        <script>
+            $(document).ready(function () {
+                // 입력 필드 참조
+                const verifyCodeInput = document.getElementById("inputVerifyCode");
+                const verifyTimer = document.getElementById("verifyTimer");
+                const btnResend = document.getElementById("btnResend");
+                const btnNextVerify = document.getElementById("btnNextVerify");
+
+                let timerInterval = null;
+                let timeLeft = 180; // 3분 = 180초
+
+                // 타이머 시작
+                function startTimer() {
+                    timeLeft = 180;
+                    btnResend.disabled = true;
+                    updateTimer();
+
+                    timerInterval = setInterval(function () {
+                        timeLeft--;
+                        updateTimer();
+
+                        if (timeLeft <= 0) {
+                            clearInterval(timerInterval);
+                            btnResend.disabled = false;
+                            verifyTimer.textContent = "0:00";
+                        }
+                    }, 1000);
+                }
+
+                // 타이머 업데이트
+                function updateTimer() {
+                    const minutes = Math.floor(timeLeft / 60);
+                    const seconds = timeLeft % 60;
+                    verifyTimer.textContent = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+                }
+
+                // 인증번호 입력 이벤트
+                verifyCodeInput.addEventListener("input", function () {
+                    // 숫자만 입력 허용
+                    this.value = this.value.replace(/\D/g, "");
+                    checkAllFields();
+                });
+
+                // 모든 필드 입력 확인
+                function checkAllFields() {
+                    const code = verifyCodeInput.value.trim();
+                    const allFilled = code.length === 6;
+
+                    btnNextVerify.disabled = !allFilled;
+                }
+
+                // 재발송 버튼 클릭
+                btnResend.addEventListener("click", function () {
+                    if (!this.disabled) {
+                        // 부모 창에 재발송 요청 메시지 전송
+                        window.parent.postMessage(
+                            {
+                                type: "kycResendCode",
+                            },
+                            "*"
+                        );
+                        // 타이머 재시작
+                        if (timerInterval) {
+                            clearInterval(timerInterval);
+                        }
+                        startTimer();
+                    }
+                });
+
+                // 다음 버튼 클릭
+                btnNextVerify.addEventListener("click", function () {
+                    if (!this.disabled) {
+                        // 부모 창에 인증번호 확인 메시지 전송
+                        window.parent.postMessage(
+                            {
+                                type: "kycVerifyCode",
+                                data: {
+                                    verifyCode: verifyCodeInput.value.trim(),
+                                },
+                            },
+                            "*"
+                        );
+                    }
+                });
+
+                // 초기 상태 설정
+                checkAllFields();
+                startTimer();
+
+                // 페이지 언로드 시 타이머 정리
+                window.addEventListener("beforeunload", function () {
+                    if (timerInterval) {
+                        clearInterval(timerInterval);
+                    }
+                });
+
+                // 닫기 버튼 클릭 이벤트 - 확인 모달 표시
+                $(".btn-close-kyc-verify").on("click", function() {
+                    $("#closeConfirmModal").fadeIn(300);
+                    $("#closeConfirmModal").attr("tabindex", "0").focus();
+                });
+
+                // 확인 모달 취소 버튼
+                $("#closeConfirmCancel").on("click", function () {
+                    $("#closeConfirmModal").fadeOut(300);
+                });
+
+                // 확인 모달 확인 버튼
+                $("#closeConfirmOk").on("click", function () {
+                    $("#closeConfirmModal").fadeOut(300, function () {
+                        // 부모 창에 닫기 메시지 전송
+                        window.parent.postMessage('closeKycVerify', '*');
+                    });
+                });
+
+                // 모달 외부 클릭 시 닫기
+                $(document).on("click", "#closeConfirmModal", function(e) {
+                    if ($(e.target).is("#closeConfirmModal")) {
+                        $("#closeConfirmModal").fadeOut(300);
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
+

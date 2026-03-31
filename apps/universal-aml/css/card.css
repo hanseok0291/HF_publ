@@ -1,7 +1,7 @@
 .w-full { width: 100%; }
 .bottom-line { border-bottom: 10px solid #EAEBEC; } 
 .card { } 
-.card header .container .brand-name { font-family: Pretendard; font-weight: 700; font-size: 20px; letter-spacing: 1.45%; line-height:29px; height: auto; } 
+.card header .container .brand-name { font-family: Pretendard; font-weight: 700; font-size: 20px; letter-spacing: 1.45%; line-height:60px; height: auto; } 
 .card .header [class|="btn"] { top: 10px; width: 40px; height: 40px; } 
 .card header .btn-back { left: 20px; } 
 .card header .btn-close { right: 20px; } 
@@ -26,8 +26,10 @@
 .card .swiper-pagination-bullet { width: 5px; height: 5px; background: #dcdcdc; opacity: 1; } 
 .card .swiper-pagination-bullet-active { width: 16px; background: #737373; border-radius: 100px; } 
 .card .swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .card .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet { margin: 0 2px; } 
-.card .card-section .btn-wrap { width: 100%; display: flex; gap: 0 10px; padding: 0; }
-.card .card-section .btn-wrap .btn { width: 100%; height: 60px; border-radius: 8px; font-size: 20px; font-weight: 700; }
+.card .card-section .btn-wrap { width: 100%; padding: 0; font-size: 0; text-align: center; }
+.card .card-section .btn-wrap .btn { display: inline-block; vertical-align: top; width: calc(50% - 5px); height: 60px; border-radius: 8px; font-size: 20px; font-weight: 700; margin-left: 10px; box-sizing: border-box; }
+.card .card-section .btn-wrap .btn:first-child { margin-left: 0; }
+.card .card-section .btn-wrap .btn:only-child { width: 100%; }
 
 .card .container, .card #footer .btn-wrap { padding: 0 30px; } 
 .card .my-info-wrap > ul li { margin-bottom: 0; position: relative; } 
@@ -40,12 +42,12 @@
 /* .card #content { padding-bottom: 0; } */
 .card .my-info-wrap { margin-top: 20px; margin-bottom: 20px; }
 /* .my-info-wrap 내부 ul의 패딩 (컨테이너의 30px 패딩을 상쇄하고 20px 적용) */
-.card .my-info-wrap > ul {
+/* .card .my-info-wrap > ul {
   margin-left: -30px;
   margin-right: -30px;
   padding-left: 20px;
   padding-right: 20px;
-} 
+}  */
 .card .my-info-wrap .info-wrap-title { font-family: Pretendard; font-weight: 600; font-size: 16px; line-height: 100%; letter-spacing: 0%; color: #8A8A8A; margin-bottom: 20px; } 
 .card .my-info-wrap > ul.sub-title-list li { margin-bottom: 10px; } 
 .card .my-info-wrap > ul.sub-title-list li .sub-tit { font-family: Pretendard; font-weight: 400; font-style: Regular; font-size: 16px; leading-trim: NONE; line-height: 143%; letter-spacing: -2%; color: #929292; } 
@@ -84,19 +86,42 @@
 
 .card-delivery-status .progress-bar { margin-bottom: 30px; } 
 
-.card-delivery-status .progress-steps { display: flex; justify-content: space-between; align-items: center; padding: 0; list-style: none; position: relative; margin: 0; } 
+.card-delivery-status .progress-steps { font-size: 0; padding: 0; list-style: none; position: relative; margin: 0; width: 100%; } 
 
 .card-delivery-status .progress-steps::before { content: ''; position: absolute; top: 15%; height: 2px; background-color: #FFC0A1; transform: translate(-50%, 0%); z-index: 0; width: calc(100% - 40px); left: 50%; } 
 
-.card-delivery-status .step { display: flex; flex-direction: column; align-items: center; z-index: 1; flex: 1; position: relative; } 
+.card-delivery-status .step { display: inline-block; vertical-align: top; text-align: center; z-index: 1; position: relative; width: 49px; box-sizing: border-box; }
+/* 4개일 때 - 각 step 너비 49px, 나머지 공간을 간격으로 분배 */
+.card-delivery-status .progress-steps.steps-4 .step:first-child { width: 49px; }
+.card-delivery-status .progress-steps.steps-4 .step:last-child { width: 49px; }
+.card-delivery-status .progress-steps.steps-4 { text-align: justify; }
+.card-delivery-status .progress-steps.steps-4::after { content: ''; display: inline-block; width: 100%; }
+/* 3개일 때 - 각 step 너비 49px, 나머지 공간을 간격으로 분배 */
+.card-delivery-status .progress-steps.steps-3 .step:first-child { width: 49px; }
+.card-delivery-status .progress-steps.steps-3 .step:nth-child(2) { width: calc((100% - 147px) / 2 + 49px); }
+.card-delivery-status .progress-steps.steps-3 .step:last-child { width: 49px; }
+.card-delivery-status .progress-steps.steps-3 { text-align: justify; }
+.card-delivery-status .progress-steps.steps-3::after { content: ''; display: inline-block; width: 100%; }
+/* 2개일 때 - 각 step 너비 49px, 나머지 공간을 간격으로 분배 */
+.card-delivery-status .progress-steps.steps-2 .step:first-child { width: 49px; }
+.card-delivery-status .progress-steps.steps-2 .step:last-child { width: 49px; }
+.card-delivery-status .progress-steps.steps-2 { text-align: justify; }
+.card-delivery-status .progress-steps.steps-2::after { content: ''; display: inline-block; width: 100%; }
+.card-delivery-status .progress-steps.steps-2::after { content: ''; display: inline-block; width: 100%; } 
+/* dot은 항상 중앙 정렬 */
+.card-delivery-status .step .dot { display: block; width: 10px; height: 10px; border-radius: 50%; background-color: #fff; margin: 0 auto; border: 2px solid #ff5a00; }
+/* first는 label만 left 정렬, dot은 중앙 */
+.card-delivery-status .step.first { text-align: left; }
+.card-delivery-status .step.first .dot { margin-left: auto; margin-right: auto; }
+.card-delivery-status .step.first .label { text-align: left; }
+/* end는 label만 right 정렬, dot은 중앙 */
+.card-delivery-status .step.end { text-align: right; }
+.card-delivery-status .step.end .dot { margin-left: auto; margin-right: auto; }
+.card-delivery-status .step.end .label { text-align: right; } 
 
-.card-delivery-status .step .dot { width: 10px; height: 10px; border-radius: 50%; background-color: #fff; /* margin-bottom: 5px; */
- border: 2px solid #ff5a00; } 
+.card-delivery-status .step.active .dot { border: 6px solid #ff5a00; background-color: #ff5a00; } 
 
-.card-delivery-status .step.active .dot {/* width: 12px; height: 12px; */
- border: 6px solid #ff5a00; background-color: #ff5a00; } 
-
-.card-delivery-status .step .label { font-family: Pretendard; font-weight: 600; font-size: 14px; line-height: 100%; letter-spacing: 0%; text-align: center; color: #1C1C1C; margin-top: 10px; } 
+.card-delivery-status .step .label { display: block; font-family: Pretendard; font-weight: 600; font-size: 14px; line-height: 100%; letter-spacing: 0%; text-align: center; color: #1C1C1C; margin-top: 10px; } 
 
 .card-delivery-status .step.active .label { color: #ff5a00; font-weight: bold; } 
 
@@ -109,7 +134,10 @@
 
 .card-delivery-status .value { font-weight: bold; font-size: 14px; } 
 
-.card-delivery-status .button-group { display: flex; gap: 10px; justify-content: space-between; } 
+.card-delivery-status .button-group { font-size: 0; }
+.card-delivery-status .button-group .btn { display: inline-block; vertical-align: top; margin-left: 10px; width: calc(50% - 5px); box-sizing: border-box; }
+.card-delivery-status .button-group .btn:first-child { margin-left: 0; }
+.card-delivery-status .button-group .btn:only-child { width: 100%; } 
 .card-delivery-status .button-group + .button-group { margin-top: 10px; }
 
 .card-delivery-status .btn { flex: 1; padding: 10px; border: 1px solid #333; background-color: #fff; font-size: 14px; border-radius: 6px; cursor: pointer; transition: background-color 0.2s; } 
@@ -249,7 +277,7 @@
 .modal-delivery-detail .modal-footer .btn-confirm { width: 100%; padding: 0; background-color: #3e3e3e; color: #fff; border: none; border-radius: 6px; font-size: 20px; cursor: pointer; height: 60px; } 
 .modal-delivery-detail.modal-slide .modal-dialog { max-height: 494px; height: auto; } 
 
-#wrap.step .step-bar { position: fixed; top: 60px; width: 100%; z-index: 1; } 
+#wrap.step .step-bar { position: fixed; top: 60px; left: 0; right: 0; width: 100%; z-index: 1; } 
 #wrap.step .step-wrap { height: 4px; background: #EAEBEC; } 
 #wrap.step .step-wrap .step { background: #FF6114; display: inline-block; height: 100%; height: 4px; position: absolute; top: 0; left: 0; z-index: 11; } 
 #wrap.step .step-wrap .step-01 { width: 25%; } 
@@ -274,7 +302,6 @@
  width: 20px; } 
 
 .card.step .flex-grow { flex: 1; /* 남은 공간 모두 차지 */}
-.card.step .custom-input.custom-number-wrap.comp .number-wrap { justify-content: center; } 
 .card.step .custom-input .radio-wrap .check-box > input + label { font-size: 20px; font-weight: 500; padding: 0; line-height: 56px; color: #B0B0B0; } 
 .card.step .custom-input .radio-wrap.type2 .check-box > input + label { background: #fff; } 
 .card.step .check-box > input[type="radio"] + label:before { display: none; } 
@@ -337,44 +364,118 @@
 
 .card.step .card.select .card-select-title { font-family: Pretendard; font-weight: 600; font-size: 18px; line-height: 143%; letter-spacing: 1.45%; color: #929292; margin-bottom: 10px; } 
 
+/* 카드 해지 선택: 피그마 디자인 기준, flex/grid 없이 block·float 레이아웃 */
 .card.step .card.select .card-item .card-box { 
   border: 2px solid #303030; 
   border-radius: 10px; 
   overflow: hidden; 
-  display: flex;
-  flex-direction: column;
   position: relative;
 }
 
-/* card-summary-area: card-radio와 card-summary를 한 묶음으로 */
 .card.step .card.select .card-box .card-summary-area {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 30px 20px;
   position: relative;
 }
 
-.card.step .card.select .card-box .card-summary { 
-  display: flex; 
-  align-items: center; 
-  position: relative; 
-  padding: 30px 20px 30px 0; 
-  flex: 1;
+.card.step .card.select .card-box .card-summary-area::after {
+  content: '';
+  display: block;
+  clear: both;
 }
 
-.card.step .card.select .card-thumb img { width: 60px; height: auto; border-radius: 6px; }
+.card.step .card.select .card-box .card-summary { 
+  display: flex;
+  align-items: center;
+  position: relative; 
+  overflow: hidden;
+  width: 100%;
+}
 
-.card.step .card.select .card-box .card-info { margin-left: 20px; flex: 1; }
-.card.step .card.select .card-info > dl { display: grid; grid-template-columns: 1fr 1fr; row-gap: 10px; } 
+.card.step .card.select .card-box .card-thumb {
+  float: left;
+  width: 60px;
+  height: 95px;
+  margin-right: 10px;
+}
 
-.card.step .card.select .card-info .title { font-family: Pretendard; font-weight: 600; font-size: 16px; line-height: 100%; letter-spacing: 0%; color: #303030; } 
+.card.step .card.select .card-thumb img {
+  width: 60px;
+  height: 95px;
+  border-radius: 6px;
+  object-fit: cover;
+  display: block;
+}
+
+.card.step .card.select .card-box .card-info {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+}
+
+.card.step .card.select .card-info > dl {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card.step .card.select .card-info > dl dt {
+  float: left;
+  clear: left;
+  width: 40%;
+  margin: 0 0 10px 0;
+  font-family: Pretendard;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #303030;
+}
+
+.card.step .card.select .card-info > dl dd {
+  float: left;
+  width: 50%;
+  margin: 0 0 10px 0;
+  text-align: right;
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #5C5C5C;
+}
+
+.card.step .card.select .card-info > dl::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.card.step .card.select .card-info .title { font-family: Pretendard; font-weight: 600; font-size: 16px; line-height: 100%; letter-spacing: 0%; color: #303030; margin-right: 10px; white-space: nowrap; } 
 .card.step .card.select .card-info .info { font-family: Pretendard; font-weight: 400; font-size: 16px; line-height: 100%; letter-spacing: 0%; color: #5C5C5C; } 
 
-.card.step .card.select .toggle-btn { display: inline-block; background: url(../images/card/ico-down.svg) no-repeat center / contain; width: 20px; height: 20px; } 
+.card.step .card.select .toggle-btn {
+  /* float: right; */
+  display: block;
+  background: url(../images/card/ico-down.svg) no-repeat center / contain;
+  width: 20px;
+  height: 20px;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-indent: -9999px;
+  overflow: hidden;
+  margin-left: auto;
+}
 
-.card.step .card.select .toggle-btn.active { background: url(../images/card/ico-up.svg) no-repeat center / contain; } 
+.card.step .card.select .toggle-btn.active { background-image: url(../images/card/ico-up.svg); } 
 
 .card.step .card.select .card-box .card-detail { 
-  background: #f7f7f7; 
+  background: #f7f7f8; 
   overflow: hidden; 
   height: 0; 
   transition: height 0.3s ease; 
@@ -384,7 +485,24 @@
   padding: 30px 20px; 
 } 
 
-.card.step .card.select .info-row { display: flex; justify-content: space-between; font-size: 14px; padding: 7px 0; } 
+.card.step .card.select .info-row {
+  overflow: hidden;
+  margin-bottom: 14px;
+  font-size: 16px;
+}
+
+.card.step .card.select .info-row:last-child {
+  margin-bottom: 0;
+}
+
+.card.step .card.select .info-row .label {
+  float: left;
+}
+
+.card.step .card.select .info-row .value {
+  float: right;
+  text-align: right;
+} 
 
 .card.step .card.select .label { font-family: Pretendard; font-weight: 600; font-size: 16px; line-height: 100%; letter-spacing: 0%; color: #000; } 
 
@@ -411,9 +529,8 @@
 
 /* 라디오 버튼 영역 (card-summary-area 안에 위치) */
 .card.step .card.select .card-box .card-summary-area .card-radio {
-  flex-shrink: 0;
-  margin-right: 20px;
-  margin-left: 20px;
+  float: left;
+  margin-right: 10px;
 }
 
 .card.step .card.select .card-box .card-summary-area .card-radio input[type="radio"] {
@@ -466,7 +583,9 @@
 /* 카드 해지 */
 .reason-list { list-style: none; padding: 0; } 
 .reason-list li { /* margin-bottom: 10px; */}
-.reason-list label { display: flex; align-items: center; justify-content: space-between; gap: 8px; line-height: 56px; color: #666; font-family: Pretendard; font-weight: 400; font-size: 20px; } 
+.reason-list label { position: relative; line-height: 56px; color: #666; font-family: Pretendard; font-weight: 400; font-size: 20px; }
+.reason-list label .text { display: inline-block; vertical-align: middle; width: 100%; }
+.reason-list label .icon-check { position: absolute; right: 0; top: 50%; transform: translateY(-50%); -webkit-transform: translateY(-50%); } 
 .reason-list input[type="checkbox"], .reason-list input[type="radio"] { display: none; } 
 .icon-check { width: 20px; height: 56px; visibility: visible; color: #aaa; background: url(../images/common/icon-check-off.svg) no-repeat center / contain; } 
 input[type="checkbox"]:checked + .text + .icon-check,
@@ -557,4 +676,110 @@ input[type="radio"]:checked + .text + .icon-check { color: orange; background: u
   letter-spacing: -1.5%;
   text-align: center;
   color: #8A8A8A;
+}
+
+/* progress-steps 구버전 브라우저 호환 스타일 (덮어쓰기) */
+.card-delivery-status .progress-steps { 
+  font-size: 0; 
+  padding: 0; 
+  list-style: none; 
+  position: relative; 
+  margin: 0; 
+  width: 100%; 
+  overflow: hidden; /* float clearfix */
+}
+
+.card-delivery-status .progress-steps .step { 
+  display: inline-block; 
+  vertical-align: top; 
+  text-align: center; 
+  z-index: 1; 
+  position: relative; 
+  width: 49px; 
+  box-sizing: border-box; 
+}
+
+/* 4개일 때 - 첫 번째는 왼쪽, 마지막은 오른쪽, 중간은 균등 분배 */
+.card-delivery-status .progress-steps.steps-4 .step:first-child { 
+  float: left; 
+  width: 49px; 
+}
+
+.card-delivery-status .progress-steps.steps-4 .step:last-child { 
+  float: right; 
+  width: 49px; 
+}
+
+.card-delivery-status .progress-steps.steps-4 .step:nth-child(2),
+.card-delivery-status .progress-steps.steps-4 .step:nth-child(3) { 
+  display: inline-block; 
+  width: calc((100% - 98px) / 2); 
+  text-align: center; 
+}
+
+/* 3개일 때 - 첫 번째는 왼쪽, 마지막은 오른쪽, 중간은 나머지 공간 */
+.card-delivery-status .progress-steps.steps-3 .step:first-child { 
+  float: left; 
+  width: 49px; 
+}
+
+.card-delivery-status .progress-steps.steps-3 .step:last-child { 
+  float: right; 
+  width: 49px; 
+}
+
+.card-delivery-status .progress-steps.steps-3 .step:nth-child(2) { 
+  display: inline-block; 
+  width: calc(100% - 98px); 
+  text-align: center; 
+}
+
+/* 2개일 때 - 첫 번째는 왼쪽, 마지막은 오른쪽 */
+.card-delivery-status .progress-steps.steps-2 .step:first-child { 
+  float: left; 
+  width: 49px; 
+}
+
+.card-delivery-status .progress-steps.steps-2 .step:last-child { 
+  float: right; 
+  width: 49px; 
+}
+
+/* radio-wrap type3 - 3개 버튼일 때 */
+.card.step .custom-input .radio-wrap.type3 .check-box > input + label { background: #fff; }
+.card.step .custom-input .radio-wrap.type3 .check-box > input:disabled + label { background: #F7F7F8; }
+.card.step .custom-input .radio-wrap.type3 .check-box > input:checked + label { background: #fff; }
+
+.card header .container .brand-name { width: 100%; }
+.card .header .container { padding: 0; position: relative; height: 60px; }
+
+/* 작은 화면 디자인: XS 기준 375px 이하 (iPhone 12 mini, iPhone XS 등) */
+@media only screen and (max-width: 375px) {
+  .card.step .container h2.tit.pb-100 {
+    margin-bottom: 50px;
+  }
+  /* 카드 해지 신청 페이지 */
+  .card.step .card.select .card-box .card-info {
+    width: 100%;
+    margin: 0;
+  }
+  .card.step .card.select .card-info > dl {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .card.step .card.select .card-info > dl dt {
+    width: 100%;
+    clear: both;
+  }
+  .card.step .card.select .card-info .info {
+    text-align: left;
+  }
+  .card.step .card.select .card-info > dl dt:last-of-type {
+    margin-bottom: 10px;
+  }
+  /* 카드 재발급 페이지 */
+  .card.step .card.select .card-info > dl dd {
+    text-align: left;
+  }
 }

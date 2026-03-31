@@ -13,6 +13,10 @@
 * ============================================================
 */
 
+/* 가맹점 컬러: 필요 시 가맹점별 CSS에서 :root에 --merchant-primary 만 덮어써서 적용 */
+:root {
+	--merchant-primary: #2b2b2b;
+}
 
 /* #RESET
 ------------------------------------------------------------*/
@@ -66,9 +70,7 @@ select:disabled, .select:disabled, select[readony], .select[readony] { cursor: d
 .checkbox > input[type="checkbox"], .checkbox > input[type="radio"] { position: absolute; top: 0; left: 0; width: 0; height: 0; font-size: 0; border: 0; -webkit-appearance: none; -moz-appearance: none; appearance: none; }
 .checkbox > input + label { position: relative; display: block; padding: 3px 0 3px 30px; font-size: 16px; line-height: 22px; color: #2b2b2b; font-weight: 500; }
 .checkbox > input + label:after { content: ""; position: absolute; top: 3px; left: 0; width: 22px; height: 22px; border-radius: 8px; background: #e4e4e4 url("../images/icon/check-white.svg") center/22px no-repeat; z-index: 2; }
-.checkbox > input:checked + label:after { background-color: #2b2b2b; }
-.checkbox > input:focus + label:after { box-shadow: 0 3px 10px rgba(0, 0, 0, .15); }
-
+.checkbox > input:checked + label:after { background-color: var(--merchant-primary); }
 /* check-group */
 .check-group { position: relative; font-size: 0; }
 .check-group > input { position: absolute; top: 0; left: 0; z-index: 3; width: 0; height: 0; font-size: 0; line-height: 0; }
@@ -239,10 +241,10 @@ table .text-center { text-align: center; }
 .btn-primary { border-color: #faa61a; background-color: #faa61a; color: #fff; }
 .btn-white { border-color: #fff; background-color: #fff; color: #747474; }
 .btn-dash { border: 1px dashed #bebebe; background-color: #fff; }
-.btn-primary.new { border-color: #2B2B2B; background-color: #2B2B2B; color: #fff; }
+.btn-primary.new { border-color: var(--merchant-primary); background-color: var(--merchant-primary); color: #fff; }
 
 /* style */
-.btn-lg { width: 100%; height: 56px; font-size: 20px; line-height: 54px; }
+.btn-lg { width: 100%; height: 56px; font-size: 18px; line-height: 54px; }
 .btn-xl { width: 100%; padding: 0 30px; height: 80px; font-size: 20px; line-height: 78px; font-weight: 500; }
 .btn.shadow { box-shadow: 0 8px 10px rgba(0, 0, 0, .1); }
 .btn-plus { text-align: left; background: #f6f6f6 url("../images/icon/btn-plus.svg") right 30px center/38px no-repeat; }
@@ -319,6 +321,27 @@ table .text-center { text-align: center; }
 .modal.common .modal-header { text-align: center; }
 .modal.common .modal-body { padding: 0 30px 30px; font-size: 16px; line-height: 1.6; }
 
+/* 동의 얼럿 (피그마: 날짜 + 동의 되었습니다. + 확인) */
+.modal.terms-agree-alert .modal-dialog { max-width: 350px; }
+.modal.terms-agree-alert .modal-content { border-radius: 10px; }
+.modal.terms-agree-alert .modal-header { display: none; }
+.modal.terms-agree-alert .modal-body { padding: 30px 20px; text-align: center; font-size: 16px; line-height: 1.5; color: #2b2b2b; }
+.modal.terms-agree-alert .modal-body .terms-agree-alert-message { margin: 0; white-space: pre-wrap; }
+.modal.terms-agree-alert .modal-footer { padding: 0; border-top: 1px solid #dadada; }
+.modal.terms-agree-alert .modal-footer .btn { width: 100%; height: 58px; font-size: 16px; font-weight: 700; color: #222; background-color: transparent; border: 0; border-radius: 0 0 10px 10px; }
+
+/* 동의 철회 확인 (피그마: 정말 철회하시겠습니까? + 취소/확인) */
+.modal.terms-revoke-confirm .modal-dialog { max-width: 350px; }
+.modal.terms-revoke-confirm .modal-content { border-radius: 10px; }
+.modal.terms-revoke-confirm .modal-header { display: none; }
+.modal.terms-revoke-confirm .modal-body { padding: 30px 20px 20px; text-align: center; font-size: 16px; line-height: 1.5; color: #2b2b2b; }
+.modal.terms-revoke-confirm .modal-body .terms-revoke-confirm-message { margin: 0; line-height: 60px; }
+.modal.terms-revoke-confirm .modal-footer { display: flex; padding: 0; border-top: 1px solid #dadada; }
+.modal.terms-revoke-confirm .modal-footer .btn { flex: 1; height: 58px; font-size: 16px; color: #222; background-color: transparent; border: 0; border-radius: 0; font-weight: 400; }
+.modal.terms-revoke-confirm .modal-footer .btn + .btn { border-left: 1px solid #dadada; font-weight: 700; }
+.modal.terms-revoke-confirm .modal-footer .btn:last-child { border-radius: 0 0 10px 0; }
+.modal.terms-revoke-confirm .modal-footer .btn:first-child { border-radius: 0 0 0 10px; }
+
 /* fullpage(약관 상세) */
 .modal-full .modal-dialog { padding: 0; max-width: none; height: 100%; background-color: #fff; } /* 좌우 dim 영역 흰색 배경 지정 */
 .modal-full.modal-static .modal-dialog { transform: none; } /* 좌우 여백 클릭 시 확대 금지 */
@@ -327,7 +350,9 @@ table .text-center { text-align: center; }
 .modal-full .modal-body { display: block; padding-bottom: 136px; }
 .modal-full .modal-footer { position: fixed; left: 0; right: 0; bottom: 0; padding: 20px 0; min-width: 320px; width: 100%; background-color: #fff; }
 .modal-full .modal-footer:before { content: ""; display: block; position: absolute; top: -30px; left: 0; width: 100%; height: 30px;
-	background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)); pointer-events: none; }
+background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)); pointer-events: none; }
+.modal-full .modal-footer .container { display: flex; align-items: center; }
+.modal-full .modal-footer .container .btn + .btn { margin-left: 10px; }
 
 /* slide modal, select ui(통신사, 할부 개월, 현금영수증 발급 수단 선택) */
 .modal-slide .modal-dialog { position: fixed; left: 0; right: 0; top: auto; bottom: -500px; padding: 60px 0 0; transition: bottom .3s; }
@@ -336,7 +361,6 @@ table .text-center { text-align: center; }
 .modal-slide .modal-header { padding: 25px 20px 13px; }
 .modal-slide .modal-title { text-align: center; }
 .modal-slide .modal-body { padding: 0 20px 20px; max-height: 380px; overflow-y: scroll; }
-
 
 /* #CONTENT
 ------------------------------------------------------------*/
@@ -351,6 +375,43 @@ table .text-center { text-align: center; }
 .terms-list .list li { position: relative; padding: 3px 30px 3px 0; }
 .terms-list .list li .subject { display: block; line-height: 18px; }
 .terms-list .list li .btn { position: absolute; top: 0; right: -15px; width: 40px; }
+
+/* 약관 관리 페이지 (termsAgreement) */
+/* 약관 동의 페이지(agree.html): 모두 동의 박스 + 아코디언 */
+.terms-agree-all { margin-bottom: 10px; }
+.terms-agree-all .checkbox { margin: 0; padding: 20px; background-color: #f7f7f8; border-radius: 10px; }
+.terms-agree-all .checkbox > input + label { font-size: 15px; font-weight: 600; color: #2b2b2b; padding-left: 30px; }
+
+.terms-manage { margin-top: 20px; }
+.terms-manage-section + .terms-manage-section { margin-top: 30px; }
+.terms-manage-heading { margin-bottom: 4px; font-size: 18px; line-height: 29px; font-weight: 700; color: #1c1c1c; }
+.terms-manage-block { margin-bottom: 10px; padding-left: 20px; }
+.terms-manage-title { font-size: 16px; line-height: 29px; font-weight: 700; color: #474747; }
+.terms-manage-row { display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-align-items: center; -ms-flex-align: center; align-items: center; -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between; width: 100%; padding: 2px 0; border: 0; background: none; font-size: 16px; text-align: left; cursor: pointer; }
+.terms-manage-row-text { display: block; max-width: calc(100% - 30px); font-size: 16px; color: #737373; }
+.terms-manage-row .icon { flex-shrink: 0; height: 19px; background-size: 19px; }
+
+.terms-accordion { display: flex; flex-direction: column; gap: 10px; }
+.terms-accordion .accordion-section { border-radius: 10px; overflow: hidden; }
+.terms-accordion .accordion-header { display: flex; align-items: center; gap: 8px; padding: 10px 20px; cursor: pointer; border-radius: 10px; }
+.terms-accordion .accordion-check { margin: 0; flex: 1; min-width: 0; }
+.terms-accordion .accordion-check > input + label { padding-left: 30px; font-size: 15px; font-weight: 600; color: #2b2b2b; }
+.terms-accordion .accordion-title { display: block; }
+.terms-accordion .accordion-arrow { flex-shrink: 0; width: 22px; height: 22px; background-size: 22px; transform: rotate(90deg); transition: transform 0.2s ease; }
+.terms-accordion .accordion-section.expanded .accordion-arrow { transform: rotate(-90deg); }
+.terms-accordion .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.25s ease; }
+.terms-accordion .accordion-section.expanded .accordion-body { max-height: 800px; }
+.terms-accordion .accordion-body .list { margin: 0; padding: 0 20px 0 20px; color: #737373; list-style: none; }
+.terms-accordion .accordion-body .list li { display: flex; align-items: center; gap: 8px; padding: 8px 0; font-size: 16px; font-weight: 400; }
+.terms-accordion .accordion-body .list .checkbox { margin: 0; flex: 1; min-width: 0; }
+.terms-accordion .accordion-body .list .terms-view-btn { flex-shrink: 0; padding: 0; min-width: 22px; height: 22px;}
+.terms-accordion .accordion-body .list .terms-view-btn .icon { width: 100%; height: 100%; background-size: 22px; }
+.terms-accordion .accordion-body .list .checkbox > input + label { color: #737373; font-weight: 400; }
+/* 하위약관 체크박스: 회색 테두리 박스 + 미체크=회색 체크 아이콘, 체크=가맹점 컬러 체크 아이콘 */
+.terms-accordion .accordion-body .list .checkbox > input + label:after { content: ""; position: absolute; top: 3px; left: 0; width: 22px; height: 22px; border-radius: 8px; background-color: #fff; z-index: 2; }
+.terms-accordion .accordion-body .list .checkbox > input:checked + label:after {  }
+.terms-accordion .accordion-body .list .checkbox > input + label:before { content: ""; position: absolute; top: 3px; left: 0; width: 22px; height: 22px; background: url(../images/icon/check-gray.svg) center/22px 22px no-repeat; z-index: 3; }
+.terms-accordion .accordion-body .list .checkbox > input:checked + label:before { background-color: var(--merchant-primary); background-image: none; -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 14.24 10.7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 5.75L1.41 4.34L6.36 9.29L4.95 10.7L0 5.75z' fill='black'/%3E%3Cpath d='M12.82 0L14.24 1.41L4.95 10.7L3.54 9.29L12.82 0z' fill='black'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 14.24 10.7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 5.75L1.41 4.34L6.36 9.29L4.95 10.7L0 5.75z' fill='black'/%3E%3Cpath d='M12.82 0L14.24 1.41L4.95 10.7L3.54 9.29L12.82 0z' fill='black'/%3E%3C/svg%3E"); -webkit-mask-size: 14px 11px; mask-size: 14px 11px; -webkit-mask-position: center; mask-position: center; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
 .terms h3, .terms h4, .terms h5, .terms p, .terms li, .terms table { margin: 0 0 4px; }
 .terms { font-size: 12px; }
 .terms h3 { font-size: 16px; font-weight: 700; }
@@ -538,6 +599,7 @@ div.nppfs-keypad { top: 0 !important; }
 .mypage .nav-list a.btn-cash:before { background-position: 0 -64px; }
 .mypage .nav-list a.btn-pw:before { background-position: 0 -128px; }
 .mypage .nav-list a.btn-pw2:before { background-position: 0 -192px; }
+.mypage .nav-list a.btn-terms:before { background: url("../images/icon-terms.png") 35px center/30px 30px no-repeat; }
 .mypage .nav-list a.btn-withdraw:before { background-position: 0 -256px; }
 
 /* 결제 수단 관리 */

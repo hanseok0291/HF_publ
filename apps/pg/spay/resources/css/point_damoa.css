@@ -828,6 +828,11 @@ label {
     padding: 0;
 }
 
+.modal.modal-alert .modal-content {
+    width: 100%;
+    max-width: 310px;
+}
+
 .modal-content {
     display: inline-block;
     background-color: #fff;
@@ -1903,6 +1908,60 @@ label {
 .modal-footer.type2 .btn:last-child {
     border-left: 1px solid #dadada;
 }
+
+/* 종료 확인 모달 스타일 */
+#closeConfirmModal .modal-content {
+    width: 310px;
+    max-width: 310px;
+    border-radius: 10px;
+}
+
+#closeConfirmModal .modal-body {
+    padding: 30px 20px;
+    font-family: 'Inter', 'Noto Sans KR', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.408px;
+    text-align: center;
+    color: #2b2b2b;
+}
+
+#closeConfirmModal .modal-body p {
+    margin: 0;
+}
+
+#closeConfirmModal .modal-body p:first-child {
+    margin-bottom: 6px;
+}
+
+#closeConfirmModal .modal-footer {
+    border-top: 1px solid #dadada;
+    display: flex;
+}
+
+#closeConfirmModal .modal-footer.type2 .btn {
+    height: 50px;
+    font-family: 'Pretendard', sans-serif;
+    font-size: 16px;
+    line-height: normal;
+    letter-spacing: -0.408px;
+    text-align: center;
+    color: #222;
+    border: 0;
+    border-radius: 0;
+    background-color: #fff;
+}
+
+#closeConfirmModal .modal-footer.type2 .btn.btn-cancel {
+    font-weight: 400;
+}
+
+#closeConfirmModal .modal-footer.type2 .btn:last-child {
+    font-weight: 700;
+    border-left: 1px solid #dadada;
+}
+
 .modal-footer button.btn-confirm {
     font-weight: 700 !important;
 }
@@ -2093,7 +2152,7 @@ label {
     width: 100%;
     background-color: #303030;
     color: #fff;
-    height: 60px;
+    height: 50px;
     font-family: Pretendard;
     font-weight: 600;
     font-style: SemiBold;
@@ -2137,9 +2196,10 @@ label {
     left: 0;
     right: 0;
     padding: 0 30px;
-    height: 128px;
+    height: 70px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 16.38%);
     z-index: 10;
+    flex-direction: column;
 }
 .point-damoa input[type="text"],
 .modal input[type="text"],
@@ -2216,6 +2276,30 @@ label {
 }
 #wrap.point-damoa-auth .modal-slide .container {
     padding: 0 20px;
+}
+/* 통신사 선택 모달 너비 설정 */
+.modal-telecom .modal-content {
+    width: 310px;
+    max-width: 310px;
+    margin: 0 auto;
+    border-radius: 16px;
+}
+.modal.modal-slide.modal-telecom .modal-body {
+    width: 310px;
+    max-width: 310px;
+    padding: 10px 0;
+}
+.modal.modal-slide.modal-telecom .modal-body .container > .select-list {
+    margin-top: 0;
+}
+.modal.modal-slide.modal-telecom .modal-body .container > .select-list li {
+  margin-bottom: 0;
+}
+.modal.modal-slide.modal-telecom .modal-body .container > .select-list li button {
+  text-align: center;
+  padding: 10px 0;
+  font-size: 16px;
+  font-weight: 600;
 }
 .modal-full .modal-head {
     display: flex;
@@ -3167,7 +3251,19 @@ label {
     margin: auto;
     display: block;
     z-index: 9999;
-    animation: spin 1s linear infinite;
+}
+.wrap.point-damoa .loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .5);
+    z-index: 9998;
+    width: 100%;
+    height: 100%;
+    position: fixed;
 }
 @keyframes spin {
     from {
@@ -3248,7 +3344,7 @@ label {
     width: 100%;
     background-color: #303030;
     color: #fff;
-    height: 60px;
+    height: 50px;
     font-family: Pretendard;
     font-weight: 600;
     font-style: SemiBold;
@@ -3288,6 +3384,7 @@ label {
     background: url(../images/custom//new/loading.png) no-repeat center / contain;
     width: 90px;
     height: 90px;
+    z-index: 10000;
 }
 .loading .text {
     display: block;
@@ -3461,7 +3558,7 @@ body.point-damoa-kyc-body {
 #wrap.point-damoa-kyc .btn-next {
     width: 100%;
     max-width: 632px;
-    height: 60px;
+    height: 50px;
     background-color: #303030;
     color: #fff;
     border: none;
@@ -3550,10 +3647,11 @@ body.point-damoa-kyc-input-body {
     font-family: Pretendard;
     font-weight: 600;
     font-size: 20px;
-    line-height: 40px;
     letter-spacing: 0px;
     color: #1c1c1c;
     margin: 0;
+    padding-right: 40px;
+    padding-top: 5px;
 }
 #wrap.point-damoa-kyc-input .btn-close-kyc-input {
     position: absolute;
@@ -3561,8 +3659,8 @@ body.point-damoa-kyc-input-body {
     right: 0;
     width: 40px;
     height: 40px;
-    background: url("../images/custom/new/btn_close.svg") no-repeat center;
-    background-size: 24px 24px;
+    background: url("../images/custom/new/btn_close.png") no-repeat center;
+    background-size: contain;
     border: none;
     cursor: pointer;
     padding: 0;
@@ -3633,16 +3731,17 @@ body.point-damoa-kyc-input-body {
     gap: 20px;
     height: 40px;
     position: relative;
-    overflow: hidden;
+    /* 점 영역이 잘리지 않도록 숨김 처리 제거 */
 }
 #wrap.point-damoa-kyc-input .rrn-input-first {
-    width: 219px;
+    flex: 1 1 0;
+    min-width: 0;
     height: 40px;
     border-bottom: 1px solid #cbcbcb;
-    flex: 1;
     display: flex;
     align-items: center;
     position: relative;
+    gap: 8px;
 }
 #wrap.point-damoa-kyc-input .rrn-input-first input {
     border-bottom: none;
@@ -3655,7 +3754,9 @@ body.point-damoa-kyc-input-body {
     flex-shrink: 0;
 }
 #wrap.point-damoa-kyc-input .rrn-dots {
+    flex: 0 0 138px;
     width: 138px;
+    min-width: 138px;
     height: 31px;
     display: flex;
     align-items: center;
@@ -3688,7 +3789,7 @@ body.point-damoa-kyc-input-body {
     flex: 1;
     font-family: Pretendard;
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 400;
     color: #303030;
     padding: 0;
 }
@@ -3748,7 +3849,7 @@ body.point-damoa-kyc-input-body {
 #wrap.point-damoa-kyc-input .btn-auth-request {
     width: 100%;
     max-width: 632px;
-    height: 60px;
+    height: 50px;
     background-color: #cbcbcb;
     color: #fff;
     border: none;
@@ -3824,23 +3925,21 @@ body.point-damoa-kyc-verify-body {
     right: 0;
     width: 40px;
     height: 40px;
-    background: url("../images/custom/new/btn_close.svg") no-repeat center;
-    background-size: 24px 24px;
+    background: url("../images/custom/new/btn_close.png") no-repeat center;
+    background-size: contain;
     border: none;
     cursor: pointer;
     padding: 0;
 }
 #wrap.point-damoa-kyc-verify .verify-input-group {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     gap: 20px;
-    flex-direction: column;
 }
 #wrap.point-damoa-kyc-verify .verify-input-field {
     flex: 1;
     display: flex;
     flex-direction: column;
-    width: 100%;
 }
 #wrap.point-damoa-kyc-verify .verify-input-label {
     font-family: Pretendard;
@@ -3893,14 +3992,14 @@ body.point-damoa-kyc-verify-body {
     color: #ff6363;
 }
 #wrap.point-damoa-kyc-verify .btn-resend {
-    height: 40px;
+    height: 50px;
     padding: 0 30px;
     background: #fff;
     border: 1px solid #303030;
     border-radius: 8px;
     font-family: Pretendard;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1;
     color: #303030;
     cursor: pointer;
@@ -3925,7 +4024,7 @@ body.point-damoa-kyc-verify-body {
 #wrap.point-damoa-kyc-verify .btn-next-verify {
     width: 100%;
     max-width: 632px;
-    height: 60px;
+    height: 50px;
     background-color: #303030;
     color: #fff;
     border: none;
@@ -3977,18 +4076,23 @@ body.point-damoa-kyc-point-input-body {
 #wrap.point-damoa-kyc-point-input .kyc-point-input-content {
     flex: 1;
     overflow-y: auto;
-    padding: 0 0px 70px;
+    padding: 0 0px 130px;
     max-width: 550px;
     width: 100%;
     margin: 0 auto;
 }
+#wrap.point-damoa-kyc-point-input.point-input-open .kyc-point-input-content {
+    /* 포인트 입력창 펼쳐졌을 때 패딩 조정용 */
+    padding: 10px 0 40px;
+}
 #wrap.point-damoa-kyc-point-input .kyc-point-input-header {
     position: relative;
-    margin-bottom: 12px;
+    /* margin-bottom: 12px; */
     display: flex;
     align-items: center;
     gap: 10px;
     padding: 0 10px;
+    hieght: 24px;
 }
 #wrap.point-damoa-kyc-point-input .btn-back-kyc-point-input {
     width: 40px;
@@ -4056,16 +4160,18 @@ body.point-damoa-kyc-point-input-body {
 #wrap.point-damoa-kyc-point-input .point-summary-section {
     background: #f4f4f5;
     border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 10px;
+    padding: 10px 20px;
+    margin-bottom: 5px;
 }
 #wrap.point-damoa-kyc-point-input .point-summary-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    color: var(--HF-System-Color-primative-Neutral-Neutral10, #303030);
     font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
     font-weight: 700;
-    font-size: 18px;
     line-height: normal;
     letter-spacing: -0.408px;
 }
@@ -4079,11 +4185,14 @@ body.point-damoa-kyc-point-input-body {
     text-align: right;
 }
 #wrap.point-damoa-kyc-point-input .point-amount {
-    font-family: Pretendard;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: normal;
-    letter-spacing: -0.408px;
+  color: var(--HF-Point-Color-Orange, #FF6114);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.408px;
 }
 #wrap.point-damoa-kyc-point-input .point-amount.highlight {
     color: #ff6114;
@@ -4169,7 +4278,7 @@ body.point-damoa-kyc-point-input-body {
     align-items: center;
     gap: 6px;
     justify-content: flex-end;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 #wrap.point-damoa-kyc-point-input .full-usage-checkbox {
     appearance: none;
@@ -4199,16 +4308,17 @@ body.point-damoa-kyc-point-input-body {
 #wrap.point-damoa-kyc-point-input .point-cards-section {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    margin-bottom: 8px;
+    gap: 5px;
+    margin-bottom: 5px;
 }
 #wrap.point-damoa-kyc-point-input .point-cards-row {
     display: flex;
-    gap: 8px;
+    gap: 5px;
 }
 #wrap.point-damoa-kyc-point-input .point-card-btn {
     flex: 1;
-    height: 58px;
+    max-width: 176px;
+    height: 50px;
     padding: 14px 10px 14px 20px;
     border: 1px solid #cbcbcb;
     border-radius: 8px;
@@ -4273,9 +4383,7 @@ body.point-damoa-kyc-point-input-body {
     right: 0;
     padding: 0;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 16.38%);
-    display: flex;
     gap: 8px;
-    height: 72px;
     align-items: flex-start;
     padding-top: 7px;
     padding-bottom: 7px;
@@ -4283,9 +4391,14 @@ body.point-damoa-kyc-point-input-body {
     width: 100%;
     margin: 0 auto;
 }
+#wrap.point-damoa-kyc-point-input .kyc-point-input-footer .btn-group {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
 #wrap.point-damoa-kyc-point-input .btn-fold {
     flex: 1;
-    height: 58px;
+    height: 50px;
     background: #eaebec;
     border: none;
     border-radius: 8px;
@@ -4299,7 +4412,7 @@ body.point-damoa-kyc-point-input-body {
 }
 #wrap.point-damoa-kyc-point-input .btn-convert {
     flex: 1;
-    height: 58px;
+    height: 50px;
     background: #303030;
     border: none;
     border-radius: 8px;
@@ -4313,6 +4426,11 @@ body.point-damoa-kyc-point-input-body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+#wrap.point-damoa-kyc-point-input .btn-convert:disabled {
+    background: #d0d0d0;
+    color: #999;
+    cursor: not-allowed;
 }
 #wrap.point-damoa-kyc-point-input .convert-amount {
     font-weight: 700;
@@ -4371,7 +4489,7 @@ body.point-damoa-kyc-point-input-body {
     width: 40px;
     height: 40px;
     background: url("../images/custom/new/arrow_left.svg") no-repeat center;
-    background-size: contain;
+    background-size: 32px 32px;
     border: none;
     cursor: pointer;
     padding: 0;
@@ -4443,7 +4561,7 @@ body.point-damoa-kyc-point-input-body {
     align-items: center;
     gap: 6px;
     justify-content: flex-end;
-    margin-bottom: 16px;
+    margin-bottom: 5px;
 }
 .point-input-modal-full-usage-checkbox {
     appearance: none;
@@ -4504,18 +4622,31 @@ body.point-damoa-kyc-point-input-body {
     background: #fff;
     text-align: right;
 }
+.point-input-modal-input-section .point-input::placeholder {
+  color: #c4c4c4;
+  font-weight: 500;
+}
+.point-input-modal-input-section .point-input.hyundai-point-input:placeholder-shown:not(:focus) {
+  text-align: right;
+}
 /* 값이 입력되지 않은 상태에서는 padding-right 20px 유지 */
 .point-input-modal-input-section .point-input:placeholder-shown:not(:focus) {
-    padding-right: 20px;
+    padding-right: 40px;
     text-align: left;
 }
 /* 포커스 상태: padding-right 60px (모든 경우) */
 .point-input-modal-input-section .point-input:focus {
     padding-right: 60px !important;
 }
-/* 값이 입력된 경우 padding-right 60px */
-.point-input-modal-input-section .point-input:not(:placeholder-shown) {
+/* 포커스 상태이면서 플레이스홀더가 보일 때는 좌측 정렬 */
+.point-input-modal-input-section .point-input:focus:placeholder-shown {
+    text-align: left;
+}
+/* 값이 입력된 경우 우측 정렬 */
+.point-input-modal-input-section .point-input:not(:placeholder-shown),
+.point-input-modal-input-section .point-input.has-value {
     padding-right: 60px;
+    text-align: right;
 }
 .point-input-modal-input-section .point-input:focus {
     border-color: #ff6114;
@@ -4548,12 +4679,12 @@ body.point-damoa-kyc-point-input-body {
     flex-shrink: 0;
     padding: 7px 0 7px 0;
     max-width: 550px;
-    width: 100%;
     margin: 0 auto;
+    width: 100%;
 }
 .point-input-modal-confirm {
     flex: 1;
-    height: 56px;
+    height: 50px;
     background: #303030;
     border: none;
     border-radius: 8px;
@@ -4604,14 +4735,16 @@ body.point-damoa-kyc-point-input-body {
 .point-input-modal-input-section .hyundai-input-group .hyundai-point-input:focus {
     padding-right: 60px;
 }
+/* 현대카드 input 포커스 상태이면서 플레이스홀더가 보일 때는 좌측 정렬 */
 .point-input-modal-input-section .hyundai-input-group .hyundai-point-input:focus:placeholder-shown {
-    padding-right: 40px;
+    padding-right: 40px !important;
+    text-align: right;
 }
-.point-input-modal-input-section .hyundai-input-group .hyundai-point-input:not(:placeholder-shown) {
-  padding-right: 60px;
-}
+/* 현대카드 input 값이 입력된 경우 우측 정렬 */
+.point-input-modal-input-section .hyundai-input-group .hyundai-point-input:not(:placeholder-shown),
 .point-input-modal-input-section .hyundai-input-group .hyundai-point-input.has-value {
     padding-right: 60px;
+    text-align: right;
 }
 .point-input-modal-input-section .hyundai-input-group .hyundai-won-input {
     padding-right: 60px;
@@ -4866,6 +4999,7 @@ body.point-damoa-kyc-point-input-body {
 
 #wrap.point-damoa.iframe .content {
   padding-top: 0;
+  padding-bottom: 100px;
 }
 #wrap.point-damoa.iframe .order-wrap {
   margin-top: 0;
@@ -4902,7 +5036,7 @@ body.point-damoa-kyc-point-input-body {
   border: 0;
 }
 #wrap.point-damoa-kyc-input .kyc-input-content {
-  padding-bottom: 100px;
+  padding-bottom: 0;
 }
 #wrap.point-damoa.iframe input[type="text"] {
 }
@@ -4913,26 +5047,34 @@ body.point-damoa-kyc-point-input-body {
   width: 100%;
   text-align: left;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 400;
 }
-#wrap.point-damoa-kyc-input .input-field.rrn .rrn-input-first input[type="text"] {
-  width: 149px;
+/* 주민번호 앞 6자리: 남는 폭을 채우고, 점 영역(고정폭)은 줄어들지 않음 */
+#wrap.point-damoa-kyc-input .input-field.rrn .rrn-input-first > input[type="text"]:first-of-type {
+  flex: 1 1 0;
+  min-width: 72px;
+  width: 0;
   height: 100%;
   text-align: left;
-  padding-right: 35px;
+  padding-right: 0;
+  font-size: 18px;
+  font-weight: 400;
 }
 #wrap.point-damoa-kyc-input .input-field.rrn input[type="text"] {
   border: 0;
+  padding-left: 0;
 }
 .point-damoa.iframe input[type="text"] {
   font-size: 26px;
   font-weight: 400;
 }
 #wrap.point-damoa-kyc-input .input-field.rrn .rrn-input-first .rrn-dash + input[type="text"] {
+  flex-shrink: 0;
   padding: 0;
-  width: 50px;
+  width: 40px;
   right: 0;
   padding-left: 10px;
+  font-size: 18px;
 }
 /* .point-damoa.iframe .custom-input.custom-number-wrap .number-wrap {
   width: 100%;
@@ -5074,3 +5216,189 @@ body.point-damoa-kyc-point-input-body {
   top: 5px;
   right: 5px;
 }
+.modal.modal-slide.modal-telecom .modal-dialog {
+  top: 50%;
+  transform: translateY(-50%) !important;
+  height: 100%;
+}
+#wrap.point-damoa.iframe.terms-sub .content { padding-bottom: 0; }
+
+/* 모바일 레이아웃 미디어쿼리 (body 고정 692px 이하에서 해제, 375×667에서 추가 스타일) */
+@media screen and (max-width: 691px){
+  /* 모바일 화면 고정 해제 (691px 이하에서 body 692×300 고정 해제) */
+  body.point-damoa-kyc-input-body {
+    width: auto;
+    height: auto;
+  }
+  body.point-damoa-kyc-point-input-body {
+    width: auto;
+    height: auto;
+  }
+  #wrap.point-damoa-kyc-input .input-row {
+    flex-direction: column;
+  }
+  #wrap.point-damoa-kyc-input .input-group {
+    gap: 20px;
+  }
+  #wrap.point-damoa-kyc-input .input-field.name {
+    width: 100%;
+  }
+  #wrap.point-damoa-kyc-input .input-field.telecom {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 691px){
+  #wrap.point-damoa.iframe header {
+    display: block;
+    height: auto;
+  }
+  #wrap.point-damoa.iframe .title-main {
+    padding-top: 44px;
+  }
+  body.point-damoa-kyc-input-body,
+  body.point-damoa-kyc-verify-body,
+  body.point-damoa-kyc-point-input-body {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* 인증정보창 */
+  #wrap.point-damoa-kyc-input .kyc-input-header {
+    padding-top: 44px;
+  }
+  #wrap.point-damoa-kyc-input .kyc-input-title {
+    line-height: normal;
+    word-break: keep-all;
+  }
+
+  /* input-group 아래의 input-row를 한 줄씩 배치 */
+  .input-group .input-row {
+    flex-direction: column;
+  }
+  #wrap.point-damoa-kyc-input .input-field.name,
+  #wrap.point-damoa-kyc-input .input-field.telecom {
+    width: 100%;
+  }
+  #wrap.point-damoa-kyc-input .input-group {
+    gap: 20px;
+  }
+  .modal-slide .modal-content {
+    height: auto;
+    max-height: 272px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  #wrap.point-damoa-kyc-verify .btn-resend {
+    height: 40px;
+  }
+  #wrap.point-damoa-kyc-verify .verify-input-wrapper {
+    height: 46px;
+  }
+
+  /* 포인트입력창 */
+  #wrap.point-damoa-kyc-point-input .kyc-point-input-header {
+    padding-top: 44px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  #wrap.point-damoa-kyc-point-input .btn-back-kyc-point-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  #wrap.point-damoa-kyc-point-input .product-amount-section {
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+  }
+  #wrap.point-damoa-kyc-point-input .btn-close-kyc-point-input {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  #wrap.point-damoa-kyc-point-input .product-amount-text {
+    flex-direction: column;
+  }
+  #wrap.point-damoa-kyc-point-input .point-detail-left {
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+  }
+  #wrap.point-damoa-kyc-point-input .point-detail-label {
+    display: none;
+  }
+  
+  /* point-detail-separator와 point-detail-count를 한 줄에 배치 */
+  /* float를 사용하여 separator와 count를 같은 줄에 배치 */
+  #wrap.point-damoa-kyc-point-input .point-detail-label {
+    display: block;
+    clear: both;
+  }
+  #wrap.point-damoa-kyc-point-input .point-detail-separator {
+    float: left;
+    margin-right: 7px;
+    clear: left;
+  }
+  #wrap.point-damoa-kyc-point-input .point-detail-count {
+    position: relative;
+    float: left;
+  }
+  #wrap.point-damoa-kyc-point-input .point-detail-separator {
+    display: none;
+  }
+  #wrap.point-damoa-kyc-point-input .point-detail-count::before {
+    content: '|';
+    margin-right: 4px;
+  }
+  #wrap.point-damoa-kyc-point-input .btn-convert {
+    flex-direction: column;
+  }
+  #wrap.point-damoa-kyc-point-input .point-cards-row {
+    flex-direction: column;
+  }
+  /* 포인트입력 카드사 모달 */
+  .point-input-modal-body {
+    padding-top: 44px;
+    /* max-width: 315px; */
+  }
+  .point-input-modal-footer {
+    /* max-width: 315px; */
+  }
+  .point-input-modal-back {
+    top: 0px;
+    left: 20px;
+  }
+  .point-input-modal-close {
+      top: 0px;
+      right: 20px;
+  }
+  .modal-full .modal-dialog {
+      height: 100%;
+  }
+
+  #wrap.point-damoa.iframe {
+    width: 100%;
+    padding: 0 30px;
+    overflow: scroll;
+  }
+  #wrap.point-damoa.point-damoa-kyc-input.iframe {
+    padding-bottom: 90px;
+  }
+
+  #wrap.point-damoa-kyc-input .input-field.rrn .rrn-input-first > input[type="text"]:first-of-type {
+    min-width: 60px;
+  }
+
+  #wrap.point-damoa-kyc-point-input .point-card-btn {
+    max-width: unset;
+  }
+
+  #wrap.point-damoa-kyc-point-input.point-input-open .kyc-point-input-content {
+    padding: 10px 0 70px;
+  }
+
+  .point-input-modal-content {
+    padding: 0 30px;
+    height: 100%;
+  }
+} 

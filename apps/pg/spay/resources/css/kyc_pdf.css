@@ -217,6 +217,9 @@ body {
 .alignCenter {
     text-align: center;
 }
+.alignLeft {
+    text-align: left;
+}
 .botText {
     margin-top: 10px;
     font-family: Pretendard;
@@ -238,6 +241,18 @@ body {
 }
 .botText .alignCenter span {
     font-weight: 400;
+}
+.botText .boxTextSmall {
+    color: var(--HF-Style-Static-Black, #000);
+    font-family: Pretendard;
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.16px;
+}
+.botText .mt16 {
+    margin-top: 16px;
 }
 .table {
   font-size: 9px;
@@ -403,6 +418,14 @@ line-height: 14px;
   right: 26px;
 }
 
+.bottom-wrap .center {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
 .confirm h1 {
   font-size: 18px;
   font-weight: 700;
@@ -503,6 +526,15 @@ line-height: 14px;
 .kyc .agreementPage .agreementPage2Col .left, .kyc .agreementPage .agreementPage2Col .right {
     flex: 1; /* 양쪽을 동일하게 차지 */
     min-width: 300px; /* 최소 너비를 설정하여 너무 작아지지 않도록 방지 */
+}
+.kyc .agreementPage .agreementPage2Col + .subTitle {
+    margin-top: 6px;
+    font-family: Pretendard;
+    font-size: 8px;
+    font-weight: 400;
+    line-height: 9.55px;
+    text-align: left;
+    color: #000;
 }
 .kyc .agreementPage .companyName {
     font-family: Pretendard;
@@ -664,6 +696,7 @@ line-height: 14px;
         color: #000;
      }
 .kyc .tableWrap table tr { border-bottom: 1px solid #cbcbcb; }
+.kyc .tableWrap table tbody tr:first-of-type { border-top: 1px solid #cbcbcb; }
 .kyc .tableWrap.tableWrapTopBorder0 thead tr { border-top: 0; }
 .kyc .tableWrap.tableWrapTopBorder0 table tbody tr:first-of-type { border-top: 1px solid #cbcbcb; }
 .kyc .tableWrap.tableWrapTopBorder0.tableWrapTopBorder1 tbody tr:first-of-type { border-top: 1px solid #000; }
@@ -671,7 +704,10 @@ line-height: 14px;
 .kyc .tableWrap.tableWrapTopBorder0 td { border-right: 1px solid #cbcbcb; }
 .kyc .tableWrap.tableWrapTopBorder0 thead th:last-of-type, .kyc .tableWrap.tableWrapTopBorder0 td:last-of-type { border-right: 0; }
 .kyc .tableWrap.tableWrapTopBorder0 td[rowspan]:last-of-type { border-left: 1px solid #cbcbcb; }
-.kyc .tableWrap.tableWrapTopBorder0 td:first-of-type { border-left: 0; }
+.kyc .tableWrap td:first-of-type { border-left: 0; }
+.kyc .tableWrap.tableTopBottomBoldBorder table tbody tr:first-of-type { border: 0; }
+.kyc .tableWrap.tableWrapTopBorder0.tableTopBottomBoldBorder td:first-of-type { border-top: 0; border-bottom: 0; }
+.kyc .tableWrap td:first-of-type { font-size: inherit; }
 .kyc .tableWrap table tr:last-of-type { border-bottom: 0; }
 .kyc .tableWrap table th {  background-color: #F5F5F7; padding: 9px 10px; border: 0; text-align: left; color: #000000; border-left: 1px solid #cbcbcb; border-right: 1px solid #cbcbcb; height: auto;  }
 .kyc .tableWrap table th:first-of-type { border-left: 0;}
@@ -684,11 +720,8 @@ line-height: 14px;
 .kyc .tableWrap.type3 td:nth-of-type(3), .kyc .tableWrap.type3 td:nth-of-type(4) { width: 165px; }
 .kyc .tableWrap.type3 td:last-of-type { border-right: 0; }
 .kyc .tableWrap + .title { margin-top: -26px; margin-bottom: 10px; }
-.kyc .agreementPage .tableWrap td .checkBox > input + label {
-    margin-bottom: 0;
-    text-align: left;
-    width: auto;
-}
+.kyc .agreementPage .tableWrap td .checkBox > input + label { margin-bottom: 0; text-align: left; width: auto; }
+.kyc .tableWrap td .checkBox > input + label { font-size: inherit; }
 .kyc .agreementPage .checkBox > input + label {
     font-family: Pretendard;
     font-size: 8px;
@@ -731,6 +764,9 @@ line-height: 14px;
 }
 .kyc .tableWrap .noti-list {
     margin-top: 5px;
+}
+.kyc .tableWrap .noti-list + div {
+    margin-top: 10px;
 }
 .kyc .tableWrap td .noti-list {
     margin-top: 0;
@@ -886,4 +922,108 @@ line-height: 14px;
 .kyc .pdfText strong {
   font-weight: 700;
   text-decoration: underline;
+}
+
+/* 가상계좌 발급 확인서 스타일 */
+.kyc .vbank-confirmation-table {
+  width: 100%;
+  border: 1px solid #000;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  border-left: 0;
+  border-right: 0;
+  border-collapse: collapse;
+  margin-top: 60px;
+  margin-bottom: 100px;
+}
+
+.kyc .vbank-confirmation-row {
+  height: 24px;
+  border-bottom: 0.5px solid #c4c4c4;
+}
+
+.kyc .vbank-confirmation-row:last-child {
+  border-bottom: 0;
+}
+
+.kyc .vbank-confirmation-label {
+  width: 120px;
+  background-color: #f5f5f7;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: Pretendard;
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  color: #000;
+  vertical-align: middle;
+}
+
+.kyc .vbank-confirmation-value {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: Pretendard;
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 24px;
+  color: #000;
+  vertical-align: middle;
+}
+
+.kyc .vbank-confirmation-row:last-child .vbank-confirmation-label,
+.kyc .vbank-confirmation-row:last-child .vbank-confirmation-value {
+  border-right: 0;
+}
+
+.kyc .vbank-confirmation-text {
+  margin-top: 100px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.kyc .vbank-confirmation-text p {
+  font-family: Pretendard;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: normal;
+  color: #000;
+  text-align: center;
+}
+
+.kyc .vbank-confirmation-company {
+  text-align: center;
+}
+
+.kyc .vbank-confirmation-company p {
+  font-family: Pretendard;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: normal;
+  color: #000;
+  text-align: center;
+}
+
+.kyc.vbank-issuance-confirmation {
+  padding: 10px 50px 26px;
+}
+.kyc.vbank-issuance-confirmation .bottom-wrap .left {
+  left: 50px;
+}
+.kyc.vbank-issuance-confirmation .bottom-wrap .right {
+  right: 50px;
+}
+.bottom-wrap .leftTop {
+  position: absolute;
+  bottom: 50px;
+  left: 26px;
+  color: var(--HF-Style-Static-Black, #000);
+  font-family: Pretendard;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.kyc.vbank-issuance-confirmation .container {
+  padding: 0 50px;
 }

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <title>RROUND</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no, address=no, email=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <link rel="stylesheet" href="../../css/common_renewal.css" />
+  <link rel="stylesheet" href="../../css/mass/aiEditor.css" />
+  <script src="../../js/jquery.3.4.1.min.js"></script>
+  <script src="../../js/jquery-ui.js"></script>
+  <script src="../../js/design_renewal.js" defer="defer"></script>
+</head>
+
+<body>
+  <!-- wrap -->
+  <div id="wrap">
+    <!-- header -->
+    <div id="header">
+      <div class="container">
+        <div class="header-box">
+          <button type="button" class="btn-back js-change-btn left-0">
+            <i class="icon-back"></i>
+          </button>
+          <h2 class="page-title">Ai 에디터 추천</h2>
+        </div>
+      </div>
+    </div>
+    <!-- //header -->
+
+    <!-- content -->
+    <div id="content">
+      <!-- container -->
+      <div class="container ai-editor-container">
+        <ul class="category-list">
+          <li class="active">
+            전체
+          </li>
+          <li>
+            생활밀착
+          </li>
+          <li>
+            목돈지출
+          </li>
+          <li>
+            여행
+          </li>
+          <li>
+            이달의 특집
+          </li>
+          <li>
+            이달의 특집
+          </li>
+        </ul>
+        <div class="tab-list">
+          <button type="button" class="active">
+            전체
+          </button>
+          <button type="button">
+            가전전체전체
+          </button>
+          <button type="button">
+            여행전체전체
+          </button>
+          <button type="button">
+            자동차전체전체전체자동차전체전체전체자동차전체전체전체
+          </button>
+        </div>
+        <div class="ai-editor-list-wrap">
+          <ul class="ai-editor-list">
+            <li>
+              <div class="list-img badge-new">
+                <img src="../../images/mass/sample/ai-editor-detail-img-01.png" alt="AI 에디터">
+              </div>
+              <div class="list-text-wrap">
+                <p class="list-category">생활밀착</p>
+                <p class="list-title">
+                  실적조건 없는 카드가 있다고? 무제한 할인 카드 LIKIT1.2있다고? 무제한 할인 카드 LIKIT1.2있다고? 무제한 할인 카드 LIKIT1.2있다고? 무제한 할인 카드 LIKIT1.2
+                </p>
+                <p class="list-hash-tag">
+                  #전가맹점 #롯데카드 #LOCALIKIT1.2
+                </p>
+              </div>
+              <button class="detail-btn">
+                자세히 보기
+              </button>
+            </li>
+            <li>
+              <div class="list-img badge-best">
+                <img src="../../images/mass/sample/ai-card-img-01.png" alt="AI 에디터">
+              </div>
+              <div class="list-text-wrap">
+                <p class="list-category">생활밀착</p>
+                <p class="list-title">
+                  실적조건 없는 카드가 있다고? 무제한 할인 카드 LIKIT1.2있다고? 무제한 할인 카드 LIKIT1.2있다고? 무제한 할인 카드 LIKIT1.2있다고? 무제한 할인 카드 LIKIT1.2
+                </p>
+                <p class="list-hash-tag">
+                  #전가맹점 #롯데카드 #LOCALIKIT1.2
+                </p>
+              </div>
+              <button class="detail-btn">
+                자세히 보기
+              </button>
+            </li>
+            <li>
+              <!-- <div class="list-img badge-hot"> -->
+              <!-- <div class="list-img badge-best"> -->
+              <!-- <div class="list-img badge-new"> -->
+              <div class="list-img badge-hot">
+                <img src="../../images/mass/sample/ai-editor-img-01.png" alt="AI 에디터">
+              </div>
+              <div class="list-text-wrap">
+                <p class="list-category">생활밀착</p>
+                <p class="list-title">
+                  실적조건 없는 카드가 있다고? 무제한 할인 카드 LIKIT1.2있다고? 무제한 할인 카드 LIKIT1.2있다고? 무제한 할인 카드 LIKIT1.2있다고? 무제한 할인 카드 LIKIT1.2
+                </p>
+                <p class="list-hash-tag">
+                  #전가맹점 #롯데카드 #LOCALIKIT1.2
+                </p>
+              </div>
+              <button class="detail-btn">
+                자세히 보기
+              </button>
+            </li>
+          </ul>
+          <!-- <div class="empty-list alert">
+            <p class="empty-text">진행 중인 이벤트가 없어요</p>
+          </div> -->
+        </div>
+      </div>
+      <!-- //container -->
+    </div>
+    <!-- //content -->
+  </div>
+  <!-- //wrap -->
+</body>
+<script>
+  $(function () {
+    // 1. category-list: 클릭한 item만 active, 나머지 active 제거
+    $('.category-list li').on('click', function () {
+      $(this).addClass('active').siblings().removeClass('active');
+    });
+
+    // 2. tab-list: 전체와 나머지 상호 배타 (캐시백 탭과 동일)
+    var $tabList = $('.tab-list');
+    var $totalTab = $tabList.find('button').first();
+    var $otherTabs = $tabList.find('button').not($totalTab);
+
+    $totalTab.on('click', function () {
+      $(this).toggleClass('active');
+      if ($(this).hasClass('active')) {
+        $otherTabs.removeClass('active');
+      }
+    });
+
+    $otherTabs.on('click', function () {
+      $totalTab.removeClass('active');
+      $(this).toggleClass('active');
+    });
+
+    // 3. list-img: 이미지 비율에 따라 landscape / portrait 클래스 추가
+    $('.list-img img').each(function () {
+      var $img = $(this);
+      var $wrap = $img.closest('.list-img');
+      function applyRatioClass() {
+        var w = this.naturalWidth || this.width;
+        var h = this.naturalHeight || this.height;
+        $wrap.removeClass('landscape portrait square');
+        if (w > h) {
+          $wrap.addClass('landscape');
+        } else if (h > w) {
+          $wrap.addClass('portrait');
+        } else if (w === h) {
+          $wrap.addClass('square');
+        }
+      }
+      if (this.complete) {
+        applyRatioClass.call(this);
+      } else {
+        $img.on('load', applyRatioClass);
+      }
+    });
+  });
+</script>
+
+</html>

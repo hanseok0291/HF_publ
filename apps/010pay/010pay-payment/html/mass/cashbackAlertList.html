@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <title>RROUND</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no, address=no, email=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <link rel="stylesheet" href="../../css/common_renewal.css" />
+  <link rel="stylesheet" href="../../css/pay/charge.css" />
+  <link rel="stylesheet" href="../../css/mass/cashbackAlert.css" />
+  <script src="../../js/jquery.3.4.1.min.js"></script>
+  <script src="../../js/jquery-ui.js"></script>
+  <script src="../../js/design_renewal.js" defer="defer"></script>
+</head>
+
+<body>
+  <!-- wrap -->
+  <div id="wrap">
+    <!-- header -->
+    <div id="header">
+      <div class="container">
+        <div class="header-box">
+          <button type="button" class="btn-back js-change-btn left-0">
+            <i class="icon-back"></i>
+          </button>
+          <h2 class="page-title">캐시백 알림 목록</h2>
+          <button type="button" class="right-0" onclick="modalOpenSlide('modal-edit-info')">
+            <i class="icon-info-circle"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- //header -->
+
+    <!-- content -->
+    <div id="content">
+      <!-- container -->
+      <div class="container cashback-alert-list-container">
+        <ul class="cashback-alert-list">
+          <li>
+            <div class="left-wrap">
+              <p class="cashback-price">15만원</p>
+              <p class="card-list"><span>KB국민카드</span><span>삼성</span><span>신한</span></p>
+              <p class="setting-date">설정일: 2026. 01. 01</p>
+              <div class="btn-wrap">
+                <button type="button" class="btn btn-edit" onclick="modalOpenSlide('modal-card-modify')">수정</button>
+                <button type="button" class="btn btn-cancel" onclick="modalToastOpen('toast-alert-delete')">삭제</button>
+              </div>
+            </div>
+            <div class="toggle-switch">
+              <div class="toggle-circle"></div>
+            </div>
+          </li>
+          <li>
+            <div class="left-wrap">
+              <p class="cashback-price">15만원</p>
+              <p class="card-list">KB국민카드 외 3개</p>
+              <p class="setting-date">설정일: 2026. 01. 01</p>
+              <div class="btn-wrap">
+                <button type="button" class="btn btn-edit" onclick="modalOpenSlide('modal-card-modify')">수정</button>
+                <button type="button" class="btn btn-cancel" onclick="modalToastOpen('toast-alert-delete')">삭제</button>
+              </div>
+            </div>
+            <div class="toggle-switch">
+              <div class="toggle-circle"></div>
+            </div>
+          </li>
+        </ul>
+        <!-- <div class="empty-list alert">
+          <p class="empty-text">
+            설정된 알림이 없어요<br>
+            알림을 추가해 보세요!
+          </p>
+        </div> -->
+      </div>
+      <!-- //container -->
+    </div>
+    <!-- //content -->
+  </div>
+  <!-- //wrap -->
+
+  <!-- 캐시백 수정 팝업 -->
+  <div id="modal-card-modify" class="modal modal-slide type-title modal-alert-edit">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-head">
+          <p class="modal-head-title">캐시백 알림 수정</p>
+          <button type="button" class="btn btn-close" onclick="modalCardModifyClose();">
+            <i class="icon-close"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="card-select-wrap gray-box">
+            <div class="drop-down-wrap">
+              <div class="drop-down-text-wrap">
+                <p class="drop-down-title">카드사 선택</p>
+                <p class="drop-down-text">알림 받고 싶은 카드사를 선택해 주세요 <span>(중복 선택 가능)</span></p>
+              </div>
+            </div>
+            <div class="open-contents">
+              <div class="card-list">
+                <button type="button" class="active">
+                  전체
+                </button>
+                <button type="button">
+                  KB국민
+                </button>
+                <button type="button">
+                  롯데
+                </button>
+                <button type="button">
+                  삼성
+                </button>
+                <button type="button">
+                  신한
+                </button>
+                <button type="button">
+                  현대
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="cashback-amount-wrap gray-box charge-container">
+            <div class="drop-down-wrap">
+              <div class="drop-down-text-wrap">
+                <p class="drop-down-title">목표 캐시백 금액</p>
+              </div>
+            </div>
+            <div class="input-wrap open-contents">
+              <div class="input-container label-n charge-input">
+                <input type="text" class="custom-input" placeholder=" " id="chargeAmount" maxlength="10" />
+                <label for="chargeAmount" class="floating-label">얼마를 알림 받을까요?</label>
+                <div class="fake-label">
+                  <p class="number"></p>
+                  <span class="unit">만원</span>
+                </div>
+                <button type="button" class="icon icon-del js-text-del"></button>
+              </div>
+              <div class="add-money-btn-wrap">
+                <button type="button" data-money="1">1만원</button>
+                <button type="button" data-money="5">5만원</button>
+                <button type="button" data-money="10">10만원</button>
+                <button type="button" data-money="50">50만원</button>
+              </div>
+              <ul class="info-list-wrap">
+                <li>
+                  1만원 단위로 입력 가능해요
+                </li>
+                <li>
+                  최대 100만원까지 설정 할 수 있어요
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="btn-wrap">
+            <button type="button" class="btn btn-confirm js-btn-confirm-alert" disabled
+              onclick="modalToastOpen('toast-alert-modify')">이렇게 수정할게요</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- //캐시백 수정 팝업 -->
+
+  <!-- 캐시백 알림 안내 팝업 -->
+  <div id="modal-edit-info" class="modal modal-slide type-title modal-edit-cashback">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-head">
+          <p class="modal-head-title">캐시백 알림이란?</p>
+          <button type="button" class="btn btn-close js-modal-close">
+            <i class="icon-close"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h4 class="title-text">조건에 맞는 캐시백 혜택이 나오면 <br>푸시로 알려드려요!</h4>
+          <div class="info-img-wrap">
+            <div class="img-0"></div>
+            <div class="img-2"></div>
+            <div class="img-3"></div>
+            <div class="img-1"></div>
+          </div>
+          <div class="info-contents-wrap">
+            <h4 class="title-text">이렇게 활용하세요</h4>
+            <ul class="info-contents">
+              <li>
+                <img class="icon-img" src="../../images/mass/edit-modal-img-01.png" alt="">
+                <div class="text-wrap">
+                  <p class="title-text">알림 추가</p>
+                  <p class="desc-text">원하는 카드사와 금액을 설정하세요</p>
+                </div>
+              </li>
+              <li>
+                <img class="icon-img" src="../../images/mass/edit-modal-img-02.png" alt="">
+                <div class="text-wrap">
+                  <p class="title-text">ON / OFF 관리</p>
+                  <p class="desc-text">토글로 알림을 켜고 끌 수 있어요</p>
+                </div>
+              </li>
+              <li>
+                <img class="icon-img" src="../../images/mass/edit-modal-img-03.png" alt="">
+                <div class="text-wrap">
+                  <p class="title-text">알림 받기</p>
+                  <p class="desc-text">조건이 맞으면 푸시로 바로 알려드려요</p>
+                </div>
+              </li>
+            </ul>
+            <div class="info-second-wrap">
+              <h4 class="title-text">알아두세요!</h4>
+              <ul class="info-second-contents">
+                <li>
+                  알림을 받으려면 <span class="underline">라운드 알림 설정 > 혜택·이벤트 알림 관리 > 마케팅(푸시) 수신 동의 설정</span>이 되어있어야 해요.
+                </li>
+                <li>
+                  OFF 상태에서는 알림이 발송되지 않아요
+                </li>
+                <li>
+                  삭제한 알림은 복구할 수 없어요
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- //캐시백 알림 안내 팝업 -->
+
+  <!-- 알림 수정 닫기 확인 팝업 -->
+  <div id="modal-alert-modify-close" class="modal normal-modal modal-alert-modify-close">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <img class="modal-img" src="../../images/mass/alert-edit-modal-img.png" alt="coupon" />
+          <h3>아직 작성 중인 내용이 있어요</h3>
+          <p>
+            이대로 닫을까요?
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" onclick="modalAlertModifyClose();">
+            돌아가기
+          </button>
+          <button type="button" class="btn btn-confirm" onclick="modalCloseAlert();">
+            닫기
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- // 알림 수정 닫기 확인 팝업 -->
+
+  <!-- 알림 삭제 토스트 모달  -->
+  <div id="toast-alert-delete" class="modal-toast is-btn has-height">
+    <p>
+      알림이 <b>삭제</b> 되었어요.
+    </p>
+  </div>
+  <!-- //알림 삭제 토스트 모달 -->
+
+  <!-- 알림 삭제 토스트 모달  -->
+  <div id="toast-alert-modify" class="modal-toast is-btn has-height">
+    <p>
+      알림이 <b>수정</b> 되었어요.
+    </p>
+  </div>
+  <!-- //알림 삭제 토스트 모달 -->
+</body>
+<script>
+  $(function () {
+    var $cardList = $(".card-select-wrap .card-list");
+    var $totalBtn = $cardList.find("button").filter(function () {
+      return $(this).text().trim() === "전체";
+    }).first();
+    var $otherBtns = $cardList.find("button").not($totalBtn);
+
+    function hasCardSelection() {
+      return $totalBtn.hasClass("active") || $otherBtns.filter(".active").length > 0;
+    }
+
+    window.updateConfirmAlertButton = function () {
+      var val = typeof input_value !== "undefined" ? input_value : 0;
+      var amountOk = val >= min_amount && val <= charge_limit;
+      var cardOk = hasCardSelection();
+      $(".js-btn-confirm-alert").prop("disabled", !(amountOk && cardOk));
+    };
+
+    // 전체 선택 시: 전체만 active, 나머지 비활성화
+    $totalBtn.on("click", function () {
+      $(this).toggleClass("active");
+      if ($(this).hasClass("active")) {
+        $otherBtns.removeClass("active");
+      }
+      updateConfirmAlertButton();
+    });
+
+    // 나머지 선택 시: 전체 비활성화, 개별 카드는 여러 개 중복 선택 가능
+    $otherBtns.on("click", function () {
+      $totalBtn.removeClass("active");
+      $(this).toggleClass("active");
+      updateConfirmAlertButton();
+    });
+
+    updateConfirmAlertButton();
+  });
+
+  var input_value = 0;        // 만원 단위 (1~100)
+  var min_amount = 1;         // 최소 1만원
+  var charge_limit = 100;     // 최대 100만원
+  var input_cap = 100;        // 최대 입력 100
+
+  function formatManwon(val) {
+    if (val == null || val < 1 || val > 100) return "???";
+    return val + "만원";
+  }
+
+  $(".charge-input input").on("input", function () {
+    var $this = $(this);
+    var $this_wrap = $this.closest(".charge-input");
+    var $label = $this_wrap.find(".floating-label");
+    var raw = $this.val().replace(/[^0-9]/g, "");
+    var parsed = parseInt(raw, 10) || 0;
+    input_value = raw === "" ? 0 : parsed;
+    var displayVal = raw;
+    $this.val(displayVal);
+
+    $this_wrap.removeClass("error");
+    $this_wrap.find(".fake-label .number").text(displayVal);
+
+    if (input_value > 0) {
+      $this_wrap.find(".fake-label .unit").show();
+    } else {
+      $this_wrap.find(".fake-label .unit").hide();
+    }
+
+    if (raw.length === 0) {
+      $label.text("알림 받을 금액");
+    } else if (parsed > charge_limit) {
+      $this_wrap.addClass("error");
+      $label.text("최대 100만원까지 입력할 수 있어요");
+    } else if (parsed < min_amount) {
+      $this_wrap.addClass("error");
+      $label.text("1만원 이상부터 입력할 수 있어요");
+    } else {
+      $label.text("알림 받을 금액");
+    }
+
+    if (typeof updateConfirmAlertButton === "function") {
+      updateConfirmAlertButton();
+    }
+    $(".cashback-amount").text(formatManwon(input_value));
+  });
+
+  $(".charge-input input").on("focus", function () {
+    var $this = $(this);
+    var $this_wrap = $this.closest(".charge-input");
+    var $label = $this_wrap.find(".floating-label");
+    var input_value = $this.val(); // 입력된 값 확인
+
+    if (input_value.length === 0) {
+      // 입력값이 없으면 "충전 금액"으로 설정
+      $label.text("알림 받을 금액");
+    }
+    // 입력값이 있는 경우 기존 상태 유지 (아무 작업도 하지 않음)
+  });
+
+  $(".charge-input input").on("blur", function () {
+    var $this = $(this);
+    var $label = $this.closest(".charge-input").find(".floating-label");
+    var input_value = $this.val(); // 입력된 값 확인
+
+    if (input_value.length === 0) {
+      // 입력값이 없으면 "얼마를 알림 받을까요?"로 설정
+      $label.text("얼마를 알림 받을까요?");
+    }
+  });
+
+  $(".charge-input .js-text-del").on("mousedown", function () {
+    var $this = $(this);
+    var $this_wrap = $this.closest(".charge-input");
+    var $label = $this.closest(".charge-input").find(".floating-label");
+    input_value = 0;
+    $("#chargeAmount").val("");
+    $(".fake-label .number").text("");
+    $this_wrap.removeClass("error");
+    $(".fake-label .unit").hide();
+    $label.text("알림 받을 금액");
+    $(".cashback-amount").text("???");
+    if (typeof updateConfirmAlertButton === "function") {
+      updateConfirmAlertButton();
+    }
+  });
+
+  $(".add-money-btn-wrap button").on("click", function () {
+    var add = parseInt($(this).attr("data-money"), 10) || 0;
+    input_value = input_value + add;
+    $("#chargeAmount").val(input_value > 0 ? String(input_value) : "").trigger("input");
+    $("#chargeAmount").focus();
+  });
+
+  function modalCardModifyClose() {
+    modalCloseSlide();
+    modalOpen('modal-alert-modify-close')
+  }
+
+  function modalAlertModifyClose() {
+    modalCloseAlert();
+    modalOpenSlide('modal-card-modify');
+  }
+</script>
+
+</html>

@@ -1,0 +1,456 @@
+/* ============================================
+   Button 가이드 페이지 + Box Button 컴포넌트
+   (docs/components/button-spec.md 기준)
+   ============================================ */
+
+/* ----- Box Button 컴포넌트 (피그마 Buttons 레이어 스펙 반영) ----- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-12);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  line-height: 1.4;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary-01);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+}
+
+.btn__label {
+  display: inline-block;
+}
+
+/* Primary (피그마: primary-01 #ff6114, disabled #d1d1d5, text white) */
+.btn--primary {
+  background-color: var(--color-button-primary);
+  color: var(--color-text-01);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background-color: var(--color-primary-02);
+}
+
+.btn--primary:disabled {
+  background-color: var(--color-disabled);
+  color: var(--color-text-01);
+}
+
+/* Secondary (피그마: bg #f6f6f9, 테두리 없음 / disabled 시 bg #d1d1d5, text white) */
+.btn--secondary {
+  background-color: var(--color-button-secondary);
+  color: var(--color-text-02);
+}
+
+.btn--secondary:hover:not(:disabled) {
+  background-color: var(--color-line-03);
+}
+
+.btn--secondary:disabled {
+  background-color: var(--color-disabled);
+  color: var(--color-text-01);
+}
+
+/* Tertiary (피그마: border line-03, bg white, text #151515 / disabled 시 text #d1d1d5) */
+.btn--tertiary {
+  background-color: var(--color-button-tertiary);
+  color: var(--color-text-02);
+  border: 1px solid var(--color-line-03);
+}
+
+.btn--tertiary:hover:not(:disabled) {
+  background-color: var(--color-background-02);
+}
+
+.btn--tertiary:disabled {
+  background-color: var(--color-button-tertiary);
+  border-color: var(--color-line-03);
+  color: var(--color-disabled);
+}
+
+.btn--tertiary:disabled .ico {
+  color: var(--color-disabled);
+}
+
+/* Size (피그마 + button-spec: height 고정, padding 좌우만) */
+.btn--large {
+  height: 56px;
+  padding: 0 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.32px;
+}
+
+.btn--large .ico {
+  width: 20px;
+  height: 20px;
+}
+
+.btn--medium {
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.32px;
+}
+
+.btn--medium .ico {
+  width: 20px;
+  height: 20px;
+}
+
+.btn--small {
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.28px;
+}
+
+.btn--small .ico {
+  width: 16px;
+  height: 16px;
+}
+
+.btn--xsmall {
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.26px;
+}
+
+.btn--xsmall .ico {
+  width: 16px;
+  height: 16px;
+}
+
+.btn--xxsmall {
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.26px;
+}
+
+.btn--xxsmall .ico {
+  width: 12px;
+  height: 12px;
+}
+
+/* ----- 가이드 페이지 레이아웃 ----- */
+.button-guide-section {
+  max-width: 1200px;
+  margin-bottom: var(--space-32);
+}
+
+.button-guide-section__title {
+  margin: 0 0 var(--space-16);
+  padding-bottom: var(--space-08);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-02);
+  border-bottom: 1px solid var(--color-line-03);
+}
+
+.button-guide-section__subtitle {
+  margin: 1.5rem 0 var(--space-08);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--color-text-02);
+}
+
+.button-guide-section__intro {
+  margin: 0 0 var(--space-24);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text-03);
+}
+
+.button-guide-section__intro ul {
+  margin: var(--space-08) 0 0;
+  padding-left: 1.25em;
+}
+
+.button-guide-section__intro li + li {
+  margin-top: 4px;
+}
+
+/* 한 줄에 여러 버튼 예시 */
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-16);
+  margin-bottom: var(--space-24);
+}
+
+.button-row--stack {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.button-demo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-08);
+}
+
+.button-demo__label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-04);
+}
+
+/* 코드 블록: 공통 .code-block 사용 */
+.button-code {
+}
+
+/* 테이블: Variant / Size 요약 */
+.button-table-wrap {
+  max-width: 1200px;
+  margin-bottom: var(--space-32);
+  border: 1px solid var(--color-line-03);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.button-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  color: var(--color-text-02);
+}
+
+.button-table__th {
+  padding: 12px 16px;
+  font-weight: 700;
+  text-align: left;
+  background: var(--color-background-02);
+  border-bottom: 1px solid var(--color-line-03);
+}
+
+.button-table__cell {
+  padding: 12px 16px;
+  border-top: 1px solid var(--color-line-03);
+  vertical-align: middle;
+}
+
+.button-table tbody tr:first-child .button-table__cell {
+  border-top: none;
+}
+
+.token-tag {
+  display: inline-block;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  background: var(--color-line-03);
+  border-radius: var(--radius-04);
+  color: var(--color-text-02);
+}
+
+/* 사용 원칙 / 하지 말아야 할 것 */
+.button-guide-list {
+  margin: 0;
+  padding-left: 1.25em;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-text-03);
+}
+
+.button-guide-list li + li {
+  margin-top: var(--space-08);
+}
+
+.button-guide-list strong {
+  color: var(--color-text-02);
+}
+
+/* ----- Box Button 케이스 매트릭스 (피그마 구조) ----- */
+.button-variant-block {
+  margin-bottom: 3rem;
+}
+
+.button-variant-block__title {
+  margin: 0 0 var(--space-04);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-02);
+  letter-spacing: 0.02em;
+}
+
+.button-variant-block__desc {
+  margin: 0 0 var(--space-24);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-03);
+}
+
+.button-matrix-wrap {
+  overflow-x: auto;
+  margin-bottom: var(--space-32);
+  border: 1px solid var(--color-line-03);
+  border-radius: var(--radius-md);
+}
+
+.button-matrix {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 14px;
+  color: var(--color-text-02);
+}
+
+.button-matrix__th {
+  padding: 10px 16px;
+  font-weight: 600;
+  text-align: left;
+  background: var(--color-background-02);
+  border-bottom: 1px solid var(--color-line-03);
+  color: var(--color-text-03);
+}
+
+.button-matrix__th--size {
+  width: 140px;
+}
+
+.button-matrix__cell {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-line-03);
+  vertical-align: middle;
+}
+
+.button-matrix__cell--label {
+  font-size: 13px;
+  color: var(--color-text-03);
+}
+
+.button-matrix tbody tr:last-child .button-matrix__cell {
+  border-bottom: none;
+}
+
+/* ----- Button Group (피그마 Button/Group) ----- */
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px var(--space-16);
+  width: 100%;
+  box-sizing: border-box;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, var(--color-background-01) 50%);
+  border-radius: var(--radius-md);
+}
+
+.btn-group--horizontal {
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.btn-group .btn {
+  width: 100%;
+}
+
+.btn-group--horizontal .btn {
+  width: 100%;
+  min-height: 56px;
+}
+
+.btn-group--ratio-1-1 .btn {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.btn-group--ratio-4-6 .btn:first-of-type {
+  flex: 0 0 40%;
+  min-width: 120px;
+}
+
+.btn-group--ratio-4-6 .btn:last-of-type {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.btn-group__subtext {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.22px;
+  color: var(--color-text-04);
+  text-align: center;
+}
+
+.btn-group__text-link {
+  display: block;
+  padding: var(--space-16) 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: -0.32px;
+  color: var(--color-text-04);
+  text-align: center;
+  text-decoration: none;
+  border-radius: var(--radius-16);
+}
+
+.btn-group__text-link:hover {
+  color: var(--color-text-02);
+}
+
+.btn-icon-only {
+  flex: 0 0 56px;
+  width: 56px;
+  min-width: 56px;
+  height: 56px;
+  padding: 0;
+}
+
+.btn-icon-only .btn__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+/* 가이드: Button Group 예시 감싸기 */
+.btn-group-demos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-32);
+  align-items: flex-start;
+}
+
+.btn-group-demo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-08);
+  width: 375px;
+  flex-shrink: 0;
+}
+
+.btn-group-demo__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-04);
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chip | 디자인 시스템</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/icons-base.css">
+  <link rel="stylesheet" href="../css/chips.css">
+</head>
+<body>
+  <header class="guide-header">
+    <a href="../index.html" class="guide-back">← 디자인 시스템 가이드</a>
+    <h1 class="page-title">Chip</h1>
+  </header>
+  <main class="guide-main">
+    <section class="chip-page-header">
+      <p class="chip-page-intro">
+        칩(Chips)은 사용자로 하여금 정보, 선택, 콘텐츠의 필터링, 그리고 특정 액션을 유도합니다.
+      </p>
+      <p class="chip-page-intro">
+        이 가이드는 Figma Chip 레이어를 참고하여 <strong>Chips-basic</strong>과 <strong>Chips-option</strong> 패턴을 정의합니다. 레이아웃은 웹 가이드에 맞게 단순화했습니다.
+      </p>
+      <div class="chip-tabs" role="tablist" aria-label="Chip 타입 선택">
+        <button type="button" class="chip-tab is-active" data-chip-tab="all" role="tab" aria-selected="true">All</button>
+        <button type="button" class="chip-tab" data-chip-tab="basic" role="tab" aria-selected="false">Chips-basic</button>
+        <button type="button" class="chip-tab" data-chip-tab="option" role="tab" aria-selected="false">Chips-option</button>
+      </div>
+    </section>
+
+    <!-- Chips-basic -->
+    <section class="chip-section" data-chip-panel="basic">
+      <h2 class="chip-section__title">Chips-basic</h2>
+      <p class="chip-section__desc">
+        Chips-basic은 리스트를 필터링하는 용도로 사용합니다. Figma의 <code>Chips-basic / Primary</code> 컴포넌트를 기준으로, default / icon 타입과 on/off 상태를 사용합니다.
+      </p>
+      <div class="chip-section__grid">
+        <div>
+          <p class="chip-row-label">Chips-basic / Primary — default &amp; icon (on / off)</p>
+          <div class="chip-row">
+            <button type="button" class="chip chip--primary chip--active"><span class="chip__label">옵션 A</span></button>
+            <button type="button" class="chip chip--primary"><span class="chip__label">옵션 B</span></button>
+            <button type="button" class="chip chip--primary chip--active">
+              <i class="ico ico-filter ico--16" aria-hidden="true"></i>
+              <span class="chip__label">필터 on</span>
+            </button>
+            <button type="button" class="chip chip--primary">
+              <i class="ico ico-filter ico--16" aria-hidden="true"></i>
+              <span class="chip__label">필터 off</span>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <p class="chip-row-label">Chips-basic / Sub — default &amp; icon (on / off)</p>
+          <div class="chip-row">
+            <button type="button" class="chip chip--sub chip--active"><span class="chip__label">서브 A</span></button>
+            <button type="button" class="chip chip--sub"><span class="chip__label">서브 B</span></button>
+            <button type="button" class="chip chip--sub chip--active">
+              <i class="ico ico-filter ico--16" aria-hidden="true"></i>
+              <span class="chip__label">필터 on</span>
+            </button>
+            <button type="button" class="chip chip--sub">
+              <i class="ico ico-filter ico--16" aria-hidden="true"></i>
+              <span class="chip__label">필터 off</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chips-option -->
+    <section class="chip-section" data-chip-panel="option">
+      <h2 class="chip-section__title">Chips-option</h2>
+      <p class="chip-section__desc">
+        Chips-option은 다수의 선택지 중 하나를 선택할 때 사용합니다. 선택된 칩은 상태가 유지되며, 현재 페이지나 콘텐츠의 모드를 전환하는 데 사용됩니다.
+      </p>
+      <div class="chip-section__grid">
+        <div>
+          <p class="chip-row-label">Chips-option — 상태 (default / active / disabled)</p>
+          <div class="chip-row">
+            <button type="button" class="chip chip--option"><span class="chip__label">Default</span></button>
+            <button type="button" class="chip chip--option chip--active"><span class="chip__label">Active</span></button>
+            <button type="button" class="chip chip--option" disabled><span class="chip__label">Disabled</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scroll / Fixed 예시 -->
+    <section class="chip-section" data-chip-panel="option">
+      <h2 class="chip-section__title">스크롤 &amp; Fixed 아이콘 패턴</h2>
+      <p class="chip-section__desc">
+        칩 리스트가 가로 폭을 넘어갈 경우, 가로 스크롤로 노출합니다. 좌측에 고정(Fixed)되는 필터 아이콘 칩을 둘 수 있으며, 이 경우 배경 그라데이션으로 스크롤 가능 범위를 암시합니다.
+      </p>
+      <div class="chip-scroll-demo" aria-label="가로 스크롤 칩 예시">
+        <div class="chip-scroll-demo__fixed">
+          <button type="button" class="chip chip--primary">
+            <i class="ico ico-filter ico--16" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="chip-scroll-demo__inner">
+          <button type="button" class="chip chip--primary chip--active"><span class="chip__label">전체</span></button>
+          <button type="button" class="chip chip--primary"><span class="chip__label">브랜드 A</span></button>
+          <button type="button" class="chip chip--primary"><span class="chip__label">브랜드 B</span></button>
+          <button type="button" class="chip chip--primary"><span class="chip__label">브랜드 C</span></button>
+          <button type="button" class="chip chip--primary"><span class="chip__label">브랜드 D</span></button>
+          <button type="button" class="chip chip--primary"><span class="chip__label">브랜드 E</span></button>
+          <button type="button" class="chip chip--primary"><span class="chip__label">브랜드 F</span></button>
+          <button type="button" class="chip chip--primary"><span class="chip__label">브랜드 G</span></button>
+        </div>
+      </div>
+      <p class="chip-scroll-demo__scroll-hint">가로로 스크롤하여 더 많은 칩을 확인할 수 있습니다.</p>
+    </section>
+
+    <section class="chip-section">
+      <h2 class="chip-section__title">구현 예시 코드</h2>
+      <p class="chip-section__desc">
+        아래는 Chips-basic / Chips-option을 구현할 때의 최소 HTML 구조 예시입니다. 스타일 토큰은 <code>design-system.md</code>, Chip 패턴은 Figma Chip 레이어를 참고합니다.
+      </p>
+      <div class="chip-code code-block">
+        <code>&lt;div class="btn-group chip-group"&gt;<br>
+        &nbsp;&nbsp;&lt;button type="button" class="chip chip--primary chip--active"&gt;&lt;span class="chip__label"&gt;필터 1&lt;/span&gt;&lt;/button&gt;<br>
+        &nbsp;&nbsp;&lt;button type="button" class="chip chip--primary"&gt;&lt;span class="chip__label"&gt;필터 2&lt;/span&gt;&lt;/button&gt;<br>
+        &lt;/div&gt;</code>
+      </div>
+    </section>
+  </main>
+  <footer class="guide-footer">
+    <p>Design System Guide — Chip</p>
+  </footer>
+  <script>
+    (function() {
+      var tabs = document.querySelectorAll('.chip-tab');
+      var panels = document.querySelectorAll('[data-chip-panel]');
+
+      function updateTabs(target) {
+        tabs.forEach(function(tab) {
+          var key = tab.getAttribute('data-chip-tab');
+          var active = key === target || target === 'all';
+          tab.classList.toggle('is-active', key === target);
+          tab.setAttribute('aria-selected', tab.classList.contains('is-active') ? 'true' : 'false');
+        });
+
+        panels.forEach(function(panel) {
+          var key = panel.getAttribute('data-chip-panel');
+          if (target === 'all') {
+            panel.style.display = '';
+          } else {
+            panel.style.display = key === target ? '' : 'none';
+          }
+        });
+      }
+
+      tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          var target = tab.getAttribute('data-chip-tab');
+          updateTabs(target);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
+

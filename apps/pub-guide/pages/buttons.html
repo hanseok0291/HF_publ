@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Button | 디자인 시스템</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/icons-base.css">
+  <link rel="stylesheet" href="../css/buttons.css">
+</head>
+<body>
+  <header class="guide-header">
+    <a href="../index.html" class="guide-back">← 디자인 시스템 가이드</a>
+    <h1 class="page-title">Button</h1>
+  </header>
+  <main class="guide-main">
+    <p class="button-guide-section__intro" style="margin-top:0">
+      버튼은 사용성에 따라 Component Type이 구분되고, 유저의 행동을 유도하거나 원하는 선택을 할 수 있도록 합니다. 이 가이드는 <code>docs/components/button-spec.md</code>를 기준으로 합니다.
+    </p>
+
+    <!-- Box button -->
+    <section class="button-guide-section">
+      <h2 class="button-guide-section__title">Box button</h2>
+      <p class="button-guide-section__intro">Variant는 <strong>primary</strong>, <strong>secondary</strong>, <strong>tertiary</strong> 3가지를 사용합니다.</p>
+
+      <!-- PRIMARY -->
+      <div class="button-variant-block">
+        <h3 class="button-variant-block__title">PRIMARY</h3>
+        <p class="button-variant-block__desc">중요한 행동에 사용합니다.</p>
+        <div class="button-matrix-wrap">
+          <table class="button-matrix">
+            <thead>
+              <tr>
+                <th class="button-matrix__th button-matrix__th--size">Size / State</th>
+                <th class="button-matrix__th">default</th>
+                <th class="button-matrix__th">Left icon</th>
+                <th class="button-matrix__th">Right icon</th>
+              </tr>
+            </thead>
+            <tbody id="matrix-primary"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Secondary -->
+      <div class="button-variant-block">
+        <h3 class="button-variant-block__title">Secondary</h3>
+        <p class="button-variant-block__desc">대체적인 행동에 사용합니다.</p>
+        <div class="button-matrix-wrap">
+          <table class="button-matrix">
+            <thead>
+              <tr>
+                <th class="button-matrix__th button-matrix__th--size">Size / State</th>
+                <th class="button-matrix__th">default</th>
+                <th class="button-matrix__th">Left icon</th>
+                <th class="button-matrix__th">Right icon</th>
+              </tr>
+            </thead>
+            <tbody id="matrix-secondary"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TERTIARY -->
+      <div class="button-variant-block">
+        <h3 class="button-variant-block__title">TERTIARY</h3>
+        <p class="button-variant-block__desc">부가적인 행동에 사용합니다.</p>
+        <div class="button-matrix-wrap">
+          <table class="button-matrix">
+            <thead>
+              <tr>
+                <th class="button-matrix__th button-matrix__th--size">Size / State</th>
+                <th class="button-matrix__th">default</th>
+                <th class="button-matrix__th">Left icon</th>
+                <th class="button-matrix__th">Right icon</th>
+              </tr>
+            </thead>
+            <tbody id="matrix-tertiary"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 기본 원칙 -->
+    <section class="button-guide-section">
+      <h2 class="button-guide-section__title">기본 원칙</h2>
+      <p class="button-guide-section__intro">
+        <strong>태그 규칙</strong> 버튼 동작은 <code>&lt;button&gt;</code>, 페이지 이동은 <code>&lt;a&gt;</code>를 사용합니다. <code>div</code>/<code>span</code>으로 버튼처럼 보이게 하지 않습니다.
+      </p>
+      <p class="button-guide-section__intro">
+        <strong>구성 요소</strong> 버튼 컨테이너, 라벨(<code>btn__label</code>), 좌측/우측 아이콘(선택). 라벨은 <code>&lt;span class="btn__label"&gt;</code>로 감싸고, 아이콘은 <code>icon-spec.md</code> 기준을 따릅니다.
+      </p>
+    </section>
+
+    <!-- 클래스 구조 -->
+    <section class="button-guide-section">
+      <h2 class="button-guide-section__title">클래스 구조</h2>
+      <div class="button-table-wrap">
+        <table class="button-table">
+          <thead>
+            <tr>
+              <th class="button-table__th">구분</th>
+              <th class="button-table__th">클래스</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="button-table__cell">기본</td>
+              <td class="button-table__cell"><span class="token-tag">btn</span></td>
+            </tr>
+            <tr>
+              <td class="button-table__cell">Variant</td>
+              <td class="button-table__cell"><span class="token-tag">btn--primary</span> <span class="token-tag">btn--secondary</span> <span class="token-tag">btn--tertiary</span></td>
+            </tr>
+            <tr>
+              <td class="button-table__cell">Size</td>
+              <td class="button-table__cell"><span class="token-tag">btn--large</span> <span class="token-tag">btn--medium</span> <span class="token-tag">btn--small</span> <span class="token-tag">btn--xsmall</span> <span class="token-tag">btn--xxsmall</span></td>
+            </tr>
+            <tr>
+              <td class="button-table__cell">내부 요소</td>
+              <td class="button-table__cell"><span class="token-tag">btn__label</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="button-code code-block">
+        <code>&lt;button type="button" class="btn btn--primary btn--large"&gt;<br>
+        &nbsp;&nbsp;&lt;span class="btn__label"&gt;Label&lt;/span&gt;<br>
+        &lt;/button&gt;</code>
+      </div>
+    </section>
+
+    <!-- 사용 원칙 -->
+    <section class="button-guide-section">
+      <h2 class="button-guide-section__title">사용 원칙</h2>
+      <ul class="button-guide-list">
+        <li><strong>Primary</strong> — 한 영역의 주요 행동, 대표 CTA</li>
+        <li><strong>Secondary</strong> — 보조 행동, 취소/옵션/부가 액션</li>
+        <li><strong>Tertiary</strong> — 부가적인 행동, 더보기/자세히/덜 강조된 선택지</li>
+        <li><strong>Size</strong> — large: 메인 액션 / medium: 일반 / small: 카드·리스트 / xsmall·xxsmall: 제한된 영역. 높이는 size별 고정값, 좌우 padding만 사용</li>
+        <li><strong>Icon</strong> — left: 추가·생성·검색·다운로드 / right: 다음·이동·상세보기</li>
+      </ul>
+    </section>
+
+    <!-- 하지 말아야 하는 것 -->
+    <section class="button-guide-section">
+      <h2 class="button-guide-section__title">하지 말아야 하는 것</h2>
+      <ul class="button-guide-list">
+        <li>버튼처럼 보이는 <code>div</code> 사용</li>
+        <li>정의되지 않은 variant·size 생성</li>
+        <li>아이콘에 직접 클릭 이벤트 연결</li>
+        <li>disabled를 시각적으로만 처리하고 속성 누락</li>
+        <li>동일 역할 버튼을 페이지마다 다른 HTML 구조로 생성</li>
+        <li>상하 padding으로 버튼 높이를 조절하는 방식 사용</li>
+      </ul>
+    </section>
+
+    <!-- 접근성 -->
+    <section class="button-guide-section">
+      <h2 class="button-guide-section__title">접근성</h2>
+      <p class="button-guide-section__intro">
+        버튼은 <code>&lt;button&gt;</code> 또는 목적에 맞는 <code>&lt;a&gt;</code>를 사용합니다. 장식용 아이콘은 <code>aria-hidden="true"</code>, 아이콘만 있는 버튼은 <code>aria-label</code>을 제공합니다.
+      </p>
+      <div class="button-code code-block">
+        <code>&lt;button type="button" class="btn btn--secondary btn--medium" aria-label="닫기"&gt;<br>
+        &nbsp;&nbsp;&lt;i class="ico ico-close" aria-hidden="true"&gt;&lt;/i&gt;<br>
+        &lt;/button&gt;</code>
+      </div>
+    </section>
+
+    <!-- Button Group -->
+    <section class="button-guide-section">
+      <h2 class="button-guide-section__title">Button Group</h2>
+      <p class="button-guide-section__intro">
+        아래 콘텐츠가 있을 경우 박스 버튼 컴포넌트와 조합하여 사용합니다. 버튼 개수·배치·비율·서브 텍스트 유무에 따라 여러 패턴을 사용할 수 있습니다.
+      </p>
+      <div class="btn-group-demos">
+        <div class="btn-group-demo">
+          <span class="btn-group-demo__label">Btn=1, Horizontal, Sub-Text=False</span>
+          <div class="btn-group">
+            <button type="button" class="btn btn--primary btn--large"><span class="btn__label">Label</span></button>
+          </div>
+        </div>
+        <div class="btn-group-demo">
+          <span class="btn-group-demo__label">Btn=1, Horizontal, Sub-Text=True</span>
+          <div class="btn-group">
+            <button type="button" class="btn btn--primary btn--large"><span class="btn__label">Label</span></button>
+            <p class="btn-group__subtext">약관 및 정보 제공 등에 동의합니다.</p>
+          </div>
+        </div>
+        <div class="btn-group-demo">
+          <span class="btn-group-demo__label">Btn=2, Vertical</span>
+          <div class="btn-group">
+            <button type="button" class="btn btn--primary btn--large"><span class="btn__label">Label</span></button>
+            <a href="#" class="btn-group__text-link">Label</a>
+          </div>
+        </div>
+      </div>
+      <div class="btn-group-demos">
+        <div class="btn-group-demo">
+          <span class="btn-group-demo__label">Btn=2, Horizontal, Ratio=1:1</span>
+          <div class="btn-group btn-group--horizontal btn-group--ratio-1-1">
+            <button type="button" class="btn btn--tertiary btn--large"><span class="btn__label">Label</span></button>
+            <button type="button" class="btn btn--primary btn--large"><span class="btn__label">Label</span></button>
+          </div>
+        </div>
+        <div class="btn-group-demo">
+          <span class="btn-group-demo__label">Btn=2, Horizontal, Ratio=4:6</span>
+          <div class="btn-group btn-group--horizontal btn-group--ratio-4-6">
+            <button type="button" class="btn btn--tertiary btn--large"><span class="btn__label">Label</span></button>
+            <button type="button" class="btn btn--primary btn--large"><span class="btn__label">Label</span></button>
+          </div>
+        </div>
+        <div class="btn-group-demo">
+          <span class="btn-group-demo__label">Btn=2, Horizontal, Sub-Icon_btn=True</span>
+          <div class="btn-group btn-group--horizontal">
+            <button type="button" class="btn btn--tertiary btn--large btn-icon-only" aria-label="아이콘 버튼">
+              <i class="ico ico-plus" aria-hidden="true"></i>
+              <span class="btn__label">Label</span>
+            </button>
+            <button type="button" class="btn btn--primary btn--large"><span class="btn__label">Label</span></button>
+          </div>
+        </div>
+        <div class="btn-group-demo">
+          <span class="btn-group-demo__label">Btn=3, Horizontal, Sub-Icon_btn=True</span>
+          <div class="btn-group btn-group--horizontal">
+            <button type="button" class="btn btn--tertiary btn--large btn-icon-only" aria-label="아이콘 버튼">
+              <i class="ico ico-plus" aria-hidden="true"></i>
+              <span class="btn__label">Label</span>
+            </button>
+            <button type="button" class="btn btn--primary btn--large"><span class="btn__label">Label</span></button>
+          </div>
+        </div>
+      </div>
+      <h3 class="button-guide-section__subtitle">Button Group 클래스 구조</h3>
+      <div class="button-table-wrap">
+        <table class="button-table">
+          <thead>
+            <tr>
+              <th class="button-table__th">구분</th>
+              <th class="button-table__th">클래스</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="button-table__cell">컨테이너</td>
+              <td class="button-table__cell"><span class="token-tag">btn-group</span></td>
+            </tr>
+            <tr>
+              <td class="button-table__cell">Modifier</td>
+              <td class="button-table__cell"><span class="token-tag">btn-group--horizontal</span> <span class="token-tag">btn-group--ratio-1-1</span> <span class="token-tag">btn-group--ratio-4-6</span></td>
+            </tr>
+            <tr>
+              <td class="button-table__cell">내부 요소</td>
+              <td class="button-table__cell"><span class="token-tag">btn-group__subtext</span> <span class="token-tag">btn-group__text-link</span> <span class="token-tag">btn-icon-only</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="button-guide-section__intro" style="margin-bottom: 0.5rem;">예시 코드</p>
+      <p class="button-guide-section__intro" style="font-size: 0.875rem; color: var(--color-text-03); margin-top: 0;">Btn=1 + Sub-Text</p>
+      <div class="button-code code-block">
+        <code>&lt;div class="btn-group"&gt;<br>
+        &nbsp;&nbsp;&lt;button type="button" class="btn btn--primary btn--large"&gt;&lt;span class="btn__label"&gt;동의합니다&lt;/span&gt;&lt;/button&gt;<br>
+        &nbsp;&nbsp;&lt;p class="btn-group__subtext"&gt;약관 및 정보 제공 등에 동의합니다.&lt;/p&gt;<br>
+        &lt;/div&gt;</code>
+      </div>
+      <p class="button-guide-section__intro" style="font-size: 0.875rem; color: var(--color-text-03); margin: 1rem 0 0.25rem;">Btn=2, Horizontal, Ratio=1:1</p>
+      <div class="button-code code-block">
+        <code>&lt;div class="btn-group btn-group--horizontal btn-group--ratio-1-1"&gt;<br>
+        &nbsp;&nbsp;&lt;button type="button" class="btn btn--tertiary btn--large"&gt;&lt;span class="btn__label"&gt;취소&lt;/span&gt;&lt;/button&gt;<br>
+        &nbsp;&nbsp;&lt;button type="button" class="btn btn--primary btn--large"&gt;&lt;span class="btn__label"&gt;확인&lt;/span&gt;&lt;/button&gt;<br>
+        &lt;/div&gt;</code>
+      </div>
+      <p class="button-guide-section__intro" style="font-size: 0.875rem; color: var(--color-text-03); margin: 1rem 0 0.25rem;">Btn=2, Sub-Icon_btn (아이콘 전용 + Primary)</p>
+      <div class="button-code code-block">
+        <code>&lt;div class="btn-group btn-group--horizontal"&gt;<br>
+        &nbsp;&nbsp;&lt;button type="button" class="btn btn--tertiary btn--large btn-icon-only" aria-label="닫기"&gt;&lt;i class="ico ico-close" aria-hidden="true"&gt;&lt;/i&gt;&lt;span class="btn__label"&gt;닫기&lt;/span&gt;&lt;/button&gt;<br>
+        &nbsp;&nbsp;&lt;button type="button" class="btn btn--primary btn--large"&gt;&lt;span class="btn__label"&gt;Label&lt;/span&gt;&lt;/button&gt;<br>
+        &lt;/div&gt;</code>
+      </div>
+    </section>
+  </main>
+  <footer class="guide-footer">
+    <p>Design System Guide — Button (button-spec.md)</p>
+  </footer>
+  <script>
+    (function() {
+      var sizes = [
+        { key: 'large', label: 'Large' },
+        { key: 'medium', label: 'Medium' },
+        { key: 'small', label: 'Small' },
+        { key: 'xsmall', label: 'xSmall' },
+        { key: 'xxsmall', label: 'xxSmall' }
+      ];
+      var variants = [
+        { id: 'matrix-primary', variant: 'primary' },
+        { id: 'matrix-secondary', variant: 'secondary' },
+        { id: 'matrix-tertiary', variant: 'tertiary' }
+      ];
+      function btnHtml(variant, size, icon, disabled) {
+        var d = disabled ? ' disabled' : '';
+        var left = icon === 'left' ? '<i class="ico ico-plus" aria-hidden="true"></i>' : '';
+        var right = icon === 'right' ? '<i class="ico ico-chevron-right" aria-hidden="true"></i>' : '';
+        return '<button type="button" class="btn btn--' + variant + ' btn--' + size + '"' + d + '>' + left + '<span class="btn__label">Label</span>' + right + '</button>';
+      }
+      function renderMatrix(tbodyId, variant) {
+        var tbody = document.getElementById(tbodyId);
+        if (!tbody) return;
+        sizes.forEach(function(s) {
+          var tr1 = document.createElement('tr');
+          tr1.innerHTML = '<td class="button-matrix__cell button-matrix__cell--label">default (' + s.label + ')</td>' +
+            '<td class="button-matrix__cell">' + btnHtml(variant, s.key, null, false) + '</td>' +
+            '<td class="button-matrix__cell">' + btnHtml(variant, s.key, 'left', false) + '</td>' +
+            '<td class="button-matrix__cell">' + btnHtml(variant, s.key, 'right', false) + '</td>';
+          tbody.appendChild(tr1);
+          var tr2 = document.createElement('tr');
+          tr2.innerHTML = '<td class="button-matrix__cell button-matrix__cell--label">Disabled</td>' +
+            '<td class="button-matrix__cell">' + btnHtml(variant, s.key, null, true) + '</td>' +
+            '<td class="button-matrix__cell">' + btnHtml(variant, s.key, 'left', true) + '</td>' +
+            '<td class="button-matrix__cell">' + btnHtml(variant, s.key, 'right', true) + '</td>';
+          tbody.appendChild(tr2);
+        });
+      }
+      variants.forEach(function(v) { renderMatrix(v.id, v.variant); });
+    })();
+  </script>
+</body>
+</html>

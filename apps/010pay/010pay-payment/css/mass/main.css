@@ -188,6 +188,9 @@
   font-size: 13px;
   line-height: 1.4;
   letter-spacing: -0.02em;
+  text-align: center;
+  padding: 0 12px;
+  word-break: keep-all;
 }
 
 .mass-container .card-tab-item-content .main-list li .list-text-wrap .main-text * {
@@ -639,11 +642,46 @@
   border-radius: 8px;
 }
 
+.ai-editor-recommend-content .ai-editor-recommend-list .img-wrap {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  border-radius: 8px;
+  padding-bottom: 100%; 
+}
+
+.ai-editor-recommend-content .ai-editor-recommend-list .img-wrap img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+  max-width: none;
+}
+
+/* 이미지 비율에 따른 동적 크기 */
+.ai-editor-recommend-content .ai-editor-recommend-list .img-wrap.portrait img {
+  width: 100%;
+  height: auto;
+}
+
+.ai-editor-recommend-content .ai-editor-recommend-list .img-wrap.landscape img {
+  width: auto;
+  height: 100%;
+}
+
+.ai-editor-recommend-content .ai-editor-recommend-list .img-wrap.square img {
+  width: 100%;
+  height: 100%;
+}
+
 .ai-editor-recommend-content .ai-editor-recommend-list .img-wrap.badge-new::before {
   content: "NEW";
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
   height: 24px;
   padding: 0 8px;
   line-height: 24px;
@@ -660,6 +698,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
   height: 24px;
   padding: 0 8px;
   line-height: 24px;
@@ -676,6 +715,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
   height: 24px;
   padding: 0 8px;
   line-height: 24px;

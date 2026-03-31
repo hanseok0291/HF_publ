@@ -116,7 +116,7 @@
           <ul class="recommend-list">
             <li>
               <div class="img-wrap">
-                <img src="../../images/mass/sample/ai-editor-img-01.png" alt="AI 에디터">
+                <img src="../../images/mass/sample/ai-editor-detail-img-01.png" alt="AI 에디터">
               </div>
               <div class="text-wrap">
                 <p class="sub-text">생활밀착</p>
@@ -157,7 +157,30 @@
 </body>
 <script>
   $(function () {
+    // recommend-list: 이미지 비율에 따라 landscape / portrait / square 클래스 추가
+    $('.recommend-list .img-wrap img').each(function () {
+      var $img = $(this);
+      var $wrap = $img.closest('.img-wrap');
 
+      function applyRatioClass() {
+        var w = this.naturalWidth || this.width;
+        var h = this.naturalHeight || this.height;
+        $wrap.removeClass('landscape portrait square');
+        if (w > h) {
+          $wrap.addClass('landscape');
+        } else if (h > w) {
+          $wrap.addClass('portrait');
+        } else {
+          $wrap.addClass('square');
+        }
+      }
+
+      if (this.complete) {
+        applyRatioClass.call(this);
+      } else {
+        $img.on('load', applyRatioClass);
+      }
+    });
   });
 </script>
 

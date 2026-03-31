@@ -1,0 +1,212 @@
+/* ============================================
+   Chip (Chips-basic / Chips-option) 가이드
+   ============================================ */
+
+.chip-page-header {
+  margin-bottom: var(--space-24);
+}
+
+.chip-page-intro {
+  margin: 0 0 var(--space-16);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text-03);
+}
+
+.chip-page-intro + .chip-page-intro {
+  margin-top: 0;
+}
+
+/* 탭 */
+.chip-tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-08);
+  padding: var(--space-04);
+  margin: 0 0 var(--space-24);
+  border-radius: var(--radius-16);
+  background: var(--color-background-02);
+}
+
+.chip-tab {
+  border: none;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-03);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.chip-tab.is-active {
+  background: var(--color-background-01);
+  color: var(--color-text-02);
+}
+
+.chip-tab:focus-visible {
+  outline: 2px solid var(--color-line-03);
+  outline-offset: 2px;
+}
+
+/* 그룹 영역 */
+.chip-section {
+  margin-bottom: var(--space-32);
+}
+
+.chip-section__title {
+  margin: 0 0 var(--space-08);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-02);
+}
+
+.chip-section__desc {
+  margin: 0 0 var(--space-16);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-03);
+}
+
+.chip-section__grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.chip-row-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-04);
+  margin: 0 0 var(--space-08);
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-08);
+}
+
+/* 컴포넌트용 chip */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-04);
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid var(--color-line-03);
+  background: var(--color-background-01);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--color-text-03);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.chip--primary {
+  background: var(--color-background-01);
+  border-color: var(--color-line-03);
+  color: var(--color-text-03);
+}
+
+.chip--sub {
+  background: var(--color-background-01);
+  border-color: var(--color-line-03);
+  color: var(--color-text-03);
+}
+
+.chip--option {
+  background: var(--color-background-01);
+  border-color: var(--color-line-03);
+  color: var(--color-text-03);
+  border-radius: var(--radius-08); /* option type: radius 8px */
+}
+
+.chip--active {
+}
+
+/* off(default) 상태 보더 유지 */
+.chip--primary:not(.chip--active),
+.chip--option:not(.chip--active) {
+  border-color: var(--color-line-03);
+}
+
+/* Chips-basic / Primary (on/off) */
+.chip--primary.chip--active {
+  background: var(--color-text-02);   /* 거의 검정 배경 */
+  border-color: transparent;          /* on 상태에서는 보더 없음 */
+  color: var(--color-text-01);        /* 흰색 텍스트 */
+  font-weight: 600;
+}
+
+/* Chips-basic / Sub (on/off) */
+.chip--sub.chip--active {
+  background: var(--color-background-02);
+  border-color: transparent;          /* on 상태에서는 보더 없음 */
+  color: var(--color-text-02);
+  font-weight: 600;
+}
+
+/* Chips-option (default/active/disabled) - Figma Chips-option 컴포넌트 기준 */
+.chip--option.chip--active {
+  background: var(--color-background-01);
+  border-color: var(--color-text-03);   /* 테두리만 진해짐 */
+  color: var(--color-text-03);
+  font-weight: 400;
+}
+
+.chip--option:disabled {
+  background: var(--color-background-01);
+  border-color: var(--color-line-03);
+  color: var(--color-disabled);        /* status-disabled 톤 */
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.chip__label {
+  display: inline-block;
+}
+
+/* 스크롤/고정 예시 영역 */
+.chip-scroll-demo {
+  position: relative;
+  overflow-x: auto;
+  padding: var(--space-08) 0;
+  margin: 0 0 var(--space-16);
+}
+
+.chip-scroll-demo__inner {
+  display: inline-flex;
+  gap: var(--space-08);
+  padding-right: 80px;
+}
+
+.chip-scroll-demo__fixed {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding-right: var(--space-08);
+  background: linear-gradient(90deg, var(--color-background-01) 80%, rgba(255, 255, 255, 0) 100%);
+}
+
+.chip-scroll-demo__fixed .chip {
+  min-width: 40px;
+  justify-content: center;
+}
+
+.chip-scroll-demo__scroll-hint {
+  font-size: 12px;
+  color: var(--color-text-04);
+}
+
+/* 코드 블록: 공통 .code-block 사용 */
+.chip-code {
+}
+

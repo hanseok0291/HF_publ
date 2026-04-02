@@ -601,6 +601,56 @@ Cursor 및 개발자는 버튼이 포함된 UI를 구현할 때 반드시 이 �
 
 ---
 
+# Segmented control (`Button/Segmented`)
+
+Box Button과 별도로, **피그마 보조 컴포넌트** `Button/Segmented` 및 **`ButtonSegmentedControlItem`** 규칙을 따른다. 구현·데모는 `pages/buttons.html` · `css/buttons.css`의 `btn-segmented*` 클래스를 참고한다.
+
+## 피그마 참조
+
+| 구분 | 노드 ID (예시) |
+|------|----------------|
+| 세그먼트 컨테이너 `Button/Segmented` | `2230:18688` |
+| 세그먼트 아이템 세트 `Segmented Control Item` | `2230:17164` |
+| 아이템 변형 Default | `2230:17124` |
+| 아이템 변형 Active | `2230:17126` |
+
+## Type (세그먼트 개수·전체 너비)
+
+| Type | 전체 너비(참고) | 세그먼트 수 |
+|------|-----------------|-------------|
+| 1 | 142 | 2 |
+| 2 | 213 | 3 |
+| 3 | 284 | 4 |
+
+Type 1 기준 **단일 셀 가로 67px** — `(142 − 컨테이너 좌우 패딩 4 − 항목 간 간격 4) ÷ 2`.
+
+## 컨테이너 (`btn-segmented`)
+
+- 배경: 시맨틱 `background-02` (`--color-background-02`)
+- 안쪽 여백: **2px**
+- 모서리: **12px** (`--radius-12`)
+- 세그먼트 간 간격: **4px** (CSS: 인접 형제 `margin-left`)
+
+## Segmented Control Item (`btn-segmented__item`)
+
+피그마 **`ButtonSegmentedControlItem`**과 동일하게 맞출 것.
+
+- **크기**: 높이 **42px**, Type 1에서 폭 **67px**(flex 분할 시 자동)
+- **패딩**: 가로 **16px** · 세로 **12px** (`spacing-16` / `spacing-12`)
+- **타이포**: **14px**, line-height **1.4**, letter-spacing **-2%** (≈ **-0.02em**)
+- **Default**(비선택): 배경 투명, 모서리 **12px**, 글자색 **`text-05`**, font-weight **400** (Regular)
+- **Active**(선택): 배경 **`background-01`**, 모서리 **10px**, 글자색 **`text-03`**, font-weight **700** (Bold)
+
+컨테이너 **세로 합계**는 패딩 상하 4px + 아이템 42px = **46px**이다. (이전 문서·구현의 48px 고정 min-height는 피그마 아이템 42px과 불일치하므로 사용하지 않는다.)
+
+## 접근성
+
+- 컨테이너: `role="tablist"` 및 `aria-label`
+- 항목: `role="tab"`, `aria-selected="true|false"`
+- 키보드: 화살표 이동 등 — **10-a11y-semantic** · **30-design-guide-button-variants.mdc**
+
+---
+
 # CSS 구현 예시
 
 공통 및 variant는 design-system.md·color-semantic 토큰을 사용한다. 실제 구현은 `pages/buttons.html` 및 `css/buttons.css`를 참고한다.
@@ -629,7 +679,7 @@ Cursor 및 개발자는 버튼이 포함된 UI를 구현할 때 반드시 이 �
 
 .btn--secondary {
   background-color: var(--color-button-secondary);
-  color: var(--color-text-02);
+  color: var(--color-text-03);
   /* 테두리 없음 */
 }
 .btn--secondary:disabled {
@@ -639,7 +689,7 @@ Cursor 및 개발자는 버튼이 포함된 UI를 구현할 때 반드시 이 �
 
 .btn--tertiary {
   background-color: var(--color-button-tertiary);
-  color: var(--color-text-02);
+  color: var(--color-text-03);
   border: 1px solid var(--color-line-03);
 }
 .btn--tertiary:disabled {
@@ -792,8 +842,8 @@ Cursor는 버튼이 포함된 UI를 생성할 때 반드시 아래 규칙을 따
 | Btn=2, Vertical | 세로 배치: Primary + Text 링크 |
 | Btn=2, Horizontal, Ratio=1:1 | 가로 배치, Tertiary + Primary 동일 비율 |
 | Btn=2, Horizontal, Ratio=4:6 | 가로 배치, Tertiary 40% / Primary 60% |
-| Btn=2, Horizontal, Sub-Icon_btn=True | Tertiary 아이콘 전용(56×56) + Primary |
-| Btn=3, Horizontal, Sub-Icon_btn=True | Btn=2 Sub-Icon_btn과 동일(아이콘 + Primary) |
+| Btn=2, Horizontal, Icon=true, Sub-Icon_btn=True | Tertiary 아이콘 전용(56×56) + Primary — Figma `Icon/heart_24`(찜) 등 |
+| Btn=3, Horizontal, Icon=true, Sub-Icon_btn=True | Btn=2와 동일 구성(아이콘 전용 Tertiary + Primary) |
 
 ## Btn=1 (단일 버튼)
 
@@ -816,7 +866,7 @@ Cursor는 버튼이 포함된 UI를 생성할 때 반드시 아래 규칙을 따
 - **Horizontal=False (세로)**: Primary 풀 너비 + 그 아래 Text 링크. 링크는 `btn-group__text-link`로 스타일(16px, text-04, 정렬).
 - **Horizontal=True, Ratio=1:1**: Tertiary + Primary를 가로로 동일 비율.
 - **Horizontal=True, Ratio=4:6**: Tertiary 40%, Primary 60%.
-- **Sub-Icon_btn=True**: 좌측 Tertiary 아이콘 전용 버튼(56×56) + Primary가 나머지 너비.
+- **Icon=true, Sub-Icon_btn=True**: 좌측 Tertiary 아이콘 전용 버튼(56×56) + Primary가 나머지 너비. 피그마 인스턴스는 **`Icon/heart_24`**(찜하기)를 사용한다 — 구현 시 `ico-heart`(또는 기획에 맞는 `icon-spec.md` 정의 아이콘).
 
 예시 (가로, Ratio=1:1)
 
@@ -842,13 +892,13 @@ Cursor는 버튼이 포함된 UI를 생성할 때 반드시 아래 규칙을 따
 </div>
 ```
 
-예시 (Sub-Icon_btn=True)
+예시 (Icon=true, Sub-Icon_btn=True — 하트)
 
 ```html
 <div class="btn-group btn-group--horizontal">
-  <button type="button" class="btn btn--tertiary btn--large btn-icon-only" aria-label="닫기">
-    <i class="ico ico-close" aria-hidden="true"></i>
-    <span class="btn__label">닫기</span>
+  <button type="button" class="btn btn--tertiary btn--large btn-icon-only" aria-label="찜하기">
+    <i class="ico ico-heart" aria-hidden="true"></i>
+    <span class="btn__label">찜하기</span>
   </button>
   <button type="button" class="btn btn--primary btn--large">
     <span class="btn__label">Label</span>
@@ -858,7 +908,7 @@ Cursor는 버튼이 포함된 UI를 생성할 때 반드시 아래 규칙을 따
 
 ## Btn=3
 
-Horizontal + Sub-Icon_btn=True일 때만 사용. 구성은 Btn=2의 Sub-Icon_btn=True와 동일(아이콘 전용 Tertiary + Primary).
+Horizontal + Icon=true + Sub-Icon_btn=True일 때만 사용. 구성은 Btn=2의 Sub-Icon_btn=True와 동일(아이콘 전용 Tertiary + Primary).
 
 ## 클래스 구조 (Button Group)
 

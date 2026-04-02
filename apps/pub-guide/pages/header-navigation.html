@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Header · Navigation | 디자인 시스템</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/header-navigation.css">
+</head>
+<body>
+  <!-- header-navigation -->
+  <header class="guide-header">
+    <a href="../index.html" class="guide-back">← 디자인 시스템 가이드</a>
+    <h1 class="page-title">Header · Navigation</h1>
+  </header>
+
+  <main class="guide-main">
+    <p class="hn-lead">
+      전역 상단 바 <strong>Gnb-header</strong>와 서브 화면 상단 <strong>Navigation-top</strong>(<code>NavigationTop</code>) 스펙 요약입니다.
+      최신 수치·에셋은 Figma 인스턴스를 우선하고, Cursor 룰 <code>30-design-guide-header-navigation.mdc</code>와 동일 계열입니다.
+    </p>
+
+    <!-- gnb-header -->
+    <section class="section" aria-labelledby="hn-gnb-title">
+      <h2 id="hn-gnb-title" class="section__title">Gnb-header</h2>
+      <p class="hn-lead hn-lead--tight">앱·서비스 <strong>최상단 GNB</strong>. 하단 탭(Navigation-bottom)과 역할을 구분합니다.</p>
+
+      <h3 class="hn-subtitle">GNB 정의 (Figma 설명)</h3>
+      <ul class="hn-list">
+        <li><strong>Home</strong>: RROUND 홈 (라이프)</li>
+        <li><strong>Sub</strong>: 스토어 / 피드 / 챌린지 / 휘슬 / 페이 / 마이(통합)</li>
+      </ul>
+
+      <div class="hn-table-wrap">
+        <table class="hn-table">
+          <caption class="visually-hidden">Gnb-header Type 변형</caption>
+          <thead>
+            <tr>
+              <th scope="col">Type</th>
+              <th scope="col">좌측</th>
+              <th scope="col">우측</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>헥토파이낸셜</td>
+              <td>브랜드 로고 (약 121×18 대역)</td>
+              <td>액션 아이콘 슬롯</td>
+            </tr>
+            <tr>
+              <td>영업CRM</td>
+              <td>텍스트 타이틀 (예: 타이틀)</td>
+              <td>동일</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="hn-subtitle">레이아웃·토큰</h3>
+      <ul class="hn-list">
+        <li>높이 <strong>56px</strong>, 폭 기준 <strong>375</strong></li>
+        <li>좌우 패딩 <strong>16</strong> (<code>spacing-16</code>)</li>
+        <li>배경 <code>background-01</code>, 하단 구분선 <strong>0.5px</strong> — 색은 <code>line-*</code> 시맨틱에 맞출 것</li>
+        <li>우측 아이콘 간격 <strong>16px</strong> — CSS는 flex <code>gap</code> 대신 <strong>margin</strong>으로 구현 (<code>20-style-convention</code>)</li>
+        <li>영업CRM 타이틀: <strong>Headline 2 / Bold</strong> — 18px, lh 1.4, letter-spacing -3%, weight 700</li>
+        <li>아이콘 시각 <strong>24×24</strong>, 단독 버튼 히트 <strong>48×48</strong> 권장</li>
+      </ul>
+
+      <p class="hn-note">마크업: <code>&lt;header&gt;</code> 또는 <code>role="banner"</code>, 로고·아이콘 버튼 <code>aria-label</code> 등 <code>10-a11y-semantic</code> 참고.</p>
+    </section>
+    <!-- //gnb-header -->
+
+    <!-- navigation-top -->
+    <section class="section" aria-labelledby="hn-top-title">
+      <h2 id="hn-top-title" class="section__title">Navigation-top (<code>NavigationTop</code>)</h2>
+      <p class="hn-lead hn-lead--tight"><strong>Depth 2·Sub</strong> 등 하위 화면 상단 56px 바. <strong>Gnb-header와 동시에 이중으로 쌓지 않도록</strong> 맥락을 맞춥니다.</p>
+
+      <div class="hn-table-wrap">
+        <table class="hn-table">
+          <caption class="visually-hidden">NavigationTop property1 변형</caption>
+          <thead>
+            <tr>
+              <th scope="col">property1</th>
+              <th scope="col">구성</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>Top1_Default_Icon</code></td>
+              <td>좌 뒤로 · 중앙 타이틀 · 우 (선택) 보조 텍스트 + 검색 아이콘</td>
+            </tr>
+            <tr>
+              <td><code>Top2_Default_Txt</code></td>
+              <td>좌 뒤로 · 중앙 타이틀 · 우 텍스트 액션만</td>
+            </tr>
+            <tr>
+              <td><code>Top3_NonText</code></td>
+              <td>좌 뒤로 · 타이틀 없음 · 우 검색 아이콘</td>
+            </tr>
+            <tr>
+              <td><code>Top4_Search</code></td>
+              <td>좌 뒤로 · 캡슐 검색 필드(placeholder + 필드 내 검색 아이콘)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="hn-subtitle">공통</h3>
+      <ul class="hn-list">
+        <li>높이 <strong>56px</strong>, 폭 <strong>375</strong>, 배경 <code>background-01</code></li>
+        <li>좌측 <code>ico / allow_left</code> (또는 구현 시 <code>arrow-left</code> 등 정규화 이름) <strong>24×24</strong>, 슬롯 <strong>left 16</strong> · 너비 <strong>64px</strong> 대역</li>
+        <li>Top1·Top2 행 내부 간격 <strong>8px</strong>, 우측 액션 그룹 <strong>16px</strong> — 역시 <strong>margin</strong>으로 맞출 것</li>
+      </ul>
+
+      <h3 class="hn-subtitle">타이포</h3>
+      <ul class="hn-list">
+        <li>중앙 타이틀: <strong>Body 1 · Bold</strong> 16px, lh 1.4, -2%, <code>text-03</code>, 가운데, 한 줄 말줄임 · 중앙 영역 좌우 <strong>padding 72px</strong> 대역</li>
+        <li>우측 보조 텍스트: <strong>Body 1 · Regular</strong> 16px, <code>text-04</code></li>
+      </ul>
+
+      <h3 class="hn-subtitle">Top4_Search</h3>
+      <ul class="hn-list">
+        <li>바 패딩: 세로 <strong>6px</strong>, 가로 <strong>16px</strong></li>
+        <li>뒤로와 검색 영역 사이 <strong>16px</strong></li>
+        <li>검색 박스: 높이 <strong>44px</strong>, <code>background-02</code>, 캡슐형 radius — DS 토큰 합의</li>
+        <li>내부 패딩 가로 16 · 세로 8, 플레이스홀더 <code>text-06</code> (Body 1 Regular)</li>
+      </ul>
+
+      <p class="hn-note">하단 탭·Tabs-Bar·시트와의 조합은 <code>30-design-guide-patterns.mdc</code> Navigation 절을 참고합니다.</p>
+    </section>
+    <!-- //navigation-top -->
+  </main>
+  <!-- //header-navigation -->
+
+  <footer class="guide-footer">
+    <p>Design System Guide</p>
+  </footer>
+</body>
+</html>

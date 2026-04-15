@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- [workflow-meta] 피그마 노드 40002265:6568(테스트1) · MCP get_design_context 정합 -->
+  <!-- //[workflow-meta] -->
+  <title>글로벌 랜딩 테스트 3 | 디자인 시스템 · 피그마 정합본 (test3_v2)</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <style>
+    .test3-mobile {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      border: 1px solid var(--color-line-03);
+      background: var(--color-background-01);
+      overflow: hidden;
+    }
+
+    .test3-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      padding: 0 var(--space-16);
+      border-bottom: 0.5px solid rgba(246, 246, 249, 0.7);
+      background: var(--color-background-01);
+    }
+
+    .test3-logo {
+      display: block;
+      width: 121px;
+      height: 17px;
+    }
+
+    .test3-logo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Gnb: 피그마 IconHandle 24×24dp (40002265:6577) — 가이드 아이콘 에셋 */
+    .test3-menu {
+      width: 48px;
+      height: 48px;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .test3-menu:focus-visible {
+      outline: 2px solid var(--color-primary-01);
+      outline-offset: 2px;
+      border-radius: var(--radius-08);
+    }
+
+    .test3-menu img {
+      display: block;
+      width: 24px;
+      height: 24px;
+    }
+
+    /*
+     * Hero Display: 피그마 01-hero 40002265:6578 · top 352, h 165 (375 기준)
+     * · 헤더 56px가 별도 블록이므로 히어로 내 상단 여백 = 352px − 56px
+     */
+    .test3-hero {
+      position: relative;
+      height: 756px;
+      padding: 0 var(--space-16);
+      background: var(--color-background-01);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .test3-hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .test3-hero-dim {
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 139, 51, 0.1);
+      pointer-events: none;
+    }
+
+    /* Display 2 / Bold 40 (30-design-guide-foundation) */
+    .test3-display-wrap {
+      position: relative;
+      z-index: 1;
+      box-sizing: border-box;
+      min-height: 165px;
+      padding-top: calc(352px - 56px);
+    }
+
+    .test3-display {
+      margin: 0;
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.03em;
+      color: var(--color-text-01);
+    }
+
+    .test3-main {
+      background: var(--color-background-02);
+      padding-bottom: var(--space-40);
+    }
+
+    .test3-section {
+      padding: var(--space-40) var(--space-16) 0;
+    }
+
+    /* 피그마 데이터 블록 40002200:1063 · 내부 타이틀 그룹 top 50 */
+    .test3-section--data {
+      padding-top: calc(var(--space-32) + var(--space-16) + var(--space-02));
+    }
+
+    /* 섹션 랜드마크 보강(10-a11y: h1 다음 h2) */
+    .test3-sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /*
+     * 서비스 블록 Frame 1707484587 (40002200:943)
+     * · 피그마 img top 50 → 상단 인셋 spacing 토큰 합 50 (32+16+2)
+     */
+    .test3-section--service {
+      padding-top: calc(var(--space-32) + var(--space-16) + var(--space-02));
+    }
+
+    .test3-card {
+      box-sizing: border-box;
+      width: 100%;
+      border: 1px solid var(--color-line-03);
+      border-radius: var(--radius-16);
+      overflow: hidden;
+      background: var(--color-background-01);
+    }
+
+    .test3-card + .test3-card {
+      margin-top: var(--space-16);
+    }
+
+    /*
+     * contents-01 (피그마 40002200:905 · 화면 노드 40002200:880)
+     * · 프레임 343×423 · fill background/02 · line/03 — 화면에서 left 16 = 섹션 spacing-16 + 카드 width 100%
+     * · CK 이미지(opacity 40% + luminosity) + 156.394deg 그라데이션 시트 (40002265:6584)
+     * · 텍스트 그룹 inset 29px · 제목~본문 간격 20px (30-design-guide-layout: 인셋+100%)
+     */
+    .test3-card--contents01 {
+      position: relative;
+      min-height: 423px;
+      background: var(--color-background-02);
+    }
+
+    .test3-card__deco {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .test3-card__deco-img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 260%;
+      max-width: none;
+      height: auto;
+      min-height: 160%;
+      transform: translate(-50%, -50%) rotate(156.81deg) scaleY(-1);
+      object-fit: cover;
+      opacity: 0.4;
+      mix-blend-mode: luminosity;
+    }
+
+    .test3-card__deco-sheet {
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(
+        156.394deg,
+        rgba(255, 255, 255, 0) 2.7622%,
+        rgba(255, 255, 255, 0.1) 22.207%,
+        rgba(255, 217, 176, 0.1) 56.452%,
+        rgba(255, 255, 255, 0.1) 99.723%
+      );
+    }
+
+    .test3-card__body--contents01 {
+      position: relative;
+      z-index: 1;
+      /* 피그마 텍스트 그룹 left/top 29 — 토큰 24+4+1 */
+      padding: calc(var(--space-24) + var(--space-04) + 1px);
+    }
+
+    .test3-card--contents01 .test3-card__desc {
+      margin-top: var(--space-20);
+      /* 피그마 Body: semantic text/03 */
+      color: var(--color-text-03);
+    }
+
+    /*
+     * contents-02 — 피그마 40002265:6589 톤(343×343, border primary, 반투명 오렌지)
+     * · 배경 인터랙션: hectofinancial.co.kr/main `.card.card_5` / resources/css/main.css
+     *   `move_bg_icon` 키프레임 수치 그대로 (test3 네임스페이스)
+     */
+    .test3-card--contents02 {
+      position: relative;
+      min-height: 343px;
+      background: rgba(255, 97, 20, 0.4);
+      border-color: var(--color-primary-01);
+      overflow: hidden;
+    }
+
+    .test3-card--contents02 .test3-card__bg-icon {
+      position: absolute;
+      display: block;
+      border-radius: 50%;
+      background-color: rgba(255, 97, 20, 1);
+      pointer-events: none;
+    }
+
+    .test3-card--contents02 .test3-card__bg-icon--1 {
+      left: -27%;
+      top: -17%;
+      width: 94%;
+      height: 94%;
+      -webkit-filter: blur(70px);
+      filter: blur(70px);
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      will-change: filter, transform;
+      animation: test3-move-bg-icon-1 10s ease-out infinite;
+    }
+
+    .test3-card--contents02 .test3-card__bg-icon--2 {
+      left: 38%;
+      top: -35%;
+      width: 71%;
+      height: 71%;
+      -webkit-filter: blur(50px);
+      filter: blur(50px);
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      will-change: filter, transform;
+      animation: test3-move-bg-icon-2 10s ease-out infinite;
+    }
+
+    @keyframes test3-move-bg-icon-1 {
+      0% {
+        left: -27%;
+        top: -17%;
+        width: 94%;
+        height: 94%;
+      }
+      25% {
+        left: 27%;
+        top: -44%;
+        width: 115%;
+        height: 115%;
+      }
+      50% {
+        left: 38%;
+        top: -29%;
+        width: 119%;
+        height: 119%;
+      }
+      75% {
+        left: 0%;
+        top: 33%;
+        width: 119%;
+        height: 119%;
+      }
+      100% {
+        left: -27%;
+        top: -17%;
+        width: 94%;
+        height: 94%;
+      }
+    }
+
+    @keyframes test3-move-bg-icon-2 {
+      0% {
+        left: 38%;
+        top: -35%;
+        width: 71%;
+        height: 71%;
+      }
+      25% {
+        left: 56%;
+        top: 45%;
+        width: 87%;
+        height: 87%;
+      }
+      50% {
+        left: 17%;
+        top: 53%;
+        width: 84%;
+        height: 84%;
+      }
+      75% {
+        left: -42%;
+        top: 19%;
+        width: 84%;
+        height: 84%;
+      }
+      100% {
+        left: 38%;
+        top: -35%;
+        width: 71%;
+        height: 71%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .test3-card--contents02 .test3-card__bg-icon--1,
+      .test3-card--contents02 .test3-card__bg-icon--2 {
+        animation: none;
+      }
+    }
+
+    .test3-card__body--contents02 {
+      position: relative;
+      z-index: 1;
+      padding: calc(var(--space-24) + var(--space-04) + 1px);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-12);
+    }
+
+    .test3-card--contents02 .test3-card__txt-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-08);
+    }
+
+    .test3-card--contents02 .test3-card__desc {
+      margin-top: 0;
+    }
+
+    .test3-card__body {
+      padding: var(--space-24);
+    }
+
+    .test3-card__chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      min-height: 24px;
+      margin: 0;
+      border: 1px solid var(--color-line-01);
+      border-radius: 999px;
+      padding: var(--space-08) var(--space-12);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: normal;
+      letter-spacing: -0.02em;
+      color: var(--color-text-01);
+    }
+
+    .test3-card--contents02 .test3-card__title,
+    .test3-card--contents02 .test3-card__desc {
+      color: var(--color-text-01);
+    }
+
+    .test3-card__title {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.03em;
+      color: var(--color-text-03);
+    }
+
+    .test3-card__desc {
+      margin: var(--space-08) 0 0;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: var(--color-text-04);
+      word-break: keep-all;
+    }
+
+    .test3-service-title {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.03em;
+      color: var(--color-text-03);
+    }
+
+    /* 피그마 40002200:951 img · #b8b6b9 · h 217 — DOM 1순위, 상단 margin 없음 */
+    .test3-service-frame {
+      margin-top: 0;
+      width: 100%;
+      height: 217px;
+      overflow: hidden;
+      background: #b8b6b9;
+    }
+
+    /* 이미지 하단~헤드라인: 프레임 기준 297−267=30px → 24+4+2 */
+    .test3-service-frame + .test3-service-title {
+      margin-top: calc(var(--space-24) + var(--space-04) + var(--space-02));
+    }
+
+    .test3-service-img {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* 헤드라인(2줄·20/1.4) 하단~노티스(y377): 약 24px — spacing-24 */
+    .test3-notice-list {
+      list-style: none;
+      margin: var(--space-24) 0 0;
+      padding: 0;
+    }
+
+    .test3-notice-list li {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      margin: 0;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: var(--color-text-04);
+    }
+
+    .test3-notice-list li + li {
+      margin-top: var(--space-08);
+    }
+
+    .test3-notice-list__bullet {
+      flex-shrink: 0;
+      width: 4px;
+      height: 17px;
+      margin-top: 2px;
+      margin-right: var(--space-08);
+    }
+
+    .test3-notice-list__bullet img {
+      display: block;
+      width: 4px;
+      height: 17px;
+    }
+
+    .test3-notice-list__text {
+      flex: 1 1 0;
+      min-width: 0;
+      word-break: keep-all;
+    }
+
+    /*
+     * 파트너 contents-04 — 피그마 40002265:6605
+     * · min-height 812px, 세로 gap 85px(로고 밴드 ↔ 중앙 ↔ 로고 밴드)
+     * · 로고: 밴드 내 2행(각 50px), 슬롯 142px + spacing-24, 무한 롤링은 밴드 내부 처리
+     */
+    /* 로고 밴드 좌표는 375 기준 0 inset — 섹션 좌우 패딩 제거 */
+    .test3-section.test3-partner {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    /* 피그마 contents-04: 세로 스택을 812 프레임 내 수직 중앙(-translate-y-1/2, top 50%) */
+    .test3-partner {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 812px;
+      padding-bottom: var(--space-40);
+      background: var(--color-background-01);
+      overflow: hidden;
+    }
+
+    .test3-partner-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 85px;
+      width: 100%;
+    }
+
+    /*
+     * 로고 밴드 100px = 상·하 행 50px (피그마 2줄)
+     * · pintel main.js: 롤러 복제 + setInterval(10ms, 1px), 상행 left / 하행 right
+     */
+    .test3-partner-logo-band {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100px;
+      overflow: hidden;
+      background: var(--color-background-01);
+    }
+
+    .test3-partner-logo-band__row {
+      position: relative;
+      flex: 0 0 50px;
+      height: 50px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .test3-partner-logo-band__wrap {
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .test3-partner-logo-band__roller {
+      position: absolute;
+      top: 0;
+      height: 100%;
+    }
+
+    .test3-partner-logo-band__roller--left {
+      left: 0;
+    }
+
+    .test3-partner-logo-band__roller--right {
+      right: 0;
+    }
+
+    .test3-partner-logo-band__list {
+      display: flex;
+      flex-flow: row nowrap;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .test3-partner-logo-band .test3-partner-slot {
+      position: relative;
+      flex: 0 0 auto;
+      width: 142px;
+      height: 50px;
+      margin: 0 var(--space-24);
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .test3-partner-logo-band .test3-partner-slot img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .test3-partner-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      width: 335px;
+      max-width: 100%;
+      text-align: center;
+    }
+
+    .test3-partner-hecto {
+      display: block;
+      width: 235px;
+      height: 33px;
+    }
+
+    .test3-partner-title {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.03em;
+      color: var(--color-text-03);
+    }
+
+    .test3-data-title {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.03em;
+      color: var(--color-text-03);
+    }
+
+    .test3-data-subtitle {
+      margin: var(--space-04) 0 0;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: -0.03em;
+      color: var(--color-text-03);
+    }
+
+    .test3-data-card {
+      margin-top: var(--space-24);
+    }
+
+    /* 피그마 40002200:1068/1077 · #7a7a7a 정사각 — 섹션 인셋 + 폭 100% */
+    .test3-data-img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: #7a7a7a;
+    }
+
+    .test3-data-img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* 첫 카드 상단 그라데이션(피그마 40002200:1072) */
+    .test3-data-img-wrap--grad::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 33.546%;
+      pointer-events: none;
+      background: linear-gradient(
+        to top,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(94, 113, 191, 0.5) 93.849%
+      );
+    }
+
+    .test3-data-card h3 {
+      /* 피그마 데이터 블록: 이미지~텍스트 column gap 24 */
+      margin: var(--space-24) 0 0;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.03em;
+      color: var(--color-text-03);
+    }
+
+    .test3-data-card p {
+      margin: var(--space-04) 0 0;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: var(--color-text-04);
+      word-break: keep-all;
+    }
+
+    /* CTA — 피그마 40002265:6719 · py 284px */
+    .test3-cta {
+      margin-top: 0;
+      background: var(--color-primary-01);
+      min-height: 812px;
+      padding: 284px var(--space-20);
+      box-sizing: border-box;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .test3-cta-inner {
+      width: 100%;
+    }
+
+    .test3-cta p {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.03em;
+      color: var(--color-text-01);
+      word-break: keep-all;
+    }
+
+    /* 피그마 본문~버튼 간격 30px → 24+4+2 */
+    .test3-cta button {
+      margin-top: calc(var(--space-24) + var(--space-04) + var(--space-02));
+      height: 44px;
+      border: 1px solid var(--color-line-03);
+      border-radius: var(--radius-12);
+      padding: var(--space-08) var(--space-20);
+      background: transparent;
+      color: var(--color-text-01);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .test3-cta button:focus-visible {
+      outline: 2px solid var(--color-text-01);
+      outline-offset: 2px;
+    }
+
+    .test3-footer {
+      border-top: 1px solid var(--color-line-03);
+      padding: var(--space-12) var(--space-16) var(--space-24);
+      background: var(--color-background-01);
+    }
+
+    .test3-sns {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      font-size: 0;
+    }
+
+    .test3-sns li {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .test3-sns li + li {
+      margin-left: calc(var(--space-04) + var(--space-02));
+    }
+
+    .test3-sns button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--color-line-02);
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .test3-sns button img {
+      display: block;
+      max-width: 20px;
+      max-height: 18px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .test3-sns button:focus-visible {
+      outline: 2px solid var(--color-primary-01);
+      outline-offset: 2px;
+    }
+
+    .test3-footer hr {
+      border: 0;
+      height: 1px;
+      margin: var(--space-08) calc(var(--space-16) * -1) 0;
+      background: var(--color-line-03);
+    }
+
+    .test3-footer-address {
+      margin: var(--space-20) 0 0;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: -0.02em;
+      /* 피그마 Footer Body 40002200:1336 — text/03 */
+      color: var(--color-text-03);
+    }
+
+    .test3-footer-copy {
+      margin: var(--space-16) 0 0;
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      /* 피그마 Footer Caption 40002200:1339 — text/03 */
+      color: var(--color-text-03);
+    }
+  </style>
+</head>
+<body>
+  <!-- [test3-mobile] -->
+  <article class="test3-mobile" aria-label="헥토파이낸셜 글로벌 랜딩 컴포넌트">
+      <!-- [header] 피그마 Gnb-header · 00-core 상태바 제외 -->
+      <header class="test3-header">
+        <h2 class="test3-sr-only">헥토파이낸셜</h2>
+        <a class="test3-logo" href="#" aria-label="헥토파이낸셜 메인">
+          <img src="../assets/ftp-bundle/3a4de6b9dc1459dd3baece3ac12777af99741d63.svg" alt="">
+        </a>
+        <!-- [gnb-menu-icon] -->
+        <button type="button" class="test3-menu" aria-label="메뉴 열기">
+          <img src="../assets/icons/ico-hamburger.svg" width="24" height="24" alt="">
+        </button>
+        <!-- //gnb-menu-icon -->
+      </header>
+      <!-- //header -->
+
+      <!-- [hero] Display 2 · mp4 + 딤(피그마 756px 영역) -->
+      <section class="test3-hero" aria-label="대표 카피">
+        <video class="test3-hero-video" autoplay muted loop playsinline preload="metadata">
+          <source src="../assets/video/td02630000090_1080p.mp4" type="video/mp4">
+        </video>
+        <div class="test3-hero-dim" aria-hidden="true"></div>
+        <div class="test3-display-wrap">
+          <h1 class="test3-display">글로벌 경제와<br>뱅킹 서비스의 중심<br>헥토파이낸셜</h1>
+        </div>
+      </section>
+      <!-- //hero -->
+
+      <main class="test3-main" id="main">
+        <section class="test3-section" aria-labelledby="test3-intro-heading">
+          <h2 id="test3-intro-heading" class="test3-sr-only">핵심 소개</h2>
+          <!-- [contents-01] -->
+          <article class="test3-card test3-card--contents01">
+            <div class="test3-card__deco" aria-hidden="true">
+              <img class="test3-card__deco-img" src="../assets/ftp-bundle/2863fecc93321727773825dd5f3841da95c69f8d.png" alt="">
+              <div class="test3-card__deco-sheet"></div>
+            </div>
+            <div class="test3-card__body test3-card__body--contents01">
+              <h3 class="test3-card__title">금융의<br>가능성을 확장하는<br>글로벌</h3>
+              <!-- 피그마 40002265:6587 본문(더미 반복) -->
+              <p class="test3-card__desc">안정적인 b2b 해외정산 사업~안정적인 b2b 해외정산 사업~안정적인 b2b 해외정산 사업~안정적인 b2b 해외정산 사업~</p>
+            </div>
+          </article>
+          <!-- //contents-01 -->
+          <!-- [contents-02] -->
+          <article class="test3-card test3-card--contents02">
+            <span class="test3-card__bg-icon test3-card__bg-icon--1" aria-hidden="true"></span>
+            <span class="test3-card__bg-icon test3-card__bg-icon--2" aria-hidden="true"></span>
+            <div class="test3-card__body test3-card__body--contents02">
+              <strong class="test3-card__chip">COIN</strong>
+              <div class="test3-card__txt-stack">
+                <h3 class="test3-card__title">금융의<br>가능성을 확장하는<br>글로벌</h3>
+                <p class="test3-card__desc">안정적인 b2b 해외정산 사업~안정적인 b2b 해외정산 사업~안정적인 b2b 해외정산 사업~안정적인 b2b 해외정산 사업~</p>
+              </div>
+            </div>
+          </article>
+          <!-- //contents-02 -->
+        </section>
+
+        <!-- [service] Frame 1707484587 (40002200:943) — DOM: 이미지 → 헤드라인 → 노티스 (피그마 y 순) -->
+        <section class="test3-section test3-section--service" aria-labelledby="test3-service-heading">
+          <div class="test3-service-frame">
+            <img class="test3-service-img" src="../assets/ftp-bundle/948463f638902cd524986ee7ac8651b55ee054ea.png" alt="글로벌 결제 서비스 소개 이미지">
+          </div>
+          <h2 id="test3-service-heading" class="test3-service-title">글로벌 결제 서비스<br>글로벌 결제로 190+ 국가로 지출</h2>
+          <ul class="test3-notice-list">
+            <li>
+              <span class="test3-notice-list__bullet" aria-hidden="true"><img src="../assets/ftp-bundle/119075d1fa8f0de86a94bcc2d3f80895c39bb2b3.svg" width="4" height="17" alt=""></span>
+              <span class="test3-notice-list__text">전 세계 260명+</span>
+            </li>
+            <li>
+              <span class="test3-notice-list__bullet" aria-hidden="true"><img src="../assets/ftp-bundle/119075d1fa8f0de86a94bcc2d3f80895c39bb2b3.svg" width="4" height="17" alt=""></span>
+              <span class="test3-notice-list__text">결제 오케스트레이션</span>
+            </li>
+            <li>
+              <span class="test3-notice-list__bullet" aria-hidden="true"><img src="../assets/ftp-bundle/119075d1fa8f0de86a94bcc2d3f80895c39bb2b3.svg" width="4" height="17" alt=""></span>
+              <span class="test3-notice-list__text">글로벌 차치백 </span>
+            </li>
+            <li>
+              <span class="test3-notice-list__bullet" aria-hidden="true"><img src="../assets/ftp-bundle/119075d1fa8f0de86a94bcc2d3f80895c39bb2b3.svg" width="4" height="17" alt=""></span>
+              <span class="test3-notice-list__text">한일 대만  </span>
+            </li>
+            <li>
+              <span class="test3-notice-list__bullet" aria-hidden="true"><img src="../assets/ftp-bundle/119075d1fa8f0de86a94bcc2d3f80895c39bb2b3.svg" width="4" height="17" alt=""></span>
+              <span class="test3-notice-list__text">유의사항 내용을 입력해주세요.</span>
+            </li>
+          </ul>
+        </section>
+        <!-- //service -->
+
+        <!-- [partner] 피그마 contents-04 40002265:6605 -->
+        <section class="test3-section test3-partner" aria-label="파트너 소개">
+          <div class="test3-partner-stack">
+            <div class="test3-partner-logo-band">
+              <div class="test3-partner-logo-band__row">
+                <div class="test3-partner-logo-band__wrap">
+                  <div class="test3-partner-logo-band__roller test3-partner-logo-band__roller--left">
+                    <ul class="test3-partner-logo-band__list">
+                      <li class="test3-partner-slot"><img src="../assets/ftp-bundle/592e7008f80c4cee676ab7f4b1c3bbae0a98e2e5.svg" alt=""></li>
+                      <li class="test3-partner-slot"><img src="../assets/ftp-bundle/b85eb2be08be4076c800dea31b5216d6baa64a1f.png" alt=""></li>
+                      <li class="test3-partner-slot"><img src="../assets/ftp-bundle/db0e89331b9664a70843f113752ee58a30cea40a.png" alt=""></li>
+                      <li class="test3-partner-slot"><img src="../assets/ftp-bundle/7fcc9685bea3c7eb2e5c1be33a123e773c9bd792.png" alt=""></li>
+                      <li class="test3-partner-slot"><img src="../assets/ftp-bundle/a62e85b53708b64ef5a5e80a26025cdd53025b52.png" alt=""></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="test3-partner-logo-band__row">
+                <div class="test3-partner-logo-band__wrap">
+                  <div class="test3-partner-logo-band__roller test3-partner-logo-band__roller--right">
+                    <ul class="test3-partner-logo-band__list">
+                      <li class="test3-partner-slot"><img src="../assets/ftp-bundle/2069b53994ea1aeb0d36b5c2514b13ab09282a59.png" alt=""></li>
+                      <li class="test3-partner-slot"><img src="../assets/ftp-bundle/b99379c042107bc698ad7204d9f0f85c6bfa99bc.png" alt=""></li>
+                      <li class="test3-partner-slot"><img src="../assets/ftp-bundle/13f14efc1ef0c9bd2ba027991de43bf7b115bd1a.svg" alt=""></li>
+                      <li class="test3-partner-slot"><img src="../assets/ftp-bundle/696998ceab318ffb2262ed4ce296ca36f33de508.png" alt=""></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="test3-partner-center">
+              <img class="test3-partner-hecto" src="../assets/ftp-bundle/e8c02f16dd8c2f07caaf8abab44a53df09f892fc.svg" width="235" height="33" alt="헥토파이낸셜">
+              <h2 class="test3-partner-title">다양한 고객사 및 제휴사와<br>파트너쉽을 구축</h2>
+            </div>
+            <div class="test3-partner-logo-band">
+              <div class="test3-partner-logo-band__row">
+                <div class="test3-partner-logo-band__wrap">
+                  <div class="test3-partner-logo-band__roller test3-partner-logo-band__roller--left">
+                    <ul class="test3-partner-logo-band__list">
+                      <li class="test3-partner-slot"><img src="../assets/ftp-bundle/8bac578174d8659483f8b755d8bd2a0a3fbaab15.png" alt=""></li>
+                      <li class="test3-partner-slot"><img src="../assets/ftp-bundle/54bd2e6bc8ff88fa93a3d4b10b21e87b90649a53.png" alt=""></li>
+                      <li class="test3-partner-slot"><img src="../assets/ftp-bundle/88986562b8be932d92c54e9826526672a323a2ee.png" alt=""></li>
+                      <li class="test3-partner-slot"><img src="../assets/ftp-bundle/5a9e2bd85ace846ff0b3d55675b7ce7e42a88ecd.png" alt=""></li>
+                      <li class="test3-partner-slot"><img src="../assets/ftp-bundle/d67dd4ca4c4e3b403593fd516cbdde6216350870.png" alt=""></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="test3-partner-logo-band__row">
+                <div class="test3-partner-logo-band__wrap">
+                  <div class="test3-partner-logo-band__roller test3-partner-logo-band__roller--right">
+                    <ul class="test3-partner-logo-band__list">
+                      <li class="test3-partner-slot"><img src="../assets/ftp-bundle/9d318052605a56290d5925bd3c4f6dbfabfb2e46.png" alt=""></li>
+                      <li class="test3-partner-slot"><img src="../assets/ftp-bundle/20c059ebff68d00ccdbf5b96ef036e29d8ade3d7.png" alt=""></li>
+                      <li class="test3-partner-slot"><img src="../assets/ftp-bundle/e0754264fad8ed594b44c660bed710af7ba1c607.png" alt=""></li>
+                      <li class="test3-partner-slot"><img src="../assets/ftp-bundle/fd38e0dfd1c9810d9a2928e771e63aa824765fec.png" alt=""></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- //partner -->
+
+        <section class="test3-section test3-section--data" aria-label="데이터 성과">
+          <!-- 피그마 40002265:6699 텍스트 노드 그대로 -->
+          <h2 class="test3-data-title">데이터로 보는 성과!@!</h2>
+          <p class="test3-data-subtitle">헥토파이낸셜과 함께 성장하세요.</p>
+
+          <article class="test3-data-card">
+            <div class="test3-data-img-wrap test3-data-img-wrap--grad">
+              <img class="test3-data-img" src="../assets/ftp-bundle/c917f7020d414b760e977db41b8094f4880c33e3.png" alt="연간 취급액 관련 데이터 이미지">
+            </div>
+            <h3>연간 취급액 약 1.1조 USD 상당</h3>
+            <p>연간 처리되는 총 가치로 당사의 운영 규모와 신뢰성을 나타냅니다.</p>
+          </article>
+
+          <article class="test3-data-card">
+            <div class="test3-data-img-wrap">
+              <img class="test3-data-img" src="../assets/ftp-bundle/8ef0b03e4ec0b0e626ebe52295053d1cafa6299f.png" alt="은행 파트너사 관련 데이터 이미지">
+            </div>
+            <h3>60개 이상의 은행 파트너사</h3>
+            <p>광범위한 금융<br>네트워크 기반으로 유연처리 보장합니다.</p>
+          </article>
+        </section>
+      </main>
+
+      <section class="test3-cta" aria-label="문의 유도">
+        <div class="test3-cta-inner">
+          <p>헥토파이낸셜은<br>25년 이상의 업력과<br>대한민국 상장 기업으로서<br>결제의 더 나은 가치를<br>탐구하고 금융의 새로운 가능성을<br>확장합니다.</p>
+          <button type="button">Contact us</button>
+        </div>
+      </section>
+
+      <footer class="test3-footer">
+        <ul class="test3-sns" aria-label="공식 소셜 채널">
+          <li>
+            <button type="button" aria-label="유튜브 (데모)">
+              <img src="../assets/ftp-bundle/9ee08bceb7efe786b06686f51bd80471b0f9a6a5.svg" width="20" height="18" alt="" aria-hidden="true">
+            </button>
+          </li>
+          <li>
+            <button type="button" aria-label="링크드인 (데모)">
+              <img src="../assets/ftp-bundle/689474f3d4547729921fede7d549b16897b54bd1.svg" width="16" height="16" alt="" aria-hidden="true">
+            </button>
+          </li>
+          <li>
+            <button type="button" aria-label="블로그 (데모)">
+              <img src="../assets/ftp-bundle/071825d5e9b97ca7850db1f37c2222ca99ede71f.svg" width="20" height="14" alt="" aria-hidden="true">
+            </button>
+          </li>
+        </ul>
+        <hr aria-hidden="true">
+        <p class="test3-footer-address">(주)헥토파이낸셜</p>
+        <p class="test3-footer-copy">카피라이트 @COPYright</p>
+      </footer>
+  </article>
+  <!-- //test3-mobile -->
+  <script>
+    /* pintel.co.kr/js/main.js 파트너 롤링 — .test3-partner-logo-band__wrap마다 복제 + setInterval(10ms, 1px) */
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      function rollLeft(d, el, w) {
+        var cur = parseInt(el.style.left, 10);
+        if (isNaN(cur)) cur = 0;
+        el.style.left = (cur - d) + 'px';
+        if (w + (cur - d) <= 0) el.style.left = w + 'px';
+      }
+
+      function rollRight(d, el, w) {
+        var cur = parseInt(el.style.right, 10);
+        if (isNaN(cur)) cur = 0;
+        el.style.right = (cur - d) + 'px';
+        if (w + (cur - d) <= 0) el.style.right = w + 'px';
+      }
+
+      function setupWrap(wrap) {
+        var roller = wrap.querySelector('.test3-partner-logo-band__roller');
+        if (!roller) return;
+        var list = roller.querySelector('.test3-partner-logo-band__list');
+        if (!list) return;
+
+        var useRight = roller.classList.contains('test3-partner-logo-band__roller--right');
+        var clone = roller.cloneNode(true);
+        wrap.appendChild(clone);
+
+        var w = list.offsetWidth;
+        if (useRight) {
+          roller.style.right = '0px';
+          clone.style.right = w + 'px';
+        } else {
+          roller.style.left = '0px';
+          clone.style.left = w + 'px';
+        }
+
+        var dist = 1;
+        var ms = parseInt(1000 / 100, 10);
+        if (useRight) {
+          setInterval(function () { rollRight(dist, roller, w); }, ms);
+          setInterval(function () { rollRight(dist, clone, w); }, ms);
+        } else {
+          setInterval(function () { rollLeft(dist, roller, w); }, ms);
+          setInterval(function () { rollLeft(dist, clone, w); }, ms);
+        }
+      }
+
+      function init() {
+        document.querySelectorAll('.test3-partner-logo-band__wrap').forEach(function (wrap) {
+          setupWrap(wrap);
+        });
+      }
+
+      if (document.readyState === 'complete') init();
+      else window.addEventListener('load', init);
+    })();
+  </script>
+</body>
+</html>

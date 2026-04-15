@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>서비스 도입문의 | Mobile Service (test6)</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <style>
+    /*
+     * 피그마 Mobile_Service 40002139:1877
+     * · 00-core: OS 상태바(40002139:1937) 미포함 — 헤더부터 구현
+     * · 30-design-guide-layout: flex gap 미사용, 간격은 margin·padding·토큰
+     */
+    .test6-page {
+      --test-agree-bg: #f5f5f7;
+      width: 100%;
+      max-width: none;
+      margin: 0 auto;
+      border: 1px solid var(--color-line-03);
+      background: var(--color-background-01);
+      overflow: hidden;
+    }
+
+    /* 상단 바: Contact us · 닫기 (피그마 MobileWEb 40002139:1879) */
+    .test6-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      box-sizing: border-box;
+      height: 56px;
+      padding: 0 var(--space-16);
+      border-bottom: 0.5px solid var(--color-line-03);
+      background: var(--color-background-01);
+    }
+
+    /* 닫기 48px와 대칭 — 제목 시각 중앙 */
+    .test6-header__spacer {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      margin-left: calc(var(--space-16) * -1);
+    }
+
+    .test6-header__title {
+      flex: 1 1 0;
+      margin: 0;
+      min-width: 0;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: -0.02em;
+      color: var(--color-text-03);
+      text-align: center;
+    }
+
+    .test6-header__close {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      margin: 0;
+      margin-right: calc(var(--space-16) * -1);
+      padding: 0;
+      border: 0;
+      border-radius: var(--radius-08);
+      background: transparent;
+      color: var(--color-text-03);
+      cursor: pointer;
+    }
+
+    .test6-header__close:focus-visible {
+      outline: 2px solid var(--color-primary-01);
+      outline-offset: 2px;
+    }
+
+    .test6-header__close svg {
+      display: block;
+      width: 24px;
+      height: 24px;
+    }
+
+    .test6-main {
+      padding: calc(var(--space-32) + var(--space-08) + var(--space-02)) var(--space-16) var(--space-40);
+    }
+
+    /* 피그마 Heading 24 Bold · 서비스 도입문의 */
+    .test6-page-heading {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.03em;
+      color: var(--color-text-03);
+    }
+
+    .test6-form {
+      margin-top: var(--space-24);
+    }
+
+    /* 텍스트필드 세로 스택: 피그마 column gap 20 */
+    .test6-field {
+      margin: 0;
+    }
+
+    .test6-field + .test6-field {
+      margin-top: var(--space-20);
+    }
+
+    .test6-field__label {
+      display: block;
+      margin: 0 0 var(--space-08);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: var(--color-text-03);
+    }
+
+    .test6-field__control {
+      box-sizing: border-box;
+      width: 100%;
+      height: 48px;
+      padding: var(--space-08) var(--space-16);
+      border: 1px solid var(--color-line-03);
+      border-radius: var(--radius-12);
+      background: var(--color-background-01);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: -0.02em;
+      color: var(--color-text-03);
+    }
+
+    .test6-field__control::placeholder {
+      color: var(--color-text-06);
+    }
+
+    .test6-field__control:focus-visible {
+      outline: 2px solid var(--color-primary-01);
+      outline-offset: 2px;
+    }
+
+    /* 결제 수단 체크 영역 (피그마 40002139:1898 — 레이블 문구는 시안 그대로) */
+    .test6-pay {
+      margin-top: var(--space-32);
+      padding: 0;
+      border: 0;
+      min-inline-size: 0;
+    }
+
+    .test6-pay__legend {
+      margin: 0 0 var(--space-12);
+      padding: 0;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: var(--color-text-03);
+    }
+
+    /*
+     * 체크 UI: test2.html 과 동일 패턴
+     * · 아이콘: pub-guide/assets/icons (ico-check-circle-* / ico-check-*)
+     * · 30-design-guide-foundation · Icon 24dp
+     */
+    .test-checks {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .test6-pay .test-checks {
+      margin-top: 0;
+    }
+
+    .test-checks li {
+      margin: 0;
+      padding: 0;
+    }
+
+    .test-checks .test-check {
+      padding: 5px 0;
+    }
+
+    .test-checks li + li {
+      margin-top: var(--space-08);
+    }
+
+    .test-check {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: -0.02em;
+      color: var(--color-text-03);
+      cursor: pointer;
+    }
+
+    .test-check:has(input:disabled) {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .test-check input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .test-check__visual {
+      position: relative;
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      margin-right: var(--space-08);
+    }
+
+    .test-check--agree-icon .test-check__visual {
+      margin-right: 0;
+    }
+
+    .test-check__visual .test-check__img--off,
+    .test-check__visual .test-check__img--on {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+
+    .test-check__visual .test-check__img--off {
+      display: block;
+    }
+
+    .test-check__visual .test-check__img--on {
+      display: none;
+    }
+
+    .test-check input:checked + .test-check__visual .test-check__img--off {
+      display: none;
+    }
+
+    .test-check input:checked + .test-check__visual .test-check__img--on {
+      display: block;
+    }
+
+    .test-check:has(:focus-visible) .test-check__visual {
+      outline: 2px solid var(--color-primary-01);
+      outline-offset: 2px;
+      border-radius: 50%;
+    }
+
+    .test-check__text {
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    /* 제목·내용 필드 상단 간격 (시안 앵커 간 근사) */
+    .test6-field--title-block {
+      margin-top: var(--space-32);
+    }
+
+    .test6-textarea-wrap {
+      box-sizing: border-box;
+      width: 100%;
+      min-height: 160px;
+      margin-top: var(--space-12);
+      padding: var(--space-16) var(--space-16) var(--space-08);
+      border: 1px solid var(--color-line-03);
+      border-radius: var(--radius-12);
+      background: var(--color-background-01);
+    }
+
+    .test6-textarea {
+      display: block;
+      width: 100%;
+      min-height: 88px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      resize: vertical;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: var(--color-text-03);
+      font-family: inherit;
+      background: transparent;
+    }
+
+    .test6-textarea::placeholder {
+      color: var(--color-text-06);
+    }
+
+    .test6-textarea:focus-visible {
+      outline: none;
+    }
+
+    .test6-textarea-wrap:focus-within {
+      outline: 2px solid var(--color-primary-01);
+      outline-offset: 2px;
+    }
+
+    .test6-char-count {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: flex-end;
+      margin-top: var(--space-04);
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: var(--color-icon-05);
+    }
+
+    .test6-char-count__sep {
+      margin: 0 var(--space-02);
+      color: var(--color-line-03);
+      letter-spacing: -0.04em;
+    }
+
+    /* 동의 박스 (피그마 agree 40002139:1927) — test2 와 동일 체크 아이콘(ico-check-*) */
+    .test6-agree-block {
+      margin-top: var(--space-32);
+    }
+
+    .test-agree {
+      margin-top: 0;
+    }
+
+    .test-agree__box {
+      box-sizing: border-box;
+      min-height: 96px;
+      width: 100%;
+      padding: var(--space-20);
+      border-radius: var(--radius-08);
+      background: var(--test-agree-bg);
+    }
+
+    .test-agree__row {
+      display: flex;
+      align-items: center;
+      padding: 5px 0;
+    }
+
+    .test-agree__row .test-check--agree-icon {
+      flex-shrink: 0;
+    }
+
+    .test-agree__row .test-check--agree-icon .test-check__visual {
+      margin-right: var(--space-08);
+    }
+
+    .test-agree__title {
+      margin: 0;
+      flex: 1;
+      min-width: 0;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: -0.02em;
+      color: var(--color-text-03);
+      cursor: pointer;
+    }
+
+    .test-agree__more {
+      display: block;
+      margin: var(--space-04) 0 0 calc(var(--space-24) + var(--space-08));
+      padding: 0;
+      border: 0;
+      border-bottom: 1px solid var(--color-text-05);
+      background: transparent;
+      color: var(--color-text-04);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: -0.02em;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .test-agree__more:focus-visible {
+      outline: 2px solid var(--color-primary-01);
+      outline-offset: 2px;
+      border-radius: var(--radius-04);
+    }
+
+    .test-desc {
+      margin: var(--space-12) 0 0;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: -0.02em;
+      color: var(--color-text-03);
+    }
+
+    /* Primary disabled (피그마 Button/primary 40002139:1934) */
+    .test6-submit {
+      margin-top: calc(var(--space-24) + var(--space-04) + var(--space-02));
+      width: 100%;
+      height: 56px;
+      border: 0;
+      border-radius: var(--radius-12);
+      padding: var(--space-12) var(--space-16);
+      background: var(--color-disabled);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: var(--color-text-01);
+      cursor: not-allowed;
+      font-family: inherit;
+    }
+
+    .test6-submit:focus-visible {
+      outline: 2px solid var(--color-primary-01);
+      outline-offset: 2px;
+    }
+
+    /* 푸터 전 블록 간격 피그마 column gap 50 → 32+16+2 */
+    .test6-footer-wrap {
+      margin-top: calc(var(--space-32) + var(--space-16) + var(--space-02));
+    }
+
+    /* Mobile-Footer-KR (40002140:2061) */
+    .test6-footer {
+      border-top: 1px solid var(--color-line-03);
+      padding: var(--space-12) var(--space-16) var(--space-24);
+      background: var(--color-background-01);
+    }
+
+    .test6-sns {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      font-size: 0;
+    }
+
+    .test6-sns li {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .test6-sns li + li {
+      margin-left: calc(var(--space-04) + var(--space-02));
+    }
+
+    .test6-sns button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--color-line-02);
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .test6-sns button img {
+      display: block;
+      max-width: 20px;
+      max-height: 18px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .test6-sns button:focus-visible {
+      outline: 2px solid var(--color-primary-01);
+      outline-offset: 2px;
+    }
+
+    .test6-footer hr {
+      border: 0;
+      height: 1px;
+      margin: var(--space-08) calc(var(--space-16) * -1) 0;
+      background: var(--color-line-03);
+    }
+
+    .test6-footer-address {
+      margin: var(--space-20) 0 0;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: -0.02em;
+      color: var(--color-text-04);
+    }
+
+    .test6-footer-copy {
+      margin: var(--space-16) 0 0;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: -0.02em;
+      color: #909090;
+    }
+  </style>
+</head>
+<body>
+  <!-- [test6-page] -->
+  <article class="test6-page" aria-label="서비스 도입문의">
+    <!-- [header] 피그마 40002139:1879 · 상태바 제외 -->
+    <header class="test6-header">
+      <span class="test6-header__spacer" aria-hidden="true"></span>
+      <p class="test6-header__title">Contact us</p>
+      <button type="button" class="test6-header__close" aria-label="닫기">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </header>
+    <!-- //header -->
+
+    <!-- [main] -->
+    <main class="test6-main" id="main">
+      <h1 class="test6-page-heading">서비스 도입문의</h1>
+
+      <form class="test6-form" action="#" method="post" aria-label="문의 양식" novalidate>
+        <!-- [fields] 피그마 40002139:2367 -->
+        <div class="test6-field">
+          <label class="test6-field__label" for="test6-company">회사명</label>
+          <input class="test6-field__control" id="test6-company" name="company" type="text" autocomplete="organization" placeholder="회사명을 입력해 주세요.">
+        </div>
+        <div class="test6-field">
+          <label class="test6-field__label" for="test6-phone">연락처</label>
+          <input class="test6-field__control" id="test6-phone" name="phone" type="tel" autocomplete="tel" placeholder="연락처를 입력해 주세요">
+        </div>
+        <div class="test6-field">
+          <label class="test6-field__label" for="test6-email">이메일</label>
+          <input class="test6-field__control" id="test6-email" name="email" type="email" autocomplete="email" placeholder="이메일을 입력해 주세요">
+        </div>
+        <div class="test6-field">
+          <label class="test6-field__label" for="test6-bizno">사업자등록번호</label>
+          <input class="test6-field__control" id="test6-bizno" name="businessNumber" type="text" inputmode="numeric" placeholder="사업자번호를 입력해 주세요">
+        </div>
+
+        <!-- [pay-methods] 피그마 40002139:1898 — 체크 아이콘은 pub-guide/assets/icons (test2 동일) -->
+        <fieldset class="test6-pay">
+          <legend class="test6-pay__legend">신청 내용</legend>
+          <ul class="test-checks">
+            <li>
+              <label class="test-check">
+                <input id="test6-pay-1" type="checkbox" name="pay" value="card">
+                <span class="test-check__visual" aria-hidden="true">
+                  <img class="test-check__img--off" src="../assets/icons/ico-check-circle-off.svg" width="24" height="24" alt="" aria-hidden="true">
+                  <img class="test-check__img--on" src="../assets/icons/ico-check-circle-on.svg" width="24" height="24" alt="" aria-hidden="true">
+                </span>
+                <span class="test-check__text">신용카드</span>
+              </label>
+            </li>
+            <li>
+              <label class="test-check">
+                <input id="test6-pay-2" type="checkbox" name="pay" value="vbank">
+                <span class="test-check__visual" aria-hidden="true">
+                  <img class="test-check__img--off" src="../assets/icons/ico-check-circle-off.svg" width="24" height="24" alt="" aria-hidden="true">
+                  <img class="test-check__img--on" src="../assets/icons/ico-check-circle-on.svg" width="24" height="24" alt="" aria-hidden="true">
+                </span>
+                <span class="test-check__text">가상계좌</span>
+              </label>
+            </li>
+            <li>
+              <label class="test-check">
+                <input id="test6-pay-3" type="checkbox" name="pay" value="phone">
+                <span class="test-check__visual" aria-hidden="true">
+                  <img class="test-check__img--off" src="../assets/icons/ico-check-circle-off.svg" width="24" height="24" alt="" aria-hidden="true">
+                  <img class="test-check__img--on" src="../assets/icons/ico-check-circle-on.svg" width="24" height="24" alt="" aria-hidden="true">
+                </span>
+                <span class="test-check__text">휴대폰결제</span>
+              </label>
+            </li>
+            <li>
+              <label class="test-check">
+                <input id="test6-pay-4" type="checkbox" name="pay" value="gift">
+                <span class="test-check__visual" aria-hidden="true">
+                  <img class="test-check__img--off" src="../assets/icons/ico-check-circle-off.svg" width="24" height="24" alt="" aria-hidden="true">
+                  <img class="test-check__img--on" src="../assets/icons/ico-check-circle-on.svg" width="24" height="24" alt="" aria-hidden="true">
+                </span>
+                <span class="test-check__text">모바일상품권</span>
+              </label>
+            </li>
+            <li>
+              <label class="test-check">
+                <input id="test6-pay-5" type="checkbox" name="pay" value="bank">
+                <span class="test-check__visual" aria-hidden="true">
+                  <img class="test-check__img--off" src="../assets/icons/ico-check-circle-off.svg" width="24" height="24" alt="" aria-hidden="true">
+                  <img class="test-check__img--on" src="../assets/icons/ico-check-circle-on.svg" width="24" height="24" alt="" aria-hidden="true">
+                </span>
+                <span class="test-check__text">내통장결제</span>
+              </label>
+            </li>
+            <li>
+              <label class="test-check">
+                <input id="test6-pay-6" type="checkbox" name="pay" value="easy">
+                <span class="test-check__visual" aria-hidden="true">
+                  <img class="test-check__img--off" src="../assets/icons/ico-check-circle-off.svg" width="24" height="24" alt="" aria-hidden="true">
+                  <img class="test-check__img--on" src="../assets/icons/ico-check-circle-on.svg" width="24" height="24" alt="" aria-hidden="true">
+                </span>
+                <span class="test-check__text">간편현금결제</span>
+              </label>
+            </li>
+            <li>
+              <label class="test-check">
+                <input id="test6-pay-7" type="checkbox" name="pay" value="prepaid">
+                <span class="test-check__visual" aria-hidden="true">
+                  <img class="test-check__img--off" src="../assets/icons/ico-check-circle-off.svg" width="24" height="24" alt="" aria-hidden="true">
+                  <img class="test-check__img--on" src="../assets/icons/ico-check-circle-on.svg" width="24" height="24" alt="" aria-hidden="true">
+                </span>
+                <span class="test-check__text">안심선불서비스</span>
+              </label>
+            </li>
+            <li>
+              <label class="test-check">
+                <input id="test6-pay-8" type="checkbox" name="pay" value="etc">
+                <span class="test-check__visual" aria-hidden="true">
+                  <img class="test-check__img--off" src="../assets/icons/ico-check-circle-off.svg" width="24" height="24" alt="" aria-hidden="true">
+                  <img class="test-check__img--on" src="../assets/icons/ico-check-circle-on.svg" width="24" height="24" alt="" aria-hidden="true">
+                </span>
+                <span class="test-check__text">기타</span>
+              </label>
+            </li>
+          </ul>
+        </fieldset>
+
+        <div class="test6-field test6-field--title-block">
+          <label class="test6-field__label" for="test6-subject">제목</label>
+          <input class="test6-field__control" id="test6-subject" name="subject" type="text" placeholder="제목을 입력해 주세요">
+        </div>
+
+        <div class="test6-field">
+          <label class="test6-field__label" for="test6-body">내용</label>
+          <div class="test6-textarea-wrap">
+            <textarea class="test6-textarea" id="test6-body" name="body" rows="4" maxlength="1000" placeholder="최대 1000자 까지 작성 가능" aria-describedby="test6-char-count"></textarea>
+            <div id="test6-char-count" class="test6-char-count" aria-live="polite">
+              <span class="test6-char-count__cur">0</span><span class="test6-char-count__sep">/</span><span>1000</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- [agree] 피그마 40002139:1927 — 동의 체크는 ico-check-off/on (test2 동일) -->
+        <div class="test6-agree-block">
+          <div class="test-agree">
+            <div class="test-agree__box">
+              <div class="test-agree__row">
+                <label class="test-check test-check--agree-icon" for="test6-agree-privacy">
+                  <input id="test6-agree-privacy" type="checkbox" name="agreePrivacy" value="1" required aria-required="true">
+                  <span class="test-check__visual" aria-hidden="true">
+                    <img class="test-check__img--off" src="../assets/icons/ico-check-off.svg" width="24" height="24" alt="" aria-hidden="true">
+                    <img class="test-check__img--on" src="../assets/icons/ico-check-on.svg" width="24" height="24" alt="" aria-hidden="true">
+                  </span>
+                </label>
+                <label class="test-agree__title" for="test6-agree-privacy">(필수) 개인정보 수집 및 이용에 동의합니다.</label>
+              </div>
+              <button type="button" class="test-agree__more">자세히 보기</button>
+            </div>
+          </div>
+          <p class="test-desc" id="test6-inquiry-hint">입력하신 정보는 전문 컨설턴트에게 전달되며, 영업일 기준 1일 이내 연락드리겠습니다.</p>
+        </div>
+
+        <button type="submit" class="test6-submit" disabled aria-describedby="test6-inquiry-hint">문의하기</button>
+      </form>
+    </main>
+    <!-- //main -->
+
+    <!-- [footer] Mobile-Footer-KR -->
+    <div class="test6-footer-wrap">
+      <footer class="test6-footer">
+        <ul class="test6-sns" aria-label="공식 소셜 채널">
+          <li>
+            <button type="button" aria-label="블로그 (데모)">
+              <img src="../assets/ftp-bundle/071825d5e9b97ca7850db1f37c2222ca99ede71f.svg" width="20" height="14" alt="" aria-hidden="true">
+            </button>
+          </li>
+          <li>
+            <button type="button" aria-label="링크드인 (데모)">
+              <img src="../assets/ftp-bundle/689474f3d4547729921fede7d549b16897b54bd1.svg" width="16" height="16" alt="" aria-hidden="true">
+            </button>
+          </li>
+          <li>
+            <button type="button" aria-label="유튜브 (데모)">
+              <img src="../assets/ftp-bundle/9ee08bceb7efe786b06686f51bd80471b0f9a6a5.svg" width="20" height="18" alt="" aria-hidden="true">
+            </button>
+          </li>
+        </ul>
+        <hr aria-hidden="true">
+        <p class="test6-footer-address">(주)헥토파이낸셜대표이사 : 최종원<br>서울특별시 강남구 테헤란로34길 6, 9~10층(역삼동, 태광타워)</p>
+        <p class="test6-footer-copy">Copyright(C) Hecto FINANCIAL Co., Ltd. All rights reserved.</p>
+      </footer>
+    </div>
+  </article>
+  <!-- //test6-page -->
+
+  <script>
+    /* 글자 수 카운트(데모) */
+    (function () {
+      var ta = document.getElementById("test6-body");
+      var cur = document.querySelector(".test6-char-count__cur");
+      if (!ta || !cur) return;
+      function sync() {
+        cur.textContent = String(ta.value.length);
+      }
+      ta.addEventListener("input", sync);
+      sync();
+    })();
+  </script>
+</body>
+</html>

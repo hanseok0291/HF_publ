@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>현대카드 12월 · 캐시백 요약</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <style>
+    /* 피그마 팔레트·시맨틱(스크린 테스트3 40002200:2368) */
+    .test5-page {
+      --test5-bar-kb: #a0d70b;
+      --test5-bar-lime: #caf625;
+      --test5-gradient-from: #9a5bf1;
+      --test5-gradient-to: #28c85d;
+      min-height: 100vh;
+      background: var(--color-background-02);
+    }
+
+    .test5-page {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    /* [헤더] 00-core: OS 상태바 제외 · GNB 56px */
+    .test5-header {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      height: 56px;
+      padding: 0 var(--space-16);
+      background: var(--color-background-01);
+    }
+
+    .test5-header__title {
+      margin: 0;
+      max-width: calc(100% - 160px);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: var(--color-text-03);
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .test5-header__left {
+      position: absolute;
+      left: var(--space-16);
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .test5-header__left > .test5-icon-btn + .test5-icon-btn {
+      margin-left: var(--space-16);
+    }
+
+    .test5-icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .test5-icon-btn:focus-visible {
+      outline: 2px solid var(--color-primary-01);
+      outline-offset: 2px;
+      border-radius: var(--radius-08);
+    }
+
+    .test5-icon-btn img {
+      width: 24px;
+      height: 24px;
+      display: block;
+      object-fit: contain;
+    }
+
+    .test5-header__check-wrap {
+      position: absolute;
+      right: var(--space-16);
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .test5-circle-check {
+      position: relative;
+      width: 24px;
+      height: 24px;
+    }
+
+    .test5-circle-check img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* 본문: 카드 간 16px — gap 금지 */
+    .test5-main {
+      flex: 1 1 auto;
+      padding: var(--space-16) var(--space-16) var(--space-40);
+    }
+
+    .test5-main > .test5-card + .test5-stack {
+      margin-top: var(--space-16);
+    }
+
+    .test5-stack > .test5-card--reward + .test5-notice {
+      margin-top: var(--space-32);
+    }
+
+    /* 공통 카드 프레임: 343 · radius 16 · bg-02 */
+    .test5-card {
+      position: relative;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 343px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: var(--radius-16);
+      background: var(--color-background-02);
+    }
+
+    .test5-card--summary {
+      min-height: 391px;
+      padding: var(--space-20);
+    }
+
+    .test5-card--reward {
+      min-height: 219px;
+      overflow: hidden;
+    }
+
+    .test5-card__head {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .test5-card__head-title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: var(--color-text-03);
+    }
+
+    /* Chips_basic / Sub */
+    .test5-chip {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      min-width: 56px;
+      height: 36px;
+      padding: 0 var(--space-12);
+      border: 1px solid var(--color-line-03);
+      border-radius: var(--radius-24);
+      background: var(--color-background-01);
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .test5-chip:focus-visible {
+      outline: 2px solid var(--color-primary-01);
+      outline-offset: 2px;
+    }
+
+    .test5-chip__label {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: var(--color-text-03);
+      text-align: center;
+    }
+
+    .test5-chip__chev {
+      width: 16px;
+      height: 16px;
+      margin-left: var(--space-04);
+      display: block;
+      object-fit: contain;
+    }
+
+    /* 드롭다운 레이어(시안: 열린 상태) */
+    .test5-dropdown {
+      position: absolute;
+      z-index: 3;
+      right: var(--space-20);
+      top: 48px;
+      width: 128px;
+      padding: var(--space-04) 0;
+      border-radius: var(--radius-12);
+      background: var(--color-background-01);
+      box-shadow: 0 0 8px rgba(21, 21, 21, 0.2);
+    }
+
+    .test5-dropdown--reward {
+      top: 52px;
+      right: var(--space-20);
+    }
+
+    .test5-dropdown__item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+      min-height: 40px;
+      padding: var(--space-08) var(--space-16);
+      border: 0;
+      background: transparent;
+      font-size: 14px;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: var(--color-text-03);
+      text-align: left;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .test5-dropdown__item--bold {
+      font-weight: 700;
+    }
+
+    .test5-dropdown__item:focus-visible {
+      outline: 2px solid var(--color-primary-01);
+      outline-offset: -2px;
+    }
+
+    /* 차트 영역 */
+    .test5-chart {
+      margin-top: var(--space-20);
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .test5-chart__inner {
+      position: relative;
+      width: 500px;
+      height: 221px;
+    }
+
+    .test5-chart__plot {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 500px;
+      height: 204px;
+      padding-top: var(--space-08);
+    }
+
+    .test5-chart__hline {
+      position: absolute;
+      left: 0;
+      width: 500px;
+      height: 0;
+      border: 0;
+      border-top: 1px dashed var(--color-line-03);
+      margin: 0;
+      padding: 0;
+    }
+
+    .test5-chart__hline--avg {
+      top: 107px;
+      border-top-color: var(--color-status-danger);
+    }
+
+    .test5-chart__hline--sub {
+      top: 180px;
+    }
+
+    .test5-bars {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+    }
+
+    .test5-bar-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      width: 56px;
+    }
+
+    .test5-bar-group + .test5-bar-group {
+      margin-left: var(--space-08);
+    }
+
+    .test5-tooltip {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .test5-tooltip__bubble {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 28px;
+      padding: 6px var(--space-08);
+      border-radius: var(--radius-16);
+    }
+
+    .test5-tooltip__bubble--danger {
+      background: var(--color-status-danger);
+    }
+
+    .test5-tooltip__bubble--dark {
+      background: var(--color-icon-02);
+    }
+
+    .test5-tooltip__bubble--lime {
+      background: var(--test5-bar-lime);
+    }
+
+    .test5-tooltip__text {
+      margin: 0;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+
+    .test5-tooltip__bubble--danger .test5-tooltip__text,
+    .test5-tooltip__bubble--dark .test5-tooltip__text {
+      color: var(--color-text-01);
+    }
+
+    .test5-tooltip__bubble--lime .test5-tooltip__text {
+      color: var(--color-text-03);
+    }
+
+    .test5-tooltip__pointer {
+      width: 6px;
+      height: 6px;
+      margin-top: 0;
+      display: block;
+    }
+
+    .test5-tooltip + .test5-bar-pill {
+      margin-top: var(--space-04);
+    }
+
+    .test5-bar-pill {
+      border-radius: var(--radius-24) var(--radius-24) 0 0;
+    }
+
+    .test5-bar-pill--kb {
+      width: 40px;
+      height: 133px;
+      background: var(--test5-bar-kb);
+    }
+
+    .test5-bar-pill--sm {
+      width: 32px;
+      background: var(--test5-bar-lime);
+    }
+
+    .test5-bar-pill--h77 {
+      height: 77px;
+    }
+
+    .test5-bar-pill--h115 {
+      height: 115px;
+    }
+
+    .test5-bar-pill--h34 {
+      width: 33px;
+      height: 34px;
+    }
+
+    .test5-bar-pill + .test5-bar-caption {
+      margin-top: var(--space-08);
+    }
+
+    .test5-bar-caption {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: var(--color-text-04);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .test5-bar-caption--medium {
+      font-weight: 500;
+    }
+
+    /* 범례 행 */
+    .test5-legend {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: var(--space-16);
+    }
+
+    .test5-legend__left {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .test5-legend__dash {
+      width: 16px;
+      height: 8px;
+      flex-shrink: 0;
+    }
+
+    .test5-legend__dash img {
+      display: block;
+      width: 16px;
+      height: auto;
+    }
+
+    .test5-legend__left .test5-legend__text {
+      margin-left: var(--space-08);
+    }
+
+    .test5-legend__text {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: var(--color-text-04);
+      white-space: nowrap;
+    }
+
+    /* 하단 그라데이션 배너 */
+    .test5-banner {
+      margin-top: var(--space-16);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      min-height: 41px;
+      margin-left: calc(-1 * var(--space-20));
+      margin-right: calc(-1 * var(--space-20));
+      margin-bottom: calc(-1 * var(--space-20));
+      padding: 9px 17px;
+      border-radius: 0 0 var(--radius-16) var(--radius-16);
+      background: linear-gradient(90deg, var(--test5-gradient-from), var(--test5-gradient-to));
+    }
+
+    .test5-banner__text {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: var(--color-text-01);
+      text-align: center;
+      word-break: keep-all;
+    }
+
+    .test5-banner__text strong {
+      font-weight: 700;
+    }
+
+    /* 리워드 카드 */
+    .test5-card--reward .test5-card__head {
+      padding: 18px var(--space-20) 0;
+    }
+
+    .test5-card--reward .test5-card__head-title {
+      line-height: 1.6;
+      max-width: 223px;
+    }
+
+    .test5-card--reward .test5-chip {
+      position: absolute;
+      top: 13px;
+      right: var(--space-20);
+    }
+
+    .test5-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 177px;
+      padding: var(--space-12) var(--space-16) var(--space-24);
+    }
+
+    .test5-empty__img {
+      width: 64px;
+      height: 64px;
+      object-fit: cover;
+    }
+
+    .test5-empty__text {
+      margin: var(--space-08) 0 0;
+      max-width: 220px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: -0.02em;
+      color: var(--color-text-03);
+      text-align: center;
+      word-break: keep-all;
+    }
+
+    /* 유의사항 */
+    .test5-notice {
+      width: 100%;
+      max-width: 343px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .test5-notice__title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: var(--color-text-03);
+    }
+
+    .test5-notice__list {
+      margin: var(--space-08) 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .test5-notice__item {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    .test5-notice__item + .test5-notice__item {
+      margin-top: var(--space-08);
+    }
+
+    .test5-notice__bullet {
+      flex-shrink: 0;
+      width: 4px;
+      height: 17px;
+      margin-top: 2px;
+    }
+
+    .test5-notice__bullet img {
+      display: block;
+      width: 4px;
+      height: 17px;
+    }
+
+    .test5-notice__body {
+      flex: 1 1 0;
+      min-width: 0;
+      margin-left: var(--space-08);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: var(--color-text-04);
+      word-break: keep-all;
+    }
+
+    .test5-notice__link {
+      text-decoration: underline;
+      text-decoration-skip-ink: none;
+      color: inherit;
+    }
+
+    .test5-notice__link:focus-visible {
+      outline: 2px solid var(--color-primary-01);
+      outline-offset: 2px;
+      border-radius: var(--radius-04);
+    }
+  </style>
+</head>
+<body>
+  <!-- [test5-page] 피그마 테스트3 40002200:2368 · 00-core: 상태바 미포함 -->
+  <div class="test5-page">
+    <!-- [header] -->
+    <header class="test5-header">
+      <div class="test5-header__left">
+        <button type="button" class="test5-icon-btn" aria-label="뒤로 가기">
+          <img src="../assets/ftp-bundle/8a2d5923f2309e1ee1273fdf2dc8e3bf5b70c487.svg" width="24" height="24" alt="" aria-hidden="true">
+        </button>
+        <button type="button" class="test5-icon-btn" aria-label="이전 화면">
+          <img src="../assets/ftp-bundle/ed5e46d0e1472aa2c3c9b8a5340062170556bfb4.svg" width="24" height="24" alt="" aria-hidden="true">
+        </button>
+      </div>
+      <p class="test5-header__title">현대카드 12월</p>
+      <div class="test5-header__check-wrap">
+        <span class="test5-circle-check" role="img" aria-label="선택 완료">
+          <img src="../assets/ftp-bundle/d57f13a67b8b24a575cbcfa77a966b5af90391e4.svg" alt="" aria-hidden="true">
+          <img src="../assets/ftp-bundle/ba445a186a2334ebc02933423a46513a8a5421ef.svg" alt="" aria-hidden="true">
+        </span>
+      </div>
+    </header>
+    <!-- //header -->
+
+    <main class="test5-main" id="main">
+      <!-- [summary-card] -->
+      <section class="test5-card test5-card--summary" aria-labelledby="test5-summary-title">
+        <div class="test5-card__head">
+          <h1 id="test5-summary-title" class="test5-card__head-title">이번달 캐시백 요약</h1>
+          <button type="button" class="test5-chip" aria-haspopup="listbox" aria-expanded="true" aria-label="조회 월 선택, 12월">
+            <span class="test5-chip__label">12월</span>
+            <img class="test5-chip__chev" src="../assets/ftp-bundle/20420b00fbc6084d763246fedb8ee2c29df034d5.svg" width="16" height="16" alt="" aria-hidden="true">
+          </button>
+        </div>
+
+        <div class="test5-dropdown" role="listbox" aria-label="월 선택">
+          <button type="button" class="test5-dropdown__item test5-dropdown__item--bold" role="option" aria-selected="true">12월</button>
+          <button type="button" class="test5-dropdown__item" role="option">11월</button>
+          <button type="button" class="test5-dropdown__item" role="option">10월</button>
+        </div>
+
+        <div id="test5-graph-anchor" class="test5-chart">
+          <div class="test5-chart__inner">
+            <div class="test5-chart__plot" aria-hidden="true">
+              <hr class="test5-chart__hline test5-chart__hline--avg">
+              <hr class="test5-chart__hline test5-chart__hline--sub">
+              <div class="test5-bars">
+                <!-- KB국민카드 -->
+                <div class="test5-bar-group">
+                  <div class="test5-tooltip">
+                    <div class="test5-tooltip__bubble test5-tooltip__bubble--danger">
+                      <p class="test5-tooltip__text">99만</p>
+                    </div>
+                    <img class="test5-tooltip__pointer" src="../assets/ftp-bundle/3d19217b9069aee512ae5c8b9474aa9b9f3e1f26.svg" width="6" height="6" alt="">
+                  </div>
+                  <div class="test5-bar-pill test5-bar-pill--kb"></div>
+                  <p class="test5-bar-caption">KB국민카드</p>
+                </div>
+                <!-- 롯데카드 -->
+                <div class="test5-bar-group">
+                  <div class="test5-tooltip">
+                    <div class="test5-tooltip__bubble test5-tooltip__bubble--dark">
+                      <p class="test5-tooltip__text">99만</p>
+                    </div>
+                    <img class="test5-tooltip__pointer" src="../assets/ftp-bundle/8ff44c25258225e4d9d55c3fabbc20cae1051b3f.svg" width="6" height="6" alt="">
+                  </div>
+                  <div class="test5-bar-pill test5-bar-pill--sm test5-bar-pill--h77"></div>
+                  <p class="test5-bar-caption">롯데카드</p>
+                </div>
+                <!-- 삼성카드 -->
+                <div class="test5-bar-group">
+                  <div class="test5-tooltip">
+                    <div class="test5-tooltip__bubble test5-tooltip__bubble--dark">
+                      <p class="test5-tooltip__text">99만</p>
+                    </div>
+                    <img class="test5-tooltip__pointer" src="../assets/ftp-bundle/8ff44c25258225e4d9d55c3fabbc20cae1051b3f.svg" width="6" height="6" alt="">
+                  </div>
+                  <div class="test5-bar-pill test5-bar-pill--sm test5-bar-pill--h115"></div>
+                  <p class="test5-bar-caption test5-bar-caption--medium">삼성카드</p>
+                </div>
+                <!-- 신한카드 -->
+                <div class="test5-bar-group">
+                  <div class="test5-tooltip">
+                    <div class="test5-tooltip__bubble test5-tooltip__bubble--dark">
+                      <p class="test5-tooltip__text">99만</p>
+                    </div>
+                    <img class="test5-tooltip__pointer" src="../assets/ftp-bundle/8ff44c25258225e4d9d55c3fabbc20cae1051b3f.svg" width="6" height="6" alt="">
+                  </div>
+                  <div class="test5-bar-pill test5-bar-pill--sm test5-bar-pill--h34"></div>
+                  <p class="test5-bar-caption test5-bar-caption--medium">신한카드</p>
+                </div>
+                <!-- 하나카드 -->
+                <div class="test5-bar-group">
+                  <div class="test5-tooltip">
+                    <div class="test5-tooltip__bubble test5-tooltip__bubble--dark">
+                      <p class="test5-tooltip__text">99만</p>
+                    </div>
+                    <img class="test5-tooltip__pointer" src="../assets/ftp-bundle/8ff44c25258225e4d9d55c3fabbc20cae1051b3f.svg" width="6" height="6" alt="">
+                  </div>
+                  <div class="test5-bar-pill test5-bar-pill--sm test5-bar-pill--h115"></div>
+                  <p class="test5-bar-caption test5-bar-caption--medium">하나카드</p>
+                </div>
+                <!-- 현대카드 -->
+                <div class="test5-bar-group">
+                  <div class="test5-tooltip">
+                    <div class="test5-tooltip__bubble test5-tooltip__bubble--lime">
+                      <p class="test5-tooltip__text">44만</p>
+                    </div>
+                    <img class="test5-tooltip__pointer" src="../assets/ftp-bundle/3556af38eb4d02241152cbbc8e1578350da80bb4.svg" width="6" height="6" alt="">
+                  </div>
+                  <div class="test5-bar-pill test5-bar-pill--sm test5-bar-pill--h115"></div>
+                  <p class="test5-bar-caption test5-bar-caption--medium">현대카드</p>
+                </div>
+                <!-- 추가카드1 -->
+                <div class="test5-bar-group">
+                  <div class="test5-tooltip">
+                    <div class="test5-tooltip__bubble test5-tooltip__bubble--lime">
+                      <p class="test5-tooltip__text">44만</p>
+                    </div>
+                    <img class="test5-tooltip__pointer" src="../assets/ftp-bundle/3556af38eb4d02241152cbbc8e1578350da80bb4.svg" width="6" height="6" alt="">
+                  </div>
+                  <div class="test5-bar-pill test5-bar-pill--sm test5-bar-pill--h115"></div>
+                  <p class="test5-bar-caption test5-bar-caption--medium">추가카드1</p>
+                </div>
+                <!-- 추가카드2 -->
+                <div class="test5-bar-group">
+                  <div class="test5-tooltip">
+                    <div class="test5-tooltip__bubble test5-tooltip__bubble--lime">
+                      <p class="test5-tooltip__text">44만</p>
+                    </div>
+                    <img class="test5-tooltip__pointer" src="../assets/ftp-bundle/3556af38eb4d02241152cbbc8e1578350da80bb4.svg" width="6" height="6" alt="">
+                  </div>
+                  <div class="test5-bar-pill test5-bar-pill--sm test5-bar-pill--h115"></div>
+                  <p class="test5-bar-caption test5-bar-caption--medium">추가카드2</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="test5-legend">
+          <div class="test5-legend__left">
+            <div class="test5-legend__dash" aria-hidden="true">
+              <img src="../assets/ftp-bundle/8baa83a38797686de4fa0a9c1d19ca0281a99e0b.svg" width="16" height="8" alt="">
+            </div>
+            <p class="test5-legend__text">전체 카드사 평균</p>
+          </div>
+          <p class="test5-legend__text">단위: 원</p>
+        </div>
+
+        <div class="test5-banner">
+          <p class="test5-banner__text">이번달 캐시백은 <strong>KB국민카드</strong>가 제일 높아요!</p>
+        </div>
+      </section>
+      <!-- //summary-card -->
+
+      <div class="test5-stack">
+        <!-- [reward-card] -->
+        <section class="test5-card test5-card--reward" aria-labelledby="test5-reward-title">
+          <div class="test5-card__head">
+            <h2 id="test5-reward-title" class="test5-card__head-title">최근 3개월 카드사별 리워드</h2>
+            <button type="button" class="test5-chip" aria-haspopup="listbox" aria-expanded="true" aria-label="카드사 선택, 현대">
+              <span class="test5-chip__label">현대</span>
+              <img class="test5-chip__chev" src="../assets/ftp-bundle/20420b00fbc6084d763246fedb8ee2c29df034d5.svg" width="16" height="16" alt="" aria-hidden="true">
+            </button>
+          </div>
+
+          <div class="test5-dropdown test5-dropdown--reward" role="listbox" aria-label="카드사 선택">
+            <button type="button" class="test5-dropdown__item test5-dropdown__item--bold" role="option" aria-selected="true">현대</button>
+            <button type="button" class="test5-dropdown__item" role="option">IBK 기업은행</button>
+            <button type="button" class="test5-dropdown__item" role="option">하나카드</button>
+            <button type="button" class="test5-dropdown__item" role="option">신한카드</button>
+          </div>
+
+          <div class="test5-empty">
+            <img class="test5-empty__img" src="../assets/ftp-bundle/abe16d06f4feadec8d57f16989e74760730859d2.png" width="64" height="64" alt="" aria-hidden="true">
+            <p class="test5-empty__text">최근 3개월 동안 진행한 이벤트가 없어요.</p>
+          </div>
+        </section>
+        <!-- //reward-card -->
+
+        <!-- [notice] -->
+        <section class="test5-notice" aria-labelledby="test5-notice-title">
+          <h2 id="test5-notice-title" class="test5-notice__title">유의사항</h2>
+          <ul class="test5-notice__list">
+            <li class="test5-notice__item">
+              <span class="test5-notice__bullet" aria-hidden="true">
+                <img src="../assets/ftp-bundle/119075d1fa8f0de86a94bcc2d3f80895c39bb2b3.svg" width="4" height="17" alt="">
+              </span>
+              <p class="test5-notice__body">라운드 페이에서 진행하는</p>
+            </li>
+            <li class="test5-notice__item">
+              <span class="test5-notice__bullet" aria-hidden="true">
+                <img src="../assets/ftp-bundle/119075d1fa8f0de86a94bcc2d3f80895c39bb2b3.svg" width="4" height="17" alt="">
+              </span>
+              <p class="test5-notice__body">해외 이용, 자동이체 신청 등을 제외한 이벤트 합산 금액이에요.</p>
+            </li>
+            <li class="test5-notice__item">
+              <span class="test5-notice__bullet" aria-hidden="true">
+                <img src="../assets/ftp-bundle/119075d1fa8f0de86a94bcc2d3f80895c39bb2b3.svg" width="4" height="17" alt="">
+              </span>
+              <p class="test5-notice__body">카드사별 리워드 그래프는 <a href="#test5-graph-anchor" class="test5-notice__link">여기서</a> 확인해주세요.</p>
+            </li>
+          </ul>
+        </section>
+        <!-- //notice -->
+      </div>
+    </main>
+  </div>
+  <!-- //test5-page -->
+</body>
+</html>

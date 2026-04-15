@@ -981,4 +981,167 @@ div.nppfs-keypad { top: 0 !important; }
 .version-v2 #header .page-title .title { margin: 0; font-size: 19px; font-weight: 700; color: #2b2c2e; text-align: center; line-height: 135%; /* 25.65px */ }
 .version-v2 #header .brand-name { display: none; }
 .version-v2 div.nppfs-keypad-div { padding: 20px 30px; }
+.version-v2 div.nppfs-keypad-div .kpd-image { height: 100%; max-height: 260px; }
+.version-v2 div.nppfs-keypad-div .kpd-image img { height: 100%; }
 .version-v2 .container { padding: 0 30px; }
+
+/* ----- version-v3 (회원가입 비밀번호 설정 — 피그마 0.회원가입_10.비밀번호 설정) ----- */
+#wrap.version-v3 { background-color: #fff; }
+
+/* 헤더: 뒤로 · 브랜드 중앙 · 닫기 없음(오른쪽 더미로 중앙 정렬) */
+#wrap.version-v3 #header.header-v3 { padding: 16px 0; }
+#wrap.version-v3 .header-v3__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	min-height: 56px;
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+#wrap.version-v3 .header-v3__slot { flex: 0 0 48px; display: flex; align-items: center; }
+#wrap.version-v3 .header-v3__slot--start { justify-content: flex-start; }
+#wrap.version-v3 .header-v3__slot--end { justify-content: flex-end; }
+#wrap.version-v3 .header-v3__slot--center {
+	flex: 1 1 auto;
+	display: flex;
+	justify-content: center;
+	min-width: 0;
+}
+#wrap.version-v3 .header-v3__icon-btn {
+	min-width: 48px;
+	min-height: 48px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
+}
+#wrap.version-v3 .header-v3__icon-btn .icon { vertical-align: middle; }
+#wrap.version-v3 .header-brand-v3 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+#wrap.version-v3 .header-brand-v3__logo {
+	display: block;
+	width: auto;
+	height: 24px;
+	max-width: 100%;
+}
+
+/* 본문 상단 안내 */
+#wrap.version-v3 .version-v3-lead {
+	margin: 40px 24px 0;
+	color: var(--hecto_black01, #2B2B2B);
+	font-family: Inter;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 29px; /* 145% */
+	letter-spacing: -0.408px;
+	text-align: left;
+}
+
+/* PIN 영역 + 재설정 링크 간격 */
+#wrap.version-v3 .version-v3-pw-stack { margin-top: 30px; }
+#wrap.version-v3 .version-v3-pw-stack .section { margin: 0; }
+
+#wrap.version-v3 .well.pw-box {
+	margin: 0 20px;
+	padding: 40px 20px;
+	background-color: #f9f7fa;
+	border-radius: 8px;
+	text-align: center;
+	box-sizing: border-box;
+}
+#wrap.version-v3 .pw-box .info-text {
+	margin: 0 0 30px;
+	color: var(--HF-System-Color-Sementic-Text-Basic, #474747);
+	font-family: Inter;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 29px; /* 181.25% */
+	letter-spacing: -0.408px;
+}
+
+/* 6자리 표시: 입력됨 #e72844 · 미입력 #d8dadd */
+#wrap.version-v3 .input-mark-v3 { position: relative; height: 40px; clear: both; }
+#wrap.version-v3 .input-mark-v3:after { content: ''; display: block; clear: both; }
+#wrap.version-v3 .input-mark-v3 .mark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	font-size: 0;
+	text-align: center;
+}
+#wrap.version-v3 .input-mark-v3 .mark i {
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	margin-left: 6px;
+	border-radius: 5px;
+	background-color: #d8dadd;
+	position: relative;
+	overflow: hidden;
+	vertical-align: top;
+}
+#wrap.version-v3 .input-mark-v3 .mark i:first-child { margin-left: 0; }
+#wrap.version-v3 .input-mark-v3 .mark i.on { background-color: #e72844; }
+/* input-mark와 병행 클래스라 기본 .input-mark .mark i:after의 transform이 남지 않도록 명시 초기화 */
+#wrap.version-v3 .input-mark-v3 .mark i:after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -7.5px 0 0 -10px;
+	display: block;
+	width: 20px;
+	height: 15px;
+	border: 0;
+	-webkit-transform: none;
+	transform: none;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='15' viewBox='0 0 20 15' fill='none'%3E%3Cpath d='M1.5 7.00002L8.5 13L18.5 1.50002' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	z-index: 2;
+}
+
+/* 비밀번호 재설정 */
+#wrap.version-v3 .pw-reset-v3-wrap { margin: 30px 20px 0; text-align: center; }
+#wrap.version-v3 .pw-reset-v3 {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 30px;
+	padding: 0 20px;
+	border-radius: 8px;
+	background-color: #f9f7fa;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1;
+	letter-spacing: 0.0798px;
+	box-sizing: border-box;
+	color: #000;
+	font-family: Pretendard;
+	line-height: 100%; /* 14px */
+	letter-spacing: 0.08px;
+}
+
+/* 하단 키패드 영역: v2와 동일(샘플 PNG) */
+#wrap.version-v3 div.nppfs-keypad-div { padding: 20px 30px; }
+#wrap.version-v3 div.nppfs-keypad-div .kpd-image { height: 100%; max-height: 260px; }
+#wrap.version-v3 div.nppfs-keypad-div .kpd-image img { height: 100%; }
+
+#wrap.version-v3 .container { padding-left: 0; padding-right: 0; }
+
+/* 260410 추가 */
+.version-v3 #header .page-title .title > img { margin: 0 auto; }
+#header.header-v3 .page-title .btn-back .icon-arrow-left.new { background: url("../../ktmembership/images/button_back.svg") no-repeat center center; background-size: 100% 100%; width: 22px; height: 22px; }
+/* //260410 추가 */

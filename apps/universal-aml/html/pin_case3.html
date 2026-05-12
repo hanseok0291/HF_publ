@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <title>비밀번호 확인 오류 알림 — 헥토파이낸셜</title>
+    <link rel="stylesheet" href="../css/pin-input.css" />
+    <script src="../js/pin-modal.js" defer></script>
+  </head>
+
+  <body>
+    <!-- wrap -->
+    <div id="wrap" class="pin-page">
+      <header class="pin-header">
+        <div class="pin-container">
+          <h1 class="pin-brand">
+            <img
+              class="pin-logo"
+              src="../images/common/logo.svg"
+              alt="헥토파이낸셜"
+            />
+          </h1>
+          <button type="button" class="pin-close" aria-label="화면 닫기"></button>
+        </div>
+      </header>
+
+      <section class="pin-section" aria-labelledby="pin-heading">
+        <div id="pin-body" class="pin-main">
+          <h2 id="pin-heading" class="pin-heading">PIN 번호를 입력해주세요</h2>
+
+          <div
+            class="pin-form"
+            role="group"
+            aria-label="PIN 번호 6자리 입력 상태"
+          >
+            <ul class="pin-dots">
+              <li class="pin-dot is-filled" aria-hidden="true"></li>
+              <li class="pin-dot is-filled" aria-hidden="true"></li>
+              <li class="pin-dot" aria-hidden="true"></li>
+              <li class="pin-dot" aria-hidden="true"></li>
+              <li class="pin-dot" aria-hidden="true"></li>
+              <li class="pin-dot" aria-hidden="true"></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pin-keypad-area">
+          <div class="pin-keypad-sample">
+            <img src="../images/common/keypad.png" alt="보안키패드 샘플" />
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 알럿: 통신·연동 오류 -->
+    <div id="pin-alert-system" class="pin-modal" role="presentation">
+      <div class="pin-modal-backdrop" aria-hidden="true"></div>
+      <div
+        class="pin-modal-panel"
+        role="alertdialog"
+        aria-modal="true"
+        aria-labelledby="pin-alert-system-title"
+        aria-describedby="pin-alert-system-desc"
+      >
+        <div id="pin-alert-system-desc" class="pin-modal-message">
+          <p id="pin-alert-system-title" class="pin-modal-title">
+            비밀번호 확인 중 오류가 발생했습니다.
+          </p>
+          <p class="pin-modal-text pin-modal-text--sub">일시적인 통신 장애일 수 있으니,</p>
+          <p class="pin-modal-text pin-modal-text--sub">
+            아래 ‘확인’ 버튼을 눌러 재시도 부탁드립니다.
+          </p>
+          <p class="pin-modal-text pin-modal-text--sub">
+            오류 사유 :
+            <!-- [연동] 서버/클라이언트 메시지 -->
+            <span id="pin-error-reason"></span>
+          </p>
+        </div>
+        <div class="pin-modal-actions pin-modal-actions--single">
+          <button type="button" class="pin-modal-btn pin-modal-btn--primary">
+            확인
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

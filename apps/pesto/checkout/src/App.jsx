@@ -29,12 +29,37 @@ const imagePath = (fileName) => `${import.meta.env.BASE_URL}images/${fileName}`;
 
 const COPY_TOAST_MS = 2500;
 
+/** PC 아이프레임 등 좁은 너비와 구분: UA 기반으로 모바일 여부만 판별 */
+const detectLikelyMobileDevice = () => {
+  if (typeof navigator === "undefined") {
+    return false;
+  }
+  const uaData = navigator.userAgentData;
+  if (typeof uaData?.mobile === "boolean") {
+    return uaData.mobile;
+  }
+  const ua = navigator.userAgent || "";
+  if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)) {
+    return true;
+  }
+  if (/iPad/i.test(ua)) {
+    return true;
+  }
+  // iPadOS 13+ Safari 등 (Macintosh UA + 터치)
+  if (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1) {
+    return true;
+  }
+  return false;
+};
+
 function App() {
   const [selectedNetworkId, setSelectedNetworkId] = useState(null);
   const [step, setStep] = useState("select-network");
   const [isQrModalOpen, setIsQrModalOpen] = useState(false);
   const [isCopyToastVisible, setIsCopyToastVisible] = useState(false);
   const copyToastTimerRef = useRef(null);
+  /** 모바일 기기일 때만 QR 버튼 비표시(화면 너비와 무관) */
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
   const [remainingSeconds, setRemainingSeconds] = useState(47 * 3600 + 59 * 60 + 59);
   const isNextEnabled = selectedNetworkId !== null;
   const selectedNetwork = networkItems.find((item) => item.id === selectedNetworkId);
@@ -88,6 +113,10 @@ function App() {
         window.clearTimeout(copyToastTimerRef.current);
       }
     };
+  }, []);
+
+  useEffect(() => {
+    setIsMobileDevice(detectLikelyMobileDevice());
   }, []);
 
   const handleCopyWalletAddress = async (address) => {
@@ -231,14 +260,16 @@ function App() {
                         <img className="fe-copy-icon" src={imagePath("ico-copy.svg")} alt="" />
                         Copy
                       </button>
-                      <button
-                        className="fe-copy-button fe-wallet-qr-button"
-                        type="button"
-                        onClick={() => setIsQrModalOpen(true)}
-                      >
-                        <img className="fe-qr-icon" src={imagePath("ico-qr.svg")} alt="" />
-                        QR
-                      </button>
+                      {!isMobileDevice && (
+                        <button
+                          className="fe-copy-button fe-wallet-qr-button"
+                          type="button"
+                          onClick={() => setIsQrModalOpen(true)}
+                        >
+                          <img className="fe-qr-icon" src={imagePath("ico-qr.svg")} alt="" />
+                          QR
+                        </button>
+                      )}
                     </div>
                   </dd>
                 </div>

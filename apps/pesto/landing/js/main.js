@@ -215,7 +215,7 @@
   });
 })();
 
-/* 카드·히어로 스크롤 페이드 — 카드: 섹션별 .landing-card-grid 한 번 측정 후 동일 opacity. 히어로: 다음 섹션 덮임 */
+/* 히어로 + problems 카드 그리드 스크롤 페이드 — 혜택(.landing-benefits)·모바일은 제외 */
 (() => {
   const prefersReduced =
     typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -255,7 +255,7 @@
     return SCROLL_FADE_MIN_OPACITY + (1 - SCROLL_FADE_MIN_OPACITY) * t;
   };
 
-  /** 세로 스크롤 기준: 보이는 높이 / 카드 높이 */
+  /** 세로: 뷰포트에 보이는 높이 / 요소 높이 */
   const heightVisibleRatio = (el) => {
     const r = el.getBoundingClientRect();
     const h = r.height;
@@ -269,10 +269,8 @@
     return visibleH / h;
   };
 
-  /* 카드 높이 대비 가시 비율이 이 값 미만이면 페이드(값↑ = 클리핑 시 더 일찍) */
   const CARD_FADE_FULL_VISIBLE_RATIO = 0.64;
 
-  /** 임계 미만: 0으로 빠르게(4제곱) */
   const fadeOpacityFromRatio = (ratio) => {
     if (ratio >= CARD_FADE_FULL_VISIBLE_RATIO) {
       return 1;
@@ -281,23 +279,56 @@
     return t * t * t * t;
   };
 
-  /**
-   * 뷰포트 세로 중앙 대비 요소(카드 그리드) 중심 — 섹션 단위로 한 번만 쓰면 카드가 동시에 페이드
-   * upPx = (뷰 중앙 Y) − (블록 중심 Y) → 스크롤로 올라갈수록 upPx 증가
-   */
   const CARD_CENTER_FADE_DEADBAND_PX = 6;
   const positionFadeRatio = (el) => {
     const r = el.getBoundingClientRect();
     const vh = window.innerHeight || 1;
-    const cardMidY = (r.top + r.bottom) / 2;
+    const blockMidY = (r.top + r.bottom) / 2;
     const viewMidY = vh * 0.5;
-    const upPx = viewMidY - cardMidY;
+    const upPx = viewMidY - blockMidY;
     if (upPx <= CARD_CENTER_FADE_DEADBAND_PX) {
       return 1;
     }
     const bandPx = Math.max(72, Math.min(132, vh * 0.17));
     const t = Math.max(0, Math.min(1, (upPx - CARD_CENTER_FADE_DEADBAND_PX) / bandPx));
     return 1 - t * t * t;
+  };
+
+  const updateCardScrollFade = () => {
+    for (const section of revealSections) {
+      if (!(section instanceof HTMLElement)) {
+        continue;
+      }
+      const cardsInSection = section.querySelectorAll(".landing-card");
+      if (!section.classList.contains("landing-reveal-section--active")) {
+        for (const node of cardsInSection) {
+          if (node instanceof HTMLElement) {
+            node.style.removeProperty("--landing-card-scroll-fade");
+          }
+        }
+        continue;
+      }
+      /* 혜택 섹션: 카드 페이드 없음 */
+      if (section.classList.contains("landing-benefits")) {
+        for (const node of cardsInSection) {
+          if (node instanceof HTMLElement) {
+            node.style.removeProperty("--landing-card-scroll-fade");
+          }
+        }
+        continue;
+      }
+      const grid = section.querySelector(".landing-card-grid");
+      const measureEl = grid instanceof HTMLElement ? grid : section;
+      const ratio = heightVisibleRatio(measureEl);
+      const pos = positionFadeRatio(measureEl);
+      const raw = fadeOpacityFromRatio(ratio) * pos;
+      const op = toScrollFadeOpacity(raw);
+      for (const node of cardsInSection) {
+        if (node instanceof HTMLElement) {
+          node.style.setProperty("--landing-card-scroll-fade", String(op));
+        }
+      }
+    }
   };
 
   /** problems 상단이 뷰포트 위로 올라간 정도로 sticky 히어로 전체 페이드 */
@@ -329,43 +360,6 @@
   };
 
   let ticking = false;
-
-  const updateCardScrollFade = () => {
-    for (const section of revealSections) {
-      if (!(section instanceof HTMLElement)) {
-        continue;
-      }
-      const cardsInSection = section.querySelectorAll(".landing-card");
-      if (!section.classList.contains("landing-reveal-section--active")) {
-        for (const node of cardsInSection) {
-          if (node instanceof HTMLElement) {
-            node.style.removeProperty("--landing-card-scroll-fade");
-          }
-        }
-        continue;
-      }
-      /* 혜택 섹션: 스크롤 페이드 바닥 미적용 — 항상 불투명 1 */
-      if (section.classList.contains("landing-benefits")) {
-        for (const node of cardsInSection) {
-          if (node instanceof HTMLElement) {
-            node.style.removeProperty("--landing-card-scroll-fade");
-          }
-        }
-        continue;
-      }
-      const grid = section.querySelector(".landing-card-grid");
-      const measureEl = grid instanceof HTMLElement ? grid : section;
-      const ratio = heightVisibleRatio(measureEl);
-      const pos = positionFadeRatio(measureEl);
-      const raw = fadeOpacityFromRatio(ratio) * pos;
-      const op = toScrollFadeOpacity(raw);
-      for (const node of cardsInSection) {
-        if (node instanceof HTMLElement) {
-          node.style.setProperty("--landing-card-scroll-fade", String(op));
-        }
-      }
-    }
-  };
 
   const onScrollOrResize = () => {
     if (ticking) {

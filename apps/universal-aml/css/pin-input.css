@@ -1,0 +1,398 @@
+@charset "UTF-8";
+
+@import url(../fonts/pretendard/pretendard-subset.min.css);
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: #fff;
+}
+
+body {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* PIN 등록 (html/pin.html 단일용) */
+#wrap.pin-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: 0;
+  background: #fff;
+}
+
+#wrap.pin-page > .pin-section {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* 헤더 Figma title 1:677 · 로고 1:678 · 닫기 1:679 */
+#wrap.pin-page .pin-header {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+}
+
+#wrap.pin-page .pin-header .pin-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  height: 60px;
+  padding: 14px 0;
+}
+
+#wrap.pin-page .pin-header .pin-brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+#wrap.pin-page .pin-logo {
+  display: block;
+  width: auto;
+  height: 18px;
+  margin: 0;
+}
+
+#wrap.pin-page .pin-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent url("../images/common/icon-close.svg") no-repeat
+    center / 18px auto;
+  cursor: pointer;
+}
+
+#wrap.pin-page .pin-close:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}
+
+/* 본문 1:872~873 · 점 1:879 */
+#wrap.pin-page .pin-main {
+  flex: 0 0 auto;
+  width: 100%;
+  margin: 0 auto;
+  padding: 30px 30px 0;
+}
+
+#wrap.pin-page .pin-heading {
+  margin: 0 0 104px;
+  padding: 0;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
+    sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 40px;
+  color: #000000;
+  text-align: left;
+}
+
+#wrap.pin-page .pin-form {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+#wrap.pin-page .pin-dots {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 224px;
+  max-width: 100%;
+  height: 24px;
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+#wrap.pin-page .pin-dot {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  margin: 0;
+  transition: background 0.15s ease;
+}
+
+#wrap.pin-page .pin-dot.is-filled {
+  background: #000000;
+}
+
+/* 키패드 1:878 */
+#wrap.pin-page .pin-keypad-area {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 0;
+  margin: 0;
+  margin-top: auto;
+  padding: 0;
+  width: 100%;
+}
+
+#wrap.pin-page .pin-keypad-sample {
+  width: 100%;
+  height: 281px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+#wrap.pin-page .pin-keypad-sample img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+/* -----------------------------------------------------------------
+ * 알럿 모달 — DS "모달창 관련 공통 가이드"(234:1357) · 단일 PPC_MC0101_09(536:4190) · 2버튼 PPC_MC0102_03_C2(235:1408)
+ * 텍스트 구역: min-h 80 · h1–h2 간격 10px · 문단 간 8px · 본문↔버튼 gap 30 · 버튼 행 68 + 상단 구분선 #c4c4c4
+ * ----------------------------------------------------------------- */
+
+.pin-modal[hidden] {
+  display: none !important;
+}
+
+.pin-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  isolation: isolate;
+}
+
+.pin-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.pin-modal-panel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* 가이드: 본문 블록과 버튼 행 사이 30px */
+  gap: 30px;
+  width: 330px;
+  max-width: 100%;
+  max-height: calc(100dvh - 40px);
+  overflow: auto;
+  padding: 30px 30px 0;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+}
+
+/* 가이드 h1: 18 Bold · 색 neutral10 */
+.pin-modal-title {
+  margin: 0 auto;
+  padding: 0;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
+    sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0;
+  color: #303030;
+  text-align: center;
+  width: 270px;
+  max-width: 100%;
+}
+
+/* 텍스트 구역: 최소 높이 80px, 가운데 정렬(1~2줄). 2줄 초과 시 높이 자연 증가 */
+.pin-modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: 80px;
+  width: 270px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* h1+h2 한 블록 — .pin-modal-message + .pin-modal-title + .pin-modal-text--sub(16/24)
+ * 본문만(h2 모달 예시, 가이드 235:1399) — .pin-modal-text 만 · 전부 18/24 · --sub·title 미사용 */
+.pin-modal-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: 80px;
+  width: 270px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.pin-modal-message > .pin-modal-title {
+  margin: 0;
+  width: 100%;
+}
+
+.pin-modal-message > .pin-modal-title + .pin-modal-text,
+.pin-modal-message > .pin-modal-title + .pin-modal-text--sub {
+  margin-top: 10px;
+}
+
+.pin-modal-message > .pin-modal-text + .pin-modal-text,
+.pin-modal-message > .pin-modal-text--sub + .pin-modal-text,
+.pin-modal-message > .pin-modal-text + .pin-modal-text--sub {
+  margin-top: 8px;
+}
+
+/* 본문 기본: 가이드 단일 블록 18px · 행간 24px */
+.pin-modal-text {
+  margin: 0;
+  width: 100%;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
+    sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #303030;
+  text-align: center;
+}
+
+/* h1+h2 모달의 h2(부제) — 16px · 행간 24px(가이드 235:1398) */
+.pin-modal-text--sub {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.pin-modal-message > .pin-modal-text--sub + .pin-modal-text--sub {
+  margin-top: 8px;
+}
+
+.pin-modal-text.is-emphasis {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* 문단 간 8px(가이드 249:3873). 제목+첫 문단 10px은 상단 규칙 우선 */
+.pin-modal-body > .pin-modal-text + .pin-modal-text {
+  margin-top: 8px;
+}
+
+.pin-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -30px 0;
+  width: calc(100% + 60px);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  border-top: 1px solid #c4c4c4;
+}
+
+.pin-modal-actions--single {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 68px;
+  padding: 0;
+}
+
+.pin-modal-actions--single .pin-modal-btn {
+  flex: 0 0 auto;
+  min-width: 0;
+  min-height: 0;
+  padding: 0 16px;
+  height: auto;
+}
+
+.pin-modal-actions--dual {
+  flex-direction: row;
+  gap: 0;
+  align-items: stretch;
+  min-height: 68px;
+  height: 68px;
+  padding: 0;
+}
+
+.pin-modal-actions--dual .pin-modal-btn {
+  flex: 1 1 50%;
+  min-width: 0;
+  min-height: 68px;
+  margin: 0;
+  padding: 0 8px;
+  border-radius: 0;
+  border-right: 1px solid #c4c4c4;
+}
+
+.pin-modal-actions--dual .pin-modal-btn:last-child {
+  border-right: 0;
+}
+
+.pin-modal-btn {
+  margin: 0;
+  border: 0;
+  background: none;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
+    sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: normal;
+  color: #000000;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.pin-modal-btn:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}
+
+/* 가이드 235:1408 — 취소: #929292 */
+.pin-modal-btn--secondary {
+  font-weight: 700;
+  color: #929292;
+}

@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeSubmitPrompt": [
+      {
+        "command": "python .cursor/hooks/prefix_router.py",
+        "matcher": "UserPromptSubmit",
+        "timeout": 15,
+        "failClosed": false
+      }
+    ],
+    "afterFileEdit": [
+      {
+        "command": "python .cursor/hooks/design_audit_hook.py",
+        "matcher": "Write|TabWrite",
+        "timeout": 15,
+        "failClosed": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,1307 @@
+/* [fonts] Aeonik Pro TRIAL — Regular(400) + Bold(700), 동일 font-family 로 매칭 */
+@font-face {
+  font-family: "Aeonik Pro TRIAL";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/AeonikProTRIAL-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Aeonik Pro TRIAL";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/aeonikprotrial-bold.woff2") format("woff2"), url("../fonts/aeonikprotrial-bold.ttf") format("truetype");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* 스크롤바가 없는 환경에서도 레이아웃 점프 완화(모달과 병행) */
+html {
+  scrollbar-gutter: stable;
+  scroll-padding-top: var(--landing-topbar-h);
+}
+
+/* 모달 열림: 세로 스크롤만 막음. 모바일은 JS에서 body position:fixed 병행 */
+html.landing-modal-scroll-lock {
+  overflow: hidden;
+}
+
+/* 1920px 기준 좌우 200px 비율 — clamp로 과소·과대 방지 */
+:root {
+  --landing-inline-pad: clamp(16px, calc(100vw * 200 / 1920), 200px);
+  /* 고정 헤더(.landing-topbar) 높이 — 패딩 20+버튼·로고+20 ≈ 80px(데스크톱) */
+  --landing-topbar-h: 80px;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --landing-topbar-h: 56px;
+  }
+}
+
+body {
+  margin: 0;
+  overflow-x: clip;
+  background: #0f1116;
+  color: #ffffff;
+  font-family: "Aeonik Pro TRIAL", "Noto Sans KR", "Pretendard", "Inter", sans-serif;
+}
+
+/* 원페이지형: 히어로 sticky(z:0) + 이후 블록이 불투명 배경으로 위(z≥1)에서 덮음 — stacking 안정화 */
+.landing-main {
+  width: 100%;
+  isolation: isolate;
+}
+
+/* bottom CTA: 스크롤 페이드 없음 — 항상 불투명 */
+.landing-main > section:nth-of-type(4) .landing-bottom-cta-title,
+.landing-main > section:nth-of-type(4) .landing-cta-button {
+  opacity: 1;
+}
+
+/* 토스 페이스페이형 스크롤 진입: 타이틀 먼저 → 카드 1·2·3 순차 (landing-reveal-section + IO) */
+.landing-main > section:nth-of-type(2).landing-reveal-section:not(.landing-reveal-section--active) .landing-section-title,
+.landing-main > section:nth-of-type(2).landing-reveal-section:not(.landing-reveal-section--active) .landing-card {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+/* 등장: transform은 길게 부드럽게, opacity는 짧게(JS 스크롤 변수와 덜 싸움) */
+.landing-main > section:nth-of-type(2).landing-reveal-section.landing-reveal-section--active .landing-section-title {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 0.28s;
+}
+
+/* opacity: 스크롤 변수 동시 반영(지연 0). transform만 순차 등장 */
+.landing-main > section:nth-of-type(2).landing-reveal-section.landing-reveal-section--active .landing-card:nth-child(1) {
+  opacity: var(--landing-card-scroll-fade, 1);
+  transform: translateY(0);
+  transition:
+    opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0s,
+    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+}
+
+.landing-main > section:nth-of-type(2).landing-reveal-section.landing-reveal-section--active .landing-card:nth-child(2) {
+  opacity: var(--landing-card-scroll-fade, 1);
+  transform: translateY(0);
+  transition:
+    opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0s,
+    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.7s;
+}
+
+.landing-main > section:nth-of-type(2).landing-reveal-section.landing-reveal-section--active .landing-card:nth-child(3) {
+  opacity: var(--landing-card-scroll-fade, 1);
+  transform: translateY(0);
+  transition:
+    opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0s,
+    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.9s;
+}
+
+/* 혜택 3카드: 순차 등장 + 스크롤 페이드(--landing-card-scroll-fade, main.js) */
+.landing-main > section:nth-of-type(3).landing-reveal-section:not(.landing-reveal-section--active) .landing-section-title,
+.landing-main > section:nth-of-type(3).landing-reveal-section:not(.landing-reveal-section--active) .landing-card {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.landing-main > section:nth-of-type(3).landing-reveal-section.landing-reveal-section--active .landing-section-title {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 0.28s;
+}
+
+.landing-main > section:nth-of-type(3).landing-reveal-section.landing-reveal-section--active .landing-card:nth-child(1) {
+  opacity: var(--landing-card-scroll-fade, 1);
+  transform: translateY(0);
+  transition:
+    opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0s,
+    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.59s;
+}
+
+.landing-main > section:nth-of-type(3).landing-reveal-section.landing-reveal-section--active .landing-card:nth-child(2) {
+  opacity: var(--landing-card-scroll-fade, 1);
+  transform: translateY(0);
+  transition:
+    opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0s,
+    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.78s;
+}
+
+.landing-main > section:nth-of-type(3).landing-reveal-section.landing-reveal-section--active .landing-card:nth-child(3) {
+  opacity: var(--landing-card-scroll-fade, 1);
+  transform: translateY(0);
+  transition:
+    opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0s,
+    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.96s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* 순차 등장 대신 즉시 표시(JS에서 .landing-reveal-section--active 부여) */
+  .landing-reveal-section .landing-section-title,
+  .landing-reveal-section .landing-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+.landing-hero {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  /* 첫 뷰포트 1장 + 시안 최소 높이(1090) 중 작은 값 — 스크롤 시 아래 섹션이 덮는 느낌 */
+  min-height: min(1090px, 100svh);
+  /* 상단: 고정 헤더 높이만큼 — 콘텐츠가 바 아래에서 시작 */
+  padding: var(--landing-topbar-h) 50px 20px;
+  background: #030a08;
+  /* 세로는 잘리지 않게(히어로 콘텐츠·버튼 전체 노출). 가로만 클립 */
+  overflow-x: clip;
+  overflow-y: visible;
+  display: flex;
+  flex-direction: column;
+  /* 다음 섹션이 덮으며 스크롤 시 사라지게(main.js --landing-hero-scroll-fade) */
+  opacity: var(--landing-hero-scroll-fade, 1);
+  transition: opacity 0.22s ease-out;
+}
+
+.landing-hero-media {
+  position: absolute;
+  inset: var(--landing-topbar-h) 0 0;
+}
+
+.landing-hero-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 시안 336:1109 — 전면 30% 블랙 딤. 히어로 전체(상단 패딩·고정 헤더와 겹치는 구간 포함) */
+.landing-hero-dim-flat {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* 시안 336:1110 — 하단 그라데이션. 하단 정렬 + 높이만 지정(상단 inset 제외해 헤더 높이까지 동일 박스 기준) */
+.landing-hero-dim-gradient {
+  position: absolute;
+  z-index: 9;
+  pointer-events: none;
+  background: linear-gradient(180deg, #000000 13.907%, rgba(0, 0, 0, 0) 50.106%);
+  inset: 0;
+}
+
+/* 상단 고정 헤더 — 모달(z-index 10~11)보다 낮게 */
+.landing-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 20px 50px;
+  background: #030a08;
+}
+
+.landing-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.landing-cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border: 0;
+  border-radius: 40px;
+  background: #39ed5b;
+  color: #151515;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  font-family: 'Aeonik Pro TRIAL';
+}
+
+.landing-cta-button-small {
+  padding: 11px 14px;
+  font-size: 14px;
+}
+
+/* 로고: 공용 SVG(./images/logo-pesto.svg) — 시안 벡터로 파일만 교체 */
+.landing-logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.landing-logo-img {
+  display: block;
+  height: 24px;
+  width: auto;
+}
+
+/* 상단 Join: 모바일은 텁 링크형, 태블릿 이상은 버튼형 */
+.landing-header-join {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+@media (min-width: 768px) {
+  .landing-header-join {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 14px;
+    border-radius: 40px;
+    background: #39ed5b;
+    color: #151515;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.28px;
+  }
+
+  /* 모바일 전용 줄바꿈: 태블릿 이상에서는 제거 */
+  .landing-title-br-mobile,
+  .landing-desc-br-mobile,
+  .landing-card-br-mobile,
+  .landing-problem-title-br-mobile,
+  .landing-benefit-title-br-mobile {
+    display: none;
+  }
+}
+
+.landing-hero-content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  max-width: 1500px;
+  margin: 0 auto;
+  text-align: center;
+  z-index: 20;
+}
+
+.landing-hero-title {
+  margin: 0 0 20px;
+  font-size: 130px;
+  line-height: 1;
+  letter-spacing: -2.6px;
+}
+
+.landing-hero-description {
+  margin: 0 auto 40px;
+  max-width: 1200px;
+  font-size: 24px;
+  line-height: 1.3;
+  letter-spacing: -0.48px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.landing-section {
+  background: #151515;
+  /* 좌우: :root --landing-inline-pad (1920 기준 200px 비율). padding 단축 대신 inline 분리 */
+  padding-block: 180px;
+  padding-inline: var(--landing-inline-pad);
+}
+
+.landing-hero + .landing-section {
+  margin-top: 0;
+}
+
+.landing-section-dark {
+  /* min-height: 1080px; */
+}
+
+.landing-section-title {
+  margin: 0 0 56px;
+  text-align: center;
+  font-size: 52px;
+  line-height: 1;
+  letter-spacing: -1.04px;
+}
+
+.landing-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.landing-card {
+  min-height: 273px;
+  padding: 36px;
+  border-radius: 24px;
+}
+
+.landing-card-muted {
+  background: #2a2a2a;
+}
+
+.landing-card-accent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 412px;
+  border: 1px solid rgba(57, 237, 91, 0.2);
+  background: #050505;
+  overflow: hidden;
+}
+
+/* 타원 글로우 공통: 텍스트·일러스트 위에 오지 않도록 */
+.landing-card-accent--ellipse-fee > :not(.landing-card-accent-ellipse),
+.landing-card-accent--ellipse-settlement > :not(.landing-card-accent-ellipse),
+.landing-card-accent--ellipse-multichain > :not(.landing-card-accent-ellipse) {
+  position: relative;
+  z-index: 1;
+}
+
+.landing-card-accent-ellipse {
+  position: absolute;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.landing-card-accent-ellipse-rotate {
+  flex: none;
+}
+
+.landing-card-accent-ellipse-frame {
+  position: relative;
+}
+
+.landing-card-accent-ellipse-burst {
+  position: absolute;
+}
+
+.landing-card-accent-ellipse-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+}
+
+/* Figma 336:382 — Flat 0.8% Fee */
+.landing-card-accent--ellipse-fee .landing-card-accent-ellipse {
+  left: -96px;
+  top: -69px;
+  width: 229.928px;
+  height: 195.372px;
+}
+
+.landing-card-accent--ellipse-fee .landing-card-accent-ellipse-rotate {
+  transform: rotate(-127.18deg);
+}
+
+.landing-card-accent--ellipse-fee .landing-card-accent-ellipse-frame {
+  width: 61.958px;
+  height: 241.596px;
+}
+
+.landing-card-accent--ellipse-fee .landing-card-accent-ellipse-burst {
+  inset: -101% -393.81%;
+}
+
+/* Figma 336:389 — D+1 Settlement */
+.landing-card-accent--ellipse-settlement .landing-card-accent-ellipse {
+  left: 84px;
+  top: 345px;
+  width: 457px;
+  height: 84px;
+}
+
+.landing-card-accent--ellipse-settlement .landing-card-accent-ellipse-rotate {
+  transform: rotate(-90deg);
+}
+
+.landing-card-accent--ellipse-settlement .landing-card-accent-ellipse-frame {
+  width: 84px;
+  height: 457px;
+}
+
+.landing-card-accent--ellipse-settlement .landing-card-accent-ellipse-burst {
+  inset: -53.39% -290.48%;
+}
+
+/* Figma 336:396 — Multi-chain */
+.landing-card-accent--ellipse-multichain .landing-card-accent-ellipse {
+  left: 139px;
+  top: 124px;
+  width: 298.764px;
+  height: 287.063px;
+}
+
+.landing-card-accent--ellipse-multichain .landing-card-accent-ellipse-rotate {
+  transform: rotate(48.46deg);
+}
+
+.landing-card-accent--ellipse-multichain .landing-card-accent-ellipse-frame {
+  width: 139px;
+  height: 276px;
+}
+
+.landing-card-accent--ellipse-multichain .landing-card-accent-ellipse-burst {
+  inset: -88.41% -175.54%;
+}
+
+.landing-card-title {
+  margin: 0 0 20px;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.68px;
+}
+
+.landing-card-description {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.3;
+  letter-spacing: -0.36px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.landing-card-description + .landing-card-description {
+  /* margin-top: 4px; */
+}
+
+/* 혜택 카드별 일러스트 — 시안 max·칼럼 축소는 min(100%, 시안). 카드 기준 오른쪽 아래 배치 */
+.landing-card-image {
+  display: block;
+  margin: 28px 0 0 auto;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: right bottom;
+}
+
+/* PC — 1280px 이상 */
+@media (min-width: 1280px) {
+  .landing-card-image--fee {
+    width: min(100%, 294px);
+    aspect-ratio: 1 / 1;
+  }
+
+  .landing-card-image--settlement {
+    width: min(100%, 235px);
+    aspect-ratio: 1 / 1;
+  }
+
+  .landing-card-image--multichain {
+    width: min(100%, 357px);
+    aspect-ratio: 3 / 2;
+  }
+}
+
+/* 태블릿 — 768px ~ 1279px */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .landing-card-image--fee {
+    width: min(100%, 212px);
+    aspect-ratio: 1 / 1;
+  }
+
+  .landing-card-image--settlement {
+    width: min(100%, 175px);
+    aspect-ratio: 1 / 1;
+  }
+
+  .landing-card-image--multichain {
+    width: min(100%, 248px);
+    aspect-ratio: 248 / 165;
+  }
+}
+
+.landing-bottom-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding-block: 180px;
+  padding-inline: var(--landing-inline-pad);
+  background: linear-gradient(180deg, #151515 0%, #002100 100%);
+}
+
+.landing-bottom-cta-title {
+  margin: 0;
+  text-align: center;
+  font-size: 60px;
+  line-height: 1.4;
+  letter-spacing: -1.2px;
+  font-weight: 400;
+}
+
+.landing-footer {
+  padding-block: 50px;
+  padding-inline: var(--landing-inline-pad);
+  background: #151515;
+}
+
+.landing-footer-row {
+  display: flex;
+  align-items: center;
+}
+
+.landing-footer-company {
+  margin: 0;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: -0.4px;
+  font-weight: 700;
+}
+
+.landing-footer-row-bottom {
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+.landing-footer-contact,
+.landing-footer-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+  letter-spacing: -0.3px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.landing-footer-contact p {
+  margin: 0;
+}
+
+.landing-footer-links {
+  gap: 15px;
+}
+
+.landing-footer-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+}
+
+/* Terms | Privacy — 링크 앞 세로 구분선(가운데 정렬은 flex align-items) */
+.landing-footer-links a::before {
+  content: "";
+  flex-shrink: 0;
+  width: 1px;
+  height: 12px;
+  background: var(--Color-Semantic-Text-04, #454545);
+}
+
+.landing-footer-link-button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  font: inherit;
+  cursor: pointer;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.preapply-modal[hidden] {
+  display: none;
+}
+
+/* inset 0으로 전체 덮음 — right를 scrollbar-gap 만큼 줄이면 오른쪽 끝에 본문 배경이 비치며 모달 딤과 색이 달라 보임 */
+.preapply-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.preapply-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.preapply-modal-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, #151515 0%, #061e06 100%);
+}
+
+.preapply-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 50px;
+  min-height: 80px;
+}
+
+.preapply-modal-logo-img {
+  display: block;
+  height: 24px;
+  width: auto;
+}
+
+.preapply-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.preapply-modal-close img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  /* pub-guide ico-close.svg(fill #151515) — 다크 모달 배경에서 흰색으로 보이게 */
+  filter: brightness(0) invert(1);
+}
+
+.preapply-modal-content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  text-align: center;
+}
+
+.preapply-modal-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.preapply-modal-state[hidden] {
+  display: none;
+}
+
+.preapply-modal-state-form {
+  gap: 0;
+}
+
+/* 폼 화면: 타이틀–설명 16px, 설명–폼 60px(폼 margin-top 제거로 합산 없음) */
+.preapply-modal-state-form .preapply-modal-title {
+  margin-bottom: 16px;
+}
+
+.preapply-modal-state-form .preapply-modal-description {
+  margin-bottom: 60px;
+}
+
+.preapply-modal-state-form .preapply-modal-form {
+  margin-top: 0;
+}
+
+.preapply-modal-state-success {
+  gap: 0;
+}
+
+/* 성공 화면: 아이콘 박스–타이틀 27px, 타이틀–설명 16px */
+.preapply-modal-state-success .preapply-modal-success-icon-box {
+  margin-bottom: 27px;
+}
+
+.preapply-modal-state-success .preapply-modal-title {
+  margin-bottom: 16px;
+}
+
+.preapply-modal-title {
+  margin: 0;
+  font-size: 48px;
+  line-height: 1;
+  letter-spacing: -0.96px;
+}
+
+.preapply-modal-description {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.48px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.preapply-modal-description strong {
+  color: #39ed5b;
+  font-weight: 700;
+}
+
+/* 완료 화면: 강조는 초록이 아닌 흰색 */
+.preapply-modal-state-success .preapply-modal-description strong {
+  color: #fff;
+}
+
+.preapply-modal-form {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.preapply-modal-success-icon-box {
+  width: 113px;
+  height: 113px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+.preapply-modal-success-icon {
+  display: block;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+.preapply-modal-input {
+  width: 343px;
+  height: 48px;
+  padding: 0 16px;
+  border: 1px solid #e5e5e8;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #151515;
+  font-family: "Pretendard", sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.32px;
+}
+
+/* input 포커스 시 브라우저 기본 outline / ring 제거 */
+.preapply-modal-input:focus,
+.preapply-modal-input:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.preapply-modal-apply {
+  height: 48px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 12px;
+  background: #39ed5b;
+  color: #151515;
+  font-family: "Pretendard", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.32px;
+  cursor: pointer;
+}
+
+.terms-modal[hidden] {
+  display: none;
+}
+
+.terms-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 11;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.terms-modal-panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: #151515;
+}
+
+.terms-modal-header {
+  flex-shrink: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  min-height: 80px;
+  padding: 20px 50px;
+  background: #151515;
+}
+
+/* 사전신청 모달과 동일 에셋 */
+.terms-modal-logo-img {
+  display: block;
+  height: 24px;
+  width: auto;
+}
+
+/* 본문 1520px 기준 중앙 정렬, 뷰포트 좁을 때는 max(16px, (100% - 1520px) / 2) */
+.terms-modal-inner {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding-inline: max(16px, calc((100% - 1520px) / 2));
+}
+
+.terms-modal-content {
+  box-sizing: border-box;
+  max-width: 1520px;
+  width: 100%;
+  margin: 80px auto 0;
+  margin-inline: auto;
+  padding-bottom: 120px;
+}
+
+.terms-modal-title-main {
+  margin: 0 0 80px;
+  text-align: center;
+  font-size: 48px;
+  line-height: 1;
+  letter-spacing: -0.96px;
+  font-weight: 700;
+}
+
+.terms-modal-section {
+  text-align: left;
+}
+
+.terms-modal-section + .terms-modal-section {
+  margin-top: 60px;
+}
+
+.terms-modal-title {
+  margin: 0;
+  font-size: 36px;
+  line-height: 1;
+  letter-spacing: -0.72px;
+  font-weight: 700;
+}
+
+.terms-modal-text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.32px;
+  color: #ffffff;
+}
+
+.terms-modal-title + .terms-modal-text {
+  margin-top: 40px;
+}
+
+.terms-modal-text + .terms-modal-text {
+  margin-top: 24px;
+}
+
+@media (max-width: 1279px) {
+  .landing-main {
+    min-width: 100%;
+  }
+
+  .landing-hero {
+    min-height: 100svh;
+    padding: var(--landing-topbar-h) 16px 0;
+  }
+
+  .landing-topbar {
+    padding: 16px;
+    background: #030a08;
+  }
+
+  .landing-hero-content {
+    padding-top: clamp(72px, 14svh, 115px);
+    padding-bottom: clamp(96px, 16svh, 140px);
+  }
+
+  .landing-hero-title {
+    font-size: clamp(48px, 8vw, 52px);
+    letter-spacing: -0.96px;
+  }
+
+  .landing-hero-description {
+    font-size: 18px;
+    letter-spacing: -0.36px;
+  }
+
+  .landing-hero + .landing-section {
+    margin-top: 0;
+  }
+
+  /* 히어로 인라인 16px과 동일 — 모달 헤더·본문 좌우 기준 맞춤(768~1279에서 50px 깨짐 방지) */
+  .preapply-modal-header,
+  .terms-modal-header {
+    padding: 0 16px;
+    min-height: 56px;
+  }
+
+  .preapply-modal-content {
+    padding-inline: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .landing-main {
+    min-width: 100%;
+  }
+
+  .landing-hero {
+    min-height: 100svh;
+    padding: var(--landing-topbar-h) 16px 0;
+    background: #040a08;
+  }
+
+  .landing-hero-dim-gradient {
+    display: block;
+  }
+
+  .landing-hero-media {
+    inset: auto 50% 0;
+    width: min(652px, 200%);
+    height: 366.938px;
+    transform: translateX(-50%);
+    z-index: 0;
+  }
+
+  .landing-topbar {
+    min-height: 56px;
+    padding: 0 16px;
+    background: #040a08;
+  }
+
+  .landing-header-join {
+    padding: 0;
+    background: transparent;
+    color: #ffffff;
+    font-family: Inter, "Noto Sans KR", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -0.32px;
+    line-height: 1.3;
+  }
+
+  .landing-hero-content {
+    position: relative;
+    z-index: 20;
+    flex: 1 1 auto;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    gap: 0;
+    /* 하단 영상·그라데이션 여백 — 과도하면 뷰포트에서 버튼이 잘림. 짧은 화면은 clamp */
+    padding: 0 0 clamp(96px, 22svh, 200px);
+    margin: 0;
+    max-width: 100%;
+  }
+
+  .landing-hero-title {
+    font-size: 34px;
+    letter-spacing: -0.68px;
+    line-height: 1;
+  }
+
+  .landing-hero-description {
+    max-width: 100%;
+    font-size: 16px;
+    letter-spacing: -0.32px;
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  .landing-cta-button {
+    padding: 12px 28px;
+    font-size: 15px;
+    letter-spacing: -0.3px;
+  }
+
+  .landing-section {
+    padding-block: 80px;
+    padding-inline: 16px;
+  }
+
+  .landing-hero + .landing-section {
+    margin-top: 0;
+  }
+
+  .landing-section-dark {
+    min-height: auto;
+  }
+
+  .landing-section-title {
+    margin-bottom: 56px;
+    font-size: 26px;
+    line-height: 1.3;
+    letter-spacing: -0.52px;
+  }
+
+  .landing-card-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .landing-card {
+    min-height: auto;
+    padding: 24px;
+    border-radius: 20px;
+  }
+
+  .landing-card-muted {
+    min-height: 174px;
+  }
+
+  .landing-card-title {
+    margin-bottom: 8px;
+    font-size: 20px;
+    letter-spacing: -0.4px;
+  }
+
+  .landing-card-description {
+    font-size: 16px;
+    letter-spacing: -0.32px;
+  }
+
+  .landing-card-accent {
+    min-height: auto;
+    gap: 0;
+    border-radius: 24px;
+  }
+
+  .landing-card-accent .landing-card-title {
+    margin-bottom: 8px;
+  }
+
+  /* 모바일: 글로우 축소 */
+  .landing-card-accent--ellipse-fee .landing-card-accent-ellipse {
+    transform: scale(0.55);
+    transform-origin: 45% 35%;
+  }
+
+  .landing-card-accent--ellipse-settlement .landing-card-accent-ellipse {
+    left: 12px;
+    top: auto;
+    bottom: -20px;
+    width: 280px;
+    height: 56px;
+    transform: scale(0.65);
+    transform-origin: 50% 100%;
+  }
+
+  .landing-card-accent--ellipse-multichain .landing-card-accent-ellipse {
+    left: 50%;
+    top: 72px;
+    width: 220px;
+    height: 200px;
+    margin-left: -110px;
+    transform: scale(0.58);
+    transform-origin: 50% 0;
+  }
+
+  .landing-card-image {
+    margin-top: 0;
+    margin-bottom: -24px;
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  .landing-card-image--fee {
+    width: 147px;
+    height: 147px;
+    aspect-ratio: 1 / 1;
+  }
+
+  .landing-card-image--settlement {
+    width: 117.5px;
+    height: 117.5px;
+    aspect-ratio: 1 / 1;
+  }
+
+  .landing-card-image--multichain {
+    width: 178.5px;
+    height: 119px;
+    aspect-ratio: 3 / 2;
+  }
+
+  .landing-bottom-cta {
+    gap: 0;
+    padding-block: 80px;
+    padding-inline: 16px;
+  }
+
+  .landing-bottom-cta-title {
+    font-size: 26px;
+    line-height: 1.4;
+    letter-spacing: -0.52px;
+    font-weight: 400;
+  }
+
+  .landing-footer {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-inline: 16px;
+  }
+
+  .landing-footer-company {
+    font-size: 16px;
+    letter-spacing: -0.32px;
+  }
+
+  .landing-footer-row-bottom {
+    margin-top: 18px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .landing-footer-contact {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    font-size: 13px;
+    letter-spacing: -0.26px;
+  }
+
+  .landing-footer-links {
+    gap: 10px;
+    font-size: 12px;
+    letter-spacing: -0.24px;
+  }
+
+  .landing-footer-links a {
+    gap: 10px;
+  }
+
+  /* 모달 헤더 인라인 패딩은 max-width:1279 구간에서 이미 16px(히어로와 동일) */
+
+  .preapply-modal-logo-img {
+    height: 24px;
+  }
+
+  .terms-modal-logo-img {
+    height: 24px;
+  }
+
+  .preapply-modal-content {
+    padding: 0 16px;
+  }
+
+  .preapply-modal-title {
+    font-size: 32px;
+  }
+
+  .preapply-modal-description {
+    font-size: 16px;
+  }
+
+  .preapply-modal-form {
+    width: 100%;
+  }
+
+  .preapply-modal-input {
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 0;
+  }
+
+  .terms-modal-content {
+    width: 100%;
+    margin-top: 60px;
+    padding: 0 16px 80px;
+  }
+
+  .terms-modal-title-main {
+    margin-bottom: 56px;
+    font-size: 34px;
+    letter-spacing: -0.68px;
+  }
+
+  .terms-modal-title {
+    font-size: 28px;
+    letter-spacing: -0.56px;
+  }
+
+  .terms-modal-section + .terms-modal-section {
+    margin-top: 40px;
+  }
+
+  .terms-modal-text {
+    margin-top: 24px;
+    font-size: 14px;
+    letter-spacing: -0.28px;
+  }
+  .preapply-modal-state-form .preapply-modal-description {
+    margin-bottom: 29px;
+  }
+}
+
+/* 히어로 아래로 온 요소만 위 레이어(불투명 배경으로 sticky 히어로 덮음). z-index는 아래로 갈수록 올려 겹침 순서 유지 */
+.landing-main > section:nth-of-type(2),
+.landing-main > section:nth-of-type(3),
+.landing-main > section:nth-of-type(4),
+.landing-main > .landing-footer {
+  position: relative;
+}
+
+.landing-main > section:nth-of-type(2) {
+  z-index: 1;
+}
+
+.landing-main > section:nth-of-type(3) {
+  z-index: 2;
+}
+
+.landing-main > section:nth-of-type(4) {
+  z-index: 3;
+}
+
+.landing-main > .landing-footer {
+  z-index: 4;
+}

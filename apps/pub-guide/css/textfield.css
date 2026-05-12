@@ -1,0 +1,1497 @@
+/* ============================================
+   Textfield 확인 페이지 (30-design-guide-textfield · pub-guide)
+   ============================================ */
+
+/* icons.html「전체 아이콘」과 동일: ../assets/icons/*.svg 를 <img>로 사용(마스크 ico·경로 이슈 회피) */
+.textfield-asset-ico {
+  display: block;
+  flex-shrink: 0;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+/* ----- 프리뷰 보드( spacing-preview 와 유사 ) ----- */
+.textfield-spec {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.textfield-spec__note {
+  margin: 0 0 var(--space-24);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-04);
+}
+
+.textfield-spec__board {
+  padding: var(--space-32) var(--space-24);
+  margin-bottom: var(--space-24);
+  background: #fff;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-line-03);
+}
+
+/* 가로 343 — Figma 심볼 기본 폭 */
+.textfield-spec__col {
+  width: 100%;
+  max-width: 343px;
+  margin: 0 auto;
+}
+
+/* textarea 2행 데모: default 다음 min 블록 */
+.textfield-spec__col--offset {
+  margin-top: var(--space-20);
+}
+
+/* fieldset(카드번호) — 브라우저 기본 테두리 제거 */
+fieldset.textfield-field {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  width: 100%;
+  max-width: 343px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* legend는 브라우저 기본 패딩이 있을 수 있음 */
+fieldset.textfield-field > .textfield-field__label {
+  display: block;
+  width: 100%;
+  padding: 0;
+}
+
+/* 필드 스택(세로) 간격: 섹션 내 데모 블록 사이 20 (test2 4필드 column gap) */
+.textfield-spec__board .textfield-spec__col > * + * {
+  margin-top: var(--space-20);
+}
+
+/* label_area: 라벨–필드 8 (30-design-guide-textfield) */
+.textfield-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 343px;
+  margin: 0 auto;
+}
+
+/* Figma `label_area`: 라벨 + IconInfo(16|24) · 가로 gap 2 */
+.textfield-field__label-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-02);
+  margin: 0 0 var(--space-08);
+}
+
+.textfield-field__label-row .textfield-field__label {
+  margin: 0;
+}
+
+.textfield-field__label {
+  margin: 0 0 var(--space-08);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-03);
+}
+
+/* IconInfo: 단독 터치 영역은 30-foundation(최소 48) 권장 — 확인 페이지는 촘촘 배치로 축소 */
+.textfield-field__info-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 32px;
+  min-height: 32px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-08);
+  color: var(--color-icon-04);
+  background: transparent;
+  cursor: default;
+}
+
+.textfield-field__info-btn:hover {
+  color: var(--color-icon-03);
+}
+
+.textfield-field__info-btn:focus-visible {
+  outline: 2px solid var(--color-primary-01);
+  outline-offset: 2px;
+}
+
+.textfield-field__info-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.textfield-field__hint {
+  margin: var(--space-04) 0 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--color-status-danger);
+}
+
+/* 박스형 인풋 행 (높이 48) */
+.textfield-input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 48px;
+  height: 48px;
+  padding: var(--space-08) var(--space-16);
+  border: 1px solid var(--color-line-03);
+  border-radius: var(--radius-12);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: -0.02em;
+  color: var(--color-text-03);
+  background: var(--color-background-01);
+}
+
+.textfield-input::placeholder {
+  color: var(--color-text-06);
+}
+
+/* Figma `textfield_default_focused`: `text-03` 보더 1px — `primary` 주황 outline(과거)은 `line-03`과 겹쳐 이중 링 */
+.textfield-input:focus,
+.textfield-input:focus-visible {
+  outline: none;
+  box-shadow: none;
+  border: 1px solid var(--color-text-03);
+}
+
+.textfield-input[aria-invalid="true"] {
+  border-color: var(--color-status-danger);
+}
+
+/* `aria-invalid` / 에러 데모: 위 일반 :focus(`text-03`)보다 뒤에 두어 `danger` 유지(비활성은 아래에서 덮음) */
+.textfield-input[aria-invalid="true"]:focus,
+.textfield-input[aria-invalid="true"]:focus-visible,
+.textfield-input--demo-error:focus,
+.textfield-input--demo-error:focus-visible,
+.textfield-input--demo-focused-error:focus,
+.textfield-input--demo-focused-error:focus-visible {
+  outline: none;
+  box-shadow: none;
+  border: 1px solid var(--color-status-danger);
+}
+
+.textfield-input[readonly] {
+  cursor: default;
+  background: var(--color-background-02);
+}
+
+/* Figma `TextfieldDefault` 정적 시연 (시안과 동일 문구·테두리) */
+.textfield-input--demo-focused {
+  border-color: var(--color-text-03);
+}
+
+/* Figma `TextfieldDefault` `textfield_default_error` — 1px `status-danger`·배경 `background-01` (전면보더) */
+.textfield-input--demo-error {
+  border: 1px solid var(--color-status-danger);
+  box-shadow: none;
+}
+
+/* Figma: `textfield_default_focused_error` — 동일 단일 `danger` 보더(이중 box-shadow 제거) */
+.textfield-input--demo-focused-error {
+  border: 1px solid var(--color-status-danger);
+  box-shadow: none;
+}
+
+/* `readonly` 전역(위)이 에러/포커스에러 박스를 회색으로 덮이면 시안(흰 박스)과 불일치 */
+.textfield-input[readonly].textfield-input--demo-error,
+.textfield-input[readonly].textfield-input--demo-focused-error {
+  background: var(--color-background-01);
+  border: 1px solid var(--color-status-danger);
+  box-shadow: none;
+}
+
+.textfield-input--demo-readonly {
+  color: var(--color-text-04);
+}
+
+/* Figma `textfield_default_disabled` — `line-03`·`background-02` — 데모 `demo-error`·`[aria-invalid]`·`:focus`보다 뒤에 두어 비활성에 강한 보더가 먹지 않게 */
+.textfield-input:disabled,
+.textfield-input:disabled:hover,
+.textfield-input:disabled:focus,
+.textfield-input:disabled:focus-visible,
+.textfield-input:disabled:active,
+.textfield-input.textfield-input--demo-focused:disabled,
+.textfield-input.textfield-input--demo-error:disabled,
+.textfield-input.textfield-input--demo-focused-error:disabled,
+.textfield-input.textfield-input--demo-readonly:disabled {
+  color: var(--color-text-05);
+  background: var(--color-background-02);
+  border: 1px solid var(--color-line-03);
+  cursor: not-allowed;
+  opacity: 1;
+  outline: none;
+  box-shadow: none;
+  -webkit-text-fill-color: var(--color-text-05);
+}
+
+.textfield-input:disabled[aria-invalid="true"] {
+  border: 1px solid var(--color-line-03);
+  border-color: var(--color-line-03);
+}
+
+/* Search (Figma `Search`): 인풋 + 우측 trail — gap 8, 24dp 아이콘(30-foundation) */
+.textfield-search {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  gap: var(--space-08);
+  width: 100%;
+  max-width: 343px;
+  min-height: 48px;
+  height: 48px;
+  margin: 0 auto;
+  padding: var(--space-08) var(--space-16);
+  border: 1px solid var(--color-line-03);
+  border-radius: var(--radius-12);
+  background: var(--color-background-01);
+}
+
+.textfield-search--state-focused {
+  border-color: var(--color-text-03);
+}
+
+.textfield-search--state-error {
+  border-color: var(--color-status-danger);
+}
+
+.textfield-search--state-disabled {
+  background: var(--color-background-02);
+  border-color: var(--color-line-03);
+  cursor: not-allowed;
+}
+
+.textfield-search__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-03);
+}
+
+.textfield-search__input::placeholder {
+  color: var(--color-text-06);
+}
+
+.textfield-search__input:focus {
+  outline: none;
+}
+
+.textfield-search__input:disabled {
+  color: var(--color-text-05);
+  cursor: not-allowed;
+  opacity: 1;
+  -webkit-text-fill-color: var(--color-text-05);
+}
+
+.textfield-search:focus-within {
+  /* 포커스는 시안: focused=진한 보더 — JS 없이 static 데모는 modifier 사용 */
+  outline: none;
+}
+
+/* 첫 케이스(enabled) 실입력: 포커스 시 Figma `search_focused`에 가깝게 보더 */
+.textfield-search--interactive:focus-within {
+  border-color: var(--color-text-03);
+}
+
+.textfield-search__input:focus-visible {
+  outline: none;
+}
+
+.textfield-search__trail {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--space-08);
+}
+
+.textfield-search__clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  min-height: 32px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: default;
+  color: var(--color-icon-04);
+}
+
+.textfield-search__clear:focus-visible {
+  outline: 2px solid var(--color-primary-01);
+  outline-offset: 2px;
+}
+
+/* disabled: Figma는 돋보기 톤다운 */
+.textfield-search--state-disabled .textfield-search__trail .textfield-asset-ico {
+  opacity: 0.5;
+}
+
+/* pickerfield: Figma `Pickerfield` — (날짜|시간)×2, gap8, 343 — 우측 캘린더·시간 24(readonly=아이콘 생략) */
+.textfield-picker-pair {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: var(--space-08);
+  max-width: 343px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.textfield-picker-pair .textfield-input-wrap--picker {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.textfield-input-wrap--picker {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  gap: var(--space-08);
+  min-height: 48px;
+  height: 48px;
+  padding: var(--space-08) var(--space-16);
+  border: 1px solid var(--color-line-03);
+  border-radius: var(--radius-12);
+  background: var(--color-background-01);
+}
+
+.textfield-input-wrap--picker-focus {
+  border-color: var(--color-text-03);
+}
+
+.textfield-picker-pair--state-error .textfield-input-wrap--picker {
+  border-color: var(--color-status-danger);
+}
+
+.textfield-input-wrap--picker-disabled,
+.textfield-input-wrap--picker-readonly {
+  background: var(--color-background-02);
+  border-color: var(--color-line-03);
+}
+
+.textfield-input-wrap--picker .textfield-asset-ico {
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+.textfield-input-wrap--picker-disabled .textfield-asset-ico {
+  opacity: 0.5;
+}
+
+.textfield-input--in-picker {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  cursor: default;
+}
+
+.textfield-input--in-picker:focus {
+  outline: none;
+}
+
+.textfield-input--picker-ph {
+  color: var(--color-text-06);
+  -webkit-text-fill-color: var(--color-text-06);
+}
+
+.textfield-input--picker-val {
+  color: var(--color-text-03);
+}
+
+.textfield-input--picker-ro {
+  color: var(--color-text-04);
+  -webkit-text-fill-color: var(--color-text-04);
+}
+
+.textfield-input--picker-dis {
+  color: var(--color-text-05);
+  -webkit-text-fill-color: var(--color-text-05);
+}
+
+.textfield-input--in-picker:disabled {
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+/*
+ * .textfield-input[readonly]/:disabled 가 전역에서 background-02(회색)를 주면
+ * picker 래퍼(흰/회색) 위에 '텍스트 뒤 직사각형'이 겹쳐 보임.
+ * Figma: 배경은 Base/pickerfield(래퍼)만 — 내부 input은 투명 단층.
+ */
+.textfield-input-wrap--picker .textfield-input--in-picker[readonly],
+.textfield-input-wrap--picker .textfield-input--in-picker:disabled {
+  background-color: transparent;
+  background-image: none;
+}
+
+.textfield-spec .textfield-sr-only,
+.textfield-card-block .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* card_number: Figma `CardNumber` — 4칸 + gap8 + 42 로고(대시 없음) */
+.textfield-card-figma-label {
+  margin: 0 0 var(--space-08);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-03);
+}
+
+.textfield-card-block {
+  width: 100%;
+  max-width: 343px;
+  margin: 0 auto;
+}
+
+.textfield-card-row {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: var(--space-08);
+  width: 100%;
+  max-width: 343px;
+  margin: 0 auto;
+}
+
+.textfield-card-row__group {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: var(--space-08);
+  align-items: stretch;
+}
+
+/* 레거시: 대시·고정 4분할(다른 페이지 호환) */
+.textfield-card {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-08);
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 343px;
+  margin: 0 auto;
+}
+
+.textfield-card__part {
+  box-sizing: border-box;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 48px;
+  height: 48px;
+  padding: var(--space-08) var(--space-12);
+  border: 1px solid var(--color-line-03);
+  border-radius: var(--radius-12);
+  font-size: 16px;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--color-text-03);
+  background: var(--color-background-01);
+}
+
+.textfield-card__part--ph {
+  color: var(--color-text-06);
+  -webkit-text-fill-color: var(--color-text-06);
+}
+
+.textfield-card__part--ph::placeholder {
+  color: var(--color-text-06);
+}
+
+.textfield-card__part--focus {
+  border-color: var(--color-text-03);
+  color: var(--color-text-03);
+}
+
+.textfield-card__part--err {
+  border-color: var(--color-status-danger);
+  color: var(--color-text-03);
+}
+
+/* Figma `card_number_focused`: 1px `text-03` — 주황 `outline`·이중 링 제거(`.textfield-input`과 동일) */
+.textfield-card__part:focus,
+.textfield-card__part:focus-visible {
+  outline: none;
+  box-shadow: none;
+  border: 1px solid var(--color-text-03);
+}
+
+.textfield-card__part[aria-invalid="true"]:focus,
+.textfield-card__part[aria-invalid="true"]:focus-visible,
+.textfield-card__part.textfield-card__part--err:focus,
+.textfield-card__part.textfield-card__part--err:focus-visible {
+  outline: none;
+  box-shadow: none;
+  border: 1px solid var(--color-status-danger);
+}
+
+.textfield-card__logo {
+  position: relative;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-12);
+  overflow: hidden;
+  background: var(--color-background-01);
+  flex-shrink: 0;
+}
+
+/* enabled: BC 뱃지(시안 색상·토큰 혼용은 확인 페이지 한정) */
+.textfield-card__logo--bc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e22;
+  color: #fff;
+}
+
+.textfield-card__logo-bc {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+/* focused/activated: 브랜드 플레이스홀더(그라데이션) */
+.textfield-card__logo--brand {
+  background: linear-gradient(135deg, #1a6dd8 0%, #0d4a9c 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+/* error: 추가 카드 */
+.textfield-card__logo--add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-background-02);
+  border: 1px solid var(--color-line-03);
+  box-sizing: border-box;
+}
+
+.textfield-card__helper {
+  margin: var(--space-08) 0 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.04em;
+  color: #7d7d7d;
+}
+
+.textfield-card__helper--error {
+  color: var(--color-status-danger);
+}
+
+.textfield-card__dash {
+  flex: 0 0 auto;
+  color: var(--color-text-05);
+  font-size: 16px;
+  line-height: 48px;
+}
+
+/* Textarea: 고정 높이(160 / 112) */
+.textfield-textarea-box {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 343px;
+  min-height: 0;
+  margin: 0 auto;
+  padding: var(--space-16) var(--space-16) var(--space-08);
+  border: 1px solid var(--color-line-03);
+  border-radius: var(--radius-12);
+  background: var(--color-background-01);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.textfield-textarea-box--h160 {
+  height: 160px;
+}
+
+.textfield-textarea-box--h112 {
+  height: 112px;
+}
+
+/* Figma `TextareaField`: `focused` = 보더 `text-03` (접점만 강조; 개별 `state` 클래스는 아래) */
+.textfield-textarea-box:focus-within {
+  border-color: var(--color-text-03);
+  outline: none;
+}
+
+/* `state` (확인 페이지 정적 스타일) */
+.textfield-textarea-box--state-focused {
+  border-color: var(--color-text-03);
+}
+
+.textfield-textarea-box--state-error {
+  border-color: var(--color-status-danger);
+}
+
+.textfield-textarea-box--state-disabled,
+.textfield-textarea-box--state-readonly {
+  background: var(--color-background-02);
+  border-color: var(--color-line-03);
+}
+
+.textfield-textarea--ro-body {
+  color: var(--color-text-04);
+}
+
+/* disabled + count: Figma 는 숫자 #ccc톤 — `text-06`에 근접 */
+.textfield-textarea__count--muted {
+  color: var(--color-text-06);
+}
+
+/* textarea 하위 섹션 제목(그리드 위) */
+.textfield-line__type-title {
+  margin: 0 0 var(--space-12);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-03);
+}
+
+.textfield-line__type-title--section-gap {
+  margin-top: var(--space-32);
+}
+
+.textfield-textarea {
+  width: 100%;
+  min-height: 0;
+  flex: 1 1 auto;
+  border: 0;
+  padding: 0;
+  resize: none;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-03);
+  background: transparent;
+}
+
+.textfield-textarea::placeholder {
+  color: var(--color-text-06);
+}
+
+.textfield-textarea:disabled {
+  color: var(--color-text-05);
+  cursor: not-allowed;
+  opacity: 1;
+  -webkit-text-fill-color: var(--color-text-05);
+}
+
+.textfield-textarea:focus {
+  outline: none;
+}
+
+.textfield-textarea__count {
+  margin-top: var(--space-04);
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: right;
+  color: var(--color-text-05);
+}
+
+/* Textfiledcertificationnumber — 343×48, 내부 flex gap 8, 우측 타이머+secondary 버튼 */
+.textfield-cert {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 343px;
+  min-height: 48px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-08);
+  padding: var(--space-08) var(--space-16);
+  border: 1px solid var(--color-line-03);
+  border-radius: var(--radius-12);
+  background: var(--color-background-01);
+}
+
+/* Figma: `state=focused` 만 보더 `text-03` */
+.textfield-cert--state-focused {
+  border-color: var(--color-text-03);
+}
+
+.textfield-cert__field {
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 1%;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-03);
+  background: transparent;
+  font-family: inherit;
+}
+
+.textfield-cert__field::placeholder {
+  color: var(--color-text-06);
+}
+
+.textfield-cert__field:read-only,
+.textfield-cert__field[readonly] {
+  cursor: default;
+  opacity: 1;
+  -webkit-text-fill-color: var(--color-text-03);
+}
+
+.textfield-cert__field:focus {
+  outline: none;
+}
+
+.textfield-cert--state-focused .textfield-cert__field[readonly] {
+  color: var(--color-text-03);
+  -webkit-text-fill-color: var(--color-text-03);
+}
+
+.textfield-cert__timer {
+  flex: 0 0 auto;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: var(--color-status-danger);
+  text-align: center;
+}
+
+/* 버튼 열: Figma pl-4, 너비 43 */
+.textfield-cert__btn-slab {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: var(--space-04);
+  width: 43px;
+  box-sizing: content-box;
+}
+
+.textfield-cert__btn {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 28px;
+  padding: var(--space-04) var(--space-08);
+  border: 0;
+  border-radius: var(--radius-08);
+  background: var(--color-button-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-03);
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.textfield-cert__btn:disabled,
+.textfield-cert__btn[aria-disabled="true"] {
+  cursor: default;
+}
+
+/* Textfiled/etc — Figma `TextfiledEtc` · `property1` = mobile_telecom | amount */
+.textfield-etc--telecom {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 343px;
+  min-height: 48px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-08);
+  padding: var(--space-08) var(--space-16);
+  border: 1px solid var(--color-line-03);
+  border-radius: var(--radius-12);
+  background: var(--color-background-02);
+}
+
+/* Figma `bedge/basic` 톤(라인-03 충 + primary 라벨) */
+.textfield-etc__badge {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  min-height: 20px;
+  padding: 0 var(--space-08);
+  border-radius: 10px; /* Figma: chip 10 — base 토큰에 10dp 없음 */
+  background: var(--color-line-03);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -0.04em;
+  color: var(--color-button-primary);
+  text-align: center;
+  font-family: inherit;
+}
+
+.textfield-etc--telecom .textfield-etc__field {
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 1%;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-03);
+}
+
+.textfield-etc--telecom .textfield-etc__field::placeholder {
+  color: var(--color-text-06);
+}
+
+.textfield-etc--telecom .textfield-etc__field:focus {
+  outline: none;
+}
+
+/* `amount`: 좌·우 끝 정렬 한 줄(343×48) */
+.textfield-etc--amount {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 343px;
+  min-height: 48px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-08);
+  padding: var(--space-08) var(--space-16);
+  border: 1px solid var(--color-line-03);
+  border-radius: var(--radius-12);
+  background: var(--color-background-02);
+}
+
+.textfield-etc-amount__label {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-04);
+  font-weight: 400;
+}
+
+.textfield-etc-amount__value {
+  flex: 0 0 auto;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--color-text-03);
+  white-space: nowrap;
+}
+
+/* Line (기본 95) */
+.textfield-line {
+  max-width: 343px;
+  margin: 0 auto;
+  min-height: 95px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 1px;
+}
+
+.textfield-line__label {
+  margin: 0 0 var(--space-08);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-text-03);
+}
+
+.textfield-line__input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--space-12) 0;
+  border: 0;
+  border-bottom: 1px solid var(--color-line-03);
+  border-radius: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text-03);
+  background: transparent;
+}
+
+.textfield-line__input::placeholder {
+  color: var(--color-text-06);
+}
+
+.textfield-line__input:focus-visible {
+  outline: none;
+  border-bottom-color: var(--color-primary-01);
+  box-shadow: 0 1px 0 0 var(--color-primary-01);
+}
+
+/* Line 확장(89) — 시각적으로 촘촘 */
+.textfield-line--compact {
+  min-height: 89px;
+}
+
+.textfield-line--compact .textfield-line__input {
+  padding: var(--space-08) 0;
+}
+
+.textfield-line--spaced {
+  margin-top: var(--space-24);
+}
+
+/* Textfield/Line(기본 95) — Figma `TextfieldLine` · 드롭 셰브론 + Base/label(14) + row 44 + helper */
+.textfield-line-drop {
+  width: 100%;
+  max-width: 343px;
+  min-height: 95px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  box-sizing: border-box;
+}
+
+.textfield-line-drop__head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-02);
+  margin: 0 0 var(--space-08);
+}
+
+.textfield-line-drop__label {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-04);
+}
+
+.textfield-line-drop__info {
+  display: inline-flex;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  line-height: 0;
+  cursor: default;
+}
+
+.textfield-line-drop__row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-08);
+  width: 100%;
+  min-height: 44px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: var(--space-08) 0 var(--space-04);
+  border: 0;
+  border-bottom: 1px solid var(--color-line-03);
+  background: transparent;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  border-radius: 0;
+  color: inherit;
+  overflow: hidden;
+}
+
+/* 보더: enabled·selected·disabled = line-03 · focused = text-03 · error = danger (export) */
+.textfield-line-drop--state-focused .textfield-line-drop__row {
+  border-bottom-color: var(--color-text-03);
+}
+
+.textfield-line-drop--state-error .textfield-line-drop__row {
+  border-bottom-color: var(--color-status-danger);
+}
+
+.textfield-line-drop__row:disabled,
+.textfield-line-drop__row[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.textfield-line-drop__value {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  color: var(--color-text-03);
+}
+
+/* export: `enabled` = placeholder "선택 " + text-06 */
+.textfield-line-drop--state-enabled .textfield-line-drop__value {
+  color: var(--color-text-06);
+}
+
+/* `disabled` 본문 = --color-disabled */
+.textfield-line-drop--state-disabled .textfield-line-drop__value {
+  color: var(--color-disabled);
+  -webkit-text-fill-color: var(--color-disabled);
+}
+
+.textfield-line-drop__chev {
+  flex: 0 0 auto;
+  display: block;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.textfield-line-drop--state-disabled .textfield-line-drop__chev {
+  opacity: 0.45;
+}
+
+.textfield-line-drop__helper {
+  margin: 0;
+  padding-top: var(--space-08);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-05);
+}
+
+.textfield-line-drop__helper--error {
+  color: var(--color-status-danger);
+}
+
+/* Line 드롭다운: 주황 `outline` 제거 — 하단 1px만 상태/포커스에 맞춤(`.textfield-line--state-*`·아래) */
+.textfield-line-drop__row:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Figma: `enabled`에서 키보드 `:focus-visible` 시 하단 1px `text-03` (부모 `state-focused`와 동일 톤) */
+.textfield-line-drop--state-enabled .textfield-line-drop__row:focus-visible {
+  border-bottom-color: var(--color-text-03);
+}
+
+/* Textfield/Line 확장(89) — Figma `TextfieldLine` · `type`×`state` (text/phone 공통 1행 + id 2+마스크) */
+.textfield-line-ext {
+  width: 100%;
+  max-width: 343px;
+  min-height: 89px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  box-sizing: border-box;
+}
+
+.textfield-line-ext__head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-02);
+  margin: 0 0 var(--space-08);
+}
+
+.textfield-line-ext__label {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-04);
+}
+
+.textfield-line-ext__info {
+  display: inline-flex;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  line-height: 0;
+  cursor: default;
+}
+
+.textfield-line-ext__row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-08);
+  width: 100%;
+  min-height: 44px;
+  box-sizing: border-box;
+  padding: var(--space-08) 0 var(--space-04);
+  border: 0;
+  border-bottom: 1px solid var(--color-line-03);
+}
+
+/* `text+enabled` 보더: Figma `hf` gray( export ) — line-03가 아님 */
+.textfield-line-ext--type-text.textfield-line-ext--state-enabled .textfield-line-ext__row {
+  border-bottom-color: #c4c4c4;
+}
+
+.textfield-line-ext--type-text.textfield-line-ext--state-focused .textfield-line-ext__row,
+.textfield-line-ext--type-phone.textfield-line-ext--state-focused .textfield-line-ext__row {
+  border-bottom-color: var(--color-text-03);
+}
+
+.textfield-line-ext--type-text.textfield-line-ext--state-actived .textfield-line-ext__row,
+.textfield-line-ext--type-text.textfield-line-ext--state-disabled .textfield-line-ext__row,
+.textfield-line-ext--type-text.textfield-line-ext--state-read-only .textfield-line-ext__row,
+.textfield-line-ext--type-phone.textfield-line-ext--state-enabled .textfield-line-ext__row,
+.textfield-line-ext--type-phone.textfield-line-ext--state-actived .textfield-line-ext__row {
+  border-bottom-color: var(--color-line-03);
+}
+
+.textfield-line-ext--type-text.textfield-line-ext--state-error .textfield-line-ext__row,
+.textfield-line-ext--type-text.textfield-line-ext--state-focused-error .textfield-line-ext__row,
+.textfield-line-ext--type-phone.textfield-line-ext--state-error .textfield-line-ext__row,
+.textfield-line-ext--type-phone.textfield-line-ext--state-focused-error .textfield-line-ext__row {
+  border-bottom-color: var(--color-status-danger);
+}
+
+.textfield-line-ext--type-phone.textfield-line-ext--state-disabled .textfield-line-ext__row,
+.textfield-line-ext--type-phone.textfield-line-ext--state-read-only .textfield-line-ext__row {
+  border-bottom-color: var(--color-disabled);
+}
+
+.textfield-line-ext__value {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  color: var(--color-text-03);
+}
+
+.textfield-line-ext--type-text.textfield-line-ext--state-enabled .textfield-line-ext__value {
+  color: var(--color-text-06);
+}
+
+.textfield-line-ext--type-text.textfield-line-ext--state-actived .textfield-line-ext__value,
+.textfield-line-ext--type-text.textfield-line-ext--state-error .textfield-line-ext__value,
+.textfield-line-ext--type-text.textfield-line-ext--state-focused-error .textfield-line-ext__value {
+  color: var(--color-text-03);
+  font-weight: 500;
+}
+
+.textfield-line-ext--type-text.textfield-line-ext--state-disabled .textfield-line-ext__value {
+  color: var(--color-disabled);
+  -webkit-text-fill-color: var(--color-disabled);
+  font-weight: 500;
+}
+
+.textfield-line-ext--type-text.textfield-line-ext--state-read-only .textfield-line-ext__value {
+  color: var(--color-icon-04);
+  font-weight: 500;
+}
+
+.textfield-line-ext--type-text.textfield-line-ext--state-focused .textfield-line-ext__value,
+.textfield-line-ext--type-text.textfield-line-ext--state-focused-error .textfield-line-ext__value {
+  font-weight: 500;
+}
+
+.textfield-line-ext--type-text.textfield-line-ext--state-focused .textfield-line-ext__value {
+  color: var(--color-text-03);
+}
+
+/* phone: `actived` 본문 톤 Figma 토큰 #2a2a2a — 시안 */
+.textfield-line-ext--type-phone.textfield-line-ext--state-actived .textfield-line-ext__value {
+  color: #2a2a2a;
+  font-weight: 500;
+}
+
+.textfield-line-ext--type-phone.textfield-line-ext--state-enabled .textfield-line-ext__value {
+  color: var(--color-text-06);
+  font-weight: 500;
+}
+
+.textfield-line-ext--type-phone.textfield-line-ext--state-error .textfield-line-ext__value,
+.textfield-line-ext--type-phone.textfield-line-ext--state-focused-error .textfield-line-ext__value {
+  color: var(--color-text-03);
+}
+
+.textfield-line-ext--type-phone.textfield-line-ext--state-focused .textfield-line-ext__value {
+  color: var(--color-text-03);
+  font-weight: 500;
+}
+
+.textfield-line-ext--type-phone.textfield-line-ext--state-disabled .textfield-line-ext__value {
+  color: var(--color-disabled);
+  -webkit-text-fill-color: var(--color-disabled);
+  font-weight: 500;
+}
+
+.textfield-line-ext--type-phone.textfield-line-ext--state-read-only .textfield-line-ext__value {
+  color: var(--color-icon-04);
+  -webkit-text-fill-color: var(--color-icon-04);
+  font-weight: 500;
+}
+
+.textfield-line-ext__clear {
+  display: none;
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  line-height: 0;
+  cursor: default;
+  align-items: center;
+  justify-content: center;
+}
+
+.textfield-line-ext--has-clear .textfield-line-ext__row .textfield-line-ext__clear {
+  display: inline-flex;
+}
+
+.textfield-line-ext__id-fore .textfield-line-ext__clear {
+  display: none;
+  flex: 0 0 auto;
+}
+
+.textfield-line-ext--type-id.textfield-line-ext--state-focused .textfield-line-ext__id-fore .textfield-line-ext__clear,
+.textfield-line-ext--type-id.textfield-line-ext--state-error .textfield-line-ext__id-fore .textfield-line-ext__clear,
+.textfield-line-ext--type-id.textfield-line-ext--state-focused-error .textfield-line-ext__id-fore .textfield-line-ext__clear {
+  display: inline-flex;
+}
+
+.textfield-line-ext__helper {
+  margin: 0;
+  padding-top: var(--space-08);
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-05);
+}
+
+.textfield-line-ext__helper--danger {
+  color: var(--color-status-danger);
+  padding-left: 2px;
+}
+
+.textfield-line-ext--type-phone.textfield-line-ext--state-focused .textfield-line-ext__value,
+.textfield-line-ext--type-phone.textfield-line-ext--state-focused-error .textfield-line-ext__value {
+  font-weight: 500;
+}
+
+/* id_number_basic: 앞/뒤 + 대시(20 Bold) + 6 mask */
+.textfield-line-ext--type-id .textfield-line-ext__id-line {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--space-16);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.textfield-line-ext__id-fore,
+.textfield-line-ext__id-aft {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-08);
+  min-height: 44px;
+  box-sizing: border-box;
+  padding: var(--space-08) 0 var(--space-04);
+  border: 0;
+  border-bottom: 1px solid var(--color-line-03);
+}
+
+.textfield-line-ext__id-fore {
+  flex: 0 1 180px;
+  max-width: 180px;
+  min-width: 0;
+}
+
+.textfield-line-ext__id-aft {
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: var(--space-04);
+  flex-wrap: nowrap;
+}
+
+.textfield-line-ext--type-id .textfield-line-ext__id-dash {
+  flex: 0 0 9px;
+  align-self: center;
+  margin-top: 6px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  color: var(--color-text-06);
+}
+
+.textfield-line-ext__id-fore p,
+.textfield-line-ext__id-aft p {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+  color: var(--color-text-03);
+}
+
+.textfield-line-ext--type-id.textfield-line-ext--state-enabled .textfield-line-ext__id-fore p {
+  color: var(--color-text-06);
+}
+
+.textfield-line-ext--type-id.textfield-line-ext--state-focused .textfield-line-ext__id-fore p,
+.textfield-line-ext--type-id.textfield-line-ext--state-actived .textfield-line-ext__id-fore p,
+.textfield-line-ext--type-id.textfield-line-ext--state-error .textfield-line-ext__id-fore p,
+.textfield-line-ext--type-id.textfield-line-ext--state-focused-error .textfield-line-ext__id-fore p {
+  font-weight: 400;
+}
+
+.textfield-line-ext--type-id.textfield-line-ext--state-focused-error .textfield-line-ext__id-fore p {
+  font-weight: 500;
+}
+
+.textfield-line-ext--type-id.textfield-line-ext--state-disabled .textfield-line-ext__id-fore p,
+.textfield-line-ext--type-id.textfield-line-ext--state-disabled .textfield-line-ext__id-aft p {
+  color: var(--color-disabled);
+  -webkit-text-fill-color: var(--color-disabled);
+}
+
+.textfield-line-ext--type-id.textfield-line-ext--state-actived .textfield-line-ext__id-aft p,
+.textfield-line-ext--type-id.textfield-line-ext--state-error .textfield-line-ext__id-aft p,
+.textfield-line-ext--type-id.textfield-line-ext--state-focused .textfield-line-ext__id-aft p,
+.textfield-line-ext--type-id.textfield-line-ext--state-focused-error .textfield-line-ext__id-aft p {
+  font-weight: 500;
+  text-align: center;
+  flex: 0 0 13px;
+}
+
+.textfield-line-ext--type-id.textfield-line-ext--state-actived .textfield-line-ext__id-aft p {
+  font-weight: 400;
+  text-align: left;
+  flex: 0 0 auto;
+}
+
+.textfield-line-ext__id-mask {
+  display: block;
+  flex: 0 0 auto;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-line-03);
+}
+
+/* id: `focused` = 앞만 `text-03` · `error`·`focused_error` = 앞뒤 danger */
+.textfield-line-ext--type-id.textfield-line-ext--state-focused .textfield-line-ext__id-fore {
+  border-bottom-color: var(--color-text-03);
+}
+
+.textfield-line-ext--type-id.textfield-line-ext--state-error .textfield-line-ext__id-fore,
+.textfield-line-ext--type-id.textfield-line-ext--state-error .textfield-line-ext__id-aft,
+.textfield-line-ext--type-id.textfield-line-ext--state-focused-error .textfield-line-ext__id-fore,
+.textfield-line-ext--type-id.textfield-line-ext--state-focused-error .textfield-line-ext__id-aft {
+  border-bottom-color: var(--color-status-danger);
+}
+
+.textfield-line-ext__id-na {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--color-text-05);
+}
+
+/* 2열 그리드(상태 샘플) */
+/* Figma: Default 7 Property 1를 한 셀렉션에 나열 (343×1열 반복) */
+.textfield-spec__matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(343px, 1fr));
+  gap: var(--space-24);
+  align-items: start;
+}
+
+.textfield-spec__grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-24);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+@media (min-width: 700px) {
+  .textfield-spec__grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.textfield-spec__card-caption {
+  margin: 0 0 var(--space-08);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text-04);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* 요약 테이블(spacing-table 재사용 클래스명) */
+.textfield-spec .spacing-table-wrap {
+  margin-top: 0;
+}

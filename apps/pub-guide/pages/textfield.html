@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Textfield | 디자인 시스템</title>
+  <!-- 30-design-guide-textfield — 확인용(시인성·스펙 대조), OS 상태바 미구현(00-core) -->
+  <link rel="stylesheet" href="../css/base.css">
+  <!-- Icon: pages/icons.html — 레이아웃(icons.css) + 마스크(icons-base, base import) / 본문 아이콘은 assets SVG img -->
+  <link rel="stylesheet" href="../css/icons.css">
+  <link rel="stylesheet" href="../css/spacing.css">
+  <link rel="stylesheet" href="../css/textfield.css">
+</head>
+<body>
+  <header class="guide-header">
+    <a href="../index.html" class="guide-back">← 디자인 시스템 가이드</a>
+    <h1 class="page-title">Textfield</h1>
+  </header>
+  <main class="guide-main textfield-spec">
+    <p class="textfield-spec__note">
+      Figma 섹션 <strong>Textfiled</strong>·Cursor 룰 <code>30-design-guide-textfield.mdc</code>와의 시각·치수 대조용입니다. 실서비스는 프로젝트 공통 컴포넌트(마크업·접근성)를 따릅니다.
+    </p>
+
+    <!-- [요약 테이블] -->
+    <div class="section">
+      <h2 class="section__title">타입·높이 (요약)</h2>
+      <div class="spacing-table-wrap">
+        <table class="spacing-table">
+          <thead>
+            <tr>
+              <th class="spacing-table__th spacing-table__th--token">구분</th>
+              <th class="spacing-table__th spacing-table__th--value">심볼·치수 (343px 기준)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="spacing-table__cell">Textfield / Default</td><td class="spacing-table__cell">블록 높이 76 · input 행 48</td></tr>
+            <tr><td class="spacing-table__cell">Search / picker / <strong>Textfiledcertificationnumber</strong> / etc</td><td class="spacing-table__cell">한 줄 48 · 인증: <code>state</code> 3 + <code>enabled</code>에 <code>timer</code>·<code>btnInput</code></td></tr>
+            <tr><td class="spacing-table__cell">card_number</td><td class="spacing-table__cell">102</td></tr>
+            <tr><td class="spacing-table__cell">TextareaField (default / min)</td><td class="spacing-table__cell">160 / 112 · 6 <code>state</code>×2 <code>size</code> · <code>readonly</code> 시 count 없음</td></tr>
+            <tr><td class="spacing-table__cell">Textfield / Line (기본)</td><td class="spacing-table__cell">95</td></tr>
+            <tr><td class="spacing-table__cell">Textfield / Line (타입 확장 · <code>TextfieldLine</code>)</td><td class="spacing-table__cell">89 — <code>type</code> 3×<code>state</code> 7(주민 + read only N/A)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- //[요약 테이블] -->
+
+    <!-- [Textfield / Default — Figma TextfieldDefault · 7×Property 1] -->
+    <div class="section">
+      <h2 class="section__title">Textfield / Default (7 <code>Property 1</code>)</h2>
+      <p class="textfield-spec__note">
+        Figma 컴포넌트 <strong>TextfieldDefault</strong>: <code>label_area</code> = <code>label</code> + <strong>IconInfo <code>info_16</code></strong>(가로 간격 2px) + 입력 행(48) — 세로 간격 8px. 아래는 스크린샷·시안과 동일한 <strong>7가지</strong> 케이스(정적 데모, 일부 <code>readonly</code>로 값 고정).
+      </p>
+      <div class="textfield-spec__board">
+        <div class="textfield-spec__matrix">
+          <!-- textfield_default_enabled -->
+          <div>
+            <p class="textfield-spec__card-caption">Property 1 · textfield_default_enabled</p>
+            <div class="textfield-field">
+              <div class="textfield-field__label-row">
+                <label class="textfield-field__label" for="tf-def-1">label</label>
+                <button type="button" class="textfield-field__info-btn" aria-label="필드 안내 (Figma IconInfo info_16)">
+                  <img class="textfield-asset-ico" src="../assets/icons/ico-info-circle.svg" width="16" height="16" alt="" aria-hidden="true">
+                </button>
+              </div>
+              <input id="tf-def-1" class="textfield-input" type="text" name="tf_def_1" autocomplete="off" placeholder="placeholder">
+            </div>
+          </div>
+          <!-- textfield_default_focused -->
+          <div>
+            <p class="textfield-spec__card-caption">Property 1 · textfield_default_focused</p>
+            <div class="textfield-field">
+              <div class="textfield-field__label-row">
+                <label class="textfield-field__label" for="tf-def-2">label</label>
+                <button type="button" class="textfield-field__info-btn" aria-label="필드 안내 (Figma IconInfo info_16)">
+                  <img class="textfield-asset-ico" src="../assets/icons/ico-info-circle.svg" width="16" height="16" alt="" aria-hidden="true">
+                </button>
+              </div>
+              <input id="tf-def-2" class="textfield-input textfield-input--demo-focused" type="text" name="tf_def_2" autocomplete="off" value="입력 중" readonly aria-label="데모: focused 표시(입력 중)">
+            </div>
+          </div>
+          <!-- textfield_default_activated -->
+          <div>
+            <p class="textfield-spec__card-caption">Property 1 · textfield_default_activated</p>
+            <div class="textfield-field">
+              <div class="textfield-field__label-row">
+                <label class="textfield-field__label" for="tf-def-3">label</label>
+                <button type="button" class="textfield-field__info-btn" aria-label="필드 안내 (Figma IconInfo info_16)">
+                  <img class="textfield-asset-ico" src="../assets/icons/ico-info-circle.svg" width="16" height="16" alt="" aria-hidden="true">
+                </button>
+              </div>
+              <input id="tf-def-3" class="textfield-input" type="text" name="tf_def_3" autocomplete="off" value="입력내용" readonly aria-label="데모: activated(입력내용)">
+            </div>
+          </div>
+          <!-- textfield_default_error -->
+          <div>
+            <p class="textfield-spec__card-caption">Property 1 · textfield_default_error</p>
+            <div class="textfield-field">
+              <div class="textfield-field__label-row">
+                <label class="textfield-field__label" for="tf-def-4">label</label>
+                <button type="button" class="textfield-field__info-btn" aria-label="필드 안내 (Figma IconInfo info_16)">
+                  <img class="textfield-asset-ico" src="../assets/icons/ico-info-circle.svg" width="16" height="16" alt="" aria-hidden="true">
+                </button>
+              </div>
+              <input id="tf-def-4" class="textfield-input textfield-input--demo-error" type="text" name="tf_def_4" autocomplete="off" value="입력내용" readonly aria-invalid="true" aria-label="데모: error">
+            </div>
+          </div>
+          <!-- textfield_default_focused_error -->
+          <div>
+            <p class="textfield-spec__card-caption">Property 1 · textfield_default_focused_error</p>
+            <div class="textfield-field">
+              <div class="textfield-field__label-row">
+                <label class="textfield-field__label" for="tf-def-5">label</label>
+                <button type="button" class="textfield-field__info-btn" aria-label="필드 안내 (Figma IconInfo info_16)">
+                  <img class="textfield-asset-ico" src="../assets/icons/ico-info-circle.svg" width="16" height="16" alt="" aria-hidden="true">
+                </button>
+              </div>
+              <input id="tf-def-5" class="textfield-input textfield-input--demo-focused-error" type="text" name="tf_def_5" autocomplete="off" value="입력내용" readonly aria-invalid="true" aria-label="데모: focused + error">
+            </div>
+          </div>
+          <!-- textfield_default_disabled -->
+          <div>
+            <p class="textfield-spec__card-caption">Property 1 · textfield_default_disabled</p>
+            <div class="textfield-field">
+              <div class="textfield-field__label-row">
+                <label class="textfield-field__label" for="tf-def-6">label</label>
+                <button type="button" class="textfield-field__info-btn" aria-label="필드 안내 (Figma IconInfo info_16)" disabled>
+                  <img class="textfield-asset-ico" src="../assets/icons/ico-info-circle.svg" width="16" height="16" alt="" aria-hidden="true">
+                </button>
+              </div>
+              <input id="tf-def-6" class="textfield-input" type="text" name="tf_def_6" autocomplete="off" placeholder="placeholder" disabled>
+            </div>
+          </div>
+          <!-- textfield_default_readonly -->
+          <div>
+            <p class="textfield-spec__card-caption">Property 1 · textfield_default_readonly</p>
+            <div class="textfield-field">
+              <div class="textfield-field__label-row">
+                <label class="textfield-field__label" for="tf-def-7">label</label>
+                <button type="button" class="textfield-field__info-btn" aria-label="필드 안내 (Figma IconInfo info_16)">
+                  <img class="textfield-asset-ico" src="../assets/icons/ico-info-circle.svg" width="16" height="16" alt="" aria-hidden="true">
+                </button>
+              </div>
+              <input id="tf-def-7" class="textfield-input textfield-input--demo-readonly" type="text" name="tf_def_7" autocomplete="off" value="입력내용" readonly aria-label="데모: readonly">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //[Textfield / Default — Figma TextfieldDefault · 7×Property 1] -->
+
+    <!-- [Search — Figma `Search` · 5×state, 우측 ico+선택시 close] -->
+    <div class="section">
+      <h2 class="section__title">Search (5 <code>state</code>)</h2>
+      <p class="textfield-spec__note">
+        Figma: 한 줄 48px · 가로 343 · <strong>돋보기 24dp는 항상 맨 오른쪽</strong> · <code>search_focused</code>/<code>search_activated</code>에만 <strong>닫기(circle) + 검색</strong> (에러는 clear 없음). 첫 케이스는 입력 가능(포커스 시 보더 `text-03`에 가깝게).
+      </p>
+      <div class="textfield-spec__board">
+        <div class="textfield-spec__matrix">
+          <div>
+            <p class="textfield-spec__card-caption">State · search_enabled</p>
+            <div class="textfield-search textfield-search--interactive" role="search">
+              <input id="se-enabled" class="textfield-search__input" type="search" name="se_enabled" enterkeyhint="search" placeholder="검색어 입력하세요." autocomplete="off" aria-label="검색">
+              <div class="textfield-search__trail" aria-hidden="true">
+                <img class="textfield-asset-ico" src="../assets/icons/ico-search.svg" width="24" height="24" alt="" aria-hidden="true">
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">State · search_focused</p>
+            <div class="textfield-search textfield-search--state-focused" role="search" aria-label="데모: search_focused(입력중)">
+              <input id="se-focused" class="textfield-search__input" type="search" name="se_focused" value="입력중" readonly>
+              <div class="textfield-search__trail">
+                <button type="button" class="textfield-search__clear" aria-label="검색어 지우기">
+                  <img class="textfield-asset-ico" src="../assets/icons/ico-close-circle-fill.svg" width="24" height="24" alt="" aria-hidden="true">
+                </button>
+                <img class="textfield-asset-ico" src="../assets/icons/ico-search.svg" width="24" height="24" alt="" aria-hidden="true">
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">State · search_activated</p>
+            <div class="textfield-search" role="search" aria-label="데모: search_activated(사과)">
+              <input id="se-act" class="textfield-search__input" type="search" name="se_act" value="사과" readonly>
+              <div class="textfield-search__trail">
+                <button type="button" class="textfield-search__clear" aria-label="검색어 지우기">
+                  <img class="textfield-asset-ico" src="../assets/icons/ico-close-circle-fill.svg" width="24" height="24" alt="" aria-hidden="true">
+                </button>
+                <img class="textfield-asset-ico" src="../assets/icons/ico-search.svg" width="24" height="24" alt="" aria-hidden="true">
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">State · search_error</p>
+            <div class="textfield-search textfield-search--state-error" role="search" aria-label="데모: search_error">
+              <input id="se-err" class="textfield-search__input" type="search" name="se_err" value="사과" readonly aria-invalid="true" aria-label="검색 오류(데모)">
+              <div class="textfield-search__trail" aria-hidden="true">
+                <img class="textfield-asset-ico" src="../assets/icons/ico-search.svg" width="24" height="24" alt="" aria-hidden="true">
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">State · search_disabled</p>
+            <div class="textfield-search textfield-search--state-disabled" role="search" aria-label="데모: search_disabled">
+              <input id="se-dis" class="textfield-search__input" type="search" name="se_dis" placeholder="상품명으로 검색하세요." disabled>
+              <div class="textfield-search__trail" aria-hidden="true">
+                <img class="textfield-asset-ico" src="../assets/icons/ico-search.svg" width="24" height="24" alt="" aria-hidden="true">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //[Search — Figma `Search` · 5×state, 우측 ico+선택시 close] -->
+
+    <!-- [card_number — Figma `CardNumber` · 4×Property 1, gap8·no dash·42 logo] -->
+    <div class="section">
+      <h2 class="section__title">card_number (4 <code>Property 1</code>)</h2>
+      <p class="textfield-spec__note">
+        Figma: 4칸·<strong>가로 <code>gap: 8</code>만 (대시 없음)</strong> + 우측 <code>area_logo</code> 42×42 + 하단 헬퍼 12. 상단 굵은 라벨은 심볼 셀렉터용(시안) 문자열. 브랜드·BC 영역은 구색용 플레이스홀더(실에셋은 Figma Export).
+      </p>
+      <div class="textfield-spec__board">
+        <div class="textfield-spec__matrix">
+          <div>
+            <p class="textfield-spec__card-caption">Property 1 · card_number_enabled</p>
+            <p class="textfield-card-figma-label" aria-hidden="true">enabled</p>
+            <div class="textfield-card-block" role="group" aria-label="card_number enabled 데모">
+              <div class="textfield-card-row">
+                <div class="textfield-card-row__group">
+                  <input id="c-en-1" class="textfield-card__part textfield-card__part--ph" type="text" inputmode="numeric" maxlength="4" value="0000" readonly aria-label="1번째 4자리" autocomplete="cc-number">
+                  <input id="c-en-2" class="textfield-card__part textfield-card__part--ph" type="text" inputmode="numeric" maxlength="4" value="0000" readonly aria-label="2번째 4자리" autocomplete="cc-number">
+                  <input id="c-en-3" class="textfield-card__part textfield-card__part--ph" type="text" inputmode="numeric" maxlength="4" value="0000" readonly aria-label="3번째 4자리" autocomplete="cc-number">
+                  <input id="c-en-4" class="textfield-card__part textfield-card__part--ph" type="text" inputmode="numeric" maxlength="4" value="0000" readonly aria-label="4번째 4자리" autocomplete="cc-number">
+                </div>
+                <div class="textfield-card__logo textfield-card__logo--bc" title="BC 등 기본 뱃지(시안)"><span class="textfield-card__logo-bc">BC</span></div>
+              </div>
+              <p class="textfield-card__helper">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">Property 1 · card_number_focused</p>
+            <p class="textfield-card-figma-label" aria-hidden="true">focused</p>
+            <div class="textfield-card-block" role="group" aria-label="card_number focused 데모">
+              <div class="textfield-card-row">
+                <div class="textfield-card-row__group">
+                  <input id="c-fo-1" class="textfield-card__part textfield-card__part--focus" type="text" value="2222" readonly inputmode="numeric" maxlength="4" aria-label="1번째(포커스)" autocomplete="cc-number">
+                  <input id="c-fo-2" class="textfield-card__part textfield-card__part--ph" type="text" value="0000" readonly inputmode="numeric" maxlength="4" aria-label="2번째(비포커스)" autocomplete="cc-number">
+                  <input id="c-fo-3" class="textfield-card__part textfield-card__part--ph" type="text" value="0000" readonly inputmode="numeric" maxlength="4" aria-label="3번째(비포커스)" autocomplete="cc-number">
+                  <input id="c-fo-4" class="textfield-card__part textfield-card__part--ph" type="text" value="0000" readonly inputmode="numeric" maxlength="4" aria-label="4번째(비포커스)" autocomplete="cc-number">
+                </div>
+                <div class="textfield-card__logo textfield-card__logo--brand" title="브랜드(시안)"><span class="visually-hidden">카드 앞면</span></div>
+              </div>
+              <p class="textfield-card__helper">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">Property 1 · card_number_actived (Figma 철자)</p>
+            <p class="textfield-card-figma-label" aria-hidden="true">activated</p>
+            <div class="textfield-card-block" role="group" aria-label="card_number activated 데모">
+              <div class="textfield-card-row">
+                <div class="textfield-card-row__group">
+                  <input id="c-ac-1" class="textfield-card__part" type="text" value="2222" readonly inputmode="numeric" maxlength="4" aria-label="1번째" autocomplete="cc-number">
+                  <input id="c-ac-2" class="textfield-card__part" type="text" value="0000" readonly inputmode="numeric" maxlength="4" aria-label="2번째" autocomplete="cc-number">
+                  <input id="c-ac-3" class="textfield-card__part" type="text" value="0000" readonly inputmode="numeric" maxlength="4" aria-label="3번째" autocomplete="cc-number">
+                  <input id="c-ac-4" class="textfield-card__part" type="text" value="0000" readonly inputmode="numeric" maxlength="4" aria-label="4번째" autocomplete="cc-number">
+                </div>
+                <div class="textfield-card__logo textfield-card__logo--brand" title="브랜드(시안)"><span class="visually-hidden">카드 앞면</span></div>
+              </div>
+              <p class="textfield-card__helper">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">Property 1 · card_number_error</p>
+            <p class="textfield-card-figma-label" aria-hidden="true">error</p>
+            <div class="textfield-card-block" role="group" aria-label="card_number error 데모" aria-describedby="c-err-h">
+              <div class="textfield-card-row">
+                <div class="textfield-card-row__group">
+                  <input id="c-er-1" class="textfield-card__part textfield-card__part--err" type="text" value="2222" readonly inputmode="numeric" maxlength="4" aria-label="1번째" aria-invalid="true" autocomplete="cc-number">
+                  <input id="c-er-2" class="textfield-card__part textfield-card__part--err" type="text" value="2222" readonly inputmode="numeric" maxlength="4" aria-label="2번째" aria-invalid="true" autocomplete="cc-number">
+                  <input id="c-er-3" class="textfield-card__part textfield-card__part--ph" type="text" value="0000" readonly inputmode="numeric" maxlength="4" aria-label="3번째" autocomplete="cc-number">
+                  <input id="c-er-4" class="textfield-card__part textfield-card__part--ph" type="text" value="0000" readonly inputmode="numeric" maxlength="4" aria-label="4번째" autocomplete="cc-number">
+                </div>
+                <div class="textfield-card__logo textfield-card__logo--add" title="카드 추가(시안)">
+                  <img class="textfield-asset-ico" src="../assets/icons/ico-credit-card-add.svg" width="24" height="24" alt="" aria-hidden="true">
+                </div>
+              </div>
+              <p id="c-err-h" class="textfield-card__helper textfield-card__helper--error">두번째 칸부터 오류 체크 가능해요.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //[card_number — Figma `CardNumber` · 4×Property 1, gap8·no dash·42 logo] -->
+
+    <!-- [pickerfield — Figma `Pickerfield` · 6×state, 날짜+시간, readonly=아이콘없음] -->
+    <div class="section">
+      <h2 class="section__title">pickerfield (6 <code>state</code>)</h2>
+      <p class="textfield-spec__note">
+        Figma: 가로 343= <strong>날짜 + 시간</strong> 두 박스(<code>gap: 8</code>)·우측 <strong>캘린더 / 시계 24</strong> — <code>pickerfield_readonly</code> 는 <strong>아이콘 없음</strong>. <code>pickerfield_focused</code> 는 <strong>날짜 쪽만</strong> 진한 보더. 에셋: <code>ico-calendar.svg</code>, <code>ico-time.svg</code>
+      </p>
+      <div class="textfield-spec__board">
+        <div class="textfield-spec__matrix">
+          <div>
+            <p class="textfield-spec__card-caption">State · pickerfield_enabled</p>
+            <div class="textfield-picker-pair" role="group" aria-label="날짜·시간 (enabled)">
+              <div class="textfield-input-wrap--picker">
+                <input class="textfield-input textfield-input--in-picker textfield-input--picker-ph" type="text" name="p_en_d" readonly placeholder="날짜" value="" aria-label="날짜">
+                <img class="textfield-asset-ico" src="../assets/icons/ico-calendar.svg" width="24" height="24" alt="" aria-hidden="true">
+              </div>
+              <div class="textfield-input-wrap--picker">
+                <input class="textfield-input textfield-input--in-picker textfield-input--picker-ph" type="text" name="p_en_t" readonly placeholder="시간" value="" aria-label="시간">
+                <img class="textfield-asset-ico" src="../assets/icons/ico-time.svg" width="24" height="24" alt="" aria-hidden="true">
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">State · pickerfield_focused (첫 칸만 진한 보더)</p>
+            <div class="textfield-picker-pair" role="group" aria-label="날짜·시간 (focused)">
+              <div class="textfield-input-wrap--picker textfield-input-wrap--picker-focus">
+                <input class="textfield-input textfield-input--in-picker textfield-input--picker-ph" type="text" name="p_fo_d" readonly placeholder="날짜" value="" aria-label="날짜(포커스)">
+                <img class="textfield-asset-ico" src="../assets/icons/ico-calendar.svg" width="24" height="24" alt="" aria-hidden="true">
+              </div>
+              <div class="textfield-input-wrap--picker">
+                <input class="textfield-input textfield-input--in-picker textfield-input--picker-ph" type="text" name="p_fo_t" readonly placeholder="시간" value="" aria-label="시간">
+                <img class="textfield-asset-ico" src="../assets/icons/ico-time.svg" width="24" height="24" alt="" aria-hidden="true">
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">State · pickerfield_activated</p>
+            <div class="textfield-picker-pair" role="group" aria-label="날짜·시간 (activated)">
+              <div class="textfield-input-wrap--picker">
+                <input class="textfield-input textfield-input--in-picker textfield-input--picker-val" type="text" name="p_ac_d" readonly value="2024.07.22" aria-label="선택된 날짜">
+                <img class="textfield-asset-ico" src="../assets/icons/ico-calendar.svg" width="24" height="24" alt="" aria-hidden="true">
+              </div>
+              <div class="textfield-input-wrap--picker">
+                <input class="textfield-input textfield-input--in-picker textfield-input--picker-val" type="text" name="p_ac_t" readonly value="2024.07.22" aria-label="선택된 시간">
+                <img class="textfield-asset-ico" src="../assets/icons/ico-time.svg" width="24" height="24" alt="" aria-hidden="true">
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">State · pickerfield_error</p>
+            <div class="textfield-picker-pair textfield-picker-pair--state-error" role="group" aria-label="날짜·시간 (error)" aria-describedby="picker-err-ann">
+              <div class="textfield-input-wrap--picker">
+                <input class="textfield-input textfield-input--in-picker textfield-input--picker-val" type="text" name="p_er_d" readonly value="2024.07.22" aria-invalid="true" aria-label="날짜(오류)">
+                <img class="textfield-asset-ico" src="../assets/icons/ico-calendar.svg" width="24" height="24" alt="" aria-hidden="true">
+              </div>
+              <div class="textfield-input-wrap--picker">
+                <input class="textfield-input textfield-input--in-picker textfield-input--picker-val" type="text" name="p_er_t" readonly value="2024.07.22" aria-invalid="true" aria-label="시간(오류)">
+                <img class="textfield-asset-ico" src="../assets/icons/ico-time.svg" width="24" height="24" alt="" aria-hidden="true">
+              </div>
+            </div>
+            <p id="picker-err-ann" class="textfield-sr-only">날짜·시간 필드에 오류가 있습니다(데모).</p>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">State · pickerfield_disabled</p>
+            <div class="textfield-picker-pair" role="group" aria-label="날짜·시간 (disabled)">
+              <div class="textfield-input-wrap--picker textfield-input-wrap--picker-disabled">
+                <input class="textfield-input textfield-input--in-picker textfield-input--picker-dis" type="text" name="p_di_d" disabled value="시작일" aria-label="시작일(비활성)">
+                <img class="textfield-asset-ico" src="../assets/icons/ico-calendar.svg" width="24" height="24" alt="" aria-hidden="true">
+              </div>
+              <div class="textfield-input-wrap--picker textfield-input-wrap--picker-disabled">
+                <input class="textfield-input textfield-input--in-picker textfield-input--picker-dis" type="text" name="p_di_t" disabled value="시작일" aria-label="시작일(비활성)">
+                <img class="textfield-asset-ico" src="../assets/icons/ico-time.svg" width="24" height="24" alt="" aria-hidden="true">
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">State · pickerfield_readonly (아이콘 없음)</p>
+            <div class="textfield-picker-pair" role="group" aria-label="날짜·시간 (읽기 전용)">
+              <div class="textfield-input-wrap--picker textfield-input-wrap--picker-readonly">
+                <input class="textfield-input textfield-input--in-picker textfield-input--picker-ro" type="text" name="p_ro_d" readonly value="2024.07.22" aria-label="날짜(읽기 전용)">
+              </div>
+              <div class="textfield-input-wrap--picker textfield-input-wrap--picker-readonly">
+                <input class="textfield-input textfield-input--in-picker textfield-input--picker-ro" type="text" name="p_ro_t" readonly value="2024.07.22" aria-label="시간(읽기 전용)">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //[pickerfield — Figma `Pickerfield` · 6×state, 날짜+시간, readonly=아이콘없음] -->
+
+    <!-- [textarea] — Figma `TextareaField` · size(default=160, min=112) × state(6) · readonly=count없음 -->
+    <div class="section">
+      <h2 class="section__title">textarea_field</h2>
+      <p class="textfield-spec__note">Figma <code>TextareaField</code> — Size × State (12). 패딩 16·8·4(gap) · <strong>readonly = 글자 수 없음</strong></p>
+      <div class="textfield-spec__board">
+      <div>
+        <h3 class="textfield-line__type-title">Size · default (160)</h3>
+        <div class="textfield-spec__matrix">
+          <div>
+            <p class="textfield-spec__card-caption">State · enabled (placeholder + count)</p>
+            <div class="textfield-textarea-box textfield-textarea-box--h160">
+              <textarea id="ta-d-en" class="textfield-textarea" name="ta_d_en" rows="3" maxlength="1000" placeholder="최대 1000자 까지 작성 가능" aria-label="textarea enabled"></textarea>
+              <p class="textfield-textarea__count" aria-live="polite"><span>1</span> / 1000</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">State · focused (보더 text-03 · 입력 중)</p>
+            <div class="textfield-textarea-box textfield-textarea-box--h160 textfield-textarea-box--state-focused">
+              <textarea id="ta-d-fo" class="textfield-textarea" name="ta_d_fo" rows="3" readonly aria-label="textarea focused (정적)">입력 중</textarea>
+              <p class="textfield-textarea__count" aria-live="polite"><span>1</span> / 1000</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">State · activated (안녕하세요)</p>
+            <div class="textfield-textarea-box textfield-textarea-box--h160">
+              <textarea id="ta-d-ac" class="textfield-textarea" name="ta_d_ac" rows="3" readonly>안녕하세요</textarea>
+              <p class="textfield-textarea__count"><span>1</span> / 1000</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">State · error (danger 보더)</p>
+            <div class="textfield-textarea-box textfield-textarea-box--h160 textfield-textarea-box--state-error">
+              <textarea id="ta-d-er" class="textfield-textarea" name="ta_d_er" rows="3" readonly aria-invalid="true">안녕하세요</textarea>
+              <p class="textfield-textarea__count"><span>1</span> / 1000</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">State · disabled (배경·카운트 톤다운)</p>
+            <div class="textfield-textarea-box textfield-textarea-box--h160 textfield-textarea-box--state-disabled">
+              <textarea id="ta-d-di" class="textfield-textarea" name="ta_d_di" rows="3" disabled placeholder="최대 1000자 까지 작성 가능" aria-label="textarea disabled"></textarea>
+              <p class="textfield-textarea__count textfield-textarea__count--muted"><span>1</span> / 1000</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">State · readonly (text-04 · <strong>count 없음</strong>)</p>
+            <div class="textfield-textarea-box textfield-textarea-box--h160 textfield-textarea-box--state-readonly">
+              <textarea id="ta-d-ro" class="textfield-textarea textfield-textarea--ro-body" name="ta_d_ro" rows="3" readonly>안녕하세요</textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 class="textfield-line__type-title textfield-line__type-title--section-gap">Size · min (112)</h3>
+        <div class="textfield-spec__matrix">
+          <div>
+            <p class="textfield-spec__card-caption">State · enabled</p>
+            <div class="textfield-textarea-box textfield-textarea-box--h112">
+              <textarea id="ta-m-en" class="textfield-textarea" name="ta_m_en" rows="2" maxlength="1000" placeholder="최대 1000자 까지 작성 가능" aria-label="textarea min enabled"></textarea>
+              <p class="textfield-textarea__count"><span>1</span> / 1000</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">State · focused</p>
+            <div class="textfield-textarea-box textfield-textarea-box--h112 textfield-textarea-box--state-focused">
+              <textarea id="ta-m-fo" class="textfield-textarea" name="ta_m_fo" rows="2" readonly aria-label="textarea min focused (정적)">입력 중</textarea>
+              <p class="textfield-textarea__count" aria-live="polite"><span>1</span> / 1000</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">State · activated</p>
+            <div class="textfield-textarea-box textfield-textarea-box--h112">
+              <textarea id="ta-m-ac" class="textfield-textarea" name="ta_m_ac" rows="2" readonly>안녕하세요</textarea>
+              <p class="textfield-textarea__count"><span>1</span> / 1000</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">State · error</p>
+            <div class="textfield-textarea-box textfield-textarea-box--h112 textfield-textarea-box--state-error">
+              <textarea id="ta-m-er" class="textfield-textarea" name="ta_m_er" rows="2" readonly aria-invalid="true">안녕하세요</textarea>
+              <p class="textfield-textarea__count"><span>1</span> / 1000</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">State · disabled</p>
+            <div class="textfield-textarea-box textfield-textarea-box--h112 textfield-textarea-box--state-disabled">
+              <textarea id="ta-m-di" class="textfield-textarea" name="ta_m_di" rows="2" disabled placeholder="최대 1000자 까지 작성 가능" aria-label="textarea min disabled"></textarea>
+              <p class="textfield-textarea__count textfield-textarea__count--muted"><span>1</span> / 1000</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">State · readonly (count 없음)</p>
+            <div class="textfield-textarea-box textfield-textarea-box--h112 textfield-textarea-box--state-readonly">
+              <textarea id="ta-m-ro" class="textfield-textarea textfield-textarea--ro-body" name="ta_m_ro" rows="2" readonly>안녕하세요</textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <!-- //[textarea] — Figma `TextareaField` -->
+
+    <!-- [인증번호] — Figma `Textfiledcertificationnumber` · type=default, state(3) · enabled에서만 timer|btnInput 토글 -->
+    <div class="section">
+      <h2 class="section__title">Textfiledcertificationnumber</h2>
+      <p class="textfield-spec__note">
+        Figma: <code>type</code> = <code>default</code> (단일) · <code>state</code> = <code>enabled</code> / <code>focused</code> / <code>activated</code>.
+        <code>timer</code>·<code>btnInput</code> (기본 <code>true</code>)는 <strong>enabled</strong>에서만 off 가능 — <code>focused</code>·<code>activated</code>는 (export 기준) 타이머+버튼 동시 노출.
+      </p>
+      <div class="textfield-spec__board">
+        <h3 class="textfield-line__type-title">State (메인 3)</h3>
+        <div class="textfield-spec__matrix">
+          <div>
+            <p class="textfield-spec__card-caption">State · enabled (placeholder + 타이머 + 버튼)</p>
+            <div class="textfield-cert" role="group" aria-label="인증번호 입력 enabled">
+              <input id="tf-cert-en" class="textfield-cert__field" type="text" name="tf_cert_en" inputmode="numeric" maxlength="6" placeholder="인증번호 6자리" autocomplete="one-time-code" aria-label="인증번호 6자리">
+              <p class="textfield-cert__timer" aria-hidden="true">2:28</p>
+              <div class="textfield-cert__btn-slab">
+                <button type="button" class="textfield-cert__btn" disabled aria-label="인증(데모)">버튼</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">State · focused (보더 text-03 · 입력중)</p>
+            <div class="textfield-cert textfield-cert--state-focused" role="group" aria-label="인증번호 focused">
+              <input id="tf-cert-fo" class="textfield-cert__field" type="text" name="tf_cert_fo" inputmode="numeric" maxlength="6" value="입력중" readonly aria-label="입력중(데모)">
+              <p class="textfield-cert__timer" aria-hidden="true">2:28</p>
+              <div class="textfield-cert__btn-slab">
+                <button type="button" class="textfield-cert__btn" disabled aria-label="인증(데모)">버튼</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">State · activated (입력완료, 보더 line-03)</p>
+            <div class="textfield-cert" role="group" aria-label="인증번호 activated">
+              <input id="tf-cert-ac" class="textfield-cert__field" type="text" name="tf_cert_ac" inputmode="numeric" maxlength="6" value="입력완료" readonly aria-label="입력완료(데모)">
+              <p class="textfield-cert__timer" aria-hidden="true">2:28</p>
+              <div class="textfield-cert__btn-slab">
+                <button type="button" class="textfield-cert__btn" disabled aria-label="인증(데모)">버튼</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 class="textfield-line__type-title textfield-line__type-title--section-gap">enabled 변형 (Figma <code>timer</code> / <code>btnInput</code>)</h3>
+        <div class="textfield-spec__matrix">
+          <div>
+            <p class="textfield-spec__card-caption">enabled · timer=false (버튼만)</p>
+            <div class="textfield-cert" role="group" aria-label="enabled 타이머 없음">
+              <input id="tf-cert-nt" class="textfield-cert__field" type="text" name="tf_cert_nt" inputmode="numeric" maxlength="6" placeholder="인증번호 6자리" autocomplete="one-time-code" aria-label="인증번호 6자리">
+              <div class="textfield-cert__btn-slab">
+                <button type="button" class="textfield-cert__btn" disabled>버튼</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">enabled · btnInput=false (타이머만)</p>
+            <div class="textfield-cert" role="group" aria-label="enabled 버튼 없음">
+              <input id="tf-cert-nb" class="textfield-cert__field" type="text" name="tf_cert_nb" inputmode="numeric" maxlength="6" placeholder="인증번호 6자리" autocomplete="one-time-code" aria-label="인증번호 6자리">
+              <p class="textfield-cert__timer" aria-hidden="true">2:28</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //[인증번호] — Figma `Textfiledcertificationnumber` -->
+
+    <!-- [etc] — Figma `TextfiledEtc` · property1=mobile_telecom|amount (343×48) -->
+    <div class="section">
+      <h2 class="section__title">Textfiled / etc</h2>
+      <p class="textfield-spec__note">Figma 컴포넌트 <code>TextfiledEtc</code> — prop <code>property1</code>: <code>mobile_telecom</code> (배지+placeholder) / <code>amount</code> (라벨+금액 정렬). 배지 반경 10px는 시안 고정(토큰에 없음).</p>
+      <div class="textfield-spec__board">
+        <div class="textfield-spec__matrix">
+          <div>
+            <p class="textfield-spec__card-caption">Property 1 · mobile_telecom (SKT + placeholder)</p>
+            <div class="textfield-etc--telecom" role="group" aria-label="통신사 및 입력(데모)">
+              <span class="textfield-etc__badge" aria-label="선택된 통신사">SKT</span>
+              <input id="tf-etc-telecom" class="textfield-etc__field" type="text" name="etc_telecom" autocomplete="off" placeholder="placeholder" aria-label="입력(placeholder)">
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">Property 1 · amount (전환 가능 금액 · 10,000원)</p>
+            <div class="textfield-etc--amount" role="group" aria-labelledby="tf-etc-amount-lbl">
+              <p id="tf-etc-amount-lbl" class="textfield-etc-amount__label">전환 가능 금액</p>
+              <p class="textfield-etc-amount__value" aria-label="전환 가능 금액 값">10,000원</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //[etc] — Figma `TextfiledEtc` -->
+
+    <!-- [Line 기본] — Figma `TextfieldLine` · `property1` 5 (Base/label + 셰브론 row + helper) -->
+    <div class="section">
+      <h2 class="section__title">Textfield / Line (기본 · 95)</h2>
+      <p class="textfield-spec__note">Figma <code>TextfieldLine</code>: <code>property1</code> = <code>textfield_line_enabled|focused|selected|error|disabled</code>. 하단 <code>helperText</code>·라벨 영역 <code>label</code> 토글은 export 기본 <code>true</code>. <strong>error</strong> 는 회색 helper 없이 <strong>danger</strong> helper만.</p>
+      <div class="textfield-spec__board">
+        <div class="textfield-spec__matrix">
+          <div>
+            <p class="textfield-spec__card-caption">Property 1 · textfield_line_enabled</p>
+            <div class="textfield-line-drop textfield-line-drop--state-enabled" role="group" aria-labelledby="tf-ld-lbl-1">
+              <div class="textfield-line-drop__head" id="tf-ld-lbl-1">
+                <span class="textfield-line-drop__label">label</span>
+                <button type="button" class="textfield-line-drop__info" aria-label="필드 안내 (Figma ico / question-circle)">
+                  <img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true">
+                </button>
+              </div>
+              <button type="button" class="textfield-line-drop__row" aria-haspopup="listbox" aria-label="선택(데모)">
+                <span class="textfield-line-drop__value">선택 </span>
+                <img class="textfield-asset-ico textfield-line-drop__chev" src="../assets/icons/ico-chevron-down.svg" width="24" height="24" alt="" aria-hidden="true">
+              </button>
+              <p class="textfield-line-drop__helper">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">Property 1 · textfield_line_focused (하단 보더 text-03)</p>
+            <div class="textfield-line-drop textfield-line-drop--state-focused" role="group" aria-labelledby="tf-ld-lbl-2">
+              <div class="textfield-line-drop__head" id="tf-ld-lbl-2">
+                <span class="textfield-line-drop__label">label</span>
+                <button type="button" class="textfield-line-drop__info" aria-label="필드 안내">
+                  <img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true">
+                </button>
+              </div>
+              <button type="button" class="textfield-line-drop__row" aria-haspopup="listbox" aria-label="LG U+ 알뜰폰(데모·focused)">
+                <span class="textfield-line-drop__value">LG U+ 알뜰폰</span>
+                <img class="textfield-asset-ico textfield-line-drop__chev" src="../assets/icons/ico-chevron-down.svg" width="24" height="24" alt="" aria-hidden="true">
+              </button>
+              <p class="textfield-line-drop__helper">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">Property 1 · textfield_line_selected</p>
+            <div class="textfield-line-drop textfield-line-drop--state-selected" role="group" aria-labelledby="tf-ld-lbl-3">
+              <div class="textfield-line-drop__head" id="tf-ld-lbl-3">
+                <span class="textfield-line-drop__label">label</span>
+                <button type="button" class="textfield-line-drop__info" aria-label="필드 안내">
+                  <img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true">
+                </button>
+              </div>
+              <button type="button" class="textfield-line-drop__row" aria-haspopup="listbox" aria-label="LG U+ 알뜰폰(데모)">
+                <span class="textfield-line-drop__value">LG U+ 알뜰폰</span>
+                <img class="textfield-asset-ico textfield-line-drop__chev" src="../assets/icons/ico-chevron-down.svg" width="24" height="24" alt="" aria-hidden="true">
+              </button>
+              <p class="textfield-line-drop__helper">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">Property 1 · textfield_line_error (helper만 danger)</p>
+            <div class="textfield-line-drop textfield-line-drop--state-error" role="group" aria-labelledby="tf-ld-lbl-4">
+              <div class="textfield-line-drop__head" id="tf-ld-lbl-4">
+                <span class="textfield-line-drop__label">label</span>
+                <button type="button" class="textfield-line-drop__info" aria-label="필드 안내">
+                  <img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true">
+                </button>
+              </div>
+              <button type="button" class="textfield-line-drop__row" aria-invalid="true" aria-haspopup="listbox" aria-label="오류(데모)">
+                <span class="textfield-line-drop__value">LG U+ 알뜰폰</span>
+                <img class="textfield-asset-ico textfield-line-drop__chev" src="../assets/icons/ico-chevron-down.svg" width="24" height="24" alt="" aria-hidden="true">
+              </button>
+              <p class="textfield-line-drop__helper textfield-line-drop__helper--error">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">Property 1 · textfield_line_disabled</p>
+            <div class="textfield-line-drop textfield-line-drop--state-disabled" role="group" aria-labelledby="tf-ld-lbl-5">
+              <div class="textfield-line-drop__head" id="tf-ld-lbl-5">
+                <span class="textfield-line-drop__label">label</span>
+                <button type="button" class="textfield-line-drop__info" aria-label="필드 안내">
+                  <img class="textfield-assets-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true">
+                </button>
+              </div>
+              <button type="button" class="textfield-line-drop__row" disabled aria-disabled="true" aria-label="비활성(데모)">
+                <span class="textfield-line-drop__value">LG U+ 알뜰폰</span>
+                <img class="textfield-asset-ico textfield-line-drop__chev" src="../assets/icons/ico-chevron-down.svg" width="24" height="24" alt="" aria-hidden="true">
+              </button>
+              <p class="textfield-line-drop__helper">helper text</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //[Line 기본] — Figma `TextfieldLine` -->
+
+    <!-- [Line 확장] — Figma `TextfieldLine` · type(3)×state(7) / id+read only N/A -->
+    <div class="section">
+      <h2 class="section__title">Textfield / Line (타입 확장 · 89)</h2>
+      <p class="textfield-spec__note">Figma <code>TextfieldLine</code> · <code>type</code> = <code>text</code> | <code>phone_number</code> | <code>id_number_basic</code> · <code>state</code> = <code>enabled</code> | <code>focused</code> | <code>actived</code> | <code>error</code> | <code>focused_error</code> | <code>disabled</code> | <code>read only</code>. <code>text+enabled</code> 하단보더 = <code>#c4c4c4</code>(hf). <code>close-circle</code> 24 = <code>focused</code>·<code>focused_error</code>(<code>text</code>/<code>phone</code>) + <code>id</code> 앞필(일부 <code>state</code>).</p>
+
+      <div class="textfield-spec__board">
+        <h3 class="textfield-line__type-title">type = text (7 <code>state</code>)</h3>
+        <div class="textfield-spec__matrix">
+          <div>
+            <p class="textfield-spec__card-caption">type=text · state=enabled</p>
+            <div class="textfield-line-ext textfield-line-ext--type-text textfield-line-ext--state-enabled" role="group" aria-labelledby="tf-xt-l-en">
+              <div class="textfield-line-ext__head" id="tf-xt-l-en"><span class="textfield-line-ext__label">label</span><button type="button" class="textfield-line-ext__info" aria-label="필드 안내"><img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true"></button></div>
+            <div class="textfield-line-ext__row"><p class="textfield-line-ext__value">Placeholder</p><span class="textfield-line-ext__clear" aria-hidden="true"><img class="textfield-asset-ico" src="../assets/icons/ico-close-circle.svg" width="24" height="24" alt=""></span></div>
+            <p class="textfield-line-ext__helper">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">type=text · state=focused</p>
+            <div class="textfield-line-ext textfield-line-ext--type-text textfield-line-ext--state-focused textfield-line-ext--has-clear" role="group" aria-labelledby="tf-xt-l-fo">
+              <div class="textfield-line-ext__head" id="tf-xt-l-fo"><span class="textfield-line-ext__label">label</span><button type="button" class="textfield-line-ext__info" aria-label="필드 안내"><img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true"></button></div>
+            <div class="textfield-line-ext__row"><p class="textfield-line-ext__value">입력 중</p><span class="textfield-line-ext__clear" aria-hidden="true"><img class="textfield-asset-ico" src="../assets/icons/ico-close-circle.svg" width="24" height="24" alt=""></span></div>
+            <p class="textfield-line-ext__helper">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">type=text · state=actived</p>
+            <div class="textfield-line-ext textfield-line-ext--type-text textfield-line-ext--state-actived" role="group" aria-labelledby="tf-xt-l-ac">
+              <div class="textfield-line-ext__head" id="tf-xt-l-ac"><span class="textfield-line-ext__label">label</span><button type="button" class="textfield-line-ext__info" aria-label="필드 안내"><img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true"></button></div>
+            <div class="textfield-line-ext__row"><p class="textfield-line-ext__value">Placeholder</p><span class="textfield-line-ext__clear" aria-hidden="true"><img class="textfield-asset-ico" src="../assets/icons/ico-close-circle.svg" width="24" height="24" alt=""></span></div>
+            <p class="textfield-line-ext__helper">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">type=text · state=error</p>
+            <div class="textfield-line-ext textfield-line-ext--type-text textfield-line-ext--state-error" role="group" aria-labelledby="tf-xt-l-er" aria-invalid="true">
+              <div class="textfield-line-ext__head" id="tf-xt-l-er"><span class="textfield-line-ext__label">label</span><button type="button" class="textfield-line-ext__info" aria-label="필드 안내"><img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true"></button></div>
+            <div class="textfield-line-ext__row"><p class="textfield-line-ext__value">Placeholder</p><span class="textfield-line-ext__clear" aria-hidden="true"><img class="textfield-asset-ico" src="../assets/icons/ico-close-circle.svg" width="24" height="24" alt=""></span></div>
+            <p class="textfield-line-ext__helper textfield-line-ext__helper--danger">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">type=text · state=focused_error</p>
+            <div class="textfield-line-ext textfield-line-ext--type-text textfield-line-ext--state-focused-error textfield-line-ext--has-clear" role="group" aria-labelledby="tf-xt-l-fe" aria-invalid="true">
+              <div class="textfield-line-ext__head" id="tf-xt-l-fe"><span class="textfield-line-ext__label">label</span><button type="button" class="textfield-line-ext__info" aria-label="필드 안내"><img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true"></button></div>
+            <div class="textfield-line-ext__row"><p class="textfield-line-ext__value">Placeholder</p><span class="textfield-line-ext__clear" aria-hidden="true"><img class="textfield-asset-ico" src="../assets/icons/ico-close-circle.svg" width="24" height="24" alt=""></span></div>
+            <p class="textfield-line-ext__helper textfield-line-ext__helper--danger">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">type=text · state=disabled</p>
+            <div class="textfield-line-ext textfield-line-ext--type-text textfield-line-ext--state-disabled" role="group" aria-labelledby="tf-xt-l-di">
+              <div class="textfield-line-ext__head" id="tf-xt-l-di"><span class="textfield-line-ext__label">label</span><button type="button" class="textfield-line-ext__info" aria-label="필드 안내"><img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true"></button></div>
+            <div class="textfield-line-ext__row"><p class="textfield-line-ext__value">입력이 안돼용</p><span class="textfield-line-ext__clear" aria-hidden="true"><img class="textfield-asset-ico" src="../assets/icons/ico-close-circle.svg" width="24" height="24" alt=""></span></div>
+            <p class="textfield-line-ext__helper">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">type=text · state=read only</p>
+            <div class="textfield-line-ext textfield-line-ext--type-text textfield-line-ext--state-read-only" role="group" aria-labelledby="tf-xt-l-ro">
+              <div class="textfield-line-ext__head" id="tf-xt-l-ro"><span class="textfield-line-ext__label">label</span><button type="button" class="textfield-line-ext__info" aria-label="필드 안내"><img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true"></button></div>
+            <div class="textfield-line-ext__row"><p class="textfield-line-ext__value">읽는것만 가능해요</p><span class="textfield-line-ext__clear" aria-hidden="true"><img class="textfield-asset-ico" src="../assets/icons/ico-close-circle.svg" width="24" height="24" alt=""></span></div>
+            <p class="textfield-line-ext__helper">helper text</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="textfield-line__type-title textfield-line__type-title--section-gap">type = phone_number (7 <code>state</code>)</h3>
+        <div class="textfield-spec__matrix">
+          <div>
+            <p class="textfield-spec__card-caption">type=phone_number · state=enabled</p>
+            <div class="textfield-line-ext textfield-line-ext--type-phone textfield-line-ext--state-enabled" role="group" aria-labelledby="tf-xp-l-en">
+              <div class="textfield-line-ext__head" id="tf-xp-l-en"><span class="textfield-line-ext__label">label</span><button type="button" class="textfield-line-ext__info" aria-label="필드 안내"><img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true"></button></div>
+            <div class="textfield-line-ext__row"><p class="textfield-line-ext__value">Placeholder</p><span class="textfield-line-ext__clear" aria-hidden="true"><img class="textfield-asset-ico" src="../assets/icons/ico-close-circle.svg" width="24" height="24" alt=""></span></div>
+            <p class="textfield-line-ext__helper">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">type=phone_number · state=focused</p>
+            <div class="textfield-line-ext textfield-line-ext--type-phone textfield-line-ext--state-focused textfield-line-ext--has-clear" role="group" aria-labelledby="tf-xp-l-fo">
+              <div class="textfield-line-ext__head" id="tf-xp-l-fo"><span class="textfield-line-ext__label">label</span><button type="button" class="textfield-line-ext__info" aria-label="필드 안내"><img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true"></button></div>
+            <div class="textfield-line-ext__row"><p class="textfield-line-ext__value">010-</p><span class="textfield-line-ext__clear" aria-hidden="true"><img class="textfield-asset-ico" src="../assets/icons/ico-close-circle.svg" width="24" height="24" alt=""></span></div>
+            <p class="textfield-line-ext__helper">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">type=phone_number · state=actived</p>
+            <div class="textfield-line-ext textfield-line-ext--type-phone textfield-line-ext--state-actived" role="group" aria-labelledby="tf-xp-l-ac">
+              <div class="textfield-line-ext__head" id="tf-xp-l-ac"><span class="textfield-line-ext__label">label</span><button type="button" class="textfield-line-ext__info" aria-label="필드 안내"><img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true"></button></div>
+            <div class="textfield-line-ext__row"><p class="textfield-line-ext__value">010-1234-1234</p><span class="textfield-line-ext__clear" aria-hidden="true"><img class="textfield-asset-ico" src="../assets/icons/ico-close-circle.svg" width="24" height="24" alt=""></span></div>
+            <p class="textfield-line-ext__helper">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">type=phone_number · state=error</p>
+            <div class="textfield-line-ext textfield-line-ext--type-phone textfield-line-ext--state-error" role="group" aria-labelledby="tf-xp-l-er" aria-invalid="true">
+              <div class="textfield-line-ext__head" id="tf-xp-l-er"><span class="textfield-line-ext__label">label</span><button type="button" class="textfield-line-ext__info" aria-label="필드 안내"><img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true"></button></div>
+            <div class="textfield-line-ext__row"><p class="textfield-line-ext__value">012-1234-1234</p><span class="textfield-line-ext__clear" aria-hidden="true"><img class="textfield-asset-ico" src="../assets/icons/ico-close-circle.svg" width="24" height="24" alt=""></span></div>
+            <p class="textfield-line-ext__helper textfield-line-ext__helper--danger">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">type=phone_number · state=focused_error</p>
+            <div class="textfield-line-ext textfield-line-ext--type-phone textfield-line-ext--state-focused-error textfield-line-ext--has-clear" role="group" aria-labelledby="tf-xp-l-fe" aria-invalid="true">
+              <div class="textfield-line-ext__head" id="tf-xp-l-fe"><span class="textfield-line-ext__label">label</span><button type="button" class="textfield-line-ext__info" aria-label="필드 안내"><img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true"></button></div>
+            <div class="textfield-line-ext__row"><p class="textfield-line-ext__value">012-1234-1234</p><span class="textfield-line-ext__clear" aria-hidden="true"><img class="textfield-asset-ico" src="../assets/icons/ico-close-circle.svg" width="24" height="24" alt=""></span></div>
+            <p class="textfield-line-ext__helper textfield-line-ext__helper--danger">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">type=phone_number · state=disabled</p>
+            <div class="textfield-line-ext textfield-line-ext--type-phone textfield-line-ext--state-disabled" role="group" aria-labelledby="tf-xp-l-di">
+              <div class="textfield-line-ext__head" id="tf-xp-l-di"><span class="textfield-line-ext__label">label</span><button type="button" class="textfield-line-ext__info" aria-label="필드 안내"><img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true"></button></div>
+            <div class="textfield-line-ext__row"><p class="textfield-line-ext__value">010-1234-1234</p><span class="textfield-line-ext__clear" aria-hidden="true"><img class="textfield-asset-ico" src="../assets/icons/ico-close-circle.svg" width="24" height="24" alt=""></span></div>
+            <p class="textfield-line-ext__helper">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">type=phone_number · state=read only</p>
+            <div class="textfield-line-ext textfield-line-ext--type-phone textfield-line-ext--state-read-only" role="group" aria-labelledby="tf-xp-l-ro">
+              <div class="textfield-line-ext__head" id="tf-xp-l-ro"><span class="textfield-line-ext__label">label</span><button type="button" class="textfield-line-ext__info" aria-label="필드 안내"><img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true"></button></div>
+            <div class="textfield-line-ext__row"><p class="textfield-line-ext__value">010-1234-1234</p><span class="textfield-line-ext__clear" aria-hidden="true"><img class="textfield-asset-ico" src="../assets/icons/ico-close-circle.svg" width="24" height="24" alt=""></span></div>
+            <p class="textfield-line-ext__helper">helper text</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="textfield-line__type-title textfield-line__type-title--section-gap">type = id_number_basic (6 <code>state</code> + read only N/A)</h3>
+        <div class="textfield-spec__matrix">
+          <div>
+            <p class="textfield-spec__card-caption">id_number_basic · state=enabled</p>
+            <div class="textfield-line-ext textfield-line-ext--type-id textfield-line-ext--state-enabled" role="group" aria-labelledby="tf-xi-l-en">
+              <div class="textfield-line-ext__head" id="tf-xi-l-en"><span class="textfield-line-ext__label">label</span><button type="button" class="textfield-line-ext__info" aria-label="필드 안내"><img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true"></button></div>
+            <div class="textfield-line-ext__id-line">
+              <div class="textfield-line-ext__id-fore"><p>생년월일</p><span class="textfield-line-ext__clear" aria-hidden="true"><img class="textfield-asset-ico" src="../assets/icons/ico-close-circle.svg" width="24" height="24" alt=""></span></div>
+              <div class="textfield-line-ext__id-dash" aria-hidden="true">-</div>
+              <div class="textfield-line-ext__id-aft"><p>0</p><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span></div>
+            </div>
+            <p class="textfield-line-ext__helper">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">id_number_basic · state=focused</p>
+            <div class="textfield-line-ext textfield-line-ext--type-id textfield-line-ext--state-focused" role="group" aria-labelledby="tf-xi-l-fo">
+              <div class="textfield-line-ext__head" id="tf-xi-l-fo"><span class="textfield-line-ext__label">label</span><button type="button" class="textfield-line-ext__info" aria-label="필드 안내"><img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true"></button></div>
+            <div class="textfield-line-ext__id-line">
+              <div class="textfield-line-ext__id-fore"><p>910212</p><span class="textfield-line-ext__clear" aria-hidden="true"><img class="textfield-asset-ico" src="../assets/icons/ico-close-circle.svg" width="24" height="24" alt=""></span></div>
+              <div class="textfield-line-ext__id-dash" aria-hidden="true">-</div>
+              <div class="textfield-line-ext__id-aft"><p>0</p><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span></div>
+            </div>
+            <p class="textfield-line-ext__helper">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">id_number_basic · state=actived</p>
+            <div class="textfield-line-ext textfield-line-ext--type-id textfield-line-ext--state-actived" role="group" aria-labelledby="tf-xi-l-ac">
+              <div class="textfield-line-ext__head" id="tf-xi-l-ac"><span class="textfield-line-ext__label">label</span><button type="button" class="textfield-line-ext__info" aria-label="필드 안내"><img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true"></button></div>
+            <div class="textfield-line-ext__id-line">
+              <div class="textfield-line-ext__id-fore"><p>910212</p><span class="textfield-line-ext__clear" aria-hidden="true"><img class="textfield-asset-ico" src="../assets/icons/ico-close-circle.svg" width="24" height="24" alt=""></span></div>
+              <div class="textfield-line-ext__id-dash" aria-hidden="true">-</div>
+              <div class="textfield-line-ext__id-aft"><p>3</p><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span></div>
+            </div>
+            <p class="textfield-line-ext__helper">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">id_number_basic · state=error</p>
+            <div class="textfield-line-ext textfield-line-ext--type-id textfield-line-ext--state-error" role="group" aria-labelledby="tf-xi-l-er" aria-invalid="true">
+              <div class="textfield-line-ext__head" id="tf-xi-l-er"><span class="textfield-line-ext__label">label</span><button type="button" class="textfield-line-ext__info" aria-label="필드 안내"><img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true"></button></div>
+            <div class="textfield-line-ext__id-line">
+              <div class="textfield-line-ext__id-fore"><p>910212</p><span class="textfield-line-ext__clear" aria-hidden="true"><img class="textfield-asset-ico" src="../assets/icons/ico-close-circle.svg" width="24" height="24" alt=""></span></div>
+              <div class="textfield-line-ext__id-dash" aria-hidden="true">-</div>
+              <div class="textfield-line-ext__id-aft"><p>0</p><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span></div>
+            </div>
+            <p class="textfield-line-ext__helper textfield-line-ext__helper--danger">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">id_number_basic · state=focused_error</p>
+            <div class="textfield-line-ext textfield-line-ext--type-id textfield-line-ext--state-focused-error" role="group" aria-labelledby="tf-xi-l-fe" aria-invalid="true">
+              <div class="textfield-line-ext__head" id="tf-xi-l-fe"><span class="textfield-line-ext__label">label</span><button type="button" class="textfield-line-ext__info" aria-label="필드 안내"><img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true"></button></div>
+            <div class="textfield-line-ext__id-line">
+              <div class="textfield-line-ext__id-fore"><p>910275</p><span class="textfield-line-ext__clear" aria-hidden="true"><img class="textfield-asset-ico" src="../assets/icons/ico-close-circle.svg" width="24" height="24" alt=""></span></div>
+              <div class="textfield-line-ext__id-dash" aria-hidden="true">-</div>
+              <div class="textfield-line-ext__id-aft"><p>4</p><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span></div>
+            </div>
+            <p class="textfield-line-ext__helper textfield-line-ext__helper--danger">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">id_number_basic · state=disabled</p>
+            <div class="textfield-line-ext textfield-line-ext--type-id textfield-line-ext--state-disabled" role="group" aria-labelledby="tf-xi-l-di">
+              <div class="textfield-line-ext__head" id="tf-xi-l-di"><span class="textfield-line-ext__label">label</span><button type="button" class="textfield-line-ext__info" aria-label="필드 안내"><img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true"></button></div>
+            <div class="textfield-line-ext__id-line">
+              <div class="textfield-line-ext__id-fore"><p>생년월일</p><span class="textfield-line-ext__clear" aria-hidden="true"><img class="textfield-asset-ico" src="../assets/icons/ico-close-circle.svg" width="24" height="24" alt=""></span></div>
+              <div class="textfield-line-ext__id-dash" aria-hidden="true">-</div>
+              <div class="textfield-line-ext__id-aft"><p>0</p><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span><span class="textfield-line-ext__id-mask" aria-hidden="true"></span></div>
+            </div>
+            <p class="textfield-line-ext__helper">helper text</p>
+            </div>
+          </div>
+          <div>
+            <p class="textfield-spec__card-caption">id_number_basic · state=read only (export: 주민 입력 분기 없음)</p>
+            <div class="textfield-line-ext textfield-line-ext--type-id" role="group" aria-labelledby="tf-xi-l-ro">
+              <div class="textfield-line-ext__head" id="tf-xi-l-ro"><span class="textfield-line-ext__label">label</span><button type="button" class="textfield-line-ext__info" aria-label="필드 안내"><img class="textfield-asset-ico" src="../assets/icons/ico-question-circle.svg" width="16" height="16" alt="" aria-hidden="true"></button></div>
+            <p class="textfield-line-ext__id-na" id="tf-xi-na">Figma export 기준: <code>id_number_basic</code> + <code>read only</code> 조합에서는 앞/뒤·마스크 행이 렌더되지 않을 수 있음(라벨·안내·시연용).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //[Line 확장] — Figma `TextfieldLine` (확장) -->
+  </main>
+  <footer class="guide-footer">
+    <p>Design System Guide — Textfield</p>
+  </footer>
+</body>
+</html>

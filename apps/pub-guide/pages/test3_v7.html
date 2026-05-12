@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- [workflow-meta] 최신 선택 컴포넌트(contents-03 포함 전체 랜딩) 기준 신규 파일 생성 -->
+  <!-- //[workflow-meta] -->
+  <title>글로벌 랜딩 테스트 3 | 최신 피그마 반영본 (test3_v7)</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <style>
+    .test3-mobile { width: 100%; margin: 0; background: var(--color-background-01); overflow: hidden; }
+    .test3-header { display: flex; align-items: center; justify-content: space-between; height: 56px; padding: 0 var(--space-16); border-bottom: 0.5px solid rgba(246, 246, 249, 0.7); background: var(--color-background-01); }
+    .test3-logo { width: 121px; height: 17px; }
+    .test3-logo img { width: 100%; height: 100%; display: block; }
+    .test3-menu { width: 48px; height: 48px; border: 0; padding: 0; background: transparent; display: inline-flex; align-items: center; justify-content: center; }
+    .test3-menu img { width: 24px; height: 24px; display: block; }
+
+    .test3-hero { position: relative; height: 756px; overflow: hidden; text-align: center; }
+    .test3-hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .test3-hero-dim { position: absolute; inset: 0; background: rgba(255, 139, 51, 0.1); }
+    .test3-display-wrap { position: relative; z-index: 1; min-height: 165px; padding-top: 296px; }
+    .test3-display { margin: 0; font-size: 40px; font-weight: 700; line-height: 1.4; letter-spacing: -0.03em; color: var(--color-text-01); }
+
+    .test3-contents { display: flex; flex-direction: column; align-items: center; }
+    .test3-spacer { width: 100%; background: var(--color-background-01); }
+    .test3-spacer--50 { height: 50px; }
+    .test3-spacer--16 { height: 16px; }
+    .test3-spacer--80 { height: 80px; }
+
+    .test3-intro { width: 100%; padding: 0 var(--space-16); box-sizing: border-box; }
+    .test3-card { width: 100%; border-radius: var(--radius-16); overflow: hidden; position: relative; }
+    .test3-card--one { min-height: 423px; border: 1px solid var(--color-line-03); background: var(--color-background-02); }
+    .test3-card-bg { position: absolute; inset: 0; overflow: hidden; }
+    .test3-card-bg img { position: absolute; left: 50%; top: 50%; width: 260%; max-width: none; transform: translate(-50%, -50%) rotate(156.394deg) scaleY(-1); opacity: 0.4; mix-blend-mode: luminosity; }
+    .test3-card-dim { position: absolute; inset: 0; background: linear-gradient(156.394deg, rgba(255,255,255,0) 2.7622%, rgba(255,255,255,0.1) 22.207%, rgba(255,217,176,0.1) 56.452%, rgba(255,255,255,0.1) 99.723%); }
+    .test3-card-content { position: relative; z-index: 1; padding: 30px; }
+    .test3-h2 { margin: 0; font-size: 24px; font-weight: 700; line-height: 1.4; letter-spacing: -0.03em; color: var(--color-text-03); }
+    .test3-body { margin: 20px 0 0; font-size: 16px; line-height: 1.4; letter-spacing: -0.02em; color: var(--color-text-03); }
+
+    .test3-card--two { margin-top: 16px; min-height: 343px; border: 1px solid var(--color-primary-01); background: rgba(255, 97, 20, 0.4); }
+    .test3-blob-a { position: absolute; left: -60px; top: -55px; width: 366px; }
+    .test3-blob-b { position: absolute; left: -50px; top: 104px; width: 336px; }
+    .test3-pill { display: inline-flex; align-items: center; justify-content: center; height: 24px; padding: 0 12px; border: 1px solid var(--color-line-01); border-radius: 100px; font-size: 12px; color: var(--color-text-01); }
+    .test3-card--two .test3-h2, .test3-card--two .test3-body { color: var(--color-text-01); }
+    .test3-card--two .test3-body { margin-top: 8px; }
+
+    .test3-service {
+      width: 100%;
+      background: var(--color-background-02);
+      padding: 50px 16px 0;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 24px;
+    }
+    .test3-service-frame { width: 343px; height: 217px; overflow: hidden; background: #b8b6b9; }
+    .test3-service-frame img { width: 742.813px; max-width: none; transform: translateX(-57.846px); }
+    .test3-service-title { margin: 0; width: 343px; font-size: 20px; font-weight: 700; line-height: 1.4; letter-spacing: -0.03em; color: var(--color-text-03); }
+    .test3-notice-list { width: 343px; display: flex; flex-direction: column; row-gap: 8px; }
+    .test3-notice { display: flex; align-items: flex-start; }
+    .test3-notice + .test3-notice { margin-top: 8px; }
+    .test3-notice-dot { width: 4px; height: 17px; margin-right: 8px; flex: 0 0 auto; }
+    .test3-notice p { margin: 0; font-size: 14px; line-height: 1.4; letter-spacing: -0.02em; color: var(--color-text-04); }
+    .test3-service-empty34 { width: calc(100% + 32px); height: 34px; margin: 0 -16px; background: var(--color-background-02); flex: 0 0 auto; }
+
+    .test3-partners { width: 100%; height: 812px; overflow: hidden; background: var(--color-background-01); padding: 85px 0; box-sizing: border-box; }
+    .test3-logo-row { height: 100px; overflow: hidden; white-space: nowrap; }
+    .test3-logo-track { display: inline-flex; animation: marquee 16s linear infinite; }
+    .test3-logo-chip { width: 142px; height: 50px; display: inline-flex; align-items: center; justify-content: center; }
+    .test3-partner-title { width: 335px; margin: 85px auto; text-align: center; }
+    .test3-partner-brand { width: 235px; margin: 0 auto; }
+    .test3-partner-title h2 { margin: 30px 0 0; font-size: 32px; font-weight: 700; line-height: 1.4; letter-spacing: -0.03em; color: var(--color-text-03); }
+
+    .test3-data { width: 100%; background: var(--color-background-02); padding: 50px 16px 16px; box-sizing: border-box; }
+    .test3-data-title { margin: 0; font-size: 32px; font-weight: 700; line-height: 1.4; letter-spacing: -0.03em; }
+    .test3-data-sub { margin: 4px 0 0; font-size: 20px; line-height: 1.4; letter-spacing: -0.03em; }
+    .test3-data-card { margin-top: 26px; width: 343px; }
+    .test3-data-image { width: 343px; height: 343px; object-fit: cover; display: block; }
+    .test3-data-head { margin: 24px 0 0; font-size: 20px; font-weight: 700; line-height: 1.4; letter-spacing: -0.03em; }
+    .test3-data-body { margin: 4px 0 0; font-size: 16px; line-height: 1.4; letter-spacing: -0.02em; color: var(--color-text-04); }
+
+    .test3-closing { width: 100%; height: 812px; background: var(--color-primary-01); display: flex; align-items: center; justify-content: center; }
+    .test3-closing-inner { width: 335px; text-align: center; }
+    .test3-closing-title { margin: 0; font-size: 20px; font-weight: 700; line-height: 1.4; letter-spacing: -0.03em; color: var(--color-text-01); }
+    .test3-contact-btn { margin-top: 30px; height: 44px; border: 1px solid var(--color-line-03); border-radius: var(--radius-12); padding: 0 20px; background: transparent; color: var(--color-text-01); font-size: 14px; font-weight: 700; }
+
+    .test3-footer { position: relative; width: 100%; height: 215px; border-top: 1px solid var(--color-line-03); background: var(--color-background-01); }
+    .test3-footer-line { position: absolute; top: 55px; left: 0; right: 0; height: 1px; background: var(--color-line-03); }
+    .test3-sns { display: flex; padding: 7px 16px; }
+    .test3-sns-btn { width: 40px; height: 40px; border: 0; border-radius: 20px; background: transparent; display: inline-flex; align-items: center; justify-content: center; }
+    .test3-sns-btn + .test3-sns-btn { margin-left: 6px; }
+    .test3-company { margin: 36px 16px 0; font-size: 14px; line-height: 1.6; color: var(--color-text-03); }
+    .test3-copy { margin: 24px 16px 0; font-size: 11px; line-height: 1.4; color: var(--color-text-03); }
+
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-284px); } }
+  </style>
+</head>
+<body>
+  <main class="test3-mobile">
+    <header class="test3-header">
+      <div class="test3-logo"><img src="http://localhost:3845/assets/3bca129aaa93ca6353787e7e08ec7fc051b57a30.svg" alt="헥토파이낸셜 로고"></div>
+      <button class="test3-menu" type="button" aria-label="메뉴 열기"><img src="http://localhost:3845/assets/a44384c2d18aa2e0092ccae4a83e9ee886466ac1.svg" alt=""></button>
+    </header>
+
+    <section class="test3-hero">
+      <video class="test3-hero-video" autoplay muted loop playsinline controlslist="nodownload" aria-label="히어로 배경 영상">
+        <source src="/_videos/v1/7c17d122db0232f77b40d36381289c9c3aef762a">
+      </video>
+      <div class="test3-hero-dim"></div>
+      <div class="test3-display-wrap">
+        <h1 class="test3-display">글로벌 경제와<br>뱅킹 서비스의 중심<br>헥토파이낸셜</h1>
+      </div>
+    </section>
+
+    <section class="test3-contents">
+      <div class="test3-spacer test3-spacer--50"></div>
+      <div class="test3-intro">
+        <article class="test3-card test3-card--one">
+          <div class="test3-card-bg"><img src="http://localhost:3845/assets/2863fecc93321727773825dd5f3841da95c69f8d.png" alt=""></div>
+          <div class="test3-card-dim"></div>
+          <div class="test3-card-content">
+            <h2 class="test3-h2">금융의<br>가능성을 확장하는<br>글로벌</h2>
+            <p class="test3-body">안정적인 b2b 해외정산 사업~안정적인 b2b 해외정산 사업~안정적인 b2b 해외정산 사업~안정적인 b2b 해외정산 사업~</p>
+          </div>
+        </article>
+
+        <article class="test3-card test3-card--two">
+          <img class="test3-blob-a" src="http://localhost:3845/assets/a0a49f836699a2635e6f088964d2126724e65dbc.svg" alt="">
+          <img class="test3-blob-b" src="http://localhost:3845/assets/608710889baa0ef8bd2d7f03bf92aefd1cf63240.svg" alt="">
+          <div class="test3-card-content">
+            <span class="test3-pill">COIN</span>
+            <h2 class="test3-h2" style="margin-top:12px;">금융의<br>가능성을 확장하는<br>글로벌</h2>
+            <p class="test3-body">안정적인 b2b 해외정산 사업~안정적인 b2b 해외정산 사업~안정적인 b2b 해외정산 사업~안정적인 b2b 해외정산 사업~</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="test3-spacer test3-spacer--80"></div>
+
+      <section class="test3-service">
+        <div class="test3-service-frame"><img src="http://localhost:3845/assets/948463f638902cd524986ee7ac8651b55ee054ea.png" alt="글로벌 결제 서비스"></div>
+        <h2 class="test3-service-title">글로벌 결제 서비스<br>글로벌 결제로 190+ 국가로 지출</h2>
+        <div class="test3-notice-list">
+          <div class="test3-notice"><img class="test3-notice-dot" src="http://localhost:3845/assets/3429473dff5099b3974cb8685f8bc84ffb874ead.svg" alt=""><p>전 세계 260명+</p></div>
+          <div class="test3-notice"><img class="test3-notice-dot" src="http://localhost:3845/assets/3429473dff5099b3974cb8685f8bc84ffb874ead.svg" alt=""><p>결제 오케스트레이션</p></div>
+          <div class="test3-notice"><img class="test3-notice-dot" src="http://localhost:3845/assets/3429473dff5099b3974cb8685f8bc84ffb874ead.svg" alt=""><p>글로벌 차치백</p></div>
+          <div class="test3-notice"><img class="test3-notice-dot" src="http://localhost:3845/assets/3429473dff5099b3974cb8685f8bc84ffb874ead.svg" alt=""><p>한일 대만</p></div>
+          <div class="test3-notice"><img class="test3-notice-dot" src="http://localhost:3845/assets/3429473dff5099b3974cb8685f8bc84ffb874ead.svg" alt=""><p>유의사항 내용을 입력해주세요.</p></div>
+        </div>
+        <div class="test3-service-empty34"></div>
+      </section>
+
+      <section class="test3-partners">
+        <div class="test3-logo-row"><div class="test3-logo-track">
+          <span class="test3-logo-chip"><img src="http://localhost:3845/assets/592e7008f80c4cee676ab7f4b1c3bbae0a98e2e5.svg" alt="카카오페이"></span>
+          <span class="test3-logo-chip"><img src="http://localhost:3845/assets/b85eb2be08be4076c800dea31b5216d6baa64a1f.png" alt="삼성"></span>
+          <span class="test3-logo-chip"><img src="http://localhost:3845/assets/db0e89331b9664a70843f113752ee58a30cea40a.png" alt="지마켓"></span>
+          <span class="test3-logo-chip"><img src="http://localhost:3845/assets/7fcc9685bea3c7eb2e5c1be33a123e773c9bd792.png" alt="카카오"></span>
+        </div></div>
+        <div class="test3-partner-title">
+          <img class="test3-partner-brand" src="http://localhost:3845/assets/e8c02f16dd8c2f07caaf8abab44a53df09f892fc.svg" alt="헥토파이낸셜">
+          <h2>다양한 고객사 및 제휴사와<br>파트너쉽을 구축</h2>
+        </div>
+        <div class="test3-logo-row"><div class="test3-logo-track">
+          <span class="test3-logo-chip"><img src="http://localhost:3845/assets/8bac578174d8659483f8b755d8bd2a0a3fbaab15.png" alt="비트"></span>
+          <span class="test3-logo-chip"><img src="http://localhost:3845/assets/54bd2e6bc8ff88fa93a3d4b10b21e87b90649a53.png" alt="엘페이"></span>
+          <span class="test3-logo-chip"><img src="http://localhost:3845/assets/88986562b8be932d92c54e9826526672a323a2ee.png" alt="신한"></span>
+          <span class="test3-logo-chip"><img src="http://localhost:3845/assets/d67dd4ca4c4e3b403593fd516cbdde6216350870.png" alt="GS"></span>
+        </div></div>
+      </section>
+
+      <section class="test3-data">
+        <h2 class="test3-data-title">데이터로 보는 성과!@!</h2>
+        <p class="test3-data-sub">헥토파이낸셜과 함께 성장하세요.</p>
+        <article class="test3-data-card">
+          <img class="test3-data-image" src="http://localhost:3845/assets/c917f7020d414b760e977db41b8094f4880c33e3.png" alt="연간 취급액">
+          <h3 class="test3-data-head">연간 취급액 약 1.1조 USD 상당</h3>
+          <p class="test3-data-body">연간 처리되는 총 가치로<br>당사의 운영 규모와 신뢰성을 나타냅니다.</p>
+        </article>
+        <article class="test3-data-card">
+          <img class="test3-data-image" src="http://localhost:3845/assets/8ef0b03e4ec0b0e626ebe52295053d1cafa6299f.png" alt="은행 파트너사">
+          <h3 class="test3-data-head">60개 이상의 은행 파트너사</h3>
+          <p class="test3-data-body">광범위한 금융<br>네트워크 기반으로 유연처리 보장합니다.</p>
+        </article>
+      </section>
+
+      <section class="test3-closing">
+        <div class="test3-closing-inner">
+          <p class="test3-closing-title">헥토파이낸셜은<br>25년 이상의 업력과<br>대한민국 상장 기업으로서<br>결제의 더 나은 가치를<br>탐구하고 금융의 새로운 가능성을<br>확장합니다.</p>
+          <button class="test3-contact-btn" type="button">Contact us</button>
+        </div>
+      </section>
+    </section>
+
+    <footer class="test3-footer">
+      <div class="test3-sns">
+        <button class="test3-sns-btn" type="button" aria-label="유튜브"><img src="http://localhost:3845/assets/e0ea0dba6dec5bfacb9fc19dd9cdc237edcb9754.svg" alt=""></button>
+        <button class="test3-sns-btn" type="button" aria-label="링크드인"><img src="http://localhost:3845/assets/0c459095830d070f63b7de2cd5faa63c8a34d12e.svg" alt=""></button>
+        <button class="test3-sns-btn" type="button" aria-label="블로그"><img src="http://localhost:3845/assets/ea38b56fab4ef73a0c913e583197880ba79032b9.svg" alt=""></button>
+      </div>
+      <div class="test3-footer-line"></div>
+      <p class="test3-company">(주)헥토파이낸셜</p>
+      <p class="test3-copy">카피라이트 @COPYright</p>
+    </footer>
+  </main>
+</body>
+</html>

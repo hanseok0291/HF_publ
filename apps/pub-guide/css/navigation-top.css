@@ -1,0 +1,71 @@
+/* =============================================================================
+   Navigation-top (서브 상단 56px 바)
+   — 30-design-guide-header-navigation.mdc · pages/header-navigation.html
+   Figma: «NavigationTop» · property1 = Top1_Default_Icon (뒤로 + 중앙 타이틀 + 우 액션)
+   ※ 문서의 «Depth 2·Sub»는 내비 _맥락_ 용어이며, CSS 클래스 depth-2 / sub-default 는 없음.
+   ============================================================================= */
+
+/* Top1_Default_Icon — 공통 셸: 56 · px-16 · background-01 (gap 미사용·margin·절대배치) */
+.nav-top {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  height: 56px;
+  padding: 0 var(--space-16);
+  background: var(--color-background-01);
+  box-sizing: border-box;
+}
+
+/* property1=Top1_Default_Icon 변형은 시각이 동일하면 modifier 생략 가능 — HTML 주석으로 식별 */
+
+/* 중앙 타이틀: 72+72 가로 인셋 대역 ≈ max-width — 타이포는 .typo-body1.typo-w-bold 등 별도 조합 */
+.nav-top__title {
+  margin: 0;
+  max-width: calc(100% - 144px);
+  color: var(--color-text-03);
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 24×24 아이콘 · 48×48 히트 (00-core 터치 권장) */
+.nav-top__icon-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.nav-top__icon-btn--leading {
+  left: var(--space-16);
+}
+
+.nav-top__icon-btn--trailing {
+  right: var(--space-16);
+}
+
+.nav-top__icon-btn:focus-visible {
+  outline: 2px solid var(--color-primary-01);
+  outline-offset: 2px;
+  border-radius: var(--radius-08);
+}
+
+.nav-top__icon {
+  width: 24px;
+  height: 24px;
+  display: block;
+  object-fit: contain;
+}

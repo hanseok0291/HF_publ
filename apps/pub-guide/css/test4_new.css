@@ -1,0 +1,248 @@
+/* =============================================================================
+   test4_new (현대카드 12월 이벤트) — Figma 37:3174
+   조합: base · navigation-top · typography(.typo-*) · buttons(.btn)
+   이 파일: 캠페인 토큰·세로 레일·카드 썸네일·opacity·CTA 비표준 색 등 DS 미포함 레이아웃만
+   ============================================================================= */
+
+/* [가이드·확인] 캠페인 전용 색 — 시멘틱 확정 시 base 등으로 승격 */
+.test4-new-page {
+  --test4-new-accent: #7cac04;
+  --test4-new-accent-dark: #186332;
+  --test4-new-badge-off: #d1d1d5;
+  --test4-new-rail: #e5e5e8;
+  --test4-new-btn-lime: #caf625;
+  --test4-new-btn-lime-2: #e0ff63;
+  min-height: 100vh;
+  background: var(--color-background-01);
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.test4-new-main {
+  position: relative;
+  flex: 1 1 auto;
+  padding: var(--space-24) var(--space-16) var(--space-40);
+}
+
+/* 히어로: `.typo-heading2` + keep-all + 캠페인 강조 숫자 */
+.test4-new-hero {
+  margin: 0;
+  color: var(--color-text-03);
+  word-break: keep-all;
+}
+
+.test4-new-hero__num {
+  color: var(--test4-new-accent);
+}
+
+.test4-new-stack {
+  margin-top: var(--space-32);
+}
+
+.test4-new-muted {
+  margin-top: var(--space-40);
+}
+
+.test4-new-step1 {
+  position: relative;
+}
+
+/* [가이드·확인] 세로 레일 — Figma 절대값, DS Stepper 컴포넌트 없음 */
+.test4-new-rail {
+  position: absolute;
+  left: 10px;
+  width: 2px;
+  border-radius: var(--radius-04);
+  pointer-events: none;
+}
+
+.test4-new-rail--track {
+  top: 37px;
+  height: 280px;
+  background: var(--test4-new-rail);
+}
+
+.test4-new-rail--progress {
+  top: 37px;
+  height: 72px;
+  background: var(--test4-new-accent);
+}
+
+.test4-new-step2 {
+  position: relative;
+}
+
+.test4-new-rail--tail {
+  position: absolute;
+  left: 10px;
+  top: 61px;
+  width: 2px;
+  height: 130px;
+  border-radius: var(--radius-04);
+  background: var(--test4-new-rail);
+  pointer-events: none;
+}
+
+/* [가이드·확인] 비활성 스텝 opacity — 토큰화 시 교체 */
+.test4-new-step-block--muted {
+  opacity: 0.3;
+}
+
+.test4-new-step-block--muted + .test4-new-step-block--muted {
+  margin-top: var(--space-32);
+}
+
+.test4-new-step-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* 스텝 뱃지: 타이포는 `.typo-body2.typo-w-bold` — 칩/세그와 다른 캡슐형·배경만 이 파일 */
+.test4-new-step-head__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-12);
+  color: var(--color-text-01);
+  box-sizing: border-box;
+}
+
+.test4-new-step-head__badge--on {
+  background: var(--test4-new-accent);
+  padding: 3px 9px;
+  box-sizing: border-box;
+}
+
+.test4-new-step-head__badge--off {
+  background: var(--test4-new-badge-off);
+  padding: 3px 6px;
+  box-sizing: border-box;
+}
+
+/* 스텝 제목: `.typo-headline1` — 행 flex·여백만 */
+.test4-new-step-head__title {
+  margin: 0 0 0 var(--space-08);
+  flex: 1 1 0;
+  min-width: 0;
+  color: var(--color-text-03);
+}
+
+.test4-new-step1-body {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  margin-top: var(--space-20);
+  /* [가이드·확인] 레일 정렬 calc — layout 가이드 확정 시 토큰화 */
+  padding-left: calc(var(--space-08) + var(--space-02));
+}
+
+.test4-new-step1-body__spine {
+  flex-shrink: 0;
+  width: 3px;
+  background: transparent;
+}
+
+.test4-new-step1-body__content {
+  flex: 1 1 0;
+  min-width: 0;
+  padding-left: calc(var(--space-16) + var(--space-02));
+}
+
+.test4-new-card-row + .test4-new-card-row {
+  margin-top: var(--space-20);
+}
+
+.test4-new-card-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* [가이드·확인] 카드 썸네일 30×47 — 에셋·비율 토큰 없음 */
+.test4-new-card-row__media {
+  flex-shrink: 0;
+  width: 34px;
+  height: 47px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.test4-new-card-row__media img {
+  width: 30px;
+  height: 47px;
+  object-fit: cover;
+  display: block;
+}
+
+.test4-new-card-row__text {
+  flex: 1 1 0;
+  min-width: 0;
+  margin-left: var(--space-08);
+}
+
+.test4-new-card-row__action {
+  flex-shrink: 0;
+  margin-left: var(--space-12);
+}
+
+/* 카드 텍스트: typo-body1 / typo-body2 / typo-body3 — 여밉·색·keep-all만 */
+.test4-new-card-row__line1 {
+  margin: 0;
+  word-break: keep-all;
+}
+
+.test4-new-card-row__line2 {
+  margin: var(--space-02) 0 0;
+  color: var(--color-text-05);
+}
+
+.test4-new-card-row__line3 {
+  margin: var(--space-02) 0 0;
+  color: var(--test4-new-accent-dark);
+}
+
+/* [가이드·확인] 33px 좌 인덴트 — 스텝 정렬 시안, spacing 스케일과 불일치 가능 */
+.test4-new-step-detail {
+  margin-top: var(--space-20);
+  padding-left: 33px;
+}
+
+.test4-new-step-detail__line + .test4-new-step-detail__line {
+  margin-top: var(--space-04);
+}
+
+.test4-new-step-detail__line {
+  margin: 0;
+  color: var(--color-text-03);
+}
+
+.test4-new-step-block--step3 .test4-new-step-detail__line {
+  color: var(--color-text-04);
+}
+
+.test4-new-step-cta {
+  margin-top: var(--space-20);
+  padding-left: var(--space-32);
+}
+
+/* [가이드·확인] CTA 캠페인 변형 — Button semantic 외 */
+.test4-new-step-cta__btn {
+  width: 100%;
+  background-color: var(--color-icon-02);
+  color: var(--test4-new-btn-lime);
+}
+
+.test4-new-step-block--step3 .test4-new-step-cta__btn {
+  color: var(--test4-new-btn-lime-2);
+}
+
+.test4-new-step3-intro + .test4-new-step-detail {
+  margin-top: var(--space-08);
+}

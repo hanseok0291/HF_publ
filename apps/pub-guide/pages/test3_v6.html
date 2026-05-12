@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>글로벌 랜딩 테스트 3 (test3_v6)</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <style>
+    :root {
+      --page-max: 375px;
+      --inset: 16px;
+      --text-01: #ffffff;
+      --text-03: #151515;
+      --text-04: #454545;
+      --line-03: #e5e5e8;
+      --bg-01: #ffffff;
+      --bg-02: #f6f6f9;
+      --brand: #ff6114;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg-01); font-family: Pretendard, sans-serif; }
+    .page { width: 100%; max-width: var(--page-max); margin: 0 auto; background: var(--bg-01); }
+
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 756px;
+      overflow: hidden;
+    }
+    .hero video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 139, 51, 0.1);
+    }
+
+    .header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 56px;
+      padding: 0 var(--inset);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 0.5px solid rgba(246, 246, 249, 0.7);
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.96);
+    }
+    .header-logo { width: 121px; height: 17px; }
+    .header-logo img { width: 100%; height: 100%; display: block; }
+    .menu-btn { width: 48px; height: 48px; border: 0; background: transparent; padding: 0; }
+    .menu-btn img { width: 24px; height: 24px; display: block; margin: 0 auto; }
+
+    .hero-title {
+      position: absolute;
+      left: 50%;
+      top: 352px;
+      transform: translateX(-50%);
+      width: 100%;
+      margin: 0;
+      text-align: center;
+      color: var(--text-01);
+      font-size: 40px;
+      line-height: 1.4;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+      z-index: 1;
+    }
+
+    .content { width: 100%; }
+    .gap-50 { height: 50px; }
+    .gap-16 { height: 16px; }
+    .gap-80 { height: 80px; }
+
+    .section-inset { padding: 0 var(--inset); }
+    .panel {
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+    .panel-light {
+      border: 1px solid var(--line-03);
+      background: var(--bg-02);
+      min-height: 423px;
+    }
+    .panel-light .panel-bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .panel-light .panel-bg img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 1838px;
+      transform: translate(-50%, -50%) rotate(156.81deg) scaleY(-1);
+      opacity: 0.4;
+      mix-blend-mode: luminosity;
+    }
+    .panel-light .panel-dim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(156.394deg, rgba(255, 255, 255, 0) 2.762%, rgba(255, 255, 255, 0.1) 22.207%, rgba(255, 217, 176, 0.1) 56.452%, rgba(255, 255, 255, 0.1) 99.723%);
+    }
+    .panel-body {
+      position: relative;
+      z-index: 1;
+      padding: 29px;
+    }
+    .heading-24 {
+      margin: 0;
+      color: var(--text-03);
+      font-size: 24px;
+      line-height: 1.4;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+    }
+    .body-16 {
+      margin: 20px 0 0;
+      color: var(--text-03);
+      font-size: 16px;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+    }
+
+    .panel-brand {
+      margin-top: 16px;
+      border: 1px solid var(--brand);
+      min-height: 343px;
+      background: rgba(255, 97, 20, 0.4);
+    }
+    .panel-brand .blob-a { position: absolute; top: -55px; left: -60px; width: 366px; }
+    .panel-brand .blob-b { position: absolute; top: 104px; left: -50px; width: 336px; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 54px;
+      height: 24px;
+      border-radius: 999px;
+      border: 1px solid #fff;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .panel-brand .heading-24,
+    .panel-brand .body-16 { color: #fff; }
+    .panel-brand .body-16 { margin-top: 8px; }
+
+    .service {
+      margin-top: 80px;
+      background: var(--bg-02);
+      padding: 50px var(--inset) 34px;
+    }
+    .service-frame {
+      width: 100%;
+      aspect-ratio: 343 / 217;
+      overflow: hidden;
+      background: #b8b6b9;
+    }
+    .service-frame img {
+      width: 742.813px;
+      max-width: none;
+      transform: translateX(-57.846px);
+      display: block;
+    }
+    .headline-20 {
+      margin: 16px 0 0;
+      font-size: 20px;
+      line-height: 1.4;
+      letter-spacing: -0.03em;
+      color: var(--text-03);
+      font-weight: 700;
+    }
+    .notice-list { margin-top: 24px; }
+    .notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .notice + .notice { margin-top: 8px; }
+    .notice img { width: 4px; height: 17px; }
+    .notice p {
+      margin: 0;
+      color: var(--text-04);
+      font-size: 14px;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+    }
+
+    .partners {
+      background: #fff;
+      padding: 85px 0;
+      overflow: hidden;
+    }
+    .logo-row {
+      height: 100px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .logo-track {
+      display: inline-flex;
+      animation: logo-marquee 16s linear infinite;
+    }
+    .logo-chip {
+      width: 142px;
+      height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+    }
+    .partner-center {
+      text-align: center;
+      padding: 85px 20px;
+    }
+    .partner-center img { width: 235px; height: auto; }
+    .partner-center h2 {
+      margin: 30px 0 0;
+      font-size: 32px;
+      line-height: 1.4;
+      letter-spacing: -0.03em;
+      color: var(--text-03);
+      font-weight: 700;
+    }
+
+    .metrics {
+      background: var(--bg-02);
+      padding: 50px var(--inset) 66px;
+    }
+    .metrics h2 {
+      margin: 0;
+      color: var(--text-03);
+      font-size: 32px;
+      line-height: 1.4;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+    }
+    .metrics .sub {
+      margin: 4px 0 0;
+      color: var(--text-03);
+      font-size: 20px;
+      line-height: 1.4;
+      letter-spacing: -0.03em;
+      font-weight: 400;
+    }
+    .metric-card { margin-top: 26px; }
+    .metric-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: #7a7a7a;
+    }
+    .metric-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .metric-title {
+      margin: 24px 0 0;
+      font-size: 20px;
+      line-height: 1.4;
+      letter-spacing: -0.03em;
+      color: var(--text-03);
+      font-weight: 700;
+    }
+    .metric-body {
+      margin: 4px 0 0;
+      font-size: 16px;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: var(--text-04);
+      font-weight: 400;
+    }
+
+    .closing {
+      min-height: 812px;
+      background: var(--brand);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px var(--inset);
+      text-align: center;
+    }
+    .closing p {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.4;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+    }
+    .closing button {
+      margin-top: 30px;
+      height: 44px;
+      padding: 0 20px;
+      border-radius: 12px;
+      border: 1px solid var(--line-03);
+      background: transparent;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+    }
+
+    .footer {
+      min-height: 215px;
+      border-top: 1px solid var(--line-03);
+      background: #fff;
+      position: relative;
+    }
+    .footer::before {
+      content: "";
+      position: absolute;
+      top: 55px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--line-03);
+    }
+    .sns {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 16px;
+    }
+    .sns button {
+      width: 40px;
+      height: 40px;
+      border-radius: 40px;
+      border: 0;
+      background: transparent;
+      padding: 0;
+    }
+    .sns img { width: 24px; height: 24px; display: block; margin: 0 auto; }
+    .company {
+      margin: 36px 16px 0;
+      color: var(--text-03);
+      font-size: 14px;
+      line-height: 1.6;
+      letter-spacing: -0.02em;
+    }
+    .copy {
+      margin: 24px 16px 0;
+      color: var(--text-03);
+      font-size: 11px;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+    }
+
+    @keyframes logo-marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-284px); }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <header class="header">
+        <div class="header-logo">
+          <img src="http://localhost:3845/assets/3bca129aaa93ca6353787e7e08ec7fc051b57a30.svg" alt="헥토파이낸셜 로고">
+        </div>
+        <button class="menu-btn" type="button" aria-label="메뉴 열기">
+          <img src="http://localhost:3845/assets/a44384c2d18aa2e0092ccae4a83e9ee886466ac1.svg" alt="">
+        </button>
+      </header>
+      <video autoplay muted loop playsinline controlslist="nodownload" aria-label="히어로 배경 영상">
+        <source src="/_videos/v1/7c17d122db0232f77b40d36381289c9c3aef762a">
+      </video>
+      <h1 class="hero-title">글로벌 경제와<br>뱅킹 서비스의 중심<br>헥토파이낸셜</h1>
+    </section>
+
+    <section class="content">
+      <div class="gap-50"></div>
+
+      <section class="section-inset">
+        <article class="panel panel-light">
+          <div class="panel-bg">
+            <img src="http://localhost:3845/assets/2863fecc93321727773825dd5f3841da95c69f8d.png" alt="">
+          </div>
+          <div class="panel-dim"></div>
+          <div class="panel-body">
+            <h2 class="heading-24">금융의<br>가능성을 확장하는<br>글로벌</h2>
+            <p class="body-16">안정적인 b2b 해외정산 사업~안정적인 b2b 해외정산 사업~안정적인 b2b 해외정산 사업~안정적인 b2b 해외정산 사업~</p>
+          </div>
+        </article>
+
+        <article class="panel panel-brand">
+          <img class="blob-a" src="http://localhost:3845/assets/a0a49f836699a2635e6f088964d2126724e65dbc.svg" alt="">
+          <img class="blob-b" src="http://localhost:3845/assets/608710889baa0ef8bd2d7f03bf92aefd1cf63240.svg" alt="">
+          <div class="panel-body">
+            <span class="pill">COIN</span>
+            <h2 class="heading-24" style="margin-top: 12px;">금융의<br>가능성을 확장하는<br>글로벌</h2>
+            <p class="body-16">안정적인 b2b 해외정산 사업~안정적인 b2b 해외정산 사업~안정적인 b2b 해외정산 사업~안정적인 b2b 해외정산 사업~</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="service">
+        <div class="service-frame">
+          <img src="http://localhost:3845/assets/948463f638902cd524986ee7ac8651b55ee054ea.png" alt="글로벌 결제 서비스">
+        </div>
+        <h2 class="headline-20">글로벌 결제 서비스<br>글로벌 결제로 190+ 국가로 지출</h2>
+        <div class="notice-list">
+          <div class="notice"><img src="http://localhost:3845/assets/3429473dff5099b3974cb8685f8bc84ffb874ead.svg" alt=""><p>전 세계 260명+</p></div>
+          <div class="notice"><img src="http://localhost:3845/assets/3429473dff5099b3974cb8685f8bc84ffb874ead.svg" alt=""><p>결제 오케스트레이션</p></div>
+          <div class="notice"><img src="http://localhost:3845/assets/3429473dff5099b3974cb8685f8bc84ffb874ead.svg" alt=""><p>글로벌 차치백</p></div>
+          <div class="notice"><img src="http://localhost:3845/assets/3429473dff5099b3974cb8685f8bc84ffb874ead.svg" alt=""><p>한일 대만</p></div>
+          <div class="notice"><img src="http://localhost:3845/assets/3429473dff5099b3974cb8685f8bc84ffb874ead.svg" alt=""><p>유의사항 내용을 입력해주세요.</p></div>
+        </div>
+      </section>
+
+      <section class="partners">
+        <div class="logo-row">
+          <div class="logo-track">
+            <span class="logo-chip"><img src="http://localhost:3845/assets/592e7008f80c4cee676ab7f4b1c3bbae0a98e2e5.svg" alt="카카오페이"></span>
+            <span class="logo-chip"><img src="http://localhost:3845/assets/b85eb2be08be4076c800dea31b5216d6baa64a1f.png" alt="삼성"></span>
+            <span class="logo-chip"><img src="http://localhost:3845/assets/db0e89331b9664a70843f113752ee58a30cea40a.png" alt="지마켓"></span>
+            <span class="logo-chip"><img src="http://localhost:3845/assets/7fcc9685bea3c7eb2e5c1be33a123e773c9bd792.png" alt="카카오"></span>
+          </div>
+        </div>
+        <div class="partner-center">
+          <img src="http://localhost:3845/assets/e8c02f16dd8c2f07caaf8abab44a53df09f892fc.svg" alt="헥토파이낸셜">
+          <h2>다양한 고객사 및 제휴사와<br>파트너쉽을 구축</h2>
+        </div>
+        <div class="logo-row">
+          <div class="logo-track">
+            <span class="logo-chip"><img src="http://localhost:3845/assets/8bac578174d8659483f8b755d8bd2a0a3fbaab15.png" alt="비트"></span>
+            <span class="logo-chip"><img src="http://localhost:3845/assets/54bd2e6bc8ff88fa93a3d4b10b21e87b90649a53.png" alt="엘페이"></span>
+            <span class="logo-chip"><img src="http://localhost:3845/assets/88986562b8be932d92c54e9826526672a323a2ee.png" alt="신한"></span>
+            <span class="logo-chip"><img src="http://localhost:3845/assets/d67dd4ca4c4e3b403593fd516cbdde6216350870.png" alt="GS"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="metrics">
+        <h2>데이터로 보는 성과!@!</h2>
+        <p class="sub">헥토파이낸셜과 함께 성장하세요.</p>
+
+        <article class="metric-card">
+          <div class="metric-image">
+            <img src="http://localhost:3845/assets/c917f7020d414b760e977db41b8094f4880c33e3.png" alt="연간 취급액 이미지">
+          </div>
+          <h3 class="metric-title">연간 취급액 약 1.1조 USD 상당</h3>
+          <p class="metric-body">연간 처리되는 총 가치로<br>당사의 운영 규모와 신뢰성을 나타냅니다.</p>
+        </article>
+
+        <article class="metric-card" style="margin-top:50px;">
+          <div class="metric-image">
+            <img src="http://localhost:3845/assets/8ef0b03e4ec0b0e626ebe52295053d1cafa6299f.png" alt="은행 파트너사 이미지">
+          </div>
+          <h3 class="metric-title">60개 이상의 은행 파트너사</h3>
+          <p class="metric-body">광범위한 금융<br>네트워크 기반으로 유연처리 보장합니다.</p>
+        </article>
+      </section>
+
+      <section class="closing">
+        <div>
+          <p>헥토파이낸셜은<br>25년 이상의 업력과<br>대한민국 상장 기업으로서<br>결제의 더 나은 가치를<br>탐구하고 금융의 새로운 가능성을<br>확장합니다.</p>
+          <button type="button">Contact us</button>
+        </div>
+      </section>
+    </section>
+
+    <footer class="footer">
+      <div class="sns">
+        <button type="button" aria-label="유튜브"><img src="http://localhost:3845/assets/e0ea0dba6dec5bfacb9fc19dd9cdc237edcb9754.svg" alt=""></button>
+        <button type="button" aria-label="링크드인"><img src="http://localhost:3845/assets/0c459095830d070f63b7de2cd5faa63c8a34d12e.svg" alt=""></button>
+        <button type="button" aria-label="블로그"><img src="http://localhost:3845/assets/ea38b56fab4ef73a0c913e583197880ba79032b9.svg" alt=""></button>
+      </div>
+      <p class="company">(주)헥토파이낸셜</p>
+      <p class="copy">카피라이트 @COPYright</p>
+    </footer>
+  </main>
+</body>
+</html>

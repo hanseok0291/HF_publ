@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>현대카드 12월 이벤트 V2</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <style>
+    .test4v2-mobile {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      border: 1px solid var(--color-line-03);
+      background: #f6f6f7;
+      overflow: hidden;
+    }
+
+    .test4v2-header {
+      position: relative;
+      height: 56px;
+      padding: 0 var(--space-16);
+      background: #f6f6f7;
+    }
+
+    .test4v2-header-title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 56px;
+      text-align: center;
+      letter-spacing: -0.02em;
+      color: #151515;
+    }
+
+    /* GNB 아이콘: 피그마 Icon/allow_left_24 · icon/my_fill_24 (DS 1차 스케일 12·16·20·24 중 24) */
+    .test4v2-header-btn {
+      position: absolute;
+      top: 50%;
+      width: 24px;
+      height: 24px;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    .test4v2-header-btn--left {
+      left: var(--space-16);
+    }
+
+    .test4v2-header-btn--right {
+      right: var(--space-16);
+    }
+
+    .test4v2-header-btn img {
+      display: block;
+      width: 24px;
+      height: 24px;
+    }
+
+    .test4v2-main {
+      position: relative;
+      padding: var(--space-24) var(--space-16) var(--space-40);
+      background: #f6f6f7;
+    }
+
+    .test4v2-main-line {
+      position: absolute;
+      left: 26px;
+      width: 2px;
+      border-radius: 4px;
+      background: #e5e5e8;
+    }
+
+    .test4v2-main-line--active {
+      position: absolute;
+      left: 26px;
+      width: 2px;
+      border-radius: 4px;
+      background: #7cac04;
+    }
+
+    .test4v2-main-line--step1 {
+      top: 162px;
+      height: 280px;
+    }
+
+    .test4v2-main-line--step1-active {
+      top: 162px;
+      height: 72px;
+    }
+
+    .test4v2-main-line--step2 {
+      top: 520px;
+      height: 130px;
+    }
+
+    .test4v2-heading {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.03em;
+      color: #151515;
+    }
+
+    .test4v2-heading em {
+      font-style: normal;
+      color: #7cac04;
+    }
+
+    .test4v2-step-group {
+      margin-top: var(--space-40);
+    }
+
+    .test4v2-step {
+      margin-top: var(--space-32);
+    }
+
+    .test4v2-step:first-child {
+      margin-top: 0;
+    }
+
+    .test4v2-step--active {
+      opacity: 1;
+    }
+
+    .test4v2-step--dim {
+      opacity: 0.3;
+    }
+
+    .test4v2-step-title {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.03em;
+      color: #151515;
+    }
+
+    .test4v2-step-title::before {
+      content: attr(data-step);
+      display: inline-flex;
+      width: 24px;
+      height: 24px;
+      margin-right: var(--space-08);
+      border-radius: 12px;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      background: #d1d1d5;
+    }
+
+    .test4v2-step--active .test4v2-step-title::before {
+      background: #7cac04;
+    }
+
+    .test4v2-offer-list {
+      margin-top: var(--space-20);
+      padding-left: 33px;
+    }
+
+    .test4v2-offer-item {
+      display: flex;
+      align-items: center;
+      margin-top: var(--space-20);
+    }
+
+    .test4v2-offer-item:first-child {
+      margin-top: 0;
+    }
+
+    .test4v2-offer-item-card {
+      width: 34px;
+      height: 47px;
+      margin-right: var(--space-08);
+      object-fit: cover;
+    }
+
+    .test4v2-offer-item-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .test4v2-offer-item-title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: #151515;
+    }
+
+    .test4v2-offer-item-desc {
+      margin: var(--space-02) 0 0;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: #888888;
+    }
+
+    .test4v2-offer-item-brand {
+      margin: var(--space-02) 0 0;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: #186332;
+    }
+
+    .test4v2-offer-item-btn {
+      margin-left: var(--space-12);
+      border: 0;
+      height: 28px;
+      padding: 0 var(--space-08);
+      border-radius: var(--radius-08);
+      background: #ebebef;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: #151515;
+      cursor: pointer;
+    }
+
+    .test4v2-note {
+      margin-top: var(--space-20);
+      padding-left: 33px;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: -0.02em;
+      color: #151515;
+    }
+
+    .test4v2-note p {
+      margin: 4px 0 0;
+    }
+
+    .test4v2-note p:first-child {
+      margin-top: 0;
+    }
+
+    .test4v2-action {
+      margin-top: var(--space-32);
+      padding-left: 32px;
+    }
+
+    .test4v2-action-btn {
+      width: 100%;
+      height: 44px;
+      border: 0;
+      border-radius: var(--radius-12);
+      background: #151515;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: #caf625;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- [test4v2-mobile] -->
+  <article class="test4v2-mobile" aria-label="현대카드 12월 이벤트 화면">
+    <!-- [header] -->
+    <header class="test4v2-header">
+      <h1 class="test4v2-header-title">현대카드 12월</h1>
+      <button type="button" class="test4v2-header-btn test4v2-header-btn--left" aria-label="뒤로가기">
+        <img src="../assets/ftp-bundle/e2753e34ddc2c1bed57c816efe8929421c126206.svg" alt="" aria-hidden="true">
+      </button>
+      <button type="button" class="test4v2-header-btn test4v2-header-btn--right" aria-label="내 정보">
+        <img src="../assets/ftp-bundle/c913b39ab044d2a81a094a1bae137297c345667d.svg" alt="" aria-hidden="true">
+      </button>
+    </header>
+    <!-- //header -->
+
+    <!-- [main] -->
+    <main class="test4v2-main">
+      <span class="test4v2-main-line test4v2-main-line--step1" aria-hidden="true"></span>
+      <span class="test4v2-main-line--active test4v2-main-line--step1-active" aria-hidden="true"></span>
+      <span class="test4v2-main-line test4v2-main-line--step2" aria-hidden="true"></span>
+
+      <p class="test4v2-heading">현대카드 쓰고<br>최대 <em>37.5</em>만원 혜택받자</p>
+
+      <section class="test4v2-step-group" aria-label="이벤트 단계 안내">
+        <article class="test4v2-step test4v2-step--active" aria-labelledby="test4v2-step1-title">
+          <h2 id="test4v2-step1-title" class="test4v2-step-title" data-step="1">이벤트 대상 카드로</h2>
+          <div class="test4v2-offer-list">
+            <div class="test4v2-offer-item">
+              <img class="test4v2-offer-item-card" src="../assets/ftp-bundle/8a21c83c947d5ff658b79bf0041688e054d9871e.png" alt="현대카드 D">
+              <div class="test4v2-offer-item-text">
+                <p class="test4v2-offer-item-title">통신 구독 멤버십</p>
+                <p class="test4v2-offer-item-desc">전월 실적 30만원 이상</p>
+                <p class="test4v2-offer-item-brand">현대카드D</p>
+              </div>
+              <button type="button" class="test4v2-offer-item-btn">보기</button>
+            </div>
+            <div class="test4v2-offer-item">
+              <img class="test4v2-offer-item-card" src="../assets/ftp-bundle/8a21c83c947d5ff658b79bf0041688e054d9871e.png" alt="현대카드 D">
+              <div class="test4v2-offer-item-text">
+                <p class="test4v2-offer-item-title">국내외 가맹점 1.5%<br>온라인몰</p>
+                <p class="test4v2-offer-item-desc">전월 실적 30만원 이상</p>
+                <p class="test4v2-offer-item-brand">현대카드D</p>
+              </div>
+              <button type="button" class="test4v2-offer-item-btn">보기</button>
+            </div>
+            <div class="test4v2-offer-item">
+              <img class="test4v2-offer-item-card" src="../assets/ftp-bundle/8a21c83c947d5ff658b79bf0041688e054d9871e.png" alt="현대카드 D">
+              <div class="test4v2-offer-item-text">
+                <p class="test4v2-offer-item-title">아울렛 10%</p>
+                <p class="test4v2-offer-item-desc">전월 실적 30만원 이상</p>
+                <p class="test4v2-offer-item-brand">현대카드D</p>
+              </div>
+              <button type="button" class="test4v2-offer-item-btn">보기</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="test4v2-step test4v2-step--dim" aria-labelledby="test4v2-step2-title">
+          <h2 id="test4v2-step2-title" class="test4v2-step-title" data-step="2">13만원 쓰면 13만원 받아요</h2>
+          <div class="test4v2-note">
+            <p>결제 기간: 2025. 07. 01 ~ 2025. 07. 31</p>
+            <p>혜택 지급일: 2026. 08. 31 이내 LMS 발송</p>
+          </div>
+          <div class="test4v2-action">
+            <button type="button" class="test4v2-action-btn">응모하기</button>
+          </div>
+        </article>
+
+        <article class="test4v2-step test4v2-step--dim" aria-labelledby="test4v2-step3-title">
+          <h2 id="test4v2-step3-title" class="test4v2-step-title" data-step="3">자동이체 신청 시</h2>
+          <div class="test4v2-note">
+            <p>결제 기간: 2025. 07. 01 ~ 2025. 07. 31</p>
+            <p>혜택 지급일: 2025. 08. 31 이내 LMS 발송</p>
+          </div>
+          <div class="test4v2-action">
+            <button type="button" class="test4v2-action-btn">자동이체 신청하기</button>
+          </div>
+        </article>
+      </section>
+    </main>
+    <!-- //main -->
+  </article>
+  <!-- //test4v2-mobile -->
+</body>
+</html>

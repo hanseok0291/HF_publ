@@ -3,478 +3,121 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- [workflow-meta] 원본 초안: test4.html · 절차·이슈 템플릿: workflow-test-new.html · 피그마 정합 후 본 파일 우선 수정 -->
-  <!-- //[workflow-meta] -->
-  <title>현대카드 12월 이벤트 · 퍼블·피그마 정합본 (test4_new)</title>
+  <title>현대카드 12월 이벤트</title>
   <link rel="stylesheet" href="../css/base.css">
-  <style>
-    /* 이벤트 전용 토큰(피그마 시맨틱·팔레트) */
-    .test4-page {
-      --test4-accent: #7cac04;
-      --test4-accent-dark: #186332;
-      --test4-badge-disabled: #d1d1d5;
-      --test4-rail: #e5e5e8;
-      --test4-btn-lime: #caf625;
-      --test4-btn-lime-2: #e0ff63;
-      min-height: 100vh;
-      background: var(--color-background-01);
-    }
-
-    /* [본문] base.css body flex와 무관하게 풀폭 페이지 */
-    .test4-page {
-      flex: 1 1 auto;
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-    }
-
-    /* [헤더] Depth=2 · 높이 56 · 좌우 16 (30-design layout) */
-    .test4-header {
-      position: relative;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      height: 56px;
-      padding: 0 var(--space-16);
-      background: var(--color-background-01);
-    }
-
-    .test4-header__title {
-      margin: 0;
-      max-width: calc(100% - 144px);
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 1.4;
-      letter-spacing: -0.02em;
-      color: var(--color-text-03);
-      text-align: center;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .test4-header__back,
-    .test4-header__my {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 48px;
-      height: 48px;
-      margin: 0;
-      padding: 0;
-      border: 0;
-      background: transparent;
-      cursor: pointer;
-    }
-
-    .test4-header__back {
-      left: var(--space-16);
-    }
-
-    .test4-header__my {
-      right: var(--space-16);
-    }
-
-    .test4-header__back:focus-visible,
-    .test4-header__my:focus-visible {
-      outline: 2px solid var(--color-primary-01);
-      outline-offset: 2px;
-      border-radius: var(--radius-08);
-    }
-
-    .test4-header__icon {
-      width: 24px;
-      height: 24px;
-      display: block;
-      object-fit: contain;
-    }
-
-    /* [메인] pt 24 · pb 40 · px 16 — 피그마 컨텐츠 프레임 */
-    .test4-main {
-      position: relative;
-      flex: 1 1 auto;
-      padding: var(--space-24) var(--space-16) var(--space-40);
-    }
-
-    /* Heading 2 / Bold 24 */
-    .test4-hero-title {
-      margin: 0;
-      font-size: 24px;
-      font-weight: 700;
-      line-height: 1.4;
-      letter-spacing: -0.03em;
-      color: var(--color-text-03);
-      word-break: keep-all;
-    }
-
-    .test4-hero-title .test4-hero-title__num {
-      color: var(--test4-accent);
-    }
-
-    /* 스테퍼 래일(세로선): 피그마 left 26px · w 2px 기준 — 패딩 16 기준으로 정렬 */
-    .test4-flow {
-      position: relative;
-      margin-top: var(--space-32);
-    }
-
-    .test4-flow__rail {
-      position: absolute;
-      left: 10px;
-      top: 12px;
-      width: 2px;
-      border-radius: var(--radius-04);
-      background: var(--test4-rail);
-      /* 대략 스텝1~2 구간 높이(피그마 회색 세그먼트 h 280에 맞춤 조정) */
-      bottom: 120px;
-      pointer-events: none;
-    }
-
-    .test4-flow__rail-progress {
-      position: absolute;
-      left: 10px;
-      top: 12px;
-      width: 2px;
-      height: 72px;
-      border-radius: var(--radius-04);
-      background: var(--test4-accent);
-      pointer-events: none;
-    }
-
-    .test4-flow__rail-tail {
-      position: absolute;
-      left: 10px;
-      top: 358px;
-      width: 2px;
-      height: 130px;
-      border-radius: var(--radius-04);
-      background: var(--test4-rail);
-      pointer-events: none;
-    }
-
-    /* 스텝 블록 간 32px — gap 금지 → margin */
-    .test4-step-block + .test4-step-block {
-      margin-top: var(--space-32);
-    }
-
-    .test4-step-block--muted {
-      opacity: 0.3;
-    }
-
-    /* 스텝 타이틀 행: 배지 + 제목 · 간격 8px */
-    .test4-step-head {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-    }
-
-    .test4-step-head__badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      width: 24px;
-      height: 24px;
-      border-radius: var(--radius-12);
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 1.4;
-      letter-spacing: -0.02em;
-      color: var(--color-text-01);
-    }
-
-    .test4-step-head__badge--on {
-      background: var(--test4-accent);
-    }
-
-    .test4-step-head__badge--off {
-      background: var(--test4-badge-disabled);
-    }
-
-    .test4-step-head__title {
-      margin: 0 0 0 var(--space-08);
-      flex: 1 1 0;
-      min-width: 0;
-      font-size: 20px;
-      font-weight: 700;
-      line-height: 1.4;
-      letter-spacing: -0.03em;
-      color: var(--color-text-03);
-    }
-
-    /* 스텝1 본문: 좌측 3px 스페이서 + 콘텐츠 — 피그마 pl 10.5+18.5 → 8+2 + 16+2 근사 */
-    .test4-step1-body {
-      display: flex;
-      flex-direction: row;
-      align-items: stretch;
-      margin-top: var(--space-20);
-      padding-left: calc(var(--space-08) + var(--space-02));
-    }
-
-    .test4-step1-body__spine {
-      flex-shrink: 0;
-      width: 3px;
-      background: transparent;
-    }
-
-    .test4-step1-body__content {
-      flex: 1 1 0;
-      min-width: 0;
-      padding-left: calc(var(--space-16) + var(--space-02));
-    }
-
-    .test4-card-row + .test4-card-row {
-      margin-top: var(--space-20);
-    }
-
-    .test4-card-row {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-    }
-
-    .test4-card-row__media {
-      flex-shrink: 0;
-      width: 34px;
-      height: 47px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-    }
-
-    .test4-card-row__media img {
-      width: 30px;
-      height: 47px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .test4-card-row__text {
-      flex: 1 1 0;
-      min-width: 0;
-      margin-left: var(--space-08);
-    }
-
-    .test4-card-row__btn {
-      flex-shrink: 0;
-      margin-left: var(--space-12);
-      height: 28px;
-      padding: var(--space-04) var(--space-08);
-      border: 0;
-      border-radius: var(--radius-08);
-      background: var(--color-button-secondary);
-      font-size: 13px;
-      font-weight: 500;
-      line-height: 1.4;
-      letter-spacing: -0.02em;
-      color: var(--color-text-03);
-      cursor: pointer;
-      font-family: inherit;
-    }
-
-    .test4-card-row__btn:focus-visible {
-      outline: 2px solid var(--color-primary-01);
-      outline-offset: 2px;
-    }
-
-    .test4-card-row__line1 {
-      margin: 0;
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 1.4;
-      letter-spacing: -0.02em;
-      color: var(--color-text-03);
-      word-break: keep-all;
-    }
-
-    .test4-card-row__line2 {
-      margin: var(--space-02) 0 0;
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 1.4;
-      letter-spacing: -0.02em;
-      color: var(--color-text-05);
-    }
-
-    .test4-card-row__line3 {
-      margin: var(--space-02) 0 0;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1.4;
-      letter-spacing: -0.02em;
-      color: var(--test4-accent-dark);
-    }
-
-    /* 스텝2·3 안내 — pl 32~33 → 32 */
-    .test4-step-detail {
-      margin-top: var(--space-20);
-      padding-left: var(--space-32);
-    }
-
-    .test4-step-detail__line + .test4-step-detail__line {
-      margin-top: var(--space-04);
-    }
-
-    .test4-step-detail__line {
-      margin: 0;
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 1.6;
-      letter-spacing: -0.02em;
-      color: var(--color-text-03);
-    }
-
-    .test4-step-block--muted .test4-step-detail__line--soft {
-      color: var(--color-text-04);
-      line-height: 1.4;
-    }
-
-    .test4-step-cta {
-      margin-top: var(--space-20);
-      padding-left: var(--space-32);
-    }
-
-    .test4-step-cta__btn {
-      width: 100%;
-      height: 44px;
-      border: 0;
-      border-radius: var(--radius-12);
-      padding: var(--space-08) var(--space-20);
-      background: var(--color-icon-02);
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 1.4;
-      letter-spacing: -0.02em;
-      color: var(--test4-btn-lime);
-      cursor: pointer;
-      font-family: inherit;
-    }
-
-    .test4-step-block--step3 .test4-step-cta__btn {
-      color: var(--test4-btn-lime-2);
-    }
-
-    .test4-step-cta__btn:focus-visible {
-      outline: 2px solid var(--color-primary-01);
-      outline-offset: 2px;
-    }
-
-    /* 스텝3 상단 타이틀 블록 내부 간격 8px */
-    .test4-step3-intro + .test4-step-detail {
-      margin-top: var(--space-08);
-    }
-  </style>
+  <link rel="stylesheet" href="../css/navigation-top.css">
+  <link rel="stylesheet" href="../css/typography.css">
+  <link rel="stylesheet" href="../css/buttons.css">
+  <!-- 레일·캠페인 토큰 등 DS 미포함: test4_new.css + «[가이드·확인]» -->
+  <link rel="stylesheet" href="../css/test4_new.css">
 </head>
 <body>
-  <!-- [test4-page] 피그마 테스트2 40002200:2021 · 00-core: OS 상태바 미포함 · _new 작업본 -->
-  <div class="test4-page">
-    <!-- [header] -->
-    <header class="test4-header">
-      <button type="button" class="test4-header__back" aria-label="뒤로 가기">
-        <img class="test4-header__icon" src="../assets/ftp-bundle/8a2d5923f2309e1ee1273fdf2dc8e3bf5b70c487.svg" width="24" height="24" alt="" aria-hidden="true">
+  <!-- [test4-new-page] Figma 37:3174 -->
+  <div class="test4-new-page">
+    <!-- [header] DS NavigationTop Top1_Default_Icon -->
+    <header class="nav-top">
+      <button type="button" class="nav-top__icon-btn nav-top__icon-btn--leading" aria-label="뒤로 가기">
+        <img class="nav-top__icon" src="../assets/ftp-bundle/e2753e34ddc2c1bed57c816efe8929421c126206.svg" width="24" height="24" alt="" aria-hidden="true">
       </button>
-      <p class="test4-header__title">현대카드 12월</p>
-      <button type="button" class="test4-header__my" aria-label="마이 쇼핑">
-        <img class="test4-header__icon" src="../assets/ftp-bundle/6a99224c2b097a8600e7af3026e9e557b8989548.svg" width="24" height="24" alt="" aria-hidden="true">
+      <p class="nav-top__title typo-body1 typo-w-bold">현대카드 12월</p>
+      <button type="button" class="nav-top__icon-btn nav-top__icon-btn--trailing" aria-label="마이 쇼핑">
+        <img class="nav-top__icon" src="../assets/ftp-bundle/c913b39ab044d2a81a094a1bae137297c345667d.svg" width="24" height="24" alt="" aria-hidden="true">
       </button>
     </header>
     <!-- //header -->
 
     <!-- [main] -->
-    <main class="test4-main" id="main">
-      <div class="test4-flow" aria-hidden="true">
-        <span class="test4-flow__rail"></span>
-        <span class="test4-flow__rail-progress"></span>
-        <span class="test4-flow__rail-tail"></span>
-      </div>
+    <main class="test4-new-main" id="main">
+      <h1 class="test4-new-hero typo-heading2">현대카드 쓰고<br>최대 <span class="test4-new-hero__num">37.5</span>만원 혜택받자</h1>
 
-      <h1 class="test4-hero-title">현대카드 쓰고<br>최대 <span class="test4-hero-title__num">37.5</span>만원 혜택받자</h1>
-
-      <!-- [step1] -->
-      <section class="test4-step-block" aria-labelledby="test4-step1-title">
-        <div class="test4-step-head">
-          <span class="test4-step-head__badge test4-step-head__badge--on" aria-hidden="true">1</span>
-          <h2 id="test4-step1-title" class="test4-step-head__title">이벤트 대상 카드로</h2>
-        </div>
-        <div class="test4-step1-body">
-          <div class="test4-step1-body__spine" aria-hidden="true"></div>
-          <div class="test4-step1-body__content">
-            <article class="test4-card-row">
-              <div class="test4-card-row__media">
-                <img src="../assets/ftp-bundle/8a21c83c947d5ff658b79bf0041688e054d9871e.png" width="30" height="47" alt="">
-              </div>
-              <div class="test4-card-row__text">
-                <p class="test4-card-row__line1">통신 구독 멤버십</p>
-                <p class="test4-card-row__line2">전월 실적 30만원 이상</p>
-                <p class="test4-card-row__line3">현대카드D</p>
-              </div>
-              <button type="button" class="test4-card-row__btn">보기</button>
-            </article>
-            <article class="test4-card-row">
-              <div class="test4-card-row__media">
-                <img src="../assets/ftp-bundle/8a21c83c947d5ff658b79bf0041688e054d9871e.png" width="30" height="47" alt="">
-              </div>
-              <div class="test4-card-row__text">
-                <p class="test4-card-row__line1">국내외 가맹점 1.5%<br>온라인몰</p>
-                <p class="test4-card-row__line2">전월 실적 30만원 이상</p>
-                <p class="test4-card-row__line3">현대카드D</p>
-              </div>
-              <button type="button" class="test4-card-row__btn">보기</button>
-            </article>
-            <article class="test4-card-row">
-              <div class="test4-card-row__media">
-                <img src="../assets/ftp-bundle/8a21c83c947d5ff658b79bf0041688e054d9871e.png" width="30" height="47" alt="">
-              </div>
-              <div class="test4-card-row__text">
-                <p class="test4-card-row__line1">아울렛 10%</p>
-                <p class="test4-card-row__line2">전월 실적 30만원 이상</p>
-                <p class="test4-card-row__line3">현대카드D</p>
-              </div>
-              <button type="button" class="test4-card-row__btn">보기</button>
-            </article>
+      <div class="test4-new-stack">
+        <!-- [step1] -->
+        <section class="test4-new-step1" aria-labelledby="test4-new-step1-title">
+          <span class="test4-new-rail test4-new-rail--track" aria-hidden="true"></span>
+          <span class="test4-new-rail test4-new-rail--progress" aria-hidden="true"></span>
+          <div class="test4-new-step-head">
+            <span class="test4-new-step-head__badge test4-new-step-head__badge--on typo-body2 typo-w-bold" aria-hidden="true">1</span>
+            <h2 id="test4-new-step1-title" class="test4-new-step-head__title typo-headline1">이벤트 대상 카드로</h2>
           </div>
-        </div>
-      </section>
-      <!-- //step1 -->
+          <div class="test4-new-step1-body">
+            <div class="test4-new-step1-body__spine" aria-hidden="true"></div>
+            <div class="test4-new-step1-body__content">
+              <article class="test4-new-card-row">
+                <div class="test4-new-card-row__media">
+                  <img src="../assets/ftp-bundle/8a21c83c947d5ff658b79bf0041688e054d9871e.png" width="30" height="47" alt="현대카드 D">
+                </div>
+                <div class="test4-new-card-row__text">
+                  <p class="test4-new-card-row__line1 typo-body1">통신 구독 멤버십</p>
+                  <p class="test4-new-card-row__line2 typo-body2 typo-w-regular">전월 실적 30만원 이상</p>
+                  <p class="test4-new-card-row__line3 typo-body3 typo-w-bold">현대카드D</p>
+                </div>
+                <button type="button" class="btn btn--secondary btn--xxsmall test4-new-card-row__action"><span class="btn__label">보기</span></button>
+              </article>
+              <article class="test4-new-card-row">
+                <div class="test4-new-card-row__media">
+                  <img src="../assets/ftp-bundle/8a21c83c947d5ff658b79bf0041688e054d9871e.png" width="30" height="47" alt="현대카드 D">
+                </div>
+                <div class="test4-new-card-row__text">
+                  <p class="test4-new-card-row__line1 typo-body1">국내외 가맹점 1.5%<br>온라인몰</p>
+                  <p class="test4-new-card-row__line2 typo-body2 typo-w-regular">전월 실적 30만원 이상</p>
+                  <p class="test4-new-card-row__line3 typo-body3 typo-w-bold">현대카드D</p>
+                </div>
+                <button type="button" class="btn btn--secondary btn--xxsmall test4-new-card-row__action"><span class="btn__label">보기</span></button>
+              </article>
+              <article class="test4-new-card-row">
+                <div class="test4-new-card-row__media">
+                  <img src="../assets/ftp-bundle/8a21c83c947d5ff658b79bf0041688e054d9871e.png" width="30" height="47" alt="현대카드 D">
+                </div>
+                <div class="test4-new-card-row__text">
+                  <p class="test4-new-card-row__line1 typo-body1">아울렛 10%</p>
+                  <p class="test4-new-card-row__line2 typo-body2 typo-w-regular">전월 실적 30만원 이상</p>
+                  <p class="test4-new-card-row__line3 typo-body3 typo-w-bold">현대카드D</p>
+                </div>
+                <button type="button" class="btn btn--secondary btn--xxsmall test4-new-card-row__action"><span class="btn__label">보기</span></button>
+              </article>
+            </div>
+          </div>
+        </section>
+        <!-- //step1 -->
 
-      <!-- [step2] -->
-      <section class="test4-step-block test4-step-block--muted" aria-labelledby="test4-step2-title">
-        <div class="test4-step-head">
-          <span class="test4-step-head__badge test4-step-head__badge--off" aria-hidden="true">2</span>
-          <h2 id="test4-step2-title" class="test4-step-head__title">13만원 쓰면 13만원 받아요</h2>
-        </div>
-        <div class="test4-step-detail">
-          <p class="test4-step-detail__line">결제 기간: 2025. 07. 01 ~ 2025. 07. 31</p>
-          <p class="test4-step-detail__line">혜택 지급일: 2026. 08. 31 이내 LMS 발송</p>
-        </div>
-        <div class="test4-step-cta">
-          <button type="button" class="test4-step-cta__btn">응모하기</button>
-        </div>
-      </section>
-      <!-- //step2 -->
+        <div class="test4-new-muted">
+          <!-- [step2] -->
+          <section class="test4-new-step2 test4-new-step-block--muted" aria-labelledby="test4-new-step2-title">
+            <span class="test4-new-rail--tail" aria-hidden="true"></span>
+            <div class="test4-new-step-head">
+              <span class="test4-new-step-head__badge test4-new-step-head__badge--off typo-body2 typo-w-bold" aria-hidden="true">2</span>
+              <h2 id="test4-new-step2-title" class="test4-new-step-head__title typo-headline1">13만원 쓰면 13만원 받아요</h2>
+            </div>
+            <div class="test4-new-step-detail">
+              <p class="test4-new-step-detail__line typo-body2-reading typo-w-regular">결제 기간: 2025. 07. 01 ~ 2025. 07. 31</p>
+              <p class="test4-new-step-detail__line typo-body2-reading typo-w-regular">혜택 지급일: 2026. 08. 31 이내 LMS 발송</p>
+            </div>
+            <div class="test4-new-step-cta">
+              <button type="button" class="btn btn--small test4-new-step-cta__btn"><span class="btn__label">응모하기</span></button>
+            </div>
+          </section>
+          <!-- //step2 -->
 
-      <!-- [step3] -->
-      <section class="test4-step-block test4-step-block--muted test4-step-block--step3" aria-labelledby="test4-step3-title">
-        <div class="test4-step-head test4-step3-intro">
-          <span class="test4-step-head__badge test4-step-head__badge--off" aria-hidden="true">3</span>
-          <h2 id="test4-step3-title" class="test4-step-head__title">자동이체 신청 시</h2>
+          <!-- [step3] -->
+          <section class="test4-new-step-block--muted test4-new-step-block--step3" aria-labelledby="test4-new-step3-title">
+            <div class="test4-new-step-head test4-new-step3-intro">
+              <span class="test4-new-step-head__badge test4-new-step-head__badge--off typo-body2 typo-w-bold" aria-hidden="true">3</span>
+              <h2 id="test4-new-step3-title" class="test4-new-step-head__title typo-headline1">자동이체 신청 시</h2>
+            </div>
+            <div class="test4-new-step-detail">
+              <p class="test4-new-step-detail__line typo-body2 typo-w-regular">결제 기간: 2025. 07. 01 ~ 2025. 07. 31</p>
+              <p class="test4-new-step-detail__line typo-body2 typo-w-regular">혜택 지급일: 2025. 08. 31 이내 LMS 발송</p>
+            </div>
+            <div class="test4-new-step-cta">
+              <button type="button" class="btn btn--small test4-new-step-cta__btn"><span class="btn__label">자동이체 신청하기</span></button>
+            </div>
+          </section>
+          <!-- //step3 -->
         </div>
-        <div class="test4-step-detail">
-          <p class="test4-step-detail__line test4-step-detail__line--soft">결제 기간: 2025. 07. 01 ~ 2025. 07. 31</p>
-          <p class="test4-step-detail__line test4-step-detail__line--soft">혜택 지급일: 2025. 08. 31 이내 LMS 발송</p>
-        </div>
-        <div class="test4-step-cta">
-          <button type="button" class="test4-step-cta__btn">자동이체 신청하기</button>
-        </div>
-      </section>
-      <!-- //step3 -->
+      </div>
     </main>
     <!-- //main -->
   </div>
-  <!-- //test4-page -->
+  <!-- //test4-new-page -->
 </body>
 </html>

@@ -1,0 +1,381 @@
+/**
+ * 약관(Provision) 화면 — CSS Modules pure selector 규칙을 위해
+ * 로컬 `.termsPage` 아래에만 :global(...) 적용 (페이지 루트에서 래퍼 필수)
+ */
+
+/* TermsDetail 등에서 쓰는 모듈 로컬 클래스 */
+.termsPage {
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: contents;
+}
+
+/* 기본값 — 약관 본문 안에서는 아래 `.terms-legal-html .termsTitle`이 우선 */
+.termsTitle {
+  margin-bottom: 1rem;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: var(--terms-lh-body, 1.4);
+  letter-spacing: -0.6px;
+  color: var(--terms-text-primary, #151515);
+}
+
+.termsSectionTitle {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.termsSubTitle {
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.termsList {
+  padding-left: 1.25rem;
+  list-style: decimal;
+}
+
+.termsList li {
+  margin-bottom: 1rem;
+}
+
+.termsList p {
+  margin-top: 0.35rem;
+}
+
+.termsPage :global(.terms-pub) {
+  box-sizing: border-box;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: #fff;
+  --terms-font: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  --terms-text-primary: #151515;
+  --terms-text-secondary: #454545;
+  --terms-line: #e5e5e8;
+  --terms-bg-muted: #f6f6f9;
+  --terms-lh-body: 1.4;
+  --terms-tracking-body: -0.28px;
+  --terms-tracking-h2: -0.54px;
+  --terms-space-page-x: 16px;
+  --terms-space-page-top: 20px;
+  --terms-space-section: 12px;
+  --terms-space-block: 12px;
+  --terms-space-tight: 8px;
+  --terms-space-clause: 4px;
+  --terms-space-micro: 2px;
+}
+
+.termsPage :global(.terms-pub *),
+.termsPage :global(.terms-pub *::before),
+.termsPage :global(.terms-pub *::after) {
+  box-sizing: inherit;
+}
+
+.termsPage :global(.terms-pub__shell) {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: var(--terms-font);
+  color: var(--terms-text-secondary);
+  background: #fff;
+}
+
+.termsPage :global(.terms-pub__top) {
+  flex-shrink: 0;
+}
+
+.termsPage :global(.terms-pub__status-bar) {
+  height: 44px;
+}
+
+.termsPage :global(.terms-pub__nav) {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 56px;
+  padding: 16px;
+  background: #fff;
+}
+
+.termsPage :global(.terms-pub__nav-placeholder) {
+  flex: 1 1 auto;
+  height: 22px;
+}
+
+.termsPage :global(.terms-pub__nav-aside) {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.termsPage :global(.terms-pub__close) {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.termsPage :global(.terms-pub__close-inner) {
+  position: absolute;
+  inset: 16.67% 14.58% 12.5% 14.58%;
+}
+
+.termsPage :global(.terms-pub__close-icon) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  stroke: var(--terms-text-primary);
+  stroke-width: 2;
+}
+
+.termsPage :global(.terms-pub__main) {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: var(--terms-space-page-top) var(--terms-space-page-x) 40px;
+}
+
+.termsPage :global(.terms-pub__page-title) {
+  margin: 0 0 var(--terms-space-page-x);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: -0.6px;
+  color: var(--terms-text-primary);
+}
+
+/* 약관 상세(모달형) — fixed 56px 헤더 아래 제목 sticky */
+.termsPage :global(.terms-pub__page-title--sticky) {
+  position: sticky;
+  top: 56px;
+  z-index: 5;
+  padding-bottom: 8px;
+  background: #fff;
+}
+
+.termsPage :global(.terms-pub__sections) {
+  /* flex가 아닌 block: 직접 자식(h3·p·ol 등) 세로 margin이 접혀 gap+margin 이중·합산 방지 */
+  display: block;
+}
+
+/* 통합 약관 페이지(index) — section 블록 사이만 구간 간격 */
+.termsPage :global(.terms-pub__sections > section + section) {
+  margin-top: var(--terms-space-section);
+}
+
+/* 통합 약관 index — 목차 nav */
+.termsPage :global(.terms-pub__toc) {
+  margin-bottom: 16px;
+}
+
+.termsPage :global(.terms-pub__toc-label) {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--terms-text-primary);
+}
+
+.termsPage :global(.terms-pub__toc-list) {
+  margin: 0 0 16px;
+  padding-left: 18px;
+  font-size: 14px;
+}
+
+.termsPage :global(.terms-pub__toc-list--flush) {
+  margin-bottom: 0;
+}
+
+.termsPage :global(.terms-pub__toc-list li) {
+  margin-bottom: 4px;
+}
+
+/* ----- 원본 HTML 약관 블록 (.terms-legal-html) — Figma text styles ----- */
+
+/* Headline 2/Bold: 통신사·대제목 [SKT]…, [KT]… 등 */
+.termsPage :global(.terms-legal-html h3) {
+  margin: var(--terms-space-block) 0 var(--terms-space-block);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: var(--terms-tracking-h2);
+  color: var(--terms-text-primary);
+}
+
+.termsPage :global(.terms-legal-html h3:first-child) {
+  margin-top: 0;
+}
+
+/* Body 2/Normal - Bold: 조항 제목 제N조 */
+.termsPage :global(.terms-legal-html h4) {
+  margin: var(--terms-space-block) 0 var(--terms-space-tight);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: var(--terms-tracking-body);
+  color: var(--terms-text-primary);
+}
+
+.termsPage :global(.terms-legal-html h3 + h4) {
+  margin-top: 0;
+}
+
+/* 화면 상단 페이지 타이틀(TermsDetail `brandTitle`) — 본문 조항 h4(14px)와 구분 */
+.termsPage :global(.terms-legal-html) .termsTitle {
+  margin: 0 0 var(--terms-space-page-x);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: -0.6px;
+  color: var(--terms-text-primary);
+}
+
+.termsPage :global(.terms-legal-html p) {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: var(--terms-tracking-body);
+  color: var(--terms-text-secondary);
+}
+
+.termsPage :global(.terms-legal-html p + ol) {
+  padding-left: 1em;
+}
+
+.termsPage :global(.terms-legal-html p:last-child) {
+  margin-bottom: 0;
+}
+
+.termsPage :global(.terms-legal-html p + .rround-table-scroll) {
+  margin-top: var(--terms-space-tight);
+}
+
+.termsPage :global(.terms-legal-html p:has(+ .rround-table-scroll)) {
+  margin-bottom: 0;
+  margin-top: var(--terms-space-block);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: var(--terms-tracking-body);
+  color: var(--terms-text-primary);
+}
+
+.termsPage :global(.terms-legal-html ol) {
+  margin: var(--terms-space-tight) 0;
+}
+
+.termsPage :global(.terms-legal-html ol + h3) {
+  margin-top: var(--terms-space-page-x);
+}
+
+.termsPage :global(.terms-legal-html ol + h4) {
+  /* margin-top: var(--terms-space-page-x); */
+}
+
+/* 목록 직후 표 (셀렉터 전체를 :global에 묶음) */
+.termsPage :global(.terms-legal-html ol + .rround-table-scroll) {
+  /* margin-top: calc(var(--terms-space-clause) * -1); */
+}
+
+.termsPage :global(.terms-legal-html .rround-table-scroll + ol) {
+  /* margin-top: calc(var(--terms-space-tight) * -1); */
+}
+
+.termsPage :global(.terms-legal-html ol ol) {
+  margin-top: var(--terms-space-micro);
+  margin-bottom: var(--terms-space-micro);
+  padding-left: 1em;
+}
+
+.termsPage :global(.terms-legal-html li) {
+  margin: var(--terms-space-clause) 0;
+  font-size: 14px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: var(--terms-tracking-body);
+  color: var(--terms-text-secondary);
+}
+
+.termsPage :global(.terms-legal-html li > p) {
+  margin: var(--terms-space-micro) 0 0;
+}
+
+.termsPage :global(.terms-legal-html a) {
+  color: var(--terms-text-secondary);
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+}
+
+.termsPage :global(.rround-table-scroll) {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: var(--terms-space-block) 0;
+  max-width: 100%;
+}
+
+.termsPage :global(.rround-table-scroll) + h3 {
+  margin-top: var(--terms-space-page-x);
+}
+
+.termsPage :global(.rround-table-scroll) + p {
+  margin-top: calc(var(--terms-space-tight) * -1);
+}
+
+.termsPage :global(.rround-terms-table) {
+  width: 100%;
+  min-width: 375px;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: var(--terms-tracking-body);
+  color: var(--terms-text-secondary);
+}
+
+.termsPage :global(.rround-center-table) {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.termsPage :global(.rround-terms-table th),
+.termsPage :global(.rround-terms-table td) {
+  border: 1px solid var(--terms-line);
+  padding: 12px;
+  vertical-align: top;
+  text-align: left;
+}
+
+.termsPage :global(.rround-terms-table th) {
+  background: var(--terms-bg-muted);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: var(--terms-tracking-body);
+  color: var(--terms-text-primary);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.termsPage :global(.rround-terms-table td) {
+  font-weight: 400;
+}
+
+.termsPage :global(.depth1) {
+  margin-top: var(--terms-space-tight);
+  padding-left: 1em;
+}

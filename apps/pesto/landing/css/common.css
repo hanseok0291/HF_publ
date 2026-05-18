@@ -554,7 +554,7 @@ body {
   text-decoration: none;
 }
 
-/* Terms | Privacy — 링크 앞 세로 구분선(가운데 정렬은 flex align-items) */
+/* 푸터 앵커 링크 앞 세로 구분선(가운데 정렬은 flex align-items) */
 .landing-footer-links a::before {
   content: "";
   flex-shrink: 0;
@@ -564,12 +564,24 @@ body {
 }
 
 .landing-footer-link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
   padding: 0;
   border: 0;
   background: transparent;
   color: rgba(255, 255, 255, 0.8);
   font: inherit;
   cursor: pointer;
+}
+
+/* Terms | Privacy — 두 번째 푸터 버튼 앞 세로 구분선(기존 링크 a::before 와 동일) */
+.landing-footer-links .landing-footer-link-button + .landing-footer-link-button::before {
+  content: "";
+  flex-shrink: 0;
+  width: 1px;
+  height: 12px;
+  background: var(--Color-Semantic-Text-04, #454545);
 }
 
 .sr-only {
@@ -787,11 +799,13 @@ body {
   cursor: pointer;
 }
 
-.terms-modal[hidden] {
+.terms-modal[hidden],
+.privacy-modal[hidden] {
   display: none;
 }
 
-.terms-modal {
+.terms-modal,
+.privacy-modal {
   position: fixed;
   inset: 0;
   z-index: 11;
@@ -1239,7 +1253,8 @@ body {
     letter-spacing: -0.24px;
   }
 
-  .landing-footer-links a {
+  .landing-footer-links a,
+  .landing-footer-links .landing-footer-link-button {
     gap: 10px;
   }
 

@@ -10,6 +10,9 @@
   const termsModal = document.querySelector(".terms-modal");
   const openTermsButtons = document.querySelectorAll("[data-open-terms-modal]");
   const closeTermsButtons = document.querySelectorAll("[data-close-terms-modal]");
+  const privacyModal = document.querySelector(".privacy-modal");
+  const openPrivacyButtons = document.querySelectorAll("[data-open-privacy-modal]");
+  const closePrivacyButtons = document.querySelectorAll("[data-close-privacy-modal]");
 
   if (!openButtons.length || !preapplyModal) {
     return;
@@ -21,7 +24,8 @@
   const updateScrollLock = () => {
     const isPreapplyOpen = !preapplyModal.hidden;
     const isTermsOpen = termsModal instanceof HTMLElement ? !termsModal.hidden : false;
-    const locked = isPreapplyOpen || isTermsOpen;
+    const isPrivacyOpen = privacyModal instanceof HTMLElement ? !privacyModal.hidden : false;
+    const locked = isPreapplyOpen || isTermsOpen || isPrivacyOpen;
 
     if (locked) {
       if (!document.body.classList.contains("landing-modal-scroll-lock")) {
@@ -66,6 +70,12 @@
   };
 
   const openModal = () => {
+    if (termsModal instanceof HTMLElement) {
+      termsModal.hidden = true;
+    }
+    if (privacyModal instanceof HTMLElement) {
+      privacyModal.hidden = true;
+    }
     preapplyModal.hidden = false;
     setModalState("form");
     if (emailInput instanceof HTMLInputElement) {
@@ -86,7 +96,29 @@
     if (!(termsModal instanceof HTMLElement)) {
       return;
     }
+    if (privacyModal instanceof HTMLElement) {
+      privacyModal.hidden = true;
+    }
     termsModal.hidden = false;
+    updateScrollLock();
+  };
+
+  const closePrivacyModal = () => {
+    if (!(privacyModal instanceof HTMLElement)) {
+      return;
+    }
+    privacyModal.hidden = true;
+    updateScrollLock();
+  };
+
+  const openPrivacyModal = () => {
+    if (!(privacyModal instanceof HTMLElement)) {
+      return;
+    }
+    if (termsModal instanceof HTMLElement) {
+      termsModal.hidden = true;
+    }
+    privacyModal.hidden = false;
     updateScrollLock();
   };
 
@@ -110,6 +142,8 @@
       closeModal();
     } else if (termsModal instanceof HTMLElement && !termsModal.hidden) {
       closeTermsModal();
+    } else if (privacyModal instanceof HTMLElement && !privacyModal.hidden) {
+      closePrivacyModal();
     }
   });
 
@@ -123,6 +157,19 @@
   closeTermsButtons.forEach((closeTermsButton) => {
     closeTermsButton.addEventListener("click", () => {
       closeTermsModal();
+    });
+  });
+
+  openPrivacyButtons.forEach((openPrivacyButton) => {
+    openPrivacyButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      openPrivacyModal();
+    });
+  });
+
+  closePrivacyButtons.forEach((closePrivacyButton) => {
+    closePrivacyButton.addEventListener("click", () => {
+      closePrivacyModal();
     });
   });
 

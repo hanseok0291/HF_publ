@@ -52,10 +52,13 @@
   margin: 0 auto;
   min-height: 100vh;
   background: #fff;
+  font-family: var(--terms-font);
+  color: var(--terms-text-secondary);
   --terms-font: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     sans-serif;
   --terms-text-primary: #151515;
   --terms-text-secondary: #454545;
+  --terms-icon-muted: #aeaeb2;
   --terms-line: #e5e5e8;
   --terms-bg-muted: #f6f6f9;
   --terms-lh-body: 1.4;
@@ -204,6 +207,598 @@
 
 .termsPage :global(.terms-pub__toc-list li) {
   margin-bottom: 4px;
+}
+
+/* ----- 약관 목록 화면 (list.js) ----- */
+
+.termsPage :global(.terms-pub__nav--list) {
+  align-items: center;
+  justify-content: center;
+}
+
+.termsPage :global(.terms-pub__nav-back) {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: var(--terms-text-primary);
+}
+
+.termsPage :global(.terms-pub__nav-title) {
+  margin: 0;
+  padding: 0 72px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: -0.32px;
+  text-align: center;
+  color: var(--terms-text-primary);
+}
+
+.termsPage :global(.terms-pub__list-main) {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+
+.termsPage :global(.terms-pub__list) {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.termsPage :global(.terms-pub__list-item) {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  min-height: 56px;
+  padding: 16px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.termsPage :global(.terms-pub__list-label) {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: -0.32px;
+  color: var(--terms-text-primary);
+}
+
+.termsPage :global(.terms-pub__list-chevron) {
+  flex-shrink: 0;
+}
+
+.termsPage :global(.terms-pub__list-divider) {
+  height: 8px;
+  background: var(--terms-bg-muted);
+}
+
+/* ----- 공지사항 목록 화면 (notice/list.js) ----- */
+
+.termsPage :global(.terms-pub__notice-main) {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+
+.termsPage :global(.terms-pub__notice-list) {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.termsPage :global(.terms-pub__notice-item) {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+}
+
+.termsPage :global(.terms-pub__notice-title) {
+  margin: 0;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: -0.32px;
+  color: var(--terms-text-primary);
+  word-break: keep-all;
+}
+
+.termsPage :global(.terms-pub__notice-date) {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: -0.28px;
+  color: #888;
+}
+
+.termsPage :global(.terms-pub__notice-empty) {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 180px;
+  padding: 40px 16px;
+}
+
+.termsPage :global(.terms-pub__notice-empty-icon) {
+  flex-shrink: 0;
+}
+
+.termsPage :global(.terms-pub__notice-empty-text) {
+  margin: 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: -0.32px;
+  color: var(--terms-text-secondary);
+  text-align: center;
+}
+
+/* ----- 공지사항 상세 (notice/[id].js) — Figma 공지사항 상세 ----- */
+
+.termsPage :global(.terms-pub__top--sticky) {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #fff;
+}
+
+.termsPage :global(.terms-pub__notice-detail-main) {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.termsPage :global(.terms-pub__notice-detail) {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  padding-bottom: 20px;
+}
+
+/* Headline 2/Bold — 공지 제목 */
+.termsPage :global(.terms-pub__notice-detail-title) {
+  margin: 0;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: -0.54px;
+  color: var(--terms-text-primary);
+  word-break: keep-all;
+}
+
+/* Body 3/Normal - Regular — 게시일 */
+.termsPage :global(.terms-pub__notice-detail-date) {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: -0.28px;
+  color: #888;
+}
+
+/* Body 3/Normal - Regular — 본문 */
+.termsPage :global(.terms-pub__notice-detail-body) {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: -0.28px;
+  color: var(--terms-text-secondary);
+  white-space: pre-wrap;
+}
+
+.termsPage :global(.terms-pub__notice-detail-body--html p) {
+  margin: 0 0 1em;
+}
+
+.termsPage :global(.terms-pub__notice-detail-body--html p:last-child) {
+  margin-bottom: 0;
+}
+
+/* ----- FAQ 목록 (faq/list.js) ----- */
+
+.termsPage :global(.terms-pub__faq-sticky) {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #fff;
+}
+
+.termsPage :global(.terms-pub__faq-tabs) {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  align-items: center;
+  padding: 16px;
+  background: #fff;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.termsPage :global(.terms-pub__faq-tabs::-webkit-scrollbar) {
+  display: none;
+}
+
+.termsPage :global(.terms-pub__faq-tab) {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 56px;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--terms-line);
+  border-radius: 24px;
+  background: #fff;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: -0.28px;
+  color: var(--terms-text-primary);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.termsPage :global(.terms-pub__faq-tab.is-active) {
+  border-color: var(--terms-text-primary);
+  background: var(--terms-text-primary);
+  color: #fff;
+}
+
+.termsPage :global(.terms-pub__faq-main) {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+
+.termsPage :global(.terms-pub__faq-sections) {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 16px 0;
+}
+
+.termsPage :global(.terms-pub__faq-section) {
+  margin: 0;
+}
+
+.termsPage :global(.terms-pub__faq-section-title) {
+  margin: 0;
+  padding: 0 16px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: -0.6px;
+  color: var(--terms-text-primary);
+}
+
+.termsPage :global(.terms-pub__faq-list) {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.termsPage :global(.terms-pub__faq-item-shell) {
+  padding: 0 16px;
+}
+
+.termsPage :global(.terms-pub__faq-item.is-open .terms-pub__faq-item-shell) {
+  padding: 0;
+}
+
+.termsPage :global(.terms-pub__faq-trigger) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 56px;
+  padding: 16px 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.termsPage :global(.terms-pub__faq-item.is-open .terms-pub__faq-trigger) {
+  padding: 16px;
+}
+
+.termsPage :global(.terms-pub__faq-question) {
+  flex: 1;
+  min-width: 0;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: -0.32px;
+  color: var(--terms-text-secondary);
+  word-break: keep-all;
+}
+
+.termsPage :global(.terms-pub__faq-item.is-open .terms-pub__faq-question) {
+  font-weight: 700;
+}
+
+.termsPage :global(.terms-pub__faq-chevron) {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.termsPage :global(.terms-pub__faq-item.is-open .terms-pub__faq-chevron) {
+  transform: rotate(180deg);
+}
+
+.termsPage :global(.terms-pub__faq-answer-panel) {
+  background: var(--terms-bg-muted);
+}
+
+.termsPage :global(.terms-pub__faq-answer) {
+  margin: 0;
+  padding: 16px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: -0.3px;
+  color: var(--terms-text-secondary);
+  word-break: keep-all;
+}
+
+.termsPage :global(.terms-pub__faq-answer p) {
+  margin: 0;
+}
+
+.termsPage :global(.terms-pub__faq-answer p + p) {
+  margin-top: 0;
+}
+
+.termsPage :global(.terms-pub__faq-item-footer) {
+  padding: 0 16px;
+}
+
+.termsPage :global(.terms-pub__faq-divider) {
+  margin: 0;
+  border: 0;
+  height: 1px;
+  background: var(--terms-bg-muted);
+}
+
+.termsPage :global(.terms-pub__faq-inquiry-divider) {
+  height: 8px;
+  background: var(--terms-bg-muted);
+}
+
+.termsPage :global(.terms-pub__faq-inquiry) {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 16px 16px 40px;
+}
+
+.termsPage :global(.terms-pub__faq-inquiry-head) {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.termsPage :global(.terms-pub__faq-inquiry-title) {
+  margin: 0;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: -0.32px;
+  color: var(--terms-text-primary);
+}
+
+.termsPage :global(.terms-pub__faq-inquiry-hours) {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: -0.26px;
+  color: var(--terms-text-secondary);
+}
+
+.termsPage :global(.terms-pub__faq-inquiry-hours-label) {
+  font-weight: 500;
+}
+
+.termsPage :global(.terms-pub__faq-inquiry-actions) {
+  display: flex;
+  gap: 8px;
+}
+
+.termsPage :global(.terms-pub__faq-inquiry-btn) {
+  flex: 1;
+  min-width: 0;
+  height: 56px;
+  padding: 12px 16px;
+  border: 1px solid var(--terms-line);
+  border-radius: 12px;
+  background: #fff;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: -0.32px;
+  color: var(--terms-text-primary);
+  cursor: pointer;
+}
+
+/* ----- 약관 상세 (TermsDetail) — Figma 약관_상세 ----- */
+
+.detailPage {
+  width: 100%;
+  min-height: 100vh;
+  background: #fff;
+}
+
+.detailPage .termsPage {
+  display: block;
+  width: 100%;
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.detailPage .termsPage :global(.terms-pub) {
+  min-height: auto;
+  width: 100%;
+}
+
+.detailPage :global(.terms-pub__detail-header) {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 56px;
+  background: #fff;
+}
+
+.detailPage :global(.terms-pub__detail-close) {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.termsPage :global(.terms-pub__detail-body) {
+  padding: 56px 0 20px;
+}
+
+.termsPage :global(.terms-pub__detail-content) {
+  padding: 16px 16px 40px;
+}
+
+.termsPage :global(.terms-pub__detail-content) .termsTitle {
+  margin: 0 0 var(--terms-space-page-x);
+}
+
+.termsPage :global(.terms-pub__detail-content .terms-pub__list) {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.termsPage :global(.terms-pub__detail-version) {
+  padding: 0 16px 20px;
+}
+
+.termsPage :global(.terms-pub__version-select) {
+  position: relative;
+  width: 100%;
+}
+
+.termsPage :global(.terms-pub__version-trigger) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 48px;
+  padding: 8px 16px;
+  border: 1px solid var(--terms-line);
+  border-radius: 12px;
+  background: #fff;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.termsPage :global(.terms-pub__version-value) {
+  flex: 1;
+  min-width: 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: -0.32px;
+  color: var(--terms-text-primary);
+}
+
+.termsPage :global(.terms-pub__version-chevron) {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.termsPage :global(.terms-pub__version-chevron.is-open) {
+  transform: rotate(180deg);
+}
+
+.termsPage :global(.terms-pub__version-list) {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 4px);
+  z-index: 20;
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+  border: 1px solid var(--terms-line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.termsPage :global(.terms-pub__version-option) {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: var(--terms-lh-body);
+  letter-spacing: -0.32px;
+  color: var(--terms-text-primary);
+  text-align: left;
+  cursor: pointer;
+}
+
+.termsPage :global(.terms-pub__version-option.is-selected) {
+  font-weight: 500;
+  background: var(--terms-bg-muted);
+}
+
+.termsPage :global(.terms-pub__version-option:hover) {
+  background: var(--terms-bg-muted);
 }
 
 /* ----- 원본 HTML 약관 블록 (.terms-legal-html) — Figma text styles ----- */

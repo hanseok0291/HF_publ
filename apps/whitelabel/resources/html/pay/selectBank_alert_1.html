@@ -34,7 +34,7 @@
 <!-- //IE 브라우저 지원 안내 -->
 
 <!-- wrap -->
-<div id="wrap" class="wrap">
+<div id="wrap" class="wrap new">
 	<!-- form -->
 	<form class="wrap" autocomplete="off">
 		<!-- header -->
@@ -62,6 +62,7 @@
 					<ul class="bank-list">
 						<!-- tossbank easy register: 한 행 전폭 -->
 						<li class="bank-list-tossbank">
+							<!-- 퍼블 확인용: 모달은 진입 시 자동 표시(버튼으로 열지 않음) -->
 							<button type="button" class="tossbank-easy-register" id="btnTossbankEasyRegister" aria-labelledby="tossbank-easy-register-heading">
 								<span class="tossbank-easy-register-visual">
 									<!-- 배너·일러스트 등 이미지는 Export 후 경로만 맞춰 주세요. -->
@@ -228,18 +229,20 @@
 </div>
 <!-- //wrap -->
 
-<!-- modal - common -->
-<div id="commonAlert" class="modal fade common new" tabindex="-1" role="dialog" data-backdrop="static">
+<!-- modal - common(commonAlert: registerCard.html과 동일 구조·스타일 클래스) -->
+<div id="commonAlert" class="modal fade common new" tabindex="-1" role="dialog" aria-label="토스뱅크 간편 등록 안내" data-backdrop="static">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h3 id="alertTitle" class="modal-title">알림</h3>
+				<h3 id="alertTitle" class="modal-title"></h3>
 			</div>
 			<div class="modal-body">
-				<div id="alertContents">알려드립니다.</div>
+				<!-- 문구는 시안·기획 확정 후 수정 -->
+				<div id="alertContents">토스뱅크 회원 정보가 확인되지 않습니다. <br>
+					다른 은행을 선택해 주세요.</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+				<button type="button" class="btn" data-dismiss="modal">확인</button>
 			</div>
 		</div>
 	</div>
@@ -247,18 +250,18 @@
 <!-- //modal - common -->
 
 <!-- modal - common -->
-<div id="commonConfirm" class="modal fade common new" tabindex="-1" role="dialog" data-backdrop="static">
+<div id="commonConfirm" class="modal fade common new" tabindex="-1" role="dialog" aria-label="창 닫기 확인" data-backdrop="static">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h3 id="confirmTitle" class="modal-title">안내</h3>
+				<h3 id="confirmTitle" class="modal-title"></h3>
 			</div>
 			<div class="modal-body">
 				<div id="confirmContents">확인하시겠습니까?</div>
 			</div>
-			<div class="modal-footer type2">
+			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-				<button type="button" id="confirmOk" class="btn btn-md btn-primary">확인</button>
+				<button type="button" id="confirmOk" class="btn btn-md btn-primary new" data-dismiss="modal">확인</button>
 			</div>
 		</div>
 	</div>
@@ -272,15 +275,14 @@
 <script>
 	// active bank button(토스 간편 등록 행 제외)
 	$('.bank-list > li:not(.bank-list-tossbank) button').click(function(){
-		var $btn = $(this);
-		// 토스(092) 선택 시 계좌 등록 화면으로 이동
-		if ($btn.attr('name') === '092') {
-			window.location.href = 'registerAccount.html';
-			return;
-		}
 		$('.bank-list > li:not(.bank-list-tossbank) button').removeClass('active');
-		$btn.addClass('active');
-	})
+		$(this).addClass('active');
+	});
+
+	// 퍼블리싱 확인용: 페이지 진입 시 commonAlert를 바로 표시
+	$(function () {
+		$('#commonAlert').modal('show');
+	});
 </script>
 </body>
 </html>

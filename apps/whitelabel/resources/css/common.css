@@ -15,7 +15,7 @@
 
 /* 가맹점 컬러: 필요 시 가맹점별 CSS에서 :root에 --merchant-primary 만 덮어써서 적용 */
 :root {
-	--merchant-primary: #2b2b2b;
+	--merchant-primary: #FF6114;
 }
 
 /* #RESET
@@ -422,27 +422,163 @@ background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)); poi
 
 /* ----- 은행 목록 ----- */
 .bank-list { display: -webkit-flex; display: -ms-flex; display: flex; flex-wrap: wrap; position: relative; margin-top: -17px; width: 100%; font-size: 0; }
-.bank-list li { display: inline-block; padding: 5px; width: 33.33%; }
+.bank-list li { display: inline-block; padding: 5px; }
+.bank-list > li:not(.bank-list-tossbank) { width: 33.33%; }
 .bank-list button { position: relative; display: block; width: 100%; overflow: visible; border: 1px solid #f6f6f6; border-radius: 10px; background-color: #f6f6f6;
 	font-size: 12px; line-height: 1.1; font-weight: 500; color: #2b2b2b; }
 .bank-list button:before { content: ""; display: block; padding-bottom: 86px; }
 .bank-list button span { display: block; position: absolute; left: 0; right: 0; width: 100%; }
 .bank-list button .logo { bottom: 48%; }
 .bank-list button .name { top: 65%; line-height: 1.1; }
-.bank-list img { width: auto; height: 26px; }
+.bank-list img, .tossbank-easy-register-visual img { width: auto; height: 26px; }
 .bank-list button:disabled { background-color: #e6e6e6; cursor: default; }
 .bank-list button:disabled img { opacity: .5; }
 .bank-list button:disabled:after { content: "등록"; position: absolute; top: -5px; right: 0; width: 32px; height: 19px; background-color: #3e3e3e; border-radius: 10px; font-size: 11px; font-weight: 500; line-height: 19px; color: #fff; }
 .bank-list button:disabled .name { color: #979797;}
 .bank-list button.active, .bank-list button:focus { border-color: #2b2b2b; outline: none; }
 
+/* 토스뱅크 간편 등록: bank-list 내 한 행 전폭 — 타일용 .bank-list button 규칙 초기화 */
+.bank-list > li.bank-list-tossbank {
+	width: 100%;
+	-webkit-flex: 0 0 100%;
+	-ms-flex: 0 0 100%;
+	flex: 0 0 100%;
+	max-width: 100%;
+}
+.bank-list > li.bank-list-tossbank > button.tossbank-easy-register {
+	position: relative;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	overflow: visible;
+	width: 100%;
+	margin: 0;
+	padding: 20px;
+	border: 1px solid transparent;
+	border-radius: 10px;
+	background-color: #DBEAFF;
+	color: #000;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: normal;
+	letter-spacing: -0.408px;
+	color: #2b2b2b;
+	text-align: left;
+	cursor: pointer;
+	box-sizing: border-box;
+	-webkit-appearance: none;
+	appearance: none;
+	min-height: 86px;
+}
+.bank-list > li.bank-list-tossbank > button.tossbank-easy-register:before {
+	content: none;
+	display: none;
+	padding: 0;
+}
+.bank-list > li.bank-list-tossbank > button.tossbank-easy-register > span {
+	position: static;
+	left: auto;
+	right: auto;
+	width: auto;
+}
+.bank-list > li.bank-list-tossbank > button.tossbank-easy-register:focus { outline: none; border-color: #2b2b2b; }
+
+/* 계좌 등록 피그마 4339:1407 — 토스뱅크 행 + 입력 + 알약형 간편등록(상태바 제외) */
+.register-account-entry {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	gap: 20px;
+}
+.register-account-entry .register-account-bank-id {
+	display: flex;
+}
+.register-account-entry .register-account-bank-id .logo {
+	border: 1px solid #e5e5e8;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.register-account-entry .register-account-bank-id .logo img {
+	height: 21px;
+	width: auto;
+}
+.register-account-bank-id .name {
+	font-size: 18px;
+	font-weight: 700;
+}
+.register-account-toss-pill-wrap {
+	-ms-flex-item-align: start;
+	align-self: flex-start;
+}
+.register-account-toss-pill {
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	min-height: 40px;
+	padding: 0 24px;
+	border-radius: 80px;
+	background-color: #e8f3ff;
+	font-size: 12.8px;
+	font-weight: 700;
+	line-height: 40px;
+	letter-spacing: -0.3264px;
+	color: #2b2b2b;
+	text-decoration: none;
+	white-space: nowrap;
+	box-sizing: border-box;
+}
+.register-account-toss-pill:hover,
+.register-account-toss-pill:focus {
+	color: #2b2b2b;
+	text-decoration: none;
+	outline: none;
+}
+.register-account-fig-4339 .headline {
+	font-size: 22px;
+	line-height: 29px;
+	font-weight: 700;
+}
+.register-account-fig-4339 footer .btn.btn-lg.btn-primary.new:disabled {
+	background-color: #d1d1d5;
+	border-color: #d1d1d5;
+	color: #fff;
+	opacity: 1;
+	cursor: default;
+}
+
 @media all and (min-width: 360px) {
+	/* 은행 그리드(ul) 안쪽 콘텐츠 폭: 좌우 7px 인셋 */
 	.bank-list { padding: 0 7px 7px; }
 	.bank-list button { font-size: 14px; }
-	.bank-list img { max-width: 79px; height: auto; max-height: 30px; }
+	.bank-list > li.bank-list-tossbank > button.tossbank-easy-register { font-size: 15px; }
+	.bank-list img, .tossbank-easy-register-visual img { max-width: 79px; height: auto; max-height: 30px; }
 }
 @media all and (min-width: 620px) {
-	.bank-list li { width: 20%; }
+	.bank-list > li:not(.bank-list-tossbank) { width: 20%; }
+	.bank-list > li.bank-list-tossbank {
+		width: 100%;
+		-webkit-flex: 0 0 100%;
+		-ms-flex: 0 0 100%;
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
 }
 
 /* ----- 인증 ----- */
@@ -742,6 +878,125 @@ left: -5px; }
 .card-number-wrap {border-bottom: 1px solid #bebebe;display: flex;align-items: center;gap: 0; } 
 .card-number-wrap .dash {padding: 29px 0 12px;height: 60px;position: relative;left: -17px;color: #333;font-weight: 700; } 
 .card-number-wrap ~ .sub-text {margin-top: 12px; } 
+
+/* 토스뱅크 간편 등록 — 레이아웃·타일 초기화는 .bank-list > li.bank-list-tossbank 블록 참고 */
+.tossbank-easy-register-heading { display: block; margin: 0 0 0 10px; font-size: 15px; font-weight: 700; color: #303030; }
+.tossbank-easy-register-visual { display: block; text-align: center; }
+.tossbank-easy-register-visual img { width: 100%; max-width: 46px; height: auto; vertical-align: top; }
+
+/* 토스 계좌 등록(registerAccount_toss) — 피그마 4339:1131 (상태바 제외) */
+.register-account-toss-page .register-account-toss-headline { margin-bottom: 80px; }
+.register-account-toss-accent { color: var(--merchant-primary); }
+.register-account-toss-stack {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+.register-account-toss-hero {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+	max-width: calc(100% - 40px);
+	padding: 40px 40px 30px;
+	border-radius: 16px;
+	background-color: #e8f3ff;
+	gap: 30px;
+}
+.register-account-toss-logo-wrap {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	width: 80px;
+	height: 80px;
+	overflow: hidden;
+	border-radius: 16px;
+	background-color: #fff;
+}
+.register-account-toss-logo { width: auto; height: auto; max-width: 56px; max-height: 52px; vertical-align: top; }
+.register-account-toss-app-btn {
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	min-height: 50px;
+	padding: 0 30px;
+	border-radius: 100px;
+	background-color: #2272eb;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.2;
+	color: #fff;
+	text-decoration: none;
+	white-space: nowrap;
+}
+.register-account-toss-app-btn:hover,
+.register-account-toss-app-btn:focus { color: #fff; text-decoration: none; box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.06); outline: none; }
+.register-account-toss-direct-wrap { margin: 40px 0 0; text-align: center; }
+.register-account-toss-direct {
+	font-family: Pretendard, sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.6;
+	color: #888;
+	text-decoration: underline;
+}
+.register-account-toss-direct:hover,
+.register-account-toss-direct:focus { color: #888; }
+.register-account-toss-page footer .container { padding-top: 10px; }
+.register-account-toss-footer-hint {
+	margin: 0 0 30px 10px;
+	font-family: Pretendard, sans-serif;
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 1.4;
+	color: #888;
+	text-align: left;
+}
+.register-account-toss-auth-btn {
+	width: 100%;
+	height: 56px;
+	border: 0;
+	border-radius: 10px;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 54px;
+	color: #fff;
+	background-color: #d1d1d5;
+	box-shadow: none;
+}
+.register-account-toss-page .register-account-toss-auth-btn.btn:disabled { opacity: 1; cursor: default; }
+.register-account-toss-auth-btn:not(:disabled) {
+	background-color: var(--merchant-primary);
+	cursor: pointer;
+}
+.register-account-toss-auth-btn:not(:disabled):hover,
+.register-account-toss-auth-btn:not(:disabled):focus { box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.04); outline: none; }
 
 /* 250917 추가 */
 .notice-wrap { border-radius: 10px; background-color: #F7F7F8; padding: 20px; margin-top: 20px; }

@@ -34,7 +34,7 @@
 <!-- //IE 브라우저 지원 안내 -->
 
 <!-- wrap -->
-<div id="wrap" class="wrap new">
+<div id="wrap" class="wrap new register-account-fig-4339">
 	<!-- form -->
 	<form class="wrap" autocomplete="off">
 		<!-- header -->
@@ -59,22 +59,25 @@
 				<!-- section -->
 				<section>
 					<h3 class="hidden">정보 입력</h3>
-					<!-- form area -->
-					<div class="form-area">
-						<div class="form-group bank-area">
-							<span class="logo"><img src="../../images/logo/bank/logo_088.png?ver=1.0" alt="신한은행"></span>
-							<span class="name">신한은행</span>
+					<!-- form area (피그마 4339:1407 — 은행행·입력·토스 알약 버튼 순, gap 20px) -->
+					<div class="form-area register-account-entry">
+						<div class="form-group bank-area register-account-bank-id">
+							<span class="logo"><img src="../../images/logo/bank/logo_092.png?ver=1.1" alt="토스뱅크"></span>
+							<span class="name">토스뱅크</span>
 						</div>
 						<div class="form-group bank-area">
-							<!-- <label class="form-label">이름</label> -->
-							<input type="text" class="form-control" placeholder="이름 입력" value="홍길동" readonly>
+							<input type="text" id="inputAccountName" class="form-control" placeholder="이름" aria-label="이름">
 							<div class="text-error"></div>
 						</div>
 						<div class="form-group bank-area">
-							<!-- <label class="form-label">계좌번호</label> -->
-							<input type="tel" class="form-control" maxlength="16" placeholder="계좌번호 입력">
+							<input type="tel" id="inputAccountNumber" class="form-control" maxlength="16" placeholder="계좌번호 입력" aria-label="계좌번호" inputmode="numeric">
 							<div class="text-error"></div>
 						</div>
+						<!-- tossbank easy register pill -->
+						<div class="register-account-toss-pill-wrap">
+							<a href="registerAccount_toss.html" class="register-account-toss-pill" role="button">토스뱅크 간편 등록하기</a>
+						</div>
+						<!-- //tossbank easy register pill -->
 					</div>
 					<!-- //form area -->
 				</section>
@@ -88,7 +91,7 @@
 		<footer>
 			<!-- container -->
 			<div class="container">
-				<button type="button" id="submit" class="btn btn-lg btn-primary shadow" disabled>확인</button>
+				<button type="button" id="submit" class="btn btn-lg btn-primary new shadow" disabled>확인</button>
 			</div>
 			<!-- //container -->
 		</footer>
@@ -140,27 +143,24 @@
 <!-- //loading -->
 
 <script>
-$(document).ready(function(){
-	// PASS 선택 시 캡챠 미노출
-	function captchaYn(){
-		var $checkItem = $('.check-slider > input[type="radio"]').eq(0);
-		if($checkItem.is(':checked')){
-			$('#captcha').show();
-		} else {
-			$('#captcha').hide();
-		}
-	}
-	captchaYn();
-	$('.check-slider').click(function(){
-		captchaYn();
-	});
+	$(function () {
+		var $submit = $('#submit');
+		var $inputs = $('#inputAccountName, #inputAccountNumber');
 
-	// 통신사 선택
-	$('#telecomCdModal .btn-list .btn').click(function(){
-		var text = $(this).html();
-		$('#telecomCd').html(text);
+		/** 이름·계좌번호 모두 입력 시 확인 버튼 활성화 */
+		function updateSubmitEnabled() {
+			var allFilled = true;
+			$inputs.each(function () {
+				if (!$(this).val().trim()) {
+					allFilled = false;
+					return false;
+				}
+			});
+			$submit.prop('disabled', !allFilled);
+		}
+
+		$inputs.on('input change blur', updateSubmitEnabled);
+		updateSubmitEnabled();
 	});
-});
-</script>
-</body>
+</script></body>
 </html>

@@ -892,12 +892,82 @@ body {
   color: #ffffff;
 }
 
-.terms-modal-title + .terms-modal-text {
+.terms-modal-title + .terms-modal-text,
+.terms-modal-title + .terms-modal-list {
   margin-top: 40px;
 }
 
 .terms-modal-text + .terms-modal-text {
   margin-top: 24px;
+}
+
+/* Privacy policy — 시안: 리드 60px, 서브타이틀 28px, 리스트 항목 12px */
+.terms-modal-lead {
+  margin-bottom: 60px;
+  color: #c8c8c8;
+}
+
+.terms-modal-subsection {
+  margin-top: 32px;
+}
+
+.terms-modal-subtitle {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: -0.56px;
+  font-weight: 700;
+}
+
+.terms-modal-subtitle + .terms-modal-text {
+  margin-top: 24px;
+}
+
+.terms-modal-list {
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.terms-modal-list .terms-modal-text {
+  margin: 0;
+  padding-left: 1.2em;
+  color: #c8c8c8;
+}
+
+.terms-modal-list .terms-modal-text::before {
+  content: "• ";
+  display: inline-block;
+  width: 1.2em;
+  margin-left: -1.2em;
+}
+
+.terms-modal-list .terms-modal-text + .terms-modal-text {
+  margin-top: 12px;
+}
+
+.terms-modal-list + .terms-modal-text {
+  margin-top: 24px;
+}
+
+.terms-modal-section .terms-modal-text {
+  color: #c8c8c8;
+}
+
+.terms-modal-section .terms-modal-text strong {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.terms-modal-link {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.terms-modal-link:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
 }
 
 /* ≤1279px: 태블릿·모바일 공통 기본(히어로·헤더 등). ≤767에서 모바일 블록이 덮음 */
@@ -1264,10 +1334,6 @@ body {
     height: 24px;
   }
 
-  .terms-modal-logo-img {
-    height: 24px;
-  }
-
   .preapply-modal-content {
     padding: 0 16px;
   }
@@ -1290,32 +1356,112 @@ body {
     min-width: 0;
   }
 
+  /* Privacy/Terms 모달 — 모바일 시안(375): 헤더 56px·16px 패딩, 본문 top 20px, 콘텐츠 343px */
+  .terms-modal-header {
+    padding: 16px;
+    min-height: 56px;
+  }
+
+  .terms-modal-inner {
+    padding-inline: 16px;
+  }
+
   .terms-modal-content {
+    box-sizing: border-box;
     width: 100%;
-    margin-top: 60px;
-    padding: 0 16px 80px;
+    margin-top: 20px;
+    margin-inline: auto;
+    padding: 0 0 80px;
   }
 
   .terms-modal-title-main {
-    margin-bottom: 56px;
-    font-size: 34px;
-    letter-spacing: -0.68px;
-  }
-
-  .terms-modal-title {
+    margin-bottom: 20px;
     font-size: 28px;
     letter-spacing: -0.56px;
   }
 
+  .terms-modal-lead {
+    margin-bottom: 24px;
+    font-size: 15px;
+    letter-spacing: -0.3px;
+    line-height: 1.3;
+  }
+
   .terms-modal-section + .terms-modal-section {
-    margin-top: 40px;
+    margin-top: 24px;
+  }
+
+  .terms-modal-title {
+    font-size: 24px;
+    letter-spacing: -0.48px;
+  }
+
+  .terms-modal-title + .terms-modal-text,
+  .terms-modal-title + .terms-modal-list {
+    margin-top: 16px;
   }
 
   .terms-modal-text {
-    margin-top: 24px;
-    font-size: 14px;
-    letter-spacing: -0.28px;
+    font-size: 15px;
+    letter-spacing: -0.3px;
+    line-height: 1.3;
   }
+
+  .terms-modal-text + .terms-modal-text {
+    margin-top: 16px;
+  }
+
+  .terms-modal-subsection {
+    margin-top: 20px;
+  }
+
+  .terms-modal-subtitle {
+    font-size: 18px;
+    letter-spacing: -0.36px;
+  }
+
+  /* 시안: 2. Shoppers of Merchant — 서브타이틀 24px */
+  .terms-modal-subsection:nth-of-type(2) .terms-modal-subtitle {
+    font-size: 24px;
+    letter-spacing: -0.48px;
+  }
+
+  .terms-modal-subsection:nth-of-type(2) .terms-modal-text {
+    font-size: 16px;
+    letter-spacing: -0.32px;
+  }
+
+  .terms-modal-subtitle + .terms-modal-text,
+  .terms-modal-subtitle + .terms-modal-list {
+    margin-top: 16px;
+  }
+
+  .terms-modal-list {
+    margin-top: 16px;
+  }
+
+  .terms-modal-list .terms-modal-text + .terms-modal-text {
+    margin-top: 12px;
+  }
+
+  /* 시안: 1. Merchants 하위 리스트 — 16px, 항목 간격 4px */
+  .terms-modal-subsection:first-of-type .terms-modal-list .terms-modal-text {
+    font-size: 16px;
+    letter-spacing: -0.32px;
+  }
+
+  .terms-modal-subsection:first-of-type .terms-modal-list .terms-modal-text + .terms-modal-text {
+    margin-top: 4px;
+  }
+
+  .terms-modal-list + .terms-modal-text {
+    margin-top: 16px;
+  }
+
+  .terms-modal-logo-img {
+    height: 16px;
+  }
+
   .preapply-modal-state-form .preapply-modal-description {
     margin-bottom: 29px;
   }

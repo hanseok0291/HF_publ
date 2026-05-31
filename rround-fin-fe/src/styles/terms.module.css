@@ -654,11 +654,14 @@
 }
 
 /* ----- 약관 상세 (TermsDetail) — Figma 약관_상세 ----- */
-
+html[data-dev-safe-area] .detailPage {
+  --safe-top: 50px; /* iPhone 12 mini 기준 */
+}
 .detailPage {
   width: 100%;
   min-height: 100vh;
   background: #fff;
+  --safe-top: env(safe-area-inset-top, 0px);
 }
 
 .detailPage .termsPage {
@@ -684,7 +687,20 @@
   justify-content: center;
   width: 100%;
   height: 56px;
+  min-height: calc(56px + var(--safe-top));
   background: #fff;
+  padding-top: var(--safe-top);
+}
+
+.detailPage :global(.terms-pub__detail-header-title) {
+  max-width: calc(100% - 96px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #151515;
 }
 
 .detailPage :global(.terms-pub__detail-close) {
@@ -699,7 +715,7 @@
 }
 
 .termsPage :global(.terms-pub__detail-body) {
-  padding: 56px 0 20px;
+  padding: calc(56px + var(--safe-top)) 0 20px;
 }
 
 .termsPage :global(.terms-pub__detail-content) {

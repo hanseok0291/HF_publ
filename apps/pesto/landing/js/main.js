@@ -1,31 +1,63 @@
 (() => {
-  const openButtons = document.querySelectorAll("[data-open-preapply-modal]");
+  const openPreapplyButtons = document.querySelectorAll("[data-open-preapply-modal]");
   const preapplyModal = document.querySelector(".preapply-modal");
-  const closeButtons = document.querySelectorAll("[data-close-preapply-modal]");
+  const closePreapplyButtons = document.querySelectorAll("[data-close-preapply-modal]");
   const form = document.querySelector(".preapply-modal-form");
   const emailInput = document.querySelector("#preapply-email");
   const formState = document.querySelector('[data-modal-state="form"]');
   const successState = document.querySelector('[data-modal-state="success"]');
   const submittedEmailText = document.querySelector("[data-preapply-email-text]");
+  const usageApplyModal = document.querySelector(".usage-apply-modal");
+  const closeUsageApplyButtons = document.querySelectorAll("[data-close-usage-apply-modal]");
+  const usageApplyForm = document.querySelector(".usage-apply-modal-form");
+  const usageApplyEmailInput = document.querySelector("#usage-apply-email");
+  const usageApplyFormState = usageApplyModal?.querySelector('[data-modal-state="form"]');
+  const usageApplySuccessState = usageApplyModal?.querySelector('[data-modal-state="success"]');
+  const usageApplySubmittedEmailText = document.querySelector("[data-usage-apply-email-text]");
   const termsModal = document.querySelector(".terms-modal");
-  const openTermsButtons = document.querySelectorAll("[data-open-terms-modal]");
-  const closeTermsButtons = document.querySelectorAll("[data-close-terms-modal]");
   const privacyModal = document.querySelector(".privacy-modal");
-  const openPrivacyButtons = document.querySelectorAll("[data-open-privacy-modal]");
-  const closePrivacyButtons = document.querySelectorAll("[data-close-privacy-modal]");
 
-  if (!openButtons.length || !preapplyModal) {
+  const hasPreapply = preapplyModal instanceof HTMLElement && openPreapplyButtons.length > 0;
+  const hasUsageApply = usageApplyModal instanceof HTMLElement;
+  const hasTerms = termsModal instanceof HTMLElement;
+  const hasPrivacy = privacyModal instanceof HTMLElement;
+
+  if (!hasPreapply && !hasUsageApply && !hasTerms && !hasPrivacy) {
     return;
   }
+
+  const isModalOpen = (el) => el instanceof HTMLElement && !el.hasAttribute("hidden");
+
+  const showModal = (el) => {
+    if (!(el instanceof HTMLElement)) {
+      return;
+    }
+    el.removeAttribute("hidden");
+  };
+
+  const hideModal = (el) => {
+    if (!(el instanceof HTMLElement)) {
+      return;
+    }
+    el.setAttribute("hidden", "");
+  };
+
+  const resetLegalModalScroll = (el) => {
+    const inner = el?.querySelector(".terms-modal-inner");
+    if (inner instanceof HTMLElement) {
+      inner.scrollTop = 0;
+    }
+  };
 
   /* 스크롤 잠금: html overflow + body position:fixed(iOS·모바일에서 배경 스크롤·바운스 방지). 닫을 때 scroll 위치 복원 */
   let modalLockScrollY = 0;
 
   const updateScrollLock = () => {
-    const isPreapplyOpen = !preapplyModal.hidden;
-    const isTermsOpen = termsModal instanceof HTMLElement ? !termsModal.hidden : false;
-    const isPrivacyOpen = privacyModal instanceof HTMLElement ? !privacyModal.hidden : false;
-    const locked = isPreapplyOpen || isTermsOpen || isPrivacyOpen;
+    const locked =
+      (hasPreapply && isModalOpen(preapplyModal)) ||
+      (hasUsageApply && isModalOpen(usageApplyModal)) ||
+      isModalOpen(termsModal) ||
+      isModalOpen(privacyModal);
 
     if (locked) {
       if (!document.body.classList.contains("landing-modal-scroll-lock")) {
@@ -51,142 +83,212 @@
     window.scrollTo(0, modalLockScrollY);
   };
 
-  const setModalState = (state) => {
-    if (formState) {
-      formState.hidden = state !== "form";
-    }
-    if (successState) {
-      successState.hidden = state !== "success";
-    }
-  };
-
-  const closeModal = () => {
-    preapplyModal.hidden = true;
-    setModalState("form");
-    if (emailInput instanceof HTMLInputElement) {
-      emailInput.value = "";
-    }
-    updateScrollLock();
-  };
-
-  const openModal = () => {
-    if (termsModal instanceof HTMLElement) {
-      termsModal.hidden = true;
-    }
-    if (privacyModal instanceof HTMLElement) {
-      privacyModal.hidden = true;
-    }
-    preapplyModal.hidden = false;
-    setModalState("form");
-    if (emailInput instanceof HTMLInputElement) {
-      emailInput.focus();
-    }
-    updateScrollLock();
+  const closeLegalModals = () => {
+    hideModal(termsModal);
+    hideModal(privacyModal);
   };
 
   const closeTermsModal = () => {
-    if (!(termsModal instanceof HTMLElement)) {
-      return;
-    }
-    termsModal.hidden = true;
+    hideModal(termsModal);
     updateScrollLock();
   };
 
   const openTermsModal = () => {
-    if (!(termsModal instanceof HTMLElement)) {
+    if (!hasTerms) {
       return;
     }
-    if (privacyModal instanceof HTMLElement) {
-      privacyModal.hidden = true;
+    hideModal(privacyModal);
+    if (hasPreapply) {
+      hideModal(preapplyModal);
     }
-    termsModal.hidden = false;
+    if (hasUsageApply) {
+      hideModal(usageApplyModal);
+    }
+    showModal(termsModal);
+    resetLegalModalScroll(termsModal);
     updateScrollLock();
   };
 
   const closePrivacyModal = () => {
-    if (!(privacyModal instanceof HTMLElement)) {
-      return;
-    }
-    privacyModal.hidden = true;
+    hideModal(privacyModal);
     updateScrollLock();
   };
 
   const openPrivacyModal = () => {
-    if (!(privacyModal instanceof HTMLElement)) {
+    if (!hasPrivacy) {
       return;
     }
-    if (termsModal instanceof HTMLElement) {
-      termsModal.hidden = true;
+    hideModal(termsModal);
+    if (hasPreapply) {
+      hideModal(preapplyModal);
     }
-    privacyModal.hidden = false;
+    if (hasUsageApply) {
+      hideModal(usageApplyModal);
+    }
+    showModal(privacyModal);
+    resetLegalModalScroll(privacyModal);
     updateScrollLock();
   };
 
-  openButtons.forEach((openButton) => {
-    openButton.addEventListener("click", (event) => {
-      event.preventDefault();
-      window.sessionStorage.setItem("pesto_landing_entered_at", new Date().toISOString());
-      openModal();
-    });
-  });
+  if (hasUsageApply) {
+    const setUsageApplyModalState = (state) => {
+      if (usageApplyFormState instanceof HTMLElement) {
+        usageApplyFormState.hidden = state !== "form";
+      }
+      if (usageApplySuccessState instanceof HTMLElement) {
+        usageApplySuccessState.hidden = state !== "success";
+      }
+    };
 
-  closeButtons.forEach((closeButton) => {
-    closeButton.addEventListener("click", closeModal);
-  });
+    const closeUsageApplyModal = () => {
+      hideModal(usageApplyModal);
+      setUsageApplyModalState("form");
+      if (usageApplyEmailInput instanceof HTMLInputElement) {
+        usageApplyEmailInput.value = "";
+      }
+      updateScrollLock();
+    };
+
+    closeUsageApplyButtons.forEach((closeButton) => {
+      closeButton.addEventListener("click", closeUsageApplyModal);
+    });
+
+    if (usageApplyForm instanceof HTMLFormElement) {
+      usageApplyForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (!(usageApplyEmailInput instanceof HTMLInputElement) || !usageApplyEmailInput.value.trim()) {
+          return;
+        }
+        const submittedEmail = usageApplyEmailInput.value.trim();
+        if (usageApplySubmittedEmailText) {
+          usageApplySubmittedEmailText.textContent = submittedEmail;
+        }
+        setUsageApplyModalState("success");
+      });
+    }
+  }
+
+  if (hasPreapply) {
+    const setModalState = (state) => {
+      if (formState) {
+        formState.hidden = state !== "form";
+      }
+      if (successState) {
+        successState.hidden = state !== "success";
+      }
+    };
+
+    const closePreapplyModal = () => {
+      hideModal(preapplyModal);
+      setModalState("form");
+      if (emailInput instanceof HTMLInputElement) {
+        emailInput.value = "";
+      }
+      updateScrollLock();
+    };
+
+    const openPreapplyModal = () => {
+      closeLegalModals();
+      showModal(preapplyModal);
+      setModalState("form");
+      if (emailInput instanceof HTMLInputElement) {
+        emailInput.focus();
+      }
+      updateScrollLock();
+    };
+
+    openPreapplyButtons.forEach((openButton) => {
+      openButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.sessionStorage.setItem("pesto_landing_entered_at", new Date().toISOString());
+        openPreapplyModal();
+      });
+    });
+
+    closePreapplyButtons.forEach((closeButton) => {
+      closeButton.addEventListener("click", closePreapplyModal);
+    });
+
+    if (form instanceof HTMLFormElement) {
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (!(emailInput instanceof HTMLInputElement) || !emailInput.value.trim()) {
+          return;
+        }
+        const submittedEmail = emailInput.value.trim();
+        window.sessionStorage.setItem("pesto_preapply_email", submittedEmail);
+        if (submittedEmailText) {
+          submittedEmailText.textContent = submittedEmail;
+        }
+        setModalState("success");
+      });
+    }
+  }
+
+  if (hasTerms || hasPrivacy) {
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) {
+        return;
+      }
+
+      if (target.closest("[data-open-terms-modal]")) {
+        event.preventDefault();
+        openTermsModal();
+        return;
+      }
+
+      if (target.closest("[data-open-privacy-modal]")) {
+        event.preventDefault();
+        openPrivacyModal();
+        return;
+      }
+
+      if (target.closest("[data-close-terms-modal]")) {
+        closeTermsModal();
+        return;
+      }
+
+      if (target.closest("[data-close-privacy-modal]")) {
+        closePrivacyModal();
+      }
+    });
+  }
 
   document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape") {
       return;
     }
-    if (!preapplyModal.hidden) {
-      closeModal();
-    } else if (termsModal instanceof HTMLElement && !termsModal.hidden) {
+    if (hasPreapply && isModalOpen(preapplyModal)) {
+      hideModal(preapplyModal);
+      if (formState) {
+        formState.hidden = false;
+      }
+      if (successState) {
+        successState.hidden = true;
+      }
+      if (emailInput instanceof HTMLInputElement) {
+        emailInput.value = "";
+      }
+      updateScrollLock();
+    } else if (hasUsageApply && isModalOpen(usageApplyModal)) {
+      hideModal(usageApplyModal);
+      if (usageApplyFormState instanceof HTMLElement) {
+        usageApplyFormState.hidden = false;
+      }
+      if (usageApplySuccessState instanceof HTMLElement) {
+        usageApplySuccessState.hidden = true;
+      }
+      if (usageApplyEmailInput instanceof HTMLInputElement) {
+        usageApplyEmailInput.value = "";
+      }
+      updateScrollLock();
+    } else if (isModalOpen(termsModal)) {
       closeTermsModal();
-    } else if (privacyModal instanceof HTMLElement && !privacyModal.hidden) {
+    } else if (isModalOpen(privacyModal)) {
       closePrivacyModal();
     }
   });
-
-  openTermsButtons.forEach((openTermsButton) => {
-    openTermsButton.addEventListener("click", (event) => {
-      event.preventDefault();
-      openTermsModal();
-    });
-  });
-
-  closeTermsButtons.forEach((closeTermsButton) => {
-    closeTermsButton.addEventListener("click", () => {
-      closeTermsModal();
-    });
-  });
-
-  openPrivacyButtons.forEach((openPrivacyButton) => {
-    openPrivacyButton.addEventListener("click", (event) => {
-      event.preventDefault();
-      openPrivacyModal();
-    });
-  });
-
-  closePrivacyButtons.forEach((closePrivacyButton) => {
-    closePrivacyButton.addEventListener("click", () => {
-      closePrivacyModal();
-    });
-  });
-
-  if (form instanceof HTMLFormElement) {
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      if (!(emailInput instanceof HTMLInputElement) || !emailInput.value.trim()) {
-        return;
-      }
-      const submittedEmail = emailInput.value.trim();
-      window.sessionStorage.setItem("pesto_preapply_email", submittedEmail);
-      if (submittedEmailText) {
-        submittedEmailText.textContent = submittedEmail;
-      }
-      setModalState("success");
-    });
-  }
 })();
 
 /* landing-hero: 하단이 뷰포트 안에 완전히 들어온 뒤 view 출력 + body.landing-hero-revealed(후킹용, 레이아웃은 CSS 고정 sticky) — 1회 */
@@ -302,43 +404,17 @@
     return SCROLL_FADE_MIN_OPACITY + (1 - SCROLL_FADE_MIN_OPACITY) * t;
   };
 
-  /** 세로: 뷰포트에 보이는 높이 / 요소 높이 */
-  const heightVisibleRatio = (el) => {
+  /**
+   * 카드 그리드 — 불투명(1) / 흐림(SCROLL_FADE_MIN_OPACITY) 이진 전환.
+   * 그리드 상단이 뷰포트 이 비율 위로 올라가면 하한 불투명도 적용.
+   * 계수↑: 더 많이 스크롤한 뒤 흐려짐 / ↓: 더 일찍 흐려짐
+   */
+  const CARD_FADE_START_TOP_RATIO = 0.42;
+
+  const isCardGridOpaque = (el) => {
     const r = el.getBoundingClientRect();
-    const h = r.height;
-    if (h <= 0) {
-      return 0;
-    }
-    const vh = window.innerHeight;
-    const visBottom = Math.min(r.bottom, vh);
-    const visTop = Math.max(r.top, 0);
-    const visibleH = Math.max(0, visBottom - visTop);
-    return visibleH / h;
-  };
-
-  const CARD_FADE_FULL_VISIBLE_RATIO = 0.64;
-
-  const fadeOpacityFromRatio = (ratio) => {
-    if (ratio >= CARD_FADE_FULL_VISIBLE_RATIO) {
-      return 1;
-    }
-    const t = Math.max(0, Math.min(1, ratio / CARD_FADE_FULL_VISIBLE_RATIO));
-    return t * t * t * t;
-  };
-
-  const CARD_CENTER_FADE_DEADBAND_PX = 6;
-  const positionFadeRatio = (el) => {
-    const r = el.getBoundingClientRect();
-    const vh = window.innerHeight || 1;
-    const blockMidY = (r.top + r.bottom) / 2;
-    const viewMidY = vh * 0.5;
-    const upPx = viewMidY - blockMidY;
-    if (upPx <= CARD_CENTER_FADE_DEADBAND_PX) {
-      return 1;
-    }
-    const bandPx = Math.max(72, Math.min(132, vh * 0.17));
-    const t = Math.max(0, Math.min(1, (upPx - CARD_CENTER_FADE_DEADBAND_PX) / bandPx));
-    return 1 - t * t * t;
+    const fadeStartTop = (window.innerHeight || 1) * CARD_FADE_START_TOP_RATIO;
+    return r.top >= fadeStartTop;
   };
 
   const updateCardScrollFade = () => {
@@ -366,13 +442,15 @@
       }
       const grid = section.querySelector(".landing-card-grid");
       const measureEl = grid instanceof HTMLElement ? grid : section;
-      const ratio = heightVisibleRatio(measureEl);
-      const pos = positionFadeRatio(measureEl);
-      const raw = fadeOpacityFromRatio(ratio) * pos;
-      const op = toScrollFadeOpacity(raw);
+      const opaque = isCardGridOpaque(measureEl);
       for (const node of cardsInSection) {
-        if (node instanceof HTMLElement) {
-          node.style.setProperty("--landing-card-scroll-fade", String(op));
+        if (!(node instanceof HTMLElement)) {
+          continue;
+        }
+        if (opaque) {
+          node.style.removeProperty("--landing-card-scroll-fade");
+        } else {
+          node.style.setProperty("--landing-card-scroll-fade", String(SCROLL_FADE_MIN_OPACITY));
         }
       }
     }

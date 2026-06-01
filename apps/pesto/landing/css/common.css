@@ -69,7 +69,7 @@ body {
   opacity: 1;
 }
 
-/* landing-card-grid: 진입 시 페이드(비활성 opacity 0). 활성 카드는 스크롤 변수(main.js)로 추가 페이드 */
+/* landing-card-grid: 진입 시 페이드(비활성 opacity 0). 활성 후 불투명 → 스크롤 기준 시 opacity 0.36 이진 전환(main.js) */
 .landing-main > section:nth-of-type(2).landing-reveal-section:not(.landing-reveal-section--active) .landing-section-title,
 .landing-main > section:nth-of-type(2).landing-reveal-section:not(.landing-reveal-section--active) .landing-card {
   opacity: 0;
@@ -244,7 +244,8 @@ body {
     letter-spacing: -0.28px;
   }
 
-  /* 모바일 전용 줄바꿈: 태블릿 이상에서는 제거 */
+  /* 모바일 전용 줄바꿈(≤767px): 태블릿 이상(≥768px)에서는 제거 — <br class="landing-br-mobile" /> */
+  .landing-br-mobile,
   .landing-title-br-mobile,
   .landing-desc-br-mobile,
   .landing-card-br-mobile,
@@ -596,12 +597,14 @@ body {
   border: 0;
 }
 
-.preapply-modal[hidden] {
+.preapply-modal[hidden],
+.usage-apply-modal[hidden] {
   display: none;
 }
 
 /* inset 0으로 전체 덮음 — right를 scrollbar-gap 만큼 줄이면 오른쪽 끝에 본문 배경이 비치며 모달 딤과 색이 달라 보임 */
-.preapply-modal {
+.preapply-modal,
+.usage-apply-modal {
   position: fixed;
   inset: 0;
   z-index: 10;
@@ -609,13 +612,15 @@ body {
   overscroll-behavior: none;
 }
 
-.preapply-modal-backdrop {
+.preapply-modal-backdrop,
+.usage-apply-modal-backdrop {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
 }
 
-.preapply-modal-panel {
+.preapply-modal-panel,
+.usage-apply-modal-panel {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -626,7 +631,8 @@ body {
   background: linear-gradient(180deg, #151515 0%, #061e06 100%);
 }
 
-.preapply-modal-header {
+.preapply-modal-header,
+.usage-apply-modal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -634,7 +640,8 @@ body {
   min-height: 80px;
 }
 
-.preapply-modal-logo-img {
+.preapply-modal-logo-img,
+.usage-apply-modal-logo-img {
   display: block;
   height: 24px;
   width: auto;
@@ -660,7 +667,8 @@ body {
   filter: brightness(0) invert(1);
 }
 
-.preapply-modal-content {
+.preapply-modal-content,
+.usage-apply-modal-content {
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
@@ -706,50 +714,121 @@ body {
   gap: 0;
 }
 
-/* 성공 화면: 아이콘 박스–타이틀 27px, 타이틀–설명 16px */
+/* 성공 화면: 아이콘 박스–타이틀 40px, 타이틀–설명 16px */
 .preapply-modal-state-success .preapply-modal-success-icon-box {
-  margin-bottom: 27px;
+  margin-bottom: 40px;
 }
 
 .preapply-modal-state-success .preapply-modal-title {
   margin-bottom: 16px;
 }
 
-.preapply-modal-title {
+.preapply-modal-title,
+.usage-apply-modal-title {
   margin: 0;
   font-size: 48px;
   line-height: 1;
   letter-spacing: -0.96px;
 }
 
-.preapply-modal-description {
+.usage-apply-modal-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.usage-apply-modal-state[hidden] {
+  display: none;
+}
+
+.usage-apply-modal-state-form {
+  gap: 0;
+}
+
+/* 폼 화면: 타이틀–설명 16px, 설명–폼 60px */
+.usage-apply-modal-state-form .usage-apply-modal-title {
+  margin-bottom: 16px;
+}
+
+.usage-apply-modal-state-form .usage-apply-modal-description {
+  margin: 0 0 60px;
+}
+
+.usage-apply-modal-state-form .usage-apply-modal-form {
+  margin-top: 0;
+}
+
+.usage-apply-modal-state-success {
+  gap: 0;
+}
+
+/* 완료 화면: 아이콘–타이틀 40px, 타이틀–설명 16px */
+.usage-apply-modal-state-success .usage-apply-modal-success-icon-box {
+  margin-bottom: 40px;
+}
+
+.usage-apply-modal-state-success .usage-apply-modal-title {
+  margin-bottom: 16px;
+}
+
+.usage-apply-modal-success-icon-box {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
   margin: 0;
+}
+
+.usage-apply-modal-success-icon {
+  display: block;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+.preapply-modal-description,
+.usage-apply-modal-description {
   font-size: 24px;
   line-height: 1.2;
   letter-spacing: -0.48px;
   color: rgba(255, 255, 255, 0.8);
+  margin: 0;
 }
 
-.preapply-modal-description strong {
+.preapply-modal-description {
+  margin: 0;
+}
+
+.preapply-modal-description strong,
+.usage-apply-modal-description strong {
   color: #39ed5b;
   font-weight: 700;
 }
 
 /* 완료 화면: 강조는 초록이 아닌 흰색 */
-.preapply-modal-state-success .preapply-modal-description strong {
+.preapply-modal-state-success .preapply-modal-description strong,
+.usage-apply-modal-state-success .usage-apply-modal-description strong {
   color: #fff;
 }
 
-.preapply-modal-form {
+.preapply-modal-form,
+.usage-apply-modal-form {
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-top: 0;
+}
+
+.preapply-modal-form {
   margin-top: 8px;
 }
 
 .preapply-modal-success-icon-box {
-  width: 113px;
-  height: 113px;
+  width: 80px;
+  height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -763,7 +842,8 @@ body {
   object-fit: cover;
 }
 
-.preapply-modal-input {
+.preapply-modal-input,
+.usage-apply-modal-input {
   width: 343px;
   height: 48px;
   padding: 0 16px;
@@ -779,12 +859,15 @@ body {
 
 /* input 포커스 시 브라우저 기본 outline / ring 제거 */
 .preapply-modal-input:focus,
-.preapply-modal-input:focus-visible {
+.preapply-modal-input:focus-visible,
+.usage-apply-modal-input:focus,
+.usage-apply-modal-input:focus-visible {
   outline: none;
   box-shadow: none;
 }
 
-.preapply-modal-apply {
+.preapply-modal-apply,
+.usage-apply-modal-apply {
   height: 48px;
   padding: 0 16px;
   border: 0;
@@ -1007,12 +1090,14 @@ body {
 
   /* 히어로 인라인 16px과 동일 — 모달 헤더·본문 좌우 기준 맞춤(768~1279에서 50px 깨짐 방지) */
   .preapply-modal-header,
+  .usage-apply-modal-header,
   .terms-modal-header {
     padding: 0 16px;
     min-height: 56px;
   }
 
-  .preapply-modal-content {
+  .preapply-modal-content,
+  .usage-apply-modal-content {
     padding-inline: 16px;
   }
 }
@@ -1330,27 +1415,33 @@ body {
 
   /* 모달 헤더 인라인 패딩은 max-width:1279 구간에서 이미 16px(히어로와 동일) */
 
-  .preapply-modal-logo-img {
+  .preapply-modal-logo-img,
+  .usage-apply-modal-logo-img {
     height: 24px;
   }
 
-  .preapply-modal-content {
+  .preapply-modal-content,
+  .usage-apply-modal-content {
     padding: 0 16px;
   }
 
-  .preapply-modal-title {
+  .preapply-modal-title,
+  .usage-apply-modal-title {
     font-size: 32px;
   }
 
-  .preapply-modal-description {
+  .preapply-modal-description,
+  .usage-apply-modal-description {
     font-size: 16px;
   }
 
-  .preapply-modal-form {
+  .preapply-modal-form,
+  .usage-apply-modal-form {
     width: 100%;
   }
 
-  .preapply-modal-input {
+  .preapply-modal-input,
+  .usage-apply-modal-input {
     flex: 1 1 auto;
     width: auto;
     min-width: 0;
@@ -1463,6 +1554,10 @@ body {
   }
 
   .preapply-modal-state-form .preapply-modal-description {
+    margin-bottom: 29px;
+  }
+
+  .usage-apply-modal-state-form .usage-apply-modal-description {
     margin-bottom: 29px;
   }
 }

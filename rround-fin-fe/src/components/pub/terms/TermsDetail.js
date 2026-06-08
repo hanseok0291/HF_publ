@@ -41,14 +41,16 @@ export default function TermsDetail({ brandTitle = '라운드 휘슬 약관 및 
   return (
     <div className={`${styleTerms.detailPage} terms-pub__detail-page`}>
       <header className="terms-pub__detail-header">
-        <button
-          type="button"
-          className="terms-pub__detail-close"
-          onClick={() => window.history.back()}
-          aria-label="닫기"
-        >
-          <Image src="/images/common/icon-close.svg" alt="" width={24} height={24} />
-        </button>
+        <div className="terms-pub__detail-header-inner">
+          <button
+            type="button"
+            className="terms-pub__detail-close"
+            onClick={() => window.history.back()}
+            aria-label="닫기"
+          >
+            <Image src="/images/common/icon-close.svg" alt="" width={24} height={24} />
+          </button>
+        </div>
       </header>
 
       <div className={`${styleTerms.termsPage} terms-pub__detail-body`}>

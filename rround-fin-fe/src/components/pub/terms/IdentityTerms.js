@@ -18,7 +18,7 @@ export default function IdentityTerms() {
   useEffect(() => {
     const handleScroll = () => {
       if (!titleRef.current) return;
-      const top = Math.floor(titleRef.current.getBoundingClientRect().top);
+      const { top } = titleRef.current.getBoundingClientRect();
       setFixed(top <= 16);
     };
 
@@ -30,9 +30,7 @@ export default function IdentityTerms() {
   return (
     <div className="w-full overflow-hidden">
       <div className="min-h-screen px-4 pb-10">
-        <header
-          className={`${styleTerms.termsHeader} fixed left-0 top-0 z-[100] flex h-[56px] w-full items-center justify-center bg-white`}
-        >
+        <header className={`${styleTerms.termsHeader} fixed left-0 top-0 z-10 flex w-full items-center justify-center bg-white`}>
           {fixed ? (
             <span className="max-w-[calc(100%-96px)] truncate text-base font-semibold text-[#151515]">
               {PAGE_TITLE}
@@ -40,7 +38,7 @@ export default function IdentityTerms() {
           ) : null}
           <button
             type="button"
-            className="absolute right-4 top-1/2 -translate-y-1/2 border-0 bg-transparent p-0"
+            className={`${styleTerms.termsHeaderClose} absolute right-4 border-0 bg-transparent p-0`}
             onClick={() => window.history.back()}
             aria-label="닫기"
           >
@@ -50,11 +48,18 @@ export default function IdentityTerms() {
 
         <div className={`${styleTerms.termsPage} py-4`}>
           <div className="h-[56px]" aria-hidden="true" />
-          <h4 ref={titleRef} className={`${styleTerms.termsTitle} relative z-[50]`}>
+          <h4 ref={titleRef} className={styleTerms.termsTitle}>
             {PAGE_TITLE}
           </h4>
           <div className="terms-pub terms-legal-html">
             <h3>[SKT] 본인확인서비스 이용약관</h3>
+            <h4>제1조 (목적)</h4>
+            <p>이 약관은 본인확인서비스 제공자와 이용자 간 권리·의무 및 기타 필요한 사항을 정함을 목적으로 합니다.</p>
+            <h4>제2조 (용어의 정의)</h4>
+            <ol>
+              <li>① 본인확인서비스: 휴대폰을 이용해 본인 여부를 확인하는 서비스</li>
+              <li>② 이용자: 본인확인서비스를 이용하는 자</li>
+            </ol>
             <h4>제1조 (목적)</h4>
             <p>이 약관은 본인확인서비스 제공자와 이용자 간 권리·의무 및 기타 필요한 사항을 정함을 목적으로 합니다.</p>
             <h4>제2조 (용어의 정의)</h4>

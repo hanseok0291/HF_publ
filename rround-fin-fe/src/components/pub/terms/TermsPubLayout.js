@@ -22,8 +22,10 @@ export default function TermsPubLayout({ title, children, versions = DEFAULT_VER
   useEffect(() => {
     const handleScroll = () => {
       if (!titleRef.current) return;
+      const header = document.querySelector('.terms-pub__fixed-header');
+      const headerBottom = header?.getBoundingClientRect().bottom ?? 56;
       const { top } = titleRef.current.getBoundingClientRect();
-      setFixed(top <= 16);
+      setFixed(top <= headerBottom);
     };
 
     handleScroll();
@@ -32,26 +34,26 @@ export default function TermsPubLayout({ title, children, versions = DEFAULT_VER
   }, []);
 
   return (
-    <div className="w-full overflow-hidden">
+    <div className={`w-full overflow-hidden ${styleTerms.termsScrollPage}`}>
       <div className="min-h-screen px-4 pb-10">
-        <header className="fixed left-0 top-0 z-10 flex h-[56px] w-full items-center justify-center bg-white">
-          {fixed ? (
-            <span className="max-w-[calc(100%-96px)] truncate text-base font-semibold text-[#151515]">
-              {title}
-            </span>
-          ) : null}
-          <button
-            type="button"
-            className="absolute right-4 top-1/2 -translate-y-1/2 border-0 bg-transparent p-0"
-            onClick={() => window.history.back()}
-            aria-label="닫기"
-          >
-            <Image src="/images/common/icon-close.svg" alt="" width={24} height={24} />
-          </button>
+        <header className="terms-pub__fixed-header">
+          <div className="terms-pub__fixed-header-inner">
+            {fixed ? (
+              <span className="terms-pub__fixed-header-title">{title}</span>
+            ) : null}
+            <button
+              type="button"
+              className="terms-pub__fixed-header-close"
+              onClick={() => window.history.back()}
+              aria-label="닫기"
+            >
+              <Image src="/images/common/icon-close.svg" alt="" width={24} height={24} />
+            </button>
+          </div>
         </header>
 
         <div className={`${styleTerms.termsPage} py-4`}>
-          <div className="h-[56px]" aria-hidden="true" />
+          <div className="terms-pub__header-spacer" aria-hidden="true" />
           <h4 ref={titleRef} className={styleTerms.termsTitle}>
             {title}
           </h4>

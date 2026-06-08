@@ -1,20 +1,20 @@
 import Head from 'next/head';
-import TermsDetail from '@/components/pub/terms/TermsDetail';
+import PrivacyProvision from '@/components/pub/terms/PrivacyProvision';
 import IdentityTerms from '@/components/pub/terms/IdentityTerms';
 import PersonalInfo from '@/components/pub/terms/PersonalInfo';
-import PrivacyProvision from '@/components/pub/terms/PrivacyProvision';
 import UniqueIdentifier from '@/components/pub/terms/UniqueIdentifier';
 
-export default function PubTermsIndexPage() {
+const PAGE_TITLE = '휴대폰 인증 개인정보 제공·위탁';
+
+export default function PubTermsDetailPage() {
   return (
     <>
       <Head>
-        <title>약관 목록 | 라운드 휘슬</title>
+        <title>{PAGE_TITLE} | 라운드 휘슬</title>
       </Head>
-      {/* <TermsDetail /> */}
-      {/* <IdentityTerms /> */}
-      <PersonalInfo />
       {/* <PrivacyProvision /> */}
+      <IdentityTerms />
+      {/* <PersonalInfo /> */}
       {/* <UniqueIdentifier /> */}
     </>
   );

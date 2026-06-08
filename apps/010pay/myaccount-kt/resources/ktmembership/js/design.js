@@ -110,8 +110,15 @@ $(function(){
 	// 셀렉트 옵션 레이어 열기(알뜰폰 통신사 셀렉트박스)
 	$(".select-modal").click(function(){
 		var selectId = $(this).attr("id");
-		var optionLayer = "select-" + selectId;
+		var optionLayer = "modal-" + selectId;
 		var temp = $("#" + optionLayer);
+		if (!temp.length) {
+			optionLayer = "select-" + selectId;
+			temp = $("#" + optionLayer);
+		}
+		if (!temp.length) {
+			return;
+		}
 		temp.show();
 		scrollOff(); // 바디 스크롤 제거
 		

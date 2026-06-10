@@ -54,7 +54,7 @@ export default function UniqueIdentifier() {
             {PAGE_TITLE}
           </h4>
           <div className="terms-pub terms-legal-html">
-            <h3>고유식별정보 처리 동의</h3>
+            <h3>(선택)광고성 정보 수신동의</h3>
             <h4>제1조 (처리 동의)</h4>
             <p>주민등록번호 대체 수단 제공을 위해 고유식별정보를 처리합니다.</p>
             <h4>제2조 (제공 동의)</h4>

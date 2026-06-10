@@ -1,0 +1,139 @@
+"use client";
+
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import styleTerms from "@/styles/terms.module.css";
+const PAGE_TITLE = "(선택) 맞춤형 광고 목적의 개인정보 수집·이용동의";
+
+export default function PersonalizedAdConsent() {
+  const [fixed, setFixed] = useState(false);
+  const titleRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!titleRef.current) return;
+      const header = document.querySelector(".terms-pub__fixed-header");
+      const headerBottom = header?.getBoundingClientRect().bottom ?? 56;
+      const { top } = titleRef.current.getBoundingClientRect();
+      setFixed(top <= headerBottom);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <div className={`w-full overflow-hidden ${styleTerms.termsScrollPage}`}>
+      <div className="min-h-screen px-4 pb-10">
+        <header className="terms-pub__fixed-header">
+          <div className="terms-pub__fixed-header-inner">
+            {fixed ? (
+              <span className="terms-pub__fixed-header-title">
+                {PAGE_TITLE}
+              </span>
+            ) : null}
+            <button
+              type="button"
+              className="terms-pub__fixed-header-close"
+              onClick={() => window.history.back()}
+              aria-label="닫기"
+            >
+              <Image
+                src="/images/common/icon-close.svg"
+                alt=""
+                width={24}
+                height={24}
+              />
+            </button>
+          </div>
+        </header>
+
+        <div className={`${styleTerms.termsPage} py-4`}>
+          <div className="terms-pub__header-spacer" aria-hidden="true" />
+          {/* <h4 ref={titleRef} className={styleTerms.termsTitle}>
+            {PAGE_TITLE}
+          </h4> */}
+          <div className="terms-pub terms-legal-html">
+            <h3>(선택) 맞춤형 광고 목적의 개인정보 수집·이용동의</h3>
+            
+            <p>
+              헥토파이낸셜 서비스와 관련하여, 본인은 아래와 같이
+              (주)헥토파이낸셜(이하 “회사”라고 합니다)이 광고성 정보 전송
+              목적으로 필요 최소한의 범위에서 본인의 개인정보를 수집 및 이용하는
+              것에 동의합니다.
+            </p>
+
+            <div className="rround-table-scroll">
+              <table className="rround-terms-table">
+                <tbody>
+                  <tr>
+                    <th>수집·이용 항목 </th>
+                    <th>이용 목적 </th>
+                    <th>보유 및 이용기간</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      - 일반개인정보: 이름, 생년월일, 성별, 휴대전화번호,
+                      이메일주소, 접속기기정보(단말기명, OS, 기기식별정보), PUSH
+                      토큰, 광고 식별자 정보(ADID, IDFA), 고객식별정보(회원번호)
+                      <br />
+                      <br />
+                      - 앱사용정보: 쿠키에 의한 자동수집 정보, 행태정보(IP주소,
+                      클릭 로그 정보, 이용자의 웹사이트/앱 서비스 방문 이력,
+                      검색 이력과 같은 사용 이력, 고객의 관심ㆍ기호ㆍ흥미 등의
+                      성향 정보), 서비스 이용 상태 정보(알림 수신 동의 여부,
+                      결제수단 등록 정보, 라운드 페이 포인트 및 라운드 머니
+                      보유/이용 현황) <br />
+                      <br />- 결제내역 : 결제 정보 및 이력
+                    </td>
+                    <td>
+                      <u>
+                        회사 및 회사의 제휴사의 상품·서비스 프로모션, 이벤트, 신규
+                        서비스 안내 등 광고성 정보 전송
+                      </u>
+                    </td>
+                    <td><u>회원 탈퇴 또는 동의 철회시까지.</u></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>
+              <u>
+                ※ 단, 관련 법령의 규정에 따라 보존할 필요가 있을 경우, 해당
+                기간까지 보존합니다.
+              </u>
+            </p>
+
+            <br />
+
+            <p>
+              헥토파이낸셜 서비스의 선택적 기능(회사 및 회사의 제휴사의
+              상품·서비스 프로모션, 이벤트, 신규 서비스 안내 등) 제공을 위한
+              것으로 동의를 거부할 수 있으며, 동의하지 않더라도 헥토파이낸셜
+              서비스 이용이 가능합니다. 다만, 동의하지 않을 경우 선택적
+              기능(회사 및 제3자의 상품·서비스 프로모션, 이벤트, 신규 서비스
+              안내 등)은 제공 받으실 수 없습니다.
+            </p>
+
+            <br />
+            
+            <p>
+              ※ 수집이용 항목 관련된 자세한 내용은 회사 홈페이지의 개인정보
+              처리방침을 참고하시기 바랍니다.
+            </p>
+
+            <br />
+
+            <p>
+              공고일자: 2026년 06월 08일
+              <br />
+              시행일자 : 2026년 06월 08일
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

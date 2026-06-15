@@ -36,8 +36,8 @@
 					<td class="black">휴대폰번호</td>
 					<td class="gray_01">
 						<div style="float:left; padding-top:1px;">
-
-							<select name="selCarrier" style="width:85px;">
+								<label for="selectField" class="sr-only">선택</label>
+								<select id="selectField" name="selCarrier" style="width:85px;" title="선택">
 								<option value="SKT"> SKT </option>
 								<option value="KTF"> KT </option>
 								<option value="LGT"> LG U+ </option>
@@ -82,8 +82,10 @@
 					<td></td>
 					<td class="black">결제방법</td>
 					<td class="gray_01">
-							<div style="float:left;"><input type="radio" onclick="javascript:toggleCpinFlag('N')" name="CpinFlag" id="CpinFlagN" value="N" checked="">일반결제</div>
-							<div style="float:left;padding-left:10px"><input type="radio" onclick="javascript:toggleCpinFlag('Y')" name="CpinFlag" id="CpinFlagY" value="Y">휴대폰결제 비밀번호 사용</div>
+							<div style="float:left;">							<label for="CpinFlagN" class="sr-only">CpinFlagN</label>
+							<input type="radio" onclick="javascript:toggleCpinFlag('N')" name="CpinFlag" id="CpinFlagN" value="N" checked="" title="CpinFlagN">일반결제</div>
+							<div style="float:left;padding-left:10px">							<label for="CpinFlagY" class="sr-only">CpinFlagY</label>
+							<input type="radio" onclick="javascript:toggleCpinFlag('Y')" name="CpinFlag" id="CpinFlagY" value="Y" title="CpinFlagY">휴대폰결제 비밀번호 사용</div>
 					</td>
 			</tr>
 
@@ -92,15 +94,17 @@
 					<td class="black">주민번호앞7자리</td>
 					<td class="gray_01">
 						<div style="float:left;">
-							<input type="tel" pattern="[0-9]*" name="perNo1" class="input_payment numberOnly" style="width:55px;"
-								maxlength="6" value="">
+							<label for="perNo1" class="sr-only">주민번호 앞 6자리</label>
+							<input type="tel" pattern="[0-9]*" name="perNo1" id="perNo1" class="input_payment numberOnly" style="width:55px;"
+								maxlength="6" value="" title="주민번호 앞 6자리">
 						</div>
 						<div style="float:left; padding:6 5 0 5;">
 							-
 						</div>
 						<div style="float:left;">
-							<input type="tel" pattern="[0-9]*" name="perNo2" class="input_payment numberOnly" style="width:20px;"
-								maxlength="1" value=""> ******
+							<label for="regNumLast" class="sr-only">주민등록번호 뒤 첫째 자리</label>
+							<input id="regNumLast" type="tel" pattern="[0-9]*" name="perNo2" class="input_payment numberOnly" style="width:20px;"
+								maxlength="1" value="" title="주민등록번호 뒤 첫째 자리"> ******
 						</div>
 					</td>
 				</tr>
@@ -110,6 +114,7 @@
 					<td class="black" style="letter-spacing:-1pt;">휴대폰결제비밀번호</td>
 					<td class="gray_01">
 							<div style="float:left;">
+									<label for="carryPin" class="sr-only">carryPin</label>
 									<input type="password" name="carryPin" id="carryPin" value="" title="SKT 휴대폰결제 비밀번호 입력창" class="input_payment numberOnly" style="width:85px;" maxlength="6">
 							</div>
 							<div style="float:left; padding:3 0 0 10;"> 
@@ -132,18 +137,22 @@
 	<img src="../../images/box_type01_bottom.gif" border="0" style="vertical-align: top;"><br>
 	
 	<div class="check_all">
-		<label class="li1"><input type="checkbox" name="agreelist" id="all-agree" tabindex="0">
+		<label class="li1">		<label for="all-agree" class="sr-only">all-agree</label>
+		<input type="checkbox" name="agreelist" id="all-agree" tabindex="0" title="all-agree">
 			<strong>전체약관동의</strong></label>
-		<label class="li2"><em>ㄴ</em><input type="checkbox" name="agreelist" id="agree01" class="checkSelect" tabindex="0"
-				required="required" data-required-msg="필수 동의 항목을 모두 동의하셔야 다음 진행을 하실 수 있습니다."> <a
+		<label class="li2"><em>ㄴ</em>		<label for="agree01" class="sr-only">agree01</label>
+		<input type="checkbox" name="agreelist" id="agree01" class="checkSelect" tabindex="0"
+				required="required" data-required-msg="필수 동의 항목을 모두 동의하셔야 다음 진행을 하실 수 있습니다." title="agree01"> <a
 				href="javascript:void(window.open('./terms1.html', 'terms','width=470, height=750'))">통신과금서비스 이용약관</a>에
 			동의합니다.</label>
-		<label class="li3"><em>ㄴ</em><input type="checkbox" name="agreelist" id="agree02" class="checkSelect" tabindex="0"
-				required="required" data-required-msg="필수 동의 항목을 모두 동의하셔야 다음 진행을 하실 수 있습니다."> <a
+		<label class="li3"><em>ㄴ</em>		<label for="agree02" class="sr-only">agree02</label>
+		<input type="checkbox" name="agreelist" id="agree02" class="checkSelect" tabindex="0"
+				required="required" data-required-msg="필수 동의 항목을 모두 동의하셔야 다음 진행을 하실 수 있습니다." title="agree02"> <a
 				href="javascript:void(window.open('./terms2.html', 'terms','width=470, height=750'))">개인(신용)정보 수집 및 이용</a>에
 			동의합니다.</label>
-		<label class="li4"><em>ㄴ</em><input type="checkbox" name="agreelist" id="agree03" class="checkSelect" tabindex="0"
-				required="required" data-required-msg="필수 동의 항목을 모두 동의하셔야 다음 진행을 하실 수 있습니다."> <a
+		<label class="li4"><em>ㄴ</em>		<label for="agree03" class="sr-only">agree03</label>
+		<input type="checkbox" name="agreelist" id="agree03" class="checkSelect" tabindex="0"
+				required="required" data-required-msg="필수 동의 항목을 모두 동의하셔야 다음 진행을 하실 수 있습니다." title="agree03"> <a
 				href="javascript:void(window.open('./terms3.html', 'terms','width=470, height=750'))">개인(신용)정보 제3자 제공 및 위탁</a>에
 			동의합니다.</label>
 	</div>

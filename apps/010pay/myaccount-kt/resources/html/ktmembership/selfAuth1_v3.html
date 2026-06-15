@@ -89,9 +89,19 @@
 									<input type="checkbox" name="agree_01" id="agree_01_02">
 									<label for="agree_01_02">본인 확인 이용약관 <span>(필수)</span></label>
 								</span>
-								<button type="button" class="btn btn-xs btn-nobg "><span>펼치기</span></button>
-								<button type="button" class="btn btn-xs btn-nobg js-self-auth-v2-open-terms hidden"><span>보기</span></button>
+								<button type="button" class="btn btn-xs btn-nobg "><span>접기</span></button>
+								<button type="button" class="btn btn-xs btn-nobg js-self-auth-v2-open-terms hidden"><span>펼치기</span></button>
 							</div>
+							<ul class="agree-list" style="overflow: hidden; display: block;">
+								<li>
+									<span class="checkbox child">
+										<input type="hidden" class="termsSeq" id="termsSeq-18" value="18">
+										<input type="checkbox" name="agree_01" id="agree_00_0" data-requiredyn="Y" data-termstype="T" data-gtm-form-interact-field-id="1">
+										<label for="agree_00_0"><span>(필수)</span> 휴대폰 본인 확인 이용 약관</label>
+									</span>
+									<button type="button" id="terms0" onclick="termsModal('0','0')" class="btn btn-xs btn-nobg info-chg">보기</button>
+								</li>
+							</ul>
 						</div>
 					</div>
 
@@ -265,16 +275,65 @@
 	<!-- //약관 상세 -->
 
 	<!-- 알뜰폰 통신사 선택 목록 -->
-	<div id="modal-frugal" class="modal modal-frugal">
+	<div id="modal-frugal" class="modal modal-frugal modal-slide modal-carrier-v3">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-body no-padding">
+				<div class="modal-body">
 					<ul class="btn-list">
-						<li><button type="button" onClick="$('.telecom .brand').html('SKT<br>알뜰폰');" class="btn">SKT 알뜰폰</button>
+						<li>
+							<button type="button" class="btn" onclick="setTelcoCd('KT')">
+								<em>KT</em>
+								<span class="check-primary">
+									<span class="sr-only">선택</span>
+									<i class="icon-check primary"></i>
+								</span>
+							</button>
 						</li>
-						<li><button type="button" onClick="$('.telecom .brand').html('KT<br>알뜰폰');" class="btn">KT 알뜰폰</button></li>
-						<li><button type="button" onClick="$('.telecom .brand').html('LG U+<br>알뜰폰');" class="btn">LG U+
-								알뜰폰</button></li>
+						<li>
+							<button type="button" class="btn" onclick="setTelcoCd('SKT')">
+								<em>SKT</em>
+								<span class="check-primary">
+									<span class="sr-only">선택</span>
+									<i class="icon-check primary"></i>
+								</span>
+							</button>
+						</li>
+						<li>
+							<button type="button" class="btn" onclick="setTelcoCd('LGU')">
+								<em>LG U+</em>
+								<span class="check-primary">
+									<span class="sr-only">선택</span>
+									<i class="icon-check primary"></i>
+								</span>
+							</button>
+						</li>
+						<li>
+							<button type="button" class="btn" onclick="setTelcoCd('KT_MVNO')">
+								<em>KT 알뜰폰</em>
+								<span class="check-primary">
+									<span class="sr-only">선택</span>
+									<i class="icon-check primary"></i>
+								</span>
+							</button>
+						</li>
+						<li>
+							<button type="button" class="btn" onclick="setTelcoCd('SKT_MVNO')">
+								<em>SKT 알뜰폰</em>
+								<span class="check-primary">
+									<span class="sr-only">선택</span>
+									<i class="icon-check primary"></i>
+								</span>
+							</button>
+						</li>
+						<li>
+							<button type="button" class="btn" onclick="setTelcoCd('LGU_MVNO')">
+								<em>LG U+ 알뜰폰</em>
+								<span class="check-primary">
+									<span class="sr-only">선택</span>
+									<i class="icon-check primary"></i>
+								</span>
+							</button>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -341,6 +400,12 @@
 			$(this).prev("input").val("").trigger("change").focus();
 			$(this).toggleClass("hidden", true);
 		});
+
+		// 통신사 선택 시 셀렉트 버튼을 선택값 색상으로 전환
+		$("#modal-frugal .btn-list .btn").on("click", function () {
+			$("#frugal").addClass("selected");
+		});
+
 	</script>
 </body>
 

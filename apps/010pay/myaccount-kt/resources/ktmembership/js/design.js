@@ -79,6 +79,79 @@ function scrollOn(){
 	$(document).scrollTop(scrollHeight);
 }
 
+// 하단 슬라이드 모달 (통신사 modal-carrier-v3 — modal-banklist와 동일 패턴)
+var SLIDE_MODAL_OFFSET = -450;
+var SLIDE_MODAL_SPEED = 200;
+
+function isSlideBottomModal($modal) {
+	return $modal.hasClass("modal-carrier-v3");
+}
+
+// 약관 상세 모달 슬라이드 닫힘 위치 (통신사 -450과 분리)
+function getTermsSlideOffset() {
+	return -$(window).height();
+}
+
+// 약관 상세 모달 열기 (modal-terms 전용 — 개발 termsModal·modal-slide·modal-info)
+function openTermsModal($modal) {
+	if (!$modal || !$modal.length) {
+		return;
+	}
+	$modal.find(".modal-dialog").css("margin-top", "");
+	$modal.show();
+	if ($modal.hasClass("modal-slide")) {
+		var $content = $modal.find(".modal-content");
+		var slideOffset = getTermsSlideOffset();
+		scrollOff();
+		$content.stop(true, true).css("bottom", slideOffset).animate({ bottom: 0 }, SLIDE_MODAL_SPEED);
+	} else {
+		scrollOff();
+	}
+}
+
+// 약관 상세 모달 닫기 (modal-terms 전용 — 개발 modal-slide·modal-info 조합 포함)
+function closeTermsModal($modal, callback) {
+	if (!$modal || !$modal.length) {
+		return;
+	}
+	var $content = $modal.find(".modal-content");
+	$modal.find(".modal-dialog").css("margin-top", "");
+	if ($modal.hasClass("modal-slide")) {
+		var slideOffset = getTermsSlideOffset();
+		$content.stop(true, true).animate({ bottom: slideOffset }, SLIDE_MODAL_SPEED, function () {
+			$modal.hide();
+			$content.css("bottom", "");
+			scrollOn();
+			if (typeof callback === "function") {
+				callback();
+			}
+		});
+	} else {
+		$modal.hide();
+		$content.css("bottom", "");
+		scrollOn();
+		if (typeof callback === "function") {
+			callback();
+		}
+	}
+}
+
+function openSlideBottomModal($modal) {
+	$modal.show();
+	$modal.find(".modal-content").stop(true, true).css("bottom", SLIDE_MODAL_OFFSET + "px").animate({ bottom: 0 }, SLIDE_MODAL_SPEED);
+	scrollOff();
+}
+
+function closeSlideBottomModal($modal, callback) {
+	$modal.find(".modal-content").stop(true, true).animate({ bottom: SLIDE_MODAL_OFFSET }, SLIDE_MODAL_SPEED, function () {
+		$modal.hide();
+		scrollOn();
+		if (typeof callback === "function") {
+			callback();
+		}
+	});
+}
+
 // 레이어 팝업(모달) 
 function modalOpen(obj){
 	var temp = $("#" + obj);
@@ -93,6 +166,11 @@ function modalOpen(obj){
 
 // 레이어 팝업(모달) 닫기
 function modalClose(){
+	var $terms = $(".modal.modal-terms:visible");
+	if ($terms.length) {
+		closeTermsModal($terms.first());
+		return;
+	}
 	$('.modal').hide();
 	scrollOn(); // 바디 스크롤 제거 해제
 }
@@ -119,17 +197,21 @@ $(function(){
 		if (!temp.length) {
 			return;
 		}
-		temp.show();
-		scrollOff(); // 바디 스크롤 제거
+		if (isSlideBottomModal(temp)) {
+			openSlideBottomModal(temp);
+		} else {
+			temp.show();
+			scrollOff(); // 바디 스크롤 제거
+			// 위치
+			var thisDialog = temp.children(".modal-dialog");
+			var marginValue = thisDialog.outerHeight() / 2;
+			$(thisDialog).css("margin-top", "-"+marginValue+"px");
+		}
 		
-		// 위치
-		var thisDialog = temp.children(".modal-dialog");
-		var marginValue = thisDialog.outerHeight() / 2;
-		$(thisDialog).css("margin-top", "-"+marginValue+"px");
-		
-		// 셀렉트 옵션 선택, 레이어 닫기(텍스트 전달)
+		// 셀렉트 옵션 선택, 레이어 닫기(텍스트 전달 — em 있으면 라벨만, sr-only 등 제외)
 		$("#" + optionLayer).find(".btn").click(function(){
-			var thisOption = $(this).text();
+			var $btn = $(this);
+			var thisOption = $btn.find("em").length ? $btn.find("em").text() : $btn.text();
 			$("#" + selectId).text(thisOption);
 		});
 	});
@@ -138,8 +220,36 @@ $(function(){
 	$(".btn-list .btn").click(function(){
 		$(this).parents(".btn-list").find(".btn").removeClass("on");
 		$(this).addClass("on");
-		$(this).parents(".modal").hide();
-		scrollOn(); // 바디 스크롤 제거 해제
+		var $modal = $(this).parents(".modal");
+		if (isSlideBottomModal($modal)) {
+			closeSlideBottomModal($modal);
+		} else {
+			$modal.hide();
+			scrollOn(); // 바디 스크롤 제거 해제
+		}
+	});
+
+	// 통신사 바텀시트 — dim(배경) 터치 시 닫기
+	$(".modal.modal-carrier-v3").on("click", function (e) {
+		var $modal = $(this);
+		if (!$modal.find(".modal-content").has(e.target).length) {
+			closeSlideBottomModal($modal);
+		}
+	});
+
+	// 약관 상세 모달 — 취소·확인·dim 닫기 (modal-terms만, 통신사 모달과 분리)
+	$(".modal.modal-terms").on("click", function (e) {
+		var $modal = $(this);
+		if (!$modal.find(".modal-content").has(e.target).length) {
+			closeTermsModal($modal);
+		}
+	});
+	$(".modal-terms").on("click", ".btn-close", function (e) {
+		e.preventDefault();
+		closeTermsModal($(this).closest(".modal"));
+	});
+	$(".modal-terms").on("click", ".modal-footer .btn, .modal-submit-btn .btn", function () {
+		closeTermsModal($(this).closest(".modal"));
 	});
 
 	// 은행 선택 레이어 열기

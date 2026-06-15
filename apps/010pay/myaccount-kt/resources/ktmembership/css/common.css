@@ -54,7 +54,7 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
 .input select, .input .select { padding: 0; height: 35px; border: 0; }
 input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="tel"]:focus, select:focus, textarea:focus, .input.focus { border-color: #ee303c; z-index: 2; }
 select, .select { background: transparent url(../images/select-bg.png) right center no-repeat; background-size: 10px auto; text-align: left; }
-select:disabled, .select:disabled, select[readony], .select[readony] { background-image: url(../images/select-disabled-bg.png); color: #888; cursor: default; }
+select:disabled, .select:disabled, select[readonly], .select[readonly] { background-image: url(../images/select-disabled-bg.png); color: #888; cursor: default; }
 
 /* input number */
 input[type='number'] { -moz-appearance: textfield; }
@@ -140,7 +140,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
 	   only screen and (min-resolution: 1.25dppx) {
 			.checkbox > input + label:before { background-image: url(../images/checkbox@2x.png); }
 			select, .select { background-image: url(../images/select-bg@2x.png) }
-			select:disabled, .select:disabled, select[readony], .select[readony] { background-image: url(../images/select-disabled-bg@2x.png); }
+			select:disabled, .select:disabled, select[readonly], .select[readonly] { background-image: url(../images/select-disabled-bg@2x.png); }
 }
 
 /* @3x Images (Pixel Ratio of 2.25+) */
@@ -150,7 +150,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
 	   only screen and (min-resolution: 2.25dppx) {
 			.checkbox > input + label:before { background-image: url(../images/checkbox@3x.png); }
 			select, .select { background-image: url(../images/select-bg@3x.png) }
-			select:disabled, .select:disabled, select[readony], .select[readony] { background-image: url(../images/select-disabled-bg@3x.png); }
+			select:disabled, .select:disabled, select[readonly], .select[readonly] { background-image: url(../images/select-disabled-bg@3x.png); }
 }
 
 /** for IE **/
@@ -198,7 +198,7 @@ body > form.main_form { width: 100%; height: 100%; }
 #header > .container { position: relative; }
 #header .brand-name { display: none; margin-bottom: 3px; font-size: 14px; line-height: 1.1; }
 #header .page-title .title { margin: 0 30px; font-size: 20px; line-height: 30px; font-weight: 500; color: #404040; text-align: center; }
-#header .page-title .btn-back { position: absolute; top: 0; left: 15px; padding-left: 5px; padding-right: 5px; }
+#header .page-title .btn-back { position: absolute; top: 0; left: 15px; padding-left: 5px; padding-right: 5px; font-size: 0; }
 #header .btn-close { position: absolute; top: 0; right: 15px; }
 
 /* ----- section ----- */
@@ -500,10 +500,19 @@ body > form.main_form { width: 100%; height: 100%; }
 .modal-loading { background: none; }
 .modal-loading .modal-dialog { margin-top: -35px; padding: 0; }
 .modal-loading .modal-content { min-width: 70px; max-width: 70px; width: 70px; height: 70px; -webkit-border-radius: 50%; -moz-border-radius: 50%; -ms-border-radius: 50%; -o-border-radius: 50%; border-radius: 50%; background-color: #fff; padding: 26px 0 0; font-size: 0; text-align: center; }
-.loading-bar { display: inline-block; margin: 0 2px; width: 6px; height: 18px;
-	-webkit-border-radius: 3px; -moz-border-radius: 3px; -ms-border-radius: 3px; -o-border-radius: 3px; border-radius: 3px; background-color: #ee303c;
-	animation: loading 1s ease-in-out infinite; }
-.loading > .loading-bar:nth-child(1) { animation-delay: 0; opacity: 1; }
+.loading-bar {
+  display: inline-block;
+  margin: 0 2px;
+  width: 6px;
+  height: 18px;
+  border-radius: 3px;
+  background-color: #ee303c;
+  animation-name: loading;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+.loading > .loading-bar:nth-child(1) { animation-delay: 0s; opacity: 1; }
 .loading > .loading-bar:nth-child(2) { animation-delay: .2s; opacity: .5; }
 .loading > .loading-bar:nth-child(3) { animation-delay: .3s; opacity: .2; }
 @keyframes loading {
@@ -796,7 +805,7 @@ div.nppfs-keypad { top: 0 !important; }
 /* ----- KT 계좌 입력 ----- */
 /* top strp */
 .top-step { clear: both; margin-bottom: 18px; text-align: center; }
-.top-step:afer { content: ''; clear: both; display: block;  }
+.top-step:after { content: ''; clear: both; display: block;  }
 .top-step li { display: inline-block; margin: 0 3px; width: 21px; height: 21px; font-size: 16px; font-weight: 500; line-height: 20px; color: #414e65; vertical-align: top; }
 .top-step li.active { background-color: #414e65; color: #fff; border-radius: 50%; }
 
@@ -1033,19 +1042,6 @@ div.nppfs-keypad { top: 0 !important; }
 	max-width: 100%;
 }
 
-/* 본문 상단 안내 */
-#wrap.version-v3 .version-v3-lead {
-	margin: 40px 0 0;
-	color: var(--hecto_black01, #2B2B2B);
-	font-family: Inter;
-	font-size: 20px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 29px; /* 145% */
-	letter-spacing: -0.408px;
-	text-align: left;
-}
-
 /* PIN 영역 + 재설정 링크 간격 */
 #wrap.version-v3 .version-v3-pw-stack { margin-top: 5px; }
 #wrap.version-v3 .version-v3-pw-stack .section { margin: 0; }
@@ -1058,7 +1054,7 @@ div.nppfs-keypad { top: 0 !important; }
 }
 #wrap.version-v3 .pw-box .info-text {
 	margin: 0 0 30px;
-	color: var(--HF-System-Color-Sementic-Text-Basic, #474747);
+	color: #474747; /* HF-System-Color-Sementic-Text-Basic */
 	font-family: Inter;
 	font-size: 16px;
 	font-style: normal;
@@ -1137,7 +1133,7 @@ div.nppfs-keypad { top: 0 !important; }
 #wrap.version-v3 div.nppfs-keypad-div .kpd-image { height: 100%; max-height: 260px; }
 #wrap.version-v3 div.nppfs-keypad-div .kpd-image img { height: 100%; }
 
-#wrap.version-v3 .container { padding-left: 0; padding-right: 0; }
+/* #wrap.version-v3 .container { padding-left: 0; padding-right: 0; } */
 
 /* 260410 추가 */
 .version-v3 #header .page-title .title > img { margin: 0 auto; }
@@ -1153,79 +1149,30 @@ div.nppfs-keypad { top: 0 !important; }
 }
 /* //260410 추가 */
 
-/* ----- select-bank-v3 (은행 선택 — 피그마 Frame 245) ----- */
-#wrap.select-bank-v3 #header.header-select-bank {
-	position: sticky;
-	top: 0;
-	z-index: 100;
-	padding: 0;
-	background-color: #fff;
-}
-#wrap.select-bank-v3 #header.header-select-bank > .container {
-	padding-left: 20px;
-	padding-right: 20px;
-}
-#wrap.select-bank-v3 #header.header-select-bank .page-title {
-	position: relative;
-	min-height: 64px;
-}
-#wrap.select-bank-v3 #header.header-select-bank .page-title .title {
-	margin: 0 30px;
-	padding: 20px 0;
-	font-size: 0;
-	line-height: 0;
-	text-align: center;
-}
-#wrap.select-bank-v3 #header.header-select-bank .page-title .btn-back {
-	top: 50%;
-	left: 0;
-	margin-top: -24px;
-	min-width: 48px;
-	min-height: 48px;
-	padding: 0;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-}
-#wrap.select-bank-v3 #header.header-select-bank .btn-close {
-	top: 50%;
-	right: 0;
-	margin-top: -24px;
-	min-width: 48px;
-	min-height: 48px;
-	padding: 0;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-}
-#wrap.select-bank-v3 #header.header-select-bank .header-brand-v3__logo {
-	display: block;
-	width: auto;
-	height: 24px;
-	margin: 0 auto;
-}
-
 /* 본문 상단 타이틀·스텝 (헤더에서 이동) */
-#wrap.select-bank-v3 .select-bank-page-head {
+#content.kt-ui .page-head {
 	margin-top: 0;
 	margin-bottom: 18px;
 	text-align: center;
 }
-#wrap.select-bank-v3 .select-bank-page-head__title {
+#content.kt-ui .page-head__title {
 	margin: 0 0 18px; /* top-step margin-bottom과 동일 간격 */
 	font-size: 20px;
 	line-height: 30px;
 	font-weight: 500;
 	color: #404040;
 }
-#wrap.select-bank-v3 .select-bank-page-head .top-step {
+#content.kt-ui .page-head .top-step {
 	margin-bottom: 0;
 }
-#wrap.select-bank-v3 .section-select-bank {
+#content.kt-ui .page-head + .headline {
+	margin-top: 0;
+}
+#wrap.version-v3 .section-select-bank {
 	margin-top: 0;
 }
 #wrap.version-v3 .btn-close {
-	right: 20px;
+	right: 15px;
 }
 
 /* 260608 추가 */
@@ -1237,13 +1184,14 @@ div.nppfs-keypad { top: 0 !important; }
 #wrap.version-v3 .version-v3-lead {
 	margin-top: 40px;
 	margin-bottom: 40px;
-	color: var(--color-semantic-text-bolder, #2B2C2E);
+	color: #2B2C2E; /* color-semantic-text-bolder */
 	font-family: Pretendard;
 	font-size: 24px;
 	font-style: normal;
 	font-weight: 400;
 	line-height: 135%; /* 32.4px */
 	letter-spacing: -0.24px;
+	text-align: left;
 }
 
 #wrap.version-v3 .input-myid {
@@ -1293,12 +1241,11 @@ div.nppfs-keypad { top: 0 !important; }
 }
 
 #wrap.version-v3 .select-input .select {
-	select, .select {
-		background-image: url("../../ktmembership/images/select-bg.png");
-		background-size: 13px auto;
-		background-position: right center;
-		background-repeat: no-repeat;
-	}
+	background-image: url("../../ktmembership/images/select-bg.png");
+	background-size: 13px auto;
+	background-position: right center;
+	background-repeat: no-repeat;
+	font-size: 15px;
 }
 
 #wrap.version-v3 #content.kt-ui {
@@ -1313,7 +1260,7 @@ div.nppfs-keypad { top: 0 !important; }
 #wrap.version-v3 #content.kt-ui .container {
 	flex: 1 1 auto;
 	min-height: 0;
-	padding: 0 20px;
+	/* padding: 0; */
 	padding-bottom: 30px;
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -1337,6 +1284,12 @@ div.nppfs-keypad { top: 0 !important; }
 
 #wrap.version-v3.register-pw-v3 div.nppfs-keypad-div {
 	z-index: 90;
+}
+
+/* registerAccount — 하단 고정 영역에 동의 행이 추가되어 기본 확보분(58px)보다 높음
+   고정 영역 실측 128px(동의 55 + 버튼 73) - content 58 + 기본 여백 30 = 100px */
+#wrap.version-v3.register-account-v3 #content.kt-ui .container {
+	padding-bottom: 100px;
 }
 
 #header.header-v3 {
@@ -1527,6 +1480,7 @@ div.nppfs-keypad { top: 0 !important; }
 
 #wrap.version-v3 #content.kt-ui .submit-btn {
 	padding-top: 0;
+	background-color: #fff; /* 고정 영역 아래로 스크롤 콘텐츠 비침 방지 */
 }
 
 #wrap.version-v3 #content.kt-ui .submit-btn .btn {
@@ -1534,6 +1488,17 @@ div.nppfs-keypad { top: 0 !important; }
 	font-size: 20px;
 	font-weight: 600;
 	line-height: 58px;
+	background-color: #ff4242;
+}
+#wrap.version-v3 #content.kt-ui .submit-btn .btn:disabled {
+	background-color: #e1e1e1;
+}
+
+#wrap.version-v3 #content.kt-ui .submit-btn .btn.info-chg {
+	height: unset;
+	font-size: unset;
+	font-weight: unset;
+	line-height: 30px;
 }
 
 #wrap.version-v3 #content.kt-ui .submit-btn .btn:disabled {
@@ -1552,7 +1517,7 @@ div.nppfs-keypad { top: 0 !important; }
 
 #wrap.version-v3 .input-myid > input,
 #wrap.version-v3 input {
-	font-size: 19px;
+	/* font-size: 19px; */
 }
 
 #wrap.version-v3 .form-type li {
@@ -1577,6 +1542,7 @@ div.nppfs-keypad { top: 0 !important; }
 
 .acct-check-wrap {
 	margin-top: 30px;
+	text-align: center;
 }
 
 /* registerPw_v3 — commonAlert v3 팝업 (Figma 0.회원가입_10.비밀번호 설정 — 팝업) */
@@ -1658,4 +1624,195 @@ div.nppfs-keypad { top: 0 !important; }
 	text-align: center;
 }
 
+#content.kt-ui .container .page-title {
+	text-align: center;
+	margin: 18px auto;
+}
 /* //260608 추가 */
+
+/* 260611 추가 */
+#content.kt-ui .telecom input[readonly] {
+	border-bottom: none !important
+}
+#content.kt-ui .checkbox.child > input + label:before {
+	background-image: url(../../ktmembership/images/icon-check-off.svg);
+	background-position: unset;
+}
+#content.kt-ui .checkbox.child > input:checked+label:before, #content.kt-ui .checkbox.child > input + label.on:before {
+	background-image: url(../../ktmembership/images/icon-sub-check-on.svg);
+	background-position: unset;
+}
+
+/* 260612 추가 — 통신사 선택 바텀시트 (selfAuth1_v3, Figma 1596:859) */
+.modal.modal-carrier-v3 {
+	padding: 0;
+}
+
+.modal.modal-carrier-v3:before {
+	background: rgba(0, 0, 0, 0.5); /* Figma dim 50% */
+}
+
+.modal.modal-carrier-v3 .modal-dialog {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	height: 100%;
+	margin-top: 0 !important; /* design.js 인라인 margin-top 무력화 */
+	padding: 0;
+}
+
+/* modal-banklist와 동일 — 열기 전 화면 아래 대기 (통신사 modal-carrier-v3 전용) */
+.modal.modal-carrier-v3 .modal-content {
+	position: fixed;
+	left: 0;
+	bottom: -450px;
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	border-radius: 20px 20px 0 0;
+	background-color: #fff;
+}
+
+/* 약관 modal-slide·modal-info — 통신사 -450 규칙 제외, 010pay 하단 시트 패턴 */
+.modal.modal-terms.modal-slide .modal-dialog {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	height: 100%;
+	margin-top: 0 !important;
+	padding: 0;
+}
+
+.modal.modal-terms.modal-slide .modal-content {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	height: 80%;
+	border-radius: 0;
+	background-color: #fff;
+}
+
+.modal.modal-carrier-v3 .modal-body {
+	padding: 30px 20px 50px;
+}
+
+.modal.modal-carrier-v3 .btn-list {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	overflow: visible;
+	border-radius: 0;
+}
+
+.modal.modal-carrier-v3 .btn-list li:not(:first-child) {
+	border-top: 0;
+}
+
+.modal.modal-carrier-v3 .btn-list .btn {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0;
+	width: 100%;
+	height: 22px;
+	border: 0;
+	border-radius: 0;
+	background: none;
+	font-family: Pretendard;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.35;
+	color: #707176; /* text/description */
+	text-align: left;
+}
+
+/* 선택된 통신사 — Bold + 주황 체크 (개발 markup: .check-primary) */
+.modal.modal-carrier-v3 .btn-list .btn.on {
+	font-weight: 700;
+	color: #424346; /* text/basic */
+}
+
+.modal.modal-carrier-v3 .btn-list .btn .check-primary {
+	display: none;
+}
+
+.modal.modal-carrier-v3 .btn-list .btn.on .check-primary {
+	display: block;
+	flex-shrink: 0;
+	width: 14px;
+	height: 10px;
+	background: url("../../ktmembership/images/icon-check-orange.svg") no-repeat center;
+	background-size: 14px 10px;
+}
+
+.modal.modal-carrier-v3 .btn-list .btn.on .check-primary .sr-only,
+.modal.modal-carrier-v3 .btn-list .btn.on .check-primary i {
+	display: none;
+}
+
+/* 통신사 선택 후 셀렉트 버튼 텍스트 색상 */
+#wrap.version-v3 .select-modal.selected {
+	color: #424346; /* text/basic */
+}
+
+/* 260612 추가 — join-agree 하위 약관 목록 (selfAuth1_v3, Figma 1596:1057) */
+#wrap.version-v3 .join-agree .btn {
+	height: auto;
+	font-size: 14px;
+	line-height: 1.5;
+	color: #424346; /* text/basic */
+}
+
+#wrap.version-v3 .join-agree .agree-all + .agree-list {
+	margin-top: 10px; /* 상위 행 ↔ 하위 목록 간격 */
+}
+
+#wrap.version-v3 .join-agree .agree-list {
+	margin-left: 30px;
+}
+
+#wrap.version-v3 .join-agree .agree-list li + li {
+	margin-top: 6px; /* 하위 행 간격 */
+}
+
+#wrap.version-v3 .join-agree .agree-list .checkbox {
+	padding: 0;
+}
+
+#wrap.version-v3 .join-agree .agree-list .checkbox.child > input + label {
+	padding-left: 30px; /* 아이콘 20 + 간격 10 */
+	font-size: 14px;
+	line-height: 1.5;
+	color: #424346; /* text/basic */
+}
+
+#wrap.version-v3 .join-agree .agree-list .checkbox.child > input + label:before {
+	top: 50%;
+	transform: translateY(-50%);
+	width: 20px;
+	height: 20px;
+	background-size: 20px 20px;
+	border-radius: 0;
+}
+
+/* (필수) 강조 색 분리 제거 — 피그마는 라벨 전체 단일 색 */
+#wrap.version-v3 .join-agree .agree-list label span {
+	color: inherit;
+}
+#wrap.version-v3 .join-agree .agree-all .btn.btn-nobg {
+	line-height: 30px;
+}
+
+
+@media only screen and (max-width: 340px) {
+	#wrap.version-v3 .join-agree .agree-list .checkbox.child > input + label {
+		font-size: 13px;
+	}
+	#wrap.version-v3 .join-agree .agree-list .btn.btn-nobg {
+		font-size: 13px;
+	}
+}
+/* //260611 추가 */

@@ -14,6 +14,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <!-- [2026-06-23] renewal-v2 stylesheet -->
+    <link rel="stylesheet" href="../../../css/common_renewal_v2.css" />
+    <!-- //[2026-06-23] renewal-v2 stylesheet -->
     <link rel="stylesheet" href="../../../css/pay/transactionHistory.css" />
     <script src="../../../js/jquery.3.4.1.min.js"></script>
     <script src="../../../js/jquery-ui.js"></script>
@@ -22,15 +25,16 @@
 
   <body>
     <!-- wrap -->
-    <div id="wrap">
+    <!-- [2026-06-23] renewal-v2 적용 — 거래내역 (Figma 거래내역_상세) -->
+    <div id="wrap" class="renewal-v2">
       <!-- header -->
       <div id="header">
         <div class="container">
-          <div class="header-box">
-            <h2 class="page-title">거래내역</h2>
-            <button type="button" class="btn-close">
-              <i class="icon-close"></i>
+          <div class="header-box center">
+            <button type="button" class="btn-back js-change-btn left-0">
+              <i class="icon-back"></i>
             </button>
+            <h2 class="page-title">거래내역</h2>
           </div>
         </div>
       </div>
@@ -39,165 +43,129 @@
       <!-- content -->
       <div id="content">
         <!-- container -->
-        <div class="container transaction-history-container has-ad-wrap">
-          <div class="month-wrap">
-            <button
-              type="button"
-              class="prev-btn icon-arrow-left size-16 disabled"
-            >
-              이전
-            </button>
-            <button
-              type="button"
-              class="month-text"
-              onclick="modalOpenSlide('modal-period')"
-            >
-              7월
-            </button>
-            <button type="button" class="next-btn icon-arrow-right size-16">
-              다음
-            </button>
+        <div
+          class="container trade-history-v2 transaction-history-container has-ad-wrap"
+        >
+          <!-- sec-history -->
+          <div class="sec-history">
+            <div class="month-wrap">
+              <button
+                type="button"
+                class="prev-btn icon-arrow-left size-16 disabled"
+              >
+                이전
+              </button>
+              <button
+                type="button"
+                class="month-text"
+                onclick="modalOpenSlide('modal-period')"
+              >
+                <span class="year-text">24년</span>
+                <span class="month-num">12월</span>
+                <i class="icon-arrow-down size-12" aria-hidden="true"></i>
+              </button>
+              <button type="button" class="next-btn icon-arrow-right size-16">
+                다음
+              </button>
+            </div>
+
+            <div class="trade-tab-wrap">
+              <ul class="tab-list">
+                <li>
+                  <button type="button" class="active">전체</button>
+                </li>
+                <li>
+                  <button type="button">머니</button>
+                </li>
+                <li>
+                  <button type="button">포인트</button>
+                </li>
+                <li>
+                  <button type="button">계좌</button>
+                </li>
+                <li>
+                  <button type="button">카드</button>
+                </li>
+              </ul>
+            </div>
+
+            <div class="trade-list-wrap">
+              <ul class="trade-list transaction-list-v2">
+                <li class="transaction-group">
+                  <p class="date-text">11일 토요일</p>
+                  <div class="transaction-item is-cancel">
+                    <div class="item-left">
+                      <p class="item-title">펫프렌즈</p>
+                      <p class="item-time">11:48</p>
+                    </div>
+                    <div class="item-right">
+                      <p class="amount">-1,000원</p>
+                      <p class="type-label">충전 취소</p>
+                    </div>
+                  </div>
+                  <div class="transaction-item">
+                    <div class="item-left">
+                      <p class="item-title">펫프렌즈</p>
+                      <p class="item-time">11:47</p>
+                    </div>
+                    <div class="item-right">
+                      <p class="amount">-1,000원</p>
+                      <p class="type-label">사용</p>
+                    </div>
+                  </div>
+                  <div class="transaction-item">
+                    <div class="item-left">
+                      <p class="item-title">코레일</p>
+                      <p class="item-time">11:42</p>
+                    </div>
+                    <div class="item-right">
+                      <p class="amount">-11,000원</p>
+                      <p class="type-label">사용</p>
+                    </div>
+                  </div>
+                  <div class="transaction-item is-charge">
+                    <div class="item-left">
+                      <p class="item-title">임직원 복지포인트 지급</p>
+                      <p class="item-time">10:45</p>
+                    </div>
+                    <div class="item-right">
+                      <p class="amount">+9,999,000원</p>
+                      <p class="type-label">충전</p>
+                    </div>
+                  </div>
+                </li>
+                <li class="transaction-group">
+                  <p class="date-text">10일 금요일</p>
+                  <div class="transaction-item is-cancel">
+                    <div class="item-left">
+                      <p class="item-title">펫프렌즈</p>
+                      <p class="item-time">11:48</p>
+                    </div>
+                    <div class="item-right">
+                      <p class="amount">-1,000원</p>
+                      <p class="type-label">충전 취소</p>
+                    </div>
+                  </div>
+                  <div class="transaction-item">
+                    <div class="item-left">
+                      <p class="item-title">펫프렌즈</p>
+                      <p class="item-time">11:47</p>
+                    </div>
+                    <div class="item-right">
+                      <p class="amount">-1,000원</p>
+                      <p class="type-label">사용</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <div class="add-view-btn-wrap">
+                <button type="button" class="add-view-btn">
+                  24년 11월 내역 더보기
+                </button>
+              </div>
+            </div>
           </div>
-          <div class="trade-tab-wrap">
-            <ul class="tab-list">
-              <li>
-                <button type="button" class="active">전체</button>
-              </li>
-              <li>
-                <button type="button">머니</button>
-              </li>
-              <li>
-                <button type="button">포인트</button>
-              </li>
-              <li>
-                <button type="button">계좌</button>
-              </li>
-              <li>
-                <button type="button">카드</button>
-              </li>
-              <li>
-                <button type="button">휴대폰</button>
-              </li>
-            </ul>
-          </div>
-          <ul class="trade-list history">
-            <li>
-              <span class="date-text">11일</span>
-              <div class="list-contents-box">
-                <div class="right-text-box">
-                  <div class="top-text">
-                    <p class="time-text">오후 11:56</p>
-                    <p class="type-text">카드</p>
-                    <p class="type">출금</p>
-                  </div>
-                  <div class="bottom-text-box">
-                    <p class="detail-text">
-                      국민 국민 국민 국민 국민 국민 국민 국민 국민 국민 국민
-                      국민 국민
-                    </p>
-                    <p class="amount">90,000원</p>
-                  </div>
-                </div>
-                <div class="right-text-box minus">
-                  <div class="top-text">
-                    <p class="time-text">오후 11:56</p>
-                    <p class="type-text">카드</p>
-                    <p class="type">결제 취소</p>
-                  </div>
-                  <div class="bottom-text-box">
-                    <p class="detail-text">
-                      국민 국민 국민 국민 국민 국민 국민 국민 국민 국민 국민
-                      국민 국민
-                    </p>
-                    <p class="amount">90,000원</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <span class="date-text">11일</span>
-              <div class="list-contents-box">
-                <div class="right-text-box">
-                  <div class="top-text">
-                    <p class="time-text">오후 11:56</p>
-                    <p class="type-text">카드</p>
-                    <p class="type">출금</p>
-                  </div>
-                  <div class="bottom-text-box">
-                    <p class="detail-text">임직원 복지포인트 지급</p>
-                    <p class="amount">9,990,000원</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <span class="date-text">11일</span>
-              <div class="list-contents-box">
-                <div class="right-text-box">
-                  <div class="top-text">
-                    <p class="time-text">오후 11:56</p>
-                    <p class="type-text">카드</p>
-                    <p class="type">출금</p>
-                  </div>
-                  <div class="bottom-text-box">
-                    <p class="detail-text">임직원 복지포인트 지급</p>
-                    <p class="amount">90,000원</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <span class="date-text">11일</span>
-              <div class="list-contents-box">
-                <div class="right-text-box">
-                  <div class="top-text">
-                    <p class="time-text">오후 11:56</p>
-                    <p class="type-text">카드</p>
-                    <p class="type">출금</p>
-                  </div>
-                  <div class="bottom-text-box">
-                    <p class="detail-text">임직원 복지포인트 지급</p>
-                    <p class="amount">90,000원</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <span class="date-text">11일</span>
-              <div class="list-contents-box">
-                <div class="right-text-box">
-                  <div class="top-text">
-                    <p class="time-text">오후 11:56</p>
-                    <p class="type-text">카드</p>
-                    <p class="type">출금</p>
-                  </div>
-                  <div class="bottom-text-box">
-                    <p class="detail-text">임직원 복지포인트 지급</p>
-                    <p class="amount">90,000원</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <span class="date-text">11일</span>
-              <div class="list-contents-box">
-                <div class="right-text-box">
-                  <div class="top-text">
-                    <p class="time-text">오후 11:56</p>
-                    <p class="type-text">카드</p>
-                    <p class="type">출금</p>
-                  </div>
-                  <div class="bottom-text-box">
-                    <p class="detail-text">임직원 복지포인트 지급</p>
-                    <p class="amount">90,000원</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
-          <div class="add-view-btn-wrap">
-            <button type="button" class="add-view-btn">더보기</button>
-          </div>
+          <!-- //sec-history -->
 
           <!-- 광고영역 -->
           <div class="ad-wrap">
@@ -209,6 +177,7 @@
       </div>
       <!-- //content -->
     </div>
+    <!-- //[2026-06-23] renewal-v2 적용 — 거래내역 (Figma 거래내역_상세) -->
     <!-- //wrap -->
 
     <!-- 필터 팝업 -->
@@ -320,7 +289,6 @@
       $(window).on("scroll", function () {
         var scrollTop = $(window).scrollTop();
         var tab = $(".trade-tab-wrap");
-
         var tradeTabOffset = tab.hasClass("fixed")
           ? tab.data("originalOffset")
           : tab.offset().top;
@@ -331,13 +299,14 @@
 
         if (scrollTop >= tradeTabOffset - 64) {
           tab.addClass("fixed");
-          $(".month-wrap").hide();
-          $(".trade-list.history").addClass("padding");
         } else {
           tab.removeClass("fixed");
-          $(".month-wrap").show();
-          $(".trade-list.history").removeClass("padding");
         }
+      });
+
+      $(".tab-list button").on("click", function () {
+        $(this).closest(".tab-list").find("button").removeClass("active");
+        $(this).addClass("active");
       });
     });
   </script>

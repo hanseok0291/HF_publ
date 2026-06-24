@@ -601,7 +601,7 @@ function modalOpenSlide(obj) {
       // 열린 모달 확인 (display: block 기준)
       const openedModal = $(".modal:visible"); // 현재 보이는 모달 선택
       if (openedModal.attr("id") === "modal-select-bank") {
-        $("#btnHidden").show();
+        // $("#btnHidden").show();
       }
       modalCloseSlide(); // 모달 닫기
     }

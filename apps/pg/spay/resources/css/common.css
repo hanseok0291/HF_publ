@@ -753,6 +753,7 @@ textarea[disabled]:focus { border-color: #ccc; z-index: auto; }
 .modal-terms .modal-body .nav .owl-next,
 .modal-terms .modal-body .nav .owl-prev { top: 0; margin-top: 0; } 
 .modal-terms .modal-body .terms { width: 100%; height: calc(100% - 70px); overflow-y: auto; text-align: left; } 
+.modal-terms .modal-body .terms.scroll:focus { outline: 1px dashed #ccc; } 
 .modal-terms .modal-body .terms h3 { margin: .214em 0; } 
 
 /* ----- 영수증 모달 ----- */
@@ -1787,3 +1788,192 @@ linear-gradient(to bottom, #FF5A00 0%, #F8A329 100%); background-origin: border-
     color: #9a9a9a;
 }
 /* //250805 추가 */
+
+/* 토스페이 전용 스타일 */
+#wrap.tosspay header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: 60px;
+    background-color: #fff;
+}
+
+#wrap.tosspay .titleWrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+}
+
+#wrap.tosspay .titleWrap .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 121px;
+    height: 18px;
+    background-image: url(../images/custom/logo-hecto.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    text-indent: -9999px;
+}
+
+#wrap.tosspay header [class|="btn"] {
+    position: absolute;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    font-size: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+#wrap.tosspay header .btn-back {
+    background: url("../images/back.svg") center/24px no-repeat;
+    top: 10px;
+    left: 10px;
+}
+
+#wrap.tosspay .content {
+    padding: 30px 0 130px;
+    min-height: calc(100vh - 60px);
+}
+
+#wrap.tosspay .container {
+    padding: 0 20px;
+    width: 100%;
+}
+
+#wrap.tosspay .tosspay-result-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - 60px - 130px);
+    padding: 40px 0;
+}
+
+#wrap.tosspay .tosspay-result-message .result-title {
+    color: var(--HF-Color-Neutral-Neutral10, #303030);
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+    letter-spacing: -0.408px;
+    margin-bottom: 30px;
+}
+
+#wrap.tosspay .tosspay-result-message .result-description {
+    color: var(--HF-Color-Neutral-Neutral10, #303030);
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: -0.408px;
+    padding: 0;
+}
+
+#wrap.tosspay .tosspay-fail-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: calc(100vh - 60px - 130px);
+    padding: 40px 0;
+}
+
+#wrap.tosspay .tosspay-fail-message p {
+    color: var(--HF-Color-Neutral-Neutral10, #303030);
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: -0.408px;
+}
+
+#wrap.tosspay .tosspay-btn-wrap {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30px 20px;
+    height: 128px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 16.38%);
+    z-index: 10;
+}
+
+#wrap.tosspay .tosspay-btn {
+    width: 100%;
+    height: 66px;
+    background-color: #303030;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Pretendard', 'Nanum Square Round', 'Malgun Gothic', Dotum, 'Apple SD Gothic Neo', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#wrap.tosspay .tosspay-btn:hover {
+    background-color: #333;
+}
+
+#wrap.tosspay .tosspay-btn:active {
+    background-color: #2a2a2a;
+}
+
+#wrap.tosspay .tosspay-btn:disabled {
+    background-color: #e5e5e5;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.modal.tosspay-alert .modal-dialog {
+    margin-top: 0 !important;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.modal.tosspay-alert .modal-content {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    max-width: 320px;
+}
+
+.modal.tosspay-alert .modal-body {
+    padding: 30px 20px;
+    min-height: auto;
+    text-align: center;
+}
+
+.modal.tosspay-alert .modal-body p {
+    color: #151515;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+}
+
+.modal.tosspay-alert .modal-body p + p {
+    margin-top: 4px;
+}
+
+.modal.tosspay-alert .modal-footer .btn {
+    color: #151515;
+    font-weight: 700;
+}
+/* //토스페이 전용 스타일 */

@@ -646,7 +646,7 @@ input[type="radio"]:checked + .text + .icon-check { color: orange; background: u
 .custom-select.open .select { background: none; }
 .custom-select.open .select::after { content: ''; position: absolute; right: 9px; top: 50%; transform: translateY(-50%) rotate(180deg); width: 11px; height: 11px; background: url(../images/common/icon-arrow-down.svg) center center no-repeat; background-size: 11px auto; }
 .custom-input.value .tit { color: #1c1c1c; }
-.custom-input.custom-number-wrap .number-wrap input.birth-wrap { font-weight: 600;}
+.custom-input.custom-number-wrap .number-wrap input.birth-wrap { font-weight: 500;}
 .card.step .custom-input .radio-wrap.type2 .check-box > input:disabled + label { background: #F7F7F8; }
 .card.step .custom-input .radio-wrap.type2 .check-box > input:checked + label { background: #fff; }
 
@@ -781,5 +781,473 @@ input[type="radio"]:checked + .text + .icon-check { color: orange; background: u
   /* 카드 재발급 페이지 */
   .card.step .card.select .card-info > dl dd {
     text-align: left;
+  }
+}
+
+/* cardReceiptStep_02 — 카드번호 4구간 동일 너비 + 마스킹(input-dot) */
+.custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap.card-number-wrap--mask-sync {
+  display: flex;
+  align-items: center;
+}
+
+.custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap.card-number-wrap--mask-sync .card-no-segment {
+  flex: 1 1 0;
+  min-width: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap.card-number-wrap--mask-sync .card-no-segment .birth-wrap {
+  width: 100%;
+  text-align: left;
+  margin-left: 0;
+}
+
+.custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap.card-number-wrap--mask-sync .text-dash {
+  flex-shrink: 0;
+}
+
+.custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap.card-number-wrap--mask-sync .birth-wrap-mask {
+  font-size: 22px;
+  line-height: normal;
+  font-family: inherit;
+  color: transparent;
+  caret-color: #000;
+}
+
+/* cardNo2 — 앞 2자리 노출 input + 뒤 2자리 마스킹 input */
+.custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap.card-number-wrap--mask-sync .card-no-segment--partial-mask {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap.card-number-wrap--mask-sync .card-no-front-input {
+  flex: 1 1 0;
+  min-width: 0;
+  width: auto;
+  text-align: center;
+  color: #000;
+}
+
+.custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap.card-number-wrap--mask-sync .card-no-half-back {
+  flex: 1 1 0;
+  min-width: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap.card-number-wrap--mask-sync .card-no-back-input {
+  width: 100%;
+  text-align: center;
+  color: transparent;
+  caret-color: #000;
+}
+
+.custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap.card-number-wrap--mask-sync .input-dot--pair {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding-left: 0;
+  margin: 0;
+  justify-content: space-evenly;
+  pointer-events: none;
+}
+
+.custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap.card-number-wrap--mask-sync .card-no-segment--partial-mask .input-dot--pair > span {
+  opacity: 1;
+  background-color: #e2e2e2;
+}
+
+.custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap.card-number-wrap--mask-sync .card-no-segment--partial-mask .input-dot--pair > span.fill {
+  background-color: #929292;
+}
+
+.custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap.card-number-wrap--mask-sync .input-dot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding-left: 0;
+  margin: 0;
+  justify-content: space-evenly;
+  pointer-events: none;
+}
+
+.custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap.card-number-wrap--mask-sync .card-no-segment .input-dot > span {
+  opacity: 1;
+  background-color: #e2e2e2;
+}
+
+.custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap.card-number-wrap--mask-sync .card-no-segment .input-dot > span.fill {
+  background-color: #929292;
+}
+
+/* ==========================================================================
+   cardReceiptStep_02 — PPC_MC0202_01(376px+) / PPC_MC0201_02(375px↓) 피그마 카드번호
+   - 필드 간격 30px, 유효기간·안내 박스 피그마 스펙
+   ========================================================================== */
+.card-receipt-step-02 {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+.card-receipt-step-02 #content {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.card-receipt-step-02 .container .form-wrap {
+  margin-top: 0;
+  max-width: 100%;
+}
+
+.card-receipt-step-02 .form-wrap > .custom-input + .custom-input {
+  margin-top: 30px;
+}
+
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp,
+.card-receipt-step-02 .custom-input.custom-date-wrap {
+  padding-top: 0;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.card-receipt-step-02 .custom-input .custom-label {
+  position: static;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* 카드번호 입력줄 */
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-height: 56px;
+  height: auto;
+  border-bottom: 0;
+  box-sizing: border-box;
+  overflow-x: clip;
+}
+
+/* 전폭 밑줄 — flex 자식 폭과 무관하게 100% */
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  background-color: #cbcbcb;
+}
+
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-number-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  width: max-content;
+  max-width: 100%;
+  height: 56px;
+  position: relative;
+  z-index: 1;
+  gap: 0;
+  overflow: hidden;
+}
+
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-no-segment {
+  flex: 0 0 auto;
+  min-width: 0;
+  height: 56px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* 376px+ — 피그마 고정 최소 너비, 좌측 정렬 (늘어나지 않음) */
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-no-segment--plain {
+  flex: 0 0 60px;
+  width: 60px;
+  min-width: 60px;
+  max-width: 60px;
+  overflow: hidden;
+}
+
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-no-segment--partial-mask,
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-no-segment--mask {
+  flex: 0 0 80px;
+  width: 80px;
+  min-width: 80px;
+  max-width: 80px;
+}
+
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-no-segment--partial-mask {
+  overflow: visible;
+}
+
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-no-segment--mask {
+  overflow: hidden;
+}
+
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .text-dash {
+  flex: 0 0 20px;
+  width: 20px;
+  min-width: 20px;
+  max-width: 20px;
+  font-size: 22px;
+  line-height: 1.5;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: #c4c4c4;
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-number-row input.birth-wrap {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  height: 56px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-bottom: 0;
+  border-radius: 0;
+  line-height: 1.5;
+  font-size: 22px;
+  color: #303030;
+  text-align: center;
+  text-indent: 0;
+  font-weight: 400;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+  letter-spacing: 0.114px;
+}
+
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-number-row input.birth-wrap:hover,
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-number-row input.birth-wrap:focus {
+  border: 0;
+  border-bottom: 0;
+  box-shadow: none;
+}
+
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-no-segment--partial-mask {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0;
+}
+
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-no-front-input {
+  flex: 0 0 auto;
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  text-align: center;
+  color: #303030;
+}
+
+/* birth-wrap width:100% 덮어쓰기 — partial-mask 앞 2자리가 구간 밖으로 밀려 잘리는 현상 방지 */
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-number-row input.birth-wrap.card-no-front-input {
+  flex: 0 0 44px;
+  width: 44px;
+  min-width: 0;
+  max-width: 44px;
+}
+
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-no-half-back {
+  flex: 0 0 30px;
+  width: 30px;
+  min-width: 30px;
+  max-width: 30px;
+  height: 56px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-no-back-input {
+  width: 100%;
+  text-align: center;
+}
+
+/* dot — common.css width:120px 덮어쓰기, 구간 안에서만 표시 */
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-number-row .input-dot,
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-number-row .input-dot--pair {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-no-segment--mask {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-number-row input.birth-wrap-mask {
+  color: transparent;
+  caret-color: #000;
+  font-size: 22px;
+  letter-spacing: 0.114px;
+}
+
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-no-segment--mask .input-dot > span,
+.card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .input-dot--pair > span {
+  flex: 0 0 12px;
+  width: 12px;
+  height: 12px;
+  opacity: 1;
+}
+
+/* 유효기간 */
+.card-receipt-step-02 .date-wrap.card-exp-wrap--figma {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 56px;
+  border-bottom: 0;
+}
+
+.card-receipt-step-02 .date-wrap.card-exp-wrap--figma .exp-field-group {
+  display: flex;
+  align-items: center;
+  height: 56px;
+}
+
+.card-receipt-step-02 .date-wrap.card-exp-wrap--figma .exp-field-group--year {
+  gap: 6px;
+}
+
+.card-receipt-step-02 .date-wrap.card-exp-wrap--figma .birth-wrap {
+  width: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  height: 56px;
+  padding: 0;
+  border-bottom: 1.5px solid #c4c4c4;
+  line-height: 56px;
+  text-align: center;
+  font-weight: 400;
+  box-sizing: border-box;
+}
+
+.card-receipt-step-02 .date-wrap.card-exp-wrap--figma .text-dash {
+  flex: 0 0 30px;
+  width: 30px;
+  margin: 0;
+  font-size: 22px;
+  line-height: 56px;
+  text-align: center;
+  color: #929292;
+}
+
+/* 안내 박스 */
+.card-receipt-step-02 .guide-wrap {
+  margin-top: 30px;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+  max-width: 100%;
+  background-color: #f7f7f8;
+}
+
+.card-receipt-step-02 .guide-wrap .guide-wrap-list li {
+  color: #5c5c5c;
+}
+
+.card-receipt-step-02 .guide-wrap .guide-wrap-list li::before {
+  background: #5c5c5c;
+}
+
+/* 하단 버튼 disabled */
+.card-receipt-step-02 #footer .btn-wrap .btn:disabled {
+  background-color: #e1e2e4;
+  color: #fff;
+}
+
+/* 좁은 화면 — PPC_MC0201_02 @320px (20px / dot 10px / gap 6px, flex 축소) */
+@media only screen and (max-width: 375px) {
+  .card-receipt-step-02 .container,
+  .card-receipt-step-02 #footer .btn-wrap {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-number-row {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-no-segment--plain {
+    flex: 6 1 0;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-no-segment--partial-mask,
+  .card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-no-segment--mask {
+    flex: 8 1 0;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .text-dash {
+    flex: 2 0 0;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    font-size: 20px;
+  }
+
+  .card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-no-front-input {
+    flex: 1 1 0;
+  }
+
+  .card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-number-row input.birth-wrap.card-no-front-input {
+    flex: 1 1 0;
+    width: auto;
+    max-width: none;
+  }
+
+  .card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-no-half-back {
+    flex: 0 0 26px;
+    width: 26px;
+    min-width: 26px;
+    max-width: 26px;
+  }
+
+  .card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-no-segment--mask .input-dot > span,
+  .card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .input-dot--pair > span {
+    flex: 0 0 10px;
+    width: 10px;
+    height: 10px;
+  }
+
+  .card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-number-row input.birth-wrap,
+  .card-receipt-step-02 .custom-input.custom-number-wrap.comp .number-wrap.card-number-wrap--mask-sync .card-number-row input.birth-wrap-mask {
+    font-size: 20px;
+    line-height: 1.5;
+    letter-spacing: 0.114px;
   }
 }

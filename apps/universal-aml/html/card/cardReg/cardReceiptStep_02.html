@@ -21,7 +21,8 @@
 
   <body>
     <!-- wrap -->
-    <div id="wrap" class="card step">
+    <!-- 되돌리기: #wrap에서 card-receipt-step-02 클래스 제거 + card.css 하단 PPC_MC0202_01 블록 삭제 -->
+    <div id="wrap" class="card step card-receipt-step-02">
       <!-- header -->
       <header class="header">
         <div class="container">
@@ -38,48 +39,99 @@
 
           <div class="form-wrap">
             <div class="custom-input custom-number-wrap comp">
-              <div class="number-wrap card-number-wrap">
-                <label for="selectField" class="custom-label">카드번호</label>
-                <input type="text" id="selectField" class="birth-wrap" maxlength="4" value="1234" />
-                <span class="text-dash">-</span>
-                <input type="text" id="" class="birth-wrap" maxlength="4" value="1234" />
-                <span class="text-dash">-</span>
-                <input type="password" id="" class="birth-wrap" maxlength="4" value="1234" />
-                <span class="text-dash">-</span>
-                <input type="text" id="" class="birth-wrap" maxlength="4" value="1234" />
+              <label for="cardNo1" class="custom-label">카드번호</label>
+              <div class="number-wrap card-number-wrap card-number-wrap--mask-sync">
+                <div class="card-number-row">
+                <div class="card-no-segment card-no-segment--plain">
+                  <input
+                    type="text"
+                    id="cardNo1"
+                    class="birth-wrap"
+                    maxlength="4"
+                    value="1234"
+                    inputmode="numeric"
+                    pattern="[0-9]*"
+                    autocomplete="off"
+                  />
+                </div>
+                <span class="text-dash" aria-hidden="true">-</span>
+                <div class="card-no-segment card-no-segment--partial-mask">
+                  <input
+                    type="text"
+                    id="cardNo2Front"
+                    class="birth-wrap card-no-front-input"
+                    maxlength="2"
+                    value="12"
+                    inputmode="numeric"
+                    pattern="[0-9]*"
+                    autocomplete="off"
+                    aria-label="카드번호 두 번째 구간 앞 두 자리"
+                  />
+                  <div class="card-no-half-back">
+                    <input
+                      type="text"
+                      id="cardNo2Back"
+                      class="birth-wrap birth-wrap-mask card-no-back-input"
+                      maxlength="2"
+                      value=""
+                      inputmode="numeric"
+                      pattern="[0-9]*"
+                      autocomplete="off"
+                      aria-label="카드번호 두 번째 구간 뒤 두 자리"
+                    />
+                    <div class="input-dot input-dot--pair" id="inputDot2" aria-hidden="true">
+                      <span></span>
+                      <span></span>
+                    </div>
+                  </div>
+                </div>
+                <span class="text-dash" aria-hidden="true">-</span>
+                <div class="card-no-segment card-no-segment--mask">
+                  <input
+                    type="text"
+                    id="cardNo3"
+                    class="birth-wrap birth-wrap-mask"
+                    maxlength="4"
+                    value=""
+                    inputmode="numeric"
+                    pattern="[0-9]*"
+                    autocomplete="off"
+                  />
+                  <div class="input-dot" id="inputDot3" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+                <span class="text-dash" aria-hidden="true">-</span>
+                <div class="card-no-segment card-no-segment--plain">
+                  <input
+                    type="text"
+                    id="cardNo4"
+                    class="birth-wrap"
+                    maxlength="4"
+                    value="1234"
+                    inputmode="numeric"
+                    pattern="[0-9]*"
+                    autocomplete="off"
+                  />
+                </div>
+                </div>
               </div>
             </div>
             <div class="custom-input custom-date-wrap">
-              <div class="date-wrap exp-wrap">
-                <label for="selectField" class="custom-label">유효기간</label>
-                <input type="text" id="" class="birth-wrap" maxlength="2" value="12" />
-                <span class="text-dash">월</span>
-                <input type="text" id="" class="birth-wrap" maxlength="2" value="30" />
-                <span class="text-dash">년</span>
+              <label for="cardExpMonth" class="custom-label">유효기간</label>
+              <div class="date-wrap exp-wrap card-exp-wrap--figma">
+                <div class="exp-field-group">
+                  <input type="text" id="cardExpMonth" class="birth-wrap" maxlength="2" value="12" />
+                  <span class="text-dash">월</span>
+                </div>
+                <div class="exp-field-group exp-field-group--year">
+                  <input type="text" id="cardExpYear" class="birth-wrap" maxlength="2" value="30" />
+                  <span class="text-dash">년</span>
+                </div>
               </div>
-            </div>
-            <div class="custom-input">
-              <label for="inputField02" class="custom-label">CVC 번호 <button type="button" class="btn btn-tooltip"></button>
-                <div class="popover none-arrow">
-                  <div class="popover-content">
-                    <div class="popover-header">
-                      <button type="button" class="btn btn-close" data-dismiss="popover"></button>
-                    </div>
-                    <div class="popover-body">CVC번호를 연속 5회 잘못 입력할 경우 다음 날 1회에 한 해 재시도 할 수 있습니다.</div>
-                  </div>
-                </div></label>
-              <input type="text" id="inputField02" placeholder="카드 뒷면 3자리">
-              <p class="error">영문명은 여권명과 동일하게 해주세요.</p>
-            </div>
-            <div class="custom-input">
-              <label for="inputField03" class="custom-label">비밀번호</label>
-              <input type="password" id="inputField03">
-              <p class="error">영문명은 여권명과 동일하게 해주세요.</p>
-            </div>
-            <div class="custom-input">
-              <label for="inputField04" class="custom-label">비밀번호 확인</label>
-              <input type="password" id="inputField04">
-              <p class="error">영문명은 여권명과 동일하게 해주세요.</p>
             </div>
             
           </div>
@@ -349,6 +401,132 @@
     <script>
 
       $(document).ready(function () {
+        /* 카드번호 마스킹 구간 — dot fill 동기화 · 숫자만 허용 */
+        function syncCardNoDot(input) {
+          var dotWrap = input.nextElementSibling;
+          if (!dotWrap || !dotWrap.classList.contains("input-dot")) {
+            return;
+          }
+          var spans = dotWrap.querySelectorAll("span");
+          var len = input.value.length;
+          spans.forEach(function (span, i) {
+            span.classList.toggle("fill", i < len);
+          });
+        }
+
+        /* cardNo2 — 앞 2자리(노출) + 뒤 2자리(마스킹) 분리 입력 */
+        function bindCardNo2Partial() {
+          var front = document.getElementById("cardNo2Front");
+          var back = document.getElementById("cardNo2Back");
+          var dotWrap = document.getElementById("inputDot2");
+          if (!front || !back || !dotWrap) {
+            return;
+          }
+
+          function syncBackDots() {
+            var len = back.value.length;
+            dotWrap.querySelectorAll("span").forEach(function (span, i) {
+              span.classList.toggle("fill", i < len);
+            });
+          }
+
+          function sanitizeNum(input, maxLen) {
+            input.value = input.value.replace(/[^0-9]/g, "").slice(0, maxLen);
+          }
+
+          front.addEventListener("input", function () {
+            sanitizeNum(this, 2);
+            if (this.value.length >= 2) {
+              back.focus();
+            }
+          });
+
+          back.addEventListener("input", function () {
+            sanitizeNum(this, 2);
+            syncBackDots();
+          });
+
+          back.addEventListener("keydown", function (e) {
+            if (e.key === "Backspace" && this.value.length === 0) {
+              front.focus();
+              var len = front.value.length;
+              if (len > 0) {
+                front.setSelectionRange(len, len);
+              }
+            }
+          });
+
+          dotWrap.style.pointerEvents = "auto";
+          dotWrap.addEventListener("click", function () {
+            back.focus();
+          });
+
+          syncBackDots();
+        }
+
+        function bindCardNoSegment(inputId, dotId) {
+          var input = document.getElementById(inputId);
+          var dot = document.getElementById(dotId);
+          if (!input) {
+            return;
+          }
+
+          syncCardNoDot(input);
+
+          input.addEventListener("input", function () {
+            this.value = this.value.replace(/[^0-9]/g, "").slice(0, 4);
+            syncCardNoDot(this);
+          });
+
+          if (dot) {
+            dot.style.pointerEvents = "auto";
+            dot.addEventListener("click", function () {
+              input.focus();
+            });
+          }
+        }
+
+        ["cardNo1", "cardNo4"].forEach(function (id) {
+          var input = document.getElementById(id);
+          if (!input) {
+            return;
+          }
+          input.addEventListener("input", function () {
+            this.value = this.value.replace(/[^0-9]/g, "").slice(0, 4);
+          });
+        });
+
+        bindCardNo2Partial();
+        bindCardNoSegment("cardNo3", "inputDot3");
+
+        document
+          .querySelectorAll(
+            ".card-number-wrap--mask-sync .card-no-segment",
+          )
+          .forEach(function (segment) {
+            if (segment.classList.contains("card-no-segment--partial-mask")) {
+              var front = segment.querySelector(".card-no-front-input");
+              var back = segment.querySelector(".card-no-back-input");
+              segment.addEventListener("click", function (e) {
+                var rect = segment.getBoundingClientRect();
+                var isBack = e.clientX - rect.left > rect.width / 2;
+                if (isBack && back) {
+                  back.focus();
+                } else if (front) {
+                  front.focus();
+                }
+              });
+              return;
+            }
+
+            var input = segment.querySelector(".birth-wrap");
+            if (!input) {
+              return;
+            }
+            segment.addEventListener("click", function () {
+              input.focus();
+            });
+          });
       });
 
       // 비밀번호 불일치 얼럿

@@ -14,6 +14,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <!-- [2026-06-23] renewal-v2 stylesheet -->
+    <link rel="stylesheet" href="../../../css/common_renewal_v2.css" />
+    <!-- //[2026-06-23] renewal-v2 stylesheet -->
     <link rel="stylesheet" href="../../../css/pay/transactionHistory.css" />
     <script src="../../../js/jquery.3.4.1.min.js"></script>
     <script src="../../../js/jquery-ui.js"></script>
@@ -22,15 +25,16 @@
 
   <body>
     <!-- wrap -->
-    <div id="wrap">
+    <!-- [2026-06-23] renewal-v2 적용 — 거래내역 (내역 없음) -->
+    <div id="wrap" class="renewal-v2">
       <!-- header -->
       <div id="header">
         <div class="container">
-          <div class="header-box">
-            <h2 class="page-title">거래내역</h2>
-            <button type="button" class="btn-close">
-              <i class="icon-close"></i>
+          <div class="header-box center">
+            <button type="button" class="btn-back js-change-btn left-0">
+              <i class="icon-back"></i>
             </button>
+            <h2 class="page-title">거래내역</h2>
           </div>
         </div>
       </div>
@@ -39,50 +43,69 @@
       <!-- content -->
       <div id="content">
         <!-- container -->
-        <div class="container transaction-history-container has-ad-wrap">
-          <div class="month-wrap">
-            <button type="button" class="prev-btn icon-arrow-left size-16 disabled">이전</button>
-            <button type="button" class="month-text" onclick="modalOpenSlide('modal-period')">7월</button>
-            <button type="button" class="next-btn icon-arrow-right size-16">다음</button>
+        <div
+          class="container trade-history-v2 transaction-history-container has-ad-wrap"
+        >
+          <!-- sec-history -->
+          <div class="sec-history">
+            <div class="month-wrap">
+              <button
+                type="button"
+                class="prev-btn icon-arrow-left size-16 disabled"
+              >
+                이전
+              </button>
+              <button
+                type="button"
+                class="month-text"
+                onclick="modalOpenSlide('modal-period')"
+              >
+                <span class="year-text">24년</span>
+                <span class="month-num">7월</span>
+                <i class="icon-arrow-down size-12" aria-hidden="true"></i>
+              </button>
+              <button type="button" class="next-btn icon-arrow-right size-16">
+                다음
+              </button>
+            </div>
+
+            <div class="trade-tab-wrap">
+              <ul class="tab-list">
+                <li>
+                  <button type="button" class="active">전체</button>
+                </li>
+                <li>
+                  <button type="button">머니</button>
+                </li>
+                <li>
+                  <button type="button">포인트</button>
+                </li>
+                <li>
+                  <button type="button">계좌</button>
+                </li>
+                <li>
+                  <button type="button">카드</button>
+                </li>
+              </ul>
+            </div>
+
+            <div class="empty-list">
+              <p>거래 내역이 없어요!</p>
+            </div>
           </div>
-          <div class="trade-tab-wrap">
-            <ul class="tab-list">
-              <li>
-                <button type="button" class="active">전체</button>
-              </li>
-              <li>
-                <button type="button">머니</button>
-              </li>
-              <li>
-                <button type="button">포인트</button>
-              </li>
-              <li>
-                <button type="button">계좌</button>
-              </li>
-              <li>
-                <button type="button">카드</button>
-              </li>
-              <li>
-                <button type="button">휴대폰</button>
-              </li>
-            </ul>
-          </div>
-          <div class="empty-list">
-            <p>거래 내역이 없어요!</p>
-          </div>
+          <!-- //sec-history -->
 
           <!-- 광고영역 -->
           <div class="ad-wrap">
-            <div class="container">
-            </div>
+            <div class="container"></div>
           </div>
           <!-- //광고영역 -->
-           
         </div>
         <!-- //container -->
       </div>
       <!-- //content -->
     </div>
+    <!-- //[2026-06-23] renewal-v2 적용 — 거래내역 (내역 없음) -->
     <!-- //wrap -->
 
     <!-- 기간 팝업 -->
@@ -97,13 +120,20 @@
           </div>
           <div class="modal-body">
             <div class="year-wrap">
-              <button type="button" class="prev-btn icon-arrow-left size-20 disabled">이전</button>
+              <button
+                type="button"
+                class="prev-btn icon-arrow-left size-20 disabled"
+              >
+                이전
+              </button>
               <span class="year-text">2024년</span>
-              <button type="button" class="next-btn icon-arrow-right size-20">다음</button>
+              <button type="button" class="next-btn icon-arrow-right size-20">
+                다음
+              </button>
             </div>
             <ul class="month-list-wrap">
               <li>
-                <button type="button" class="active">1월</button>
+                <button type="button">1월</button>
               </li>
               <li>
                 <button type="button">2월</button>
@@ -121,27 +151,24 @@
                 <button type="button">6월</button>
               </li>
               <li>
-                <button type="button">7월</button>
+                <button type="button" class="active">7월</button>
               </li>
               <li>
-                <button type="button">8월</button>
+                <button type="button" disabled>8월</button>
               </li>
               <li>
-                <button type="button">9월</button>
+                <button type="button" disabled>9월</button>
               </li>
               <li>
-                <button type="button">10월</button>
+                <button type="button" disabled>10월</button>
               </li>
               <li>
-                <button type="button">11월</button>
+                <button type="button" disabled>11월</button>
               </li>
               <li>
-                <button type="button">12월</button>
+                <button type="button" disabled>12월</button>
               </li>
             </ul>
-          </div>
-          <div class="btn-area">
-            <button type="button" class="btn" onclick="modalCloseSlide()">확인</button>
           </div>
         </div>
       </div>
@@ -149,20 +176,36 @@
     <!-- //기간 팝업 -->
   </body>
   <script>
-    $(function(){
-      $(".modal-period .month-list-wrap button").on("click", function(){
-        $(this).closest(".month-list-wrap").find("button").removeClass("active");
+    $(function () {
+      $(".modal-period .month-list-wrap button").on("click", function () {
+        $(this)
+          .closest(".month-list-wrap")
+          .find("button")
+          .removeClass("active");
         $(this).addClass("active");
       });
 
-      $(window).on("scroll", function(){
+      $(window).on("scroll", function () {
         var scrollTop = $(window).scrollTop();
-        var tradeTabOffset = $(".trade-tab-wrap").offset().top - 64;
-        if (scrollTop >= tradeTabOffset) {
-          $(".trade-tab-wrap").addClass("fixed");
-        } else {
-          $(".trade-tab-wrap").removeClass("fixed");
+        var tab = $(".trade-tab-wrap");
+        var tradeTabOffset = tab.hasClass("fixed")
+          ? tab.data("originalOffset")
+          : tab.offset().top;
+
+        if (typeof tab.data("originalOffset") === "undefined") {
+          tab.data("originalOffset", tradeTabOffset);
         }
+
+        if (scrollTop >= tradeTabOffset - 64) {
+          tab.addClass("fixed");
+        } else {
+          tab.removeClass("fixed");
+        }
+      });
+
+      $(".tab-list button").on("click", function () {
+        $(this).closest(".tab-list").find("button").removeClass("active");
+        $(this).addClass("active");
       });
     });
   </script>

@@ -1,0 +1,195 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   카드 3D 회전
+   - 좌우 드래그 시 Y축 회전, 놓으면 자동 회전
+   - 앞·뒷면 + 측면 4면으로 두께감 표현
+   - 카드 크기(110x174)·두께(3px) 등 수치는 레퍼런스 기준값.
+     실제 적용 시 프로젝트 디자인 가이드 수치로 교체 필요
+   ========================================================================== */
+
+:root {
+  --card-w: 110px;
+  --card-h: 174px;
+  --card-depth: 3px;
+  --card-radius: 6px;
+  --card-edge-front: #1a2d6b;
+  --card-edge-back: #1e2329;
+}
+
+/* 데모 레이아웃 */
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.card-flip-area {
+  position: relative;
+}
+
+/* 스크린 리더 전용 텍스트 */
+.blind {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0  0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   1) 원근감 씬
+   -------------------------------------------------------------------------- */
+.card-scene {
+  position: relative;
+  z-index: 20;
+  width: var(--card-w);
+  height: var(--card-h);
+  margin: 0 auto;
+  perspective: 800px;
+  touch-action: none;
+  cursor: grab;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.card-scene.is-dragging {
+  cursor: grabbing;
+}
+
+/* --------------------------------------------------------------------------
+   2) 회전 대상 (JS가 rotateY 갱신)
+   -------------------------------------------------------------------------- */
+.card-3d {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.card-body {
+  position: relative;
+  width: var(--card-w);
+  height: var(--card-h);
+  transform-style: preserve-3d;
+}
+
+/* --------------------------------------------------------------------------
+   3) 앞·뒷면
+   -------------------------------------------------------------------------- */
+.card-face {
+  position: absolute;
+  inset: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--card-w);
+  height: var(--card-h);
+  margin: 0;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card-face.front {
+  transform: translateZ(calc(var(--card-depth) / 2));
+}
+
+.card-face.back {
+  transform: rotateY(180deg) translateZ(calc(var(--card-depth) / 2));
+}
+
+/* --------------------------------------------------------------------------
+   4) 두께 면 (측면 4면)
+   -------------------------------------------------------------------------- */
+.card-edge {
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* 좌·우 측면 */
+.card-edge--right,
+.card-edge--left {
+  top: 0;
+  left: calc(var(--card-w) / 2 - var(--card-depth) / 2);
+  width: var(--card-depth);
+  height: var(--card-h);
+}
+
+.card-edge--right {
+  transform: rotateY(90deg) translateZ(calc(var(--card-w) / 2));
+  background: linear-gradient(180deg, var(--card-edge-front) 0%, #15245a 50%, var(--card-edge-front) 100%);
+}
+
+.card-edge--left {
+  transform: rotateY(-90deg) translateZ(calc(var(--card-w) / 2));
+  background: linear-gradient(180deg, var(--card-edge-back) 0%, #15191e 50%, var(--card-edge-back) 100%);
+}
+
+/* 상·하 측면 */
+.card-edge--top,
+.card-edge--bottom {
+  top: calc(var(--card-h) / 2 - var(--card-depth) / 2);
+  left: 0;
+  width: var(--card-w);
+  height: var(--card-depth);
+}
+
+.card-edge--top {
+  transform: rotateX(90deg) translateZ(calc(var(--card-h) / 2));
+  background: linear-gradient(90deg, var(--card-edge-back) 0%, var(--card-edge-front) 50%, var(--card-edge-back) 100%);
+}
+
+.card-edge--bottom {
+  transform: rotateX(-90deg) translateZ(calc(var(--card-h) / 2));
+  background: linear-gradient(90deg, var(--card-edge-front) 0%, #15245a 50%, var(--card-edge-front) 100%);
+}
+
+/* --------------------------------------------------------------------------
+   카드 이미지 플레이스홀더 (실제 이미지 적용 시 제거)
+   -------------------------------------------------------------------------- */
+.card-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--card-w);
+  height: var(--card-h);
+  border-radius: var(--card-radius);
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-placeholder.is-front {
+  background: linear-gradient(135deg, #4b7bec, #1e3799);
+}
+
+.card-placeholder.is-back {
+  background: linear-gradient(135deg, #57606f, #2f3542);
+}
+
+/* 실제 이미지 사용 시 (참고용)
+.card-face > img {
+  display: block;
+  width: var(--card-w);
+  height: var(--card-h);
+  border-radius: var(--card-radius);
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+}
+*/
+
+/* --------------------------------------------------------------------------
+   접근성 : 모션 감소 설정 시 자동 회전 비활성화 (JS에서도 동일 처리)
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .card-3d {
+    will-change: auto;
+  }
+}

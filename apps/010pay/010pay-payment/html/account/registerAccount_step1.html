@@ -8,6 +8,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
         <link rel="stylesheet" href="../../css/jquery-ui.css" />
         <link rel="stylesheet" href="../../css/common_renewal.css" />
+        <!-- [2026-06-17] renewal-v2 stylesheet -->
+        <link rel="stylesheet" href="../../css/common_renewal_v2.css" />
+        <!-- //[2026-06-17] renewal-v2 stylesheet -->
+        <link rel="stylesheet" href="../../css/account/registerAccount.css" />
         <script src="../../js/jquery.3.4.1.min.js"></script>
         <script src="../../js/jquery-ui.js"></script>
         <script src="../../js/design_renewal.js" defer="defer"></script>
@@ -17,15 +21,16 @@
 
     <body>
         <!-- wrap -->
-        <div id="wrap">
+        <!-- [2026-06-17] renewal-v2 적용 -->
+        <div id="wrap" class="renewal-v2">
             <!-- header -->
             <div id="header">
                 <div class="container">
                     <div class="header-box">
-                        <h2 class="page-title">계좌 등록</h2>
-                        <button type="button" class="btn-close js-change-btn" data-message="창을 닫으시면 결제가 취소됩니다.<br>종료하시겠습니까?" data-cancel="취소" data-confirm="확인">
-                            <i class="icon-close"></i>
+                        <button type="button" class="btn-back js-change-btn left-0" data-message="창을 닫으시면 결제가 취소됩니다.<br>종료하시겠습니까?" data-cancel="취소" data-confirm="확인">
+                            <i class="icon-back"></i>
                         </button>
+                        <h2 class="page-title">계좌 등록</h2>
                     </div>
                 </div>
             </div>
@@ -34,7 +39,7 @@
             <!-- content -->
             <div id="content">
                 <!-- container -->
-                <div class="container">
+                <div class="container register-account-container">
                     <!-- headline -->
                     <div class="headline pt-0 pt-headline">
                         <p>본인 명의 계좌번호를 입력해 주세요</p>
@@ -43,18 +48,19 @@
 
                     <!-- section -->
                     <div class="section">
-                        <ul class="form-type step-list">
-                            <li class="on">
-                                <div class="select-box">
-                                    <button type="button" id="chkSelectBtn" class="label" onclick="modalOpenSlide('modal-select-bank')" data-target="modal-select-bank">은행</button>
-                                    <span class="floating-label">은행</span>
+                        <ul class="form-type register-account step-list">
+                            <li class="field-account">
+                                <label class="label" for="accountNumber">계좌 번호</label>
+                                <div class="input-container type-line">
+                                    <input type="number" class="custom-input" placeholder="계좌번호 입력" id="accountNumber" />
+                                    <button type="button" class="icon icon-del js-text-del"></button>
                                 </div>
                             </li>
-                            <li class="">
-                                <div class="input-container label-n">
-                                    <input type="number" class="custom-input" placeholder=" " id="accountNumber" />
-                                    <label for="accountNumber" class="floating-label">계좌 번호</label>
-                                    <button type="button" class="icon icon-del js-text-del"></button>
+                            <li class="on field-bank">
+                                <label class="label" for="chkSelectBtn">은행</label>
+                                <div class="select-box select-input type-line">
+                                    <button type="button" id="chkSelectBtn" class="label" onclick="modalOpenSlide('modal-select-bank')" data-target="modal-select-bank">은행 선택</button>
+                                    <i class="icon-arrow-down-gray" aria-hidden="true"></i>
                                 </div>
                             </li>
                         </ul>
@@ -78,6 +84,7 @@
             </div>
             <!-- //content -->
         </div>
+        <!-- //[2026-06-17] renewal-v2 적용 -->
         <!-- //wrap -->
 
         <!-- loading -->
@@ -135,7 +142,7 @@
                           name="checkbox_all2"
                           id="checkbox_all2"
                         />
-                        <label for="checkbox_all2">전체 동의</label>
+                        <label for="checkbox_all2">모두 동의 합니다.</label>
                       </span>
                       <!-- 체크, 접힌상태면 open 클래스 제거 -->
                       <button type="button" class="btn-toggle open"></button>
@@ -198,7 +205,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-head">
-                        <p class="modal-head-title">은행 선택</p>
+                        <p class="modal-head-title">은행을 선택해주세요</p>
                         <button type="button" class="btn btn-close js-modal-close"><i class="icon-close"></i></button>
                     </div>
                     <div class="modal-body">
@@ -551,10 +558,12 @@
 
             // id가 modal-select-bank인 모달 내의 option-item 클릭 이벤트 추가
             $("#modal-select-bank .option-item").on("click", function () {
-                // id가 accountNumber인 요소로 포커스 이동
+                // 계좌 번호 입력창을 은행 위에 노출
+                $(".field-account").addClass("on");
                 $("#accountNumber").focus();
             });
 
+            // 진입 시 은행 선택 모달 오픈
             modalOpenSlide("modal-select-bank");
         });
     </script>

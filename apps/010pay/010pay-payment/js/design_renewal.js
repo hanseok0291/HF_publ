@@ -387,10 +387,33 @@ $(function () {
 
 // 레이아웃, 토글
 $(function () {
+  // 하단 fixed + 본문 스크롤 — content-foot-fixed 레이아웃
+  function updateContentScrollPadding() {
+    var $layout = $("#content.content-foot-fixed");
+    if (!$layout.length) {
+      return;
+    }
+
+    var $foot = $layout.find(".bottom-area");
+    var $scroll = $layout.find(".content-scroll");
+
+    if ($foot.length && $scroll.length) {
+      $scroll.css("padding-bottom", $foot.outerHeight(true));
+    }
+  }
+  window.updateContentScrollPadding = updateContentScrollPadding;
+
   // 짧은 화면 버튼 하단 고정
   function fixFootBtn() {
     // requestAnimationFrame으로 DOM 렌더링 완료 후 실행
     requestAnimationFrame(function () {
+      // content-foot-fixed — 항상 하단 fixed + 본문 스크롤
+      if ($("#content.content-foot-fixed").length) {
+        $("#content.content-foot-fixed .bottom-area").addClass("fixed");
+        updateContentScrollPadding();
+        return;
+      }
+
       // visualViewport API가 있으면 사용 (모바일에서 더 정확)
       var winHeight = window.visualViewport 
         ? window.visualViewport.height 
@@ -404,6 +427,9 @@ $(function () {
         $(".bottom-area").addClass("fixed");
         $("#content.newType .bottom-area").removeClass("fixed");
         $(".layout-payment .bottom-area").removeClass("fixed");
+        /* 계좌 충전 v2 — wrap flex + visualViewport 높이 연동 */
+        $(".bottom-area.charge-account-v2-foot").removeClass("fixed");
+        $(".bottom-area.withdrawal-v2-foot").removeClass("fixed");
       } else {
         $(".bottom-area").removeClass("fixed");
       }
@@ -420,6 +446,11 @@ $(function () {
 
   // 하단 고정 영역 여백 확보
   function wrapPadding() {
+    if ($("#content.content-foot-fixed").length) {
+      updateContentScrollPadding();
+      return;
+    }
+
     var fixFoot = $(".bottom-area.fixed:visible");
     const matchesMediaQuery = window.matchMedia(
       "(max-width:999px) and (orientation:landscape)"

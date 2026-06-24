@@ -3067,6 +3067,9 @@ body:not(.custom-pass) .modal:not(.modal-slide) .modal-footer {
 .modal .modal-body .note-wrap {
   padding-bottom: 20px;
 }
+.modal .modal-body:has(+ .modal-footer) .note-wrap {
+  padding-bottom: 0;
+}
 .modal .modal-body .note-wrap li {
   position: relative;
   margin-bottom: 8px;
@@ -3838,6 +3841,25 @@ body:not(.custom-pass) .round-button-modal:not(.modal-slide) .modal-footer {
 #content.newType .bottom-area {
   position: relative !important;
   margin-top: auto;
+}
+
+/* 하단 fixed + 본문 스크롤 — design_renewal.js fixFootBtn 연동
+ * #content.content-foot-fixed > .content-scroll + .bottom-area
+ */
+#content.content-foot-fixed {
+  display: flex;
+  flex-direction: column;
+  height: calc(var(--vh, 1vh) * 100 - 56px);
+  min-height: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+#content.content-foot-fixed .content-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .section,
@@ -5410,6 +5432,7 @@ input[type="tel"].custom-input {
 }
 .custom-input.focus:not(:placeholder-shown) ~ .icon-del {
   display: block;
+  z-index: 999;
 }
 .custom-input:not(:placeholder-shown) ~ .icon-del {
   display: none;
@@ -5839,7 +5862,7 @@ em.dash {
   background: #a0d70b;
 }
 .input-mark .mark.error i.on {
-  background: #fc0626;
+  background: #ff4242;
 }
 #passwordSet .password-wrap .input-mark .btn {
   font-size: 13px;
@@ -5976,7 +5999,7 @@ em.dash {
   /* 250526 스타일 수정 */
 }
 #passwordSet .password-wrap .title .error-count {
-  color: #fc0626;
+  color: #ff4242;
 }
 #passwordSet .password-wrap .modal-step2 .title {
   margin-top: 150px;
@@ -5999,7 +6022,7 @@ em.dash {
   line-height: 18.2px;
   letter-spacing: -0.02em;
   text-align: center;
-  color: #fc0626;
+  color: #ff4242;
   margin-top: 16px;
 }
 #passwordSet .btn-bio {

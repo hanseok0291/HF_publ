@@ -1,0 +1,672 @@
+@charset "UTF-8";
+
+/**
+ * ====================== common_renewal_v2.css ======================
+ * 리뉴얼 디자인 시스템 — #wrap.renewal-v2 스코프 전용
+ *
+ * load 순서: common_renewal.css → common_renewal_v2.css → [페이지].css
+ * v2 적용 페이지만 link 추가. wrap에 renewal-v2 클래스 필수.
+ *
+ * Figma To-be / As-is: 비교 보드 기준 왼쪽 = To-be, 오른쪽 = As-is
+ * 모달(#commonAlert 등)은 #wrap 밖 → body:has(#wrap.renewal-v2) 로 스코프 (popup·modal-slide footer 포함)
+ * 최초 작성: 2026-06-17
+ * ============================================================
+ * TABLE OF INDEX
+ * - #TOKENS
+ * - #COMPONENT
+ * - #ICON
+ * - #MODAL-SLIDE-FOOTER
+ * - #MODAL-SLIDE-TITLE
+ * - #MODAL-CHANGE-INFO
+ * - #MODAL-SLIDE-AGREE
+ * - #AGREE-FULL-PAGE
+ * - #ARS
+ * - #PASSWORD-SET
+ * ============================================================
+ */
+
+/* #TOKENS
+------------------------------------------------------------*/
+/* [2026-06-17] renewal-v2 #TOKENS — Figma To-be 컬러·radius */
+body:has(#wrap.renewal-v2),
+.renewal-v2 {
+  /* 텍스트 */
+  --color-text-primary: #151515;
+  --color-text-secondary: #575757;
+  --color-text-muted: #6b7684;
+  --color-text-label: #4e5968;
+  --color-text-04: #454545;
+  --color-text-05: #888888;
+  --color-text-on-primary: #ffffff;
+
+  /* 배경 */
+  --color-bg-base: #ffffff;
+  --color-bg-subtle: #f6f6f9;
+  --color-bg-muted: #f2f2f2;
+
+  /* 브랜드·강조 (To-be) */
+  --color-brand: #ff6114;
+  --color-primary: #ff6114;
+  --color-palette-green: #7cac04;
+  /* As-is 보조 (블랙 CTA + 라임 텍스트 등) */
+  --color-accent-lime: #e0ff63;
+  --color-brand-dark: #151515;
+
+  --color-link: #3182f6;
+  --color-error: #f04806;
+
+  /* 상태 */
+  --color-status-danger: #ff4242;
+  --color-status-positive: #187d3a;
+  --color-status-disabled: #d1d1d5;
+
+  /* 버튼 (To-be: primary = 오렌지) */
+  --color-button-primary-bg: #ff6114;
+  --color-button-primary-text: #ffffff;
+  --color-button-tertiary-bg: #ffffff;
+  --color-button-secondary-bg: #f6f6f9;
+
+  /* 테두리 */
+  --color-border-strong: #151515;
+  --color-border-default: #e5e5e8;
+  --color-border-muted: #d4d4d4;
+
+  /* 탭 Tabs-Bar (To-be: 활성 오렌지 + 흰 텍스트) */
+  --color-tab-track: rgba(229, 229, 232, 0.6);
+  --color-tab-active-bg: #ff6114;
+  --color-tab-active-text: #ffffff;
+  --color-tab-inactive-text: #151515;
+
+  /* 모달 (Modal / popup / horizontal) */
+  --radius-modal: 16px;
+  --radius-modal-btn: 12px;
+}
+/* //[2026-06-17] renewal-v2 #TOKENS */
+
+/* [2026-06-17] renewal-v2 #COMPONENT — tab, btn 컬러 */
+.renewal-v2 #header .page-title {
+  color: var(--color-text-primary);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+.renewal-v2 .tab {
+  background-color: var(--color-tab-track);
+}
+
+.renewal-v2 .tab button {
+  background-color: transparent;
+  color: var(--color-tab-inactive-text);
+}
+
+.renewal-v2 .tab button.active {
+  background-color: var(--color-tab-active-bg);
+  color: var(--color-tab-active-text);
+}
+
+.renewal-v2 .btn {
+  border-color: var(--color-button-primary-bg);
+  background-color: var(--color-button-primary-bg);
+  color: var(--color-button-primary-text);
+}
+
+.renewal-v2 .btn-primary {
+  border-color: var(--color-button-primary-bg);
+  background-color: var(--color-button-primary-bg);
+  color: var(--color-button-primary-text);
+}
+
+.renewal-v2 .btn.tertiary {
+  border-color: var(--color-border-default);
+  background-color: var(--color-button-tertiary-bg);
+  color: var(--color-text-primary);
+}
+
+.renewal-v2 .btn:disabled,
+.renewal-v2 .btn.disabled {
+  border-color: var(--color-status-disabled);
+  background-color: var(--color-status-disabled);
+  color: var(--color-button-primary-text);
+}
+/* //[2026-06-17] renewal-v2 #COMPONENT — tab, btn 컬러 */
+
+/* [2026-06-17] renewal-v2 공통 모달 — popup 취소/확인 컬러·radius */
+body:has(#wrap.renewal-v2) .modal:not(.modal-slide) .modal-content {
+  border-radius: var(--radius-modal);
+}
+
+body:has(#wrap.renewal-v2) .modal:not(.modal-slide) .modal-footer .btn {
+  border-radius: var(--radius-modal-btn);
+}
+
+body:has(#wrap.renewal-v2) .modal:not(.modal-slide) .modal-footer .btn.btn-cancel {
+  border: 1px solid var(--color-border-default);
+  background-color: var(--color-button-tertiary-bg);
+  color: var(--color-text-primary);
+}
+
+body:has(#wrap.renewal-v2) .modal:not(.modal-slide) .modal-footer .btn.btn-confirm {
+  border: 1px solid var(--color-button-primary-bg);
+  background-color: var(--color-button-primary-bg);
+  color: var(--color-button-primary-text);
+}
+/* //[2026-06-17] renewal-v2 공통 모달 — popup 취소/확인 컬러·radius */
+
+/* #MODAL-SLIDE-FOOTER
+------------------------------------------------------------*/
+/* [2026-06-17] renewal-v2 — modal-slide footer CTA (바텀시트)
+ * As-is: #151515 + 라임/흰 → To-be: 오렌지 primary / tertiary cancel
+ * #wrap 밖 모달 → body:has(#wrap.renewal-v2) 스코프
+ */
+body:has(#wrap.renewal-v2) .modal-slide .modal-footer .btn,
+body:has(#wrap.renewal-v2) .modal-slide.type-title .btn-confirm {
+  border-radius: var(--radius-modal-btn);
+}
+
+body:has(#wrap.renewal-v2) .modal-slide .modal-footer .btn:not(.btn-cancel) {
+  border: 1px solid var(--color-button-primary-bg);
+  background-color: var(--color-button-primary-bg);
+  color: var(--color-button-primary-text);
+}
+
+body:has(#wrap.renewal-v2) .modal-slide .modal-footer .btn-cancel,
+body:has(#wrap.renewal-v2) .modal-slide .modal-footer.type2 .btn-cancel {
+  border: 1px solid var(--color-border-default);
+  background-color: var(--color-button-tertiary-bg);
+  color: var(--color-text-primary);
+}
+
+body:has(#wrap.renewal-v2) .modal-slide .modal-footer .btn:disabled,
+body:has(#wrap.renewal-v2) .modal-slide .modal-footer .btn.disabled,
+body:has(#wrap.renewal-v2) .modal-slide.exStyle .modal-footer .btn:disabled {
+  border-color: var(--color-status-disabled);
+  background-color: var(--color-status-disabled);
+  color: var(--color-button-primary-text);
+}
+
+body:has(#wrap.renewal-v2) .modal-slide.type-title .btn-confirm:not(.active) {
+  border: 1px solid var(--color-status-disabled);
+  background-color: var(--color-status-disabled);
+  color: var(--color-button-primary-text);
+  cursor: not-allowed;
+}
+
+body:has(#wrap.renewal-v2) .modal-slide.type-title .btn-confirm:disabled,
+body:has(#wrap.renewal-v2) .modal-slide.type-title .btn-confirm.disabled {
+  border-color: var(--color-status-disabled);
+  background-color: var(--color-status-disabled);
+  color: var(--color-button-primary-text);
+}
+
+body:has(#wrap.renewal-v2) .modal-slide.type-title .btn-confirm.active {
+  border: 1px solid var(--color-button-primary-bg);
+  background-color: var(--color-button-primary-bg);
+  color: var(--color-button-primary-text);
+  cursor: pointer;
+}
+/* //[2026-06-17] renewal-v2 — modal-slide footer CTA */
+/* #MODAL-SLIDE-FOOTER END */
+
+/* #MODAL-SLIDE-TITLE
+------------------------------------------------------------*/
+/* [2026-06-17] renewal-v2 — modal-slide.type-title Sheet-header 타이틀
+ * #wrap 밖 모달 → body:has(#wrap.renewal-v2) 스코프
+ * Figma Headline 2/Bold — 18px, lh 1.4, ls -0.03em
+ */
+body:has(#wrap.renewal-v2) .modal-slide.type-title .modal-head .modal-head-title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+}
+/* //[2026-06-17] renewal-v2 — modal-slide.type-title Sheet-header 타이틀 */
+/* #MODAL-SLIDE-TITLE END */
+
+/* #MODAL-CHANGE-INFO
+------------------------------------------------------------*/
+/* [2026-06-17] renewal-v2 — 카드 정보 변경(.change-info) 안내 문구
+ * Figma Body 3/Regular — 14px, lh 1.4, ls -0.02em, #454545
+ */
+body:has(#wrap.renewal-v2) .modal.change-info .modal-body .note-wrap li {
+  color: var(--color-text-04);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+body:has(#wrap.renewal-v2) .modal.change-info .modal-body .note-wrap li b,
+body:has(#wrap.renewal-v2) .modal.change-info .modal-body .note-wrap li strong {
+  font-weight: 700;
+}
+
+body:has(#wrap.renewal-v2) .modal.change-info.type-title .gray-box-wrap {
+  border-radius: 12px;
+  padding: 16px;
+}
+
+body:has(#wrap.renewal-v2) .modal.change-info.type-title .gray-box-wrap li {
+  gap: 8px;
+  align-items: flex-start;
+  padding-left: 0;
+}
+
+body:has(#wrap.renewal-v2) .modal.change-info.type-title .gray-box-wrap li::before {
+  flex-shrink: 0;
+  position: static;
+  width: 4px;
+  height: 4px;
+  margin-top: 7px;
+}
+
+body:has(#wrap.renewal-v2) .modal.change-info.type-title .gray-box-wrap li p {
+  width: auto;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-04);
+}
+
+body:has(#wrap.renewal-v2) .modal.change-info.type-title .gray-box-wrap li p:first-of-type {
+  flex-shrink: 0;
+  width: 110px;
+}
+
+body:has(#wrap.renewal-v2) .modal.change-info.type-title .gray-box-wrap li p:last-of-type {
+  flex: 1 1 0;
+  min-width: 0;
+  font-weight: 700;
+}
+
+body:has(#wrap.renewal-v2) .modal .modal-body .btn-wrap {
+  height: auto;
+  padding: 20px 0;
+}
+
+body:has(#wrap.renewal-v2) .modal .modal-body .btn-wrap .btn:not(.btn-add) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 56px;
+  border-radius: var(--radius-modal-btn);
+  border-color: var(--color-button-primary-bg);
+  background-color: var(--color-button-primary-bg);
+  color: var(--color-button-primary-text);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+/* //[2026-06-17] renewal-v2 — 카드 정보 변경(.change-info) · modal-body btn-wrap */
+/* #MODAL-CHANGE-INFO END */
+
+/* [2026-06-17] renewal-v2 #ICON — images/common/renewal-v2/
+ * Figma Export 후 .renewal-v2 .icon-* { background-image: url(...) } 형태로 추가
+ * HTML·클래스명 변경 없음 — background-image url만 v2로 교체
+ */
+.renewal-v2 .icon-back {
+  background-image: url("../images/common/renewal-v2/icon-arrow-left.svg");
+}
+/* //[2026-06-17] renewal-v2 #ICON */
+
+/* [2026-06-17] renewal-v2 #MODAL-SLIDE-AGREE — .modal-agree
+ * HTML·JS·체크 접힘 동작·아이콘 에셋은 현행 유지 (아이콘은 수동 교체)
+ * Figma privacy/bottomsheet/type2 — CSS: 타이포·구분선·CTA 컬러·radius
+ * 타이틀(.modal-head-title)은 #MODAL-SLIDE-TITLE 공통 규칙 적용
+ */
+body:has(#wrap.renewal-v2) .modal-agree .check-all.top.open,
+body:has(#wrap.renewal-v2) .modal-agree .terms-list-box.check-all-box .check-all.open {
+  border-bottom-color: var(--color-bg-subtle);
+}
+
+body:has(#wrap.renewal-v2) .modal-agree .check-all label {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+/* 전체 동의 체크 on — images/common/renewal-v2/icon-checkbox-on.svg 수동 추가 */
+body:has(#wrap.renewal-v2) .modal-agree .checkbox > input:checked + label:before {
+  background-image: url("../images/common/renewal-v2/icon-check-orange-on.svg");
+}
+
+body:has(#wrap.renewal-v2) .modal-agree .checkbox.child > input + label {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-04);
+}
+
+body:has(#wrap.renewal-v2) .modal-agree .checkbox.child > input:checked + label:before {
+  background-image: url("../images/common/icon-check-primary.svg");
+}
+
+body:has(#wrap.renewal-v2) .modal-agree .terms-list li {
+  padding: 8px 0;
+}
+
+body:has(#wrap.renewal-v2) .modal-agree .modal-footer {
+  padding: 20px 16px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, var(--color-bg-base) 50%);
+}
+
+/* btn-confirm 컬러·radius → #MODAL-SLIDE-FOOTER 공통 규칙 */
+/* //[2026-06-17] renewal-v2 #MODAL-SLIDE-AGREE */
+
+/* [2026-06-17] renewal-v2 #AGREE-FULL-PAGE — registerCard_step1 등 약관 풀페이지
+ * Figma 카드등록 34 — HTML·JS·그룹 토글 구조는 현행 유지
+ */
+.renewal-v2 #content.is-terms-page .headline.pt-0 > p {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+}
+
+.renewal-v2 .agree-full-wrap .check-all.top {
+  background-color: var(--color-bg-subtle);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.renewal-v2 .agree-full-wrap .check-all-box .checkbox > input + label {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+.renewal-v2 .agree-full-wrap .check-all.top .sub-title {
+  padding-left: 32px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-04);
+  margin-top: 4px;
+}
+
+.renewal-v2 .agree-full-wrap .terms-wrap {
+  margin-top: 16px;
+}
+
+.renewal-v2 .agree-full-wrap .terms-wrap .check-all .checkbox > input + label {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-04);
+}
+
+.renewal-v2 .agree-full-wrap .terms-wrap .check-all .btn-toggle {
+  width: 16px;
+  height: 16px;
+}
+
+.renewal-v2 .agree-full-wrap .terms-wrap .checkbox-block-group {
+  padding: 8px 16px;
+}
+
+.renewal-v2 .agree-full-wrap .terms-wrap .checkbox.child > input + label {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-04);
+}
+
+/* 체크 on — 24px 라운드(전체·그룹) / child 개별 약관
+ * renewal-v2/icon-check-orange-on.svg 수동 추가
+ */
+.renewal-v2 .agree-full-wrap .checkbox:not(.child) > input:checked + label:before {
+  background: url("../images/common/renewal-v2/icon-check-orange-on.svg") no-repeat
+    center / contain;
+}
+
+.renewal-v2 .agree-full-wrap .checkbox.child > input:checked + label:before {
+  background: url("../images/common/icon-check-primary.svg") no-repeat center / contain;
+}
+
+.renewal-v2 .bottom-area .btn {
+  border-radius: var(--radius-modal-btn);
+}
+/* //[2026-06-17] renewal-v2 #AGREE-FULL-PAGE */
+
+/* [2026-06-17] renewal-v2 #ARS — 계좌등록 step2 ARS 인증 영역
+ * Figma ars (2685:52950) — 타이포·컬러·radius
+ */
+.renewal-v2 .gray-box.ars-box {
+  border: 1px solid var(--color-border-default);
+  border-radius: 12px;
+  background-color: var(--color-bg-base);
+}
+
+.renewal-v2 .gray-box.ars-box .ars-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 16px 32px;
+}
+
+.renewal-v2 .gray-box.ars-box .ars-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+.renewal-v2 .gray-box.ars-box .ars-text-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.renewal-v2 .gray-box.ars-box .instruction {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-04);
+  text-align: center;
+}
+
+.renewal-v2 .gray-box.ars-box .verification-code {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+.renewal-v2 .gray-box.ars-box .call-button,
+.renewal-v2 .gray-box.ars-box .pass-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  max-width: none;
+  height: 44px;
+  margin: 0;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--color-button-primary-bg);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-button-primary-text);
+}
+
+.renewal-v2 .gray-box.ars-box .call-button:disabled,
+.renewal-v2 .gray-box.ars-box .pass-button:disabled {
+  background-color: var(--color-status-disabled);
+  color: var(--color-button-primary-text);
+  pointer-events: none;
+}
+
+/* [2026-06-17] renewal-v2 #ARS-BOTTOM — step2 하단 안내·버튼
+ * Figma 계좌등록_ARS인증 bottom (2685:53274 · 2685:53249)
+ */
+.renewal-v2 .bottom-area .bottom-guide-text {
+  margin: 0;
+  padding: 0 16px 8px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-05);
+  text-align: center;
+}
+
+.renewal-v2 .bottom-area:has(.bottom-guide-text) {
+  padding-top: 0;
+  background: linear-gradient(0deg, var(--color-bg-base) 50%, rgba(255, 255, 255, 0) 100%);
+}
+
+.renewal-v2 .bottom-area:has(.bottom-guide-text) .container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+/* //[2026-06-17] renewal-v2 #ARS-BOTTOM */
+/* //[2026-06-17] renewal-v2 #ARS */
+
+/* [2026-06-17] renewal-v2 #PASSWORD-SET — registerAccount_step3 pin
+ * Figma pin (3426:29000) — 타이포·간격·dot 컬러만 (키패드·체크 아이콘 이미지 유지)
+ */
+.renewal-v2 #passwordSet .password-wrap {
+  padding-top: 60px;
+}
+
+.renewal-v2 #passwordSet .password-wrap .title {
+  margin-top: 0;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+}
+
+.renewal-v2 #passwordSet .input-mark {
+  margin-top: 24px;
+}
+
+.renewal-v2 #passwordSet .input-mark .mark i {
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
+  background-color: #e5e5e8;
+}
+
+.renewal-v2 #passwordSet .input-mark .mark i:first-child {
+  margin-left: 0;
+}
+
+.renewal-v2 #passwordSet .input-mark .mark i.on {
+  background-color: var(--color-primary);
+}
+
+.renewal-v2 #passwordSet .noti-text {
+  margin-top: 8px;
+}
+
+.renewal-v2 #passwordSet .input-mark .mark.error i.on {
+  background-color: var(--color-status-danger);
+}
+
+.renewal-v2 #passwordSet .checkbox.bio {
+  margin-bottom: 32px;
+}
+
+.renewal-v2 #passwordSet .checkbox.bio > input + label {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-04);
+}
+
+/* 생체 인증 체크 on — images/common/renewal-v2/icon-check-orange-on.svg */
+.renewal-v2 #passwordSet .checkbox.bio > input:checked + label:before {
+  background: url("../images/common/renewal-v2/icon-check-orange-on.svg") no-repeat
+    center / contain;
+}
+
+/* Figma Button/secondary (3426:28797) — 비밀번호를 몰라요 */
+.renewal-v2 #passwordSet .input-mark .btn.btn-secondary {
+  width: auto;
+  height: auto;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-button-secondary-bg);
+  color: var(--color-text-primary);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+@media all and (max-width: 375px) {
+  .renewal-v2 #passwordSet .input-mark {
+    margin-top: 24px;
+  }
+
+  .renewal-v2 #passwordSet .password-wrap {
+    padding-top: 60px;
+  }
+}
+
+@media all and (max-width: 374px) {
+  .renewal-v2 #passwordSet .input-mark {
+    margin-top: 24px;
+  }
+
+  .renewal-v2 #passwordSet .password-wrap {
+    padding-top: 60px;
+  }
+}
+.renewal-v2 #passwordSet .password-wrap .mark-box {
+  height: 333px;
+}
+/* //[2026-06-17] renewal-v2 #PASSWORD-SET */
+
+.modal .modal-body .note-wrap {
+  word-break: keep-all;
+}
+
+/* #MODAL-SELECT-ACCOUNT */
+body:has(#wrap.renewal-v2) .modal-slide .account-list .img-bank {
+  
+}
+
+body:has(#wrap.renewal-v2) .modal-slide .account-list .img-bank > img {
+  width: 48px;
+  height: 48px;
+}
+
+.renewal-v2 .is-terms-page .agree-full-wrap .terms-wrap .check-all .checkbox > input + label {
+  font-size: 16px;
+  color: #151515;
+  font-weight: 700;
+}

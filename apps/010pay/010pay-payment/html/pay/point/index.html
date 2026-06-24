@@ -14,6 +14,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <!-- [2026-06-17] renewal-v2 stylesheet -->
+    <link rel="stylesheet" href="../../../css/common_renewal_v2.css" />
+    <!-- //[2026-06-17] renewal-v2 stylesheet -->
     <link rel="stylesheet" href="../../../css/pay/transactionHistory.css" />
     <script src="../../../js/jquery.3.4.1.min.js"></script>
     <script src="../../../js/jquery-ui.js"></script>
@@ -23,7 +26,8 @@
 
   <body>
     <!-- wrap -->
-    <div id="wrap">
+    <!-- [2026-06-17] renewal-v2 적용 — 포인트 상세 (Figma 포인트_상세) -->
+    <div id="wrap" class="renewal-v2">
       <!-- header -->
       <div id="header">
         <div class="container">
@@ -31,7 +35,6 @@
             <button type="button" class="btn-back js-change-btn left-0">
               <i class="icon-back"></i>
             </button>
-            <h2 class="page-title">포인트</h2>
             <button
               type="button"
               class="right-0"
@@ -47,176 +50,160 @@
       <!-- content -->
       <div id="content">
         <!-- container -->
-        <div
-          class="container money-container transaction-history-container point-container"
-        >
-          <div class="top-contents-wrap">
-            <div class="top-contents-box">
-              <div class="top-text-wrap">
+        <div class="container point-v2 transaction-history-container">
+          <!-- sec-balance -->
+          <div class="sec-balance">
+            <div class="sec-summary">
+              <div class="balance-header-row">
+                <div class="balance-info">
+                  <span class="balance-label">포인트</span>
+                  <p class="summary-amount">1,000원</p>
+                </div>
                 <button
                   type="button"
-                  class="money-amount"
-                  onclick="modalOpenSlide('modal-money-info')"
+                  class="btn-expire-inquiry"
+                  onclick="modalOpenSlide('modal-unrecovered-info')"
                 >
-                  100,000원
+                  소멸 예정 조회
                 </button>
               </div>
-              <div class="info-text-wrap green">
-                <dl>
-                  <dt>소멸 예정</dt>
-                  <dd>
-                    <button
-                      type="button"
-                      onclick="modalOpenSlide('modal-disappear-info')"
-                    >
-                      확인 <i class="icon-arrow-right size-16"></i>
-                    </button>
-                  </dd>
-                </dl>
-                <dl>
-                  <dt>미회수</dt>
-                  <dd>
-                    <button
-                      type="button"
-                      onclick="modalOpenSlide('modal-unrecovered-info')"
-                    >
-                      확인 <i class="icon-arrow-right size-16"></i>
-                    </button>
-                  </dd>
-                </dl>
+              <div class="recover-row">
+                <span class="recover-label">회수 예정 포인트</span>
+                <span class="recover-amount">1,010원</span>
+                <button
+                  type="button"
+                  class="btn-recover-info"
+                  aria-label="회수 예정 포인트 안내"
+                  onclick="modalOpenSlide('modal-disappear-info')"
+                >
+                  <i class="icon-question-mark-gray" aria-hidden="true"></i>
+                </button>
               </div>
             </div>
+          </div>
+          <!-- //sec-balance -->
 
-            <div class="pre-point-wrap"> 
-              <p class="pre-point-text"><span><b>미리적립 서비스</b> 알아보기</span></p>
-              <i type="button" class="icon-arrow-right"></i>
+          <div class="divide-line" aria-hidden="true"></div>
+
+          <!-- sec-history -->
+          <div class="sec-history">
+            <div class="month-wrap">
+              <button
+                type="button"
+                class="prev-btn icon-arrow-left size-16 disabled"
+              >
+                이전
+              </button>
+              <button
+                type="button"
+                class="month-text"
+                onclick="modalOpenSlide('modal-period')"
+              >
+                <span class="month-num">7월</span>
+                <i class="icon-arrow-down size-12" aria-hidden="true"></i>
+              </button>
+              <button type="button" class="next-btn icon-arrow-right size-16">
+                다음
+              </button>
             </div>
-          </div>
 
-          <div class="month-wrap">
-            <button
-              type="button"
-              class="prev-btn icon-arrow-left size-16 disabled"
-            >
-              이전
-            </button>
-            <button
-              type="button"
-              class="month-text"
-              onclick="modalOpenSlide('modal-period')"
-            >
-              7월
-            </button>
-            <button type="button" class="next-btn icon-arrow-right size-16">
-              다음
-            </button>
-          </div>
+            <div class="trade-tab-wrap">
+              <ul class="tab-list">
+                <li>
+                  <button type="button" class="active">전체</button>
+                </li>
+                <li>
+                  <button type="button">적립</button>
+                </li>
+                <li>
+                  <button type="button">사용</button>
+                </li>
+                <li>
+                  <button type="button">소멸</button>
+                </li>
+              </ul>
+            </div>
 
-          <div class="trade-tab-wrap">
-            <ul class="tab-list">
-              <li>
-                <button type="button" class="active">전체</button>
-              </li>
-              <li>
-                <button type="button">적립</button>
-              </li>
-              <li>
-                <button type="button">사용</button>
-              </li>
-              <li>
-                <button type="button">소멸</button>
-              </li>
-            </ul>
-          </div>
-          <!-- <div class="empty-list">
-            <i class="icon-exclamation-circle"></i>
-            <p>이용 내역이 없어요!</p>
-          </div> -->
-          <div class="trade-list-wrap" style="display: block">
-            <ul class="trade-list">
-              <li>
-                <span class="date-text">11(토)</span>
-                <div class="list-contents-box">
-                  <div class="right-text-box">
-                    <div class="top-text">
-                      <p class="time-text">오후 11:56</p>
-                      <p class="type-text">
-                        지급 유형지급 유형지급 유형지급 유형지급 유형지급
-                        유형지급 유형지급 유형지급 유형지급 유형지급 유형
-                      </p>
-                      <p class="type">사용</p>
+            <div class="trade-list-wrap">
+              <ul class="trade-list transaction-list-v2">
+                <li class="transaction-group">
+                  <p class="date-text">11일 토요일</p>
+                  <div class="transaction-item">
+                    <div class="item-left">
+                      <p class="item-title">기간만료</p>
+                      <p class="item-time">23:56</p>
                     </div>
-                    <div
-                      class="bottom-text-box"
-                      onclick="modalOpenSlide('modal-charge-detail')"
-                    >
-                      <p class="detail-text">
+                    <div class="item-right">
+                      <p class="amount">-90,000원</p>
+                      <p class="type-label">소멸</p>
+                    </div>
+                  </div>
+                  <div
+                    class="transaction-item"
+                    onclick="modalOpenSlide('modal-charge-detail')"
+                  >
+                    <div class="item-left">
+                      <p class="item-title">
                         텍스트 최대 두줄텍스트 최대 두줄텍스트 최대 두줄텍스트
                         최대 두줄...
                       </p>
+                      <p class="item-time">23:56</p>
+                    </div>
+                    <div class="item-right">
                       <p class="amount">-90,000원</p>
+                      <p class="type-label">사용</p>
                     </div>
                   </div>
-                </div>
-              </li>
-              <li>
-                <span class="date-text">11(토)</span>
-                <div class="list-contents-box">
-                  <div class="right-text-box">
-                    <div class="top-text">
-                      <p class="time-text">오후 11:56</p>
-                      <p class="type-text empty"></p>
-                      <p class="type">소멸</p>
+                  <div class="transaction-item is-charge">
+                    <div class="item-left">
+                      <p class="item-title">임직원 복지포인트 지급</p>
+                      <p class="item-time">23:56</p>
                     </div>
-                    <div class="bottom-text-box">
-                      <p class="detail-text">기간만료</p>
-                      <p class="amount">-90,000원</p>
+                    <div class="item-right">
+                      <p class="amount">+90,000원</p>
+                      <p class="type-label">적립</p>
                     </div>
                   </div>
-                </div>
-              </li>
-              <li>
-                <span class="date-text">11(토)</span>
-                <div class="list-contents-box">
-                  <div class="right-text-box">
-                    <div class="top-text">
-                      <p class="time-text">오후 11:56</p>
-                      <p class="type-text">카드</p>
-                      <p class="type">충전</p>
+                </li>
+                <li class="transaction-group">
+                  <p class="date-text">10일 금요일</p>
+                  <div class="transaction-item is-cancel">
+                    <div class="item-left">
+                      <p class="item-title">펫프렌즈</p>
+                      <p class="item-time">11:48</p>
                     </div>
-                    <div class="bottom-text-box">
-                      <p class="detail-text">임직원 복지포인트 지급</p>
-                      <p class="amount enter">+90,000원</p>
+                    <div class="item-right">
+                      <p class="amount">-1,000원</p>
+                      <p class="type-label">적립 취소</p>
                     </div>
                   </div>
-                </div>
-              </li>
-              <li>
-                <span class="date-text">11(토)</span>
-                <div class="list-contents-box">
-                  <div class="right-text-box">
-                    <div class="top-text">
-                      <p class="time-text">오후 11:56</p>
-                      <p class="type-text">카드</p>
-                      <p class="type">충전</p>
+                  <div class="transaction-item">
+                    <div class="item-left">
+                      <p class="item-title">펫프렌즈</p>
+                      <p class="item-time">11:47</p>
                     </div>
-                    <div class="bottom-text-box">
-                      <p class="detail-text">임직원 복지포인트 지급</p>
-                      <p class="amount enter">+90,000원</p>
+                    <div class="item-right">
+                      <p class="amount">-1,000원</p>
+                      <p class="type-label">사용</p>
                     </div>
                   </div>
-                </div>
-              </li>
-            </ul>
-            <div class="add-view-btn-wrap">
-              <button type="button" class="add-view-btn">더보기</button>
+                </li>
+              </ul>
+              <div class="add-view-btn-wrap">
+                <button type="button" class="add-view-btn">
+                  더보기
+                  <i class="icon-arrow-down size-16" aria-hidden="true"></i>
+                </button>
+              </div>
             </div>
           </div>
+          <!-- //sec-history -->
         </div>
         <!-- //container -->
       </div>
       <!-- //content -->
     </div>
+    <!-- //[2026-06-17] renewal-v2 적용 — 포인트 상세 -->
     <!-- //wrap -->
 
     <!-- 보유 머니 바텀 시트 팝업 -->
@@ -318,47 +305,51 @@
     <!-- //충전 취소 확인 모달 팝업 -->
 
     <!-- 포인트 안내 팝업 -->
-    <div id="modal-withdrawalt-info" class="modal modal-slide type-title">
+    <div
+      id="modal-withdrawalt-info"
+      class="modal modal-slide type-title modal-point-info"
+    >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-head">
-            <p class="modal-head-title">포인트 안내</p>
+            <p class="modal-head-title">페이 포인트 안내</p>
             <button type="button" class="btn btn-close js-modal-close">
               <i class="icon-close"></i>
             </button>
           </div>
           <div class="modal-body">
-            <div class="container">
-              <ul class="note-wrap">
+            <ul class="note-wrap note-wrap-v2">
+              <li>
+                구매로 적립된 포인트는 기본 유효기간이 1년이며,<br />
+                이벤트나 제휴를 통해 적립된 포인트는 유효기간이 각각 다를 수
+                있어요.
+              </li>
+              <li>포인트는 비현금성으로 출금이 불가해요.</li>
+              <li>주문 취소나 반품 시에는 적립된 포인트가 차감돼요.</li>
+              <li>
+                포인트 사용 시, 먼저 적립된 포인트부터 자동으로 사용돼요.
+              </li>
+              <li>
+                라운드페이를 탈퇴할 경우, 적립받은 잔여 포인트 및 적립 예정
+                포인트는 모두 소멸돼요.
+              </li>
+            </ul>
+            <div class="point-info-subsection">
+              <p class="subsection-title">포인트 소멸 안내</p>
+              <ul class="note-wrap note-wrap-v2">
                 <li>
-                  구매로 적립된 포인트는 기본 유효기간이 1년이며, 이벤트나
-                  제휴를 통해 적립된 포인트는 유효기간이 각각 다를 수 있습니다.
+                  적립된 포인트의 만료일이 지나면 해당 포인트는 자동 소멸되어
+                  사용할 수 없어요.
                 </li>
-                <li>포인트는 비현금성으로 출금이 불가합니다.</li>
-                <li>주문 취소나 반품 시에는 적립된 포인트가 차감됩니다.</li>
                 <li>
-                  포인트 사용 시, 먼저 적립된 포인트부터 자동으로사용됩니다.
-                </li>
-                <li>
-                  라운드 페이를 탈퇴할 경우 적립 받았던 잔여 포인트 및 적립 예정
-                  포인트는 모두 소멸 처리됩니다.
-                </li>
-                <li>
-                  미리적립 서비스 신청 시 적립되는 포인트는 적립 탭에서 확인 가능합니다.
-                </li>
-              </ul>
-              <p class="division-text">포인트 소멸 안내</p>
-              <ul class="note-wrap">
-                <li>
-                  적립된 포인트의 만료일이 지날 경우 해당 포인트는 자동으로
-                  소멸처리 되어 사용하실 수 없습니다.
-                </li> 
-                <li>
-                  주문 취소나 반품으로 인해 사용된 통합포인트가 환원되어야 할
-                  경우, 기존의 유효기간을 부여하며 기간 만료 시 소멸처리됩니다.
+                  주문 취소나 반품으로 인해 사용된 통합포인트가 환원되는 경우,
+                  기존 유효기간이 유지되며 만료 시 소멸돼요.
                 </li>
               </ul>
             </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn js-modal-close">확인</button>
           </div>
         </div>
       </div>
@@ -432,64 +423,62 @@
     </div>
     <!-- //기간 팝업 -->
 
-    <!-- 미회수 팝업 -->
-    <div id="modal-unrecovered-info" class="modal modal-slide type-title">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-head">
-            <p class="modal-head-title">소멸 예정</p>
-            <button type="button" class="btn btn-close js-modal-close">
-              <i class="icon-close"></i>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container">
-              <div class="gray-box">
-                <div class="top-text-wrap">2,000원</div>
-              </div>
-
-              <ul class="note-wrap">
-                <li>30일 이내 유효기간 만료로 자동 소멸 예정인 포인트에요.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- //미회수 팝업 -->
-
     <!-- 소멸예정 팝업 -->
-    <div id="modal-disappear-info" class="modal modal-slide type-title">
+    <div
+      id="modal-unrecovered-info"
+      class="modal modal-slide type-title modal-expire-point"
+    >
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-head">
-            <p class="modal-head-title">소멸 예정</p>
-            <button type="button" class="btn btn-close js-modal-close">
-              <i class="icon-close"></i>
-            </button>
+          <div class="modal-head round-btn">
+            <button type="button" class="btn btn-close js-modal-close"></button>
           </div>
           <div class="modal-body">
-            <div class="container">
-              <div class="gray-box">
-                <div class="top-text-wrap">2,000원</div>
-              </div>
-
-              <ul class="note-wrap">
-                <li>
-                  결제 취소 시 해당 결제 건에 대한<br />적립 혜택(결제 리워드)이
-                  회수돼요.
-                </li>
-                <li>
-                  회수 전 이미 사용된 포인트는 ‘미회수’로 관리되며,
-                  <br />포인트는 이후 지급되는 혜택에서 자동 차감돼요.
-                </li>
-              </ul>
+            <div class="expire-point-summary">
+              <p class="expire-point-label">소멸 예정 포인트</p>
+              <p class="expire-point-amount">2,000원</p>
             </div>
+            <ul class="note-wrap note-wrap-v2">
+              <li>30일 이내 유효기간 만료로 자동 소멸 예정인 포인트에요.</li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn js-modal-close">확인</button>
           </div>
         </div>
       </div>
     </div>
     <!-- //소멸예정 팝업 -->
+
+    <!-- 회수예정 팝업 -->
+    <div
+      id="modal-disappear-info"
+      class="modal modal-slide type-title modal-recover-point"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head">
+            <p class="modal-head-title">회수 예정 포인트</p>
+            <button type="button" class="btn btn-close js-modal-close">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <ul class="note-wrap note-wrap-v2">
+              <li>결제를 취소하면 적립된 포인트도 함께 회수돼요.</li>
+              <li>
+                회수 전 이미 사용한 포인트는 ‘회수 예정 포인트’로 관리되며, 이후
+                적립되는 포인트에서 자동 차감돼요.
+              </li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn js-modal-close">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //회수예정 팝업 -->
 
     <!-- lottie-spiner -->
     <div class="lottie-spiner-wrap">
@@ -509,18 +498,22 @@
         path: "https://ux.sbsvc.online/010pay/010pay-payment/images/lottie/spiner.json",
       });
 
-      $(function () {
-        const tradeTabOffset = $(".trade-tab-wrap").offset().top - 64;
+      $(window).on("scroll", function () {
+        var scrollTop = $(window).scrollTop();
+        var tab = $(".trade-tab-wrap");
+        var tradeTabOffset = tab.hasClass("fixed")
+          ? tab.data("originalOffset")
+          : tab.offset().top;
 
-        $(window).on("scroll", function () {
-          const scrollTop = $(window).scrollTop();
+        if (typeof tab.data("originalOffset") === "undefined") {
+          tab.data("originalOffset", tradeTabOffset);
+        }
 
-          if (scrollTop >= tradeTabOffset) {
-            $(".trade-tab-wrap").addClass("fixed");
-          } else {
-            $(".trade-tab-wrap").removeClass("fixed");
-          }
-        });
+        if (scrollTop >= tradeTabOffset - 64) {
+          tab.addClass("fixed");
+        } else {
+          tab.removeClass("fixed");
+        }
       });
 
       $(".tab-list button").on("click", function () {

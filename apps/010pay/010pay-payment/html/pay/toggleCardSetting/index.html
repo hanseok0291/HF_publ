@@ -14,14 +14,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <link rel="stylesheet" href="../../../css/jquery-ui.css" />
     <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <!-- [2026-06-17] renewal-v2 stylesheet -->
+    <link rel="stylesheet" href="../../../css/common_renewal_v2.css" />
+    <!-- //[2026-06-17] renewal-v2 stylesheet -->
     <link rel="stylesheet" href="../../../css/pay/setting.css" />
+    <link rel="stylesheet" href="../../../css/pay/toggleCardSetting.css" />
     <script src="../../../js/jquery.3.4.1.min.js"></script>
     <script src="../../../js/design_renewal.js" defer="defer"></script>
   </head>
 
   <body>
     <!-- wrap -->
-    <div id="wrap">
+    <!-- [2026-06-17] renewal-v2 적용 — 카드 관리 -->
+    <div id="wrap" class="renewal-v2">
       <!-- header -->
       <div id="header">
         <div class="container">
@@ -38,14 +43,15 @@
       <!-- content -->
       <div id="content">
         <!-- container -->
-        <div class="container card-container">
-          <!-- 해지시엔 card-info에 cancel 추가 -->
-          <!-- 카드 2개일때 -->
-          <div class="box">
-            <div class="tab-toggle">
-              <button id="creditBtn" class="active">신용</button>
-              <button id="checkBtn">체크</button>
+        <div class="container card-management-v2">
+          <!-- card-section -->
+          <div class="card-section">
+            <!-- 카드 2개일때 -->
+            <div class="tab">
+              <button type="button" id="creditBtn" class="active">신용</button>
+              <button type="button" id="checkBtn">체크</button>
             </div>
+            <!-- 해지시엔 card-info에 cancel 추가 -->
             <div class="card-info credit active">
               <div class="card-img">
                 <img
@@ -55,7 +61,7 @@
               </div>
               <div class="card-text">
                 <p class="big-text">
-                  ROUND PAY 우리카드 <span class="badge">해지</span>
+                  RROUND PAY 우리카드 <span class="badge">해지</span>
                 </p>
                 <p class="small-text">1234 **** **** 3332</p>
               </div>
@@ -63,7 +69,7 @@
             <div class="card-info check">
               <div class="card-img">
                 <img
-                src="../../../images/payment/card/wori_check.png"
+                  src="../../../images/payment/card/wori_check.png"
                   alt="카드 이미지"
                 />
               </div>
@@ -74,11 +80,12 @@
                 <p class="small-text">1234 **** **** 3332</p>
               </div>
             </div>
-          </div>
-          <!-- //카드 2개일때 -->
-          <!-- 카드 1개일때 -->
-          <!-- <div class="box">
-            <div class="card-info check active"> 
+            <!-- //카드 2개일때 -->
+            <!-- 카드 1개일때 -->
+            <!-- <div class="tab">
+              <button type="button" id="checkBtn" class="active">체크</button>
+            </div>
+            <div class="card-info check active">
               <div class="card-img">
                 <img
                   src="../../../images/payment/card/wori_check.png"
@@ -91,12 +98,10 @@
                 </p>
                 <p class="small-text">1234 **** **** 3332</p>
               </div>
-            </div>
-          </div> -->
-          <!-- //카드 1개일때 -->
-          <!-- 해지 -->
-          <!-- <div class="box">
-            <div class="card-info check active cancel"> 
+            </div> -->
+            <!-- //카드 1개일때 -->
+            <!-- 해지 -->
+            <!-- <div class="card-info check active cancel">
               <div class="card-img">
                 <img
                   src="../../../images/payment/card/wori_check.png"
@@ -109,38 +114,30 @@
                 </p>
                 <p class="small-text">1234 **** **** 3332</p>
               </div>
-            </div>
-          </div> -->
-          <!-- //해지 -->
-          <!-- 발급중 -->
-          <!-- <div class="box">
-            <div class="card-info check active wait">
+            </div> -->
+            <!-- //해지 -->
+            <!-- 발급중 — 카드관리_신용_재발급 (Tabs-Bar 없음) -->
+            <!-- <div class="card-info credit active wait">
               <div class="card-img">
                 <img
-                  src="../../../images/payment/card/wori_check.png"
+                  src="../../../images/payment/card/null.png"
                   alt="카드 이미지"
                 />
               </div>
               <div class="card-text">
-                <p class="small-text">010PAY 체크카드</p>
+                <p class="small-text">RROUND PAY 우리카드</p>
                 <p class="big-text">카드 재발급 심사 중</p>
               </div>
-            </div>
-          </div> -->
-          <!-- //발급중 -->
-        </div>
-        <div class="container setting-container">
-          <ul class="setting-list border-bottom">
+            </div> -->
+            <!-- //발급중 -->
+
+            <div class="divide-line" aria-hidden="true"></div>
+          </div>
+          <!-- //card-section -->
+
+          <ul class="menu-list-v2">
             <li>
-              <div class="btn-text-box">
-                <p class="setting-name">카드 혜택</p>
-              </div>
-              <a href="#">
-                <i class="icon-arrow-right medium"></i>
-              </a>
-            </li>
-            <li>
-              <div class="btn-text-box">
+              <div class="menu-text-wrap">
                 <p class="setting-name">카드 정보 변경</p>
               </div>
               <a href="#" onclick="modalOpenSlide('modal-onetouch-payment')">
@@ -148,7 +145,7 @@
               </a>
             </li>
             <li>
-              <div class="btn-text-box">
+              <div class="menu-text-wrap">
                 <p class="setting-name">자주 묻는 질문 FAQ</p>
               </div>
               <a href="#">
@@ -156,41 +153,53 @@
               </a>
             </li>
           </ul>
-          <ul class="setting-list q-list">
-            <li>
-              <div>
-                <p class="setting-name">문의하기</p>
-                <p>평일 09:00 ~ 18:00 (주말 · 공휴일 휴무)</p>
-              </div>
-            </li>
-            <li>
-              <div>
-                <p class="setting-name">우리카드 문의하기</p>
-                <p>도난 및 분실 신고는 365일 24시간 가능해요</p>
-              </div>
-              <a href="tel:1588-9955">
-                <i class="icon-arrow-right medium"></i>
-              </a>
-            </li>
-            <li>
-              <p class="setting-name">카카오톡 문의하기</p>
-              <a href="https://pf.kakao.com/_xlrtxcK/chat">
-                <i class="icon-arrow-right medium"></i>
-              </a>
-            </li>
-            <li>
-              <p class="setting-name">전화 문의하기</p>
-              <a href="tel:1600-5220">
-                <i class="icon-arrow-right medium"></i>
-              </a>
-            </li>
-          </ul>
+
+          <div class="divide-line" aria-hidden="true"></div>
+
+          <!-- inquiry-section -->
+          <div class="inquiry-section">
+            <div class="inquiry-head">
+              <p class="inquiry-title">문의하기</p>
+              <p class="inquiry-hours">운영시간 평일 09:00 ~ 18:00</p>
+            </div>
+            <ul class="menu-list-v2">
+              <li>
+                <div class="menu-text-wrap">
+                  <p class="setting-name">우리카드 문의하기</p>
+                  <p class="menu-desc">
+                    도난 및 분실 신고는 365일 24시간 가능해요
+                  </p>
+                </div>
+                <a href="tel:1588-9955">
+                  <i class="icon-arrow-right medium"></i>
+                </a>
+              </li>
+              <li>
+                <div class="menu-text-wrap">
+                  <p class="setting-name">카카오톡 문의하기</p>
+                </div>
+                <a href="https://pf.kakao.com/_xlrtxcK/chat">
+                  <i class="icon-arrow-right medium"></i>
+                </a>
+              </li>
+              <li>
+                <div class="menu-text-wrap">
+                  <p class="setting-name">전화 문의하기</p>
+                </div>
+                <a href="tel:1600-5220">
+                  <i class="icon-arrow-right medium"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <!-- //inquiry-section -->
         </div>
         <!-- //container -->
       </div>
       <!-- //content -->
     </div>
     <!-- //wrap -->
+    <!-- //[2026-06-17] renewal-v2 적용 -->
 
     <!-- 금액 보기 해지 토스트 모달 -->
     <div id="toast-bio-complete" class="modal-toast">
@@ -353,18 +362,20 @@
     const creditCard = document.querySelector(".card-info.credit");
     const checkCard = document.querySelector(".card-info.check");
 
-    creditBtn.addEventListener("click", () => {
-      creditBtn.classList.add("active");
-      checkBtn.classList.remove("active");
-      creditCard.classList.add("active");
-      checkCard.classList.remove("active");
-    });
+    if (creditBtn && checkBtn && creditCard && checkCard) {
+      creditBtn.addEventListener("click", () => {
+        creditBtn.classList.add("active");
+        checkBtn.classList.remove("active");
+        creditCard.classList.add("active");
+        checkCard.classList.remove("active");
+      });
 
-    checkBtn.addEventListener("click", () => {
-      checkBtn.classList.add("active");
-      creditBtn.classList.remove("active");
-      checkCard.classList.add("active");
-      creditCard.classList.remove("active");
-    });
+      checkBtn.addEventListener("click", () => {
+        checkBtn.classList.add("active");
+        creditBtn.classList.remove("active");
+        checkCard.classList.add("active");
+        creditCard.classList.remove("active");
+      });
+    }
   </script>
 </html>

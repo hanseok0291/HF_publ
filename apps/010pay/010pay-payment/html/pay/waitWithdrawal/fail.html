@@ -14,6 +14,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <!-- [2026-06-17] renewal-v2 stylesheet -->
+    <link rel="stylesheet" href="../../../css/common_renewal_v2.css" />
+    <!-- //[2026-06-17] renewal-v2 stylesheet -->
     <link rel="stylesheet" href="../../../css/pay/charge.css" />
     <script src="../../../js/jquery.3.4.1.min.js"></script>
     <script src="../../../js/jquery-ui.js"></script>
@@ -23,7 +26,8 @@
 
   <body>
     <!-- wrap -->
-    <div id="wrap">
+    <!-- [2026-06-17] renewal-v2 적용 — 출금 실패 -->
+    <div id="wrap" class="renewal-v2">
       <!-- header -->
       <div id="header">
         <div class="container">
@@ -36,7 +40,7 @@
       <!-- content -->
       <div id="content">
         <!-- container -->
-        <div class="container charge-container">
+        <div class="container charge-container banner-full-container">
           <div class="complete-text gray fail">
             <p class="title">
               출금이 안됐어요
@@ -57,6 +61,7 @@
       <!-- //bottom area -->
       <!-- //content -->
     </div>
+    <!-- //[2026-06-17] renewal-v2 적용 — 출금 실패 -->
     <!-- //wrap -->
     
     <!-- 안내 팝업 -->
@@ -82,25 +87,49 @@
               <div class="info-wrap"></div>
             </div>
           </div>
+          <div class="modal-footer">
+            <button type="button" class="btn js-modal-close">확인</button>
+          </div>
         </div>
       </div>
     </div>
     <!-- //안내 팝업 -->
+
+    <!-- 중앙 얼럿 (고객확인) -->
+    <div id="commonExecute" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 id="executeTitle" class="modal-title"></h3>
+            <div id="executeContents" class="highlight-text"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="executeOk" onclick="modalCloseAlert();" class="btn btn-confirm"></button>
+            <button type="button" id="executeNo" onclick="modalCloseAlert();" class="btn btn-cancel"></button>
+            <button type="button" id="executeNoShow" onclick="modalCloseAlert();" class="btn btn-noShow" style="display: none;"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //중앙 얼럿 (고객확인) -->
   </body>
   <script>
-    $(document).ready(function () {
-      // 로티 완료
-      let svgContainer = document.querySelector(".lottie-check");
-
-      let animItem = bodymovin.loadAnimation({
-        wrapper: svgContainer,
-        animType: "svg",
-        loop: false,
-        path: "https://ux.sbsvc.online/010pay/010pay-payment/images/lottie/check.json",
+    document.addEventListener("DOMContentLoaded", function () {
+      // 출금 고객확인 안내
+      showAlertModal({
+        title: "출금을 위해 고객확인을<br >먼저 진행해 주세요",
+        message:
+          "<div class='execute-wrap'>" +
+          "자금 세탁 등으로부터 계좌를 보호하기 위해<br>" +
+          "고객님의 정보 실제 계좌 소유 여부를<br>" +
+          "확인하고 있습니다." +
+          "</div>" +
+          "<p class='execute-text-wrap'>페이 설정 &gt; 고객정보확인(KYC)을 통해<br>" +
+          "고객확인을 진행할 수 있어요.</p>",
+        confirmText: "확인",
+        showCancel: false,
+        vertical: false,
       });
-
-      // 확인용 모달 노출
-      modalOpenSlide('modal-withdrawalt-info')
     });
   </script>
 </html>

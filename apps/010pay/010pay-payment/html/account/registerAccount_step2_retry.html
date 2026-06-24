@@ -8,16 +8,20 @@
         <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
         <link rel="stylesheet" href="../../css/jquery-ui.css" />
         <link rel="stylesheet" href="../../css/common_renewal.css" />
+        <!-- [2026-06-17] renewal-v2 stylesheet -->
+        <link rel="stylesheet" href="../../css/common_renewal_v2.css" />
+        <!-- //[2026-06-17] renewal-v2 stylesheet -->
+        <link rel="stylesheet" href="../../css/account/registerAccount.css" />
         <script src="../../js/jquery.3.4.1.min.js"></script>
         <script src="../../js/jquery-ui.js"></script>
         <script src="../../js/design_renewal.js" defer="defer"></script>
         <script src="../../js/owl.carousel.min.js"></script>
-        <script src="../../js/lottie.min.js"></script>
     </head>
 
     <body>
         <!-- wrap -->
-        <div id="wrap">
+        <!-- [2026-06-17] renewal-v2 적용 — ARS 재시도 -->
+        <div id="wrap" class="renewal-v2">
             <!-- header -->
             <div id="header">
                 <div class="container">
@@ -32,17 +36,21 @@
             <!-- //header -->
 
             <!-- content -->
-            <div id="content">
+            <div id="content" class="content-foot-fixed">
                 <!-- container -->
-                <div class="container">
+                <div class="container content-scroll">
                     <!-- section -->
                     <div class="section">
-                        <ul class="form-type type2 accordion-list">
-                            <li>
-                                <div class="checkbox-block-group">
-                                    <span class="checkbox round">
-                                        <input type="checkbox" name="checkbox_01" id="checkbox_01_01" />
-                                        <label for="checkbox_01_01">새마을금고</label>
+                        <ul class="form-type type2 accordion-list register-account-step2 register-account-step2--static">
+                            <!-- 1. 계좌 입력 (완료) -->
+                            <li class="accordion-step step-account is-done">
+                                <div class="step-panel step-panel--done">
+                                    <div class="step-row step-row--done">
+                                        <span class="step-icon step-icon--done" aria-hidden="true"></span>
+                                        <div class="step-text">
+                                            <p class="step-title">새마을금고</p>
+                                            <p class="step-desc">11022773450698</p>
+                                        </div>
                                         <button
                                             type="button"
                                             class="change-btn js-change-btn"
@@ -52,49 +60,64 @@
                                         >
                                             변경
                                         </button>
-                                    </span>
-                                    <span class="checkbox-near">11022773450698</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="checkbox-block-group">
-                                    <span class="checkbox round">
-                                        <input type="checkbox" name="checkbox_02" id="checkbox_02_01" />
-                                        <label for="checkbox_02_01">약관 동의</label>
-                                    </span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="checkbox-block-group">
-                                    <span class="checkbox more">
-                                        <input type="checkbox" name="checkbox_03" id="checkbox_03_01" />
-                                        <label for="checkbox_03_01">자동이체 출금 동의</label>
-                                    </span>
-                                </div>
-
-                                <div class="gray-box">
-                                    <div class="toggle-box">
-                                        <div class="toggle-buttons">
-                                            <button class="toggle-button active" onclick="selectToggle('ars')">ARS 인증</button>
-                                        </div>
-
-                                        <!-- ARS 인증 내용 -->
-                                        <div class="ars-content toggle-content active">
-                                            <p class="instruction">버튼을 누른 후, 인증번호를 입력해주세요.</p>
-                                            <div class="verification-code">25</div>
-                                            <button class="call-button js-call-button" onclick="window.location.href='./registerAccount_step3.html'">인증 전화 요청</button>
-                                        </div>
                                     </div>
                                 </div>
                             </li>
+                            <!-- //1. 계좌 입력 -->
+                            <!-- 2. 약관 동의 (완료) -->
+                            <li class="accordion-step step-terms is-done">
+                                <div class="step-panel step-panel--done">
+                                    <div class="step-row step-row--done">
+                                        <span class="step-icon step-icon--done" aria-hidden="true"></span>
+                                        <p class="step-title">약관 동의</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- //2. 약관 동의 -->
+                            <!-- 3. 자동이체 출금 동의 -->
+                            <li class="accordion-step step-auto-debit is-slid-in">
+                                <div class="step-row step-row--auto-debit">
+                                    <span class="step-icon step-icon--count3" aria-hidden="true"></span>
+                                    <p class="step-title">자동이체 출금 동의</p>
+                                </div>
+
+                                <div class="gray-box ars-box button-one">
+                                    <!-- ARS 인증 -->
+                                    <div class="ars-content toggle-content active">
+                                        <p class="ars-title">ARS 인증</p>
+                                        <div class="ars-text-group">
+                                            <p class="instruction">ARS 인증 전화 요청 후<br />아래 숫자 2자리를 입력해 주세요</p>
+                                            <div class="verification-code">25</div>
+                                        </div>
+                                        <button type="button" class="call-button js-call-button">ARS 인증 전화 요청</button>
+                                    </div>
+                                    <!-- //ARS 인증 -->
+                                </div>
+                            </li>
+                            <!-- //3. 자동이체 출금 동의 -->
                         </ul>
                     </div>
                     <!-- //section -->
                 </div>
                 <!-- //container -->
+
+                <!-- bottom area -->
+                <div class="bottom-area">
+                    <p class="bottom-guide-text">
+                        인증이 완료되면 문자가 발송돼요.<br />
+                        계좌 등록 안내 문자이며, 자동 출금은 되지 않아요.
+                    </p>
+                    <!-- container -->
+                    <div class="container">
+                        <button type="button" class="btn js-auth-complete-btn" disabled onclick="window.location.href='./registerAccount_step3.html'">인증 완료</button>
+                    </div>
+                    <!-- //container -->
+                </div>
+                <!-- //bottom area -->
             </div>
             <!-- //content -->
         </div>
+        <!-- //[2026-06-17] renewal-v2 적용 -->
         <!-- //wrap -->
 
         <!-- cancel prompt -->
@@ -113,61 +136,13 @@
             </div>
         </div>
         <!-- //cancel prompt -->
-    </body>
-    <script>
-        $(document).ready(function () {
-            // 초기 상태: 첫 번째 li만 열림
-            const $accordionItems = $(".accordion-list li"); // 모든 li 요소 선택
-            let currentIndex = 0; // 현재 노출 중인 li의 인덱스
 
-            function showNextItem() {
-                if (currentIndex < $accordionItems.length) {
-                    // 현재 항목을 fadeIn으로 부드럽게 나타냄
-                    $accordionItems.eq(currentIndex).fadeIn(250, function () {
-                        // fadeIn 후 active 클래스 추가
-                        $(this).addClass("active");
-                    });
-                    currentIndex++; // 다음 인덱스로 이동
-                    setTimeout(showNextItem, 250); // 1초 후에 다음 li를 보여줌
-                }
-            }
-
-            // 초기 설정: 모든 li 숨김
-            $accordionItems.hide();
-
-            // 첫 번째 li부터 시작
-            showNextItem();
-        });
-
-        // 토글버튼
-        function selectToggle(type) {
-            const arsButton = document.querySelector(".toggle-buttons .toggle-button:first-child");
-            const passButton = document.querySelector(".toggle-buttons .toggle-button:last-child");
-
-            const arsContent = document.querySelector(".ars-content");
-            const passContent = document.querySelector(".pass-content");
-
-            if (type === "ars") {
-                arsButton.classList.add("active");
-                passButton.classList.remove("active");
-                arsContent.classList.add("active");
-                passContent.classList.remove("active");
-            } else {
-                passButton.classList.add("active");
-                arsButton.classList.remove("active");
-                passContent.classList.add("active");
-                arsContent.classList.remove("active");
-            }
-        }
-
-        // 전화 인증 버튼
+        <script>
         document.querySelector(".js-call-button").addEventListener("click", function () {
-            // 버튼의 텍스트를 변경
-            this.innerHTML = '전화수신 중';
-
-            // 버튼을 비활성화
+            this.textContent = "전화 수신 중";
             this.disabled = true;
+            document.querySelector(".js-auth-complete-btn").disabled = false;
         });
-
-    </script>
+        </script>
+    </body>
 </html>

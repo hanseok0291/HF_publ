@@ -1,0 +1,369 @@
+@charset "UTF-8";
+
+/* [2026-06-17] renewal-v2 — 계좌 등록 step1 (Figma 계좌등록_계좌입력) */
+.renewal-v2 .register-account-container .headline.pt-0 > p {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+}
+
+.renewal-v2 .register-account-container .headline + .section {
+  margin-top: 32px;
+}
+
+.renewal-v2 .register-account-container .form-type.register-account li.field-bank {
+  margin-top: 0;
+}
+
+.renewal-v2 .register-account-container .form-type.register-account li.field-account.on {
+  margin-top: 0;
+}
+
+.renewal-v2 .register-account-container .form-type.register-account li.field-account.on ~ li.field-bank {
+  margin-top: 32px;
+}
+
+.renewal-v2 .register-account-container .form-type.register-account .label {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+.renewal-v2 .register-account-container .form-type.register-account .field-bank .label {
+  color: var(--color-text-04);
+}
+
+.renewal-v2 .register-account-container .form-type.register-account .field-account .label {
+  color: var(--color-text-primary);
+}
+
+.renewal-v2 .register-account-container .input-container.type-line {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 0;
+  padding: 8px 0 4px;
+  border: none;
+  border-bottom: 1px solid var(--color-border-strong);
+  border-radius: 0;
+  background-color: transparent;
+  box-sizing: content-box;
+  min-height: 44px;
+}
+
+.renewal-v2 .register-account-container .input-container.type-line.focus-on {
+  border-bottom-color: var(--color-border-strong);
+}
+
+.renewal-v2 .register-account-container .input-container.type-line.label-error,
+.renewal-v2 .register-account-container .input-container.type-line.text-error {
+  border-bottom-color: var(--color-status-danger);
+}
+
+.renewal-v2 .register-account-container .input-container.type-line .custom-input {
+  height: auto;
+  min-height: 0;
+  padding: 0;
+  border: none !important;
+  border-radius: 0;
+  background-color: transparent;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+}
+
+.renewal-v2 .register-account-container .input-container.type-line .custom-input::placeholder {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  color: #b0b0b3;
+}
+
+.renewal-v2 .register-account-container .input-container.type-line > .icon-del {
+  flex-shrink: 0;
+}
+
+.renewal-v2 .register-account-container .select-box.type-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 0;
+  padding: 8px 0 4px;
+  border: none;
+  border-bottom: 1px solid var(--color-border-default);
+  border-radius: 0;
+  background-color: transparent;
+  box-sizing: content-box;
+  min-height: 44px;
+}
+
+.renewal-v2 .register-account-container .select-box.type-line .label {
+  flex: 1;
+  width: auto;
+  max-width: none;
+  height: auto;
+  min-height: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  color: #b0b0b3;
+  text-align: left;
+}
+
+.renewal-v2 .register-account-container .select-box.type-line.comp .label {
+  color: var(--color-text-primary);
+}
+
+.renewal-v2 .register-account-container .select-box.type-line .floating-label {
+  display: none;
+}
+
+.renewal-v2 .register-account-container .select-box.type-line .icon-arrow-down-gray {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  background-size: 16px;
+}
+
+.renewal-v2 .register-account-container .bottom-area .btn {
+  border-radius: var(--radius-modal-btn);
+}
+
+.renewal-v2 .register-account-container .bottom-area .btn:disabled,
+.renewal-v2 .register-account-container .bottom-area .btn.disabled {
+  border-color: var(--color-status-disabled);
+  background-color: var(--color-status-disabled);
+  color: var(--color-button-primary-text);
+}
+/* //[2026-06-17] renewal-v2 — 계좌 등록 step1 */
+
+/* [2026-06-17] renewal-v2 — 계좌 등록 step2 진입 애니메이션
+ * Figma Prototype — easing: cubic-bezier(0.42, 0, 0.58, 1)
+ * ① ARS인증1→2: delay 400ms, Smart Animate 400ms
+ * ② ARS인증2→3: delay 1ms(① 완료 후), Smart Animate 500ms — 시작 801ms
+ */
+.renewal-v2 .register-account-step2.accordion-list > li.accordion-step.step-account,
+.renewal-v2 .register-account-step2.accordion-list > li.accordion-step.step-terms {
+  position: relative;
+  display: block;
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+.renewal-v2 .register-account-step2.accordion-list > li.accordion-step.step-account + li.accordion-step.step-terms {
+  margin-top: 20px;
+}
+
+/* pending ↔ done — Smart Animate (opacity, 400ms) */
+.renewal-v2 .register-account-step2 .step-panel--pending,
+.renewal-v2 .register-account-step2 .step-panel--done {
+  transition: opacity 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+.renewal-v2 .register-account-step2 .accordion-step.is-pending .step-panel--pending {
+  position: relative;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.renewal-v2 .register-account-step2 .accordion-step.is-pending .step-panel--done {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.renewal-v2 .register-account-step2 .accordion-step.is-done .step-panel--pending {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.renewal-v2 .register-account-step2 .accordion-step.is-done .step-panel--done {
+  position: relative;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.renewal-v2 .register-account-step2 .step-panel--pending {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.renewal-v2 .register-account-step2 .step-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin-top: 2px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* 1번 pending — img_count1.svg */
+.renewal-v2 .register-account-step2 .step-account.is-pending .step-icon {
+  background-image: url("../../images/common/renewal-v2/img_count1.svg");
+}
+
+/* 2번 pending — img_count2.svg */
+.renewal-v2 .register-account-step2 .step-terms.is-pending .step-icon {
+  background-image: url("../../images/common/renewal-v2/img_count2.svg");
+}
+
+.renewal-v2 .register-account-step2 .step-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.renewal-v2 .register-account-step2 .step-panel--done .step-title,
+.renewal-v2 .register-account-step2 .step-panel--pending .step-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+}
+
+.renewal-v2 .register-account-step2 .step-desc {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-04);
+}
+
+.renewal-v2 .register-account-step2 .step-row--done {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.renewal-v2 .register-account-step2 .step-row--done .step-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.renewal-v2 .register-account-step2 .step-row--done .step-icon--done {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin-top: 2px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  /* 완료(체크) — icon-checkbox-off.svg */
+  background-image: url("../../images/common/renewal-v2/icon-checkbox-off.svg");
+}
+
+.renewal-v2 .register-account-step2 .step-row--done .change-btn {
+  flex-shrink: 0;
+  margin-left: auto;
+  margin-top: 2px;
+  padding: 0 0 1px;
+  border: none;
+  border-bottom: 1px solid var(--color-text-05);
+  border-radius: 0;
+  background: none;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-04);
+  text-decoration: none;
+}
+
+.renewal-v2 .register-account-step2 .step-terms .step-panel--pending .step-title,
+.renewal-v2 .register-account-step2 .step-terms .step-row--done .step-title {
+  flex: 1;
+  padding-top: 2px;
+}
+
+.renewal-v2 .register-account-step2 .step-row--clickable {
+  cursor: pointer;
+}
+
+/* 3번 — 자동이체 출금 동의 */
+.renewal-v2 .register-account-step2 .step-row--auto-debit {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.renewal-v2 .register-account-step2 .step-auto-debit .step-icon--count3 {
+  background-image: url("../../images/common/renewal-v2/img_count3.svg");
+}
+
+.renewal-v2 .register-account-step2 .step-auto-debit .step-title {
+  flex: 1;
+  margin: 0;
+  padding-top: 2px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+}
+
+/* 3번 — Smart Animate slide-up (500ms) */
+.renewal-v2 .register-account-step2.accordion-list > li.accordion-step.step-auto-debit {
+  display: none;
+  flex-direction: column;
+  gap: 24px;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.renewal-v2 .register-account-step2.accordion-list > li.accordion-step.step-auto-debit.is-slid-in {
+  display: flex;
+  margin-top: 20px;
+  animation: register-account-step-slide-up 0.5s cubic-bezier(0.42, 0, 0.58, 1) forwards;
+}
+
+/* retry·fail — 진입 애니메이션 없이 최종 상태 노출 */
+.renewal-v2 .register-account-step2.register-account-step2--static.accordion-list > li.accordion-step.step-auto-debit.is-slid-in {
+  animation: none;
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes register-account-step-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* //[2026-06-17] renewal-v2 — 계좌 등록 step2 진입 애니메이션 */

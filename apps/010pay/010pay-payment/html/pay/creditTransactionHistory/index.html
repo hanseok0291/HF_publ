@@ -14,7 +14,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <!-- [2026-06-17] renewal-v2 stylesheet -->
+    <link rel="stylesheet" href="../../../css/common_renewal_v2.css" />
+    <!-- //[2026-06-17] renewal-v2 stylesheet -->
     <link rel="stylesheet" href="../../../css/pay/transactionHistory.css" />
+    <link rel="stylesheet" href="../../../css/pay/cardTransactionHistory.css" />
     <script src="../../../js/jquery.3.4.1.min.js"></script>
     <script src="../../../js/jquery-ui.js"></script>
     <script src="../../../js/design_renewal.js" defer="defer"></script>
@@ -22,7 +26,8 @@
 
   <body>
     <!-- wrap -->
-    <div id="wrap">
+    <!-- [2026-06-17] renewal-v2 적용 — 010PAY 신용카드 내역 -->
+    <div id="wrap" class="renewal-v2">
       <!-- header -->
       <div id="header">
         <div class="container">
@@ -30,7 +35,7 @@
             <button type="button" class="btn-back js-change-btn left-0">
               <i class="icon-back"></i>
             </button>
-            <h2 class="page-title">010PAY 카드 내역</h2>
+            <h2 class="page-title">010PAY 신용카드 내역</h2>
             <a href="#" class="btn-right-menu">관리</a>
           </div>
         </div>
@@ -41,131 +46,159 @@
       <div id="content">
         <!-- container -->
         <div
-          class="container money-container card-transaction-history transaction-history-container"
+          class="container card-transaction-history-v2 transaction-history-container"
         >
-          <div class="top-contents-wrap">
-            <div class="top-contents-box">
-              <div class="top-text-wrap">
-                <p class="bank-text">총 이용금액</p>
-                <button type="button" class="money-count">100,000원</button>
-              </div>
-              <div class="info-text-wrap">
-                <dl>
-                  <dt>선불충전결제</dt>
-                  <dd>900,000원</dd>
-                </dl>
-                <dl>
-                  <dt>신용결제</dt>
-                  <dd>100,000원</dd>
-                </dl>
-              </div>
-              <div class="money-control-wrap">
-                <button type="button" class="withdraw-btn">
-                  머니 상세 내역 보기
-                </button>
+          <!-- sec-balance -->
+          <div class="sec-balance">
+            <div class="sec-summary">
+              <p class="summary-label">총 이용 금액</p>
+              <p class="summary-amount">1,000,000원</p>
+            </div>
+            <div class="sec-breakdown">
+              <dl class="breakdown-row">
+                <dt>선불 충전 결제</dt>
+                <dd>900,000원</dd>
+              </dl>
+              <dl class="breakdown-row">
+                <dt>신용결제</dt>
+                <dd>100,000원</dd>
+              </dl>
+            </div>
+          </div>
+          <!-- //sec-balance -->
+
+          <div class="divide-line" aria-hidden="true"></div>
+
+          <!-- sec-history -->
+          <div class="sec-history">
+            <div class="month-wrap">
+              <button
+                type="button"
+                class="prev-btn icon-arrow-left size-16 disabled"
+              >
+                이전
+              </button>
+              <button
+                type="button"
+                class="month-text"
+                onclick="modalOpenSlide('modal-period')"
+              >
+                <span class="year-text">24년</span>
+                <span class="month-num">12월</span>
+                <i class="icon-arrow-down size-12" aria-hidden="true"></i>
+              </button>
+              <button type="button" class="next-btn icon-arrow-right size-16">
+                다음
+              </button>
+            </div>
+
+            <div class="trade-tab-wrap">
+              <ul class="tab-list">
+                <li>
+                  <button type="button" class="active">전체</button>
+                </li>
+                <li>
+                  <button type="button">선불 충전 결제</button>
+                </li>
+                <li>
+                  <button type="button">신용결제</button>
+                </li>
+              </ul>
+            </div>
+
+            <!-- <div class="empty-list">
+              <p>이용 내역이 없어요!</p>
+            </div> -->
+
+            <!-- 체크카드는 결제시 -10,000 -->
+            <!-- 신용카드는 결제시 10,000 -->
+            <!-- 충전 취소시 transaction-item에 is-cancel 클래스 추가 -->
+            <!-- 충전(+)시 transaction-item에 is-charge 클래스 추가 -->
+            <div class="trade-list-wrap">
+              <ul class="trade-list transaction-list-v2">
+                <li class="transaction-group">
+                  <p class="date-text">11일 토요일</p>
+                  <div class="transaction-item">
+                    <div class="item-left">
+                      <p class="item-title">펫프렌즈</p>
+                      <p class="item-time">11:47</p>
+                    </div>
+                    <div class="item-right">
+                      <p class="amount">90,000원</p>
+                      <p class="type-label">사용</p>
+                    </div>
+                  </div>
+                  <div class="transaction-item">
+                    <div class="item-left">
+                      <p class="item-title">펫프렌즈</p>
+                      <p class="item-time">11:47</p>
+                    </div>
+                    <div class="item-right">
+                      <p class="amount">90,000원</p>
+                      <p class="type-label">사용</p>
+                    </div>
+                  </div>
+                  <div class="transaction-item">
+                    <div class="item-left">
+                      <p class="item-title">코레일</p>
+                      <p class="item-time">11:42</p>
+                    </div>
+                    <div class="item-right">
+                      <p class="amount">11,000원</p>
+                      <p class="type-label">사용</p>
+                    </div>
+                  </div>
+                  <div class="transaction-item is-charge">
+                    <div class="item-left">
+                      <p class="item-title">임직원 복지포인트 지급</p>
+                      <p class="item-time">10:45</p>
+                    </div>
+                    <div class="item-right">
+                      <p class="amount">+9,999,000원</p>
+                      <p class="type-label">충전</p>
+                    </div>
+                  </div>
+                </li>
+                <li class="transaction-group">
+                  <p class="date-text">10일 금요일</p>
+                  <div class="transaction-item is-cancel">
+                    <div class="item-left">
+                      <p class="item-title">펫프렌즈</p>
+                      <p class="item-time">11:48</p>
+                    </div>
+                    <div class="item-right">
+                      <p class="amount">90,000원</p>
+                      <p class="type-label">충전 취소</p>
+                    </div>
+                  </div>
+                  <div
+                    class="transaction-item"
+                    onclick="modalOpenSlide('modal-charge-detail')"
+                  >
+                    <div class="item-left">
+                      <p class="item-title">펫프렌즈</p>
+                      <p class="item-time">11:47</p>
+                    </div>
+                    <div class="item-right">
+                      <p class="amount">90,000원</p>
+                      <p class="type-label">사용</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <!-- 최대 20개 노출 후 더보기 버튼 노출 -->
+              <div class="add-view-btn-wrap">
+                <button type="button" class="add-view-btn">더보기</button>
               </div>
             </div>
           </div>
-
-          <div class="month-wrap">
-            <button
-              type="button"
-              class="prev-btn icon-arrow-left size-16 disabled"
-            >
-              이전
-            </button>
-            <button
-              type="button"
-              class="month-text"
-              onclick="modalOpenSlide('modal-period')"
-            >
-              7월
-            </button>
-            <button type="button" class="next-btn icon-arrow-right size-16">
-              다음
-            </button>
-          </div>
-
-          <div class="trade-tab-wrap">
-            <ul class="tab-list">
-              <li>
-                <button type="button" class="active">전체</button>
-              </li>
-              <li>
-                <button type="button">선불 충전 결제</button>
-              </li>
-              <li>
-                <button type="button">신용결제</button>
-              </li>
-            </ul>
-          </div>
-          <div class="empty-list">
-            <p>이용 내역이 없어요!</p>
-          </div>
-          <!-- 체크카드는 결제시 -10,000 -->
-          <!-- 신용카드는 결제시 10,000 -->
-          <!-- 결체 취소시 list-contents-box에 cancel 클래스 추가 -->
-<!--           <div class="trade-list-wrap">
-            <ul class="trade-list">
-              <li>
-                <span class="date-text">11(토)</span>
-                <div class="list-contents-box">
-                  <div class="right-text-box">
-                    <div class="top-text">
-                      <p class="time-text">오후 11:56</p>
-                      <p class="type pay">결제</p>
-                    </div>
-                    <div
-                      class="bottom-text-box"
-                      onclick="modalOpenSlide('modal-charge-detail')"
-                    >
-                      <p class="detail-text">체크카드 결제</p>
-                      <p class="amount minus">-90,000원</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <span class="date-text">11(토)</span>
-                <div class="list-contents-box cancel">
-                  <div class="right-text-box">
-                    <div class="top-text">
-                      <p class="time-text">오후 11:56</p>
-                      <p class="type pay">결제 취소</p>
-                    </div>
-                    <div class="bottom-text-box">
-                      <p class="detail-text">취소시엔 이렇게</p>
-                      <p class="amount minus">90,000원</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <span class="date-text">11(토)</span>
-                <div class="list-contents-box">
-                  <div class="right-text-box">
-                    <div class="top-text">
-                      <p class="time-text">오후 11:56</p>
-                      <p class="type pay">결제</p>
-                    </div>
-                    <div class="bottom-text-box">
-                      <p class="detail-text">신용카드 결제</p>
-                      <p class="amount minus">90,000원</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ul> -->
-            <!-- 최대 20개 노출 후 더보기 버튼 노출 -->
-<!--             <div class="add-view-btn-wrap">
-              <button type="button" class="add-view-btn">더보기</button>
-            </div>
-          </div> -->
+          <!-- //sec-history -->
         </div>
         <!-- //container -->
       </div>
       <!-- //content -->
     </div>
+    <!-- //[2026-06-17] renewal-v2 적용 -->
     <!-- //wrap -->
 
     <!-- 기간 팝업 -->
@@ -243,7 +276,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-head">
-            <p class="modal-head-title">체크카드 결제</p>
+            <p class="modal-head-title">신용카드 결제</p>
             <button type="button" class="btn btn-close js-modal-close">
               <i class="icon-close"></i>
             </button>
@@ -251,7 +284,7 @@
           <div class="modal-body">
             <dl>
               <dt>금액</dt>
-              <dd class=""><b>-90,000원</b></dd>
+              <dd class=""><b>90,000원</b></dd>
             </dl>
             <dl>
               <dt>일시</dt>
@@ -278,11 +311,20 @@
     $(function () {
       $(window).on("scroll", function () {
         var scrollTop = $(window).scrollTop();
-        var tradeTabOffset = $(".trade-tab-wrap").offset().top - 64;
-        if (scrollTop >= tradeTabOffset) {
-          $(".trade-tab-wrap").addClass("fixed");
+        var tab = $(".trade-tab-wrap");
+
+        var tradeTabOffset = tab.hasClass("fixed")
+          ? tab.data("originalOffset")
+          : tab.offset().top;
+
+        if (typeof tab.data("originalOffset") === "undefined") {
+          tab.data("originalOffset", tradeTabOffset);
+        }
+
+        if (scrollTop >= tradeTabOffset - 64) {
+          tab.addClass("fixed");
         } else {
-          $(".trade-tab-wrap").removeClass("fixed");
+          tab.removeClass("fixed");
         }
       });
 

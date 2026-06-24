@@ -14,6 +14,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <link rel="stylesheet" href="../../../css/common_renewal.css" />
+    <!-- [2026-06-17] renewal-v2 stylesheet -->
+    <link rel="stylesheet" href="../../../css/common_renewal_v2.css" />
+    <!-- //[2026-06-17] renewal-v2 stylesheet -->
     <link rel="stylesheet" href="../../../css/pay/transactionHistory.css" />
     <script src="../../../js/jquery.3.4.1.min.js"></script>
     <script src="../../../js/jquery-ui.js"></script>
@@ -22,7 +25,8 @@
 
   <body>
     <!-- wrap -->
-    <div id="wrap">
+    <!-- [2026-06-17] renewal-v2 적용 — 머니 상세 (내역 없음) -->
+    <div id="wrap" class="renewal-v2">
       <!-- header -->
       <div id="header">
         <div class="container">
@@ -30,7 +34,7 @@
             <button type="button" class="btn-back js-change-btn left-0">
               <i class="icon-back"></i>
             </button>
-            <h2 class="page-title">머니</h2>
+            <a href="#" class="btn-right-menu right-0">관리</a>
           </div>
         </div>
       </div>
@@ -39,95 +43,143 @@
       <!-- content -->
       <div id="content">
         <!-- container -->
-        <div class="container money-container">
-          <div class="top-contents-wrap">
-            <div class="top-contents-box">
-              <div class="top-text-wrap">
-                <button type="button" class="money-amount">0원</button>
+        <div class="container money-v2 transaction-history-container">
+          <!-- sec-balance -->
+          <div class="sec-balance">
+            <div class="sec-summary">
+              <button
+                type="button"
+                class="summary-amount"
+                onclick="modalOpenSlide('modal-money-info')"
+              >
+                0원
+              </button>
+            </div>
+
+            <div class="sec-action">
+              <div class="money-action-btns">
+                <button type="button" class="btn-charge">충전</button>
               </div>
-              <div class="money-control-wrap">
-                <button type="button" class="withdraw-btn">충전하기</button>
-                <p class="card-make-guide">전용카드 발급받고 혜택 받자~</p>
-              </div>
+
+              <ul class="notice-banner-list">
+                <li class="notice-banner-item">
+                  <img
+                    class="notice-icon"
+                    src="../../../images/pay/money/img-moneybag-gray.svg"
+                    alt=""
+                  />
+                  <p class="notice-text">출금해야 할 대기 머니가 있어요.</p>
+                  <button type="button" class="notice-go">
+                    <i class="icon-arrow-right size-16" aria-hidden="true"></i>
+                  </button>
+                </li>
+                <li class="notice-banner-item">
+                  <img
+                    class="notice-icon"
+                    src="../../../images/pay/money/img-people.svg"
+                    alt=""
+                  />
+                  <p class="notice-text">고객확인 정보 추가 입력이 필요해요.</p>
+                  <button type="button" class="notice-go">
+                    <i class="icon-arrow-right size-16" aria-hidden="true"></i>
+                  </button>
+                </li>
+              </ul>
+
+              <button type="button" class="money-promo-banner">
+                <span class="banner-icon-wrap">
+                  <img
+                    src="../../../images/pay/money/img-won-orange.svg"
+                    alt=""
+                  />
+                </span>
+                <span class="banner-text">현금처럼 사용하는 머니 알아보기</span>
+              </button>
             </div>
           </div>
-          <div class="aml-info-wrap">
-            <div class="text-wrap">
-              <i class="icon-warning-red"></i>
-              <p><b>출금해야 할 대기 머니</b>가 있어요.</p>
+          <!-- //sec-balance -->
+
+          <div class="divide-line" aria-hidden="true"></div>
+
+          <!-- sec-history -->
+          <div class="sec-history">
+            <div class="month-wrap">
+              <button
+                type="button"
+                class="prev-btn icon-arrow-left size-16 disabled"
+              >
+                이전
+              </button>
+              <button
+                type="button"
+                class="month-text"
+                onclick="modalOpenSlide('modal-period')"
+              >
+                <span class="year-text">24년</span>
+                <span class="month-num">12월</span>
+                <i class="icon-arrow-down size-12" aria-hidden="true"></i>
+              </button>
+              <button type="button" class="next-btn icon-arrow-right size-16">
+                다음
+              </button>
             </div>
-            <button type="button">
-              <i class="icon-arrow-right size-16"></i>
-            </button>
-          </div>
-          <div class="aml-info-wrap">
-            <div class="text-wrap">
-              <i class="icon-warning-red"></i>
-              <p><b>고객확인 정보 추가 입력</b>이 필요합니다.</p>
+
+            <div class="trade-tab-wrap">
+              <ul class="tab-list">
+                <li>
+                  <button type="button" class="active">전체</button>
+                </li>
+                <li>
+                  <button type="button">충전</button>
+                </li>
+                <li>
+                  <button type="button">사용</button>
+                </li>
+                <li>
+                  <button type="button">출금</button>
+                </li>
+                <li>
+                  <button type="button">소멸</button>
+                </li>
+              </ul>
             </div>
-            <button type="button">
-              <i class="icon-arrow-right size-16"></i>
-            </button>
+
+            <div class="empty-list">
+              <p>이용 내역이 없어요!</p>
+            </div>
           </div>
-          <div class="banner-wrap">
-            <img src="../../../images/payment/samlple/money-banner.png" alt="이번달만 특별 혜택! 쇼핑지원금 혜택 받자">
-          </div>
-          <div class="trade-tab-wrap">
-            <ul class="tab-list">
-              <li>
-                <button type="button" class="active">전체</button>
-              </li>
-              <li>
-                <button type="button">충전</button> 
-              </li>
-              <li>
-                <button type="button">사용</button>
-              </li>
-              <li>
-                <button type="button">출금</button>
-              </li>
-              <li>
-                <button type="button">소멸</button>
-              </li>
-            </ul>
-          </div>
-          <div class="empty-list">
-            <p>이용 내역이 없어요!</p>
-          </div>
+          <!-- //sec-history -->
         </div>
         <!-- //container -->
       </div>
       <!-- //content -->
     </div>
+    <!-- //[2026-06-17] renewal-v2 적용 — 머니 상세 (내역 없음) -->
     <!-- //wrap -->
 
     <!-- 보유 머니 바텀 시트 팝업 -->
-    <div
-      id="modal-money-info"
-      class="modal modal-slide type-title money-info"
-    >
+    <div id="modal-money-info" class="modal modal-slide type-title money-info">
       <div class="modal-dialog">
-        <div class="modal-content" style="bottom: 0px; position: fixed">
+        <div class="modal-content">
           <div class="modal-head round-btn">
-            <button type="button" class="btn btn-close js-modal-close">
-            </button>
+            <button type="button" class="btn btn-close js-modal-close"></button>
           </div>
           <div class="modal-body">
             <dl class="bold-text-wrap">
               <dt><b>보유 머니</b></dt>
-              <ddl><b>12,000원</b></ddl>
+              <dd><b>0원</b></dd>
             </dl>
             <dl>
               <dt>일반 머니</dt>
-              <dd>1,010원</dd>
+              <dd>0원</dd>
             </dl>
             <dl>
               <dt>휴대폰 충전 머니</dt>
-              <dd>5,000원</dd>
+              <dd>0원</dd>
             </dl>
             <dl class="bold-text-wrap">
               <dt><b>포인트</b></dt>
-              <dd><b>2,000원</b></dd>
+              <dd><b>0원</b></dd>
             </dl>
           </div>
         </div>
@@ -140,7 +192,9 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
-            <p id="alertContents">전용통장으로 머니 관리하고 <br>이자받으세요!</p>
+            <p id="alertContents">
+              전용통장으로 머니 관리하고 <br />이자받으세요!
+            </p>
           </div>
           <div class="modal-footer">
             <button
@@ -162,17 +216,97 @@
       </div>
     </div>
     <!-- //충전하기 유도 모달 팝업 -->
+
+    <!-- 기간 팝업 -->
+    <div
+      id="modal-period"
+      class="modal modal-slide type-title modal-period not-dim-close"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-head round-btn">
+            <button type="button" class="btn btn-close js-modal-close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="year-wrap">
+              <button
+                type="button"
+                class="prev-btn icon-arrow-left size-20 disabled"
+              >
+                이전
+              </button>
+              <span class="year-text">2024년</span>
+              <button type="button" class="next-btn icon-arrow-right size-20">
+                다음
+              </button>
+            </div>
+            <ul class="month-list-wrap">
+              <li>
+                <button type="button" class="active">1월</button>
+              </li>
+              <li>
+                <button type="button">2월</button>
+              </li>
+              <li>
+                <button type="button">3월</button>
+              </li>
+              <li>
+                <button type="button" disabled>4월</button>
+              </li>
+              <li>
+                <button type="button" disabled>5월</button>
+              </li>
+              <li>
+                <button type="button" disabled>6월</button>
+              </li>
+              <li>
+                <button type="button" disabled>7월</button>
+              </li>
+              <li>
+                <button type="button" disabled>8월</button>
+              </li>
+              <li>
+                <button type="button" disabled>9월</button>
+              </li>
+              <li>
+                <button type="button" disabled>10월</button>
+              </li>
+              <li>
+                <button type="button" disabled>11월</button>
+              </li>
+              <li>
+                <button type="button" disabled>12월</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //기간 팝업 -->
   </body>
   <script>
-    $(function(){
-      $(window).on("scroll", function(){
+    $(function () {
+      $(window).on("scroll", function () {
         var scrollTop = $(window).scrollTop();
-        var tradeTabOffset = $(".trade-tab-wrap").offset().top - 64;
-        if (scrollTop >= tradeTabOffset) {
-          $(".trade-tab-wrap").addClass("fixed");
-        } else {
-          $(".trade-tab-wrap").removeClass("fixed");
+        var tab = $(".trade-tab-wrap");
+        var tradeTabOffset = tab.hasClass("fixed")
+          ? tab.data("originalOffset")
+          : tab.offset().top;
+
+        if (typeof tab.data("originalOffset") === "undefined") {
+          tab.data("originalOffset", tradeTabOffset);
         }
+
+        if (scrollTop >= tradeTabOffset - 64) {
+          tab.addClass("fixed");
+        } else {
+          tab.removeClass("fixed");
+        }
+      });
+
+      $(".tab-list button").on("click", function () {
+        $(this).closest(".tab-list").find("button").removeClass("active");
+        $(this).addClass("active");
       });
     });
   </script>

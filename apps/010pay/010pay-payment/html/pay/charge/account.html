@@ -112,14 +112,44 @@
               <button type="button" data-money="10">10만원</button>
               <button type="button" data-money="100">100만원</button>
             </div>
-            <!-- keypad — 퍼블: keypad.png · 개발: 버튼식 키패드 연동 예정 -->
-            <div class="charge-keypad-slot" aria-hidden="true">
-              <img
-                class="charge-keypad-image"
-                src="../../../images/pay/money/keypad.png"
-                alt=""
-              />
+            <!-- keypad -->
+            <div class="keypad-slot">
+              <div class="keypad" role="group" aria-label="숫자 키패드">
+                <div class="keypad-row">
+                  <button type="button" class="keypad-key" data-value="1">1</button>
+                  <button type="button" class="keypad-key" data-value="2">2</button>
+                  <button type="button" class="keypad-key" data-value="3">3</button>
+                </div>
+                <div class="keypad-row">
+                  <button type="button" class="keypad-key" data-value="4">4</button>
+                  <button type="button" class="keypad-key" data-value="5">5</button>
+                  <button type="button" class="keypad-key" data-value="6">6</button>
+                </div>
+                <div class="keypad-row">
+                  <button type="button" class="keypad-key" data-value="7">7</button>
+                  <button type="button" class="keypad-key" data-value="8">8</button>
+                  <button type="button" class="keypad-key" data-value="9">9</button>
+                </div>
+                <div class="keypad-row">
+                  <button type="button" class="keypad-key" data-value="00">00</button>
+                  <button type="button" class="keypad-key" data-value="0">0</button>
+                  <button
+                    type="button"
+                    class="keypad-key keypad-delete"
+                    data-action="delete"
+                    aria-label="삭제"
+                  >
+                    <img
+                      src="../../../images/pay/charge/ico-keypad-delete.svg"
+                      alt=""
+                      width="24"
+                      height="24"
+                    />
+                  </button>
+                </div>
+              </div>
             </div>
+            <!-- //keypad -->
             <div class="charge-foot-cta">
               <button
                 type="button"
@@ -187,132 +217,20 @@
     <!-- //계좌 선택하기 팝업 -->
   </body>
   <script>
-    /* ============================================================
-     * 계좌 머니 충전 — 금액 입력 · 에러 · CTA 제어
-     * 단위: 만원 (칩 data-money, input_value 모두 만원 기준)
-     * ============================================================ */
-
-    // 현재 입력된 충전 금액 (만원)
-    var input_value = 0;
-    // 충전 가능 금액 (만원)
-    var charge_available = 192;
-
-    /** 에러 문구 내 "192만원" 링크 텍스트·data-amount·aria-label 동기화 */
-    function updateChargeLimitLink() {
-      $(".js-charge-limit-fill")
-        .text(charge_available + "만원")
-        .attr("data-amount", charge_available)
-        .attr("aria-label", charge_available + "만원 입력");
-    }
-
-    /** 충전하기 버튼 활성/비활성 — 값 있음 + 에러 없을 때만 enabled */
-    function updateChargeSubmitState() {
-      if (input_value > 0 && !$(".charge-input").hasClass("error")) {
-        $(".btn-charge-submit").prop("disabled", false);
-      } else {
-        $(".btn-charge-submit").prop("disabled", true);
-      }
-    }
-
-    /**
-     * 금액 표시·에러 상태 일괄 갱신
-     * - has-value: fake-label(큰 금액) 노출
-     * - error: charge_available 초과 시 — 금액 빨간색 + 한도 안내 문구 (CSS :has 연동)
-     */
-    function updateChargeAmountUI() {
-      var $wrap = $(".charge-input");
-      var $label = $wrap.find(".floating-label");
-
-      if (input_value > 0) {
-        $wrap.addClass("has-value");
-        $wrap.find(".fake-label .number").text(input_value);
-        $wrap.find(".fake-label .unit").show();
-      } else {
-        $wrap.removeClass("has-value");
-        $wrap.find(".fake-label .number").text("");
-        $wrap.find(".fake-label .unit").hide();
-        $label.text("얼마를 충전할까요?");
-      }
-
-      if (input_value > charge_available) {
-        $wrap.addClass("error");
-      } else {
-        $wrap.removeClass("error");
-
-        if (input_value > 0) {
-          $label.text("충전 금액");
-        }
-      }
-
-      updateChargeSubmitState();
-    }
-
-    /** 금액을 직접 설정 (삭제·한도 링크 클릭 등 공통 진입점) */
-    function setChargeAmount(amount) {
-      input_value = amount;
-      $("#chargeAmount").val(amount > 0 ? amount : "");
-      updateChargeAmountUI();
-    }
-
-    // --- 금액 입력 (버튼식 키패드 연동 전 — 칩·한도 링크로만 갱신) ---
-    $(".charge-input input").on("input", function () {
-      var $this = $(this);
-      var maxlength = 15;
-      var parsed = parseInt($this.val().replace(/[^0-9]/g, ""), 10);
-
-      input_value = isNaN(parsed) ? 0 : parsed;
-
-      // 최대 자릿수 초과 시 잘라냄
-      if ($this.val().length > maxlength) {
-        input_value = parseInt(String(input_value).substring(0, maxlength), 10);
-        $this.val(input_value);
-      }
-
-      updateChargeAmountUI();
+    /* 계좌 머니 충전 — RenewalAmountPage 공통 초기화 (design_renewal.js defer 이후) */
+    $(function () {
+      RenewalAmountPage.init({
+        input: "#chargeAmount",
+        unit: "manwon",
+        available: 192,
+        submitBtn: ".btn-charge-submit",
+        limitLink: ".js-charge-limit-fill",
+        labels: {
+          empty: "얼마를 충전할까요?",
+          filled: "충전 금액",
+        },
+        chips: ".add-money-btn-wrap button",
+      });
     });
-
-    // 포커스·블러 — 빈 값일 때 placeholder 문구 유지
-    $(".charge-input input").on("focus", function () {
-      var $this = $(this);
-      var $label = $this.closest(".charge-input").find(".floating-label");
-
-      if ($this.val().length === 0) {
-        $label.text("얼마를 충전할까요?");
-      }
-    });
-
-    $(".charge-input input").on("blur", function () {
-      var $this = $(this);
-      var $label = $this.closest(".charge-input").find(".floating-label");
-
-      if ($this.val().length === 0) {
-        $label.text("얼마를 충전할까요?");
-      }
-    });
-
-    // 입력값 삭제 (X 버튼 — mousedown: blur 전에 처리)
-    $(".charge-input .js-text-del").on("mousedown", function () {
-      setChargeAmount(0);
-    });
-
-    // --- 하단 금액 칩 — 누적 가산 (1·5·10·100만원) ---
-    $(".add-money-btn-wrap button").on("click", function () {
-      var moneyValue = parseInt($(this).attr("data-money"), 10);
-
-      input_value += moneyValue;
-      $("#chargeAmount").val(input_value);
-      updateChargeAmountUI();
-    });
-
-    // 에러 시 "192만원" 밑줄 클릭 → 최대 충전 가능 금액으로 즉시 입력
-    $(".js-charge-limit-fill").on("click", function () {
-      var amount = parseInt($(this).attr("data-amount"), 10);
-
-      setChargeAmount(amount);
-    });
-
-    // 초기 렌더
-    updateChargeLimitLink();
-    updateChargeAmountUI();
   </script>
 </html>

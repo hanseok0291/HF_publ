@@ -932,3 +932,298 @@ function updateVH() {
 
 window.addEventListener('load', updateVH);
 window.addEventListener('resize', updateVH);
+
+/* [2026-06-23] renewal-v2 #KEYPAD — 금액 입력 숫자 키패드 공통
+ * 사용: RenewalAmountKeypad.create({ input: '#amount', onChange: fn })
+ */
+(function ($) {
+  var MAX_DIGITS = 15;
+
+  function formatWon(amount) {
+    return String(amount).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  function parseDigits(keypadDigits) {
+    if (keypadDigits === "") {
+      return 0;
+    }
+
+    var amount = parseInt(keypadDigits, 10);
+
+    return isNaN(amount) ? 0 : amount;
+  }
+
+  window.RenewalAmountKeypad = {
+    MAX_DIGITS: MAX_DIGITS,
+    formatWon: formatWon,
+
+    /**
+     * 금액 키패드 인스턴스 생성 — 자릿수 누적
+     * - 원 화면: 1→2→3 = 123원 (input 쉼표 포맷)
+     * - 만원 화면: 1→2→3 = 123만원 (input 숫자 그대로)
+     * @param {Object} options
+     * @param {string} options.input - 금액 input 셀렉터
+     * @param {string} [options.keypad='.keypad'] - 키패드 루트 셀렉터
+     * @param {function(number): string} [options.formatInput] - input 표시 포맷 (기본: formatWon)
+     * @param {function(number, string): void} options.onChange - (amount, keypadDigits)
+     */
+    create: function (options) {
+      var keypadDigits = "";
+      var $input = $(options.input);
+      var $keypad = $(options.keypad || ".keypad");
+      var formatInput = options.formatInput || formatWon;
+
+      function getValue() {
+        return parseDigits(keypadDigits);
+      }
+
+      function notify() {
+        var amount = getValue();
+
+        $input.val(amount > 0 ? formatInput(amount) : "");
+
+        if (typeof options.onChange === "function") {
+          options.onChange(amount, keypadDigits);
+        }
+      }
+
+      function setValue(amount) {
+        amount = amount || 0;
+        keypadDigits = amount > 0 ? String(amount) : "";
+        notify();
+      }
+
+      function appendKey(key) {
+        if (key === "delete") {
+          keypadDigits = keypadDigits.slice(0, -1);
+        } else {
+          if (keypadDigits.length + key.length > MAX_DIGITS) {
+            return;
+          }
+
+          if (keypadDigits === "0" && key !== "00") {
+            keypadDigits = key;
+          } else {
+            keypadDigits += key;
+          }
+        }
+
+        if (isNaN(parseInt(keypadDigits, 10)) && keypadDigits !== "") {
+          keypadDigits = "";
+        }
+
+        notify();
+      }
+
+      $keypad.on("click", ".keypad-key", function () {
+        var action = $(this).attr("data-action");
+
+        if (action === "delete") {
+          appendKey("delete");
+          return;
+        }
+
+        appendKey($(this).attr("data-value"));
+      });
+
+      return {
+        getValue: getValue,
+        getDigits: function () {
+          return keypadDigits;
+        },
+        setValue: setValue,
+        appendKey: appendKey,
+      };
+    },
+  };
+
+  /**
+   * --------------------------------------------------------------------------
+   * RenewalAmountPage — 충전·출금 등 「금액 입력 화면」 공통 초기화
+   * --------------------------------------------------------------------------
+   * RenewalAmountKeypad(키패드 입력) + fake-label UI + 한도 에러 + CTA + 부가 컨트롤을
+   * 한 번에 연결한다. 페이지마다 반복되던 인라인 스크립트를 설정 객체로 대체한다.
+   *
+   * @example
+   * $(function () {
+   *   RenewalAmountPage.init({
+   *     input: "#withdrawAmount",
+   *     available: 80000,
+   *     submitBtn: ".btn-withdraw-submit",
+   *     limitLink: ".js-withdraw-limit-fill",
+   *     limitFormat: "won",
+   *     labels: { empty: "얼마를 보낼까요?", filled: "출금 금액" },
+   *   });
+   * });
+   */
+  window.RenewalAmountPage = {
+    /**
+     * @param {Object} options
+     * @param {string} options.input - 금액 input (#chargeAmount 등)
+     * @param {number} options.available - 최대 입력 가능 금액
+     * @param {"won"|"manwon"} [options.unit="won"]
+     *   - won: 값·한도 모두 원 (출금 — 80000 = 80,000원)
+     *   - manwon: 값·한도 모두 만원 (충전 — 2 = 2만원, 한도 192 = 192만원)
+     * @param {string} options.submitBtn - 하단 CTA 버튼 셀렉터
+     * @param {string} options.limitLink - 한도 안내·에러 시 클릭 링크 (복수 요소 가능)
+     * @param {string} [options.wrap=".charge-input"] - input-container 래퍼
+     * @param {string} [options.keypad=".keypad"] - 키패드 루트 (RenewalAmountKeypad에 전달)
+     * @param {"won"|"manwon"} [options.limitFormat] - unit=won 일 때 한도 링크 표기 (manwon: ÷10000)
+     * @param {function(number): string} [options.limitLabel] - limitFormat 대신 커스텀 라벨
+     * @param {{ empty: string, filled: string }} options.labels
+     *   - empty: 미입력 placeholder·focus 시 라벨
+     *   - filled: 값 있을 때 floating-label 문구
+     * @param {string} [options.chips] - 금액 칩 (data-money 단위는 options.unit 과 동일)
+     * @returns {{ getValue, setValue, setAvailable, updateUI, keypad }}
+     */
+    init: function (options) {
+      var inputValue = 0;
+      var available = options.available;
+      var unit = options.unit || "won";
+      var isManwon = unit === "manwon";
+      var $wrap = $(options.wrap || ".charge-input");
+      var $input = $wrap.find("input");
+      var labels = options.labels || { empty: "", filled: "" };
+
+      /** 화면 단위에 맞게 숫자 표시 (만원: 쉼표 없음, 원: 쉼표) */
+      function formatDisplay(amount) {
+        return isManwon ? String(amount) : formatWon(amount);
+      }
+
+      /** input 필드 표시 (키패드 연동용) */
+      function formatInputValue(amount) {
+        return formatDisplay(amount);
+      }
+
+      /** 한도 링크 표시 문구·data-amount·aria-label 동기화 */
+      function buildLimitLabel(amount) {
+        if (typeof options.limitLabel === "function") {
+          return options.limitLabel(amount);
+        }
+
+        if (isManwon || options.limitFormat === "manwon") {
+          var manwonAmount = isManwon ? amount : amount / 10000;
+
+          return manwonAmount + "만원";
+        }
+
+        return formatWon(amount) + "원";
+      }
+
+      /** limitLink data-amount — unit 과 동일 단위로 저장 */
+      function getLimitDataAmount() {
+        return available;
+      }
+
+      function updateLimitLink() {
+        var limitLabel = buildLimitLabel(available);
+
+        $(options.limitLink)
+          .text(limitLabel)
+          .attr("data-amount", getLimitDataAmount())
+          .attr("aria-label", limitLabel + " 입력");
+      }
+
+      /** CTA — 금액 있음 + error 없을 때만 활성 */
+      function updateSubmitState() {
+        var enabled = inputValue > 0 && !$wrap.hasClass("error");
+
+        $(options.submitBtn).prop("disabled", !enabled);
+      }
+
+      /**
+       * fake-label·floating-label·error·CTA 일괄 갱신
+       * - has-value: 큰 금액 표시
+       * - error: available 초과 (charge.css :has(.charge-input.error) 연동)
+       */
+      function updateUI() {
+        var $label = $wrap.find(".floating-label");
+        var formatted = formatDisplay(inputValue);
+
+        if (inputValue > 0) {
+          $wrap.addClass("has-value");
+          $wrap.find(".fake-label .number").text(formatted);
+          $wrap.find(".fake-label .unit").show();
+        } else {
+          $wrap.removeClass("has-value");
+          $wrap.find(".fake-label .number").text("");
+          $wrap.find(".fake-label .unit").hide();
+          $label.text(labels.empty);
+        }
+
+        if (inputValue > available) {
+          $wrap.addClass("error");
+        } else {
+          $wrap.removeClass("error");
+
+          if (inputValue > 0) {
+            $label.text(labels.filled);
+          }
+        }
+
+        updateSubmitState();
+      }
+
+      /** 키패드 입력 연동 — onChange에서 UI 갱신 */
+      var keypad = RenewalAmountKeypad.create({
+        input: options.input,
+        keypad: options.keypad,
+        formatInput: formatInputValue,
+        onChange: function (amount) {
+          inputValue = amount;
+          updateUI();
+        },
+      });
+
+      function setValue(amount) {
+        keypad.setValue(amount);
+      }
+
+      /** input focus/blur — 빈 값일 때 empty 라벨 유지 */
+      $input.on("focus blur", function () {
+        if ($(this).val().length === 0) {
+          $wrap.find(".floating-label").text(labels.empty);
+        }
+      });
+
+      /** X 삭제 — mousedown(blur 전) + 키패드 상태 0원 동기화 */
+      $wrap.find(".js-text-del").on("mousedown", function () {
+        setValue(0);
+      });
+
+      /** 한도 링크 클릭 → 최대 금액 즉시 입력 */
+      $(options.limitLink).on("click", function () {
+        var amount = parseInt($(this).attr("data-amount"), 10);
+
+        setValue(amount);
+      });
+
+      /** 금액 칩 — data-money 누적 (단위는 options.unit 과 동일) */
+      if (options.chips) {
+        $(options.chips).on("click", function () {
+          var moneyValue = parseInt($(this).attr("data-money"), 10);
+
+          setValue(keypad.getValue() + moneyValue);
+        });
+      }
+
+      updateLimitLink();
+      updateUI();
+
+      return {
+        getValue: function () {
+          return inputValue;
+        },
+        setValue: setValue,
+        setAvailable: function (nextAvailable) {
+          available = nextAvailable;
+          updateLimitLink();
+          updateUI();
+        },
+        updateUI: updateUI,
+        keypad: keypad,
+      };
+    },
+  };
+})(jQuery);
+/* //[2026-06-23] renewal-v2 #KEYPAD · #AMOUNT-PAGE */

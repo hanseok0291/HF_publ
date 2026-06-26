@@ -42,7 +42,7 @@
                 <div class="container register-account-container">
                     <!-- headline -->
                     <div class="headline pt-0 pt-headline">
-                        <p>본인 명의 계좌번호를 입력해 주세요</p>
+                        <p>은행을 선택해주세요</p>
                     </div>
                     <!-- //headline -->
 
@@ -73,7 +73,7 @@
                 <div class="bottom-area">
                     <!-- container -->
                     <div class="container">
-                        <button type="button" class="btn js-modal-close" onclick="modalOpenSlide('modal-select-title')" data-target="modal-select-title">다음</button>
+                        <button type="button" class="btn js-modal-close" disabled onclick="modalOpenSlide('modal-select-title')" data-target="modal-select-title">다음</button>
                         <button type="button" id="btnHidden" class="btn btn-transparent btn-hidden" onclick="modalOpenSlide('modal-other-charge')" data-target="modal-other-charge">
                             다른 충전 선택하기
                         </button>
@@ -212,7 +212,7 @@
                         <div class="container">
                             <div>
                                 <ul class="bank-list option-list">
-                                    <li class="option-item select">
+                                    <li class="option-item ">
                                         <button type="button">
                                             <i class="icon"><img src="../../images/bank/logo_012.png" alt="" /></i> NH농협
                                         </button>
@@ -546,7 +546,33 @@
         <!-- //modal - 공지사항 상세 -->
     </body>
     <script>
+        var $registerAccount = $(".register-account-container");
+        var $registerAccountPage = $("#content");
+
+        function updateRegisterAccountHeadline() {
+            var isBankSelected = $registerAccount.find(".select-input.comp").length > 0;
+            $registerAccount.find(".headline.pt-headline > p").text(
+                isBankSelected ? "본인 명의 계좌번호를 입력해 주세요" : "은행을 선택해주세요"
+            );
+        }
+
+        function updateRegisterAccountNextButton() {
+            var hasAccountNumber =
+                $.trim($registerAccount.find(".field-account .custom-input").val()).length > 0;
+            $registerAccountPage
+                .find('.bottom-area .btn[data-target="modal-select-title"]')
+                .prop("disabled", !hasAccountNumber);
+        }
+
         $(document).ready(function () {
+            updateRegisterAccountHeadline();
+            updateRegisterAccountNextButton();
+
+            $registerAccount.find(".field-account .custom-input").on("input change keyup", updateRegisterAccountNextButton);
+            $registerAccount.find(".field-account .js-text-del").on("mousedown", function () {
+                setTimeout(updateRegisterAccountNextButton, 0);
+            });
+
             // option-list 내의 모든 li 요소에 클릭 이벤트 리스너 추가
             $(".option-list li").click(function () {
                 // 모든 li에서 select 클래스 제거
@@ -560,7 +586,12 @@
             $("#modal-select-bank .option-item").on("click", function () {
                 // 계좌 번호 입력창을 은행 위에 노출
                 $(".field-account").addClass("on");
-                $("#accountNumber").focus();
+                $registerAccount.find(".field-account .custom-input").focus();
+            });
+
+            // 은행 선택 시 헤드라인 문구 변경 (design_renewal.js — select-input.comp 반영 후)
+            $("#modal-select-bank .option-item button").on("click", function () {
+                setTimeout(updateRegisterAccountHeadline, 0);
             });
 
             // 진입 시 은행 선택 모달 오픈

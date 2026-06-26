@@ -15,6 +15,7 @@
     <meta name="format-detection" content="telephone=no, address=no, email=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <link rel="stylesheet" href="../../css/common_renewal.css" />
+    <link rel="stylesheet" href="../../css/common_renewal_v2.css" /> <!-- v2 리뉴얼 페이지만 -->
     <link rel="stylesheet" href="../../css/[섹션]/[페이지].css" />
     <script src="../../js/jquery.3.4.1.min.js"></script>
     <script src="../../js/jquery-ui.js"></script>
@@ -22,7 +23,7 @@
   </head>
   <body>
     <!-- wrap -->
-    <div id="wrap" class="[페이지별-wrap]">
+    <div id="wrap" class="renewal-v2 [페이지별-wrap]">
       <!-- header -->
       <div id="header">
         <div class="container">
@@ -75,9 +76,21 @@
 
 /* 주석 스타일 */
 /*
+  HTML:
   - 시작: <!-- [이름] -->
   - 종료: <!-- //[이름] -->
   - 예: <!-- header --> ... <!-- //header -->
+  - 수정·추가 시 현재 날짜 포함 (다른 담당자 변경 이력 확인용):
+    <!-- [2026-06-17] renewal-v2 stylesheet -->
+    ... 추가/수정 마크업 ...
+    <!-- //[2026-06-17] renewal-v2 stylesheet -->
+
+  CSS:
+  - 블록 추가·수정 시 현재 날짜 + 변경 요약 주석 필수:
+    /* [2026-06-17] renewal-v2 — 결제수단 관리 탭 컬러 */
+    ... 규칙 ...
+    /* //[2026-06-17] renewal-v2 — 결제수단 관리 탭 컬러 */
+  - 형식: [YYYY-MM-DD] 변경 요약 (한 줄로 무엇이 추가/변경됐는지)
 */
 
 /* ==================== CSS 네이밍 패턴 ==================== */
@@ -416,7 +429,8 @@
     [섹션]/
       [페이지].html
   css/
-    common_renewal.css (공통)
+    common_renewal.css (레거시 공통, 전 페이지)
+    common_renewal_v2.css (리뉴얼 공통, .renewal-v2 스코프 — v2 페이지만 link)
     [섹션]/
       [페이지].css
   images/
@@ -425,6 +439,53 @@
   js/
     [공통 스크립트]
     [섹션]/ (섹션별 스크립트)
+*/
+
+/* ==================== Design Renewal v2 ==================== */
+
+/* 개요 */
+/*
+  - 파일: css/common_renewal_v2.css
+  - 스코프 클래스: #wrap.renewal-v2
+  - load 순서: common_renewal.css → common_renewal_v2.css → [페이지].css
+  - design_renewal.js는 공통 JS이며 CSS v2와 무관
+*/
+
+/* HTML 적용 (v2 리뉴얼 대상 페이지만) */
+/*
+  <link rel="stylesheet" href="../../css/common_renewal.css" />
+  <link rel="stylesheet" href="../../css/common_renewal_v2.css" />
+  <link rel="stylesheet" href="../../css/[섹션]/[페이지].css" />
+
+  <div id="wrap" class="renewal-v2 plcc-main-wrap">
+*/
+
+/* CSS 역할 분담 */
+/*
+  common_renewal_v2.css — .renewal-v2 하위 토큰·공통 컴포넌트 (btn, header, form, modal 등)
+  [페이지].css           — 페이지 고유 레이아웃·섹션 (색·버튼·헤더 재정의 지양)
+  images/common/renewal-v2/ — To-be 아이콘 SVG (파일명은 images/common/ 과 동일)
+                            common_renewal_v2.css #ICON 에서 url override (추가 후 주석 해제)
+*/
+
+/* 수정 요청 범위 태그 */
+/*
+  [페이지만]     — 해당 HTML + 페이지 CSS
+  [공통+페이지]  — common_renewal_v2.css + 페이지 (기본 권장)
+  [섹션 전체]    — 섹션 내 HTML/CSS 일괄
+  [전역]         — 토큰·공통 컴포넌트 전체
+*/
+
+/* 토큰 (Figma To-be 기준) */
+/*
+  Figma 비교 보드: 왼쪽 = To-be(v2), 오른쪽 = As-is(레거시)
+  To-be Primary: #ff6114 (탭 활성·primary 버튼·CTA·모달 확인)
+  As-is: #e0ff63 라임 탭 / #151515+#e0ff63 블랙 CTA·모달 확인 등
+  모달(radius): 컨테이너 16px, footer 버튼 12px — #wrap 밖 모달은 body:has(#wrap.renewal-v2)
+
+  색·간격·radius는 .renewal-v2 { --color-*: ... } 에 정의.
+  hex 직접 입력보다 var(--color-*) 사용.
+  HTML·CSS 수정 시 [YYYY-MM-DD] 날짜 주석 필수 (.cursorrules 주석 스타일 참고).
 */
 
 /* ==================== Figma MCP 디자인 적용 규칙 ==================== */

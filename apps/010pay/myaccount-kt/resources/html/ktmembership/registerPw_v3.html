@@ -109,17 +109,17 @@
 </div>
 <!-- //common alert -->
 
-<!-- common prompt -->
-<div id="commonPrompt" class="modal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-body">
+<!-- common prompt (v3 — 버튼 2개) -->
+<div id="commonPrompt" class="modal modal-v3-alert modal-v3-alert--confirm">
+	<div class="modal-dialog modal-v3-alert__dialog">
+		<div class="modal-content modal-v3-alert__panel">
+			<div class="modal-body modal-v3-alert__body">
 				<h3 id="promptTitle"></h3>
-				<p id="promptContents"></p>
+				<p id="promptContents" class="modal-v3-alert__message"></p>
 			</div>
-			<div class="modal-footer">
-				<button type="button" onclick="modalClose();" class="btn">취소</button>
-				<button type="button" id="promptOk" class="btn">확인</button>
+			<div class="modal-footer modal-v3-alert__footer">
+				<button type="button" onclick="modalClose();" class="btn modal-v3-alert__btn modal-v3-alert__btn--cancel">취소</button>
+				<button type="button" id="promptOk" class="btn modal-v3-alert__btn modal-v3-alert__btn--confirm">철회하기</button>
 			</div>
 		</div>
 	</div>
@@ -128,8 +128,9 @@
 
 <script>
 	$(document).ready(function(){
-		// 퍼블 확인용 — 연동 시 아래 2줄 호출 (commonutil $.alertMessage + design.js scrollOff)
-		$.alertMessage('', '비밀번호 5회 오류로<br>재설정 후 이용이 가능합니다.', $('#commonAlert'));
+		// 퍼블 확인용 — 1버튼: $.alertMessage('', '비밀번호 5회 오류로<br>재설정 후 이용이 가능합니다.', $('#commonAlert'));
+		// 퍼블 확인용 — 2버튼 (연동 시 $.promptMessage + scrollOff)
+		$.promptMessage('비밀번호 1회 오류', '5회 오류 시 이용이 제한됩니다.', $('#commonPrompt'), $('#promptOk'), 'modalClose();');
 		scrollOff();
 	});
 </script>

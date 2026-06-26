@@ -25,7 +25,7 @@
 
   <body>
     <!-- wrap -->
-    <!-- [2026-06-17] renewal-v2 적용 — 출금 (Figma 출금) -->
+    <!-- [2026-06-23] renewal-v2 적용 — 대기 머니 출금 -->
     <div id="wrap" class="renewal-v2">
       <!-- header -->
       <div id="header">
@@ -34,14 +34,7 @@
             <button type="button" class="btn-back left-0">
               <i class="icon-back"></i>
             </button>
-            <h2 class="page-title">출금</h2>
-            <button
-              type="button"
-              class="right-0"
-              onclick="modalOpenSlide('modal-withdrawalt-info')"
-            >
-              <i class="icon-info-circle"></i>
-            </button>
+            <h2 class="page-title">대기 머니 출금</h2>
           </div>
         </div>
       </div>
@@ -50,164 +43,59 @@
       <!-- content -->
       <div id="content">
         <div class="container charge-account-v2-scroll-fill">
-          <div class="charge-container charge-account-v2 withdrawal-v2">
-            <div class="charge-account-v2-body">
-              <button
-                type="button"
-                class="charge-account-select"
-                onclick="modalOpenSlide('modal-select-account')"
-              >
-                <span class="charge-account-logo">
-                  <img
-                    src="../../../images/payment/bank/kakao-small.png"
-                    alt=""
-                  />
-                </span>
-                <span class="charge-account-text">
-                  <strong>카카오뱅크 789 계좌</strong>로
-                </span>
-                <i class="icon-arrow-down size-16" aria-hidden="true"></i>
-              </button>
-
-              <div class="charge-amount-section">
-                <div class="input-wrap charge-input-wrap">
-                  <div class="input-container label-n charge-input">
-                    <input
-                      type="tel"
-                      inputmode="numeric"
-                      pattern="[0-9]*"
-                      class="custom-input"
-                      placeholder=" "
-                      id="withdrawAmount"
-                      autocomplete="off"
+          <div class="charge-container charge-account-v2 wait-withdrawal-v2">
+            <div class="charge-account-v2-body wait-withdrawal-v2-body">
+              <div class="wait-withdrawal-v2-main">
+                <button
+                  type="button"
+                  class="charge-account-select"
+                  onclick="modalOpenSlide('modal-select-account')"
+                >
+                  <span class="charge-account-logo">
+                    <img
+                      src="../../../images/payment/bank/kakao-small.png"
+                      alt=""
                     />
-                    <label for="withdrawAmount" class="floating-label"
-                      >얼마를 보낼까요?</label
-                    >
-                    <div class="fake-label">
-                      <p class="number"></p>
-                      <span class="unit">원</span>
-                    </div>
-                    <button type="button" class="icon icon-del js-text-del"></button>
-                  </div>
-                </div>
-                <div class="charge-balance-row withdrawal-balance-row">
-                  <span class="label">출금 가능 머니</span>
-                  <button
-                    type="button"
-                    class="withdraw-limit-link js-withdraw-limit-fill"
-                    data-amount="80000"
-                  >
-                    80,000원
-                  </button>
-                </div>
-                <div class="charge-limit-hint">
-                  <p class="charge-limit-text">
-                    <button
-                      type="button"
-                      class="charge-limit-link js-withdraw-limit-fill"
-                      data-amount="80000"
-                    >
-                      80,000원
-                    </button>
-                    까지 출금 가능해요
-                  </p>
-                </div>
+                  </span>
+                  <span class="charge-account-text">
+                    <strong>카카오뱅크 123 계좌</strong>로
+                  </span>
+                  <i class="icon-arrow-down size-16" aria-hidden="true"></i>
+                </button>
+
+                <!-- 출금 금액 — 대기 머니 전액 고정 표시 (입력·키패드 없음) -->
+                <p class="wait-withdrawal-amount">19,000원</p>
+              </div>
+
+              <!-- Notice -->
+              <div class="wait-withdrawal-notice">
+                <ul class="wait-withdrawal-notice-list">
+                  <li>
+                    현재 보유 중인 대기 머니 전액 출금만 가능합니다.
+                  </li>
+                  <li>
+                    은행 점검 시간에는 출금이 제한될 수 있습니다.<br />
+                    (평균 23시 50분 ~ 00시 10분)
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- bottom area — Figma: 수수료 안내 → CTA -->
-        <div class="bottom-area charge-account-v2-foot withdrawal-v2-foot">
-          <div class="container charge-foot-stack">
-            <p class="withdrawal-fee-notice">월 5회 수수료 0원</p>
-            <div class="charge-foot-cta">
-              <button
-                type="button"
-                class="btn btn-charge-submit btn-withdraw-submit"
-                disabled
-              >
-                출금하기
-              </button>
-            </div>
+        <!-- bottom area — Figma: CTA -->
+        <div class="bottom-area charge-account-v2-foot wait-withdrawal-v2-foot">
+          <div class="container">
+            <button type="button" class="btn btn-charge-submit btn-wait-withdraw-submit">
+              출금하기
+            </button>
           </div>
         </div>
       </div>
       <!-- //content -->
     </div>
-    <!-- //[2026-06-17] renewal-v2 적용 — 출금 -->
+    <!-- //[2026-06-23] renewal-v2 적용 -->
     <!-- //wrap -->
-
-    <!-- common prompt -->
-    <div id="commonPrompt" class="modal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-body">
-            <h3 id="promptTitle"></h3>
-            <p id="promptContents"></p>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              id="promptNo"
-              onclick="modalCloseAlert();"
-              class="btn btn-cancel"
-            >
-              취소
-            </button>
-            <button
-              type="button"
-              id="promptOk"
-              onclick="modalCloseAlert();"
-              class="btn btn-confirm"
-            >
-              확인
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- //common prompt -->
-
-    <!-- 출금 안내 팝업 -->
-    <div id="modal-withdrawalt-info" class="modal modal-slide type-title">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-head">
-            <p class="modal-head-title">출금 안내</p>
-            <button type="button" class="btn btn-close js-modal-close">
-              <i class="icon-close"></i>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container">
-              <ul class="note-wrap">
-                <li>
-                  안전한 거래를 위해 머니를 출금한 계좌로의 출금을 원칙으로
-                  합니다
-                </li>
-                <li>
-                  연결계좌로 출금한 일반 머니만 출금 가능하며, 휴대폰 출금 머니
-                  금액은 제외됩니다
-                </li>
-                <li>
-                  은행 점검 시간에는 출금이 제한될 수 있습니다 (평균 23시 50분 ~
-                  00시 10분)
-                </li>
-                <li>월 5회 무료 출금 이후 건당 500원의 수수료가 부과됩니다</li>
-                <li>출금 가능머니가 수수료보다 많을 때만 출금이 가능합니다</li>
-              </ul>
-              <div class="info-wrap"></div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn js-modal-close">확인</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- //출금 안내 팝업 -->
 
     <!-- 계좌 선택하기 팝업 -->
     <div id="modal-select-account" class="modal modal-slide type-select type-title">
@@ -225,7 +113,10 @@
                 <li class="option-item">
                   <button type="button" class="flex items-center js-modal-close">
                     <p class="img-bank">
-                      <img src="../../../images/bank/bank_new/logo-bank-toss.png" alt="국민" />
+                      <img
+                        src="../../../images/bank/bank_new/logo-bank-toss.png"
+                        alt=""
+                      />
                     </p>
                     <p class="text-bank">
                       <span>국민</span>
@@ -237,7 +128,10 @@
                 <li class="option-item">
                   <button type="button" class="flex items-center js-modal-close">
                     <p class="img-bank">
-                      <img src="../../../images/bank/bank_new/logo-bank-hana.png" alt="국민" />
+                      <img
+                        src="../../../images/bank/bank_new/logo-bank-hana.png"
+                        alt=""
+                      />
                     </p>
                     <p class="text-bank">
                       <span>국민</span>
@@ -256,143 +150,4 @@
     </div>
     <!-- //계좌 선택하기 팝업 -->
   </body>
-  <script>
-    /* ============================================================
-     * 출금 — 금액 입력 · 에러 · CTA 제어
-     * 단위: 원 (input_value 원 단위, 쉼표 표시)
-     * ============================================================ */
-
-    var input_value = 0;
-    var withdraw_available = 80000;
-
-    function formatWon(amount) {
-      return String(amount).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-
-    function updateWithdrawLimitLink() {
-      var formatted = formatWon(withdraw_available) + "원";
-
-      $(".js-withdraw-limit-fill")
-        .text(formatted)
-        .attr("data-amount", withdraw_available)
-        .attr("aria-label", formatted + " 입력");
-    }
-
-    function updateWithdrawSubmitState() {
-      if (input_value > 0 && !$(".charge-input").hasClass("error")) {
-        $(".btn-withdraw-submit").prop("disabled", false);
-      } else {
-        $(".btn-withdraw-submit").prop("disabled", true);
-      }
-    }
-
-    function updateWithdrawAmountUI() {
-      var $wrap = $(".charge-input");
-      var $label = $wrap.find(".floating-label");
-      var formatted = formatWon(input_value);
-
-      if (input_value > 0) {
-        $wrap.addClass("has-value");
-        $wrap.find(".fake-label .number").text(formatted);
-        $wrap.find(".fake-label .unit").show();
-      } else {
-        $wrap.removeClass("has-value");
-        $wrap.find(".fake-label .number").text("");
-        $wrap.find(".fake-label .unit").hide();
-        $label.text("얼마를 보낼까요?");
-      }
-
-      if (input_value > withdraw_available) {
-        $wrap.addClass("error");
-      } else {
-        $wrap.removeClass("error");
-
-        if (input_value > 0) {
-          $label.text("출금 금액");
-        }
-      }
-
-      updateWithdrawSubmitState();
-    }
-
-    function setWithdrawAmount(amount) {
-      input_value = amount;
-      $("#withdrawAmount").val(amount > 0 ? formatWon(amount) : "");
-      updateWithdrawAmountUI();
-    }
-
-    $(".charge-input input").on("input", function () {
-      var $this = $(this);
-      var maxlength = 15;
-      var parsed = parseInt($this.val().replace(/[^0-9]/g, ""), 10);
-
-      input_value = isNaN(parsed) ? 0 : parsed;
-
-      if (String(input_value).length > maxlength) {
-        input_value = parseInt(String(input_value).substring(0, maxlength), 10);
-      }
-
-      $this.val(input_value > 0 ? formatWon(input_value) : "");
-      updateWithdrawAmountUI();
-    });
-
-    $(".charge-input input").on("focus", function () {
-      var $this = $(this);
-      var $label = $this.closest(".charge-input").find(".floating-label");
-
-      if ($this.val().length === 0) {
-        $label.text("얼마를 보낼까요?");
-      }
-    });
-
-    $(".charge-input input").on("blur", function () {
-      var $this = $(this);
-      var $label = $this.closest(".charge-input").find(".floating-label");
-
-      if ($this.val().length === 0) {
-        $label.text("얼마를 보낼까요?");
-      }
-    });
-
-    $(".charge-input .js-text-del").on("mousedown", function () {
-      setWithdrawAmount(0);
-    });
-
-    $(".js-withdraw-limit-fill").on("click", function () {
-      var amount = parseInt($(this).attr("data-amount"), 10);
-
-      setWithdrawAmount(amount);
-      $("#withdrawAmount").focus();
-    });
-
-    function updateChargeViewportHeight() {
-      var vv = window.visualViewport;
-      var height = vv ? vv.height : window.innerHeight;
-
-      document.documentElement.style.setProperty(
-        "--charge-vv-height",
-        height + "px"
-      );
-
-      if (vv && vv.offsetTop > 0) {
-        window.scrollTo(0, 0);
-      }
-    }
-
-    updateWithdrawLimitLink();
-    updateWithdrawAmountUI();
-    updateChargeViewportHeight();
-
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener("resize", updateChargeViewportHeight);
-      window.visualViewport.addEventListener("scroll", updateChargeViewportHeight);
-    }
-
-    $(window).on("load resize orientationchange", updateChargeViewportHeight);
-
-    $("#withdrawAmount").on("focus", updateChargeViewportHeight);
-    $("#withdrawAmount").on("blur", function () {
-      setTimeout(updateChargeViewportHeight, 100);
-    });
-  </script>
 </html>

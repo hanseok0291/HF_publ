@@ -122,14 +122,44 @@
         <div class="bottom-area charge-account-v2-foot withdrawal-v2-foot">
           <div class="container charge-foot-stack">
             <p class="withdrawal-fee-notice">월 5회 수수료 0원</p>
-            <!-- keypad — 퍼블: keypad.png · 개발: 버튼식 키패드 연동 예정 -->
-            <div class="charge-keypad-slot" aria-hidden="true">
-              <img
-                class="charge-keypad-image"
-                src="../../../images/pay/money/keypad.png"
-                alt=""
-              />
+            <!-- keypad -->
+            <div class="keypad-slot">
+              <div class="keypad" role="group" aria-label="숫자 키패드">
+                <div class="keypad-row">
+                  <button type="button" class="keypad-key" data-value="1">1</button>
+                  <button type="button" class="keypad-key" data-value="2">2</button>
+                  <button type="button" class="keypad-key" data-value="3">3</button>
+                </div>
+                <div class="keypad-row">
+                  <button type="button" class="keypad-key" data-value="4">4</button>
+                  <button type="button" class="keypad-key" data-value="5">5</button>
+                  <button type="button" class="keypad-key" data-value="6">6</button>
+                </div>
+                <div class="keypad-row">
+                  <button type="button" class="keypad-key" data-value="7">7</button>
+                  <button type="button" class="keypad-key" data-value="8">8</button>
+                  <button type="button" class="keypad-key" data-value="9">9</button>
+                </div>
+                <div class="keypad-row">
+                  <button type="button" class="keypad-key" data-value="00">00</button>
+                  <button type="button" class="keypad-key" data-value="0">0</button>
+                  <button
+                    type="button"
+                    class="keypad-key keypad-delete"
+                    data-action="delete"
+                    aria-label="삭제"
+                  >
+                    <img
+                      src="../../../images/pay/charge/ico-keypad-delete.svg"
+                      alt=""
+                      width="24"
+                      height="24"
+                    />
+                  </button>
+                </div>
+              </div>
             </div>
+            <!-- //keypad -->
             <div class="charge-foot-cta">
               <button
                 type="button"
@@ -279,115 +309,19 @@
     <!-- //계좌 선택하기 팝업 -->
   </body>
   <script>
-    /* ============================================================
-     * 출금 — 금액 입력 · 에러 · CTA 제어
-     * 단위: 원 (input_value 원 단위, 쉼표 표시)
-     * ============================================================ */
-
-    var input_value = 0;
-    var withdraw_available = 80000;
-
-    function formatWon(amount) {
-      return String(amount).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-
-    function updateWithdrawLimitLink() {
-      var formatted = formatWon(withdraw_available) + "원";
-
-      $(".js-withdraw-limit-fill")
-        .text(formatted)
-        .attr("data-amount", withdraw_available)
-        .attr("aria-label", formatted + " 입력");
-    }
-
-    function updateWithdrawSubmitState() {
-      if (input_value > 0 && !$(".charge-input").hasClass("error")) {
-        $(".btn-withdraw-submit").prop("disabled", false);
-      } else {
-        $(".btn-withdraw-submit").prop("disabled", true);
-      }
-    }
-
-    function updateWithdrawAmountUI() {
-      var $wrap = $(".charge-input");
-      var $label = $wrap.find(".floating-label");
-      var formatted = formatWon(input_value);
-
-      if (input_value > 0) {
-        $wrap.addClass("has-value");
-        $wrap.find(".fake-label .number").text(formatted);
-        $wrap.find(".fake-label .unit").show();
-      } else {
-        $wrap.removeClass("has-value");
-        $wrap.find(".fake-label .number").text("");
-        $wrap.find(".fake-label .unit").hide();
-        $label.text("얼마를 보낼까요?");
-      }
-
-      if (input_value > withdraw_available) {
-        $wrap.addClass("error");
-      } else {
-        $wrap.removeClass("error");
-
-        if (input_value > 0) {
-          $label.text("출금 금액");
-        }
-      }
-
-      updateWithdrawSubmitState();
-    }
-
-    function setWithdrawAmount(amount) {
-      input_value = amount;
-      $("#withdrawAmount").val(amount > 0 ? formatWon(amount) : "");
-      updateWithdrawAmountUI();
-    }
-
-    // --- 금액 입력 (버튼식 키패드 연동 전 — 한도 링크로만 갱신) ---
-    $(".charge-input input").on("input", function () {
-      var $this = $(this);
-      var maxlength = 15;
-      var parsed = parseInt($this.val().replace(/[^0-9]/g, ""), 10);
-
-      input_value = isNaN(parsed) ? 0 : parsed;
-
-      if (String(input_value).length > maxlength) {
-        input_value = parseInt(String(input_value).substring(0, maxlength), 10);
-      }
-
-      $this.val(input_value > 0 ? formatWon(input_value) : "");
-      updateWithdrawAmountUI();
+    /* 출금 — RenewalAmountPage 공통 초기화 (design_renewal.js defer 이후) */
+    $(function () {
+      RenewalAmountPage.init({
+        input: "#withdrawAmount",
+        available: 80000,
+        submitBtn: ".btn-withdraw-submit",
+        limitLink: ".js-withdraw-limit-fill",
+        limitFormat: "won",
+        labels: {
+          empty: "얼마를 보낼까요?",
+          filled: "출금 금액",
+        },
+      });
     });
-
-    $(".charge-input input").on("focus", function () {
-      var $this = $(this);
-      var $label = $this.closest(".charge-input").find(".floating-label");
-
-      if ($this.val().length === 0) {
-        $label.text("얼마를 보낼까요?");
-      }
-    });
-
-    $(".charge-input input").on("blur", function () {
-      var $this = $(this);
-      var $label = $this.closest(".charge-input").find(".floating-label");
-
-      if ($this.val().length === 0) {
-        $label.text("얼마를 보낼까요?");
-      }
-    });
-
-    $(".charge-input .js-text-del").on("mousedown", function () {
-      setWithdrawAmount(0);
-    });
-
-    $(".js-withdraw-limit-fill").on("click", function () {
-      var amount = parseInt($(this).attr("data-amount"), 10);
-
-      setWithdrawAmount(amount);
-    });
-
-    updateWithdrawLimitLink();
-    updateWithdrawAmountUI();
   </script>
 </html>

@@ -14,7 +14,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <link rel="stylesheet" href="../../css/common_renewal.css" />
+    <!-- [2026-06-17] renewal-v2 stylesheet -->
+    <link rel="stylesheet" href="../../css/common_renewal_v2.css" />
+    <!-- //[2026-06-17] renewal-v2 stylesheet -->
     <link rel="stylesheet" href="../../css/pay/transactionHistory.css" />
+    <link rel="stylesheet" href="../../css/pay/cardTransactionHistory.css" />
     <link rel="stylesheet" href="../../css/plcc/cardDetail.css" />
     <script src="../../js/jquery.3.4.1.min.js"></script>
     <script src="../../js/jquery-ui.js"></script>
@@ -23,7 +27,8 @@
 
   <body>
     <!-- wrap -->
-    <div id="wrap">
+    <!-- [2026-06-23] renewal-v2 적용 — RROUND PAY X 디지로카 이용내역 -->
+    <div id="wrap" class="renewal-v2">
       <!-- header -->
       <div id="header">
         <div class="container">
@@ -48,173 +53,182 @@
       <div id="content">
         <!-- container -->
         <div
-          class="container money-container transaction-history-container card-detail-container"
+          class="container card-transaction-history-v2 card-detail-v2 transaction-history-container"
         >
-          <div class="top-contents-wrap">
-            <div class="top-contents-box">
-              <div class="top-text-wrap">
-                <p class="bank-text">총 이용 금액</p>
-                <button type="button" class="money-amount">100,000원</button>
+          <!-- sec-balance -->
+          <div class="sec-balance">
+            <div class="sec-summary">
+              <p class="summary-label">총 이용 금액</p>
+              <p class="summary-amount">1,000,000원</p>
+            </div>
+            <div class="sec-breakdown">
+              <dl class="breakdown-row">
+                <dt>일시불</dt>
+                <dd>900,000원</dd>
+              </dl>
+              <dl class="breakdown-row">
+                <dt>할부</dt>
+                <dd>100,000원</dd>
+              </dl>
+            </div>
+          </div>
+          <!-- //sec-balance -->
+
+          <div class="divide-line" aria-hidden="true"></div>
+
+          <!-- sec-history -->
+          <div class="sec-history">
+            <div class="month-wrap">
+              <button
+                type="button"
+                class="prev-btn icon-arrow-left size-16 disabled"
+              >
+                이전
+              </button>
+              <button
+                type="button"
+                class="month-text"
+                onclick="modalOpenSlide('modal-period')"
+              >
+                <span class="year-text">24년</span>
+                <span class="month-num">12월</span>
+                <i class="icon-arrow-down size-12" aria-hidden="true"></i>
+              </button>
+              <button type="button" class="next-btn icon-arrow-right size-16">
+                다음
+              </button>
+            </div>
+
+            <!-- <div class="empty-list">
+              <p>이용 내역이 없어요!</p>
+            </div> -->
+
+            <div class="trade-list-wrap">
+              <ul class="trade-list transaction-list-v2">
+                <li class="transaction-group">
+                  <p class="date-text">11일 토요일</p>
+                  <div class="transaction-item">
+                    <div class="item-left">
+                      <p class="item-title">펫프렌즈</p>
+                      <div class="item-info">
+                        <p class="item-time">11:45</p>
+                        <span class="item-info-bar" aria-hidden="true"></span>
+                        <p class="item-info-detail">일시불</p>
+                      </div>
+                      <p class="item-info-bottom">적립 예정 128P</p>
+                    </div>
+                    <div class="item-right">
+                      <p class="amount">1,000원</p>
+                      <p class="type-label">결제</p>
+                    </div>
+                  </div>
+                  <div class="transaction-item">
+                    <div class="item-left">
+                      <p class="item-title">펫프렌즈</p>
+                      <div class="item-info">
+                        <p class="item-time">11:45</p>
+                        <span class="item-info-bar" aria-hidden="true"></span>
+                        <p class="item-info-detail">일시불</p>
+                      </div>
+                      <p class="item-info-bottom">적립 예정 128P</p>
+                    </div>
+                    <div class="item-right">
+                      <p class="amount">1,000원</p>
+                      <p class="type-label">결제</p>
+                    </div>
+                  </div>
+                  <div class="transaction-item">
+                    <div class="item-left">
+                      <p class="item-title">코레일</p>
+                      <div class="item-info">
+                        <p class="item-time">11:45</p>
+                        <span class="item-info-bar" aria-hidden="true"></span>
+                        <p class="item-info-detail">일시불</p>
+                      </div>
+                      <p class="item-info-bottom">적립 예정 128P</p>
+                    </div>
+                    <div class="item-right">
+                      <p class="amount">1,000원</p>
+                      <p class="type-label">결제</p>
+                    </div>
+                  </div>
+                  <div class="transaction-item">
+                    <div class="item-left">
+                      <p class="item-title">코레일</p>
+                      <div class="item-info">
+                        <p class="item-time">10:45</p>
+                        <span class="item-info-bar" aria-hidden="true"></span>
+                        <p class="item-info-detail">일시불</p>
+                      </div>
+                      <p class="item-info-bottom">적립 예정 128P</p>
+                    </div>
+                    <div class="item-right">
+                      <p class="amount">1,000원</p>
+                      <p class="type-label">결제</p>
+                    </div>
+                  </div>
+                </li>
+                <li class="transaction-group">
+                  <p class="date-text">10일 금요일</p>
+                  <div class="transaction-item is-cancel">
+                    <div class="item-left">
+                      <p class="item-title">
+                        상품명이 노출되어요 텍스트는 최대 두줄 노출로 제한해
+                        주세요.길어지면 말줄임 처리 되요
+                      </p>
+                      <div class="item-info">
+                        <p class="item-time">11:48</p>
+                        <span class="item-info-bar" aria-hidden="true"></span>
+                        <p class="item-info-detail">일시불</p>
+                      </div>
+                    </div>
+                    <div class="item-right">
+                      <p class="amount">1,000원</p>
+                      <p class="type-label">결제 취소</p>
+                    </div>
+                  </div>
+                  <div class="transaction-item">
+                    <div class="item-left">
+                      <p class="item-title">
+                        상품명이 노출되어요 텍스트는 최대 두줄 노출로 제한해
+                        주세요.길어지면 말줄임 처리 되요
+                      </p>
+                      <div class="item-info">
+                        <p class="item-time">11:45</p>
+                        <span class="item-info-bar" aria-hidden="true"></span>
+                        <p class="item-info-detail">일시불</p>
+                      </div>
+                      <p class="item-info-bottom">적립 예정 128P</p>
+                    </div>
+                    <div class="item-right">
+                      <p class="amount">1,000원</p>
+                      <p class="type-label">결제</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <!-- 최대 20개 노출 후 더보기 버튼 노출 -->
+              <div class="add-view-btn-wrap">
+                <button type="button" class="add-view-btn">
+                  더보기
+                  <i class="icon-arrow-down size-16" aria-hidden="true"></i>
+                </button>
               </div>
-              <div class="info-text-wrap">
-                <dl>
-                  <dt>일시불</dt>
-                  <dd>90,000원</dd>
-                </dl>
-                <dl>
-                  <dt>할부</dt>
-                  <dd>10,000원</dd>
-                </dl>
+              <div class="add-view-btn-wrap">
+                <button type="button" class="add-view-btn">11월 내역 더보기</button>
               </div>
             </div>
           </div>
-
-          <div class="month-wrap">
-            <button
-              type="button"
-              class="prev-btn icon-arrow-left size-16 disabled"
-            >
-              이전
-            </button>
-            <button
-              type="button"
-              class="month-text"
-              onclick="modalOpenSlide('modal-period')"
-            >
-              7월
-            </button>
-            <!-- 2024년 이하의 연도일 때 연도 노출 -->
-            <!-- <button
-              type="button"
-              class="month-text"
-              onclick="modalOpenSlide('modal-period')"
-            >
-              2024년 7월
-            </button> -->
-            <button type="button" class="next-btn icon-arrow-right size-16">
-              다음
-            </button>
-          </div>
-
-          <!-- <div class="empty-list">
-            <p>이용 내역이 없어요!</p>
-          </div> -->
-          <div class="trade-list-wrap">
-            <ul class="trade-list history">
-              <li>
-                <span class="date-text">11 (토)</span>
-                <div class="list-contents-box">
-                  <div class="right-text-box">
-                    <div class="top-text">
-                      <p class="time-text">오후 11:56</p>
-                      <p class="type-text">일시불</p>
-                      <p class="type-text">적립예정 2P</p>
-                      <p class="type">결제</p>
-                    </div>
-                    <div class="bottom-text-box">
-                      <p class="detail-text">
-                        복지포인트복지포인트복지포인트복지포인트복
-                        지포인트복지포인트복지포인트복지포인트
-                      </p>
-                      <p class="amount">90,000원</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="list-contents-box">
-                  <div class="right-text-box">
-                    <div class="top-text">
-                      <p class="time-text">오후 11:56</p>
-                      <p class="type-text">일시불</p>
-                      <p class="type-text">적립예정 2P</p>
-                      <p class="type">결제</p>
-                    </div>
-                    <div class="bottom-text-box">
-                      <p class="detail-text">
-                        복지포인트복지포인트복지포인트복지포인트복
-                        지포인트복지포인트복지포인트복지포인트
-                      </p>
-                      <p class="amount">90,000원</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <span class="date-text">10 (금)</span>
-                <div class="list-contents-box">
-                  <div class="right-text-box">
-                    <div class="top-text">
-                      <p class="time-text">오후 11:56</p>
-                      <p class="type-text">할부(1/12)</p>
-                      <p class="type-text">적립예정 9,999P</p>
-                      <p class="type">결제</p>
-                    </div>
-                    <div class="bottom-text-box">
-                      <p class="detail-text">
-                        임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원
-                      </p>
-                      <p class="amount">90,000원</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="list-contents-box">
-                  <div class="right-text-box minus">
-                    <div class="top-text">
-                      <p class="time-text">오후 11:56</p>
-                      <p class="type-text">할부(1/12)</p>
-                      <p class="type">결제 취소</p>
-                    </div>
-                    <div class="bottom-text-box">
-                      <p class="detail-text">
-                        임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원
-                      </p>
-                      <p class="amount">90,000원</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="list-contents-box">
-                  <div class="right-text-box minus">
-                    <div class="top-text">
-                      <p class="time-text">오후 11:56</p>
-                      <p class="type-text">할부(1/12)</p>
-                      <p class="type">결제 취소</p>
-                    </div>
-                    <div class="bottom-text-box">
-                      <p class="detail-text">
-                        임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원
-                      </p>
-                      <p class="amount">90,000원</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="list-contents-box">
-                  <div class="right-text-box minus">
-                    <div class="top-text">
-                      <p class="time-text">오후 11:56</p>
-                      <p class="type-text">일시불</p>
-                      <p class="type">결제 취소</p>
-                    </div>
-                    <div class="bottom-text-box">
-                      <p class="detail-text">
-                        임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원임직원
-                      </p>
-                      <p class="amount">90,000원</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-            <div class="add-view-btn-wrap">
-              <button type="button" class="add-view-btn">더보기</button>
-            </div>
-          </div>
+          <!-- //sec-history -->
         </div>
         <!-- //container -->
       </div>
       <!-- //content -->
     </div>
+    <!-- //[2026-06-23] renewal-v2 적용 -->
     <!-- //wrap -->
 
-    <!-- 포인트 안내 팝업 -->
+    <!-- 이용내역 안내 팝업 -->
     <div id="modal-card-detail-info" class="modal modal-slide type-title">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -239,10 +253,13 @@
               </ul>
             </div>
           </div>
+          <div class="modal-footer">
+            <button type="button" class="btn js-modal-close">확인</button>
+          </div>
         </div>
       </div>
     </div>
-    <!-- //포인트 안내 팝업 -->
+    <!-- //이용내역 안내 팝업 -->
 
     <!-- 기간 팝업 -->
     <div

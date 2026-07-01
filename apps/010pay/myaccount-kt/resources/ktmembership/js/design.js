@@ -322,9 +322,10 @@ $(function(){
 	});
 
 	// 약관 펼치기/접기
-	$(".agree-all .btn").click(function(){
-		$(this).parents(".agree-all").find(".btn").toggleClass("hidden");
-		$(this).parents(".agree-all").next(".agree-list").slideToggle(200);
+	$(".agree-all .btn:not(.info-chg)").click(function () {
+		var $agreeAll = $(this).parents(".agree-all");
+		$agreeAll.find(".btn:not(.info-chg)").toggleClass("hidden");
+		$agreeAll.next(".agree-list").slideToggle(200);
 	});
 });
 

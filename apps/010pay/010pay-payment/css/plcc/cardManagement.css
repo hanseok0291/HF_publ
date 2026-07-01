@@ -1,4 +1,3 @@
-
 .card-management-container {
   padding: 16px 0 0;
 }
@@ -218,5 +217,271 @@
 
 .modal.modal-card-info-change .btn-wrap {
   margin-top: 20px;
-  padding: 20px 16px; 
+  padding: 20px 16px;
+}
+
+/* ====================== renewal-v2 (Figma 카드관리) ====================== */
+/* load: common_renewal.css → common_renewal_v2.css → 본 파일 */
+
+/* #LAYOUT */
+.renewal-v2 .card-management-v2 {
+  padding: 12px 0 40px;
+}
+
+/* #CARD-SECTION */
+.renewal-v2 .card-management-v2 .card-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.renewal-v2 .card-management-v2 .card-info-wrap {
+  display: flex;
+  align-items: center;
+  position: static;
+  gap: 20px;
+  width: 100%;
+  margin: 0;
+  padding: 16px;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+.renewal-v2 .card-management-v2 .card-info-wrap .card-img {
+  width: 35px;
+  height: 56px;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.renewal-v2 .card-management-v2 .card-info-wrap .card-img img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.renewal-v2 .card-management-v2 .card-info-wrap.cancel .card-img {
+  opacity: 0.5;
+}
+
+.renewal-v2 .card-management-v2 .card-info-wrap .text-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-left: 0;
+}
+
+.renewal-v2 .card-management-v2 .card-info-wrap .text-wrap .card-name {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  overflow: visible;
+  text-overflow: unset;
+  white-space: normal;
+  color: var(--Color-Semantic-Text-03, #151515);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%; /* 25.2px */
+  letter-spacing: -0.54px;
+}
+
+.renewal-v2 .card-management-v2 .card-info-wrap .text-wrap .card-name span:not(.card-status) {
+  font-weight: 400;
+}
+
+.renewal-v2 .card-management-v2 .card-info-wrap .text-wrap .card-number {
+  margin-top: 0;
+  color: var(--color-text-05);
+}
+
+.renewal-v2 .card-management-v2 .card-info-wrap .text-wrap .card-screening-text {
+  display: none;
+}
+
+.renewal-v2 .card-management-v2 .card-info-wrap .card-status {
+  position: static;
+  top: auto;
+  left: auto;
+  display: none;
+  flex-shrink: 0;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 16px;
+  background-color: var(--color-brand-dark);
+  color: var(--color-text-on-primary);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.02em;
+}
+
+.renewal-v2 .card-management-v2 .card-info-wrap .card-status.cancel {
+  color: var(--color-text-on-primary);
+  background-color: var(--color-brand-dark);
+}
+
+.renewal-v2 .card-management-v2 .card-info-wrap.cancel .card-name .card-status {
+  display: inline-block;
+}
+
+.renewal-v2 .card-management-v2 .card-info-wrap:not(.screening):not(.cancel) .card-name .card-status {
+  display: inline-block;
+}
+
+/* 심사중 — .screening (Figma 카드관리_체크_재발급) */
+.renewal-v2 .card-management-v2 .card-info-wrap.screening .card-img {
+  opacity: 1;
+}
+
+.renewal-v2 .card-management-v2 .card-info-wrap.screening .text-wrap .card-name {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-text-05);
+}
+
+.renewal-v2 .card-management-v2 .card-info-wrap.screening .text-wrap .card-name span:not(.card-status) {
+  font-weight: 400;
+}
+
+.renewal-v2 .card-management-v2 .card-info-wrap.screening .text-wrap .card-number {
+  display: none;
+}
+
+.renewal-v2 .card-management-v2 .card-info-wrap.screening .text-wrap .card-screening-text {
+  display: flex;
+  align-items: center;
+  height: auto;
+  margin-top: 0;
+  color: var(--color-text-primary);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+}
+
+.renewal-v2 .card-management-v2 .card-info-wrap.screening .text-wrap .card-screening-text::before {
+  display: none;
+}
+
+.renewal-v2 .card-management-v2 .card-info-wrap.screening .card-status {
+  display: none;
+}
+
+.renewal-v2 .card-management-v2:has(.card-info-wrap.screening) > .menu-list-v2 > li:first-child {
+  display: none;
+}
+
+.renewal-v2 .card-management-v2 .divide-line {
+  flex-shrink: 0;
+  width: 100%;
+  height: 8px;
+  background-color: var(--color-bg-subtle);
+}
+
+/* #MENU-LIST */
+.renewal-v2 .card-management-v2 .menu-list-v2 {
+  width: 100%;
+}
+
+.renewal-v2 .card-management-v2 .menu-list-v2 li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 56px;
+  height: auto;
+  margin-bottom: 0;
+  padding: 16px;
+  color: var(--color-text-04);
+}
+
+.renewal-v2 .card-management-v2 .menu-list-v2 li .menu-text-wrap {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 2px;
+  justify-content: center;
+  min-width: 0;
+}
+
+.renewal-v2 .card-management-v2 .menu-list-v2 li .setting-name {
+  color: var(--color-text-04);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+.renewal-v2 .card-management-v2 .menu-list-v2 li .menu-desc {
+  color: var(--color-brand);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+.renewal-v2 .card-management-v2 .menu-list-v2 li a,
+.renewal-v2 .card-management-v2 .menu-list-v2 li button {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+/* #INQUIRY */
+.renewal-v2 .card-management-v2 .inquiry-section {
+  width: 100%;
+}
+
+.renewal-v2 .card-management-v2 .inquiry-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 16px 8px;
+}
+
+.renewal-v2 .card-management-v2 .inquiry-head .inquiry-title {
+  color: var(--color-text-primary);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+}
+
+.renewal-v2 .card-management-v2 .inquiry-head .inquiry-hours {
+  color: var(--color-text-05);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+/* #MODAL */
+body:has(#wrap.renewal-v2) .modal.modal-card-info-change .box-note-wrap {
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text-04);
+}
+
+body:has(#wrap.renewal-v2) .modal.modal-card-info-change .box-note-wrap dt::before {
+  background-color: var(--color-status-disabled);
+}
+
+body:has(#wrap.renewal-v2) .modal.modal-card-info-change .modal-body .btn-wrap .btn,
+body:has(#wrap.renewal-v2) .modal.modal-card-info-change .btn-wrap .btn {
+  border-radius: var(--radius-modal-btn);
+  border: 1px solid var(--color-button-primary-bg);
+  background-color: var(--color-button-primary-bg);
+  color: var(--color-button-primary-text);
 }

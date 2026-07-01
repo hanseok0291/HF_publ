@@ -432,6 +432,8 @@ $(function () {
         $(".bottom-area.withdrawal-v2-foot").removeClass("fixed");
       } else {
         $(".bottom-area").removeClass("fixed");
+        /* renewal-v2 결제수단 관리 — 항상 하단 fixed */
+        $("#wrap.renewal-v2 .payment-container .bottom-area").addClass("fixed");
       }
     });
   }
@@ -442,12 +444,24 @@ $(function () {
   // 이미지 로딩 완료 후에도 재계산
   $(window).on('load', function() {
     setTimeout(fixFootBtn, 100);
+    setTimeout(wrapPadding, 100);
   });
 
   // 하단 고정 영역 여백 확보
   function wrapPadding() {
     if ($("#content.content-foot-fixed").length) {
       updateContentScrollPadding();
+      return;
+    }
+
+    /* renewal-v2 결제수단 관리 — visible 탭 하단 버튼 높이만큼 스크롤 여백 */
+    if ($("#wrap.renewal-v2 .payment-container").length) {
+      var $visibleFoot = $(
+        "#wrap.renewal-v2 .payment-container .tab-contents > div:visible .bottom-area",
+      );
+      if ($visibleFoot.length) {
+        $("#content").css("padding-bottom", $visibleFoot.outerHeight(true));
+      }
       return;
     }
 
@@ -494,6 +508,15 @@ $(function () {
     }
   }
   wrapPadding();
+
+  /* renewal-v2 결제수단 관리 — 탭 전환 시 하단 여백 재계산 */
+  $(document).on(
+    "click",
+    "#wrap.renewal-v2 .payment-container .tab button",
+    function () {
+      setTimeout(wrapPadding, 100);
+    },
+  );
 
   // 보안 키패드 상단 링크 위치
   function keypadOffset() {
@@ -965,10 +988,13 @@ window.addEventListener('resize', updateVH);
      * @param {string} options.input - 금액 input 셀렉터
      * @param {string} [options.keypad='.keypad'] - 키패드 루트 셀렉터
      * @param {function(number): string} [options.formatInput] - input 표시 포맷 (기본: formatWon)
+     * @param {number} [options.maxDigits] - 누적 자릿수 상한 (미지정 시 15)
      * @param {function(number, string): void} options.onChange - (amount, keypadDigits)
      */
     create: function (options) {
       var keypadDigits = "";
+      var maxDigits =
+        typeof options.maxDigits === "number" ? options.maxDigits : MAX_DIGITS;
       var $input = $(options.input);
       var $keypad = $(options.keypad || ".keypad");
       var formatInput = options.formatInput || formatWon;
@@ -990,6 +1016,11 @@ window.addEventListener('resize', updateVH);
       function setValue(amount) {
         amount = amount || 0;
         keypadDigits = amount > 0 ? String(amount) : "";
+
+        if (keypadDigits.length > maxDigits) {
+          keypadDigits = keypadDigits.slice(0, maxDigits);
+        }
+
         notify();
       }
 
@@ -997,7 +1028,7 @@ window.addEventListener('resize', updateVH);
         if (key === "delete") {
           keypadDigits = keypadDigits.slice(0, -1);
         } else {
-          if (keypadDigits.length + key.length > MAX_DIGITS) {
+          if (keypadDigits.length + key.length > maxDigits) {
             return;
           }
 
@@ -1074,16 +1105,71 @@ window.addEventListener('resize', updateVH);
      *   - empty: 미입력 placeholder·focus 시 라벨
      *   - filled: 값 있을 때 floating-label 문구
      * @param {string} [options.chips] - 금액 칩 (data-money 단위는 options.unit 과 동일)
+     * @param {number} [options.maxDigits] - 키패드 누적 자릿수 상한
+     * @param {string} [options.balanceRow] - 보유/충전 후 머니 행 셀렉터
+     * @param {number} [options.balanceWon] - 현재 보유 머니(원)
+     * @param {number} [options.maxBalanceWon] - 충전 후 최대 보유 머니(원)
+     * @param {{ empty: string, filled: string }} [options.balanceLabels]
      * @returns {{ getValue, setValue, setAvailable, updateUI, keypad }}
      */
     init: function (options) {
       var inputValue = 0;
-      var available = options.available;
+      var maxCharge = options.available;
+      var balanceWon = options.balanceWon || 0;
+      var maxBalanceWon = options.maxBalanceWon;
       var unit = options.unit || "won";
       var isManwon = unit === "manwon";
+      var unitWonMultiplier = isManwon ? 10000 : 1;
       var $wrap = $(options.wrap || ".charge-input");
       var $input = $wrap.find("input");
       var labels = options.labels || { empty: "", filled: "" };
+      var balanceLabels = options.balanceLabels || {
+        empty: "현재 보유 머니",
+        filled: "충전 후 머니",
+      };
+      var $balanceRow = options.balanceRow ? $(options.balanceRow) : null;
+      var available = 0;
+
+      /** 1회 충전 한도 · 충전 후 보유 한도 중 작은 값(화면 단위) */
+      function getEffectiveAvailable() {
+        var effective = maxCharge;
+
+        if (typeof maxBalanceWon === "number") {
+          var roomWon = maxBalanceWon - balanceWon;
+          var roomByBalance = Math.floor(roomWon / unitWonMultiplier);
+
+          if (roomByBalance < 0) {
+            roomByBalance = 0;
+          }
+
+          effective = Math.min(effective, roomByBalance);
+        }
+
+        return effective;
+      }
+
+      function refreshAvailable() {
+        available = getEffectiveAvailable();
+      }
+
+      /** 충전액이 한도를 초과하는지 (1회 한도 · 충전 후 보유 한도) */
+      function exceedsLimit(value) {
+        if (value > available) {
+          return true;
+        }
+
+        if (typeof maxBalanceWon === "number") {
+          var chargeWon = value * unitWonMultiplier;
+
+          return balanceWon + chargeWon > maxBalanceWon;
+        }
+
+        return false;
+      }
+
+      function chargeWonFromValue(value) {
+        return value * unitWonMultiplier;
+      }
 
       /** 화면 단위에 맞게 숫자 표시 (만원: 쉼표 없음, 원: 쉼표) */
       function formatDisplay(amount) {
@@ -1131,6 +1217,25 @@ window.addEventListener('resize', updateVH);
         $(options.submitBtn).prop("disabled", !enabled);
       }
 
+      /** 충전 후 머니 행 — 미입력: 보유 잔액, 입력 후: 보유 + 충전액(원) */
+      function updateBalanceRow() {
+        if (!$balanceRow || !$balanceRow.length) {
+          return;
+        }
+
+        var $label = $balanceRow.find(".label");
+        var $value = $balanceRow.find(".value");
+        var chargeWon = chargeWonFromValue(inputValue);
+
+        if (inputValue > 0) {
+          $label.text(balanceLabels.filled);
+          $value.text(formatWon(balanceWon + chargeWon) + "원");
+        } else {
+          $label.text(balanceLabels.empty);
+          $value.text(formatWon(balanceWon) + "원");
+        }
+      }
+
       /**
        * fake-label·floating-label·error·CTA 일괄 갱신
        * - has-value: 큰 금액 표시
@@ -1151,7 +1256,7 @@ window.addEventListener('resize', updateVH);
           $label.text(labels.empty);
         }
 
-        if (inputValue > available) {
+        if (exceedsLimit(inputValue)) {
           $wrap.addClass("error");
         } else {
           $wrap.removeClass("error");
@@ -1161,6 +1266,7 @@ window.addEventListener('resize', updateVH);
           }
         }
 
+        updateBalanceRow();
         updateSubmitState();
       }
 
@@ -1168,6 +1274,7 @@ window.addEventListener('resize', updateVH);
       var keypad = RenewalAmountKeypad.create({
         input: options.input,
         keypad: options.keypad,
+        maxDigits: options.maxDigits,
         formatInput: formatInputValue,
         onChange: function (amount) {
           inputValue = amount;
@@ -1207,6 +1314,7 @@ window.addEventListener('resize', updateVH);
         });
       }
 
+      refreshAvailable();
       updateLimitLink();
       updateUI();
 
@@ -1216,7 +1324,14 @@ window.addEventListener('resize', updateVH);
         },
         setValue: setValue,
         setAvailable: function (nextAvailable) {
-          available = nextAvailable;
+          maxCharge = nextAvailable;
+          refreshAvailable();
+          updateLimitLink();
+          updateUI();
+        },
+        setBalanceWon: function (nextBalanceWon) {
+          balanceWon = nextBalanceWon || 0;
+          refreshAvailable();
           updateLimitLink();
           updateUI();
         },

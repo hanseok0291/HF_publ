@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const toggleButtons = modal.querySelectorAll(".btn-toggle"); // 모든 btn-toggle
     const agreeButton = modal.querySelector("#btn-agree1"); // 동의 버튼
 
+    if (!checkAllCheckbox) return;
+
     // 초기화: btn-toggle과 check-all의 상태 동기화
     toggleButtons.forEach((button, index) => {
       const termsWrap = termsWraps[index];
@@ -24,12 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // 전체 동의 체크박스 이벤트
+    // 전체 동의 체크박스 이벤트 (type2 1뎁스: 체크만 동기화, 자동 접힘 없음)
     checkAllCheckbox.addEventListener("change", function () {
       const isChecked = checkAllCheckbox.checked;
 
-      // 전체 약관 체크박스 상태 변경 및 terms-wrap 접기/펼치기
-      termsWraps.forEach((termsWrap, index) => {
+      termsWraps.forEach((termsWrap) => {
         const childCheckboxes = termsWrap.querySelectorAll(
           "input[type='checkbox']"
         );
@@ -37,20 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
         childCheckboxes.forEach((childCheckbox) => {
           childCheckbox.checked = isChecked;
         });
-
-        // terms-wrap 접기 및 btn-toggle 클래스 토글
-        termsWrap.style.display = isChecked ? "none" : "block";
-
-        if (toggleButtons[index]) {
-          const button = toggleButtons[index];
-          const checkAll = button.closest(".check-all");
-
-          // btn-toggle과 check-all의 open 클래스 동기화
-          button.classList.toggle("open", !isChecked);
-          if (checkAll) {
-            checkAll.classList.toggle("open", !isChecked);
-          }
-        }
       });
 
       // 버튼 활성화 여부 확인
@@ -100,6 +87,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 동의 버튼 활성화 여부 업데이트
     function updateAgreeButtonState() {
+      if (!agreeButton) return;
+
       const allChecked = Array.from(
         modal.querySelectorAll(".terms-wrap input[type='checkbox']")
       ).every((cb) => cb.checked);
@@ -107,6 +96,9 @@ document.addEventListener("DOMContentLoaded", function () {
       agreeButton.disabled = !allChecked;
       agreeButton.classList.toggle("disabled", !allChecked);
     }
+
+    // 초기 상태 동기화
+    updateAgreeButtonState();
   });
 });
 
@@ -219,63 +211,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 초기 상태 동기화
     updateAgreeButtonState();
-  });
-});
-//
-document.addEventListener("DOMContentLoaded", function () {
-  const modal = document.querySelector(".modal-slide.type4");
-  if (!modal) return;
-
-  const checkAllCheckbox = modal.querySelector("#checkbox4_all");
-  const termsGroups = modal.querySelectorAll("[data-group]");
-  const toggleButtons = modal.querySelectorAll(".btn-toggle");
-
-  // 전체 동의 체크박스 클릭 이벤트
-  checkAllCheckbox.addEventListener("change", function () {
-    const isChecked = checkAllCheckbox.checked;
-
-    termsGroups.forEach((group) => {
-      const groupName = group.getAttribute("data-group");
-      const relatedTermsLists = modal.querySelectorAll(
-        `.terms-list[data-group="${groupName}"]`
-      );
-      const relatedToggleButton = modal.querySelector(
-        `.btn-toggle[data-group="${groupName}"]`
-      );
-
-      relatedTermsLists.forEach((termsList) => {
-        termsList.style.display = isChecked ? "none" : "block";
-      });
-
-      if (relatedToggleButton) {
-        relatedToggleButton.classList.toggle("open", !isChecked);
-      }
-    });
-
-    // 약관 그룹 내 모든 체크박스 상태 업데이트
-    modal.querySelectorAll("input[type='checkbox']").forEach((checkbox) => {
-      checkbox.checked = isChecked;
-    });
-  });
-
-  // btn-toggle 클릭 이벤트
-  toggleButtons.forEach((button) => {
-    button.addEventListener("click", function () {
-      const groupName = button.getAttribute("data-group");
-      const relatedTermsLists = modal.querySelectorAll(
-        `.terms-list[data-group="${groupName}"]`
-      );
-
-      if (!relatedTermsLists.length) return;
-
-      relatedTermsLists.forEach((termsList) => {
-        const isCurrentlyVisible =
-          window.getComputedStyle(termsList).display !== "none";
-        termsList.style.display = isCurrentlyVisible ? "none" : "block";
-      });
-
-      button.classList.toggle("open");
-    });
   });
 });
 //
@@ -402,109 +337,176 @@ document.addEventListener("DOMContentLoaded", function () {
 //
 
 document.addEventListener("DOMContentLoaded", function () {
-  const modals = document.querySelectorAll(".modal-slide.type4"); // 모든 type4 모달 선택
+  const modals = document.querySelectorAll(".modal-slide.type4");
 
   modals.forEach((modal) => {
-    const checkAllCheckbox = modal.querySelector("#checkbox4_all"); // 전체 동의 체크박스
-    const termsWraps = modal.querySelectorAll(".terms-list"); // 모든 terms-wrap
-    const agreeButton = modal.querySelector("#btn-agree4"); // 동의 버튼
-    const toggleButtons = modal.querySelectorAll(".btn-toggle"); // 모든 btn-toggle 버튼
+    const checkAllCheckbox = modal.querySelector("#checkbox4_all");
+    const agreeButton = modal.querySelector("#btn-agree4");
+    const termsLists = modal.querySelectorAll(".terms-list[data-group]");
+    const toggleButtons = modal.querySelectorAll(".btn-toggle");
+    const groupAllCheckboxes = modal.querySelectorAll(
+      ".terms-wrap .check-all input[type='checkbox'][data-group]"
+    );
     const childCheckboxes = modal.querySelectorAll(
-      ".terms-wrap input[type='checkbox']"
-    ); // 모든 약관 체크박스
+      ".terms-list input[type='checkbox']"
+    );
     const requiredCheckboxes = modal.querySelectorAll(
-      ".terms-wrap input[type='checkbox'][data-required='true']"
-    ); // 필수 약관 체크박스
+      ".terms-list input[type='checkbox'][data-required='true']"
+    );
 
-    // 초기화: btn-toggle과 check-all의 상태 동기화
-    toggleButtons.forEach((button, index) => {
-      const termsWrap = termsWraps[index];
-      if (termsWrap) {
-        const isCurrentlyVisible =
-          window.getComputedStyle(termsWrap).display !== "none";
+    if (!checkAllCheckbox) return;
 
-        // btn-toggle과 상위 check-all에 동일한 open 클래스 설정
-        const checkAll = button.closest(".check-all");
-        if (checkAll) {
-          checkAll.classList.toggle("open", isCurrentlyVisible);
-          button.classList.toggle("open", isCurrentlyVisible);
-        }
+    const termsListStates = {};
+    termsLists.forEach((list) => {
+      const group = list.getAttribute("data-group");
+      termsListStates[group] =
+        window.getComputedStyle(list).display !== "none";
+    });
+
+    function isAnyTermsListVisible() {
+      return Object.values(termsListStates).some(Boolean);
+    }
+
+    function syncToggleOpen(button, isOpen) {
+      button.classList.toggle("open", isOpen);
+      const checkAll = button.closest(".check-all");
+      if (checkAll) {
+        checkAll.classList.toggle("open", isOpen);
+      }
+    }
+
+    function setTermsListVisible(groupName, visible) {
+      const termsList = modal.querySelector(
+        `.terms-list[data-group="${groupName}"]`
+      );
+      if (!termsList) return;
+
+      termsList.style.display = visible ? "block" : "none";
+      termsListStates[groupName] = visible;
+
+      const toggleButton = modal.querySelector(
+        `.btn-toggle[data-group="${groupName}"]`
+      );
+      if (toggleButton) {
+        syncToggleOpen(toggleButton, visible);
+      }
+    }
+
+    function setAllTermsListsVisible(visible) {
+      termsLists.forEach((list) => {
+        setTermsListVisible(list.getAttribute("data-group"), visible);
+      });
+
+      const topToggle = modal.querySelector('.btn-toggle[data-group="all"]');
+      if (topToggle) {
+        syncToggleOpen(topToggle, visible);
+      }
+    }
+
+    function syncTopAllCheckbox() {
+      checkAllCheckbox.checked = Array.from(childCheckboxes).every(
+        (cb) => cb.checked
+      );
+    }
+
+    function updateAgreeButtonState() {
+      if (!agreeButton) return;
+
+      const isAllChecked = checkAllCheckbox.checked;
+      const allRequiredChecked =
+        requiredCheckboxes.length === 0 ||
+        Array.from(requiredCheckboxes).every((cb) => cb.checked);
+      const shouldEnable = isAllChecked && allRequiredChecked;
+
+      agreeButton.disabled = !shouldEnable;
+      agreeButton.classList.toggle("disabled", !shouldEnable);
+    }
+
+    // 초기 open 클래스 동기화
+    toggleButtons.forEach((button) => {
+      const group = button.getAttribute("data-group");
+      if (group === "all") {
+        syncToggleOpen(button, isAnyTermsListVisible());
+      } else if (Object.prototype.hasOwnProperty.call(termsListStates, group)) {
+        syncToggleOpen(button, termsListStates[group]);
       }
     });
 
-    // 전체 동의 체크박스 이벤트
+    // 전체 동의 — 2뎁스: 체크 시 상세만 접힘, 서브약관 타이틀 유지 (Figma)
     checkAllCheckbox.addEventListener("change", function () {
       const isChecked = checkAllCheckbox.checked;
 
-      // 모든 약관 체크박스와 상태 변경
       childCheckboxes.forEach((checkbox) => {
         checkbox.checked = isChecked;
       });
-
-      termsWraps.forEach((termsWrap, index) => {
-        // 모든 terms-wrap 접기/펼치기
-        termsWrap.style.display = isChecked ? "none" : "block";
-
-        // btn-toggle open 클래스 동기화
-        const button = toggleButtons[index];
-        if (button) {
-          button.classList.toggle("open", !isChecked);
-        }
-
-        const checkAll = button?.closest(".check-all");
-        if (checkAll) {
-          checkAll.classList.toggle("open", !isChecked);
-        }
+      groupAllCheckboxes.forEach((checkbox) => {
+        checkbox.checked = isChecked;
       });
 
-      // 버튼 활성화 여부 확인
+      setAllTermsListsVisible(!isChecked);
+
       updateAgreeButtonState();
     });
 
-    // 개별 약관 체크박스 상태 변경 시 전체 동의 체크박스와 버튼 상태 업데이트
-    childCheckboxes.forEach((checkbox) => {
-      checkbox.addEventListener("change", function () {
-        // 전체 동의 체크박스 상태 업데이트
-        checkAllCheckbox.checked = Array.from(childCheckboxes).every(
-          (cb) => cb.checked
+    // 서브 약관 전체 동의
+    groupAllCheckboxes.forEach((groupCheckbox) => {
+      groupCheckbox.addEventListener("change", function () {
+        const groupName = groupCheckbox.getAttribute("data-group");
+        const groupChildren = modal.querySelectorAll(
+          `.terms-list[data-group="${groupName}"] input[type="checkbox"]`
         );
+        const isChecked = groupCheckbox.checked;
 
-        // 버튼 활성화 여부 확인
+        groupChildren.forEach((checkbox) => {
+          checkbox.checked = isChecked;
+        });
+        setTermsListVisible(groupName, !isChecked);
+        syncTopAllCheckbox();
         updateAgreeButtonState();
       });
     });
 
-    // 동의 버튼 활성화 여부 업데이트
-    function updateAgreeButtonState() {
-      // `checkbox4_all`이 체크 상태인지 확인
-      const isAllChecked = checkAllCheckbox.checked;
+    // 개별 약관 체크
+    childCheckboxes.forEach((checkbox) => {
+      checkbox.addEventListener("change", function () {
+        const groupName = checkbox
+          .closest(".terms-list")
+          .getAttribute("data-group");
+        const groupChildren = modal.querySelectorAll(
+          `.terms-list[data-group="${groupName}"] input[type="checkbox"]`
+        );
+        const groupAllCb = modal.querySelector(
+          `input[type="checkbox"][data-group="${groupName}"][id$="_all"]`
+        );
+        const allInGroup = Array.from(groupChildren).every((cb) => cb.checked);
 
-      // 필수 체크박스가 모두 체크된 경우에만 활성화
-      const allRequiredChecked = Array.from(requiredCheckboxes).every(
-        (cb) => cb.checked
-      );
-
-      // 버튼 활성화/비활성화 상태 업데이트
-      const shouldEnableButton = isAllChecked && allRequiredChecked;
-
-      agreeButton.disabled = !shouldEnableButton;
-      agreeButton.classList.toggle("disabled", !shouldEnableButton);
-    }
-
-    // 초기 상태 동기화
-    function initializeState() {
-      // 모든 체크박스 초기 상태 확인
-      childCheckboxes.forEach((checkbox) => {
-        checkbox.checked = false; // 초기화 시 모두 체크 해제
+        if (groupAllCb) {
+          groupAllCb.checked = allInGroup;
+        }
+        setTermsListVisible(groupName, !allInGroup);
+        syncTopAllCheckbox();
+        updateAgreeButtonState();
       });
-      checkAllCheckbox.checked = false; // 전체 동의 체크박스 해제
-      agreeButton.disabled = true; // 버튼 비활성화
-      agreeButton.classList.add("disabled"); // 비활성화 클래스 추가
-    }
+    });
 
-    // 실행
-    initializeState();
-    updateAgreeButtonState(); // 초기 상태를 업데이트
+    // 아코디언 토글
+    toggleButtons.forEach((button) => {
+      button.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const group = button.getAttribute("data-group");
+
+        if (group === "all") {
+          setAllTermsListsVisible(!isAnyTermsListVisible());
+          return;
+        }
+
+        setTermsListVisible(group, !termsListStates[group]);
+      });
+    });
+
+    updateAgreeButtonState();
   });
 });
 //
@@ -619,11 +621,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
           // 관련 terms-list 접기/펼치기
           toggleTermsListDisplay(groupDataAttr, !allChecked);
-
-          // 콘솔 출력
-          console.log("Clicked Child Checkbox:", childCheckbox);
-          console.log("Parent Checkbox:", parentCheckbox);
-          console.log("All Child Checkboxes:", childCheckboxes);
         });
       });
     }
@@ -652,44 +649,50 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   // terms-list를 접거나 펼치는 함수
-  const toggleTermsListDisplay = (groupDataAttr, shouldDisplay) => {
-    const relatedTermsList = document.querySelector(
+  const toggleTermsListDisplay = (groupDataAttr, shouldDisplay, scope) => {
+    const root = scope || document;
+    const relatedTermsList = root.querySelector(
       `.terms-list[data-group="${groupDataAttr}"]`
     );
 
     if (relatedTermsList) {
       relatedTermsList.style.display = shouldDisplay ? "block" : "none";
 
-      // btn-toggle open 클래스 동기화
-      const toggleButton = document.querySelector(
+      const toggleButton = root.querySelector(
         `.btn-toggle[data-group="${groupDataAttr}"]`
       );
       if (toggleButton) {
         toggleButton.classList.toggle("open", shouldDisplay);
+        const checkAll = toggleButton.closest(".check-all");
+        if (checkAll) {
+          checkAll.classList.toggle("open", shouldDisplay);
+        }
       }
     }
   };
 
-  // btn-toggle 클릭 이벤트 추가
+  // btn-toggle 클릭 이벤트 추가 (type2·type4는 전용 핸들러 사용)
   const initializeToggleButtons = () => {
     const toggleButtons = document.querySelectorAll(".btn-toggle");
 
     toggleButtons.forEach((button) => {
+      if (button.closest(".modal-slide.type4, .modal-slide.type2")) {
+        return;
+      }
+
       button.addEventListener("click", function (event) {
-        // 기본 동작 방지 (체크박스 상태 변경 방지)
         event.preventDefault();
 
         const groupDataAttr = button.getAttribute("data-group");
-
-        // 관련 terms-list 찾기
-        const relatedTermsList = document.querySelector(
+        const scope = button.closest(".modal-slide") || document;
+        const relatedTermsList = scope.querySelector(
           `.terms-list[data-group="${groupDataAttr}"]`
         );
 
         if (relatedTermsList) {
           const isCurrentlyVisible =
             window.getComputedStyle(relatedTermsList).display !== "none";
-          toggleTermsListDisplay(groupDataAttr, !isCurrentlyVisible);
+          toggleTermsListDisplay(groupDataAttr, !isCurrentlyVisible, scope);
         }
       });
     });
@@ -698,7 +701,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // 동적으로 모든 data-group 값을 가져와 처리
   const allGroups = Array.from(
     document.querySelectorAll(".terms-list[data-group]")
-  ).map((element) => element.getAttribute("data-group"));
+  )
+    .filter((element) => !element.closest(".modal-slide.type4"))
+    .map((element) => element.getAttribute("data-group"));
 
   // 중복 제거 후 각 그룹에 대해 처리
   [...new Set(allGroups)].forEach((group) => {

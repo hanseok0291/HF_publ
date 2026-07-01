@@ -14,6 +14,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <link rel="stylesheet" href="../../css/jquery-ui.css" />
     <link rel="stylesheet" href="../../css/common_renewal.css" />
+    <!-- [2026-06-17] renewal-v2 stylesheet -->
+    <link rel="stylesheet" href="../../css/common_renewal_v2.css" />
+    <!-- //[2026-06-17] renewal-v2 stylesheet -->
     <link rel="stylesheet" href="../../css/plcc/cardManagement.css" />
     <script src="../../js/jquery.3.4.1.min.js"></script>
     <script src="../../js/design_renewal.js" defer="defer"></script>
@@ -21,7 +24,8 @@
 
   <body>
     <!-- wrap -->
-    <div id="wrap">
+    <!-- [2026-06-23] renewal-v2 적용 — PLCC 카드 관리 -->
+    <div id="wrap" class="renewal-v2">
       <!-- header -->
       <div id="header">
         <div class="container">
@@ -38,89 +42,138 @@
       <!-- content -->
       <div id="content">
         <!-- container -->
-        <div class="container card-management-container">
-          <!-- 심사중 상태일때 .screening 해지 상태일때 .cancel 추가 -->
-          <!-- <div class="card-info-wrap screening"> -->
-          <div class="card-info-wrap cancel">
-            <div class="card-img">
-              <img
-                src="../../images/plcc/sample/card-img.png"
-                alt="카드 이미지"
-              />
+        <div class="container card-management-v2">
+          <div class="card-section">
+            <!-- card-info-wrap 상태: 기본(클래스 없음) · 재발급(.screening) · 해지(.cancel) — 확인할 케이스만 주석 해제 -->
+
+            <!-- [CASE] 기본 -->
+            <div class="card-info-wrap">
+              <div class="card-img">
+                <img
+                  src="../../images/plcc/sample/card-img.png"
+                  alt=""
+                />
+              </div>
+              <div class="text-wrap">
+                <p class="card-name">
+                  RROUND PAY <span>X</span> 디지로카
+                </p>
+                <p class="card-number">1234 **** **** 3332</p>
+                <p class="card-screening-text">카드 재발급 심사 중</p>
+              </div>
             </div>
-            <div class="text-wrap">
-              <p class="card-name">RROUND PAY <span>X</span> 디지로카</p>
-              <p class="card-number">1234 **** **** 3332</p>
-              <p class="card-screening-text">발급 심사중</p>
+            <!-- //[CASE] 기본 -->
+
+            <!-- [CASE] 재발급 — .screening
+            <div class="card-info-wrap screening">
+              <div class="card-img">
+                <img
+                  src="../../images/plcc/sample/card-img.png"
+                  alt=""
+                />
+              </div>
+              <div class="text-wrap">
+                <p class="card-name">
+                  RROUND PAY <span>X</span> 디지로카
+                </p>
+                <p class="card-screening-text">카드 재발급 심사 중</p>
+              </div>
             </div>
-            <span class="card-status">제작중</span>
-            <!-- <span class="card-status">배송중</span> -->
-            <!-- <span class="card-status">해지</span> -->
+            -->
+            <!-- //[CASE] 재발급 -->
+
+            <!-- [CASE] 해지 — .cancel
+            <div class="card-info-wrap cancel">
+              <div class="card-img">
+                <img
+                  src="../../images/plcc/sample/card-img.png"
+                  alt=""
+                />
+              </div>
+              <div class="text-wrap">
+                <p class="card-name">
+                  RROUND PAY <span>X</span> 디지로카
+                  <span class="card-status cancel">해지</span>
+                </p>
+                <p class="card-number">1234 **** **** 3332</p>
+              </div>
+            </div>
+            -->
+            <!-- //[CASE] 해지 -->
+
+            <div class="divide-line" aria-hidden="true"></div>
           </div>
-          <ul class="setting-list border-bottom">
+
+          <ul class="menu-list-v2">
             <li>
-              <div class="btn-text-box">
+              <div class="menu-text-wrap">
                 <p class="setting-name">카드 번호 보기</p>
               </div>
               <a href="#">
-                <i class="icon-arrow-right medium"></i>
+                <i class="icon-arrow-right medium" aria-hidden="true"></i>
               </a>
             </li>
             <li>
-              <div class="btn-text-box">
+              <div class="menu-text-wrap">
                 <p class="setting-name">카드 정보 변경</p>
               </div>
-              <button
-                href="#"
-                onclick="modalOpenSlide('modal-card-info-change')"
-              >
-                <i class="icon-arrow-right medium"></i>
+              <button type="button" onclick="modalOpenSlide('modal-card-info-change')">
+                <i class="icon-arrow-right medium" aria-hidden="true"></i>
               </button>
             </li>
             <li>
-              <div class="btn-text-box">
+              <div class="menu-text-wrap">
                 <p class="setting-name">자주 묻는 질문 FAQ</p>
               </div>
               <a href="#">
-                <i class="icon-arrow-right medium"></i>
+                <i class="icon-arrow-right medium" aria-hidden="true"></i>
               </a>
             </li>
           </ul>
-          <ul class="setting-list">
-            <li class="inquiry-wrap">
+
+          <div class="divide-line" aria-hidden="true"></div>
+
+          <div class="inquiry-section">
+            <div class="inquiry-head">
               <p class="inquiry-title">문의하기</p>
-              <p class="sub-text">평일 09:00 ~ 18:00 (주말 · 공휴일 휴무)</p>
-            </li>
-            <li>
-              <div class="btn-text-box">
-                <p class="setting-name">카카오 상담하기</p>
-              </div>
-              <a href="#">
-                <i class="icon-arrow-right medium"></i>
-              </a>
-            </li>
-            <li>
-              <div class="btn-text-box">
-                <p class="setting-name">카드 관련 전화 문의하기</p>
-              </div>
-              <a href="#">
-                <i class="icon-arrow-right medium"></i>
-              </a>
-            </li>
-            <li>
-              <div class="btn-text-box">
-                <p class="setting-name">롯데카드 문의하기</p>
-              </div>
-              <a href="#">
-                <i class="icon-arrow-right medium"></i>
-              </a>
-            </li>
-          </ul>
+              <p class="inquiry-hours">운영시간 평일 09:00 ~ 18:00</p>
+            </div>
+            <ul class="menu-list-v2">
+              <li>
+                <div class="menu-text-wrap">
+                  <p class="setting-name">롯데카드 문의하기</p>
+                  <p class="menu-desc">
+                    도난 및 분실 신고는 365일 24시간 가능해요
+                  </p>
+                </div>
+                <a href="#">
+                  <i class="icon-arrow-right medium" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <div class="menu-text-wrap">
+                  <p class="setting-name">카카오톡 문의하기</p>
+                </div>
+                <a href="#">
+                  <i class="icon-arrow-right medium" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <div class="menu-text-wrap">
+                  <p class="setting-name">전화 문의하기</p>
+                </div>
+                <a href="#">
+                  <i class="icon-arrow-right medium" aria-hidden="true"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
         <!-- //container -->
       </div>
       <!-- //content -->
     </div>
+    <!-- //[2026-06-23] renewal-v2 적용 -->
     <!-- //wrap -->
 
     <!-- 카드 정보 변경 팝업 -->
@@ -153,7 +206,7 @@
             </div>
           </div>
           <div class="btn-wrap">
-            <a href="#" class="btn">상담센터로 전화하기</a>
+            <a href="#" class="btn tertiary">고객센터로 전화하기</a>
           </div>
         </div>
       </div>

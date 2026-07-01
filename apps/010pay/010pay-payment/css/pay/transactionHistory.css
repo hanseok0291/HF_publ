@@ -27,9 +27,6 @@
   font-weight: 500;
   line-height: 25.2px;
 }
-.transaction-history-container.has-ad-wrap .add-view-btn-wrap {
-  margin: 0 0 26px;
-}
 .transaction-history-container .add-view-btn-wrap .add-view-btn {
   display: flex;
   align-items: center;
@@ -123,18 +120,12 @@
   color: #fff;
   background-color: #333333;
 }
-.has-ad-wrap .trade-list.padding {
-  padding-top: 56px;
-}
 /* 거래 내역 탭 END */
 
 /* 상세 거래 내역 */
 .trade-list {
   padding: 0;
   margin-top: 8px;
-}
-.has-ad-wrap .trade-list {
-  padding: 0 16px 40px;
 }
 .trade-list li {
   margin-bottom: 32px;
@@ -993,10 +984,8 @@
   padding-top: 4px;
 }
 
-.renewal-v2 .money-v2 .expire-icon {
+.renewal-v2 .money-v2 .expire-row [class^="icon-"] {
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
 }
 
 .renewal-v2 .money-v2 .expire-label {
@@ -1072,10 +1061,20 @@
   padding: 8px 0;
 }
 
-.renewal-v2 .money-v2 .notice-banner-item .notice-icon {
+.renewal-v2 .money-v2 .notice-banner-item [class^="icon-notice-"] {
   flex-shrink: 0;
   width: 24px;
   height: 24px;
+  font-size: 0;
+}
+
+.renewal-v2 .money-v2 .icon-notice-moneybag {
+  background: url("../../images/pay/money/img-moneybag-gray.svg") center / contain
+    no-repeat;
+}
+
+.renewal-v2 .money-v2 .icon-notice-people {
+  background: url("../../images/pay/money/img-people.svg") center / contain no-repeat;
 }
 
 .renewal-v2 .money-v2 .notice-banner-item .notice-text {
@@ -1101,41 +1100,19 @@
 .renewal-v2 .money-v2 .money-promo-banner {
   display: flex;
   align-items: center;
-  gap: 4px;
   width: 100%;
   height: 48px;
   margin-top: 8px;
-  padding: 0 16px;
-  border: 0;
   border-radius: 12px;
-  background-color: var(--color-bg-subtle);
-  text-align: left;
+  overflow: hidden;
 }
 
-.renewal-v2 .money-v2 .money-promo-banner .banner-icon-wrap {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-}
-
-.renewal-v2 .money-v2 .money-promo-banner .banner-icon-wrap img {
-  width: auto;
-  height: auto;
-}
-
-.renewal-v2 .money-v2 .money-promo-banner .banner-text {
-  flex: 1 1 0;
-  min-width: 0;
-  padding-left: 2px;
-  color: var(--color-text-primary);
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.4;
-  letter-spacing: -0.02em;
+.renewal-v2 .money-v2 .money-promo-banner > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
 }
 
 /* #RENEWAL-V2 — SEC-BALANCE (point)
@@ -1225,16 +1202,11 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   padding: 0;
   border: 0;
   background: none;
-}
-
-.renewal-v2 .point-v2 .btn-recover-info .icon-question-mark-gray {
-  width: 20px;
-  height: 20px;
 }
 
 /* #RENEWAL-V2 — DIVIDE-LINE
@@ -1439,8 +1411,10 @@
   font-weight: 500;
   line-height: 1.4;
   letter-spacing: -0.02em;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .renewal-v2 .trade-history-v2 .transaction-item .item-title {
@@ -1574,11 +1548,26 @@
   text-decoration: line-through;
 }
 
+.renewal-v2 .money-v2 .transaction-item .item-info-bottom,
+.renewal-v2 .point-v2 .transaction-item .item-info-bottom,
+.renewal-v2 .trade-history-v2 .transaction-item .item-info-bottom,
+.renewal-v2 .card-transaction-history-v2 .transaction-item .item-info-bottom {
+  color: var(--Color-Semantic-Text-05, #888);
+  font-family: Pretendard;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: -0.26px;
+  margin-top: 3px;
+}
+
 /* #RENEWAL-V2 — ADD-VIEW
 ------------------------------------------------------------*/
 .renewal-v2 .money-v2 .add-view-btn-wrap,
 .renewal-v2 .point-v2 .add-view-btn-wrap,
-.renewal-v2 .trade-history-v2 .add-view-btn-wrap {
+.renewal-v2 .trade-history-v2 .add-view-btn-wrap,
+.renewal-v2 .card-transaction-history-v2 .add-view-btn-wrap {
   display: flex;
   justify-content: center;
   margin: 20px 0 0;
@@ -1586,7 +1575,8 @@
 
 .renewal-v2 .money-v2 .add-view-btn-wrap .add-view-btn,
 .renewal-v2 .point-v2 .add-view-btn-wrap .add-view-btn,
-.renewal-v2 .trade-history-v2 .add-view-btn-wrap .add-view-btn {
+.renewal-v2 .trade-history-v2 .add-view-btn-wrap .add-view-btn,
+.renewal-v2 .card-transaction-history-v2 .add-view-btn-wrap .add-view-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1606,13 +1596,15 @@
 
 .renewal-v2 .money-v2 .add-view-btn-wrap .add-view-btn::before,
 .renewal-v2 .point-v2 .add-view-btn-wrap .add-view-btn::before,
-.renewal-v2 .trade-history-v2 .add-view-btn-wrap .add-view-btn::before {
+.renewal-v2 .trade-history-v2 .add-view-btn-wrap .add-view-btn::before,
+.renewal-v2 .card-transaction-history-v2 .add-view-btn-wrap .add-view-btn::before {
   display: none;
 }
 
 .renewal-v2 .money-v2 .add-view-btn-wrap .add-view-btn .icon-arrow-down.size-16,
 .renewal-v2 .point-v2 .add-view-btn-wrap .add-view-btn .icon-arrow-down.size-16,
-.renewal-v2 .trade-history-v2 .add-view-btn-wrap .add-view-btn .icon-arrow-down.size-16 {
+.renewal-v2 .trade-history-v2 .add-view-btn-wrap .add-view-btn .icon-arrow-down.size-16,
+.renewal-v2 .card-transaction-history-v2 .add-view-btn-wrap .add-view-btn .icon-arrow-down.size-16 {
   flex-shrink: 0;
   width: 16px;
   height: 16px;
@@ -1620,14 +1612,29 @@
   transform: rotate(0deg);
 }
 
-.renewal-v2 .trade-history-v2 .add-view-btn-wrap .add-view-btn {
+.renewal-v2 .money-v2 .add-view-btn-wrap .add-view-btn:not(:has(i)),
+.renewal-v2 .point-v2 .add-view-btn-wrap .add-view-btn:not(:has(i)),
+.renewal-v2 .trade-history-v2 .add-view-btn-wrap .add-view-btn:not(:has(i)),
+.renewal-v2 .card-transaction-history-v2 .add-view-btn-wrap .add-view-btn:not(:has(i)) {
   border: 0;
   background-color: var(--color-button-secondary-bg);
 }
 
-.renewal-v2 .money-v2 .add-view-btn-wrap .add-view-btn:not(:has(i)) {
-  border: 0;
-  background-color: var(--color-button-secondary-bg);
+/* empty-case · empty-list 내부 — gap으로 간격 처리, wrap margin 제거 */
+.renewal-v2 .money-v2 .empty-list .add-view-btn-wrap,
+.renewal-v2 .point-v2 .empty-case .add-view-btn-wrap,
+.renewal-v2 .trade-history-v2 .empty-case .add-view-btn-wrap,
+.renewal-v2 .card-transaction-history-v2 .empty-case .add-view-btn-wrap {
+  margin: 0;
+  width: 100%;
+}
+
+.renewal-v2 .money-v2 .empty-list > .add-view-btn-wrap:first-of-type {
+  margin-top: 12px;
+}
+
+.renewal-v2 .money-v2 .empty-list > .add-view-btn-wrap + .add-view-btn-wrap {
+  margin-top: 12px;
 }
 
 /* #RENEWAL-V2 — EMPTY-LIST
@@ -1636,74 +1643,71 @@
 .renewal-v2 .trade-history-v2 .empty-list {
   display: flex;
   flex: 1 1 0;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   padding: 40px 16px;
 }
 
-.renewal-v2 .money-v2 .empty-list p,
-.renewal-v2 .trade-history-v2 .empty-list p {
-  color: var(--color-text-05);
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.4;
-  letter-spacing: -0.02em;
-  text-align: center;
+.renewal-v2 .money-v2 .icon-empty-list {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  background: url("../../images/common/icon-exclamation-circle.svg") center / cover
+    no-repeat;
+  font-size: 0;
 }
 
 .renewal-v2 .money-v2 .empty-list p::before,
-.renewal-v2 .trade-history-v2 .empty-list p::before {
+.renewal-v2 .trade-history-v2 .empty-list p::before,
+.renewal-v2 .money-v2 .empty-list .empty-case-text::before,
+.renewal-v2 .trade-history-v2 .empty-list .empty-case-text::before {
   display: none;
 }
 
-/* #RENEWAL-V2 — EMPTY-CASE (Figma empty_case · 포인트_상세)
+/* #RENEWAL-V2 — EMPTY-CASE (Figma empty_case · 포인트_상세 · 거래내역_상세)
 ------------------------------------------------------------*/
-.renewal-v2 .point-v2 .empty-case {
+.renewal-v2 .point-v2 .empty-case,
+.renewal-v2 .trade-history-v2 .empty-case,
+.renewal-v2 .card-transaction-history-v2 .empty-case {
   display: flex;
   flex: 1 1 0;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 20px;
-  min-height: 180px;
   padding: 40px 0;
   width: 100%;
 }
 
-.renewal-v2 .point-v2 .empty-case-top {
+.renewal-v2 .point-v2 .empty-case-top,
+.renewal-v2 .trade-history-v2 .empty-case-top,
+.renewal-v2 .card-transaction-history-v2 .empty-case-top {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
 }
 
-.renewal-v2 .point-v2 .empty-case-icon {
+.renewal-v2 .point-v2 .icon-empty-case,
+.renewal-v2 .trade-history-v2 .icon-empty-case,
+.renewal-v2 .card-transaction-history-v2 .icon-empty-case {
   flex-shrink: 0;
   width: 72px;
   height: 72px;
+  background: url("../../images/common/icon-exclamation-circle.svg") center / cover
+    no-repeat;
+  font-size: 0;
 }
 
-.renewal-v2 .point-v2 .empty-case-text {
+.renewal-v2 .point-v2 .empty-case-text,
+.renewal-v2 .trade-history-v2 .empty-case-text,
+.renewal-v2 .card-transaction-history-v2 .empty-case-text,
+.renewal-v2 .money-v2 .empty-list .empty-case-text {
   color: var(--color-text-04);
   font-size: 16px;
   font-weight: 400;
-  line-height: 1.4;
-  letter-spacing: -0.02em;
-  text-align: center;
-}
-
-.renewal-v2 .point-v2 .btn-empty-prev-month {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: 8px 20px;
-  border: 0;
-  border-radius: 12px;
-  background-color: var(--color-button-secondary-bg);
-  color: var(--color-text-primary);
-  font-size: 14px;
-  font-weight: 700;
   line-height: 1.4;
   letter-spacing: -0.02em;
   text-align: center;
@@ -1829,3 +1833,15 @@ body:has(#wrap.renewal-v2) .modal-point-info .subsection-title {
   align-items: start;
 }
 /* #RENEWAL-V2 — MODAL-POINT-INFO END */
+
+body:has(#wrap.renewal-v2) .transaction-history-container .empty-list {
+  flex-direction: column;
+}
+
+body:has(#wrap.renewal-v2) .transaction-history-container .empty-list button {
+  /* margin-top: 20px; */
+}
+
+body:has(#wrap.renewal-v2) .modal-slide.type-title.modal-charge-detail .modal-body .amount {
+  color: var(--color-primary);
+}

@@ -14,19 +14,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <link rel="stylesheet" href="../../../css/common_renewal.css" />
-    <!-- [2026-06-17] renewal-v2 stylesheet -->
+    <!-- [2026-06-23] renewal-v2 stylesheet -->
     <link rel="stylesheet" href="../../../css/common_renewal_v2.css" />
-    <!-- //[2026-06-17] renewal-v2 stylesheet -->
+    <!-- //[2026-06-23] renewal-v2 stylesheet -->
     <link rel="stylesheet" href="../../../css/pay/transactionHistory.css" />
+    <link rel="stylesheet" href="../../../css/pay/cardTransactionHistory.css" />
     <script src="../../../js/jquery.3.4.1.min.js"></script>
     <script src="../../../js/jquery-ui.js"></script>
     <script src="../../../js/design_renewal.js" defer="defer"></script>
-    <script src="../../../js/lottie.min.js"></script>
   </head>
 
   <body>
     <!-- wrap -->
-    <!-- [2026-06-23] renewal-v2 적용 — 포인트 상세 (Figma 포인트_상세 · empty_case) -->
+    <!-- [2026-06-23] renewal-v2 적용 — 010PAY 체크카드 내역 (내역 없음) -->
     <div id="wrap" class="renewal-v2">
       <!-- header -->
       <div id="header">
@@ -35,13 +35,8 @@
             <button type="button" class="btn-back js-change-btn left-0">
               <i class="icon-back"></i>
             </button>
-            <button
-              type="button"
-              class="right-0"
-              onclick="modalOpenSlide('modal-withdrawalt-info')"
-            >
-              <i class="icon-info-circle"></i>
-            </button>
+            <h2 class="page-title">010PAY 체크카드 내역</h2>
+            <a href="#" class="btn-right-menu">관리</a>
           </div>
         </div>
       </div>
@@ -50,23 +45,24 @@
       <!-- content -->
       <div id="content">
         <!-- container -->
-        <div class="container point-v2 transaction-history-container">
+        <div
+          class="container card-transaction-history-v2 transaction-history-container"
+        >
           <!-- sec-balance -->
           <div class="sec-balance">
             <div class="sec-summary">
-              <div class="balance-header-row">
-                <div class="balance-info">
-                  <span class="balance-label">포인트</span>
-                  <p class="summary-amount">1,000원</p>
-                </div>
-                <button
-                  type="button"
-                  class="btn-expire-inquiry"
-                  onclick="modalOpenSlide('modal-unrecovered-info')"
-                >
-                  소멸 예정 조회
-                </button>
-              </div>
+              <p class="summary-label">총 이용 금액</p>
+              <p class="summary-amount">0원</p>
+            </div>
+            <div class="sec-breakdown">
+              <dl class="breakdown-row">
+                <dt>선불 충전 결제</dt>
+                <dd>0원</dd>
+              </dl>
+              <dl class="breakdown-row">
+                <dt>계좌결제</dt>
+                <dd>0원</dd>
+              </dl>
             </div>
           </div>
           <!-- //sec-balance -->
@@ -87,6 +83,7 @@
                 class="month-text"
                 onclick="modalOpenSlide('modal-period')"
               >
+                <span class="year-text">24년</span>
                 <span class="month-num">12월</span>
                 <i class="icon-arrow-down size-12" aria-hidden="true"></i>
               </button>
@@ -101,13 +98,10 @@
                   <button type="button" class="active">전체</button>
                 </li>
                 <li>
-                  <button type="button">적립</button>
+                  <button type="button">선불 충전 결제</button>
                 </li>
                 <li>
-                  <button type="button">사용</button>
-                </li>
-                <li>
-                  <button type="button">소멸</button>
+                  <button type="button">계좌결제</button>
                 </li>
               </ul>
             </div>
@@ -116,14 +110,14 @@
             <div class="empty-case">
               <div class="empty-case-top">
                 <i class="icon-empty-case" aria-hidden="true"></i>
-                <p class="empty-case-text">이용내역이 없어요!</p>
+                <p class="empty-case-text">이용 내역이 없어요!</p>
               </div>
-              <!-- <div class="add-view-btn-wrap">
+              <div class="add-view-btn-wrap">
                 <button type="button" class="add-view-btn">
                   더보기
                   <i class="icon-arrow-down size-16" aria-hidden="true"></i>
                 </button>
-              </div> -->
+              </div>
               <div class="add-view-btn-wrap">
                 <button type="button" class="add-view-btn">
                   11월 내역 더보기
@@ -138,60 +132,8 @@
       </div>
       <!-- //content -->
     </div>
-    <!-- //[2026-06-23] renewal-v2 적용 — 포인트 상세 (Figma 포인트_상세 · empty_case) -->
+    <!-- //[2026-06-23] renewal-v2 적용 — 010PAY 체크카드 내역 (내역 없음) -->
     <!-- //wrap -->
-
-    <!-- 포인트 안내 팝업 -->
-    <div
-      id="modal-withdrawalt-info"
-      class="modal modal-slide type-title modal-point-info"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-head">
-            <p class="modal-head-title">페이 포인트 안내</p>
-            <button type="button" class="btn btn-close js-modal-close">
-              <i class="icon-close"></i>
-            </button>
-          </div>
-          <div class="modal-body">
-            <ul class="note-wrap note-wrap-v2">
-              <li>
-                구매로 적립된 포인트는 기본 유효기간이 1년이며,<br />
-                이벤트나 제휴를 통해 적립된 포인트는 유효기간이 각각 다를 수
-                있어요.
-              </li>
-              <li>포인트는 비현금성으로 출금이 불가해요.</li>
-              <li>주문 취소나 반품 시에는 적립된 포인트가 차감돼요.</li>
-              <li>
-                포인트 사용 시, 먼저 적립된 포인트부터 자동으로 사용돼요.
-              </li>
-              <li>
-                라운드페이를 탈퇴할 경우, 적립받은 잔여 포인트 및 적립 예정
-                포인트는 모두 소멸돼요.
-              </li>
-            </ul>
-            <div class="point-info-subsection">
-              <p class="subsection-title">포인트 소멸 안내</p>
-              <ul class="note-wrap note-wrap-v2">
-                <li>
-                  적립된 포인트의 만료일이 지나면 해당 포인트는 자동 소멸되어
-                  사용할 수 없어요.
-                </li>
-                <li>
-                  주문 취소나 반품으로 인해 사용된 통합포인트가 환원되는 경우,
-                  기존 유효기간이 유지되며 만료 시 소멸돼요.
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn js-modal-close">확인</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- //포인트 안내 팝업 -->
 
     <!-- 기간 팝업 -->
     <div
@@ -218,7 +160,7 @@
             </div>
             <ul class="month-list-wrap">
               <li>
-                <button type="button" class="active">1월</button>
+                <button type="button">1월</button>
               </li>
               <li>
                 <button type="button">2월</button>
@@ -227,31 +169,31 @@
                 <button type="button">3월</button>
               </li>
               <li>
-                <button type="button" disabled>4월</button>
+                <button type="button">4월</button>
               </li>
               <li>
-                <button type="button" disabled>5월</button>
+                <button type="button">5월</button>
               </li>
               <li>
-                <button type="button" disabled>6월</button>
+                <button type="button">6월</button>
               </li>
               <li>
-                <button type="button" disabled>7월</button>
+                <button type="button">7월</button>
               </li>
               <li>
-                <button type="button" disabled>8월</button>
+                <button type="button">8월</button>
               </li>
               <li>
-                <button type="button" disabled>9월</button>
+                <button type="button">9월</button>
               </li>
               <li>
-                <button type="button" disabled>10월</button>
+                <button type="button">10월</button>
               </li>
               <li>
-                <button type="button" disabled>11월</button>
+                <button type="button">11월</button>
               </li>
               <li>
-                <button type="button" disabled>12월</button>
+                <button type="button" class="active">12월</button>
               </li>
             </ul>
           </div>
@@ -259,55 +201,21 @@
       </div>
     </div>
     <!-- //기간 팝업 -->
-
-    <!-- 소멸예정 팝업 -->
-    <div
-      id="modal-unrecovered-info"
-      class="modal modal-slide type-title modal-expire-point"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-head round-btn">
-            <button type="button" class="btn btn-close js-modal-close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="expire-point-summary">
-              <p class="expire-point-label">소멸 예정 포인트</p>
-              <p class="expire-point-amount">0원</p>
-            </div>
-            <ul class="note-wrap note-wrap-v2">
-              <li>30일 이내 유효기간 만료로 자동 소멸 예정인 포인트에요.</li>
-            </ul>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn js-modal-close">확인</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- //소멸예정 팝업 -->
-
-    <!-- lottie-spiner -->
-    <div class="lottie-spiner-wrap">
-      <span class="lottie-spiner"></span>
-    </div>
-    <!-- lottie-spiner -->
   </body>
   <script>
     $(function () {
-      // 로티
-      let svgContainer = document.querySelector(".lottie-spiner");
-
-      let animItem = bodymovin.loadAnimation({
-        wrapper: svgContainer,
-        animType: "svg",
-        loop: true,
-        path: "https://ux.sbsvc.online/010pay/010pay-payment/images/lottie/spiner.json",
+      $(".modal-period .month-list-wrap button").on("click", function () {
+        $(this)
+          .closest(".month-list-wrap")
+          .find("button")
+          .removeClass("active");
+        $(this).addClass("active");
       });
 
       $(window).on("scroll", function () {
         var scrollTop = $(window).scrollTop();
         var tab = $(".trade-tab-wrap");
+
         var tradeTabOffset = tab.hasClass("fixed")
           ? tab.data("originalOffset")
           : tab.offset().top;

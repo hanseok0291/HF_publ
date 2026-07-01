@@ -30,7 +30,7 @@
                         <button type="button" class="btn-back js-change-btn left-0" data-message="창을 닫으시면 결제가 취소됩니다.<br>종료하시겠습니까?" data-cancel="취소" data-confirm="확인">
                             <i class="icon-back"></i>
                         </button>
-                        <h2 class="page-title">계좌 등록</h2>
+                        <h2 class="page-title">계좌 등록 (확인용)</h2>
                     </div>
                 </div>
             </div>
@@ -42,24 +42,24 @@
                 <div class="container register-account-container">
                     <!-- headline -->
                     <div class="headline pt-0 pt-headline">
-                        <p>은행을 선택해주세요</p>
+                        <p>약관 모달 동작 확인용 페이지입니다.</p>
                     </div>
                     <!-- //headline -->
 
                     <!-- section -->
                     <div class="section">
                         <ul class="form-type register-account step-list">
-                            <li class="field-account">
+                            <li class="field-account on">
                                 <label class="label" for="accountNumber">계좌 번호</label>
                                 <div class="input-container type-line">
-                                    <input type="number" class="custom-input" placeholder="계좌번호 입력" id="accountNumber" />
+                                    <input type="number" class="custom-input" placeholder="계좌번호 입력" id="accountNumber" value="1234567890" />
                                     <button type="button" class="icon icon-del js-text-del"></button>
                                 </div>
                             </li>
                             <li class="on field-bank">
                                 <label class="label" for="chkSelectBtn">은행</label>
-                                <div class="select-box select-input type-line">
-                                    <button type="button" id="chkSelectBtn" class="label" onclick="modalOpenSlide('modal-select-bank')" data-target="modal-select-bank">은행 선택</button>
+                                <div class="select-box select-input type-line comp">
+                                    <button type="button" id="chkSelectBtn" class="label" onclick="modalOpenSlide('modal-select-bank')" data-target="modal-select-bank">국민</button>
                                     <i class="icon-arrow-down-gray" aria-hidden="true"></i>
                                 </div>
                             </li>
@@ -73,10 +73,8 @@
                 <div class="bottom-area">
                     <!-- container -->
                     <div class="container">
-                        <button type="button" class="btn js-modal-close" disabled onclick="modalOpenSlide('modal-select-title')" data-target="modal-select-title">다음</button>
-                        <button type="button" id="btnHidden" class="btn btn-transparent btn-hidden" onclick="modalOpenSlide('modal-other-charge')" data-target="modal-other-charge">
-                            다른 충전 선택하기
-                        </button>
+                        <button type="button" class="btn" onclick="modalOpenSlide('modal-select-title')" data-target="modal-select-title">약관 1뎁스 (서브약관 없음)</button>
+                        <button type="button" class="btn btn-outline mgt10" onclick="modalOpenSlide('modal-select-title-sub')" data-target="modal-select-title-sub">약관 2뎁스 (서브약관 있음)</button>
                     </div>
                     <!-- //container -->
                 </div>
@@ -119,7 +117,7 @@
         </div>
         <!-- //cancel prompt -->
 
-        <!-- select modal list -->
+        <!-- select modal list — 1뎁스 (서브약관 없음) -->
         <div id="modal-select-title" class="modal modal-slide modal-agree type-title type2">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -212,7 +210,120 @@
               </div>
             </div>
           </div>
-        <!-- //select modal list -->
+        <!-- //select modal list — 1뎁스 -->
+
+        <!-- select modal list — 2뎁스 (서브약관 있음) -->
+        <div id="modal-select-title-sub" class="modal modal-slide modal-agree type-title type4">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-head">
+                        <p class="modal-head-title">계좌 등록을 위해 약관 동의가 필요해요.</p>
+                        <button type="button" class="btn btn-close js-modal-close">
+                            <i class="icon-close"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- 전체 동의 체크박스 -->
+                        <div class="check-all-box container terms-list-box">
+                            <div class="check-all top open">
+                                <span class="checkbox">
+                                    <input type="checkbox" name="checkbox4_all" id="checkbox4_all" />
+                                    <label for="checkbox4_all">모두 동의 합니다.</label>
+                                </span>
+                                <p class="sub-title">서비스 이용을 위해 최초 1회 약관동의가 필요해요.</p>
+                                <button type="button" class="btn-toggle open" data-group="all"></button>
+                            </div>
+                        </div>
+                        <!-- //전체 동의 체크박스 -->
+                        <div data-group="all">
+                            <div class="terms-wrap container mb16" data-group="group4_1">
+                                <div class="check-all open">
+                                    <span class="checkbox">
+                                        <input type="checkbox" id="checkbox4_group1_all" data-group="group4_1" />
+                                        <label for="checkbox4_group1_all">
+                                            서브 약관 전체 동의1
+                                            <span class="optional sub-title">(선택포함)</span>
+                                        </label>
+                                    </span>
+                                    <button type="button" class="btn-toggle open" data-group="group4_1"></button>
+                                </div>
+                                <ul class="terms-list terms-block-list" data-group="group4_1">
+                                    <li>
+                                        <div class="checkbox-block-group">
+                                            <span class="checkbox child">
+                                                <input type="checkbox" id="checkbox4_group1_1" data-required="true" />
+                                                <label for="checkbox4_group1_1">
+                                                    (필수) 010PAY 서비스 이용 약관
+                                                    <button
+                                                        type="button"
+                                                        class="arrow-right js-open-terms"
+                                                        onclick="modalOpen('noticeDetail1')"
+                                                        data-toggle="modal"
+                                                        data-target="#noticeDetail1"
+                                                    ></button>
+                                                </label>
+                                            </span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="checkbox-block-group">
+                                            <span class="checkbox child">
+                                                <input type="checkbox" id="checkbox4_group1_2" data-required="true" />
+                                                <label for="checkbox4_group1_2">
+                                                    (필수) 오픈뱅킹 출금 및 조회 약관
+                                                    <button
+                                                        type="button"
+                                                        class="arrow-right js-open-terms"
+                                                        onclick="modalOpen('noticeDetail2')"
+                                                        data-toggle="modal"
+                                                        data-target="#noticeDetail2"
+                                                    ></button>
+                                                </label>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="terms-wrap container mb16" data-group="group4_2">
+                                <div class="check-all open">
+                                    <span class="checkbox">
+                                        <input type="checkbox" id="checkbox4_group2_all" data-group="group4_2" />
+                                        <label for="checkbox4_group2_all">
+                                            서브 약관 전체 동의2
+                                            <span class="optional sub-title">(선택포함)</span>
+                                        </label>
+                                    </span>
+                                    <button type="button" class="btn-toggle open" data-group="group4_2"></button>
+                                </div>
+                                <ul class="terms-list terms-block-list" data-group="group4_2">
+                                    <li>
+                                        <div class="checkbox-block-group">
+                                            <span class="checkbox child">
+                                                <input type="checkbox" id="checkbox4_group2_1" data-required="true" />
+                                                <label for="checkbox4_group2_1">
+                                                    (필수) 개인정보 제 3자 제공 동의
+                                                    <button
+                                                        type="button"
+                                                        class="arrow-right js-open-terms"
+                                                        onclick="modalOpen('noticeDetail3')"
+                                                        data-toggle="modal"
+                                                        data-target="#noticeDetail3"
+                                                    ></button>
+                                                </label>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btn-agree4" class="btn-confirm disabled" disabled>동의하고 계속하기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //select modal list — 2뎁스 -->
 
         <!-- select modal bank -->
         <div id="modal-select-bank" class="modal modal-slide type-bank type-title">
@@ -560,56 +671,9 @@
         <!-- //modal - 공지사항 상세 -->
     </body>
     <script>
-        var $registerAccount = $(".register-account-container");
-        var $registerAccountPage = $("#content");
-
-        function updateRegisterAccountHeadline() {
-            var isBankSelected = $registerAccount.find(".select-input.comp").length > 0;
-            $registerAccount.find(".headline.pt-headline > p").text(
-                isBankSelected ? "본인 명의 계좌번호를 입력해 주세요" : "은행을 선택해주세요"
-            );
-        }
-
-        function updateRegisterAccountNextButton() {
-            var hasAccountNumber =
-                $.trim($registerAccount.find(".field-account .custom-input").val()).length > 0;
-            $registerAccountPage
-                .find('.bottom-area .btn[data-target="modal-select-title"]')
-                .prop("disabled", !hasAccountNumber);
-        }
-
+        // 퍼블 확인용 — 약관 모달 1뎁스·2뎁스 동작 확인
         $(document).ready(function () {
-            updateRegisterAccountHeadline();
-            updateRegisterAccountNextButton();
-
-            $registerAccount.find(".field-account .custom-input").on("input change keyup", updateRegisterAccountNextButton);
-            $registerAccount.find(".field-account .js-text-del").on("mousedown", function () {
-                setTimeout(updateRegisterAccountNextButton, 0);
-            });
-
-            // option-list 내의 모든 li 요소에 클릭 이벤트 리스너 추가
-            $(".option-list li").click(function () {
-                // 모든 li에서 select 클래스 제거
-                $(".option-list li").removeClass("select");
-
-                // 클릭한 li에만 select 클래스 추가
-                $(this).addClass("select");
-            });
-
-            // id가 modal-select-bank인 모달 내의 option-item 클릭 이벤트 추가
-            $("#modal-select-bank .option-item").on("click", function () {
-                // 계좌 번호 입력창을 은행 위에 노출
-                $(".field-account").addClass("on");
-                $registerAccount.find(".field-account .custom-input").focus();
-            });
-
-            // 은행 선택 시 헤드라인 문구 변경 (design_renewal.js — select-input.comp 반영 후)
-            $("#modal-select-bank .option-item button").on("click", function () {
-                setTimeout(updateRegisterAccountHeadline, 0);
-            });
-
-            // 진입 시 은행 선택 모달 오픈
-            modalOpenSlide("modal-select-bank");
+            modalOpenSlide("modal-select-title");
         });
     </script>
 </html>

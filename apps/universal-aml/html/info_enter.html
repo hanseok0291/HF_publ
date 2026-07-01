@@ -6,7 +6,7 @@
     <meta name="format-detection" content="telephone=no" />
     <title>헥토파이낸셜</title>
     <link rel="stylesheet" href="../css/reset.css" />
-    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/common.css?v=260701" />
     <link rel="stylesheet" href="../css/kyc.css" />
     <script src="../js/jquery-1.8.3.min.js"></script>
     <script src="../js/common.js" defer></script>
@@ -15,7 +15,7 @@
 
   <body>
     <!-- wrap -->
-    <div id="wrap">
+    <div id="wrap" class="form-page">
       <!-- header -->
       <header class="header">
         <div class="container">
@@ -113,6 +113,47 @@
           return;
         }
       });
+
+      // 입력 폼 화면 — 포커스 시 footer fixed 해제(키패드 가림 방지)
+      (function () {
+        var formPageSelector = "#wrap.form-page";
+        var fieldSelector =
+          'input[type="text"], input[type="password"], input[type="tel"], input[type="email"], input[type="number"], select, textarea';
+
+        function isFormField(el) {
+          return el && el.matches && el.matches(fieldSelector);
+        }
+
+        document.addEventListener(
+          "focusin",
+          function (e) {
+            var wrap = e.target.closest(formPageSelector);
+            if (!wrap || !isFormField(e.target)) {
+              return;
+            }
+            wrap.classList.add("is-input-focus");
+          },
+          true
+        );
+
+        document.addEventListener(
+          "focusout",
+          function (e) {
+            var wrap = e.target.closest(formPageSelector);
+            if (!wrap || !isFormField(e.target)) {
+              return;
+            }
+            // 다음 버튼 등으로 포커스 이동 시 즉시 fixed 복귀 방지
+            setTimeout(function () {
+              var active = document.activeElement;
+              if (!wrap.contains(active) || !isFormField(active)) {
+                wrap.classList.remove("is-input-focus");
+              }
+            }, 0);
+          },
+          true
+        );
+      })();
     </script>
   </body>
 </html>

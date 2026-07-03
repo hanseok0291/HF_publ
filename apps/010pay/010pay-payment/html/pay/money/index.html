@@ -115,7 +115,7 @@
             <div class="month-wrap">
               <button
                 type="button"
-                class="prev-btn icon-arrow-left size-16 disabled"
+                class="prev-btn icon-arrow-left size-16"
               >
                 이전
               </button>
@@ -247,7 +247,7 @@
               </div>
               <div class="add-view-btn-wrap">
                 <button type="button" class="add-view-btn">
-                  11월 내역 더보기
+                  11월 내역 보기
                 </button>
               </div>
             </div>
@@ -421,40 +421,40 @@
             </div>
             <ul class="month-list-wrap">
               <li>
-                <button type="button" class="active">1월</button>
+                <button type="button" data-month="1" disabled>1월</button>
               </li>
               <li>
-                <button type="button">2월</button>
+                <button type="button" data-month="2" disabled>2월</button>
               </li>
               <li>
-                <button type="button">3월</button>
+                <button type="button" data-month="3" disabled>3월</button>
               </li>
               <li>
-                <button type="button" disabled>4월</button>
+                <button type="button" data-month="4" disabled>4월</button>
               </li>
               <li>
-                <button type="button" disabled>5월</button>
+                <button type="button" data-month="5" disabled>5월</button>
               </li>
               <li>
-                <button type="button" disabled>6월</button>
+                <button type="button" data-month="6" disabled>6월</button>
               </li>
               <li>
-                <button type="button" disabled>7월</button>
+                <button type="button" data-month="7" disabled>7월</button>
               </li>
               <li>
-                <button type="button" disabled>8월</button>
+                <button type="button" data-month="8" disabled>8월</button>
               </li>
               <li>
-                <button type="button" disabled>9월</button>
+                <button type="button" data-month="9" disabled>9월</button>
               </li>
               <li>
-                <button type="button" disabled>10월</button>
+                <button type="button" data-month="10">10월</button>
               </li>
               <li>
-                <button type="button" disabled>11월</button>
+                <button type="button" data-month="11">11월</button>
               </li>
               <li>
-                <button type="button" disabled>12월</button>
+                <button type="button" class="active" data-month="12">12월</button>
               </li>
             </ul>
           </div>
@@ -465,6 +465,125 @@
   </body>
   <script>
     $(function () {
+      // month-wrap — 조회 가능 월 (퍼블 확인용: 24년 10~12월, 25년 1~2월)
+      var monthNavList = [
+        { year: 2024, month: 10 },
+        { year: 2024, month: 11 },
+        { year: 2024, month: 12 },
+        { year: 2025, month: 1 },
+        { year: 2025, month: 2 },
+      ];
+      var monthNavIndex = 2; // 기본: 24년 12월
+
+      var $monthWrap = $(".month-wrap");
+      var $prevBtn = $monthWrap.find(".prev-btn");
+      var $nextBtn = $monthWrap.find(".next-btn");
+      var $yearText = $monthWrap.find(".year-text");
+      var $monthNum = $monthWrap.find(".month-num");
+      var $modalPeriod = $("#modal-period");
+      var $modalYearText = $modalPeriod.find(".year-wrap .year-text");
+      var $modalYearPrev = $modalPeriod.find(".year-wrap .prev-btn");
+      var $modalYearNext = $modalPeriod.find(".year-wrap .next-btn");
+      var $modalMonthBtns = $modalPeriod.find(".month-list-wrap button");
+
+      function formatYearShort(year) {
+        return String(year).slice(-2) + "년";
+      }
+
+      function updateModalMonthButtons(year) {
+        $modalMonthBtns.each(function () {
+          var $btn = $(this);
+          var month = Number($btn.data("month"));
+          var isAvailable =
+            monthNavList.some(function (item) {
+              return item.year === year && item.month === month;
+            });
+
+          $btn.prop("disabled", !isAvailable);
+          if (!isAvailable) {
+            $btn.removeClass("active");
+          }
+        });
+      }
+
+      function syncModalActiveMonth(year, month) {
+        $modalYearText.text(year + "년");
+        updateModalMonthButtons(year);
+
+        $modalMonthBtns.removeClass("active");
+        $modalMonthBtns
+          .filter("[data-month='" + month + "']")
+          .not(":disabled")
+          .addClass("active");
+
+        $modalYearPrev.toggleClass("disabled", year <= 2024);
+        $modalYearNext.toggleClass("disabled", year >= 2025);
+      }
+
+      function updateMonthNav(index) {
+        var current = monthNavList[index];
+
+        monthNavIndex = index;
+        $yearText.text(formatYearShort(current.year));
+        $monthNum.text(current.month + "월");
+
+        $prevBtn.toggleClass("disabled", index === 0);
+        $nextBtn.toggleClass("disabled", index === monthNavList.length - 1);
+
+        syncModalActiveMonth(current.year, current.month);
+      }
+
+      $prevBtn.on("click", function () {
+        if ($(this).hasClass("disabled")) {
+          return;
+        }
+        updateMonthNav(monthNavIndex - 1);
+      });
+
+      $nextBtn.on("click", function () {
+        if ($(this).hasClass("disabled")) {
+          return;
+        }
+        updateMonthNav(monthNavIndex + 1);
+      });
+
+      $modalYearPrev.on("click", function () {
+        if ($(this).hasClass("disabled")) {
+          return;
+        }
+        var year = Number($modalYearText.text().replace("년", "")) - 1;
+        var current = monthNavList[monthNavIndex];
+        syncModalActiveMonth(year, current.month);
+      });
+
+      $modalYearNext.on("click", function () {
+        if ($(this).hasClass("disabled")) {
+          return;
+        }
+        var year = Number($modalYearText.text().replace("년", "")) + 1;
+        var current = monthNavList[monthNavIndex];
+        syncModalActiveMonth(year, current.month);
+      });
+
+      $modalMonthBtns.on("click", function () {
+        if ($(this).is(":disabled")) {
+          return;
+        }
+
+        var year = Number($modalYearText.text().replace("년", ""));
+        var month = Number($(this).data("month"));
+        var nextIndex = monthNavList.findIndex(function (item) {
+          return item.year === year && item.month === month;
+        });
+
+        if (nextIndex > -1) {
+          updateMonthNav(nextIndex);
+          modalCloseSlide("modal-period");
+        }
+      });
+
+      updateMonthNav(monthNavIndex);
+
       $(window).on("scroll", function () {
         var scrollTop = $(window).scrollTop();
         var tab = $(".trade-tab-wrap");

@@ -94,10 +94,10 @@
                   <span class="label">출금 가능 머니</span>
                   <button
                     type="button"
-                    class="withdraw-limit-link js-withdraw-limit-fill"
-                    data-amount="150000"
+                    class="withdraw-limit-link js-withdraw-balance-display"
+                    data-amount="164000"
                   >
-                    150,000원
+                    16만 4,000원
                   </button>
                 </div>
                 <div class="charge-limit-hint">
@@ -106,9 +106,9 @@
                     <button
                       type="button"
                       class="charge-limit-link js-withdraw-limit-fill"
-                      data-amount="150000"
+                      data-amount="164000"
                     >
-                      150,000원
+                      16만 4,000원
                     </button>
                     이에요
                   </p>
@@ -311,18 +311,50 @@
   <script>
     /* 출금 — RenewalAmountPage 공통 초기화 (design_renewal.js defer 이후) */
     $(function () {
-      RenewalAmountPage.init({
+      /** 사용자 보유 출금 가능 머니(원) — API 연동 시 applyWithdrawableWon()으로 갱신 */
+      var withdrawableWon = 164000;
+
+      /** 출금 가능 머니 표기 — 1만원 이하: x,000원 · 1만원 초과: x만원 / x만 x,xxx원 */
+      function formatWithdrawableLabel(amountWon) {
+        amountWon = parseInt(amountWon, 10) || 0;
+
+        if (amountWon <= 0) {
+          return "0원";
+        }
+
+        if (amountWon <= 10000) {
+          return RenewalAmountKeypad.formatWon(amountWon) + "원";
+        }
+
+        var man = Math.floor(amountWon / 10000);
+        var rest = amountWon % 10000;
+
+        if (rest === 0) {
+          return man + "만원";
+        }
+
+        return man + "만 " + RenewalAmountKeypad.formatWon(rest) + "원";
+      }
+
+      var page = RenewalAmountPage.init({
         input: "#withdrawAmount",
-        available: 150000,
+        available: withdrawableWon,
         maxDigits: 7,
         submitBtn: ".btn-withdraw-submit",
-        limitLink: ".js-withdraw-limit-fill",
-        limitFormat: "won",
+        limitLink:
+          ".js-withdraw-balance-display, .charge-limit-hint .js-withdraw-limit-fill",
+        limitLabel: formatWithdrawableLabel,
         labels: {
           empty: "얼마를 보낼까요?",
           filled: "출금 금액",
         },
       });
+
+      /** 출금 가능 금액·한도·표시 UI 일괄 갱신 — API 응답 반영 시 이 함수만 호출 */
+      function applyWithdrawableWon(nextWon) {
+        withdrawableWon = Math.max(0, parseInt(nextWon, 10) || 0);
+        page.setAvailable(withdrawableWon);
+      }
     });
   </script>
 </html>

@@ -654,19 +654,19 @@ function modalOpenSlide(obj) {
       }
     });
 
-  // 클릭된 버튼의 부모 select-box에 comp 클래스 추가
-  let button;
-  let selectBox;
-
+  // 열린 모달과 data-target으로 연결된 select-box 찾기
+  var selectBox = $();
   $(".select-box").each(function (i, e) {
-    const $button = $(e).find("button"); // 현재 순회 중인 select-box의 버튼
-    if (obj === $button.attr("data-target")) {
-      selectBox = $(e); // data-target과 obj가 일치하는 select-box 설정
-    } else {
-      const button = $(e.currentTarget); // 이벤트 핸들러에서 전달된 이벤트 객체를 사용
-      selectBox = button.closest(".select-box"); // 부모 select-box 찾기
+    var $trigger = $(e).find("button[data-target]");
+    if (obj === $trigger.attr("data-target")) {
+      selectBox = $(e);
+      return false;
     }
   });
+  // data-target 매칭이 없으면 select-input fallback (은행 선택 등)
+  if (!selectBox.length) {
+    selectBox = $(".select-input");
+  }
 
   // 모달 높이가 큰 경우 포지션 변경
   function modalContPos() {
@@ -688,27 +688,30 @@ function modalOpenSlide(obj) {
   });
 
   // 리스트에서 선택한 항목을 버튼에 반영
-  $(".option-item button").on("click", function () {
-    var selectedBank = $(this).text().trim(); // 선택한 이름 가져오기
-    var selectBox = $(".select-input");
-    if (selectBox && selectBox.find(".label").length > 0) {
-      selectBox.find(".label").text(selectedBank); // 버튼에 텍스트 업데이트
-    }
-    if (selectBox) {
-      selectBox.addClass("comp");
-    }
-    $("#btnHidden").hide();
+  temp
+    .find(".option-item button")
+    .off("click.selectOption")
+    .on("click.selectOption", function () {
+      var selectedText =
+        $(this).find(".label").text().trim() || $(this).text().trim();
 
-    // step-list에서 현재 on 클래스가 있는 li 찾고 다음 li에 on 클래스 추가
-    var currentStep = $(".step-list li.on"); // 현재 on 클래스가 있는 li
-    var nextStep = currentStep.next("li"); // 다음 li 요소 찾기
+      if (selectBox.length && selectBox.find(".label").length > 0) {
+        selectBox.find(".label").text(selectedText);
+        selectBox.addClass("comp");
+      }
 
-    // 다음 li가 있을 경우에만 on 클래스 추가
-    if (nextStep.length) {
-      nextStep.addClass("on"); // 다음 li에 on 클래스 추가
-    }
-    modalCloseSlide(); // 모달 닫기
-  });
+      $("#btnHidden").hide();
+
+      // step-list에서 현재 on 클래스가 있는 li 찾고 다음 li에 on 클래스 추가
+      var currentStep = $(".step-list li.on"); // 현재 on 클래스가 있는 li
+      var nextStep = currentStep.next("li"); // 다음 li 요소 찾기
+
+      // 다음 li가 있을 경우에만 on 클래스 추가
+      if (nextStep.length) {
+        nextStep.addClass("on"); // 다음 li에 on 클래스 추가
+      }
+      modalCloseSlide(); // 모달 닫기
+    });
 }
 
 // 토스트 팝업 노출 비노출
@@ -1110,6 +1113,7 @@ window.addEventListener('resize', updateVH);
      * @param {number} [options.balanceWon] - 현재 보유 머니(원)
      * @param {number} [options.maxBalanceWon] - 충전 후 최대 보유 머니(원)
      * @param {{ empty: string, filled: string }} [options.balanceLabels]
+     * @param {function(number): void} [options.onAmountChange] - 입력 금액 변경 시 콜백
      * @returns {{ getValue, setValue, setAvailable, updateUI, keypad }}
      */
     init: function (options) {
@@ -1279,6 +1283,10 @@ window.addEventListener('resize', updateVH);
         onChange: function (amount) {
           inputValue = amount;
           updateUI();
+
+          if (typeof options.onAmountChange === "function") {
+            options.onAmountChange(amount);
+          }
         },
       });
 

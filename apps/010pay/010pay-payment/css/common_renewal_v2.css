@@ -186,21 +186,15 @@ body:has(#wrap.renewal-v2) .modal-slide.exStyle .modal-footer .btn:disabled {
   color: var(--color-button-primary-text);
 }
 
-body:has(#wrap.renewal-v2) .modal-slide.type-title .btn-confirm:not(.active) {
+body:has(#wrap.renewal-v2) .modal-slide.type-title .btn-confirm:disabled,
+body:has(#wrap.renewal-v2) .modal-slide.type-title .btn-confirm.disabled {
   border: 1px solid var(--color-status-disabled);
   background-color: var(--color-status-disabled);
   color: var(--color-button-primary-text);
   cursor: not-allowed;
 }
 
-body:has(#wrap.renewal-v2) .modal-slide.type-title .btn-confirm:disabled,
-body:has(#wrap.renewal-v2) .modal-slide.type-title .btn-confirm.disabled {
-  border-color: var(--color-status-disabled);
-  background-color: var(--color-status-disabled);
-  color: var(--color-button-primary-text);
-}
-
-body:has(#wrap.renewal-v2) .modal-slide.type-title .btn-confirm.active {
+body:has(#wrap.renewal-v2) .modal-slide.type-title .btn-confirm:not(:disabled):not(.disabled) {
   border: 1px solid var(--color-button-primary-bg);
   background-color: var(--color-button-primary-bg);
   color: var(--color-button-primary-text);
@@ -786,6 +780,10 @@ body:has(#wrap.renewal-v2) .input-container > button {
   right: 0;
 }
 
+body:has(#wrap.renewal-v2) .phone .input-container > button {
+  right: 16px;
+}
+
 body:has(#wrap.renewal-v2) .container.banner-full-container .complete-text p, body:has(#wrap.renewal-v2) .container.banner-full-container .complete-text .main-text {
   color: var(--Color-Semantic-Text-03, #151515);
   text-align: center;
@@ -797,10 +795,63 @@ body:has(#wrap.renewal-v2) .container.banner-full-container .complete-text p, bo
   letter-spacing: -0.6px;
 }
 
+i.icon-arrow-right {
+  background: url(../images/common/renewal-v2/icon-arrow-right.svg) center / 100% 100% no-repeat;
+}
+
+.icon-arrow-left {
+  background: url(../images/common/renewal-v2/icon-arrow-left-on.svg) center / 100% 100% no-repeat;
+}
 .icon-arrow-right {
+  background: url(../images/common/renewal-v2/icon-arrow-right-on.svg) center / 100% 100% no-repeat;
+}
+
+body:has(#wrap.renewal-v2) .icon-arrow-left.disabled {
+  background: url(../images/common/renewal-v2/icon-arrow-left-off.svg) center / 100% 100% no-repeat;
+}
+body:has(#wrap.renewal-v2) .icon-arrow-right.disabled {
   background: url(../images/common/renewal-v2/icon-arrow-right.svg) center / 100% 100% no-repeat;
 }
 
 body:has(#wrap.renewal-v2) .modal-toast.is-btn {
   bottom: 116px;
+}
+
+body:has(#wrap.renewal-v2) .step1 .input-container > button {
+  right: 16px;
+}
+
+body:has(#wrap.renewal-v2) .type-timer .custom-input.focus:not(:placeholder-shown) ~ .icon-del {
+  right: 118px;
+}
+
+/* [2026-06-23] renewal-v2 — modal-agree 동의하기 버튼 활성/비활성 (disabled 토글은 스크립트) */
+body:has(#wrap.renewal-v2) .modal-slide.type-title .btn-confirm:disabled,
+body:has(#wrap.renewal-v2) .modal-slide.type-title .btn-confirm.disabled,
+body:has(#wrap.renewal-v2) .step1 .modal-slide.type-title .btn-confirm:disabled,
+body:has(#wrap.renewal-v2) .step1 .modal-slide.type-title .btn-confirm.disabled {
+  border: 1px solid var(--color-status-disabled);
+  background-color: var(--color-status-disabled);
+  color: var(--color-button-primary-text);
+  cursor: not-allowed;
+}
+
+body:has(#wrap.renewal-v2) .modal-slide.type-title .btn-confirm:not(:disabled):not(.disabled),
+body:has(#wrap.renewal-v2) .step1 .modal-slide.type-title .btn-confirm:not(:disabled):not(.disabled) {
+  border: 1px solid var(--color-button-primary-bg);
+  background-color: var(--color-button-primary-bg);
+  color: var(--color-button-primary-text);
+  cursor: pointer;
+}
+/* //[2026-06-23] renewal-v2 — modal-agree 동의하기 버튼 활성/비활성 */
+
+body:has(#wrap.renewal-v2) .label-n.focus-on input[type="tel"].custom-input {
+  line-height: 27px;
+  padding-bottom: 12px;
+  padding-top: 31px;
+}
+body:has(#wrap.renewal-v2) .label-n.fill input[type="text"].custom-input, body:has(#wrap.renewal-v2) .label-n.fill input[type="tel"].custom-input {
+  line-height: 27px;
+  padding-bottom: 11.5px;
+  padding-top: 31.5px;
 }

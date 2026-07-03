@@ -45,6 +45,27 @@
 	.text-info { color: #1275d6; }
 	.text-danger { color: #dc3545; }
 	.text-success { color: #28a745; }
+	.btn {
+		display: inline-block;
+		padding: 0.25em 0.5em;
+		border: 1px solid #5e8cc0;
+		border-radius: 0.5em;
+		background-color: transparent;
+		font-family: 'Noto Sans KR';
+		font-size: 11px;
+		color: #5e8cc0;
+		line-height: 1.2;
+		cursor: pointer;
+	}
+	.flip { position: relative; }
+	.flip .flip-body { display: none; }
+	.flip.open .flip-body { display: block; }
+	.btn-flip-all:not(.open) .open { display: inline; }
+	.flip.open .btn-flip .open,
+	.btn-flip-all .open { display: none; }
+	.flip:not(.open) .btn-flip .close,
+	.btn-flip-all:not(.open) .close { display: none; }
+	.pull-right { float: right; }
 </style>
 <script>
 $(document).ready(function(){
@@ -53,12 +74,13 @@ $(document).ready(function(){
 		$(this).parents(".flip").toggleClass("open");
 	});
 	$(".btn-flip-all").click(function(){
+		var $flips = $(this).closest("h2").nextAll(".table-responsive").first().find(".flip");
 		if(!$(this).hasClass("open")){
 			$(this).addClass("open");
-			$(this).parents("h2").next().find(".flip").addClass("open");
+			$flips.addClass("open");
 		} else {
 			$(this).removeClass("open");
-			$(this).parents("h2").next().find(".flip").removeClass("open");
+			$flips.removeClass("open");
 		}
 	});
 
@@ -86,7 +108,7 @@ $(document).ready(function(){
 <body>
 <header>
 	<h1>KT멤버십 + 내통장결제 퍼블리싱 안내</h1>
-	<p>최종 수정일 : 2022-07-18</p>
+	<p>최종 수정일 : 2026-07-02</p>
 </header>
 
 <div class="main">
@@ -308,6 +330,185 @@ $(document).ready(function(){
 		</table>
 	</div>
 	<!-- //page list -->
+
+	<!-- renewal v3 list -->
+	<h2>RENEWAL (v3)
+		<span class="pull-right"><button type="button" class="btn btn-flip-all open">
+			<span class="open">비고 내용 모두 보기</span><span class="close">비고 지난 내용 숨기기</span>
+		</button></span>
+	</h2>
+	<div class="well">
+		<ul>
+			<li><strong>공통 스코프</strong> <code>#wrap.version-v3</code> · <code>ktmembership/css/common.css</code></li>
+			<li><strong>최근 수정</strong> 2026-07-02 — registerPw_v3 page-head · 비밀번호 입력 타이틀·스텝 Figma 반영</li>
+		</ul>
+	</div>
+	<div class="table-responsive">
+		<table class="table" id="renewalV3Table">
+			<colgroup>
+				<col style="width: 10%">
+				<col style="width: 15%">
+				<col style="width: 15%">
+				<col style="width: 15%">
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>구분</th>
+					<th>화면명</th>
+					<th>파일</th>
+					<th>화면코드</th>
+					<th>날짜</th>
+					<th>상태</th>
+					<th>비고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="7" class="text-primary">KT멤버십<br>(ktmembership)<br>v3</td>
+					<td>본인인증 · 휴대폰 정보</td>
+					<td><a href="resources/html/ktmembership/selfAuth1_v3.html" target="_blank">selfAuth1_v3</a></td>
+					<td>본인명의 휴대폰 인증</td>
+					<td class="date">2026-06-15</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip open">
+							<ul class="flip-body">
+								<li>2026-06-15 : version-v3 · header-v3 · self-auth-v3 · 통신사·휴대폰 입력</li>
+							</ul>
+							<p>
+								<button type="button" class="btn btn-flip">
+									<span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span>
+								</button>
+							</p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>본인인증 · 인증번호</td>
+					<td><a href="resources/html/ktmembership/selfAuth2_v3.html" target="_blank">selfAuth2_v3</a></td>
+					<td>보안문자·인증번호 입력</td>
+					<td class="date">2026-06-08</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip open">
+							<ul class="flip-body">
+								<li>2026-06-08 : version-v3 · self-auth-v3-captcha · 인증번호 재발송</li>
+							</ul>
+							<p>
+								<button type="button" class="btn btn-flip">
+									<span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span>
+								</button>
+							</p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>계좌 인증 요청</td>
+					<td><a href="resources/html/ktmembership/acctAuth_v3.html" target="_blank">acctAuth_v3</a></td>
+					<td>본인 계좌 확인 · 인증요청</td>
+					<td class="date">2026-06-25</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip open">
+							<ul class="flip-body">
+								<li>2026-06-25 : version-v3 · account-box · 약관 상세 모달</li>
+							</ul>
+							<p>
+								<button type="button" class="btn btn-flip">
+									<span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span>
+								</button>
+							</p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>1원 인증</td>
+					<td><a href="resources/html/ktmembership/accAuthVerify_v3.html" target="_blank">accAuthVerify_v3</a></td>
+					<td>입금자명 4자리 입력</td>
+					<td class="date">2026-07-02</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip open">
+							<ul class="flip-body">
+								<li>2026-07-02 : top-step 추가(Step 2 active) · header-v3 btn-back 제거</li>
+								<li>2026-06-24 : version-v3 · acct-check · 입금자명 입력</li>
+							</ul>
+							<p>
+								<button type="button" class="btn btn-flip">
+									<span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span>
+								</button>
+							</p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>[Step 4] 비밀번호 설정</td>
+					<td><a href="resources/html/ktmembership/registerPw_v3.html" target="_blank">registerPw_v3</a></td>
+					<td>결제 비밀번호 입력</td>
+					<td class="date">2026-07-02</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip open">
+							<ul class="flip-body">
+								<li>2026-07-02 : Figma 계좌등록_04_비밀번호 재입력 · page-head__title(비밀번호 입력) · top-step(Step 4 active) · section-title-new(계좌 등록 완료) 제거</li>
+								<li>2026-07-02 : top-step 추가(Step 4 active)</li>
+								<li>2026-06-26 : version-v3 · input-mark-v3 · modal-v3-alert · pw-reset-v3</li>
+							</ul>
+							<p>
+								<button type="button" class="btn btn-flip">
+									<span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span>
+								</button>
+							</p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>[Step 4] 비밀번호 설정 확인</td>
+					<td><a href="resources/html/ktmembership/registerPwVerify_v3.html" target="_blank">registerPwVerify_v3</a></td>
+					<td>결제 비밀번호 재입력</td>
+					<td class="date">2026-07-02</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip open">
+							<ul class="flip-body">
+								<li>2026-07-02 : top-step 추가(Step 4 active) · header-v3 btn-back 제거</li>
+								<li>2026-06-08 : version-v3 · pw-box · info-list</li>
+							</ul>
+							<p>
+								<button type="button" class="btn btn-flip">
+									<span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span>
+								</button>
+							</p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>[Step 5] 계좌 등록 완료</td>
+					<td><a href="resources/html/ktmembership/accountComplete_v3.html" target="_blank">accountComplete_v3</a></td>
+					<td>계좌 등록 완료</td>
+					<td class="date">2026-07-02</td>
+					<td class="status">검토 요청</td>
+					<td>
+						<div class="flip open">
+							<ul class="flip-body">
+								<li>2026-07-02 : Figma 계좌등록_05_계좌등록완료 · page-head__title · top-step(Step 5 active) · section-title-new 제거</li>
+								<li>2026-07-02 : version-v3 · header-v3 · top-step · account-box · 확인 CTA</li>
+							</ul>
+							<p>
+								<button type="button" class="btn btn-flip">
+									<span class="open">&middot;&middot;&middot;</span><span class="close">이전 내용 숨기기</span>
+								</button>
+							</p>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- //renewal v3 list -->
 
 	<!-- memo -->
 	<h2>MEMO</h2>

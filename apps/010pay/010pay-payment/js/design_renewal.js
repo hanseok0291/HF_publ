@@ -999,7 +999,7 @@ window.addEventListener('resize', updateVH);
       var maxDigits =
         typeof options.maxDigits === "number" ? options.maxDigits : MAX_DIGITS;
       var $input = $(options.input);
-      var $keypad = $(options.keypad || ".keypad");
+      var $keypad = $(options.keypad || ".keypad-amount");
       var formatInput = options.formatInput || formatWon;
 
       function getValue() {

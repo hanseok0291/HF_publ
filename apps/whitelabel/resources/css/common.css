@@ -426,7 +426,7 @@ background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)); poi
 .bank-list > li:not(.bank-list-tossbank) { width: 33.33%; }
 .bank-list button { position: relative; display: block; width: 100%; overflow: visible; border: 1px solid #f6f6f6; border-radius: 10px; background-color: #f6f6f6;
 	font-size: 12px; line-height: 1.1; font-weight: 500; color: #2b2b2b; }
-.bank-list button:before { content: ""; display: block; padding-bottom: 86px; }
+.bank-list button:before { content: ""; display: block; padding-bottom: 91px; }
 .bank-list button span { display: block; position: absolute; left: 0; right: 0; width: 100%; }
 .bank-list button .logo { bottom: 48%; }
 .bank-list button .name { top: 65%; line-height: 1.1; }
@@ -503,14 +503,13 @@ background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)); poi
 	display: flex;
 }
 .register-account-entry .register-account-bank-id .logo {
-	border: 1px solid #e5e5e8;
 	text-align: center;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 .register-account-entry .register-account-bank-id .logo img {
-	height: 21px;
+	height: 100%;
 	width: auto;
 }
 .register-account-bank-id .name {
@@ -568,7 +567,7 @@ background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)); poi
 	.bank-list { padding: 0 7px 7px; }
 	.bank-list button { font-size: 14px; }
 	.bank-list > li.bank-list-tossbank > button.tossbank-easy-register { font-size: 15px; }
-	.bank-list img, .tossbank-easy-register-visual img { max-width: 79px; height: auto; max-height: 30px; }
+	.bank-list img, .tossbank-easy-register-visual img { max-width: 79px; height: auto; max-height: 40px; }
 }
 @media all and (min-width: 620px) {
 	.bank-list > li:not(.bank-list-tossbank) { width: 20%; }
@@ -1011,3 +1010,108 @@ left: -5px; }
 .card-number-wrap ~ .sub-text.card-name { color: #222; font-weight: 700; }
 .form-group.bank-area .sub-text { display: block;}
 /* 250917 추가 */
+
+/* ----- selectBank / selectCard — 피그마 icon_bank(4500:1548) 덮어쓰기 ----- */
+/* HTML: <ul class="bank-list bank-list-fig"> */
+.bank-list.bank-list-fig {
+	margin-top: 0;
+	padding: 0;
+	gap: 10px;
+}
+.bank-list.bank-list-fig > li:not(.bank-list-tossbank) {
+	width: calc((100% - 20px) / 3);
+	padding: 0;
+	margin: 0;
+}
+.bank-list.bank-list-fig > li:not(.bank-list-tossbank) > button {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	padding: 12px 0;
+	border-radius: 8px;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: normal;
+	letter-spacing: -0.408px;
+}
+.bank-list.bank-list-fig > li:not(.bank-list-tossbank) > button:before {
+	content: none;
+	display: none;
+	padding: 0;
+}
+.bank-list.bank-list-fig > li:not(.bank-list-tossbank) > button > span {
+	position: static;
+	left: auto;
+	right: auto;
+	width: auto;
+}
+.bank-list.bank-list-fig > li:not(.bank-list-tossbank) > button .logo {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	margin-bottom: 12px;
+}
+.bank-list.bank-list-fig > li:not(.bank-list-tossbank) > button .logo img {
+	width: auto;
+	height: auto;
+	max-width: 40px;
+	max-height: 40px;
+}
+.bank-list.bank-list-fig > li:not(.bank-list-tossbank) > button .name {
+	margin: 0;
+	text-align: center;
+	word-break: break-word;
+}
+.bank-list.bank-list-fig > li:not(.bank-list-tossbank) > button:disabled:after {
+	top: -4px;
+	right: -4px;
+	width: 30px;
+	height: 18px;
+	border-radius: 30px;
+	font-size: 10px;
+	font-weight: 700;
+	line-height: 18px;
+}
+@media all and (min-width: 360px) {
+	.bank-list.bank-list-fig {
+		padding: 0;
+	}
+	.bank-list.bank-list-fig > li:not(.bank-list-tossbank) > button {
+		font-size: 14px;
+	}
+	.bank-list.bank-list-fig > li:not(.bank-list-tossbank) > button .logo img {
+		max-width: 40px;
+		max-height: 40px;
+	}
+}
+@media all and (min-width: 620px) {
+	.bank-list.bank-list-fig > li:not(.bank-list-tossbank) {
+		width: calc((100% - 20px) / 3);
+	}
+}
+.bank-list.bank-list-fig > li.bank-list-tossbank {
+	width: 100%;
+	-webkit-flex: 0 0 100%;
+	-ms-flex: 0 0 100%;
+	flex: 0 0 100%;
+	max-width: 100%;
+	padding: 0;
+}

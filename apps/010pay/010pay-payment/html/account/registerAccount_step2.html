@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="../../css/jquery-ui.css" />
         <link rel="stylesheet" href="../../css/common_renewal.css" />
         <!-- [2026-06-17] renewal-v2 stylesheet -->
-        <link rel="stylesheet" href="../../css/common_renewal_v2.css" />
+        <link rel="stylesheet" href="../../css/common_renewal_v2.css?v=1.0.0" />
         <!-- //[2026-06-17] renewal-v2 stylesheet -->
         <link rel="stylesheet" href="../../css/account/registerAccount.css" />
         <script src="../../js/jquery.3.4.1.min.js"></script>
@@ -109,6 +109,11 @@
                                     </div>
                                     <!-- //ARS 인증 -->
                                 </div>
+                                <!-- 짧은 화면용 안내 — step-auto-debit 하단 -->
+                                <p class="bottom-guide-text bottom-guide-text--inline">
+                                    인증이 완료되면 문자가 발송돼요.<br />
+                                    계좌 등록 안내 문자이며, 자동 출금은 되지 않아요.
+                                </p>
                             </li>
                             <!-- //3. 자동이체 출금 동의 -->
                         </ul>
@@ -118,8 +123,9 @@
                 <!-- //container -->
 
                 <!-- bottom area -->
-                <div class="bottom-area">
-                    <p class="bottom-guide-text">
+                <div class="bottom-area fixed">
+                    <!-- 긴 화면용 안내 — fixed 버튼 영역 -->
+                    <p class="bottom-guide-text bottom-guide-text--fixed">
                         인증이 완료되면 문자가 발송돼요.<br />
                         계좌 등록 안내 문자이며, 자동 출금은 되지 않아요.
                     </p>
@@ -443,9 +449,17 @@
             // ARS인증2 → ARS인증3 (Smart Animate 500ms) — ① 완료(800ms) + 1ms
             setTimeout(function () {
                 $stepAutoDebit.addClass("is-slid-in");
-                if (typeof updateContentScrollPadding === "function") {
-                    updateContentScrollPadding();
+                function placeGuide() {
+                    if (typeof updateArsGuidePlacement === "function") {
+                        updateArsGuidePlacement();
+                    } else if (typeof updateContentScrollPadding === "function") {
+                        updateContentScrollPadding();
+                    }
                 }
+                // 레이아웃 반영 직후 + 슬라이드 애니메이션 직후 재측정
+                placeGuide();
+                requestAnimationFrame(placeGuide);
+                setTimeout(placeGuide, 520);
             }, firstDelay + firstDuration + secondDelay);
         });
 

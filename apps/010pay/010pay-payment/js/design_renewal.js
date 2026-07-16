@@ -403,6 +403,57 @@ $(function () {
   }
   window.updateContentScrollPadding = updateContentScrollPadding;
 
+  // 계좌등록 step2 — 긴 화면: fixed 영역 안내 / 짧은 화면: step-auto-debit 안내
+  // 기본은 CSS에서 fixed 노출. short일 때만 inline로 전환.
+  function updateArsGuidePlacement() {
+    var $layout = $("#content.content-foot-fixed").has(".register-account-step2");
+    if (!$layout.length) {
+      return;
+    }
+
+    var $foot = $layout.find(".bottom-area");
+    var $scroll = $layout.find(".content-scroll");
+    var $guideFixed = $foot.find(".bottom-guide-text--fixed");
+    var $guideInline = $layout.find(".bottom-guide-text--inline");
+    var $section = $scroll.find(".section");
+    var $stepAuto = $layout.find(".step-auto-debit");
+    if (!$guideFixed.length || !$guideInline.length || !$scroll.length || !$section.length) {
+      return;
+    }
+
+    var scrollEl = $scroll[0];
+    var guideFixedEl = $guideFixed[0];
+    var guideInlineEl = $guideInline[0];
+    var isAnimatedPending =
+      $layout.find(".register-account-step2:not(.register-account-step2--static)").length > 0 &&
+      !$stepAuto.hasClass("is-slid-in");
+
+    // 진입 애니메이션 전 — 안내 미노출, 버튼 높이만 패딩
+    if (isAnimatedPending) {
+      $layout.removeClass("is-ars-guide-tall is-ars-guide-short");
+      $scroll.css("padding-bottom", $foot.outerHeight(true));
+      return;
+    }
+
+    // 1) 긴 화면(fixed 안내)으로 패딩 적용 후 넘치면 short
+    $layout.removeClass("is-ars-guide-short").addClass("is-ars-guide-tall");
+    guideInlineEl.style.setProperty("display", "none", "important");
+    guideFixedEl.style.cssText = "";
+    $scroll.css("padding-bottom", $foot.outerHeight(true));
+
+    var isShort = scrollEl.scrollHeight > scrollEl.clientHeight + 2;
+
+    // 2) 짧은 화면이면 inline 안내로 전환
+    if (isShort) {
+      $layout.removeClass("is-ars-guide-tall").addClass("is-ars-guide-short");
+      guideInlineEl.style.cssText = "";
+      $scroll.css("padding-bottom", $foot.outerHeight(true));
+    } else {
+      guideInlineEl.style.cssText = "";
+    }
+  }
+  window.updateArsGuidePlacement = updateArsGuidePlacement;
+
   // 짧은 화면 버튼 하단 고정
   function fixFootBtn() {
     // requestAnimationFrame으로 DOM 렌더링 완료 후 실행
@@ -414,10 +465,7 @@ $(function () {
         return;
       }
 
-      // visualViewport API가 있으면 사용 (모바일에서 더 정확)
-      var winHeight = window.visualViewport 
-        ? window.visualViewport.height 
-        : $(window).innerHeight();
+      var winHeight = $(window).innerHeight();
       
       // 콘텐츠 높이 계산 (스크롤 포함)
       var contentHeight = $("#content").outerHeight(true);
@@ -437,8 +485,44 @@ $(function () {
       }
     });
   }
+
+  // 가입 step1 — 생년월일/이름 입력 시 키패드와 하단 CTA 겹침 방지
+  (function bindJoinStep1KeyboardFoot() {
+    var $scope = $("#wrap.renewal-v2 .step1");
+    if (!$scope.length) {
+      return;
+    }
+
+    var $foot = $scope.find(".bottom-area");
+    // 짧은 화면에서 키패드와 겹칠 수 있는 하단 입력들
+    var $inputs = $scope.find("#idNumber, #accountNumber4, #name");
+    if (!$foot.length || !$inputs.length) {
+      return;
+    }
+
+    $inputs.on("focus", function () {
+      $foot.removeClass("fixed").addClass("is-keyboard-open");
+      // scrollIntoView 제거 — WebView에서 포커스/키패드 강제 닫힘 유발
+    });
+
+    $inputs.on("blur", function () {
+      // 생년월일 ↔ 뒷자리 ↔ 이름 이동 시에는 keyboard-open 유지
+      setTimeout(function () {
+        if ($inputs.is(document.activeElement)) {
+          return;
+        }
+        $foot.removeClass("is-keyboard-open");
+        // 키패드 닫힌 뒤 뷰포트 복귀에 맞춰 fixed 재계산
+        setTimeout(fixFootBtn, 100);
+      }, 0);
+    });
+  })();
   
-  // 초기 실행 (약간의 지연을 주어 DOM이 완전히 렌더링된 후 실행)
+  // 초기 실행 — step2는 안내 위치 확정을 빠르게 (setTimeout 100 이전에 동기 1회)
+  if ($("#content.content-foot-fixed .register-account-step2").length) {
+    $("#content.content-foot-fixed .bottom-area").addClass("fixed");
+    updateArsGuidePlacement();
+  }
   setTimeout(fixFootBtn, 100);
   
   // 이미지 로딩 완료 후에도 재계산
@@ -450,7 +534,11 @@ $(function () {
   // 하단 고정 영역 여백 확보
   function wrapPadding() {
     if ($("#content.content-foot-fixed").length) {
-      updateContentScrollPadding();
+      if ($("#content.content-foot-fixed .register-account-step2").length) {
+        updateArsGuidePlacement();
+      } else {
+        updateContentScrollPadding();
+      }
       return;
     }
 
@@ -540,14 +628,8 @@ $(function () {
     }, 150);
   }
 
-  // 리사이즈 이벤트
+  // 리사이즈 이벤트 (visualViewport resize/scroll는 키패드에 반응하므로 등록하지 않음)
   $(window).on('resize', handleResize);
-  
-  // visualViewport 이벤트 (모바일 브라우저 주소창 변화 대응)
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener('resize', handleResize);
-    window.visualViewport.addEventListener('scroll', handleResize);
-  }
   
   // 화면 회전 이벤트
   $(window).on('orientationchange', function () {

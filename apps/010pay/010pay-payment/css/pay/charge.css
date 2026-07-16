@@ -575,7 +575,35 @@
 }
 /* //[2026-06-17] renewal-v2 — empty/fail complete */
 
-/* [2026-06-23] renewal-v2 — 충전 완료 */
+/* [2026-06-23] renewal-v2 — 충전 완료
+ * Fold 접힘: #content min-height(100vh) + banner(100dvh-152) + bottom 이중 높이 완화
+ * → flex로 남는 높이만 채우고 CTA는 JS always-fixed */
+#wrap.renewal-v2:has(.charge-complete-v2) #content {
+  display: flex;
+  flex-direction: column;
+  height: calc(var(--vh, 1vh) * 100);
+  min-height: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+@supports (height: 100dvh) {
+  #wrap.renewal-v2:has(.charge-complete-v2) #content {
+    height: 100dvh;
+  }
+}
+
+#wrap.renewal-v2:has(.charge-complete-v2) #content > .banner-full-container {
+  flex: 1 1 0;
+  min-height: 0;
+  height: auto;
+}
+
+#wrap.renewal-v2:has(.charge-complete-v2) #content > .bottom-area {
+  flex-shrink: 0;
+}
+
 .renewal-v2 .charge-container.charge-complete-v2.banner-full-container .complete-text {
   margin-top: auto;
   margin-bottom: auto;
@@ -602,7 +630,34 @@
 }
 /* //[2026-06-23] renewal-v2 — 충전 완료 */
 
-/* [2026-06-17] renewal-v2 — 출금 완료 (Figma 출금_완료) */
+/* [2026-06-17] renewal-v2 — 출금 완료 (Figma 출금_완료)
+ * Fold 접힘: 충전 완료와 동일하게 flex + always-fixed */
+#wrap.renewal-v2:has(.withdrawal-complete-v2) #content {
+  display: flex;
+  flex-direction: column;
+  height: calc(var(--vh, 1vh) * 100);
+  min-height: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+@supports (height: 100dvh) {
+  #wrap.renewal-v2:has(.withdrawal-complete-v2) #content {
+    height: 100dvh;
+  }
+}
+
+#wrap.renewal-v2:has(.withdrawal-complete-v2) #content > .banner-full-container {
+  flex: 1 1 0;
+  min-height: 0;
+  height: auto;
+}
+
+#wrap.renewal-v2:has(.withdrawal-complete-v2) #content > .bottom-area {
+  flex-shrink: 0;
+}
+
 .renewal-v2 .charge-container.withdrawal-complete-v2.banner-full-container .complete-text {
   margin-top: 0;
   margin-bottom: 0;
@@ -706,7 +761,39 @@
 }
 /* //[2026-06-17] renewal-v2 — 출금 완료 */
 
-/* [2026-06-23] renewal-v2 — 대기 머니 출금 완료 (Figma 출금_완료 1614:26299) */
+/* [2026-06-23] renewal-v2 — 대기 머니 출금 완료 (Figma 출금_완료 1614:26299)
+ * bottom-area가 #content 밖 — wrap flex + banner height:auto */
+#wrap.renewal-v2:has(.wait-withdrawal-complete-v2) {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(var(--vh, 1vh) * 100);
+}
+
+@supports (height: 100dvh) {
+  #wrap.renewal-v2:has(.wait-withdrawal-complete-v2) {
+    min-height: 100dvh;
+  }
+}
+
+#wrap.renewal-v2:has(.wait-withdrawal-complete-v2) #content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-height: 0;
+  height: auto;
+  padding-bottom: 0;
+}
+
+#wrap.renewal-v2:has(.wait-withdrawal-complete-v2) #content > .banner-full-container {
+  flex: 1 1 0;
+  min-height: 0;
+  height: auto;
+}
+
+#wrap.renewal-v2:has(.wait-withdrawal-complete-v2) > .bottom-area {
+  flex-shrink: 0;
+}
+
 .renewal-v2 .charge-container.wait-withdrawal-complete-v2.banner-full-container .complete-text {
   margin-top: auto;
   margin-bottom: auto;

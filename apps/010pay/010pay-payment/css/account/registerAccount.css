@@ -7,6 +7,7 @@
   line-height: 1.4;
   letter-spacing: -0.03em;
   color: var(--color-text-primary);
+  word-break: keep-all;
 }
 
 .renewal-v2 .register-account-container .headline + .section {
@@ -138,15 +139,27 @@
   background-size: 16px;
 }
 
-.renewal-v2 .register-account-container .bottom-area .btn {
+.renewal-v2 .register-account-container .bottom-area .btn,
+#wrap.renewal-v2 .bottom-area.register-account-foot .btn {
   border-radius: var(--radius-modal-btn);
 }
 
 .renewal-v2 .register-account-container .bottom-area .btn:disabled,
-.renewal-v2 .register-account-container .bottom-area .btn.disabled {
+.renewal-v2 .register-account-container .bottom-area .btn.disabled,
+#wrap.renewal-v2 .bottom-area.register-account-foot .btn:disabled,
+#wrap.renewal-v2 .bottom-area.register-account-foot .btn.disabled {
   border-color: var(--color-status-disabled);
   background-color: var(--color-status-disabled);
   color: var(--color-button-primary-text);
+}
+
+/* 키패드 blur 후 WebView fixed 좌표 어긋남 — 가로 앵커 강제 */
+#wrap.renewal-v2 .bottom-area.register-account-foot.fixed {
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: none;
+  transform: none;
 }
 /* //[2026-06-17] renewal-v2 — 계좌 등록 step1 */
 

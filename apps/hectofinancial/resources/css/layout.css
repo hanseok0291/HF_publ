@@ -891,7 +891,7 @@
   top: 15px;
   left: 15px;
   right: 15px;
-  padding-bottom: 15px;
+  padding-bottom: 24px;
   border-bottom: 2px solid #222;
   color: #222;
 }
@@ -957,7 +957,7 @@
   line-height: 1.4;
 }
 .popup_terms.popup-tab .header .tab_area {
-  margin-top: 15px;
+  margin-top: 24px;
   word-break: keep-all;
 }
 .popup_terms.popup-tab .content {
@@ -1027,7 +1027,6 @@
   line-height: 20px;
   color: #4A4A4A;
 }
-
 
 @media only screen and (min-device-width: 992px) {
   .popup_terms .header {
@@ -1601,8 +1600,27 @@
   #footer .container .left_contents > p .line {
     display: none;
   }
+
+  #footer .container .division_line_wrap {
+    gap: 12px;
+  }
+
+  #footer .container .division_line_wrap p {
+    font-size: 13px;
+  }
+
+  #footer .container .division_line_wrap .japan_detail_text_wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  #footer .container .division_line_wrap .japan_detail_text_wrap .line {
+    display: none;
+  }
+
   #footer .container .left_contents .link_wrap {
-    margin-top: 9px;
+    margin-top: 20px;
     flex-wrap: wrap;
     white-space: normal;
   }
@@ -1630,6 +1648,7 @@
   }
   #footer .container .right_contents {
     margin-top: 30px;
+    position: static;
   }
   #footer .container .right_contents .award_wrap {
     flex-direction: column;
@@ -1711,5 +1730,33 @@
 
   .popup-main .popup-area .con img {
     width: 100%;
+  }
+}
+/* 좁은 화면: 탭 가로 스와이프 */
+@media (max-width: 991px) {
+  .popup_terms.popup-tab .header .tab_area.type3 {
+    display: flex;              /* float 해제용 */
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* iOS 관성 스크롤 */
+    /* 선택: 스크롤바 숨김 */
+    scrollbar-width: none;
+  }
+  .popup_terms.popup-tab .header .tab_area.type3::-webkit-scrollbar {
+    display: none;
+  }
+
+  .popup_terms.popup-tab .header .tab_area.type3 li {
+    float: none;                /* 기존 float 취소 */
+    width: auto;                /* 33.33% 해제 — 핵심 */
+    flex: 0 0 auto;             /* 줄어들지 않게 */
+  }
+
+  .popup_terms.popup-tab .header .tab_area.type3 li a {
+    display: block;             /* table-cell이면 폭 계산이 꼬일 수 있음 */
+    width: auto;
+    white-space: nowrap;        /* 한 줄 유지 → 가로로 넘침 */
+    padding: 0 16px;            /* 디자인에 맞게 조정 */
+    line-height: 43px;
   }
 }

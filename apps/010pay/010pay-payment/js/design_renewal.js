@@ -486,38 +486,6 @@ $(function () {
     });
   }
 
-  // 가입 step1 — 생년월일/이름 입력 시 키패드와 하단 CTA 겹침 방지
-  (function bindJoinStep1KeyboardFoot() {
-    var $scope = $("#wrap.renewal-v2 .step1");
-    if (!$scope.length) {
-      return;
-    }
-
-    var $foot = $scope.find(".bottom-area");
-    // 짧은 화면에서 키패드와 겹칠 수 있는 하단 입력들
-    var $inputs = $scope.find("#idNumber, #accountNumber4, #name");
-    if (!$foot.length || !$inputs.length) {
-      return;
-    }
-
-    $inputs.on("focus", function () {
-      $foot.removeClass("fixed").addClass("is-keyboard-open");
-      // scrollIntoView 제거 — WebView에서 포커스/키패드 강제 닫힘 유발
-    });
-
-    $inputs.on("blur", function () {
-      // 생년월일 ↔ 뒷자리 ↔ 이름 이동 시에는 keyboard-open 유지
-      setTimeout(function () {
-        if ($inputs.is(document.activeElement)) {
-          return;
-        }
-        $foot.removeClass("is-keyboard-open");
-        // 키패드 닫힌 뒤 뷰포트 복귀에 맞춰 fixed 재계산
-        setTimeout(fixFootBtn, 100);
-      }, 0);
-    });
-  })();
-  
   // 초기 실행 — step2는 안내 위치 확정을 빠르게 (setTimeout 100 이전에 동기 1회)
   if ($("#content.content-foot-fixed .register-account-step2").length) {
     $("#content.content-foot-fixed .bottom-area").addClass("fixed");

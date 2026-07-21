@@ -272,10 +272,19 @@ $(document).ready(function () {
     return false;
   });
 
-  // Tab
+  // Tab — HTML에 active가 있으면 유지, 없으면 첫 번째 탭
   $('.tab_area_content').hide();
-  $('ul.tab_area li:first').addClass('active').show();
-  $('.tab_area_content:first').show();
+  var $activeTabLi = $('ul.tab_area li.active');
+  if (!$activeTabLi.length) {
+    $activeTabLi = $('ul.tab_area li:first').addClass('active');
+  }
+  $activeTabLi.show();
+  var initialTab = $activeTabLi.find('a').attr('href');
+  if (initialTab) {
+    $(initialTab).show();
+  } else {
+    $('.tab_area_content:first').show();
+  }
   $('ul.tab_area li').click(function () {
     $('ul.tab_area li').removeClass('active');
     $(this).addClass('active');

@@ -15,9 +15,74 @@
       href="../resources/css/n_sb_style.css"
     />
   </head>
+  <style>
+    .select-container {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      min-width: 0;
+      padding: 0 0 10px;
+      overflow: hidden;
+    }
+    .round-box {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .round-box::-webkit-scrollbar {
+      display: none;
+    }
+    .round-box-item {
+      flex: 0 0 auto;
+    }
+    .round-box-item button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 36px;
+      padding: 0 16px;
+      border: 0;
+      border-radius: 18px;
+      background: #f5f5f7;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: #1d1d1f;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .round-box-item.active button {
+      background: #ff6114;
+      color: #fff;
+    }
+  </style>
 
   <body>
     <div class="popup_terms iframe">
+      <!-- select-container -->
+      <div class="select-container">
+        <ul class="round-box" role="list">
+          <li class="round-box-item active">
+            <button type="button" data-value="roundpay">라운드페이</button>
+          </li>
+          <li class="round-box-item">
+            <button type="button" data-value="vroong">부릉</button>
+          </li>
+          <li class="round-box-item">
+            <button type="button" data-value="ably">에이블리</button>
+          </li>
+        </ul>
+      </div>
+      <!-- //select-container -->
       <div class="g_box mb30">
         헥토파이낸셜 안심선불-{$가맹점명} 선불전자지급수단 서비스 이용약관
       </div>
@@ -941,5 +1006,26 @@
         </select>
       </p>
     </div>
+    <script>
+      // 가맹점 칩 선택 — active 토글
+      (function () {
+        var roundBox = document.querySelector('.round-box');
+        if (!roundBox) return;
+
+        roundBox.addEventListener('click', function (e) {
+          var button = e.target.closest('button');
+          if (!button || !roundBox.contains(button)) return;
+
+          var item = button.closest('.round-box-item');
+          if (!item) return;
+
+          var items = roundBox.querySelectorAll('.round-box-item');
+          for (var i = 0; i < items.length; i++) {
+            items[i].classList.remove('active');
+          }
+          item.classList.add('active');
+        });
+      })();
+    </script>
   </body>
 </html>

@@ -980,6 +980,7 @@ body:has(#wrap.renewal-v2) .label-n.fill input[type="text"].custom-input, body:h
   letter-spacing: -0.02em;
   background-color: var(--color-brand-dark);
   box-sizing: border-box;
+  white-space: nowrap;
 }
 
 .renewal-v2 .payment-container .bottom-area .container .balloon-text-box::after {
@@ -991,3 +992,46 @@ body:has(#wrap.renewal-v2) .label-n.fill input[type="text"].custom-input, body:h
   border-top: 6px solid var(--color-brand-dark);
 }
 /* //[2026-07-16] renewal-v2 #BALLOON */
+
+.renewal-v2 .form-type.box-list .gray-box > button {
+  padding: 24px;
+}
+.renewal-v2 .form-type.box-list .gray-box .text-box {
+  gap: 2px;
+}
+.renewal-v2 .form-type.box-list .gray-box .text-box .title {
+  color: var(--Color-Semantic-Text-03, #151515);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: -0.32px;
+}
+.renewal-v2 .form-type.box-list .gray-box .text-box .sub-title {
+  color: var(--Color-Semantic-Text-03, #151515);
+  font-family: Pretendard;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.26px;
+}
+
+/* 약관 페이지(terms-wrap) 전용 — 다른 renewal-v2 화면 영향 방지 */
+body:has(#wrap.renewal-v2.terms-wrap) .modal-slide.type-title .modal-head .btn-close {
+  background-color: unset;
+}
+body:has(#wrap.renewal-v2.terms-wrap) .checkbox > input + label:before {
+  background: url(../images/common/renewal-v2/icon-checkbox-off.svg) no-repeat center / contain;
+}
+body:has(#wrap.renewal-v2.terms-wrap) .checkbox > input:checked + label:before {
+  background: url(../images/common/renewal-v2/icon-check-orange-on.svg) no-repeat center / contain;
+}
+
+body:has(#wrap.renewal-v2) .step1 #content {
+  padding-bottom: calc(20px + 72px) !important; /* bottom-area + 버튼 높이 */
+}
+body:has(#wrap.renewal-v2) .bottom-area.fixed, body:has(#wrap.renewal-v2) .modal-bottom-area.fixed {
+  z-index: 999;
+}

@@ -11,7 +11,7 @@
         <!-- [2026-06-17] renewal-v2 stylesheet -->
         <link rel="stylesheet" href="../../css/common_renewal_v2.css" />
         <!-- //[2026-06-17] renewal-v2 stylesheet -->
-        <link rel="stylesheet" href="../../css/account/registerAccount.css" />
+        <link rel="stylesheet" href="../../css/account/registerAccount.css?v=20260722" />
         <script src="../../js/jquery.3.4.1.min.js"></script>
         <script src="../../js/jquery-ui.js"></script>
         <script src="../../js/design_renewal.js" defer="defer"></script>
@@ -49,14 +49,14 @@
                     <!-- section -->
                     <div class="section">
                         <ul class="form-type register-account step-list">
-                            <li class="field-account">
+                            <li class="field-account" data-step="1">
                                 <label class="label" for="accountNumber">계좌 번호</label>
                                 <div class="input-container type-line">
                                     <input type="number" class="custom-input" placeholder="계좌번호 입력" id="accountNumber" />
                                     <button type="button" class="icon icon-del js-text-del"></button>
                                 </div>
                             </li>
-                            <li class="on field-bank">
+                            <li class="on field-bank" data-step="0">
                                 <label class="label" for="chkSelectBtn">은행</label>
                                 <div class="select-box select-input type-line">
                                     <button type="button" id="chkSelectBtn" class="label" onclick="modalOpenSlide('modal-select-bank')" data-target="modal-select-bank">은행 선택</button>
@@ -561,6 +561,7 @@
     <script>
         var $registerAccount = $(".register-account-container");
         var $registerAccountFoot = $("#wrap .bottom-area.register-account-foot");
+        var $fieldAccount = $registerAccount.find(".field-account");
 
         function updateRegisterAccountHeadline() {
             var isBankSelected = $registerAccount.find(".select-input.comp").length > 0;
@@ -569,22 +570,48 @@
             );
         }
 
+        function hasInputValue($field) {
+            return $.trim($field.find(".custom-input").val()).length > 0;
+        }
+
+        // 필드 등장 — on + is-entering (애니메이션) + 포커스(키패드)
+        function revealStepField($field, focusDelay) {
+            if ($field.hasClass("on")) return false;
+            $field.addClass("on is-entering");
+            var delay = typeof focusDelay === "number" ? focusDelay : 50;
+            setTimeout(function () {
+                var $input = $field.find(".custom-input");
+                if ($input.length) {
+                    $input.trigger("focus");
+                }
+            }, delay);
+            return true;
+        }
+
         function updateRegisterAccountNextButton() {
-            var hasAccountNumber =
-                $.trim($registerAccount.find(".field-account .custom-input").val()).length > 0;
+            // 계좌번호 입력 시 다음 버튼 활성
+            var canProceed =
+                $fieldAccount.hasClass("on") && hasInputValue($fieldAccount);
             $registerAccountFoot
                 .find('.btn[data-target="modal-select-title"]')
-                .prop("disabled", !hasAccountNumber);
+                .prop("disabled", !canProceed);
         }
 
         $(document).ready(function () {
             updateRegisterAccountHeadline();
             updateRegisterAccountNextButton();
 
-            $registerAccount.find(".field-account .custom-input").on("input change keyup", updateRegisterAccountNextButton);
-            $registerAccount.find(".field-account .js-text-del").on("mousedown", function () {
-                setTimeout(updateRegisterAccountNextButton, 0);
-            });
+            // 계좌번호 입력·삭제 시 다음 버튼 활성 갱신
+            $registerAccount
+                .find(".field-account .custom-input")
+                .on("input change keyup", function () {
+                    updateRegisterAccountNextButton();
+                });
+            $registerAccount
+                .find(".field-account .js-text-del")
+                .on("mousedown", function () {
+                    setTimeout(updateRegisterAccountNextButton, 0);
+                });
 
             // option-list 내의 모든 li 요소에 클릭 이벤트 리스너 추가
             $(".option-list li").click(function () {
@@ -597,8 +624,14 @@
 
             // id가 modal-select-bank인 모달 내의 option-item 클릭 이벤트 추가
             $("#modal-select-bank .option-item").on("click", function () {
-                // 계좌 번호 입력창을 은행 위에 노출
-                $(".field-account").addClass("on");
+                setTimeout(function () {
+                    $fieldAccount.removeClass("on is-entering");
+                    // 재선택 시 애니메이션 재실행
+                    void $fieldAccount[0].offsetWidth;
+                    // 모달 닫힘 후 포커스해 키패드 오픈
+                    revealStepField($fieldAccount, 300);
+                    updateRegisterAccountNextButton();
+                }, 0);
             });
 
             // 은행 선택 시 헤드라인 문구 변경 (design_renewal.js — select-input.comp 반영 후)

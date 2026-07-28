@@ -54,11 +54,12 @@
             <span class="card-status cancel">심사거절</span>
             <div class="card-info-area">
               <!-- 해지 시 close 클래스 추가 -->
-              <img
-                src="../../images/plcc/sample/card-img.png"
-                alt="카드"
-                class="card-img close"
-              />
+              <div class="card-img">
+                <img
+                  src="../../images/plcc/sample/LOCA_H_USE.png"
+                  alt="카드"
+                />
+              </div>
               <div class="text-wrap">
                 <button type="button" class="card-name">
                   RROUND PAY X 디지로카 <i class="icon-arrow-right"></i>
@@ -436,6 +437,28 @@
       }
 
       openModal();
+    });
+
+    // 카드 이미지 회전 (로드 완료 후 판별 — iOS naturalWidth 타이밍 대응)
+    $(".card-box.card-info .card-img img").each(function () {
+      var img = this;
+      var $img = $(img);
+
+      function applyRotate() {
+        var imgWidth = img.naturalWidth;
+        var imgHeight = img.naturalHeight;
+        if (!imgWidth || !imgHeight) return;
+        var ratio = imgWidth / imgHeight;
+        if (ratio > 1.2) {
+          $img.addClass("rotate");
+        }
+      }
+
+      if (img.complete && img.naturalWidth) {
+        applyRotate();
+      } else {
+        $img.on("load", applyRotate);
+      }
     });
   </script>
 </html>

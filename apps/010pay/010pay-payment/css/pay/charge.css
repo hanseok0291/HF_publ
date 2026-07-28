@@ -857,10 +857,11 @@
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   min-height: 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  margin-top: 48px;
 }
 
 #wrap.renewal-v2:has(.charge-account-v2) .charge-container.charge-account-v2 {
@@ -878,15 +879,16 @@
 .renewal-v2 .charge-container.charge-account-v2 .charge-account-v2-body {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 16px 20px;
+  align-items: start;
+  gap: 0;
+  padding: 0;
 }
 
-@media (max-height: 640px) {
+@media (max-height: 670px) {
   #wrap.renewal-v2:has(.charge-account-v2) .charge-account-v2-scroll-fill {
     justify-content: flex-start;
     padding-top: 16px;
+    margin-top: 0;
   }
 }
 
@@ -898,6 +900,7 @@
   border: 0;
   background: none;
   cursor: pointer;
+  margin-bottom: 16px;
 }
 
 .renewal-v2 .charge-container.charge-account-v2 .charge-account-logo {
@@ -935,6 +938,7 @@
 .renewal-v2 .charge-container.charge-account-v2 .charge-amount-section {
   display: flex;
   flex-direction: column;
+  align-items: start;
   gap: 8px;
   width: 100%;
 }
@@ -1050,7 +1054,7 @@
   font-weight: 400;
   line-height: 1.4;
   letter-spacing: -0.02em;
-  text-align: center;
+  text-align: left;
   color: var(--color-status-danger);
 }
 
@@ -1086,7 +1090,7 @@
   display: flex;
   gap: 4px;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: start;
   width: 100%;
   font-size: 14px;
   line-height: 1.4;
@@ -1107,9 +1111,10 @@
   right: auto !important;
   flex-shrink: 0;
   margin-top: 0;
-  padding-top: 8px;
   background-color: var(--color-bg-base);
   background-image: none;
+  padding: 0;
+  padding-top: 8px;
 }
 
 #wrap.renewal-v2:has(.charge-account-v2) .charge-foot-stack {
@@ -1129,7 +1134,8 @@
 #wrap.renewal-v2:has(.charge-account-v2) .bottom-area .add-money-btn-wrap button {
   box-sizing: border-box;
   min-width: 56px;
-  width: auto;
+  max-width: 200px;
+  width: 25%;
   height: 36px;
   padding: 4px 12px;
   border: 1px solid var(--color-border-default);
@@ -1145,7 +1151,7 @@
 
 #wrap.renewal-v2:has(.charge-account-v2) .charge-foot-cta {
   flex-shrink: 0;
-  padding: 12px 0 20px;
+  padding: 12px 0 0px;
 }
 
 #wrap.renewal-v2:has(.charge-account-v2) .bottom-area .btn-charge-submit {
@@ -1168,7 +1174,7 @@
 .renewal-v2 .charge-container.withdrawal-v2 .withdraw-limit-link {
   display: inline;
   margin: 0;
-  padding: 0;
+  padding: 0 0 2px;
   border: 0;
   background: none;
   font-size: 14px;
@@ -1179,6 +1185,7 @@
   text-decoration: underline;
   text-underline-offset: 2px;
   cursor: pointer;
+  overflow: visible;
 }
 
 .renewal-v2 .charge-container.withdrawal-v2 .charge-amount-section:has(.charge-input.error) .withdrawal-balance-row {
@@ -1229,7 +1236,7 @@
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   min-height: 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -1237,15 +1244,15 @@
 }
 
 .renewal-v2 .charge-container.wait-withdrawal-v2 .wait-withdrawal-v2-body {
-  gap: 24px;
+  gap: 40px;
   width: 100%;
 }
 
 .renewal-v2 .wait-withdrawal-v2-main {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 16px;
+  align-items: start;
+  gap: 0;
   width: 100%;
 }
 
@@ -1257,8 +1264,19 @@
   font-weight: 700;
   line-height: 1.4;
   letter-spacing: -0.03em;
-  text-align: center;
+  text-align: left;
   color: var(--color-text-primary);
+  margin-bottom: 8px;
+}
+
+.renewal-v2 .withdrawal-fee-notice {
+  color: var(--Color-Semantic-Text-05, #888);
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 19.6px */
+  letter-spacing: -0.28px;
 }
 
 /* Figma Notice — bg #f6f6f9 · radius 12 · padding 16 */
@@ -1294,7 +1312,7 @@
 .renewal-v2 .wait-withdrawal-notice-list li::before {
   content: "";
   position: absolute;
-  top: 3px;
+  top: 0px;
   left: 0;
   width: 4px;
   height: 17px;
@@ -1321,6 +1339,14 @@
   border-radius: 12px;
 }
 
+#wrap.renewal-v2:has(.wait-withdrawal-v2) .wait-withdrawal-notice {
+  border-top: 1px solid #F6F6F9;
+  background-color: unset;
+  padding: 0;
+  border-radius: 0;
+  padding-top: 16px;
+}
+
 @media (max-height: 640px) {
   #wrap.renewal-v2:has(.wait-withdrawal-v2) .charge-account-v2-scroll-fill {
     justify-content: flex-start;
@@ -1328,3 +1354,87 @@
   }
 }
 /* //[2026-06-23] renewal-v2 — 대기 머니 출금 */
+
+.renewal-v2 .charge-container.wait-withdrawal-complete-v2 .withdrawal-complete-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+}
+
+#wrap.renewal-v2 .charge-container.wait-withdrawal-complete-v2.banner-full-container .complete-text .title {
+  width: 100%;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.6px;
+  color: var(--color-text-primary);
+  text-align: center;
+  word-break: keep-all;
+}
+
+.renewal-v2 .charge-container.wait-withdrawal-complete-v2 .withdrawal-summary-wrap {
+  width: 100%;
+  padding: 0 16px;
+}
+.renewal-v2 .charge-container.wait-withdrawal-complete-v2 .withdrawal-summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 0;
+}
+#wrap.renewal-v2 .charge-container.wait-withdrawal-complete-v2.banner-full-container .complete-text .withdrawal-summary-row .label {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.3px;
+  color: var(--color-text-04);
+  text-align: left;
+  word-break: keep-all;
+  white-space: nowrap;
+}
+#wrap.renewal-v2 .charge-container.wait-withdrawal-complete-v2.banner-full-container .complete-text .withdrawal-summary-row .value {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.3px;
+  color: var(--color-text-04);
+  text-align: right;
+  word-break: keep-all;
+  white-space: nowrap;
+}
+.renewal-v2 .charge-container.wait-withdrawal-complete-v2 .withdrawal-summary-wrap .divide-line {
+  height: 1px;
+  background-color: var(--color-bg-subtle);
+}
+.renewal-v2 .charge-container.wait-withdrawal-complete-v2 .withdrawal-summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 0;
+}
+.renewal-v2 .charge-container.wait-withdrawal-complete-v2 .withdrawal-complete-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-bottom: 20px;
+}
+.renewal-v2 .charge-container.wait-withdrawal-complete-v2.banner-full-container .complete-text {
+  margin-top: 0;
+  margin-bottom: 0;
+  width: 100%;
+  gap: 16px;
+  padding-bottom: 0;
+}

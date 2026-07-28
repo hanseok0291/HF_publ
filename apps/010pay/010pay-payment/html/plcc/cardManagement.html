@@ -50,7 +50,7 @@
             <div class="card-info-wrap">
               <div class="card-img">
                 <img
-                  src="../../images/payment/card/wori_credit.png"
+                  src="../../images/payment/card/LOCA_H_USE.png"
                   alt=""
                 />
               </div>
@@ -214,14 +214,25 @@
     <!-- //카드 정보 변경 팝업 -->
   </body>
   <script>
-    // 카드 이미지 회전
+    // 카드 이미지 회전 (로드 완료 후 판별 — iOS naturalWidth 타이밍 대응)
     $(".card-management-v2 .card-section .card-img img").each(function () {
-      var $this = $(this);
-      var imgWidth = $this.get(0).naturalWidth;
-      var imgHeight = $this.get(0).naturalHeight;
-      var ratio = imgWidth / imgHeight;
-      if (ratio > 1.2) {
-        $this.addClass("rotate");
+      var img = this;
+      var $img = $(img);
+
+      function applyRotate() {
+        var imgWidth = img.naturalWidth;
+        var imgHeight = img.naturalHeight;
+        if (!imgWidth || !imgHeight) return;
+        var ratio = imgWidth / imgHeight;
+        if (ratio > 1.2) {
+          $img.addClass("rotate");
+        }
+      }
+
+      if (img.complete && img.naturalWidth) {
+        applyRotate();
+      } else {
+        $img.on("load", applyRotate);
       }
     });
   </script>

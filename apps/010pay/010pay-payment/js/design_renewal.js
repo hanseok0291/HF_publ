@@ -468,7 +468,7 @@ $(function () {
       var winHeight = $(window).innerHeight();
       
       // 콘텐츠 높이 계산 (스크롤 포함)
-      var contentHeight = $("#content").outerHeight(true);
+      var contentHeight = $("#content").innerHeight();
       var gap = winHeight - contentHeight; // 콘텐츠가 짧은 경우
 
       if (gap >= 0) {
@@ -479,9 +479,10 @@ $(function () {
         $(".bottom-area.charge-account-v2-foot").removeClass("fixed");
         $(".bottom-area.withdrawal-v2-foot").removeClass("fixed");
       } else {
-        $(".bottom-area").removeClass("fixed");
+        $(".bottom-area").not(".foot-keep-fixed").removeClass("fixed");
         /* renewal-v2 결제수단 관리 — 항상 하단 fixed */
         $("#wrap.renewal-v2 .payment-container .bottom-area").addClass("fixed");
+        $("#wrap.renewal-v2 > .bottom-area.foot-keep-fixed").addClass("fixed");
       }
     });
   }
@@ -993,21 +994,15 @@ document.querySelectorAll(".js-pop-close-btn").forEach((closeBtn) => {
 });
 
 // aos 하단버튼 스크롤 이슈
-function adjustViewportHeight() {
-  const vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-}
-window.addEventListener('resize', adjustViewportHeight);
-window.addEventListener('load', adjustViewportHeight);
-
-// 100dvh 적용 안되는 현상 수정
 function updateVH() {
   const vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
-
 window.addEventListener('load', updateVH);
-window.addEventListener('resize', updateVH);
+window.addEventListener('orientationchange', function () {
+  // 회전 직후 innerHeight 반영이 늦는 기기 대응
+  setTimeout(updateVH, 300);
+});
 
 /* [2026-06-23] renewal-v2 #KEYPAD — 금액 입력 숫자 키패드 공통
  * 사용: RenewalAmountKeypad.create({ input: '#amount', onChange: fn })
